@@ -21,6 +21,7 @@ export type Generation = {
   id: string;
   prompt: string;
   imageName: string | null;
+  skin: string | null;
   reasoning: string;
   state: "running" | "success" | "error" | "stopped";
   paintedTokens: string[];
@@ -111,6 +112,12 @@ export function ThemeGeneration({ generation }: { generation: Generation }) {
               {generation.paintedTokens.length === 0 ? "Waiting for the first token…" : paintedSummary(generation.paintedTokens)}
             </ActivityDetailContent>
           </ActivityDetail>
+          {generation.skin ? (
+            <ActivityDetail>
+              <ActivityDetailLabel>Skin</ActivityDetailLabel>
+              <ActivityDetailContent>{generation.skin}</ActivityDetailContent>
+            </ActivityDetail>
+          ) : null}
           {generation.adjustments.length > 0 ? (
             <ActivityDetail>
               <ActivityDetailLabel>Corrected for AA contrast</ActivityDetailLabel>

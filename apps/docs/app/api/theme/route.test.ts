@@ -8,6 +8,7 @@ import { resetGenerationLimits } from "./generation-limit";
 
 const palette = {
   name: "Ember Terminal",
+  skin: "modern-apple",
   radius: 0,
   cornerShape: "round",
   typography: { fontFamily: "mono", baseSize: 0.8125, scale: 1.2, headingWeight: 700, headingTracking: -0.03 },
@@ -88,7 +89,7 @@ mock.module("@/mastra/theme-image-brief", () => ({
 // Static import would bind the real agent before mock.module replaces it.
 const { POST } = await import("./route");
 
-type StreamLine = { type: string; tokens?: Record<string, string>; name?: string; error?: string; text?: string };
+type StreamLine = { type: string; tokens?: Record<string, string>; name?: string; error?: string; text?: string; skin?: string };
 
 async function generate(prompt: unknown, cookie?: string) {
   return POST(
@@ -131,6 +132,19 @@ test("paints tokens progressively and finishes with the gated palette", async ()
   expect(complete?.tokens?.["--primary"]).toBe("oklch(0.78 0.17 62)");
   expect(complete?.tokens?.["--radius"]).toBe("0rem");
   expect(complete?.tokens?.["--popover"]).toBe(complete?.tokens?.["--card"]);
+});
+
+// Selecting a skin clears every token override, so a skin line arriving after the first paint would wipe
+// the colours already on screen.
+test("announces the skin before it paints any token", async () => {
+  const lines = await readLines(await generate({ prompt: "glassy dashboard", appearance: "light" }));
+  const skinLine = lines.findIndex((line) => line.type === "skin");
+  const firstPaint = lines.findIndex((line) => line.type === "tokens");
+
+  expect(skinLine).toBeGreaterThanOrEqual(0);
+  expect(lines[skinLine]?.skin).toBe("modern-apple");
+  expect(skinLine).toBeLessThan(firstPaint);
+  expect(lines.filter((line) => line.type === "skin")).toHaveLength(1);
 });
 
 test("a partial paint never leaves a new surface under the previous theme's text", async () => {

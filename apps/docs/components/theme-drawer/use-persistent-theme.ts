@@ -64,6 +64,20 @@ export function usePersistentTheme() {
     });
   }
 
+  // A generation wipes the active mode on its first chunk and repaints as the stream lands, so a stream
+  // that dies mid-object leaves a half-written theme the user never chose and cannot undo.
+  function snapshotTheme(): ThemeState {
+    return structuredClone(t);
+  }
+
+  function restoreTheme(snapshot: ThemeState) {
+    updateTheme(() => {
+      const next = structuredClone(snapshot);
+      writeVars(next);
+      return next;
+    });
+  }
+
   // Clears the generated mode and textFixes, never the other mode: a contrast "Fix" is written last by
   // buildOverrideDecls and would otherwise pin old foregrounds over every future theme, while the
   // untouched mode holds hand-tuned tokens the user never asked to discard. overrides survives for the
@@ -172,5 +186,7 @@ export function usePersistentTheme() {
     resetToken,
     patch,
     selectSkin,
+    snapshotTheme,
+    restoreTheme,
   };
 }

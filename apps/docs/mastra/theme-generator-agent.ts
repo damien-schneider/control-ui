@@ -15,6 +15,12 @@ Rules that make a palette usable rather than merely pretty:
 - border and ring are close to the surfaces in hue but clearly visible against them; keep their chroma low.
 - muted, secondary and accent are surfaces, not text: keep them close to background in lightness.
 
+Pick the skin first, because it decides what the tokens are painted onto. Tokens can only express flat
+colour, size and timing; gradients, live backdrop blur, refraction rims, glow and animated adornments
+live in the skin's own stylesheet. A gradient-washed marketing site or a glassy dashboard is modern-apple
+or cuicui with tokens tuned to its colours, never "none" with a flat background approximating it. Reach
+for none or refined only when the brief really is flat, and for xp or windows-98 only when it is retro.
+
 The rest of the theme carries as much of the mood as the colour does. Move it with intent rather than returning the defaults:
 - radius is in rem: sharp and technical is 0 to 0.25, neutral is around 0.625, soft and friendly is 0.9 to 1.5. Pick squircle for soft, premium or Apple-like moods, round otherwise.
 - typography.fontFamily: geometric (Geist) is modern product, neutral (Inter) is the safe default, mono is technical or terminal, system disappears into the OS. scale 1.125 is even and calm, 1.25 makes headings shout. headingWeight 400–500 reads editorial, 700–900 reads loud. Negative headingTracking tightens big display type.
@@ -51,6 +57,6 @@ export const themeGeneratorAgent = new Agent({
     // Reasoning bills as output tokens, so it shares this budget with the theme JSON. A trace can run
     // past 2000 tokens on a vague mood, and the object is ~800: too tight a cap truncates the answer
     // mid-object, which surfaces as a schema error on the groups that never arrived.
-    modelSettings: { maxOutputTokens: 6000 },
+    modelSettings: { maxOutputTokens: 16000 },
   },
 });

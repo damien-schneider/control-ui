@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { themeGeneratorAgent } from "@/mastra/theme-generator-agent";
-import { generatedThemeSchema, toStreamingTokenValues, toTokenValues } from "@/mastra/theme-generator-contract";
+import { generatedThemeSchema, skinOf, toStreamingTokenValues, toTokenValues } from "@/mastra/theme-generator-contract";
 import { readImageBrief } from "@/mastra/theme-image-brief";
 import { takeGeneration } from "./generation-limit";
 
@@ -53,13 +53,24 @@ async function streamGeneration(requested: ThemeRequest, send: Send) {
 
   // fullStream rather than objectStream: the reasoning trace and the partial objects arrive on the
   // same channel, and the trace is the only thing to show during the seconds before colours land.
+  // Selecting a skin clears every token override, so nothing may be painted until the skin is known —
+  // a skin landing one chunk after the first colours would wipe them off the screen.
+  let announcedSkin = "";
   for await (const chunk of stream.fullStream) {
     if (chunk.type === "reasoning-delta") send({ type: "reasoning", text: chunk.payload.text });
-    if (chunk.type === "object") send({ type: "tokens", tokens: toStreamingTokenValues(chunk.object) });
+    if (chunk.type !== "object") continue;
+
+    const skin = skinOf(chunk.object);
+    if (skin && !announcedSkin) {
+      announcedSkin = skin;
+      send({ type: "skin", skin });
+    }
+    if (announcedSkin) send({ type: "tokens", tokens: toStreamingTokenValues(chunk.object) });
   }
 
   const theme = await stream.object;
   const { tokens, adjustments } = toTokenValues(theme);
+  if (!announcedSkin) send({ type: "skin", skin: theme.skin });
   send({ type: "complete", name: theme.name, tokens, adjustments });
 }
 

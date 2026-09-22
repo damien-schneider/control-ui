@@ -23,6 +23,21 @@ const lch = z.object({
 // system, and asking for all 130 contract tokens would only give the model ways to contradict itself.
 export const generatedThemeSchema = z.object({
   name: z.string().min(1).max(48).describe("Short human name for the theme"),
+  skin: z
+    .enum(["none", "refined", "modern-apple", "linear", "cuicui", "rig", "liquid-metal", "xp", "windows-98"])
+    .describe(
+      [
+        "The base skin, which carries the depth effects tokens cannot express — gradients, backdrop blur, rims, glow.",
+        "none: flat surfaces, square corners, no shadow.",
+        "refined: quiet neutral craft, pill controls, layered shadows.",
+        "modern-apple: glass with live backdrop blur, canvas gradient and paired rims.",
+        "linear: dark product UI, tight type, subtle gradients.",
+        "cuicui: saturated gradients and animated gradient adornments.",
+        "rig: brutalist, squared, dense.",
+        "liquid-metal: polished metal shader surface.",
+        "xp and windows-98: period operating system chrome — only for an explicitly retro brief.",
+      ].join(" "),
+    ),
   colors: z.object({
     canvas: lch.describe("Page paper behind every panel"),
     background: lch.describe("Base surface of panels and bubbles"),
@@ -326,4 +341,13 @@ export function toStreamingTokenValues(chunk: unknown): TokenValues {
   for (const [group, build] of Object.entries(GROUP_TOKENS)) Object.assign(tokens, build(streaming.data[group]));
 
   return tokens;
+}
+
+export type GeneratedSkin = GeneratedTheme["skin"];
+
+const streamingSkinSchema = z.looseObject({ skin: generatedThemeSchema.shape.skin.optional() });
+
+export function skinOf(chunk: unknown): GeneratedSkin | null {
+  const streaming = streamingSkinSchema.safeParse(chunk);
+  return streaming.success ? (streaming.data.skin ?? null) : null;
 }

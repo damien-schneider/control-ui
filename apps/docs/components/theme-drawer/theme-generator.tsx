@@ -16,6 +16,7 @@ import { Button } from "@/components/control-ui/ui/button";
 import type { ContrastAdjustment } from "@/mastra/theme-generator-contract";
 import { type Generation, paintedTokensOf, ThemeGeneration } from "./theme-generation";
 import { useThemeRuntime } from "./theme-runtime-context";
+import type { SkinId } from "./types";
 
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"] as const;
 
@@ -55,6 +56,7 @@ async function readThemeImage(file: File): Promise<ThemeImage | null> {
 
 type StreamLine =
   | { type: "reasoning"; text: string }
+  | { type: "skin"; skin: SkinId }
   | { type: "tokens"; tokens: Record<string, string> }
   | { type: "complete"; name: string; tokens: Record<string, string>; adjustments: ContrastAdjustment[] }
   | { type: "error"; error: string };
@@ -91,6 +93,7 @@ async function openGenerationStream(body: unknown, signal: AbortSignal) {
 
 function applyChunk(generation: Generation, chunk: Exclude<StreamLine, { type: "error" }>): Generation {
   if (chunk.type === "reasoning") return { ...generation, reasoning: generation.reasoning + chunk.text };
+  if (chunk.type === "skin") return { ...generation, skin: chunk.skin };
 
   const paintedTokens = paintedTokensOf(chunk.tokens);
   if (chunk.type !== "complete") return { ...generation, paintedTokens };
@@ -102,6 +105,7 @@ function startedGeneration(id: string, prompt: string, attachment: ThemeImage | 
     id,
     prompt,
     imageName: attachment?.name ?? null,
+    skin: null,
     reasoning: "",
     state: "running",
     paintedTokens: [],
@@ -112,9 +116,10 @@ function startedGeneration(id: string, prompt: string, attachment: ThemeImage | 
 }
 
 export function ThemeGenerator() {
-  const { applyGeneratedTheme, isDark } = useThemeRuntime();
+  const { applyGeneratedTheme, selectSkin, snapshotTheme, restoreTheme, isDark } = useThemeRuntime();
   const [generations, setGenerations] = useState<Generation[]>([]);
   const [image, setImage] = useState<ThemeImage | null>(null);
+  const [imageError, setImageError] = useState<string | null>(null);
   const [isRunning, setIsRunning] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -136,7 +141,10 @@ export function ThemeGenerator() {
     for await (const chunk of readLines(response)) {
       if (chunk.type === "error") throw new Error(chunk.error);
 
-      if (chunk.type !== "reasoning") applyGeneratedTheme(chunk.tokens);
+      // Depth the token layer has no vocabulary for — gradients, backdrop blur, rims — lives in the skin,
+      // and selecting one clears every override, so it has to land before the first colours are painted.
+      if (chunk.type === "skin") selectSkin(chunk.skin);
+      else if (chunk.type !== "reasoning") applyGeneratedTheme(chunk.tokens);
       updateGeneration(id, (generation) => applyChunk(generation, chunk));
     }
   }
@@ -149,8 +157,12 @@ export function ThemeGenerator() {
     abortRef.current = controller;
     setIsRunning(true);
 
+    const previousTheme = snapshotTheme();
+    let settled = false;
+
     try {
       await runGeneration(id, prompt, attachment, controller.signal);
+      settled = true;
     } catch (error) {
       const stopped = error instanceof DOMException && error.name === "AbortError";
       const message = error instanceof Error ? error.message : "Generation failed.";
@@ -170,6 +182,10 @@ export function ThemeGenerator() {
         ? { ...generation, state: "error", error: "The generator did not return a complete palette." }
         : generation,
     );
+
+    // Every run clears the active mode before repainting it, so a run that never completed leaves a theme
+    // that is neither the old one nor a new one. Put back what the user had.
+    if (!settled) restoreTheme(previousTheme);
   }
 
   return (
@@ -195,6 +211,7 @@ export function ThemeGenerator() {
               <ChatComposerAttachment name={image.name} type={image.mediaType} previewUrl={image.url} onRemove={() => setImage(null)} />
             </ChatComposerAttachments>
           ) : null}
+          {imageError ? <p className="px-3 pt-2 text-destructive-text text-label">{imageError}</p> : null}
           <ChatComposerTextarea placeholder="Describe a mood, or attach a screenshot to match…" />
           <ChatComposerToolbar>
             <ChatComposerTools>
@@ -222,7 +239,18 @@ export function ThemeGenerator() {
         onChange={async (event) => {
           const file = event.target.files?.[0];
           event.target.value = "";
-          if (file) setImage(await readThemeImage(file));
+          if (!file) return;
+
+          // A truncated or mislabelled file rejects in createImageBitmap, and a HEIC pick from a photo
+          // library never matches the accept list: both would otherwise leave the picker looking ignored.
+          try {
+            const read = await readThemeImage(file);
+            setImage(read);
+            setImageError(read ? null : `${file.name} is not a PNG, JPEG, GIF or WebP.`);
+          } catch {
+            setImage(null);
+            setImageError(`${file.name} could not be read as an image.`);
+          }
         }}
       />
     </div>

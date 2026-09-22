@@ -7,6 +7,7 @@ const flat = (L: number, C: number, H: number) => ({ L, C, H });
 
 const readable: GeneratedTheme = {
   name: "Readable",
+  skin: "none",
   radius: 0.625,
   cornerShape: "round",
   typography: { fontFamily: "neutral", baseSize: 0.875, scale: 1.125, headingWeight: 600, headingTracking: -0.018 },

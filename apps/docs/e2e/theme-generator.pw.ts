@@ -149,3 +149,57 @@ test("an attached image alone is enough to generate", async ({ page }) => {
 
   await expect(page.locator('[data-control-ui="activity"][data-slot="root"]').last()).toContainText("Terracotta Clay");
 });
+
+// A generation clears the active mode before repainting it, so a stream that dies mid-object used to
+// leave a theme that was neither the old one nor a new one, with no way back.
+test("a stream that dies mid-object puts the previous theme back", async ({ page }) => {
+  await page.goto("/theme-editor");
+
+  const before = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--canvas").trim());
+
+  await page.route("**/api/theme", async (route) => {
+    const truncated = [
+      { type: "skin", skin: "none" },
+      { type: "tokens", tokens: { "--canvas": CANVAS, "--card": "oklch(0.24 0.016 60)" } },
+      { type: "error", error: "Structured output validation failed." },
+    ];
+    await route.fulfill({
+      status: 200,
+      contentType: "application/x-ndjson",
+      body: truncated.map((line) => JSON.stringify(line)).join("\n"),
+    });
+  });
+
+  const composer = await openGenerator(page);
+  await composer.getByRole("textbox", { name: "Message" }).fill("warm brutalist terminal");
+  await composer.getByRole("button", { name: "Generate" }).click();
+
+  await expect(page.locator('[data-control-ui="activity"][data-slot="root"]').last()).toContainText("Failed");
+
+  const after = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--canvas").trim());
+  expect(after).toBe(before);
+  expect(after).not.toBe(CANVAS);
+});
+
+// Gradients, live backdrop blur and rims live in skin CSS, so a theme that only writes tokens can never
+// reach a glass look however it tunes them.
+test("a generated theme selects the skin that carries its depth", async ({ page }) => {
+  await page.route("**/api/theme", async (route) => {
+    const lines = [
+      { type: "skin", skin: "modern-apple" },
+      { type: "complete", name: "Glass Desk", tokens: { "--canvas": CANVAS }, adjustments: [] },
+    ];
+    await route.fulfill({ status: 200, contentType: "application/x-ndjson", body: lines.map((line) => JSON.stringify(line)).join("\n") });
+  });
+
+  const composer = await openGenerator(page);
+  await composer.getByRole("textbox", { name: "Message" }).fill("glassy dashboard");
+  await composer.getByRole("button", { name: "Generate" }).click();
+
+  await expect(page.locator('[data-control-ui="activity"][data-slot="root"]').last()).toContainText("Glass Desk");
+  await expect(page.locator("[data-skin]").first()).toHaveAttribute("data-skin", "modern-apple");
+
+  // The skin only earns its place if it paints something tokens cannot: a gradient canvas.
+  const gradient = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--canvas-gradient").trim());
+  expect(gradient).toContain("gradient");
+});
