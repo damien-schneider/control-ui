@@ -75,6 +75,7 @@ export type UseDropzoneReturn = {
   open: () => void;
   removeFile: (file: File) => void;
   clearFiles: () => void;
+  removeRejection: (file: File) => void;
   clearRejections: () => void;
   reset: () => void;
   getRootProps: (props?: ComponentProps<"div">) => ComponentProps<"div">;
@@ -243,6 +244,11 @@ export function useDropzone({
     if (disabledRef.current || processingRef.current || currentValueRef.current.length === 0) return;
     const removedFiles = currentValueRef.current;
     commitValue([], { reason: "clear", addedFiles: [], removedFiles });
+  }
+
+  function removeRejection(file: File) {
+    if (disabledRef.current || processingRef.current) return;
+    setFileRejections((current) => current.filter((rejection) => rejection.file !== file));
   }
 
   function clearRejections() {
@@ -484,6 +490,7 @@ export function useDropzone({
     open,
     removeFile,
     clearFiles,
+    removeRejection,
     clearRejections,
     reset,
     getRootProps,

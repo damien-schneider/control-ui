@@ -161,7 +161,6 @@ export function ChatComposerAttachment({
   removeLabel,
   className,
   children,
-  role,
   "aria-label": ariaLabel,
   ...props
 }: ChatComposerAttachmentProps) {
@@ -189,7 +188,6 @@ export function ChatComposerAttachment({
       }}
     >
       <li
-        role={role}
         aria-label={ariaLabel ?? name}
         data-control-ui="chat-composer-attachment"
         data-control-family="chat-composer-attachment"
@@ -355,7 +353,7 @@ export type ChatComposerAttachmentProgressProps = Omit<ComponentProps<"div">, "s
   style?: CSSProperties & ChatComposerAttachmentKnobStyle;
 };
 
-export function ChatComposerAttachmentProgress({ className, children, style, ...props }: ChatComposerAttachmentProgressProps) {
+export function ChatComposerAttachmentProgress({ className, children, ...props }: ChatComposerAttachmentProgressProps) {
   const { name, status, progress } = useChatComposerAttachmentContext();
 
   if (status !== "uploading") return null;
@@ -371,7 +369,6 @@ export function ChatComposerAttachmentProgress({ className, children, style, ...
       data-control-family="chat-composer-attachment"
       data-slot="progress"
       className={cn("pointer-events-none absolute inset-0 z-1 grid place-items-center", className)}
-      style={style}
       {...props}
     >
       {children ?? (

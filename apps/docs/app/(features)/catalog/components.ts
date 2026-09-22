@@ -152,8 +152,8 @@ export const componentEntries = [
     paths: {
       example: sourceFile("Example", "src/registry/examples/chat-composer-attachment.tsx", "example"),
       usage: {
-        mastra: sourceFile("Usage", "src/registry/usage/components/chat-composer-attachment.tsx", "usage"),
-        "ai-sdk": sourceFile("Usage", "src/registry/usage/components/chat-composer-attachment.tsx", "usage"),
+        mastra: sourceFile("Mastra usage", "src/registry/usage/components/chat-composer-attachment.mastra.tsx", "usage"),
+        "ai-sdk": sourceFile("AI SDK usage", "src/registry/usage/components/chat-composer-attachment.ai-sdk.tsx", "usage"),
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/chat-composer-attachment.tsx", "component"),
       supportFiles: [chatComposerAttachmentRecipeFile],

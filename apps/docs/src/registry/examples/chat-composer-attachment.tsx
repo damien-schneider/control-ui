@@ -22,7 +22,6 @@ import { Button } from "@/components/control-ui/ui/button";
 import {
   Dropzone,
   DropzoneArea,
-  type DropzoneFileRejection,
   DropzoneInput,
   DropzoneOverlay,
   type DropzonePolicy,
@@ -76,7 +75,6 @@ const previewUrls = new WeakMap<File, string>();
 
 export function ChatComposerAttachmentExample() {
   const [files, setFiles] = useState<readonly File[]>([]);
-  const [rejections, setRejections] = useState<readonly DropzoneFileRejection[]>([]);
 
   function syncFiles(next: readonly File[], { addedFiles, removedFiles }: DropzoneValueChangeDetails) {
     for (const file of addedFiles) {
@@ -91,25 +89,14 @@ export function ChatComposerAttachmentExample() {
   }
 
   return (
-    <Dropzone
-      value={files}
-      onValueChange={syncFiles}
-      policy={attachmentPolicy}
-      onDrop={({ fileRejections }) => setRejections(fileRejections)}
-      className="w-full max-w-[34rem]"
-    >
+    <Dropzone value={files} onValueChange={syncFiles} policy={attachmentPolicy} className="w-full max-w-[34rem]">
       <DropzoneInput />
-      <AttachmentComposer onSend={() => setRejections([])} />
-      {rejections.length > 0 ? (
-        <p role="alert" className="mt-2 text-sm text-destructive-text">
-          {rejections.map((rejection) => `${rejection.file.name}: ${rejection.errors[0]?.message}`).join(" · ")}
-        </p>
-      ) : null}
+      <AttachmentComposer />
     </Dropzone>
   );
 }
 
-function AttachmentComposer({ onSend }: { onSend: () => void }) {
+function AttachmentComposer() {
   const dropzone = useDropzoneContext();
   const [seeded, setSeeded] = useState([...seededAttachments]);
   const attachmentCount = seeded.length + dropzone.value.length;
@@ -124,9 +111,8 @@ function AttachmentComposer({ onSend }: { onSend: () => void }) {
         allowEmptySubmit={attachmentCount > 0}
         onSubmit={({ clear }) => {
           clear();
-          dropzone.clearFiles();
+          dropzone.reset();
           setSeeded([]);
-          onSend();
         }}
       >
         <ChatComposerShell>
@@ -169,6 +155,16 @@ function AttachmentComposer({ onSend }: { onSend: () => void }) {
                 onRemove={() => dropzone.removeFile(file)}
               />
             ))}
+            {dropzone.fileRejections.map(({ file, errors }) => (
+              <ChatComposerAttachment
+                key={`rejected-${file.name}-${file.lastModified}-${file.size}`}
+                name={file.name}
+                type={file.type}
+                status="error"
+                description={errors[0]?.message}
+                onRemove={() => dropzone.removeRejection(file)}
+              />
+            ))}
           </ChatComposerAttachments>
           <ChatComposerTextarea placeholder="Ask anything — paste a screenshot or drop a file" />
           <ChatComposerToolbar>
@@ -188,9 +184,7 @@ function AttachmentComposer({ onSend }: { onSend: () => void }) {
               <ArrowUp className="size-4" />
             </ChatComposerSubmit>
           </ChatComposerToolbar>
-          <DropzoneOverlay style={{ "--cui-dropzone-surface-radius": "var(--cui-chat-composer-shell-radius)" }}>
-            Drop to attach
-          </DropzoneOverlay>
+          <DropzoneOverlay>Drop to attach</DropzoneOverlay>
         </ChatComposerShell>
       </ChatComposer>
     </DropzoneArea>

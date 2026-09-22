@@ -81,7 +81,7 @@ function GeneratingPlaceholder() {
       data-control-ui="inline-attachment"
       data-control-family="inline-attachment"
       data-slot="placeholder"
-      className={cn("size-full", "halftone")}
+      className="size-full halftone"
     />
   );
 }
@@ -90,38 +90,14 @@ function DocumentPlaceholder() {
   return (
     <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document" className="size-full">
       <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-sheet" className="h-full">
-        <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-heading" className="" />
+        <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-heading" />
         <div className="grid">
-          <div
-            data-control-ui="inline-attachment"
-            data-control-family="inline-attachment"
-            data-slot="document-line"
-            data-width="long"
-            className=""
-          />
-          <div
-            data-control-ui="inline-attachment"
-            data-control-family="inline-attachment"
-            data-slot="document-line"
-            data-width="medium"
-            className=""
-          />
-          <div
-            data-control-ui="inline-attachment"
-            data-control-family="inline-attachment"
-            data-slot="document-line"
-            data-width="longest"
-            className=""
-          />
-          <div
-            data-control-ui="inline-attachment"
-            data-control-family="inline-attachment"
-            data-slot="document-line"
-            data-width="short"
-            className=""
-          />
+          <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-line" data-width="long" />
+          <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-line" data-width="medium" />
+          <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-line" data-width="longest" />
+          <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-line" data-width="short" />
         </div>
-        <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-stamp" className="" />
+        <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-stamp" />
       </div>
     </div>
   );
@@ -226,12 +202,6 @@ export type InlineAttachmentActionProps = InlineAttachmentStyleProps<ComponentPr
 
 export function InlineAttachmentAction({ className, ...props }: InlineAttachmentActionProps) {
   return (
-    <span
-      data-control-ui="inline-attachment"
-      data-control-family="inline-attachment"
-      data-slot="action"
-      className={cn(className)}
-      {...props}
-    />
+    <span data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="action" className={className} {...props} />
   );
 }

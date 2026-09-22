@@ -89,9 +89,9 @@ export const agentsCompositions = {
       part(
         "Dropzone",
         part("DropzoneInput"),
-        part("DropzoneArea", part("ChatComposer", content("composer anatomy")), part("DropzoneOverlay")),
+        part("DropzoneArea", part("ChatComposer", part("ChatComposerShell", content("composer anatomy"), part("DropzoneOverlay")))),
       ),
-      "The area carries drop and paste, so a screenshot pasted into the composer and a file dropped on it reach the same policy as the file dialog. Open that dialog from the toolbar with the dropzone's open().",
+      "The area carries drop and paste, so a screenshot pasted into the composer and a file dropped on it reach the same policy as the file dialog. Open that dialog from the toolbar with the dropzone's open(). Inside the shell, the overlay takes the shell's radius, and each fileRejections entry renders as an error attachment dismissed with removeRejection().",
     ),
   ],
   "user-ask": [

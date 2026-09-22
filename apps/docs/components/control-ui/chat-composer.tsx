@@ -175,9 +175,7 @@ export function ChatComposerTools({ className, ...props }: ChatComposerToolsProp
 export type ChatComposerFooterProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ChatComposerKnobStyle };
 
 export function ChatComposerFooter({ className, ...props }: ChatComposerFooterProps) {
-  return (
-    <div data-control-ui="chat-composer" data-control-family="chat-composer" data-slot="footer" className={cn(className)} {...props} />
-  );
+  return <div data-control-ui="chat-composer" data-control-family="chat-composer" data-slot="footer" className={className} {...props} />;
 }
 
 export type ChatComposerSubmitProps = ComponentProps<typeof Button>;

@@ -41,6 +41,10 @@
     outline-offset: var(--focus-ring-offset);
   }
 
+  :where([data-control-family="chat-composer"][data-slot="shell"] [data-control-family="dropzone"][data-slot="overlay"]) {
+    --cui-dropzone-surface-radius: max(0px, calc(var(--cui-chat-composer-shell-radius) - var(--cui-chat-composer-shell-border-width)));
+  }
+
   :where([data-control-family="chat-composer"][data-slot="accent"]) {
     block-size: 1px;
     background-image: linear-gradient(to right, transparent, oklch(from var(--foreground) l c h / 0.2), transparent);
