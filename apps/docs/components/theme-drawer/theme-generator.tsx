@@ -13,12 +13,12 @@ import {
 } from "@/components/control-ui/chat-composer";
 import { ChatComposerAttachment, ChatComposerAttachments } from "@/components/control-ui/chat-composer-attachment";
 import { Button } from "@/components/control-ui/ui/button";
-import type { ContrastAdjustment } from "@/mastra/theme-generator-contract";
+import type { ContrastAdjustment, GeneratedFont } from "@/mastra/theme-generator-contract";
 import { addGeneration, setRunning, updateGeneration, useGenerationState } from "./generation-store";
 import { type ImagePalette, readImagePalette } from "./image-palette";
 import { type Generation, paintedTokensOf, ThemeGeneration } from "./theme-generation";
 import { useThemeRuntime } from "./theme-runtime-context";
-import type { SkinId } from "./types";
+import type { KnobRule, SkinId } from "./types";
 
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"] as const;
 
@@ -67,7 +67,15 @@ async function readThemeImage(file: File): Promise<ThemeImage | null> {
 type StreamLine =
   | { type: "reasoning"; text: string }
   | { type: "tokens"; tokens: Record<string, string> }
-  | { type: "complete"; name: string; skin: SkinId; tokens: Record<string, string>; adjustments: ContrastAdjustment[] }
+  | {
+      type: "complete";
+      name: string;
+      skin: SkinId;
+      tokens: Record<string, string>;
+      adjustments: ContrastAdjustment[];
+      font: GeneratedFont | null;
+    }
+  | { type: "knobs"; rules: KnobRule[] }
   | { type: "error"; error: string };
 
 async function* readLines(response: Response): AsyncGenerator<StreamLine> {
@@ -100,10 +108,20 @@ async function openGenerationStream(body: unknown, signal: AbortSignal) {
   throw new Error(refusal?.error ?? "Generation failed.");
 }
 
-function applyChunk(generation: Generation, chunk: Exclude<StreamLine, { type: "error" | "reasoning" }>): Generation {
+type PaintedLine = Extract<StreamLine, { type: "tokens" | "complete" }>;
+
+function applyChunk(generation: Generation, chunk: PaintedLine): Generation {
   const paintedTokens = paintedTokensOf(chunk.tokens);
   if (chunk.type !== "complete") return { ...generation, paintedTokens };
-  return { ...generation, paintedTokens, skin: chunk.skin, state: "success", paletteName: chunk.name, adjustments: chunk.adjustments };
+  return {
+    ...generation,
+    paintedTokens,
+    skin: chunk.skin,
+    state: "success",
+    paletteName: chunk.name,
+    adjustments: chunk.adjustments,
+    typeface: chunk.font?.family ?? null,
+  };
 }
 
 // A thinking model streams its trace one word at a time — 1800 deltas for a screenshot — and rendering
@@ -140,12 +158,14 @@ function startedGeneration(id: string, prompt: string, attachment: ThemeImage | 
     paintedTokens: [],
     paletteName: null,
     adjustments: [],
+    typeface: null,
+    knobs: [],
     error: null,
   };
 }
 
 export function ThemeGenerator() {
-  const { applyGeneratedTheme, selectSkin, snapshotTheme, restoreTheme, isDark } = useThemeRuntime();
+  const { applyGeneratedTheme, applyGeneratedKnobs, selectSkin, snapshotTheme, restoreTheme, isDark } = useThemeRuntime();
   const { generations, isRunning } = useGenerationState();
   const [image, setImage] = useState<ThemeImage | null>(null);
   const [imageError, setImageError] = useState<string | null>(null);
@@ -153,10 +173,20 @@ export function ThemeGenerator() {
   const fileRef = useRef<HTMLInputElement>(null);
 
   function paintChunk(id: string, chunk: Exclude<StreamLine, { type: "error" | "reasoning" }>) {
+    // Knobs arrive behind the finished palette and touch nothing else, so they never repaint the theme.
+    if (chunk.type === "knobs") {
+      applyGeneratedKnobs(chunk.rules);
+      updateGeneration(id, (generation) => ({
+        ...generation,
+        knobs: chunk.rules.flatMap((rule) => Object.keys(rule.tokens)),
+      }));
+      return;
+    }
+
     // Depth the token layer has no vocabulary for — gradients, backdrop blur, rims — lives in the skin.
     // Selecting one clears every token override, so the finished tokens are written after it, never before.
     if (chunk.type === "complete") selectSkin(chunk.skin);
-    applyGeneratedTheme(chunk.tokens);
+    applyGeneratedTheme(chunk.tokens, chunk.type === "complete" ? (chunk.font?.url ?? "") : "");
     updateGeneration(id, (generation) => applyChunk(generation, chunk));
   }
 
@@ -184,7 +214,7 @@ export function ThemeGenerator() {
 
       reasoning.flush();
       paintChunk(id, chunk);
-      completed = chunk.type === "complete";
+      if (chunk.type === "complete") completed = true;
     }
 
     reasoning.flush();

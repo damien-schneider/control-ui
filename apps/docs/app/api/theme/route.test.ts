@@ -4,14 +4,14 @@ import { Agent } from "@mastra/core/agent";
 import { simulateReadableStream } from "ai";
 
 import { generatedThemeSchema } from "@/mastra/theme-generator-contract";
-import { resetGenerationLimits } from "./generation-limit";
+import { PER_VISITOR_GENERATIONS, resetGenerationLimits } from "./generation-limit";
 
 const palette = {
   name: "Ember Terminal",
   skin: "modern-apple",
   radius: 0,
   cornerShape: "round",
-  typography: { fontFamily: "mono", baseSize: 0.8125, scale: 1.2, headingWeight: 700, headingTracking: -0.03 },
+  typography: { fontFamily: "Space Grotesk", baseSize: 0.8125, scale: 1.2, headingWeight: 700, headingTracking: -0.03 },
   shadow: { size: 0, opacity: 0, y: 0 },
   motion: { baseDuration: 120, easing: "snappy" },
   layout: { controlHeight: 30, paddingX: 12, paddingY: 6, focusRingWidth: 3, controlRimWidth: 0 },
@@ -82,14 +82,38 @@ mock.module("@/mastra/theme-generator-agent", () => ({
   }),
 }));
 
+const imageReading = {
+  cornerShape: "rounded",
+  radiusRem: 0.75,
+  density: "airy",
+  typeCharacter: "geometric-sans",
+  headingWeight: 600,
+  depth: "soft-shadow",
+  note: "wide gutters, hairline rules, cards floating on an open grid",
+};
+
 mock.module("@/mastra/theme-image-brief", () => ({
-  readImageBrief: async () => "A cream surface with near-black text and one terracotta accent, softly rounded and airy.",
+  readImageBrief: async () => imageReading,
+  describeImageReading: () => "corners rounded (~0.75rem) · airy spacing · geometric sans at 600 · soft shadows",
 }));
+
+// Both run against the live provider otherwise. The repair decision and the knob validation are pure, and
+// are covered where they live.
+mock.module("@/mastra/theme-repair-agent", () => ({ repairContrast: async (theme: unknown) => theme }));
+mock.module("@/mastra/theme-knob-agent", () => ({ refineKnobs: async () => [] }));
 
 // Static import would bind the real agent before mock.module replaces it.
 const { POST } = await import("./route");
 
-type StreamLine = { type: string; tokens?: Record<string, string>; name?: string; error?: string; text?: string; skin?: string };
+type StreamLine = {
+  type: string;
+  tokens?: Record<string, string>;
+  name?: string;
+  error?: string;
+  text?: string;
+  skin?: string;
+  font?: { family: string; url: string | null };
+};
 
 async function generate(prompt: unknown, cookie?: string) {
   return POST(
@@ -134,6 +158,17 @@ test("paints tokens progressively and finishes with the gated palette", async ()
   expect(complete?.tokens?.["--popover"]).toBe(complete?.tokens?.["--card"]);
 });
 
+// The model may name any family, so the route resolves it against the Google catalogue and hands the client
+// a URL to load it from. Without that URL the stack names a font the page never fetches.
+test("a family outside the curated list still arrives with the stylesheet that loads it", async () => {
+  const lines = await readLines(await generate({ prompt: "amber terminal", appearance: "dark" }));
+  const complete = lines.find((line) => line.type === "complete");
+
+  expect(complete?.font?.family).toBe("Space Grotesk");
+  expect(complete?.font?.url).toContain("family=Space+Grotesk");
+  expect(complete?.tokens?.["--font-sans"]).toContain('"Space Grotesk"');
+});
+
 // Selecting a skin clears every token override and can relayout the page under the drawer, so it travels
 // with the finished theme rather than ahead of the stream.
 test("delivers the skin only with the finished theme", async () => {
@@ -153,9 +188,9 @@ test("a partial paint never leaves a new surface under the previous theme's text
   }
 });
 
-test("refuses a fourth generation from the same browser", async () => {
+test("refuses a generation past the daily allowance from the same browser", async () => {
   let cookie: string | undefined;
-  for (let attempt = 0; attempt < 3; attempt++) {
+  for (let attempt = 0; attempt < PER_VISITOR_GENERATIONS; attempt++) {
     cookie = tallyFrom(await generate({ prompt: "calm", appearance: "light" }, cookie)) ?? cookie;
   }
 
@@ -195,15 +230,20 @@ test("streams the reasoning trace before the first token lands", async () => {
   expect(reasoning).toBeLessThan(lines.findIndex((line) => line.type === "tokens"));
 });
 
-// The theme model never sees the image, so the reading has to reach it — and the user, who otherwise
-// could not tell why a screenshot produced the theme it did.
+// The theme model never sees the image, so the reading has to reach it as values it can act on — and the
+// user, who otherwise could not tell why a screenshot produced the theme it did.
 test("writes the theme from the image reading and shows that reading", async () => {
   const lines = await readLines(
     await generate({ prompt: "", appearance: "light", image: { mediaType: "image/png", data: "iVBORw0KGgo=" } }),
   );
 
-  expect(lines.find((line) => line.type === "reasoning")?.text).toContain("terracotta");
-  expect(JSON.stringify(lastPrompt)).toContain("terracotta");
+  expect(lines.find((line) => line.type === "reasoning")?.text).toContain("geometric sans at 600");
+
+  const sent = JSON.stringify(lastPrompt);
+  expect(sent).toContain("0.75rem");
+  expect(sent).toContain("geometric-sans");
+  expect(sent).toContain("weight 600");
+  expect(sent).toContain("wide gutters");
 });
 
 // The vision model reads a screenshot at roughly 150 tokens and invents colours when asked to sample

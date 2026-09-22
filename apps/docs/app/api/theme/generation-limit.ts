@@ -1,5 +1,5 @@
 const COOKIE_NAME = "cui-theme-generations";
-const PER_VISITOR_GENERATIONS = 3;
+export const PER_VISITOR_GENERATIONS = 10;
 const DAY_MS = 24 * 60 * 60 * 1000;
 const PER_INSTANCE_BURST = 60;
 

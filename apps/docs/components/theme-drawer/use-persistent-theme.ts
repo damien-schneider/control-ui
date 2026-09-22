@@ -5,7 +5,7 @@ import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } fr
 import { DEFAULT_THEME, loadStored, store } from "./presets";
 import { readContractTokens } from "./read-vars";
 import { isColorValuedToken } from "./token-metadata";
-import type { SkinId, ThemeState, TokenValues } from "./types";
+import type { KnobRule, SkinId, ThemeState, TokenValues } from "./types";
 import { writeVars } from "./write-vars";
 
 type ThemeRuntimeState = {
@@ -83,7 +83,7 @@ export function usePersistentTheme() {
   // untouched mode holds hand-tuned tokens the user never asked to discard. overrides survives for the
   // same reason — every generation rewrites all 33 mode-independent tokens it knows, so nothing there can
   // go stale, and what remains is tuning the generator has no vocabulary for.
-  function applyGeneratedTheme(tokenPatch: TokenValues) {
+  function applyGeneratedTheme(tokenPatch: TokenValues, fontUrl: string) {
     updateTheme((previous) => {
       const darkActive = document.documentElement.classList.contains("dark");
       return writeTokens(
@@ -93,10 +93,21 @@ export function usePersistentTheme() {
           light: darkActive ? { ...previous.light } : {},
           dark: darkActive ? {} : { ...previous.dark },
           textFixes: {},
+          knobs: [],
+          fontUrl,
         },
         tokenPatch,
         darkActive,
       );
+    });
+  }
+
+  // Knobs land after the palette, on their own line, so they are written without touching anything else.
+  function applyGeneratedKnobs(knobs: KnobRule[]) {
+    updateTheme((previous) => {
+      const next: ThemeState = { ...previous, knobs };
+      writeVars(next);
+      return next;
     });
   }
 
@@ -133,6 +144,8 @@ export function usePersistentTheme() {
         light: {},
         dark: {},
         textFixes: {},
+        knobs: [],
+        fontUrl: "",
       };
       writeVars(next);
       return next;
@@ -183,6 +196,7 @@ export function usePersistentTheme() {
     storageError,
     setTokens,
     applyGeneratedTheme,
+    applyGeneratedKnobs,
     resetToken,
     patch,
     selectSkin,

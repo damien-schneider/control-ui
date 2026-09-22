@@ -4,7 +4,7 @@ import { type CatalogSkinMeta, skinMetas } from "@/app/(features)/catalog/skins"
 import { DEFAULT_SKIN_ID, LEGACY_THEME_EDITOR_STORAGE_KEY, THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { objectFromEntries } from "@/lib/typed-object";
 import { isRecord } from "./is-record";
-import type { LabelMode, SkinId, ThemeState, TokenValues } from "./types";
+import type { KnobRule, LabelMode, SkinId, ThemeState, TokenValues } from "./types";
 
 export const SKIN_META_BY_ID = objectFromEntries(skinMetas.map((meta): [SkinId, CatalogSkinMeta] => [meta.id, meta]));
 export const THEME_SKIN_IDS = skinMetas.flatMap((meta) => (meta.kind === "theme" ? [meta.id] : []));
@@ -23,6 +23,8 @@ export const DEFAULT_THEME: ThemeState = {
   light: {},
   dark: {},
   textFixes: {},
+  knobs: [],
+  fontUrl: "",
 };
 
 function readTokenMap(value: unknown): TokenValues {
@@ -36,6 +38,38 @@ function readTokenMap(value: unknown): TokenValues {
 
 function readLabelMode(value: unknown): LabelMode {
   return value === "css" ? "css" : "friendly";
+}
+
+// Knob rules are the one part of a stored theme that reaches a stylesheet as a selector rather than a
+// declaration value, so tampered storage could otherwise close the rule and author anything after it.
+const STYLESHEET_BREAKING = /[;{}<>\n\r]|\/\*|@import|url\s*\(|expression\s*\(|javascript:|data:/i;
+
+function readKnobTokens(value: unknown): TokenValues {
+  const tokens: TokenValues = {};
+  for (const [name, raw] of Object.entries(readTokenMap(value))) {
+    if (name.startsWith("--cui-") && !STYLESHEET_BREAKING.test(raw)) tokens[name] = raw;
+  }
+  return tokens;
+}
+
+function readKnobRule(entry: unknown): KnobRule | null {
+  if (!isRecord(entry) || typeof entry.selector !== "string") return null;
+  if (!entry.selector.trim() || STYLESHEET_BREAKING.test(entry.selector)) return null;
+  const tokens = readKnobTokens(entry.tokens);
+  return Object.keys(tokens).length > 0 ? { selector: entry.selector, tokens } : null;
+}
+
+function readKnobRules(value: unknown): KnobRule[] {
+  if (!Array.isArray(value)) return [];
+  return value.map(readKnobRule).filter((rule) => rule !== null);
+}
+
+// Only a Google Fonts stylesheet, and only one whose URL cannot close the href or the @import it is
+// wrapped in: a stored theme is the one input to writeVars that a page can have tampered with.
+const FONT_STYLESHEET = /^https:\/\/fonts\.googleapis\.com\/css2\?[\w=;:&+%@.,-]+$/;
+
+function readFontUrl(value: unknown): string {
+  return typeof value === "string" && FONT_STYLESHEET.test(value) ? value : "";
 }
 
 export function loadStored(storage?: Pick<Storage, "getItem">): ThemeState | null {
@@ -56,6 +90,8 @@ export function loadStored(storage?: Pick<Storage, "getItem">): ThemeState | nul
       light: isLegacy ? {} : readTokenMap(stored.light),
       dark: isLegacy ? {} : readTokenMap(stored.dark),
       textFixes: readTokenMap(stored.textFixes),
+      knobs: readKnobRules(stored.knobs),
+      fontUrl: readFontUrl(stored.fontUrl),
     };
   } catch {
     return null;

@@ -27,6 +27,8 @@ export type Generation = {
   paintedTokens: string[];
   paletteName: string | null;
   adjustments: ContrastAdjustment[];
+  typeface: string | null;
+  knobs: string[];
   error: string | null;
 };
 
@@ -116,6 +118,18 @@ export function ThemeGeneration({ generation }: { generation: Generation }) {
             <ActivityDetail>
               <ActivityDetailLabel>Skin</ActivityDetailLabel>
               <ActivityDetailContent>{generation.skin}</ActivityDetailContent>
+            </ActivityDetail>
+          ) : null}
+          {generation.typeface ? (
+            <ActivityDetail>
+              <ActivityDetailLabel>Typeface</ActivityDetailLabel>
+              <ActivityDetailContent>{generation.typeface}</ActivityDetailContent>
+            </ActivityDetail>
+          ) : null}
+          {generation.knobs.length > 0 ? (
+            <ActivityDetail>
+              <ActivityDetailLabel>Component details</ActivityDetailLabel>
+              <ActivityDetailContent>{generation.knobs.join("\n")}</ActivityDetailContent>
             </ActivityDetail>
           ) : null}
           {generation.adjustments.length > 0 ? (

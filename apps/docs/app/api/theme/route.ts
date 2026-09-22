@@ -2,7 +2,9 @@ import { z } from "zod";
 
 import { themeGeneratorAgent } from "@/mastra/theme-generator-agent";
 import { generatedThemeSchema, toStreamingTokenValues, toTokenValues } from "@/mastra/theme-generator-contract";
-import { readImageBrief } from "@/mastra/theme-image-brief";
+import { describeImageReading, readImageBrief, type ThemeImageReading } from "@/mastra/theme-image-brief";
+import { refineKnobs } from "@/mastra/theme-knob-agent";
+import { repairContrast } from "@/mastra/theme-repair-agent";
 import { takeGeneration } from "./generation-limit";
 
 export const maxDuration = 60;
@@ -48,9 +50,20 @@ function describePalette(palette: NonNullable<NonNullable<ThemeRequest["image"]>
   return `Colours measured from the image's pixels — surface ${say(palette.surface)}, text ${say(palette.text)}, accent ${say(palette.accent)}. These are exact; trust them over any impression of the colours.`;
 }
 
-function buildPrompt({ prompt, appearance, image }: ThemeRequest, imageBrief: string | null) {
-  const fallback = imageBrief ? "Match the image." : "No mood given; answer with a calm neutral theme.";
-  const seen = imageBrief ? `\n\nThe attached image shows: ${imageBrief}` : "";
+// The vision call answers in the theme's own vocabulary, so the reading arrives as values the model can
+// act on rather than adjectives it has to translate a second time.
+function describeReading(reading: ThemeImageReading) {
+  return [
+    `Measured from the image — corners ${reading.cornerShape} at roughly ${reading.radiusRem}rem,`,
+    `${reading.density} spacing, ${reading.typeCharacter} headings at weight ${reading.headingWeight},`,
+    `${reading.depth} depth. It also shows: ${reading.note}.`,
+    "These are read from the pixels; follow them unless the written mood contradicts them.",
+  ].join(" ");
+}
+
+function buildPrompt({ prompt, appearance, image }: ThemeRequest, reading: ThemeImageReading | null) {
+  const fallback = reading ? "Match the image." : "No mood given; answer with a calm neutral theme.";
+  const seen = reading ? `\n\n${describeReading(reading)}` : "";
   const measured = image?.palette ? `\n\n${describePalette(image.palette)}` : "";
 
   return `Mood: ${prompt || fallback}${seen}${measured}\n\nTarget appearance: ${appearance}.\nVariation key: ${crypto.randomUUID()}.`;
@@ -58,14 +71,21 @@ function buildPrompt({ prompt, appearance, image }: ThemeRequest, imageBrief: st
 
 type Send = (payload: unknown) => void;
 
+// Four provider calls share one 60s request. The palette is the part the user is waiting for, so the two
+// passes behind it get what is left rather than a fixed slice, and are skipped when that is not enough.
+const MIN_PASS_MS = 4_000;
+const RESPONSE_MARGIN_MS = 3_000;
+const remainingBudget = (startedAt: number) => maxDuration * 1000 - (Date.now() - startedAt) - RESPONSE_MARGIN_MS;
+
 async function streamGeneration(requested: ThemeRequest, send: Send) {
+  const startedAt = Date.now();
   // Mastra drops image parts before they reach the provider, so an attached image is read in its own
   // call and folded into the brief as text. The reading is shown, because a theme derived from an image
   // the user cannot see the model's reading of is unaccountable.
-  const imageBrief = requested.image ? await readImageBrief(requested.image) : null;
-  if (imageBrief) send({ type: "reasoning", text: `Reading the image: ${imageBrief}\n\n` });
+  const reading = requested.image ? await readImageBrief(requested.image) : null;
+  if (reading) send({ type: "reasoning", text: `Reading the image: ${describeImageReading(reading)}\n\n` });
 
-  const stream = await themeGeneratorAgent.stream(buildPrompt(requested, imageBrief), {
+  const stream = await themeGeneratorAgent.stream(buildPrompt(requested, reading), {
     structuredOutput: { schema: generatedThemeSchema },
   });
 
@@ -85,14 +105,32 @@ async function streamGeneration(requested: ThemeRequest, send: Send) {
     send({ type: "tokens", tokens });
   }
 
-  const theme = await stream.object;
-  const { tokens, adjustments } = toTokenValues(theme);
+  const generated = await stream.object;
+  const firstPass = toTokenValues(generated);
+
+  // The gate can only ramp lightness, and flattens chroma when that is not enough. Handing the model what
+  // its palette actually scored is the one correction it never otherwise sees.
+  const repairBudget = remainingBudget(startedAt);
+  const theme =
+    firstPass.adjustments.length === 0 || repairBudget < MIN_PASS_MS
+      ? generated
+      : await repairContrast(generated, firstPass.adjustments, repairBudget);
+  const { tokens, adjustments, font } = theme === generated ? firstPass : toTokenValues(theme);
+  if (theme !== generated) send({ type: "reasoning", text: "\n\nRe-authored the roles that failed the contrast gate." });
 
   // The skin rides with the finished theme rather than streaming ahead of it. Selecting one clears every
   // token override, and moving between a page-scrolled and an inset-scrolled skin remounts everything
   // below PageLayout, so doing it mid-stream would wipe the painted colours and drop the drawer with the
   // generation still running inside it.
-  send({ type: "complete", name: theme.name, skin: theme.skin, tokens, adjustments });
+  send({ type: "complete", name: theme.name, skin: theme.skin, tokens, adjustments, font });
+
+  // Knobs ride behind the finished theme rather than inside it. They are a second call over a 580-entry
+  // registry, and holding the palette back for them would trade the whole paint for a detail.
+  const knobBudget = remainingBudget(startedAt);
+  if (knobBudget < MIN_PASS_MS) return;
+
+  const rules = await refineKnobs(theme, requested.prompt, knobBudget);
+  if (rules.length > 0) send({ type: "knobs", rules });
 }
 
 const line = (payload: unknown) => `${JSON.stringify(payload)}\n`;

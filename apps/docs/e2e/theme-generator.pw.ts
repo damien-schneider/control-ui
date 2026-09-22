@@ -217,3 +217,44 @@ test("a skin that relayouts the page keeps the generation on screen", async ({ p
   await expect(page.locator('[data-control-ui="activity"][data-slot="root"]').last()).toContainText("Paper Desk");
   await expect(composer).toBeVisible();
 });
+
+// A theme names a family the page does not have, and a knob the token layer cannot express. Both only
+// become visible through the document: a stylesheet link for the font, a scoped rule for the knob.
+test("a generated theme loads the family it names and writes the knobs it chose", async ({ page }) => {
+  const buttonRule = ':where([data-control-family="button"][data-control="true"])';
+  await mockGeneration(page, [
+    {
+      type: "complete",
+      skin: "none",
+      name: "Ember Terminal",
+      tokens: { "--canvas": CANVAS, "--font-sans": '"Space Grotesk", ui-sans-serif, system-ui, sans-serif' },
+      adjustments: [],
+      font: { family: "Space Grotesk", url: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" },
+    },
+    { type: "knobs", rules: [{ selector: buttonRule, tokens: { "--cui-button-shadow": "4px 4px 0 0 var(--foreground)" } }] },
+  ]);
+
+  const composer = await openGenerator(page);
+  await composer.getByRole("textbox", { name: "Message" }).fill("brutalist amber terminal");
+  await composer.getByRole("button", { name: "Generate" }).click();
+
+  const activity = page.locator('[data-control-ui="activity"][data-slot="root"]').last();
+  await expect(activity).toContainText("Ember Terminal");
+  await expect(page.locator("#control-ui-editor-font")).toHaveAttribute("href", /family=Space\+Grotesk/);
+
+  // The recipe declares this knob in a zero-specificity :where(), so the generated rule only wins while it
+  // carries the skin scope in front of it. The var() is gone from the computed value because the knob
+  // resolved against the theme's own foreground rather than a colour the generation invented.
+  await expect
+    .poll(() =>
+      page.evaluate(() => {
+        const button = document.querySelector('[data-control-family="button"][data-control="true"]');
+        return button ? getComputedStyle(button).getPropertyValue("--cui-button-shadow").trim() : "no button on the page";
+      }),
+    )
+    .toMatch(/^4px 4px 0 0 (?!var\()\S/);
+
+  await activity.getByRole("button").first().click();
+  await expect(activity).toContainText("Space Grotesk");
+  await expect(activity).toContainText("--cui-button-shadow");
+});

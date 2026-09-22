@@ -12,6 +12,8 @@ const BASE: ThemeState = {
   light: {},
   dark: {},
   textFixes: {},
+  knobs: [],
+  fontUrl: "",
 };
 
 const theme = (patch: Partial<ThemeState>): ThemeState => ({ ...BASE, ...patch });
@@ -93,26 +95,30 @@ describe("buildOverrideDecls — authors ONLY the overridden tokens", () => {
 
 describe("buildOverrideSheetCss — the portal fix: scope the diff to the ACTIVE skin", () => {
   test("empty diff → null (sheet removed so the pack's own values win again)", () => {
-    expect(buildOverrideSheetCss("xp", [])).toBeNull();
+    expect(buildOverrideSheetCss("xp", [], [])).toBeNull();
   });
 
   test("wraps the decls in a rule scoped to the active skin id", () => {
-    const css = buildOverrideSheetCss("xp", [
-      ["--overlay-opacity", "0.5"],
-      ["--backdrop-blur-overlay", "8px"],
-    ]);
+    const css = buildOverrideSheetCss(
+      "xp",
+      [
+        ["--overlay-opacity", "0.5"],
+        ["--backdrop-blur-overlay", "8px"],
+      ],
+      [],
+    );
     expect(css).toBe(`[data-skin="xp"][data-skin] {\n  --overlay-opacity: 0.5;\n  --backdrop-blur-overlay: 8px;\n}`);
   });
 
   test("the selector targets the active skin — so it matches that skin's portalled surfaces", () => {
-    expect(buildOverrideSheetCss("rig", [["--radius", "4px"]])).toStartWith(`[data-skin="rig"]`);
+    expect(buildOverrideSheetCss("rig", [["--radius", "4px"]], [])).toStartWith(`[data-skin="rig"]`);
 
-    expect(buildOverrideSheetCss("rig", [["--radius", "4px"]])).not.toContain("[data-skin] [");
+    expect(buildOverrideSheetCss("rig", [["--radius", "4px"]], [])).not.toContain("[data-skin] [");
   });
 
   test("end-to-end: an overlay-opacity override on XP produces a rule that reaches XP dialogs", () => {
     const t = theme({ overrides: { "--overlay-opacity": "0.5" } });
-    const css = buildOverrideSheetCss(t.skin, buildOverrideDecls(t, false));
+    const css = buildOverrideSheetCss(t.skin, buildOverrideDecls(t, false), t.knobs);
     expect(css).toContain(`[data-skin="xp"]`);
     expect(css).toContain("--overlay-opacity: 0.5;");
   });

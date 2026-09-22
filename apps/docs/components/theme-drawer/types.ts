@@ -11,6 +11,9 @@ export type TokenValues = Record<string, string>;
 /** How token controls are captioned: curated human names, or raw custom-property names. */
 export type LabelMode = "friendly" | "css";
 
+/** A recipe selector paired with the `--cui-*` knobs a generated theme sets on it. */
+export type KnobRule = { selector: string; tokens: TokenValues };
+
 // Selecting skin clears every map, so pack's own theme.css owns look and controls only display its live values.
 // Colour-valued tokens scope to mode they were edited in; everything else applies to both.
 export type ThemeState = {
@@ -26,6 +29,10 @@ export type ThemeState = {
   dark: TokenValues;
   // authored last in writeVars so it wins in any skin or mode; cleared on every skin switch
   textFixes: Record<string, string>;
+  // knobs live on the component element, never on the root, so they cannot ride in overrides
+  knobs: KnobRule[];
+  /** Google Fonts stylesheet the generated `--font-sans` needs, or "" when the face is already bundled. */
+  fontUrl: string;
 };
 
 export type ControlUiThemeArtifactV1 = {

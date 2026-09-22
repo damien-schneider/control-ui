@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, test } from "bun:test";
 
-import { resetGenerationLimits, takeGeneration } from "./generation-limit";
+import { PER_VISITOR_GENERATIONS, resetGenerationLimits, takeGeneration } from "./generation-limit";
 
 const withCookie = (cookie?: string) =>
   new Request("http://localhost/api/theme", {
@@ -13,10 +13,10 @@ const cookieValue = (setCookie: string) => setCookie.split(";")[0] ?? "";
 describe("takeGeneration", () => {
   beforeEach(resetGenerationLimits);
 
-  test("walks a visitor through three generations, then refuses", () => {
+  test("walks a visitor through the daily allowance, then refuses", () => {
     let cookie: string | undefined;
 
-    for (let attempt = 1; attempt <= 3; attempt++) {
+    for (let attempt = 1; attempt <= PER_VISITOR_GENERATIONS; attempt++) {
       const grant = takeGeneration(withCookie(cookie));
       expect(grant.granted).toBe(true);
       if (grant.granted) cookie = cookieValue(grant.cookie);
@@ -38,13 +38,14 @@ describe("takeGeneration", () => {
   });
 
   test("gives a visitor with no cookie a fresh allowance, which is the known bypass", () => {
-    for (let attempt = 0; attempt < 3; attempt++) takeGeneration(withCookie("cui-theme-generations=3.99999999999999"));
+    const exhausted = `cui-theme-generations=${PER_VISITOR_GENERATIONS}.99999999999999`;
+    for (let attempt = 0; attempt < PER_VISITOR_GENERATIONS; attempt++) takeGeneration(withCookie(exhausted));
 
     expect(takeGeneration(withCookie()).granted).toBe(true);
   });
 
   test("ignores a tally whose day has passed", () => {
-    const expired = `cui-theme-generations=3.${Date.now() - 1000}`;
+    const expired = `cui-theme-generations=${PER_VISITOR_GENERATIONS}.${Date.now() - 1000}`;
 
     expect(takeGeneration(withCookie(expired)).granted).toBe(true);
   });

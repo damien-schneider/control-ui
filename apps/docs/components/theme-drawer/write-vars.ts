@@ -3,13 +3,21 @@
 import { COLOR_SCHEME_LOCK_ATTR, MODE_LOCKED_SKINS, MOTION_REDUCED_SKINS, PAGE_LAYOUT_SKINS, preferredTheme } from "@/components/theme";
 import { THEME_CONTRACT_NAMES } from "@/src/registry/lib/theme-contract";
 import { hexToOklchColor } from "./color-utils";
-import { buildDarkColorDecls, buildOverrideDecls, buildOverrideSheetCss, exportedThemeScopeSelector } from "./override-decls";
+import {
+  buildDarkColorDecls,
+  buildOverrideDecls,
+  buildOverrideSheetCss,
+  declarationBlock,
+  exportedThemeScopeSelector,
+  knobRuleCss,
+} from "./override-decls";
 import type { ThemeState } from "./types";
 
 const OVERRIDE_STYLE_ID = "control-ui-editor-overrides";
+const FONT_LINK_ID = "control-ui-editor-font";
 
-function writeOverrideSheet(skin: string, decls: [string, string][]) {
-  const css = buildOverrideSheetCss(skin, decls);
+function writeOverrideSheet(t: ThemeState, decls: [string, string][]) {
+  const css = buildOverrideSheetCss(t.skin, decls, t.knobs);
   let el = document.querySelector<HTMLStyleElement>(`#${OVERRIDE_STYLE_ID}`);
   if (css === null) {
     el?.remove();
@@ -21,6 +29,23 @@ function writeOverrideSheet(skin: string, decls: [string, string][]) {
   }
   if (el.textContent !== css) el.textContent = css;
   if (document.head.lastElementChild !== el) document.head.appendChild(el);
+}
+
+// A link rather than an @import in the override sheet: an @import must come before every rule, so it would
+// pin the ordering of a sheet that is rewritten on every token edit, and it blocks where a link does not.
+function writeFontLink(url: string) {
+  let el = document.querySelector<HTMLLinkElement>(`#${FONT_LINK_ID}`);
+  if (!url) {
+    el?.remove();
+    return;
+  }
+  if (!el) {
+    el = document.createElement("link");
+    el.id = FONT_LINK_ID;
+    el.rel = "stylesheet";
+  }
+  if (el.getAttribute("href") !== url) el.href = url;
+  if (!el.isConnected) document.head.appendChild(el);
 }
 
 export function writeVars(t: ThemeState) {
@@ -51,7 +76,8 @@ export function writeVars(t: ThemeState) {
   for (const name of THEME_CONTRACT_NAMES) root.removeProperty(name);
   for (const [name, value] of decls) root.setProperty(name, value);
 
-  writeOverrideSheet(t.skin, decls);
+  writeOverrideSheet(t, decls);
+  writeFontLink(t.fontUrl);
 }
 
 export function toCss(t: ThemeState): string {
@@ -60,13 +86,16 @@ export function toCss(t: ThemeState): string {
   const darkDecls = buildDarkColorDecls(t);
   for (const [name, hex] of Object.entries(t.textFixes)) darkDecls.push([name, hexToOklchColor(hex)]);
 
-  if (rootDecls.length === 0 && darkDecls.length === 0) {
+  const scope = exportedThemeScopeSelector(t.skin);
+  const knobRules = knobRuleCss(scope, t.knobs);
+  if (rootDecls.length === 0 && darkDecls.length === 0 && knobRules.length === 0 && !t.fontUrl) {
     return "/* No token edits. The current theme uses its default values. */";
   }
-  const block = (decls: [string, string][]) => decls.map(([name, value]) => `  ${name}: ${value};`).join("\n");
+  // @import has to precede every rule in the sheet, so the typeface leads and the comment sits above it.
   const parts: string[] = ["/* Import after the Control UI styles. */"];
-  const scope = exportedThemeScopeSelector(t.skin);
-  if (rootDecls.length > 0) parts.push(`${scope} {\n${block(rootDecls)}\n}`);
-  if (darkDecls.length > 0) parts.push(`:where(.dark) ${scope},\n.dark${scope} {\n${block(darkDecls)}\n}`);
+  if (t.fontUrl) parts.push(`@import url('${t.fontUrl}');`);
+  if (rootDecls.length > 0) parts.push(`${scope} {\n${declarationBlock(rootDecls)}\n}`);
+  if (darkDecls.length > 0) parts.push(`:where(.dark) ${scope},\n.dark${scope} {\n${declarationBlock(darkDecls)}\n}`);
+  parts.push(...knobRules);
   return parts.join("\n\n");
 }

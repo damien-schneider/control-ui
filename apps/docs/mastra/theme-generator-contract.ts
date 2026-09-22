@@ -10,6 +10,7 @@ import {
   oklchToRgb,
 } from "@/components/theme-drawer/color-math";
 import type { TokenValues } from "@/components/theme-drawer/types";
+import { findThemeFont, themeFontUrl } from "./theme-fonts";
 
 // One list of skins, the one the docs already ship: a hand-typed copy here would go stale the next time
 // a skin pack lands, and the model would keep offering an id the editor cannot select.
@@ -17,7 +18,7 @@ const SKIN_IDS = skinMetas.map((meta) => meta.id);
 
 // The model authors channel triplets, never CSS strings: the contrast gate is then pure arithmetic on
 // the server, and no model-authored text ever reaches a stylesheet.
-const lch = z.object({
+export const oklchChannels = z.object({
   L: z.number().min(0).max(1).describe("OKLCH lightness, 0 black to 1 white"),
   C: z.number().min(0).max(0.37).describe("OKLCH chroma, 0 grey to ~0.37 vivid"),
   H: z.number().min(0).max(360).describe("OKLCH hue angle in degrees"),
@@ -39,28 +40,37 @@ export const generatedThemeSchema = z.object({
       ].join(" "),
     ),
   colors: z.object({
-    canvas: lch.describe("Page paper behind every panel"),
-    background: lch.describe("Base surface of panels and bubbles"),
-    foreground: lch.describe("Default text on background and canvas"),
-    card: lch.describe("Elevated card surface"),
-    cardForeground: lch.describe("Text on card"),
-    primary: lch.describe("The brand colour used by primary actions"),
-    primaryForeground: lch.describe("Text on primary"),
-    muted: lch.describe("Subdued fill for quiet surfaces"),
-    mutedForeground: lch.describe("Secondary and meta text"),
-    secondary: lch.describe("Secondary action fill"),
-    accent: lch.describe("Hover and selection highlight fill"),
-    destructive: lch.describe("Destructive action colour"),
-    border: lch.describe("Hairline border colour"),
-    ring: lch.describe("Focus ring colour"),
+    canvas: oklchChannels.describe("Page paper behind every panel"),
+    background: oklchChannels.describe("Base surface of panels and bubbles"),
+    foreground: oklchChannels.describe("Default text on background and canvas"),
+    card: oklchChannels.describe("Elevated card surface"),
+    cardForeground: oklchChannels.describe("Text on card"),
+    primary: oklchChannels.describe("The brand colour used by primary actions"),
+    primaryForeground: oklchChannels.describe("Text on primary"),
+    muted: oklchChannels.describe("Subdued fill for quiet surfaces"),
+    mutedForeground: oklchChannels.describe("Secondary and meta text"),
+    secondary: oklchChannels.describe("Secondary action fill"),
+    accent: oklchChannels.describe("Hover and selection highlight fill"),
+    destructive: oklchChannels.describe("Destructive action colour"),
+    border: oklchChannels.describe("Hairline border colour"),
+    ring: oklchChannels.describe("Focus ring colour"),
   }),
   radius: z.number().min(0).max(1.75).describe("Base corner radius in rem; 0 is square, 0.625 is the default").optional(),
   cornerShape: z.enum(["round", "squircle"]).describe("round is a normal corner, squircle is the softer Apple-style curve").optional(),
   typography: z
     .object({
       fontFamily: z
-        .enum(["geometric", "neutral", "mono", "system"])
-        .describe("Typeface character: geometric is Geist, neutral is Inter, mono is JetBrains Mono, system is the OS default"),
+        .string()
+        .min(1)
+        .max(64)
+        .describe(
+          [
+            "Typeface. One of the four families the app already loads — geometric (Geist), neutral (Inter), mono (JetBrains Mono), system —",
+            "or any Google Fonts family name, given exactly as Google spells it.",
+            "The four bundled ones need no network request, so prefer them unless the mood really calls for a distinctive face.",
+            "An unknown name is ignored and the current face is kept.",
+          ].join(" "),
+        ),
       baseSize: z.number().min(0.75).max(1.125).describe("Body text size in rem; 0.875 is the default"),
       scale: z.number().min(1.05).max(1.25).describe("Ratio between type steps; 1.125 is the default, 1.25 is dramatic"),
       headingWeight: z.number().min(400).max(900).describe("Font weight for headings; 600 is the default"),
@@ -124,7 +134,7 @@ export const COLOR_ROLE_TOKENS = [
 
 // Mirrors CONTRAST_PAIRS, expressed in generated roles so the gate never needs resolved custom
 // properties off a live document.
-const GATED_PAIRS: readonly (readonly [ColorRole, ColorRole])[] = [
+export const CONTRAST_GATED_PAIRS: readonly (readonly [ColorRole, ColorRole])[] = [
   ["cardForeground", "card"],
   ["mutedForeground", "card"],
   ["foreground", "canvas"],
@@ -140,7 +150,7 @@ export function gateContrast(colors: GeneratedColors): { colors: GeneratedColors
   const gated: GeneratedColors = { ...colors };
   const adjustments: ContrastAdjustment[] = [];
 
-  for (const [foregroundRole, surfaceRole] of GATED_PAIRS) {
+  for (const [foregroundRole, surfaceRole] of CONTRAST_GATED_PAIRS) {
     const foreground = gated[foregroundRole];
     const surface = gated[surfaceRole];
     const surfaceRgb = oklchToRgb(surface.L, surface.C, surface.H);
@@ -220,17 +230,6 @@ const TYPE_STEPS = [
 
 const HEADING_TOKENS = ["--text-heading-4", "--text-heading-3", "--text-heading-2", "--text-heading-1", "--text-display"] as const;
 
-// The only families the app actually loads (app/layout.tsx), plus the stock system stack. The named face
-// sits inside the var() fallback, not after it: in an app without these next/font variables, an undefined
-// `var(--font-geist-sans), "Geist"` is invalid at computed-value time, so the whole declaration is thrown
-// away and the rest of the list never gets a turn.
-const FONT_STACKS: Record<ThemeGroup<"typography">["fontFamily"], string> = {
-  geometric: 'var(--font-geist-sans, "Geist"), ui-sans-serif, system-ui, sans-serif',
-  neutral: 'var(--font-inter, "Inter"), ui-sans-serif, system-ui, sans-serif',
-  mono: 'var(--font-jetbrains-mono, "JetBrains Mono"), ui-monospace, SFMono-Regular, monospace',
-  system: 'ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif',
-};
-
 const EASING_CURVES: Record<ThemeGroup<"motion">["easing"], string> = {
   standard: "cubic-bezier(0.2, 0, 0, 1)",
   snappy: "cubic-bezier(0.3, 0, 0.1, 1)",
@@ -249,7 +248,8 @@ const MAX_REM = 5;
 const STOCK_SCALE = 1.125;
 
 function typographyTokens({ fontFamily, baseSize, scale, headingWeight, headingTracking }: ThemeGroup<"typography">): TokenValues {
-  const tokens: TokenValues = { "--font-sans": FONT_STACKS[fontFamily] };
+  const font = findThemeFont(fontFamily);
+  const tokens: TokenValues = font ? { "--font-sans": font.stack } : {};
   for (const [name, step] of TYPE_STEPS) {
     const size = baseSize * (step < 0 ? Math.min(scale, STOCK_SCALE) : scale) ** step;
     tokens[name] = `${round(Math.min(Math.max(size, MIN_REM), MAX_REM), 4)}rem`;
@@ -321,7 +321,10 @@ const GROUP_TOKENS = {
   })),
 };
 
-export function toTokenValues(theme: GeneratedTheme): { tokens: TokenValues; adjustments: ContrastAdjustment[] } {
+export type GeneratedFont = { family: string; url: string | null };
+export type GeneratedThemeTokens = { tokens: TokenValues; adjustments: ContrastAdjustment[]; font: GeneratedFont | null };
+
+export function toTokenValues(theme: GeneratedTheme): GeneratedThemeTokens {
   const { colors, adjustments } = gateContrast(theme.colors);
   const tokens: TokenValues = {
     ...tokensFromColors(colors),
@@ -333,7 +336,14 @@ export function toTokenValues(theme: GeneratedTheme): { tokens: TokenValues; adj
     ...GROUP_TOKENS.layout(theme.layout),
     ...GROUP_TOKENS.surface(theme.surface),
   };
-  return { tokens, adjustments };
+  // Left unwritten when the model named no resolvable family, the same way an absent radius or depth group
+  // is: selectSkin clears every override before a finished theme is applied, so the skin's own face is what
+  // remains rather than a stale one. The streaming path needs this too — a half-arrived "Playf" is a valid
+  // string, and resolving it to a default would paint one face and swap to another on complete.
+  if (theme.typography === undefined) return { tokens, adjustments, font: null };
+
+  const font = findThemeFont(theme.typography.fontFamily);
+  return { tokens, adjustments, font: font ? { family: font.family, url: themeFontUrl(font) } : null };
 }
 
 // Every group is optional here because the model streams them one at a time: each lands the moment it is
@@ -351,7 +361,7 @@ export function toStreamingTokenValues(chunk: unknown): TokenValues {
 
   const landed: Partial<Record<ColorRole, Oklch>> = {};
   for (const [role] of COLOR_ROLE_TOKENS) {
-    const color = lch.safeParse(streaming.data.colors?.[role]);
+    const color = oklchChannels.safeParse(streaming.data.colors?.[role]);
     if (color.success) landed[role] = color.data;
   }
 
