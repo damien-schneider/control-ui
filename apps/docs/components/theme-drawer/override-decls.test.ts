@@ -14,6 +14,7 @@ const BASE: ThemeState = {
   textFixes: {},
   knobs: [],
   fontUrl: "",
+  customSkinId: null,
 };
 
 const theme = (patch: Partial<ThemeState>): ThemeState => ({ ...BASE, ...patch });

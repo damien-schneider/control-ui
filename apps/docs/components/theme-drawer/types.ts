@@ -33,6 +33,8 @@ export type ThemeState = {
   knobs: KnobRule[];
   /** Google Fonts stylesheet the generated `--font-sans` needs, or "" when the face is already bundled. */
   fontUrl: string;
+  // every change is written through to this saved skin; null while the theme is a built-in skin plus edits
+  customSkinId: string | null;
 };
 
 export type ControlUiThemeArtifactV1 = {
@@ -45,19 +47,6 @@ export type ControlUiThemeArtifactV1 = {
     light: TokenValues;
     dark: TokenValues;
   };
-};
-
-export type CustomThemeProfile = {
-  id: string;
-  name: string;
-  baseSkin: SkinId;
-  createdAt: string;
-  updatedAt: string;
-  reduceMotion: boolean;
-  overrides: TokenValues;
-  light: TokenValues;
-  dark: TokenValues;
-  textFixes: TokenValues;
 };
 
 // select authors raw CSS value; these are only curated choices offered

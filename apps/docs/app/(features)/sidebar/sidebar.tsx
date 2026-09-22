@@ -110,7 +110,7 @@ export function DocsSidebarContent({
           </div>
           {/* biome-ignore lint/a11y/useSemanticElements: a labelled row of sidebar controls, not a form fieldset. */}
           <div role="group" aria-label="Documentation controls" className="flex items-center gap-1.5">
-            <SkinPresetControls className="min-w-0 flex-1 justify-between" />
+            <SkinPresetControls className="min-w-0 flex-1 justify-between" onNavigate={closeSidebar} />
             <ButtonLink
               render={<Link href="/theme-editor" onClick={closeSidebar} />}
               variant="surface"

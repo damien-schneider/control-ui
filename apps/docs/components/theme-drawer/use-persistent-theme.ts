@@ -2,7 +2,8 @@
 
 import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 
-import { DEFAULT_THEME, loadStored, store } from "./presets";
+import { type CustomSkin, writeCustomSkinTheme } from "./custom-skins";
+import { DEFAULT_THEME, loadStored, readThemeState, store } from "./presets";
 import { readContractTokens } from "./read-vars";
 import { isColorValuedToken } from "./token-metadata";
 import type { KnobRule, SkinId, ThemeState, TokenValues } from "./types";
@@ -135,7 +136,8 @@ export function usePersistentTheme() {
     });
   }
 
-  function selectSkin(skin: SkinId) {
+  // A generation completing on a saved skin rebases it onto the model's skin and keeps writing through to it.
+  function selectSkin(skin: SkinId, customSkinId: string | null = null) {
     updateTheme((previous) => {
       const next: ThemeState = {
         ...previous,
@@ -146,6 +148,19 @@ export function usePersistentTheme() {
         textFixes: {},
         knobs: [],
         fontUrl: "",
+        customSkinId,
+      };
+      writeVars(next);
+      return next;
+    });
+  }
+
+  function selectCustomSkin(customSkin: CustomSkin) {
+    updateTheme((previous) => {
+      const next: ThemeState = {
+        ...(readThemeState(customSkin.theme) ?? DEFAULT_THEME),
+        labelMode: previous.labelMode,
+        customSkinId: customSkin.id,
       };
       writeVars(next);
       return next;
@@ -161,6 +176,7 @@ export function usePersistentTheme() {
 
   useEffect(() => {
     if (!runtime.hydrated || !runtime.theme) return;
+    writeCustomSkinTheme(runtime.theme);
     publishStorageError(
       store(runtime.theme)
         ? null
@@ -200,6 +216,7 @@ export function usePersistentTheme() {
     resetToken,
     patch,
     selectSkin,
+    selectCustomSkin,
     snapshotTheme,
     restoreTheme,
   };

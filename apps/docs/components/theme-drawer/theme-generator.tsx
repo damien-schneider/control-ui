@@ -4,11 +4,13 @@ import { useRef } from "react";
 
 import { ChatLayout, ChatThread } from "@/components/control-ui/chat-layout";
 import type { ContrastAdjustment, GeneratedFont, GeneratedTheme } from "@/mastra/theme-generator-contract";
-import { addGeneration, setRunning, updateGeneration, useGenerationState } from "./generation-store";
+import { nameCustomSkin, writeCustomSkinConversation } from "./custom-skins";
+import { beginTurn, generationState, linkConversation, setRunning, updateGeneration } from "./generation-store";
 import { type Generation, paintedTokensOf, ThemeGeneration } from "./theme-generation";
 import { type ThemeImage, ThemePromptComposer } from "./theme-prompt-composer";
 import { useThemeRuntime } from "./theme-runtime-context";
 import type { KnobRule, SkinId } from "./types";
+import { useThemeConversation } from "./use-theme-conversation";
 
 // Roughly a frame at 30fps: fast enough to read as live typing, slow enough that the trace costs a
 // handful of renders instead of one per word.
@@ -128,11 +130,19 @@ function conversationSoFar(generations: readonly Generation[]) {
 }
 
 export function ThemeGenerator() {
-  const { applyGeneratedTheme, applyGeneratedKnobs, selectSkin, snapshotTheme, restoreTheme, isDark } = useThemeRuntime();
-  const { generations, isRunning } = useGenerationState();
+  const { t, applyGeneratedTheme, applyGeneratedKnobs, selectSkin, snapshotTheme, restoreTheme, isDark } = useThemeRuntime();
+  const { generations, isRunning } = useThemeConversation();
   const abortRef = useRef<AbortController | null>(null);
 
-  function paintChunk(id: string, chunk: Exclude<StreamLine, { type: "error" | "reasoning" }>) {
+  // The first finished palette saves the conversation as a skin under the model's name; follow-ups rename it.
+  function saveCompletedSkin(skinId: string | null, chunk: Extract<StreamLine, { type: "complete" }>) {
+    const savedSkinId = skinId ?? crypto.randomUUID();
+    nameCustomSkin(savedSkinId, chunk.name);
+    linkConversation(savedSkinId);
+    return savedSkinId;
+  }
+
+  function paintChunk(id: string, chunk: Exclude<StreamLine, { type: "error" | "reasoning" }>, savedSkinId: string | null) {
     // Knobs arrive behind the finished palette and touch nothing else, so they never repaint the theme.
     if (chunk.type === "knobs") {
       applyGeneratedKnobs(chunk.rules);
@@ -145,12 +155,18 @@ export function ThemeGenerator() {
 
     // Depth the token layer has no vocabulary for — gradients, backdrop blur, rims — lives in the skin.
     // Selecting one clears every token override, so the finished tokens are written after it, never before.
-    if (chunk.type === "complete") selectSkin(chunk.skin);
+    if (chunk.type === "complete") selectSkin(chunk.skin, savedSkinId);
     applyGeneratedTheme(chunk.tokens, chunk.type === "complete" ? (chunk.font?.url ?? "") : "");
     updateGeneration(id, (generation) => applyChunk(generation, chunk));
   }
 
-  async function runGeneration(id: string, prompt: string, attachment: ThemeImage | null, signal: AbortSignal, onComplete: () => void) {
+  async function runGeneration(
+    id: string,
+    prompt: string,
+    attachment: ThemeImage | null,
+    signal: AbortSignal,
+    onComplete: (chunk: Extract<StreamLine, { type: "complete" }>) => string,
+  ) {
     const response = await openGenerationStream(
       {
         prompt,
@@ -173,8 +189,8 @@ export function ThemeGenerator() {
       }
 
       reasoning.flush();
-      paintChunk(id, chunk);
-      if (chunk.type === "complete") onComplete();
+      const savedSkinId = chunk.type === "complete" ? onComplete(chunk) : null;
+      paintChunk(id, chunk, savedSkinId);
     }
 
     reasoning.flush();
@@ -182,7 +198,8 @@ export function ThemeGenerator() {
 
   async function generate(prompt: string, attachment: ThemeImage | null) {
     const id = crypto.randomUUID();
-    addGeneration(startedGeneration(id, prompt, attachment));
+    let skinId = t.customSkinId;
+    beginTurn(skinId, generations, startedGeneration(id, prompt, attachment));
 
     const controller = new AbortController();
     abortRef.current = controller;
@@ -195,8 +212,10 @@ export function ThemeGenerator() {
     let stopped = false;
 
     try {
-      await runGeneration(id, prompt, attachment, controller.signal, () => {
+      await runGeneration(id, prompt, attachment, controller.signal, (chunk) => {
         completed = true;
+        skinId = saveCompletedSkin(skinId, chunk);
+        return skinId;
       });
     } catch (error) {
       stopped = error instanceof DOMException && error.name === "AbortError";
@@ -219,6 +238,7 @@ export function ThemeGenerator() {
         ? { ...generation, state: "error", error: "The generator did not return a complete palette." }
         : generation,
     );
+    if (skinId) writeCustomSkinConversation(skinId, generationState().generations);
 
     // Every run clears the active mode before repainting it, so a failed one leaves a theme that is
     // neither the old one nor a new one. Put back what the user had.

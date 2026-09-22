@@ -25,6 +25,7 @@ export const DEFAULT_THEME: ThemeState = {
   textFixes: {},
   knobs: [],
   fontUrl: "",
+  customSkinId: null,
 };
 
 function readTokenMap(value: unknown): TokenValues {
@@ -72,27 +73,30 @@ function readFontUrl(value: unknown): string {
   return typeof value === "string" && FONT_STYLESHEET.test(value) ? value : "";
 }
 
+export function readThemeState(stored: unknown): ThemeState | null {
+  if (!isRecord(stored)) return null;
+  const storedSkin = stored.skin === "flat" ? "none" : stored.skin;
+  const isLegacy = Array.isArray(stored.overrides) || typeof stored.primary === "string";
+  return {
+    ...DEFAULT_THEME,
+    skin: isSkinId(storedSkin) ? storedSkin : DEFAULT_THEME.skin,
+    reduceMotion: stored.reduceMotion === true,
+    labelMode: readLabelMode(stored.labelMode),
+    overrides: isLegacy ? {} : readTokenMap(stored.overrides),
+    light: isLegacy ? {} : readTokenMap(stored.light),
+    dark: isLegacy ? {} : readTokenMap(stored.dark),
+    textFixes: readTokenMap(stored.textFixes),
+    knobs: readKnobRules(stored.knobs),
+    fontUrl: readFontUrl(stored.fontUrl),
+    customSkinId: typeof stored.customSkinId === "string" ? stored.customSkinId : null,
+  };
+}
+
 export function loadStored(storage?: Pick<Storage, "getItem">): ThemeState | null {
   try {
     const themeStorage = storage ?? localStorage;
     const raw = themeStorage.getItem(THEME_EDITOR_STORAGE_KEY) ?? themeStorage.getItem(LEGACY_THEME_EDITOR_STORAGE_KEY);
-    if (!raw) return null;
-    const stored: unknown = JSON.parse(raw);
-    if (!isRecord(stored)) return null;
-    const storedSkin = stored.skin === "flat" ? "none" : stored.skin;
-    const isLegacy = Array.isArray(stored.overrides) || typeof stored.primary === "string";
-    return {
-      ...DEFAULT_THEME,
-      skin: isSkinId(storedSkin) ? storedSkin : DEFAULT_THEME.skin,
-      reduceMotion: stored.reduceMotion === true,
-      labelMode: readLabelMode(stored.labelMode),
-      overrides: isLegacy ? {} : readTokenMap(stored.overrides),
-      light: isLegacy ? {} : readTokenMap(stored.light),
-      dark: isLegacy ? {} : readTokenMap(stored.dark),
-      textFixes: readTokenMap(stored.textFixes),
-      knobs: readKnobRules(stored.knobs),
-      fontUrl: readFontUrl(stored.fontUrl),
-    };
+    return raw ? readThemeState(JSON.parse(raw)) : null;
   } catch {
     return null;
   }

@@ -5,6 +5,8 @@ import { useSyncExternalStore } from "react";
 import type { Generation } from "./theme-generation";
 
 type GenerationState = {
+  // the saved skin these turns belong to; the live buffer wins over the saved copy only while they match
+  skinId: string | null;
   generations: Generation[];
   isOpen: boolean;
   isRunning: boolean;
@@ -13,7 +15,7 @@ type GenerationState = {
 // A generated theme may select a skin that scrolls the page instead of an inset viewport, and that
 // choice remounts everything under PageLayout — this drawer included. Keeping the log and the open flag
 // outside React means the drawer comes back up where it left off instead of vanishing at the finish line.
-let state: GenerationState = { generations: [], isOpen: false, isRunning: false };
+let state: GenerationState = { skinId: null, generations: [], isOpen: false, isRunning: false };
 const listeners = new Set<() => void>();
 
 function setState(next: GenerationState) {
@@ -26,7 +28,7 @@ const subscribe = (listener: () => void) => {
   return () => listeners.delete(listener);
 };
 
-const emptyState: GenerationState = { generations: [], isOpen: false, isRunning: false };
+const emptyState: GenerationState = { skinId: null, generations: [], isOpen: false, isRunning: false };
 
 export function useGenerationState(): GenerationState {
   return useSyncExternalStore(
@@ -44,8 +46,20 @@ export function setRunning(isRunning: boolean) {
   setState({ ...state, isRunning });
 }
 
-export function addGeneration(generation: Generation) {
-  setState({ ...state, generations: [...state.generations, generation] });
+export function generationState() {
+  return state;
+}
+
+export function beginTurn(skinId: string | null, earlierTurns: readonly Generation[], generation: Generation) {
+  setState({ ...state, skinId, generations: [...earlierTurns, generation] });
+}
+
+export function linkConversation(skinId: string) {
+  setState({ ...state, skinId });
+}
+
+export function resetConversation() {
+  setState({ ...state, skinId: null, generations: [] });
 }
 
 export function updateGeneration(id: string, update: (generation: Generation) => Generation) {
