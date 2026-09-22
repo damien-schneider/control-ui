@@ -22,7 +22,7 @@ const describeKnobs = createTool({
 });
 
 const knobOverridesSchema = z.object({
-  overrides: z.array(z.object({ name: z.string(), value: z.string() })).max(24),
+  overrides: z.array(z.object({ name: z.string(), value: z.string() })).transform((overrides) => overrides.slice(0, 24)),
 });
 
 const instructions = `You add the finishing details to a Control UI theme that has already been written.
@@ -79,11 +79,11 @@ const MAX_TOOL_STEPS = 6;
 // Knob values are the one piece of model output that reaches a stylesheet as CSS rather than as a number, so
 // nothing here is trusted: the registry decides which names exist and which values their syntax allows. The
 // theme has already been sent by this point, so a failure costs the detail pass and nothing else.
-export async function refineKnobs(theme: GeneratedTheme, mood: string, budgetMs: number): Promise<KnobRule[]> {
+export async function refineKnobs(theme: GeneratedTheme, mood: string, signal: AbortSignal): Promise<KnobRule[]> {
   try {
     const result = await themeKnobAgent.generate(describeTheme(theme, mood), {
       maxSteps: MAX_TOOL_STEPS,
-      abortSignal: AbortSignal.timeout(budgetMs),
+      abortSignal: signal,
     });
     const answered = knobOverridesSchema.safeParse(firstJsonObject(result.text));
     if (!answered.success) return [];

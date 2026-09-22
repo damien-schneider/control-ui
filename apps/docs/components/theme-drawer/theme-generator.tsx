@@ -1,68 +1,17 @@
 "use client";
 
-import { PaperclipIcon } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
-import {
-  ChatComposer,
-  ChatComposerShell,
-  ChatComposerSubmit,
-  ChatComposerTextarea,
-  ChatComposerToolbar,
-  ChatComposerTools,
-} from "@/components/control-ui/chat-composer";
-import { ChatComposerAttachment, ChatComposerAttachments } from "@/components/control-ui/chat-composer-attachment";
-import { Button } from "@/components/control-ui/ui/button";
 import type { ContrastAdjustment, GeneratedFont } from "@/mastra/theme-generator-contract";
 import { addGeneration, setRunning, updateGeneration, useGenerationState } from "./generation-store";
-import { type ImagePalette, readImagePalette } from "./image-palette";
 import { type Generation, paintedTokensOf, ThemeGeneration } from "./theme-generation";
+import { type ThemeImage, ThemePromptComposer } from "./theme-prompt-composer";
 import { useThemeRuntime } from "./theme-runtime-context";
 import type { KnobRule, SkinId } from "./types";
-
-const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"] as const;
-
-// A phone photo base64s past Vercel's 4.5 MB request cap and would 413 at the edge, before any handler
-// could explain itself. It also carries no more theme signal than a 1024px reading of it, and the model
-// bills the same ≤384 tokens either way.
-const MAX_EDGE = 1024;
 
 // Roughly a frame at 30fps: fast enough to read as live typing, slow enough that the trace costs a
 // handful of renders instead of one per word.
 const REASONING_FLUSH_MS = 32;
-
-type ThemeImage = { mediaType: "image/jpeg"; data: string; name: string; url: string; palette: ImagePalette | null };
-
-function isAcceptedImage(type: string) {
-  return ACCEPTED_IMAGE_TYPES.some((accepted) => accepted === type);
-}
-
-async function readThemeImage(file: File): Promise<ThemeImage | null> {
-  if (!isAcceptedImage(file.type)) return null;
-
-  const bitmap = await createImageBitmap(file);
-  const scale = Math.min(1, MAX_EDGE / Math.max(bitmap.width, bitmap.height));
-  const canvas = document.createElement("canvas");
-  canvas.width = Math.round(bitmap.width * scale);
-  canvas.height = Math.round(bitmap.height * scale);
-
-  const context = canvas.getContext("2d");
-  if (!context) return null;
-
-  // JPEG has no alpha, and an unpainted canvas would read transparent-as-black under a light screenshot.
-  context.fillStyle = "#ffffff";
-  context.fillRect(0, 0, canvas.width, canvas.height);
-  context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
-  bitmap.close();
-
-  // The pixels are right here, so the palette is measured rather than guessed by a model that sees the
-  // screenshot at roughly 150 tokens.
-  const palette = readImagePalette(context.getImageData(0, 0, canvas.width, canvas.height).data);
-
-  // The data URL doubles as the preview source, so there is no object URL to revoke later.
-  const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
-  return { mediaType: "image/jpeg", data: dataUrl.slice(dataUrl.indexOf(",") + 1), name: file.name, url: dataUrl, palette };
-}
 
 type StreamLine =
   | { type: "reasoning"; text: string }
@@ -167,10 +116,7 @@ function startedGeneration(id: string, prompt: string, attachment: ThemeImage | 
 export function ThemeGenerator() {
   const { applyGeneratedTheme, applyGeneratedKnobs, selectSkin, snapshotTheme, restoreTheme, isDark } = useThemeRuntime();
   const { generations, isRunning } = useGenerationState();
-  const [image, setImage] = useState<ThemeImage | null>(null);
-  const [imageError, setImageError] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
-  const fileRef = useRef<HTMLInputElement>(null);
 
   function paintChunk(id: string, chunk: Exclude<StreamLine, { type: "error" | "reasoning" }>) {
     // Knobs arrive behind the finished palette and touch nothing else, so they never repaint the theme.
@@ -190,7 +136,7 @@ export function ThemeGenerator() {
     updateGeneration(id, (generation) => applyChunk(generation, chunk));
   }
 
-  async function runGeneration(id: string, prompt: string, attachment: ThemeImage | null, signal: AbortSignal) {
+  async function runGeneration(id: string, prompt: string, attachment: ThemeImage | null, signal: AbortSignal, onComplete: () => void) {
     const response = await openGenerationStream(
       {
         prompt,
@@ -204,7 +150,6 @@ export function ThemeGenerator() {
       updateGeneration(id, (generation) => ({ ...generation, reasoning: generation.reasoning + text })),
     );
 
-    let completed = false;
     for await (const chunk of readLines(response)) {
       if (chunk.type === "error") throw new Error(chunk.error);
       if (chunk.type === "reasoning") {
@@ -214,11 +159,10 @@ export function ThemeGenerator() {
 
       reasoning.flush();
       paintChunk(id, chunk);
-      if (chunk.type === "complete") completed = true;
+      if (chunk.type === "complete") onComplete();
     }
 
     reasoning.flush();
-    return completed;
   }
 
   async function generate(prompt: string, attachment: ThemeImage | null) {
@@ -230,22 +174,25 @@ export function ThemeGenerator() {
     setRunning(true);
 
     const previousTheme = snapshotTheme();
-    let keepPaint = false;
+    // Knobs stream behind the finished palette, so a stop or a dropped connection after "complete" only
+    // costs the detail pass, never the theme the user already sees.
+    let completed = false;
+    let stopped = false;
 
     try {
-      // A stream that closes after only partial objects returns cleanly, so completion is read from the
-      // chunks rather than from the call returning.
-      keepPaint = await runGeneration(id, prompt, attachment, controller.signal);
+      await runGeneration(id, prompt, attachment, controller.signal, () => {
+        completed = true;
+      });
     } catch (error) {
-      const stopped = error instanceof DOMException && error.name === "AbortError";
+      stopped = error instanceof DOMException && error.name === "AbortError";
       const message = error instanceof Error ? error.message : "Generation failed.";
-      // Stopping is a choice, not a failure: whatever has landed is what the user chose to keep.
-      keepPaint = stopped;
-      updateGeneration(id, (generation) => ({
-        ...generation,
-        state: stopped ? "stopped" : "error",
-        error: stopped ? null : message,
-      }));
+      if (!completed) {
+        updateGeneration(id, (generation) => ({
+          ...generation,
+          state: stopped ? "stopped" : "error",
+          error: stopped ? null : message,
+        }));
+      }
     }
 
     setRunning(false);
@@ -260,7 +207,8 @@ export function ThemeGenerator() {
 
     // Every run clears the active mode before repainting it, so a failed one leaves a theme that is
     // neither the old one nor a new one. Put back what the user had.
-    if (!keepPaint) restoreTheme(previousTheme);
+    // Stopping is a choice, not a failure: whatever has landed is what the user chose to keep.
+    if (!completed && !stopped) restoreTheme(previousTheme);
   }
 
   return (
@@ -271,63 +219,7 @@ export function ThemeGenerator() {
         ))}
       </div>
 
-      <ChatComposer
-        state={isRunning ? "submitting" : "idle"}
-        allowEmptySubmit={image !== null}
-        onSubmit={async ({ value, clear }) => {
-          clear();
-          setImage(null);
-          await generate(value, image);
-        }}
-      >
-        <ChatComposerShell>
-          {image ? (
-            <ChatComposerAttachments>
-              <ChatComposerAttachment name={image.name} type={image.mediaType} previewUrl={image.url} onRemove={() => setImage(null)} />
-            </ChatComposerAttachments>
-          ) : null}
-          {imageError ? <p className="px-3 pt-2 text-destructive-text text-label">{imageError}</p> : null}
-          <ChatComposerTextarea placeholder="Describe a mood, or attach a screenshot to match…" />
-          <ChatComposerToolbar>
-            <ChatComposerTools>
-              <Button type="button" size="xs" variant="quiet" onClick={() => fileRef.current?.click()}>
-                <PaperclipIcon />
-                Image
-              </Button>
-            </ChatComposerTools>
-            {isRunning ? (
-              <Button type="button" size="xs" variant="quiet" onClick={() => abortRef.current?.abort()}>
-                Stop
-              </Button>
-            ) : (
-              <ChatComposerSubmit>Generate</ChatComposerSubmit>
-            )}
-          </ChatComposerToolbar>
-        </ChatComposerShell>
-      </ChatComposer>
-
-      <input
-        ref={fileRef}
-        type="file"
-        accept={ACCEPTED_IMAGE_TYPES.join(",")}
-        hidden
-        onChange={async (event) => {
-          const file = event.target.files?.[0];
-          event.target.value = "";
-          if (!file) return;
-
-          // A truncated or mislabelled file rejects in createImageBitmap, and a HEIC pick from a photo
-          // library never matches the accept list: both would otherwise leave the picker looking ignored.
-          try {
-            const read = await readThemeImage(file);
-            setImage(read);
-            setImageError(read ? null : `${file.name} is not a PNG, JPEG, GIF or WebP.`);
-          } catch {
-            setImage(null);
-            setImageError(`${file.name} could not be read as an image.`);
-          }
-        }}
-      />
+      <ThemePromptComposer isRunning={isRunning} onGenerate={generate} onStop={() => abortRef.current?.abort()} />
     </div>
   );
 }

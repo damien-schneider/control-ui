@@ -92,8 +92,10 @@ const imageReading = {
   note: "wide gutters, hairline rules, cards floating on an open grid",
 };
 
+let readImage = async () => imageReading;
+
 mock.module("@/mastra/theme-image-brief", () => ({
-  readImageBrief: async () => imageReading,
+  readImageBrief: () => readImage(),
   describeImageReading: () => "corners rounded (~0.75rem) · airy spacing · geometric sans at 600 · soft shadows",
 }));
 
@@ -244,6 +246,26 @@ test("writes the theme from the image reading and shows that reading", async () 
   expect(sent).toContain("geometric-sans");
   expect(sent).toContain("weight 600");
   expect(sent).toContain("wide gutters");
+});
+
+test("an unreadable image still generates from the measured palette", async () => {
+  readImage = async () => {
+    throw new Error("The image could not be read.");
+  };
+  const measuredPalette = {
+    surface: { L: 0.97, C: 0.008, H: 80 },
+    text: { L: 0.26, C: 0.02, H: 250 },
+    accent: { L: 0.55, C: 0.14, H: 38 },
+  };
+
+  const lines = await readLines(
+    await generate({ prompt: "", appearance: "light", image: { mediaType: "image/png", data: "iVBORw0KGgo=", palette: measuredPalette } }),
+  );
+  readImage = async () => imageReading;
+
+  expect(lines.some((line) => line.type === "error")).toBe(false);
+  expect(lines.at(-1)?.type).toBe("complete");
+  expect(JSON.stringify(lastPrompt)).toContain("oklch(0.55 0.14 38)");
 });
 
 // The vision model reads a screenshot at roughly 150 tokens and invents colours when asked to sample

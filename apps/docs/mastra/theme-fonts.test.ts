@@ -92,3 +92,9 @@ test("the catalogue brief lists every offered font in one short prompt block", (
     expect(brief).toInclude(`${font.id} — ${font.family} (`);
   }
 });
+
+test("a bundled face named by its family resolves to the bundled font, not a Google request", () => {
+  expect(findThemeFont("Inter")?.source).toBe("bundled");
+  expect(findThemeFont("JetBrains Mono")?.source).toBe("bundled");
+  expect(findThemeFont("System UI")?.source).toBe("bundled");
+});

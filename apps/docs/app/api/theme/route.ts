@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { themeGeneratorAgent } from "@/mastra/theme-generator-agent";
-import { generatedThemeSchema, toStreamingTokenValues, toTokenValues } from "@/mastra/theme-generator-contract";
+import { toStreamingTokenValues, toTokenValues } from "@/mastra/theme-generator-contract";
 import { describeImageReading, readImageBrief, type ThemeImageReading } from "@/mastra/theme-image-brief";
 import { refineKnobs } from "@/mastra/theme-knob-agent";
 import { repairContrast } from "@/mastra/theme-repair-agent";
@@ -47,7 +47,7 @@ type ThemeRequest = z.infer<typeof requestSchema>;
 // time. It is not a seed the model is asked to use, only something that differs between two calls.
 function describePalette(palette: NonNullable<NonNullable<ThemeRequest["image"]>["palette"]>) {
   const say = ({ L, C, H }: { L: number; C: number; H: number }) => `oklch(${L} ${C} ${H})`;
-  return `Colours measured from the image's pixels — surface ${say(palette.surface)}, text ${say(palette.text)}, accent ${say(palette.accent)}. These are exact; trust them over any impression of the colours.`;
+  return `Colours measured from the image's pixels — surface ${say(palette.surface)}, text ${say(palette.text)}, accent ${say(palette.accent)}. These are exact; trust their hue and chroma over any impression of the colours, and when the target appearance is the opposite of the image's, flip their lightness rather than their hue.`;
 }
 
 // The vision call answers in the theme's own vocabulary, so the reading arrives as values the model can
@@ -62,11 +62,10 @@ function describeReading(reading: ThemeImageReading) {
 }
 
 function buildPrompt({ prompt, appearance, image }: ThemeRequest, reading: ThemeImageReading | null) {
-  const fallback = reading ? "Match the image." : "No mood given; answer with a calm neutral theme.";
   const seen = reading ? `\n\n${describeReading(reading)}` : "";
   const measured = image?.palette ? `\n\n${describePalette(image.palette)}` : "";
 
-  return `Mood: ${prompt || fallback}${seen}${measured}\n\nTarget appearance: ${appearance}.\nVariation key: ${crypto.randomUUID()}.`;
+  return `Mood: ${prompt || "Match the image."}${seen}${measured}\n\nTarget appearance: ${appearance}.\nVariation key: ${crypto.randomUUID()}.`;
 }
 
 type Send = (payload: unknown) => void;
@@ -77,16 +76,35 @@ const MIN_PASS_MS = 4_000;
 const RESPONSE_MARGIN_MS = 3_000;
 const remainingBudget = (startedAt: number) => maxDuration * 1000 - (Date.now() - startedAt) - RESPONSE_MARGIN_MS;
 
-async function streamGeneration(requested: ThemeRequest, send: Send) {
+// A user who presses Stop closes the request, and nothing behind that should keep billing.
+const withinBudget = (startedAt: number, request: AbortSignal) =>
+  AbortSignal.any([request, AbortSignal.timeout(Math.max(0, remainingBudget(startedAt)))]);
+
+// The image reading refines a brief the user already gave, so losing it must not cost them the mood, the
+// measured palette and a daily generation.
+async function readImageOrSkip(image: NonNullable<ThemeRequest["image"]>, signal: AbortSignal) {
+  try {
+    return await readImageBrief(image, signal);
+  } catch {
+    return null;
+  }
+}
+
+function knobMood({ prompt }: ThemeRequest, reading: ThemeImageReading | null) {
+  if (prompt) return prompt;
+  return reading ? describeImageReading(reading) : "Match the image.";
+}
+
+async function streamGeneration(requested: ThemeRequest, send: Send, signal: AbortSignal) {
   const startedAt = Date.now();
   // Mastra drops image parts before they reach the provider, so an attached image is read in its own
   // call and folded into the brief as text. The reading is shown, because a theme derived from an image
   // the user cannot see the model's reading of is unaccountable.
-  const reading = requested.image ? await readImageBrief(requested.image) : null;
+  const reading = requested.image ? await readImageOrSkip(requested.image, signal) : null;
   if (reading) send({ type: "reasoning", text: `Reading the image: ${describeImageReading(reading)}\n\n` });
 
   const stream = await themeGeneratorAgent.stream(buildPrompt(requested, reading), {
-    structuredOutput: { schema: generatedThemeSchema },
+    abortSignal: withinBudget(startedAt, signal),
   });
 
   // fullStream rather than objectStream: the reasoning trace and the partial objects arrive on the
@@ -114,7 +132,7 @@ async function streamGeneration(requested: ThemeRequest, send: Send) {
   const theme =
     firstPass.adjustments.length === 0 || repairBudget < MIN_PASS_MS
       ? generated
-      : await repairContrast(generated, firstPass.adjustments, repairBudget);
+      : await repairContrast(generated, firstPass.adjustments, withinBudget(startedAt, signal));
   const { tokens, adjustments, font } = theme === generated ? firstPass : toTokenValues(theme);
   if (theme !== generated) send({ type: "reasoning", text: "\n\nRe-authored the roles that failed the contrast gate." });
 
@@ -126,10 +144,9 @@ async function streamGeneration(requested: ThemeRequest, send: Send) {
 
   // Knobs ride behind the finished theme rather than inside it. They are a second call over a 580-entry
   // registry, and holding the palette back for them would trade the whole paint for a detail.
-  const knobBudget = remainingBudget(startedAt);
-  if (knobBudget < MIN_PASS_MS) return;
+  if (remainingBudget(startedAt) < MIN_PASS_MS) return;
 
-  const rules = await refineKnobs(theme, requested.prompt, knobBudget);
+  const rules = await refineKnobs(theme, knobMood(requested, reading), withinBudget(startedAt, signal));
   if (rules.length > 0) send({ type: "knobs", rules });
 }
 
@@ -154,7 +171,7 @@ export async function POST(request: Request) {
   const ndjson = new ReadableStream<Uint8Array>({
     async start(controller) {
       try {
-        await streamGeneration(body.data, (payload) => controller.enqueue(encoder.encode(line(payload))));
+        await streamGeneration(body.data, (payload) => controller.enqueue(encoder.encode(line(payload))), request.signal);
       } catch (error) {
         const message = error instanceof Error ? error.message : "Generation failed.";
         controller.enqueue(encoder.encode(line({ type: "error", error: message })));

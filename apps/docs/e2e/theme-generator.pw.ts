@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+
 import { expect, test } from "@playwright/test";
 
 const CANVAS = "oklch(0.16 0.012 60)";
@@ -155,6 +157,55 @@ test("an attached image alone is enough to generate", async ({ page }) => {
   await expect(page.locator('[data-control-ui="activity"][data-slot="root"]').last()).toContainText("Terracotta Clay");
 });
 
+// The generator reads screenshots, and the fastest way to hand it one is a paste into the prompt. It used
+// to own a bare file input, so a pasted or dropped image never reached it.
+test("a screenshot pasted into the prompt is the image the generator reads", async ({ page }) => {
+  let sentImage: unknown = null;
+  await page.route("**/api/theme", async (route) => {
+    sentImage = route.request().postDataJSON().image ?? null;
+    const lines = [{ type: "complete", skin: "none", name: "Pasted Clay", tokens: { "--canvas": CANVAS }, adjustments: [] }];
+    await route.fulfill({ status: 200, contentType: "application/x-ndjson", body: lines.map((line) => JSON.stringify(line)).join("\n") });
+  });
+
+  const composer = await openGenerator(page);
+  const prompt = composer.getByRole("textbox", { name: "Message" });
+  const png = [...readFileSync("e2e/fixtures/brief.png")];
+
+  const claimed = await prompt.evaluate((element, bytes) => {
+    const clipboard = new DataTransfer();
+    clipboard.items.add(new File([new Uint8Array(bytes)], "screenshot.png", { type: "image/png" }));
+    return !element.dispatchEvent(new ClipboardEvent("paste", { clipboardData: clipboard, bubbles: true, cancelable: true }));
+  }, png);
+  expect(claimed).toBe(true);
+
+  const attachment = composer.getByRole("listitem", { name: "screenshot.png" });
+  await expect(attachment.locator("img")).toHaveAttribute("src", /^data:image\/jpeg/);
+
+  await composer.getByRole("button", { name: "Generate" }).click();
+  await expect(page.locator('[data-control-ui="activity"][data-slot="root"]').last()).toContainText("Pasted Clay");
+  expect(sentImage).toMatchObject({ mediaType: "image/jpeg" });
+  await expect(attachment).toHaveCount(0);
+});
+
+test("a pasted file the generator cannot read shows why and can be dismissed", async ({ page }) => {
+  const composer = await openGenerator(page);
+  const prompt = composer.getByRole("textbox", { name: "Message" });
+
+  await prompt.evaluate((element) => {
+    const clipboard = new DataTransfer();
+    clipboard.items.add(new File(["%PDF-1.7"], "brief.pdf", { type: "application/pdf" }));
+    element.dispatchEvent(new ClipboardEvent("paste", { clipboardData: clipboard, bubbles: true, cancelable: true }));
+  });
+
+  const rejected = composer.getByRole("listitem", { name: "brief.pdf" });
+  await expect(rejected).toHaveAttribute("data-state", "error");
+  await expect(rejected).toContainText("File type is not accepted.");
+  await expect(composer.getByRole("button", { name: "Generate" })).toBeDisabled();
+
+  await rejected.getByRole("button", { name: "Remove brief.pdf" }).click();
+  await expect(rejected).toHaveCount(0);
+});
+
 // A generation clears the active mode before repainting it, so a stream that dies mid-object used to
 // leave a theme that was neither the old one nor a new one, with no way back.
 test("a stream that dies mid-object puts the previous theme back", async ({ page }) => {
@@ -183,6 +234,26 @@ test("a stream that dies mid-object puts the previous theme back", async ({ page
   const after = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--canvas").trim());
   expect(after).toBe(before);
   expect(after).not.toBe(CANVAS);
+});
+
+// Knobs stream behind the finished palette. A connection that dies there used to put the previous theme
+// back and mark a palette the user was already looking at as failed.
+test("a failure after the palette completes keeps the finished theme", async ({ page }) => {
+  await mockGeneration(page, [
+    { type: "complete", skin: "none", name: "Kept Ember", tokens: { "--canvas": CANVAS }, adjustments: [] },
+    { type: "error", error: "Knob pass timed out." },
+  ]);
+
+  const composer = await openGenerator(page);
+  await composer.getByRole("textbox", { name: "Message" }).fill("amber terminal");
+  await composer.getByRole("button", { name: "Generate" }).click();
+
+  const activity = page.locator('[data-control-ui="activity"][data-slot="root"]').last();
+  await expect(activity).toContainText("Kept Ember");
+  await expect(activity).toContainText("Complete");
+  await expect(composer.getByRole("button", { name: "Generate" })).toBeVisible();
+  const canvas = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--canvas").trim());
+  expect(canvas).toBe(CANVAS);
 });
 
 // Gradients, live backdrop blur and rims live in skin CSS, so a theme that only writes tokens can never

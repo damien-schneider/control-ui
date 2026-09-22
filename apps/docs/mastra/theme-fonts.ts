@@ -112,7 +112,7 @@ export const CURATED_FONTS: readonly DescribedThemeFont[] = CURATED_SPECS.map(([
 // valid string, and resolving it to a default would paint Inter and then swap once the name completes.
 export function findThemeFont(requested: string): ThemeFont | null {
   const id = themeFontId(requested);
-  const known = BUNDLED_FONTS.find((font) => font.id === id) ?? CURATED_FONTS.find((font) => font.id === id);
+  const known = [...BUNDLED_FONTS, ...CURATED_FONTS].find((font) => font.id === id || themeFontId(font.family) === id);
   if (known) return known;
   const entry = CATALOGUE[id];
   return entry ? webfont(id, entry.family, "google", entry.category) : null;

@@ -7,7 +7,7 @@ const instructions = `You turn a short mood description into a complete Control 
 Author every colour as OKLCH channels: L is lightness 0–1, C is chroma 0–0.37, H is hue 0–360.
 
 Rules that make a palette usable rather than merely pretty:
-- canvas sits one step below background; background sits below card. In a light theme each is lighter than the last, in a dark theme each is darker.
+- canvas sits one step below background; background sits below card. card is the most raised surface, so lightness rises from canvas to background to card in both appearances.
 - foreground, cardForeground and mutedForeground are text. Put them far from the surface they sit on in lightness — roughly 0.5 apart — or they will be unreadable.
 - mutedForeground is quieter than foreground but still readable: keep it between the two.
 - primary is the one colour a user would name when describing the theme. Give it real chroma unless the request is explicitly monochrome.
@@ -34,7 +34,7 @@ shape, radius, spacing density, type character, heading weight and depth arrive 
 pixels, in the same units this schema uses: treat them as read, not as suggestions, and spend your own
 judgement on the colour and the skin. Do not describe the image; answer with the theme it implies.
 
-Match the requested mood. If the request names no mood at all, answer with a calm neutral light theme.
+Match the requested mood.
 
 Typefaces:
 ${themeFontCatalogueBrief()}`;

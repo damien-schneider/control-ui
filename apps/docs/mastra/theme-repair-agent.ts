@@ -86,10 +86,14 @@ export function adoptRepair(theme: GeneratedTheme, proposal: RepairProposal, adj
 
 // The theme is already generated and about to paint, so a provider failure here is not allowed to cost the
 // user that theme: an unrepaired palette is still the gated one, which is correct, only less elegant.
-export async function repairContrast(theme: GeneratedTheme, adjustments: ContrastAdjustment[], budgetMs: number): Promise<GeneratedTheme> {
+export async function repairContrast(
+  theme: GeneratedTheme,
+  adjustments: ContrastAdjustment[],
+  signal: AbortSignal,
+): Promise<GeneratedTheme> {
   try {
     const result = await themeRepairAgent.generate(buildPrompt(theme, adjustments), {
-      abortSignal: AbortSignal.timeout(budgetMs),
+      abortSignal: signal,
     });
     const proposed = themeRepairSchema.safeParse(result.object);
     return proposed.success ? adoptRepair(theme, proposed.data, adjustments) : theme;
