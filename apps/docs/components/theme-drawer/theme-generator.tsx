@@ -14,6 +14,8 @@ import {
 import { ChatComposerAttachment, ChatComposerAttachments } from "@/components/control-ui/chat-composer-attachment";
 import { Button } from "@/components/control-ui/ui/button";
 import type { ContrastAdjustment } from "@/mastra/theme-generator-contract";
+import { addGeneration, setRunning, updateGeneration, useGenerationState } from "./generation-store";
+import { type ImagePalette, readImagePalette } from "./image-palette";
 import { type Generation, paintedTokensOf, ThemeGeneration } from "./theme-generation";
 import { useThemeRuntime } from "./theme-runtime-context";
 import type { SkinId } from "./types";
@@ -25,7 +27,11 @@ const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/gif", "image/web
 // bills the same ≤384 tokens either way.
 const MAX_EDGE = 1024;
 
-type ThemeImage = { mediaType: "image/jpeg"; data: string; name: string; url: string };
+// Roughly a frame at 30fps: fast enough to read as live typing, slow enough that the trace costs a
+// handful of renders instead of one per word.
+const REASONING_FLUSH_MS = 32;
+
+type ThemeImage = { mediaType: "image/jpeg"; data: string; name: string; url: string; palette: ImagePalette | null };
 
 function isAcceptedImage(type: string) {
   return ACCEPTED_IMAGE_TYPES.some((accepted) => accepted === type);
@@ -49,16 +55,19 @@ async function readThemeImage(file: File): Promise<ThemeImage | null> {
   context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
   bitmap.close();
 
+  // The pixels are right here, so the palette is measured rather than guessed by a model that sees the
+  // screenshot at roughly 150 tokens.
+  const palette = readImagePalette(context.getImageData(0, 0, canvas.width, canvas.height).data);
+
   // The data URL doubles as the preview source, so there is no object URL to revoke later.
   const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
-  return { mediaType: "image/jpeg", data: dataUrl.slice(dataUrl.indexOf(",") + 1), name: file.name, url: dataUrl };
+  return { mediaType: "image/jpeg", data: dataUrl.slice(dataUrl.indexOf(",") + 1), name: file.name, url: dataUrl, palette };
 }
 
 type StreamLine =
   | { type: "reasoning"; text: string }
-  | { type: "skin"; skin: SkinId }
   | { type: "tokens"; tokens: Record<string, string> }
-  | { type: "complete"; name: string; tokens: Record<string, string>; adjustments: ContrastAdjustment[] }
+  | { type: "complete"; name: string; skin: SkinId; tokens: Record<string, string>; adjustments: ContrastAdjustment[] }
   | { type: "error"; error: string };
 
 async function* readLines(response: Response): AsyncGenerator<StreamLine> {
@@ -91,13 +100,33 @@ async function openGenerationStream(body: unknown, signal: AbortSignal) {
   throw new Error(refusal?.error ?? "Generation failed.");
 }
 
-function applyChunk(generation: Generation, chunk: Exclude<StreamLine, { type: "error" }>): Generation {
-  if (chunk.type === "reasoning") return { ...generation, reasoning: generation.reasoning + chunk.text };
-  if (chunk.type === "skin") return { ...generation, skin: chunk.skin };
-
+function applyChunk(generation: Generation, chunk: Exclude<StreamLine, { type: "error" | "reasoning" }>): Generation {
   const paintedTokens = paintedTokensOf(chunk.tokens);
   if (chunk.type !== "complete") return { ...generation, paintedTokens };
-  return { ...generation, paintedTokens, state: "success", paletteName: chunk.name, adjustments: chunk.adjustments };
+  return { ...generation, paintedTokens, skin: chunk.skin, state: "success", paletteName: chunk.name, adjustments: chunk.adjustments };
+}
+
+// A thinking model streams its trace one word at a time — 1800 deltas for a screenshot — and rendering
+// each delta would spend the generation inside React instead of on screen.
+function pacedReasoning(write: (text: string) => void) {
+  let pending = "";
+  let lastWrite = 0;
+
+  const flush = () => {
+    if (!pending) return;
+    const text = pending;
+    pending = "";
+    lastWrite = performance.now();
+    write(text);
+  };
+
+  return {
+    flush,
+    push(text: string) {
+      pending += text;
+      if (performance.now() - lastWrite >= REASONING_FLUSH_MS) flush();
+    },
+  };
 }
 
 function startedGeneration(id: string, prompt: string, attachment: ThemeImage | null): Generation {
@@ -117,15 +146,18 @@ function startedGeneration(id: string, prompt: string, attachment: ThemeImage | 
 
 export function ThemeGenerator() {
   const { applyGeneratedTheme, selectSkin, snapshotTheme, restoreTheme, isDark } = useThemeRuntime();
-  const [generations, setGenerations] = useState<Generation[]>([]);
+  const { generations, isRunning } = useGenerationState();
   const [image, setImage] = useState<ThemeImage | null>(null);
   const [imageError, setImageError] = useState<string | null>(null);
-  const [isRunning, setIsRunning] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
-  function updateGeneration(id: string, update: (generation: Generation) => Generation) {
-    setGenerations((current) => current.map((generation) => (generation.id === id ? update(generation) : generation)));
+  function paintChunk(id: string, chunk: Exclude<StreamLine, { type: "error" | "reasoning" }>) {
+    // Depth the token layer has no vocabulary for — gradients, backdrop blur, rims — lives in the skin.
+    // Selecting one clears every token override, so the finished tokens are written after it, never before.
+    if (chunk.type === "complete") selectSkin(chunk.skin);
+    applyGeneratedTheme(chunk.tokens);
+    updateGeneration(id, (generation) => applyChunk(generation, chunk));
   }
 
   async function runGeneration(id: string, prompt: string, attachment: ThemeImage | null, signal: AbortSignal) {
@@ -133,39 +165,52 @@ export function ThemeGenerator() {
       {
         prompt,
         appearance: isDark ? "dark" : "light",
-        image: attachment ? { mediaType: attachment.mediaType, data: attachment.data } : undefined,
+        image: attachment ? { mediaType: attachment.mediaType, data: attachment.data, palette: attachment.palette } : undefined,
       },
       signal,
     );
 
+    const reasoning = pacedReasoning((text) =>
+      updateGeneration(id, (generation) => ({ ...generation, reasoning: generation.reasoning + text })),
+    );
+
+    let completed = false;
     for await (const chunk of readLines(response)) {
       if (chunk.type === "error") throw new Error(chunk.error);
+      if (chunk.type === "reasoning") {
+        reasoning.push(chunk.text);
+        continue;
+      }
 
-      // Depth the token layer has no vocabulary for — gradients, backdrop blur, rims — lives in the skin,
-      // and selecting one clears every override, so it has to land before the first colours are painted.
-      if (chunk.type === "skin") selectSkin(chunk.skin);
-      else if (chunk.type !== "reasoning") applyGeneratedTheme(chunk.tokens);
-      updateGeneration(id, (generation) => applyChunk(generation, chunk));
+      reasoning.flush();
+      paintChunk(id, chunk);
+      completed = chunk.type === "complete";
     }
+
+    reasoning.flush();
+    return completed;
   }
 
   async function generate(prompt: string, attachment: ThemeImage | null) {
     const id = crypto.randomUUID();
-    setGenerations((current) => [...current, startedGeneration(id, prompt, attachment)]);
+    addGeneration(startedGeneration(id, prompt, attachment));
 
     const controller = new AbortController();
     abortRef.current = controller;
-    setIsRunning(true);
+    setRunning(true);
 
     const previousTheme = snapshotTheme();
-    let settled = false;
+    let keepPaint = false;
 
     try {
-      await runGeneration(id, prompt, attachment, controller.signal);
-      settled = true;
+      // A stream that closes after only partial objects returns cleanly, so completion is read from the
+      // chunks rather than from the call returning.
+      keepPaint = await runGeneration(id, prompt, attachment, controller.signal);
     } catch (error) {
       const stopped = error instanceof DOMException && error.name === "AbortError";
       const message = error instanceof Error ? error.message : "Generation failed.";
+      // Stopping is a choice, not a failure: whatever has landed is what the user chose to keep.
+      keepPaint = stopped;
       updateGeneration(id, (generation) => ({
         ...generation,
         state: stopped ? "stopped" : "error",
@@ -173,7 +218,7 @@ export function ThemeGenerator() {
       }));
     }
 
-    setIsRunning(false);
+    setRunning(false);
     abortRef.current = null;
 
     // A stream can close after only partial objects, which leaves no completion line to settle on.
@@ -183,9 +228,9 @@ export function ThemeGenerator() {
         : generation,
     );
 
-    // Every run clears the active mode before repainting it, so a run that never completed leaves a theme
-    // that is neither the old one nor a new one. Put back what the user had.
-    if (!settled) restoreTheme(previousTheme);
+    // Every run clears the active mode before repainting it, so a failed one leaves a theme that is
+    // neither the old one nor a new one. Put back what the user had.
+    if (!keepPaint) restoreTheme(previousTheme);
   }
 
   return (

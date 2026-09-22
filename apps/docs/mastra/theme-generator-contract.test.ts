@@ -5,12 +5,20 @@ import { type GeneratedTheme, gateContrast, toStreamingTokenValues, toTokenValue
 
 const flat = (L: number, C: number, H: number) => ({ L, C, H });
 
+const readableTypography = {
+  fontFamily: "neutral",
+  baseSize: 0.875,
+  scale: 1.125,
+  headingWeight: 600,
+  headingTracking: -0.018,
+} as const;
+
 const readable: GeneratedTheme = {
   name: "Readable",
   skin: "none",
   radius: 0.625,
   cornerShape: "round",
-  typography: { fontFamily: "neutral", baseSize: 0.875, scale: 1.125, headingWeight: 600, headingTracking: -0.018 },
+  typography: readableTypography,
   shadow: { size: 0, opacity: 1, y: 1 },
   motion: { baseDuration: 200, easing: "standard" },
   layout: { controlHeight: 36, paddingX: 16, paddingY: 10, focusRingWidth: 2, controlRimWidth: 1 },
@@ -124,7 +132,7 @@ describe("toTokenValues", () => {
   });
 
   test("spreads the ladder around the body size as the scale grows", () => {
-    const loud = { ...readable, typography: { ...readable.typography, baseSize: 1, scale: 1.25 } };
+    const loud = { ...readable, typography: { ...readableTypography, baseSize: 1, scale: 1.25 } };
     const { tokens } = toTokenValues(loud);
 
     expect(tokens["--text-body"]).toBe("1rem");
@@ -148,7 +156,7 @@ describe("toTokenValues", () => {
   // A family the document never loaded falls back to the current font, so the theme would look unchanged.
   test("resolves the typeface to a family the app actually serves", () => {
     const family = (fontFamily: "geometric" | "neutral" | "mono" | "system") =>
-      toTokenValues({ ...readable, typography: { ...readable.typography, fontFamily } }).tokens["--font-sans"];
+      toTokenValues({ ...readable, typography: { ...readableTypography, fontFamily } }).tokens["--font-sans"];
 
     expect(family("geometric")).toContain("--font-geist-sans");
     expect(family("mono")).toContain("JetBrains Mono");
@@ -183,6 +191,19 @@ describe("toTokenValues", () => {
     expect(tokens["--duration-fast"]).toBe("150ms");
     expect(tokens["--duration-slow"]).toBe("300ms");
     expect(tokens["--ease-standard"]).toBe("cubic-bezier(0.16, 1, 0.3, 1)");
+  });
+
+  // A thinking model can run out of output budget mid-object. Every group but the palette is derivable or
+  // owned by the chosen skin, so losing one has to cost that group alone rather than the whole theme.
+  test("still derives a theme when the stream stopped after the colours", () => {
+    const { colors, name, skin } = readable;
+    const { tokens } = toTokenValues({ name, skin, colors });
+
+    expect(tokens["--primary"]).toBeDefined();
+    expect(tokens["--radius"]).toBeUndefined();
+    // Left unwritten rather than written flat, so the skin's own depth survives.
+    expect(tokens["--backdrop-blur-popover"]).toBeUndefined();
+    expect(tokens["--font-sans"]).toBeUndefined();
   });
 });
 

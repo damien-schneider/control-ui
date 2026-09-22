@@ -12,15 +12,19 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/control-ui/ui/drawer";
+import { setDrawerOpen, useGenerationState } from "./generation-store";
 import { ThemeGenerator } from "./theme-generator";
 
 export function ThemeGeneratorDrawer() {
+  const { isOpen } = useGenerationState();
+
   return (
     // The whole point is watching tokens land in the editor, so this drawer never dims the page behind it
     // — the scrim reads --overlay-opacity and --backdrop-blur-overlay, both of which a generated theme
     // rewrites — and editing a token must not dismiss it: Base UI closes a non-modal drawer on any outside
     // press or focus move, which would unmount a generation mid-stream and take the log with it.
-    <Drawer side="right" modal={false} disablePointerDismissal>
+    // Open state lives in the store because selecting a page-scrolled skin remounts this whole subtree.
+    <Drawer side="right" modal={false} disablePointerDismissal open={isOpen} onOpenChange={setDrawerOpen}>
       <DrawerTrigger
         render={
           <Button variant="surface" size="sm">

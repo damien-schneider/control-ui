@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { themeGeneratorAgent } from "@/mastra/theme-generator-agent";
-import { generatedThemeSchema, skinOf, toStreamingTokenValues, toTokenValues } from "@/mastra/theme-generator-contract";
+import { generatedThemeSchema, toStreamingTokenValues, toTokenValues } from "@/mastra/theme-generator-contract";
 import { readImageBrief } from "@/mastra/theme-image-brief";
 import { takeGeneration } from "./generation-limit";
 
@@ -12,6 +12,8 @@ export const maxDuration = 60;
 // past which the platform rejects the request and no handler ever gets to explain why.
 const MAX_IMAGE_CHARS = 2_000_000;
 
+const paletteColor = z.object({ L: z.number().min(0).max(1), C: z.number().min(0).max(0.5), H: z.number().min(0).max(360) });
+
 const requestSchema = z.object({
   prompt: z.string().trim().max(240),
   appearance: z.enum(["light", "dark"]),
@@ -19,6 +21,16 @@ const requestSchema = z.object({
     .object({
       mediaType: z.enum(["image/jpeg", "image/png", "image/gif", "image/webp"]),
       data: z.string().max(MAX_IMAGE_CHARS),
+      // Measured in the client's canvas rather than read by the vision model, which sees a 1024px
+      // screenshot at roughly 150 tokens and invents hex when asked to sample one.
+      palette: z
+        .object({
+          surface: paletteColor,
+          text: paletteColor,
+          accent: paletteColor,
+        })
+        .nullable()
+        .optional(),
     })
     .optional(),
 });
@@ -31,11 +43,17 @@ type ThemeRequest = z.infer<typeof requestSchema>;
 //
 // Thinking mode ignores temperature, so without the nonce the same mood would return the same theme every
 // time. It is not a seed the model is asked to use, only something that differs between two calls.
-function buildPrompt({ prompt, appearance }: ThemeRequest, imageBrief: string | null) {
+function describePalette(palette: NonNullable<NonNullable<ThemeRequest["image"]>["palette"]>) {
+  const say = ({ L, C, H }: { L: number; C: number; H: number }) => `oklch(${L} ${C} ${H})`;
+  return `Colours measured from the image's pixels — surface ${say(palette.surface)}, text ${say(palette.text)}, accent ${say(palette.accent)}. These are exact; trust them over any impression of the colours.`;
+}
+
+function buildPrompt({ prompt, appearance, image }: ThemeRequest, imageBrief: string | null) {
   const fallback = imageBrief ? "Match the image." : "No mood given; answer with a calm neutral theme.";
   const seen = imageBrief ? `\n\nThe attached image shows: ${imageBrief}` : "";
+  const measured = image?.palette ? `\n\n${describePalette(image.palette)}` : "";
 
-  return `Mood: ${prompt || fallback}${seen}\n\nTarget appearance: ${appearance}.\nVariation key: ${crypto.randomUUID()}.`;
+  return `Mood: ${prompt || fallback}${seen}${measured}\n\nTarget appearance: ${appearance}.\nVariation key: ${crypto.randomUUID()}.`;
 }
 
 type Send = (payload: unknown) => void;
@@ -53,25 +71,28 @@ async function streamGeneration(requested: ThemeRequest, send: Send) {
 
   // fullStream rather than objectStream: the reasoning trace and the partial objects arrive on the
   // same channel, and the trace is the only thing to show during the seconds before colours land.
-  // Selecting a skin clears every token override, so nothing may be painted until the skin is known —
-  // a skin landing one chunk after the first colours would wipe them off the screen.
-  let announcedSkin = "";
+  let lastTokens = "";
   for await (const chunk of stream.fullStream) {
     if (chunk.type === "reasoning-delta") send({ type: "reasoning", text: chunk.payload.text });
     if (chunk.type !== "object") continue;
 
-    const skin = skinOf(chunk.object);
-    if (skin && !announcedSkin) {
-      announcedSkin = skin;
-      send({ type: "skin", skin });
-    }
-    if (announcedSkin) send({ type: "tokens", tokens: toStreamingTokenValues(chunk.object) });
+    // Most object chunks only extend a field no token depends on, and every repaint the client does
+    // rewrites some sixty custom properties.
+    const tokens = toStreamingTokenValues(chunk.object);
+    const encoded = JSON.stringify(tokens);
+    if (encoded === lastTokens) continue;
+    lastTokens = encoded;
+    send({ type: "tokens", tokens });
   }
 
   const theme = await stream.object;
   const { tokens, adjustments } = toTokenValues(theme);
-  if (!announcedSkin) send({ type: "skin", skin: theme.skin });
-  send({ type: "complete", name: theme.name, tokens, adjustments });
+
+  // The skin rides with the finished theme rather than streaming ahead of it. Selecting one clears every
+  // token override, and moving between a page-scrolled and an inset-scrolled skin remounts everything
+  // below PageLayout, so doing it mid-stream would wipe the painted colours and drop the drawer with the
+  // generation still running inside it.
+  send({ type: "complete", name: theme.name, skin: theme.skin, tokens, adjustments });
 }
 
 const line = (payload: unknown) => `${JSON.stringify(payload)}\n`;

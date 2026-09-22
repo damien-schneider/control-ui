@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import { skinMetas } from "@/app/(features)/catalog/skins";
 import {
   AA_RATIO,
   contrastFromRgb,
@@ -9,6 +10,10 @@ import {
   oklchToRgb,
 } from "@/components/theme-drawer/color-math";
 import type { TokenValues } from "@/components/theme-drawer/types";
+
+// One list of skins, the one the docs already ship: a hand-typed copy here would go stale the next time
+// a skin pack lands, and the model would keep offering an id the editor cannot select.
+const SKIN_IDS = skinMetas.map((meta) => meta.id);
 
 // The model authors channel triplets, never CSS strings: the contrast gate is then pure arithmetic on
 // the server, and no model-authored text ever reaches a stylesheet.
@@ -24,18 +29,13 @@ const lch = z.object({
 export const generatedThemeSchema = z.object({
   name: z.string().min(1).max(48).describe("Short human name for the theme"),
   skin: z
-    .enum(["none", "refined", "modern-apple", "linear", "cuicui", "rig", "liquid-metal", "xp", "windows-98"])
+    .enum(SKIN_IDS)
     .describe(
       [
-        "The base skin, which carries the depth effects tokens cannot express — gradients, backdrop blur, rims, glow.",
-        "none: flat surfaces, square corners, no shadow.",
-        "refined: quiet neutral craft, pill controls, layered shadows.",
-        "modern-apple: glass with live backdrop blur, canvas gradient and paired rims.",
-        "linear: dark product UI, tight type, subtle gradients.",
-        "cuicui: saturated gradients and animated gradient adornments.",
-        "rig: brutalist, squared, dense.",
-        "liquid-metal: polished metal shader surface.",
-        "xp and windows-98: period operating system chrome — only for an explicitly retro brief.",
+        "The base skin, which carries the depth tokens cannot express — gradients, live backdrop blur, refraction rims, glow, animated adornments.",
+        "A gradient-washed marketing site or a glassy dashboard is one of these skins with its tokens tuned to the brief, never a flat surface approximating one.",
+        "Reach for xp or windows-98 only when the brief is explicitly retro.",
+        ...skinMetas.map((meta) => `${meta.id}: ${meta.description}`),
       ].join(" "),
     ),
   colors: z.object({
@@ -54,43 +54,55 @@ export const generatedThemeSchema = z.object({
     border: lch.describe("Hairline border colour"),
     ring: lch.describe("Focus ring colour"),
   }),
-  radius: z.number().min(0).max(1.75).describe("Base corner radius in rem; 0 is square, 0.625 is the default"),
-  cornerShape: z.enum(["round", "squircle"]).describe("round is a normal corner, squircle is the softer Apple-style curve"),
-  typography: z.object({
-    fontFamily: z
-      .enum(["geometric", "neutral", "mono", "system"])
-      .describe("Typeface character: geometric is Geist, neutral is Inter, mono is JetBrains Mono, system is the OS default"),
-    baseSize: z.number().min(0.75).max(1.125).describe("Body text size in rem; 0.875 is the default"),
-    scale: z.number().min(1.05).max(1.25).describe("Ratio between type steps; 1.125 is the default, 1.25 is dramatic"),
-    headingWeight: z.number().min(400).max(900).describe("Font weight for headings; 600 is the default"),
-    headingTracking: z.number().min(-0.06).max(0.08).describe("Heading letter spacing in em; negative is tighter"),
-  }),
-  shadow: z.object({
-    size: z.number().min(0).max(3).describe("Shadow spread; 0 is flat, 1 is normal, 3 is dramatic"),
-    opacity: z.number().min(0).max(1).describe("Shadow strength"),
-    y: z.number().min(0).max(4).describe("Downward shadow offset"),
-  }),
-  motion: z.object({
-    baseDuration: z.number().min(60).max(600).describe("Base transition duration in ms; 200 is the default"),
-    easing: z.enum(["standard", "snappy", "smooth", "springy"]).describe("Character of the motion curve"),
-  }),
-  layout: z.object({
-    controlHeight: z.number().min(26).max(56).describe("Height of buttons and inputs in px; 36 is the default"),
-    paddingX: z.number().min(6).max(32).describe("Horizontal padding inside controls in px; 16 is the default"),
-    paddingY: z.number().min(2).max(20).describe("Vertical padding inside controls in px; 10 is the default"),
-    focusRingWidth: z.number().min(1).max(4).describe("Focus ring thickness in px; 2 is the default"),
-    controlRimWidth: z.number().min(0).max(2).describe("Hairline around controls in px; 1 is the default, 0 removes it"),
-  }),
-  surface: z.object({
-    overlayOpacity: z.number().min(0).max(0.9).describe("Darkness of the scrim behind modals; 0.2 is the default"),
-    backdropBlur: z.number().min(0).max(24).describe("Blur behind popovers and overlays in px; 0 is the default"),
-    popoverOpacity: z.number().min(0.5).max(1).describe("Opacity of popover surfaces; 1 is solid, below 1 reads as glass"),
-    scrollFadeSize: z.number().min(0).max(48).describe("Height of the fade at scroll edges in px; 0 is a hard edge"),
-  }),
+  radius: z.number().min(0).max(1.75).describe("Base corner radius in rem; 0 is square, 0.625 is the default").optional(),
+  cornerShape: z.enum(["round", "squircle"]).describe("round is a normal corner, squircle is the softer Apple-style curve").optional(),
+  typography: z
+    .object({
+      fontFamily: z
+        .enum(["geometric", "neutral", "mono", "system"])
+        .describe("Typeface character: geometric is Geist, neutral is Inter, mono is JetBrains Mono, system is the OS default"),
+      baseSize: z.number().min(0.75).max(1.125).describe("Body text size in rem; 0.875 is the default"),
+      scale: z.number().min(1.05).max(1.25).describe("Ratio between type steps; 1.125 is the default, 1.25 is dramatic"),
+      headingWeight: z.number().min(400).max(900).describe("Font weight for headings; 600 is the default"),
+      headingTracking: z.number().min(-0.06).max(0.08).describe("Heading letter spacing in em; negative is tighter"),
+    })
+    .optional(),
+  shadow: z
+    .object({
+      size: z.number().min(0).max(3).describe("Shadow spread; 0 is flat, 1 is normal, 3 is dramatic"),
+      opacity: z.number().min(0).max(1).describe("Shadow strength"),
+      y: z.number().min(0).max(4).describe("Downward shadow offset"),
+    })
+    .optional(),
+  motion: z
+    .object({
+      baseDuration: z.number().min(60).max(600).describe("Base transition duration in ms; 200 is the default"),
+      easing: z.enum(["standard", "snappy", "smooth", "springy"]).describe("Character of the motion curve"),
+    })
+    .optional(),
+  layout: z
+    .object({
+      controlHeight: z.number().min(26).max(56).describe("Height of buttons and inputs in px; 36 is the default"),
+      paddingX: z.number().min(6).max(32).describe("Horizontal padding inside controls in px; 16 is the default"),
+      paddingY: z.number().min(2).max(20).describe("Vertical padding inside controls in px; 10 is the default"),
+      focusRingWidth: z.number().min(1).max(4).describe("Focus ring thickness in px; 2 is the default"),
+      controlRimWidth: z.number().min(0).max(2).describe("Hairline around controls in px; 1 is the default, 0 removes it"),
+    })
+    .optional(),
+  surface: z
+    .object({
+      overlayOpacity: z.number().min(0).max(0.9).describe("Darkness of the scrim behind modals; 0.2 is the default"),
+      backdropBlur: z.number().min(0).max(24).describe("Blur behind popovers and overlays in px; 0 is the default"),
+      popoverOpacity: z.number().min(0.5).max(1).describe("Opacity of popover surfaces; 1 is solid, below 1 reads as glass"),
+      scrollFadeSize: z.number().min(0).max(48).describe("Height of the fade at scroll edges in px; 0 is a hard edge"),
+    })
+    .optional(),
 });
 
 export type GeneratedTheme = z.infer<typeof generatedThemeSchema>;
 export type ColorRole = keyof GeneratedTheme["colors"];
+// Optional on the wire, never optional once a group has actually landed.
+type ThemeGroup<K extends keyof GeneratedTheme> = NonNullable<GeneratedTheme[K]>;
 type GeneratedColors = GeneratedTheme["colors"];
 
 export const COLOR_ROLE_TOKENS = [
@@ -212,14 +224,14 @@ const HEADING_TOKENS = ["--text-heading-4", "--text-heading-3", "--text-heading-
 // sits inside the var() fallback, not after it: in an app without these next/font variables, an undefined
 // `var(--font-geist-sans), "Geist"` is invalid at computed-value time, so the whole declaration is thrown
 // away and the rest of the list never gets a turn.
-const FONT_STACKS: Record<GeneratedTheme["typography"]["fontFamily"], string> = {
+const FONT_STACKS: Record<ThemeGroup<"typography">["fontFamily"], string> = {
   geometric: 'var(--font-geist-sans, "Geist"), ui-sans-serif, system-ui, sans-serif',
   neutral: 'var(--font-inter, "Inter"), ui-sans-serif, system-ui, sans-serif',
   mono: 'var(--font-jetbrains-mono, "JetBrains Mono"), ui-monospace, SFMono-Regular, monospace',
   system: 'ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif',
 };
 
-const EASING_CURVES: Record<GeneratedTheme["motion"]["easing"], string> = {
+const EASING_CURVES: Record<ThemeGroup<"motion">["easing"], string> = {
   standard: "cubic-bezier(0.2, 0, 0, 1)",
   snappy: "cubic-bezier(0.3, 0, 0.1, 1)",
   smooth: "cubic-bezier(0.4, 0, 0.2, 1)",
@@ -236,7 +248,7 @@ const MIN_REM = 0.625;
 const MAX_REM = 5;
 const STOCK_SCALE = 1.125;
 
-function typographyTokens({ fontFamily, baseSize, scale, headingWeight, headingTracking }: GeneratedTheme["typography"]): TokenValues {
+function typographyTokens({ fontFamily, baseSize, scale, headingWeight, headingTracking }: ThemeGroup<"typography">): TokenValues {
   const tokens: TokenValues = { "--font-sans": FONT_STACKS[fontFamily] };
   for (const [name, step] of TYPE_STEPS) {
     const size = baseSize * (step < 0 ? Math.min(scale, STOCK_SCALE) : scale) ** step;
@@ -265,7 +277,16 @@ function groupTokens<T>(schema: z.ZodType<T>, build: (value: T) => TokenValues) 
   };
 }
 
-const { typography, shadow, motion, layout, surface } = generatedThemeSchema.shape;
+// Every group but the palette is optional on the wire: a stream that stops early still yields a theme
+// whose colours are right, and the groups that never arrived keep whatever the chosen skin sets. The
+// token builders need the inner object, not the optional wrapper.
+const { typography, shadow, motion, layout, surface } = {
+  typography: generatedThemeSchema.shape.typography.unwrap(),
+  shadow: generatedThemeSchema.shape.shadow.unwrap(),
+  motion: generatedThemeSchema.shape.motion.unwrap(),
+  layout: generatedThemeSchema.shape.layout.unwrap(),
+  surface: generatedThemeSchema.shape.surface.unwrap(),
+};
 
 const GROUP_TOKENS = {
   typography: groupTokens(typography, typographyTokens),
@@ -304,8 +325,8 @@ export function toTokenValues(theme: GeneratedTheme): { tokens: TokenValues; adj
   const { colors, adjustments } = gateContrast(theme.colors);
   const tokens: TokenValues = {
     ...tokensFromColors(colors),
-    "--radius": `${theme.radius}rem`,
-    "--corner-shape": theme.cornerShape,
+    ...(theme.radius === undefined ? {} : { "--radius": `${theme.radius}rem` }),
+    ...(theme.cornerShape === undefined ? {} : { "--corner-shape": theme.cornerShape }),
     ...GROUP_TOKENS.typography(theme.typography),
     ...GROUP_TOKENS.shadow(theme.shadow),
     ...GROUP_TOKENS.motion(theme.motion),
@@ -341,13 +362,4 @@ export function toStreamingTokenValues(chunk: unknown): TokenValues {
   for (const [group, build] of Object.entries(GROUP_TOKENS)) Object.assign(tokens, build(streaming.data[group]));
 
   return tokens;
-}
-
-export type GeneratedSkin = GeneratedTheme["skin"];
-
-const streamingSkinSchema = z.looseObject({ skin: generatedThemeSchema.shape.skin.optional() });
-
-export function skinOf(chunk: unknown): GeneratedSkin | null {
-  const streaming = streamingSkinSchema.safeParse(chunk);
-  return streaming.success ? (streaming.data.skin ?? null) : null;
 }

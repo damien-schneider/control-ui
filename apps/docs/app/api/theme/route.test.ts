@@ -134,17 +134,14 @@ test("paints tokens progressively and finishes with the gated palette", async ()
   expect(complete?.tokens?.["--popover"]).toBe(complete?.tokens?.["--card"]);
 });
 
-// Selecting a skin clears every token override, so a skin line arriving after the first paint would wipe
-// the colours already on screen.
-test("announces the skin before it paints any token", async () => {
+// Selecting a skin clears every token override and can relayout the page under the drawer, so it travels
+// with the finished theme rather than ahead of the stream.
+test("delivers the skin only with the finished theme", async () => {
   const lines = await readLines(await generate({ prompt: "glassy dashboard", appearance: "light" }));
-  const skinLine = lines.findIndex((line) => line.type === "skin");
-  const firstPaint = lines.findIndex((line) => line.type === "tokens");
+  const complete = lines.find((line) => line.type === "complete");
 
-  expect(skinLine).toBeGreaterThanOrEqual(0);
-  expect(lines[skinLine]?.skin).toBe("modern-apple");
-  expect(skinLine).toBeLessThan(firstPaint);
-  expect(lines.filter((line) => line.type === "skin")).toHaveLength(1);
+  expect(complete?.skin).toBe("modern-apple");
+  expect(lines.filter((line) => line.skin !== undefined)).toHaveLength(1);
 });
 
 test("a partial paint never leaves a new surface under the previous theme's text", async () => {
@@ -207,6 +204,31 @@ test("writes the theme from the image reading and shows that reading", async () 
 
   expect(lines.find((line) => line.type === "reasoning")?.text).toContain("terracotta");
   expect(JSON.stringify(lastPrompt)).toContain("terracotta");
+});
+
+// The vision model reads a screenshot at roughly 150 tokens and invents colours when asked to sample
+// them, so the client measures the palette off the canvas and the model is told to trust it.
+test("passes the measured palette through as exact colours", async () => {
+  await readLines(
+    await generate({
+      prompt: "",
+      appearance: "light",
+      image: {
+        mediaType: "image/png",
+        data: "iVBORw0KGgo=",
+        palette: {
+          surface: { L: 0.97, C: 0.008, H: 80 },
+          text: { L: 0.26, C: 0.02, H: 250 },
+          accent: { L: 0.55, C: 0.14, H: 38 },
+        },
+      },
+    }),
+  );
+
+  const prompt = JSON.stringify(lastPrompt);
+  expect(prompt).toContain("oklch(0.97 0.008 80)");
+  expect(prompt).toContain("oklch(0.55 0.14 38)");
+  expect(prompt).toContain("exact");
 });
 
 test("varies the brief between two runs of the same prompt", async () => {

@@ -2,14 +2,14 @@ import { z } from "zod";
 
 const VISION_MODEL = "deepseek-flash";
 
-// Hex alone throws away the colour the user picked the image for, and a single mistyped digit turns a
-// cream into a vivid blue with nothing downstream to catch it. The name is the checksum: when the two
-// disagree, the theme model has the adjective to fall back on.
+// Colour is measured from the pixels in the client, never asked for here. This model encodes a 1024px
+// screenshot at roughly 150 tokens: enough to read shape, density and weight, and not enough to sample a
+// colour — asked for hex it returned #1813ea for a cream surface, and asked for adjectives it called the
+// same cream interface "dark navy".
 const INSTRUCTION = [
-  "Read this image for a theme designer. Answer in under 70 words, as plain lines:",
-  "surface, text, and accent, each named in two or three words and followed by its hex sampled from the image;",
-  "then corner shape, density, and type character in a few words each.",
-  "Describe nothing else about the picture.",
+  "Describe the visual style of this interface for a theme designer, in under 40 words, as plain lines:",
+  "corner shape, spacing density, type character, and how much depth it has (flat, soft shadows, or glassy and blurred).",
+  "Never mention colour. Describe nothing else about the picture.",
 ].join(" ");
 
 // A hung vision call would sit inside an already-open stream, silent, until the function is killed.
