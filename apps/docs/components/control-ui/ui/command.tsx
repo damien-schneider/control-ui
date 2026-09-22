@@ -1,7 +1,7 @@
 "use client";
 
 import { Command as CommandPrimitive, useCommandState } from "cmdk";
-import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import { type ComponentProps, type CSSProperties, type ReactNode, useEffect, useRef } from "react";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
@@ -119,8 +119,17 @@ export function CommandList({
   ...props
 }: ComponentProps<typeof CommandPrimitive.List> & { style?: CSSProperties & PopupKnobStyle }) {
   const hasResults = useCommandState((state) => state.filtered.count > 0);
+  const search = useCommandState((state) => state.search);
+  const viewportRef = useRef<HTMLDivElement>(null);
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: search is the trigger; cmdk scrolls the stale selection on search and a zero-height viewport on open, so reset the next frame.
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => viewportRef.current?.scrollTo({ top: 0 }));
+    return () => cancelAnimationFrame(frame);
+  }, [search]);
+
   return (
-    <ScrollArea maxHeight="min(360px, var(--available-height, 360px))" className="min-h-0 w-full">
+    <ScrollArea viewportRef={viewportRef} maxHeight="min(360px, var(--available-height, 360px))" className="min-h-0 w-full">
       <CommandPrimitive.List
         asChild
         data-control-ui="command"
