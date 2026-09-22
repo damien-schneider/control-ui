@@ -37,6 +37,7 @@ export function ThemeGeneratorDrawer() {
         side="right"
         variant="floating"
         surface="card"
+        padding="none"
         className="w-full max-w-md"
         style={{ "--cui-popup-backdrop-background": "transparent", "--cui-popup-backdrop-blur": "none" }}
       >

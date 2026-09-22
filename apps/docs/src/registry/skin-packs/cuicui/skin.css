@@ -467,7 +467,7 @@
     --cui-choice-checked-border-color: var(--primary);
   }
 
-  [data-skin="cuicui"] :where([data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"]) {
+  [data-skin="cuicui"] :where([data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"][data-chrome="panel"]) {
     --cui-chat-layout-radius: var(--radius-panel);
     --cui-chat-layout-background: var(--cuicui-surface-bg);
     --cui-chat-layout-border-color: var(--control-rim);

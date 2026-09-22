@@ -227,7 +227,7 @@ export function ThemeGenerator() {
   }
 
   return (
-    <ChatLayout chrome="embedded" style={{ "--cui-chat-layout-background": "var(--card)" }}>
+    <ChatLayout chrome="embedded">
       <ChatThread composer={<ThemePromptComposer isRunning={isRunning} onGenerate={generate} onStop={() => abortRef.current?.abort()} />}>
         {generations.map((generation) => (
           <ThemeGeneration key={generation.id} generation={generation} />

@@ -404,7 +404,8 @@
     --cui-markdown-block-border-color: var(--glass-rim);
   }
 
-  [data-skin="modern-apple"] :where([data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"]) {
+  [data-skin="modern-apple"]
+    :where([data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"][data-chrome="panel"]) {
     --cui-chat-layout-background: var(--card);
     --cui-chat-layout-border-color: var(--border);
     --cui-chat-layout-shadow: none;

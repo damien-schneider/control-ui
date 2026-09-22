@@ -382,7 +382,7 @@
     --cui-scroll-area-thumb-background: oklch(from var(--foreground) l c h / 0.2);
   }
 
-  [data-skin="linear"] :where([data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"]) {
+  [data-skin="linear"] :where([data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"][data-chrome="panel"]) {
     --cui-chat-layout-background: var(--card);
     --cui-chat-layout-shadow: var(--linear-panel-shadow);
   }
