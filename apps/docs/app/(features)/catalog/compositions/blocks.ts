@@ -91,4 +91,29 @@ export const blocksCompositions = {
       ),
     ),
   ],
+  "design-canvas": [
+    example(
+      "Rendered design editor",
+      part(
+        "DesignCanvasBlock",
+        content("layers panel", part("ScrollArea", part("Button"))),
+        part(
+          "InfiniteCanvas",
+          part("InfiniteCanvasContent", part("InfiniteCanvasItem", content("layer node"))),
+          part("InfiniteCanvasControls"),
+        ),
+        part("Toolbar", part("ToolbarGroup", part("ToolbarButton"))),
+        content(
+          "properties panel",
+          part("NumberField", part("NumberFieldGroup", part("NumberFieldScrubArea"), part("NumberFieldInput"))),
+          part(
+            "ColorPicker",
+            part("InputGroup", part("InputGroupAddon", part("ColorPickerTrigger")), part("ColorPickerInput"), part("NumberField")),
+            part("ColorPickerContent"),
+          ),
+          part("Toggle"),
+        ),
+      ),
+    ),
+  ],
 } as const;

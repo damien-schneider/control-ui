@@ -72,6 +72,14 @@
     }
   }
 
+  :where(
+    [data-control-family="field"][data-control="true"]:hover:has(
+      [data-control-family="field"]:is([data-slot="increment"], [data-slot="decrement"], [data-slot="trigger"], [data-slot="clear"]):hover
+    )
+  ) {
+    background: var(--cui-field-background);
+  }
+
   :where([data-control-family="field"][data-control="true"]:is(:focus-visible, :focus-within)) {
     border-color: var(--cui-field-focus-border-color);
   }

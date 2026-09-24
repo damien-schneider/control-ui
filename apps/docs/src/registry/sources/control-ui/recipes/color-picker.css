@@ -4,6 +4,14 @@
     block-size: calc(var(--spacing) * 8);
   }
 
+  :where(
+    [data-control-family="field"][data-field-kind="input-group"][data-slot="addon"]
+      > [data-control-family="color-picker"][data-slot="trigger"]
+  ) {
+    inline-size: calc(var(--cui-field-height) * 0.5);
+    block-size: calc(var(--cui-field-height) * 0.5);
+  }
+
   :where([data-control-family="popup"][data-popup-kind="color-picker"][data-popup-part="surface"]) {
     inline-size: calc(var(--spacing) * 64);
     gap: calc(var(--spacing) * 3);

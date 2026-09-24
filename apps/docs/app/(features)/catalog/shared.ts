@@ -28,6 +28,7 @@ export const registryKindIds = [
   "chat-block",
   "coding-agent-block",
   "file-explorer-block",
+  "design-canvas-block",
   "theme-toggle-block",
   "settings-block",
   "button",

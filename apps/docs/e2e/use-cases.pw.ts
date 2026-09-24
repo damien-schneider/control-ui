@@ -14,7 +14,7 @@ test("Blocks owns block browsing and canonical detail routes", async ({ page }) 
   await expect(page.getByRole("heading", { name: "Templates & patterns", level: 1 })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Templates", level: 2 })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Patterns", level: 2 })).toBeVisible();
-  await expect(page.locator('[data-use-case-kind="template"]')).toHaveCount(4);
+  await expect(page.locator('[data-use-case-kind="template"]')).toHaveCount(5);
   await expect(page.locator('[data-use-case-kind="pattern"]')).toHaveCount(1);
 
   const codingAgentLink = page.locator('[data-use-case-card="coding-agent"] a');

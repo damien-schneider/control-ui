@@ -88,7 +88,7 @@ describe("skin contract generation", () => {
     expect(stateAt(contract, "item", "separator", "data-separator")).toBeUndefined();
     expect(stateAt(contract, "resizable", "handle", "data-separator")).toEqual({
       attribute: "data-separator",
-      source: "external",
+      source: "control-ui",
       valueKind: "enum",
       values: ["active", "disabled", "focus", "hover"],
     });

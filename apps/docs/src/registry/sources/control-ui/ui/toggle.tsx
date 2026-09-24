@@ -37,6 +37,7 @@ export function Toggle({
   size = "sm",
   tone = "neutral",
   active,
+  iconOnly = false,
   showCheck = false,
   className,
   pressed,
@@ -70,6 +71,7 @@ export function Toggle({
             data-variant={variant}
             data-tone={tone}
             data-size={size}
+            data-icon-only={iconOnly ? "true" : undefined}
             className={cn(buttonStructureClasses, renderProps.className, className)}
           >
             <span data-control-ui="toggle" data-control-family="button" data-slot="content" className={buttonContentClasses}>

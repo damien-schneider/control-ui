@@ -50,6 +50,22 @@ export function PrimitiveNumberFieldExample() {
         </NumberFieldGroup>
       </NumberField>
 
+      {/* Figma-style: the ScrubArea sits inside the Group as a prefix label or suffix unit — drag it to change the value. */}
+      <div className="grid grid-cols-2 gap-2">
+        <NumberField size="sm" defaultValue={1728} format={{ useGrouping: false }}>
+          <NumberFieldGroup className="w-full">
+            <NumberFieldScrubArea>X</NumberFieldScrubArea>
+            <NumberFieldInput aria-label="X position" />
+          </NumberFieldGroup>
+        </NumberField>
+        <NumberField size="sm" defaultValue={100} min={0} max={100}>
+          <NumberFieldGroup className="w-full">
+            <NumberFieldInput aria-label="Opacity" />
+            <NumberFieldScrubArea>%</NumberFieldScrubArea>
+          </NumberFieldGroup>
+        </NumberField>
+      </div>
+
       <span className="text-[11px] text-muted-foreground">{quantity === null ? "No quantity set" : `Selected quantity: ${quantity}`}</span>
     </div>
   );

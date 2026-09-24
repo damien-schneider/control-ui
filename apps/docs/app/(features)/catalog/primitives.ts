@@ -1960,6 +1960,19 @@ export const primitiveEntries = [
           })),
         ),
       },
+      {
+        id: "floating-panel",
+        title: "Floating panel",
+        description:
+          "ResizableFloatingPanel floats one panel over its positioned parent, so the content behind stays full-bleed. Its width lives in --resizable-floating-width: drag the inner edge, use the arrow keys (Shift for bigger steps), Home and End for the limits, or double-click to restore defaultSize. Sizes are pixels; the panel never grows past its parent.",
+        previewClassName: "min-h-[360px]",
+        source: sourceFile("Floating panel example", "src/registry/examples/control-ui/primitives/resizable-floating.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/resizable-floating").then((mod) => ({
+            default: mod.PrimitiveResizableFloatingExample,
+          })),
+        ),
+      },
     ],
   },
   {

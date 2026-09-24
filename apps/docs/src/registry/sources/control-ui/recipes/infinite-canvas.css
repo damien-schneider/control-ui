@@ -15,6 +15,18 @@
     outline-style: none;
   }
 
+  :where([data-control-family="infinite-canvas"][data-slot="root"][data-easing]) {
+    transition-property: background-position, background-size;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where(
+    [data-control-family="infinite-canvas"][data-slot="root"][data-easing] [data-control-family="infinite-canvas"][data-slot="content"]
+  ) {
+    transition: transform var(--duration-base) var(--ease-standard);
+  }
+
   :where([data-control-family="infinite-canvas"][data-slot="controls"]) {
     gap: calc(var(--spacing) * 0.5);
     padding: calc(var(--spacing) * 1);

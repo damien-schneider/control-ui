@@ -26,6 +26,15 @@ export type InfiniteCanvasProps = Omit<ComponentProps<"section">, "onChange" | "
 
 export type InfiniteCanvasContentProps = ComponentProps<"div"> & { style?: CSSProperties & InfiniteCanvasKnobStyle };
 
+export type InfiniteCanvasPoint = { x: number; y: number };
+
+export type InfiniteCanvasItemProps = Omit<ComponentProps<"div">, "style"> & {
+  x: number;
+  y: number;
+  onPositionChange?: (position: InfiniteCanvasPoint) => void;
+  style?: CSSProperties & InfiniteCanvasKnobStyle;
+};
+
 export type InfiniteCanvasControlsProps = Omit<ComponentProps<"div">, "children" | "style"> & {
   style?: CSSProperties & InfiniteCanvasKnobStyle;
 };
@@ -35,6 +44,9 @@ const DEFAULT_MIN_SCALE = 0.35;
 const DEFAULT_MAX_SCALE = 2.5;
 const KEYBOARD_PAN_STEP = 32;
 const GRID_SIZE = 24;
+const WHEEL_ZOOM_SPEED = 0.004;
+const MAX_WHEEL_ZOOM_DELTA = 50;
+const NOTCHED_WHEEL_DELTA = 40;
 const KEYBOARD_PAN_DIRECTIONS: Partial<Record<string, { x: number; y: number }>> = {
   ArrowLeft: { x: -1, y: 0 },
   ArrowRight: { x: 1, y: 0 },
@@ -46,6 +58,12 @@ type InfiniteCanvasPanSession = {
   pointerId: number;
   startPointer: { x: number; y: number };
   startTransform: InfiniteCanvasTransform;
+};
+
+type InfiniteCanvasItemDragSession = {
+  pointerId: number;
+  startPointer: InfiniteCanvasPoint;
+  startPosition: InfiniteCanvasPoint;
 };
 
 type InfiniteCanvasContextValue = {
@@ -72,10 +90,14 @@ function zoomAroundPoint(transform: InfiniteCanvasTransform, nextScale: number, 
   };
 }
 
+function wheelDeltaMultiplier(event: WheelEvent, viewportHeight: number) {
+  if (event.deltaMode === WheelEvent.DOM_DELTA_LINE) return 16;
+  if (event.deltaMode === WheelEvent.DOM_DELTA_PAGE) return viewportHeight;
+  return 1;
+}
+
 function panFromWheel(transform: InfiniteCanvasTransform, event: WheelEvent, viewportHeight: number): InfiniteCanvasTransform {
-  let deltaMultiplier = 1;
-  if (event.deltaMode === WheelEvent.DOM_DELTA_LINE) deltaMultiplier = 16;
-  else if (event.deltaMode === WheelEvent.DOM_DELTA_PAGE) deltaMultiplier = viewportHeight;
+  const deltaMultiplier = wheelDeltaMultiplier(event, viewportHeight);
   const horizontalDelta = event.shiftKey && event.deltaX === 0 ? event.deltaY : event.deltaX;
   const verticalDelta = event.shiftKey && event.deltaX === 0 ? 0 : event.deltaY;
   return {
@@ -113,6 +135,7 @@ export function InfiniteCanvas({
   const maxScale = Math.max(minScale, maxScaleProp);
   const [uncontrolledTransform, setUncontrolledTransform] = useState(defaultTransform);
   const [panning, setPanning] = useState(false);
+  const [easing, setEasing] = useState(false);
   const panRef = useRef<InfiniteCanvasPanSession | null>(null);
   const rootRef = useRef<HTMLElement>(null);
   const transform = controlledTransform ?? uncontrolledTransform;
@@ -122,7 +145,12 @@ export function InfiniteCanvas({
     transformRef.current = transform;
   }, [transform]);
 
-  function commitTransform(next: InfiniteCanvasTransform, reason: InfiniteCanvasMoveReason) {
+  function commitTransform(
+    next: InfiniteCanvasTransform,
+    reason: InfiniteCanvasMoveReason,
+    eased = reason === "control" || reason === "keyboard",
+  ) {
+    setEasing(eased);
     const bounded = { ...next, scale: clampScale(next.scale, minScale, maxScale) };
     transformRef.current = bounded;
     if (controlledTransform === undefined) setUncontrolledTransform(bounded);
@@ -197,8 +225,11 @@ export function InfiniteCanvas({
     if (event.ctrlKey || event.metaKey) {
       const bounds = root.getBoundingClientRect();
       const point = { x: event.clientX - bounds.left, y: event.clientY - bounds.top };
-      const nextScale = clampScale(currentTransform.scale * Math.exp(-event.deltaY * 0.004), minScale, maxScale);
-      commitTransform(zoomAroundPoint(currentTransform, nextScale, point), "wheel");
+      const zoomDelta = event.deltaY * wheelDeltaMultiplier(event, root.clientHeight);
+      const boundedZoomDelta = Math.min(Math.max(zoomDelta, -MAX_WHEEL_ZOOM_DELTA), MAX_WHEEL_ZOOM_DELTA);
+      const nextScale = clampScale(currentTransform.scale * Math.exp(-boundedZoomDelta * WHEEL_ZOOM_SPEED), minScale, maxScale);
+      const notchedWheel = Math.abs(zoomDelta) >= NOTCHED_WHEEL_DELTA;
+      commitTransform(zoomAroundPoint(currentTransform, nextScale, point), "wheel", notchedWheel);
       return;
     }
     commitTransform(panFromWheel(currentTransform, event, root.clientHeight), "wheel");
@@ -250,6 +281,7 @@ export function InfiniteCanvas({
         data-control-family="infinite-canvas"
         data-slot="root"
         data-panning={panning || undefined}
+        data-easing={easing || undefined}
         aria-label={ariaLabel}
         role="application"
         aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown + - 0"
@@ -285,6 +317,78 @@ export function InfiniteCanvasContent({ className, style, ...props }: InfiniteCa
         ...style,
         transform: `translate3d(${transform.x}px, ${transform.y}px, 0) scale(${transform.scale})`,
       }}
+    />
+  );
+}
+
+export function InfiniteCanvasItem({
+  x,
+  y,
+  onPositionChange,
+  className,
+  style,
+  onPointerDown,
+  onPointerMove,
+  onPointerUp,
+  onPointerCancel,
+  ...props
+}: InfiniteCanvasItemProps) {
+  const { transform } = useInfiniteCanvas();
+  const dragRef = useRef<InfiniteCanvasItemDragSession | null>(null);
+  const [dragging, setDragging] = useState(false);
+
+  function beginDrag(event: ReactPointerEvent<HTMLDivElement>) {
+    onPointerDown?.(event);
+    if (event.defaultPrevented || !onPositionChange || !event.isPrimary || event.button !== 0) return;
+    event.currentTarget.setPointerCapture(event.pointerId);
+    dragRef.current = {
+      pointerId: event.pointerId,
+      startPointer: { x: event.clientX, y: event.clientY },
+      startPosition: { x, y },
+    };
+    setDragging(true);
+  }
+
+  function updateDrag(event: ReactPointerEvent<HTMLDivElement>) {
+    onPointerMove?.(event);
+    const drag = dragRef.current;
+    if (event.defaultPrevented || !drag || drag.pointerId !== event.pointerId) return;
+    onPositionChange?.({
+      x: drag.startPosition.x + (event.clientX - drag.startPointer.x) / transform.scale,
+      y: drag.startPosition.y + (event.clientY - drag.startPointer.y) / transform.scale,
+    });
+  }
+
+  function finishDrag(event: ReactPointerEvent<HTMLDivElement>) {
+    if (dragRef.current?.pointerId !== event.pointerId) return;
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+    dragRef.current = null;
+    setDragging(false);
+  }
+
+  function endDrag(event: ReactPointerEvent<HTMLDivElement>) {
+    onPointerUp?.(event);
+    finishDrag(event);
+  }
+
+  function cancelDrag(event: ReactPointerEvent<HTMLDivElement>) {
+    onPointerCancel?.(event);
+    finishDrag(event);
+  }
+
+  return (
+    <div
+      {...props}
+      data-control-ui="infinite-canvas"
+      data-control-family="infinite-canvas"
+      data-slot="item"
+      data-dragging={dragging || undefined}
+      className={cn("absolute", onPositionChange && "cursor-grab touch-none data-dragging:cursor-grabbing", className)}
+      style={{ ...style, left: x, top: y }}
+      onPointerDown={beginDrag}
+      onPointerMove={updateDrag}
+      onPointerUp={endDrag}
+      onPointerCancel={cancelDrag}
     />
   );
 }

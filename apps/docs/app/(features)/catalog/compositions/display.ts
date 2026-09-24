@@ -193,7 +193,11 @@ export const displayCompositions = {
   "infinite-canvas": [
     example(
       "Spatial workspace",
-      part("InfiniteCanvas", part("InfiniteCanvasContent", content("spatial nodes")), part("InfiniteCanvasControls")),
+      part(
+        "InfiniteCanvas",
+        part("InfiniteCanvasContent", part("InfiniteCanvasItem", content("draggable node"))),
+        part("InfiniteCanvasControls"),
+      ),
     ),
   ],
   "morphing-panel": [
@@ -212,6 +216,7 @@ export const displayCompositions = {
         content("second panel", part("ResizablePanel")),
       ),
     ),
+    example("Floating panel", content("positioned parent", part("ResizableFloatingPanel", content("panel content")))),
   ],
   typography: [
     example(

@@ -115,4 +115,24 @@ export const blockEntries = [
       import("@/src/registry/examples/control-ui/file-explorer").then((mod) => ({ default: mod.FileExplorerExample })),
     ),
   },
+  {
+    id: "design-canvas",
+    kind: "Block",
+    useCaseKind: "template",
+    name: "Design canvas",
+    summary: "Figma-style editor with layers, an infinite canvas, a floating tool bar, and scrubbable property inputs.",
+    status: "beta",
+    registryKind: "design-canvas-block",
+    paths: {
+      example: sourceFile("Example", "src/registry/examples/control-ui/design-canvas.tsx", "example"),
+      usage: {
+        mastra: sourceFile("Usage", "src/registry/usage/blocks/design-canvas.tsx", "usage"),
+        "ai-sdk": sourceFile("Usage", "src/registry/usage/blocks/design-canvas.tsx", "usage"),
+      },
+      files: [sourceFile("Block recipe", "src/registry/blocks/control-ui/design-canvas.tsx", "block")],
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/design-canvas").then((mod) => ({ default: mod.DesignCanvasExample })),
+    ),
+  },
 ] as const;
