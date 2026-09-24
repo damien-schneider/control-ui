@@ -218,10 +218,7 @@
     transition-timing-function: var(--ease-emphasized);
   }
 
-  :where(
-    [data-control-family="button"][data-popup-kind="select"][data-slot="trigger"][data-popup-open]
-      [data-control-family="popup"][data-popup-kind="select"][data-slot="icon"]
-  ),
+  :where([data-control-family="popup"][data-popup-kind="select"][data-slot="icon"][data-popup-open]),
   :where(
     [data-control-family="button"][data-popup-kind="navigation-menu"][data-slot="trigger"][data-popup-open]
       :where([data-control-family="popup"][data-popup-kind="navigation-menu"][data-slot="icon"])

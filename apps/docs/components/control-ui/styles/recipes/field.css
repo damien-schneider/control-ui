@@ -2,7 +2,7 @@
   :where([data-control-family="field"][data-control="true"]) {
     gap: calc(var(--spacing) * 1.5);
     --cui-field-radius: var(--radius-control);
-    --cui-field-background: oklch(from var(--card) l c h / 0.72);
+    --cui-field-background: var(--control-fill);
     --cui-field-foreground: var(--foreground);
     --cui-field-border-color: var(--control-rim);
     --cui-field-border-width: var(--control-rim-width);
@@ -67,15 +67,28 @@
     :where([data-control-family="field"][data-control="true"][data-field-kind="autocomplete"]:hover),
     :where([data-control-family="field"][data-control="true"][data-field-kind="combobox"]:hover),
     :where([data-control-family="field"][data-control="true"][data-field-kind="native-select"]:hover),
+    :where([data-control-family="field"][data-control="true"][data-field-kind="select"]:hover),
     :where([data-control-family="field"][data-control="true"][data-field-kind="number-field"]:hover) {
       background: var(--hover-fill);
     }
-  }
 
-  :where([data-control-family="field"][data-control="true"]:is(:focus-visible, :focus-within)) {
-    border-color: var(--cui-field-focus-border-color);
-  }
+    :where(
+        [data-control-family="field"][data-control="true"]:hover:has(
+          [data-control-family="field"]:is(
+              [data-slot="increment"],
+              [data-slot="decrement"],
+              [data-slot="trigger"],
+              [data-slot="clear"]
+            ):hover
+        )
+      ) {
+      background: var(--cui-field-background);
+    }
 
+    :where([data-control-family="field"][data-control="true"]:is(:focus-visible, :focus-within)) {
+      border-color: var(--cui-field-focus-border-color);
+    }
+  }
   :where([data-control-family="field"][data-control="true"][data-invalid]),
   :where([data-control-family="field"][data-control="true"][aria-invalid="true"]) {
     box-shadow:
@@ -87,6 +100,10 @@
   :where([data-control-family="field"][data-control="true"][data-disabled]) {
     cursor: not-allowed;
     opacity: 0.5;
+  }
+  :where([data-control-family="field"][data-field-kind="select"][data-slot="trigger"]) {
+    cursor: pointer;
+    font-weight: var(--font-weight-medium);
   }
 
   :where([data-control-family="field"][data-field-kind="input-otp"][data-slot="slot"]) {

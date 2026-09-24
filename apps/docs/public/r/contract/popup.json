@@ -17,6 +17,7 @@
     "model-switcher",
     "navigation-menu",
     "popover",
+    "resizable",
     "rich-tooltip",
     "select",
     "sheet",
@@ -3601,6 +3602,30 @@
           {
             "attribute": "data-pressed",
             "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      }
+    },
+    "resizable": {
+      "surface": {
+        "family": "popup",
+        "registryItems": [
+          "resizable"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "resizable"
+            ]
+          },
+          {
+            "attribute": "data-popup-static",
+            "source": "control-ui",
             "valueKind": "presence",
             "values": []
           }

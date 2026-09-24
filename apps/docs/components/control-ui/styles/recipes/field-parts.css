@@ -90,6 +90,58 @@
     color: oklch(from var(--muted-foreground) l c h / 0.5);
   }
 
+  :where(
+    [data-control-family="field"][data-field-kind="number-field"][data-slot="group"]
+      > [data-control-family="field"][data-field-kind="number-field"][data-slot="scrub-area"]
+  ) {
+    padding-inline: calc(var(--spacing) * 2);
+    color: var(--muted-foreground);
+  }
+
+  :where(
+    [data-control-family="field"][data-field-kind="number-field"][data-slot="input"]:has(
+      + [data-control-family="field"][data-field-kind="number-field"][data-slot="scrub-area"]
+    )
+  ) {
+    padding-inline-end: 0;
+    text-align: end;
+  }
+
+  :where(
+    [data-control-family="field"][data-field-kind="number-field"][data-slot="scrub-area"]
+      + [data-control-family="field"][data-field-kind="number-field"][data-slot="input"]
+  ) {
+    padding-inline-start: 0;
+    text-align: start;
+  }
+
+  @media (hover: hover) {
+    :where(
+        [data-control-family="field"][data-field-kind="number-field"][data-slot="group"]
+          > [data-control-family="field"][data-field-kind="number-field"][data-slot="scrub-area"]:hover
+      ) {
+      color: var(--foreground);
+    }
+  }
+
+  :where(
+    [data-control-family="field"][data-field-kind="number-field"][data-slot="group"]:not([data-control])
+      > [data-control-family="field"][data-field-kind="number-field"][data-slot="input"]
+  ) {
+    inline-size: 6ch;
+  }
+
+  @supports (field-sizing: content) {
+    :where(
+        [data-control-family="field"][data-field-kind="number-field"][data-slot="group"]:not([data-control])
+          > [data-control-family="field"][data-field-kind="number-field"][data-slot="input"]
+      ) {
+      inline-size: auto;
+      min-inline-size: 2ch;
+      field-sizing: content;
+    }
+  }
+
   :where([data-control-family="field"][data-field-kind="number-field"][data-slot="scrub-cursor"]) {
     color: var(--foreground);
     filter: drop-shadow(0 1px 1px oklch(0 0 0 / 0.05));

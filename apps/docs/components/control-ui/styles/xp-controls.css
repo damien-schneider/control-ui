@@ -73,15 +73,6 @@
     --cui-field-padding-inline: 4px;
     --cui-field-focus-border-color: var(--primary);
   }
-  [data-skin="xp"] :where([data-control-ui="select"][data-slot="trigger"][data-control-family="button"]) {
-    --cui-button-background: var(--background);
-    --cui-button-background-image: none;
-    --cui-button-hover-background: var(--background);
-    --cui-button-press-background: var(--background);
-    --cui-button-padding-inline: 4px;
-    --cui-button-radius: 0px;
-    border-color: var(--xp-field);
-  }
   [data-skin="xp"] :where([data-control-ui="select"][data-slot="icon"][data-control-family="popup"]) {
     align-self: stretch;
     width: 17px;

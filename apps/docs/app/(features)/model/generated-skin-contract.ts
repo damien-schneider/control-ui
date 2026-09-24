@@ -19,7 +19,7 @@ export const generatedSkinContract: SkinContract = {
     avatar: ["avatar"],
     badge: ["badge"],
     breadcrumb: ["breadcrumb"],
-    button: ["button", "select"],
+    button: ["button"],
     "button-group": ["button-group"],
     calendar: ["calendar"],
     card: ["card"],
@@ -57,7 +57,7 @@ export const generatedSkinContract: SkinContract = {
     "inline-attachment": ["inline-attachment"],
     "inline-citation": ["inline-citation"],
     input: ["input"],
-    "input-group": ["input-group"],
+    "input-group": ["input", "input-group"],
     "input-otp": ["input-otp"],
     item: ["item"],
     kbd: ["kbd"],
@@ -1330,11 +1330,11 @@ export const generatedSkinContract: SkinContract = {
         },
         content: {
           family: "button",
-          registryItems: ["button", "select"],
+          registryItems: ["button"],
           states: [],
         },
       },
-      registryItems: ["button", "select"],
+      registryItems: ["button"],
     },
     "button-group": {
       parts: {
@@ -6219,6 +6219,12 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["infinite-canvas"],
           states: [
             {
+              attribute: "data-easing",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-panning",
               source: "control-ui",
               valueKind: "presence",
@@ -6242,6 +6248,18 @@ export const generatedSkinContract: SkinContract = {
           family: "infinite-canvas",
           registryItems: ["infinite-canvas"],
           states: [],
+        },
+        item: {
+          family: "infinite-canvas",
+          registryItems: ["infinite-canvas"],
+          states: [
+            {
+              attribute: "data-dragging",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
         },
       },
       registryItems: ["infinite-canvas"],
@@ -6544,18 +6562,60 @@ export const generatedSkinContract: SkinContract = {
         },
         input: {
           family: "field",
-          registryItems: ["input-group"],
+          registryItems: ["input", "input-group"],
           states: [
+            {
+              attribute: "data-dirty",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-disabled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
               valueKind: "enum",
               values: ["input-group"],
             },
+            {
+              attribute: "data-filled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-focused",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-invalid",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-touched",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-valid",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
           ],
         },
       },
-      registryItems: ["input-group"],
+      registryItems: ["input", "input-group"],
     },
     "input-otp": {
       parts: {
@@ -7338,18 +7398,6 @@ export const generatedSkinContract: SkinContract = {
     },
     "model-switcher": {
       parts: {
-        root: {
-          family: "button",
-          registryItems: ["model-switcher"],
-          states: [
-            {
-              attribute: "data-button-kind",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["model-switcher"],
-            },
-          ],
-        },
         hint: {
           family: "popup",
           registryItems: ["model-switcher"],
@@ -8886,6 +8934,18 @@ export const generatedSkinContract: SkinContract = {
     },
     resizable: {
       parts: {
+        floating: {
+          family: "resizable",
+          registryItems: ["resizable"],
+          states: [
+            {
+              attribute: "data-side",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["left", "right"],
+            },
+          ],
+        },
         handle: {
           family: "resizable",
           registryItems: ["resizable"],
@@ -8897,8 +8957,14 @@ export const generatedSkinContract: SkinContract = {
               values: ["horizontal", "vertical"],
             },
             {
+              attribute: "data-cursor",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["none"],
+            },
+            {
               attribute: "data-separator",
-              source: "external",
+              source: "control-ui",
               valueKind: "enum",
               values: ["active", "disabled", "focus", "hover"],
             },
@@ -8942,6 +9008,24 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["framed", "nested"],
+            },
+          ],
+        },
+        surface: {
+          family: "popup",
+          registryItems: ["resizable"],
+          states: [
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["resizable"],
+            },
+            {
+              attribute: "data-popup-static",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
             },
           ],
         },
@@ -9662,7 +9746,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         trigger: {
-          family: "button",
+          family: "field",
           registryItems: ["select"],
           states: [
             {
@@ -9676,6 +9760,12 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
+            },
+            {
+              attribute: "data-field-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["select"],
             },
             {
               attribute: "data-filled",
@@ -9700,12 +9790,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-popup-kind",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["select"],
             },
             {
               attribute: "data-popup-open",
@@ -9738,22 +9822,10 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
-              attribute: "data-shape",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["default"],
-            },
-            {
               attribute: "data-size",
               source: "control-ui",
               valueKind: "enum",
               values: ["lg", "md", "sm", "xs"],
-            },
-            {
-              attribute: "data-tone",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["neutral"],
             },
             {
               attribute: "data-touched",
@@ -9767,11 +9839,17 @@ export const generatedSkinContract: SkinContract = {
               valueKind: "presence",
               values: [],
             },
+          ],
+        },
+        value: {
+          family: "field",
+          registryItems: ["select"],
+          states: [
             {
-              attribute: "data-variant",
+              attribute: "data-field-kind",
               source: "control-ui",
               valueKind: "enum",
-              values: ["ghost", "surface"],
+              values: ["select"],
             },
           ],
         },
@@ -11718,6 +11796,12 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
+              attribute: "data-icon-only",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-size",
               source: "control-ui",
               valueKind: "enum",
@@ -13047,7 +13131,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-button-group-text-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "oklch(from var(--card) l c h / 0.72)",
+        defaultValue: "var(--control-fill)",
       },
       {
         name: "--cui-button-group-text-foreground",
@@ -14065,7 +14149,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-field-background",
         syntax: "*",
         initialValue: "",
-        defaultValue: "oklch(from var(--card) l c h / 0.72)",
+        defaultValue: "var(--control-fill)",
       },
       {
         name: "--cui-field-foreground",
@@ -16504,6 +16588,10 @@ export const generatedSkinContract: SkinContract = {
           part: "content",
         },
         {
+          scope: "resizable",
+          part: "surface",
+        },
+        {
           scope: "rich-tooltip",
           part: "content",
         },
@@ -16664,6 +16752,10 @@ export const generatedSkinContract: SkinContract = {
         {
           scope: "popover",
           part: "content",
+        },
+        {
+          scope: "resizable",
+          part: "surface",
         },
         {
           scope: "rich-tooltip",
@@ -16844,7 +16936,6 @@ export const generatedSkinContract: SkinContract = {
     "data-scrolling",
     "data-scrubbing",
     "data-selected",
-    "data-separator",
     "data-side",
     "data-starting-style",
     "data-swipe-direction",

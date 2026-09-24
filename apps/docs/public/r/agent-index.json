@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 177,
+    "count": 178,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -1457,6 +1457,15 @@
         "href": "/use-cases/file-explorer",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/file-explorer-block.json"
+      },
+      {
+        "id": "design-canvas",
+        "name": "Design canvas",
+        "kind": "Block",
+        "summary": "Figma-style editor with layers, an infinite canvas, a floating tool bar, and scrubbable property inputs.",
+        "href": "/use-cases/design-canvas",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/design-canvas-block.json"
       }
     ]
   }

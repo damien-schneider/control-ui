@@ -90,9 +90,12 @@
   }
   [data-skin="rig"]
     [data-control-family="button"][data-control="true"]:is([data-variant="surface"], [data-variant="ghost"], [data-variant="quiet"]) {
-    --cui-button-background: oklch(from var(--foreground) l c h / 0.04);
     --cui-button-background-image: none;
     --cui-button-shadow: inset 0 0 0 var(--control-rim-width) var(--control-rim);
+  }
+
+  [data-skin="rig"] [data-control-family="button"][data-control="true"]:is([data-variant="ghost"], [data-variant="quiet"]) {
+    --cui-button-background: oklch(from var(--foreground) l c h / 0.04);
   }
 
   [data-skin="rig"]

@@ -58,6 +58,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Coding agent](http://127.0.0.1:3000/use-cases/coding-agent): Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer. Status: beta.
 - [Settings](http://127.0.0.1:3000/use-cases/settings): Searchable multi-page settings shell with responsive navigation and accessible control groups.
 - [File explorer](http://127.0.0.1:3000/use-cases/file-explorer): Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview. Status: beta.
+- [Design canvas](http://127.0.0.1:3000/use-cases/design-canvas): Figma-style editor with layers, an infinite canvas, a floating tool bar, and scrubbable property inputs. Status: beta.
 
 ## Primitives
 

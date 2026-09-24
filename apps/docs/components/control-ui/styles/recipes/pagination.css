@@ -25,7 +25,7 @@
   }
 
   :where([data-control-family="pagination"][data-slot="link"][data-active="true"]) {
-    --cui-pagination-link-background: oklch(from var(--card) l c h / 0.72);
+    --cui-pagination-link-background: var(--control-fill);
     --_pagination-link-border-color: var(--border);
     --cui-pagination-link-shadow: var(--shadow-sm);
   }

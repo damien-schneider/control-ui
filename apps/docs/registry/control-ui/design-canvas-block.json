@@ -1,0 +1,45 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "design-canvas-block",
+  "type": "registry:block",
+  "title": "Design canvas",
+  "description": "Figma-style editor with layers, an infinite canvas, a floating tool bar, and scrubbable property inputs.",
+  "dependencies": [
+    "lucide-react@^1.47.0"
+  ],
+  "registryDependencies": [
+    "button",
+    "color-picker",
+    "core",
+    "empty",
+    "infinite-canvas",
+    "input-group",
+    "number-field",
+    "resizable",
+    "scroll-area",
+    "separator",
+    "toggle",
+    "toolbar",
+    "tooltip"
+  ],
+  "files": [
+    {
+      "path": "src/registry/blocks/control-ui/design-canvas-data.ts",
+      "target": "@components/control-ui/blocks/design-canvas-data.ts",
+      "type": "registry:block"
+    },
+    {
+      "path": "src/registry/blocks/control-ui/design-canvas-inspector.tsx",
+      "target": "@components/control-ui/blocks/design-canvas-inspector.tsx",
+      "type": "registry:block"
+    },
+    {
+      "path": "src/registry/blocks/control-ui/design-canvas.tsx",
+      "target": "@components/control-ui/blocks/design-canvas.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/design-canvas-block.json"
+  }
+}

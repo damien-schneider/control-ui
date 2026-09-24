@@ -2,6 +2,7 @@
    Hairline borders instead of elevation; floating surfaces are the only things allowed a real shadow. */
 
 [data-skin="linear"][data-skin] {
+  --control-fill: transparent;
   /* Inter, self-hosted by the app shell (next/font fills --font-inter); host without it falls to the system stack. */
   --font-sans:
     var(--font-inter, "Inter"), "Inter Variable", "SF Pro Display", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;

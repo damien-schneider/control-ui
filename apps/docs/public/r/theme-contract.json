@@ -140,6 +140,12 @@
       "description": "Boundary color of a control's own edge; defaults to --border."
     },
     {
+      "name": "--control-fill",
+      "group": "color",
+      "tier": "derived",
+      "description": "Resting fill shared by fields and surface controls; defaults to --card at 72% alpha."
+    },
+    {
       "name": "--hover-fill",
       "group": "color",
       "tier": "derived",

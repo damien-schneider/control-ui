@@ -16,7 +16,7 @@
       "name": "--cui-button-group-text-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "oklch(from var(--card) l c h / 0.72)"
+      "defaultValue": "var(--control-fill)"
     },
     {
       "name": "--cui-button-group-text-foreground",

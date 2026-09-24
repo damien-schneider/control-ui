@@ -161,6 +161,7 @@ export const registryMetadata = {
       "context-menu",
       "control-ui-skill",
       "core",
+      "design-canvas-block",
       "dialog",
       "dockable-panel",
       "drawer",
@@ -269,6 +270,7 @@ export const registryMetadata = {
       "context-menu",
       "control-ui-skill",
       "core",
+      "design-canvas-block",
       "dialog",
       "dockable-panel",
       "drawer",
@@ -378,6 +380,7 @@ export const registryMetadata = {
       "context-menu",
       "control-ui-skill",
       "core",
+      "design-canvas-block",
       "dialog",
       "dockable-panel",
       "drawer",
@@ -487,6 +490,7 @@ export const registryMetadata = {
       "context-menu",
       "control-ui-skill",
       "core",
+      "design-canvas-block",
       "dialog",
       "dockable-panel",
       "drawer",
@@ -596,6 +600,7 @@ export const registryMetadata = {
       "context-menu",
       "control-ui-skill",
       "core",
+      "design-canvas-block",
       "dialog",
       "dockable-panel",
       "drawer",
@@ -705,6 +710,7 @@ export const registryMetadata = {
       "context-menu",
       "control-ui-skill",
       "core",
+      "design-canvas-block",
       "dialog",
       "dockable-panel",
       "drawer",
@@ -814,6 +820,7 @@ export const registryMetadata = {
       "context-menu",
       "control-ui-skill",
       "core",
+      "design-canvas-block",
       "dialog",
       "dockable-panel",
       "drawer",
@@ -923,6 +930,7 @@ export const registryMetadata = {
       "context-menu",
       "control-ui-skill",
       "core",
+      "design-canvas-block",
       "dialog",
       "dockable-panel",
       "drawer",
@@ -1032,6 +1040,7 @@ export const registryMetadata = {
       "context-menu",
       "control-ui-skill",
       "core",
+      "design-canvas-block",
       "dialog",
       "dockable-panel",
       "drawer",
@@ -2045,6 +2054,42 @@ export const registryMetadata = {
       },
     ],
   },
+  "design-canvas-block": {
+    dependencies: ["lucide-react@^1.47.0"],
+    registryDependencies: [
+      "button",
+      "color-picker",
+      "core",
+      "empty",
+      "infinite-canvas",
+      "input-group",
+      "number-field",
+      "resizable",
+      "scroll-area",
+      "separator",
+      "toggle",
+      "toolbar",
+      "tooltip",
+    ],
+    sourceManifestPath: "registry/control-ui/design-canvas-block.json",
+    files: [
+      {
+        path: "src/registry/blocks/control-ui/design-canvas-data.ts",
+        target: "@components/control-ui/blocks/design-canvas-data.ts",
+        type: "registry:block",
+      },
+      {
+        path: "src/registry/blocks/control-ui/design-canvas-inspector.tsx",
+        target: "@components/control-ui/blocks/design-canvas-inspector.tsx",
+        type: "registry:block",
+      },
+      {
+        path: "src/registry/blocks/control-ui/design-canvas.tsx",
+        target: "@components/control-ui/blocks/design-canvas.tsx",
+        type: "registry:block",
+      },
+    ],
+  },
   dialog: {
     dependencies: ["@base-ui/react@^1.8.0"],
     registryDependencies: ["button", "core"],
@@ -2583,7 +2628,7 @@ export const registryMetadata = {
   },
   input: {
     dependencies: ["@base-ui/react@^1.8.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "input-group"],
     sourceManifestPath: "registry/control-ui/input.json",
     files: [
       {
@@ -2864,11 +2909,6 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/model-switcher.json",
     files: [
       {
-        path: "src/registry/knob-contracts/button-knobs.ts",
-        target: "@components/control-ui/knob-contracts/button-knobs.ts",
-        type: "registry:component",
-      },
-      {
         path: "src/registry/sources/control-ui/model-switcher.tsx",
         target: "@components/control-ui/model-switcher.tsx",
         type: "registry:component",
@@ -2990,7 +3030,7 @@ export const registryMetadata = {
   },
   "number-field": {
     dependencies: ["@base-ui/react@^1.8.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "input-group"],
     sourceManifestPath: "registry/control-ui/number-field.json",
     files: [
       {
@@ -3316,7 +3356,7 @@ export const registryMetadata = {
   },
   select: {
     dependencies: ["@base-ui/react@^1.8.0"],
-    registryDependencies: ["core", "surface-variants"],
+    registryDependencies: ["button", "core", "surface-variants"],
     sourceManifestPath: "registry/control-ui/select.json",
     files: [
       {
@@ -3325,13 +3365,23 @@ export const registryMetadata = {
         type: "registry:component",
       },
       {
+        path: "src/registry/knob-contracts/field-knobs.ts",
+        target: "@components/control-ui/knob-contracts/field-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/knob-contracts/popup-knobs.ts",
         target: "@components/control-ui/knob-contracts/popup-knobs.ts",
         type: "registry:component",
       },
       {
-        path: "src/registry/sources/control-ui/recipes/button.css",
-        target: "@components/control-ui/styles/recipes/button.css",
+        path: "src/registry/sources/control-ui/recipes/field-parts.css",
+        target: "@components/control-ui/styles/recipes/field-parts.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/field.css",
+        target: "@components/control-ui/styles/recipes/field.css",
         type: "registry:file",
       },
       {
@@ -4328,6 +4378,7 @@ export const registryMetadata = {
       "context-menu",
       "control-ui-skill",
       "core",
+      "design-canvas-block",
       "dialog",
       "dockable-panel",
       "drawer",

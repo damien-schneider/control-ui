@@ -69,15 +69,6 @@
     --cui-field-padding-inline: 4px;
     --cui-field-focus-border-color: var(--win98-dark);
   }
-  [data-skin="windows-98"] :where([data-control-family="button"][data-control-ui="select"][data-slot="trigger"]) {
-    --cui-button-background: var(--background);
-    --cui-button-hover-background: var(--background);
-    --cui-button-press-background: var(--background);
-    --cui-button-shadow: var(--win98-sunken);
-    --cui-button-hover-shadow: var(--win98-sunken);
-    --cui-button-press-shadow: var(--win98-sunken);
-    --cui-button-padding-inline: 4px;
-  }
   [data-skin="windows-98"] :where([data-control-family="popup"][data-control-ui="select"][data-slot="icon"]) {
     align-self: stretch;
     width: 16px;

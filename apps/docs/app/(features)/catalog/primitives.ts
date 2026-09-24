@@ -647,7 +647,7 @@ export const primitiveEntries = [
         source: sourceFile("Base UI Select slot", "src/registry/sources/control-ui/ui/select.tsx", "component"),
         supportFiles: [
           sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants"),
-          buttonRecipeFile,
+          ...fieldRecipeFiles,
           ...popupRecipeFiles,
         ],
         registryKind: "select",

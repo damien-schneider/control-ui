@@ -1,9 +1,8 @@
 "use client";
 
-import type { CSSProperties, ReactNode } from "react";
-import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
+import type { ReactNode } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
-import type { SelectTriggerVariant } from "@/components/control-ui/ui/select";
+import type { SelectTriggerProps, SelectTriggerVariant } from "@/components/control-ui/ui/select";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/control-ui/ui/select";
 
 export type ModelOption = {
@@ -22,7 +21,7 @@ export type ModelSwitcherProps = {
   size?: "xs" | "sm";
   variant?: SelectTriggerVariant;
   className?: string;
-  style?: CSSProperties & ButtonKnobStyle;
+  style?: SelectTriggerProps["style"];
 };
 
 export function ModelSwitcher({
@@ -40,17 +39,7 @@ export function ModelSwitcher({
 
   return (
     <Select value={value} defaultValue={fallback} onValueChange={onValueChange} disabled={disabled || models.length === 0}>
-      <SelectTrigger
-        size={size}
-        variant={variant}
-        className={cn("max-w-52", className)}
-        style={style}
-        aria-label="Model"
-        data-control-ui="model-switcher"
-        data-control-family="button"
-        data-button-kind="model-switcher"
-        data-slot="root"
-      >
+      <SelectTrigger size={size} variant={variant} className={cn("max-w-52", className)} style={style} aria-label="Model">
         <span
           data-control-ui="model-switcher"
           data-control-family="button"

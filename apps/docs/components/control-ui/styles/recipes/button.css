@@ -142,7 +142,7 @@
   }
 
   :where([data-control-family="button"][data-variant="surface"]) {
-    --cui-button-background: oklch(from var(--card) l c h / 0.72);
+    --cui-button-background: var(--control-fill);
     --cui-button-foreground: var(--foreground);
     --cui-button-hover-background: oklch(from var(--foreground) l c h / 0.05);
     --cui-button-hover-foreground: var(--foreground);

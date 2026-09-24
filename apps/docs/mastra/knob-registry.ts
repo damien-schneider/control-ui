@@ -495,7 +495,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-button-group-text-background",
         syntax: "<color>",
-        defaultValue: "oklch(from var(--card) l c h / 0.72)",
+        defaultValue: "var(--control-fill)",
         selector: ':where([data-control-family="button-group"][data-slot="root"])',
       },
       {
@@ -1596,7 +1596,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-field-background",
         syntax: "*",
-        defaultValue: "oklch(from var(--card) l c h / 0.72)",
+        defaultValue: "var(--control-fill)",
         selector: ':where([data-control-family="field"][data-control="true"])',
       },
       {

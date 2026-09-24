@@ -39,6 +39,7 @@
     "context-menu",
     "control-ui-skill",
     "core",
+    "design-canvas-block",
     "dialog",
     "dockable-panel",
     "drawer",

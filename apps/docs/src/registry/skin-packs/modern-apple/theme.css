@@ -1,4 +1,5 @@
 [data-skin="modern-apple"][data-skin] {
+  --control-fill: oklch(from var(--background) l c h / 0.55);
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono: "SF Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 

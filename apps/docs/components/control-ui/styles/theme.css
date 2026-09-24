@@ -67,6 +67,7 @@
 
   --control-rim: var(--border);
   --control-rim-width: 1px;
+  --control-fill: oklch(from var(--card) l c h / 0.72);
   --hover-fill: oklch(from var(--foreground) l c h / 0.06);
   --active-fill: oklch(from var(--foreground) l c h / 0.08);
 

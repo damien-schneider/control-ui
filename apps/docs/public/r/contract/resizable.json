@@ -69,6 +69,23 @@
   ],
   "parts": {
     "resizable": {
+      "floating": {
+        "family": "resizable",
+        "registryItems": [
+          "resizable"
+        ],
+        "states": [
+          {
+            "attribute": "data-side",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "left",
+              "right"
+            ]
+          }
+        ]
+      },
       "handle": {
         "family": "resizable",
         "registryItems": [
@@ -85,8 +102,16 @@
             ]
           },
           {
+            "attribute": "data-cursor",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "none"
+            ]
+          },
+          {
             "attribute": "data-separator",
-            "source": "external",
+            "source": "control-ui",
             "valueKind": "enum",
             "values": [
               "active",

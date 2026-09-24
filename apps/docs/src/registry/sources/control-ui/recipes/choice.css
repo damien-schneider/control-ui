@@ -8,7 +8,7 @@
     --cui-choice-border-color: var(--border);
     --cui-choice-checked-background: var(--primary);
     --cui-choice-checked-border-color: var(--primary);
-    --_choice-background: oklch(from var(--card) l c h / 0.72);
+    --_choice-background: var(--control-fill);
     border-radius: var(--cui-choice-radius);
     background: var(--_choice-background);
     box-shadow:

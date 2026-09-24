@@ -2,7 +2,6 @@
   --hairline: var(--border);
   --apple-glass-refraction: blur(0px);
   --apple-glass-luminance: brightness(1);
-  --glass-fill: oklch(1 0 0 / 0.72);
   --glass-fill-hover: oklch(1 0 0 / 0.9);
   --glass-fill-active: oklch(0.92 0 0 / 0.8);
   --glass-rim: oklch(0 0 0 / 0.08);
@@ -53,7 +52,6 @@
 
 :where(.dark) [data-skin="modern-apple"],
 .dark[data-skin="modern-apple"] {
-  --glass-fill: oklch(0.42 0.003 260 / 0.65);
   --glass-fill-hover: oklch(0.4 0.003 260 / 0.75);
   --glass-fill-active: oklch(0.35 0.003 260 / 0.75);
   --glass-rim: oklch(1 0 0 / 0.1);
@@ -186,7 +184,6 @@
   }
 
   [data-skin="modern-apple"] :where([data-control-family="button"][data-control="true"][data-variant="surface"]) {
-    --cui-button-background: var(--glass-fill);
     --cui-button-hover-background: var(--glass-fill-hover);
     --cui-button-press-background: var(--glass-fill-active);
     --cui-button-shadow: var(--apple-control-shadow);
@@ -313,7 +310,6 @@
 @layer components {
   [data-skin="modern-apple"] :where([data-control-family="field"][data-control="true"]) {
     --cui-field-radius: var(--radius-control);
-    --cui-field-background: oklch(from var(--background) l c h / 0.55);
     --cui-field-foreground: var(--foreground);
     --cui-field-border-color: var(--input);
     --cui-field-border-width: 1px;

@@ -433,6 +433,19 @@ export const THEME_AUDIT_PAIRS: readonly ThemeAuditPair[] = [
     ...textPair("muted-on-muted-over-card", "Muted text on muted fill over card", "--muted-foreground", "--muted"),
     surface: "--card",
   },
+  {
+    ...textPair(
+      "control-text-on-control-fill-over-background",
+      "Control text on control fill over background",
+      "--foreground",
+      "--control-fill",
+    ),
+    surface: "--background",
+  },
+  {
+    ...textPair("control-text-on-control-fill-over-card", "Control text on control fill over card", "--foreground", "--control-fill"),
+    surface: "--card",
+  },
   textPair("primary-text-on-background", "Primary semantic text on background", "--primary-text", "--background"),
   textPair("primary-text-on-card", "Primary semantic text on card", "--primary-text", "--card"),
   textPair("destructive-text-on-background", "Destructive text on background", "--destructive-text", "--background"),

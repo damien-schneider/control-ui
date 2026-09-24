@@ -8,7 +8,6 @@
     "menubar",
     "model-switcher",
     "navigation-menu",
-    "select",
     "toggle"
   ],
   "knobs": [
@@ -235,8 +234,7 @@
       "content": {
         "family": "button",
         "registryItems": [
-          "button",
-          "select"
+          "button"
         ],
         "states": []
       }
@@ -386,22 +384,6 @@
       }
     },
     "model-switcher": {
-      "root": {
-        "family": "button",
-        "registryItems": [
-          "model-switcher"
-        ],
-        "states": [
-          {
-            "attribute": "data-button-kind",
-            "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "model-switcher"
-            ]
-          }
-        ]
-      },
       "value": {
         "family": "button",
         "registryItems": [
@@ -487,145 +469,6 @@
         ]
       }
     },
-    "select": {
-      "trigger": {
-        "family": "button",
-        "registryItems": [
-          "select"
-        ],
-        "states": [
-          {
-            "attribute": "data-dirty",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-disabled",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-filled",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-focused",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-invalid",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-placeholder",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-popup-kind",
-            "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "select"
-            ]
-          },
-          {
-            "attribute": "data-popup-open",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-popup-side",
-            "source": "external",
-            "valueKind": "enum",
-            "values": [
-              "bottom",
-              "inline-end",
-              "inline-start",
-              "left",
-              "right",
-              "top"
-            ]
-          },
-          {
-            "attribute": "data-pressed",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-readonly",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-required",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-shape",
-            "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "default"
-            ]
-          },
-          {
-            "attribute": "data-size",
-            "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "lg",
-              "md",
-              "sm",
-              "xs"
-            ]
-          },
-          {
-            "attribute": "data-tone",
-            "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "neutral"
-            ]
-          },
-          {
-            "attribute": "data-touched",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-valid",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-variant",
-            "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "ghost",
-              "surface"
-            ]
-          }
-        ]
-      }
-    },
     "toggle": {
       "root": {
         "family": "button",
@@ -635,6 +478,12 @@
         "states": [
           {
             "attribute": "data-active",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-icon-only",
             "source": "control-ui",
             "valueKind": "presence",
             "values": []

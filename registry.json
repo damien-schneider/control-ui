@@ -230,6 +230,7 @@
         "damien-schneider/control-ui/context-menu",
         "damien-schneider/control-ui/control-ui-skill",
         "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/design-canvas-block",
         "damien-schneider/control-ui/dialog",
         "damien-schneider/control-ui/dockable-panel",
         "damien-schneider/control-ui/drawer",
@@ -342,6 +343,7 @@
         "damien-schneider/control-ui/context-menu",
         "damien-schneider/control-ui/control-ui-skill",
         "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/design-canvas-block",
         "damien-schneider/control-ui/dialog",
         "damien-schneider/control-ui/dockable-panel",
         "damien-schneider/control-ui/drawer",
@@ -461,6 +463,7 @@
         "damien-schneider/control-ui/context-menu",
         "damien-schneider/control-ui/control-ui-skill",
         "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/design-canvas-block",
         "damien-schneider/control-ui/dialog",
         "damien-schneider/control-ui/dockable-panel",
         "damien-schneider/control-ui/drawer",
@@ -580,6 +583,7 @@
         "damien-schneider/control-ui/context-menu",
         "damien-schneider/control-ui/control-ui-skill",
         "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/design-canvas-block",
         "damien-schneider/control-ui/dialog",
         "damien-schneider/control-ui/dockable-panel",
         "damien-schneider/control-ui/drawer",
@@ -699,6 +703,7 @@
         "damien-schneider/control-ui/context-menu",
         "damien-schneider/control-ui/control-ui-skill",
         "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/design-canvas-block",
         "damien-schneider/control-ui/dialog",
         "damien-schneider/control-ui/dockable-panel",
         "damien-schneider/control-ui/drawer",
@@ -818,6 +823,7 @@
         "damien-schneider/control-ui/context-menu",
         "damien-schneider/control-ui/control-ui-skill",
         "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/design-canvas-block",
         "damien-schneider/control-ui/dialog",
         "damien-schneider/control-ui/dockable-panel",
         "damien-schneider/control-ui/drawer",
@@ -937,6 +943,7 @@
         "damien-schneider/control-ui/context-menu",
         "damien-schneider/control-ui/control-ui-skill",
         "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/design-canvas-block",
         "damien-schneider/control-ui/dialog",
         "damien-schneider/control-ui/dockable-panel",
         "damien-schneider/control-ui/drawer",
@@ -1056,6 +1063,7 @@
         "damien-schneider/control-ui/context-menu",
         "damien-schneider/control-ui/control-ui-skill",
         "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/design-canvas-block",
         "damien-schneider/control-ui/dialog",
         "damien-schneider/control-ui/dockable-panel",
         "damien-schneider/control-ui/drawer",
@@ -1175,6 +1183,7 @@
         "damien-schneider/control-ui/context-menu",
         "damien-schneider/control-ui/control-ui-skill",
         "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/design-canvas-block",
         "damien-schneider/control-ui/dialog",
         "damien-schneider/control-ui/dockable-panel",
         "damien-schneider/control-ui/drawer",
@@ -2451,6 +2460,48 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "design-canvas-block",
+      "type": "registry:block",
+      "title": "Design canvas",
+      "description": "Figma-style editor with layers, an infinite canvas, a floating tool bar, and scrubbable property inputs.",
+      "dependencies": [
+        "lucide-react@^1.47.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/button",
+        "damien-schneider/control-ui/color-picker",
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/empty",
+        "damien-schneider/control-ui/infinite-canvas",
+        "damien-schneider/control-ui/input-group",
+        "damien-schneider/control-ui/number-field",
+        "damien-schneider/control-ui/resizable",
+        "damien-schneider/control-ui/scroll-area",
+        "damien-schneider/control-ui/separator",
+        "damien-schneider/control-ui/toggle",
+        "damien-schneider/control-ui/toolbar",
+        "damien-schneider/control-ui/tooltip"
+      ],
+      "files": [
+        {
+          "path": "apps/docs/src/registry/blocks/control-ui/design-canvas-data.ts",
+          "target": "@components/control-ui/blocks/design-canvas-data.ts",
+          "type": "registry:block"
+        },
+        {
+          "path": "apps/docs/src/registry/blocks/control-ui/design-canvas-inspector.tsx",
+          "target": "@components/control-ui/blocks/design-canvas-inspector.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "apps/docs/src/registry/blocks/control-ui/design-canvas.tsx",
+          "target": "@components/control-ui/blocks/design-canvas.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
@@ -3197,7 +3248,8 @@
         "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
-        "damien-schneider/control-ui/core"
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/input-group"
       ],
       "files": [
         {
@@ -3707,7 +3759,8 @@
         "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
-        "damien-schneider/control-ui/core"
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/input-group"
       ],
       "files": [
         {
@@ -4164,6 +4217,7 @@
         "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
+        "damien-schneider/control-ui/button",
         "damien-schneider/control-ui/core",
         "damien-schneider/control-ui/surface-variants"
       ],
@@ -4174,13 +4228,23 @@
           "type": "registry:component"
         },
         {
+          "path": "apps/docs/src/registry/knob-contracts/field-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/field-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "apps/docs/src/registry/knob-contracts/popup-knobs.ts",
           "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
           "type": "registry:component"
         },
         {
-          "path": "apps/docs/src/registry/sources/control-ui/recipes/button.css",
-          "target": "@components/control-ui/styles/recipes/button.css",
+          "path": "apps/docs/src/registry/sources/control-ui/recipes/field-parts.css",
+          "target": "@components/control-ui/styles/recipes/field-parts.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/recipes/field.css",
+          "target": "@components/control-ui/styles/recipes/field.css",
           "type": "registry:file"
         },
         {
@@ -4210,7 +4274,8 @@
         }
       ],
       "css": {
-        "@import \"../components/control-ui/styles/recipes/button.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/field.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
@@ -5518,6 +5583,7 @@
         "damien-schneider/control-ui/context-menu",
         "damien-schneider/control-ui/control-ui-skill",
         "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/design-canvas-block",
         "damien-schneider/control-ui/dialog",
         "damien-schneider/control-ui/dockable-panel",
         "damien-schneider/control-ui/drawer",

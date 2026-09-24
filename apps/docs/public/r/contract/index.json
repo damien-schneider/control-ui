@@ -82,7 +82,6 @@
         "menubar",
         "model-switcher",
         "navigation-menu",
-        "select",
         "toggle"
       ],
       "knobs": 24,
@@ -234,6 +233,7 @@
         "native-select",
         "number-field",
         "phone-input",
+        "select",
         "textarea"
       ],
       "knobs": 11,
@@ -346,6 +346,7 @@
         "model-switcher",
         "navigation-menu",
         "popover",
+        "resizable",
         "rich-tooltip",
         "select",
         "sheet",

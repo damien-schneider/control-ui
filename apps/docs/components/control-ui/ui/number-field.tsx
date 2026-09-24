@@ -6,6 +6,7 @@ import { createContext, useContext } from "react";
 import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useIsInsideInputGroup } from "@/components/control-ui/ui/input-group";
 
 export type NumberFieldChangeReason =
   | "input-change"
@@ -93,6 +94,20 @@ export function NumberField({ size = "md", value, defaultValue, className, child
 
 export function NumberFieldGroup({ className, children, ...props }: NumberFieldGroupProps) {
   const size = useContext(NumberFieldSizeContext);
+  if (useIsInsideInputGroup()) {
+    return (
+      <NumberFieldPrimitive.Group
+        data-control-ui="number-field"
+        data-field-kind="number-field"
+        data-slot="group"
+        data-control-family="field"
+        className={cn("inline-flex items-stretch overflow-hidden", className)}
+        {...props}
+      >
+        {children}
+      </NumberFieldPrimitive.Group>
+    );
+  }
   return (
     <NumberFieldPrimitive.Group
       data-control-ui="number-field"
@@ -154,7 +169,7 @@ export function NumberFieldIncrement({ className, children, ...props }: NumberFi
   );
 }
 
-// optional drag-to-change affordance, usually wrapped around field's label
+// drag-to-change affordance: wrap the field's label, or place inside Group as a prefix icon or suffix unit
 export function NumberFieldScrubArea({ className, children, ...props }: NumberFieldScrubAreaProps) {
   return (
     <NumberFieldPrimitive.ScrubArea
@@ -162,7 +177,10 @@ export function NumberFieldScrubArea({ className, children, ...props }: NumberFi
       data-control-family="field"
       data-field-kind="number-field"
       data-slot="scrub-area"
-      className={cn("cursor-ew-resize touch-pan-y select-none", className)}
+      className={cn(
+        "inline-flex shrink-0 cursor-ew-resize touch-pan-y select-none items-center [&>svg]:size-3.5 [&>svg]:shrink-0",
+        className,
+      )}
       {...props}
     >
       {children}

@@ -52,8 +52,7 @@ describe("registry anatomy discovery", () => {
     if ("error" in result) throw new Error(result.error);
     const ownButtonParts = result.data.anatomy?.ownScopes.button?.parts ?? {};
     const installedButtonParts = result.data.anatomy?.installedScopes.button?.parts ?? {};
-    expect("content" in ownButtonParts).toBe(true);
-    expect("root" in ownButtonParts).toBe(false);
-    expect("root" in installedButtonParts).toBe(false);
+    expect(Object.keys(ownButtonParts)).toEqual([]);
+    expect("root" in installedButtonParts).toBe(true);
   });
 });

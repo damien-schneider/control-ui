@@ -64,6 +64,12 @@
         ],
         "states": [
           {
+            "attribute": "data-easing",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-panning",
             "source": "control-ui",
             "valueKind": "presence",
@@ -91,6 +97,20 @@
           "infinite-canvas"
         ],
         "states": []
+      },
+      "item": {
+        "family": "infinite-canvas",
+        "registryItems": [
+          "infinite-canvas"
+        ],
+        "states": [
+          {
+            "attribute": "data-dragging",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
       }
     }
   },

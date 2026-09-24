@@ -2,6 +2,7 @@
 
 import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps, CSSProperties } from "react";
+import { createContext, use } from "react";
 import type { RenderProp } from "@/components/control-ui/control-props";
 import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
@@ -14,10 +15,16 @@ export type InputGroupProps = Omit<ComponentProps<"div">, "style"> & { style?: C
 
 export type InputGroupAddonProps = ComponentProps<"span"> & { style?: CSSProperties & FieldKnobStyle };
 
+const InputGroupSurfaceContext = createContext(false);
+
+export function useIsInsideInputGroup() {
+  return use(InputGroupSurfaceContext);
+}
+
 export function InputGroup({ size = "md", className, render, children, ...props }: InputGroupProps) {
   const classes = cn("flex min-w-0 w-full items-center overflow-hidden", className);
 
-  return useRender({
+  const group = useRender({
     defaultTagName: "div",
     render,
     props: {
@@ -31,6 +38,7 @@ export function InputGroup({ size = "md", className, render, children, ...props 
       children,
     },
   });
+  return <InputGroupSurfaceContext value={true}>{group}</InputGroupSurfaceContext>;
 }
 
 export function InputGroupAddon({ className, ...props }: InputGroupAddonProps) {

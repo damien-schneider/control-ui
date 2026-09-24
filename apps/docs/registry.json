@@ -245,6 +245,7 @@
         "http://127.0.0.1:3000/r/context-menu.json",
         "http://127.0.0.1:3000/r/control-ui-skill.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
@@ -360,6 +361,7 @@
         "http://127.0.0.1:3000/r/context-menu.json",
         "http://127.0.0.1:3000/r/control-ui-skill.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
@@ -482,6 +484,7 @@
         "http://127.0.0.1:3000/r/context-menu.json",
         "http://127.0.0.1:3000/r/control-ui-skill.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
@@ -604,6 +607,7 @@
         "http://127.0.0.1:3000/r/context-menu.json",
         "http://127.0.0.1:3000/r/control-ui-skill.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
@@ -726,6 +730,7 @@
         "http://127.0.0.1:3000/r/context-menu.json",
         "http://127.0.0.1:3000/r/control-ui-skill.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
@@ -848,6 +853,7 @@
         "http://127.0.0.1:3000/r/context-menu.json",
         "http://127.0.0.1:3000/r/control-ui-skill.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
@@ -970,6 +976,7 @@
         "http://127.0.0.1:3000/r/context-menu.json",
         "http://127.0.0.1:3000/r/control-ui-skill.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
@@ -1092,6 +1099,7 @@
         "http://127.0.0.1:3000/r/context-menu.json",
         "http://127.0.0.1:3000/r/control-ui-skill.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
@@ -1214,6 +1222,7 @@
         "http://127.0.0.1:3000/r/context-menu.json",
         "http://127.0.0.1:3000/r/control-ui-skill.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
@@ -2580,6 +2589,51 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "design-canvas-block",
+      "type": "registry:block",
+      "title": "Design canvas",
+      "description": "Figma-style editor with layers, an infinite canvas, a floating tool bar, and scrubbable property inputs.",
+      "dependencies": [
+        "lucide-react@^1.47.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/color-picker.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/empty.json",
+        "http://127.0.0.1:3000/r/infinite-canvas.json",
+        "http://127.0.0.1:3000/r/input-group.json",
+        "http://127.0.0.1:3000/r/number-field.json",
+        "http://127.0.0.1:3000/r/resizable.json",
+        "http://127.0.0.1:3000/r/scroll-area.json",
+        "http://127.0.0.1:3000/r/separator.json",
+        "http://127.0.0.1:3000/r/toggle.json",
+        "http://127.0.0.1:3000/r/toolbar.json",
+        "http://127.0.0.1:3000/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/blocks/control-ui/design-canvas-data.ts",
+          "target": "@components/control-ui/blocks/design-canvas-data.ts",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/registry/blocks/control-ui/design-canvas-inspector.tsx",
+          "target": "@components/control-ui/blocks/design-canvas-inspector.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/registry/blocks/control-ui/design-canvas.tsx",
+          "target": "@components/control-ui/blocks/design-canvas.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/design-canvas-block.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
@@ -3377,7 +3431,8 @@
         "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/input-group.json"
       ],
       "files": [
         {
@@ -3926,7 +3981,8 @@
         "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/input-group.json"
       ],
       "files": [
         {
@@ -4419,6 +4475,7 @@
         "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/surface-variants.json"
       ],
@@ -4429,13 +4486,23 @@
           "type": "registry:component"
         },
         {
+          "path": "src/registry/knob-contracts/field-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/field-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/knob-contracts/popup-knobs.ts",
           "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
           "type": "registry:component"
         },
         {
-          "path": "src/registry/sources/control-ui/recipes/button.css",
-          "target": "@components/control-ui/styles/recipes/button.css",
+          "path": "src/registry/sources/control-ui/recipes/field-parts.css",
+          "target": "@components/control-ui/styles/recipes/field-parts.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/field.css",
+          "target": "@components/control-ui/styles/recipes/field.css",
           "type": "registry:file"
         },
         {
@@ -4465,7 +4532,8 @@
         }
       ],
       "css": {
-        "@import \"../components/control-ui/styles/recipes/button.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/field.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
@@ -5878,6 +5946,7 @@
         "http://127.0.0.1:3000/r/context-menu.json",
         "http://127.0.0.1:3000/r/control-ui-skill.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",

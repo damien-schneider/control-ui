@@ -43,8 +43,7 @@
       "breadcrumb"
     ],
     "button": [
-      "button",
-      "select"
+      "button"
     ],
     "button-group": [
       "button-group"
@@ -159,6 +158,7 @@
       "input"
     ],
     "input-group": [
+      "input",
       "input-group"
     ],
     "input-otp": [
@@ -1865,15 +1865,13 @@
         "content": {
           "family": "button",
           "registryItems": [
-            "button",
-            "select"
+            "button"
           ],
           "states": []
         }
       },
       "registryItems": [
-        "button",
-        "select"
+        "button"
       ]
     },
     "button-group": {
@@ -8087,6 +8085,12 @@
           ],
           "states": [
             {
+              "attribute": "data-easing",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
               "attribute": "data-panning",
               "source": "control-ui",
               "valueKind": "presence",
@@ -8114,6 +8118,20 @@
             "infinite-canvas"
           ],
           "states": []
+        },
+        "item": {
+          "family": "infinite-canvas",
+          "registryItems": [
+            "infinite-canvas"
+          ],
+          "states": [
+            {
+              "attribute": "data-dragging",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            }
+          ]
         }
       },
       "registryItems": [
@@ -8523,9 +8541,22 @@
         "input": {
           "family": "field",
           "registryItems": [
+            "input",
             "input-group"
           ],
           "states": [
+            {
+              "attribute": "data-dirty",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-disabled",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
             {
               "attribute": "data-field-kind",
               "source": "control-ui",
@@ -8533,11 +8564,42 @@
               "values": [
                 "input-group"
               ]
+            },
+            {
+              "attribute": "data-filled",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-focused",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-invalid",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-touched",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-valid",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
             }
           ]
         }
       },
       "registryItems": [
+        "input",
         "input-group"
       ]
     },
@@ -9542,22 +9604,6 @@
     },
     "model-switcher": {
       "parts": {
-        "root": {
-          "family": "button",
-          "registryItems": [
-            "model-switcher"
-          ],
-          "states": [
-            {
-              "attribute": "data-button-kind",
-              "source": "control-ui",
-              "valueKind": "enum",
-              "values": [
-                "model-switcher"
-              ]
-            }
-          ]
-        },
         "hint": {
           "family": "popup",
           "registryItems": [
@@ -11405,6 +11451,23 @@
     },
     "resizable": {
       "parts": {
+        "floating": {
+          "family": "resizable",
+          "registryItems": [
+            "resizable"
+          ],
+          "states": [
+            {
+              "attribute": "data-side",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "left",
+                "right"
+              ]
+            }
+          ]
+        },
         "handle": {
           "family": "resizable",
           "registryItems": [
@@ -11421,8 +11484,16 @@
               ]
             },
             {
+              "attribute": "data-cursor",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "none"
+              ]
+            },
+            {
               "attribute": "data-separator",
-              "source": "external",
+              "source": "control-ui",
               "valueKind": "enum",
               "values": [
                 "active",
@@ -11489,6 +11560,28 @@
                 "framed",
                 "nested"
               ]
+            }
+          ]
+        },
+        "surface": {
+          "family": "popup",
+          "registryItems": [
+            "resizable"
+          ],
+          "states": [
+            {
+              "attribute": "data-popup-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "resizable"
+              ]
+            },
+            {
+              "attribute": "data-popup-static",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
             }
           ]
         }
@@ -12382,7 +12475,7 @@
           ]
         },
         "trigger": {
-          "family": "button",
+          "family": "field",
           "registryItems": [
             "select"
           ],
@@ -12398,6 +12491,14 @@
               "source": "external",
               "valueKind": "presence",
               "values": []
+            },
+            {
+              "attribute": "data-field-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "select"
+              ]
             },
             {
               "attribute": "data-filled",
@@ -12422,14 +12523,6 @@
               "source": "external",
               "valueKind": "presence",
               "values": []
-            },
-            {
-              "attribute": "data-popup-kind",
-              "source": "control-ui",
-              "valueKind": "enum",
-              "values": [
-                "select"
-              ]
             },
             {
               "attribute": "data-popup-open",
@@ -12469,14 +12562,6 @@
               "values": []
             },
             {
-              "attribute": "data-shape",
-              "source": "control-ui",
-              "valueKind": "enum",
-              "values": [
-                "default"
-              ]
-            },
-            {
               "attribute": "data-size",
               "source": "control-ui",
               "valueKind": "enum",
@@ -12485,14 +12570,6 @@
                 "md",
                 "sm",
                 "xs"
-              ]
-            },
-            {
-              "attribute": "data-tone",
-              "source": "control-ui",
-              "valueKind": "enum",
-              "values": [
-                "neutral"
               ]
             },
             {
@@ -12506,14 +12583,21 @@
               "source": "external",
               "valueKind": "presence",
               "values": []
-            },
+            }
+          ]
+        },
+        "value": {
+          "family": "field",
+          "registryItems": [
+            "select"
+          ],
+          "states": [
             {
-              "attribute": "data-variant",
+              "attribute": "data-field-kind",
               "source": "control-ui",
               "valueKind": "enum",
               "values": [
-                "ghost",
-                "surface"
+                "select"
               ]
             }
           ]
@@ -14969,6 +15053,12 @@
               "values": []
             },
             {
+              "attribute": "data-icon-only",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
               "attribute": "data-size",
               "source": "control-ui",
               "valueKind": "enum",
@@ -16578,7 +16668,7 @@
         "name": "--cui-button-group-text-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--card) l c h / 0.72)"
+        "defaultValue": "var(--control-fill)"
       },
       {
         "name": "--cui-button-group-text-foreground",
@@ -17592,7 +17682,7 @@
         "name": "--cui-field-background",
         "syntax": "*",
         "initialValue": "",
-        "defaultValue": "oklch(from var(--card) l c h / 0.72)"
+        "defaultValue": "var(--control-fill)"
       },
       {
         "name": "--cui-field-foreground",
@@ -20025,6 +20115,10 @@
           "part": "content"
         },
         {
+          "scope": "resizable",
+          "part": "surface"
+        },
+        {
           "scope": "rich-tooltip",
           "part": "content"
         },
@@ -20185,6 +20279,10 @@
         {
           "scope": "popover",
           "part": "content"
+        },
+        {
+          "scope": "resizable",
+          "part": "surface"
         },
         {
           "scope": "rich-tooltip",
@@ -20365,7 +20463,6 @@
     "data-scrolling",
     "data-scrubbing",
     "data-selected",
-    "data-separator",
     "data-side",
     "data-starting-style",
     "data-swipe-direction",

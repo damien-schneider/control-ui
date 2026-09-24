@@ -6,7 +6,7 @@ const data = getDocsData();
 describe("knob docs", () => {
   test("a page lists every family its installed recipes paint with", () => {
     const select = data.primitives.find((candidate) => candidate.id === "select");
-    expect(select?.registry.knobs.map((family) => family.id)).toEqual(["button", "popup"]);
+    expect(select?.registry.knobs.map((family) => family.id)).toEqual(["field", "popup"]);
   });
 
   test("knobs carry the recipe root default and the registered syntax", () => {

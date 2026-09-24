@@ -52,6 +52,7 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
     "Color of the keyboard focus indicator; defaults to --ring. Must clear 3:1 against every surface it lands on (WCAG 1.4.11).",
   ),
   token("--control-rim", "color", "derived", "Boundary color of a control's own edge; defaults to --border."),
+  token("--control-fill", "color", "derived", "Resting fill shared by fields and surface controls; defaults to --card at 72% alpha."),
   token("--hover-fill", "color", "derived", "Wash a row or control takes on hover; defaults to a 6% tint of --foreground."),
   token("--active-fill", "color", "derived", "Wash a selected or pressed row keeps; defaults to an 8% tint of --foreground."),
   token("--canvas", "color", "core", "The page paper the scene/panels float on — a level BELOW --background."),

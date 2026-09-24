@@ -1,7 +1,7 @@
 @layer components {
   :where([data-control-family="button-group"][data-slot="root"]) {
     --cui-button-group-text-radius: var(--radius-control);
-    --cui-button-group-text-background: oklch(from var(--card) l c h / 0.72);
+    --cui-button-group-text-background: var(--control-fill);
     --cui-button-group-text-foreground: var(--muted-foreground);
     --cui-button-group-separator-background: var(--border);
   }

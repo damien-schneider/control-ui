@@ -40,7 +40,6 @@ import type {
 } from "../../src/registry/sources/control-ui/ui/resizable";
 import type { RichTooltipProgressVariant, RichTooltipTone } from "../../src/registry/sources/control-ui/ui/rich-tooltip";
 import type { ScrollAreaLockAxis, ScrollAreaScrollbarVisibility } from "../../src/registry/sources/control-ui/ui/scroll-area";
-import type { SelectTriggerVariant } from "../../src/registry/sources/control-ui/ui/select";
 import type {
   SidebarMenuButtonSize,
   SidebarMenuButtonVariant,
@@ -129,9 +128,9 @@ export type EmittedStateContract = {
   "combobox:input:data-size": ControlSize;
   "dockable-panel:root:data-placement": DockablePanelPlacement;
   "dockable-panel:drop-zone:data-side": DockablePanelPlacement;
+  "infinite-canvas:root:data-panning": true;
   "infinite-canvas:root:data-easing": true;
   "infinite-canvas:item:data-dragging": true;
-  "infinite-canvas:root:data-panning": true;
   "infinite-canvas:content:data-scale": number;
   "calendar:day:data-today": true;
   "calendar:day:data-selected-single": true;
@@ -178,8 +177,8 @@ export type EmittedStateContract = {
   "drawer:viewport:data-variant": DrawerContentVariant;
   "drawer:viewport:data-side": DrawerSide;
   "sheet:content:data-side": "left" | "right";
-  "resizable:floating:data-side": ResizableFloatingPanelSide;
   "popover:content:data-padding": PopoverContentPadding;
+  "resizable:floating:data-side": ResizableFloatingPanelSide;
   "resizable:handle:data-variant": ResizableHandleVariant;
   "resizable:handle:data-axis": "horizontal" | "vertical";
   "resizable:handle-grip:data-axis": "horizontal" | "vertical";
@@ -191,7 +190,6 @@ export type EmittedStateContract = {
   "rich-tooltip:progress:data-variant": RichTooltipProgressVariant;
   "phone-input:check:data-visible": true;
   "resizable:panel-group:data-variant": ResizablePanelGroupVariant;
-  "select:trigger:data-variant": SelectTriggerVariant;
   "toolbar:button:data-icon-only": true;
   "toolbar:link:data-variant": ToolbarLinkVariant;
   "toolbar:root:data-variant": ToolbarVariant;
@@ -251,9 +249,9 @@ export type EmittedStateContract = {
   "task-list:item:data-status": TaskStatus;
   "task-list:item-indicator:data-status": TaskStatus;
   "thread-rail:item:data-from": ChatRole;
-  "toggle:root:data-icon-only": true;
   "transcript-divider:root:data-tone": ChatTone;
   "toggle:root:data-size": ControlSize;
+  "toggle:root:data-icon-only": true;
   "toggle:group:data-track": HoverIndicator;
   "toggle:root:data-tone": ButtonTone;
   "toggle:root:data-variant": ButtonVariant;

@@ -30,6 +30,40 @@
     outline-style: none;
   }
 
+  :where([data-control-family="resizable"][data-slot="handle"][data-axis="vertical"]:not([data-cursor="none"])) {
+    cursor: col-resize;
+  }
+
+  :where([data-control-family="resizable"][data-slot="handle"][data-axis="horizontal"]:not([data-cursor="none"])) {
+    cursor: row-resize;
+  }
+
+  /* biome-ignore-start lint/complexity/noImportantStyles: Resize drag cursor must beat every cursor under the pointer. */
+  :where(
+    :root:has(
+        [data-control-family="resizable"][data-slot="handle"][data-axis="vertical"]:not([data-cursor="none"]):is(
+            [data-separator="hover"],
+            [data-separator="active"]
+          )
+      )
+      *
+  ) {
+    cursor: col-resize !important;
+  }
+
+  :where(
+    :root:has(
+        [data-control-family="resizable"][data-slot="handle"][data-axis="horizontal"]:not([data-cursor="none"]):is(
+            [data-separator="hover"],
+            [data-separator="active"]
+          )
+      )
+      *
+  ) {
+    cursor: row-resize !important;
+  }
+  /* biome-ignore-end lint/complexity/noImportantStyles: Resize drag cursor must beat every cursor under the pointer. */
+
   :where([data-control-family="resizable"][data-slot="handle"][data-variant="solid"]) {
     background-color: var(--border);
   }

@@ -66,6 +66,7 @@
 - `coding-agent` (Coding agent) **[beta]** — Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer. — `npx shadcn@latest add http://127.0.0.1:3000/r/coding-agent-block.json`
 - `settings` (Settings) — Searchable multi-page settings shell with responsive navigation and accessible control groups. — `npx shadcn@latest add http://127.0.0.1:3000/r/settings-block.json`
 - `file-explorer` (File explorer) **[beta]** — Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview. — `npx shadcn@latest add http://127.0.0.1:3000/r/file-explorer-block.json`
+- `design-canvas` (Design canvas) **[beta]** — Figma-style editor with layers, an infinite canvas, a floating tool bar, and scrubbable property inputs. — `npx shadcn@latest add http://127.0.0.1:3000/r/design-canvas-block.json`
 
 ### Primitives
 **Actions** — Trigger a command, directly or from a menu of commands.

@@ -38,10 +38,6 @@
     --cui-button-radius: var(--refined-button-radius);
   }
 
-  [data-skin="refined"] :where([data-control-family="button"][data-popup-kind="select"][data-slot="trigger"]) {
-    --cui-button-radius: var(--radius-field);
-  }
-
   [data-skin="refined"] :where([data-control-family="button-group"][data-slot="root"]) {
     --cui-button-group-text-radius: var(--refined-button-radius);
   }
@@ -85,7 +81,6 @@
   }
 
   [data-skin="refined"] :where([data-control-family="button"][data-variant="surface"]) {
-    --cui-button-background: var(--card);
     --cui-button-hover-background: var(--muted);
     --cui-button-shadow: var(--refined-surface-shadow);
   }
@@ -117,7 +112,6 @@
 
   [data-skin="refined"] :where([data-control-family="field"][data-control="true"]) {
     --cui-field-radius: var(--radius-field);
-    --cui-field-background: transparent;
     --cui-field-border-color: var(--input);
     --cui-field-border-width: 0px;
     --cui-field-focus-border-color: var(--focus-ring);
@@ -191,7 +185,6 @@
 
   .dark [data-skin="refined"] :where([data-control-family="field"][data-control="true"]),
   [data-skin="refined"].dark :where([data-control-family="field"][data-control="true"]) {
-    --cui-field-background: oklch(from var(--input) l c h / calc(alpha * 0.3));
     --cui-field-border-color: oklch(from var(--border) l c h / calc(alpha * 0.5));
     --cui-field-border-width: var(--control-rim-width);
     --cui-field-shadow: none;

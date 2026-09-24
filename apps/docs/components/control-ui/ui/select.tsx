@@ -5,11 +5,13 @@ import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { ControlledChoice } from "@/components/control-ui/control-props";
 import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
+import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
+import { Button } from "@/components/control-ui/ui/button";
 
 export type SelectProps<TValue extends string = string> = Omit<ControlledChoice<TValue>, "value"> & {
   value?: TValue | null;
@@ -26,7 +28,7 @@ export const selectTriggerVariants = ["surface", "ghost"] as const;
 
 export type SelectTriggerVariant = (typeof selectTriggerVariants)[number];
 
-export type SelectTriggerProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & ButtonKnobStyle } & {
+export type SelectTriggerProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & FieldKnobStyle & ButtonKnobStyle } & {
   size?: ControlSize;
   variant?: SelectTriggerVariant;
 };
@@ -61,41 +63,60 @@ export function Select<TValue extends string = string>({ children, onValueChange
   );
 }
 
+const selectTriggerLayoutClasses = "group relative isolate inline-flex shrink-0 items-center justify-between overflow-visible";
+
+function SelectIcon() {
+  return (
+    <SelectPrimitive.Icon
+      data-control-ui="select"
+      data-control-family="popup"
+      data-popup-kind="select"
+      data-slot="icon"
+      className="relative z-[1]"
+    >
+      <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
+        <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </SelectPrimitive.Icon>
+  );
+}
+
 export function SelectTrigger({ size = "sm", variant = "surface", className, children, disabled, ...props }: RefinedSelectTriggerProps) {
+  if (variant === "ghost") {
+    return (
+      <SelectPrimitive.Trigger
+        render={<Button variant="ghost" size={size} />}
+        className={cn(selectTriggerLayoutClasses, className)}
+        disabled={disabled}
+        {...props}
+      >
+        {children}
+        <SelectIcon />
+      </SelectPrimitive.Trigger>
+    );
+  }
   return (
     <SelectPrimitive.Trigger
       data-control-ui="select"
-      data-control-family="button"
-      data-popup-kind="select"
+      data-control-family="field"
+      data-field-kind="select"
       data-slot="trigger"
       data-control="true"
       data-size={size}
-      data-variant={variant}
-      data-tone="neutral"
-      data-shape="default"
-      className={cn("group relative isolate inline-flex shrink-0 items-center justify-between overflow-visible", className)}
+      className={cn(selectTriggerLayoutClasses, className)}
       disabled={disabled}
       {...props}
     >
       <span
-        data-control-ui="button"
-        data-control-family="button"
-        data-slot="content"
-        className="relative z-[1] inline-flex min-w-0 items-center justify-center gap-[inherit]"
+        data-control-ui="select"
+        data-control-family="field"
+        data-field-kind="select"
+        data-slot="value"
+        className="inline-flex min-w-0 items-center gap-[inherit]"
       >
         {children}
       </span>
-      <SelectPrimitive.Icon
-        data-control-ui="select"
-        data-control-family="popup"
-        data-popup-kind="select"
-        data-slot="icon"
-        className="relative z-[1]"
-      >
-        <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
-          <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </SelectPrimitive.Icon>
+      <SelectIcon />
     </SelectPrimitive.Trigger>
   );
 }

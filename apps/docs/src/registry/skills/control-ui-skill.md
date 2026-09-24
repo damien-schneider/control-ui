@@ -71,6 +71,7 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --ring [light+dark] Focus ring color.
 - --focus-ring [light+dark] Color of the keyboard focus indicator; defaults to --ring. Must clear 3:1 against every surface it lands on (WCAG 1.4.11).
 - --control-rim [light+dark] Boundary color of a control's own edge; defaults to --border.
+- --control-fill [light+dark] Resting fill shared by fields and surface controls; defaults to --card at 72% alpha.
 - --hover-fill [light+dark] Wash a row or control takes on hover; defaults to a 6% tint of --foreground.
 - --active-fill [light+dark] Wash a selected or pressed row keeps; defaults to an 8% tint of --foreground.
 - --canvas [light+dark] The page paper the scene/panels float on — a level BELOW --background.
