@@ -379,7 +379,7 @@
     --cui-sidebar-menu-button-hover-foreground: oklch(0 0 0 / 0.7);
     --cui-sidebar-menu-button-active-background: oklch(0 0 0 / 0.05);
     --cui-sidebar-menu-button-active-foreground: oklch(0 0 0 / 0.7);
-    --cui-sidebar-group-label-foreground: var(--color-neutral-500);
+    --cui-sidebar-group-label-foreground: var(--scale-neutral-11);
   }
 
   [data-skin="cuicui"] :where([data-slot="group-label"][data-control-family="sidebar"]) {
@@ -398,7 +398,6 @@
     --cui-sidebar-menu-button-hover-foreground: oklch(1 0 0 / 0.7);
     --cui-sidebar-menu-button-active-background: oklch(1 0 0 / 0.1);
     --cui-sidebar-menu-button-active-foreground: oklch(1 0 0 / 0.8);
-    --cui-sidebar-group-label-foreground: var(--color-neutral-400);
   }
 
   [data-skin="cuicui"] :where([data-slot="content"][data-control-family="sidebar-layout"]) {

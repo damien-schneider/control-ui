@@ -17,10 +17,12 @@ export type ScrollAreaViewportProps = Omit<ComponentProps<"div">, "children" | "
   "data-control-ui"?: string;
   "data-control-family"?: string;
   "data-slot"?: string;
+  render?: ComponentProps<typeof ScrollAreaPrimitive.Viewport>["render"];
 };
 
 export type ScrollAreaProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ScrollAreaKnobStyle } & {
   viewportClassName?: string;
+  contentClassName?: string;
   viewportProps?: ScrollAreaViewportProps;
   viewportRef?: Ref<HTMLDivElement>;
   maxHeight?: string;
@@ -72,6 +74,7 @@ function viewportStyle(maxHeight: ScrollAreaProps["maxHeight"], lockX: boolean, 
 export function ScrollArea({
   className,
   viewportClassName,
+  contentClassName,
   viewportProps,
   viewportRef,
   maxHeight,
@@ -79,7 +82,7 @@ export function ScrollArea({
   blur,
   blurProps,
   lockAxis,
-  scrollbarVisibility = "scroll",
+  scrollbarVisibility = "hover",
   children,
   style,
   ...props
@@ -120,6 +123,7 @@ export function ScrollArea({
           data-control-ui="scroll-area"
           data-control-family="scroll-area"
           data-slot="content"
+          className={contentClassName}
           style={{ minWidth: 0 }}
         >
           {children}

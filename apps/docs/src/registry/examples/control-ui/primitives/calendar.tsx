@@ -12,13 +12,13 @@ export function PrimitiveCalendarExample() {
     <div className="flex flex-col items-center gap-8 sm:flex-row sm:items-start">
       <div className="flex flex-col gap-2">
         <Calendar mode="single" selected={date} onSelect={setDate} />
-        <span className="px-1 text-[11px] text-muted-foreground">
+        <span className="px-1 text-caption text-muted-foreground">
           {date ? new Intl.DateTimeFormat(undefined, { dateStyle: "full" }).format(date) : "No date selected"}
         </span>
       </div>
       <div className="flex flex-col gap-2">
         <Calendar mode="range" selected={range} onSelect={setRange} />
-        <span className="px-1 text-[11px] text-muted-foreground">Drag across days to pick a range</span>
+        <span className="px-1 text-caption text-muted-foreground">Drag across days to pick a range</span>
       </div>
     </div>
   );

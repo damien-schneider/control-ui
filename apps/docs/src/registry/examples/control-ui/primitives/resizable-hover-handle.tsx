@@ -9,7 +9,7 @@ function Pane({ label, hint }: { label: string; hint?: string }) {
   return (
     <div className="flex h-full flex-col items-center justify-center gap-1 text-center">
       <span className="text-sm font-medium text-foreground">{label}</span>
-      {hint ? <span className="text-[11px] text-muted-foreground">{hint}</span> : null}
+      {hint ? <span className="text-caption text-muted-foreground">{hint}</span> : null}
     </div>
   );
 }

@@ -100,7 +100,7 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
       <div className={cn("grid min-w-0 items-start gap-6", !stacked && "grid-cols-[minmax(0,1fr)_21rem]")}>
         <div className="min-w-0">
           <ThemePreviewCanvas
-            values={values}
+            category={category}
             actions={
               <div className="flex flex-wrap items-center gap-2">
                 <ButtonLink render={<Link href="/theme-accessibility" />} variant="quiet" size="sm">

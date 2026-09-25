@@ -4,7 +4,7 @@
     --cui-popup-radius: var(--radius-panel);
     --cui-popup-background: var(--background);
     --cui-popup-foreground: var(--foreground);
-    --cui-popup-shadow: var(--shadow-modal);
+    --cui-popup-shadow: var(--shadow-overlay);
     --cui-popup-backdrop-filter: none;
     --_drawer-content-closed-translate: 0 100%;
     --_drawer-edge-inset-end: calc(var(--spacing) * 4);
@@ -15,6 +15,7 @@
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-popup-part="surface"][data-surface-variant="card"]) {
     --cui-popup-background: var(--card);
+    --cui-popup-foreground: var(--card-foreground);
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-variant="floating"]) {

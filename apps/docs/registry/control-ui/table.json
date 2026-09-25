@@ -6,7 +6,8 @@
   "description": "Responsive data table for lists, comparisons, and structured records.",
   "dependencies": [],
   "registryDependencies": [
-    "core"
+    "core",
+    "scroll-area"
   ],
   "files": [
     {

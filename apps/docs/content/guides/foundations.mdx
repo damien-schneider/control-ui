@@ -1,0 +1,60 @@
+<GuideSection id="color" title="Color">
+  Every skin carries twelve-step ramps for neutral, primary, and seven hues. Each step has one job, and the same job
+  in light and dark: 1–2 backgrounds, 3–5 component fills, 6–8 borders, 9–10 solid fills, 11–12 text. A ramp derives
+  from its `--scale-{name}-seed`, so one declaration retints the whole family.
+
+  Components paint roles, never a ramp step: surfaces, text, lines, and the badge families each alias a step. A skin
+  re-values a seed or a role and every component follows. Contrast between each pairing is audited on
+  [Theme accessibility](/theme-accessibility).
+
+  <ColorFoundations />
+</GuideSection>
+
+<GuideSection id="typography" title="Typography">
+  Two font roles, body and display, default to one sans stack. The type scale is a fixed ladder of rungs; headings
+  carry their own line-height, weight, and tracking so a skin can re-voice them without touching components.
+
+  <TypographyFoundations />
+</GuideSection>
+
+<GuideSection id="surfaces" title="Surfaces and layers">
+  Canvas is the paper, background and card sit on it, and popovers float above everything. Floating surfaces and the
+  modal overlay take their translucency and blur from the surface knobs.
+
+  <SurfaceFoundations />
+</GuideSection>
+
+<GuideSection id="elevation" title="Elevation">
+  Every shadow is one recipe scaled by a tier multiplier, then by the global size, opacity, and vertical bias knobs.
+  Flatten a skin with `--shadow-size: 0`; deepen one tier by raising its multiplier.
+
+  <ElevationFoundations />
+</GuideSection>
+
+<GuideSection id="radius" title="Radius and corners">
+  One `--radius` knob drives the whole scale. Roles multiply from it so nested corners stay concentric, and
+  `--corner-shape` reshapes every corner where the browser supports it.
+
+  <RadiusFoundations />
+</GuideSection>
+
+<GuideSection id="sizing" title="Sizing and density">
+  `--control-h` is the medium control height; the other sizes derive from it. Padding knobs set the density of
+  rounded surfaces such as bubbles and the composer.
+
+  <SizingFoundations />
+</GuideSection>
+
+<GuideSection id="motion" title="Motion">
+  Three tempos and two curves cover every transition. Reduced-motion settings shorten them globally, so components
+  never check the preference themselves.
+
+  <MotionFoundations />
+</GuideSection>
+
+<GuideSection id="focus" title="Focus">
+  The keyboard focus indicator is its own role: color, width, style, and offset. It must clear 3:1 against every
+  surface it lands on.
+
+  <FocusFoundations />
+</GuideSection>

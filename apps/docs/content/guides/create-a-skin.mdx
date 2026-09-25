@@ -20,6 +20,23 @@
   values that differ from the library defaults.
 </GuideSection>
 
+<GuideSection id="ramps" title="Retint a color ramp">
+  Neutral, primary, and seven hues each derive a twelve-step ramp from one seed. Steps keep their job in both modes,
+  so a seed needs one declaration, not a light and a dark pair. Every role that aliases the ramp follows: retinting red
+  repaints red badges, and retinting green repaints success text.
+
+```css
+:root {
+  --scale-red-seed: oklch(0.6 0.2 18);
+  --scale-neutral-seed: oklch(0.5 0.01 250);
+}
+```
+
+  Override a role instead when one surface should leave its ramp: `--badge-red-foreground` or `--success-text`.
+  Recipes read roles only, so steps are yours to reference in application CSS. See every ramp and role live on
+  [Foundations](/foundations).
+</GuideSection>
+
 <GuideSection id="pack" title="Add an optional skin">
   A named skin can own `skin-theme.css` for tokens, `skin.css` for component knobs, and `skin.config.tsx` for behavior
   choices and adornments. Refined and the other registry presets are examples you can install and edit.

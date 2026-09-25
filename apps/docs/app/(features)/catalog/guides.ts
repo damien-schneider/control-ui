@@ -104,8 +104,28 @@ export const guideEntries = [
     sections: [
       { id: "lanes", title: "Two lanes" },
       { id: "override", title: "Re-value tokens over a pack" },
+      { id: "ramps", title: "Retint a color ramp" },
       { id: "pack", title: "Own a full pack", code: "skin-scaffold-install" },
       { id: "knobs", title: "Go deeper with component knobs" },
+    ],
+  },
+  {
+    id: "foundations",
+    kind: "Guide",
+    group: "theme",
+    name: "Foundations",
+    summary:
+      "Every foundation of the design system, rendered live in the active skin: color, type, surfaces, elevation, radius, sizing, motion, and focus.",
+    layout: "wide",
+    sections: [
+      { id: "color", title: "Color" },
+      { id: "typography", title: "Typography" },
+      { id: "surfaces", title: "Surfaces and layers" },
+      { id: "elevation", title: "Elevation" },
+      { id: "radius", title: "Radius and corners" },
+      { id: "sizing", title: "Sizing and density" },
+      { id: "motion", title: "Motion" },
+      { id: "focus", title: "Focus" },
     ],
   },
   {

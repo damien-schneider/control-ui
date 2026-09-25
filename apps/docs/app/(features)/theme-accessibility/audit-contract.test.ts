@@ -1,9 +1,10 @@
 import { describe, expect, test } from "bun:test";
-import { THEME_CONTRACT } from "@/src/registry/lib/theme-contract";
+import { COLOR_RAMPS, THEME_CONTRACT } from "@/src/registry/lib/theme-contract";
 import { THEME_AUDIT_PAIRS } from "./audit-contract";
 
 const AUDIT_EXEMPTION_BY_TOKEN: Record<string, string> = {
   "--ring-opacity": "Scalar alpha input already reflected by --border and --ring paints.",
+  ...Object.fromEntries(COLOR_RAMPS.map((ramp) => [`--scale-${ramp}-seed`, "Ramp seed, audited through the roles its steps feed."])),
 };
 
 describe("theme accessibility contract", () => {

@@ -1544,7 +1544,7 @@ export const registryMetadata = {
   },
   "chat-layout": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["button", "core"],
+    registryDependencies: ["button", "core", "scroll-area"],
     sourceManifestPath: "registry/control-ui/chat-layout.json",
     files: [
       {
@@ -1802,7 +1802,7 @@ export const registryMetadata = {
   },
   combobox: {
     dependencies: ["@base-ui/react@^1.8.0"],
-    registryDependencies: ["core", "surface-variants"],
+    registryDependencies: ["core", "scroll-area", "surface-variants"],
     sourceManifestPath: "registry/control-ui/combobox.json",
     files: [
       {
@@ -2129,7 +2129,7 @@ export const registryMetadata = {
   },
   "dockable-panel": {
     dependencies: [],
-    registryDependencies: ["button", "core", "drawer", "sidebar"],
+    registryDependencies: ["button", "core", "drawer", "scroll-area", "sidebar"],
     sourceManifestPath: "registry/control-ui/dockable-panel.json",
     files: [
       {
@@ -2787,7 +2787,7 @@ export const registryMetadata = {
   },
   markdown: {
     dependencies: ["streamdown@^2.6.0"],
-    registryDependencies: ["code", "code-diff", "core"],
+    registryDependencies: ["code", "code-diff", "core", "scroll-area"],
     sourceManifestPath: "registry/control-ui/markdown.json",
     files: [
       {
@@ -2814,7 +2814,7 @@ export const registryMetadata = {
   },
   "markdown-block": {
     dependencies: [],
-    registryDependencies: ["code", "core", "markdown", "use-copy-to-clipboard"],
+    registryDependencies: ["code", "core", "markdown", "scroll-area", "use-copy-to-clipboard"],
     sourceManifestPath: "registry/control-ui/markdown-block.json",
     files: [
       {
@@ -3356,7 +3356,7 @@ export const registryMetadata = {
   },
   select: {
     dependencies: ["@base-ui/react@^1.8.0"],
-    registryDependencies: ["button", "core", "surface-variants"],
+    registryDependencies: ["button", "core", "scroll-area", "surface-variants"],
     sourceManifestPath: "registry/control-ui/select.json",
     files: [
       {
@@ -3895,7 +3895,7 @@ export const registryMetadata = {
   },
   table: {
     dependencies: [],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "scroll-area"],
     sourceManifestPath: "registry/control-ui/table.json",
     files: [
       {
@@ -4280,7 +4280,7 @@ export const registryMetadata = {
   },
   "trigger-menu": {
     dependencies: ["@base-ui/react@^1.8.0"],
-    registryDependencies: ["core", "surface-variants"],
+    registryDependencies: ["core", "scroll-area", "surface-variants"],
     sourceManifestPath: "registry/control-ui/trigger-menu.json",
     files: [
       {

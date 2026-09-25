@@ -9,7 +9,7 @@ export function PrimitiveTextareaExample() {
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-2">
-      <label htmlFor="ta-prompt" className="text-[11px] font-medium text-muted-foreground">
+      <label htmlFor="ta-prompt" className="text-caption font-medium text-muted-foreground">
         System prompt
       </label>
       <Textarea
@@ -18,7 +18,7 @@ export function PrimitiveTextareaExample() {
         onChange={(event) => setValue(event.target.value)}
         placeholder="Describe how the agent should behave…"
       />
-      <span className="text-[11px] text-muted-foreground">The box grows as you type — try adding a few lines.</span>
+      <span className="text-caption text-muted-foreground">The box grows as you type — try adding a few lines.</span>
     </div>
   );
 }

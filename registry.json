@@ -1834,7 +1834,8 @@
       ],
       "registryDependencies": [
         "damien-schneider/control-ui/button",
-        "damien-schneider/control-ui/core"
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/scroll-area"
       ],
       "files": [
         {
@@ -2211,6 +2212,7 @@
       ],
       "registryDependencies": [
         "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/scroll-area",
         "damien-schneider/control-ui/surface-variants"
       ],
       "files": [
@@ -2563,6 +2565,7 @@
         "damien-schneider/control-ui/button",
         "damien-schneider/control-ui/core",
         "damien-schneider/control-ui/drawer",
+        "damien-schneider/control-ui/scroll-area",
         "damien-schneider/control-ui/sidebar"
       ],
       "files": [
@@ -3433,7 +3436,8 @@
       "registryDependencies": [
         "damien-schneider/control-ui/code",
         "damien-schneider/control-ui/code-diff",
-        "damien-schneider/control-ui/core"
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/scroll-area"
       ],
       "files": [
         {
@@ -3472,6 +3476,7 @@
         "damien-schneider/control-ui/code",
         "damien-schneider/control-ui/core",
         "damien-schneider/control-ui/markdown",
+        "damien-schneider/control-ui/scroll-area",
         "damien-schneider/control-ui/use-copy-to-clipboard"
       ],
       "files": [
@@ -4219,6 +4224,7 @@
       "registryDependencies": [
         "damien-schneider/control-ui/button",
         "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/scroll-area",
         "damien-schneider/control-ui/surface-variants"
       ],
       "files": [
@@ -4907,7 +4913,8 @@
       "description": "Responsive data table for lists, comparisons, and structured records.",
       "dependencies": [],
       "registryDependencies": [
-        "damien-schneider/control-ui/core"
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/scroll-area"
       ],
       "files": [
         {
@@ -5465,6 +5472,7 @@
       ],
       "registryDependencies": [
         "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/scroll-area",
         "damien-schneider/control-ui/surface-variants"
       ],
       "files": [

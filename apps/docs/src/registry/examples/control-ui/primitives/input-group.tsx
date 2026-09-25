@@ -16,7 +16,7 @@ export function PrimitiveInputGroupExample() {
         <FieldDescription id="input-group-url-description">Lowercase letters, numbers, and hyphens</FieldDescription>
       </Field>
       <div className="flex flex-col gap-2">
-        <span className="text-[11px] font-medium text-muted-foreground">Addon + field</span>
+        <span className="text-caption font-medium text-muted-foreground">Addon + field</span>
         <InputGroup size="sm">
           <InputGroupAddon>
             <svg viewBox="0 0 16 16" className="size-3.5" aria-hidden="true" fill="none">
@@ -31,7 +31,7 @@ export function PrimitiveInputGroupExample() {
         </InputGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <span className="text-[11px] font-medium text-muted-foreground">Render prop — the group renders as a button</span>
+        <span className="text-caption font-medium text-muted-foreground">Render prop — the group renders as a button</span>
         <InputGroup render={<button type="button" aria-label="Search documentation" />} size="sm">
           <InputGroupAddon>
             <svg viewBox="0 0 16 16" className="size-3.5" aria-hidden="true" fill="none">

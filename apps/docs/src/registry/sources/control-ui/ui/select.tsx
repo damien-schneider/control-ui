@@ -12,6 +12,7 @@ import { controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 import { Button } from "@/components/control-ui/ui/button";
+import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
 export type SelectProps<TValue extends string = string> = Omit<ControlledChoice<TValue>, "value"> & {
   value?: TValue | null;
@@ -149,14 +150,21 @@ export function SelectContent({ className, children, alignItemWithTrigger = fals
           data-surface="floating"
           data-control-family="popup"
           data-popup-part="list-surface"
-          className={cn("max-h-[min(20rem,var(--available-height))] min-w-[var(--anchor-width)] overflow-y-auto", className)}
+          className={cn("grid max-h-[min(20rem,var(--available-height))] min-w-[var(--anchor-width)] grid-rows-[minmax(0,1fr)]", className)}
           {...props}
         >
-          {children}
+          <ScrollArea lockAxis="x" viewportProps={{ render: renderListAsScrollViewport }}>
+            {children}
+          </ScrollArea>
         </SelectPrimitive.Popup>
       </SelectPrimitive.Positioner>
     </SelectPrimitive.Portal>
   );
+}
+
+// Base UI measures and scrolls Select.List itself; the viewport's role/tabIndex would mask the listbox.
+function renderListAsScrollViewport({ role: _role, tabIndex: _tabIndex, ...viewportProps }: ComponentProps<"div">) {
+  return <SelectPrimitive.List {...viewportProps} />;
 }
 
 export function SelectItem({ className, children, disabled, ...props }: SelectItemProps) {

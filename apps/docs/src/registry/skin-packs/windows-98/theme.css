@@ -61,4 +61,7 @@
   --badge-blue-foreground: oklch(from var(--color-blue-800) 0.34 c h);
   --badge-purple-foreground: oklch(from var(--color-purple-800) 0.34 c h);
   --badge-pink-foreground: oklch(from var(--color-pink-800) 0.34 c h);
+  --success-text: var(--badge-green-foreground);
+  --warning-text: var(--badge-yellow-foreground);
+  --info-text: var(--badge-blue-foreground);
 }

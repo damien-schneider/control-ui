@@ -3,8 +3,8 @@
     --cui-transcript-divider-foreground: var(--muted-foreground);
     --cui-transcript-divider-line-color: var(--border);
     --cui-transcript-divider-danger-foreground: var(--destructive-text);
-    --cui-transcript-divider-success-foreground: var(--badge-green-foreground);
-    --cui-transcript-divider-warning-foreground: var(--badge-yellow-foreground);
+    --cui-transcript-divider-success-foreground: var(--success-text);
+    --cui-transcript-divider-warning-foreground: var(--warning-text);
     margin-block: calc(var(--spacing) * 2);
     color: var(--cui-transcript-divider-foreground);
     font-size: var(--text-caption);

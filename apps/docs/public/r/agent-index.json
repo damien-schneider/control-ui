@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 178,
+    "count": 179,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -139,6 +139,13 @@
         "kind": "Guide",
         "summary": "Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.",
         "href": "/create-a-skin"
+      },
+      {
+        "id": "foundations",
+        "name": "Foundations",
+        "kind": "Guide",
+        "summary": "Every foundation of the design system, rendered live in the active skin: color, type, surfaces, elevation, radius, sizing, motion, and focus.",
+        "href": "/foundations"
       },
       {
         "id": "theme-editor",

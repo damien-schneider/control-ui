@@ -9,7 +9,7 @@ export function PrimitiveNativeSelectExample() {
 
   return (
     <div className="flex w-full max-w-xs flex-col gap-2">
-      <label htmlFor="ns-model" className="text-[11px] font-medium text-muted-foreground">
+      <label htmlFor="ns-model" className="text-caption font-medium text-muted-foreground">
         Default model
       </label>
       <NativeSelect id="ns-model" size="sm" value={model} onChange={(event) => setModel(event.target.value)}>

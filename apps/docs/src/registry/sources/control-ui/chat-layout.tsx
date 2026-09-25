@@ -8,6 +8,7 @@ import type { ChatLayoutKnobStyle } from "@/components/control-ui/knob-contracts
 import { cn } from "@/components/control-ui/lib/cn";
 import { SkinAdornment } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
+import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
 export type ChatLayoutChrome = "panel" | "embedded";
 
@@ -55,30 +56,44 @@ export function ChatThread({ children, composer, className, ...props }: ChatThre
   return (
     <ChatThreadScrollContext.Provider value={{ atBottom, scrollToBottom }}>
       <div
-        ref={viewportRef}
         data-control-ui="chat-thread"
         data-control-family="chat-layout"
         data-chat-layout-kind="thread"
         data-slot="root"
         data-at-bottom={atBottom ? "" : undefined}
-        className={cn("min-h-0 min-w-0 flex-1 overflow-y-auto", className)}
+        className={cn("flex min-h-0 min-w-0 flex-1 flex-col", className)}
         {...props}
       >
-        <div ref={contentRef} className="relative flex min-h-full min-w-0 flex-col">
-          <div
-            data-control-ui="chat-thread"
-            data-control-family="chat-layout"
-            data-slot="thread-content"
-            className="flex min-w-0 flex-1 flex-col"
-          >
-            {children}
-          </div>
-          {composer ? (
-            <div data-control-ui="chat-thread" data-control-family="chat-layout" data-slot="dock" className="sticky bottom-0 z-10 shrink-0">
-              {composer}
+        <ScrollArea
+          className="flex min-h-0 flex-1 flex-col"
+          viewportClassName="min-h-0 flex-1"
+          contentClassName="flex min-h-full flex-col"
+          viewportRef={viewportRef}
+          lockAxis="x"
+          mask={false}
+          blur={false}
+        >
+          <div ref={contentRef} className="relative flex min-w-0 flex-1 flex-col">
+            <div
+              data-control-ui="chat-thread"
+              data-control-family="chat-layout"
+              data-slot="thread-content"
+              className="flex min-w-0 flex-1 flex-col"
+            >
+              {children}
             </div>
-          ) : null}
-        </div>
+            {composer ? (
+              <div
+                data-control-ui="chat-thread"
+                data-control-family="chat-layout"
+                data-slot="dock"
+                className="sticky bottom-0 z-10 shrink-0"
+              >
+                {composer}
+              </div>
+            ) : null}
+          </div>
+        </ScrollArea>
       </div>
     </ChatThreadScrollContext.Provider>
   );

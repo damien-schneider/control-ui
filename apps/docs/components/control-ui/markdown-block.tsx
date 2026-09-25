@@ -6,6 +6,7 @@ import type { MarkdownBlockKnobStyle } from "@/components/control-ui/knob-contra
 import { cn } from "@/components/control-ui/lib/cn";
 import { CodeCopy, type CodeCopyProps } from "@/components/control-ui/ui/code";
 import { Markdown } from "@/components/control-ui/ui/markdown";
+import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
 const MarkdownBlockContext = createContext<string | null>(null);
 
@@ -94,14 +95,10 @@ export function MarkdownBlockContent({ children, className, ...props }: Markdown
   const code = useMarkdownBlockContext();
 
   return (
-    <div
-      data-control-ui="markdown-block"
-      data-control-family="markdown-block"
-      data-slot="content"
-      className={cn("max-h-[420px] overflow-auto mask-b-from-[calc(100%_-_var(--scroll-fade-size))]", className)}
-      {...props}
-    >
-      {children ?? <Markdown content={code} />}
-    </div>
+    <ScrollArea maxHeight="420px">
+      <div data-control-ui="markdown-block" data-control-family="markdown-block" data-slot="content" className={className} {...props}>
+        {children ?? <Markdown content={code} />}
+      </div>
+    </ScrollArea>
   );
 }

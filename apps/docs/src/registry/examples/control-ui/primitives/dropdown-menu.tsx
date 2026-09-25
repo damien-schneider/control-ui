@@ -25,7 +25,7 @@ import {
 function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
     <fieldset aria-label={label} className="flex min-w-0 flex-col gap-2">
-      <span className="text-[11px] font-medium text-muted-foreground">{label}</span>
+      <span className="text-caption font-medium text-muted-foreground">{label}</span>
       {children}
     </fieldset>
   );
@@ -76,7 +76,7 @@ export function PrimitiveDropdownMenuExample() {
         </p>
       </Row>
       <DropdownMenuChoicesExample />
-      <span className="text-[11px] text-muted-foreground">{last ? `Last action: ${last}` : "No action yet"}</span>
+      <span className="text-caption text-muted-foreground">{last ? `Last action: ${last}` : "No action yet"}</span>
     </div>
   );
 }

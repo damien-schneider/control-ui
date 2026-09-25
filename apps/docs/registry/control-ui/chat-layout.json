@@ -9,7 +9,8 @@
   ],
   "registryDependencies": [
     "button",
-    "core"
+    "core",
+    "scroll-area"
   ],
   "files": [
     {

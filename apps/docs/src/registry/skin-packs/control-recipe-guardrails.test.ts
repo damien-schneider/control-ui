@@ -301,6 +301,13 @@ function literalBorderWidthOffenders({ file, source }: RecipeSource): string[] {
   return offenders;
 }
 
+function paletteReadOffenders({ file, source }: RecipeSource): string[] {
+  return source.split("\n").flatMap((line, index) => {
+    const paletteRead = /var\((--(?:color-[a-z]+-\d+|scale-[a-z0-9-]+))\)/.exec(line);
+    return paletteRead ? [`${file}:${index + 1} ${paletteRead[1]}`] : [];
+  });
+}
+
 const recipeSources = recipePaths.map((recipePath) => ({
   file: path.basename(recipePath),
   source: readFileSync(recipePath, "utf8"),
@@ -383,6 +390,15 @@ describe("recipe hygiene", () => {
 
   test("a knob-colored border takes its width from a knob too", () => {
     expect(recipeSources.flatMap(literalBorderWidthOffenders)).toEqual([]);
+  });
+
+  test("recipes paint roles, never a palette or ramp step", () => {
+    expect(recipeSources.flatMap(paletteReadOffenders)).toEqual([]);
+  });
+
+  test("rejects a Tailwind palette stop or ramp step in a recipe", () => {
+    const invalid = { file: "invalid.css", source: "a {\n  color: var(--color-red-500);\n  background: var(--scale-neutral-3);\n}" };
+    expect(paletteReadOffenders(invalid)).toEqual(["invalid.css:2 --color-red-500", "invalid.css:3 --scale-neutral-3"]);
   });
 
   test("rejects a literal border width beside a border-color knob", () => {

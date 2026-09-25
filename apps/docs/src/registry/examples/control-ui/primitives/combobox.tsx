@@ -25,7 +25,7 @@ export function PrimitiveComboboxExample() {
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-2">
-      <span className="text-[11px] font-medium text-muted-foreground">Framework</span>
+      <span className="text-caption font-medium text-muted-foreground">Framework</span>
       <Combobox items={FRAMEWORKS} value={framework} onValueChange={setFramework}>
         <ComboboxInput placeholder="Search framework…" aria-label="Framework" />
         <ComboboxContent>
@@ -39,7 +39,7 @@ export function PrimitiveComboboxExample() {
           </ComboboxList>
         </ComboboxContent>
       </Combobox>
-      <span className="text-[11px] text-muted-foreground">{framework ? `Selected: ${framework.label}` : "Nothing selected"}</span>
+      <span className="text-caption text-muted-foreground">{framework ? `Selected: ${framework.label}` : "Nothing selected"}</span>
       <RepositorySearchExample />
     </div>
   );

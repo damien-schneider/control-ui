@@ -4,6 +4,14 @@ import type { MDXComponents } from "mdx/types";
 import { type ComponentType, createContext, use } from "react";
 import { AgentSetup } from "@/app/(features)/create/agent-setup";
 import { CreateCommand } from "@/app/(features)/create/create-command";
+import { ColorFoundations } from "@/app/(features)/foundations/color-foundations";
+import { ElevationFoundations } from "@/app/(features)/foundations/elevation-foundations";
+import { FocusFoundations } from "@/app/(features)/foundations/focus-foundations";
+import { MotionFoundations } from "@/app/(features)/foundations/motion-foundations";
+import { RadiusFoundations } from "@/app/(features)/foundations/radius-foundations";
+import { SizingFoundations } from "@/app/(features)/foundations/sizing-foundations";
+import { SurfaceFoundations } from "@/app/(features)/foundations/surface-foundations";
+import { TypographyFoundations } from "@/app/(features)/foundations/typography-foundations";
 import type { GuideId, GuidePage as GuidePageData, IntegrationId } from "@/app/(features)/model/types";
 import { ThemeAccessibility } from "@/app/(features)/theme-accessibility/theme-accessibility";
 import { Card } from "@/components/control-ui/ui/card";
@@ -19,6 +27,7 @@ import ContractVersionsContent from "@/content/guides/contract-versions.mdx";
 import ControlUiVsShadcnUiContent from "@/content/guides/control-ui-vs-shadcn-ui.mdx";
 import CreateContent from "@/content/guides/create.mdx";
 import CreateASkinContent from "@/content/guides/create-a-skin.mdx";
+import FoundationsContent from "@/content/guides/foundations.mdx";
 import GetStartedContent from "@/content/guides/get-started.mdx";
 import LockInContent from "@/content/guides/lock-in.mdx";
 import OverviewContent from "@/content/guides/overview.mdx";
@@ -30,6 +39,7 @@ import { ArchitectureLayers, CustomizationLadder, RegistryPipeline, SkinFileStac
 import { GuideCheck, GuideCode, type GuideCodeMdxProps, GuidePoint, GuidePoints, GuideSection, InstallPaths } from "./guide-code";
 import { AgentSurfaceMap, CompatibilityBridge, CssFirstDecisionMap } from "./guide-maps";
 import { OpenInAgent } from "./open-in-agent";
+import { PageHeader } from "./shared";
 
 type GuideContent = ComponentType<{ components?: MDXComponents }>;
 
@@ -46,6 +56,7 @@ const guideContent: Record<ContentGuideId, GuideContent> = {
   "setup-prompt": SetupPromptContent,
   "agent-skill": AgentSkillContent,
   "create-a-skin": CreateASkinContent,
+  foundations: FoundationsContent,
   "shadcn-compatibility": ShadcnCompatibilityContent,
   architecture: ArchitectureContent,
   "lock-in": LockInContent,
@@ -79,6 +90,14 @@ const guideComponents = {
   CssFirstDecisionMap,
   CompatibilityBridge,
   AgentSurfaceMap,
+  ColorFoundations,
+  TypographyFoundations,
+  SurfaceFoundations,
+  ElevationFoundations,
+  RadiusFoundations,
+  SizingFoundations,
+  MotionFoundations,
+  FocusFoundations,
 } satisfies MDXComponents;
 
 function GuidePageContent({
@@ -103,10 +122,6 @@ function GuidePageContent({
   );
 }
 
-function focusWorkspaceHeading(heading: HTMLHeadingElement | null) {
-  heading?.focus();
-}
-
 export function GuidePage({
   page,
   integration,
@@ -118,15 +133,9 @@ export function GuidePage({
 }) {
   if (page.layout === "workspace") {
     return (
-      <section className="flex min-w-0 w-full flex-col gap-4 px-4 pt-[calc(var(--control-h-sm)+1rem)] pb-6 lg:px-6 lg:pt-6">
-        <div className="flex flex-wrap items-end justify-between gap-3">
-          <div className="min-w-0 max-w-2xl">
-            <div className="text-caption font-medium text-muted-foreground">Guide</div>
-            <h1 ref={focusWorkspaceHeading} tabIndex={-1} className="mt-1 text-heading-2 font-display text-balance">
-              {page.name}
-            </h1>
-            <p className="mt-1 text-body text-pretty text-muted-foreground">{page.summary}</p>
-          </div>
+      <section className="flex min-w-0 w-full flex-col px-4 pt-[calc(var(--control-h-sm)+1rem)] pb-6 lg:px-6 lg:pt-12">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <PageHeader label="Guide" title={page.name} summary={page.summary} focusOnMount />
           <OpenInAgent name={page.name} pathname={`/${page.id}`} />
         </div>
         <GuidePageContent page={page} integration={integration} themeCategory={themeCategory} />

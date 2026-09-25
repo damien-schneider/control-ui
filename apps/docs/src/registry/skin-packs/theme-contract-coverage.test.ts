@@ -317,6 +317,10 @@ describe("skin pack theme.css stays within the token contract", () => {
       expect(selectorLineOffenders(skinCss, HOST_TEXT_SELECTOR_PATTERN, CONTROL_UI_SCOPE_PATTERN)).toEqual([]);
     });
 
+    test(`${id}/skin.css reads roles or ramp steps, never Tailwind palette stops`, () => {
+      expect(skinCss.match(/var\(--color-[a-z]+-\d+\)/g) ?? []).toEqual([]);
+    });
+
     test(`${id}/skin.css root skin blocks declare variables only`, () => {
       expect(rootBlockDeclarationOffenders(skinRoot)).toEqual([]);
     });

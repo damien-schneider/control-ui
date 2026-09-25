@@ -8,7 +8,7 @@ import { Slider } from "@/components/control-ui/ui/slider";
 function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-[11px] font-medium text-muted-foreground">{label}</span>
+      <span className="text-caption font-medium text-muted-foreground">{label}</span>
       {children}
     </div>
   );

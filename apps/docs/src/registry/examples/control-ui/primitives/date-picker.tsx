@@ -10,7 +10,7 @@ export function PrimitiveDatePickerExample() {
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-1.5">
-      <span className="text-[11px] font-medium text-muted-foreground">Date</span>
+      <span className="text-caption font-medium text-muted-foreground">Date</span>
       <Popover>
         <PopoverTrigger
           render={<Button variant="surface" tone="neutral" />}

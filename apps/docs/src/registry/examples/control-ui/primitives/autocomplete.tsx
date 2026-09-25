@@ -52,7 +52,7 @@ export function PrimitiveAutocompleteExample() {
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-2">
-      <span className="text-[11px] font-medium text-muted-foreground">Country</span>
+      <span className="text-caption font-medium text-muted-foreground">Country</span>
       <Autocomplete items={COUNTRIES} value={query} onValueChange={setQuery}>
         <AutocompleteInput placeholder="Search countries…" aria-label="Country" />
         <AutocompleteContent>
@@ -66,7 +66,7 @@ export function PrimitiveAutocompleteExample() {
           </AutocompleteList>
         </AutocompleteContent>
       </Autocomplete>
-      <span className="text-[11px] text-muted-foreground">{query ? `Filtering: ${query}` : "Type to filter countries"}</span>
+      <span className="text-caption text-muted-foreground">{query ? `Filtering: ${query}` : "Type to filter countries"}</span>
     </div>
   );
 }

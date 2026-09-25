@@ -10,7 +10,8 @@
   "registryDependencies": [
     "code",
     "code-diff",
-    "core"
+    "core",
+    "scroll-area"
   ],
   "files": [
     {

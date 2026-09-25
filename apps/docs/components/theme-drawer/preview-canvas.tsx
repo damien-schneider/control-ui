@@ -2,86 +2,101 @@
 
 import type { ReactNode } from "react";
 import { BlockPreview, PrimitivePreview } from "@/app/(features)/components/previews";
+import { ColorFoundations } from "@/app/(features)/foundations/color-foundations";
+import { ElevationFoundations } from "@/app/(features)/foundations/elevation-foundations";
+import { FocusFoundations } from "@/app/(features)/foundations/focus-foundations";
+import { MotionFoundations } from "@/app/(features)/foundations/motion-foundations";
+import { RadiusFoundations } from "@/app/(features)/foundations/radius-foundations";
+import { SizingFoundations } from "@/app/(features)/foundations/sizing-foundations";
+import { SurfaceFoundations } from "@/app/(features)/foundations/surface-foundations";
+import { TypographyFoundations } from "@/app/(features)/foundations/typography-foundations";
 import type { PrimitiveId } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/control-ui/ui/tabs";
-import type { TokenValues } from "./types";
+import type { ThemeContractGroup } from "@/src/registry/lib/theme-contract";
+import { SKIN_CATEGORY, type ThemeCategoryId, TOKEN_GROUP_TITLES } from "./theme-categories";
 
-export function ElevationPreview() {
-  return (
-    <div className="grid w-full grid-cols-3 gap-3">
-      <span className="rounded-[var(--radius-control)] bg-card p-3 text-micro font-medium text-muted-foreground shadow-sm">Control</span>
-      <span className="rounded-[var(--radius-control)] bg-popover p-3 text-micro font-medium text-muted-foreground shadow-pop">
-        Popover
-      </span>
-      <span className="rounded-[var(--radius-control)] bg-card p-3 text-micro font-medium text-muted-foreground shadow-modal">Modal</span>
-    </div>
-  );
-}
+type PreviewTile = { id: PrimitiveId; title: string; wide?: boolean; showcases: readonly ThemeContractGroup[] };
 
-export function LayerPreview({ values }: { values: TokenValues }) {
-  const overlayOpacity = Number.parseFloat(values["--overlay-opacity"] ?? "");
-  return (
-    <div className="relative min-h-28 w-full overflow-hidden rounded-[var(--radius-control)] bg-canvas p-3 ring-1 ring-inset ring-border">
-      <div
-        className="absolute inset-0 bg-foreground backdrop-blur-[var(--backdrop-blur-overlay)]"
-        style={{ opacity: Number.isNaN(overlayOpacity) ? 0.2 : overlayOpacity }}
-      />
-      <div className="relative ml-auto w-4/5 rounded-[var(--radius-popover)] bg-popover p-3 text-micro text-popover-foreground shadow-pop backdrop-blur-[var(--backdrop-blur-popover)]">
-        Popover surface
-      </div>
-    </div>
-  );
-}
-
-const PRIMITIVE_TILES: readonly { id: PrimitiveId; title: string; wide?: boolean }[] = [
-  { id: "typography", title: "Type scale", wide: true },
-  { id: "button", title: "Buttons", wide: true },
-  { id: "field", title: "Fields" },
-  { id: "select", title: "Select" },
-  { id: "slider", title: "Slider" },
-  { id: "switch", title: "Switch" },
-  { id: "badge", title: "Badges" },
-  { id: "alert", title: "Alerts" },
-  { id: "tabs", title: "Tabs" },
-  { id: "progress", title: "Progress" },
-  { id: "card", title: "Cards", wide: true },
-  { id: "table", title: "Table", wide: true },
+const PRIMITIVE_TILES: readonly PreviewTile[] = [
+  { id: "typography", title: "Type scale", wide: true, showcases: ["typography"] },
+  { id: "button", title: "Buttons", wide: true, showcases: ["color", "radius", "shadow", "layout", "typography"] },
+  { id: "field", title: "Fields", showcases: ["color", "radius", "layout", "typography"] },
+  { id: "select", title: "Select", showcases: ["radius", "shadow", "motion", "surface", "layout"] },
+  { id: "slider", title: "Slider", showcases: ["color", "radius", "motion"] },
+  { id: "switch", title: "Switch", showcases: ["color", "shadow", "motion"] },
+  { id: "badge", title: "Badges", showcases: ["color", "radius", "typography"] },
+  { id: "alert", title: "Alerts", showcases: ["color", "surface", "typography"] },
+  { id: "tabs", title: "Tabs", showcases: ["radius", "shadow", "motion", "layout"] },
+  { id: "progress", title: "Progress", showcases: ["color", "motion"] },
+  { id: "card", title: "Cards", wide: true, showcases: ["radius", "shadow", "surface", "typography"] },
+  { id: "table", title: "Table", wide: true, showcases: ["color", "surface", "layout", "typography"] },
 ];
+
+function tilesShowcasing(category: ThemeCategoryId) {
+  if (category === SKIN_CATEGORY) return PRIMITIVE_TILES;
+  return PRIMITIVE_TILES.filter((tile) => tile.showcases.includes(category));
+}
 
 function PreviewSection({ title, wide, children }: { title: string; wide?: boolean; children: ReactNode }) {
   return (
     <section aria-label={title} className={cn("flex min-w-0 flex-col gap-3", wide && "@3xl/canvas:col-span-2")}>
-      <h3 className="font-medium text-micro text-muted-foreground uppercase tracking-wide">{title}</h3>
+      <h3 className="text-heading-4 font-display text-balance">{title}</h3>
       <div className="min-w-0">{children}</div>
     </section>
   );
 }
 
-export function ThemePreviewCanvas({ values, actions }: { values: TokenValues; actions: ReactNode }) {
+function LayoutFoundations() {
   return (
-    <Tabs defaultValue="components" className="@container/canvas flex min-w-0 flex-col gap-4">
+    <div className="grid min-w-0 gap-10">
+      <SizingFoundations />
+      <FocusFoundations />
+    </div>
+  );
+}
+
+const FOUNDATION_BY_GROUP: Record<ThemeContractGroup, () => ReactNode> = {
+  color: ColorFoundations,
+  typography: TypographyFoundations,
+  radius: RadiusFoundations,
+  shadow: ElevationFoundations,
+  motion: MotionFoundations,
+  surface: SurfaceFoundations,
+  layout: LayoutFoundations,
+};
+
+export function ThemePreviewCanvas({ category, actions }: { category: ThemeCategoryId; actions: ReactNode }) {
+  const foundationGroup = category === SKIN_CATEGORY ? null : category;
+  const Foundation = foundationGroup ? FOUNDATION_BY_GROUP[foundationGroup] : null;
+  return (
+    <Tabs
+      key={category}
+      defaultValue={foundationGroup ? "foundation" : "components"}
+      className="@container/canvas flex min-w-0 flex-col gap-4"
+    >
       <div className="flex flex-wrap items-center justify-between gap-2">
         <TabsList>
+          {foundationGroup ? <TabsTab value="foundation">{TOKEN_GROUP_TITLES[foundationGroup]}</TabsTab> : null}
           <TabsTab value="components">Components</TabsTab>
           <TabsTab value="application">Application</TabsTab>
         </TabsList>
         {actions}
       </div>
 
+      {Foundation ? (
+        <TabsPanel value="foundation" className="min-w-0">
+          <Foundation />
+        </TabsPanel>
+      ) : null}
+
       <TabsPanel value="components" className="min-w-0">
         <div className="grid min-w-0 gap-x-8 gap-y-10 @3xl/canvas:grid-cols-2">
-          {PRIMITIVE_TILES.map((tile) => (
+          {tilesShowcasing(category).map((tile) => (
             <PreviewSection key={tile.id} title={tile.title} wide={tile.wide}>
               <PrimitivePreview primitiveId={tile.id} />
             </PreviewSection>
           ))}
-          <PreviewSection title="Elevation">
-            <ElevationPreview />
-          </PreviewSection>
-          <PreviewSection title="Overlays">
-            <LayerPreview values={values} />
-          </PreviewSection>
         </div>
       </TabsPanel>
 

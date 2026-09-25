@@ -141,7 +141,6 @@ export function ChatComposerAttachments({
         aria-label={label}
         lockAxis="y"
         mask
-        scrollbarVisibility="hover"
         className="w-full"
         viewportClassName={viewportClassName}
       >

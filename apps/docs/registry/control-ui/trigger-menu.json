@@ -9,6 +9,7 @@
   ],
   "registryDependencies": [
     "core",
+    "scroll-area",
     "surface-variants"
   ],
   "files": [

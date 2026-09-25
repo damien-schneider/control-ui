@@ -11,6 +11,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
+import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { emitComboboxValueChange } from "./combobox-disabled-selection";
 
 export type ComboboxProps<Value = string> = {
@@ -181,17 +182,19 @@ export function ComboboxContent({ className, children, sideOffset = 6, ...props 
 
 export function ComboboxList<Value = unknown>({ className, children, ...props }: ComboboxListProps<Value>) {
   return (
-    <ComboboxPrimitive.List
-      data-control-ui="combobox"
-      data-popup-kind="combobox"
-      data-slot="list"
-      data-control-family="popup"
-      data-popup-part="list-content"
-      className={cn("max-h-[min(18rem,var(--available-height))] overflow-y-auto overscroll-contain", className)}
-      {...props}
-    >
-      {children}
-    </ComboboxPrimitive.List>
+    <ScrollArea className="w-full" viewportClassName="overscroll-contain" maxHeight="min(18rem, var(--available-height))" lockAxis="x">
+      <ComboboxPrimitive.List
+        data-control-ui="combobox"
+        data-popup-kind="combobox"
+        data-slot="list"
+        data-control-family="popup"
+        data-popup-part="list-content"
+        className={className}
+        {...props}
+      >
+        {children}
+      </ComboboxPrimitive.List>
+    </ScrollArea>
   );
 }
 

@@ -169,6 +169,11 @@
     --cui-popup-shadow: inset 0 2px 0 var(--primary);
   }
 
+  [data-skin="rig"] [data-control-ui="drawer"][data-popup-part="surface"][data-control-family="popup"],
+  [data-skin="rig"] [data-control-ui="sheet"][data-popup-part="surface"][data-control-family="popup"] {
+    --cui-popup-shadow: none;
+  }
+
   [data-skin="rig"] [data-control-ui="dropdown-menu"][data-slot="item"][data-control-family="popup"],
   [data-skin="rig"] [data-control-ui="select"][data-slot="item"][data-control-family="popup"] {
     transition:

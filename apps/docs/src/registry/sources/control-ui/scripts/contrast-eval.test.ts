@@ -40,6 +40,16 @@ describe("contrast-eval color grammar", () => {
     expect(rgb("oklch(1 0 0 / calc(alpha * 0.5))", tokens).unresolved).toContain("unsupported alpha");
   });
 
+  test("resolves a ramp step whose lightness and chroma come from tokens", () => {
+    const tokens = new Map([
+      ["--seed", "oklch(0.6 0.2 30)"],
+      ["--step-lightness", "0.9"],
+      ["--step-chroma", "0.5"],
+    ]);
+    const step = rgb("oklch(from var(--seed) var(--step-lightness) calc(c * var(--step-chroma)) h)", tokens);
+    expect(step).toMatchObject(rgb("oklch(0.9 0.1 30)"));
+  });
+
   test("composites a translucent wash onto its surface", () => {
     const over = { r: 0, g: 0, b: 0, alpha: 0.5 };
     const under = { r: 255, g: 255, b: 255, alpha: 1 };

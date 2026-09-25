@@ -16150,13 +16150,13 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-transcript-divider-success-foreground",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--badge-green-foreground)",
+        defaultValue: "var(--success-text)",
       },
       {
         name: "--cui-transcript-divider-warning-foreground",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--badge-yellow-foreground)",
+        defaultValue: "var(--warning-text)",
       },
     ],
     tree: [

@@ -4,6 +4,7 @@ import type { MarkdownKnobStyle } from "@/components/control-ui/knob-contracts/m
 import { cn } from "@/components/control-ui/lib/cn";
 import { Code, CodeActions, CodeContent, CodeCopy, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
 import { CodeDiff } from "@/components/control-ui/ui/code-diff";
+import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
 type MarkdownCodeProps = ComponentProps<"code"> & {
   node?: unknown;
@@ -128,10 +129,12 @@ export function MarkdownEm({ className, node: _node, ...props }: MarkdownElement
 
 export function MarkdownTable({ className, children, node: _node, ...props }: MarkdownElementProps<"table">) {
   return (
-    <div data-control-ui="markdown" data-control-family="markdown" data-slot="table-scroll" className="overflow-x-auto">
-      <table data-control-ui="markdown" data-control-family="markdown" data-slot="table" className={cn("w-full", className)} {...props}>
-        {children}
-      </table>
+    <div data-control-ui="markdown" data-control-family="markdown" data-slot="table-scroll">
+      <ScrollArea lockAxis="y">
+        <table data-control-ui="markdown" data-control-family="markdown" data-slot="table" className={cn("w-full", className)} {...props}>
+          {children}
+        </table>
+      </ScrollArea>
     </div>
   );
 }

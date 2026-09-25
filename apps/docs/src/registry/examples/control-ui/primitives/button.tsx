@@ -7,7 +7,7 @@ import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-[11px] font-medium text-muted-foreground">{label}</span>
+      <span className="text-caption font-medium text-muted-foreground">{label}</span>
       <div className="flex flex-wrap items-center gap-2">{children}</div>
     </div>
   );

@@ -91,7 +91,7 @@
 
   :where([data-control-family="popup"][data-popup-kind="sheet"][data-popup-part="surface"]) {
     --cui-popup-radius: 0px;
-    --cui-popup-shadow: var(--shadow-modal);
+    --cui-popup-shadow: var(--shadow-overlay);
   }
 
   :where([data-control-family="popup"][data-popup-kind="dialog"][data-slot="title"]),

@@ -10,6 +10,7 @@
   "registryDependencies": [
     "button",
     "core",
+    "scroll-area",
     "surface-variants"
   ],
   "files": [

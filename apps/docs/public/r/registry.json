@@ -1834,7 +1834,8 @@
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/scroll-area.json"
       ],
       "files": [
         {
@@ -2211,6 +2212,7 @@
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/surface-variants.json"
       ],
       "files": [
@@ -2563,6 +2565,7 @@
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/drawer.json",
+        "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/sidebar.json"
       ],
       "files": [
@@ -3433,7 +3436,8 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/code.json",
         "http://127.0.0.1:3000/r/code-diff.json",
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/scroll-area.json"
       ],
       "files": [
         {
@@ -3472,6 +3476,7 @@
         "http://127.0.0.1:3000/r/code.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/markdown.json",
+        "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/use-copy-to-clipboard.json"
       ],
       "files": [
@@ -4219,6 +4224,7 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/surface-variants.json"
       ],
       "files": [
@@ -4907,7 +4913,8 @@
       "description": "Responsive data table for lists, comparisons, and structured records.",
       "dependencies": [],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/scroll-area.json"
       ],
       "files": [
         {
@@ -5465,6 +5472,7 @@
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/surface-variants.json"
       ],
       "files": [

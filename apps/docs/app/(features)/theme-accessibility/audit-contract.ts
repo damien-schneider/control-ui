@@ -450,6 +450,13 @@ export const THEME_AUDIT_PAIRS: readonly ThemeAuditPair[] = [
   textPair("primary-text-on-card", "Primary semantic text on card", "--primary-text", "--card"),
   textPair("destructive-text-on-background", "Destructive text on background", "--destructive-text", "--background"),
   textPair("destructive-text-on-card", "Destructive text on card", "--destructive-text", "--card"),
+  ...(["success", "warning", "info"] as const).flatMap((status) => {
+    const label = `${status[0].toUpperCase()}${status.slice(1)} text`;
+    return [
+      textPair(`${status}-text-on-background`, `${label} on background`, `--${status}-text`, "--background"),
+      textPair(`${status}-text-on-card`, `${label} on card`, `--${status}-text`, "--card"),
+    ];
+  }),
   ...controlPairs,
   ...popupPairs,
   ...activeTabPairs,

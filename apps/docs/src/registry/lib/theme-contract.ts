@@ -23,6 +23,19 @@ const badgeColorTokens: ThemeContractToken[] = BADGE_COLORS.flatMap((color) => [
   token(`--badge-${color}-hover`, "color", "derived", `Hover background of filled ${color}-family badge links and buttons.`),
 ]);
 
+export const COLOR_RAMPS = ["neutral", "primary", ...BADGE_COLORS.filter((color) => color !== "neutral")] as const;
+
+export const RAMP_STEP_COUNT = 12;
+
+const rampSeedTokens: ThemeContractToken[] = COLOR_RAMPS.map((ramp) =>
+  token(
+    `--scale-${ramp}-seed`,
+    "color",
+    "derived",
+    `Seed of the ${ramp} ramp; its hue and chroma drive --scale-${ramp}-1 to --scale-${ramp}-${RAMP_STEP_COUNT}.`,
+  ),
+);
+
 export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token("--background", "color", "core", "Base surface color (panels, bubbles read it via bg-background)."),
   token("--foreground", "color", "core", "Default text color on --background."),
@@ -42,6 +55,9 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token("--destructive", "color", "core", "Destructive action color."),
   token("--destructive-foreground", "color", "core", "Text color on --destructive."),
   token("--destructive-text", "color", "derived", "Readable destructive text color on base and card surfaces."),
+  token("--success-text", "color", "derived", "Readable success text color on base and card surfaces; defaults to --scale-green-11."),
+  token("--warning-text", "color", "derived", "Readable warning text color on base and card surfaces; defaults to --scale-yellow-11."),
+  token("--info-text", "color", "derived", "Readable informational text color on base and card surfaces; defaults to --scale-blue-11."),
   token("--border", "color", "core", "Hairline border color (carries --ring-opacity)."),
   token("--input", "color", "core", "Form field border color."),
   token("--ring", "color", "core", "Focus ring color."),
@@ -58,6 +74,7 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token("--canvas", "color", "core", "The page paper the scene/panels float on — a level BELOW --background."),
 
   token("--ring-opacity", "color", "derived", "Alpha of the border/ring hairlines; 0 = borderless, defaults to 1."),
+  ...rampSeedTokens,
   ...badgeColorTokens,
 
   token("--font-sans", "typography", "core", "Typeface for the whole UI."),

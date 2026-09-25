@@ -1,6 +1,7 @@
 import type { ComponentProps, CSSProperties } from "react";
 import type { TableKnobStyle } from "@/components/control-ui/knob-contracts/table-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
 export type TableProps = Omit<ComponentProps<"table">, "style"> & { style?: CSSProperties & TableKnobStyle };
 
@@ -18,17 +19,18 @@ export type TableCellProps = ComponentProps<"td"> & { style?: CSSProperties & Ta
 
 export type TableCaptionProps = Omit<ComponentProps<"caption">, "style"> & { style?: CSSProperties & TableKnobStyle };
 
-// wrapped in overflow-x-auto so wide tables scroll instead of blowing out layout
 export function Table({ className, ...props }: TableProps) {
   return (
-    <div data-control-ui="table" data-control-family="table" data-slot="container" className="relative w-full overflow-x-auto">
-      <table
-        data-control-ui="table"
-        data-control-family="table"
-        data-slot="root"
-        className={cn("w-full caption-bottom", className)}
-        {...props}
-      />
+    <div data-control-ui="table" data-control-family="table" data-slot="container" className="relative w-full">
+      <ScrollArea lockAxis="y">
+        <table
+          data-control-ui="table"
+          data-control-family="table"
+          data-slot="root"
+          className={cn("w-full caption-bottom", className)}
+          {...props}
+        />
+      </ScrollArea>
     </div>
   );
 }

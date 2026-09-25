@@ -174,13 +174,13 @@ function splitTopLevel(text) {
 const unresolved = (reason) => ({ unresolved: reason });
 const isUnresolved = (result) => Boolean(result?.unresolved);
 
-function evaluateCalc(expression, base, tokens, seen, depth) {
+function evaluateCalc(expression, keyword, base, tokens, seen, depth) {
   const inner = expression.slice(5, -1).trim();
   const match = /^(\S+)\s*([+\-*])\s*(\S+)$/.exec(inner);
   if (!match) return null;
   const [, leftText, operator, rightText] = match;
   const operand = (text) => {
-    if (text === "l" || text === "alpha") return base;
+    if (text === keyword) return base;
     const number = scalar(text);
     if (number !== null) return number;
     const nested = resolveScalar(text, tokens, seen, depth + 1);
@@ -212,12 +212,13 @@ const literalChannel = (text, allowPercent) => (allowPercent || !text.endsWith("
 
 const channelValue = (text, keyword, base, tokens, seen, depth) => {
   if (text === keyword) return base;
-  if (text.startsWith("calc(")) return evaluateCalc(text, base, tokens, seen, depth);
+  if (text.startsWith("calc(")) return evaluateCalc(text, keyword, base, tokens, seen, depth);
+  if (text.startsWith("var(")) return resolveScalar(text, tokens, seen, depth);
   return literalChannel(text, keyword === "l");
 };
 
 const alphaValue = (text, base, tokens, seen, depth) =>
-  text.startsWith("calc(") ? evaluateCalc(text, base, tokens, seen, depth) : resolveScalar(text, tokens, seen, depth);
+  text.startsWith("calc(") ? evaluateCalc(text, "alpha", base, tokens, seen, depth) : resolveScalar(text, tokens, seen, depth);
 
 const CHANNEL_KEYWORDS = ["l", "c", "h"];
 

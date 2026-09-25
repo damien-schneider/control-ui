@@ -8,6 +8,7 @@ import type { DockablePanelKnobStyle } from "@/components/control-ui/knob-contra
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
 import { Drawer, DrawerBody, DrawerContent } from "@/components/control-ui/ui/drawer";
+import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { clampDockablePanelPosition, dockablePanelSideAt, oppositeDockablePanelSide } from "./dockable-panel-geometry";
 
 export type DockablePanelPlacement = "left" | "right";
@@ -443,14 +444,16 @@ export function DockablePanelClose({
 
 export function DockablePanelContent({ padding = "default", className, ...props }: DockablePanelContentProps) {
   return (
-    <div
-      data-control-ui="dockable-panel"
-      data-control-family="dockable-panel"
-      data-slot="content"
-      data-padding={padding}
-      className={cn("min-h-0 flex-1 overflow-y-auto", className)}
-      {...props}
-    />
+    <ScrollArea className="flex min-h-0 flex-1 flex-col" viewportClassName="min-h-0 flex-1" lockAxis="x">
+      <div
+        data-control-ui="dockable-panel"
+        data-control-family="dockable-panel"
+        data-slot="content"
+        data-padding={padding}
+        className={className}
+        {...props}
+      />
+    </ScrollArea>
   );
 }
 

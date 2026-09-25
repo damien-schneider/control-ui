@@ -110,6 +110,24 @@
       "description": "Readable destructive text color on base and card surfaces."
     },
     {
+      "name": "--success-text",
+      "group": "color",
+      "tier": "derived",
+      "description": "Readable success text color on base and card surfaces; defaults to --scale-green-11."
+    },
+    {
+      "name": "--warning-text",
+      "group": "color",
+      "tier": "derived",
+      "description": "Readable warning text color on base and card surfaces; defaults to --scale-yellow-11."
+    },
+    {
+      "name": "--info-text",
+      "group": "color",
+      "tier": "derived",
+      "description": "Readable informational text color on base and card surfaces; defaults to --scale-blue-11."
+    },
+    {
       "name": "--border",
       "group": "color",
       "tier": "core",
@@ -168,6 +186,60 @@
       "group": "color",
       "tier": "derived",
       "description": "Alpha of the border/ring hairlines; 0 = borderless, defaults to 1."
+    },
+    {
+      "name": "--scale-neutral-seed",
+      "group": "color",
+      "tier": "derived",
+      "description": "Seed of the neutral ramp; its hue and chroma drive --scale-neutral-1 to --scale-neutral-12."
+    },
+    {
+      "name": "--scale-primary-seed",
+      "group": "color",
+      "tier": "derived",
+      "description": "Seed of the primary ramp; its hue and chroma drive --scale-primary-1 to --scale-primary-12."
+    },
+    {
+      "name": "--scale-red-seed",
+      "group": "color",
+      "tier": "derived",
+      "description": "Seed of the red ramp; its hue and chroma drive --scale-red-1 to --scale-red-12."
+    },
+    {
+      "name": "--scale-orange-seed",
+      "group": "color",
+      "tier": "derived",
+      "description": "Seed of the orange ramp; its hue and chroma drive --scale-orange-1 to --scale-orange-12."
+    },
+    {
+      "name": "--scale-yellow-seed",
+      "group": "color",
+      "tier": "derived",
+      "description": "Seed of the yellow ramp; its hue and chroma drive --scale-yellow-1 to --scale-yellow-12."
+    },
+    {
+      "name": "--scale-green-seed",
+      "group": "color",
+      "tier": "derived",
+      "description": "Seed of the green ramp; its hue and chroma drive --scale-green-1 to --scale-green-12."
+    },
+    {
+      "name": "--scale-blue-seed",
+      "group": "color",
+      "tier": "derived",
+      "description": "Seed of the blue ramp; its hue and chroma drive --scale-blue-1 to --scale-blue-12."
+    },
+    {
+      "name": "--scale-purple-seed",
+      "group": "color",
+      "tier": "derived",
+      "description": "Seed of the purple ramp; its hue and chroma drive --scale-purple-1 to --scale-purple-12."
+    },
+    {
+      "name": "--scale-pink-seed",
+      "group": "color",
+      "tier": "derived",
+      "description": "Seed of the pink ramp; its hue and chroma drive --scale-pink-1 to --scale-pink-12."
     },
     {
       "name": "--badge-neutral",

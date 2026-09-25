@@ -84,7 +84,7 @@ export function PrimitiveMenubarExample() {
         </MenubarMenu>
       </Menubar>
 
-      <span className="text-[11px] text-muted-foreground">{last ? `Last action: ${last}` : "No action yet"}</span>
+      <span className="text-caption text-muted-foreground">{last ? `Last action: ${last}` : "No action yet"}</span>
     </div>
   );
 }

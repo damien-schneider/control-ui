@@ -3729,13 +3729,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-transcript-divider-success-foreground",
         syntax: "<color>",
-        defaultValue: "var(--badge-green-foreground)",
+        defaultValue: "var(--success-text)",
         selector: ':where([data-control-family="transcript-divider"][data-slot="root"])',
       },
       {
         name: "--cui-transcript-divider-warning-foreground",
         syntax: "<color>",
-        defaultValue: "var(--badge-yellow-foreground)",
+        defaultValue: "var(--warning-text)",
         selector: ':where([data-control-family="transcript-divider"][data-slot="root"])',
       },
     ],

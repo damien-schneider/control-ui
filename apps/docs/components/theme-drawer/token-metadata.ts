@@ -134,6 +134,9 @@ const FRIENDLY_LABELS: Record<string, string> = {
   "--destructive": "Destructive",
   "--destructive-foreground": "Text on destructive",
   "--destructive-text": "Destructive text",
+  "--success-text": "Success text",
+  "--warning-text": "Warning text",
+  "--info-text": "Info text",
   "--border": "Border",
   "--input": "Field border",
   "--ring": "Focus ring",
@@ -212,11 +215,10 @@ const GROUP_DESCRIPTIONS: Record<ThemeContractGroup, string> = {
   layout: "Control sizing, density, spacing, and chrome.",
 };
 
-const isBadgeToken = (token: ThemeContractToken) => token.name.startsWith("--badge-");
+const isPaletteToken = (token: ThemeContractToken) => token.name.startsWith("--badge-") || token.name.startsWith("--scale-");
 
-// badge tokens get their own subgroup instead of drowning advanced colour list
 export const TOKEN_CATEGORIES: readonly TokenCategory[] = TOKEN_GROUP_ORDER.map((group) => {
-  const tokens = THEME_CONTRACT.filter((token) => token.group === group && !isBadgeToken(token));
+  const tokens = THEME_CONTRACT.filter((token) => token.group === group && !isPaletteToken(token));
   return {
     group,
     title: TOKEN_GROUP_TITLES[group],

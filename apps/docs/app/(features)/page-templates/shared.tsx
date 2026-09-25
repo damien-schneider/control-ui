@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { ReactNode, Ref } from "react";
 
 import { CodeBlock, CommandBlock } from "@/app/(features)/components/source";
 import { StatusBadge } from "@/app/(features)/components/status";
@@ -9,17 +9,39 @@ import type { Composition, DocsRegistryDependency, DocsStatus, SourceFile } from
 
 import { CompositionTree } from "./composition-tree";
 
-export function PageHeader({ label, title, summary, status }: { label: string; title: string; summary: string; status?: DocsStatus }) {
+export function PageHeader({
+  label,
+  title,
+  summary,
+  status,
+  focusOnMount,
+}: {
+  label: string;
+  title: string;
+  summary: string;
+  status?: DocsStatus;
+  focusOnMount?: boolean;
+}) {
   return (
     <div className="mb-7">
       <div className="text-caption font-medium text-muted-foreground">{label}</div>
       <div className="mt-2 flex flex-wrap items-center gap-3">
-        <h1 className="text-display font-display text-balance">{title}</h1>
+        <h1
+          ref={focusOnMount ? focusHeading : undefined}
+          tabIndex={focusOnMount ? -1 : undefined}
+          className="text-display font-display text-balance outline-none"
+        >
+          {title}
+        </h1>
         {status ? <StatusBadge status={status} /> : null}
       </div>
       <p className="mt-3 max-w-2xl text-body-lg text-pretty text-muted-foreground">{summary}</p>
     </div>
   );
+}
+
+function focusHeading(heading: HTMLHeadingElement | null) {
+  heading?.focus();
 }
 
 export function SectionStack({ children, className }: { children: ReactNode; className?: string }) {

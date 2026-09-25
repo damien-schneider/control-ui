@@ -131,7 +131,7 @@ export function SourceTabs({ files, overflow }: { files: SourceFile[]; overflow?
   return (
     <Tabs value={selectedPath} onValueChange={setActivePath}>
       {files.length > 1 ? (
-        <ScrollArea scrollbarVisibility="hover">
+        <ScrollArea>
           <TabsList variant={scrollsPage ? "default" : "browser"} className={scrollsPage ? "mb-3 w-fit" : "w-full shadow-none"}>
             {files.map((file) => (
               <TabsTab key={file.path} value={file.path}>

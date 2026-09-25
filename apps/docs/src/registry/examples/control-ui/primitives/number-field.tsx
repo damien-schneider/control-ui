@@ -20,7 +20,7 @@ export function PrimitiveNumberFieldExample() {
           to change the value in addition to the ± buttons and keyboard arrows. */}
       <NumberField id="quantity" value={quantity} onValueChange={setQuantity} min={0} max={99}>
         <NumberFieldScrubArea>
-          <label htmlFor="quantity" className="cursor-ew-resize text-[11px] font-medium text-muted-foreground">
+          <label htmlFor="quantity" className="cursor-ew-resize text-caption font-medium text-muted-foreground">
             Quantity
           </label>
         </NumberFieldScrubArea>
@@ -40,7 +40,7 @@ export function PrimitiveNumberFieldExample() {
         step={100}
         format={{ style: "currency", currency: "USD", maximumFractionDigits: 0 }}
       >
-        <label htmlFor="budget" className="text-[11px] font-medium text-muted-foreground">
+        <label htmlFor="budget" className="text-caption font-medium text-muted-foreground">
           Monthly budget
         </label>
         <NumberFieldGroup>
@@ -66,7 +66,7 @@ export function PrimitiveNumberFieldExample() {
         </NumberField>
       </div>
 
-      <span className="text-[11px] text-muted-foreground">{quantity === null ? "No quantity set" : `Selected quantity: ${quantity}`}</span>
+      <span className="text-caption text-muted-foreground">{quantity === null ? "No quantity set" : `Selected quantity: ${quantity}`}</span>
     </div>
   );
 }

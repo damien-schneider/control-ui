@@ -8,6 +8,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
+import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
 export type TriggerMenuProps = {
   open: boolean;
@@ -74,9 +75,12 @@ export function TriggerMenu({
             data-popup-part="list-surface"
             initialFocus={false}
             finalFocus={false}
-            className={cn("max-h-[min(18rem,var(--available-height))] w-64 max-w-[var(--available-width)] overflow-y-auto", className)}
+            className={cn(
+              "grid max-h-[min(18rem,var(--available-height))] w-64 max-w-[var(--available-width)] grid-rows-[minmax(0,1fr)]",
+              className,
+            )}
           >
-            {children}
+            <ScrollArea lockAxis="x">{children}</ScrollArea>
           </PopoverPrimitive.Popup>
         </PopoverPrimitive.Positioner>
       </PopoverPrimitive.Portal>

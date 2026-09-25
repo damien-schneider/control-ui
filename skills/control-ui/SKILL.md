@@ -66,6 +66,9 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --destructive [light+dark] Destructive action color.
 - --destructive-foreground [light+dark] Text color on --destructive.
 - --destructive-text [light+dark] Readable destructive text color on base and card surfaces.
+- --success-text [light+dark] Readable success text color on base and card surfaces; defaults to --scale-green-11.
+- --warning-text [light+dark] Readable warning text color on base and card surfaces; defaults to --scale-yellow-11.
+- --info-text [light+dark] Readable informational text color on base and card surfaces; defaults to --scale-blue-11.
 - --border [light+dark] Hairline border color (carries --ring-opacity).
 - --input [light+dark] Form field border color.
 - --ring [light+dark] Focus ring color.
@@ -76,6 +79,15 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --active-fill [light+dark] Wash a selected or pressed row keeps; defaults to an 8% tint of --foreground.
 - --canvas [light+dark] The page paper the scene/panels float on — a level BELOW --background.
 - --ring-opacity [shared] Alpha of the border/ring hairlines; 0 = borderless, defaults to 1.
+- --scale-neutral-seed [light+dark] Seed of the neutral ramp; its hue and chroma drive --scale-neutral-1 to --scale-neutral-12.
+- --scale-primary-seed [light+dark] Seed of the primary ramp; its hue and chroma drive --scale-primary-1 to --scale-primary-12.
+- --scale-red-seed [light+dark] Seed of the red ramp; its hue and chroma drive --scale-red-1 to --scale-red-12.
+- --scale-orange-seed [light+dark] Seed of the orange ramp; its hue and chroma drive --scale-orange-1 to --scale-orange-12.
+- --scale-yellow-seed [light+dark] Seed of the yellow ramp; its hue and chroma drive --scale-yellow-1 to --scale-yellow-12.
+- --scale-green-seed [light+dark] Seed of the green ramp; its hue and chroma drive --scale-green-1 to --scale-green-12.
+- --scale-blue-seed [light+dark] Seed of the blue ramp; its hue and chroma drive --scale-blue-1 to --scale-blue-12.
+- --scale-purple-seed [light+dark] Seed of the purple ramp; its hue and chroma drive --scale-purple-1 to --scale-purple-12.
+- --scale-pink-seed [light+dark] Seed of the pink ramp; its hue and chroma drive --scale-pink-1 to --scale-pink-12.
 - --badge-neutral [light+dark] Soft neutral-family badge background; the skin owns the exact hue.
 - --badge-neutral-foreground [light+dark] Text color on the neutral-family badge.
 - --badge-neutral-border [light+dark] Border of the outline neutral-family badge variant.
