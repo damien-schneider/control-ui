@@ -3,7 +3,11 @@
     --cui-inline-attachment-background: var(--card);
     --cui-inline-attachment-hover-shadow: var(--shadow-md);
     --cui-inline-attachment-padding: calc(var(--spacing) * 3);
-    --cui-inline-attachment-radius: var(--radius-field);
+    --_inline-attachment-content-line-height: calc(var(--spacing) * 4);
+    --cui-inline-attachment-radius: min(
+      var(--radius-field),
+      calc(var(--cui-inline-attachment-padding) + var(--_inline-attachment-content-line-height) / 2 + var(--spacing))
+    );
     --cui-inline-attachment-ring-color: var(--border);
     --cui-inline-attachment-image-outline-color: oklch(from var(--foreground) l c h / 0.1);
     --cui-inline-attachment-shadow: var(--shadow-sm);
@@ -126,6 +130,7 @@
     box-shadow: var(--cui-inline-attachment-content-shadow);
     backdrop-filter: blur(var(--backdrop-blur-popover));
     font-size: var(--text-caption);
+    line-height: var(--_inline-attachment-content-line-height);
     font-weight: var(--font-weight-medium);
   }
 

@@ -1,0 +1,101 @@
+[data-skin="sketch"][data-skin] {
+  --font-sans: "Excalifont", "Segoe Print", "Bradley Hand", cursive;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-body: var(--font-sans);
+  --font-display: var(--font-sans);
+  --text-micro: 0.6875rem;
+  --text-caption: 0.8125rem;
+  --text-label: 0.9375rem;
+  --text-body: 1rem;
+  --text-body-lg: 1.125rem;
+  --text-heading-4: 1.125rem;
+  --text-heading-4--line-height: 1.4;
+  --text-heading-4--font-weight: 400;
+  --text-heading-3: 1.375rem;
+  --text-heading-3--line-height: 1.4;
+  --text-heading-3--font-weight: 400;
+  --text-heading-2: 1.625rem;
+  --text-heading-2--line-height: 1.35;
+  --text-heading-2--font-weight: 400;
+  --text-heading-1: 2rem;
+  --text-heading-1--line-height: 1.25;
+  --text-heading-1--font-weight: 400;
+  --text-heading-1--letter-spacing: -0.02em;
+  --text-display: 2.5rem;
+  --text-display--line-height: 1.2;
+  --text-display--font-weight: 400;
+  --text-display--letter-spacing: -0.02em;
+
+  --background: oklch(0.99 0 0);
+  --foreground: oklch(0.29 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.29 0 0);
+  --primary-foreground: oklch(1 0 0);
+  --primary-text: var(--primary);
+  --secondary: oklch(0.96 0 0);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.5 0 0);
+  --accent: oklch(0.945 0 0);
+  --accent-foreground: var(--foreground);
+  --destructive: oklch(0.5 0.18 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.72 0 0 / var(--ring-opacity));
+  --input: oklch(0.47 0 0);
+  --ring: var(--primary);
+  --focus-ring: var(--primary);
+  --control-rim: var(--input);
+  --control-rim-width: 1.5px;
+  --control-fill: var(--card);
+  --canvas: oklch(0.98 0 0);
+
+  --radius: 5px;
+  --radius-control: var(--radius);
+  --radius-field: calc(var(--radius) * 1.2);
+  --radius-panel: calc(var(--radius) * 1.6);
+  --radius-scene: calc(var(--radius) * 2);
+  --radius-popup-item: var(--radius);
+  --corner-shape: round;
+  --shadow-color: var(--foreground);
+  --shadow-highlight: transparent;
+  --shadow-size: 0;
+  --shadow-opacity: 0;
+
+  --popover-opacity: 1;
+  --backdrop-blur-popover: 0px;
+  --overlay-opacity: 0.2;
+  --backdrop-blur-overlay: 0px;
+  --scroll-fade-size: 1.5rem;
+  --popover-padding: 0.375rem;
+  --padding-x: 1rem;
+  --padding-y: 0.625rem;
+  --control-h: 2.5rem;
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 100ms;
+  --duration-base: 160ms;
+  --duration-slow: 240ms;
+}
+
+.dark [data-skin="sketch"][data-skin],
+[data-skin="sketch"][data-skin].dark {
+  --background: oklch(0.205 0 0);
+  --foreground: oklch(0.94 0 0);
+  --card: oklch(0.23 0 0);
+  --primary: oklch(0.94 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.29 0 0);
+  --muted: oklch(0.28 0 0);
+  --muted-foreground: oklch(0.72 0 0);
+  --accent: oklch(0.32 0 0);
+  --destructive: oklch(0.76 0.13 25);
+  --destructive-foreground: var(--background);
+  --border: oklch(0.48 0 0 / var(--ring-opacity));
+  --input: oklch(0.72 0 0);
+  --canvas: oklch(0.19 0 0);
+  --overlay-opacity: 0.5;
+}

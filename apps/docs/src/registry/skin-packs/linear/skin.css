@@ -45,7 +45,6 @@
 @layer components {
   [data-skin="linear"] :where([data-control-family="button"][data-control="true"]) {
     --cui-button-gap: 0.375rem;
-    --cui-button-radius: 9999px;
     --cui-button-press-scale: 1;
     --cui-button-hover-background: var(--hover-fill);
     --cui-button-active-background: var(--active-fill);
@@ -232,16 +231,6 @@
     [data-skin="linear"] :where([data-control-ui="combobox"][data-slot="trigger"][data-control-family="field"]):hover {
       background: var(--hover-fill);
     }
-  }
-}
-
-@layer components {
-  [data-skin="linear"]
-    :where(
-      [data-track]:has(> [data-control-family="button"][data-track-item]) > [data-control-family="track-highlight"],
-      [data-track]:is([data-control-family="button-group"], [data-control-ui="toggle"]) > [data-control-family="track-highlight"]
-    ) {
-    --cui-track-highlight-radius: 9999px;
   }
 }
 

@@ -1,6 +1,5 @@
 [data-skin="refined"],
 [data-skin="refined"] :where([data-control-family]) {
-  --refined-button-radius: calc(var(--radius-control) * 2);
   --refined-surface-shadow:
     0 0 0 var(--control-rim-width) oklch(from var(--shadow-color) l c h / calc(0.06 * var(--ring-opacity))),
     0 calc(1px * var(--shadow-size)) calc(2px * var(--shadow-size)) calc(-1px * var(--shadow-size))
@@ -52,19 +51,6 @@
 }
 
 @layer components {
-  [data-skin="refined"] :where([data-control-family="button"][data-control="true"]:not([data-shape="circle"])) {
-    --cui-button-radius: var(--refined-button-radius);
-  }
-
-  [data-skin="refined"] :where([data-control-family="button-group"][data-slot="root"]) {
-    --cui-button-group-text-radius: var(--refined-button-radius);
-  }
-
-  [data-skin="refined"]
-    :where([data-track]:has(> [data-control-family="button"][data-track-item]) > [data-control-family="track-highlight"]) {
-    --cui-track-highlight-radius: var(--refined-button-radius);
-  }
-
   [data-skin="refined"] :where([data-control-family="button"][data-control="true"]) {
     --cui-button-gap: calc(var(--spacing) * 1.25);
     --cui-button-icon: 0.875rem;
@@ -142,7 +128,6 @@
   }
 
   [data-skin="refined"] :where([data-control-family="field"][data-control="true"]) {
-    --cui-field-radius: var(--radius-field);
     --cui-field-border-color: var(--input);
     --cui-field-border-width: 0px;
     --cui-field-focus-border-color: var(--focus-ring);

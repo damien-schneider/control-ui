@@ -13,9 +13,11 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="color-picker"][data-popup-part="surface"]) {
+    --_color-picker-surface-padding: calc(var(--spacing) * 3);
+    --_color-picker-area-radius-cap: max(var(--radius-sm), calc(var(--cui-popup-radius) - var(--_color-picker-surface-padding)));
     inline-size: calc(var(--spacing) * 64);
     gap: calc(var(--spacing) * 3);
-    padding: calc(var(--spacing) * 3);
+    padding: var(--_color-picker-surface-padding);
   }
 
   :where([data-control-family="color-picker"][data-slot="hue-track"]),
@@ -130,7 +132,7 @@
 
   :where([data-control-family="color-picker"][data-slot="area"]) {
     block-size: calc(var(--spacing) * 40);
-    border-radius: var(--cui-color-picker-area-radius);
+    border-radius: min(var(--cui-color-picker-area-radius), var(--_color-picker-area-radius-cap, 9999px));
     box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--border) 60%, transparent);
     --_color-picker-area-thumb-shadow: 0 0 0 1px oklch(from var(--foreground) l c h / 0.4);
   }

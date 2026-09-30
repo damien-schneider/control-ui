@@ -203,7 +203,7 @@ export function CommandGroup({ className, ...props }: CommandGroupProps) {
       data-control-family="popup"
       data-popup-kind="command"
       data-slot="group"
-      className={cn("p-[var(--popover-padding)]", className)}
+      className={className}
       {...props}
     />
   );

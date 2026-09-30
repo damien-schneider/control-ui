@@ -10,6 +10,15 @@
     container: chat-layout / inline-size;
   }
 
+  :where(
+    [data-control-family="chat-layout"][data-slot="root"][data-chrome="panel"]:has([data-control-family="chat-layout"][data-slot="dock"])
+  ) {
+    --cui-chat-layout-radius: max(
+      var(--radius-scene),
+      calc(var(--radius-composer) + var(--composer-padding) + var(--cui-chat-layout-border-width))
+    );
+  }
+
   :where([data-control-family="chat-layout"][data-slot="root"][data-chrome="panel"]) {
     background: var(--cui-chat-layout-background);
     border: var(--cui-chat-layout-border-width) solid var(--cui-chat-layout-border-color);

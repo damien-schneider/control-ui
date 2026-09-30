@@ -1,6 +1,27 @@
 import { content, example, part } from "./types";
 
 export const formsCompositions = {
+  "filter-bar": [
+    example(
+      "Button entry",
+      part("FilterBar.Root", part("FilterBar.Chips"), part("FilterBar.AddButton"), part("FilterBar.Clear")),
+      "The app supplies fields, operators, and controlled filters, and owns evaluation and persistence. Only complete filters reach onValueChange. Operator arity is one by default; many commits an array and none commits null.",
+    ),
+    example(
+      "Inline entry",
+      part("FilterBar.Root", part("FilterBar.Chips"), part("FilterBar.Input"), part("FilterBar.Clear")),
+      "Input and AddButton can coexist. Escape goes back through the editor and then cancels without changing committed filters. Multiple selections finish with Done or Ctrl/⌘+Enter.",
+    ),
+    example(
+      "Remote values",
+      part("FilterBar.Root", part("FilterBar.Chips"), part("FilterBar.AddButton"), part("FilterBar.Clear")),
+      "Fields with optionsMode=remote notify onQueryChange with fieldId, operatorId, and query. Supply options, loading, error, and formatValue for persistent labels. The host owns fetching, cancellation, and stale responses.",
+    ),
+    example(
+      "Custom chips",
+      part("FilterBar.Root", part("FilterBar.Chips", content("renderChip(item)", part("FilterBar.Chip"))), part("FilterBar.AddButton")),
+    ),
+  ],
   slider: [example("Value control", part("Slider"))],
   select: [example("Anatomy", part("Select", part("SelectTrigger", part("SelectValue")), part("SelectContent", part("SelectItem"))))],
   switch: [example("On/off control", part("Switch"))],

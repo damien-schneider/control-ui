@@ -3,7 +3,11 @@
     --cui-code-diff-background: var(--background);
     --cui-code-diff-border-color: var(--border);
     --cui-code-diff-border-width: 1px;
-    --cui-code-diff-radius: var(--radius-panel);
+    --_code-diff-corner-inset: calc(var(--spacing) * 1.5);
+    --cui-code-diff-radius: min(
+      var(--radius-panel),
+      calc(var(--control-h-xs) / 2 + var(--cui-code-diff-border-width) + var(--_code-diff-corner-inset))
+    );
     --cui-code-diff-shadow: var(--shadow-sm);
     --cui-code-diff-foreground: var(--code-foreground);
     --cui-code-diff-add-background: var(--diff-add-line);
@@ -22,21 +26,30 @@
 
   :where([data-control-family="code-diff"]:is([data-slot="header"], [data-slot="file-header"])) {
     gap: calc(var(--spacing) * 3);
-    padding-block: calc(var(--spacing) * 1.5);
-    padding-inline: calc(var(--spacing) * 3);
     border-bottom: 1px solid var(--border);
     background: var(--diff-gutter-bg);
   }
 
   :where([data-control-family="code-diff"][data-slot="header"]) {
     min-block-size: calc(var(--spacing) * 10);
+    padding-block: var(--_code-diff-corner-inset);
+    padding-inline: calc(var(--spacing) * 3) var(--_code-diff-corner-inset);
   }
 
   :where([data-control-family="code-diff"][data-slot="file-header"]) {
     min-block-size: calc(var(--spacing) * 9);
+    padding-block: calc(var(--spacing) * 1.5);
+    padding-inline: calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="root"] > [data-control-family="button"][data-code-floating="true"]) {
+    --nest-radius: max(0px, calc(var(--cui-code-diff-radius) - var(--cui-code-diff-border-width) - var(--_code-diff-corner-inset)));
+    inset-block-start: var(--_code-diff-corner-inset);
+    inset-inline-end: var(--_code-diff-corner-inset);
   }
 
   :where([data-control-family="code-diff"][data-slot="actions"]) {
+    --nest-radius: max(0px, calc(var(--cui-code-diff-radius) - var(--cui-code-diff-border-width) - var(--_code-diff-corner-inset)));
     gap: calc(var(--spacing) * 2);
   }
 

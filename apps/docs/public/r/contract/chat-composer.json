@@ -16,7 +16,7 @@
       "name": "--cui-chat-composer-shell-radius",
       "syntax": "<length>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-field)"
+      "defaultValue": "var(--radius-composer)"
     },
     {
       "name": "--cui-chat-composer-shell-background",

@@ -70,6 +70,15 @@ function RigLogo({ className }: { className: string }) {
   );
 }
 
+function SketchLogo({ className }: { className: string }) {
+  return (
+    <svg viewBox="0 0 28 28" className={className} fill="none" aria-hidden="true">
+      <path d="M5 5.5 22 5 23 22 5.5 23Z M4.5 6 22.5 5.5 22 23 5 22Z" stroke="currentColor" strokeWidth="1.1" strokeLinejoin="round" />
+      <path d="m9 18 1-4 7-7 3 3-7 7-4 1Z m1-4 3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 function DefaultLogo({ className }: { className: string }) {
   return (
     <svg viewBox="0 0 28 28" className={className} aria-hidden="true">
@@ -114,6 +123,7 @@ export function SkinLogo({ id, size = "lg" }: { id: SkinId; size?: SkinLogoSize 
   if (id === "xp") return <WindowsXpLogo className={className} />;
   if (id === "liquid-metal") return <LiquidMetalLogo className={className} />;
   if (id === "rig") return <RigLogo className={className} />;
+  if (id === "sketch") return <SketchLogo className={className} />;
   if (id === "none") return <DefaultLogo className={className} />;
   if (id === "cuicui") return <CuicuiLogo className={className} />;
   if (id === "linear") return <LinearLogo className={className} />;

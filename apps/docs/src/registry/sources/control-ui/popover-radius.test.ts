@@ -3,9 +3,8 @@ import { readFileSync } from "node:fs";
 
 /*
  * rounded child clipped by rounded overflow-hidden container gets its corner sliced flat unless it nests fully inside
- * container's corner. Two ways that happens here: browsers cap rendered border-radius at half box height, so
- * --radius-popover is built off height-fitted row radius; and --radius-panel scales unbound against fixed tab inset,
- * so panel corner is capped at --nest-gap · --nest-corner-ratio.
+ * container's corner. Browsers cap rendered border-radius at half box height, so holder radii are built off the
+ * height-fitted item radius.
  */
 
 const CSS = readFileSync(new URL("../../skin-packs/refined/theme.css", import.meta.url), "utf8");
@@ -80,15 +79,16 @@ const XS_RATIO = 0.78; // --control-h-xs = --control-h * 0.78
 const MARGIN = 1; // require at least 1px of breathing room, not mere tangency
 
 function sample(radiusPx: number, controlHxsPx: number) {
-  const resolve = makeResolver(decls, { "--radius": radiusPx, "--control-h": controlHxsPx / XS_RATIO });
+  const resolve = makeResolver(decls, { "--radius": radiusPx, "--control-h": controlHxsPx / XS_RATIO, "--spacing": 4 });
   return {
     padding: resolve("--popover-padding"),
     controlHxs: resolve("--control-h-xs"),
-    nestSafe: resolve("--nest-safe"),
-    cornerRatio: resolve("--nest-corner-ratio"),
+    composerPadding: resolve("--composer-padding"),
+    rimWidth: resolve("--control-rim-width"),
+    controlR: resolve("--radius-control"),
+    composerR: resolve("--radius-composer"),
     popoverItemToken: resolve("--radius-popup-item"),
     popoverContainerR: resolve("--radius-popover"),
-    panelR: resolve("--radius-panel"),
   };
 }
 
@@ -123,40 +123,22 @@ describe("select/menu popup rows nest at every --radius", () => {
   test("negative control: building the popup radius off the UNCLAMPED row token would cut at large --radius", () => {
     const s = sample(48, 28.08);
     const rowRendered = Math.min(s.popoverItemToken, s.controlHxs / 2);
-    const naive = s.popoverItemToken + s.padding + s.nestSafe; // old bug: off the unclamped token
+    const naive = s.popoverItemToken + s.padding; // old bug: off the unclamped token
     expect(clearance(naive, rowRendered, s.padding)).toBeLessThan(0);
     expect(clearance(s.popoverContainerR, rowRendered, s.padding)).toBeGreaterThanOrEqual(MARGIN);
   });
 });
 
-describe("code-block panel: capped corner keeps header tabs (inset --nest-gap) uncut", () => {
-  const NEST_GAP = 8; // the figure sets [--nest-gap:0.5rem]
-
-  test("tab corner stays inside the capped panel corner (sweep)", () => {
-    const failures: string[] = [];
-    for (const hxs of CONTROL_HEIGHTS_XS) {
-      for (const radius of RADII) {
-        const s = sample(radius, hxs);
-        const containerR = Math.min(s.panelR, NEST_GAP * s.cornerRatio); // the --nest-radius cap
-        const tabTarget = Math.max(0, containerR - NEST_GAP - s.nestSafe);
-        const tabRendered = Math.min(tabTarget, s.controlHxs / 2);
-        if (containerR <= 0.01) continue; // square panel, square tabs — nothing to clip
-        const gap = clearance(containerR, tabRendered, NEST_GAP);
-        if (gap < MARGIN) {
-          failures.push(
-            `r=${radius} hxs≈${s.controlHxs.toFixed(1)}: clearance ${gap.toFixed(2)}px (R ${containerR.toFixed(1)}, tab ${tabRendered.toFixed(1)})`,
-          );
-        }
-      }
-    }
+describe("chat composer shell nests its xs actions at every --radius", () => {
+  test("shell radius minus its inset equals the rendered action radius (sweep)", () => {
+    const failures = collectSampleFailures((radius, controlHeight) => {
+      const s = sample(radius, controlHeight);
+      const actionRendered = Math.min(s.controlR, s.controlHxs / 2);
+      const inset = s.composerPadding + s.rimWidth;
+      const expected = actionRendered > 0 ? actionRendered + inset : 0;
+      if (Math.abs(s.composerR - expected) < 0.01) return null;
+      return `r=${radius} hxs≈${s.controlHxs.toFixed(1)}: shell ${s.composerR.toFixed(2)}, expected ${expected.toFixed(2)}`;
+    });
     expect(failures).toEqual([]);
-  });
-
-  test("negative control: the UNCAPPED panel radius (--radius-panel) cuts header tabs at large --radius", () => {
-    const s = sample(64, 28.08); // --radius-panel = 64px, way past (2+√2)·gap ≈ 27.3px
-    const tabRendered = Math.min(s.controlHxs / 2, s.controlHxs / 2);
-    expect(clearance(s.panelR, tabRendered, NEST_GAP)).toBeLessThan(0); // uncapped ⇒ tab sliced
-    const capped = Math.min(s.panelR, NEST_GAP * s.cornerRatio);
-    expect(clearance(capped, tabRendered, NEST_GAP)).toBeGreaterThanOrEqual(MARGIN); // cap ⇒ safe
   });
 });

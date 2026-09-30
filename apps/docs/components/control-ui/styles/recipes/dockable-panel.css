@@ -1,7 +1,11 @@
 @layer components {
   :where([data-control-family="dockable-panel"][data-slot="root"]),
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-dockable-panel-root]) {
-    --cui-dockable-panel-radius: var(--radius-panel);
+    --_dockable-panel-header-inset: calc(var(--spacing) * 1.5);
+    --cui-dockable-panel-radius: min(
+      var(--radius-panel),
+      calc(var(--control-h-sm) / 2 + var(--_dockable-panel-header-inset) + var(--cui-dockable-panel-border-width))
+    );
     --cui-dockable-panel-background: var(--card);
     --cui-dockable-panel-foreground: var(--card-foreground);
     --cui-dockable-panel-border-color: oklch(from var(--border) l c h / 0.8);
@@ -22,9 +26,13 @@
   }
 
   :where([data-control-family="dockable-panel"][data-slot="header"]) {
-    min-block-size: calc(var(--spacing) * 11);
+    --nest-radius: max(
+      0px,
+      calc(var(--cui-dockable-panel-radius) - var(--cui-dockable-panel-border-width) - var(--_dockable-panel-header-inset))
+    );
+    min-block-size: calc(var(--control-h-sm) + var(--_dockable-panel-header-inset) * 2);
     gap: calc(var(--spacing) * 2);
-    padding-inline: calc(var(--spacing) * 2);
+    padding-inline: var(--_dockable-panel-header-inset);
     border-block-end: 1px solid oklch(from var(--border) l c h / 0.7);
   }
 

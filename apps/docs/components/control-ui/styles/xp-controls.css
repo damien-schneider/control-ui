@@ -113,6 +113,7 @@
   }
   [data-skin="xp"] :where([data-control-family="tabs"][data-slot="root"]) {
     --cui-tabs-trigger-radius: 3px;
+    --cui-tabs-list-radius: 0px;
     --cui-tabs-list-padding: 0px;
     --cui-tabs-list-background: transparent;
     --cui-tabs-foreground: var(--foreground);

@@ -16,11 +16,9 @@ import {
   RichTooltipTitle,
   RichTooltipTour,
 } from "@/components/control-ui/ui/rich-tooltip";
+import { Toolbar, ToolbarButton } from "@/components/control-ui/ui/toolbar";
 
 const steps = ["activity", "pull-requests", "sites"] as const;
-
-const railButtonClass =
-  "flex size-9 items-center justify-center rounded-[var(--radius-control)] text-muted-foreground ring-1 ring-inset ring-border transition hover:bg-foreground/5 [&_svg]:size-4";
 
 export function PrimitiveRichTooltipExample() {
   const [step, setStep] = useState<string | null>(steps[0]);
@@ -30,17 +28,17 @@ export function PrimitiveRichTooltipExample() {
 
   return (
     <div className="flex w-full flex-col items-center gap-6">
-      <div className="flex items-center gap-3 rounded-[var(--radius-panel)] bg-card p-3 ring-1 ring-inset ring-border">
-        <button ref={activityRef} type="button" aria-label="Activity" className={railButtonClass}>
+      <Toolbar aria-label="Workspace">
+        <ToolbarButton ref={activityRef} iconOnly aria-label="Activity">
           <BellIcon />
-        </button>
-        <button ref={pullRequestsRef} type="button" aria-label="Pull requests" className={railButtonClass}>
+        </ToolbarButton>
+        <ToolbarButton ref={pullRequestsRef} iconOnly aria-label="Pull requests">
           <GitPullRequestIcon />
-        </button>
-        <button ref={sitesRef} type="button" aria-label="Sites" className={railButtonClass}>
+        </ToolbarButton>
+        <ToolbarButton ref={sitesRef} iconOnly aria-label="Sites">
           <LayoutGridIcon />
-        </button>
-      </div>
+        </ToolbarButton>
+      </Toolbar>
 
       <button
         type="button"

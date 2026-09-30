@@ -91,6 +91,28 @@ export const skinMetas = [
     paths: skinPackFiles("rig"),
   },
   {
+    id: "sketch",
+    label: "Sketch",
+    kind: "advanced",
+    description:
+      "Hand-drawn pencil outlines, Excalifont handwriting, and neutral paper surfaces. A clean sketchbook for prototypes and everyday interfaces.",
+    packManifestPath: "registry/sketch/skin.json",
+    docs: 'Import skin-theme.css and skin.css in your global CSS, then mount <SketchStrokeRuntime /> once in your root layout from "@/components/control-ui/sketch-stroke-runtime". Smooth SVG pen strokes follow each control’s dimensions and theme colors, including native inputs. The runtime restores its styles on unmount.',
+    paths: skinPackFiles("sketch", [
+      sourceFile(
+        "excalifont.css — embedded handwriting font and its SIL Open Font License",
+        "src/registry/skin-packs/sketch/excalifont.css",
+        "font",
+      ),
+      sourceFile(
+        "sketch-stroke-runtime.tsx — measures controls and keeps their vector outlines in sync; mount once in the root layout",
+        "src/registry/skin-packs/sketch/sketch-stroke-runtime.tsx",
+        "runtime",
+      ),
+      sourceFile("sketch-stroke.ts — smooth, gently irregular SVG pen paths", "src/registry/skin-packs/sketch/sketch-stroke.ts", "stroke"),
+    ]),
+  },
+  {
     id: "none",
     label: "No skin",
     kind: "theme",

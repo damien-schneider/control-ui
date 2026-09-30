@@ -10,7 +10,7 @@
       "name": "--cui-code-diff-radius",
       "syntax": "<length>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-panel)"
+      "defaultValue": "min(\n      var(--radius-panel),\n      calc(var(--control-h-xs) / 2 + var(--cui-code-diff-border-width) + var(--_code-diff-corner-inset))\n    )"
     },
     {
       "name": "--cui-code-diff-shadow",

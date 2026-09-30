@@ -190,8 +190,17 @@
   }
 
   :where([data-control-family="popup"][data-popup-part="bar"]) {
+    --_popup-bar-item-radius: min(var(--cui-popup-item-radius), calc(var(--control-h-sm) / 2));
+    --_popup-bar-padding: calc(var(--spacing) * 1);
+    --cui-popup-radius: calc(
+      var(--_popup-bar-item-radius) +
+      clamp(0px, calc(var(--_popup-bar-item-radius) * 1000), var(--_popup-bar-padding))
+    );
+    --nest-radius: var(--_popup-bar-item-radius);
+    padding: var(--_popup-bar-padding);
     gap: calc(var(--spacing) * 0.5);
-    padding: calc(var(--spacing) * 1);
+    --cui-popup-background: var(--card);
+    --cui-popup-shadow: var(--shadow-xs);
   }
 
   :where([data-control-family="popup"][data-popup-kind="navigation-menu"][data-slot="list"]) {

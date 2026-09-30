@@ -41,7 +41,7 @@
   :where([data-control-family="range"][data-range-kind="slider"][data-slot="root"][data-variant="plain"]) {
     --cui-range-track-radius: 3px;
     --cui-range-track-background: var(--hover-fill);
-    --cui-range-indicator-radius: 0px;
+    --cui-range-indicator-radius: var(--cui-range-track-radius);
     --cui-range-indicator-background: oklch(from var(--foreground) l c h / 0.14);
     --cui-range-thumb-radius: 1px;
     --cui-range-thumb-background: oklch(from var(--foreground) l c h / 0.3);

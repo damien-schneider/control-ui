@@ -13,7 +13,7 @@
     --cui-field-padding-inline: var(--padding-x);
     --cui-field-font-size: var(--text-body);
     border: var(--cui-field-border-width) solid var(--cui-field-border-color);
-    border-radius: var(--cui-field-radius);
+    border-radius: var(--nest-radius, var(--cui-field-radius));
     outline: none;
     background: var(--cui-field-background);
     box-shadow: var(--cui-field-shadow);

@@ -401,7 +401,7 @@ export function InfiniteCanvasControls({ className, ...props }: InfiniteCanvasCo
       data-control-ui="infinite-canvas"
       data-control-family="infinite-canvas"
       data-slot="controls"
-      className={cn("absolute right-3 bottom-3 z-40 flex items-center", className)}
+      className={cn("absolute z-40 flex items-center", className)}
       {...props}
     >
       <Button

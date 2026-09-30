@@ -3,7 +3,6 @@
 import { Combobox as ComboboxPrimitive } from "@base-ui/react/combobox";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, use, useEffect, useState } from "react";
-import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
@@ -12,29 +11,31 @@ import { controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
-import { emitComboboxValueChange } from "./combobox-disabled-selection";
+import { shouldAcceptComboboxValueChange } from "./combobox-disabled-selection";
 
-export type ComboboxProps<Value = string> = {
-  children?: ReactNode;
-  items?: readonly Value[];
-  value?: Value | null;
-  defaultValue?: Value | null;
-  onValueChange?: (value: Value | null) => void;
-  inputValue?: string;
-  defaultInputValue?: string;
-  onInputValueChange?: (inputValue: string) => void;
-  open?: boolean;
-  defaultOpen?: boolean;
-  onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
-  disabled?: boolean;
-  readOnly?: boolean;
-  required?: boolean;
-  name?: string;
-  autoHighlight?: boolean;
-  itemToStringLabel?: (itemValue: Value) => string;
-  isItemEqualToValue?: (itemValue: Value, value: Value) => boolean;
-  filter?: ComboboxPrimitive.Root.Props<Value>["filter"];
-};
+export type ComboboxProps<Value = string, Multiple extends boolean | undefined = false> = Pick<
+  ComboboxPrimitive.Root.Props<Value, Multiple>,
+  | "children"
+  | "multiple"
+  | "value"
+  | "defaultValue"
+  | "onValueChange"
+  | "inputValue"
+  | "defaultInputValue"
+  | "onInputValueChange"
+  | "open"
+  | "defaultOpen"
+  | "onOpenChange"
+  | "disabled"
+  | "readOnly"
+  | "required"
+  | "name"
+  | "autoHighlight"
+  | "itemToStringLabel"
+  | "isItemEqualToValue"
+  | "filter"
+  | "modal"
+> & { items?: readonly Value[] };
 
 export type ComboboxInputProps = Omit<Omit<ComponentProps<"input">, "size">, "style"> & { style?: CSSProperties & FieldKnobStyle } & {
   size?: ControlSize;
@@ -43,8 +44,9 @@ export type ComboboxInputProps = Omit<Omit<ComponentProps<"input">, "size">, "st
 export type ComboboxTriggerProps = ComponentProps<"button"> & { style?: CSSProperties & FieldKnobStyle };
 
 export type ComboboxContentProps = Omit<
-  ComponentProps<"div"> & {
+  ComboboxPrimitive.Popup.Props & {
     sideOffset?: number;
+    anchor?: ComboboxPrimitive.Positioner.Props["anchor"];
   },
   "style"
 > & { style?: CSSProperties & PopupKnobStyle };
@@ -73,7 +75,12 @@ type DisabledComboboxValueRegistry = {
 
 const ComboboxDisabledValueContext = createContext<DisabledComboboxValueRegistry | null>(null);
 
-export function Combobox<Value = string>({ children, onValueChange, autoHighlight = true, ...props }: ComboboxProps<Value>) {
+export function Combobox<Value = string, Multiple extends boolean | undefined = false>({
+  children,
+  onValueChange,
+  autoHighlight = true,
+  ...props
+}: ComboboxProps<Value, Multiple>) {
   const [disabledValues] = useState(() => new Set<unknown>());
   const [disabledValueRegistry] = useState<DisabledComboboxValueRegistry>(() => ({
     register(value, disabled) {
@@ -90,8 +97,8 @@ export function Combobox<Value = string>({ children, onValueChange, autoHighligh
         {...props}
         onValueChange={
           onValueChange
-            ? (value: Value | Value[] | null) => {
-                if (!Array.isArray(value)) emitComboboxValueChange(value, disabledValues, onValueChange);
+            ? (value, eventDetails) => {
+                if (shouldAcceptComboboxValueChange(value, disabledValues, props.multiple)) onValueChange(value, eventDetails);
               }
             : undefined
         }
@@ -147,7 +154,7 @@ export function ComboboxInput({ size = "md", className, ...props }: ComboboxInpu
   );
 }
 
-export function ComboboxContent({ className, children, sideOffset = 6, ...props }: ComboboxContentProps) {
+export function ComboboxContent({ className, children, sideOffset = 6, anchor, ...props }: ComboboxContentProps) {
   const skin = useSkin();
   return (
     <ComboboxPrimitive.Portal>
@@ -161,6 +168,7 @@ export function ComboboxContent({ className, children, sideOffset = 6, ...props 
         side="bottom"
         align="start"
         sideOffset={sideOffset}
+        anchor={anchor}
         className="z-(--z-popup)"
       >
         <ComboboxPrimitive.Popup

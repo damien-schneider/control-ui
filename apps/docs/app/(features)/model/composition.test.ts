@@ -27,6 +27,24 @@ const composedEntries = [
   })),
 ];
 
+type ExportedDeclaration = Extract<ReturnType<typeof parse>["program"]["body"][number], { type: "ExportNamedDeclaration" }>["declaration"];
+type VariableDeclaration = Extract<ExportedDeclaration, { type: "VariableDeclaration" }>;
+
+function exportedVariableParts({ id, init }: VariableDeclaration["declarations"][number]): string[] {
+  if (id.type !== "Identifier" || !/^[A-Z]/.test(id.name)) return [];
+  if (init?.type === "ObjectExpression") {
+    return init.properties.flatMap((property) =>
+      property.type === "ObjectProperty" && !property.computed && property.key.type === "Identifier"
+        ? [`${id.name}.${property.key.name}`]
+        : [],
+    );
+  }
+  if (init?.type !== "CallExpression") return [];
+  const callee = init.callee;
+  const isCompoundComponent = callee.type === "MemberExpression" && callee.object.type === "Identifier" && callee.object.name === "Object";
+  return isCompoundComponent ? [id.name] : [];
+}
+
 function exportedParts(sourcePath: string): string[] {
   if (!sourcePath.endsWith(".tsx")) return [];
   const source = readFileSync(resolve(docsRoot, sourcePath), "utf8");
@@ -39,14 +57,9 @@ function exportedParts(sourcePath: string): string[] {
       return declaration.id && /^[A-Z]/.test(declaration.id.name) ? [declaration.id.name] : [];
     }
     if (declaration?.type === "VariableDeclaration") {
-      return declaration.declarations.flatMap(({ id, init }) => {
-        if (id.type !== "Identifier" || !/^[A-Z]/.test(id.name) || init?.type !== "CallExpression") return [];
-        const callee = init.callee;
-        const isCompoundComponent =
-          callee.type === "MemberExpression" && callee.object.type === "Identifier" && callee.object.name === "Object";
-        return isCompoundComponent ? [id.name] : [];
-      });
+      return declaration.declarations.flatMap(exportedVariableParts);
     }
+
     const reexportPath = statement.source?.value;
     const reexportedParts = reexportPath ? exportedParts(resolveReexport(sourcePath, reexportPath)) : [];
     return statement.specifiers.flatMap((specifier) => {
@@ -95,7 +108,7 @@ describe("authored composition contract", () => {
       nodes.forEach((node) => {
         expect(new Set(node.children.map((child) => child.name)).size).toBe(node.children.length);
         if (node.kind !== "part") return;
-        expect(node.name).toMatch(/^[A-Za-z][A-Za-z0-9]*$/);
+        expect(node.name).toMatch(/^[A-Za-z][A-Za-z0-9]*(\.[A-Za-z][A-Za-z0-9]*)*$/);
         const knownPart =
           /^[a-z]/.test(node.name) || publicParts.has(node.name) || (entry.id === "email" && reactEmailParts[node.name] === true);
         expect(knownPart, `${entry.id}: unknown component ${node.name}`).toBe(true);

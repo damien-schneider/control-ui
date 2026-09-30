@@ -20,6 +20,12 @@
       "defaultValue": "var(--border)"
     },
     {
+      "name": "--cui-choice-border-width",
+      "syntax": "<length>",
+      "initialValue": "1px",
+      "defaultValue": "1px"
+    },
+    {
       "name": "--cui-choice-checked-background",
       "syntax": "<color>",
       "initialValue": "transparent",

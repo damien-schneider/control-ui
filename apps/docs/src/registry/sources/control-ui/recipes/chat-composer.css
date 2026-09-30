@@ -6,7 +6,7 @@
     --cui-chat-composer-shell-backdrop-filter: none;
     --cui-chat-composer-shell-border-color: var(--border);
     --cui-chat-composer-shell-border-width: var(--control-rim-width);
-    --cui-chat-composer-shell-radius: var(--radius-field);
+    --cui-chat-composer-shell-radius: var(--radius-composer);
     --cui-chat-composer-shell-shadow: var(--shadow-md);
     --cui-chat-composer-input-foreground: var(--card-foreground);
     --cui-chat-composer-input-placeholder-foreground: var(--muted-foreground);
@@ -15,8 +15,8 @@
     --cui-chat-composer-mention-border-color: transparent;
     --cui-chat-composer-mention-border-width: 0px;
     --cui-chat-composer-mention-background: oklch(from var(--primary) l c h / 0.1);
-    padding-inline: calc(var(--spacing) * 2);
-    padding-block: calc(var(--spacing) * 1) calc(var(--spacing) * 2);
+    padding-inline: var(--composer-padding);
+    padding-block: calc(var(--spacing) * 1) var(--composer-padding);
     background: var(--cui-chat-composer-root-background);
   }
 
@@ -80,11 +80,15 @@
   }
 
   :where([data-control-family="chat-composer"][data-slot="toolbar"]) {
-    min-block-size: calc(var(--spacing) * 10);
+    --nest-radius: max(
+      0px,
+      calc(var(--cui-chat-composer-shell-radius) - var(--cui-chat-composer-shell-border-width) - var(--composer-padding))
+    );
+    min-block-size: calc(var(--control-h-xs) + var(--composer-padding) + var(--spacing) * 0.5);
     gap: calc(var(--spacing) * 2);
     flex-wrap: wrap;
-    padding-inline: calc(var(--spacing) * 2.5);
-    padding-block-end: calc(var(--spacing) * 2);
+    padding-inline: var(--composer-padding);
+    padding-block-end: var(--composer-padding);
   }
 
   :where([data-control-family="chat-composer"][data-slot="tools"]) {

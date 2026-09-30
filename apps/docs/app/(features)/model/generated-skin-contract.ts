@@ -50,6 +50,7 @@ export const generatedSkinContract: SkinContract = {
     empty: ["empty"],
     "environment-variables": ["environment-variables"],
     field: ["field", "phone-input"],
+    "filter-bar": ["filter-bar"],
     form: ["form"],
     "gradient-editor": ["gradient-editor"],
     "hover-card": ["hover-card"],
@@ -6039,6 +6040,56 @@ export const generatedSkinContract: SkinContract = {
         },
       },
       registryItems: ["field", "phone-input"],
+    },
+    "filter-bar": {
+      parts: {
+        root: {
+          family: "filter-bar",
+          registryItems: ["filter-bar"],
+          states: [
+            {
+              attribute: "data-disabled",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-readonly",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        chip: {
+          family: "filter-bar",
+          registryItems: ["filter-bar"],
+          states: [
+            {
+              attribute: "data-draft",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        exit: {
+          family: "filter-bar",
+          registryItems: ["filter-bar"],
+          states: [],
+        },
+        remove: {
+          family: "filter-bar",
+          registryItems: ["filter-bar"],
+          states: [],
+        },
+        segment: {
+          family: "filter-bar",
+          registryItems: ["filter-bar"],
+          states: [],
+        },
+      },
+      registryItems: ["filter-bar"],
     },
     form: {
       parts: {
@@ -13227,7 +13278,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-chat-composer-shell-radius",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "var(--radius-field)",
+        defaultValue: "var(--radius-composer)",
       },
       {
         name: "--cui-chat-composer-shell-background",
@@ -13514,6 +13565,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--border)",
       },
       {
+        name: "--cui-choice-border-width",
+        syntax: "<length>",
+        initialValue: "1px",
+        defaultValue: "1px",
+      },
+      {
         name: "--cui-choice-checked-background",
         syntax: "<color>",
         initialValue: "transparent",
@@ -13537,7 +13594,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-code-radius",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "var(--radius-panel)",
+        defaultValue: "min(var(--radius-panel), calc(var(--control-h-xs) / 2 + var(--cui-code-border-width) + var(--_code-corner-inset)))",
       },
       {
         name: "--cui-code-background",
@@ -13587,7 +13644,8 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-code-diff-radius",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "var(--radius-panel)",
+        defaultValue:
+          "min(\n      var(--radius-panel),\n      calc(var(--control-h-xs) / 2 + var(--cui-code-diff-border-width) + var(--_code-diff-corner-inset))\n    )",
       },
       {
         name: "--cui-code-diff-shadow",
@@ -13799,7 +13857,8 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-dockable-panel-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue: "var(--radius-panel)",
+        defaultValue:
+          "min(\n      var(--radius-panel),\n      calc(var(--control-h-sm) / 2 + var(--_dockable-panel-header-inset) + var(--cui-dockable-panel-border-width))\n    )",
       },
       {
         name: "--cui-dockable-panel-background",
@@ -14206,6 +14265,74 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--text-body)",
       },
     ],
+    "filter-bar": [
+      {
+        name: "--cui-filter-bar-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--control-fill)",
+      },
+      {
+        name: "--cui-filter-bar-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--foreground)",
+      },
+      {
+        name: "--cui-filter-bar-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--control-rim)",
+      },
+      {
+        name: "--cui-filter-bar-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "var(--control-rim-width)",
+      },
+      {
+        name: "--cui-filter-bar-radius",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "var(--radius-control)",
+      },
+      {
+        name: "--cui-filter-bar-height",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "var(--control-h-sm)",
+      },
+      {
+        name: "--cui-filter-bar-gap",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 1.5)",
+      },
+      {
+        name: "--cui-filter-bar-padding-inline",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 2)",
+      },
+      {
+        name: "--cui-filter-bar-font-size",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "var(--text-label)",
+      },
+      {
+        name: "--cui-filter-bar-hover-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--hover-fill)",
+      },
+      {
+        name: "--cui-filter-bar-focus-ring-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--ring)",
+      },
+    ],
     "gradient-editor": [
       {
         name: "--cui-gradient-editor-preview-radius",
@@ -14273,7 +14400,8 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-infinite-canvas-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue: "var(--radius-panel)",
+        defaultValue:
+          "max(\n      var(--radius-panel),\n      calc(\n        var(--cui-infinite-canvas-controls-radius) +\n        clamp(0px, calc(var(--cui-infinite-canvas-controls-radius) * 1000), var(--spacing) * 2)\n      )\n    )",
       },
       {
         name: "--cui-infinite-canvas-background",
@@ -14294,10 +14422,30 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--border)",
       },
       {
+        name: "--cui-infinite-canvas-padding",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue:
+          "max(\n      calc(var(--spacing) * 2),\n      calc(var(--cui-infinite-canvas-radius) - var(--cui-infinite-canvas-controls-radius))\n    )",
+      },
+      {
+        name: "--cui-infinite-canvas-controls-item-radius",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "min(var(--radius-sm), calc(var(--control-h-sm) / 2))",
+      },
+      {
+        name: "--cui-infinite-canvas-controls-padding",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 1)",
+      },
+      {
         name: "--cui-infinite-canvas-controls-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue: "var(--radius-control)",
+        defaultValue:
+          "calc(\n      var(--cui-infinite-canvas-controls-item-radius) +\n      clamp(0px, calc(var(--cui-infinite-canvas-controls-item-radius) * 1000), var(--cui-infinite-canvas-controls-padding))\n    )",
       },
       {
         name: "--cui-infinite-canvas-controls-background",
@@ -14323,7 +14471,8 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-inline-attachment-radius",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "var(--radius-field)",
+        defaultValue:
+          "min(\n      var(--radius-field),\n      calc(var(--cui-inline-attachment-padding) + var(--_inline-attachment-content-line-height) / 2 + var(--spacing))\n    )",
       },
       {
         name: "--cui-inline-attachment-background",

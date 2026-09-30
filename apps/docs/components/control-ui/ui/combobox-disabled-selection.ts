@@ -1,4 +1,5 @@
-export function shouldAcceptComboboxValueChange<Value>(value: Value | null, disabledValues: ReadonlySet<unknown>) {
+export function shouldAcceptComboboxValueChange<Value>(value: Value | null, disabledValues: ReadonlySet<unknown>, multiple = false) {
+  if (multiple && Array.isArray(value)) return value.every((item) => !disabledValues.has(item));
   return value === null || !disabledValues.has(value);
 }
 

@@ -1,0 +1,174 @@
+@layer components {
+  :where([data-control-family="filter-bar"][data-slot="root"]) {
+    --cui-filter-bar-background: var(--control-fill);
+    --cui-filter-bar-foreground: var(--foreground);
+    --cui-filter-bar-border-color: var(--control-rim);
+    --cui-filter-bar-border-width: var(--control-rim-width);
+    --cui-filter-bar-radius: var(--radius-control);
+    --cui-filter-bar-height: var(--control-h-sm);
+    --cui-filter-bar-gap: calc(var(--spacing) * 1.5);
+    --cui-filter-bar-padding-inline: calc(var(--spacing) * 2);
+    --cui-filter-bar-font-size: var(--text-label);
+    --cui-filter-bar-hover-background: var(--hover-fill);
+    --cui-filter-bar-focus-ring-color: var(--ring);
+    gap: var(--cui-filter-bar-gap);
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  :where([data-control-family="filter-bar"][data-slot="chip"]) {
+    border: var(--cui-filter-bar-border-width) solid var(--cui-filter-bar-border-color);
+    border-radius: var(--cui-filter-bar-radius);
+    background: var(--cui-filter-bar-background);
+    color: var(--cui-filter-bar-foreground);
+    block-size: var(--cui-filter-bar-height);
+    font-size: var(--cui-filter-bar-font-size);
+  }
+
+  :where([data-control-family="filter-bar"]:is([data-slot="segment"], [data-slot="remove"])) {
+    display: inline-flex;
+    align-items: center;
+    min-inline-size: 0;
+    max-inline-size: 16rem;
+    padding-inline: var(--cui-filter-bar-padding-inline);
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    font-size: inherit;
+    gap: calc(var(--spacing) * 1.5);
+  }
+
+  :where([data-control-family="filter-bar"][data-slot="chip"] > :not(:first-child)) {
+    border-inline-start: var(--cui-filter-bar-border-width) solid var(--cui-filter-bar-border-color);
+  }
+
+  :where([data-control-family="filter-bar"]:is([data-slot="segment"], [data-slot="remove"]):focus-visible) {
+    outline: 2px solid var(--cui-filter-bar-focus-ring-color);
+    outline-offset: -2px;
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="filter-bar"]:is([data-slot="segment"], [data-slot="remove"]):enabled:hover) {
+      background: var(--cui-filter-bar-hover-background);
+    }
+  }
+
+  :where([data-control-family="filter-bar"][data-draft] [data-slot="segment"]) {
+    opacity: 1;
+    animation: cui-filter-segment-enter var(--duration-fast) var(--ease-emphasized);
+  }
+
+  :where([data-control-family="filter-bar"][data-slot="exit"]) {
+    pointer-events: none;
+    transform-origin: left center;
+    animation: cui-filter-chip-exit var(--duration-fast) var(--ease-standard) forwards;
+  }
+
+  :where([data-control-family="filter-bar"][data-slot="exit"] [data-slot="chip"]) {
+    block-size: 100%;
+  }
+
+  :where([data-control-family="filter-bar"][data-disabled]) {
+    opacity: 0.5;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-control-family="filter-bar"]),
+    :where([data-control-family="filter-bar"] *) {
+      animation: none;
+      transition: none;
+    }
+  }
+
+  :where([data-motion="reduced"] [data-control-family="filter-bar"]),
+  :where([data-motion="reduced"] [data-control-family="filter-bar"] *) {
+    animation: none;
+    transition: none;
+  }
+}
+
+@keyframes cui-filter-segment-enter {
+  from {
+    opacity: 0;
+    translate: -4px 0;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes cui-filter-chip-exit {
+  to {
+    opacity: 0;
+    transform: translateX(-4px) scale(0.97);
+  }
+}
+
+@property --cui-filter-bar-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-filter-bar-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-filter-bar-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-filter-bar-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-filter-bar-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-filter-bar-height {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-filter-bar-gap {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-filter-bar-padding-inline {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-filter-bar-font-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-filter-bar-hover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-filter-bar-focus-ring-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

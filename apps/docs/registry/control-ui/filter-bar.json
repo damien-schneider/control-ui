@@ -1,0 +1,69 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "filter-bar",
+  "type": "registry:component",
+  "title": "FilterBar",
+  "description": "Build editable field, operator, and value filters with a button or inline search.",
+  "dependencies": [
+    "@base-ui/react@^1.8.0",
+    "lucide-react@^1.47.0"
+  ],
+  "registryDependencies": [
+    "button",
+    "combobox",
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/knob-contracts/filter-bar-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/filter-bar-knobs.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/filter-bar.tsx",
+      "target": "@components/control-ui/filter-bar.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/filter-bar/context.tsx",
+      "target": "@components/control-ui/filter-bar/context.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/filter-bar/editor.tsx",
+      "target": "@components/control-ui/filter-bar/editor.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/filter-bar/model.ts",
+      "target": "@components/control-ui/filter-bar/model.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/filter-bar/motion.ts",
+      "target": "@components/control-ui/filter-bar/motion.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/filter-bar/parts.tsx",
+      "target": "@components/control-ui/filter-bar/parts.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/filter-bar/types.ts",
+      "target": "@components/control-ui/filter-bar/types.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/filter-bar.css",
+      "target": "@components/control-ui/styles/recipes/filter-bar.css",
+      "type": "registry:file"
+    }
+  ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/filter-bar.css\"": {}
+  },
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/filter-bar.json"
+  }
+}

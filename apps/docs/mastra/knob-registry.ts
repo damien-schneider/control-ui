@@ -672,7 +672,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-chat-composer-shell-radius",
         syntax: "<length>",
-        defaultValue: "var(--radius-field)",
+        defaultValue: "var(--radius-composer)",
         selector: ':where([data-control-family="chat-composer"][data-slot="root"])',
       },
       {
@@ -895,6 +895,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
           ':where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]),\n  :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"])',
       },
       {
+        name: "--cui-choice-border-width",
+        syntax: "<length>",
+        defaultValue: "1px",
+        selector:
+          ':where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]),\n  :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"])',
+      },
+      {
         name: "--cui-choice-checked-background",
         syntax: "<color>",
         defaultValue: "var(--primary)",
@@ -954,7 +961,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-code-radius",
         syntax: "<length>",
-        defaultValue: "var(--radius-panel)",
+        defaultValue: "min(var(--radius-panel), calc(var(--control-h-xs) / 2 + var(--cui-code-border-width) + var(--_code-corner-inset)))",
         selector: ':where([data-control-family="code"][data-slot="root"])',
       },
       {
@@ -1055,7 +1062,8 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-code-diff-radius",
         syntax: "<length>",
-        defaultValue: "var(--radius-panel)",
+        defaultValue:
+          "min(\n      var(--radius-panel),\n      calc(var(--control-h-xs) / 2 + var(--cui-code-diff-border-width) + var(--_code-diff-corner-inset))\n    )",
         selector: ':where([data-control-family="code-diff"][data-slot="root"])',
       },
       {
@@ -1267,7 +1275,8 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-dockable-panel-radius",
         syntax: "<length-percentage>",
-        defaultValue: "var(--radius-panel)",
+        defaultValue:
+          "min(\n      var(--radius-panel),\n      calc(var(--control-h-sm) / 2 + var(--_dockable-panel-header-inset) + var(--cui-dockable-panel-border-width))\n    )",
         selector:
           ':where([data-control-family="dockable-panel"][data-slot="root"]),\n  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-dockable-panel-root])',
       },
@@ -1656,6 +1665,77 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     ],
   },
   {
+    id: "filter-bar",
+    knobs: [
+      {
+        name: "--cui-filter-bar-background",
+        syntax: "<color>",
+        defaultValue: "var(--control-fill)",
+        selector: ':where([data-control-family="filter-bar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-filter-bar-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--control-rim)",
+        selector: ':where([data-control-family="filter-bar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-filter-bar-border-width",
+        syntax: "<length>",
+        defaultValue: "var(--control-rim-width)",
+        selector: ':where([data-control-family="filter-bar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-filter-bar-focus-ring-color",
+        syntax: "<color>",
+        defaultValue: "var(--ring)",
+        selector: ':where([data-control-family="filter-bar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-filter-bar-font-size",
+        syntax: "<length>",
+        defaultValue: "var(--text-label)",
+        selector: ':where([data-control-family="filter-bar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-filter-bar-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--foreground)",
+        selector: ':where([data-control-family="filter-bar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-filter-bar-gap",
+        syntax: "<length>",
+        defaultValue: "calc(var(--spacing) * 1.5)",
+        selector: ':where([data-control-family="filter-bar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-filter-bar-height",
+        syntax: "<length>",
+        defaultValue: "var(--control-h-sm)",
+        selector: ':where([data-control-family="filter-bar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-filter-bar-hover-background",
+        syntax: "<color>",
+        defaultValue: "var(--hover-fill)",
+        selector: ':where([data-control-family="filter-bar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-filter-bar-padding-inline",
+        syntax: "<length>",
+        defaultValue: "calc(var(--spacing) * 2)",
+        selector: ':where([data-control-family="filter-bar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-filter-bar-radius",
+        syntax: "<length>",
+        defaultValue: "var(--radius-control)",
+        selector: ':where([data-control-family="filter-bar"][data-slot="root"])',
+      },
+    ],
+  },
+  {
     id: "gradient-editor",
     knobs: [
       {
@@ -1748,9 +1828,22 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="infinite-canvas"][data-slot="root"])',
       },
       {
+        name: "--cui-infinite-canvas-controls-item-radius",
+        syntax: "<length-percentage>",
+        defaultValue: "min(var(--radius-sm), calc(var(--control-h-sm) / 2))",
+        selector: ':where([data-control-family="infinite-canvas"][data-slot="root"])',
+      },
+      {
+        name: "--cui-infinite-canvas-controls-padding",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 1)",
+        selector: ':where([data-control-family="infinite-canvas"][data-slot="root"])',
+      },
+      {
         name: "--cui-infinite-canvas-controls-radius",
         syntax: "<length-percentage>",
-        defaultValue: "var(--radius-control)",
+        defaultValue:
+          "calc(\n      var(--cui-infinite-canvas-controls-item-radius) +\n      clamp(0px, calc(var(--cui-infinite-canvas-controls-item-radius) * 1000), var(--cui-infinite-canvas-controls-padding))\n    )",
         selector: ':where([data-control-family="infinite-canvas"][data-slot="root"])',
       },
       {
@@ -1766,9 +1859,17 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="infinite-canvas"][data-slot="root"])',
       },
       {
+        name: "--cui-infinite-canvas-padding",
+        syntax: "<length-percentage>",
+        defaultValue:
+          "max(\n      calc(var(--spacing) * 2),\n      calc(var(--cui-infinite-canvas-radius) - var(--cui-infinite-canvas-controls-radius))\n    )",
+        selector: ':where([data-control-family="infinite-canvas"][data-slot="root"])',
+      },
+      {
         name: "--cui-infinite-canvas-radius",
         syntax: "<length-percentage>",
-        defaultValue: "var(--radius-panel)",
+        defaultValue:
+          "max(\n      var(--radius-panel),\n      calc(\n        var(--cui-infinite-canvas-controls-radius) +\n        clamp(0px, calc(var(--cui-infinite-canvas-controls-radius) * 1000), var(--spacing) * 2)\n      )\n    )",
         selector: ':where([data-control-family="infinite-canvas"][data-slot="root"])',
       },
     ],
@@ -1846,7 +1947,8 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-inline-attachment-radius",
         syntax: "<length>",
-        defaultValue: "var(--radius-field)",
+        defaultValue:
+          "min(\n      var(--radius-field),\n      calc(var(--cui-inline-attachment-padding) + var(--_inline-attachment-content-line-height) / 2 + var(--spacing))\n    )",
         selector: ':where([data-control-family="inline-attachment"][data-slot="root"])',
       },
       {

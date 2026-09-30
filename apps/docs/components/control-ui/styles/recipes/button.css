@@ -47,7 +47,7 @@
     --cui-button-open-background: var(--cui-button-hover-background);
     --cui-button-open-foreground: var(--cui-button-hover-foreground);
     --cui-button-open-shadow: var(--cui-button-shadow);
-    border-radius: var(--cui-button-radius);
+    border-radius: var(--nest-radius, var(--cui-button-radius));
     background-color: var(--cui-button-background);
     background-image: var(--cui-button-background-image);
     box-shadow: var(--cui-button-shadow);

@@ -10,7 +10,7 @@
       "name": "--cui-inline-attachment-radius",
       "syntax": "<length>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-field)"
+      "defaultValue": "min(\n      var(--radius-field),\n      calc(var(--cui-inline-attachment-padding) + var(--_inline-attachment-content-line-height) / 2 + var(--spacing))\n    )"
     },
     {
       "name": "--cui-inline-attachment-background",

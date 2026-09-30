@@ -257,8 +257,6 @@ export const componentEntries = [
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/audio-visualizer").then((mod) => ({ default: mod.AudioVisualizerExample })),
     ),
-    // Usage versions: sibling registry items sharing AudioVisualizer export + AudioVisualizerProps contract.
-    // NOT component versions (one registry name never has two contents) — page shows picker, consumer installs one.
     versions: [
       {
         id: "bars",
@@ -328,8 +326,6 @@ export const componentEntries = [
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/dynamic-notification").then((mod) => ({ default: mod.DynamicNotificationExample })),
     ),
-    // Usage versions of ONE registry item (all three keep parent registryKind): picker swaps
-    // documented island material; switching later is a `variant` prop change, not reinstall.
     versions: [
       {
         id: "liquid",
@@ -369,6 +365,47 @@ export const componentEntries = [
           import("@/src/registry/examples/control-ui/dynamic-notification-surface").then((mod) => ({
             default: mod.DynamicNotificationSurfaceExample,
           })),
+        ),
+      },
+    ],
+  },
+  {
+    id: "filter-bar",
+    category: "forms",
+    kind: "Component",
+    name: "FilterBar",
+    summary: "Build editable field, operator, and value filters with a button or inline search.",
+    registryKind: "filter-bar",
+    paths: {
+      example: sourceFile("Example", "src/registry/examples/control-ui/filter-bar.tsx", "example"),
+      usage: {
+        mastra: sourceFile("Usage", "src/registry/usage/components/filter-bar.tsx", "usage"),
+        "ai-sdk": sourceFile("Usage", "src/registry/usage/components/filter-bar.tsx", "usage"),
+      },
+      source: sourceFile("Component", "src/registry/sources/control-ui/filter-bar.tsx", "component"),
+      supportFiles: [sourceFile("Filter bar recipe", "src/registry/sources/control-ui/recipes/filter-bar.css", "recipe-css")],
+    },
+    preview: preview(() => import("@/src/registry/examples/control-ui/filter-bar").then((mod) => ({ default: mod.FilterBarExample }))),
+    previewClassName: "min-h-[360px] items-start",
+    additionalPreviews: [
+      {
+        id: "input",
+        previewClassName: "min-h-[340px] items-start",
+        title: "Inline search",
+        description: "Type to build filters directly in the bar. Both entry points use the same editor.",
+        source: sourceFile("Inline search example", "src/registry/examples/control-ui/filter-bar.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/filter-bar").then((mod) => ({ default: mod.FilterBarInputExample })),
+        ),
+      },
+      {
+        id: "remote",
+        previewClassName: "min-h-[160px] items-start",
+        title: "Remote value search",
+        description: "The host supplies matching values, loading and error states, and keeps selected labels available.",
+        source: sourceFile("Remote search example", "src/registry/examples/control-ui/filter-bar-remote.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/filter-bar-remote").then((mod) => ({ default: mod.FilterBarRemoteExample })),
         ),
       },
     ],

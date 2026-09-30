@@ -1,6 +1,5 @@
 import { type ComponentType, type LazyExoticComponent, lazy } from "react";
 
-// shadcn compatibility is contract over shared tokens and APIs, not parallel source tree; skin is separate axis and never ships component source.
 export const integrationIds = ["mastra", "ai-sdk"] as const;
 export const registryKindIds = [
   "email",
@@ -25,6 +24,7 @@ export const registryKindIds = [
   "audio-visualizer-line",
   "dynamic-notification",
   "environment-variables",
+  "filter-bar",
   "chat-block",
   "coding-agent-block",
   "file-explorer-block",
@@ -110,7 +110,6 @@ export const registryKindIds = [
   "send-aurora",
 ] as const;
 
-// Absence IS "stable", so no item can drift into claiming stability it never declared.
 const catalogStatusIds = ["beta", "experimental"] as const;
 
 export type CatalogIntegrationId = (typeof integrationIds)[number];
@@ -124,7 +123,6 @@ export type CatalogSourceFile = {
 
 export type IntegrationPreviewProps = { integration?: CatalogIntegrationId };
 
-// `integration` is the only prop renderer passes and it is optional, so preview ignoring props stays assignable and no generic needs asserting away.
 type PreviewLoader = () => Promise<{ default: ComponentType<IntegrationPreviewProps> }>;
 export type CatalogPreview = {
   Component: LazyExoticComponent<ComponentType<IntegrationPreviewProps>>;
@@ -145,8 +143,6 @@ export function includesString<T extends string>(values: readonly T[], value: st
   return values.some((item) => item === value);
 }
 
-// tier where no entry declares status drops it from whole union, so an `in` narrow would type it `unknown`.
-// `id` is required only to anchor parameter — all-optional type would reject every entry as weak.
 export function catalogStatus(entry: { id: string; status?: CatalogStatus }): CatalogStatus | undefined {
   return entry.status;
 }

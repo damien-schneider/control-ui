@@ -59,6 +59,7 @@
 @import "../src/registry/sources/control-ui/recipes/audio-recorder.css";
 @import "../src/registry/sources/control-ui/recipes/audio-visualizer.css";
 @import "../src/registry/sources/control-ui/recipes/environment-variables.css";
+@import "../src/registry/sources/control-ui/recipes/filter-bar.css";
 @import "../src/registry/sources/control-ui/recipes/inline-citation.css";
 @import "../src/registry/sources/control-ui/recipes/code.css";
 @import "../src/registry/sources/control-ui/recipes/code-diff.css";
@@ -91,6 +92,8 @@
 @import "../src/registry/skin-packs/windows-98/skin.css";
 @import "../src/registry/skin-packs/rig/theme.css";
 @import "../src/registry/skin-packs/rig/skin.css";
+@import "../src/registry/skin-packs/sketch/theme.css";
+@import "../src/registry/skin-packs/sketch/skin.css";
 @import "../src/registry/skin-packs/liquid-metal/theme.css";
 @import "../src/registry/skin-packs/liquid-metal/skin.css";
 @import "../src/registry/skin-packs/modern-apple/theme.css";

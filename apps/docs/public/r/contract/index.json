@@ -148,7 +148,7 @@
         "checkbox",
         "radio-group"
       ],
-      "knobs": 5,
+      "knobs": 6,
       "probes": 0
     },
     "code": {
@@ -239,6 +239,13 @@
       "knobs": 11,
       "probes": 0
     },
+    "filter-bar": {
+      "registryItems": [
+        "filter-bar"
+      ],
+      "knobs": 11,
+      "probes": 0
+    },
     "gradient-editor": {
       "registryItems": [
         "gradient-editor"
@@ -250,7 +257,7 @@
       "registryItems": [
         "infinite-canvas"
       ],
-      "knobs": 8,
+      "knobs": 11,
       "probes": 2
     },
     "inline-attachment": {
@@ -356,7 +363,7 @@
         "trigger-menu"
       ],
       "knobs": 17,
-      "probes": 101
+      "probes": 109
     },
     "progressive-blur": {
       "registryItems": [

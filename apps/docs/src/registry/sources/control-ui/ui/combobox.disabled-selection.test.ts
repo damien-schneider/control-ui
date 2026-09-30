@@ -26,4 +26,12 @@ describe("Combobox disabled selection guard", () => {
     expect(shouldAcceptComboboxValueChange(enabledValue, disabledValues)).toBe(true);
     expect(shouldAcceptComboboxValueChange(null, disabledValues)).toBe(true);
   });
+  test("multiple selection rejects disabled additions and accepts clearing", () => {
+    const disabled = { value: "disabled", label: "Unavailable" };
+    const enabled = { value: "enabled", label: "Available" };
+    const disabledValues = new Set<unknown>([disabled]);
+    expect(shouldAcceptComboboxValueChange([enabled, disabled], disabledValues, true)).toBe(false);
+    expect(shouldAcceptComboboxValueChange([enabled], disabledValues, true)).toBe(true);
+    expect(shouldAcceptComboboxValueChange([], disabledValues, true)).toBe(true);
+  });
 });

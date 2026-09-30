@@ -391,7 +391,6 @@
     --cui-chat-composer-shell-background: oklch(from var(--background) l c h / 0.75);
     --cui-chat-composer-shell-backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.8);
     --cui-chat-composer-shell-border-color: var(--input);
-    --cui-chat-composer-shell-radius: var(--radius-control);
     --cui-chat-composer-shell-shadow: var(--shadow-inset);
     --cui-chat-composer-input-foreground: var(--foreground);
   }

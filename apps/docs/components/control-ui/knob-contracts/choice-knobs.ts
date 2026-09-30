@@ -2,6 +2,7 @@
 export const choiceKnobs = [
   "--cui-choice-radius",
   "--cui-choice-border-color",
+  "--cui-choice-border-width",
   "--cui-choice-checked-background",
   "--cui-choice-checked-border-color",
   "--cui-choice-shadow",

@@ -79,3 +79,24 @@ export function SidebarActions() {
     </SidebarGroupContent>
   );
 }
+
+export function MultipleRepositorySearch() {
+  return (
+    <Combobox
+      multiple
+      items={[{ name: "Control UI", slug: "ctrl-ui" }]}
+      onValueChange={(repositories) => repositories.map((repository) => repository.slug)}
+      itemToStringLabel={(repository) => repository.name}
+    >
+      <ComboboxContent initialFocus={false} finalFocus={false}>
+        <ComboboxList<{ name: string; slug: string }>>
+          {(repository) => (
+            <ComboboxItem value={repository} key={repository.slug}>
+              {repository.name}
+            </ComboboxItem>
+          )}
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
+  );
+}

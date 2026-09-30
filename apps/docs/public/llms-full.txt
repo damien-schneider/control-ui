@@ -51,6 +51,7 @@
 - `thread-rail` (ThreadRail) — Conversation minimap for scanning and jumping between chat turns. — `npx shadcn@latest add http://127.0.0.1:3000/r/thread-rail.json`
 
 **Forms** — Capture a value from the user — typed, picked, toggled, or uploaded — plus the scaffolding that labels and validates it.
+- `filter-bar` (FilterBar) — Build editable field, operator, and value filters with a button or inline search. — `npx shadcn@latest add http://127.0.0.1:3000/r/filter-bar.json`
 - `environment-variables` (EnvironmentVariables) **[experimental]** — Composable environment variable editor with .env upload, bulk paste, reveal controls, and submit helpers. — `npx shadcn@latest add http://127.0.0.1:3000/r/environment-variables.json`
 
 **Feedback** — Tell the user what just happened, what is loading, or what is missing.
@@ -173,6 +174,7 @@
 - `windows-98` (Windows 98) — Classic Windows 98 with bitmap system typography, raised gray controls, recessed fields, navy title bars, and Explorer tree navigation. Fixed to its original light palette. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-windows-98.json --overwrite`
 - `liquid-metal` (Liquid metal) — Polished metal skin with a WebGL shader control surface. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-liquid-metal.json --overwrite`
 - `rig` (Rig) — Brutalist skin with coral accents, squared corners, and dense typography. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-rig.json --overwrite`
+- `sketch` (Sketch) — Hand-drawn pencil outlines, Excalifont handwriting, and neutral paper surfaces. A clean sketchbook for prototypes and everyday interfaces. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-sketch.json --overwrite`
 - `none` (No skin) — Control UI defaults: neutral colors, square corners, and no shadows. No skin required.
 - `modern-apple` (macOS) — Apple-inspired glass skin with live backdrop blur, SVG edge refraction, paired light and dark rims, and a flush sidebar. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-modern-apple.json --overwrite`
 - `cuicui` (Cuicui) — Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor). — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-cuicui.json --overwrite`

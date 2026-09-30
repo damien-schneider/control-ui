@@ -209,6 +209,7 @@
   --z-tooltip: 90;
   --z-toast: 95;
   --popover-padding: 0.25rem;
+  --composer-padding: calc(var(--spacing) * 2.5);
   --font-body: var(--font-sans);
   --font-display: var(--font-sans);
   --primary-text: var(--scale-primary-11);
@@ -253,6 +254,10 @@
   --corner-shape: round;
   --corner-radius-fit: 0.5;
   --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding)));
+  --radius-composer: calc(
+    min(var(--radius-control), calc(var(--control-h-xs) / 2)) +
+    clamp(0px, min(var(--radius-control), calc(var(--control-h-xs) / 2)) * 1000, var(--composer-padding) + var(--control-rim-width))
+  );
 
   --shadow-highlight: oklch(1 0 0 / 0.62);
   --shadow-y: 1;
@@ -307,8 +312,6 @@
   --radius-xl: calc(var(--radius) * 1.4);
   --radius-2xl: calc(var(--radius) * 1.6);
   --radius-popup-item-fit: min(var(--radius-popup-item), calc(var(--control-h-xs) / 2));
-  --nest-safe: 1px;
-  --nest-corner-ratio: 3.41421356;
   --control-h-md: var(--control-h);
   --sidebar: var(--canvas);
   --sidebar-foreground: var(--foreground);
@@ -604,6 +607,10 @@
         --radius-popup-item: calc(var(--radius-control) * 0.6);
         --radius-popup-item-fit: min(var(--radius-popup-item), calc(var(--control-h-xs) / 2));
         --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding)));
+        --radius-composer: calc(
+          min(var(--radius-control), calc(var(--control-h-xs) / 2)) +
+          clamp(0px, min(var(--radius-control), calc(var(--control-h-xs) / 2)) * 1000, var(--composer-padding) + var(--control-rim-width))
+        );
 
         --radius-sm: calc(var(--radius) * 0.6 * var(--corner-radius-fit));
         --radius-md: calc(var(--radius) * 0.8 * var(--corner-radius-fit));

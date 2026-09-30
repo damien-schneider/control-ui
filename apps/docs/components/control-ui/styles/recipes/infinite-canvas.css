@@ -1,10 +1,25 @@
 @layer components {
   :where([data-control-family="infinite-canvas"][data-slot="root"]) {
-    --cui-infinite-canvas-radius: var(--radius-panel);
     --cui-infinite-canvas-background: var(--canvas);
     --cui-infinite-canvas-grid-dot-color: oklch(from var(--foreground) l c h / 0.16);
     --cui-infinite-canvas-border-color: var(--border);
-    --cui-infinite-canvas-controls-radius: var(--radius-control);
+    --cui-infinite-canvas-controls-item-radius: min(var(--radius-sm), calc(var(--control-h-sm) / 2));
+    --cui-infinite-canvas-controls-padding: calc(var(--spacing) * 1);
+    --cui-infinite-canvas-controls-radius: calc(
+      var(--cui-infinite-canvas-controls-item-radius) +
+      clamp(0px, calc(var(--cui-infinite-canvas-controls-item-radius) * 1000), var(--cui-infinite-canvas-controls-padding))
+    );
+    --cui-infinite-canvas-radius: max(
+      var(--radius-panel),
+      calc(
+        var(--cui-infinite-canvas-controls-radius) +
+        clamp(0px, calc(var(--cui-infinite-canvas-controls-radius) * 1000), var(--spacing) * 2)
+      )
+    );
+    --cui-infinite-canvas-padding: max(
+      calc(var(--spacing) * 2),
+      calc(var(--cui-infinite-canvas-radius) - var(--cui-infinite-canvas-controls-radius))
+    );
     --cui-infinite-canvas-controls-background: var(--card);
     --cui-infinite-canvas-controls-border-color: var(--border);
     --cui-infinite-canvas-controls-shadow: var(--shadow-sm);
@@ -28,8 +43,11 @@
   }
 
   :where([data-control-family="infinite-canvas"][data-slot="controls"]) {
+    --nest-radius: var(--cui-infinite-canvas-controls-item-radius);
+    inset-inline-end: var(--cui-infinite-canvas-padding);
+    inset-block-end: var(--cui-infinite-canvas-padding);
     gap: calc(var(--spacing) * 0.5);
-    padding: calc(var(--spacing) * 1);
+    padding: var(--cui-infinite-canvas-controls-padding);
     border-radius: var(--cui-infinite-canvas-controls-radius);
     background-color: var(--cui-infinite-canvas-controls-background);
     box-shadow:
@@ -64,6 +82,24 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-infinite-canvas-padding {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-infinite-canvas-controls-item-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-infinite-canvas-controls-padding {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-infinite-canvas-controls-radius {

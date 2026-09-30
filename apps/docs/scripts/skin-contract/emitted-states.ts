@@ -55,6 +55,9 @@ import type { ToolbarLinkVariant, ToolbarVariant } from "../../src/registry/sour
 import type { TreeSelectionIndicator } from "../../src/registry/sources/control-ui/ui/tree";
 
 export type EmittedStateContract = {
+  "filter-bar:root:data-disabled": true;
+  "filter-bar:root:data-readonly": true;
+  "filter-bar:chip:data-draft": true;
   "switch:root:data-drag-checked": boolean;
   "activity:root:data-activity-kind": ActivityKind;
   "activity:root:data-activity-name": string;

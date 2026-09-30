@@ -59,7 +59,8 @@
         [data-control-family="checkbox-group"]
       )
       > [data-control-family="track-highlight"]
-  ) {
+  ),
+  :where([data-track]:has(> [data-control-family="button"][data-track-item]) > [data-control-family="track-highlight"]) {
     --cui-track-highlight-radius: var(--radius-control);
   }
 

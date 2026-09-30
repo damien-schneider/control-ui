@@ -8,6 +8,7 @@ import { skin as liquidMetalPack } from "@/src/registry/skin-packs/liquid-metal/
 import { skin as modernApplePack } from "@/src/registry/skin-packs/modern-apple/skin.config";
 import { skin as refinedPack } from "@/src/registry/skin-packs/refined/skin.config";
 import { skin as rigPack } from "@/src/registry/skin-packs/rig/skin.config";
+import { skin as sketchPack } from "@/src/registry/skin-packs/sketch/skin.config";
 import { skin as windows98Pack } from "@/src/registry/skin-packs/windows-98/skin.config";
 import { skin as xpPack } from "@/src/registry/skin-packs/xp/skin.config";
 
@@ -17,6 +18,7 @@ export const SKIN_CONFIGS: Record<SkinMetaId, ControlUiSkin> = {
   "windows-98": windows98Pack,
   "liquid-metal": liquidMetalPack,
   rig: rigPack,
+  sketch: sketchPack,
   none: { id: "none" },
   "modern-apple": modernApplePack,
   cuicui: cuicuiPack,

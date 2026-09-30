@@ -73,11 +73,6 @@
   :where([data-control-family="popup"][data-popup-part="list-surface"]) {
     padding: var(--popover-padding);
   }
-  :where([data-control-family="popup"][data-popup-part="bar"]) {
-    --cui-popup-radius: var(--radius-control);
-    --cui-popup-background: var(--card);
-    --cui-popup-shadow: var(--shadow-xs);
-  }
   :where([data-control-family="popup"][data-popup-part="surface"][data-surface="modal"]) {
     --cui-popup-radius: var(--radius-panel);
     --cui-popup-shadow: var(--shadow-modal);

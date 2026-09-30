@@ -1,0 +1,142 @@
+{
+  "version": 9,
+  "family": "filter-bar",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "filter-bar"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-filter-bar-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--control-fill)"
+    },
+    {
+      "name": "--cui-filter-bar-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-filter-bar-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--control-rim)"
+    },
+    {
+      "name": "--cui-filter-bar-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--control-rim-width)"
+    },
+    {
+      "name": "--cui-filter-bar-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-filter-bar-height",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--control-h-sm)"
+    },
+    {
+      "name": "--cui-filter-bar-gap",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 1.5)"
+    },
+    {
+      "name": "--cui-filter-bar-padding-inline",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 2)"
+    },
+    {
+      "name": "--cui-filter-bar-font-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--text-label)"
+    },
+    {
+      "name": "--cui-filter-bar-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--hover-fill)"
+    },
+    {
+      "name": "--cui-filter-bar-focus-ring-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--ring)"
+    }
+  ],
+  "parts": {
+    "filter-bar": {
+      "root": {
+        "family": "filter-bar",
+        "registryItems": [
+          "filter-bar"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-readonly",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "chip": {
+        "family": "filter-bar",
+        "registryItems": [
+          "filter-bar"
+        ],
+        "states": [
+          {
+            "attribute": "data-draft",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "exit": {
+        "family": "filter-bar",
+        "registryItems": [
+          "filter-bar"
+        ],
+        "states": []
+      },
+      "remove": {
+        "family": "filter-bar",
+        "registryItems": [
+          "filter-bar"
+        ],
+        "states": []
+      },
+      "segment": {
+        "family": "filter-bar",
+        "registryItems": [
+          "filter-bar"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-filter-bar-background",
+    "--cui-filter-bar-foreground",
+    "--cui-filter-bar-hover-background"
+  ],
+  "contrast": "/r/contract/filter-bar.contrast.json"
+}

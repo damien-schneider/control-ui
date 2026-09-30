@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 179,
+    "count": 181,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -46,6 +46,14 @@
         "summary": "Brutalist skin with coral accents, squared corners, and dense typography.",
         "manifestUrl": "http://127.0.0.1:3000/r/all-rig.json",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-rig.json"
+      },
+      {
+        "id": "all-sketch",
+        "skin": "sketch",
+        "name": "All components — Sketch",
+        "summary": "Hand-drawn pencil outlines, Excalifont handwriting, and neutral paper surfaces. A clean sketchbook for prototypes and everyday interfaces.",
+        "manifestUrl": "http://127.0.0.1:3000/r/all-sketch.json",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-sketch.json"
       },
       {
         "id": "all",
@@ -291,6 +299,14 @@
         "summary": "Brutalist skin with coral accents, squared corners, and dense typography.",
         "href": "/skins/rig",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-rig.json --overwrite"
+      },
+      {
+        "id": "sketch",
+        "name": "Sketch",
+        "kind": "Skin",
+        "summary": "Hand-drawn pencil outlines, Excalifont handwriting, and neutral paper surfaces. A clean sketchbook for prototypes and everyday interfaces.",
+        "href": "/skins/sketch",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-sketch.json --overwrite"
       },
       {
         "id": "none",
@@ -635,6 +651,14 @@
         "href": "/components/dynamic-notification",
         "status": "experimental",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/dynamic-notification.json"
+      },
+      {
+        "id": "filter-bar",
+        "name": "FilterBar",
+        "kind": "Component",
+        "summary": "Build editable field, operator, and value filters with a button or inline search.",
+        "href": "/components/filter-bar",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/filter-bar.json"
       },
       {
         "id": "environment-variables",

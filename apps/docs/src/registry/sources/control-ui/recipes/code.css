@@ -3,7 +3,8 @@
     --cui-code-background: var(--background);
     --cui-code-border-color: var(--control-rim);
     --cui-code-border-width: 1px;
-    --cui-code-radius: var(--radius-panel);
+    --_code-corner-inset: calc(var(--spacing) * 1.5);
+    --cui-code-radius: min(var(--radius-panel), calc(var(--control-h-xs) / 2 + var(--cui-code-border-width) + var(--_code-corner-inset)));
     --cui-code-shadow: var(--shadow-sm);
     --cui-code-text-foreground: var(--code-foreground);
     --cui-code-title-foreground: var(--muted-foreground);
@@ -27,12 +28,19 @@
   :where([data-control-family="code"][data-slot="header"]) {
     min-block-size: calc(var(--spacing) * 10);
     gap: calc(var(--spacing) * 3);
-    padding-block: calc(var(--spacing) * 1.5);
-    padding-inline: calc(var(--spacing) * 3);
+    padding-block: var(--_code-corner-inset);
+    padding-inline: calc(var(--spacing) * 3) var(--_code-corner-inset);
     border-bottom: 1px solid var(--border);
   }
 
+  :where([data-control-family="code"][data-slot="floating-frame"] > [data-control-family="button"][data-code-floating="true"]) {
+    --nest-radius: max(0px, calc(var(--cui-code-radius) - var(--cui-code-border-width) - var(--_code-corner-inset)));
+    inset-block-start: var(--_code-corner-inset);
+    inset-inline-end: var(--_code-corner-inset);
+  }
+
   :where([data-control-family="code"][data-slot="actions"]) {
+    --nest-radius: max(0px, calc(var(--cui-code-radius) - var(--cui-code-border-width) - var(--_code-corner-inset)));
     gap: calc(var(--spacing) * 1);
     margin-inline-start: auto;
   }

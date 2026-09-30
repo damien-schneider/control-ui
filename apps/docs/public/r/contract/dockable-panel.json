@@ -10,7 +10,7 @@
       "name": "--cui-dockable-panel-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-panel)"
+      "defaultValue": "min(\n      var(--radius-panel),\n      calc(var(--control-h-sm) / 2 + var(--_dockable-panel-header-inset) + var(--cui-dockable-panel-border-width))\n    )"
     },
     {
       "name": "--cui-dockable-panel-background",

@@ -10,7 +10,7 @@
       "name": "--cui-code-radius",
       "syntax": "<length>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-panel)"
+      "defaultValue": "min(var(--radius-panel), calc(var(--control-h-xs) / 2 + var(--cui-code-border-width) + var(--_code-corner-inset)))"
     },
     {
       "name": "--cui-code-background",
