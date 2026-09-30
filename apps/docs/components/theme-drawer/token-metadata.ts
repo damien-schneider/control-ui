@@ -3,9 +3,6 @@ import { BADGE_COLORS } from "@/src/registry/sources/control-ui/ui/badge";
 import { TOKEN_GROUP_ORDER, TOKEN_GROUP_TITLES } from "./theme-categories";
 import { CORNER_LABEL, EASE, EASE_LABEL, FONT, FONT_LABEL, FONT_MONO, FONT_MONO_LABEL } from "./types";
 
-// Decides only how token is EDITED; lib/theme-contract.ts stays source of names, groups, and tiers.
-// token added there appears here automatically, on text-input fallback until it earns richer spec.
-
 export type SliderSpec = { kind: "slider"; min: number; max: number; step: number; unit: "px" | "ms" | "" };
 export type SelectOption = { label: string; value: string };
 export type SelectSpec = { kind: "select"; options: readonly SelectOption[] };
@@ -19,7 +16,6 @@ const slider = (min: number, max: number, step: number, unit: SliderSpec["unit"]
   unit,
 });
 
-// select authors raw CSS value; off-preset skin value shows as "Custom"
 const FONT_OPTIONS: readonly SelectOption[] = [
   { label: FONT_LABEL.mono, value: FONT.mono },
   { label: FONT_LABEL.system, value: FONT.system },
@@ -41,7 +37,6 @@ const CORNER_OPTIONS: readonly SelectOption[] = [
   { label: CORNER_LABEL.scoop, value: "scoop" },
 ];
 
-// absent token falls through to generic rules, then raw text input — never hidden
 const SLIDER_SPECS: Record<string, SliderSpec> = {
   "--radius": slider(0, 32, 1, "px"),
   "--radius-sm": slider(0, 48, 1, "px"),
@@ -55,6 +50,7 @@ const SLIDER_SPECS: Record<string, SliderSpec> = {
   "--radius-scene": slider(0, 48, 1, "px"),
   "--radius-popup-item": slider(0, 48, 1, "px"),
   "--radius-popover": slider(0, 48, 1, "px"),
+  "--control-rim-width": slider(0, 4, 0.5, "px"),
   "--ring-opacity": slider(0, 1, 0.01, ""),
   "--popover-opacity": slider(0, 1, 0.01, ""),
   "--overlay-opacity": slider(0, 1, 0.01, ""),
@@ -102,7 +98,6 @@ export function tokenControlSpec(token: ThemeContractToken): TokenControlSpec {
   return { kind: "text" };
 }
 
-// colour-valued token is one theme.css re-values under `.dark`, so its overrides scope per mode. Opacity knobs sit in colour group but hold numbers, so they stay mode-agnostic.
 const COLOR_VALUED = new Set(
   THEME_CONTRACT.flatMap((token) =>
     (token.group === "color" && !token.name.endsWith("-opacity")) || token.name === "--shadow-color" || token.name === "--shadow-highlight"
@@ -142,6 +137,7 @@ const FRIENDLY_LABELS: Record<string, string> = {
   "--ring": "Focus ring",
   "--canvas": "Page canvas",
   "--ring-opacity": "Border opacity",
+  "--control-rim-width": "Border width",
   "--popup-item-foreground": "Menu row text",
   "--popup-item-highlight-background": "Menu row highlight",
   "--font-sans": "UI typeface",
@@ -187,7 +183,6 @@ const FRIENDLY_LABELS: Record<string, string> = {
   "--control-h-lg": "Control height lg",
 };
 
-// "--text-heading-1--line-height" → "Text heading 1 line height"
 function humanize(name: string): string {
   const words = name.replace(/^--/, "").split("-").filter(Boolean).join(" ");
   return words.charAt(0).toUpperCase() + words.slice(1);

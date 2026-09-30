@@ -23,7 +23,7 @@
       "name": "--cui-choice-border-width",
       "syntax": "<length>",
       "initialValue": "1px",
-      "defaultValue": "1px"
+      "defaultValue": "var(--control-rim-width)"
     },
     {
       "name": "--cui-choice-checked-background",
@@ -41,7 +41,7 @@
       "name": "--cui-choice-shadow",
       "syntax": "*",
       "initialValue": "none",
-      "defaultValue": "var(--shadow-sm)"
+      "defaultValue": "inset 0 0 0 var(--cui-choice-border-width) var(--cui-choice-border-color), var(--shadow-sm)"
     }
   ],
   "parts": {

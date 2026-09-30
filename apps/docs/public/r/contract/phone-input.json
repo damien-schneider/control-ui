@@ -16,7 +16,7 @@
       "name": "--cui-phone-input-country-border-width",
       "syntax": "<length>",
       "initialValue": "0px",
-      "defaultValue": "1px"
+      "defaultValue": "var(--control-rim-width)"
     },
     {
       "name": "--cui-phone-input-trigger-hover-background",

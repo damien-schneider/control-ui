@@ -3,7 +3,7 @@
     --cui-card-radius: var(--radius-lg);
     --cui-card-background: var(--card);
     --cui-card-border-color: var(--border);
-    --cui-card-border-width: 1px;
+    --cui-card-border-width: var(--control-rim-width);
     --cui-card-shadow: var(--shadow-sm);
     --cui-card-backdrop-filter: none;
     border: var(--cui-card-border-width) solid var(--cui-card-border-color);

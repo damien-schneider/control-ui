@@ -83,12 +83,7 @@ export function InstallPaths({ current }: { current: InstallPathId }) {
 
 export function GuideCheck({ children }: { children: ReactNode }) {
   return (
-    <Card
-      className="mt-4 gap-1 px-4 py-3"
-      style={{
-        "--cui-card-border-color": "oklch(from var(--primary) l c h / 0.25)",
-      }}
-    >
+    <Card className="mt-4 gap-1 px-4 py-3">
       <span className="text-caption font-medium text-primary-text">What you should see now</span>
       <div className="text-body leading-6 text-foreground [&>p]:text-pretty">{children}</div>
     </Card>

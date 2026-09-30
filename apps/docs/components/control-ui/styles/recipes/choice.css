@@ -4,17 +4,15 @@
     inline-size: calc(var(--spacing) * 4);
     block-size: calc(var(--spacing) * 4);
     --cui-choice-radius: var(--radius-sm);
-    --cui-choice-shadow: var(--shadow-sm);
+    --cui-choice-shadow: inset 0 0 0 var(--cui-choice-border-width) var(--cui-choice-border-color), var(--shadow-sm);
     --cui-choice-border-color: var(--border);
-    --cui-choice-border-width: 1px;
+    --cui-choice-border-width: var(--control-rim-width);
     --cui-choice-checked-background: var(--primary);
     --cui-choice-checked-border-color: var(--primary);
     --_choice-background: var(--control-fill);
     border-radius: var(--cui-choice-radius);
     background: var(--_choice-background);
-    box-shadow:
-      inset 0 0 0 var(--cui-choice-border-width) var(--cui-choice-border-color),
-      var(--cui-choice-shadow);
+    box-shadow: var(--cui-choice-shadow);
     color: currentColor;
     outline: none;
     transition-property: background-color, color;
@@ -48,8 +46,7 @@
   :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"][data-invalid]) {
     --cui-choice-border-color: var(--destructive);
     box-shadow:
-      inset 0 0 0 var(--cui-choice-border-width) var(--cui-choice-border-color),
-      var(--shadow-sm),
+      var(--cui-choice-shadow),
       0 0 0 1px var(--destructive);
   }
 

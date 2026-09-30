@@ -35,7 +35,7 @@
 
   :where([data-control-family="item"][data-slot="root"][data-variant="outline"]) {
     --_item-border-color: var(--border);
-    --cui-item-border-width: 1px;
+    --cui-item-border-width: var(--control-rim-width);
   }
 
   :where([data-control-family="item"][data-slot="root"][data-variant="muted"]) {

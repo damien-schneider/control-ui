@@ -4,10 +4,10 @@
     --cui-markdown-block-radius: var(--radius-panel);
     --cui-markdown-block-background: var(--background);
     --cui-markdown-block-border-color: var(--border);
-    --cui-markdown-block-border-width: 1px;
+    --cui-markdown-block-border-width: var(--control-rim-width);
     --cui-markdown-block-shadow: var(--shadow-sm);
     --cui-markdown-block-header-border-color: var(--border);
-    --cui-markdown-block-header-border-width: 1px;
+    --cui-markdown-block-header-border-width: var(--control-rim-width);
     --cui-markdown-block-icon-background: oklch(from var(--foreground) l c h / 0.08);
     background: var(--cui-markdown-block-background);
     border: var(--cui-markdown-block-border-width) solid var(--cui-markdown-block-border-color);

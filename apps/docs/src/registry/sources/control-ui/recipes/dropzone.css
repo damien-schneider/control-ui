@@ -3,7 +3,7 @@
     --cui-dropzone-surface-radius: var(--radius-panel);
     --cui-dropzone-surface-foreground: var(--foreground);
     --cui-dropzone-surface-border-color: var(--border);
-    --cui-dropzone-surface-border-width: 1px;
+    --cui-dropzone-surface-border-width: var(--control-rim-width);
     --cui-dropzone-accept-border-color: var(--primary);
     --cui-dropzone-reject-border-color: var(--destructive);
     --cui-dropzone-overlay-background: oklch(from var(--card) l c h / 0.95);

@@ -8,7 +8,7 @@
     --cui-inline-citation-quote-radius: var(--radius-control);
     --cui-inline-citation-trigger-background: oklch(from var(--muted) l c h / 0.55);
     --cui-inline-citation-trigger-border-color: var(--border);
-    --cui-inline-citation-trigger-border-width: 1px;
+    --cui-inline-citation-trigger-border-width: var(--control-rim-width);
     --cui-inline-citation-trigger-foreground: var(--muted-foreground);
     --cui-inline-citation-trigger-hover-background: var(--muted);
     --cui-inline-citation-trigger-hover-foreground: var(--foreground);

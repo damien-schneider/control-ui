@@ -3,7 +3,7 @@
     --cui-resizable-group-background: var(--card);
     --cui-resizable-group-radius: var(--radius-panel);
     --cui-resizable-group-border-color: var(--border);
-    --cui-resizable-group-border-width: 1px;
+    --cui-resizable-group-border-width: var(--control-rim-width);
     --cui-resizable-handle-color: var(--foreground);
     --cui-resizable-handle-hover-background: oklch(from var(--foreground) l c h / 0.25);
     --cui-resizable-handle-active-background: oklch(from var(--foreground) l c h / 0.4);

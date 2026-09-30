@@ -90,7 +90,7 @@
     block-size: 13px;
     color: var(--foreground);
     background-color: var(--background);
-    --cui-choice-shadow: var(--win98-sunken);
+    --cui-choice-shadow: inset 0 0 0 var(--cui-choice-border-width) var(--cui-choice-border-color), var(--win98-sunken);
   }
   [data-skin="windows-98"] :where([data-control-family="choice"][data-slot="root"][data-choice-kind="checkbox"]) {
     --cui-choice-radius: 0px;

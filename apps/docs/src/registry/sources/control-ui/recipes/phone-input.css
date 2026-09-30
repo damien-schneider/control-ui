@@ -1,7 +1,7 @@
 @layer components {
   :where([data-control-family="field"][data-field-kind="phone-input"][data-slot="root"]) {
     --cui-phone-input-country-border-color: var(--border);
-    --cui-phone-input-country-border-width: 1px;
+    --cui-phone-input-country-border-width: var(--control-rim-width);
     --cui-phone-input-trigger-hover-background: oklch(from var(--foreground) l c h / 0.06);
     --cui-phone-input-trigger-focus-background: oklch(from var(--foreground) l c h / 0.06);
     --cui-phone-input-metadata-foreground: var(--muted-foreground);

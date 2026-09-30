@@ -79,7 +79,7 @@
   }
 
   :where([data-control-family="sidebar"][data-slot="root"][data-variant="floating"][data-state]) {
-    --cui-sidebar-inner-border-width: 1px;
+    --cui-sidebar-inner-border-width: var(--control-rim-width);
     --cui-sidebar-inner-radius: var(--radius-panel);
     --cui-sidebar-inner-shadow: var(--shadow-md);
   }

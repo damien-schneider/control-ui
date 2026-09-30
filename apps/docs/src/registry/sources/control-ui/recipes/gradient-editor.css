@@ -6,7 +6,7 @@
   :where([data-control-family="gradient-editor"][data-slot="root"]) {
     gap: calc(var(--spacing) * 3);
     --cui-gradient-editor-add-border-color: var(--border);
-    --cui-gradient-editor-add-border-width: 1px;
+    --cui-gradient-editor-add-border-width: var(--control-rim-width);
     --cui-gradient-editor-add-radius: 9999px;
     --cui-gradient-editor-preview-radius: var(--radius-field);
     --cui-gradient-editor-preview-ring-color: oklch(from var(--border) l c h / 0.6);

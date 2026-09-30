@@ -21,7 +21,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-accordion-item-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector: ':where([data-control-family="accordion"][data-slot="root"])',
       },
       {
@@ -108,7 +108,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-alert-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector: ':where([data-control-family="alert"][data-slot="root"])',
       },
       {
@@ -571,7 +571,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-card-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector: ':where([data-control-family="card"][data-slot="root"])',
       },
       {
@@ -897,7 +897,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-choice-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector:
           ':where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]),\n  :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"])',
       },
@@ -925,7 +925,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-choice-shadow",
         syntax: "*",
-        defaultValue: "var(--shadow-sm)",
+        defaultValue: "inset 0 0 0 var(--cui-choice-border-width) var(--cui-choice-border-color), var(--shadow-sm)",
         selector:
           ':where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]),\n  :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"])',
       },
@@ -949,7 +949,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-code-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector: ':where([data-control-family="code"][data-slot="root"])',
       },
       {
@@ -1008,7 +1008,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-code-diff-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector: ':where([data-control-family="code-diff"][data-slot="root"])',
       },
       {
@@ -1247,7 +1247,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-dockable-panel-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector:
           ':where([data-control-family="dockable-panel"][data-slot="root"]),\n  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-dockable-panel-root])',
       },
@@ -1319,7 +1319,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-dropzone-surface-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector: ':where([data-control-family="dropzone"][data-slot="root"])',
       },
       {
@@ -1445,7 +1445,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-empty-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector: ':where([data-control-family="empty"][data-slot="root"])',
       },
       {
@@ -1570,7 +1570,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-environment-variables-message-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector: ':where([data-control-family="environment-variables"][data-slot="root"])',
       },
       {
@@ -1747,7 +1747,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-gradient-editor-add-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector: ':where([data-control-family="gradient-editor"][data-slot="root"])',
       },
       {
@@ -2020,7 +2020,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-inline-citation-trigger-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector:
           ':where([data-control-family="inline-citation"][data-slot="root"]),\n  :where([data-control-ui="inline-citation"][data-slot="content"])',
       },
@@ -2218,7 +2218,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-markdown-block-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector: ':where([data-control-family="markdown-block"][data-slot="root"])',
       },
       {
@@ -2230,7 +2230,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-markdown-block-header-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector: ':where([data-control-family="markdown-block"][data-slot="root"])',
       },
       {
@@ -2430,7 +2430,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-phone-input-country-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector: ':where([data-control-family="field"][data-field-kind="phone-input"][data-slot="root"])',
       },
       {
@@ -2699,7 +2699,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-resizable-group-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector: ':where([data-control-family="resizable"][data-slot="panel-group"])',
       },
       {
@@ -3070,7 +3070,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-stepper-indicator-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector: ':where([data-control-family="stepper"][data-slot="root"])',
       },
       {
@@ -3253,7 +3253,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-table-of-contents-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector: ':where([data-control-family="table-of-contents"][data-slot="root"])',
       },
       {
@@ -3408,7 +3408,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-tabs-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector: ':where([data-control-family="tabs"][data-slot="root"])',
       },
       {
@@ -3682,7 +3682,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-toolbar-border-width",
         syntax: "<length>",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
         selector: ':where([data-control-family="toolbar"][data-slot="root"])',
       },
       {

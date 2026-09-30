@@ -2,7 +2,7 @@
   :where([data-control-family="code"][data-slot="root"]) {
     --cui-code-background: var(--background);
     --cui-code-border-color: var(--control-rim);
-    --cui-code-border-width: 1px;
+    --cui-code-border-width: var(--control-rim-width);
     --_code-corner-inset: calc(var(--spacing) * 1.5);
     --cui-code-radius: min(var(--radius-panel), calc(var(--control-h-xs) / 2 + var(--cui-code-border-width) + var(--_code-corner-inset)));
     --cui-code-shadow: var(--shadow-sm);

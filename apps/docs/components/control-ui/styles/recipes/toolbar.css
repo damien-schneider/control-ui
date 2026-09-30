@@ -8,7 +8,7 @@
     --cui-toolbar-background: oklch(from var(--card) l c h / 0.72);
     --cui-toolbar-foreground: var(--foreground);
     --cui-toolbar-border-color: var(--border);
-    --cui-toolbar-border-width: 1px;
+    --cui-toolbar-border-width: var(--control-rim-width);
     --cui-toolbar-shadow: var(--shadow-sm);
     --cui-toolbar-item-radius: min(var(--radius-sm), calc(var(--control-h-sm) / 2));
     --cui-toolbar-item-background: transparent;

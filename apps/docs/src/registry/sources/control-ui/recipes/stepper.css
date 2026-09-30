@@ -4,7 +4,7 @@
     --cui-stepper-indicator-background: var(--background);
     --cui-stepper-indicator-foreground: var(--muted-foreground);
     --cui-stepper-indicator-border-color: var(--border);
-    --cui-stepper-indicator-border-width: 1px;
+    --cui-stepper-indicator-border-width: var(--control-rim-width);
     --cui-stepper-separator-background: var(--border);
     --cui-stepper-title-foreground: var(--foreground);
   }

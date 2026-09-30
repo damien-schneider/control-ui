@@ -46,7 +46,7 @@
       "name": "--cui-environment-variables-message-border-width",
       "syntax": "<length>",
       "initialValue": "0px",
-      "defaultValue": "1px"
+      "defaultValue": "var(--control-rim-width)"
     }
   ],
   "parts": {

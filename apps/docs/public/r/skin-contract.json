@@ -16287,7 +16287,7 @@
         "name": "--cui-accordion-item-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       },
       {
         "name": "--cui-accordion-trigger-foreground",
@@ -16395,7 +16395,7 @@
         "name": "--cui-alert-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       },
       {
         "name": "--cui-alert-padding",
@@ -16803,7 +16803,7 @@
         "name": "--cui-card-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       },
       {
         "name": "--cui-card-shadow",
@@ -17119,7 +17119,7 @@
         "name": "--cui-choice-border-width",
         "syntax": "<length>",
         "initialValue": "1px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       },
       {
         "name": "--cui-choice-checked-background",
@@ -17137,7 +17137,7 @@
         "name": "--cui-choice-shadow",
         "syntax": "*",
         "initialValue": "none",
-        "defaultValue": "var(--shadow-sm)"
+        "defaultValue": "inset 0 0 0 var(--cui-choice-border-width) var(--cui-choice-border-color), var(--shadow-sm)"
       }
     ],
     "code": [
@@ -17163,7 +17163,7 @@
         "name": "--cui-code-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       },
       {
         "name": "--cui-code-shadow",
@@ -17219,7 +17219,7 @@
         "name": "--cui-code-diff-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       },
       {
         "name": "--cui-code-diff-foreground",
@@ -17431,7 +17431,7 @@
         "name": "--cui-dockable-panel-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       },
       {
         "name": "--cui-dockable-panel-shadow",
@@ -17475,7 +17475,7 @@
         "name": "--cui-dropzone-surface-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       },
       {
         "name": "--cui-dropzone-accept-border-color",
@@ -17599,7 +17599,7 @@
         "name": "--cui-empty-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       },
       {
         "name": "--cui-empty-border-style",
@@ -17739,7 +17739,7 @@
         "name": "--cui-environment-variables-message-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       }
     ],
     "field": [
@@ -17937,7 +17937,7 @@
         "name": "--cui-gradient-editor-add-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       }
     ],
     "infinite-canvas": [
@@ -18123,7 +18123,7 @@
         "name": "--cui-inline-citation-trigger-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       },
       {
         "name": "--cui-inline-citation-trigger-hover-background",
@@ -18325,7 +18325,7 @@
         "name": "--cui-markdown-block-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       },
       {
         "name": "--cui-markdown-block-shadow",
@@ -18343,7 +18343,7 @@
         "name": "--cui-markdown-block-header-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       },
       {
         "name": "--cui-markdown-block-icon-background",
@@ -18513,7 +18513,7 @@
         "name": "--cui-phone-input-country-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       },
       {
         "name": "--cui-phone-input-trigger-hover-background",
@@ -18749,7 +18749,7 @@
         "name": "--cui-resizable-group-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       },
       {
         "name": "--cui-resizable-handle-color",
@@ -19119,7 +19119,7 @@
         "name": "--cui-stepper-indicator-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       },
       {
         "name": "--cui-stepper-separator-background",
@@ -19275,7 +19275,7 @@
         "name": "--cui-table-of-contents-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       },
       {
         "name": "--cui-table-of-contents-radius",
@@ -19487,7 +19487,7 @@
         "name": "--cui-tabs-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       }
     ],
     "task-list": [
@@ -19711,7 +19711,7 @@
         "name": "--cui-toolbar-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       },
       {
         "name": "--cui-toolbar-shadow",

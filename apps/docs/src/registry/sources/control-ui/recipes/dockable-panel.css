@@ -9,7 +9,7 @@
     --cui-dockable-panel-background: var(--card);
     --cui-dockable-panel-foreground: var(--card-foreground);
     --cui-dockable-panel-border-color: oklch(from var(--border) l c h / 0.8);
-    --cui-dockable-panel-border-width: 1px;
+    --cui-dockable-panel-border-width: var(--control-rim-width);
     --cui-dockable-panel-shadow: var(--shadow-pop);
     --cui-dockable-panel-drop-zone-active-background: oklch(from var(--primary) l c h / 0.12);
     --cui-dockable-panel-drop-zone-active-border-color: oklch(from var(--primary) l c h / 0.55);

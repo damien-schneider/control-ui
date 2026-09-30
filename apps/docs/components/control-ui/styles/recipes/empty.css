@@ -3,7 +3,7 @@
     --cui-empty-radius: var(--radius-lg);
     --cui-empty-background: transparent;
     --cui-empty-border-color: transparent;
-    --cui-empty-border-width: 1px;
+    --cui-empty-border-width: var(--control-rim-width);
     --cui-empty-border-style: solid;
     --cui-empty-media-radius: var(--radius-lg);
     --cui-empty-media-background: var(--muted);

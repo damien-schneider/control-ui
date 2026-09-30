@@ -2,7 +2,7 @@
   :where([data-control-family="code-diff"][data-slot="root"]) {
     --cui-code-diff-background: var(--background);
     --cui-code-diff-border-color: var(--border);
-    --cui-code-diff-border-width: 1px;
+    --cui-code-diff-border-width: var(--control-rim-width);
     --_code-diff-corner-inset: calc(var(--spacing) * 1.5);
     --cui-code-diff-radius: min(
       var(--radius-panel),

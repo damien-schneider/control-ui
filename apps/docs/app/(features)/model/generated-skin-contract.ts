@@ -12736,7 +12736,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-accordion-item-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-accordion-trigger-foreground",
@@ -12844,7 +12844,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-alert-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-alert-padding",
@@ -13252,7 +13252,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-card-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-card-shadow",
@@ -13568,7 +13568,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-choice-border-width",
         syntax: "<length>",
         initialValue: "1px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-choice-checked-background",
@@ -13586,7 +13586,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-choice-shadow",
         syntax: "*",
         initialValue: "none",
-        defaultValue: "var(--shadow-sm)",
+        defaultValue: "inset 0 0 0 var(--cui-choice-border-width) var(--cui-choice-border-color), var(--shadow-sm)",
       },
     ],
     code: [
@@ -13612,7 +13612,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-code-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-code-shadow",
@@ -13669,7 +13669,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-code-diff-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-code-diff-foreground",
@@ -13882,7 +13882,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-dockable-panel-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-dockable-panel-shadow",
@@ -13926,7 +13926,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-dropzone-surface-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-dropzone-accept-border-color",
@@ -14054,7 +14054,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-empty-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-empty-border-style",
@@ -14194,7 +14194,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-environment-variables-message-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
     ],
     field: [
@@ -14392,7 +14392,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-gradient-editor-add-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
     ],
     "infinite-canvas": [
@@ -14583,7 +14583,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-inline-citation-trigger-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-inline-citation-trigger-hover-background",
@@ -14785,7 +14785,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-markdown-block-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-markdown-block-shadow",
@@ -14803,7 +14803,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-markdown-block-header-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-markdown-block-icon-background",
@@ -14973,7 +14973,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-phone-input-country-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-phone-input-trigger-hover-background",
@@ -15209,7 +15209,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-resizable-group-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-resizable-handle-color",
@@ -15580,7 +15580,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-stepper-indicator-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-stepper-separator-background",
@@ -15736,7 +15736,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-table-of-contents-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-table-of-contents-radius",
@@ -15949,7 +15949,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-tabs-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
     ],
     "task-list": [
@@ -16175,7 +16175,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-toolbar-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-toolbar-shadow",

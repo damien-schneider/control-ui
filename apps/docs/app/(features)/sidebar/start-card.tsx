@@ -5,6 +5,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { ActivePageId } from "@/app/(features)/model/types";
+import { Card } from "@/components/control-ui/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
 import { SidebarGroup, SidebarGroupLabel } from "@/components/control-ui/ui/sidebar";
 import type { GuideNavGroup } from "./nav-items";
@@ -81,11 +82,11 @@ export function StartCard({
           />
         </SidebarGroupLabel>
         <CollapsibleContent>
-          <div className="grid gap-0.5 rounded-panel border border-border/50 bg-card/70 p-1">
+          <Card className="grid gap-0.5 p-1">
             {steps.items.map((item) => (
               <StartRow key={item.id} item={item} active={active} onNavigate={onNavigate} />
             ))}
-          </div>
+          </Card>
         </CollapsibleContent>
       </Collapsible>
     </SidebarGroup>

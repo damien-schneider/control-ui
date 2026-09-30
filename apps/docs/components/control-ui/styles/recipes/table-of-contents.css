@@ -2,7 +2,7 @@
   :where([data-control-family="table-of-contents"][data-slot="root"]) {
     --cui-table-of-contents-background: var(--card);
     --cui-table-of-contents-border-color: var(--border);
-    --cui-table-of-contents-border-width: 1px;
+    --cui-table-of-contents-border-width: var(--control-rim-width);
     --cui-table-of-contents-radius: var(--radius-panel);
     --cui-table-of-contents-shadow: var(--shadow-sm);
     --cui-table-of-contents-backdrop-filter: none;

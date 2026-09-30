@@ -1,8 +1,8 @@
-function roundedOutline(width: number, height: number, radius: number, offset: number) {
-  const left = 1.8 + offset;
-  const top = 1.8 - offset;
-  const right = width - 1.8 + offset * 0.3;
-  const bottom = height - 1.8 - offset * 0.3;
+function roundedOutline(width: number, height: number, radius: number, offset: number, inset: number) {
+  const left = inset + offset;
+  const top = inset - offset;
+  const right = width - inset + offset * 0.3;
+  const bottom = height - inset - offset * 0.3;
   const curve = Math.min(radius, (right - left) / 2, (bottom - top) / 2);
   const drift = Math.min(1.1, height / 28);
   return [
@@ -18,11 +18,11 @@ function roundedOutline(width: number, height: number, radius: number, offset: n
   ].join(" ");
 }
 
-function ovalOutline(width: number, height: number, offset: number) {
+function ovalOutline(width: number, height: number, offset: number, inset: number) {
   const centerX = width / 2;
   const centerY = height / 2;
-  const radiusX = centerX - 1.8;
-  const radiusY = centerY - 1.8;
+  const radiusX = centerX - inset;
+  const radiusY = centerY - inset;
   return [
     `M ${centerX} ${centerY - radiusY + offset}`,
     `C ${centerX + radiusX * 1.32} ${centerY - radiusY} ${centerX + radiusX * 1.35} ${centerY + radiusY} ${centerX + offset} ${centerY + radiusY}`,
@@ -30,11 +30,12 @@ function ovalOutline(width: number, height: number, offset: number) {
   ].join(" ");
 }
 
-export function sketchStrokeImage(width: number, height: number, radius: number, color: string, oval: boolean) {
+export function sketchStrokeImage(width: number, height: number, radius: number, color: string, oval: boolean, strokeWidth: number) {
+  const inset = Math.max(1.8, strokeWidth * 1.2);
   const outline = (offset: number) => {
-    if (oval) return ovalOutline(width, height, offset);
-    return roundedOutline(width, height, radius, offset);
+    if (oval) return ovalOutline(width, height, offset, inset);
+    return roundedOutline(width, height, radius, offset, inset);
   };
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" fill="none" stroke="${color}" stroke-linecap="round" stroke-linejoin="round"><path d="${outline(0)}" stroke-width="1.35"/><path d="${outline(0.65)}" stroke-width="0.75" opacity="0.38"/></svg>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" fill="none" stroke="${color}" stroke-linecap="round" stroke-linejoin="round"><path d="${outline(0)}" stroke-width="${strokeWidth * 0.9}"/><path d="${outline(0.65)}" stroke-width="${strokeWidth * 0.5}" opacity="0.38"/></svg>`;
   return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
 }

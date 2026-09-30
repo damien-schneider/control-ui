@@ -64,7 +64,7 @@
       "name": "--cui-gradient-editor-add-border-width",
       "syntax": "<length>",
       "initialValue": "0px",
-      "defaultValue": "1px"
+      "defaultValue": "var(--control-rim-width)"
     }
   ],
   "parts": {

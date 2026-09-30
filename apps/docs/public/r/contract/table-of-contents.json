@@ -22,7 +22,7 @@
       "name": "--cui-table-of-contents-border-width",
       "syntax": "<length>",
       "initialValue": "0px",
-      "defaultValue": "1px"
+      "defaultValue": "var(--control-rim-width)"
     },
     {
       "name": "--cui-table-of-contents-radius",

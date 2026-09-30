@@ -14,7 +14,7 @@
     --cui-tabs-active-foreground: var(--foreground);
     --cui-tabs-indicator-shadow: var(--shadow-sm);
     --cui-tabs-border-color: var(--border);
-    --cui-tabs-border-width: 1px;
+    --cui-tabs-border-width: var(--control-rim-width);
   }
 
   :where([data-control-family="tabs"][data-slot="root"][data-orientation="vertical"]) {
@@ -49,7 +49,7 @@
     border-radius: var(--_tabs-trigger-radius-fit);
     background: var(--cui-tabs-indicator-background);
     box-shadow: var(--cui-tabs-indicator-shadow);
-    /* left, not transform, in the browser variant: transform slides on the compositor while width resizes on the main thread — the ends tear apart. */
+    /* Compositor transforms tear the strip while its width resizes. */
     transition:
       width var(--duration-base) var(--ease-standard),
       left var(--duration-base) var(--ease-standard),
@@ -103,15 +103,12 @@
 
   :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"]) {
     --_tabs-browser-corner-double: calc(var(--_tabs-trigger-radius-fit) + var(--_tabs-trigger-radius-fit));
-    /* One trigger radius for the flare, plus the surface corner arc it must clear. */
     --_tabs-browser-inset: calc(var(--_tabs-trigger-radius-fit) + var(--radius-panel));
     min-height: calc(var(--_tabs-trigger-h) + var(--cui-tabs-list-padding));
     width: auto;
     align-items: flex-end;
     isolation: isolate;
-    /* The slide machinery promotes the surface wrapper mid-switch — the strip stays above it. */
     z-index: 1;
-    /* Bare-surface chrome: re-pin the pill knobs so a skin's pill styling can't leak in. */
     --cui-tabs-list-background: transparent;
     --cui-tabs-list-shadow: inset 0 -1px 0 var(--cui-tabs-border-color);
     --cui-tabs-indicator-background: var(--background);
@@ -135,7 +132,6 @@
     background: var(--cui-tabs-indicator-background);
   }
 
-  /* Flares: the side walls scoop outward into the surface line — an arc no border can draw. */
   :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"] [data-slot="indicator"])::after {
     content: "";
     position: absolute;
