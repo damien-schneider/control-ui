@@ -1,4 +1,4 @@
-import type { ChatDensity, ChatRole, ChatState } from "../../src/registry/hooks/use-chat-message";
+import type { ChatDensity, ChatMessageLayout, ChatRole, ChatState } from "../../src/registry/hooks/use-chat-message";
 import type { DropzoneVisualState } from "../../src/registry/hooks/use-dropzone";
 import type { DynamicNotificationVariant } from "../../src/registry/hooks/use-dynamic-notification";
 import type { CodeDiffLineType } from "../../src/registry/lib/diff";
@@ -13,6 +13,7 @@ import type { InlineAttachmentState } from "../../src/registry/sources/control-u
 import type { TaskStatus } from "../../src/registry/sources/control-ui/task-list";
 import type { ChatTone } from "../../src/registry/sources/control-ui/transcript-divider";
 import type { AlertVariant } from "../../src/registry/sources/control-ui/ui/alert";
+import type { AvatarBadgeStatus } from "../../src/registry/sources/control-ui/ui/avatar";
 import type { BadgeColor, BadgeSize, BadgeVariant } from "../../src/registry/sources/control-ui/ui/badge";
 import type { ButtonShape, ButtonTone, ButtonVariant } from "../../src/registry/sources/control-ui/ui/button";
 import type { CardVariant } from "../../src/registry/sources/control-ui/ui/card";
@@ -66,6 +67,7 @@ export type EmittedStateContract = {
   "activity:detail-content:data-format": ActivityDetailFormat;
   "activity:status:data-status": ActivityState;
   "activity:status:data-kind": ActivityKind;
+  "avatar:badge:data-status": AvatarBadgeStatus;
   "context:root:data-status": ContextStatus;
   "context:trigger:data-status": ContextStatus;
   "context:trigger-indicator:data-status": ContextStatus;
@@ -108,9 +110,26 @@ export type EmittedStateContract = {
   "chat-composer-attachment:description:data-state": "idle" | "uploading" | "uploaded" | "error";
   "chat-layout:root:data-chrome": ChatLayoutChrome;
   "chat-message:root:data-density": ChatDensity;
+  "chat-message:root:data-kind": "typing";
+  "chat-message:root:data-layout": ChatMessageLayout;
   "chat-message:root:data-role": ChatRole;
   "chat-message:root:data-state": ChatState;
   "chat-message:content:data-role": ChatRole;
+  "chat-message:row:data-layout": ChatMessageLayout;
+  "chat-message:row:data-density": ChatDensity;
+  "chat-message:avatar:data-layout": ChatMessageLayout;
+  "chat-message:body:data-layout": ChatMessageLayout;
+  "chat-message:body:data-role": ChatRole;
+  "chat-message:header:data-layout": ChatMessageLayout;
+  "chat-message:header:data-role": ChatRole;
+  "chat-message:header:data-state": ChatState;
+  "chat-message:author:data-layout": ChatMessageLayout;
+  "chat-message:footer:data-layout": ChatMessageLayout;
+  "chat-message:footer:data-role": ChatRole;
+  "chat-message:footer:data-state": ChatState;
+  "chat-message:actions:data-layout": ChatMessageLayout;
+  "chat-message:reactions:data-layout": ChatMessageLayout;
+  "chat-message:reactions:data-role": ChatRole;
   "chat-turn:turn:data-from": "user" | "assistant";
   "checkbox-group:root:data-orientation": "horizontal" | "vertical";
   "checkbox-group:root:data-track": HoverIndicator;

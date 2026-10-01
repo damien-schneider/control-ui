@@ -192,7 +192,7 @@
     border-width: 0;
     padding: 3px;
   }
-  [data-skin="windows-98"] :where([data-control-family="chat-message"][data-slot="root"][data-role="user"]) {
+  [data-skin="windows-98"] :where([data-control-family="chat-message"][data-slot="root"][data-role="user"][data-layout="bubble"]) {
     --cui-chat-message-foreground: var(--foreground);
     --cui-chat-message-radius: 0px;
     --cui-chat-message-corner-radius: 0px;

@@ -17,6 +17,7 @@ import {
   SidebarInset,
   SidebarMenu,
   SidebarMenuAction,
+  SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
@@ -28,8 +29,8 @@ import {
 } from "@/components/control-ui/ui/sidebar";
 
 const workspaceItems = [
-  { title: "Agents", icon: SparklesIcon },
-  { title: "Workflows", icon: LayersIcon },
+  { title: "Agents", icon: SparklesIcon, unread: 3 },
+  { title: "Workflows", icon: LayersIcon, unread: 12 },
   { title: "Tools", icon: HashIcon, disabled: true },
 ];
 const projectPages = ["Overview", "Design system", "API integration"];
@@ -62,6 +63,12 @@ function WorkspaceNavigation({
                   <item.icon />
                   <span>{item.title}</span>
                 </SidebarMenuButton>
+                {item.unread ? (
+                  <SidebarMenuBadge>
+                    {item.unread}
+                    <span className="sr-only"> unread</span>
+                  </SidebarMenuBadge>
+                ) : null}
                 <DropdownMenu>
                   <DropdownMenuTrigger
                     render={<SidebarMenuAction showOnHover />}

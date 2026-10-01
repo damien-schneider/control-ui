@@ -245,6 +245,31 @@
       "syntax": "<length-percentage>"
     },
     {
+      "name": "--cui-avatar-badge-background",
+      "description": "Control UI avatar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-avatar-badge-foreground",
+      "description": "Control UI avatar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-avatar-badge-ring-color",
+      "description": "Control UI avatar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-avatar-badge-ring-size",
+      "description": "Control UI avatar knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
+      "name": "--cui-avatar-badge-size",
+      "description": "Control UI avatar knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
       "name": "--cui-avatar-fallback-background",
       "description": "Control UI avatar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
@@ -718,6 +743,41 @@
       "syntax": "<length-percentage>"
     },
     {
+      "name": "--cui-chat-message-reaction-background",
+      "description": "Control UI chat-message knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-chat-message-reaction-border-color",
+      "description": "Control UI chat-message knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-chat-message-reaction-border-width",
+      "description": "Control UI chat-message knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
+      "name": "--cui-chat-message-reaction-pressed-background",
+      "description": "Control UI chat-message knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-chat-message-reaction-pressed-border-color",
+      "description": "Control UI chat-message knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-chat-message-reaction-radius",
+      "description": "Control UI chat-message knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-chat-message-row-hover-background",
+      "description": "Control UI chat-message knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
       "name": "--cui-chat-message-shadow",
       "description": "Control UI chat-message knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
@@ -1114,6 +1174,31 @@
     {
       "name": "--cui-dynamic-notification-title-foreground",
       "description": "Control UI dynamic-notification knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-emoji-picker-active-background",
+      "description": "Control UI emoji-picker knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-emoji-picker-cell-radius",
+      "description": "Control UI emoji-picker knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-emoji-picker-cell-size",
+      "description": "Control UI emoji-picker knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
+      "name": "--cui-emoji-picker-header-background",
+      "description": "Control UI emoji-picker knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-emoji-picker-header-foreground",
+      "description": "Control UI emoji-picker knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
@@ -2402,6 +2487,21 @@
     {
       "name": "--cui-sidebar-inset-shadow",
       "description": "Control UI sidebar knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
+      "name": "--cui-sidebar-menu-badge-background",
+      "description": "Control UI sidebar-parts knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-sidebar-menu-badge-foreground",
+      "description": "Control UI sidebar-parts knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-sidebar-menu-badge-height",
+      "description": "Control UI sidebar-parts knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
     },
     {
       "name": "--cui-sidebar-menu-button-active-background",

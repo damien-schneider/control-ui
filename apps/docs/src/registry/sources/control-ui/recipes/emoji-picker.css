@@ -1,0 +1,141 @@
+@layer components {
+  :where([data-control-family="emoji-picker"][data-slot="root"]) {
+    --cui-emoji-picker-cell-size: calc(var(--spacing) * 8);
+    --cui-emoji-picker-cell-radius: var(--radius-control);
+    --cui-emoji-picker-active-background: var(--accent);
+    --cui-emoji-picker-header-background: var(--popover);
+    --cui-emoji-picker-header-foreground: var(--muted-foreground);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+
+  :where([data-control-family="emoji-picker"][data-slot="search"]) {
+    position: relative;
+    margin: calc(var(--spacing) * 2);
+    margin-block-end: calc(var(--spacing) * 1);
+  }
+
+  :where([data-control-family="emoji-picker"][data-slot="search-icon"]) {
+    position: absolute;
+    inset-inline-start: calc(var(--spacing) * 2.5);
+    inline-size: calc(var(--spacing) * 4);
+    block-size: calc(var(--spacing) * 4);
+    color: var(--muted-foreground);
+    pointer-events: none;
+  }
+
+  :where([data-control-family="emoji-picker"][data-slot="search-input"]) {
+    block-size: var(--control-h-sm);
+    padding-inline: calc(var(--spacing) * 8) calc(var(--spacing) * 2.5);
+    border: var(--control-rim-width) solid var(--control-rim);
+    border-radius: var(--radius-control);
+    background: var(--control-fill);
+    box-shadow: var(--shadow-inset);
+    color: var(--foreground);
+    font-size: var(--text-label);
+    transition-property: border-color, box-shadow;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="emoji-picker"][data-slot="search-input"])::placeholder {
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="emoji-picker"][data-slot="search-input"]:focus-visible) {
+    border-color: var(--border);
+    box-shadow:
+      var(--shadow-inset),
+      0 0 0 2px oklch(from var(--ring) l c h / 0.4);
+  }
+
+  :where([data-control-family="emoji-picker"][data-slot="content"]) {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+
+  :where([data-control-family="emoji-picker"][data-slot="loading"]),
+  :where([data-control-family="emoji-picker"][data-slot="empty"]) {
+    color: var(--muted-foreground);
+    font-size: var(--text-label);
+  }
+
+  :where([data-control-family="emoji-picker"][data-slot="list"]) {
+    padding-block-end: calc(var(--spacing) * 1);
+  }
+
+  :where([data-control-family="emoji-picker"][data-slot="category-header"]) {
+    padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2.5) calc(var(--spacing) * 1);
+    background: var(--cui-emoji-picker-header-background);
+    color: var(--cui-emoji-picker-header-foreground);
+    font-size: var(--text-caption);
+    font-weight: var(--font-weight-medium);
+  }
+
+  :where([data-control-family="emoji-picker"][data-slot="row"]) {
+    padding-inline: calc(var(--spacing) * 1.5);
+  }
+
+  :where([data-control-family="emoji-picker"][data-slot="emoji"]) {
+    inline-size: var(--cui-emoji-picker-cell-size);
+    block-size: var(--cui-emoji-picker-cell-size);
+    border-radius: var(--cui-emoji-picker-cell-radius);
+    background: transparent;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: default;
+  }
+
+  :where([data-control-family="emoji-picker"][data-slot="emoji"][data-active]) {
+    background: var(--cui-emoji-picker-active-background);
+  }
+
+  :where([data-control-family="emoji-picker"][data-slot="footer"]) {
+    gap: calc(var(--spacing) * 2);
+    min-block-size: calc(var(--spacing) * 11);
+    padding-inline: calc(var(--spacing) * 2.5);
+    border-block-start: 1px solid var(--border);
+    color: var(--muted-foreground);
+    font-size: var(--text-label);
+  }
+
+  :where([data-control-family="emoji-picker"][data-slot="footer-emoji"]) {
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
+  :where([data-control-family="emoji-picker"][data-slot="footer-label"]) {
+    color: var(--foreground);
+  }
+}
+
+@property --cui-emoji-picker-cell-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-emoji-picker-cell-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-emoji-picker-active-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-emoji-picker-header-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-emoji-picker-header-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

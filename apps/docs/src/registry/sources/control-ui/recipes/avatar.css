@@ -1,6 +1,11 @@
 @layer components {
   :where([data-control-family="avatar"][data-slot="root"]) {
     --cui-avatar-image-outline-color: var(--image-outline);
+    --cui-avatar-badge-size: max(0.5rem, 30%);
+    --cui-avatar-badge-ring-size: 2px;
+    --cui-avatar-badge-ring-color: var(--background);
+    --cui-avatar-badge-background: var(--primary);
+    --cui-avatar-badge-foreground: var(--primary-foreground);
     inline-size: calc(var(--spacing) * 9);
     block-size: calc(var(--spacing) * 9);
   }
@@ -26,6 +31,48 @@
 
   :where([data-control-family="avatar"][data-slot="group"] > [data-control-family="avatar"]) {
     box-shadow: 0 0 0 2px var(--cui-avatar-group-ring-color);
+  }
+
+  :where([data-control-family="avatar"][data-slot="image"]) {
+    border-radius: inherit;
+  }
+
+  :where([data-control-family="avatar"][data-slot="badge"]) {
+    z-index: 1;
+    inset-block-end: 0;
+    inset-inline-end: 0;
+    inline-size: var(--cui-avatar-badge-size);
+    aspect-ratio: 1;
+    border-radius: 9999px;
+    background: var(--cui-avatar-badge-background);
+    color: var(--cui-avatar-badge-foreground);
+    box-shadow: 0 0 0 var(--cui-avatar-badge-ring-size) var(--cui-avatar-badge-ring-color);
+    font-size: 0.5rem;
+    font-weight: var(--font-weight-medium);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    transition: background-color var(--duration-fast) var(--ease-standard);
+  }
+
+  :where([data-control-family="avatar"][data-slot="badge"] > svg) {
+    inline-size: 70%;
+    block-size: 70%;
+  }
+
+  :where([data-control-family="avatar"][data-slot="badge"][data-status="online"]) {
+    --cui-avatar-badge-background: var(--success-text);
+  }
+
+  :where([data-control-family="avatar"][data-slot="badge"][data-status="away"]) {
+    --cui-avatar-badge-background: var(--warning-text);
+  }
+
+  :where([data-control-family="avatar"][data-slot="badge"][data-status="busy"]) {
+    --cui-avatar-badge-background: var(--destructive);
+  }
+
+  :where([data-control-family="avatar"][data-slot="badge"][data-status="offline"]) {
+    --cui-avatar-badge-background: oklch(from var(--muted-foreground) l c h / 0.6);
   }
 
   :where([data-control-family="avatar"][data-slot="fallback"]) {
@@ -62,6 +109,36 @@
 }
 
 @property --cui-avatar-image-outline-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-avatar-badge-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-avatar-badge-ring-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-avatar-badge-ring-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-avatar-badge-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-avatar-badge-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

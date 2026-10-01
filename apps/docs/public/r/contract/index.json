@@ -58,8 +58,8 @@
       "registryItems": [
         "avatar"
       ],
-      "knobs": 5,
-      "probes": 4
+      "knobs": 10,
+      "probes": 16
     },
     "badge": {
       "registryItems": [
@@ -73,7 +73,7 @@
         "breadcrumb"
       ],
       "knobs": 3,
-      "probes": 3
+      "probes": 7
     },
     "button": {
       "registryItems": [
@@ -85,7 +85,7 @@
         "toggle"
       ],
       "knobs": 25,
-      "probes": 155
+      "probes": 163
     },
     "button-group": {
       "registryItems": [
@@ -133,8 +133,8 @@
       "registryItems": [
         "chat-message"
       ],
-      "knobs": 14,
-      "probes": 7
+      "knobs": 21,
+      "probes": 31
     },
     "checkbox-group": {
       "registryItems": [
@@ -207,6 +207,13 @@
       "knobs": 15,
       "probes": 1
     },
+    "emoji-picker": {
+      "registryItems": [
+        "emoji-picker"
+      ],
+      "knobs": 5,
+      "probes": 2
+    },
     "empty": {
       "registryItems": [
         "empty"
@@ -236,7 +243,7 @@
         "textarea"
       ],
       "knobs": 16,
-      "probes": 67
+      "probes": 69
     },
     "filter-bar": {
       "registryItems": [
@@ -285,7 +292,7 @@
         "kbd"
       ],
       "knobs": 5,
-      "probes": 5
+      "probes": 6
     },
     "label": {
       "registryItems": [
@@ -347,6 +354,7 @@
       "registryItems": [
         "alert-dialog",
         "autocomplete",
+        "chat-message",
         "color-picker",
         "combobox",
         "command",
@@ -369,7 +377,7 @@
         "trigger-menu"
       ],
       "knobs": 44,
-      "probes": 113
+      "probes": 130
     },
     "progressive-blur": {
       "registryItems": [
@@ -404,21 +412,21 @@
         "scroll-area"
       ],
       "knobs": 3,
-      "probes": 40
+      "probes": 44
     },
     "separator": {
       "registryItems": [
         "separator"
       ],
       "knobs": 1,
-      "probes": 4
+      "probes": 5
     },
     "sidebar": {
       "registryItems": [
         "sidebar"
       ],
-      "knobs": 44,
-      "probes": 28
+      "knobs": 47,
+      "probes": 36
     },
     "sidebar-layout": {
       "registryItems": [
@@ -432,7 +440,7 @@
         "skeleton"
       ],
       "knobs": 7,
-      "probes": 4
+      "probes": 3
     },
     "source-badge": {
       "registryItems": [
@@ -530,7 +538,7 @@
         "transcript-divider"
       ],
       "knobs": 5,
-      "probes": 4
+      "probes": 5
     },
     "tree": {
       "registryItems": [

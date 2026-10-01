@@ -240,12 +240,14 @@
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
+        "http://127.0.0.1:3000/r/discussion-block.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -296,6 +298,7 @@
         "http://127.0.0.1:3000/r/table-of-contents.json",
         "http://127.0.0.1:3000/r/tabs.json",
         "http://127.0.0.1:3000/r/task-list.json",
+        "http://127.0.0.1:3000/r/team-chat-block.json",
         "http://127.0.0.1:3000/r/textarea.json",
         "http://127.0.0.1:3000/r/theme-toggle-block.json",
         "http://127.0.0.1:3000/r/thread-rail.json",
@@ -357,12 +360,14 @@
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
+        "http://127.0.0.1:3000/r/discussion-block.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -414,6 +419,7 @@
         "http://127.0.0.1:3000/r/table-of-contents.json",
         "http://127.0.0.1:3000/r/tabs.json",
         "http://127.0.0.1:3000/r/task-list.json",
+        "http://127.0.0.1:3000/r/team-chat-block.json",
         "http://127.0.0.1:3000/r/textarea.json",
         "http://127.0.0.1:3000/r/theme-toggle-block.json",
         "http://127.0.0.1:3000/r/thread-rail.json",
@@ -481,12 +487,14 @@
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
+        "http://127.0.0.1:3000/r/discussion-block.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -538,6 +546,7 @@
         "http://127.0.0.1:3000/r/table-of-contents.json",
         "http://127.0.0.1:3000/r/tabs.json",
         "http://127.0.0.1:3000/r/task-list.json",
+        "http://127.0.0.1:3000/r/team-chat-block.json",
         "http://127.0.0.1:3000/r/textarea.json",
         "http://127.0.0.1:3000/r/theme-toggle-block.json",
         "http://127.0.0.1:3000/r/thread-rail.json",
@@ -605,12 +614,14 @@
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
+        "http://127.0.0.1:3000/r/discussion-block.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -662,6 +673,7 @@
         "http://127.0.0.1:3000/r/table-of-contents.json",
         "http://127.0.0.1:3000/r/tabs.json",
         "http://127.0.0.1:3000/r/task-list.json",
+        "http://127.0.0.1:3000/r/team-chat-block.json",
         "http://127.0.0.1:3000/r/textarea.json",
         "http://127.0.0.1:3000/r/theme-toggle-block.json",
         "http://127.0.0.1:3000/r/thread-rail.json",
@@ -729,12 +741,14 @@
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
+        "http://127.0.0.1:3000/r/discussion-block.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -786,6 +800,7 @@
         "http://127.0.0.1:3000/r/table-of-contents.json",
         "http://127.0.0.1:3000/r/tabs.json",
         "http://127.0.0.1:3000/r/task-list.json",
+        "http://127.0.0.1:3000/r/team-chat-block.json",
         "http://127.0.0.1:3000/r/textarea.json",
         "http://127.0.0.1:3000/r/theme-toggle-block.json",
         "http://127.0.0.1:3000/r/thread-rail.json",
@@ -853,12 +868,14 @@
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
+        "http://127.0.0.1:3000/r/discussion-block.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -910,6 +927,7 @@
         "http://127.0.0.1:3000/r/table-of-contents.json",
         "http://127.0.0.1:3000/r/tabs.json",
         "http://127.0.0.1:3000/r/task-list.json",
+        "http://127.0.0.1:3000/r/team-chat-block.json",
         "http://127.0.0.1:3000/r/textarea.json",
         "http://127.0.0.1:3000/r/theme-toggle-block.json",
         "http://127.0.0.1:3000/r/thread-rail.json",
@@ -977,12 +995,14 @@
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
+        "http://127.0.0.1:3000/r/discussion-block.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -1034,6 +1054,7 @@
         "http://127.0.0.1:3000/r/table-of-contents.json",
         "http://127.0.0.1:3000/r/tabs.json",
         "http://127.0.0.1:3000/r/task-list.json",
+        "http://127.0.0.1:3000/r/team-chat-block.json",
         "http://127.0.0.1:3000/r/textarea.json",
         "http://127.0.0.1:3000/r/theme-toggle-block.json",
         "http://127.0.0.1:3000/r/thread-rail.json",
@@ -1101,12 +1122,14 @@
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
+        "http://127.0.0.1:3000/r/discussion-block.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -1158,6 +1181,7 @@
         "http://127.0.0.1:3000/r/table-of-contents.json",
         "http://127.0.0.1:3000/r/tabs.json",
         "http://127.0.0.1:3000/r/task-list.json",
+        "http://127.0.0.1:3000/r/team-chat-block.json",
         "http://127.0.0.1:3000/r/textarea.json",
         "http://127.0.0.1:3000/r/theme-toggle-block.json",
         "http://127.0.0.1:3000/r/thread-rail.json",
@@ -1225,12 +1249,14 @@
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
+        "http://127.0.0.1:3000/r/discussion-block.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -1282,6 +1308,7 @@
         "http://127.0.0.1:3000/r/table-of-contents.json",
         "http://127.0.0.1:3000/r/tabs.json",
         "http://127.0.0.1:3000/r/task-list.json",
+        "http://127.0.0.1:3000/r/team-chat-block.json",
         "http://127.0.0.1:3000/r/textarea.json",
         "http://127.0.0.1:3000/r/theme-toggle-block.json",
         "http://127.0.0.1:3000/r/thread-rail.json",
@@ -1349,12 +1376,14 @@
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
+        "http://127.0.0.1:3000/r/discussion-block.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -1406,6 +1435,7 @@
         "http://127.0.0.1:3000/r/table-of-contents.json",
         "http://127.0.0.1:3000/r/tabs.json",
         "http://127.0.0.1:3000/r/task-list.json",
+        "http://127.0.0.1:3000/r/team-chat-block.json",
         "http://127.0.0.1:3000/r/textarea.json",
         "http://127.0.0.1:3000/r/theme-toggle-block.json",
         "http://127.0.0.1:3000/r/thread-rail.json",
@@ -1910,7 +1940,7 @@
       "name": "chat-composer",
       "type": "registry:component",
       "title": "ChatComposer",
-      "description": "Prompt composer with controlled text, submit state, and trigger-menu support.",
+      "description": "Message composer with controlled text, Enter or ⌘ Enter submit, caret text insertion, and trigger-menu support.",
       "dependencies": [
         "lucide-react@^1.47.0",
         "prosemirror-commands@^1.7.2",
@@ -2038,8 +2068,9 @@
       "name": "chat-layout",
       "type": "registry:component",
       "title": "ChatLayout",
-      "description": "A scrolling conversation with message turns and a floating composer dock.",
+      "description": "A scrolling conversation with a pinned header, message turns, and a floating composer dock.",
       "dependencies": [
+        "@base-ui/react@^1.8.0",
         "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
@@ -2081,7 +2112,7 @@
       "name": "chat-message",
       "type": "registry:component",
       "title": "ChatMessage",
-      "description": "Composable chat message with typed role, density, and lifecycle state.",
+      "description": "Composable chat message for assistant turns or people talking: bubble or flat layout, grouped bursts, reactions, and replies.",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
@@ -2104,13 +2135,24 @@
           "type": "registry:component"
         },
         {
+          "path": "src/registry/sources/control-ui/chat-message/social.tsx",
+          "target": "@components/control-ui/chat-message/social.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/chat-message-social.css",
+          "target": "@components/control-ui/styles/recipes/chat-message-social.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/chat-message.css",
           "target": "@components/control-ui/styles/recipes/chat-message.css",
           "type": "registry:file"
         }
       ],
       "css": {
-        "@import \"../components/control-ui/styles/recipes/chat-message.css\"": {}
+        "@import \"../components/control-ui/styles/recipes/chat-message.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/chat-message-social.css\"": {}
       }
     },
     {
@@ -2777,6 +2819,30 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "discussion-block",
+      "type": "registry:block",
+      "title": "Discussion",
+      "description": "Comment thread with ⌘ Enter posting, nested replies, inline editing, and hover actions.",
+      "dependencies": [
+        "lucide-react@^1.47.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/chat-composer.json",
+        "http://127.0.0.1:3000/r/chat-message.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/blocks/control-ui/discussion.tsx",
+          "target": "@components/control-ui/blocks/discussion.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "dockable-panel",
       "type": "registry:ui",
       "title": "Dockable Panel",
@@ -3119,6 +3185,41 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "emoji-picker",
+      "type": "registry:ui",
+      "title": "Emoji Picker",
+      "description": "Searchable, virtualized emoji grid with skin-aware cells and an active emoji footer.",
+      "dependencies": [
+        "frimousse@^0.4.0",
+        "lucide-react@^1.47.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/knob-contracts/emoji-picker-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/emoji-picker-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/emoji-picker.css",
+          "target": "@components/control-ui/styles/recipes/emoji-picker.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/emoji-picker.tsx",
+          "target": "@components/control-ui/ui/emoji-picker.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/emoji-picker.css\"": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -5477,6 +5578,25 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "team-chat-block",
+      "type": "registry:block",
+      "title": "Team chat",
+      "description": "Slack-style workspace with channels, unread badges, presence, reactions, and a side thread for replies.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/sidebar.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/blocks/control-ui/team-chat.tsx",
+          "target": "@components/control-ui/blocks/team-chat.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "textarea",
       "type": "registry:ui",
       "title": "Textarea",
@@ -6047,12 +6167,14 @@
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/design-canvas-block.json",
         "http://127.0.0.1:3000/r/dialog.json",
+        "http://127.0.0.1:3000/r/discussion-block.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -6103,6 +6225,7 @@
         "http://127.0.0.1:3000/r/table-of-contents.json",
         "http://127.0.0.1:3000/r/tabs.json",
         "http://127.0.0.1:3000/r/task-list.json",
+        "http://127.0.0.1:3000/r/team-chat-block.json",
         "http://127.0.0.1:3000/r/textarea.json",
         "http://127.0.0.1:3000/r/theme-toggle-block.json",
         "http://127.0.0.1:3000/r/thread-rail.json",

@@ -56,13 +56,10 @@
     transition-duration: var(--duration-fast);
   }
 
+  /* Every slot, not just root: callers override data-slot, and an unpositioned xs ::after hit area spans the nearest positioned ancestor. */
   :where([data-control-family="button"]) {
-    gap: var(--cui-button-gap);
-  }
-
-  /* Position lives in the recipe, not a utility, so a part rule such as the popup close can re-place the root. */
-  :where([data-control-family="button"][data-slot="root"]) {
     position: relative;
+    gap: var(--cui-button-gap);
   }
 
   :where([data-control-family="button"][data-size="xs"]) {

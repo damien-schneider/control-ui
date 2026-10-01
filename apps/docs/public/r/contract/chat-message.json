@@ -89,6 +89,48 @@
       "syntax": "<length>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 1.5)"
+    },
+    {
+      "name": "--cui-chat-message-row-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--muted) l c h / 0.6)"
+    },
+    {
+      "name": "--cui-chat-message-reaction-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "9999px"
+    },
+    {
+      "name": "--cui-chat-message-reaction-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--muted) l c h / 0.7)"
+    },
+    {
+      "name": "--cui-chat-message-reaction-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-chat-message-reaction-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--control-rim-width)"
+    },
+    {
+      "name": "--cui-chat-message-reaction-pressed-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--primary) l c h / 0.14)"
+    },
+    {
+      "name": "--cui-chat-message-reaction-pressed-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--primary) l c h / 0.55)"
     }
   ],
   "parts": {
@@ -100,6 +142,12 @@
         ],
         "states": [
           {
+            "attribute": "data-continuation",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-density",
             "source": "control-ui",
             "valueKind": "enum",
@@ -109,11 +157,29 @@
             ]
           },
           {
+            "attribute": "data-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "typing"
+            ]
+          },
+          {
+            "attribute": "data-layout",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "bubble",
+              "flat"
+            ]
+          },
+          {
             "attribute": "data-role",
             "source": "control-ui",
             "valueKind": "enum",
             "values": [
               "assistant",
+              "participant",
               "system",
               "tool",
               "user"
@@ -137,21 +203,86 @@
         "registryItems": [
           "chat-message"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-layout",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "bubble",
+              "flat"
+            ]
+          }
+        ]
+      },
+      "author": {
+        "family": "chat-message",
+        "registryItems": [
+          "chat-message"
+        ],
+        "states": [
+          {
+            "attribute": "data-layout",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "bubble",
+              "flat"
+            ]
+          }
+        ]
       },
       "avatar": {
         "family": "chat-message",
         "registryItems": [
           "chat-message"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-continuation",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-layout",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "bubble",
+              "flat"
+            ]
+          }
+        ]
       },
       "body": {
         "family": "chat-message",
         "registryItems": [
           "chat-message"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-layout",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "bubble",
+              "flat"
+            ]
+          },
+          {
+            "attribute": "data-role",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "assistant",
+              "participant",
+              "system",
+              "tool",
+              "user"
+            ]
+          }
+        ]
       },
       "content": {
         "family": "chat-message",
@@ -165,6 +296,7 @@
             "valueKind": "enum",
             "values": [
               "assistant",
+              "participant",
               "system",
               "tool",
               "user"
@@ -178,14 +310,151 @@
           }
         ]
       },
+      "footer": {
+        "family": "chat-message",
+        "registryItems": [
+          "chat-message"
+        ],
+        "states": [
+          {
+            "attribute": "data-layout",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "bubble",
+              "flat"
+            ]
+          },
+          {
+            "attribute": "data-role",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "assistant",
+              "participant",
+              "system",
+              "tool",
+              "user"
+            ]
+          },
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "error",
+              "idle",
+              "pending",
+              "streaming"
+            ]
+          }
+        ]
+      },
       "header": {
+        "family": "chat-message",
+        "registryItems": [
+          "chat-message"
+        ],
+        "states": [
+          {
+            "attribute": "data-layout",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "bubble",
+              "flat"
+            ]
+          },
+          {
+            "attribute": "data-role",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "assistant",
+              "participant",
+              "system",
+              "tool",
+              "user"
+            ]
+          },
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "error",
+              "idle",
+              "pending",
+              "streaming"
+            ]
+          }
+        ]
+      },
+      "pending": {
         "family": "chat-message",
         "registryItems": [
           "chat-message"
         ],
         "states": []
       },
-      "pending": {
+      "reaction": {
+        "family": "chat-message",
+        "registryItems": [
+          "chat-message"
+        ],
+        "states": [
+          {
+            "attribute": "data-pressed",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "reaction-emoji": {
+        "family": "chat-message",
+        "registryItems": [
+          "chat-message"
+        ],
+        "states": []
+      },
+      "reactions": {
+        "family": "chat-message",
+        "registryItems": [
+          "chat-message"
+        ],
+        "states": [
+          {
+            "attribute": "data-layout",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "bubble",
+              "flat"
+            ]
+          },
+          {
+            "attribute": "data-role",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "assistant",
+              "participant",
+              "system",
+              "tool",
+              "user"
+            ]
+          }
+        ]
+      },
+      "replies": {
+        "family": "chat-message",
+        "registryItems": [
+          "chat-message"
+        ],
+        "states": []
+      },
+      "reply-summary": {
         "family": "chat-message",
         "registryItems": [
           "chat-message"
@@ -197,14 +466,50 @@
         "registryItems": [
           "chat-message"
         ],
+        "states": [
+          {
+            "attribute": "data-continuation",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-density",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "comfortable",
+              "compact"
+            ]
+          },
+          {
+            "attribute": "data-layout",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "bubble",
+              "flat"
+            ]
+          }
+        ]
+      },
+      "time": {
+        "family": "chat-message",
+        "registryItems": [
+          "chat-message"
+        ],
+        "states": []
+      },
+      "typing-dots": {
+        "family": "chat-message",
+        "registryItems": [
+          "chat-message"
+        ],
         "states": []
       }
     }
   },
   "adornments": {},
-  "uncovered": [
-    "--cui-chat-message-avatar-background",
-    "--cui-chat-message-pending-dot-color"
-  ],
+  "uncovered": [],
   "contrast": "/r/contract/chat-message.contrast.json"
 }

@@ -53,7 +53,7 @@ describe("catalog galleries", () => {
   test("renders every use case once in taxonomy order with canonical links", () => {
     const groups = useCaseGalleryGroups();
     const items = groups.flatMap((group) => group.items);
-    const expectedTemplateIds = ["chat", "coding-agent", "settings", "file-explorer", "design-canvas"] satisfies BlockId[];
+    const expectedTemplateIds = ["chat", "coding-agent", "settings", "team-chat", "file-explorer", "design-canvas"] satisfies BlockId[];
 
     expect(groups.map((group) => group.id)).toEqual(useCaseKinds.map((kind) => kind.slug));
     expect(
@@ -62,7 +62,7 @@ describe("catalog galleries", () => {
         ?.items.map((item) => item.id)
         .toSorted(),
     ).toEqual(expectedTemplateIds.toSorted());
-    expect(groups.find((group) => group.kind === "pattern")?.items.map((item) => item.id)).toEqual(["theme-toggle"]);
+    expect(groups.find((group) => group.kind === "pattern")?.items.map((item) => item.id)).toEqual(["discussion", "theme-toggle"]);
     expect(items.map((item) => item.id).toSorted()).toEqual(blockEntries.map((entry) => entry.id).toSorted());
     expect(new Set(items.map((item) => item.id)).size).toBe(blockEntries.length);
     expect(items.every((item) => item.href === `/use-cases/${item.id}`)).toBe(true);

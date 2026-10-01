@@ -121,6 +121,11 @@ const paginationRecipeFile = sourceFile(
   "src/registry/sources/control-ui/recipes/pagination.css",
   "recipe-css",
 );
+const emojiPickerRecipeFile = sourceFile(
+  "Emoji picker recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/emoji-picker.css",
+  "recipe-css",
+);
 const spinnerRecipeFile = sourceFile(
   "Spinner recipe — paint + @property knobs",
   "src/registry/sources/control-ui/recipes/spinner.css",
@@ -1964,6 +1969,26 @@ export const primitiveEntries = [
     },
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/primitives/color-picker").then((mod) => ({ default: mod.PrimitiveColorPickerExample })),
+    ),
+  },
+  {
+    id: "emoji-picker",
+    category: "forms",
+    kind: "Primitive",
+    name: "Emoji Picker",
+    summary: "Searchable, virtualized emoji grid with skin-aware cells and an active emoji footer.",
+    status: "beta",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/emoji-picker.tsx",
+        example: sourceFile("Emoji picker preview", "src/registry/examples/control-ui/primitives/emoji-picker.tsx", "example"),
+        source: sourceFile("Frimousse emoji picker slot", "src/registry/sources/control-ui/ui/emoji-picker.tsx", "component"),
+        supportFiles: [emojiPickerRecipeFile],
+        registryKind: "emoji-picker",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/emoji-picker").then((mod) => ({ default: mod.PrimitiveEmojiPickerExample })),
     ),
   },
   {

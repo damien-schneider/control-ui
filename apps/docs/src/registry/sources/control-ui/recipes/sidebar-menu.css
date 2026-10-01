@@ -169,6 +169,48 @@
     padding-inline-end: calc(var(--spacing) * 8);
   }
 
+  :where([data-control-family="sidebar"][data-slot="menu-badge"]) {
+    inset-block-start: calc(var(--control-h-md) / 2);
+    inset-inline-end: calc(var(--spacing) * 1);
+    min-inline-size: var(--cui-sidebar-menu-badge-height);
+    block-size: var(--cui-sidebar-menu-badge-height);
+    padding-inline: calc(var(--spacing) * 1.5);
+    border-radius: 9999px;
+    background-color: var(--cui-sidebar-menu-badge-background);
+    color: var(--cui-sidebar-menu-badge-foreground);
+    font-size: var(--text-caption);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    transition: opacity var(--duration-fast) var(--ease-standard);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="menu-button"][data-size="sm"] ~ [data-slot="menu-badge"]) {
+    inset-block-start: calc(var(--control-h-sm) / 2);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="menu-button"][data-size="lg"] ~ [data-slot="menu-badge"]) {
+    inset-block-start: calc(var(--control-h-lg) / 2);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="menu-button"]:has(~ [data-slot="menu-badge"])) {
+    padding-inline-end: calc(var(--spacing) * 10);
+  }
+
+  :where(
+    [data-control-family="sidebar"][data-slot="menu-button"]:has(~ [data-slot="menu-badge"]):has(
+      ~ [data-slot="menu-action"]:not([data-show-on-hover])
+    )
+  ) {
+    padding-inline-end: calc(var(--spacing) * 16);
+  }
+
+  :where(
+    [data-control-family="sidebar"][data-slot="menu-item"]:has(> [data-slot="menu-action"]:not([data-show-on-hover]))
+      > [data-slot="menu-badge"]
+  ) {
+    inset-inline-end: calc(var(--spacing) * 7);
+  }
+
   @media (hover: hover) and (pointer: fine) {
     :where([data-control-family="sidebar"][data-slot="menu-action"][data-show-on-hover]) {
       opacity: 0;
@@ -177,6 +219,17 @@
     :where([data-control-family="sidebar"][data-slot="menu-item"]:is(:hover, :focus-within) [data-slot="menu-action"]),
     :where([data-control-family="sidebar"][data-slot="menu-action"][data-popup-open]) {
       opacity: 1;
+    }
+
+    :where(
+        [data-control-family="sidebar"][data-slot="menu-item"]:is(
+            :hover,
+            :focus-within,
+            :has(> [data-slot="menu-action"][data-popup-open])
+          ):has(> [data-slot="menu-action"][data-show-on-hover])
+          > [data-slot="menu-badge"]
+      ) {
+      opacity: 0;
     }
   }
 
@@ -198,6 +251,15 @@
 
     :where([data-control-family="sidebar"][data-slot="menu-button"]:has(~ [data-slot="menu-action"])) {
       padding-inline-end: calc(var(--spacing) * 12);
+    }
+
+    :where([data-control-family="sidebar"][data-slot="menu-item"]:has(> [data-slot="menu-action"]) > [data-slot="menu-badge"]) {
+      inset-inline-end: var(--touch-target);
+      inset-block-start: max(calc(var(--touch-target) / 2), calc(var(--control-h-md) / 2));
+    }
+
+    :where([data-control-family="sidebar"][data-slot="menu-button"]:has(~ [data-slot="menu-badge"]):has(~ [data-slot="menu-action"])) {
+      padding-inline-end: calc(var(--touch-target) + var(--spacing) * 10);
     }
   }
 }

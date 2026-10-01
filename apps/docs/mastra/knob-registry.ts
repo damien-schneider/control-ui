@@ -265,6 +265,36 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     id: "avatar",
     knobs: [
       {
+        name: "--cui-avatar-badge-background",
+        syntax: "<color>",
+        defaultValue: "var(--primary)",
+        selector: ':where([data-control-family="avatar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-avatar-badge-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--primary-foreground)",
+        selector: ':where([data-control-family="avatar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-avatar-badge-ring-color",
+        syntax: "<color>",
+        defaultValue: "var(--background)",
+        selector: ':where([data-control-family="avatar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-avatar-badge-ring-size",
+        syntax: "<length>",
+        defaultValue: "2px",
+        selector: ':where([data-control-family="avatar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-avatar-badge-size",
+        syntax: "<length-percentage>",
+        defaultValue: "max(0.5rem, 30%)",
+        selector: ':where([data-control-family="avatar"][data-slot="root"])',
+      },
+      {
         name: "--cui-avatar-fallback-background",
         syntax: "<color>",
         defaultValue: "var(--muted)",
@@ -907,6 +937,48 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="chat-message"][data-slot="root"])',
       },
       {
+        name: "--cui-chat-message-reaction-background",
+        syntax: "<color>",
+        defaultValue: "oklch(from var(--muted) l c h / 0.7)",
+        selector: ':where([data-control-family="chat-message"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chat-message-reaction-border-color",
+        syntax: "<color>",
+        defaultValue: "transparent",
+        selector: ':where([data-control-family="chat-message"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chat-message-reaction-border-width",
+        syntax: "<length>",
+        defaultValue: "var(--control-rim-width)",
+        selector: ':where([data-control-family="chat-message"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chat-message-reaction-pressed-background",
+        syntax: "<color>",
+        defaultValue: "oklch(from var(--primary) l c h / 0.14)",
+        selector: ':where([data-control-family="chat-message"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chat-message-reaction-pressed-border-color",
+        syntax: "<color>",
+        defaultValue: "oklch(from var(--primary) l c h / 0.55)",
+        selector: ':where([data-control-family="chat-message"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chat-message-reaction-radius",
+        syntax: "<length-percentage>",
+        defaultValue: "9999px",
+        selector: ':where([data-control-family="chat-message"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chat-message-row-hover-background",
+        syntax: "<color>",
+        defaultValue: "oklch(from var(--muted) l c h / 0.6)",
+        selector: ':where([data-control-family="chat-message"][data-slot="root"])',
+      },
+      {
         name: "--cui-chat-message-shadow",
         syntax: "*",
         defaultValue: "none",
@@ -1478,6 +1550,41 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         syntax: "<color>",
         defaultValue: "var(--muted-foreground)",
         selector: ':where([data-control-family="dynamic-notification"][data-slot="root"])',
+      },
+    ],
+  },
+  {
+    id: "emoji-picker",
+    knobs: [
+      {
+        name: "--cui-emoji-picker-active-background",
+        syntax: "<color>",
+        defaultValue: "var(--accent)",
+        selector: ':where([data-control-family="emoji-picker"][data-slot="root"])',
+      },
+      {
+        name: "--cui-emoji-picker-cell-radius",
+        syntax: "<length-percentage>",
+        defaultValue: "var(--radius-control)",
+        selector: ':where([data-control-family="emoji-picker"][data-slot="root"])',
+      },
+      {
+        name: "--cui-emoji-picker-cell-size",
+        syntax: "<length>",
+        defaultValue: "calc(var(--spacing) * 8)",
+        selector: ':where([data-control-family="emoji-picker"][data-slot="root"])',
+      },
+      {
+        name: "--cui-emoji-picker-header-background",
+        syntax: "<color>",
+        defaultValue: "var(--popover)",
+        selector: ':where([data-control-family="emoji-picker"][data-slot="root"])',
+      },
+      {
+        name: "--cui-emoji-picker-header-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--muted-foreground)",
+        selector: ':where([data-control-family="emoji-picker"][data-slot="root"])',
       },
     ],
   },
@@ -3249,6 +3356,24 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         syntax: "*",
         defaultValue: "var(--shadow-sm)",
         selector: ':where([data-control-family="sidebar"][data-slot="wrapper"])',
+      },
+      {
+        name: "--cui-sidebar-menu-badge-background",
+        syntax: "<color>",
+        defaultValue: "oklch(from var(--sidebar-foreground) l c h / 0.08)",
+        selector: ':where([data-control-family="sidebar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-sidebar-menu-badge-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--sidebar-foreground)",
+        selector: ':where([data-control-family="sidebar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-sidebar-menu-badge-height",
+        syntax: "<length>",
+        defaultValue: "calc(var(--spacing) * 5)",
+        selector: ':where([data-control-family="sidebar"][data-slot="root"])',
       },
       {
         name: "--cui-sidebar-menu-button-active-background",

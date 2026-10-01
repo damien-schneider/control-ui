@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "team-chat-block",
+  "type": "registry:block",
+  "title": "Team chat",
+  "description": "Slack-style workspace with channels, unread badges, presence, reactions, and a side thread for replies.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core",
+    "sidebar"
+  ],
+  "files": [
+    {
+      "path": "src/registry/blocks/control-ui/team-chat.tsx",
+      "target": "@components/control-ui/blocks/team-chat.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/team-chat-block.json"
+  }
+}

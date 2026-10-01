@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "discussion-block",
+  "type": "registry:block",
+  "title": "Discussion",
+  "description": "Comment thread with ⌘ Enter posting, nested replies, inline editing, and hover actions.",
+  "dependencies": [
+    "lucide-react@^1.47.0"
+  ],
+  "registryDependencies": [
+    "button",
+    "chat-composer",
+    "chat-message",
+    "core",
+    "kbd"
+  ],
+  "files": [
+    {
+      "path": "src/registry/blocks/control-ui/discussion.tsx",
+      "target": "@components/control-ui/blocks/discussion.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/discussion-block.json"
+  }
+}

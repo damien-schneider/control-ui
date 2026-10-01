@@ -32,8 +32,8 @@
 
 ### Components (installable surfaces)
 **Chat & agents** — Everything that composes an AI conversation: the transcript, the composer and the surfaces that replace it, and what the agent is doing while you wait.
-- `chat-message` (ChatMessage) — Composable chat message with typed role, density, and lifecycle state. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-message.json`
-- `chat-composer` (ChatComposer) — Prompt composer with controlled text, submit state, and trigger-menu support. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer.json`
+- `chat-message` (ChatMessage) — Composable chat message for assistant turns or people talking: bubble or flat layout, grouped bursts, reactions, and replies. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-message.json`
+- `chat-composer` (ChatComposer) — Message composer with controlled text, Enter or ⌘ Enter submit, caret text insertion, and trigger-menu support. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer.json`
 - `chat-composer-attachment` (ChatComposerAttachment) — Composer attachment rail with file previews, upload progress, and removal. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer-attachment.json`
 - `user-ask` (UserAsk) — Keyboard-first agent question panel that temporarily replaces the chat composer inside its container. — `npx shadcn@latest add http://127.0.0.1:3000/r/user-ask.json`
 - `task-list` (TaskList) — Floating agent task progress pill above the composer that expands into the full task list. — `npx shadcn@latest add http://127.0.0.1:3000/r/task-list.json`
@@ -47,7 +47,7 @@
 - `action-bar` (ActionBar) — Reusable hover actions for message and response controls. — `npx shadcn@latest add http://127.0.0.1:3000/r/action-bar.json`
 - `inline-attachment` (InlineAttachment) **[beta]** — Inline file and media previews for chat turns. — `npx shadcn@latest add http://127.0.0.1:3000/r/inline-attachment.json`
 - `markdown-block` (MarkdownBlock) — Assistant markdown output rendered to prose, with a header and copy-source action. — `npx shadcn@latest add http://127.0.0.1:3000/r/markdown-block.json`
-- `chat-layout` (ChatLayout) — A scrolling conversation with message turns and a floating composer dock. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-layout.json`
+- `chat-layout` (ChatLayout) — A scrolling conversation with a pinned header, message turns, and a floating composer dock. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-layout.json`
 - `thread-rail` (ThreadRail) — Conversation minimap for scanning and jumping between chat turns. — `npx shadcn@latest add http://127.0.0.1:3000/r/thread-rail.json`
 
 **Forms** — Capture a value from the user — typed, picked, toggled, or uploaded — plus the scaffolding that labels and validates it.
@@ -64,8 +64,10 @@
 - `use-cases` (Templates & patterns) — Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.
 - `chat` (Chat) — Controlled chat shell that composes rendered turns and a provider-owned composer. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-block.json`
 - `theme-toggle` (Theme toggle) — Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown. — `npx shadcn@latest add http://127.0.0.1:3000/r/theme-toggle-block.json`
+- `discussion` (Discussion) **[beta]** — Comment thread with ⌘ Enter posting, nested replies, inline editing, and hover actions. — `npx shadcn@latest add http://127.0.0.1:3000/r/discussion-block.json`
 - `coding-agent` (Coding agent) **[beta]** — Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer. — `npx shadcn@latest add http://127.0.0.1:3000/r/coding-agent-block.json`
 - `settings` (Settings) — Searchable multi-page settings shell with responsive navigation and accessible control groups. — `npx shadcn@latest add http://127.0.0.1:3000/r/settings-block.json`
+- `team-chat` (Team chat) **[beta]** — Slack-style workspace with channels, unread badges, presence, reactions, and a side thread for replies. — `npx shadcn@latest add http://127.0.0.1:3000/r/team-chat-block.json`
 - `file-explorer` (File explorer) **[beta]** — Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview. — `npx shadcn@latest add http://127.0.0.1:3000/r/file-explorer-block.json`
 - `design-canvas` (Design canvas) **[beta]** — Figma-style editor with layers, an infinite canvas, a floating tool bar, and scrubbable property inputs. — `npx shadcn@latest add http://127.0.0.1:3000/r/design-canvas-block.json`
 
@@ -101,6 +103,7 @@
 - `autocomplete` (Autocomplete) — Free-text input with search-as-you-type suggestions. — `npx shadcn@latest add http://127.0.0.1:3000/r/autocomplete.json`
 - `number-field` (Number Field) — Numeric input with stepper buttons and optional drag-to-change behavior. — `npx shadcn@latest add http://127.0.0.1:3000/r/number-field.json`
 - `color-picker` (Color Picker) **[beta]** — Color input with picker UI, formats, presets, and contrast helpers. — `npx shadcn@latest add http://127.0.0.1:3000/r/color-picker.json`
+- `emoji-picker` (Emoji Picker) **[beta]** — Searchable, virtualized emoji grid with skin-aware cells and an active emoji footer. — `npx shadcn@latest add http://127.0.0.1:3000/r/emoji-picker.json`
 - `gradient-editor` (Gradient Editor) **[beta]** — CSS gradient editor with draggable stops and live preview. — `npx shadcn@latest add http://127.0.0.1:3000/r/gradient-editor.json`
 - `calendar` (Calendar) — Date selection grid built on react-day-picker and themed through tokens. — `npx shadcn@latest add http://127.0.0.1:3000/r/calendar.json`
 

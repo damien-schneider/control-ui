@@ -55,6 +55,7 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "diff": "^9.0.0",
+    "frimousse": "^0.4.0",
     "hono": "^4.13.8",
     "libphonenumber-js": "^1.13.13",
     "lucide-react": "^1.47.0",

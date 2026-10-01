@@ -52,7 +52,7 @@
           "data-popup-open": "",
           "data-popup-side": "bottom",
           "data-pressed": "",
-          "data-slot": "root",
+          "data-slot": "input-group",
           "role": "group"
         }
       },
@@ -120,7 +120,7 @@
           "data-popup-open": "",
           "data-popup-side": "bottom",
           "data-pressed": "",
-          "data-slot": "root",
+          "data-slot": "input-group",
           "role": "group"
         }
       },
@@ -185,9 +185,336 @@
           "data-field-kind": "combobox",
           "data-placeholder": "",
           "data-popup-open": "",
+          "data-popup-side": "top",
+          "data-pressed": "",
+          "data-slot": "input-group",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "field",
+          "data-control-ui": "combobox",
+          "data-field-kind": "combobox",
+          "data-popup-open": "",
+          "data-popup-side": "top",
+          "data-pressed": "",
+          "data-size": "sm",
+          "data-slot": "input",
+          "role": "combobox"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "field",
+          "data-control-ui": "combobox",
+          "data-field-kind": "combobox",
+          "data-placeholder": "",
+          "data-popup-open": "",
+          "data-popup-side": "top",
+          "data-pressed": "",
+          "data-slot": "trigger",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "field",
+          "data-control-ui": "combobox",
+          "data-field-kind": "combobox",
+          "data-placeholder": "",
+          "data-slot": "input-group",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "field",
+          "data-control-ui": "combobox",
+          "data-field-kind": "combobox",
+          "data-size": "md",
+          "data-slot": "input",
+          "role": "combobox"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "field",
+          "data-control-ui": "combobox",
+          "data-field-kind": "combobox",
+          "data-placeholder": "",
+          "data-slot": "trigger",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "field",
+          "data-control-ui": "combobox",
+          "data-field-kind": "combobox",
+          "data-placeholder": "",
+          "data-slot": "input-group",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "field",
+          "data-control-ui": "combobox",
+          "data-field-kind": "combobox",
+          "data-size": "sm",
+          "data-slot": "input",
+          "role": "combobox"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "field",
+          "data-control-ui": "combobox",
+          "data-field-kind": "combobox",
+          "data-placeholder": "",
+          "data-slot": "trigger",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "field",
+          "data-control-ui": "combobox",
+          "data-field-kind": "combobox",
+          "data-popup-open": "",
           "data-popup-side": "bottom",
           "data-pressed": "",
+          "data-slot": "input-group",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "field",
+          "data-control-ui": "combobox",
+          "data-field-kind": "combobox",
+          "data-popup-open": "",
+          "data-popup-side": "bottom",
+          "data-pressed": "",
+          "data-size": "md",
+          "data-slot": "input",
+          "role": "combobox"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "field",
+          "data-control-ui": "combobox",
+          "data-field-kind": "combobox",
+          "data-popup-open": "",
+          "data-popup-side": "bottom",
+          "data-pressed": "",
+          "data-slot": "trigger",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
           "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "field",
+          "data-control-ui": "combobox",
+          "data-field-kind": "combobox",
+          "data-slot": "input-group",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "field",
+          "data-control-ui": "combobox",
+          "data-field-kind": "combobox",
+          "data-size": "md",
+          "data-slot": "input",
+          "role": "combobox"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "field",
+          "data-control-ui": "combobox",
+          "data-field-kind": "combobox",
+          "data-slot": "trigger",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "table-of-contents",
+          "data-control-ui": "table-of-contents",
+          "data-slot": "root",
+          "data-variant": "range"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "combobox",
+          "data-open": "",
+          "data-popup-kind": "combobox",
+          "data-popup-part": "list-surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "field",
+          "data-control-ui": "combobox",
+          "data-field-kind": "combobox",
+          "data-placeholder": "",
+          "data-popup-open": "",
+          "data-popup-side": "bottom",
+          "data-pressed": "",
+          "data-slot": "input-group",
           "role": "group"
         }
       },
@@ -215,244 +542,8 @@
           "data-popup-side": "bottom",
           "data-pressed": "",
           "data-slot": "trigger",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "field",
-          "data-control-ui": "combobox",
-          "data-field-kind": "combobox",
-          "data-placeholder": "",
-          "data-slot": "root",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "field",
-          "data-control-ui": "combobox",
-          "data-field-kind": "combobox",
-          "data-size": "md",
-          "data-slot": "input",
-          "role": "combobox"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "field",
-          "data-control-ui": "combobox",
-          "data-field-kind": "combobox",
-          "data-placeholder": "",
-          "data-slot": "trigger",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "field",
-          "data-control-ui": "combobox",
-          "data-field-kind": "combobox",
-          "data-placeholder": "",
-          "data-slot": "root",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "field",
-          "data-control-ui": "combobox",
-          "data-field-kind": "combobox",
-          "data-size": "sm",
-          "data-slot": "input",
-          "role": "combobox"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "field",
-          "data-control-ui": "combobox",
-          "data-field-kind": "combobox",
-          "data-placeholder": "",
-          "data-slot": "trigger",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "field",
-          "data-control-ui": "combobox",
-          "data-field-kind": "combobox",
-          "data-popup-open": "",
-          "data-popup-side": "bottom",
-          "data-pressed": "",
-          "data-slot": "root",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "field",
-          "data-control-ui": "combobox",
-          "data-field-kind": "combobox",
-          "data-popup-open": "",
-          "data-popup-side": "bottom",
-          "data-pressed": "",
-          "data-size": "md",
-          "data-slot": "input",
-          "role": "combobox"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "field",
-          "data-control-ui": "combobox",
-          "data-field-kind": "combobox",
-          "data-popup-open": "",
-          "data-popup-side": "bottom",
-          "data-pressed": "",
-          "data-slot": "trigger",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "field",
-          "data-control-ui": "combobox",
-          "data-field-kind": "combobox",
-          "data-slot": "root",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "field",
-          "data-control-ui": "combobox",
-          "data-field-kind": "combobox",
-          "data-size": "md",
-          "data-slot": "input",
-          "role": "combobox"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "field",
-          "data-control-ui": "combobox",
-          "data-field-kind": "combobox",
-          "data-slot": "trigger",
-          "tabindex": "-1"
+          "role": "combobox",
+          "tabindex": "0"
         }
       }
     ],
@@ -1611,7 +1702,7 @@
           "data-control-ui": "combobox",
           "data-field-kind": "combobox",
           "data-popup-open": "",
-          "data-popup-side": "bottom",
+          "data-popup-side": "top",
           "data-pressed": "",
           "data-size": "sm",
           "data-slot": "input",
@@ -2408,6 +2499,57 @@
           "data-control-family": "popup",
           "data-control-ui": "select",
           "data-popup-kind": "select",
+          "data-slot": "icon"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "full"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "field",
+          "data-control-ui": "select",
+          "data-field-kind": "select",
+          "data-popup-open": "",
+          "data-popup-side": "bottom",
+          "data-pressed": "",
+          "data-size": "sm",
+          "data-slot": "trigger",
+          "role": "combobox",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-popup-kind": "select",
+          "data-popup-open": "",
           "data-slot": "icon"
         }
       }
@@ -3341,19 +3483,10 @@
     },
     {
       "knobs": {
-        "fill": "--cui-field-background",
-        "text": "--cui-field-foreground"
+        "fill": "--cui-field-affordance-background",
+        "text": "--cui-field-affordance-foreground"
       },
       "anatomy": 11,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-field-background",
-        "text": "--cui-field-foreground"
-      },
-      "anatomy": 12,
       "rendersText": false,
       "state": false
     },
@@ -3362,8 +3495,17 @@
         "fill": "--cui-field-background",
         "text": "--cui-field-foreground"
       },
-      "anatomy": 13,
+      "anatomy": 12,
       "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-field-background",
+        "text": "--cui-field-foreground"
+      },
+      "anatomy": 13,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3381,15 +3523,6 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 15,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-field-background",
-        "text": "--cui-field-foreground"
-      },
-      "anatomy": 16,
       "rendersText": true,
       "state": false
     },
@@ -3398,8 +3531,17 @@
         "fill": "--cui-field-background",
         "text": "--cui-field-foreground"
       },
-      "anatomy": 17,
+      "anatomy": 16,
       "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-field-background",
+        "text": "--cui-field-foreground"
+      },
+      "anatomy": 17,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3426,7 +3568,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 20,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3453,7 +3595,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 23,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3480,7 +3622,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 26,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3498,7 +3640,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 28,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3552,7 +3694,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 34,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3570,7 +3712,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 36,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3624,7 +3766,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 42,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3642,7 +3784,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 44,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3660,7 +3802,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 46,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3692,11 +3834,12 @@
     },
     {
       "knobs": {
-        "fill": "--cui-field-background"
+        "fill": "--cui-field-background",
+        "text": "--cui-field-foreground"
       },
-      "anatomy": 44,
-      "rendersText": false,
-      "state": true
+      "anatomy": 50,
+      "rendersText": true,
+      "state": false
     },
     {
       "knobs": {
@@ -3708,11 +3851,11 @@
     },
     {
       "knobs": {
-        "text": "--cui-field-affordance-foreground"
+        "fill": "--cui-field-background"
       },
-      "anatomy": 50,
+      "anatomy": 46,
       "rendersText": false,
-      "state": false
+      "state": true
     },
     {
       "knobs": {
@@ -3823,6 +3966,22 @@
         "text": "--cui-field-affordance-foreground"
       },
       "anatomy": 64,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-field-affordance-foreground"
+      },
+      "anatomy": 65,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-field-affordance-foreground"
+      },
+      "anatomy": 66,
       "rendersText": false,
       "state": false
     }

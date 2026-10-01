@@ -16,8 +16,6 @@ import { createEditorSchema } from "./chat-composer-editor/schema";
 import { docFromText, serializeDoc } from "./chat-composer-editor/serialize";
 import type { ChatComposerEditorApi, ChatComposerEditorProps } from "./chat-composer-editor/types";
 
-const SUBMIT_KEY = "Enter";
-
 function releaseFileDrag(_view: EditorView, event: DragEvent) {
   return event.dataTransfer ? Array.from(event.dataTransfer.types).includes("Files") : false;
 }
@@ -105,6 +103,7 @@ export function ChatComposerEditor({
       inputRef.current.submit(extra);
       return true;
     };
+    const submitOnEnter = (editorState: EditorState) => inputRef.current.submitKey === "enter" && submitMessage(editorState);
 
     const state = EditorState.create({
       schema,
@@ -128,7 +127,8 @@ export function ChatComposerEditor({
           "Mod-y": redo,
           "Shift-Mod-z": redo,
           "Shift-Enter": splitBlock,
-          [SUBMIT_KEY]: submitMessage,
+          Enter: submitOnEnter,
+          "Mod-Enter": submitMessage,
         }),
         keymap(baseKeymap),
       ],
@@ -155,6 +155,18 @@ export function ChatComposerEditor({
       viewRef.current = null;
     };
   }, [api, initialExtensions]);
+
+  const { registerInsertionTarget } = input;
+  useEffect(
+    () =>
+      registerInsertionTarget((text) => {
+        const view = viewRef.current;
+        if (!view) return;
+        view.dispatch(view.state.tr.insertText(text));
+        view.focus();
+      }),
+    [registerInsertionTarget],
+  );
 
   useEffect(() => {
     const view = viewRef.current;

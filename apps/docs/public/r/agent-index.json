@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 184,
+    "count": 187,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -590,7 +590,7 @@
         "id": "chat-message",
         "name": "ChatMessage",
         "kind": "Component",
-        "summary": "Composable chat message with typed role, density, and lifecycle state.",
+        "summary": "Composable chat message for assistant turns or people talking: bubble or flat layout, grouped bursts, reactions, and replies.",
         "href": "/components/chat-message",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-message.json"
       },
@@ -598,7 +598,7 @@
         "id": "chat-composer",
         "name": "ChatComposer",
         "kind": "Component",
-        "summary": "Prompt composer with controlled text, submit state, and trigger-menu support.",
+        "summary": "Message composer with controlled text, Enter or ⌘ Enter submit, caret text insertion, and trigger-menu support.",
         "href": "/components/chat-composer",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer.json"
       },
@@ -739,7 +739,7 @@
         "id": "chat-layout",
         "name": "ChatLayout",
         "kind": "Component",
-        "summary": "A scrolling conversation with message turns and a floating composer dock.",
+        "summary": "A scrolling conversation with a pinned header, message turns, and a floating composer dock.",
         "href": "/components/chat-layout",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-layout.json"
       },
@@ -1327,6 +1327,15 @@
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/color-picker.json"
       },
       {
+        "id": "emoji-picker",
+        "name": "Emoji Picker",
+        "kind": "Primitive",
+        "summary": "Searchable, virtualized emoji grid with skin-aware cells and an active emoji footer.",
+        "href": "/primitives/emoji-picker",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/emoji-picker.json"
+      },
+      {
         "id": "gradient-editor",
         "name": "Gradient Editor",
         "kind": "Primitive",
@@ -1488,6 +1497,15 @@
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/theme-toggle-block.json"
       },
       {
+        "id": "discussion",
+        "name": "Discussion",
+        "kind": "Block",
+        "summary": "Comment thread with ⌘ Enter posting, nested replies, inline editing, and hover actions.",
+        "href": "/use-cases/discussion",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/discussion-block.json"
+      },
+      {
         "id": "coding-agent",
         "name": "Coding agent",
         "kind": "Block",
@@ -1503,6 +1521,15 @@
         "summary": "Searchable multi-page settings shell with responsive navigation and accessible control groups.",
         "href": "/use-cases/settings",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/settings-block.json"
+      },
+      {
+        "id": "team-chat",
+        "name": "Team chat",
+        "kind": "Block",
+        "summary": "Slack-style workspace with channels, unread badges, presence, reactions, and a side thread for replies.",
+        "href": "/use-cases/team-chat",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/team-chat-block.json"
       },
       {
         "id": "file-explorer",

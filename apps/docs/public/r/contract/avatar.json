@@ -35,6 +35,36 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--image-outline)"
+    },
+    {
+      "name": "--cui-avatar-badge-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "max(0.5rem, 30%)"
+    },
+    {
+      "name": "--cui-avatar-badge-ring-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "2px"
+    },
+    {
+      "name": "--cui-avatar-badge-ring-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--background)"
+    },
+    {
+      "name": "--cui-avatar-badge-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary)"
+    },
+    {
+      "name": "--cui-avatar-badge-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary-foreground)"
     }
   ],
   "parts": {
@@ -45,6 +75,25 @@
           "avatar"
         ],
         "states": []
+      },
+      "badge": {
+        "family": "avatar",
+        "registryItems": [
+          "avatar"
+        ],
+        "states": [
+          {
+            "attribute": "data-status",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "away",
+              "busy",
+              "offline",
+              "online"
+            ]
+          }
+        ]
       },
       "fallback": {
         "family": "avatar",

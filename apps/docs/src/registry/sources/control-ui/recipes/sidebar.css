@@ -75,6 +75,9 @@
     --cui-sidebar-menu-button-active-font-weight: 500;
     --cui-sidebar-menu-button-radius: var(--radius-popup-item);
     --cui-sidebar-menu-button-foreground: var(--sidebar-foreground);
+    --cui-sidebar-menu-badge-height: calc(var(--spacing) * 5);
+    --cui-sidebar-menu-badge-background: oklch(from var(--sidebar-foreground) l c h / 0.08);
+    --cui-sidebar-menu-badge-foreground: var(--sidebar-foreground);
     --cui-sidebar-menu-button-hover-background: var(--hover-fill);
     --cui-sidebar-menu-button-hover-foreground: var(--foreground);
     --cui-sidebar-menu-button-hover-shadow: 0 0 transparent;

@@ -61,6 +61,24 @@ export const blockEntries = [
     preview: preview(() => import("@/src/registry/examples/control-ui/theme-toggle").then((mod) => ({ default: mod.ThemeToggleExample }))),
   },
   {
+    id: "discussion",
+    kind: "Block",
+    useCaseKind: "pattern",
+    name: "Discussion",
+    summary: "Comment thread with ⌘ Enter posting, nested replies, inline editing, and hover actions.",
+    status: "beta",
+    registryKind: "discussion-block",
+    paths: {
+      example: sourceFile("Example", "src/registry/examples/control-ui/discussion.tsx", "example"),
+      usage: {
+        mastra: sourceFile("Usage", "src/registry/usage/blocks/discussion.tsx", "usage"),
+        "ai-sdk": sourceFile("Usage", "src/registry/usage/blocks/discussion.tsx", "usage"),
+      },
+      files: [sourceFile("Block recipe", "src/registry/blocks/control-ui/discussion.tsx", "block")],
+    },
+    preview: preview(() => import("@/src/registry/examples/control-ui/discussion").then((mod) => ({ default: mod.DiscussionExample }))),
+  },
+  {
     id: "coding-agent",
     kind: "Block",
     useCaseKind: "template",
@@ -94,6 +112,26 @@ export const blockEntries = [
       files: [sourceFile("Block recipe", "src/registry/blocks/control-ui/settings.tsx", "block")],
     },
     preview: preview(() => import("@/src/registry/examples/control-ui/settings").then((mod) => ({ default: mod.SettingsExample }))),
+  },
+  {
+    id: "team-chat",
+    kind: "Block",
+    useCaseKind: "template",
+    name: "Team chat",
+    summary: "Slack-style workspace with channels, unread badges, presence, reactions, and a side thread for replies.",
+    status: "beta",
+    registryKind: "team-chat-block",
+    paths: {
+      example: sourceFile("Example", "src/registry/examples/control-ui/team-chat/team-chat.tsx", "example"),
+      usage: {
+        mastra: sourceFile("Usage", "src/registry/usage/blocks/team-chat.tsx", "usage"),
+        "ai-sdk": sourceFile("Usage", "src/registry/usage/blocks/team-chat.tsx", "usage"),
+      },
+      files: [sourceFile("Block recipe", "src/registry/blocks/control-ui/team-chat.tsx", "block")],
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/team-chat/team-chat").then((mod) => ({ default: mod.TeamChatExample })),
+    ),
   },
   {
     id: "file-explorer",

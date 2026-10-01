@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "emoji-picker",
+  "type": "registry:ui",
+  "title": "Emoji Picker",
+  "description": "Searchable, virtualized emoji grid with skin-aware cells and an active emoji footer.",
+  "dependencies": [
+    "frimousse@^0.4.0",
+    "lucide-react@^1.47.0"
+  ],
+  "registryDependencies": [
+    "core",
+    "spinner"
+  ],
+  "files": [
+    {
+      "path": "src/registry/knob-contracts/emoji-picker-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/emoji-picker-knobs.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/emoji-picker.css",
+      "target": "@components/control-ui/styles/recipes/emoji-picker.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/emoji-picker.tsx",
+      "target": "@components/control-ui/ui/emoji-picker.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/emoji-picker.css\"": {}
+  },
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/emoji-picker.json"
+  }
+}

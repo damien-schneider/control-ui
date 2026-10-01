@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "team-chat-block",
+  "type": "registry:block",
+  "title": "Team chat",
+  "description": "Slack-style workspace with channels, unread badges, presence, reactions, and a side thread for replies.",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json",
+    "http://127.0.0.1:3000/r/sidebar.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/blocks/control-ui/team-chat.tsx",
+      "target": "@components/control-ui/blocks/team-chat.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport type { ComponentProps, ReactNode } from \"react\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { SidebarInset, SidebarProvider } from \"@/components/control-ui/ui/sidebar\";\n\nexport type TeamChatBlockProps = Omit<ComponentProps<typeof SidebarProvider>, \"children\"> & {\n  sidebar: ReactNode;\n  children: ReactNode;\n  thread?: ReactNode;\n  threadLabel?: string;\n};\n\nexport function TeamChatBlock({ sidebar, children, thread, threadLabel = \"Thread\", className, ...props }: TeamChatBlockProps) {\n  const threadIsOpen = thread !== undefined && thread !== null;\n\n  return (\n    <SidebarProvider className={cn(\"bg-background text-foreground\", className)} {...props}>\n      {sidebar}\n      <SidebarInset className=\"@container/team-chat flex h-full min-h-0 min-w-0 flex-row\">\n        <div className={cn(\"flex min-h-0 min-w-0 flex-1 flex-col\", threadIsOpen && \"@max-3xl/team-chat:hidden\")}>{children}</div>\n        {threadIsOpen ? (\n          <aside\n            aria-label={threadLabel}\n            className=\"flex min-h-0 w-full min-w-0 flex-col border-border @3xl/team-chat:w-[min(26rem,45%)] @3xl/team-chat:shrink-0 @3xl/team-chat:border-s\"\n          >\n            {thread}\n          </aside>\n        ) : null}\n      </SidebarInset>\n    </SidebarProvider>\n  );\n}\n"
+    }
+  ]
+}

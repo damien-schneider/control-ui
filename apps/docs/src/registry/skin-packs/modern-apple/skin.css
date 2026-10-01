@@ -355,7 +355,7 @@
     }
   }
 
-  [data-skin="modern-apple"] :where([data-slot="root"][data-role="user"][data-control-family="chat-message"]) {
+  [data-skin="modern-apple"] :where([data-slot="root"][data-role="user"][data-layout="bubble"][data-control-family="chat-message"]) {
     --cui-chat-message-radius: var(--radius-field);
     --cui-chat-message-corner-radius: var(--radius-field);
     --cui-chat-message-background: var(--primary);

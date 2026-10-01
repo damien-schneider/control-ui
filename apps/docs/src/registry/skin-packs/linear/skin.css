@@ -386,7 +386,7 @@
 }
 
 @layer components {
-  [data-skin="linear"] :where([data-slot="root"][data-role="user"][data-control-family="chat-message"]) {
+  [data-skin="linear"] :where([data-slot="root"][data-role="user"][data-layout="bubble"][data-control-family="chat-message"]) {
     --cui-chat-message-radius: var(--radius-field);
     --cui-chat-message-corner-radius: var(--radius-field);
     --cui-chat-message-background: var(--primary);
@@ -394,7 +394,7 @@
     --cui-chat-message-foreground: var(--primary-foreground);
   }
 
-  [data-skin="linear"] :where([data-slot="root"][data-role="assistant"][data-control-family="chat-message"]) {
+  [data-skin="linear"] :where([data-slot="root"][data-role="assistant"][data-layout="bubble"][data-control-family="chat-message"]) {
     --cui-chat-message-radius: var(--radius-field);
     --cui-chat-message-corner-radius: var(--radius-field);
     --cui-chat-message-background: transparent;

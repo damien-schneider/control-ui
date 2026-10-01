@@ -109,6 +109,7 @@
             "valueKind": "enum",
             "values": [
               "assistant",
+              "participant",
               "system",
               "tool",
               "user"

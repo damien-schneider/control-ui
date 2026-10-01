@@ -134,3 +134,21 @@
     gap: 0;
   }
 }
+
+@property --cui-sidebar-menu-badge-height {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-sidebar-menu-badge-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-sidebar-menu-badge-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

@@ -99,7 +99,7 @@
   }
 
   :is(.dark[data-skin="rig"], :where(.dark) [data-skin="rig"], [data-skin="rig"] :where(.dark))
-    [data-slot="content"][data-role="user"][data-control-family="chat-message"] {
+    [data-control-family="chat-message"][data-slot="root"][data-role="user"][data-layout="bubble"] {
     --cui-chat-message-background: oklch(0.444 0.1277 32.246);
     --cui-chat-message-foreground: oklch(0.9313 0.0143 81.504);
   }

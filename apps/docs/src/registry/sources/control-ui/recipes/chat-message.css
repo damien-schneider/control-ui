@@ -14,14 +14,26 @@
     --cui-chat-message-shadow: none;
     --cui-chat-message-pending-dot-color: var(--muted-foreground);
     --cui-chat-message-pending-dot-size: calc(var(--spacing) * 1.5);
+    --cui-chat-message-row-hover-background: oklch(from var(--muted) l c h / 0.6);
+    --cui-chat-message-reaction-radius: 9999px;
+    --cui-chat-message-reaction-background: oklch(from var(--muted) l c h / 0.7);
+    --cui-chat-message-reaction-border-color: transparent;
+    --cui-chat-message-reaction-border-width: var(--control-rim-width);
+    --cui-chat-message-reaction-pressed-background: oklch(from var(--primary) l c h / 0.14);
+    --cui-chat-message-reaction-pressed-border-color: oklch(from var(--primary) l c h / 0.55);
+  }
+
+  :where([data-control-family="chat-message"][data-slot="pending"]),
+  :where([data-control-family="chat-message"][data-slot="typing-dots"]) {
+    gap: var(--cui-chat-message-pending-dot-size);
   }
 
   :where([data-control-family="chat-message"][data-slot="pending"]) {
-    gap: var(--cui-chat-message-pending-dot-size);
     padding-block: calc(var(--spacing) * 2);
   }
 
-  :where([data-control-family="chat-message"][data-slot="pending"] > span) {
+  :where([data-control-family="chat-message"][data-slot="pending"] > span),
+  :where([data-control-family="chat-message"][data-slot="typing-dots"] > span) {
     inline-size: var(--cui-chat-message-pending-dot-size);
     block-size: var(--cui-chat-message-pending-dot-size);
     border-radius: 9999px;
@@ -29,11 +41,13 @@
     animation: chat-message-pending calc(var(--duration-slow) * 3) var(--ease-standard) infinite;
   }
 
-  :where([data-control-family="chat-message"][data-slot="pending"] > span:nth-child(2)) {
+  :where([data-control-family="chat-message"][data-slot="pending"] > span:nth-child(2)),
+  :where([data-control-family="chat-message"][data-slot="typing-dots"] > span:nth-child(2)) {
     animation-delay: calc(var(--duration-slow) / 2);
   }
 
-  :where([data-control-family="chat-message"][data-slot="pending"] > span:nth-child(3)) {
+  :where([data-control-family="chat-message"][data-slot="pending"] > span:nth-child(3)),
+  :where([data-control-family="chat-message"][data-slot="typing-dots"] > span:nth-child(3)) {
     animation-delay: var(--duration-slow);
   }
 
@@ -55,17 +69,33 @@
     padding-block: calc(var(--spacing) * 2);
   }
 
-  :where([data-control-family="chat-message"][data-slot="root"][data-density="compact"] [data-slot="row"]) {
+  :where([data-control-family="chat-message"][data-slot="row"][data-density="compact"]) {
     padding-block: calc(var(--spacing) * 1);
   }
 
-  :where([data-control-family="chat-message"][data-slot="root"][data-role="user"] [data-slot="body"]) {
-    max-inline-size: 76%;
+  :where([data-control-family="chat-message"][data-slot="row"][data-layout="flat"]) {
+    gap: calc(var(--spacing) * 3);
+    padding-inline: calc(var(--spacing) * 2);
+    border-radius: var(--radius-md);
+    transition-property: background-color;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
   }
 
-  :where([data-control-family="chat-message"][data-slot="root"]:not([data-role="user"]) [data-slot="body"]) {
-    max-inline-size: 100%;
+  @media (hover: hover) and (pointer: fine) {
+    :where([data-control-family="chat-message"][data-slot="row"][data-layout="flat"]:hover:not(:has([data-slot="row"]:hover))) {
+      background-color: var(--cui-chat-message-row-hover-background);
+    }
+  }
+
+  :where([data-control-family="chat-message"][data-slot="body"]) {
     flex: 1;
+    max-inline-size: 100%;
+  }
+
+  :where([data-control-family="chat-message"][data-slot="body"][data-layout="bubble"]:is([data-role="user"], [data-role="participant"])) {
+    flex: 0 1 auto;
+    max-inline-size: 76%;
   }
 
   :where([data-control-family="chat-message"][data-slot="avatar"]) {
@@ -77,6 +107,16 @@
     background: var(--cui-chat-message-avatar-background);
     font-size: var(--text-caption);
     color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="chat-message"][data-slot="avatar"][data-layout="flat"]) {
+    inline-size: calc(var(--spacing) * 8);
+    block-size: calc(var(--spacing) * 8);
+  }
+
+  :where([data-control-family="chat-message"][data-slot="avatar"]:has(> [data-control-family="avatar"])) {
+    border-color: transparent;
+    background: transparent;
   }
 
   :where([data-control-family="chat-message"][data-slot="content"]) {
@@ -92,7 +132,7 @@
     line-height: calc(var(--spacing) * 5);
   }
 
-  :where([data-control-family="chat-message"][data-slot="root"][data-role="user"]) {
+  :where([data-control-family="chat-message"][data-slot="root"][data-layout="bubble"][data-role="user"]) {
     --cui-chat-message-radius: var(--radius-field);
     --cui-chat-message-corner-radius: var(--radius-lg);
     --cui-chat-message-background: var(--primary);
@@ -100,8 +140,37 @@
     --cui-chat-message-shadow: var(--shadow-sm);
   }
 
-  :where([data-control-family="chat-message"][data-slot="root"][data-role="assistant"][data-state="streaming"] [data-slot="header"]) {
+  :where([data-control-family="chat-message"][data-slot="root"][data-layout="bubble"][data-role="participant"]) {
+    --cui-chat-message-radius: var(--radius-field);
+    --cui-chat-message-corner-radius: var(--radius-field);
+    --cui-chat-message-background: var(--muted);
+  }
+
+  :where([data-control-family="chat-message"][data-slot="header"][data-role="assistant"][data-state="streaming"]) {
     @apply shimmer-text;
+  }
+
+  :where([data-control-family="chat-message"][data-slot="header"]) {
+    margin-block-end: calc(var(--spacing) * 1);
+    gap: calc(var(--spacing) * 2);
+    padding-inline: calc(var(--spacing) * 1);
+    font-size: var(--text-caption);
+    color: var(--muted-foreground);
+    font-variant-numeric: tabular-nums;
+  }
+
+  :where([data-control-family="chat-message"][data-slot="header"][data-layout="flat"]) {
+    margin-block-end: calc(var(--spacing) * 0.5);
+    padding-inline: 0;
+  }
+
+  :where([data-control-family="chat-message"][data-slot="author"]) {
+    font-weight: 500;
+    color: var(--foreground);
+  }
+
+  :where([data-control-family="chat-message"][data-slot="author"][data-layout="flat"]) {
+    font-size: var(--text-body);
   }
 
   :where([data-control-family="chat-message"][data-slot="actions"]) {
@@ -113,27 +182,49 @@
     transition-timing-function: var(--ease-standard);
   }
 
+  :where([data-control-family="chat-message"][data-slot="actions"][data-layout="flat"]) {
+    position: relative;
+    isolation: isolate;
+    align-self: flex-start;
+    margin-block-start: 0;
+    padding: calc(var(--spacing) * 0.5);
+  }
+
   @media (hover: hover) and (pointer: fine) {
     :where([data-control-family="chat-message"][data-slot="actions"]) {
       opacity: 0;
+      pointer-events: none;
     }
 
-    :where([data-control-family="chat-message"][data-slot="row"]:hover [data-control-family="chat-message"][data-slot="actions"]) {
+    :where([data-control-family="chat-message"][data-slot="actions"][data-layout="flat"]) {
+      position: absolute;
+      z-index: 1;
+      inset-block-start: calc(var(--spacing) * -3);
+      inset-inline-end: calc(var(--spacing) * 2);
+    }
+
+    :where([data-control-family="chat-message"][data-slot="row"]:hover:not(:has([data-slot="row"]:hover)) > [data-slot="actions"]),
+    :where(
+        [data-control-family="chat-message"][data-slot="row"]:hover:not(:has([data-slot="row"]:hover))
+          > [data-slot="body"]
+          > [data-slot="actions"]
+      ) {
       opacity: 1;
+      pointer-events: auto;
     }
   }
 
-  :where([data-control-family="chat-message"][data-slot="root"]:focus-within [data-slot="actions"]) {
+  :where(
+    [data-control-family="chat-message"][data-slot="row"]:focus-within:not(:has([data-slot="row"]:focus-within)) > [data-slot="actions"]
+  ),
+  :where(
+    [data-control-family="chat-message"][data-slot="row"]:focus-within:not(:has([data-slot="row"]:focus-within))
+      > [data-slot="body"]
+      > [data-slot="actions"]
+  ),
+  :where([data-control-family="chat-message"][data-slot="actions"]:has([data-popup-open])) {
     opacity: 1;
-  }
-
-  :where([data-control-family="chat-message"][data-slot="header"]) {
-    margin-block-end: calc(var(--spacing) * 1);
-    gap: calc(var(--spacing) * 2);
-    padding-inline: calc(var(--spacing) * 1);
-    font-size: var(--text-caption);
-    color: var(--muted-foreground);
-    font-variant-numeric: tabular-nums;
+    pointer-events: auto;
   }
 }
 
@@ -217,4 +308,46 @@
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;
+}
+
+@property --cui-chat-message-row-hover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-chat-message-reaction-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-chat-message-reaction-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-chat-message-reaction-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-chat-message-reaction-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-chat-message-reaction-pressed-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-chat-message-reaction-pressed-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
 }

@@ -67,6 +67,34 @@
             ]
           }
         ]
+      },
+      "actions": {
+        "family": "chat-layout",
+        "registryItems": [
+          "chat-layout"
+        ],
+        "states": []
+      },
+      "description": {
+        "family": "chat-layout",
+        "registryItems": [
+          "chat-layout"
+        ],
+        "states": []
+      },
+      "header": {
+        "family": "chat-layout",
+        "registryItems": [
+          "chat-layout"
+        ],
+        "states": []
+      },
+      "title": {
+        "family": "chat-layout",
+        "registryItems": [
+          "chat-layout"
+        ],
+        "states": []
       }
     },
     "chat-thread": {

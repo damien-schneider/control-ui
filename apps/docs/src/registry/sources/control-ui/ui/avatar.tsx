@@ -18,13 +18,23 @@ export type AvatarFallbackProps = Omit<ComponentProps<"span">, "style"> & {
   style?: CSSProperties & AvatarKnobStyle;
 };
 
+export const avatarBadgeStatuses = ["online", "away", "busy", "offline"] as const;
+
+export type AvatarBadgeStatus = (typeof avatarBadgeStatuses)[number];
+
+export type AvatarBadgeProps = Omit<ComponentProps<"span">, "style"> & {
+  status?: AvatarBadgeStatus;
+  label?: string;
+  style?: CSSProperties & AvatarKnobStyle;
+};
+
 export function Avatar({ className, ...props }: AvatarProps) {
   return (
     <AvatarPrimitive.Root
       data-control-ui="avatar"
       data-control-family="avatar"
       data-slot="root"
-      className={cn("relative inline-flex shrink-0 select-none items-center justify-center overflow-hidden align-middle", className)}
+      className={cn("relative inline-flex shrink-0 select-none items-center justify-center align-middle", className)}
       {...props}
     />
   );
@@ -65,5 +75,21 @@ export function AvatarFallback({ className, ...props }: AvatarFallbackProps) {
       className={cn("flex size-full items-center justify-center", className)}
       {...props}
     />
+  );
+}
+
+export function AvatarBadge({ className, status, label, children, ...props }: AvatarBadgeProps) {
+  return (
+    <span
+      data-control-ui="avatar"
+      data-control-family="avatar"
+      data-slot="badge"
+      data-status={status}
+      className={cn("absolute inline-flex items-center justify-center", className)}
+      {...props}
+    >
+      {children}
+      {label ? <span className="sr-only">{label}</span> : null}
+    </span>
   );
 }

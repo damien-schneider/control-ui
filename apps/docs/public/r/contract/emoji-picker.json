@@ -1,0 +1,161 @@
+{
+  "version": 9,
+  "family": "emoji-picker",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "emoji-picker"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-emoji-picker-cell-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 8)"
+    },
+    {
+      "name": "--cui-emoji-picker-cell-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-emoji-picker-active-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--accent)"
+    },
+    {
+      "name": "--cui-emoji-picker-header-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--popover)"
+    },
+    {
+      "name": "--cui-emoji-picker-header-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    }
+  ],
+  "parts": {
+    "emoji-picker": {
+      "root": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      },
+      "category-header": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      },
+      "content": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      },
+      "emoji": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-active",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "empty": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      },
+      "footer": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      },
+      "footer-emoji": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      },
+      "footer-label": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      },
+      "footer-placeholder": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      },
+      "list": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      },
+      "loading": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      },
+      "row": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      },
+      "search": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      },
+      "search-icon": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      },
+      "search-input": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-emoji-picker-active-background"
+  ],
+  "contrast": "/r/contract/emoji-picker.contrast.json"
+}

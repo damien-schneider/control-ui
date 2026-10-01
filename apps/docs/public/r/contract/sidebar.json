@@ -7,6 +7,24 @@
   ],
   "knobs": [
     {
+      "name": "--cui-sidebar-menu-badge-height",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 5)"
+    },
+    {
+      "name": "--cui-sidebar-menu-badge-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--sidebar-foreground) l c h / 0.08)"
+    },
+    {
+      "name": "--cui-sidebar-menu-badge-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--sidebar-foreground)"
+    },
+    {
       "name": "--cui-sidebar-rail-divider-background",
       "syntax": "<color>",
       "initialValue": "transparent",
@@ -430,6 +448,13 @@
           }
         ]
       },
+      "menu-badge": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": []
+      },
       "menu-button": {
         "family": "sidebar",
         "registryItems": [
@@ -558,6 +583,8 @@
   "adornments": {},
   "uncovered": [
     "--cui-sidebar-inner-background",
+    "--cui-sidebar-menu-badge-background",
+    "--cui-sidebar-menu-badge-foreground",
     "--cui-sidebar-menu-button-hover-background",
     "--cui-sidebar-menu-button-hover-foreground",
     "--cui-sidebar-skip-link-background",

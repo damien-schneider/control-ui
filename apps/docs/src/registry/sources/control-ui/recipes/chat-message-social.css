@@ -1,0 +1,123 @@
+@layer components {
+  :where([data-control-family="chat-message"][data-slot="root"][data-kind="typing"]) {
+    gap: calc(var(--spacing) * 2);
+    min-block-size: calc(var(--spacing) * 5);
+    font-size: var(--text-caption);
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="chat-message"][data-slot="row"][data-continuation]) {
+    padding-block-start: calc(var(--spacing) * 0.5);
+  }
+
+  :where([data-control-family="chat-message"][data-slot="avatar"][data-continuation]) {
+    margin-block-start: 0;
+    block-size: calc(var(--spacing) * 5);
+    border-color: transparent;
+    background: transparent;
+  }
+
+  :where([data-control-family="chat-message"][data-slot="avatar"] [data-slot="time"]) {
+    font-size: 0.625rem;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="chat-message"][data-slot="row"]:hover > [data-slot="avatar"] [data-slot="time"]) {
+    opacity: 1;
+  }
+
+  :where([data-control-family="chat-message"][data-slot="row"]:focus-within > [data-slot="avatar"] [data-slot="time"]) {
+    opacity: 1;
+  }
+
+  :where([data-control-family="chat-message"][data-slot="footer"]) {
+    margin-block-start: calc(var(--spacing) * 1);
+    gap: calc(var(--spacing) * 1.5);
+    padding-inline: calc(var(--spacing) * 1);
+    font-size: var(--text-caption);
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="chat-message"][data-slot="footer"][data-state="error"]) {
+    color: var(--destructive);
+  }
+
+  :where([data-control-family="chat-message"][data-slot="reactions"]) {
+    margin-block-start: calc(var(--spacing) * 1.5);
+    gap: calc(var(--spacing) * 1);
+  }
+
+  :where(
+    [data-control-family="chat-message"]:is(
+      [data-slot="header"],
+      [data-slot="footer"],
+      [data-slot="reactions"]
+    )[data-layout="bubble"][data-role="user"]
+  ) {
+    justify-content: flex-end;
+  }
+
+  :where([data-control-family="chat-message"][data-slot="footer"][data-layout="flat"]) {
+    padding-inline: 0;
+  }
+
+  :where([data-control-family="chat-message"][data-slot="reaction"]) {
+    gap: calc(var(--spacing) * 1);
+    block-size: calc(var(--spacing) * 6);
+    padding-inline: calc(var(--spacing) * 2);
+    border: var(--cui-chat-message-reaction-border-width) solid var(--cui-chat-message-reaction-border-color);
+    border-radius: var(--cui-chat-message-reaction-radius);
+    background: var(--cui-chat-message-reaction-background);
+    font-size: var(--text-caption);
+    font-weight: 500;
+    color: var(--muted-foreground);
+    transition-property: background-color, border-color, color;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="chat-message"][data-slot="reaction"][data-pressed]) {
+    border-color: var(--cui-chat-message-reaction-pressed-border-color);
+    background: var(--cui-chat-message-reaction-pressed-background);
+    color: var(--foreground);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    :where([data-control-family="chat-message"][data-slot="reaction"][aria-pressed]:hover) {
+      color: var(--foreground);
+    }
+  }
+
+  :where([data-control-family="chat-message"][data-slot="reaction-emoji"]) {
+    font-size: var(--text-body);
+    line-height: 1;
+  }
+
+  :where([data-control-family="chat-message"][data-slot="reply-summary"]) {
+    margin-block-start: calc(var(--spacing) * 1);
+    gap: calc(var(--spacing) * 2);
+    padding: calc(var(--spacing) * 1);
+    border-radius: var(--radius-md);
+    font-size: var(--text-caption);
+    color: var(--muted-foreground);
+    transition-property: background-color, color;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    :where([data-control-family="chat-message"][data-slot="reply-summary"]:hover) {
+      background-color: var(--cui-chat-message-row-hover-background);
+      color: var(--foreground);
+    }
+  }
+
+  :where([data-control-family="chat-message"][data-slot="replies"]) {
+    margin-block-start: calc(var(--spacing) * 2);
+    padding-inline-start: calc(var(--spacing) * 3);
+    border-inline-start: 2px solid var(--border);
+  }
+}

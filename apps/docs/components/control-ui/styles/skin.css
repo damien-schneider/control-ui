@@ -264,7 +264,7 @@
     border-width: 0;
     padding: 3px;
   }
-  [data-skin="xp"] :where([data-control-family="chat-message"][data-slot="root"][data-role="user"]) {
+  [data-skin="xp"] :where([data-control-family="chat-message"][data-slot="root"][data-role="user"][data-layout="bubble"]) {
     --cui-chat-message-foreground: var(--foreground);
     --cui-chat-message-radius: 3px;
     --cui-chat-message-corner-radius: 3px;
@@ -339,11 +339,7 @@
 }
 
 @layer components {
-  [data-skin="xp"]
-    :where(
-      [data-control-family="chat-message"][data-slot="root"][data-role="assistant"][data-state="streaming"]
-        [data-control-family="chat-message"][data-slot="header"]
-    ) {
+  [data-skin="xp"] :where([data-control-family="chat-message"][data-slot="header"][data-role="assistant"][data-state="streaming"]) {
     @apply progress-sweep;
     --progress-sweep-color: var(--foreground);
     --progress-sweep-fade: 0.8;

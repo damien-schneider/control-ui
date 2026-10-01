@@ -22,6 +22,7 @@ export const displayCompositions = {
                   part(
                     "SidebarMenuItem",
                     part("SidebarMenuButton"),
+                    part("SidebarMenuBadge"),
                     part("SidebarMenuAction"),
                     part("SidebarMenuSub", part("SidebarMenuItem", part("SidebarMenuButton"))),
                   ),
@@ -106,7 +107,7 @@ export const displayCompositions = {
   separator: [example("Divider", part("Separator"))],
   "live-status": [example("Polite announcement", part("LiveStatus"), "Keep it mounted and change only its message.")],
   accordion: [example("Anatomy", part("Accordion", part("AccordionItem", part("AccordionTrigger"), part("AccordionPanel"))))],
-  avatar: [example("Avatar group", part("AvatarGroup", part("Avatar", part("AvatarImage"), part("AvatarFallback"))))],
+  avatar: [example("Avatar group", part("AvatarGroup", part("Avatar", part("AvatarImage"), part("AvatarFallback"), part("AvatarBadge"))))],
   progress: [
     example("Anatomy", part("Progress", part("ProgressLabel"), part("ProgressValue"), part("ProgressTrack", part("ProgressIndicator")))),
   ],

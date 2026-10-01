@@ -5,6 +5,7 @@
   "registryItems": [
     "alert-dialog",
     "autocomplete",
+    "chat-message",
     "color-picker",
     "combobox",
     "command",
@@ -800,6 +801,30 @@
               "right",
               "top"
             ]
+          }
+        ]
+      }
+    },
+    "chat-message": {
+      "actions-surface": {
+        "family": "popup",
+        "registryItems": [
+          "chat-message"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "toolbar"
+            ]
+          },
+          {
+            "attribute": "data-popup-static",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
           }
         ]
       }

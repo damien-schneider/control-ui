@@ -11,6 +11,8 @@ export type ChatComposerSubmitPayload = {
   mentions?: MentionItem[];
 };
 
+export type ChatComposerSubmitKey = "enter" | "mod-enter";
+
 export type ChatComposerProps = Omit<ComponentProps<"form">, "onSubmit" | "style"> & {
   children?: ReactNode;
   value?: string;
@@ -22,6 +24,7 @@ export type ChatComposerProps = Omit<ComponentProps<"form">, "onSubmit" | "style
   disabled?: boolean;
   /** Let an empty message send, for composers where an attachment or recording carries the turn. */
   allowEmptySubmit?: boolean;
+  submitKey?: ChatComposerSubmitKey;
   style?: CSSProperties & ChatComposerKnobStyle;
 };
 
@@ -30,9 +33,36 @@ export type MentionItem = { id: string; label: string; kind: string };
 type ComposerKeyEvent = {
   key: string;
   shiftKey: boolean;
+  metaKey: boolean;
+  ctrlKey: boolean;
   defaultPrevented: boolean;
   nativeEvent: { isComposing: boolean; keyCode: number };
   preventDefault: () => void;
+};
+
+type InsertText = (text: string) => void;
+
+export type RegisterInsertionTarget = (insert: InsertText) => () => void;
+
+export type ChatComposerController = {
+  value: string;
+  setValue: (value: string) => void;
+  normalizedValue: string;
+  state: NonNullable<ChatComposerProps["state"]>;
+  density: ChatDensity;
+  submitKey: ChatComposerSubmitKey;
+  isCompact: boolean;
+  isDisabled: boolean;
+  isLocked: boolean;
+  canSubmit: boolean;
+  rows: number;
+  sendCount: number;
+  clear: () => void;
+  submit: (extra?: Partial<ChatComposerSubmitPayload>) => void;
+  handleSubmit: (event: FormSubmitEvent) => void;
+  handleKeyDown: (event: ComposerKeyEvent) => void;
+  insertText: InsertText;
+  registerInsertionTarget: RegisterInsertionTarget;
 };
 
 function useControllableText({
@@ -61,16 +91,27 @@ export function useChatComposer({
   density = "comfortable",
   disabled = false,
   allowEmptySubmit = false,
+  submitKey = "enter",
   trackSends = false,
 }: Pick<
   ChatComposerProps,
-  "value" | "defaultValue" | "onValueChange" | "onSubmit" | "state" | "density" | "disabled" | "allowEmptySubmit"
+  "value" | "defaultValue" | "onValueChange" | "onSubmit" | "state" | "density" | "disabled" | "allowEmptySubmit" | "submitKey"
 > & {
   /** Count successful submits — only enabled when something reads counter (send-layer anchor), so idle apps pay no extra state update. */
   trackSends?: boolean;
-}) {
+}): ChatComposerController {
   const [inputValue, setInputValue] = useControllableText({ value, defaultValue, onValueChange });
   const [sendCount, setSendCount] = useState(0);
+  const [insertion] = useState(() => {
+    let target: InsertText | null = null;
+    const register: RegisterInsertionTarget = (insert) => {
+      target = insert;
+      return () => {
+        if (target === insert) target = null;
+      };
+    };
+    return { register, current: () => target };
+  });
   const normalizedValue = inputValue.trim();
   const isDisabled = disabled || state === "disabled";
   const isLocked = state === "submitting";
@@ -94,11 +135,20 @@ export function useChatComposer({
     submit();
   }
 
-  // same contract as the rich editor keymap: Enter sends, Shift+Enter breaks the line
+  // same contract as the rich editor keymap: the submit key sends, ⌘/Ctrl+Enter always sends, Shift+Enter breaks the line
   function handleKeyDown(event: ComposerKeyEvent) {
     if (event.defaultPrevented || event.key !== "Enter" || event.shiftKey || isComposingKey(event.nativeEvent)) return;
+    const modifierHeld = event.metaKey || event.ctrlKey;
+    if (submitKey === "mod-enter" && !modifierHeld) return;
     event.preventDefault();
     submit();
+  }
+
+  function insertText(text: string) {
+    if (isDisabled || isLocked) return;
+    const insertAtCaret = insertion.current();
+    if (insertAtCaret) insertAtCaret(text);
+    else setInputValue(`${inputValue}${text}`);
   }
 
   return {
@@ -107,6 +157,7 @@ export function useChatComposer({
     normalizedValue,
     state,
     density,
+    submitKey,
     isCompact,
     isDisabled,
     isLocked,
@@ -117,5 +168,7 @@ export function useChatComposer({
     submit,
     handleSubmit,
     handleKeyDown,
+    insertText,
+    registerInsertionTarget: insertion.register,
   };
 }

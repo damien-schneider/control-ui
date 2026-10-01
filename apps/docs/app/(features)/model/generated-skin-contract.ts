@@ -47,6 +47,7 @@ export const generatedSkinContract: SkinContract = {
     "dropdown-menu": ["dropdown-menu"],
     dropzone: ["dropzone"],
     "dynamic-notification": ["dynamic-notification"],
+    "emoji-picker": ["emoji-picker"],
     empty: ["empty"],
     "environment-variables": ["environment-variables"],
     field: ["field"],
@@ -1163,6 +1164,18 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["avatar"],
           states: [],
         },
+        badge: {
+          family: "avatar",
+          registryItems: ["avatar"],
+          states: [
+            {
+              attribute: "data-status",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["away", "busy", "offline", "online"],
+            },
+          ],
+        },
         fallback: {
           family: "avatar",
           registryItems: ["avatar"],
@@ -1774,6 +1787,26 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        actions: {
+          family: "chat-layout",
+          registryItems: ["chat-layout"],
+          states: [],
+        },
+        description: {
+          family: "chat-layout",
+          registryItems: ["chat-layout"],
+          states: [],
+        },
+        header: {
+          family: "chat-layout",
+          registryItems: ["chat-layout"],
+          states: [],
+        },
+        title: {
+          family: "chat-layout",
+          registryItems: ["chat-layout"],
+          states: [],
+        },
       },
       registryItems: ["chat-layout"],
     },
@@ -1784,16 +1817,34 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["chat-message"],
           states: [
             {
+              attribute: "data-continuation",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-density",
               source: "control-ui",
               valueKind: "enum",
               values: ["comfortable", "compact"],
             },
             {
+              attribute: "data-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["typing"],
+            },
+            {
+              attribute: "data-layout",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["bubble", "flat"],
+            },
+            {
               attribute: "data-role",
               source: "control-ui",
               valueKind: "enum",
-              values: ["assistant", "system", "tool", "user"],
+              values: ["assistant", "participant", "system", "tool", "user"],
             },
             {
               attribute: "data-state",
@@ -1806,17 +1857,80 @@ export const generatedSkinContract: SkinContract = {
         actions: {
           family: "chat-message",
           registryItems: ["chat-message"],
-          states: [],
+          states: [
+            {
+              attribute: "data-layout",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["bubble", "flat"],
+            },
+          ],
+        },
+        "actions-surface": {
+          family: "popup",
+          registryItems: ["chat-message"],
+          states: [
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["toolbar"],
+            },
+            {
+              attribute: "data-popup-static",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        author: {
+          family: "chat-message",
+          registryItems: ["chat-message"],
+          states: [
+            {
+              attribute: "data-layout",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["bubble", "flat"],
+            },
+          ],
         },
         avatar: {
           family: "chat-message",
           registryItems: ["chat-message"],
-          states: [],
+          states: [
+            {
+              attribute: "data-continuation",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-layout",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["bubble", "flat"],
+            },
+          ],
         },
         body: {
           family: "chat-message",
           registryItems: ["chat-message"],
-          states: [],
+          states: [
+            {
+              attribute: "data-layout",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["bubble", "flat"],
+            },
+            {
+              attribute: "data-role",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["assistant", "participant", "system", "tool", "user"],
+            },
+          ],
         },
         content: {
           family: "chat-message",
@@ -1826,7 +1940,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-role",
               source: "control-ui",
               valueKind: "enum",
-              values: ["assistant", "system", "tool", "user"],
+              values: ["assistant", "participant", "system", "tool", "user"],
             },
             {
               attribute: "data-streaming",
@@ -1836,17 +1950,134 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        footer: {
+          family: "chat-message",
+          registryItems: ["chat-message"],
+          states: [
+            {
+              attribute: "data-layout",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["bubble", "flat"],
+            },
+            {
+              attribute: "data-role",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["assistant", "participant", "system", "tool", "user"],
+            },
+            {
+              attribute: "data-state",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["error", "idle", "pending", "streaming"],
+            },
+          ],
+        },
         header: {
           family: "chat-message",
           registryItems: ["chat-message"],
-          states: [],
+          states: [
+            {
+              attribute: "data-layout",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["bubble", "flat"],
+            },
+            {
+              attribute: "data-role",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["assistant", "participant", "system", "tool", "user"],
+            },
+            {
+              attribute: "data-state",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["error", "idle", "pending", "streaming"],
+            },
+          ],
         },
         pending: {
           family: "chat-message",
           registryItems: ["chat-message"],
           states: [],
         },
+        reaction: {
+          family: "chat-message",
+          registryItems: ["chat-message"],
+          states: [
+            {
+              attribute: "data-pressed",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        "reaction-emoji": {
+          family: "chat-message",
+          registryItems: ["chat-message"],
+          states: [],
+        },
+        reactions: {
+          family: "chat-message",
+          registryItems: ["chat-message"],
+          states: [
+            {
+              attribute: "data-layout",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["bubble", "flat"],
+            },
+            {
+              attribute: "data-role",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["assistant", "participant", "system", "tool", "user"],
+            },
+          ],
+        },
+        replies: {
+          family: "chat-message",
+          registryItems: ["chat-message"],
+          states: [],
+        },
+        "reply-summary": {
+          family: "chat-message",
+          registryItems: ["chat-message"],
+          states: [],
+        },
         row: {
+          family: "chat-message",
+          registryItems: ["chat-message"],
+          states: [
+            {
+              attribute: "data-continuation",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-density",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["comfortable", "compact"],
+            },
+            {
+              attribute: "data-layout",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["bubble", "flat"],
+            },
+          ],
+        },
+        time: {
+          family: "chat-message",
+          registryItems: ["chat-message"],
+          states: [],
+        },
+        "typing-dots": {
           family: "chat-message",
           registryItems: ["chat-message"],
           states: [],
@@ -5484,6 +5715,93 @@ export const generatedSkinContract: SkinContract = {
         },
       },
       registryItems: ["dynamic-notification"],
+    },
+    "emoji-picker": {
+      parts: {
+        root: {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [],
+        },
+        "category-header": {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [],
+        },
+        content: {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [],
+        },
+        emoji: {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [
+            {
+              attribute: "data-active",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        empty: {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [],
+        },
+        footer: {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [],
+        },
+        "footer-emoji": {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [],
+        },
+        "footer-label": {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [],
+        },
+        "footer-placeholder": {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [],
+        },
+        list: {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [],
+        },
+        loading: {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [],
+        },
+        row: {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [],
+        },
+        search: {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [],
+        },
+        "search-icon": {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [],
+        },
+        "search-input": {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [],
+        },
+      },
+      registryItems: ["emoji-picker"],
     },
     empty: {
       parts: {
@@ -10284,6 +10602,11 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        "menu-badge": {
+          family: "sidebar",
+          registryItems: ["sidebar"],
+          states: [],
+        },
         "menu-button": {
           family: "sidebar",
           registryItems: ["sidebar"],
@@ -11697,7 +12020,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-from",
               source: "control-ui",
               valueKind: "enum",
-              values: ["assistant", "system", "tool", "user"],
+              values: ["assistant", "participant", "system", "tool", "user"],
             },
             {
               attribute: "data-in-view",
@@ -13110,6 +13433,36 @@ export const generatedSkinContract: SkinContract = {
         initialValue: "transparent",
         defaultValue: "var(--image-outline)",
       },
+      {
+        name: "--cui-avatar-badge-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "max(0.5rem, 30%)",
+      },
+      {
+        name: "--cui-avatar-badge-ring-size",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "2px",
+      },
+      {
+        name: "--cui-avatar-badge-ring-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--background)",
+      },
+      {
+        name: "--cui-avatar-badge-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--primary)",
+      },
+      {
+        name: "--cui-avatar-badge-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--primary-foreground)",
+      },
     ],
     badge: [
       {
@@ -13694,6 +14047,48 @@ export const generatedSkinContract: SkinContract = {
         initialValue: "0px",
         defaultValue: "calc(var(--spacing) * 1.5)",
       },
+      {
+        name: "--cui-chat-message-row-hover-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "oklch(from var(--muted) l c h / 0.6)",
+      },
+      {
+        name: "--cui-chat-message-reaction-radius",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "9999px",
+      },
+      {
+        name: "--cui-chat-message-reaction-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "oklch(from var(--muted) l c h / 0.7)",
+      },
+      {
+        name: "--cui-chat-message-reaction-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "transparent",
+      },
+      {
+        name: "--cui-chat-message-reaction-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "var(--control-rim-width)",
+      },
+      {
+        name: "--cui-chat-message-reaction-pressed-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "oklch(from var(--primary) l c h / 0.14)",
+      },
+      {
+        name: "--cui-chat-message-reaction-pressed-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "oklch(from var(--primary) l c h / 0.55)",
+      },
     ],
     choice: [
       {
@@ -14203,6 +14598,38 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "oklch(0.62 0.19 25)",
+      },
+    ],
+    "emoji-picker": [
+      {
+        name: "--cui-emoji-picker-cell-size",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 8)",
+      },
+      {
+        name: "--cui-emoji-picker-cell-radius",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--radius-control)",
+      },
+      {
+        name: "--cui-emoji-picker-active-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--accent)",
+      },
+      {
+        name: "--cui-emoji-picker-header-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--popover)",
+      },
+      {
+        name: "--cui-emoji-picker-header-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted-foreground)",
       },
     ],
     empty: [
@@ -15718,6 +16145,24 @@ export const generatedSkinContract: SkinContract = {
       },
     ],
     sidebar: [
+      {
+        name: "--cui-sidebar-menu-badge-height",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 5)",
+      },
+      {
+        name: "--cui-sidebar-menu-badge-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "oklch(from var(--sidebar-foreground) l c h / 0.08)",
+      },
+      {
+        name: "--cui-sidebar-menu-badge-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--sidebar-foreground)",
+      },
       {
         name: "--cui-sidebar-rail-divider-background",
         syntax: "<color>",
@@ -17299,6 +17744,10 @@ export const generatedSkinContract: SkinContract = {
           part: "content",
         },
         {
+          scope: "chat-message",
+          part: "actions-surface",
+        },
+        {
           scope: "color-picker",
           part: "content",
         },
@@ -17451,6 +17900,10 @@ export const generatedSkinContract: SkinContract = {
         {
           scope: "autocomplete",
           part: "content",
+        },
+        {
+          scope: "chat-message",
+          part: "actions-surface",
         },
         {
           scope: "color-picker",

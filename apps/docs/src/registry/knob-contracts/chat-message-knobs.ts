@@ -14,5 +14,12 @@ export const chatMessageKnobs = [
   "--cui-chat-message-shadow",
   "--cui-chat-message-pending-dot-color",
   "--cui-chat-message-pending-dot-size",
+  "--cui-chat-message-row-hover-background",
+  "--cui-chat-message-reaction-radius",
+  "--cui-chat-message-reaction-background",
+  "--cui-chat-message-reaction-border-color",
+  "--cui-chat-message-reaction-border-width",
+  "--cui-chat-message-reaction-pressed-background",
+  "--cui-chat-message-reaction-pressed-border-color",
 ] as const;
 export type ChatMessageKnobStyle = Partial<Record<(typeof chatMessageKnobs)[number], string>>;

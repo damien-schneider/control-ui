@@ -1,9 +1,9 @@
 "use client";
 
 import { Square } from "lucide-react";
-import type { ChangeEvent, ComponentProps, CSSProperties, KeyboardEvent, MouseEvent, ReactNode } from "react";
-import { createContext, useContext } from "react";
-import type { ChatComposerProps } from "@/components/control-ui/hooks/use-chat-composer";
+import type { ChangeEvent, ComponentProps, CSSProperties, KeyboardEvent, MouseEvent, ReactNode, Ref } from "react";
+import { createContext, useContext, useEffect, useRef } from "react";
+import type { ChatComposerController, ChatComposerProps } from "@/components/control-ui/hooks/use-chat-composer";
 import { useChatComposer } from "@/components/control-ui/hooks/use-chat-composer";
 import type { ChatComposerKnobStyle } from "@/components/control-ui/knob-contracts/chat-composer-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -12,7 +12,7 @@ import { useSkin } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { Spinner } from "@/components/control-ui/ui/spinner";
 
-type ChatComposerContextValue = ReturnType<typeof useChatComposer>;
+type ChatComposerContextValue = ChatComposerController;
 
 const ChatComposerContext = createContext<ChatComposerContextValue | null>(null);
 
@@ -32,6 +32,7 @@ export function ChatComposer({
   density = "comfortable",
   disabled = false,
   allowEmptySubmit = false,
+  submitKey = "enter",
   className,
   children,
   ...props
@@ -46,6 +47,7 @@ export function ChatComposer({
     density,
     disabled,
     allowEmptySubmit,
+    submitKey,
     trackSends: hasSkinAdornment(skin, "chat-composer", "send-layer"),
   });
   const sendLayer = skinAdornment(skin, "chat-composer", "send-layer", { sendCount: input.sendCount });
@@ -110,8 +112,32 @@ export type ChatComposerTextareaProps = Omit<ComponentProps<"textarea">, "style"
   style?: CSSProperties & ChatComposerKnobStyle;
 };
 
-export function ChatComposerTextarea({ className, rows, disabled, readOnly, onChange, onKeyDown, ...props }: ChatComposerTextareaProps) {
+export function ChatComposerTextarea({
+  className,
+  rows,
+  disabled,
+  readOnly,
+  onChange,
+  onKeyDown,
+  ref,
+  ...props
+}: ChatComposerTextareaProps) {
   const input = useChatComposerContext();
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const { registerInsertionTarget } = input;
+
+  useEffect(
+    () =>
+      registerInsertionTarget((text) => {
+        const textarea = textareaRef.current;
+        if (!textarea) return;
+        textarea.focus();
+        textarea.setRangeText(text, textarea.selectionStart, textarea.selectionEnd, "end");
+        // setRangeText skips React's value tracker, so a bubbling input event reaches onChange like typed text does.
+        textarea.dispatchEvent(new Event("input", { bubbles: true }));
+      }),
+    [registerInsertionTarget],
+  );
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
     onChange?.(event);
@@ -123,8 +149,14 @@ export function ChatComposerTextarea({ className, rows, disabled, readOnly, onCh
     input.handleKeyDown(event);
   }
 
+  function attachTextarea(node: HTMLTextAreaElement | null) {
+    textareaRef.current = node;
+    assignRef(ref, node);
+  }
+
   return (
     <textarea
+      ref={attachTextarea}
       data-control-ui="chat-composer"
       data-control-family="chat-composer"
       data-slot="textarea"
@@ -240,4 +272,9 @@ export function ChatComposerSubmit({
       {content()}
     </Button>
   );
+}
+
+function assignRef<T>(ref: Ref<T> | undefined, node: T | null) {
+  if (typeof ref === "function") ref(node);
+  else if (ref) ref.current = node;
 }

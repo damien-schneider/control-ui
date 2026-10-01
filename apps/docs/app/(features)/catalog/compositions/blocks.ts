@@ -59,6 +59,70 @@ export const blocksCompositions = {
       ),
     ),
   ],
+  "team-chat": [
+    example(
+      "Channel with a side thread",
+      part(
+        "TeamChatBlock",
+        part(
+          "SidebarProvider",
+          content(
+            "sidebar prop",
+            part(
+              "Sidebar",
+              part("SidebarMenuItem", part("SidebarMenuButton", part("AvatarBadge")), part("SidebarMenuBadge"), part("SidebarMenuAction")),
+            ),
+          ),
+          part(
+            "SidebarInset",
+            content(
+              "children prop",
+              part(
+                "ChatLayout",
+                part("ChatLayoutHeader", part("ChatLayoutTitle"), part("ChatLayoutDescription"), part("ChatLayoutActions")),
+                part(
+                  "ChatThread",
+                  part("TranscriptDivider"),
+                  part(
+                    "ChatMessage",
+                    content("flat layout"),
+                    part("ChatMessageReactions"),
+                    part("ChatMessageReplySummary"),
+                    part("ChatMessageActions"),
+                  ),
+                  part("ChatTypingIndicator"),
+                  content("composer prop", part("ChatComposer")),
+                ),
+              ),
+            ),
+            content("thread prop", part("ChatLayout")),
+          ),
+        ),
+      ),
+    ),
+  ],
+  discussion: [
+    example(
+      "Comment with a reply",
+      content(
+        "discussion section",
+        part(
+          "DiscussionComposer",
+          part("ChatComposer", content("mod-enter submit key"), part("ChatComposerTextarea"), part("ChatComposerSubmit")),
+        ),
+        part(
+          "DiscussionComment",
+          part(
+            "ChatMessage",
+            content("flat layout"),
+            part("ChatMessageFooter", content("Reply")),
+            part("ChatMessageReplies", part("DiscussionComment"), part("DiscussionComposer")),
+            part("ChatMessageActions"),
+          ),
+        ),
+      ),
+    ),
+  ],
   settings: [
     example(
       "Rendered settings shell",

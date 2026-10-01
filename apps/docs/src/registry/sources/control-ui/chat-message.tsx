@@ -1,40 +1,52 @@
 "use client";
 
-import type { ComponentProps, CSSProperties } from "react";
-import { createContext, useContext, useEffect, useRef } from "react";
+import type { ComponentProps, CSSProperties, JSX } from "react";
+import { useEffect, useRef } from "react";
 
 import type { ChatMessageProps } from "@/components/control-ui/hooks/use-chat-message";
 import {
+  ChatMessageStateProvider,
   chatAuthorLabels,
   chatMessageStatusLabels,
   chatMessageTransition,
   useChatMessage,
+  useChatMessageContext,
   useChatThreadAnnounce,
 } from "@/components/control-ui/hooks/use-chat-message";
 import type { ChatMessageKnobStyle } from "@/components/control-ui/knob-contracts/chat-message-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
-type ChatMessageContextValue = ReturnType<typeof useChatMessage>;
+// biome-ignore lint/performance/noBarrelFile: Preserve the chat message install-facing API.
+export {
+  ChatMessageReaction,
+  type ChatMessageReactionProps,
+  ChatMessageReactions,
+  type ChatMessageReactionsProps,
+  ChatMessageReplies,
+  type ChatMessageRepliesProps,
+  ChatMessageReplySummary,
+  type ChatMessageReplySummaryProps,
+  ChatTypingIndicator,
+  type ChatTypingIndicatorProps,
+} from "@/components/control-ui/chat-message/social";
 
-const ChatMessageContext = createContext<ChatMessageContextValue | null>(null);
-
-function useChatMessageContext() {
-  const context = useContext(ChatMessageContext);
-  if (!context) throw new Error("ChatMessage compound components must be rendered inside <ChatMessage>.");
-  return context;
-}
+export type ChatMessagePartProps<Element extends keyof JSX.IntrinsicElements> = Omit<ComponentProps<Element>, "style"> & {
+  style?: CSSProperties & ChatMessageKnobStyle;
+};
 
 export function ChatMessage({
   from,
   state = "idle",
   density = "comfortable",
+  layout = "bubble",
+  continuation = false,
   authorLabel = chatAuthorLabels[from],
   statusLabels,
   className,
   children,
   ...props
 }: ChatMessageProps) {
-  const message = useChatMessage({ from, state, density });
+  const message = useChatMessage({ from, state, density, layout, continuation });
   const announce = useChatThreadAnnounce();
   const previousState = useRef(state);
   const pendingLabel = statusLabels?.pending ?? chatMessageStatusLabels.pending;
@@ -44,13 +56,13 @@ export function ChatMessage({
   useEffect(() => {
     const previous = previousState.current;
     previousState.current = state;
-    if (from === "user") return;
+    if (from === "user" || from === "participant") return;
     const announcement = chatMessageTransition(previous, state, { pending: pendingLabel, replied: repliedLabel, error: errorLabel });
     if (announcement !== null) announce(announcement);
   }, [announce, from, state, pendingLabel, repliedLabel, errorLabel]);
 
   return (
-    <ChatMessageContext.Provider value={message}>
+    <ChatMessageStateProvider value={message}>
       <article
         data-control-ui="chat-message"
         data-control-family="chat-message"
@@ -58,17 +70,19 @@ export function ChatMessage({
         data-role={from}
         data-state={state}
         data-density={density}
+        data-layout={layout}
+        data-continuation={continuation ? "" : undefined}
         aria-label={authorLabel}
         className={cn("w-full", className)}
         {...props}
       >
         {children}
       </article>
-    </ChatMessageContext.Provider>
+    </ChatMessageStateProvider>
   );
 }
 
-export type ChatMessageRowProps = ComponentProps<"div"> & { style?: CSSProperties & ChatMessageKnobStyle };
+export type ChatMessageRowProps = ChatMessagePartProps<"div">;
 
 export function ChatMessageRow({ className, children, ...props }: ChatMessageRowProps) {
   const message = useChatMessageContext();
@@ -78,7 +92,10 @@ export function ChatMessageRow({ className, children, ...props }: ChatMessageRow
       data-control-ui="chat-message"
       data-control-family="chat-message"
       data-slot="row"
-      className={cn("flex w-full", message.isUser ? "justify-end" : "justify-start", className)}
+      data-layout={message.layout}
+      data-density={message.density}
+      data-continuation={message.continuation ? "" : undefined}
+      className={cn("relative flex w-full", message.isEndAligned ? "justify-end" : "justify-start", className)}
       {...props}
     >
       {children}
@@ -86,57 +103,95 @@ export function ChatMessageRow({ className, children, ...props }: ChatMessageRow
   );
 }
 
-export type ChatMessageAvatarProps = Omit<ComponentProps<"div">, "style"> & {
-  style?: CSSProperties & ChatMessageKnobStyle;
-};
+export type ChatMessageAvatarProps = ChatMessagePartProps<"div">;
 
 export function ChatMessageAvatar({ className, ...props }: ChatMessageAvatarProps) {
+  const message = useChatMessageContext();
+
   return (
     <div
       data-control-ui="chat-message"
       data-control-family="chat-message"
       data-slot="avatar"
+      data-layout={message.layout}
+      data-continuation={message.continuation ? "" : undefined}
       className={cn("flex shrink-0 items-center justify-center", className)}
       {...props}
     />
   );
 }
 
-export type ChatMessageBodyProps = ComponentProps<"div"> & { style?: CSSProperties & ChatMessageKnobStyle };
+export type ChatMessageBodyProps = ChatMessagePartProps<"div">;
 
 export function ChatMessageBody({ className, ...props }: ChatMessageBodyProps) {
-  useChatMessageContext();
+  const message = useChatMessageContext();
 
   return (
     <div
       data-control-ui="chat-message"
       data-control-family="chat-message"
       data-slot="body"
-      className={cn("min-w-0", className)}
+      data-layout={message.layout}
+      data-role={message.from}
+      className={cn("flex min-w-0 flex-col", className)}
       {...props}
     />
   );
 }
 
-export type ChatMessageHeaderProps = Omit<ComponentProps<"div">, "style"> & {
-  style?: CSSProperties & ChatMessageKnobStyle;
-};
+export type ChatMessageHeaderProps = ChatMessagePartProps<"div">;
 
 export function ChatMessageHeader({ className, ...props }: ChatMessageHeaderProps) {
+  const message = useChatMessageContext();
+
   return (
     <div
       data-control-ui="chat-message"
       data-control-family="chat-message"
       data-slot="header"
-      className={cn("flex items-center", className)}
+      data-layout={message.layout}
+      data-role={message.from}
+      data-state={message.state}
+      className={cn("flex min-w-0 flex-wrap items-baseline", className)}
       {...props}
     />
   );
 }
 
-export type ChatMessageContentProps = Omit<ComponentProps<"div">, "style"> & {
-  style?: CSSProperties & ChatMessageKnobStyle;
+export type ChatMessageAuthorProps = ChatMessagePartProps<"span">;
+
+export function ChatMessageAuthor({ className, ...props }: ChatMessageAuthorProps) {
+  const message = useChatMessageContext();
+
+  return (
+    <span
+      data-control-ui="chat-message"
+      data-control-family="chat-message"
+      data-slot="author"
+      data-layout={message.layout}
+      className={cn("truncate", className)}
+      {...props}
+    />
+  );
+}
+
+export type ChatMessageTimeProps = ChatMessagePartProps<"time"> & {
+  dateTime: string;
 };
+
+export function ChatMessageTime({ className, ...props }: ChatMessageTimeProps) {
+  return (
+    <time
+      data-control-ui="chat-message"
+      data-control-family="chat-message"
+      data-slot="time"
+      className={cn("whitespace-nowrap tabular-nums", className)}
+      {...props}
+    />
+  );
+}
+
+export type ChatMessageContentProps = ChatMessagePartProps<"div">;
 
 export function ChatMessageContent({ className, ...props }: ChatMessageContentProps) {
   const message = useChatMessageContext();
@@ -148,15 +203,13 @@ export function ChatMessageContent({ className, ...props }: ChatMessageContentPr
       data-slot="content"
       data-role={message.from}
       data-streaming={message.isStreaming ? "" : undefined}
-      className={cn(message.isUser && "px-[var(--padding-x)] py-[var(--padding-y)]", className)}
+      className={cn(message.isBubble && "px-[var(--padding-x)] py-[var(--padding-y)]", className)}
       {...props}
     />
   );
 }
 
-export type ChatMessagePendingProps = Omit<ComponentProps<"div">, "style" | "children"> & {
-  style?: CSSProperties & ChatMessageKnobStyle;
-};
+export type ChatMessagePendingProps = Omit<ChatMessagePartProps<"div">, "children">;
 
 /** Visual only: the pending transition is announced by `ChatMessage` through the thread's status region. */
 export function ChatMessagePending({ className, ...props }: ChatMessagePendingProps) {
@@ -179,18 +232,53 @@ export function ChatMessagePending({ className, ...props }: ChatMessagePendingPr
   );
 }
 
-export type ChatMessageActionsProps = Omit<ComponentProps<"div">, "style"> & {
-  style?: CSSProperties & ChatMessageKnobStyle;
-};
+export type ChatMessageFooterProps = ChatMessagePartProps<"div">;
 
-export function ChatMessageActions({ className, ...props }: ChatMessageActionsProps) {
+export function ChatMessageFooter({ className, ...props }: ChatMessageFooterProps) {
+  const message = useChatMessageContext();
+
+  return (
+    <div
+      data-control-ui="chat-message"
+      data-control-family="chat-message"
+      data-slot="footer"
+      data-layout={message.layout}
+      data-role={message.from}
+      data-state={message.state}
+      className={cn("flex flex-wrap items-center", className)}
+      {...props}
+    />
+  );
+}
+
+export type ChatMessageActionsProps = ChatMessagePartProps<"div">;
+
+export function ChatMessageActions({ className, children, ...props }: ChatMessageActionsProps) {
+  const { layout } = useChatMessageContext();
+
   return (
     <div
       data-control-ui="chat-message"
       data-control-family="chat-message"
       data-slot="actions"
+      data-layout={layout}
       className={cn("flex items-center", className)}
       {...props}
-    />
+    >
+      {layout === "flat" ? (
+        <div
+          aria-hidden="true"
+          data-control-ui="chat-message"
+          data-control-family="popup"
+          data-popup-kind="toolbar"
+          data-popup-part="surface"
+          data-popup-static=""
+          data-surface="floating"
+          data-slot="actions-surface"
+          className="pointer-events-none absolute inset-0 -z-1"
+        />
+      ) : null}
+      {children}
+    </div>
   );
 }

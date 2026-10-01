@@ -159,6 +159,23 @@ export function SidebarMenuItem({ className, ...props }: ComponentProps<"li"> & 
   );
 }
 
+export type SidebarMenuBadgeProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & SidebarKnobStyle };
+
+export function SidebarMenuBadge({ className, ...props }: SidebarMenuBadgeProps) {
+  return (
+    <div
+      data-control-ui="sidebar"
+      data-control-family="sidebar"
+      data-slot="menu-badge"
+      className={cn(
+        "pointer-events-none absolute flex -translate-y-1/2 select-none items-center justify-center tabular-nums group-data-[collapsible=icon]:hidden",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
 export function SidebarMenuButton({
   render,
   isActive = false,

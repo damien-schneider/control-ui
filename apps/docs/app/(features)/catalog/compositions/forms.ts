@@ -152,6 +152,9 @@ export const formsCompositions = {
       ),
     ),
   ],
+  "emoji-picker": [
+    example("Popover emoji picker", part("EmojiPicker", part("EmojiPickerSearch"), part("EmojiPickerContent"), part("EmojiPickerFooter"))),
+  ],
   "color-picker": [
     example(
       "Popup color editor",

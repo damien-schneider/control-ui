@@ -3,8 +3,9 @@
   "name": "chat-layout",
   "type": "registry:component",
   "title": "ChatLayout",
-  "description": "A scrolling conversation with message turns and a floating composer dock.",
+  "description": "A scrolling conversation with a pinned header, message turns, and a floating composer dock.",
   "dependencies": [
+    "@base-ui/react@^1.8.0",
     "lucide-react@^1.47.0"
   ],
   "registryDependencies": [

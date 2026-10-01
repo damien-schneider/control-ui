@@ -54,6 +54,28 @@ export const agentsCompositions = {
         ),
       ),
     ),
+    example(
+      "Team message",
+      part(
+        "ChatMessage",
+        content('from="participant" layout="flat"'),
+        part(
+          "ChatMessageRow",
+          part("ChatMessageAvatar", content("Avatar, or ChatMessageTime on a continuation")),
+          part(
+            "ChatMessageBody",
+            part("ChatMessageHeader", part("ChatMessageAuthor"), part("ChatMessageTime")),
+            part("ChatMessageContent", content("message content")),
+            part("ChatMessageFooter"),
+            part("ChatMessageReactions", part("ChatMessageReaction")),
+            part("ChatMessageReplySummary"),
+            part("ChatMessageReplies"),
+          ),
+          part("ChatMessageActions", part("ActionBar")),
+        ),
+      ),
+    ),
+    example("Typing indicator", part("ChatTypingIndicator", content("who is typing"))),
   ],
   "chat-composer": [
     example(
@@ -285,6 +307,20 @@ export const agentsCompositions = {
           part("ChatThreadScrollButton"),
           part("ChatComposer"),
         ),
+      ),
+    ),
+    example(
+      "Channel header",
+      part(
+        "ChatLayout",
+        part(
+          "ChatLayoutHeader",
+          content("leading trigger"),
+          part("ChatLayoutTitle"),
+          part("ChatLayoutDescription"),
+          part("ChatLayoutActions"),
+        ),
+        part("ChatThread"),
       ),
     ),
   ],

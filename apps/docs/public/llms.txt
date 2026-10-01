@@ -31,8 +31,8 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 
 - [Components](http://127.0.0.1:3000/components): Composed surfaces above the primitives, grouped by the part of the product they build: the chat screen, agent activity, voice capture, and the notification, email, and configuration surfaces around them.
 - [Email](http://127.0.0.1:3000/components/email): React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts. Status: beta.
-- [ChatMessage](http://127.0.0.1:3000/components/chat-message): Composable chat message with typed role, density, and lifecycle state.
-- [ChatComposer](http://127.0.0.1:3000/components/chat-composer): Prompt composer with controlled text, submit state, and trigger-menu support.
+- [ChatMessage](http://127.0.0.1:3000/components/chat-message): Composable chat message for assistant turns or people talking: bubble or flat layout, grouped bursts, reactions, and replies.
+- [ChatComposer](http://127.0.0.1:3000/components/chat-composer): Message composer with controlled text, Enter or ⌘ Enter submit, caret text insertion, and trigger-menu support.
 - [ChatComposerAttachment](http://127.0.0.1:3000/components/chat-composer-attachment): Composer attachment rail with file previews, upload progress, and removal.
 - [UserAsk](http://127.0.0.1:3000/components/user-ask): Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.
 - [TaskList](http://127.0.0.1:3000/components/task-list): Floating agent task progress pill above the composer that expands into the full task list.
@@ -49,7 +49,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [ActionBar](http://127.0.0.1:3000/components/action-bar): Reusable hover actions for message and response controls.
 - [InlineAttachment](http://127.0.0.1:3000/components/inline-attachment): Inline file and media previews for chat turns. Status: beta.
 - [MarkdownBlock](http://127.0.0.1:3000/components/markdown-block): Assistant markdown output rendered to prose, with a header and copy-source action.
-- [ChatLayout](http://127.0.0.1:3000/components/chat-layout): A scrolling conversation with message turns and a floating composer dock.
+- [ChatLayout](http://127.0.0.1:3000/components/chat-layout): A scrolling conversation with a pinned header, message turns, and a floating composer dock.
 - [ThreadRail](http://127.0.0.1:3000/components/thread-rail): Conversation minimap for scanning and jumping between chat turns.
 
 ## Blocks
@@ -57,8 +57,10 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Templates & patterns](http://127.0.0.1:3000/use-cases): Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.
 - [Chat](http://127.0.0.1:3000/use-cases/chat): Controlled chat shell that composes rendered turns and a provider-owned composer.
 - [Theme toggle](http://127.0.0.1:3000/use-cases/theme-toggle): Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.
+- [Discussion](http://127.0.0.1:3000/use-cases/discussion): Comment thread with ⌘ Enter posting, nested replies, inline editing, and hover actions. Status: beta.
 - [Coding agent](http://127.0.0.1:3000/use-cases/coding-agent): Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer. Status: beta.
 - [Settings](http://127.0.0.1:3000/use-cases/settings): Searchable multi-page settings shell with responsive navigation and accessible control groups.
+- [Team chat](http://127.0.0.1:3000/use-cases/team-chat): Slack-style workspace with channels, unread badges, presence, reactions, and a side thread for replies. Status: beta.
 - [File explorer](http://127.0.0.1:3000/use-cases/file-explorer): Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview. Status: beta.
 - [Design canvas](http://127.0.0.1:3000/use-cases/design-canvas): Figma-style editor with layers, an infinite canvas, a floating tool bar, and scrubbable property inputs. Status: beta.
 
@@ -135,6 +137,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Infinite Canvas](http://127.0.0.1:3000/primitives/infinite-canvas): Pan-and-zoom spatial workspace for arranging content without fixed bounds. Status: experimental.
 - [Morphing Panel](http://127.0.0.1:3000/primitives/morphing-panel): Accessible disclosure surface that morphs between explicit collapsed and expanded dimensions. Status: experimental.
 - [Color Picker](http://127.0.0.1:3000/primitives/color-picker): Color input with picker UI, formats, presets, and contrast helpers. Status: beta.
+- [Emoji Picker](http://127.0.0.1:3000/primitives/emoji-picker): Searchable, virtualized emoji grid with skin-aware cells and an active emoji footer. Status: beta.
 - [Gradient Editor](http://127.0.0.1:3000/primitives/gradient-editor): CSS gradient editor with draggable stops and live preview. Status: beta.
 - [Resizable](http://127.0.0.1:3000/primitives/resizable): Accessible resizable panel groups and split layouts with keyboard support. Status: beta.
 - [Calendar](http://127.0.0.1:3000/primitives/calendar): Date selection grid built on react-day-picker and themed through tokens.

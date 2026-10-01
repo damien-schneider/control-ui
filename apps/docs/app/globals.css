@@ -20,10 +20,12 @@
 @import "../src/registry/sources/control-ui/recipes/item.css";
 @import "../src/registry/sources/control-ui/recipes/table.css";
 @import "../src/registry/sources/control-ui/recipes/chat-message.css";
+@import "../src/registry/sources/control-ui/recipes/chat-message-social.css";
 @import "../src/registry/sources/control-ui/recipes/skeleton.css";
 @import "../src/registry/sources/control-ui/recipes/popup-toast.css";
 @import "../src/registry/sources/control-ui/recipes/thread-rail.css";
 @import "../src/registry/sources/control-ui/recipes/avatar.css";
+@import "../src/registry/sources/control-ui/recipes/emoji-picker.css";
 @import "../src/registry/sources/control-ui/recipes/button-group.css";
 @import "../src/registry/sources/control-ui/recipes/collapsible.css";
 @import "../src/registry/sources/control-ui/recipes/accordion.css";

@@ -1,8 +1,10 @@
 "use client";
 
+import { useRender } from "@base-ui/react/use-render";
 import { ArrowDown } from "lucide-react";
 import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
 import { createContext, useContext, useState } from "react";
+import type { RenderProp } from "@/components/control-ui/control-props";
 import { ChatThreadAnnounceContext } from "@/components/control-ui/hooks/use-chat-message";
 import { useChatThreadScroll } from "@/components/control-ui/hooks/use-chat-thread-scroll";
 import type { ChatLayoutKnobStyle } from "@/components/control-ui/knob-contracts/chat-layout-knobs";
@@ -38,6 +40,68 @@ export function ChatLayout({ children, chrome = "panel", className, ...props }: 
       {chrome === "panel" ? <SkinAdornment scope="chat-layout" part="titlebar" context={{}} /> : null}
       {children}
     </section>
+  );
+}
+
+export type ChatLayoutHeaderProps = Omit<ComponentProps<"header">, "style"> & { style?: CSSProperties & ChatLayoutKnobStyle };
+
+export function ChatLayoutHeader({ className, ...props }: ChatLayoutHeaderProps) {
+  return (
+    <header
+      data-control-ui="chat-layout"
+      data-control-family="chat-layout"
+      data-slot="header"
+      className={cn("grid shrink-0 grid-cols-[auto_minmax(0,1fr)_auto] items-center", className)}
+      {...props}
+    />
+  );
+}
+
+export type ChatLayoutTitleProps = Omit<ComponentProps<"div">, "style"> & {
+  render?: RenderProp<ComponentProps<"div">>;
+  style?: CSSProperties & ChatLayoutKnobStyle;
+};
+
+/** Renders a `div`; pass `render={(props) => <h2 {...props} />}` for the heading level the page needs. */
+export function ChatLayoutTitle({ render, className, ...props }: ChatLayoutTitleProps) {
+  return useRender({
+    defaultTagName: "div",
+    render,
+    props: {
+      ...props,
+      className: cn("col-start-2 min-w-0 truncate", className),
+      "data-control-ui": "chat-layout",
+      "data-control-family": "chat-layout",
+      "data-slot": "title",
+    },
+  });
+}
+
+export type ChatLayoutDescriptionProps = Omit<ComponentProps<"p">, "style"> & { style?: CSSProperties & ChatLayoutKnobStyle };
+
+export function ChatLayoutDescription({ className, ...props }: ChatLayoutDescriptionProps) {
+  return (
+    <p
+      data-control-ui="chat-layout"
+      data-control-family="chat-layout"
+      data-slot="description"
+      className={cn("col-start-2 truncate", className)}
+      {...props}
+    />
+  );
+}
+
+export type ChatLayoutActionsProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ChatLayoutKnobStyle };
+
+export function ChatLayoutActions({ className, ...props }: ChatLayoutActionsProps) {
+  return (
+    <div
+      data-control-ui="chat-layout"
+      data-control-family="chat-layout"
+      data-slot="actions"
+      className={cn("col-start-3 row-span-2 row-start-1 flex items-center", className)}
+      {...props}
+    />
   );
 }
 

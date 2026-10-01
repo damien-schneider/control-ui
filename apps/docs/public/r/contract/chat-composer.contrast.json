@@ -30,6 +30,17 @@
       },
       {
         "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-header": "true",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "popup",
           "data-control-ui": "drawer",
           "data-open": "",
@@ -309,6 +320,17 @@
           "data-scroll": "inset",
           "data-slot": "root",
           "data-width": "full"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-header": "true",
+          "data-slot": "root",
+          "data-surface": "panel"
         }
       },
       {
@@ -650,6 +672,17 @@
       },
       {
         "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-header": "true",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "popup",
           "data-control-ui": "drawer",
           "data-open": "",
@@ -807,7 +840,7 @@
       },
       {
         "attributes": {
-          "role": "combobox"
+          "role": "textbox"
         }
       }
     ],
@@ -951,7 +984,7 @@
       },
       {
         "attributes": {
-          "role": "combobox"
+          "role": "textbox"
         }
       }
     ],
@@ -1053,7 +1086,7 @@
       },
       {
         "attributes": {
-          "role": "combobox"
+          "role": "textbox"
         }
       }
     ],

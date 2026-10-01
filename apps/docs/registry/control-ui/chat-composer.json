@@ -3,7 +3,7 @@
   "name": "chat-composer",
   "type": "registry:component",
   "title": "ChatComposer",
-  "description": "Prompt composer with controlled text, submit state, and trigger-menu support.",
+  "description": "Message composer with controlled text, Enter or ⌘ Enter submit, caret text insertion, and trigger-menu support.",
   "dependencies": [
     "lucide-react@^1.47.0",
     "prosemirror-commands@^1.7.2",

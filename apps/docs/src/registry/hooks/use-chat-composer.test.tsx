@@ -1,16 +1,16 @@
 import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
 
-import type { ChatComposerProps } from "./use-chat-composer";
+import type { ChatComposerController, ChatComposerProps } from "./use-chat-composer";
 import { useChatComposer } from "./use-chat-composer";
 
 type ComposerOptions = Pick<
   ChatComposerProps,
-  "value" | "defaultValue" | "onValueChange" | "onSubmit" | "state" | "density" | "disabled" | "allowEmptySubmit"
+  "value" | "defaultValue" | "onValueChange" | "onSubmit" | "state" | "density" | "disabled" | "allowEmptySubmit" | "submitKey"
 >;
 
 function renderComposer(options: ComposerOptions) {
-  let composer: ReturnType<typeof useChatComposer> | undefined;
+  let composer: ChatComposerController | undefined;
   function Probe() {
     composer = useChatComposer(options);
     return null;
@@ -24,11 +24,16 @@ function renderComposerSubmit(options: ComposerOptions) {
   return renderComposer(options).submit;
 }
 
-function keyEvent(key: string, overrides: { shiftKey?: boolean; isComposing?: boolean; keyCode?: number } = {}) {
+function keyEvent(
+  key: string,
+  overrides: { shiftKey?: boolean; metaKey?: boolean; ctrlKey?: boolean; isComposing?: boolean; keyCode?: number } = {},
+) {
   let prevented = false;
   return {
     key,
     shiftKey: overrides.shiftKey ?? false,
+    metaKey: overrides.metaKey ?? false,
+    ctrlKey: overrides.ctrlKey ?? false,
     defaultPrevented: false,
     nativeEvent: { isComposing: overrides.isComposing ?? false, keyCode: overrides.keyCode ?? 13 },
     preventDefault: () => {
@@ -92,6 +97,24 @@ describe("useChatComposer", () => {
       expect(event.wasPrevented()).toBe(false);
     }
     expect(submitted).toEqual(["hello"]);
+  });
+
+  test("with the mod-enter submit key, Enter breaks the line and only ⌘ or Ctrl+Enter sends", () => {
+    const submitted: string[] = [];
+    const onSubmit = ({ value }: { value: string }) => {
+      submitted.push(value);
+    };
+    const { handleKeyDown } = renderComposer({ defaultValue: "hello", onSubmit, submitKey: "mod-enter" });
+
+    const plainEnter = keyEvent("Enter");
+    handleKeyDown(plainEnter);
+    expect(plainEnter.wasPrevented()).toBe(false);
+    expect(submitted).toEqual([]);
+
+    handleKeyDown(keyEvent("Enter", { metaKey: true }));
+    handleKeyDown(keyEvent("Enter", { ctrlKey: true }));
+    handleKeyDown(keyEvent("Enter", { metaKey: true, shiftKey: true }));
+    expect(submitted).toEqual(["hello", "hello"]);
   });
 
   test("routes a rejected async onSubmit to reportError instead of an unhandled rejection", async () => {

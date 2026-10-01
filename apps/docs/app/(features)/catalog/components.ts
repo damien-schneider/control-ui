@@ -1,11 +1,14 @@
 import { emailEntry } from "./email";
 import { preview, sourceFile } from "./shared";
 
-const chatMessageRecipeFile = sourceFile(
-  "Chat message recipe — paint + @property knobs",
-  "src/registry/sources/control-ui/recipes/chat-message.css",
-  "recipe-css",
-);
+const chatMessageRecipeFiles = [
+  sourceFile("Chat message recipe — paint + @property knobs", "src/registry/sources/control-ui/recipes/chat-message.css", "recipe-css"),
+  sourceFile(
+    "Chat message recipe — footer, reactions, replies, typing",
+    "src/registry/sources/control-ui/recipes/chat-message-social.css",
+    "recipe-css",
+  ),
+] as const;
 const threadRailRecipeFile = sourceFile(
   "Thread rail recipe — paint + @property knobs",
   "src/registry/sources/control-ui/recipes/thread-rail.css",
@@ -98,7 +101,8 @@ export const componentEntries = [
     category: "chat",
     kind: "Component",
     name: "ChatMessage",
-    summary: "Composable chat message with typed role, density, and lifecycle state.",
+    summary:
+      "Composable chat message for assistant turns or people talking: bubble or flat layout, grouped bursts, reactions, and replies.",
     registryKind: "chat-message",
     paths: {
       example: sourceFile("Example", "src/registry/examples/chat-message.tsx", "example"),
@@ -108,17 +112,33 @@ export const componentEntries = [
       },
       hook: sourceFile("Behavior hook", "src/registry/hooks/use-chat-message.ts", "hook"),
       source: sourceFile("Component", "src/registry/sources/control-ui/chat-message.tsx", "component"),
-      supportFiles: [chatMessageRecipeFile],
+      supportFiles: [
+        sourceFile("Reactions, replies, and typing", "src/registry/sources/control-ui/chat-message/social.tsx", "support"),
+        ...chatMessageRecipeFiles,
+      ],
     },
     preview: preview(() => import("@/src/registry/examples/chat-message").then((mod) => ({ default: mod.ChatMessageExample }))),
     previewClassName: "min-h-[280px] items-start",
+    additionalPreviews: [
+      {
+        id: "team",
+        title: "Team conversation",
+        description:
+          'People talking to people: layout="flat" keeps everyone on the start edge, continuation folds a burst under one author, and reactions and reply summaries hang off the body.',
+        source: sourceFile("Team conversation example", "src/registry/examples/control-ui/chat-message-team.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/chat-message-team").then((mod) => ({ default: mod.ChatMessageTeamExample })),
+        ),
+        previewClassName: "min-h-[280px] items-start",
+      },
+    ],
   },
   {
     id: "chat-composer",
     category: "chat",
     kind: "Component",
     name: "ChatComposer",
-    summary: "Prompt composer with controlled text, submit state, and trigger-menu support.",
+    summary: "Message composer with controlled text, Enter or ⌘ Enter submit, caret text insertion, and trigger-menu support.",
     registryKind: "chat-composer",
     paths: {
       example: sourceFile("Example", "src/registry/examples/control-ui/chat-composer.tsx", "example"),
@@ -587,7 +607,7 @@ export const componentEntries = [
     category: "chat",
     kind: "Component",
     name: "ChatLayout",
-    summary: "A scrolling conversation with message turns and a floating composer dock.",
+    summary: "A scrolling conversation with a pinned header, message turns, and a floating composer dock.",
     registryKind: "chat-layout",
     paths: {
       example: sourceFile("Example", "src/registry/examples/control-ui/chat-layout.tsx", "example"),
