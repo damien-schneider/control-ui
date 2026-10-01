@@ -19,7 +19,7 @@ function useSetupPromptCopy() {
 
   return {
     copyError,
-    isCopied: promptCopy.isCopied,
+    copied: promptCopy.status === "copied",
     copy: () => {
       setCopyError(null);
       void promptCopy.handleCopy();
@@ -28,15 +28,15 @@ function useSetupPromptCopy() {
 }
 
 export function SetupPromptCopyButton({ className, compact }: { className?: string; compact?: boolean }) {
-  const { copyError, isCopied, copy } = useSetupPromptCopy();
+  const { copyError, copied, copy } = useSetupPromptCopy();
   const idleLabel = compact ? "Copy prompt" : "Copy setup prompt";
   const copiedLabel = compact ? "Copied" : "Prompt copied";
 
   return (
     <div className={className}>
       <Button size={compact ? "xs" : "sm"} variant="solid" tone="primary" onClick={copy}>
-        {isCopied ? <CheckCircle2Icon aria-hidden className="size-3.5" /> : <CopyIcon aria-hidden className="size-3.5" />}
-        {isCopied ? copiedLabel : idleLabel}
+        {copied ? <CheckCircle2Icon aria-hidden className="size-3.5" /> : <CopyIcon aria-hidden className="size-3.5" />}
+        {copied ? copiedLabel : idleLabel}
       </Button>
       {copyError ? (
         <p role="alert" className="mt-2 text-caption text-destructive-text">
@@ -48,7 +48,7 @@ export function SetupPromptCopyButton({ className, compact }: { className?: stri
 }
 
 export function AgentSetup() {
-  const { copyError, isCopied, copy } = useSetupPromptCopy();
+  const { copyError, copied, copy } = useSetupPromptCopy();
 
   return (
     <div className="mt-4 grid gap-2">
@@ -57,8 +57,8 @@ export function AgentSetup() {
           <CodeTitle>Agent setup prompt</CodeTitle>
           <CodeActions>
             <Button size="sm" variant="solid" tone="primary" onClick={copy}>
-              {isCopied ? <CheckCircle2Icon aria-hidden className="size-3.5" /> : <CopyIcon aria-hidden className="size-3.5" />}
-              {isCopied ? "Agent prompt copied" : "Copy agent prompt"}
+              {copied ? <CheckCircle2Icon aria-hidden className="size-3.5" /> : <CopyIcon aria-hidden className="size-3.5" />}
+              {copied ? "Agent prompt copied" : "Copy agent prompt"}
             </Button>
           </CodeActions>
         </CodeHeader>

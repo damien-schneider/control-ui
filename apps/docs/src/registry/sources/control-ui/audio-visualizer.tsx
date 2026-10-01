@@ -47,7 +47,7 @@ export function AudioVisualizer({ levels, points, active = true, className, styl
         data-control-family="audio-visualizer"
         data-slot="track"
         data-active={active ? "true" : undefined}
-        className="flex size-full items-stretch justify-end mask-l-from-90%"
+        className="flex size-full items-stretch justify-end mask-l-from-90% rtl:mask-l-from-100% rtl:mask-r-from-90%"
       >
         {visible.map(({ key, level }) => {
           const perceptualLevel = Math.sqrt(level);

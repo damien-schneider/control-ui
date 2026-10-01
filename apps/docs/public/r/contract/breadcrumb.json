@@ -17,6 +17,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-breadcrumb-link-hover-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
     }
   ],
   "parts": {
@@ -73,9 +79,6 @@
     }
   },
   "adornments": {},
-  "uncovered": [
-    "--cui-breadcrumb-list-foreground",
-    "--cui-breadcrumb-page-foreground"
-  ],
+  "uncovered": [],
   "contrast": "/r/contract/breadcrumb.contrast.json"
 }

@@ -103,6 +103,8 @@ export const displayCompositions = {
   skeleton: [example("Loading placeholder", part("Skeleton"))],
   toast: [example("Application toast host", part("Toaster"))],
   kbd: [example("Keyboard chord", part("KbdGroup", part("Kbd")))],
+  separator: [example("Divider", part("Separator"))],
+  "live-status": [example("Polite announcement", part("LiveStatus"), "Keep it mounted and change only its message.")],
   accordion: [example("Anatomy", part("Accordion", part("AccordionItem", part("AccordionTrigger"), part("AccordionPanel"))))],
   avatar: [example("Avatar group", part("AvatarGroup", part("Avatar", part("AvatarImage"), part("AvatarFallback"))))],
   progress: [

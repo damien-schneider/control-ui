@@ -1,14 +1,14 @@
 "use client";
 
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useId } from "react";
 
 import type { InlineAttachmentKnobStyle } from "@/components/control-ui/knob-contracts/inline-attachment-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
 export type InlineAttachmentState = "ready" | "pending" | "error";
 
-type InlineAttachmentContextValue = { name: string; state: InlineAttachmentState };
+type InlineAttachmentContextValue = { name: string; state: InlineAttachmentState; descriptionId: string };
 
 type InlineAttachmentStyle = CSSProperties & InlineAttachmentKnobStyle;
 type InlineAttachmentStyleProps<Props, Style> = Omit<Props, "style"> & { style?: CSSProperties & Style };
@@ -21,17 +21,20 @@ function useInlineAttachmentContext() {
   return context;
 }
 
-function defaultLabel(name: string, state: InlineAttachmentState) {
-  if (state === "pending") return `Generating ${name}`;
-  if (state === "error") return `${name} is unavailable`;
-  return `Open attachment: ${name}`;
-}
+type AttachmentLabel = (name: string) => string;
+
+const defaultOpenLabel: AttachmentLabel = (name) => `Open attachment: ${name}`;
+const defaultPendingLabel: AttachmentLabel = (name) => `Generating ${name}`;
+const defaultErrorLabel: AttachmentLabel = (name) => `${name} couldn't load. Try again.`;
 
 export type InlineAttachmentProps = InlineAttachmentStyleProps<ComponentProps<"button">, InlineAttachmentKnobStyle> & {
   name: string;
   state?: InlineAttachmentState;
   /** Width-to-height ratio of the reserved box — generated media knows its ratio before its pixels, so arrival never reflows the turn. */
   aspect?: number;
+  openLabel?: AttachmentLabel;
+  pendingLabel?: AttachmentLabel;
+  errorLabel?: AttachmentLabel;
 };
 
 export function InlineAttachment({
@@ -39,6 +42,10 @@ export function InlineAttachment({
   state = "ready",
   aspect = 1.26,
   disabled,
+  openLabel = defaultOpenLabel,
+  pendingLabel = defaultPendingLabel,
+  errorLabel = defaultErrorLabel,
+  onClick,
   className,
   children,
   style,
@@ -46,20 +53,36 @@ export function InlineAttachment({
   ...props
 }: InlineAttachmentProps) {
   const attachmentStyle = { aspectRatio: aspect, ...style } satisfies InlineAttachmentStyle;
+  const descriptionId = useId();
+  const pending = state === "pending";
+  const labelFor: Record<InlineAttachmentState, AttachmentLabel> = { ready: openLabel, pending: pendingLabel, error: errorLabel };
+  const defaultLabel = labelFor[state](name);
 
   return (
-    <InlineAttachmentContext.Provider value={{ name, state }}>
+    <InlineAttachmentContext.Provider value={{ name, state, descriptionId }}>
       <button
         type="button"
-        aria-label={ariaLabel ?? defaultLabel(name, state)}
-        aria-busy={state === "pending" || undefined}
-        disabled={disabled || state === "pending"}
+        aria-label={ariaLabel ?? defaultLabel}
+        aria-describedby={descriptionId}
+        aria-busy={pending || undefined}
+        aria-disabled={pending || undefined}
+        disabled={disabled}
+        onClick={(event) => {
+          if (pending) {
+            event.preventDefault();
+            return;
+          }
+          onClick?.(event);
+        }}
         data-control-ui="inline-attachment"
         data-control-family="inline-attachment"
         data-slot="root"
         data-surface="panel"
         data-state={state}
-        className={cn("group relative w-full max-w-72 cursor-pointer overflow-hidden disabled:cursor-default", className)}
+        className={cn(
+          "group relative w-full max-w-72 cursor-pointer overflow-hidden disabled:cursor-default aria-disabled:cursor-default",
+          className,
+        )}
         style={attachmentStyle}
         {...props}
       >
@@ -156,31 +179,38 @@ export type InlineAttachmentTitleProps = ComponentProps<"div"> & { style?: CSSPr
 
 export function InlineAttachmentTitle({ children, className, ...props }: InlineAttachmentTitleProps) {
   const { name } = useInlineAttachmentContext();
+  const label = children ?? name;
 
   return (
     <div
       data-control-ui="inline-attachment"
       data-control-family="inline-attachment"
       data-slot="title"
+      title={typeof label === "string" ? label : undefined}
       className={cn("truncate", className)}
       {...props}
     >
-      {children ?? name}
+      {label}
     </div>
   );
 }
 
 export type InlineAttachmentDescriptionProps = InlineAttachmentStyleProps<ComponentProps<"div">, InlineAttachmentKnobStyle>;
 
-export function InlineAttachmentDescription({ className, ...props }: InlineAttachmentDescriptionProps) {
+export function InlineAttachmentDescription({ className, children, ...props }: InlineAttachmentDescriptionProps) {
+  const { descriptionId } = useInlineAttachmentContext();
   return (
     <div
+      id={descriptionId}
       data-control-ui="inline-attachment"
       data-control-family="inline-attachment"
       data-slot="description"
+      title={typeof children === "string" ? children : undefined}
       className={cn("truncate", className)}
       {...props}
-    />
+    >
+      {children}
+    </div>
   );
 }
 

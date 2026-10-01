@@ -42,13 +42,27 @@
     --_item-background: oklch(from var(--muted) l c h / 0.5);
   }
 
-  :where([data-control-family="item"][data-slot="root"]:is(a, button, [href], [role="button"]):hover) {
-    outline-color: var(--cui-item-hover-border-color);
-    background: var(--cui-item-hover-background);
-    box-shadow: none;
+  @media (hover: hover) {
+    :where(
+        [data-control-family="item"][data-slot="root"]:is(a, button, [href], [role="button"]):not(
+          :disabled,
+          [data-disabled],
+          [aria-disabled="true"]
+        ):hover
+      ) {
+      outline-color: var(--cui-item-hover-border-color);
+      background: var(--cui-item-hover-background);
+      box-shadow: none;
+    }
   }
 
-  :where([data-control-family="item"][data-slot="root"]:is(a, button, [href], [role="button"]):active) {
+  :where(
+    [data-control-family="item"][data-slot="root"]:is(a, button, [href], [role="button"]):not(
+      :disabled,
+      [data-disabled],
+      [aria-disabled="true"]
+    ):active
+  ) {
     scale: var(--cui-item-active-scale);
   }
 
@@ -58,7 +72,7 @@
   }
 
   :where([data-control-family="item"][data-slot="description"]) {
-    font-size: var(--text-sm);
+    font-size: var(--text-body);
     line-height: var(--leading-relaxed);
     color: var(--muted-foreground);
     text-wrap: pretty;
@@ -66,9 +80,9 @@
 
   :where([data-control-family="item"][data-slot="title"]) {
     gap: calc(var(--spacing) * 2);
-    font-size: var(--text-sm);
+    font-size: var(--text-body);
     font-weight: var(--font-weight-medium);
-    line-height: 1;
+    line-height: var(--leading-tight);
     color: var(--foreground);
     text-wrap: balance;
   }

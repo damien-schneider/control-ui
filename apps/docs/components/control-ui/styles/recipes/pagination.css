@@ -2,7 +2,7 @@
   :where([data-control-family="pagination"][data-slot="root"]) {
     --cui-pagination-link-radius: var(--radius-control);
     --cui-pagination-link-background: transparent;
-    --cui-pagination-link-hover-background: oklch(from var(--foreground) l c h / 0.06);
+    --cui-pagination-link-hover-background: var(--hover-fill);
     --cui-pagination-link-foreground: var(--foreground);
     --cui-pagination-link-shadow: none;
   }
@@ -21,7 +21,6 @@
       var(--cui-pagination-link-shadow);
     color: var(--cui-pagination-link-foreground);
     font-variant-numeric: tabular-nums;
-    outline: none;
   }
 
   :where([data-control-family="pagination"][data-slot="link"][data-active="true"]) {
@@ -31,13 +30,13 @@
   }
 
   @media (hover: hover) {
-    :where([data-control-family="pagination"][data-slot="link"]:hover) {
+    :where([data-control-family="pagination"][data-slot="link"]:hover:not([aria-disabled="true"])) {
       background: var(--cui-pagination-link-hover-background);
     }
   }
 
   :where([data-control-family="pagination"][data-slot="link"][aria-disabled="true"]) {
-    opacity: 0.45;
+    opacity: var(--disabled-opacity);
   }
 
   :where([data-control-family="pagination"][data-slot="link"]:has(> svg:first-child)) {
@@ -63,7 +62,7 @@
       inset: 50% 50%;
       translate: -50% -50%;
       inline-size: 100%;
-      block-size: max(100%, 44px);
+      block-size: max(100%, var(--touch-target));
     }
   }
 }

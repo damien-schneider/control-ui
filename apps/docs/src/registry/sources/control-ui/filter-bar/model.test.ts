@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { formatFilterValue, parseCustomValue } from "./model";
+import { describeFilter, formatFilterValue, parseCustomValue } from "./model";
 import type { FilterBarField, FilterBarItem } from "./types";
 
 const numericField: FilterBarField = { id: "votes", label: "Votes", type: "number" };
@@ -35,5 +35,18 @@ describe("filter value input", () => {
     expect(formatFilterValue(item, numericField)).toBe("0");
     expect(formatFilterValue({ ...item, value: false }, { id: "featured", label: "Featured", type: "boolean" })).toBe("False");
     expect(formatFilterValue({ ...item, value: null }, numericField)).toBe("");
+  });
+});
+
+describe("describeFilter", () => {
+  test("speaks the operator word instead of its symbol and omits empty values", () => {
+    const operators = [
+      { id: "gte", label: "≥", ariaLabel: "at least" },
+      { id: "is-empty", label: "is empty", arity: "none" as const },
+    ];
+    expect(describeFilter({ id: "a", fieldId: "votes", operatorId: "gte", value: 3 }, [numericField], operators)).toBe("Votes at least 3");
+    expect(describeFilter({ id: "b", fieldId: "votes", operatorId: "is-empty", value: null }, [numericField], operators)).toBe(
+      "Votes is empty",
+    );
   });
 });

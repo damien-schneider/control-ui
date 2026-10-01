@@ -14,7 +14,7 @@ test("mobile docs sidebar slides, restores focus, and respects reduced motion", 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/primitives/button");
-  const trigger = page.getByRole("button", { name: "Toggle Sidebar", exact: true, includeHidden: true });
+  const trigger = page.getByRole("button", { name: "Toggle sidebar", exact: true, includeHidden: true });
   await waitForReactHydration(trigger);
   await trigger.focus();
   await trigger.press("Enter");
@@ -94,11 +94,11 @@ test("nested pages navigate and remain selected after folding their parent", asy
   await expect(example.getByRole("heading", { name: "Overview", exact: true })).toBeVisible();
   await expect(overview).toHaveAttribute("aria-current", "page");
   const cookiesBeforeCollapse = await page.context().cookies();
-  await example.getByRole("button", { name: "Toggle Sidebar", exact: true }).click();
+  await example.getByRole("button", { name: "Toggle sidebar", exact: true }).click();
   await expect(overview).toBeHidden();
   await expect(example.getByRole("button", { name: "Resources", exact: true })).toBeHidden();
   expect(await page.context().cookies()).toEqual(cookiesBeforeCollapse);
-  await example.getByRole("button", { name: "Toggle Sidebar", exact: true }).click();
+  await example.getByRole("button", { name: "Toggle sidebar", exact: true }).click();
   await expect(overview).toBeVisible();
   await expect(overview).toHaveAttribute("aria-current", "page");
   await expect
@@ -115,7 +115,7 @@ test("each sidebar preview is one responsive workspace", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/primitives/sidebar");
   const example = page.getByRole("group", { name: "Sidebar", exact: true });
-  const trigger = example.getByRole("button", { name: "Toggle Sidebar", exact: true });
+  const trigger = example.getByRole("button", { name: "Toggle sidebar", exact: true });
   await waitForReactHydration(trigger);
   await expect(example.locator('[data-slot="wrapper"]')).toHaveCount(1);
   await trigger.click();
@@ -131,7 +131,7 @@ test.describe("touch navigation", () => {
 
   test("mobile categories and links have usable touch targets", async ({ page }) => {
     await page.goto("/primitives/button");
-    const trigger = page.getByRole("button", { name: "Toggle Sidebar", exact: true });
+    const trigger = page.getByRole("button", { name: "Toggle sidebar", exact: true });
     await waitForReactHydration(trigger);
     await trigger.tap();
     const popup = page.locator(sidebarPopup);

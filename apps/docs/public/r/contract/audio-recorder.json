@@ -29,6 +29,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--destructive-text)"
+    },
+    {
+      "name": "--cui-audio-recorder-meta-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
     }
   ],
   "parts": {
@@ -186,7 +192,8 @@
   },
   "adornments": {},
   "uncovered": [
-    "--cui-audio-recorder-active-foreground"
+    "--cui-audio-recorder-active-foreground",
+    "--cui-audio-recorder-meta-foreground"
   ],
   "contrast": "/r/contract/audio-recorder.contrast.json"
 }

@@ -22,7 +22,7 @@ export type TableCaptionProps = Omit<ComponentProps<"caption">, "style"> & { sty
 export function Table({ className, ...props }: TableProps) {
   return (
     <div data-control-ui="table" data-control-family="table" data-slot="container" className="relative w-full">
-      <ScrollArea lockAxis="y">
+      <ScrollArea lockAxis="y" aria-label={props["aria-label"]} aria-labelledby={props["aria-labelledby"]}>
         <table
           data-control-ui="table"
           data-control-family="table"
@@ -57,7 +57,7 @@ export function TableHead({ className, ...props }: TableHeadProps) {
       data-control-ui="table"
       data-control-family="table"
       data-slot="head"
-      className={cn("whitespace-nowrap align-middle [&:has([role=checkbox])]:pr-0", className)}
+      className={cn("whitespace-nowrap align-middle [&:has([role=checkbox])]:pe-0", className)}
       {...props}
     />
   );
@@ -69,7 +69,7 @@ export function TableCell({ className, ...props }: TableCellProps) {
       data-control-ui="table"
       data-control-family="table"
       data-slot="cell"
-      className={cn("whitespace-nowrap align-middle [&:has([role=checkbox])]:pr-0", className)}
+      className={cn("whitespace-nowrap align-middle [&:has([role=checkbox])]:pe-0", className)}
       {...props}
     />
   );

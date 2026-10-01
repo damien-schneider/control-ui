@@ -1,4 +1,13 @@
 @layer components {
+  :where([data-control-family="track-highlight"]) {
+    --cui-track-highlight-background: var(--card);
+    --cui-track-highlight-hover-background: color-mix(in oklab, var(--card) 92%, var(--foreground) 8%);
+    --cui-track-highlight-radius: var(--radius-popup-item);
+    --cui-track-highlight-ring-color: oklch(from var(--foreground) l c h / 0.05);
+    --cui-track-highlight-shadow: var(--shadow-sm);
+    --cui-track-highlight-transition-duration: var(--duration-fast);
+  }
+
   :where([data-control-family="track-highlight"][data-slot="root"]),
   :where([data-control-family="track-highlight"][data-slot="hover"]) {
     --_track-highlight-opacity: 0;
@@ -10,12 +19,6 @@
   }
 
   :where([data-control-family="track-highlight"][data-slot="root"]) {
-    --cui-track-highlight-background: var(--card);
-    --cui-track-highlight-hover-background: color-mix(in oklab, var(--card) 92%, var(--foreground) 8%);
-    --cui-track-highlight-radius: var(--radius-popup-item);
-    --cui-track-highlight-ring-color: oklch(from var(--foreground) l c h / 0.05);
-    --cui-track-highlight-shadow: var(--shadow-sm);
-    --cui-track-highlight-transition-duration: var(--duration-fast);
     --_track-highlight-fill: var(--cui-track-highlight-background);
     background: var(--_track-highlight-fill);
     box-shadow:
@@ -48,7 +51,7 @@
     [data-track="hover"]:is([data-control-family="button-group"], [data-control-family="button"][data-slot="group"])
       > [data-control-family="track-highlight"]
   ) {
-    --cui-track-highlight-hover-background: oklch(from var(--foreground) l c h / 0.06);
+    --cui-track-highlight-hover-background: var(--hover-fill);
   }
 
   :where([data-track]:has(> [data-control-family="button"][data-track-item]) > [data-control-family="track-highlight"]),

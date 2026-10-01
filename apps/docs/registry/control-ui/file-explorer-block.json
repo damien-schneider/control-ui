@@ -8,10 +8,15 @@
     "lucide-react@^1.47.0"
   ],
   "registryDependencies": [
+    "breadcrumb",
     "button",
     "core",
+    "drawer",
+    "dropdown-menu",
     "empty",
+    "input",
     "input-group",
+    "live-status",
     "resizable",
     "scroll-area",
     "sidebar"

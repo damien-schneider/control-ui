@@ -2,7 +2,7 @@
 
 import { X } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useId, useMemo } from "react";
 import type { ContextSegment, ContextSegmentKind } from "@/components/control-ui/context-model";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
@@ -40,6 +40,8 @@ type ContextValue = {
   modelName: string | undefined;
   numberFormatter: Intl.NumberFormat;
   percentageFormatter: Intl.NumberFormat;
+  percentage: string | null;
+  usage: string;
 };
 
 const ContextValueContext = createContext<ContextValue | null>(null);
@@ -63,15 +65,24 @@ export function Context({
   ...props
 }: ContextProps) {
   const model = deriveContextModel(segments, maxTokens);
-  const context = {
-    model,
-    modelName,
-    numberFormatter: new Intl.NumberFormat(locale),
-    percentageFormatter: new Intl.NumberFormat(locale, {
-      style: "percent",
-      maximumFractionDigits: 1,
-    }),
-  } satisfies ContextValue;
+  const numberFormatter = useMemo(() => new Intl.NumberFormat(locale), [locale]);
+  const percentageFormatter = useMemo(
+    () =>
+      new Intl.NumberFormat(locale, {
+        style: "percent",
+        maximumFractionDigits: 1,
+      }),
+    [locale],
+  );
+  const percentage = model.ratio === null ? null : percentageFormatter.format(model.ratio);
+  const usedTokens = numberFormatter.format(model.usedTokens);
+  const usage =
+    model.maxTokens === null
+      ? `${usedTokens} tokens used; limit unavailable`
+      : `${usedTokens} of ${numberFormatter.format(model.maxTokens)} tokens used (${percentage})${
+          model.overageTokens > 0 ? `; ${numberFormatter.format(model.overageTokens)} tokens over limit` : ""
+        }`;
+  const context = { model, modelName, numberFormatter, percentageFormatter, percentage, usage } satisfies ContextValue;
 
   return (
     <ContextValueContext.Provider value={context}>
@@ -99,23 +110,16 @@ export function Context({
 export type ContextTriggerProps = ContextStyleProps<ComponentProps<typeof Button>, ButtonKnobStyle & ContextKnobStyle>;
 
 export function ContextTrigger({
-  "aria-label": ariaLabel,
+  "aria-describedby": describedBy,
   variant = "surface",
   size = "sm",
   className,
   children,
   ...props
 }: ContextTriggerProps) {
-  const { model, numberFormatter, percentageFormatter } = useContextValue();
-  const percentage = model.ratio === null ? null : percentageFormatter.format(model.ratio);
+  const { model, percentage, usage } = useContextValue();
+  const usageId = useId();
   const visualPercentage = Math.min(100, Math.max(0, (model.ratio ?? 0) * 100));
-  const shortLabel = percentage === null ? "Context unavailable" : `${percentage} context`;
-  const accessibleLabel =
-    model.maxTokens === null
-      ? `Context window: ${numberFormatter.format(model.usedTokens)} tokens used; limit unavailable`
-      : `Context window: ${numberFormatter.format(model.usedTokens)} of ${numberFormatter.format(model.maxTokens)} tokens used (${percentage})${
-          model.overageTokens > 0 ? `; ${numberFormatter.format(model.overageTokens)} tokens over limit` : ""
-        }`;
 
   return (
     <span
@@ -130,7 +134,7 @@ export function ContextTrigger({
         render={<PopoverTrigger />}
         variant={variant}
         size={size}
-        aria-label={ariaLabel ?? accessibleLabel}
+        aria-describedby={describedBy ? `${usageId} ${describedBy}` : usageId}
         className={cn("group/context after:absolute after:-inset-1.5 after:content-['']", className)}
       >
         {children ?? (
@@ -171,11 +175,14 @@ export function ContextTrigger({
               ) : null}
             </svg>
             <span data-control-ui="context" data-control-family="context" data-slot="trigger-label">
-              {shortLabel}
+              {percentage === null ? "Context unavailable" : `${percentage} context`}
             </span>
           </>
         )}
       </Button>
+      <span id={usageId} className="sr-only">
+        {usage}
+      </span>
     </span>
   );
 }
@@ -270,8 +277,7 @@ export function ContextDescription({ className, children, ...props }: ContextDes
 export type ContextSummaryProps = ContextStyleProps<ComponentProps<"div">, ContextKnobStyle>;
 
 export function ContextSummary({ className, children, ...props }: ContextSummaryProps) {
-  const { model, numberFormatter, percentageFormatter } = useContextValue();
-  const percentage = model.ratio === null ? null : percentageFormatter.format(model.ratio);
+  const { model, numberFormatter, percentage } = useContextValue();
 
   return (
     <div
@@ -288,7 +294,7 @@ export function ContextSummary({ className, children, ...props }: ContextSummary
           <span data-control-ui="context" data-control-family="context" data-slot="summary-value">
             {model.maxTokens === null
               ? "Limit unavailable"
-              : `${numberFormatter.format(model.usedTokens)} / ${numberFormatter.format(model.maxTokens)} tokens`}
+              : `${numberFormatter.format(model.usedTokens)} of ${numberFormatter.format(model.maxTokens)} tokens`}
           </span>
         </>
       )}
@@ -298,19 +304,31 @@ export function ContextSummary({ className, children, ...props }: ContextSummary
 
 export type ContextGraphProps = ContextStyleProps<Omit<ComponentProps<"svg">, "children">, ContextKnobStyle>;
 
-export function ContextGraph({ className, ...props }: ContextGraphProps) {
-  const { model } = useContextValue();
+export function ContextGraph({ "aria-label": ariaLabel = "Context usage", className, ...props }: ContextGraphProps) {
+  const { model, usage } = useContextValue();
+  const meterProps: ComponentProps<"svg"> =
+    model.maxTokens === null
+      ? { "aria-hidden": true }
+      : {
+          role: "meter",
+          "aria-label": ariaLabel,
+          "aria-valuemin": 0,
+          "aria-valuemax": model.maxTokens,
+          "aria-valuenow": Math.min(model.usedTokens, model.maxTokens),
+          "aria-valuetext": usage,
+        };
 
   return (
+    // biome-ignore lint/a11y/noSvgWithoutTitle: meterProps names it as a meter (aria-label + aria-valuetext) or hides it when there is no limit.
     <svg
       {...props}
+      {...meterProps}
       data-control-ui="context"
       data-control-family="context"
       data-slot="graph"
       data-status={model.status}
       viewBox="0 0 100 10"
       preserveAspectRatio="none"
-      aria-hidden="true"
       className={cn("w-full overflow-hidden", className)}
     >
       <rect data-control-ui="context" data-control-family="context" data-slot="track" x="0" y="0" width="100" height="10" rx="5" />
@@ -465,7 +483,7 @@ export function ContextClose({
       size={size}
       iconOnly={iconOnly}
       aria-label={ariaLabel}
-      className={cn("ml-auto", className)}
+      className={cn("ms-auto", className)}
     >
       {children ?? <X aria-hidden="true" className="size-4" />}
     </Button>

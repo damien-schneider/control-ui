@@ -37,7 +37,6 @@
     border: var(--cui-gradient-editor-stop-border-width) solid var(--cui-gradient-editor-stop-border-color);
     border-radius: var(--cui-gradient-editor-stop-radius);
     box-shadow: var(--cui-gradient-editor-stop-shadow);
-    outline: none;
     transition: scale var(--duration-fast) var(--ease-standard);
   }
 
@@ -47,11 +46,10 @@
     border: var(--cui-gradient-editor-add-border-width) dashed var(--cui-gradient-editor-add-border-color);
     border-radius: var(--cui-gradient-editor-add-radius);
     color: var(--muted-foreground);
-    outline: none;
   }
 
   @media (hover: hover) {
-    :where([data-control-family="gradient-editor"][data-slot="stop-add"]:hover) {
+    :where([data-control-family="gradient-editor"][data-slot="stop-add"]:hover:not(:disabled)) {
       border-color: oklch(from var(--foreground) l c h / 0.4);
       color: var(--foreground);
     }
@@ -59,6 +57,15 @@
 
   :where([data-control-family="gradient-editor"][data-slot="stop"][data-selected="true"]) {
     scale: 115% 115%;
+  }
+
+  :where([data-control-family="gradient-editor"][data-slot="stop"])::after {
+    content: "";
+    position: absolute;
+    inset: 50%;
+    translate: -50% -50%;
+    inline-size: max(100%, var(--target-min));
+    block-size: max(100%, var(--target-min));
   }
 
   @media (pointer: coarse) {
@@ -69,10 +76,14 @@
     :where([data-control-family="gradient-editor"][data-slot="stop-add"])::after {
       content: "";
       position: absolute;
-      inset: 50% 50%;
+      inset: 50%;
       translate: -50% -50%;
-      inline-size: max(100%, 44px);
-      block-size: max(100%, 44px);
+      inline-size: max(100%, var(--touch-target));
+      block-size: max(100%, var(--touch-target));
+    }
+
+    :where([data-control-family="gradient-editor"][data-slot="stop"])::after {
+      block-size: max(100%, var(--touch-target));
     }
   }
 }

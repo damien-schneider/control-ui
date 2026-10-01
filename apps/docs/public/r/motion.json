@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "motion",
+  "type": "registry:item",
+  "title": "Motion preferences",
+  "description": "Reduced-motion detection and duration-token parsing shared by scripted animations.",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/motion.ts",
+      "target": "@components/control-ui/lib/motion.ts",
+      "type": "registry:lib",
+      "content": "const REDUCED_MOTION_QUERY = \"(prefers-reduced-motion: reduce)\";\n\nexport function prefersReducedMotion(node?: Element | null): boolean {\n  return globalThis.matchMedia?.(REDUCED_MOTION_QUERY).matches === true || node?.closest('[data-motion=\"reduced\"]') != null;\n}\n\nexport function readDurationMs(element: Element, token: string): number {\n  const value = getComputedStyle(element).getPropertyValue(token).trim();\n  const amount = Number.parseFloat(value);\n  if (!Number.isFinite(amount)) return 0;\n  if (value.endsWith(\"ms\")) return amount;\n  if (value.endsWith(\"s\")) return amount * 1000;\n  return amount;\n}\n"
+    }
+  ],
+  "meta": {
+    "internal": true
+  }
+}

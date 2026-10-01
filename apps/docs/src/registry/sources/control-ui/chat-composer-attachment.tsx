@@ -8,6 +8,7 @@ import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/but
 import type { ChatComposerAttachmentKnobStyle } from "@/components/control-ui/knob-contracts/chat-composer-attachment-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
+import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Spinner } from "@/components/control-ui/ui/spinner";
 
@@ -27,6 +28,7 @@ type ChatComposerAttachmentContextValue = {
   extension: string;
   onRemove?: () => void;
   removeLabel?: string;
+  errorLabel: string;
 };
 
 const ChatComposerAttachmentContext = createContext<ChatComposerAttachmentContextValue | null>(null);
@@ -111,8 +113,37 @@ function defaultDescription(context: ChatComposerAttachmentContextValue) {
   const { progress } = context;
   if (context.description) return context.description;
   if (context.status === "uploading") return progress === undefined ? "Uploading…" : `Uploading ${Math.round(progress)}%`;
-  if (context.status === "error") return "Upload failed";
+  if (context.status === "error") return context.errorLabel;
   return fallbackLabel(context.kind, context.extension);
+}
+
+function defaultUploadedLabel(name: string) {
+  return `${name} uploaded`;
+}
+
+function defaultUploadFailedLabel(name: string) {
+  return `${name} couldn't upload`;
+}
+
+function useUploadAnnouncement(
+  status: ChatComposerAttachmentStatus,
+  name: string,
+  uploadedLabel: (name: string) => string,
+  uploadFailedLabel: (name: string) => string,
+) {
+  const [previousStatus, setPreviousStatus] = useState(status);
+  const [announcement, setAnnouncement] = useState("");
+
+  if (status !== previousStatus) {
+    setPreviousStatus(status);
+    const labelFor: Partial<Record<ChatComposerAttachmentStatus, (name: string) => string>> = {
+      uploaded: uploadedLabel,
+      error: uploadFailedLabel,
+    };
+    setAnnouncement(labelFor[status]?.(name) ?? "");
+  }
+
+  return announcement;
 }
 
 export type ChatComposerAttachmentsProps = ComponentProps<"div"> & {
@@ -138,13 +169,13 @@ export function ChatComposerAttachments({
       <ScrollArea
         data-control-ui="chat-composer-attachments"
         data-slot="scroll"
-        aria-label={label}
         lockAxis="y"
         mask
         className="w-full"
         viewportClassName={viewportClassName}
       >
         <ul
+          aria-label={label}
           data-control-ui="chat-composer-attachments"
           data-control-family="chat-composer-attachment"
           data-slot="list"
@@ -170,6 +201,9 @@ export type ChatComposerAttachmentProps = Omit<ComponentProps<"li">, "style"> &
     variant?: ChatComposerAttachmentVariant;
     onRemove?: () => void;
     removeLabel?: string;
+    errorLabel?: string;
+    uploadedLabel?: (name: string) => string;
+    uploadFailedLabel?: (name: string) => string;
     style?: CSSProperties & ChatComposerAttachmentKnobStyle;
   };
 
@@ -185,6 +219,9 @@ export function ChatComposerAttachment({
   variant = "auto",
   onRemove,
   removeLabel,
+  errorLabel = "Couldn't upload. Remove and try again.",
+  uploadedLabel = defaultUploadedLabel,
+  uploadFailedLabel = defaultUploadFailedLabel,
   className,
   children,
   "aria-label": ariaLabel,
@@ -198,6 +235,7 @@ export function ChatComposerAttachment({
   const previewUrl = previewUrlInput ?? filePreviewUrl;
   const extension = extensionFromName(name);
   const progress = progressValue(progressInput);
+  const announcement = useUploadAnnouncement(status, name, uploadedLabel, uploadFailedLabel);
 
   return (
     <ChatComposerAttachmentContext.Provider
@@ -213,6 +251,7 @@ export function ChatComposerAttachment({
         extension,
         onRemove,
         removeLabel,
+        errorLabel,
       }}
     >
       <li
@@ -240,6 +279,7 @@ export function ChatComposerAttachment({
             <ChatComposerAttachmentProgress />
           </>
         )}
+        <LiveStatus message={announcement} />
       </li>
     </ChatComposerAttachmentContext.Provider>
   );
@@ -304,16 +344,18 @@ export type ChatComposerAttachmentTitleProps = Omit<ComponentProps<"div">, "styl
 
 export function ChatComposerAttachmentTitle({ className, children, ...props }: ChatComposerAttachmentTitleProps) {
   const { name } = useChatComposerAttachmentContext();
+  const content = children ?? name;
 
   return (
     <div
       data-control-ui="chat-composer-attachment"
       data-control-family="chat-composer-attachment"
       data-slot="title"
+      title={typeof content === "string" ? content : undefined}
       className={cn("truncate", className)}
       {...props}
     >
-      {children ?? name}
+      {content}
     </div>
   );
 }
@@ -324,17 +366,19 @@ export type ChatComposerAttachmentDescriptionProps = Omit<ComponentProps<"div">,
 
 export function ChatComposerAttachmentDescription({ className, children, ...props }: ChatComposerAttachmentDescriptionProps) {
   const context = useChatComposerAttachmentContext();
+  const content = children ?? defaultDescription(context);
 
   return (
     <div
       data-control-ui="chat-composer-attachment"
       data-control-family="chat-composer-attachment"
       data-slot="description"
+      title={typeof content === "string" ? content : undefined}
       className={cn("truncate", className)}
       data-state={context.status}
       {...props}
     >
-      {children ?? defaultDescription(context)}
+      {content}
     </div>
   );
 }
@@ -368,7 +412,7 @@ export function ChatComposerAttachmentRemove({
       aria-label={ariaLabel ?? removeLabel ?? `Remove ${name}`}
       size="xs"
       variant="solid"
-      className={cn("absolute right-1 top-1 z-10", className)}
+      className={cn("absolute end-1 top-1 z-10", className)}
       onClick={handleClick}
       {...props}
     >

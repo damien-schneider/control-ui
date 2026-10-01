@@ -31,15 +31,17 @@
     border-bottom-width: 1px;
   }
 
-  :where(
-    [data-control-family="table"][data-slot="row"]:is(
-      [data-interactive],
-      [tabindex],
-      [role="button"],
-      :has(a, button, [role="checkbox"])
-    ):hover
-  ) {
-    background: var(--cui-table-row-hover-background);
+  @media (hover: hover) {
+    :where(
+        [data-control-family="table"][data-slot="row"]:is(
+          [data-interactive],
+          [tabindex],
+          [role="button"],
+          :has(a, button, [role="checkbox"])
+        ):hover
+      ) {
+      background: var(--cui-table-row-hover-background);
+    }
   }
 
   :where([data-control-family="table"][data-slot="row"][data-state="selected"]) {
@@ -50,7 +52,7 @@
     block-size: calc(var(--spacing) * 10);
     padding-inline: calc(var(--spacing) * 2);
     color: var(--cui-table-header-foreground);
-    text-align: left;
+    text-align: start;
     font-weight: var(--font-weight-medium);
   }
 
@@ -58,6 +60,7 @@
     margin-block-start: calc(var(--spacing) * 4);
     color: var(--muted-foreground);
     font-size: var(--text-body);
+    text-wrap: pretty;
   }
 
   :where([data-control-family="table"][data-slot="footer"] > tr:last-child) {
@@ -77,6 +80,7 @@
 
   :where([data-control-family="table"][data-slot="cell"]) {
     padding: calc(var(--spacing) * 2);
+    font-variant-numeric: tabular-nums;
   }
 }
 

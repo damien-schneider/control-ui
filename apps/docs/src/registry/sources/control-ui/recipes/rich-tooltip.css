@@ -122,7 +122,7 @@
     --_rich-tooltip-content-progress-font-size: var(--_rich-tooltip-progress-font-size);
     --_rich-tooltip-progress-foreground: var(--muted-foreground);
     --_rich-tooltip-content-progress-foreground: var(--_rich-tooltip-progress-foreground);
-    --_rich-tooltip-title-font-size: var(--text-label);
+    --_rich-tooltip-title-font-size: var(--text-body);
     --_rich-tooltip-content-title-font-size: var(--_rich-tooltip-title-font-size);
     --_rich-tooltip-title-font-weight: var(--font-weight-semibold);
     --_rich-tooltip-content-title-font-weight: var(--_rich-tooltip-title-font-weight);
@@ -130,34 +130,24 @@
     --_rich-tooltip-content-title-line-height: var(--_rich-tooltip-title-line-height);
     --_rich-tooltip-title-letter-spacing: var(--tracking-tight);
     --_rich-tooltip-content-title-letter-spacing: var(--_rich-tooltip-title-letter-spacing);
-    --_rich-tooltip-arrow-rotate: 0deg;
-    --_rich-tooltip-action-outline: none;
+    --cui-rich-tooltip-focus-ring-color: var(--cui-rich-tooltip-content-foreground);
   }
 
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-tone="accent"]) {
-    --_rich-tooltip-arrow-path-fill: var(--primary);
+    --focus-ring: var(--cui-rich-tooltip-focus-ring-color);
     --_rich-tooltip-description-foreground: var(--primary-foreground);
     --_rich-tooltip-progress-foreground: var(--primary-foreground);
     border-radius: var(--cui-rich-tooltip-content-radius);
     background-color: var(--cui-rich-tooltip-content-background);
     color: var(--cui-rich-tooltip-content-foreground);
-    outline-style: none;
     transition-property: opacity, scale;
     transition-duration: var(--duration-base);
     transition-timing-function: var(--ease-emphasized);
     box-shadow: var(--cui-rich-tooltip-content-shadow);
   }
 
-  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-tone="surface"]) {
-    --_rich-tooltip-arrow-path-fill: oklch(from var(--popover) l c h / var(--popover-opacity));
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="arrow"]) {
-    rotate: var(--_rich-tooltip-arrow-rotate);
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="arrow"] path) {
-    fill: var(--_rich-tooltip-arrow-path-fill);
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="arrow"][data-tone="accent"]) {
+    color: var(--cui-rich-tooltip-content-background);
   }
 
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="media"]) {
@@ -166,18 +156,6 @@
     margin-block-end: calc(var(--spacing) * 1);
     border-start-start-radius: inherit;
     border-start-end-radius: inherit;
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-side="top"]) {
-    --_rich-tooltip-arrow-rotate: 180deg;
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-side="left"]) {
-    --_rich-tooltip-arrow-rotate: 90deg;
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-side="right"]) {
-    --_rich-tooltip-arrow-rotate: calc(90deg * -1);
   }
 
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-tone="accent"][data-starting-style]) {
@@ -194,22 +172,28 @@
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"]),
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]) {
     block-size: calc(var(--spacing) * 7);
-    inline-size: calc(var(--spacing) * 7);
+    min-inline-size: calc(var(--spacing) * 7);
     margin-inline-end: calc(var(--spacing) * -1);
     gap: calc(var(--spacing) * 1);
-    padding-inline: 0;
+    padding-inline: calc(var(--spacing) * 2);
     border-radius: var(--cui-rich-tooltip-action-radius);
     background: var(--cui-rich-tooltip-action-background);
     color: var(--cui-rich-tooltip-action-foreground);
     font-size: var(--text-label);
     font-weight: var(--font-weight-medium);
-    outline-style: var(--_rich-tooltip-action-outline);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"][data-icon-only="true"]),
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"][data-icon-only="true"]),
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"][data-icon-only="true"]) {
+    inline-size: calc(var(--spacing) * 7);
+    padding-inline: 0;
   }
 
   @media (hover: hover) {
-    :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"]:hover),
-    :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"]:hover),
-    :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]:hover) {
+    :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"]:hover:not(:disabled)),
+    :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"]:hover:not(:disabled)),
+    :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]:hover:not(:disabled)) {
       background: oklch(from currentColor l c h / 0.15);
     }
   }
@@ -217,7 +201,7 @@
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"]:disabled),
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"]:disabled),
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]:disabled) {
-    opacity: 0.4;
+    opacity: var(--disabled-opacity);
   }
 }
 
@@ -263,6 +247,12 @@
 }
 
 @property --cui-rich-tooltip-action-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-rich-tooltip-focus-ring-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

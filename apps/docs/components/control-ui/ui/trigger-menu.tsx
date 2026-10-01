@@ -156,11 +156,13 @@ export function TriggerMenuEmpty({ className, ...props }: TriggerMenuEmptyProps)
 
 export function TriggerMenuGroup({ className, ...props }: TriggerMenuGroupProps) {
   return (
+    // biome-ignore lint/a11y/useSemanticElements: WAI-ARIA listbox option groups are role="group"; a fieldset is a form grouping.
     <div
       data-control-ui="trigger-menu"
       data-control-family="popup"
       data-popup-kind="trigger-menu"
       data-slot="group"
+      role="group"
       className={cn("flex flex-col", className)}
       {...props}
     />

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Column, Img, Link, Row } from "react-email";
-import { EmailCaption, type EmailFooterPlacement, EmailMutedLink, EmailSection } from "./email";
+import { EmailCaption, type EmailDirection, type EmailFooterPlacement, EmailMutedLink, EmailSection, emailSides } from "./email";
 import {
   EmailAddress,
   EmailFooter,
@@ -68,7 +68,17 @@ export function EmailBrowserLink({ href, children = "View in browser" }: { href:
 
 export type EmailHeaderAlign = "split" | "center";
 
-export function EmailHeader({ children, aside, align = "split" }: { children: ReactNode; aside?: ReactNode; align?: EmailHeaderAlign }) {
+export function EmailHeader({
+  children,
+  aside,
+  align = "split",
+  dir,
+}: {
+  children: ReactNode;
+  aside?: ReactNode;
+  align?: EmailHeaderAlign;
+  dir?: EmailDirection;
+}) {
   if (align === "center")
     return (
       <EmailSection align="center" className="mb-8">
@@ -84,7 +94,7 @@ export function EmailHeader({ children, aside, align = "split" }: { children: Re
     <Row className="mb-8">
       <Column className="align-middle">{children}</Column>
       {aside ? (
-        <Column align="right" className="align-middle">
+        <Column align={emailSides(dir).end} className="align-middle">
           {aside}
         </Column>
       ) : null}
@@ -97,24 +107,26 @@ export function EmailBrandHeader({
   browserUrl,
   colorScheme = "light",
   align = "split",
+  dir,
 }: {
   brand: EmailBrand;
   browserUrl?: string;
   colorScheme?: EmailColorScheme;
   align?: EmailHeaderAlign;
+  dir?: EmailDirection;
 }) {
   const logoUrl = colorScheme === "dark" ? (brand.logoDarkUrl ?? brand.logoUrl) : brand.logoUrl;
   return (
-    <EmailHeader align={align} aside={browserUrl ? <EmailBrowserLink href={browserUrl} /> : null}>
+    <EmailHeader align={align} dir={dir} aside={browserUrl ? <EmailBrowserLink href={browserUrl} /> : null}>
       <EmailLogo name={brand.name} src={logoUrl} width={brand.logoWidth} height={brand.logoHeight} href={brand.homeUrl} />
     </EmailHeader>
   );
 }
 
-export function EmailBrandFooter({ footer }: { footer: EmailFooterContent }) {
+export function EmailBrandFooter({ footer, dir }: { footer: EmailFooterContent; dir?: EmailDirection }) {
   return (
-    <EmailFooter align={footer.align} placement={footer.placement}>
-      <EmailSocialLinks links={footer.socialLinks} iconBaseUrl={footer.socialIconBaseUrl} />
+    <EmailFooter align={footer.align} placement={footer.placement} dir={dir}>
+      <EmailSocialLinks links={footer.socialLinks} iconBaseUrl={footer.socialIconBaseUrl} dir={dir} />
       <EmailFooterLinks links={footer.helpLinks} />
       <EmailCaption className="mb-0">{footer.tagline}</EmailCaption>
       <EmailFooterLegal>

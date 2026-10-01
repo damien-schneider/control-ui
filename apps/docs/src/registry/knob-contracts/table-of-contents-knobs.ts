@@ -26,5 +26,6 @@ export const tableOfContentsKnobs = [
   "--cui-table-of-contents-trail-stroke",
   "--cui-table-of-contents-trail-size",
   "--cui-table-of-contents-indicator-foreground",
+  "--cui-table-of-contents-scroll-inset",
 ] as const;
 export type TableOfContentsKnobStyle = Partial<Record<(typeof tableOfContentsKnobs)[number], string>>;

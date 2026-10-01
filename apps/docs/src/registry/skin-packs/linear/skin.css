@@ -122,18 +122,6 @@
     --cui-popup-shadow: var(--linear-menu-shadow);
   }
 
-  [data-skin="linear"] :where([data-popup-part="item"]) {
-    padding: 0.375rem 0.5rem;
-    font-size: var(--text-label);
-  }
-
-  [data-skin="linear"] :where([data-popup-part="label"]) {
-    padding: 0.25rem 0.5rem;
-    font-size: var(--text-caption);
-    letter-spacing: normal;
-    text-transform: none;
-  }
-
   [data-skin="linear"]
     :where(
       [data-control-family="popup"][data-popup-part="surface"],
@@ -142,16 +130,16 @@
     ) {
     --cui-popup-item-disabled-opacity: 0.4;
     --cui-popup-separator-color: var(--border);
-  }
-
-  [data-skin="linear"] :where([data-popup-part="separator"]) {
-    margin-inline: 0;
-  }
-
-  [data-skin="linear"] :where([data-popup-part="shortcut"]) {
-    margin-inline-start: auto;
-    font-size: var(--text-caption);
-    letter-spacing: normal;
+    --cui-popup-separator-inset: 0px;
+    --cui-popup-item-font-size: var(--text-label);
+    --cui-popup-item-padding-block: 0.375rem;
+    --cui-popup-label-padding-block: 0.25rem;
+    --cui-popup-item-padding-inline: 0.5rem;
+    --cui-popup-label-font-size: var(--text-caption);
+    --cui-popup-label-letter-spacing: 0px;
+    --cui-popup-label-text-transform: none;
+    --cui-popup-shortcut-font-size: var(--text-caption);
+    --cui-popup-shortcut-letter-spacing: 0px;
   }
 
   [data-skin="linear"]
@@ -178,6 +166,9 @@
     --cui-popup-border-color: transparent;
     --cui-popup-border-width: var(--control-rim-width);
     --cui-popup-shadow: var(--linear-modal-shadow);
+    --cui-popup-title-font-size: var(--text-body-lg);
+    --cui-popup-title-font-weight: 600;
+    --cui-popup-title-letter-spacing: -0.01em;
   }
 
   .dark[data-skin="linear"]
@@ -192,16 +183,6 @@
       [data-control-ui="alert-dialog"][data-popup-part="surface"][data-control-family="popup"]
     ) {
     --cui-popup-border-color: var(--border);
-  }
-
-  [data-skin="linear"]
-    :where(
-      [data-control-ui="dialog"][data-slot="title"][data-control-family="popup"],
-      [data-control-ui="alert-dialog"][data-slot="title"][data-control-family="popup"]
-    ) {
-    font-size: var(--text-body-lg);
-    font-weight: 600;
-    letter-spacing: -0.01em;
   }
 
   [data-skin="linear"] :where([data-control-ui="sheet"][data-popup-part="surface"][data-control-family="popup"]) {
@@ -221,16 +202,8 @@
     --cui-field-focus-border-color: var(--primary);
   }
 
-  [data-skin="linear"] :where([data-control-ui="combobox"][data-slot="trigger"][data-control-family="field"]) {
-    border-radius: var(--radius-control);
-    background: var(--linear-control-bg);
-    box-shadow: none;
-  }
-
-  @media (hover: hover) {
-    [data-skin="linear"] :where([data-control-ui="combobox"][data-slot="trigger"][data-control-family="field"]):hover {
-      background: var(--hover-fill);
-    }
+  [data-skin="linear"] :where([data-control-family="field"][data-field-kind="combobox"][data-slot="input-group"]) {
+    --cui-field-affordance-background: var(--linear-control-bg);
   }
 }
 
@@ -290,10 +263,6 @@
     --cui-popup-shortcut-foreground: var(--muted-foreground);
   }
 
-  [data-skin="linear"] :where([data-slot="menu-button"][data-control-family="sidebar"]) {
-    font-weight: var(--font-weight-medium);
-  }
-
   [data-skin="linear"] :where([data-slot="root"][data-control-family="sidebar"]) {
     --cui-sidebar-inner-background: transparent;
     --cui-sidebar-inner-border-width: 0px;
@@ -302,19 +271,14 @@
     --cui-sidebar-menu-button-hover-foreground: var(--foreground);
     --cui-sidebar-menu-button-active-foreground: var(--foreground);
     --cui-sidebar-group-label-foreground: var(--muted-foreground);
+    --cui-sidebar-menu-button-font-weight: var(--font-weight-medium);
   }
 
-  [data-skin="linear"] :where([data-slot="group-label"][data-control-family="sidebar"]) {
-    padding-inline: calc(var(--spacing) * 2);
-    font-size: var(--text-caption);
-    font-weight: var(--font-weight-medium);
-  }
-
-  [data-skin="linear"] :where([data-slot="content"][data-control-family="sidebar-layout"]) {
-    border-radius: var(--radius-panel);
-    border-color: var(--border);
-    background-color: var(--card);
-    box-shadow: var(--linear-panel-shadow);
+  [data-skin="linear"] :where([data-slot="wrapper"][data-control-family="sidebar"]) {
+    --cui-sidebar-inset-background: var(--card);
+    --cui-sidebar-inset-border-color: var(--border);
+    --cui-sidebar-inset-radius: var(--radius-panel);
+    --cui-sidebar-inset-shadow: var(--linear-panel-shadow);
   }
 
   [data-skin="linear"] :where([data-slot="root"][data-control-family="tree"]) {

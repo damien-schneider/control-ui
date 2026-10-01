@@ -59,8 +59,8 @@ test("headerless copy stays clear of source and announces success", async ({ pag
   expect(overlapsSource).toBe(false);
 
   await expect(async () => {
-    await diff.getByRole("button", { name: /^Copy/ }).click();
-    await expect(diff.getByRole("button", { name: "Copied" })).toBeVisible({ timeout: 1_000 });
+    await diff.getByRole("button", { name: "Copy code" }).click();
+    await expect(diff.getByRole("status")).toHaveText("Copied to clipboard", { timeout: 1_000 });
   }).toPass();
 });
 

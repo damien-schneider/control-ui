@@ -18,6 +18,22 @@ test("pans and zooms without moving the page viewport", async ({ page }) => {
   await canvas.getByRole("button", { name: "Zoom in" }).click();
   await expect(content).toHaveAttribute("data-scale", "1.2");
 
+  const browserZoomPrevented = await canvas.evaluate((element) => {
+    const event = new KeyboardEvent("keydown", { key: "-", ctrlKey: true, bubbles: true, cancelable: true });
+    return !element.dispatchEvent(event);
+  });
+  expect(browserZoomPrevented).toBe(false);
+  await expect(content).toHaveAttribute("data-scale", "1.2");
+
+  const browserNavigationPrevented = await canvas
+    .locator('[aria-roledescription="Movable item"]')
+    .first()
+    .evaluate((element) => {
+      const event = new KeyboardEvent("keydown", { key: "ArrowLeft", altKey: true, bubbles: true, cancelable: true });
+      return !element.dispatchEvent(event);
+    });
+  expect(browserNavigationPrevented).toBe(false);
+
   const wheelPrevented = await canvas.evaluate((element) => {
     const bounds = element.getBoundingClientRect();
     const event = new WheelEvent("wheel", {

@@ -111,6 +111,7 @@ export const navigationCompositions = {
         part("CommandInput"),
         part(
           "CommandList",
+          part("CommandLoading"),
           part("CommandEmpty"),
           part("CommandGroup", part("CommandItem", part("CommandShortcut"))),
           part("CommandSeparator"),
@@ -183,6 +184,21 @@ export const navigationCompositions = {
           content("each page", part("PaginationItem", part("PaginationLink"))),
           content("skipped pages", part("PaginationItem", part("PaginationEllipsis"))),
           content("next page", part("PaginationItem", part("PaginationNext"))),
+        ),
+      ),
+    ),
+  ],
+  breadcrumb: [
+    example(
+      "Location trail",
+      part(
+        "Breadcrumb",
+        part(
+          "BreadcrumbList",
+          content("each ancestor", part("BreadcrumbItem", part("BreadcrumbLink"))),
+          content("between items", part("BreadcrumbSeparator")),
+          content("collapsed levels", part("BreadcrumbItem", part("BreadcrumbEllipsis"))),
+          content("current location", part("BreadcrumbItem", part("BreadcrumbPage"))),
         ),
       ),
     ),

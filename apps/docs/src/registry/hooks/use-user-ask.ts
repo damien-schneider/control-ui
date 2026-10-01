@@ -8,6 +8,7 @@ export type UserAskProps = Omit<ComponentProps<"section">, "style"> & {
   children?: ReactNode;
   onComplete?: (answers: UserAskAnswers) => void;
   onDismiss?: () => void;
+  questionStatusLabel?: (current: number, total: number, title: string) => string;
   style?: CSSProperties & UserAskKnobStyle;
 };
 
@@ -35,6 +36,8 @@ function upsert<Entry extends { key: string }>(entries: Entry[], entry: Entry) {
   next[index] = entry;
   return next;
 }
+
+const arrowDeltas: Record<string, number | undefined> = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 };
 
 export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComplete" | "onDismiss">) {
   const [questions, setQuestions] = useState<UserAskQuestionEntry[]>([]);
@@ -157,21 +160,11 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
     onDismiss?.();
   }
 
-  function moveSelection(delta: number) {
-    if (!activeQuestion) return;
-    const options = optionsFor(activeQuestion.id);
-    if (!options.some((option) => !option.disabled)) return;
-    const currentKey = selectionFor(activeQuestion.id);
-    const currentIndex = options.findIndex((option) => option.key === currentKey);
-    let start = currentIndex;
-    if (currentIndex === -1) start = delta > 0 ? -1 : 0;
-    for (let step = 1; step <= options.length; step += 1) {
-      const candidate = options[(start + delta * step + options.length * step) % options.length];
-      if (candidate && !candidate.disabled) {
-        select(activeQuestion.id, candidate.key);
-        return;
-      }
-    }
+  function isTabStop(questionId: string, optionKey: string) {
+    if (allowsMultiple(questionId)) return true;
+    const selectedKey = selectionFor(questionId);
+    if (selectedKey !== undefined) return selectedKey === optionKey;
+    return optionsFor(questionId).find((option) => !option.disabled)?.key === optionKey;
   }
 
   function selectDigit(digit: number) {
@@ -182,10 +175,6 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
 
   function moveActiveOption(event: KeyboardEvent<HTMLElement>, delta: number) {
     if (!activeQuestion) return;
-    if (!allowsMultiple(activeQuestion.id)) {
-      moveSelection(delta);
-      return;
-    }
     const group = event.currentTarget.querySelector('[data-slot="question"][data-active]');
     const rows = [...(group?.querySelectorAll<HTMLElement>('[data-slot="option"]:not([disabled])') ?? [])];
     if (rows.length === 0) return;
@@ -195,6 +184,29 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
     const row = rows[(start + delta + rows.length) % rows.length];
     const target = row?.matches("button, input") ? row : row?.querySelector<HTMLElement>("input, button");
     target?.focus();
+    if (!allowsMultiple(activeQuestion.id) && target?.matches("button")) target.click();
+  }
+
+  function handleEnter(event: KeyboardEvent<HTMLElement>) {
+    if (event.nativeEvent.isComposing || event.keyCode === 229) return;
+    if (event.target instanceof Element && event.target.closest('button:not([role="radio"]):not([role="checkbox"]), a[href]')) return;
+    event.preventDefault();
+    advance();
+  }
+
+  function handleOptionKey(event: KeyboardEvent<HTMLElement>) {
+    if (event.target instanceof Element && event.target.closest("input, textarea, [contenteditable]")) return;
+    const delta = arrowDeltas[event.key];
+    if (delta !== undefined) {
+      event.preventDefault();
+      moveActiveOption(event, delta);
+      return;
+    }
+    if (/^[1-9]$/.test(event.key)) {
+      // preventDefault: selecting freeform option moves focus into its input before keypress — without this digit would be typed there.
+      event.preventDefault();
+      selectDigit(Number(event.key));
+    }
   }
 
   function handleKeyDown(event: KeyboardEvent<HTMLElement>) {
@@ -202,30 +214,10 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
     if (event.key === "Escape") {
       event.preventDefault();
       dismiss();
-      return;
-    }
-    if (event.key === "Enter") {
-      // Enter always means "continue" (even from option or freeform input), matching CLI ask flows.
-      event.preventDefault();
-      advance();
-      return;
-    }
-    // Inside freeform input, digits and arrows must keep typing/caret behavior.
-    if (event.target instanceof HTMLElement && event.target.closest("input, textarea, [contenteditable]")) return;
-    if (event.key === "ArrowDown") {
-      event.preventDefault();
-      moveActiveOption(event, 1);
-      return;
-    }
-    if (event.key === "ArrowUp") {
-      event.preventDefault();
-      moveActiveOption(event, -1);
-      return;
-    }
-    if (/^[1-9]$/.test(event.key)) {
-      // preventDefault: selecting freeform option moves focus into its input before keypress — without this digit would be typed there.
-      event.preventDefault();
-      selectDigit(Number(event.key));
+    } else if (event.key === "Enter") {
+      handleEnter(event);
+    } else {
+      handleOptionKey(event);
     }
   }
 
@@ -243,6 +235,7 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
     allowsMultiple,
     selectionFor,
     isSelected,
+    isTabStop,
     select,
     freeformTextFor,
     setFreeformText,

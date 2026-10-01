@@ -104,6 +104,13 @@
           }
         ]
       },
+      "drag-button": {
+        "family": "dockable-panel",
+        "registryItems": [
+          "dockable-panel"
+        ],
+        "states": []
+      },
       "drag-handle": {
         "family": "dockable-panel",
         "registryItems": [

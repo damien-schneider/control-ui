@@ -22,9 +22,15 @@
   transition: opacity var(--duration-fast) var(--ease-standard);
 }
 
-[data-effects~="top-shine"] :where([data-control-ui][data-control="true"]:hover)::before,
 [data-effects~="top-shine"] :where([data-control-ui][data-control="true"]:focus-visible)::before {
   opacity: 1;
+}
+
+@media (hover: hover) {
+  [data-effects~="top-shine"]
+    :where([data-control-ui][data-control="true"]:hover:not(:disabled, [data-disabled], [aria-disabled="true"]))::before {
+    opacity: 1;
+  }
 }
 
 /* ripple — click feedback via control's own background-image; ControlEffectsRoot sets --aui-ripple-x/y/r from pointer + toggles data-ripple, keyframes animate the two registered properties the radial-gradient reads.
@@ -49,14 +55,6 @@
     transparent 70%
   );
   animation: aui-ripple-pulse calc(var(--duration-slow) * 2.2) var(--ease-emphasized) forwards;
-}
-
-/* Reduced motion: no pulse — gradient stays at registered initial values (scale 0/alpha 0), i.e. invisible. */
-@media (prefers-reduced-motion: reduce) {
-  [data-effects~="ripple"] :where([data-control-ui][data-control="true"][data-ripple]) {
-    animation: none;
-    background-image: none;
-  }
 }
 
 @keyframes aui-ripple-pulse {

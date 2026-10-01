@@ -1,6 +1,13 @@
 "use client";
 
-import { COLOR_SCHEME_LOCK_ATTR, MODE_LOCKED_SKINS, MOTION_REDUCED_SKINS, PAGE_LAYOUT_SKINS, preferredTheme } from "@/components/theme";
+import {
+  applyColorScheme,
+  COLOR_SCHEME_LOCK_ATTR,
+  MODE_LOCKED_SKINS,
+  MOTION_REDUCED_SKINS,
+  PAGE_LAYOUT_SKINS,
+  preferredTheme,
+} from "@/components/theme";
 import { THEME_CONTRACT_NAMES } from "@/src/registry/lib/theme-contract";
 import { hexToOklchColor } from "./color-utils";
 import {
@@ -57,13 +64,11 @@ export function writeVars(t: ThemeState) {
   if (forcedScheme) {
     html.setAttribute(COLOR_SCHEME_LOCK_ATTR, forcedScheme);
     html.style.colorScheme = forcedScheme;
-    const wantDark = forcedScheme === "dark";
-    if (html.classList.contains("dark") !== wantDark) html.classList.toggle("dark", wantDark);
+    applyColorScheme(forcedScheme);
   } else if (html.hasAttribute(COLOR_SCHEME_LOCK_ATTR)) {
     html.removeAttribute(COLOR_SCHEME_LOCK_ATTR);
     html.style.removeProperty("color-scheme");
-    const wantDark = preferredTheme() === "dark";
-    if (html.classList.contains("dark") !== wantDark) html.classList.toggle("dark", wantDark);
+    applyColorScheme(preferredTheme());
   }
 
   const reduced = t.reduceMotion || MOTION_REDUCED_SKINS.includes(t.skin);

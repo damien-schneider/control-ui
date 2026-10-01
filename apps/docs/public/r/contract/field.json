@@ -12,7 +12,6 @@
     "input-otp",
     "native-select",
     "number-field",
-    "phone-input",
     "select",
     "textarea"
   ],
@@ -28,6 +27,36 @@
       "syntax": "*",
       "initialValue": "",
       "defaultValue": "var(--control-fill)"
+    },
+    {
+      "name": "--cui-field-hover-background",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--hover-fill)"
+    },
+    {
+      "name": "--cui-field-affordance-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-field-affordance-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "0 0 transparent"
+    },
+    {
+      "name": "--cui-field-affordance-foreground",
+      "syntax": "<color>",
+      "initialValue": "currentcolor",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-field-affordance-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--hover-fill)"
     },
     {
       "name": "--cui-field-foreground",
@@ -356,106 +385,6 @@
       }
     },
     "combobox": {
-      "root": {
-        "registryItems": [
-          "combobox"
-        ],
-        "states": [
-          {
-            "attribute": "data-dirty",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-disabled",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-field-kind",
-            "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "combobox"
-            ]
-          },
-          {
-            "attribute": "data-filled",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-focused",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-invalid",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-list-empty",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-placeholder",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-popup-open",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-popup-side",
-            "source": "external",
-            "valueKind": "enum",
-            "values": [
-              "bottom",
-              "inline-end",
-              "inline-start",
-              "left",
-              "right",
-              "top"
-            ]
-          },
-          {
-            "attribute": "data-pressed",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-readonly",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-touched",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-valid",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          }
-        ]
-      },
       "group": {
         "family": "field",
         "registryItems": [
@@ -585,6 +514,107 @@
               "sm",
               "xs"
             ]
+          },
+          {
+            "attribute": "data-touched",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-valid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "input-group": {
+        "family": "field",
+        "registryItems": [
+          "combobox"
+        ],
+        "states": [
+          {
+            "attribute": "data-dirty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-field-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "combobox"
+            ]
+          },
+          {
+            "attribute": "data-filled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focused",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-invalid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-list-empty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-placeholder",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-pressed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-readonly",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
           },
           {
             "attribute": "data-touched",
@@ -1011,22 +1041,6 @@
           }
         ]
       },
-      "input": {
-        "family": "field",
-        "registryItems": [
-          "phone-input"
-        ],
-        "states": [
-          {
-            "attribute": "data-field-kind",
-            "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "phone-input"
-            ]
-          }
-        ]
-      },
       "item": {
         "family": "field",
         "registryItems": [
@@ -1350,8 +1364,7 @@
       "input": {
         "family": "field",
         "registryItems": [
-          "input",
-          "input-group"
+          "input"
         ],
         "states": [
           {
@@ -2267,9 +2280,9 @@
   },
   "adornments": {},
   "uncovered": [
-    "--cui-field-background",
+    "--cui-field-affordance-hover-background",
     "--cui-field-focus-border-color",
-    "--cui-field-foreground"
+    "--cui-field-hover-background"
   ],
   "contrast": "/r/contract/field.contrast.json"
 }

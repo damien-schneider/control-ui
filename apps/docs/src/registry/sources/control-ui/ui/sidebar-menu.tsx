@@ -1,16 +1,15 @@
 "use client";
 
 import { useRender } from "@base-ui/react/use-render";
-import { cva } from "class-variance-authority";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 import type { HoverIndicator, RenderProp, SelectionIndicator } from "@/components/control-ui/control-props";
 import { TrackHighlight } from "@/components/control-ui/extensions/track-highlight";
 import type { SidebarKnobStyle } from "@/components/control-ui/knob-contracts/sidebar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { useSkin } from "@/components/control-ui/skin-provider";
 
-import { useSidebar } from "@/components/control-ui/ui/sidebar-provider";
+import { SidebarSurfaceContext, useSidebar } from "@/components/control-ui/ui/sidebar-provider";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
 
 export const sidebarMenuButtonVariants = ["default", "outline"] as const;
@@ -160,28 +159,6 @@ export function SidebarMenuItem({ className, ...props }: ComponentProps<"li"> & 
   );
 }
 
-const sidebarMenuButtonVariantClasses = {
-  default: null,
-  outline: null,
-} satisfies Record<SidebarMenuButtonVariant, null>;
-
-const sidebarMenuButtonSizeClasses = {
-  default: "group-data-[collapsible=icon]:size-[var(--control-h-md)]!",
-  sm: "group-data-[collapsible=icon]:size-[var(--control-h-sm)]!",
-  lg: "group-data-[collapsible=icon]:size-[var(--control-h-lg)]!",
-} satisfies Record<SidebarMenuButtonSize, string>;
-
-const sidebarMenuButtonClasses = cva(
-  "peer/menu-button flex w-full items-center overflow-hidden text-start group-data-[collapsible=icon]:px-0! disabled:pointer-events-none aria-disabled:pointer-events-none [&>span]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
-  {
-    variants: {
-      variant: sidebarMenuButtonVariantClasses,
-      size: sidebarMenuButtonSizeClasses,
-    },
-    defaultVariants: { variant: "default", size: "default" },
-  },
-);
-
 export function SidebarMenuButton({
   render,
   isActive = false,
@@ -190,16 +167,22 @@ export function SidebarMenuButton({
   tooltip,
   className,
   children,
+  ref,
   ...props
 }: SidebarMenuButtonProps) {
   const { isMobile, state } = useSidebar();
+  const surface = useContext(SidebarSurfaceContext);
   const indicator = useContext(SidebarMenuContext);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const [textLabel, setTextLabel] = useState("");
 
   const button = useRender({
     defaultTagName: "button",
     render,
+    ref: [ref ?? null, buttonRef],
     props: {
       type: "button",
+      "aria-current": isActive ? "page" : undefined,
       ...props,
       "data-control-ui": "sidebar",
       "data-control-family": "sidebar",
@@ -208,18 +191,29 @@ export function SidebarMenuButton({
       "data-variant": variant,
       "data-active": isActive || undefined,
       "data-track-item": indicator !== "none" ? "" : undefined,
-      className: cn(sidebarMenuButtonClasses({ variant, size }), className),
+      className: cn(
+        "peer/menu-button flex w-full items-center overflow-hidden text-start group-data-[collapsible=icon]:w-(--cui-sidebar-menu-button-height) disabled:pointer-events-none aria-disabled:pointer-events-none [&>span]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+        className,
+      ),
       children,
     },
   });
 
-  if (!tooltip) return button;
+  if (!tooltip && surface?.collapsible !== "icon") return button;
 
   return (
-    <Tooltip>
+    <Tooltip
+      onOpenChange={(open) => {
+        if (open && !tooltip) setTextLabel(buttonRef.current?.textContent?.trim() ?? "");
+      }}
+    >
       <TooltipTrigger render={button} />
-      <TooltipContent side="right" align="center" hidden={state !== "collapsed" || isMobile}>
-        {tooltip}
+      <TooltipContent
+        side={surface?.side === "right" ? "inline-start" : "inline-end"}
+        align="center"
+        hidden={state !== "collapsed" || isMobile}
+      >
+        {tooltip ?? textLabel}
       </TooltipContent>
     </Tooltip>
   );

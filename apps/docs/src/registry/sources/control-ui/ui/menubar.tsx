@@ -105,7 +105,6 @@ export function MenubarContent({ className, children, ...props }: MenubarContent
       <MenuPrimitive.Positioner
         data-skin={skin.id}
         data-effects={controlEffectsAttribute(skin.effects)}
-        side="bottom"
         align="start"
         sideOffset={6}
         className="z-(--z-popup)"
@@ -191,6 +190,7 @@ export function MenubarShortcut({ className, ...props }: MenubarShortcutProps) {
       data-slot="shortcut"
       data-control-family="popup"
       data-popup-part="shortcut"
+      aria-hidden="true"
       className={cn(className)}
       {...props}
     />
@@ -219,6 +219,7 @@ export function MenubarSubTrigger({ className, inset = false, children, ...props
         data-popup-kind="menubar"
         data-control-family="popup"
         data-slot="sub-trigger-indicator"
+        data-icon-dir="inline"
         aria-hidden="true"
       >
         ›
@@ -234,7 +235,6 @@ export function MenubarSubContent({ className, children, ...props }: MenubarSubC
       <MenuPrimitive.Positioner
         data-skin={skin.id}
         data-effects={controlEffectsAttribute(skin.effects)}
-        side="right"
         align="start"
         sideOffset={-4}
         alignOffset={-5}

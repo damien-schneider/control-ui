@@ -26,6 +26,8 @@ export type RadioProps = Omit<
     className?: string;
     "aria-label"?: string;
     "aria-labelledby"?: string;
+    "aria-describedby"?: string;
+    "aria-invalid"?: boolean | "true" | "false";
   },
   "style"
 > & { style?: CSSProperties & ChoiceKnobStyle };

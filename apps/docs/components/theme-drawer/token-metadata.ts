@@ -55,6 +55,7 @@ const SLIDER_SPECS: Record<string, SliderSpec> = {
   "--popover-opacity": slider(0, 1, 0.01, ""),
   "--overlay-opacity": slider(0, 1, 0.01, ""),
   "--popup-item-disabled-opacity": slider(0, 1, 0.01, ""),
+  "--disabled-opacity": slider(0, 1, 0.01, ""),
   "--shadow-size": slider(0, 2, 0.05, ""),
   "--shadow-opacity": slider(0, 2, 0.05, ""),
   "--shadow-y": slider(0, 2, 0.05, ""),
@@ -73,9 +74,13 @@ const SLIDER_SPECS: Record<string, SliderSpec> = {
   "--control-h-xs": slider(16, 64, 1, "px"),
   "--control-h-sm": slider(16, 64, 1, "px"),
   "--control-h-lg": slider(16, 64, 1, "px"),
+  "--touch-target": slider(24, 64, 1, "px"),
+  "--target-min": slider(16, 44, 1, "px"),
+  "--text-input-min": slider(12, 24, 1, "px"),
   "--duration-fast": slider(0, 600, 10, "ms"),
   "--duration-base": slider(0, 600, 10, "ms"),
   "--duration-slow": slider(0, 600, 10, "ms"),
+  "--duration-loop": slider(200, 3000, 50, "ms"),
 };
 
 export function tokenControlSpec(token: ThemeContractToken): TokenControlSpec {
@@ -138,6 +143,8 @@ const FRIENDLY_LABELS: Record<string, string> = {
   "--canvas": "Page canvas",
   "--ring-opacity": "Border opacity",
   "--control-rim-width": "Border width",
+  "--control-boundary": "Control edge",
+  "--image-outline": "Image edge",
   "--popup-item-foreground": "Menu row text",
   "--popup-item-highlight-background": "Menu row highlight",
   "--font-sans": "UI typeface",
@@ -168,12 +175,14 @@ const FRIENDLY_LABELS: Record<string, string> = {
   "--duration-fast": "Fast tempo",
   "--duration-base": "Base tempo",
   "--duration-slow": "Slow tempo",
+  "--duration-loop": "Loader period",
   "--popover-opacity": "Popover opacity",
   "--backdrop-blur-popover": "Popover blur",
   "--overlay-opacity": "Overlay dim",
   "--backdrop-blur-overlay": "Overlay blur",
   "--scroll-fade-size": "Scroll edge fade",
   "--popup-item-disabled-opacity": "Disabled row opacity",
+  "--disabled-opacity": "Disabled opacity",
   "--popover-padding": "Popover padding",
   "--padding-x": "Padding X",
   "--padding-y": "Padding Y",
@@ -181,6 +190,9 @@ const FRIENDLY_LABELS: Record<string, string> = {
   "--control-h-xs": "Control height xs",
   "--control-h-sm": "Control height sm",
   "--control-h-lg": "Control height lg",
+  "--touch-target": "Touch target",
+  "--target-min": "Minimum target",
+  "--text-input-min": "Minimum input text on touch",
 };
 
 function humanize(name: string): string {

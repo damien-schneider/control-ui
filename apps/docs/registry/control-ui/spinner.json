@@ -8,7 +8,8 @@
     "lucide-react@^1.47.0"
   ],
   "registryDependencies": [
-    "core"
+    "core",
+    "effects"
   ],
   "files": [
     {

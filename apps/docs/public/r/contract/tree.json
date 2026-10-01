@@ -53,6 +53,12 @@
       "syntax": "<number>",
       "initialValue": "400",
       "defaultValue": "var(--font-weight-normal)"
+    },
+    {
+      "name": "--cui-tree-indent-inset",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1.25rem"
     }
   ],
   "parts": {

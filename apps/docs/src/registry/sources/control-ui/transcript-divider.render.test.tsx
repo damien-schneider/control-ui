@@ -12,10 +12,10 @@ describe("TranscriptDivider", () => {
     expect(html).toContain("Run interrupted");
   });
 
-  test("renders an unlabeled rule without an empty label slot", () => {
+  test("renders an unlabeled rule as a separator without an empty label slot", () => {
     const html = renderToString(<TranscriptDivider />);
 
-    expect(html).toContain('data-tone="neutral"');
+    expect(html).toContain('role="separator"');
     expect(html).not.toContain('data-slot="label"');
   });
 });

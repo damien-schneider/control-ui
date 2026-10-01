@@ -9,6 +9,12 @@
   ],
   "knobs": [
     {
+      "name": "--cui-range-indeterminate-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "40%",
+      "defaultValue": "40%"
+    },
+    {
       "name": "--cui-range-track-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
@@ -603,6 +609,14 @@
             "values": []
           },
           {
+            "attribute": "data-focus-ring",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "within"
+            ]
+          },
+          {
             "attribute": "data-focused",
             "source": "external",
             "valueKind": "presence",
@@ -830,8 +844,6 @@
     }
   },
   "adornments": {},
-  "uncovered": [
-    "--cui-range-thumb-background"
-  ],
+  "uncovered": [],
   "contrast": "/r/contract/range.contrast.json"
 }

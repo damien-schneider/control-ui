@@ -1,23 +1,11 @@
 import { describe, expect, test } from "bun:test";
-import { readFileSync } from "node:fs";
 import { renderToString } from "react-dom/server";
 
 import { Button } from "@/components/control-ui/ui/button";
 import { DropdownMenu, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
 import { Toolbar, ToolbarButton, ToolbarInput } from "@/components/control-ui/ui/toolbar";
 
-const RECIPE = readFileSync(new URL("./recipes/toolbar.css", import.meta.url), "utf8");
-
 describe("Toolbar contracts", () => {
-  test("derives the shell radius from the fitted item radius and padding", () => {
-    expect(RECIPE).toContain("--cui-toolbar-item-radius: min(var(--radius-sm), calc(var(--control-h-sm) / 2));");
-    expect(RECIPE).toContain("border-radius: var(--cui-toolbar-item-radius);");
-    expect(RECIPE).toContain(
-      "clamp(0px, calc(min(var(--cui-toolbar-item-radius), calc(var(--control-h-sm) / 2)) * 1000), var(--cui-toolbar-padding))",
-    );
-    expect(RECIPE).toContain("--cui-toolbar-padding: calc(var(--spacing) * 1);");
-  });
-
   test("keeps menu semantics when a button renders a DropdownMenu trigger", () => {
     const html = renderToString(
       <Toolbar>

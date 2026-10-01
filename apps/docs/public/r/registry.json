@@ -43,10 +43,13 @@
       "type": "registry:component",
       "title": "ActionBar",
       "description": "Reusable hover actions for message and response controls.",
-      "dependencies": [],
+      "dependencies": [
+        "@base-ui/react@^1.8.0"
+      ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/use-copy-to-clipboard.json"
       ],
       "files": [
@@ -82,6 +85,8 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/collapsible.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/effects.json",
+        "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/scroll-area.json"
       ],
       "files": [
@@ -111,7 +116,9 @@
       "type": "registry:ui",
       "title": "Alert",
       "description": "Inline status panel for callouts, errors, and notices.",
-      "dependencies": [],
+      "dependencies": [
+        "@base-ui/react@^1.8.0"
+      ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
       ],
@@ -208,6 +215,7 @@
         "http://127.0.0.1:3000/r/autocomplete.json",
         "http://127.0.0.1:3000/r/avatar.json",
         "http://127.0.0.1:3000/r/badge.json",
+        "http://127.0.0.1:3000/r/breadcrumb.json",
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
@@ -254,6 +262,7 @@
         "http://127.0.0.1:3000/r/input-otp.json",
         "http://127.0.0.1:3000/r/item.json",
         "http://127.0.0.1:3000/r/kbd.json",
+        "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/markdown.json",
         "http://127.0.0.1:3000/r/markdown-block.json",
         "http://127.0.0.1:3000/r/menubar.json",
@@ -274,6 +283,7 @@
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/select.json",
+        "http://127.0.0.1:3000/r/separator.json",
         "http://127.0.0.1:3000/r/settings-block.json",
         "http://127.0.0.1:3000/r/sidebar.json",
         "http://127.0.0.1:3000/r/skeleton.json",
@@ -322,6 +332,7 @@
         "http://127.0.0.1:3000/r/autocomplete.json",
         "http://127.0.0.1:3000/r/avatar.json",
         "http://127.0.0.1:3000/r/badge.json",
+        "http://127.0.0.1:3000/r/breadcrumb.json",
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
@@ -368,6 +379,7 @@
         "http://127.0.0.1:3000/r/input-otp.json",
         "http://127.0.0.1:3000/r/item.json",
         "http://127.0.0.1:3000/r/kbd.json",
+        "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/markdown.json",
         "http://127.0.0.1:3000/r/markdown-block.json",
         "http://127.0.0.1:3000/r/menubar.json",
@@ -388,6 +400,7 @@
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/select.json",
+        "http://127.0.0.1:3000/r/separator.json",
         "http://127.0.0.1:3000/r/settings-block.json",
         "http://127.0.0.1:3000/r/sidebar.json",
         "http://127.0.0.1:3000/r/skeleton.json",
@@ -443,6 +456,7 @@
         "http://127.0.0.1:3000/r/autocomplete.json",
         "http://127.0.0.1:3000/r/avatar.json",
         "http://127.0.0.1:3000/r/badge.json",
+        "http://127.0.0.1:3000/r/breadcrumb.json",
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
@@ -489,6 +503,7 @@
         "http://127.0.0.1:3000/r/input-otp.json",
         "http://127.0.0.1:3000/r/item.json",
         "http://127.0.0.1:3000/r/kbd.json",
+        "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/markdown.json",
         "http://127.0.0.1:3000/r/markdown-block.json",
         "http://127.0.0.1:3000/r/menubar.json",
@@ -509,6 +524,7 @@
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/select.json",
+        "http://127.0.0.1:3000/r/separator.json",
         "http://127.0.0.1:3000/r/settings-block.json",
         "http://127.0.0.1:3000/r/sidebar.json",
         "http://127.0.0.1:3000/r/skeleton.json",
@@ -564,6 +580,7 @@
         "http://127.0.0.1:3000/r/autocomplete.json",
         "http://127.0.0.1:3000/r/avatar.json",
         "http://127.0.0.1:3000/r/badge.json",
+        "http://127.0.0.1:3000/r/breadcrumb.json",
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
@@ -610,6 +627,7 @@
         "http://127.0.0.1:3000/r/input-otp.json",
         "http://127.0.0.1:3000/r/item.json",
         "http://127.0.0.1:3000/r/kbd.json",
+        "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/markdown.json",
         "http://127.0.0.1:3000/r/markdown-block.json",
         "http://127.0.0.1:3000/r/menubar.json",
@@ -630,6 +648,7 @@
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/select.json",
+        "http://127.0.0.1:3000/r/separator.json",
         "http://127.0.0.1:3000/r/settings-block.json",
         "http://127.0.0.1:3000/r/sidebar.json",
         "http://127.0.0.1:3000/r/skeleton.json",
@@ -685,6 +704,7 @@
         "http://127.0.0.1:3000/r/autocomplete.json",
         "http://127.0.0.1:3000/r/avatar.json",
         "http://127.0.0.1:3000/r/badge.json",
+        "http://127.0.0.1:3000/r/breadcrumb.json",
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
@@ -731,6 +751,7 @@
         "http://127.0.0.1:3000/r/input-otp.json",
         "http://127.0.0.1:3000/r/item.json",
         "http://127.0.0.1:3000/r/kbd.json",
+        "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/markdown.json",
         "http://127.0.0.1:3000/r/markdown-block.json",
         "http://127.0.0.1:3000/r/menubar.json",
@@ -751,6 +772,7 @@
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/select.json",
+        "http://127.0.0.1:3000/r/separator.json",
         "http://127.0.0.1:3000/r/settings-block.json",
         "http://127.0.0.1:3000/r/sidebar.json",
         "http://127.0.0.1:3000/r/skeleton.json",
@@ -806,6 +828,7 @@
         "http://127.0.0.1:3000/r/autocomplete.json",
         "http://127.0.0.1:3000/r/avatar.json",
         "http://127.0.0.1:3000/r/badge.json",
+        "http://127.0.0.1:3000/r/breadcrumb.json",
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
@@ -852,6 +875,7 @@
         "http://127.0.0.1:3000/r/input-otp.json",
         "http://127.0.0.1:3000/r/item.json",
         "http://127.0.0.1:3000/r/kbd.json",
+        "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/markdown.json",
         "http://127.0.0.1:3000/r/markdown-block.json",
         "http://127.0.0.1:3000/r/menubar.json",
@@ -872,6 +896,7 @@
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/select.json",
+        "http://127.0.0.1:3000/r/separator.json",
         "http://127.0.0.1:3000/r/settings-block.json",
         "http://127.0.0.1:3000/r/sidebar.json",
         "http://127.0.0.1:3000/r/skeleton.json",
@@ -927,6 +952,7 @@
         "http://127.0.0.1:3000/r/autocomplete.json",
         "http://127.0.0.1:3000/r/avatar.json",
         "http://127.0.0.1:3000/r/badge.json",
+        "http://127.0.0.1:3000/r/breadcrumb.json",
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
@@ -973,6 +999,7 @@
         "http://127.0.0.1:3000/r/input-otp.json",
         "http://127.0.0.1:3000/r/item.json",
         "http://127.0.0.1:3000/r/kbd.json",
+        "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/markdown.json",
         "http://127.0.0.1:3000/r/markdown-block.json",
         "http://127.0.0.1:3000/r/menubar.json",
@@ -993,6 +1020,7 @@
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/select.json",
+        "http://127.0.0.1:3000/r/separator.json",
         "http://127.0.0.1:3000/r/settings-block.json",
         "http://127.0.0.1:3000/r/sidebar.json",
         "http://127.0.0.1:3000/r/skeleton.json",
@@ -1048,6 +1076,7 @@
         "http://127.0.0.1:3000/r/autocomplete.json",
         "http://127.0.0.1:3000/r/avatar.json",
         "http://127.0.0.1:3000/r/badge.json",
+        "http://127.0.0.1:3000/r/breadcrumb.json",
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
@@ -1094,6 +1123,7 @@
         "http://127.0.0.1:3000/r/input-otp.json",
         "http://127.0.0.1:3000/r/item.json",
         "http://127.0.0.1:3000/r/kbd.json",
+        "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/markdown.json",
         "http://127.0.0.1:3000/r/markdown-block.json",
         "http://127.0.0.1:3000/r/menubar.json",
@@ -1114,6 +1144,7 @@
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/select.json",
+        "http://127.0.0.1:3000/r/separator.json",
         "http://127.0.0.1:3000/r/settings-block.json",
         "http://127.0.0.1:3000/r/sidebar.json",
         "http://127.0.0.1:3000/r/skeleton.json",
@@ -1169,6 +1200,7 @@
         "http://127.0.0.1:3000/r/autocomplete.json",
         "http://127.0.0.1:3000/r/avatar.json",
         "http://127.0.0.1:3000/r/badge.json",
+        "http://127.0.0.1:3000/r/breadcrumb.json",
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
@@ -1215,6 +1247,7 @@
         "http://127.0.0.1:3000/r/input-otp.json",
         "http://127.0.0.1:3000/r/item.json",
         "http://127.0.0.1:3000/r/kbd.json",
+        "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/markdown.json",
         "http://127.0.0.1:3000/r/markdown-block.json",
         "http://127.0.0.1:3000/r/menubar.json",
@@ -1235,6 +1268,7 @@
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/select.json",
+        "http://127.0.0.1:3000/r/separator.json",
         "http://127.0.0.1:3000/r/settings-block.json",
         "http://127.0.0.1:3000/r/sidebar.json",
         "http://127.0.0.1:3000/r/skeleton.json",
@@ -1290,6 +1324,7 @@
         "http://127.0.0.1:3000/r/autocomplete.json",
         "http://127.0.0.1:3000/r/avatar.json",
         "http://127.0.0.1:3000/r/badge.json",
+        "http://127.0.0.1:3000/r/breadcrumb.json",
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
@@ -1336,6 +1371,7 @@
         "http://127.0.0.1:3000/r/input-otp.json",
         "http://127.0.0.1:3000/r/item.json",
         "http://127.0.0.1:3000/r/kbd.json",
+        "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/markdown.json",
         "http://127.0.0.1:3000/r/markdown-block.json",
         "http://127.0.0.1:3000/r/menubar.json",
@@ -1356,6 +1392,7 @@
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/select.json",
+        "http://127.0.0.1:3000/r/separator.json",
         "http://127.0.0.1:3000/r/settings-block.json",
         "http://127.0.0.1:3000/r/sidebar.json",
         "http://127.0.0.1:3000/r/skeleton.json",
@@ -1422,7 +1459,8 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/audio-visualizer.json",
         "http://127.0.0.1:3000/r/button.json",
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/live-status.json"
       ],
       "files": [
         {
@@ -1653,6 +1691,40 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Location trail with links, the current page, and collapsed levels.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "lucide-react@^1.47.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/knob-contracts/breadcrumb-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/breadcrumb-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/breadcrumb.css",
+          "target": "@components/control-ui/styles/recipes/breadcrumb.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/breadcrumb.tsx",
+          "target": "@components/control-ui/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/breadcrumb.css\"": {}
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -1670,6 +1742,11 @@
           "type": "registry:component"
         },
         {
+          "path": "src/registry/sources/control-ui/recipes/button-states.css",
+          "target": "@components/control-ui/styles/recipes/button-states.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/button.css",
           "target": "@components/control-ui/styles/recipes/button.css",
           "type": "registry:file"
@@ -1681,7 +1758,8 @@
         }
       ],
       "css": {
-        "@import \"../components/control-ui/styles/recipes/button.css\"": {}
+        "@import \"../components/control-ui/styles/recipes/button.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/button-states.css\"": {}
       }
     },
     {
@@ -1756,7 +1834,9 @@
       "type": "registry:ui",
       "title": "Card",
       "description": "Content surface for panels, tiles, and settings groups.",
-      "dependencies": [],
+      "dependencies": [
+        "@base-ui/react@^1.8.0"
+      ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
       ],
@@ -1832,6 +1912,7 @@
       "title": "ChatComposer",
       "description": "Prompt composer with controlled text, submit state, and trigger-menu support.",
       "dependencies": [
+        "lucide-react@^1.47.0",
         "prosemirror-commands@^1.7.2",
         "prosemirror-history@^1.5.0",
         "prosemirror-keymap@^1.2.3",
@@ -1843,17 +1924,15 @@
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/chat-message.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/live-status.json",
+        "http://127.0.0.1:3000/r/motion.json",
+        "http://127.0.0.1:3000/r/spinner.json",
         "http://127.0.0.1:3000/r/trigger-menu.json"
       ],
       "files": [
         {
           "path": "src/registry/hooks/use-chat-composer.ts",
           "target": "@components/control-ui/hooks/use-chat-composer.ts",
-          "type": "registry:hook"
-        },
-        {
-          "path": "src/registry/hooks/use-keyboard-navigation.ts",
-          "target": "@components/control-ui/hooks/use-keyboard-navigation.ts",
           "type": "registry:hook"
         },
         {
@@ -1924,6 +2003,7 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/spinner.json"
       ],
@@ -1964,7 +2044,10 @@
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/chat-message.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/live-status.json",
+        "http://127.0.0.1:3000/r/motion.json",
         "http://127.0.0.1:3000/r/scroll-area.json"
       ],
       "files": [
@@ -2098,6 +2181,7 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/tooltip.json",
         "http://127.0.0.1:3000/r/use-copy-to-clipboard.json"
@@ -2419,6 +2503,7 @@
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/dialog.json",
         "http://127.0.0.1:3000/r/empty.json",
+        "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/surface-variants.json"
       ],
@@ -2603,6 +2688,7 @@
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/color-picker.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/drawer.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/input-group.json",
@@ -2652,6 +2738,11 @@
           "type": "registry:component"
         },
         {
+          "path": "src/registry/sources/control-ui/popup-parts.tsx",
+          "target": "@components/control-ui/popup-parts.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/popup-controls.css",
           "target": "@components/control-ui/styles/recipes/popup-controls.css",
           "type": "registry:file"
@@ -2695,6 +2786,7 @@
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/drawer.json",
+        "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/sidebar.json"
       ],
@@ -2811,6 +2903,11 @@
           "type": "registry:component"
         },
         {
+          "path": "src/registry/sources/control-ui/recipes/button-states.css",
+          "target": "@components/control-ui/styles/recipes/button-states.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/button.css",
           "target": "@components/control-ui/styles/recipes/button.css",
           "type": "registry:file"
@@ -2843,6 +2940,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/button.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/button-states.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
@@ -2861,6 +2959,7 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/effects.json",
         "http://127.0.0.1:3000/r/item.json"
       ],
       "files": [
@@ -2904,7 +3003,9 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
-        "http://127.0.0.1:3000/r/liquid-glass-optics.json"
+        "http://127.0.0.1:3000/r/liquid-glass-optics.json",
+        "http://127.0.0.1:3000/r/live-status.json",
+        "http://127.0.0.1:3000/r/motion.json"
       ],
       "files": [
         {
@@ -2915,6 +3016,11 @@
         {
           "path": "src/registry/knob-contracts/dynamic-notification-knobs.ts",
           "target": "@components/control-ui/knob-contracts/dynamic-notification-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/dynamic-notification-canvas-loop.ts",
+          "target": "@components/control-ui/dynamic-notification-canvas-loop.ts",
           "type": "registry:component"
         },
         {
@@ -3020,7 +3126,9 @@
       "type": "registry:ui",
       "title": "Empty",
       "description": "Empty-state layout for blank lists, zero results, and new workspaces.",
-      "dependencies": [],
+      "dependencies": [
+        "@base-ui/react@^1.8.0"
+      ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
       ],
@@ -3142,10 +3250,15 @@
         "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
+        "http://127.0.0.1:3000/r/breadcrumb.json",
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/drawer.json",
+        "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/empty.json",
+        "http://127.0.0.1:3000/r/input.json",
         "http://127.0.0.1:3000/r/input-group.json",
+        "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/resizable.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/sidebar.json"
@@ -3176,7 +3289,9 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/combobox.json",
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/live-status.json",
+        "http://127.0.0.1:3000/r/motion.json"
       ],
       "files": [
         {
@@ -3413,6 +3528,7 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/popover.json",
         "http://127.0.0.1:3000/r/source-badge.json"
       ],
@@ -3622,6 +3738,24 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "live-status",
+      "type": "registry:ui",
+      "title": "Live status",
+      "description": "Always-mounted polite status region that announces changes to assistive technology.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/live-status.tsx",
+          "target": "@components/control-ui/ui/live-status.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "markdown",
       "type": "registry:ui",
       "title": "Markdown",
@@ -3721,6 +3855,11 @@
           "type": "registry:component"
         },
         {
+          "path": "src/registry/sources/control-ui/recipes/button-states.css",
+          "target": "@components/control-ui/styles/recipes/button-states.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/button.css",
           "target": "@components/control-ui/styles/recipes/button.css",
           "type": "registry:file"
@@ -3753,6 +3892,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/button.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/button-states.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
@@ -3832,7 +3972,9 @@
       "type": "registry:ui",
       "title": "Native select",
       "description": "Native select control styled to match the Control UI control family.",
-      "dependencies": [],
+      "dependencies": [
+        "@base-ui/react@^1.8.0"
+      ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
       ],
@@ -3887,6 +4029,11 @@
           "type": "registry:component"
         },
         {
+          "path": "src/registry/sources/control-ui/recipes/button-states.css",
+          "target": "@components/control-ui/styles/recipes/button-states.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/button.css",
           "target": "@components/control-ui/styles/recipes/button.css",
           "type": "registry:file"
@@ -3919,6 +4066,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/button.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/button-states.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
@@ -4069,6 +4217,7 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/command.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/input.json",
         "http://127.0.0.1:3000/r/input-group.json",
         "http://127.0.0.1:3000/r/popover.json"
       ],
@@ -4317,6 +4466,8 @@
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/dialog.json",
+        "http://127.0.0.1:3000/r/motion.json",
         "http://127.0.0.1:3000/r/surface-variants.json"
       ],
       "files": [
@@ -4512,6 +4663,39 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Horizontal or vertical hairline divider.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/knob-contracts/separator-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/separator-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/separator.css",
+          "target": "@components/control-ui/styles/recipes/separator.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/separator.tsx",
+          "target": "@components/control-ui/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/separator.css\"": {}
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "settings-block",
       "type": "registry:block",
       "title": "Settings",
@@ -4524,7 +4708,10 @@
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/field.json",
+        "http://127.0.0.1:3000/r/input.json",
         "http://127.0.0.1:3000/r/input-group.json",
+        "http://127.0.0.1:3000/r/live-status.json",
+        "http://127.0.0.1:3000/r/motion.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/sidebar.json"
       ],
@@ -4549,7 +4736,6 @@
       "description": "Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus.",
       "dependencies": [
         "@base-ui/react@^1.8.0",
-        "class-variance-authority@^0.7.1",
         "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
@@ -4574,6 +4760,11 @@
         {
           "path": "src/registry/sources/control-ui/recipes/sidebar-menu.css",
           "target": "@components/control-ui/styles/recipes/sidebar-menu.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/sidebar-parts.css",
+          "target": "@components/control-ui/styles/recipes/sidebar-parts.css",
           "type": "registry:file"
         },
         {
@@ -4604,7 +4795,8 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/sidebar.css\"": {},
-        "@import \"../components/control-ui/styles/recipes/sidebar-menu.css\"": {}
+        "@import \"../components/control-ui/styles/recipes/sidebar-menu.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/sidebar-parts.css\"": {}
       }
     },
     {
@@ -5056,7 +5248,8 @@
         "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/effects.json"
       ],
       "files": [
         {
@@ -5257,7 +5450,9 @@
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/collapsible.json",
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/effects.json",
+        "http://127.0.0.1:3000/r/live-status.json"
       ],
       "files": [
         {
@@ -5286,7 +5481,9 @@
       "type": "registry:ui",
       "title": "Textarea",
       "description": "Multiline text field with CSS-first auto-growth.",
-      "dependencies": [],
+      "dependencies": [
+        "@base-ui/react@^1.8.0"
+      ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
       ],
@@ -5378,7 +5575,9 @@
       "type": "registry:ui",
       "title": "Timeline",
       "description": "Static chronological events with independent status, connectors, descriptions, and metadata.",
-      "dependencies": [],
+      "dependencies": [
+        "@base-ui/react@^1.8.0"
+      ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
       ],
@@ -5410,11 +5609,13 @@
       "title": "Toast",
       "description": "Transient notifications with a callable toast API and single Toaster mount.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.8.0",
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/dialog.json"
       ],
       "files": [
         {
@@ -5477,6 +5678,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/sources/control-ui/recipes/button-states.css",
+          "target": "@components/control-ui/styles/recipes/button-states.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/button.css",
           "target": "@components/control-ui/styles/recipes/button.css",
           "type": "registry:file"
@@ -5488,7 +5694,8 @@
         }
       ],
       "css": {
-        "@import \"../components/control-ui/styles/recipes/button.css\"": {}
+        "@import \"../components/control-ui/styles/recipes/button.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/button-states.css\"": {}
       }
     },
     {
@@ -5558,7 +5765,8 @@
         "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/dialog.json"
       ],
       "files": [
         {
@@ -5814,6 +6022,7 @@
         "http://127.0.0.1:3000/r/autocomplete.json",
         "http://127.0.0.1:3000/r/avatar.json",
         "http://127.0.0.1:3000/r/badge.json",
+        "http://127.0.0.1:3000/r/breadcrumb.json",
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
@@ -5860,6 +6069,7 @@
         "http://127.0.0.1:3000/r/input-otp.json",
         "http://127.0.0.1:3000/r/item.json",
         "http://127.0.0.1:3000/r/kbd.json",
+        "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/markdown.json",
         "http://127.0.0.1:3000/r/markdown-block.json",
         "http://127.0.0.1:3000/r/menubar.json",
@@ -5880,6 +6090,7 @@
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/select.json",
+        "http://127.0.0.1:3000/r/separator.json",
         "http://127.0.0.1:3000/r/settings-block.json",
         "http://127.0.0.1:3000/r/sidebar.json",
         "http://127.0.0.1:3000/r/skeleton.json",
@@ -5921,7 +6132,8 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
-        "http://127.0.0.1:3000/r/kbd.json"
+        "http://127.0.0.1:3000/r/kbd.json",
+        "http://127.0.0.1:3000/r/live-status.json"
       ],
       "files": [
         {
@@ -5963,7 +6175,8 @@
       "description": "Interrupt-safe driver for the browser View Transitions API: page transitions, shared-element morphs, and a reduced-motion fallback for both.",
       "dependencies": [],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/motion.json"
       ],
       "files": [
         {

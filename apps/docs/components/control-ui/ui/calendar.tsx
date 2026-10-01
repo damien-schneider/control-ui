@@ -23,9 +23,9 @@ type CalendarPropsWithStyle<Props> = Props extends unknown ? Omit<Props, "style"
 
 export type CalendarProps = CalendarPropsWithStyle<ComponentProps<typeof DayPicker>>;
 
-const dayButtonClasses = "flex w-full items-center justify-center disabled:pointer-events-none";
+const dayButtonClasses = "flex w-full items-center justify-center disabled:pointer-events-none aria-disabled:pointer-events-none";
 
-const navButtonClasses = "inline-flex items-center justify-center disabled:pointer-events-none";
+const navButtonClasses = "inline-flex items-center justify-center disabled:pointer-events-none aria-disabled:pointer-events-none";
 
 const chevronPathByOrientation = {
   left: "M10 3 5.5 8 10 13",

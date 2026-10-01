@@ -26,3 +26,13 @@ export function preferredTheme(): Theme {
   } catch {}
   return typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
+
+export function applyColorScheme(scheme: Theme, root: HTMLElement = document.documentElement) {
+  if (root.classList.contains("dark") === (scheme === "dark")) return;
+  const suppressTransitions = document.createElement("style");
+  suppressTransitions.textContent = "*,*::before,*::after{transition:none}";
+  document.head.append(suppressTransitions);
+  root.classList.toggle("dark", scheme === "dark");
+  void getComputedStyle(root).colorScheme;
+  requestAnimationFrame(() => suppressTransitions.remove());
+}

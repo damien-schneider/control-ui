@@ -10,6 +10,8 @@ export type ChatComposerEditorApi = {
   getView: () => EditorView | null;
   subscribe: (listener: () => void) => () => void;
   registerKeyHandler: (handler: (event: KeyboardEvent) => boolean) => () => void;
+  /** Merges extra ARIA onto the editable host (e.g. combobox state while a trigger menu is open). */
+  setHostAria: (attributes: Readonly<Record<string, string>>) => void;
 };
 
 export type ChatComposerEditorOverlayProps = { editor: ChatComposerEditorApi };
@@ -29,4 +31,7 @@ export type ChatComposerEditorProps = {
   className?: string;
   placeholder?: string;
   extensions?: readonly ChatComposerEditorExtension[];
+  "aria-label"?: string;
+  "aria-labelledby"?: string;
+  "aria-describedby"?: string;
 };

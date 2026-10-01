@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { useTextareaTriggerMenu } from "@/components/control-ui/hooks/use-textarea-trigger-menu";
 import type { TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/hooks/use-trigger-menu";
+import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { TriggerMenu, TriggerMenuEmpty, TriggerMenuIcon, TriggerMenuItem, TriggerMenuList } from "@/components/control-ui/ui/trigger-menu";
 
 // Standalone: trigger-menu driving plain <textarea>, no editor/chat-composer; one `triggers` config
@@ -29,6 +30,10 @@ export function PrimitiveTriggerMenuExample() {
     { char: "@", items: people },
   ];
   const menu = useTextareaTriggerMenu(ref, { triggers });
+  const isEmpty = menu.open && menu.items.length === 0;
+  let status = "";
+  if (isEmpty) status = "No matches";
+  else if (menu.open) status = `${menu.items.length} suggestions`;
 
   return (
     <div className="w-full max-w-md">
@@ -38,28 +43,28 @@ export function PrimitiveTriggerMenuExample() {
         onChange={(event) => setValue(event.currentTarget.value)}
         rows={4}
         aria-label="Trigger menu demo"
+        {...menu.inputAria}
         className="field-sizing-content min-h-24 w-full resize-none rounded-field border bg-card/78 px-3 py-2 text-sm leading-6 shadow-sm outline-none ring-1 ring-inset ring-border transition placeholder:text-muted-foreground focus:ring-2 focus:ring-foreground/20"
         placeholder="Type / or @"
       />
+      <LiveStatus message={status} />
       <TriggerMenu open={menu.open} onOpenChange={menu.setOpen} anchorRect={menu.anchorRect}>
-        <TriggerMenuList>
-          {menu.items.length === 0 ? (
-            <TriggerMenuEmpty>No matches</TriggerMenuEmpty>
-          ) : (
-            menu.items.map((item, index) => (
-              <TriggerMenuItem
-                key={item.id}
-                active={index === menu.activeIndex}
-                disabled={item.disabled}
-                onPointerMove={() => menu.setActiveIndex(index)}
-                onClick={() => menu.select(item)}
-              >
-                {item.icon ? <TriggerMenuIcon>{item.icon}</TriggerMenuIcon> : null}
-                <span className="flex-1 truncate">{item.label}</span>
-                {item.description ? <span className="truncate text-micro text-muted-foreground">{item.description}</span> : null}
-              </TriggerMenuItem>
-            ))
-          )}
+        {isEmpty ? <TriggerMenuEmpty aria-hidden="true">No matches</TriggerMenuEmpty> : null}
+        <TriggerMenuList id={menu.listId}>
+          {menu.items.map((item, index) => (
+            <TriggerMenuItem
+              key={item.id}
+              id={menu.optionId(index)}
+              active={index === menu.activeIndex}
+              disabled={item.disabled}
+              onPointerMove={() => menu.setActiveIndex(index)}
+              onClick={() => menu.select(item)}
+            >
+              {item.icon ? <TriggerMenuIcon>{item.icon}</TriggerMenuIcon> : null}
+              <span className="flex-1 truncate">{item.label}</span>
+              {item.description ? <span className="truncate text-micro text-muted-foreground">{item.description}</span> : null}
+            </TriggerMenuItem>
+          ))}
         </TriggerMenuList>
       </TriggerMenu>
     </div>

@@ -22,6 +22,7 @@ export type ToolbarButtonProps = Omit<ComponentProps<"button">, "style"> & {
 
 export type ToolbarLinkProps = Omit<ComponentProps<"a">, "style"> & {
   variant?: ToolbarLinkVariant;
+  active?: boolean;
   style?: CSSProperties & ToolbarKnobStyle;
 };
 
@@ -87,7 +88,7 @@ export function ToolbarButton({ iconOnly = false, className, ...props }: Refined
 
 type RefinedToolbarLinkProps = ToolbarLinkProps & Pick<ComponentProps<typeof ToolbarPrimitive.Link>, "render">;
 
-export function ToolbarLink({ variant = "default", className, ...props }: RefinedToolbarLinkProps) {
+export function ToolbarLink({ variant = "default", active = false, className, ...props }: RefinedToolbarLinkProps) {
   return (
     <ToolbarPrimitive.Link
       data-control-ui="toolbar"
@@ -96,6 +97,8 @@ export function ToolbarLink({ variant = "default", className, ...props }: Refine
       data-control="true"
       data-size="sm"
       data-variant={variant}
+      data-active={active || undefined}
+      aria-current={active ? "page" : undefined}
       className={cn(
         "inline-flex shrink-0 items-center justify-center [&_svg]:block [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
         variant === "track" && "relative z-[2]",

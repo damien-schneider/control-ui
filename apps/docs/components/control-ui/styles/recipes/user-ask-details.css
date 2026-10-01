@@ -11,7 +11,6 @@
 
   :where([data-control-family="user-ask"][data-slot="option-input"]) {
     font-weight: var(--font-weight-medium);
-    outline-style: none;
   }
 
   :where([data-control-family="user-ask"][data-slot="option-indicator"]) {

@@ -48,4 +48,22 @@ describe("DockablePanel", () => {
     expect(html).not.toContain("drawer-backdrop");
     expect(html).not.toContain('aria-modal="true"');
   });
+
+  test("keeps the title heading outside the drag button and names the button with it", () => {
+    const html = renderToString(
+      <DockablePanel>
+        <DockablePanelHeader>
+          <DockablePanelDragHandle>
+            <DockablePanelTitle>Inspector</DockablePanelTitle>
+          </DockablePanelDragHandle>
+        </DockablePanelHeader>
+      </DockablePanel>,
+    );
+
+    const titleId = html.match(/<h2[^>]*id="([^"]+)"[^>]*>Inspector<\/h2>/)?.[1];
+    expect(titleId).toBeDefined();
+    expect(html).toMatch(new RegExp(`<button(?=[^>]*data-slot="drag-button")(?=[^>]*aria-labelledby="${titleId}")[^>]*></button>`));
+    expect(html).not.toMatch(/<button[^>]*>(?:(?!<\/button>).)*<h2/);
+    expect(html).not.toContain("aria-pressed");
+  });
 });

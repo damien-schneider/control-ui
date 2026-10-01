@@ -39,6 +39,10 @@ export function SidebarResizeRail({ className, ref, onPointerDown, onClick, onKe
     return Math.min(maxWidth, Math.max(minWidth, nextWidth));
   }
 
+  function anchoredToLeftEdge(element: Element) {
+    return (side === "left") === (getComputedStyle(element).direction !== "rtl");
+  }
+
   function handlePointerDown(event: ReactPointerEvent<HTMLDivElement>) {
     onPointerDown?.(event);
     if (event.defaultPrevented || event.button !== 0) return;
@@ -54,6 +58,7 @@ export function SidebarResizeRail({ className, ref, onPointerDown, onClick, onKe
     handle.setPointerCapture(event.pointerId);
     const pointerId = event.pointerId;
     const startX = event.clientX;
+    const anchoredLeft = anchoredToLeftEdge(handle);
     const wrapperBounds = wrapper.getBoundingClientRect();
     const initialWidth = measure.getBoundingClientRect().width;
     const previousWidth = wrapper.style.getPropertyValue("--sidebar-width");
@@ -104,7 +109,7 @@ export function SidebarResizeRail({ className, ref, onPointerDown, onClick, onKe
       document.body.style.userSelect = "none";
       wrapper.setAttribute("data-resizing", "true");
       handle.setAttribute("data-resizing", "true");
-      const cursorWidth = side === "left" ? pointer.clientX - wrapperBounds.left : wrapperBounds.right - pointer.clientX;
+      const cursorWidth = anchoredLeft ? pointer.clientX - wrapperBounds.left : wrapperBounds.right - pointer.clientX;
       if (updateCollapse(cursorWidth)) return;
       draftWidth = clampWidth(cursorWidth);
       wrapper.style.setProperty("--sidebar-width", `${draftWidth}px`);
@@ -177,7 +182,7 @@ export function SidebarResizeRail({ className, ref, onPointerDown, onClick, onKe
       case "ArrowLeft":
       case "ArrowRight":
         event.preventDefault();
-        resizeWithArrow(event.key === (side === "left" ? "ArrowRight" : "ArrowLeft"));
+        resizeWithArrow(event.key === (anchoredToLeftEdge(event.currentTarget) ? "ArrowRight" : "ArrowLeft"));
         return;
     }
   }
@@ -206,7 +211,7 @@ export function SidebarResizeRail({ className, ref, onPointerDown, onClick, onKe
       onClick: handleClick,
       onKeyDown: handleKeyDown,
       className: cn(
-        "absolute inset-y-0 z-20 hidden cursor-col-resize touch-pan-y outline-hidden group-data-[side=left]:-right-1 group-data-[side=right]:-left-1 group-data-[side=left]:group-data-[collapsible=offcanvas]:-right-2 group-data-[side=right]:group-data-[collapsible=offcanvas]:-left-2 lg:block",
+        "absolute inset-y-0 z-20 hidden cursor-col-resize touch-pan-y group-data-[side=left]:-end-1 group-data-[side=right]:-start-1 group-data-[side=left]:group-data-[collapsible=offcanvas]:-end-2 group-data-[side=right]:group-data-[collapsible=offcanvas]:-start-2 lg:block",
         className,
       ),
       children: (

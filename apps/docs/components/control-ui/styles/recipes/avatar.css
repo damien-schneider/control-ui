@@ -1,6 +1,6 @@
 @layer components {
   :where([data-control-family="avatar"][data-slot="root"]) {
-    --cui-avatar-image-outline-color: oklch(from var(--foreground) l c h / 0.1);
+    --cui-avatar-image-outline-color: var(--image-outline);
     inline-size: calc(var(--spacing) * 9);
     block-size: calc(var(--spacing) * 9);
   }

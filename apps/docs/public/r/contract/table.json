@@ -118,9 +118,7 @@
   },
   "adornments": {},
   "uncovered": [
-    "--cui-table-background",
     "--cui-table-footer-background",
-    "--cui-table-foreground",
     "--cui-table-row-hover-background",
     "--cui-table-row-selected-background"
   ],

@@ -7,22 +7,23 @@
     --cui-phone-input-metadata-foreground: var(--muted-foreground);
     --cui-phone-input-chevron-foreground: var(--muted-foreground);
   }
+
+  :where([data-control-family="phone-input"][data-slot="root"]) {
+    --cui-phone-input-metadata-foreground: var(--muted-foreground);
+  }
+
   :where([data-control-family="field"][data-phone-input-country]) {
     border-inline-end: var(--cui-phone-input-country-border-width) solid var(--cui-phone-input-country-border-color);
   }
 
   @media (hover: hover) {
-    :where([data-control-family="phone-input"][data-slot="country-trigger"]:hover) {
+    :where([data-control-family="phone-input"][data-slot="country-trigger"]:hover:not(:disabled)) {
       background-color: var(--cui-phone-input-trigger-hover-background);
     }
   }
 
   :where([data-control-family="phone-input"][data-slot="country-trigger"]:focus-visible) {
     background-color: var(--cui-phone-input-trigger-focus-background);
-  }
-
-  :where([data-control-family="phone-input"][data-slot="country-trigger"]:disabled) {
-    opacity: 0.5;
   }
 
   :where([data-control-family="phone-input"][data-slot="flag"]) {
@@ -64,10 +65,13 @@
     min-inline-size: calc(var(--spacing) * 14);
     gap: calc(var(--spacing) * 2);
     padding-inline: calc(var(--spacing) * 3);
-    outline-style: none;
   }
 
-  :where([data-control-family="field"][data-field-kind="phone-input"][data-slot="input"]) {
+  :where(
+    [data-control-family="field"][data-field-kind="phone-input"][data-slot="root"]
+      [data-control-family="field"][data-field-kind="input-group"][data-slot="input"]
+  ) {
+    padding-inline: calc(var(--spacing) * 3);
     font-variant-numeric: tabular-nums;
   }
 }

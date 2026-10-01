@@ -7,6 +7,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -54,6 +55,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -100,6 +102,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -146,6 +149,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -183,6 +187,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -220,6 +225,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -267,6 +273,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -313,6 +320,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -359,6 +367,97 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "code-diff",
+          "data-control-ui": "code-diff",
+          "data-diff-style": "split",
+          "data-file-count": "1",
+          "data-header": "true",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "code-diff",
+          "data-control-ui": "code-diff",
+          "data-slot": "header"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "code-diff",
+          "data-control-ui": "code-diff",
+          "data-diff-style": "unified",
+          "data-file-count": "1",
+          "data-header": "true",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "code-diff",
+          "data-control-ui": "code-diff",
+          "data-slot": "header"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -406,6 +505,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -514,7 +614,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-code-diff-foreground"
+        "fill": "--cui-code-diff-header-background"
       },
       "anatomy": 8,
       "rendersText": true,
@@ -522,9 +622,25 @@
     },
     {
       "knobs": {
-        "text": "--cui-code-diff-foreground"
+        "fill": "--cui-code-diff-header-background"
       },
       "anatomy": 9,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-code-diff-foreground"
+      },
+      "anatomy": 10,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-code-diff-foreground"
+      },
+      "anatomy": 11,
       "rendersText": true,
       "state": false
     }

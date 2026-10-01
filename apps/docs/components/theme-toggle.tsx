@@ -4,7 +4,7 @@ import { MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
 import { useEffect, useSyncExternalStore } from "react";
 import { type ThemeMode, ThemeSegmentedSwitch, ThemeToggle, type ThemeToggleOption } from "@/components/control-ui/blocks/theme-toggle";
 import { cn } from "@/components/control-ui/lib/cn";
-import { COLOR_SCHEME_LOCK_ATTR, THEME_STORAGE_KEY, type Theme } from "@/components/theme";
+import { applyColorScheme, COLOR_SCHEME_LOCK_ATTR, THEME_STORAGE_KEY, type Theme } from "@/components/theme";
 
 const THEME_CHANGE_EVENT = "control-ui:theme-change";
 
@@ -67,9 +67,7 @@ function systemTheme(): Theme {
 
 function syncThemeMode(value: ThemeMode) {
   if (lockSnapshot() !== "none") return;
-  const next = value === "system" ? systemTheme() : value;
-  const root = document.documentElement;
-  root.classList.toggle("dark", next === "dark");
+  applyColorScheme(value === "system" ? systemTheme() : value);
 }
 
 function applyThemeMode(value: ThemeMode) {

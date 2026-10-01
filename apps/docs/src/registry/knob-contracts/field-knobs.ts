@@ -2,6 +2,11 @@
 export const fieldKnobs = [
   "--cui-field-radius",
   "--cui-field-background",
+  "--cui-field-hover-background",
+  "--cui-field-affordance-background",
+  "--cui-field-affordance-shadow",
+  "--cui-field-affordance-foreground",
+  "--cui-field-affordance-hover-background",
   "--cui-field-foreground",
   "--cui-field-border-color",
   "--cui-field-border-width",

@@ -25,12 +25,6 @@
       "defaultValue": "none"
     },
     {
-      "name": "--cui-sidebar-menu-button-radius",
-      "syntax": "<length-percentage>",
-      "initialValue": "0px",
-      "defaultValue": "var(--radius-popup-item)"
-    },
-    {
       "name": "--cui-sidebar-inner-background",
       "syntax": "<color>",
       "initialValue": "transparent",
@@ -73,6 +67,18 @@
       "defaultValue": "none"
     },
     {
+      "name": "--cui-sidebar-header-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-sidebar-header-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "0 0 transparent"
+    },
+    {
       "name": "--cui-sidebar-inset-background",
       "syntax": "<color>",
       "initialValue": "transparent",
@@ -89,6 +95,36 @@
       "syntax": "*",
       "initialValue": "",
       "defaultValue": "var(--shadow-sm)"
+    },
+    {
+      "name": "--cui-sidebar-inset-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--sidebar-border)"
+    },
+    {
+      "name": "--cui-sidebar-inset-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    },
+    {
+      "name": "--cui-sidebar-inset-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-xl)"
+    },
+    {
+      "name": "--cui-sidebar-inset-inset",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 2)"
+    },
+    {
+      "name": "--cui-sidebar-menu-button-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-popup-item)"
     },
     {
       "name": "--cui-sidebar-group-label-foreground",
@@ -137,6 +173,102 @@
       "syntax": "*",
       "initialValue": "",
       "defaultValue": "0 0 transparent"
+    },
+    {
+      "name": "--cui-sidebar-menu-button-track-active-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-sidebar-menu-button-height",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--control-h-md)"
+    },
+    {
+      "name": "--cui-sidebar-menu-button-padding-block",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    },
+    {
+      "name": "--cui-sidebar-menu-button-padding-inline",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--padding-x)"
+    },
+    {
+      "name": "--cui-sidebar-menu-button-font-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "1rem",
+      "defaultValue": "var(--text-body)"
+    },
+    {
+      "name": "--cui-sidebar-menu-button-font-weight",
+      "syntax": "<number>",
+      "initialValue": "400",
+      "defaultValue": "400"
+    },
+    {
+      "name": "--cui-sidebar-menu-button-active-font-weight",
+      "syntax": "<number>",
+      "initialValue": "500",
+      "defaultValue": "500"
+    },
+    {
+      "name": "--cui-sidebar-group-label-font-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "1rem",
+      "defaultValue": "var(--text-caption)"
+    },
+    {
+      "name": "--cui-sidebar-group-label-font-weight",
+      "syntax": "<number>",
+      "initialValue": "500",
+      "defaultValue": "500"
+    },
+    {
+      "name": "--cui-sidebar-group-label-letter-spacing",
+      "syntax": "<length>",
+      "initialValue": "0em",
+      "defaultValue": "0em"
+    },
+    {
+      "name": "--cui-sidebar-group-label-text-transform",
+      "syntax": "none | uppercase | lowercase | capitalize",
+      "initialValue": "none",
+      "defaultValue": "none"
+    },
+    {
+      "name": "--cui-sidebar-group-label-padding",
+      "syntax": "<length-percentage>+",
+      "initialValue": "0px",
+      "defaultValue": "0px calc(var(--spacing) * 2)"
+    },
+    {
+      "name": "--cui-sidebar-skip-link-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--background)"
+    },
+    {
+      "name": "--cui-sidebar-skip-link-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-sidebar-skip-link-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-sidebar-skip-link-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-md)"
     }
   ],
   "parts": {
@@ -384,6 +516,13 @@
           }
         ]
       },
+      "skip-link": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": []
+      },
       "trigger": {
         "registryItems": [
           "sidebar"
@@ -402,13 +541,27 @@
         "registryItems": [
           "sidebar"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-layout",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "contained",
+              "viewport"
+            ]
+          }
+        ]
       }
     }
   },
   "adornments": {},
   "uncovered": [
-    "--cui-sidebar-inner-background"
+    "--cui-sidebar-inner-background",
+    "--cui-sidebar-menu-button-hover-background",
+    "--cui-sidebar-menu-button-hover-foreground",
+    "--cui-sidebar-skip-link-background",
+    "--cui-sidebar-skip-link-foreground"
   ],
   "contrast": "/r/contract/sidebar.contrast.json"
 }

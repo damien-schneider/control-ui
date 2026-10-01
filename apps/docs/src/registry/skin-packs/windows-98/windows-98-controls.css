@@ -68,6 +68,9 @@
     --cui-field-shadow: var(--win98-sunken);
     --cui-field-padding-inline: 4px;
     --cui-field-focus-border-color: var(--win98-dark);
+    --cui-field-affordance-background: var(--win98-face);
+    --cui-field-affordance-foreground: var(--foreground);
+    --cui-field-affordance-shadow: var(--win98-raised);
   }
   [data-skin="windows-98"] :where([data-control-family="popup"][data-control-ui="select"][data-slot="icon"]) {
     align-self: stretch;
@@ -75,7 +78,6 @@
     margin: 2px -2px 2px 4px;
     background: var(--win98-face);
     box-shadow: var(--win98-raised);
-    color: var(--foreground);
     rotate: 0deg;
   }
   [data-skin="windows-98"]
@@ -103,11 +105,12 @@
   [data-skin="windows-98"] :where([data-control-family="switch"][data-slot="root"]) {
     --cui-switch-background: var(--win98-light);
     --cui-switch-hover-background: var(--win98-light);
+    --cui-switch-radius: 0px;
+    --cui-switch-border-width: 0px;
+    --cui-switch-shadow: var(--win98-sunken);
     --cui-switch-thumb-radius: 0px;
     --cui-switch-thumb-background: var(--win98-face);
     --cui-switch-thumb-shadow: var(--win98-raised);
-    border-radius: 0;
-    box-shadow: var(--win98-sunken);
   }
   [data-skin="windows-98"] :where([data-control-family="tabs"][data-slot="root"]) {
     --cui-tabs-trigger-radius: 3px;
@@ -175,12 +178,14 @@
     display: grid;
     place-items: center;
     inset-block: 2px;
-    right: 2px;
+    inset-inline-end: 2px;
     inline-size: 17px;
-    background: var(--win98-face);
     border: 0;
     border-radius: 0;
-    box-shadow: var(--win98-raised);
+  }
+  [data-skin="windows-98"] :where(div[data-control-family="field"][data-field-kind="native-select"]) {
+    --cui-field-affordance-background: var(--win98-face);
+    --cui-field-affordance-shadow: var(--win98-raised);
   }
   [data-skin="windows-98"] :where([data-control-family="field"][data-field-kind="native-select"][data-slot="root"]) {
     padding-inline-end: 23px;
@@ -192,8 +197,6 @@
         [data-control-family="field"][data-slot="decrement"]
       )
     ) {
-    background: var(--win98-face);
-    box-shadow: var(--win98-raised);
     border: 0;
     border-radius: 0;
   }
@@ -204,6 +207,6 @@
         [data-control-family="field"][data-slot="decrement"]
       ):active
     ) {
-    box-shadow: var(--win98-pressed);
+    --cui-field-affordance-shadow: var(--win98-pressed);
   }
 }

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { prefersReducedMotion } from "../lib/motion";
 
 const BOTTOM_THRESHOLD = 24;
 const SETTLE_TIMEOUT = 700;
@@ -10,7 +11,7 @@ export function useChatThreadScroll() {
   const [atBottom, setAtBottom] = useState(true);
   const settlingRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
-  function scrollToBottom(behavior: ScrollBehavior = "smooth") {
+  function scrollToBottom(behavior?: ScrollBehavior) {
     const viewport = viewportRef.current;
     if (!viewport) return;
     pinnedRef.current = true;
@@ -19,7 +20,7 @@ export function useChatThreadScroll() {
     settlingRef.current = setTimeout(() => {
       settlingRef.current = undefined;
     }, SETTLE_TIMEOUT);
-    viewport.scrollTo({ top: viewport.scrollHeight, behavior });
+    viewport.scrollTo({ top: viewport.scrollHeight, behavior: behavior ?? (prefersReducedMotion(viewport) ? "auto" : "smooth") });
   }
 
   useEffect(() => {

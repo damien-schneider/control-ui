@@ -194,12 +194,6 @@
         ],
         "states": [
           {
-            "attribute": "data-keyboard-navigation",
-            "source": "control-ui",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
             "attribute": "data-state",
             "source": "control-ui",
             "valueKind": "enum",
@@ -215,7 +209,14 @@
         "registryItems": [
           "chat-composer"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-stop",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
       },
       "textarea": {
         "family": "chat-composer",

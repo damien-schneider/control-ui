@@ -47,7 +47,7 @@ test("tool activity opening motion unfolds instead of snapping open", async ({ p
   expect(motion.half).toBeLessThan(0.9);
 });
 
-test("streaming paint owns only message text", async ({ page }) => {
+test("streaming shimmer paints only the message header, never the body text", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/components/chat-message");
 
@@ -61,7 +61,12 @@ test("streaming paint owns only message text", async ({ page }) => {
   expect(await messageContent.locator('[data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"]').count()).toBe(0);
 
   const messageFill = await messageContent.evaluate((element) => getComputedStyle(element).getPropertyValue("-webkit-text-fill-color"));
-  expect(messageFill).toBe("rgba(0, 0, 0, 0)");
+  expect(messageFill).not.toBe("rgba(0, 0, 0, 0)");
+  const header = page
+    .locator('[data-control-family="chat-message"][data-slot="root"][data-state="streaming"] [data-slot="header"]')
+    .first();
+  const headerFill = await header.evaluate((element) => getComputedStyle(element).getPropertyValue("-webkit-text-fill-color"));
+  expect(headerFill).toBe("rgba(0, 0, 0, 0)");
 
   await page.addStyleTag({
     content: '[data-control-ui="activity"][data-slot="content"] { transition-duration: 10s !important; }',

@@ -21,20 +21,19 @@
     padding: calc(var(--spacing) * 6);
     background-color: var(--card);
     text-align: center;
-    outline-style: none;
     transition-property: border-color, color, opacity, box-shadow;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
   }
 
   @media (hover: hover) {
-    :where([data-control-family="dropzone"][data-slot="trigger"]:hover) {
+    :where([data-control-family="dropzone"][data-slot="trigger"]:hover:not(:disabled, [aria-disabled="true"])) {
       background-color: oklch(from var(--muted) l c h / 0.5);
     }
   }
 
-  :where([data-control-family="dropzone"][data-slot="trigger"]:disabled) {
-    opacity: 0.5;
+  :where([data-control-family="dropzone"][data-slot="trigger"]:is(:disabled, [aria-disabled="true"])) {
+    opacity: var(--disabled-opacity);
   }
 
   :where([data-control-family="dropzone"][data-slot="file-list"]),
@@ -90,16 +89,16 @@
   :where([data-control-family="dropzone"][data-slot="status"]) {
     margin-block-start: calc(var(--spacing) * 3);
     color: var(--muted-foreground);
-    font-size: var(--text-sm);
+    font-size: var(--text-body);
   }
 
   :where([data-control-family="dropzone"][data-slot="feedback-message"]) {
-    font-size: var(--text-sm);
+    font-size: var(--text-body);
     font-weight: var(--font-weight-medium);
   }
 
   :where([data-control-family="dropzone"][data-slot="feedback-spinner"]) {
-    animation: var(--animate-spin);
+    animation: cui-spin var(--duration-loop) linear infinite;
   }
 
   @starting-style {

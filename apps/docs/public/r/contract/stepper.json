@@ -47,6 +47,24 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-stepper-indicator-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 8)"
+    },
+    {
+      "name": "--cui-stepper-indicator-current-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "2px"
+    },
+    {
+      "name": "--cui-stepper-title-current-font-weight",
+      "syntax": "<number>",
+      "initialValue": "400",
+      "defaultValue": "var(--font-weight-semibold)"
     }
   ],
   "parts": {

@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 181,
+    "count": 184,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -1200,6 +1200,30 @@
         "summary": "Page navigation for long lists and result sets.",
         "href": "/primitives/pagination",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/pagination.json"
+      },
+      {
+        "id": "breadcrumb",
+        "name": "Breadcrumb",
+        "kind": "Primitive",
+        "summary": "Location trail with links, the current page, and collapsed levels.",
+        "href": "/primitives/breadcrumb",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/breadcrumb.json"
+      },
+      {
+        "id": "separator",
+        "name": "Separator",
+        "kind": "Primitive",
+        "summary": "Horizontal or vertical hairline divider.",
+        "href": "/primitives/separator",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/separator.json"
+      },
+      {
+        "id": "live-status",
+        "name": "Live status",
+        "kind": "Primitive",
+        "summary": "Always-mounted polite status region that announces changes to assistive technology.",
+        "href": "/primitives/live-status",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/live-status.json"
       },
       {
         "id": "spinner",

@@ -1,15 +1,28 @@
 "use client";
 
-import type { ComponentProps, CSSProperties, ReactNode, PointerEvent as ReactPointerEvent } from "react";
-import { createContext, use, useRef, useState } from "react";
+import type {
+  ComponentProps,
+  CSSProperties,
+  KeyboardEvent as ReactKeyboardEvent,
+  ReactNode,
+  PointerEvent as ReactPointerEvent,
+  RefObject,
+} from "react";
+import { createContext, use, useEffect, useEffectEvent, useId, useRef, useState } from "react";
 import { useIsMobile } from "@/components/control-ui/hooks/use-mobile";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { DockablePanelKnobStyle } from "@/components/control-ui/knob-contracts/dockable-panel-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
 import { Drawer, DrawerBody, DrawerContent } from "@/components/control-ui/ui/drawer";
+import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
-import { clampDockablePanelPosition, dockablePanelSideAt, oppositeDockablePanelSide } from "./dockable-panel-geometry";
+import {
+  clampDockablePanelPosition,
+  dockablePanelSideAt,
+  dockablePanelSideForKey,
+  oppositeDockablePanelSide,
+} from "./dockable-panel-geometry";
 
 export type DockablePanelPlacement = "left" | "right";
 
@@ -20,6 +33,7 @@ export type DockablePanelProps = Omit<ComponentProps<"aside">, "onChange" | "ref
   placement?: DockablePanelPlacement;
   defaultPlacement?: DockablePanelPlacement;
   onPlacementChange?: (placement: DockablePanelPlacement) => void;
+  finalFocus?: RefObject<HTMLElement | null>;
   style?: CSSProperties & DockablePanelKnobStyle;
 };
 
@@ -27,11 +41,13 @@ export type DockablePanelHeaderProps = Omit<ComponentProps<"div">, "style"> & {
   style?: CSSProperties & DockablePanelKnobStyle;
 };
 
-export type DockablePanelDragHandleProps = Omit<ComponentProps<"button">, "style"> & {
+export type DockablePanelDragHandleProps = Omit<ComponentProps<"div">, "style"> & {
+  dragLabel?: string;
+  dockHintLabel?: string;
   style?: CSSProperties & DockablePanelKnobStyle;
 };
 
-export type DockablePanelTitleProps = Omit<ComponentProps<"h2">, "style"> & {
+export type DockablePanelTitleProps = Omit<ComponentProps<"h2">, "style" | "id"> & {
   style?: CSSProperties & DockablePanelKnobStyle;
 };
 
@@ -62,16 +78,16 @@ export type DockablePanelContentProps = ComponentProps<"div"> & {
 
 type DockablePanelContextValue = {
   close: () => void;
-  dragging: boolean;
   isMobile: boolean;
   placement: DockablePanelPlacement;
   setPlacement: (placement: DockablePanelPlacement) => void;
   togglePlacement: () => void;
+  titleId: string;
   dragHandleProps: {
-    onPointerDown: (event: ReactPointerEvent<HTMLButtonElement>) => void;
-    onPointerMove: (event: ReactPointerEvent<HTMLButtonElement>) => void;
-    onPointerUp: (event: ReactPointerEvent<HTMLButtonElement>) => void;
-    onPointerCancel: (event: ReactPointerEvent<HTMLButtonElement>) => void;
+    onPointerDown: (event: ReactPointerEvent<HTMLElement>) => void;
+    onPointerMove: (event: ReactPointerEvent<HTMLElement>) => void;
+    onPointerUp: (event: ReactPointerEvent<HTMLElement>) => void;
+    onPointerCancel: (event: ReactPointerEvent<HTMLElement>) => void;
   };
 };
 
@@ -100,6 +116,7 @@ export function DockablePanel({
   placement: placementProp,
   defaultPlacement = "right",
   onPlacementChange,
+  finalFocus,
   className,
   style,
   children,
@@ -112,13 +129,33 @@ export function DockablePanel({
   const [potentialDock, setPotentialDock] = useState<DockablePanelPlacement>(placement);
   const [dragPosition, setDragPosition] = useState<{ x: number; y: number } | null>(null);
   const [dragHeight, setDragHeight] = useState(0);
+  const [announcement, setAnnouncement] = useState("");
   const isMobile = useIsMobile();
+  const titleId = useId();
   const panelRef = useRef<HTMLElement>(null);
   const potentialDockRef = useRef<DockablePanelPlacement>(placement);
   const dragRef = useRef<{ pointerId: number; offsetX: number; offsetY: number } | null>(null);
+  const returnFocusRef = useRef<Element | null>(null);
+  const restoreFocusRef = useRef(false);
+
+  const restoreFocus = useEffectEvent(() => {
+    const target = finalFocus?.current ?? returnFocusRef.current;
+    if (target instanceof HTMLElement && target.isConnected) target.focus();
+  });
+
+  useEffect(() => {
+    if (open) {
+      returnFocusRef.current = document.activeElement;
+      return;
+    }
+    if (!restoreFocusRef.current) return;
+    restoreFocusRef.current = false;
+    restoreFocus();
+  }, [open]);
 
   function setPlacement(next: DockablePanelPlacement) {
     setPlacementState(next);
+    setAnnouncement(`Panel docked ${next}.`);
   }
 
   function togglePlacement() {
@@ -126,10 +163,11 @@ export function DockablePanel({
   }
 
   function close() {
+    restoreFocusRef.current = panelRef.current?.contains(document.activeElement) ?? false;
     setOpen(false);
   }
 
-  function finishDrag(event: ReactPointerEvent<HTMLButtonElement>, shouldDock: boolean) {
+  function finishDrag(event: ReactPointerEvent<HTMLElement>, shouldDock: boolean) {
     if (dragRef.current?.pointerId !== event.pointerId) return;
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
     if (shouldDock) setPlacement(potentialDockRef.current);
@@ -139,7 +177,7 @@ export function DockablePanel({
     setDragging(false);
   }
 
-  function onPointerDown(event: ReactPointerEvent<HTMLButtonElement>) {
+  function onPointerDown(event: ReactPointerEvent<HTMLElement>) {
     if (event.button !== 0 || isMobile) return;
     const panel = panelRef.current;
     const container = panel?.offsetParent;
@@ -161,7 +199,7 @@ export function DockablePanel({
     setDragging(true);
   }
 
-  function onPointerMove(event: ReactPointerEvent<HTMLButtonElement>) {
+  function onPointerMove(event: ReactPointerEvent<HTMLElement>) {
     const drag = dragRef.current;
     const panel = panelRef.current;
     const container = panel?.offsetParent;
@@ -180,21 +218,21 @@ export function DockablePanel({
     );
   }
 
-  function onPointerUp(event: ReactPointerEvent<HTMLButtonElement>) {
+  function onPointerUp(event: ReactPointerEvent<HTMLElement>) {
     finishDrag(event, true);
   }
 
-  function onPointerCancel(event: ReactPointerEvent<HTMLButtonElement>) {
+  function onPointerCancel(event: ReactPointerEvent<HTMLElement>) {
     finishDrag(event, false);
   }
 
   const context: DockablePanelContextValue = {
     close,
-    dragging,
     isMobile,
     placement,
     setPlacement,
     togglePlacement,
+    titleId,
     dragHandleProps: { onPointerDown, onPointerMove, onPointerUp, onPointerCancel },
   };
   const dropZoneStyle = dragging
@@ -257,9 +295,7 @@ export function DockablePanel({
         {...props}
       >
         {children}
-        <span className="sr-only" aria-live="polite">
-          Panel docked {placement}.
-        </span>
+        <LiveStatus message={announcement} />
       </aside>
     </DockablePanelContext.Provider>
   );
@@ -284,9 +320,12 @@ export function DockablePanelDragHandle({
   onPointerUp,
   onPointerCancel,
   children,
+  dragLabel = "Drag panel",
+  dockHintLabel = "Drag, or use arrow keys to dock",
   ...props
 }: DockablePanelDragHandleProps) {
   const context = useDockablePanelContext();
+  const hintId = useId();
   if (context.isMobile) {
     return (
       <div
@@ -294,21 +333,26 @@ export function DockablePanelDragHandle({
         data-control-family="dockable-panel"
         data-slot="drag-handle"
         className={cn("flex min-w-0 flex-1 items-center self-stretch", className)}
+        {...props}
       >
         {children}
       </div>
     );
   }
 
+  function dockWithKeyboard(event: ReactKeyboardEvent<HTMLButtonElement>) {
+    const next = dockablePanelSideForKey(event.key, context.placement);
+    if (!next) return;
+    event.preventDefault();
+    if (!event.repeat) context.setPlacement(next);
+  }
+
   return (
-    <button
-      type="button"
+    <div
       data-control-ui="dockable-panel"
       data-control-family="dockable-panel"
       data-slot="drag-handle"
-      aria-label="Drag panel"
-      aria-pressed={context.dragging}
-      className={cn("flex min-w-0 flex-1 cursor-grab touch-none items-center self-stretch active:cursor-grabbing", className)}
+      className={cn("relative flex min-w-0 flex-1 cursor-grab touch-none items-center self-stretch active:cursor-grabbing", className)}
       onPointerDown={(event) => {
         onPointerDown?.(event);
         if (!event.defaultPrevented) context.dragHandleProps.onPointerDown(event);
@@ -328,19 +372,39 @@ export function DockablePanelDragHandle({
       {...props}
     >
       {children}
-    </button>
+      <button
+        type="button"
+        data-control-ui="dockable-panel"
+        data-control-family="dockable-panel"
+        data-slot="drag-button"
+        aria-label={dragLabel}
+        aria-labelledby={context.titleId}
+        aria-describedby={hintId}
+        aria-keyshortcuts="ArrowLeft ArrowRight Enter Space"
+        className="pointer-events-none absolute inset-0"
+        onKeyDown={dockWithKeyboard}
+      />
+      <span id={hintId} hidden>
+        {dockHintLabel}
+      </span>
+    </div>
   );
 }
 
-export function DockablePanelTitle({ className, ...props }: DockablePanelTitleProps) {
+export function DockablePanelTitle({ className, children, ...props }: DockablePanelTitleProps) {
+  const { titleId } = useDockablePanelContext();
   return (
     <h2
       data-control-ui="dockable-panel"
       data-control-family="dockable-panel"
       data-slot="title"
       className={cn("truncate", className)}
+      title={typeof children === "string" ? children : undefined}
       {...props}
-    />
+      id={titleId}
+    >
+      {children}
+    </h2>
   );
 }
 
@@ -350,7 +414,7 @@ export function DockablePanelActions({ className, ...props }: DockablePanelActio
       data-control-ui="dockable-panel"
       data-control-family="dockable-panel"
       data-slot="actions"
-      className={cn("ml-auto flex shrink-0 items-center", className)}
+      className={cn("ms-auto flex shrink-0 items-center", className)}
       {...props}
     />
   );

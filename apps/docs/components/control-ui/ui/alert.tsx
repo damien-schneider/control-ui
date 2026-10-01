@@ -1,4 +1,8 @@
+"use client";
+
+import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps, CSSProperties } from "react";
+import type { RenderProp } from "@/components/control-ui/control-props";
 import type { AlertKnobStyle } from "@/components/control-ui/knob-contracts/alert-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
@@ -8,14 +12,17 @@ export type AlertVariant = (typeof alertVariants)[number];
 
 export type AlertProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AlertKnobStyle } & { variant?: AlertVariant };
 
-export type AlertTitleProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AlertKnobStyle };
+export type AlertTitleProps = Omit<ComponentProps<"div">, "style"> & {
+  render?: RenderProp<ComponentProps<"div">>;
+  style?: CSSProperties & AlertKnobStyle;
+};
 
 export type AlertDescriptionProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AlertKnobStyle };
 
 export function Alert({ variant = "default", className, ...props }: AlertProps) {
   return (
     <div
-      role="alert"
+      role={variant === "destructive" ? "alert" : "status"}
       data-control-ui="alert"
       data-control-family="alert"
       data-slot="root"
@@ -27,16 +34,18 @@ export function Alert({ variant = "default", className, ...props }: AlertProps) 
   );
 }
 
-export function AlertTitle({ className, ...props }: AlertTitleProps) {
-  return (
-    <div
-      data-control-ui="alert"
-      data-control-family="alert"
-      data-slot="title"
-      className={cn("col-start-2 min-w-0", className)}
-      {...props}
-    />
-  );
+export function AlertTitle({ render, className, ...props }: AlertTitleProps) {
+  return useRender({
+    defaultTagName: "div",
+    render,
+    props: {
+      ...props,
+      "data-control-ui": "alert",
+      "data-control-family": "alert",
+      "data-slot": "title",
+      className: cn("col-start-2 min-w-0", className),
+    },
+  });
 }
 
 export function AlertDescription({ className, ...props }: AlertDescriptionProps) {

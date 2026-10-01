@@ -123,7 +123,14 @@
         "registryItems": [
           "dropzone"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-motion-essential",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
       },
       "file": {
         "family": "dropzone",

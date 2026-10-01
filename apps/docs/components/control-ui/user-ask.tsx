@@ -2,7 +2,7 @@
 
 import { Check, ChevronLeft, ChevronRight, PencilLine } from "lucide-react";
 import type { ChangeEvent, ComponentProps, CSSProperties, MouseEvent } from "react";
-import { createContext, useContext, useEffect, useId, useRef } from "react";
+import { createContext, useContext, useEffect, useId, useRef, useState } from "react";
 
 import type { UserAskProps } from "@/components/control-ui/hooks/use-user-ask";
 import { useUserAsk } from "@/components/control-ui/hooks/use-user-ask";
@@ -10,6 +10,7 @@ import type { UserAskKnobStyle } from "@/components/control-ui/knob-contracts/us
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
 import { Kbd } from "@/components/control-ui/ui/kbd";
+import { LiveStatus } from "@/components/control-ui/ui/live-status";
 
 type UserAskStyleProps<Props, Style> = Omit<Props, "style"> & { style?: CSSProperties & Style };
 
@@ -39,10 +40,25 @@ function useUserAskQuestionContext() {
   return context;
 }
 
-export function UserAsk({ onComplete, onDismiss, autoFocus = false, className, children, ...props }: UserAskProps) {
+function defaultQuestionStatusLabel(current: number, total: number, title: string) {
+  return `Question ${current} of ${total}: ${title}`;
+}
+
+export function UserAsk({
+  onComplete,
+  onDismiss,
+  autoFocus = false,
+  questionStatusLabel = defaultQuestionStatusLabel,
+  className,
+  children,
+  ...props
+}: UserAskProps) {
   const ask = useUserAsk({ onComplete, onDismiss });
   const titleId = useId();
   const panelRef = useRef<HTMLElement>(null);
+  const [hasNavigated, setHasNavigated] = useState(false);
+  const questionStatus =
+    hasNavigated && ask.activeQuestion ? questionStatusLabel(ask.activeIndex + 1, ask.questions.length, ask.activeQuestion.title) : "";
 
   // native autofocus only fires at document load, and this panel mounts mid-conversation
   useEffect(() => {
@@ -55,6 +71,7 @@ export function UserAsk({ onComplete, onDismiss, autoFocus = false, className, c
   useEffect(() => {
     if (lastActiveIndex.current === ask.activeIndex) return;
     lastActiveIndex.current = ask.activeIndex;
+    setHasNavigated(true);
     const panel = panelRef.current;
     const active = document.activeElement;
     const activeIsUsable = active instanceof HTMLElement && panel?.contains(active) && active.checkVisibility();
@@ -77,6 +94,7 @@ export function UserAsk({ onComplete, onDismiss, autoFocus = false, className, c
         {...props}
       >
         {children}
+        <LiveStatus message={questionStatus} />
       </section>
     </UserAskContext.Provider>
   );
@@ -243,6 +261,7 @@ export function UserAskOption({
         role={question.multiple ? "checkbox" : "radio"}
         aria-checked={selected}
         disabled={disabled}
+        tabIndex={ask.isTabStop(question.id, key) ? 0 : -1}
         data-control-ui="user-ask"
         data-control-family="user-ask"
         data-slot="option"
@@ -348,6 +367,7 @@ export function UserAskOptionInput({
         role={question.multiple ? "checkbox" : "radio"}
         aria-checked={false}
         disabled={disabled}
+        tabIndex={ask.isTabStop(question.id, key) ? 0 : -1}
         data-control-ui="user-ask"
         data-control-family="user-ask"
         data-slot="option"
@@ -391,7 +411,7 @@ export function UserAskOptionInput({
           type="button"
           role="checkbox"
           aria-checked={true}
-          aria-label={`Clear ${label}`}
+          aria-label={label}
           data-control-ui="user-ask"
           data-control-family="user-ask"
           data-slot="option-indicator"
@@ -403,16 +423,22 @@ export function UserAskOptionInput({
           <Check className="size-3" />
         </button>
       ) : (
-        <span
-          aria-hidden="true"
+        // biome-ignore lint/a11y/useSemanticElements: the selected freeform row's label is the text input beside it; the indicator exposes checked state and hands focus to that input.
+        <button
+          type="button"
+          role="radio"
+          aria-checked={true}
+          aria-label={label}
+          tabIndex={-1}
           data-control-ui="user-ask"
           data-control-family="user-ask"
           data-slot="option-indicator"
           data-selected=""
+          onClick={() => inputRef.current?.focus()}
           className="inline-flex shrink-0 items-center justify-center"
         >
           <PencilLine className="size-3" />
-        </span>
+        </button>
       )}
       <input
         {...props}
@@ -446,9 +472,9 @@ export function UserAskFooter({ className, ...props }: UserAskFooterProps) {
   );
 }
 
-export type UserAskDismissProps = ComponentProps<typeof Button>;
+export type UserAskDismissProps = ComponentProps<typeof Button> & { label?: string };
 
-export function UserAskDismiss({ className, children, onClick, ...props }: UserAskDismissProps) {
+export function UserAskDismiss({ label = "Dismiss", className, children, onClick, ...props }: UserAskDismissProps) {
   const ask = useUserAskContext();
 
   function handleClick(event: MouseEvent<HTMLButtonElement>) {
@@ -464,23 +490,32 @@ export function UserAskDismiss({ className, children, onClick, ...props }: UserA
       type="button"
       variant="quiet"
       size="xs"
+      aria-keyshortcuts="Escape"
       onClick={handleClick}
       className={cn(className)}
       {...props}
     >
       {children ?? (
         <>
-          Dismiss
-          <Kbd>esc</Kbd>
+          {label}
+          <Kbd aria-hidden="true">Esc</Kbd>
         </>
       )}
     </Button>
   );
 }
 
-export type UserAskSubmitProps = ComponentProps<typeof Button>;
+export type UserAskSubmitProps = ComponentProps<typeof Button> & { continueLabel?: string; submitLabel?: string };
 
-export function UserAskSubmit({ className, children, disabled, onClick, ...props }: UserAskSubmitProps) {
+export function UserAskSubmit({
+  continueLabel = "Continue",
+  submitLabel = "Submit answers",
+  className,
+  children,
+  disabled,
+  onClick,
+  ...props
+}: UserAskSubmitProps) {
   const ask = useUserAskContext();
 
   function handleClick(event: MouseEvent<HTMLButtonElement>) {
@@ -498,14 +533,17 @@ export function UserAskSubmit({ className, children, disabled, onClick, ...props
       tone="primary"
       size="xs"
       disabled={disabled ?? !ask.canContinue}
+      aria-keyshortcuts="Enter"
       onClick={handleClick}
       className={className}
       {...props}
     >
       {children ?? (
         <>
-          Continue
-          <Kbd data-user-ask-submit-kbd="true">⏎</Kbd>
+          {ask.isLastQuestion ? submitLabel : continueLabel}
+          <Kbd aria-hidden="true" data-user-ask-submit-kbd="true">
+            ⏎
+          </Kbd>
         </>
       )}
     </Button>

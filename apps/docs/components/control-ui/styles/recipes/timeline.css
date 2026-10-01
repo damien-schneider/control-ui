@@ -55,12 +55,14 @@
     font-size: var(--text-label);
     font-weight: var(--font-weight-medium);
     line-height: calc(var(--spacing) * 5);
+    text-wrap: balance;
   }
 
   :where([data-control-family="timeline"][data-slot="description"]) {
     color: var(--muted-foreground);
     font-size: var(--text-label);
     line-height: calc(var(--spacing) * 5);
+    text-wrap: pretty;
   }
 }
 

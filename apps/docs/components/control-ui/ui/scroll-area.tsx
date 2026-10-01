@@ -62,13 +62,35 @@ function Scrollbar({
   );
 }
 
-function viewportStyle(maxHeight: ScrollAreaProps["maxHeight"], lockX: boolean, lockY: boolean): CSSProperties | undefined {
-  if (!maxHeight && !lockX && !lockY) return undefined;
+function viewportStyle(
+  baseStyle: CSSProperties | undefined,
+  maxHeight: ScrollAreaProps["maxHeight"],
+  lockX: boolean,
+  lockY: boolean,
+): CSSProperties | undefined {
+  if (!maxHeight && !lockX && !lockY) return baseStyle;
   return {
+    ...baseStyle,
     ...(maxHeight ? { maxHeight } : {}),
     ...(lockX ? { overflowX: "hidden" } : {}),
     ...(lockY ? { overflowY: "hidden" } : {}),
   };
+}
+
+function regionProps(ariaLabel: string | undefined, ariaLabelledby: string | undefined) {
+  if (!ariaLabel && !ariaLabelledby) return {};
+  return { role: "region", "aria-label": ariaLabel, "aria-labelledby": ariaLabelledby };
+}
+
+function EdgeBlurs({ blurProps, lockX, lockY }: { blurProps: ScrollAreaProps["blurProps"]; lockX: boolean; lockY: boolean }) {
+  return (
+    <>
+      {!lockY && <ProgressiveBlur {...blurProps} side="top" visible={false} />}
+      {!lockY && <ProgressiveBlur {...blurProps} side="bottom" visible={false} />}
+      {!lockX && <ProgressiveBlur {...blurProps} side="inline-start" visible={false} />}
+      {!lockX && <ProgressiveBlur {...blurProps} side="inline-end" visible={false} />}
+    </>
+  );
 }
 
 export function ScrollArea({
@@ -85,15 +107,16 @@ export function ScrollArea({
   scrollbarVisibility = "hover",
   children,
   style,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledby,
   ...props
 }: ScrollAreaProps) {
   const skin = useSkin();
   const resolvedBlur = blur ?? skin.scrollAreaBlur ?? false;
   const lockX = lockAxis === "x" || lockAxis === "both";
   const lockY = lockAxis === "y" || lockAxis === "both";
-  const resolvedViewportStyle = viewportStyle(maxHeight, lockX, lockY);
   const { style: viewportPropsStyle, ...resolvedViewportProps } = viewportProps ?? {};
-  const mergedViewportStyle = viewportPropsStyle || resolvedViewportStyle ? { ...viewportPropsStyle, ...resolvedViewportStyle } : undefined;
+  const mergedViewportStyle = viewportStyle(viewportPropsStyle, maxHeight, lockX, lockY);
   const thumbStyle = style;
   const cornerStyle = style;
 
@@ -114,6 +137,7 @@ export function ScrollArea({
         data-control-family="scroll-area"
         data-slot="viewport"
         {...resolvedViewportProps}
+        {...regionProps(ariaLabel, ariaLabelledby)}
         data-scroll-area-viewport=""
         ref={viewportRef}
         className={cn("h-full w-full", viewportClassName)}
@@ -129,10 +153,7 @@ export function ScrollArea({
           {children}
         </ScrollAreaPrimitive.Content>
       </ScrollAreaPrimitive.Viewport>
-      {resolvedBlur && !lockY && <ProgressiveBlur {...blurProps} side="top" visible={false} />}
-      {resolvedBlur && !lockY && <ProgressiveBlur {...blurProps} side="bottom" visible={false} />}
-      {resolvedBlur && !lockX && <ProgressiveBlur {...blurProps} side="inline-start" visible={false} />}
-      {resolvedBlur && !lockX && <ProgressiveBlur {...blurProps} side="inline-end" visible={false} />}
+      {resolvedBlur && <EdgeBlurs blurProps={blurProps} lockX={lockX} lockY={lockY} />}
       {!lockY && <Scrollbar orientation="vertical" visibility={scrollbarVisibility} thumbStyle={thumbStyle} />}
       {!lockX && <Scrollbar orientation="horizontal" visibility={scrollbarVisibility} thumbStyle={thumbStyle} />}
       {!lockX && !lockY && (

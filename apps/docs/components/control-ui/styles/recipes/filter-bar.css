@@ -10,11 +10,15 @@
     --cui-filter-bar-padding-inline: calc(var(--spacing) * 2);
     --cui-filter-bar-font-size: var(--text-label);
     --cui-filter-bar-hover-background: var(--hover-fill);
-    --cui-filter-bar-focus-ring-color: var(--ring);
+    --filter-bar-inline-sign: 1;
     gap: var(--cui-filter-bar-gap);
     border: 0;
     padding: 0;
     margin: 0;
+  }
+
+  :where([data-control-family="filter-bar"][data-slot="root"]:dir(rtl)) {
+    --filter-bar-inline-sign: -1;
   }
 
   :where([data-control-family="filter-bar"][data-slot="chip"]) {
@@ -38,19 +42,21 @@
     color: inherit;
     font-size: inherit;
     gap: calc(var(--spacing) * 1.5);
+    --focus-ring-offset: calc(var(--focus-ring-width) * -1);
   }
 
   :where([data-control-family="filter-bar"][data-slot="chip"] > :not(:first-child)) {
     border-inline-start: var(--cui-filter-bar-border-width) solid var(--cui-filter-bar-border-color);
   }
 
-  :where([data-control-family="filter-bar"]:is([data-slot="segment"], [data-slot="remove"]):focus-visible) {
-    outline: 2px solid var(--cui-filter-bar-focus-ring-color);
-    outline-offset: -2px;
-  }
-
   @media (hover: hover) {
-    :where([data-control-family="filter-bar"]:is([data-slot="segment"], [data-slot="remove"]):enabled:hover) {
+    :where(
+        [data-control-family="filter-bar"]:is([data-slot="segment"], [data-slot="remove"]):not(
+          :disabled,
+          [data-disabled],
+          [aria-disabled="true"]
+        ):hover
+      ) {
       background: var(--cui-filter-bar-hover-background);
     }
   }
@@ -62,7 +68,7 @@
 
   :where([data-control-family="filter-bar"][data-slot="exit"]) {
     pointer-events: none;
-    transform-origin: left center;
+    transform-origin: calc(50% - 50% * var(--filter-bar-inline-sign)) center;
     animation: cui-filter-chip-exit var(--duration-fast) var(--ease-standard) forwards;
   }
 
@@ -71,28 +77,14 @@
   }
 
   :where([data-control-family="filter-bar"][data-disabled]) {
-    opacity: 0.5;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    :where([data-control-family="filter-bar"]),
-    :where([data-control-family="filter-bar"] *) {
-      animation: none;
-      transition: none;
-    }
-  }
-
-  :where([data-motion="reduced"] [data-control-family="filter-bar"]),
-  :where([data-motion="reduced"] [data-control-family="filter-bar"] *) {
-    animation: none;
-    transition: none;
+    opacity: var(--disabled-opacity);
   }
 }
 
 @keyframes cui-filter-segment-enter {
   from {
     opacity: 0;
-    translate: -4px 0;
+    translate: calc(-4px * var(--filter-bar-inline-sign)) 0;
   }
   to {
     opacity: 1;
@@ -103,7 +95,8 @@
 @keyframes cui-filter-chip-exit {
   to {
     opacity: 0;
-    transform: translateX(-4px) scale(0.97);
+    translate: calc(-4px * var(--filter-bar-inline-sign)) 0;
+    scale: 0.97;
   }
 }
 
@@ -162,12 +155,6 @@
 }
 
 @property --cui-filter-bar-hover-background {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
-@property --cui-filter-bar-focus-ring-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

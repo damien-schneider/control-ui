@@ -109,7 +109,7 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
                 </ButtonLink>
                 <ThemeGeneratorDrawer />
                 <Button variant="solid" tone="primary" size="sm" onClick={cssCopy.handleCopy}>
-                  {cssCopy.isCopied ? "Copied ✓" : "Copy CSS variables"}
+                  {cssCopy.status === "copied" ? "Copied ✓" : "Copy CSS variables"}
                 </Button>
               </div>
             }

@@ -65,12 +65,6 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--hover-fill)"
-    },
-    {
-      "name": "--cui-filter-bar-focus-ring-color",
-      "syntax": "<color>",
-      "initialValue": "transparent",
-      "defaultValue": "var(--ring)"
     }
   ],
   "parts": {

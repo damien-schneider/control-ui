@@ -10,7 +10,8 @@
   "registryDependencies": [
     "button",
     "core",
-    "kbd"
+    "kbd",
+    "live-status"
   ],
   "files": [
     {

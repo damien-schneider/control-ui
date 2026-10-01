@@ -26,7 +26,7 @@ test("page layout scrolls the document while navigation and controls remain reac
   await rail.focus();
   await page.keyboard.press("ControlOrMeta+b");
   await expect(sidebar).toHaveAttribute("data-state", "collapsed");
-  const trigger = page.getByRole("button", { name: "Toggle Sidebar", exact: true });
+  const trigger = page.getByRole("button", { name: "Toggle sidebar", exact: true });
   await expect(trigger).toBeInViewport();
   await trigger.click();
   await expect(sidebar).toHaveAttribute("data-state", "expanded");
@@ -48,7 +48,7 @@ test("the page layout frame reaches the first paint, before any hydration", asyn
 test("mobile page scrolling resumes after closing the navigation sheet", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/primitives/button");
-  const trigger = page.getByRole("button", { name: "Toggle Sidebar", exact: true });
+  const trigger = page.getByRole("button", { name: "Toggle sidebar", exact: true });
   await waitForReactHydration(trigger);
   await page.mouse.move(280, 600);
   await page.mouse.wheel(0, 600);

@@ -11,11 +11,13 @@ test("chat preview sends through Mastra and renders the mock reply", async ({ pa
   const thread = preview.locator('[data-control-ui="chat-thread"][data-slot="root"]');
   const userTurns = thread.locator('[data-control-ui="chat-turn"][data-slot="turn"][data-from="user"]');
   const assistantTurns = thread.locator('[data-control-ui="chat-turn"][data-slot="turn"][data-from="assistant"]');
+  const input = preview.getByRole("textbox", { name: "Message" });
+  await expect(input).toHaveAttribute("contenteditable", "true");
   const initialUserTurnCount = await userTurns.count();
   const initialAssistantTurnCount = await assistantTurns.count();
 
   const prompt = "Stream a reply from the preview";
-  await preview.getByRole("textbox", { name: "Message" }).fill(prompt);
+  await input.fill(prompt);
   await preview.getByRole("button", { name: "Send" }).click();
 
   await expect(userTurns).toHaveCount(initialUserTurnCount + 1);

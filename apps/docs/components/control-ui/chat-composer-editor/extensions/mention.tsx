@@ -6,8 +6,9 @@ import type { EditorView } from "prosemirror-view";
 import { useEffect } from "react";
 import type { MentionItem } from "@/components/control-ui/hooks/use-chat-composer";
 import type { TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/hooks/use-trigger-menu";
-import { useTriggerMenu } from "@/components/control-ui/hooks/use-trigger-menu";
+import { isComposingKey, useTriggerMenu } from "@/components/control-ui/hooks/use-trigger-menu";
 import { detectTrigger } from "@/components/control-ui/lib/trigger-detect";
+import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { TriggerMenu, TriggerMenuEmpty, TriggerMenuIcon, TriggerMenuItem, TriggerMenuList } from "@/components/control-ui/ui/trigger-menu";
 import { spawnExitGhost } from "../ghost";
 import type { ChatComposerEditorApi, ChatComposerEditorExtension } from "../types";
@@ -226,10 +227,19 @@ type MentionOverlayProps<Item extends TriggerMenuItemData> = {
   triggers: readonly TriggerConfig<Item>[];
   side: "top" | "bottom";
   align: "start" | "center" | "end";
+  emptyLabel: string;
+  resultsLabel: (count: number) => string;
 };
 
 // talks to doc only through editor api, so no ProseMirror plugin is needed and base editor stays mention-unaware
-function MentionOverlay<Item extends TriggerMenuItemData>({ editor, triggers, side, align }: MentionOverlayProps<Item>) {
+function MentionOverlay<Item extends TriggerMenuItemData>({
+  editor,
+  triggers,
+  side,
+  align,
+  emptyLabel,
+  resultsLabel,
+}: MentionOverlayProps<Item>) {
   const chars = triggers.map((trigger) => trigger.char);
 
   const controller = useTriggerMenu<Item>({
@@ -257,9 +267,21 @@ function MentionOverlay<Item extends TriggerMenuItemData>({ editor, triggers, si
     });
   }, [editor, controller, chars]);
 
+  const { "aria-controls": controls, "aria-activedescendant": activeDescendant } = controller.inputAria;
+  useEffect(() => {
+    editor.setHostAria({
+      "aria-autocomplete": "list",
+      "aria-haspopup": "listbox",
+      ...(controls ? { "aria-controls": controls } : {}),
+      ...(activeDescendant ? { "aria-activedescendant": activeDescendant } : {}),
+    });
+  }, [editor, controls, activeDescendant]);
+  useEffect(() => () => editor.setHostAria({}), [editor]);
+
   // open menu eats arrows, Enter, and Esc before editor's keymaps see them
   useEffect(() => {
     return editor.registerKeyHandler((event) => {
+      if (isComposingKey(event)) return false;
       const view = editor.getView();
       if (!view) return false;
       if (!readEditorTrigger(view, chars).active) return false;
@@ -268,37 +290,45 @@ function MentionOverlay<Item extends TriggerMenuItemData>({ editor, triggers, si
   }, [editor, controller, chars]);
 
   if (triggers.length === 0) return null;
+  const isEmpty = controller.open && controller.items.length === 0;
+  let status = "";
+  if (isEmpty) status = emptyLabel;
+  else if (controller.open) status = resultsLabel(controller.items.length);
   return (
-    <TriggerMenu open={controller.open} onOpenChange={controller.setOpen} anchorRect={controller.anchorRect} side={side} align={align}>
-      <TriggerMenuList>
-        {controller.items.length === 0 ? (
-          <TriggerMenuEmpty>No results</TriggerMenuEmpty>
-        ) : (
-          controller.items.map((item, index) => (
+    <>
+      <LiveStatus message={status} />
+      <TriggerMenu open={controller.open} onOpenChange={controller.setOpen} anchorRect={controller.anchorRect} side={side} align={align}>
+        {isEmpty ? <TriggerMenuEmpty aria-hidden="true">{emptyLabel}</TriggerMenuEmpty> : null}
+        <TriggerMenuList id={controller.listId}>
+          {controller.items.map((item, index) => (
             <TriggerMenuItem
               key={item.id}
+              id={controller.optionId(index)}
               active={index === controller.activeIndex}
               disabled={item.disabled}
               onPointerMove={() => controller.setActiveIndex(index)}
               onClick={() => controller.select(item)}
             >
               {item.icon ? <TriggerMenuIcon>{item.icon}</TriggerMenuIcon> : null}
-              <span className="flex-1 truncate">{item.label}</span>
+              <span className="flex-1 truncate" title={item.label}>
+                {item.label}
+              </span>
               {item.description ? (
                 <span
                   data-control-ui="chat-composer"
                   data-control-family="chat-composer"
                   data-slot="mention-description"
                   className="truncate"
+                  title={item.description}
                 >
                   {item.description}
                 </span>
               ) : null}
             </TriggerMenuItem>
-          ))
-        )}
-      </TriggerMenuList>
-    </TriggerMenu>
+          ))}
+        </TriggerMenuList>
+      </TriggerMenu>
+    </>
   );
 }
 
@@ -306,18 +336,26 @@ export type MentionExtensionConfig<Item extends TriggerMenuItemData = TriggerMen
   triggers: readonly TriggerConfig<Item>[];
   side?: "top" | "bottom";
   align?: "start" | "center" | "end";
+  /** Shown and announced when a trigger's query matches nothing. */
+  emptyLabel?: string;
+  /** Announced while the menu is open, so opening it and narrowing it are heard from the editor. */
+  resultsLabel?: (count: number) => string;
 };
 
 export function mentionExtension<Item extends TriggerMenuItemData = TriggerMenuItemData>({
   triggers,
   side = "top",
   align = "start",
+  emptyLabel = "No matches",
+  resultsLabel = (count) => (count === 1 ? "1 suggestion" : `${count} suggestions`),
 }: MentionExtensionConfig<Item>): ChatComposerEditorExtension {
   return {
     name: "mention",
     nodes: { mention: mentionNode },
     keymap: () => ({ Backspace: deleteMentionBackward, Delete: deleteMentionForward }),
     submitPayload: (doc) => ({ mentions: collectMentions(doc) }),
-    Overlay: ({ editor }) => <MentionOverlay editor={editor} triggers={triggers} side={side} align={align} />,
+    Overlay: ({ editor }) => (
+      <MentionOverlay editor={editor} triggers={triggers} side={side} align={align} emptyLabel={emptyLabel} resultsLabel={resultsLabel} />
+    ),
   };
 }

@@ -1,3 +1,6 @@
+"use client";
+
+import { Input as InputPrimitive } from "@base-ui/react/input";
 import type { ComponentProps, CSSProperties } from "react";
 import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
@@ -7,21 +10,44 @@ export type NativeSelectProps = Omit<Omit<ComponentProps<"select">, "size">, "st
   size?: ControlSize;
 };
 
-export function NativeSelect({ size = "md", className, children, ...props }: NativeSelectProps) {
+export function NativeSelect({
+  ref,
+  id,
+  name,
+  value,
+  defaultValue,
+  disabled,
+  autoFocus,
+  size = "md",
+  className,
+  children,
+  ...props
+}: NativeSelectProps) {
   return (
-    <div className="relative inline-flex w-full items-center">
-      <select
-        data-control-ui="native-select"
-        data-field-kind="native-select"
-        data-slot="root"
-        data-size={size}
-        data-control-family="field"
-        data-control="true"
-        className={cn("w-full min-w-0 cursor-pointer", className)}
-        {...props}
-      >
-        {children}
-      </select>
+    <div data-control-family="field" data-field-kind="native-select" className="relative inline-flex w-full items-center">
+      <InputPrimitive
+        ref={ref}
+        id={id}
+        name={name}
+        value={value}
+        defaultValue={defaultValue}
+        disabled={disabled}
+        autoFocus={autoFocus}
+        render={
+          <select
+            {...props}
+            data-control-ui="native-select"
+            data-field-kind="native-select"
+            data-slot="root"
+            data-size={size}
+            data-control-family="field"
+            data-control="true"
+            className={cn("w-full min-w-0 cursor-pointer", className)}
+          >
+            {children}
+          </select>
+        }
+      />
       <span
         aria-hidden="true"
         data-control-ui="native-select"

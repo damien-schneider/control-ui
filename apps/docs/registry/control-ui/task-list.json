@@ -9,7 +9,9 @@
   ],
   "registryDependencies": [
     "collapsible",
-    "core"
+    "core",
+    "effects",
+    "live-status"
   ],
   "files": [
     {

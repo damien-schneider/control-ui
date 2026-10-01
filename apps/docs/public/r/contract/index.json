@@ -23,14 +23,14 @@
         "activity"
       ],
       "knobs": 5,
-      "probes": 21
+      "probes": 22
     },
     "alert": {
       "registryItems": [
         "alert"
       ],
       "knobs": 15,
-      "probes": 2
+      "probes": 4
     },
     "aspect-ratio": {
       "registryItems": [
@@ -43,7 +43,7 @@
       "registryItems": [
         "audio-recorder"
       ],
-      "knobs": 4,
+      "knobs": 5,
       "probes": 3
     },
     "audio-visualizer": {
@@ -51,7 +51,7 @@
         "audio-visualizer",
         "audio-visualizer-line"
       ],
-      "knobs": 5,
+      "knobs": 6,
       "probes": 1
     },
     "avatar": {
@@ -65,15 +65,15 @@
       "registryItems": [
         "badge"
       ],
-      "knobs": 4,
-      "probes": 0
+      "knobs": 5,
+      "probes": 18
     },
     "breadcrumb": {
       "registryItems": [
         "breadcrumb"
       ],
-      "knobs": 2,
-      "probes": 0
+      "knobs": 3,
+      "probes": 3
     },
     "button": {
       "registryItems": [
@@ -84,8 +84,8 @@
         "navigation-menu",
         "toggle"
       ],
-      "knobs": 24,
-      "probes": 498
+      "knobs": 25,
+      "probes": 155
     },
     "button-group": {
       "registryItems": [
@@ -106,7 +106,7 @@
         "card"
       ],
       "knobs": 6,
-      "probes": 2
+      "probes": 3
     },
     "chat-composer": {
       "registryItems": [
@@ -127,14 +127,14 @@
         "chat-layout"
       ],
       "knobs": 7,
-      "probes": 3
+      "probes": 1
     },
     "chat-message": {
       "registryItems": [
         "chat-message"
       ],
       "knobs": 14,
-      "probes": 6
+      "probes": 7
     },
     "checkbox-group": {
       "registryItems": [
@@ -155,15 +155,15 @@
       "registryItems": [
         "code"
       ],
-      "knobs": 8,
-      "probes": 12
+      "knobs": 9,
+      "probes": 15
     },
     "code-diff": {
       "registryItems": [
         "code-diff"
       ],
-      "knobs": 14,
-      "probes": 10
+      "knobs": 16,
+      "probes": 12
     },
     "collapsible": {
       "registryItems": [
@@ -177,7 +177,7 @@
         "color-picker"
       ],
       "knobs": 7,
-      "probes": 5
+      "probes": 6
     },
     "context": {
       "registryItems": [
@@ -204,7 +204,7 @@
       "registryItems": [
         "dynamic-notification"
       ],
-      "knobs": 13,
+      "knobs": 15,
       "probes": 1
     },
     "empty": {
@@ -212,7 +212,7 @@
         "empty"
       ],
       "knobs": 20,
-      "probes": 2
+      "probes": 4
     },
     "environment-variables": {
       "registryItems": [
@@ -232,18 +232,17 @@
         "input-otp",
         "native-select",
         "number-field",
-        "phone-input",
         "select",
         "textarea"
       ],
-      "knobs": 11,
-      "probes": 0
+      "knobs": 16,
+      "probes": 67
     },
     "filter-bar": {
       "registryItems": [
         "filter-bar"
       ],
-      "knobs": 11,
+      "knobs": 10,
       "probes": 0
     },
     "gradient-editor": {
@@ -279,7 +278,7 @@
         "item"
       ],
       "knobs": 5,
-      "probes": 1
+      "probes": 0
     },
     "kbd": {
       "registryItems": [
@@ -295,12 +294,19 @@
       "knobs": 1,
       "probes": 0
     },
+    "live-status": {
+      "registryItems": [
+        "live-status"
+      ],
+      "knobs": 0,
+      "probes": 0
+    },
     "markdown": {
       "registryItems": [
         "markdown"
       ],
-      "knobs": 10,
-      "probes": 6
+      "knobs": 12,
+      "probes": 8
     },
     "markdown-block": {
       "registryItems": [
@@ -320,7 +326,7 @@
       "registryItems": [
         "page-layout"
       ],
-      "knobs": 13,
+      "knobs": 14,
       "probes": 5
     },
     "pagination": {
@@ -335,7 +341,7 @@
         "phone-input"
       ],
       "knobs": 6,
-      "probes": 5
+      "probes": 2
     },
     "popup": {
       "registryItems": [
@@ -362,8 +368,8 @@
         "tooltip",
         "trigger-menu"
       ],
-      "knobs": 17,
-      "probes": 109
+      "knobs": 44,
+      "probes": 113
     },
     "progressive-blur": {
       "registryItems": [
@@ -378,41 +384,41 @@
         "progress",
         "slider"
       ],
-      "knobs": 8,
-      "probes": 24
+      "knobs": 9,
+      "probes": 34
     },
     "resizable": {
       "registryItems": [
         "resizable"
       ],
       "knobs": 10,
-      "probes": 5
+      "probes": 4
     },
     "rich-tooltip": {
       "registryItems": [],
-      "knobs": 8,
-      "probes": 1
+      "knobs": 9,
+      "probes": 3
     },
     "scroll-area": {
       "registryItems": [
         "scroll-area"
       ],
       "knobs": 3,
-      "probes": 0
+      "probes": 40
     },
     "separator": {
       "registryItems": [
         "separator"
       ],
       "knobs": 1,
-      "probes": 3
+      "probes": 4
     },
     "sidebar": {
       "registryItems": [
         "sidebar"
       ],
-      "knobs": 22,
-      "probes": 21
+      "knobs": 44,
+      "probes": 28
     },
     "sidebar-layout": {
       "registryItems": [
@@ -426,7 +432,7 @@
         "skeleton"
       ],
       "knobs": 7,
-      "probes": 3
+      "probes": 4
     },
     "source-badge": {
       "registryItems": [
@@ -439,43 +445,43 @@
       "registryItems": [
         "spinner"
       ],
-      "knobs": 1,
-      "probes": 1
+      "knobs": 2,
+      "probes": 2
     },
     "stepper": {
       "registryItems": [
         "stepper"
       ],
-      "knobs": 7,
+      "knobs": 10,
       "probes": 10
     },
     "switch": {
       "registryItems": [
         "switch"
       ],
-      "knobs": 13,
-      "probes": 30
+      "knobs": 18,
+      "probes": 15
     },
     "table": {
       "registryItems": [
         "table"
       ],
       "knobs": 7,
-      "probes": 1
+      "probes": 2
     },
     "table-of-contents": {
       "registryItems": [
         "table-of-contents"
       ],
-      "knobs": 26,
+      "knobs": 27,
       "probes": 30
     },
     "tabs": {
       "registryItems": [
         "tabs"
       ],
-      "knobs": 12,
-      "probes": 19
+      "knobs": 13,
+      "probes": 36
     },
     "task-list": {
       "registryItems": [
@@ -510,7 +516,7 @@
         "toolbar"
       ],
       "knobs": 16,
-      "probes": 21
+      "probes": 33
     },
     "track-highlight": {
       "registryItems": [
@@ -524,21 +530,21 @@
         "transcript-divider"
       ],
       "knobs": 5,
-      "probes": 3
+      "probes": 4
     },
     "tree": {
       "registryItems": [
         "tree"
       ],
-      "knobs": 8,
-      "probes": 6
+      "knobs": 9,
+      "probes": 5
     },
     "user-ask": {
       "registryItems": [
         "user-ask"
       ],
       "knobs": 17,
-      "probes": 7
+      "probes": 3
     }
   }
 }

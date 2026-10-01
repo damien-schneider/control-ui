@@ -133,8 +133,8 @@ describe("Stepper", () => {
 
     expect(buttons).toHaveLength(2);
     expect(buttons.every((attributes) => attributes.includes('type="button"'))).toBe(true);
-    expect(buttons[0]).toContain(`aria-controls="${contentIds[0]}"`);
-    expect(buttons[1]).toContain(`aria-controls="${contentIds[1]}"`);
+    expect(buttons[0]).toContain('aria-current="step"');
+    expect(buttons[1]).not.toContain("aria-current");
     expect(buttons[0]).not.toMatch(/\sdisabled=""/);
     expect(buttons[1]).toMatch(/\sdisabled=""/);
     expect(contentIds).toHaveLength(2);

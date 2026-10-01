@@ -10,6 +10,8 @@
   ],
   "registryDependencies": [
     "core",
+    "dialog",
+    "motion",
     "surface-variants"
   ],
   "files": [

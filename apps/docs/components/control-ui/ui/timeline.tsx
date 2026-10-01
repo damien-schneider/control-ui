@@ -1,4 +1,8 @@
+"use client";
+
+import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps, CSSProperties } from "react";
+import type { RenderProp } from "@/components/control-ui/control-props";
 import type { TimelineKnobStyle } from "@/components/control-ui/knob-contracts/timeline-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
@@ -16,7 +20,10 @@ export type TimelineSeparatorProps = Omit<ComponentProps<"span">, "style"> & { s
 
 export type TimelineContentProps = ComponentProps<"div"> & { style?: CSSProperties & TimelineKnobStyle };
 
-export type TimelineTitleProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & TimelineKnobStyle };
+export type TimelineTitleProps = Omit<ComponentProps<"div">, "style"> & {
+  render?: RenderProp<ComponentProps<"div">>;
+  style?: CSSProperties & TimelineKnobStyle;
+};
 
 export type TimelineDescriptionProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & TimelineKnobStyle };
 
@@ -35,6 +42,7 @@ export function TimelineItem({ state = "neutral", className, ...props }: Timelin
       data-control-family="timeline"
       data-slot="item"
       data-state={state}
+      aria-current={state === "running" ? "step" : undefined}
       {...props}
       className={cn("group/timeline-item relative grid min-w-0 grid-cols-[1rem_minmax(0,1fr)]", className)}
     />
@@ -44,7 +52,8 @@ export function TimelineItem({ state = "neutral", className, ...props }: Timelin
 export function TimelineIndicator({ className, ...props }: TimelineIndicatorProps) {
   return (
     <span
-      aria-hidden="true"
+      role={props["aria-label"] ? "img" : undefined}
+      aria-hidden={props["aria-label"] ? undefined : true}
       data-control-ui="timeline"
       data-control-family="timeline"
       data-slot="indicator"
@@ -62,7 +71,7 @@ export function TimelineSeparator({ className, ...props }: TimelineSeparatorProp
       data-control-family="timeline"
       data-slot="separator"
       {...props}
-      className={cn("absolute top-5 bottom-0 left-[calc(0.5rem-0.5px)] col-start-1 w-px group-last/timeline-item:hidden", className)}
+      className={cn("absolute top-5 bottom-0 start-[calc(0.5rem-0.5px)] col-start-1 w-px group-last/timeline-item:hidden", className)}
     />
   );
 }
@@ -79,10 +88,18 @@ export function TimelineContent({ className, ...props }: TimelineContentProps) {
   );
 }
 
-export function TimelineTitle({ className, ...props }: TimelineTitleProps) {
-  return (
-    <div data-control-ui="timeline" data-control-family="timeline" data-slot="title" {...props} className={cn("min-w-0", className)} />
-  );
+export function TimelineTitle({ render, className, ...props }: TimelineTitleProps) {
+  return useRender({
+    defaultTagName: "div",
+    render,
+    props: {
+      ...props,
+      "data-control-ui": "timeline",
+      "data-control-family": "timeline",
+      "data-slot": "title",
+      className: cn("min-w-0", className),
+    },
+  });
 }
 
 export function TimelineDescription({ className, ...props }: TimelineDescriptionProps) {

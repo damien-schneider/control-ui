@@ -122,6 +122,9 @@
     }
   },
   "adornments": {},
-  "uncovered": [],
+  "uncovered": [
+    "--cui-item-hover-background",
+    "--cui-item-hover-border-color"
+  ],
   "contrast": "/r/contract/item.contrast.json"
 }

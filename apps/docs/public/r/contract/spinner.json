@@ -11,6 +11,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-spinner-animation-duration",
+      "syntax": "<time>",
+      "initialValue": "0s",
+      "defaultValue": "var(--duration-loop)"
     }
   ],
   "parts": {
@@ -20,7 +26,14 @@
         "registryItems": [
           "spinner"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-motion-essential",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
       },
       "indicator": {
         "family": "spinner",

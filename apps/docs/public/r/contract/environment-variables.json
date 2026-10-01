@@ -134,13 +134,6 @@
         ],
         "states": []
       },
-      "key-input": {
-        "family": "environment-variables",
-        "registryItems": [
-          "environment-variables"
-        ],
-        "states": []
-      },
       "message": {
         "family": "environment-variables",
         "registryItems": [
@@ -198,27 +191,6 @@
         "states": []
       },
       "toolbar": {
-        "family": "environment-variables",
-        "registryItems": [
-          "environment-variables"
-        ],
-        "states": []
-      },
-      "value-group": {
-        "family": "environment-variables",
-        "registryItems": [
-          "environment-variables"
-        ],
-        "states": [
-          {
-            "attribute": "data-invalid",
-            "source": "control-ui",
-            "valueKind": "presence",
-            "values": []
-          }
-        ]
-      },
-      "value-input": {
         "family": "environment-variables",
         "registryItems": [
           "environment-variables"

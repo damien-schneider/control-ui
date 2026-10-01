@@ -67,7 +67,7 @@ export function ChatExample() {
 
 function renderMastraTurn(from: "user" | "assistant", children: ReactNode, state: ChatState = "idle") {
   return (
-    <ChatTurn from={from} aria-live={from === "assistant" ? "polite" : undefined}>
+    <ChatTurn from={from}>
       <ChatMessage from={from} density="compact" state={state}>
         <ChatMessageRow className="py-0">
           <ChatMessageBody className={from === "assistant" ? "max-w-full flex-1" : undefined}>
@@ -194,13 +194,7 @@ function MastraChatPreview() {
                     Summarize note
                   </Button>
                 </ChatComposerTools>
-                {isRunning ? (
-                  <Button type="button" size="xs" variant="quiet" onClick={cancelRun}>
-                    Stop
-                  </Button>
-                ) : (
-                  <ChatComposerSubmit>Send</ChatComposerSubmit>
-                )}
+                <ChatComposerSubmit onStop={cancelRun}>Send</ChatComposerSubmit>
               </ChatComposerToolbar>
               {sendError ? <ChatComposerFooter role="alert">{sendError}</ChatComposerFooter> : null}
             </ChatComposerShell>

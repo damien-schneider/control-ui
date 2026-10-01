@@ -1,5 +1,7 @@
 "use client";
 
+import { prefersReducedMotion } from "@/components/control-ui/lib/motion";
+
 // ProseMirror removes nodes synchronously, so they are gone before any transition runs and @starting-style cannot cover exit.
 // element is cloned into fixed-position ghost over its last rect, animated out by chat-composer-editor.css, and self-removes on animationend with timeout backstop.
 
@@ -19,15 +21,9 @@ const MESSAGE_INHERIT = [
   "text-align",
 ] as const;
 
-function prefersReducedMotion(): boolean {
-  return typeof window !== "undefined" && typeof window.matchMedia === "function"
-    ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    : false;
-}
-
 export function spawnExitGhost(source: HTMLElement, inherit: readonly string[] = []): void {
   if (typeof document === "undefined") return;
-  if (prefersReducedMotion()) return;
+  if (prefersReducedMotion(source)) return;
 
   const rect = source.getBoundingClientRect();
   if (rect.width === 0 && rect.height === 0) return;

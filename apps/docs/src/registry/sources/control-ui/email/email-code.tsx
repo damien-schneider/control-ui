@@ -9,7 +9,7 @@ import {
   type Theme as PrismTheme,
   Section,
 } from "react-email";
-import { type EmailVariant, surfaceColors } from "./email";
+import { type EmailDirection, type EmailSides, type EmailVariant, emailSides, surfaceColors } from "./email";
 import type { EmailTheme } from "./theme";
 
 export function EmailInlineCode({ className = "", ...props }: CodeInlineProps) {
@@ -79,7 +79,7 @@ export function EmailCodeBlock({
   );
 }
 
-function markdownStyles(theme: EmailTheme, variant: EmailVariant): NonNullable<MarkdownProps["markdownCustomStyles"]> {
+function markdownStyles(theme: EmailTheme, variant: EmailVariant, sides: EmailSides): NonNullable<MarkdownProps["markdownCustomStyles"]> {
   const colors = surfaceColors(theme, variant);
   const body: CSSProperties = {
     margin: "0 0 16px",
@@ -107,11 +107,13 @@ function markdownStyles(theme: EmailTheme, variant: EmailVariant): NonNullable<M
     color: theme.code.foreground,
     borderRadius: theme.radii.control,
   };
+  const startInset = (length: string): CSSProperties => (sides.start === "left" ? { paddingLeft: length } : { paddingRight: length });
+  const startRule = `3px solid ${theme.colors.border}`;
   return {
     p: body,
     li: { ...body, margin: "0 0 4px" },
-    ul: { ...body, paddingLeft: "20px" },
-    ol: { ...body, paddingLeft: "20px" },
+    ul: { ...body, ...startInset("20px") },
+    ol: { ...body, ...startInset("20px") },
     h1: headingStyle("heading-1"),
     h2: headingStyle("heading-2"),
     h3: headingStyle("heading-3"),
@@ -125,18 +127,28 @@ function markdownStyles(theme: EmailTheme, variant: EmailVariant): NonNullable<M
     codeBlock: { ...monospace, display: "block", padding: "16px", borderRadius: theme.radii.panel, whiteSpace: "pre-wrap" },
     blockQuote: {
       ...body,
-      borderLeft: `3px solid ${theme.colors.border}`,
-      paddingLeft: "16px",
+      ...(sides.start === "left" ? { borderLeft: startRule } : { borderRight: startRule }),
+      ...startInset("16px"),
       color: colors["muted-foreground"],
     },
     hr: { border: "none", borderTop: `1px solid ${theme.colors.border}`, margin: "24px 0" },
     image: { maxWidth: "100%", borderRadius: theme.radii.scene },
     table: { width: "100%", borderCollapse: "collapse", marginBottom: "16px" },
-    th: { ...body, margin: "0", textAlign: "left", padding: "8px 0", borderBottom: `1px solid ${theme.colors.border}` },
+    th: { ...body, margin: "0", textAlign: sides.start, padding: "8px 0", borderBottom: `1px solid ${theme.colors.border}` },
     td: { ...body, margin: "0", padding: "8px 0", borderBottom: `1px solid ${theme.colors.border}` },
   };
 }
 
-export function EmailMarkdown({ theme, variant = "contained", children }: { theme: EmailTheme; variant?: EmailVariant; children: string }) {
-  return <Markdown markdownCustomStyles={markdownStyles(theme, variant)}>{children}</Markdown>;
+export function EmailMarkdown({
+  theme,
+  variant = "contained",
+  dir,
+  children,
+}: {
+  theme: EmailTheme;
+  variant?: EmailVariant;
+  dir?: EmailDirection;
+  children: string;
+}) {
+  return <Markdown markdownCustomStyles={markdownStyles(theme, variant, emailSides(dir))}>{children}</Markdown>;
 }

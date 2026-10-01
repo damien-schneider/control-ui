@@ -4,6 +4,7 @@ import type { ComponentProps } from "react";
 import { createContext, useContext, useState, useSyncExternalStore } from "react";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import { cn } from "@/components/control-ui/lib/cn";
+import { PopupCloseButton } from "@/components/control-ui/popup-parts";
 import { Button } from "@/components/control-ui/ui/button";
 import type { DialogContentProps, DialogProps } from "@/components/control-ui/ui/dialog";
 import {
@@ -135,13 +136,14 @@ export function ResponsiveDialogContent({
   drawerClassName,
   children,
   showCloseButton = true,
+  closeLabel = "Close",
   ...props
 }: ResponsiveDialogContentProps) {
   const isMobile = useResponsiveDialogContext();
 
   if (!isMobile) {
     return (
-      <DialogContent className={cn(className, dialogClassName)} showCloseButton={showCloseButton} {...props}>
+      <DialogContent className={cn(className, dialogClassName)} showCloseButton={showCloseButton} closeLabel={closeLabel} {...props}>
         {children}
       </DialogContent>
     );
@@ -150,14 +152,7 @@ export function ResponsiveDialogContent({
   return (
     <DrawerContent className={cn("relative", className, drawerClassName)} {...props}>
       <DrawerBody padding="none">{children}</DrawerBody>
-      {showCloseButton ? (
-        <ResponsiveDialogClose variant="ghost" size="xs" className="absolute right-3 top-3 w-[var(--control-h-xs)] px-0">
-          <svg viewBox="0 0 16 16" className="size-4" aria-hidden="true" fill="none">
-            <path d="M4 4 12 12M12 4 4 12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-          </svg>
-          <span className="sr-only">Close</span>
-        </ResponsiveDialogClose>
-      ) : null}
+      {showCloseButton ? <DrawerClose render={<PopupCloseButton label={closeLabel} />} /> : null}
     </DrawerContent>
   );
 }

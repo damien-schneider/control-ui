@@ -10,6 +10,13 @@ async function openFilters(page: Page) {
   return group;
 }
 
+function issueCount(group: Locator) {
+  return group
+    .locator("..")
+    .getByRole("status")
+    .filter({ hasText: /^\d+ of \d+ issues$/ });
+}
+
 async function addFilter(page: Page, group: Locator, field: string, operator?: string, value?: string) {
   await group.getByRole("button", { name: "Add filter", exact: true }).click();
   await page.getByRole("option", { name: field, exact: true }).click();
@@ -28,18 +35,18 @@ test("button entry progresses, edits, cancels and restores focus", async ({ page
   await page.getByRole("option", { name: "is", exact: true }).click();
   await page.getByRole("option", { name: "Open", exact: true }).click();
   await expect(add).toBeFocused();
-  await expect(group.locator("..").getByRole("status")).toHaveText("2 of 4 issues");
+  await expect(issueCount(group)).toHaveText("2 of 4 issues");
   await group.getByRole("button", { name: "Edit value: Open" }).click();
   await page.getByRole("option", { name: "Done", exact: true }).click();
-  await expect(group.locator("..").getByRole("status")).toHaveText("1 of 4 issues");
+  await expect(issueCount(group)).toHaveText("1 of 4 issues");
   await group.getByRole("button", { name: "Edit field: Status" }).click();
   await page.getByRole("option", { name: "Votes", exact: true }).click();
   await page.keyboard.press("Escape");
   await page.keyboard.press("Escape");
   await expect(group.getByRole("button", { name: "Edit value: Done" })).toBeVisible();
-  await group.getByRole("button", { name: "Remove Status filter" }).click();
+  await group.getByRole("button", { name: /^Remove filter: Status / }).click();
   await expect(add).toBeFocused();
-  await expect(group.locator("..").getByRole("status")).toHaveText("4 of 4 issues");
+  await expect(issueCount(group)).toHaveText("4 of 4 issues");
 });
 
 test("numeric, boolean, multi-choice and zero-value filters commit correct values", async ({ page }) => {
@@ -47,39 +54,39 @@ test("numeric, boolean, multi-choice and zero-value filters commit correct value
   await addFilter(page, group, "Votes", "is");
   const number = page.getByRole("combobox", { name: "Votes value", exact: true });
   await number.fill("Infinity");
-  await expect(page.getByText("Enter a finite number.", { exact: true })).toBeVisible();
-  await expect(group.locator("..").getByRole("status")).toHaveText("4 of 4 issues");
+  await expect(page.getByText("Enter a number, like 42 or 3.5.", { exact: true })).toBeVisible();
+  await expect(issueCount(group)).toHaveText("4 of 4 issues");
   await number.fill("0");
   await number.press("Enter");
   await expect(group.getByRole("button", { name: "Edit value: 0" })).toBeVisible();
-  await expect(group.locator("..").getByRole("status")).toHaveText("1 of 4 issues");
+  await expect(issueCount(group)).toHaveText("1 of 4 issues");
   await group.getByRole("button", { name: "Clear filters" }).click();
   await addFilter(page, group, "Featured", undefined, "False");
-  await expect(group.locator("..").getByRole("status")).toHaveText("2 of 4 issues");
+  await expect(issueCount(group)).toHaveText("2 of 4 issues");
   await group.getByRole("button", { name: "Clear filters" }).click();
   await addFilter(page, group, "Labels", "is any of");
-  await expect(page.getByRole("button", { name: "Done", exact: true })).toBeDisabled();
+  await expect(page.getByRole("button", { name: "Apply", exact: true })).toBeDisabled();
   await page.getByRole("option", { name: "Design", exact: true }).click();
   await page.getByRole("option", { name: "Accessibility", exact: true }).click();
-  await page.getByRole("button", { name: "Done", exact: true }).click();
+  await page.getByRole("button", { name: "Apply", exact: true }).click();
   await expect(group.getByRole("button", { name: "Edit value: Design, Accessibility" })).toBeVisible();
-  await expect(group.locator("..").getByRole("status")).toHaveText("2 of 4 issues");
+  await expect(issueCount(group)).toHaveText("2 of 4 issues");
   await group.getByRole("button", { name: "Edit value: Design, Accessibility" }).click();
   await page.getByRole("option", { name: "Accessibility", exact: true }).click();
   await page.getByRole("combobox", { name: "Labels value", exact: true }).press("Control+Enter");
   await expect(group.getByRole("button", { name: "Edit value: Design", exact: true })).toBeVisible();
-  await expect(group.locator("..").getByRole("status")).toHaveText("1 of 4 issues");
+  await expect(issueCount(group)).toHaveText("1 of 4 issues");
   await group.getByRole("button", { name: "Clear filters" }).click();
   await addFilter(page, group, "Labels", "is empty");
   await expect(group.getByRole("button", { name: "Edit operator: is empty" })).toBeVisible();
   await expect(group.getByRole("button", { name: /^Edit value:/ })).toHaveCount(0);
-  await expect(group.locator("..").getByRole("status")).toHaveText("1 of 4 issues");
+  await expect(issueCount(group)).toHaveText("1 of 4 issues");
 });
 
 test("inline typing and button entry coexist with keyboard navigation", async ({ page }) => {
   await openFilters(page);
   const group = page.getByRole("group", { name: "Issue filters", exact: true }).nth(1);
-  const input = group.getByRole("combobox", { name: "Filter issues", exact: true });
+  const input = group.getByPlaceholder("Filter issues…", { exact: true });
   await input.fill("title");
   await input.press("Enter");
   await expect(input).toBeFocused();
@@ -87,14 +94,14 @@ test("inline typing and button entry coexist with keyboard navigation", async ({
   await input.press("Backspace");
   await expect(input).toHaveValue("keyboard");
   await input.press("Enter");
-  await expect(group.locator("..").getByRole("status")).toHaveText("1 of 4 issues");
+  await expect(issueCount(group)).toHaveText("1 of 4 issues");
   await expect(input).toBeFocused();
   await input.press("ArrowLeft");
-  await expect(group.getByRole("button", { name: "Remove Title filter" })).toBeFocused();
+  await expect(group.getByRole("button", { name: /^Remove filter: Title / })).toBeFocused();
   await page.keyboard.press("ArrowLeft");
   await expect(group.getByRole("button", { name: "Edit value: keyboard" })).toBeFocused();
   await page.keyboard.press("Delete");
-  await expect(group.locator("..").getByRole("status")).toHaveText("4 of 4 issues");
+  await expect(issueCount(group)).toHaveText("4 of 4 issues");
   await addFilter(page, group, "Status", "is", "Open");
   await expect(group.getByRole("button", { name: "Edit value: Open" })).toBeVisible();
 });
@@ -103,10 +110,15 @@ test("remote search shows loading, errors and fresh results with stable selected
   await openFilters(page);
   const group = page.getByRole("group", { name: "Assignee filters", exact: true });
   await addFilter(page, group, "Assignee", "is");
-  await expect(page.getByText("Loading values…", { exact: true })).toBeVisible();
+  await expect(page.locator('[data-popup-kind="combobox"]').getByText("Loading values…", { exact: true })).toBeVisible();
+  await expect(group.getByRole("status")).toHaveText("Loading values…");
   const search = page.getByRole("combobox", { name: "Assignee value", exact: true });
   await search.fill("offline");
-  await expect(page.getByText("Couldn’t load assignees. Try another search.", { exact: true })).toHaveAttribute("role", "alert");
+  await expect(
+    page.locator('[data-popup-kind="combobox"]').getByText("Couldn’t load assignees. Try another search.", { exact: true }),
+  ).toBeVisible();
+  await expect(group.getByRole("status")).toHaveText("Couldn’t load assignees. Try another search.");
+  await expect(search).toHaveAccessibleDescription("Couldn’t load assignees. Try another search.");
   await search.fill("leo");
   await search.fill("maya");
   await expect(page.getByRole("option", { name: "Maya Chen", exact: true })).toBeVisible();
@@ -161,13 +173,13 @@ test("draft segments retain their elements through commit and removal settles du
   await page.getByRole("option", { name: "is", exact: true }).click();
   await page.getByRole("option", { name: "Open", exact: true }).click();
   await expect(field).toHaveAttribute("data-retained", "true");
-  await addFilter(page, group, "Votes", "≥");
+  await addFilter(page, group, "Votes", "at least");
   const number = page.getByRole("combobox", { name: "Votes value", exact: true });
   await number.fill("-.5");
   await number.press("Enter");
   await expect(group.getByRole("button", { name: "Edit value: -0.5" })).toBeVisible();
   await group.screenshot({ path: testInfo.outputPath("refined-desktop.png") });
-  await group.getByRole("button", { name: "Remove Status filter" }).click();
+  await group.getByRole("button", { name: /^Remove filter: Status / }).click();
   await group.getByRole("button", { name: "Clear filters" }).click();
   await expect(group.locator('[data-slot="exit"]')).toHaveCount(0);
   await expect(group.locator('[data-slot="chip"]')).toHaveCount(0);

@@ -16,12 +16,17 @@
     font-size: var(--text-label);
     font-weight: var(--font-weight-medium);
     text-align: start;
-    outline: none;
     transition: background-color var(--duration-fast) var(--ease-standard);
   }
 
-  :where([data-control-family="collapsible"][data-slot="trigger"]:is(:hover, :focus-visible)) {
+  :where([data-control-family="collapsible"][data-slot="trigger"]:focus-visible) {
     background: var(--cui-collapsible-trigger-hover-background);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="collapsible"][data-slot="trigger"]:not(:disabled, [data-disabled]):hover) {
+      background: var(--cui-collapsible-trigger-hover-background);
+    }
   }
 
   :where([data-control-family="collapsible"][data-slot="trigger"] > svg) {

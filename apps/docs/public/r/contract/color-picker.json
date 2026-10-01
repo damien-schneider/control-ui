@@ -135,6 +135,14 @@
             "values": []
           },
           {
+            "attribute": "data-focus-ring",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "within"
+            ]
+          },
+          {
             "attribute": "data-focused",
             "source": "external",
             "valueKind": "presence",
@@ -251,6 +259,14 @@
             "source": "control-ui",
             "valueKind": "presence",
             "values": []
+          },
+          {
+            "attribute": "data-focus-ring",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "within"
+            ]
           }
         ]
       },
@@ -425,6 +441,14 @@
             "source": "external",
             "valueKind": "presence",
             "values": []
+          },
+          {
+            "attribute": "data-focus-ring",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "within"
+            ]
           },
           {
             "attribute": "data-focused",
@@ -681,6 +705,14 @@
             "source": "control-ui",
             "valueKind": "presence",
             "values": []
+          },
+          {
+            "attribute": "data-focus-ring",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "within"
+            ]
           }
         ]
       },

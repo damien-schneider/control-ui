@@ -3,16 +3,27 @@
     --docs-section-gap: 3rem;
   }
 
+  :where([data-docs-shell]) {
+    --cui-sidebar-inset-background: var(--card);
+    --cui-sidebar-inset-border-color: oklch(from var(--border) l c h / calc(alpha * 0.7));
+    --cui-sidebar-inset-border-width: 1px;
+    --cui-sidebar-inset-radius: var(--radius-panel);
+    --cui-sidebar-inset-shadow: var(--shadow-pop);
+    --cui-sidebar-inset-inset: calc(var(--spacing) * 1.5);
+  }
+
   :where([data-docs-inset]) {
-    --cui-sidebar-inset-background: var(--canvas);
+    background-color: var(--canvas);
+    background-image: none;
   }
 
   :where([data-docs-content]) {
-    margin: calc(var(--spacing) * 1.5);
-    border: 1px solid oklch(from var(--border) l c h / calc(alpha * 0.7));
-    border-radius: var(--radius-panel);
-    background-color: var(--card);
-    box-shadow: var(--shadow-pop);
+    margin: var(--cui-sidebar-inset-inset);
+    border: var(--cui-sidebar-inset-border-width) solid var(--cui-sidebar-inset-border-color);
+    border-radius: var(--cui-sidebar-inset-radius);
+    background-color: var(--cui-sidebar-inset-background);
+    background-image: var(--cui-sidebar-inset-background-image);
+    box-shadow: var(--cui-sidebar-inset-shadow);
   }
 
   /* Docs tuning of the page measure. The reading column is narrower than the component default and the
@@ -51,8 +62,8 @@
   }
 
   @media (width >= 64rem) {
-    :where([data-docs-content]) {
-      margin: calc(var(--spacing) * 2);
+    :where([data-docs-shell]) {
+      --cui-sidebar-inset-inset: calc(var(--spacing) * 2);
     }
 
     [data-docs-layout="page"] :where([data-docs-sidebar-navigation]) {

@@ -83,6 +83,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "oklch(from var(--cui-page-layout-background) l c h / 0.85)"
+    },
+    {
+      "name": "--cui-page-layout-sticky-header-backdrop-filter",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "blur(12px)"
     }
   ],
   "parts": {

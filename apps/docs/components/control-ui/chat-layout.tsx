@@ -2,12 +2,14 @@
 
 import { ArrowDown } from "lucide-react";
 import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
+import { ChatThreadAnnounceContext } from "@/components/control-ui/hooks/use-chat-message";
 import { useChatThreadScroll } from "@/components/control-ui/hooks/use-chat-thread-scroll";
 import type { ChatLayoutKnobStyle } from "@/components/control-ui/knob-contracts/chat-layout-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { SkinAdornment } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
+import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
 export type ChatLayoutChrome = "panel" | "embedded";
@@ -52,50 +54,58 @@ export type ChatThreadProps = ComponentProps<"div"> & {
 
 export function ChatThread({ children, composer, className, ...props }: ChatThreadProps) {
   const { viewportRef, contentRef, atBottom, scrollToBottom } = useChatThreadScroll();
+  const [announcement, setAnnouncement] = useState("");
+  const [announce] = useState(() => (message: string) => {
+    // A trailing no-break space makes a repeated message a real text change, so it is read again.
+    setAnnouncement((current) => (current === message ? `${message}\u00a0` : message));
+  });
 
   return (
-    <ChatThreadScrollContext.Provider value={{ atBottom, scrollToBottom }}>
-      <div
-        data-control-ui="chat-thread"
-        data-control-family="chat-layout"
-        data-chat-layout-kind="thread"
-        data-slot="root"
-        data-at-bottom={atBottom ? "" : undefined}
-        className={cn("flex min-h-0 min-w-0 flex-1 flex-col", className)}
-        {...props}
-      >
-        <ScrollArea
-          className="flex min-h-0 flex-1 flex-col"
-          viewportClassName="min-h-0 flex-1"
-          contentClassName="flex min-h-full flex-col"
-          viewportRef={viewportRef}
-          lockAxis="x"
-          mask={false}
-          blur={false}
+    <ChatThreadAnnounceContext.Provider value={announce}>
+      <ChatThreadScrollContext.Provider value={{ atBottom, scrollToBottom }}>
+        <div
+          data-control-ui="chat-thread"
+          data-control-family="chat-layout"
+          data-chat-layout-kind="thread"
+          data-slot="root"
+          data-at-bottom={atBottom ? "" : undefined}
+          className={cn("flex min-h-0 min-w-0 flex-1 flex-col", className)}
+          {...props}
         >
-          <div ref={contentRef} className="relative flex min-w-0 flex-1 flex-col">
-            <div
-              data-control-ui="chat-thread"
-              data-control-family="chat-layout"
-              data-slot="thread-content"
-              className="flex min-w-0 flex-1 flex-col"
-            >
-              {children}
-            </div>
-            {composer ? (
+          <ScrollArea
+            className="flex min-h-0 flex-1 flex-col"
+            viewportClassName="min-h-0 flex-1"
+            contentClassName="flex min-h-full flex-col"
+            viewportRef={viewportRef}
+            lockAxis="x"
+            mask={false}
+            blur={false}
+          >
+            <div ref={contentRef} className="relative flex min-w-0 flex-1 flex-col">
               <div
                 data-control-ui="chat-thread"
                 data-control-family="chat-layout"
-                data-slot="dock"
-                className="sticky bottom-0 z-10 shrink-0"
+                data-slot="thread-content"
+                className="flex min-w-0 flex-1 flex-col"
               >
-                {composer}
+                {children}
               </div>
-            ) : null}
-          </div>
-        </ScrollArea>
-      </div>
-    </ChatThreadScrollContext.Provider>
+              {composer ? (
+                <div
+                  data-control-ui="chat-thread"
+                  data-control-family="chat-layout"
+                  data-slot="dock"
+                  className="sticky bottom-0 z-10 shrink-0"
+                >
+                  {composer}
+                </div>
+              ) : null}
+            </div>
+          </ScrollArea>
+          <LiveStatus message={announcement} />
+        </div>
+      </ChatThreadScrollContext.Provider>
+    </ChatThreadAnnounceContext.Provider>
   );
 }
 

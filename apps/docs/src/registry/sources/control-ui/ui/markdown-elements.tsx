@@ -75,6 +75,18 @@ export function MarkdownH3({ className, node: _node, ...props }: MarkdownElement
   return <h3 data-control-ui="markdown" data-control-family="markdown" data-slot="h3" className={className} {...props} />;
 }
 
+export function MarkdownH4({ className, node: _node, ...props }: MarkdownElementProps<"h4">) {
+  return <h4 data-control-ui="markdown" data-control-family="markdown" data-slot="h4" className={className} {...props} />;
+}
+
+export function MarkdownH5({ className, node: _node, ...props }: MarkdownElementProps<"h5">) {
+  return <h5 data-control-ui="markdown" data-control-family="markdown" data-slot="h5" className={className} {...props} />;
+}
+
+export function MarkdownH6({ className, node: _node, ...props }: MarkdownElementProps<"h6">) {
+  return <h6 data-control-ui="markdown" data-control-family="markdown" data-slot="h6" className={className} {...props} />;
+}
+
 export function MarkdownP({ className, node: _node, ...props }: MarkdownElementProps<"p">) {
   return <p data-control-ui="markdown" data-control-family="markdown" data-slot="paragraph" className={className} {...props} />;
 }
@@ -154,6 +166,9 @@ export const markdownComponents = {
   h1: MarkdownH1,
   h2: MarkdownH2,
   h3: MarkdownH3,
+  h4: MarkdownH4,
+  h5: MarkdownH5,
+  h6: MarkdownH6,
   p: MarkdownP,
   ul: MarkdownUl,
   ol: MarkdownOl,

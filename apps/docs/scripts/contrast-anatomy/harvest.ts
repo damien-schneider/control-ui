@@ -28,6 +28,9 @@ const PAINT_PROPERTY: Record<string, "color" | "backgroundColor" | "borderColor"
 /** One page holds many copies of the same part, and only distinct anatomies are worth a probe. */
 const OCCURRENCES_PER_RULE = 60;
 
+/** A color no skin paints, in the form getComputedStyle serializes it, so a paint that follows a knob reads back verbatim. */
+const SENTINEL_PAINT = "rgb(1, 2, 3)";
+
 /**
  * An anatomy holds what the browser paints behind a part, read off the hit stack under the part's own
  * centre: its ancestors, but also the sibling an indicator slides beneath it, and never a wrapper whose
@@ -37,7 +40,7 @@ const OCCURRENCES_PER_RULE = 60;
  */
 export async function harvestRoute(page: Page, input: HarvestInput): Promise<RouteHarvest> {
   return page.evaluate(
-    ({ rules, anatomyAttributes, fillSelectors, paintProperty, occurrencesPerRule }) => {
+    ({ rules, anatomyAttributes, fillSelectors, paintProperty, occurrencesPerRule, sentinel }) => {
       const container = document.createElement("div");
       container.style.cssText = "position:fixed;left:-10000px;top:0;width:400px;height:400px";
       document.body.append(container);
@@ -99,10 +102,30 @@ export async function harvestRoute(page: Page, input: HarvestInput): Promise<Rou
         return knobs.map((knob) => style.getPropertyValue(knob).trim());
       };
 
-      /** A later rule or a consumer utility can win a role, and then this rule's knob describes no pixel here. */
+      /**
+       * A later rule or a consumer utility can win a role, and then this rule's knob describes no pixel here.
+       * Equal values prove nothing — an active rule's knob can resolve to the base one on the harvested skin —
+       * so the knob is moved and the paint has to move with it. Transitions are held off both ways, or the
+       * read would see the old paint and the restore would animate back from the sentinel.
+       */
       const paintsFromKnobs = (element: Element, knobs: [string, string][]) => {
-        const style = getComputedStyle(element);
-        return knobs.every(([role, knob]) => Reflect.get(style, Reflect.get(paintProperty, role)) === style.getPropertyValue(knob).trim());
+        if (!(element instanceof HTMLElement || element instanceof SVGElement)) return false;
+        const { style } = element;
+        const transition = [style.getPropertyValue("transition"), style.getPropertyPriority("transition")];
+        style.setProperty("transition", "none");
+        const follows = knobs.every(([role, knob]) => {
+          const property = Reflect.get(paintProperty, role);
+          const declared = [style.getPropertyValue(knob), style.getPropertyPriority(knob)];
+          style.setProperty(knob, sentinel);
+          const moved = Reflect.get(getComputedStyle(element), property) === sentinel;
+          if (declared[0]) style.setProperty(knob, declared[0], declared[1]);
+          else style.removeProperty(knob);
+          Reflect.get(getComputedStyle(element), property);
+          return moved;
+        });
+        if (transition[0]) style.setProperty("transition", transition[0], transition[1]);
+        else style.removeProperty("transition");
+        return follows;
       };
 
       const probes = new Map<string, Omit<ContrastProbe, "route">>();
@@ -175,6 +198,6 @@ export async function harvestRoute(page: Page, input: HarvestInput): Promise<Rou
       container.remove();
       return { probes: [...probes.values()], unreproduced: [...unreproduced] };
     },
-    { ...input, paintProperty: PAINT_PROPERTY, occurrencesPerRule: OCCURRENCES_PER_RULE },
+    { ...input, paintProperty: PAINT_PROPERTY, occurrencesPerRule: OCCURRENCES_PER_RULE, sentinel: SENTINEL_PAINT },
   );
 }

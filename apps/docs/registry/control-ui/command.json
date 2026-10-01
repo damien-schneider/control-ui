@@ -11,6 +11,7 @@
     "core",
     "dialog",
     "empty",
+    "live-status",
     "scroll-area",
     "surface-variants"
   ],

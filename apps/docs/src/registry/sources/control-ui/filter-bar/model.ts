@@ -42,6 +42,12 @@ function fieldOptionsForLabel(field: FilterBarField | undefined, value: FilterBa
   return (field ? fieldOptions(field).find((option) => option.value === value)?.label : undefined) ?? String(value);
 }
 
+export function describeFilter(item: FilterBarItem, fields: readonly FilterBarField[], operators: readonly FilterBarOperator[]) {
+  const field = fields.find((candidate) => candidate.id === item.fieldId);
+  const operator = operators.find((candidate) => candidate.id === item.operatorId);
+  return [field?.label ?? item.fieldId, operator?.ariaLabel ?? operator?.label, formatFilterValue(item, field)].filter(Boolean).join(" ");
+}
+
 export function filterNavigationKeys(items: readonly FilterBarItem[]) {
   return items.flatMap((item) =>
     ["field", "operator", ...(item.value === null ? [] : ["value"]), "remove"].map((segment) => `${item.id}:${segment}`),

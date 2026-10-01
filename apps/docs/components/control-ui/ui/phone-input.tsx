@@ -11,7 +11,8 @@ import type { PhoneInputKnobStyle } from "@/components/control-ui/knob-contracts
 import { cn } from "@/components/control-ui/lib/cn";
 import { normalizePhoneInputText, normalizePhoneInputValue } from "@/components/control-ui/lib/phone-input-format";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/control-ui/ui/command";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/control-ui/ui/input-group";
+import { Input } from "@/components/control-ui/ui/input";
+import { InputGroup, InputGroupAddon } from "@/components/control-ui/ui/input-group";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/control-ui/ui/popover";
 
 export type PhoneInputValue = Value;
@@ -33,6 +34,7 @@ export type PhoneInputProps = Omit<ComponentProps<"input">, "defaultValue" | "si
   countryCallingCodeEditable?: boolean;
   addInternationalOption?: boolean;
   countrySearchPlaceholder?: string;
+  countrySearchLabel?: string;
   countryEmptyMessage?: string;
   "data-invalid"?: boolean | string;
   style?: CSSProperties & PhoneInputKnobStyle;
@@ -53,11 +55,12 @@ type PhoneCountrySelectProps = {
   readOnly?: boolean;
   "aria-label"?: string;
   searchPlaceholder?: string;
+  searchLabel?: string;
   emptyMessage?: string;
   knobStyle?: CSSProperties & PhoneInputKnobStyle;
 };
 
-type PhoneInputControlProps = ComponentProps<"input"> & {
+type PhoneInputControlProps = ComponentProps<typeof Input> & {
   normalizationCountry?: PhoneInputCountry;
   onNativeChange?: ChangeEventHandler<HTMLInputElement>;
 };
@@ -67,6 +70,10 @@ type FlagComponent = ComponentType<SVGProps<SVGSVGElement> & EmbeddedFlagProps>;
 const FLAG_COMPONENTS: Partial<Record<PhoneInputCountry, FlagComponent>> = flags;
 const PhoneNumberInputWithRef: ComponentType<ComponentProps<typeof PhoneNumberInput> & { inputRef?: Ref<HTMLInputElement> }> =
   PhoneNumberInput;
+function phoneInputKnobs(style: (CSSProperties & PhoneInputKnobStyle) | undefined): (CSSProperties & PhoneInputKnobStyle) | undefined {
+  if (!style) return undefined;
+  return Object.fromEntries(Object.entries(style).filter(([property]) => property.startsWith("--cui-phone-input-")));
+}
 
 function PhoneInputContainer({ className, ...props }: ComponentProps<typeof InputGroup>) {
   return <InputGroup data-field-kind="phone-input" className={cn("gap-0 p-0", className)} {...props} />;
@@ -74,12 +81,8 @@ function PhoneInputContainer({ className, ...props }: ComponentProps<typeof Inpu
 
 function PhoneInputControl({ className, normalizationCountry, onChange, onNativeChange, ...props }: PhoneInputControlProps) {
   return (
-    <InputGroupInput
+    <Input
       {...props}
-      data-control-ui="field"
-      data-control-family="field"
-      data-field-kind="phone-input"
-      data-slot="input"
       dir="ltr"
       className={className}
       onChange={(event) => {
@@ -102,13 +105,10 @@ function PhoneCountrySelect({
   readOnly,
   "aria-label": ariaLabel = "Country",
   searchPlaceholder = "Search country…",
+  searchLabel = "Search countries",
   emptyMessage,
   knobStyle,
 }: PhoneCountrySelectProps) {
-  const countryStyle = knobStyle;
-  const triggerStyle = knobStyle;
-  const metadataStyle = knobStyle;
-  const chevronStyle = knobStyle;
   const [open, setOpen] = useState(false);
   const selectedOption = options.find((option) => option.value === value);
   const selectedCallingCode = value ? `+${getCountryCallingCode(value)}` : undefined;
@@ -117,7 +117,7 @@ function PhoneCountrySelect({
     : ariaLabel;
 
   return (
-    <InputGroupAddon data-phone-input-country="" className="h-full self-stretch p-0" style={countryStyle}>
+    <InputGroupAddon data-phone-input-country="" className="h-full self-stretch p-0">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger
           data-control-ui="phone-input"
@@ -129,52 +129,47 @@ function PhoneCountrySelect({
           onFocus={onFocus}
           onBlur={onBlur}
           className="inline-flex h-full items-center justify-center disabled:cursor-not-allowed"
-          style={triggerStyle}
         >
           <CountryFlag country={value} />
-          <ChevronIcon open={open} style={chevronStyle} />
+          <ChevronIcon open={open} />
         </PopoverTrigger>
         <PopoverContent align="start" padding="none" className="w-[min(20rem,calc(100vw-2rem))]">
-          <Command chrome="embedded">
-            <CommandInput aria-label={searchPlaceholder} placeholder={searchPlaceholder} />
-            <CommandList>
-              <CommandEmpty title={emptyMessage} />
-              <CommandGroup>
-                {options.map((option) => {
-                  const callingCode = option.value ? `+${getCountryCallingCode(option.value)}` : "";
-                  const selected = option.value === value;
+          <div data-control-ui="phone-input" data-control-family="phone-input" data-slot="root" className="contents" style={knobStyle}>
+            <Command chrome="embedded">
+              <CommandInput aria-label={searchLabel} placeholder={searchPlaceholder} />
+              <CommandList>
+                <CommandEmpty title={emptyMessage} />
+                <CommandGroup>
+                  {options.map((option) => {
+                    const callingCode = option.value ? `+${getCountryCallingCode(option.value)}` : "";
+                    const selected = option.value === value;
 
-                  return (
-                    <CommandItem
-                      key={option.value ?? "international"}
-                      value={`${option.label} ${option.value ?? "international"} ${callingCode}`}
-                      data-current={selected ? "" : undefined}
-                      onSelect={() => {
-                        onChange(option.value);
-                        setOpen(false);
-                      }}
-                    >
-                      <CountryFlag country={option.value} />
-                      <span className="min-w-0 flex-1 truncate">{option.label}</span>
-                      {callingCode ? (
-                        <span
-                          data-control-ui="phone-input"
-                          data-control-family="phone-input"
-                          data-slot="metadata"
-                          className="min-w-0"
-                          style={metadataStyle}
-                        >
-                          {callingCode}
-                        </span>
-                      ) : null}
-                      {selected ? <span className="sr-only">Selected</span> : null}
-                      <CheckIcon visible={selected} />
-                    </CommandItem>
-                  );
-                })}
-              </CommandGroup>
-            </CommandList>
-          </Command>
+                    return (
+                      <CommandItem
+                        key={option.value ?? "international"}
+                        value={`${option.label} ${option.value ?? "international"} ${callingCode}`}
+                        data-current={selected ? "" : undefined}
+                        onSelect={() => {
+                          onChange(option.value);
+                          setOpen(false);
+                        }}
+                      >
+                        <CountryFlag country={option.value} />
+                        <span className="min-w-0 flex-1 truncate">{option.label}</span>
+                        {callingCode ? (
+                          <span data-control-ui="phone-input" data-control-family="phone-input" data-slot="metadata" className="min-w-0">
+                            {callingCode}
+                          </span>
+                        ) : null}
+                        {selected ? <span className="sr-only">Selected</span> : null}
+                        <CheckIcon visible={selected} />
+                      </CommandItem>
+                    );
+                  })}
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </div>
         </PopoverContent>
       </Popover>
     </InputGroupAddon>
@@ -228,12 +223,13 @@ export function PhoneInput(props: PhoneInputProps) {
     countryCallingCodeEditable = true,
     addInternationalOption = true,
     countrySearchPlaceholder,
+    countrySearchLabel,
     countryEmptyMessage,
     "aria-invalid": ariaInvalid,
     "data-invalid": dataInvalid,
     ...inputProps
   } = props;
-  const knobStyle = style;
+  const knobStyle = phoneInputKnobs(style);
   const [internalValue, setInternalValue] = useState<PhoneInputValue | string | undefined>(defaultValue);
   const [selectedCountry, setSelectedCountry] = useState(defaultCountry);
   const currentValue = controlled ? value : internalValue;
@@ -289,6 +285,7 @@ export function PhoneInput(props: PhoneInputProps) {
         countrySelectComponent={PhoneCountrySelect}
         countrySelectProps={{
           searchPlaceholder: countrySearchPlaceholder,
+          searchLabel: countrySearchLabel,
           emptyMessage: countryEmptyMessage,
           knobStyle,
         }}
@@ -299,7 +296,7 @@ export function PhoneInput(props: PhoneInputProps) {
   );
 }
 
-function ChevronIcon({ open, style }: { open: boolean; style?: CSSProperties & PhoneInputKnobStyle }) {
+function ChevronIcon({ open }: { open: boolean }) {
   return (
     <svg
       data-control-ui="phone-input"
@@ -308,7 +305,6 @@ function ChevronIcon({ open, style }: { open: boolean; style?: CSSProperties & P
       viewBox="0 0 12 12"
       data-open={open ? "true" : undefined}
       className="size-3"
-      style={style}
       aria-hidden="true"
       fill="none"
     >

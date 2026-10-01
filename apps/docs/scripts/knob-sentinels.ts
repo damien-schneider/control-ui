@@ -12,6 +12,8 @@ const SENTINELS: Record<string, string> = {
   "<length-percentage>": "7.5px",
   "<length-percentage>+": "7.5px",
   "<number>": "1.75",
+  "<percentage>": "7.5%",
+  "none | uppercase | lowercase | capitalize": "capitalize",
   "<time>": "0.001s",
   "*": "control-ui-sentinel",
 };

@@ -7,6 +7,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/control-ui/ui/dialog";
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/control-ui/ui/empty";
+import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
 export type CommandChrome = "standalone" | "embedded";
@@ -53,6 +54,7 @@ export function CommandDialog({
         <DialogDescription className="sr-only">{description}</DialogDescription>
         <Command
           chrome="embedded"
+          label={title}
           {...commandProps}
           data-control-ui="command"
           data-popup-kind="command"
@@ -113,13 +115,20 @@ function CommandListSurface({ hasResults, ...props }: ComponentProps<"div"> & { 
   return <div {...props} role={hasResults ? "listbox" : "group"} />;
 }
 
-export function CommandList({
-  className,
-  children,
-  ...props
-}: ComponentProps<typeof CommandPrimitive.List> & { style?: CSSProperties & PopupKnobStyle }) {
-  const hasResults = useCommandState((state) => state.filtered.count > 0);
+function defaultResultsLabel(count: number) {
+  if (count === 0) return "No results found";
+  return count === 1 ? "1 result" : `${count} results`;
+}
+
+export type CommandListProps = Omit<ComponentProps<typeof CommandPrimitive.List>, "style"> & {
+  style?: CSSProperties & PopupKnobStyle;
+  getResultsLabel?: (count: number) => string;
+};
+
+export function CommandList({ className, children, getResultsLabel = defaultResultsLabel, ...props }: CommandListProps) {
+  const count = useCommandState((state) => state.filtered.count);
   const search = useCommandState((state) => state.search);
+  const hasResults = count > 0;
   const viewportRef = useRef<HTMLDivElement>(null);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: search is the trigger; cmdk scrolls the stale selection on search and a zero-height viewport on open, so reset the next frame.
@@ -129,19 +138,22 @@ export function CommandList({
   }, [search]);
 
   return (
-    <ScrollArea viewportRef={viewportRef} maxHeight="min(360px, var(--available-height, 360px))" className="min-h-0 w-full">
-      <CommandPrimitive.List
-        asChild
-        data-control-ui="command"
-        data-control-family="popup"
-        data-popup-kind="command"
-        data-slot="list"
-        className={cn("p-[var(--popover-padding)]", className)}
-        {...props}
-      >
-        <CommandListSurface hasResults={hasResults}>{children}</CommandListSurface>
-      </CommandPrimitive.List>
-    </ScrollArea>
+    <>
+      <ScrollArea viewportRef={viewportRef} maxHeight="min(360px, var(--available-height, 360px))" className="min-h-0 w-full">
+        <CommandPrimitive.List
+          asChild
+          data-control-ui="command"
+          data-control-family="popup"
+          data-popup-kind="command"
+          data-slot="list"
+          className={cn("p-[var(--popover-padding)]", className)}
+          {...props}
+        >
+          <CommandListSurface hasResults={hasResults}>{children}</CommandListSurface>
+        </CommandPrimitive.List>
+      </ScrollArea>
+      <LiveStatus message={search ? getResultsLabel(count) : ""} />
+    </>
   );
 }
 
@@ -168,7 +180,7 @@ export function CommandEmpty({
       className={className}
       {...props}
     >
-      <div role="status">
+      <div>
         {children ?? (
           <Empty>
             <EmptyHeader>
@@ -182,6 +194,24 @@ export function CommandEmpty({
         )}
       </div>
     </CommandPrimitive.Empty>
+  );
+}
+
+export type CommandLoadingProps = Omit<ComponentProps<typeof CommandPrimitive.Loading>, "style"> & {
+  style?: CSSProperties & PopupKnobStyle;
+};
+
+export function CommandLoading({ label = "Loading results", className, ...props }: CommandLoadingProps) {
+  return (
+    <CommandPrimitive.Loading
+      data-control-ui="command"
+      data-control-family="popup"
+      data-popup-kind="command"
+      data-slot="loading"
+      label={label}
+      className={className}
+      {...props}
+    />
   );
 }
 
@@ -263,6 +293,7 @@ export function CommandShortcut({ className, ...props }: CommandShortcutProps) {
       data-control-family="popup"
       data-popup-part="shortcut"
       data-slot="shortcut"
+      aria-hidden="true"
       className={cn(className)}
       {...props}
     />

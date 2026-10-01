@@ -161,6 +161,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--cui-table-of-contents-trail-stroke)"
+    },
+    {
+      "name": "--cui-table-of-contents-scroll-inset",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 20)"
     }
   ],
   "parts": {

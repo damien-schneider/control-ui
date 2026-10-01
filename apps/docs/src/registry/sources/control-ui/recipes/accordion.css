@@ -19,18 +19,20 @@
     padding-block: calc(var(--spacing) * 3);
     color: var(--cui-accordion-trigger-foreground);
     font-size: var(--text-body);
-    outline: none;
-    text-align: left;
+    text-align: start;
+    text-wrap: balance;
     font-weight: var(--font-weight-medium);
   }
 
-  :where([data-control-family="accordion"][data-slot="trigger"]:hover) {
-    color: var(--cui-accordion-trigger-hover-foreground);
+  @media (hover: hover) {
+    :where([data-control-family="accordion"][data-slot="trigger"]:not([data-disabled]):hover) {
+      color: var(--cui-accordion-trigger-hover-foreground);
+    }
   }
 
   :where([data-control-family="accordion"][data-slot="trigger"][data-disabled]) {
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: var(--disabled-opacity);
   }
 
   :where([data-control-family="accordion"][data-slot="icon"]) {
@@ -51,6 +53,7 @@
   :where([data-control-family="accordion"][data-slot="panel"]) {
     color: var(--muted-foreground);
     font-size: var(--text-body);
+    text-wrap: pretty;
     height: var(--accordion-panel-height);
     overflow: hidden;
     transition: height var(--duration-base) var(--ease-emphasized);

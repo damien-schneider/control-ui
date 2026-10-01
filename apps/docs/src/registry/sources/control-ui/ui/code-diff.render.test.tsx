@@ -63,6 +63,13 @@ describe("CodeDiff renders", () => {
     expect(html).toContain("second new");
   });
 
+  test("default bars mode still marks added and deleted lines with glyphs, not colour alone", () => {
+    const html = renderToString(<CodeDiff oldText={OLD} newText={NEW} diffStyle="unified" />);
+
+    expect(html).toContain('data-slot="marker" data-line-type="add" aria-hidden="true" class="shrink-0 select-none">+</span>');
+    expect(html).toContain('data-slot="marker" data-line-type="del" aria-hidden="true" class="shrink-0 select-none">-</span>');
+  });
+
   test("exposes added and deleted line meaning without relying on color", () => {
     const html = renderToString(<CodeDiff oldText={OLD} newText={NEW} diffStyle="unified" />);
 

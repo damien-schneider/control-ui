@@ -133,7 +133,7 @@ export function formatAudioInputDeviceLabel(device: MediaDeviceInfo, fallback = 
 
 async function enumerateAudioInputDevices() {
   if (typeof navigator === "undefined" || !navigator.mediaDevices?.enumerateDevices) {
-    throw new Error("Microphone device selection is not available in this browser.");
+    throw unsupportedRecordingError();
   }
 
   const devices = await navigator.mediaDevices.enumerateDevices();
@@ -164,7 +164,7 @@ export function useAudioInputDevices(): UseAudioInputDevicesResult {
 
   async function requestPermission() {
     if (typeof navigator === "undefined" || !navigator.mediaDevices?.getUserMedia) {
-      setError(new Error("Microphone device selection is not available in this browser."));
+      setError(unsupportedRecordingError());
       return;
     }
 
@@ -226,15 +226,23 @@ function asError(error: unknown) {
   return error instanceof Error ? error : new Error(String(error));
 }
 
+function namedError(name: string, message: string) {
+  return Object.assign(new Error(message), { name });
+}
+
+function unsupportedRecordingError() {
+  return namedError("NotSupportedError", "This browser can't record audio. Try a current version of Chrome, Safari or Firefox.");
+}
+
 function microphoneError(error: unknown) {
   const nextError = asError(error);
 
   if (nextError.name === "NotAllowedError" || nextError.name === "SecurityError") {
-    return new Error("Microphone permission was denied.");
+    return namedError("NotAllowedError", "Microphone access is blocked. Allow it in your browser's site settings, then try again.");
   }
 
   if (nextError.name === "NotFoundError" || nextError.name === "OverconstrainedError") {
-    return new Error("Selected microphone is not available.");
+    return namedError("NotFoundError", "Selected microphone isn't connected. Plug it in or choose another microphone.");
   }
 
   return nextError;
@@ -533,7 +541,7 @@ function createControllerForEnvironment<TStream extends AudioRecorderStreamLike>
 
   function beginRecording(nextStream: TStream) {
     const MediaRecorderImpl = environment.MediaRecorder;
-    if (!MediaRecorderImpl) throw new Error("Microphone recording is not available in this browser.");
+    if (!MediaRecorderImpl) throw unsupportedRecordingError();
 
     selectedMimeType = preferredAudioMimeType(MediaRecorderImpl) ?? "";
     const nextRecorder = new MediaRecorderImpl(nextStream, selectedMimeType ? { mimeType: selectedMimeType } : undefined);
@@ -571,7 +579,7 @@ function createControllerForEnvironment<TStream extends AudioRecorderStreamLike>
     if (!environment.mediaDevices?.getUserMedia || !environment.MediaRecorder) {
       setSnapshot({
         state: "error",
-        error: new Error("Microphone recording is not available in this browser."),
+        error: unsupportedRecordingError(),
       });
       return false;
     }

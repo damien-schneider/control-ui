@@ -82,6 +82,7 @@ export function Combobox<Value = string, Multiple extends boolean | undefined = 
   ...props
 }: ComboboxProps<Value, Multiple>) {
   const [disabledValues] = useState(() => new Set<unknown>());
+  const [committedValue, setCommittedValue] = useState<unknown>(() => props.value ?? props.defaultValue ?? null);
   const [disabledValueRegistry] = useState<DisabledComboboxValueRegistry>(() => ({
     register(value, disabled) {
       if (!disabled || value === undefined) return () => {};
@@ -95,13 +96,15 @@ export function Combobox<Value = string, Multiple extends boolean | undefined = 
       <ComboboxPrimitive.Root
         autoHighlight={autoHighlight}
         {...props}
-        onValueChange={
-          onValueChange
-            ? (value, eventDetails) => {
-                if (shouldAcceptComboboxValueChange(value, disabledValues, props.multiple)) onValueChange(value, eventDetails);
-              }
-            : undefined
-        }
+        onValueChange={(value, eventDetails) => {
+          const previousValue = props.value === undefined ? committedValue : props.value;
+          if (!shouldAcceptComboboxValueChange(value, previousValue, disabledValues)) {
+            eventDetails.cancel();
+            return;
+          }
+          setCommittedValue(value);
+          onValueChange?.(value, eventDetails);
+        }}
       >
         {children}
       </ComboboxPrimitive.Root>
@@ -135,8 +138,9 @@ export function ComboboxInput({ size = "md", className, ...props }: ComboboxInpu
   return (
     <ComboboxPrimitive.InputGroup
       data-control-ui="combobox"
+      data-control-family="field"
       data-field-kind="combobox"
-      data-slot="root"
+      data-slot="input-group"
       className="relative flex w-full items-center"
     >
       <ComboboxPrimitive.Input
@@ -149,7 +153,7 @@ export function ComboboxInput({ size = "md", className, ...props }: ComboboxInpu
         className={cn("w-full min-w-0 disabled:cursor-not-allowed", className)}
         {...props}
       />
-      <ComboboxTrigger className="absolute right-1.5 top-1/2 -translate-y-1/2" />
+      <ComboboxTrigger className="absolute end-1.5 top-1/2 -translate-y-1/2" />
     </ComboboxPrimitive.InputGroup>
   );
 }

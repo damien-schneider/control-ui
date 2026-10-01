@@ -55,7 +55,6 @@ function WorkspaceNavigation({
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton
                   isActive={active === item.title}
-                  aria-current={active === item.title ? "page" : undefined}
                   onClick={() => onNavigate(item.title)}
                   disabled={item.disabled}
                   tooltip={item.title}
@@ -89,12 +88,7 @@ function WorkspaceNavigation({
                     <SidebarMenuSub indicator={indicator} aria-label="Projects">
                       {projectPages.map((title) => (
                         <SidebarMenuItem key={title}>
-                          <SidebarMenuButton
-                            size="sm"
-                            isActive={active === title}
-                            aria-current={active === title ? "page" : undefined}
-                            onClick={() => onNavigate(title)}
-                          >
+                          <SidebarMenuButton size="sm" isActive={active === title} onClick={() => onNavigate(title)}>
                             <span>{title}</span>
                           </SidebarMenuButton>
                         </SidebarMenuItem>

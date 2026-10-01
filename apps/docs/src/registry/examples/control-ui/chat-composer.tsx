@@ -43,7 +43,7 @@ export function ChatComposerExample() {
   return (
     <div className="mx-auto flex w-full max-w-xl flex-col gap-6">
       {submittedPrompt ? (
-        <ChatMessage from="user" density="compact" aria-live="polite">
+        <ChatMessage from="user" density="compact">
           <ChatMessageRow>
             <ChatMessageBody>
               <ChatMessageContent>{submittedPrompt}</ChatMessageContent>

@@ -10,6 +10,5 @@ export const filterBarKnobs = [
   "--cui-filter-bar-padding-inline",
   "--cui-filter-bar-font-size",
   "--cui-filter-bar-hover-background",
-  "--cui-filter-bar-focus-ring-color",
 ] as const;
 export type FilterBarKnobStyle = Partial<Record<(typeof filterBarKnobs)[number], string>>;

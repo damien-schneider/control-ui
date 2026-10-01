@@ -68,7 +68,7 @@
     padding-inline: calc(var(--spacing) * 2);
     padding-block: calc(var(--spacing) * 1.5);
     border-radius: var(--cui-user-ask-option-radius);
-    text-align: left;
+    text-align: start;
   }
 
   :where([data-control-family="user-ask"][data-slot="option"][data-selected]) {
@@ -76,7 +76,7 @@
   }
 
   @media (hover: hover) {
-    :where([data-control-family="user-ask"][data-slot="option"]:hover) {
+    :where([data-control-family="user-ask"][data-slot="option"]:not(:disabled):hover) {
       background: var(--cui-user-ask-option-hover-background);
     }
   }
@@ -87,12 +87,12 @@
 
   @media (pointer: coarse) {
     :where([data-control-family="user-ask"][data-slot="option"]) {
-      min-block-size: 44px;
+      min-block-size: var(--touch-target);
     }
   }
 
   :where([data-control-family="user-ask"][data-slot="option"]:disabled) {
-    opacity: 0.5;
+    opacity: var(--disabled-opacity);
   }
 
   :where([data-control-family="user-ask"][data-slot="option-indicator"]) {

@@ -8,10 +8,18 @@ import type { TaskListKnobStyle } from "@/components/control-ui/knob-contracts/t
 import { cn } from "@/components/control-ui/lib/cn";
 import type { CollapsibleProps } from "@/components/control-ui/ui/collapsible";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
+import { LiveStatus } from "@/components/control-ui/ui/live-status";
 
 export type TaskStatus = "pending" | "active" | "completed";
 
-export type TaskListProps = Omit<CollapsibleProps, "style"> & { style?: CSSProperties & TaskListKnobStyle };
+export type TaskStatusLabels = Record<TaskStatus, string>;
+
+export const taskStatusLabels: TaskStatusLabels = { pending: "Pending", active: "In progress", completed: "Done" };
+
+export type TaskListProps = Omit<CollapsibleProps, "style"> & {
+  statusLabels?: Partial<TaskStatusLabels>;
+  style?: CSSProperties & TaskListKnobStyle;
+};
 
 type TaskListStyleProps<Props, Style> = Omit<Props, "style"> & { style?: CSSProperties & Style };
 
@@ -32,6 +40,7 @@ type TaskListContextValue = {
   /** 1-based position rendered as "Task 3 of 5"; 0 while no task is registered. */
   currentNumber: number;
   allCompleted: boolean;
+  statusLabels: TaskStatusLabels;
 };
 
 const TaskListContext = createContext<TaskListContextValue | null>(null);
@@ -66,7 +75,7 @@ function currentTaskIndex(tasks: TaskEntry[]) {
   return tasks.length - 1;
 }
 
-export function TaskList({ className, children, ...props }: TaskListProps) {
+export function TaskList({ statusLabels, className, children, ...props }: TaskListProps) {
   const [tasks, setTasks] = useState<TaskEntry[]>([]);
   // register upserts in place so status change never reorders, and unregister runs only at item unmount —
   // combined effect cleanup would move every updated item to end
@@ -83,10 +92,14 @@ export function TaskList({ className, children, ...props }: TaskListProps) {
   const currentIndex = currentTaskIndex(tasks);
   const current = tasks[currentIndex];
   const allCompleted = total > 0 && tasks.every((task) => task.status === "completed");
+  const labels = { ...taskStatusLabels, ...statusLabels };
+  const progressStatus = current?.status === "active" ? `${current.label}: ${labels.active}` : "";
 
   return (
     <TaskListRegistrationContext.Provider value={registration}>
-      <TaskListContext.Provider value={{ total, current, currentNumber: total === 0 ? 0 : currentIndex + 1, allCompleted }}>
+      <TaskListContext.Provider
+        value={{ total, current, currentNumber: total === 0 ? 0 : currentIndex + 1, allCompleted, statusLabels: labels }}
+      >
         <Collapsible
           data-control-ui="task-list"
           data-control-family="task-list"
@@ -96,6 +109,7 @@ export function TaskList({ className, children, ...props }: TaskListProps) {
           {...props}
         >
           {children}
+          <LiveStatus message={progressStatus} />
         </Collapsible>
       </TaskListContext.Provider>
     </TaskListRegistrationContext.Provider>
@@ -150,16 +164,18 @@ export type TaskListLabelProps = TaskListStyleProps<ComponentProps<"span">, Task
 
 export function TaskListLabel({ className, children, ...props }: TaskListLabelProps) {
   const { current } = useTaskListContext();
+  const text = children ?? current?.label;
 
   return (
     <span
       data-control-ui="task-list"
       data-control-family="task-list"
       data-slot="label"
+      title={typeof text === "string" ? text : undefined}
       className={cn("min-w-0 flex-1 truncate", className)}
       {...props}
     >
-      {children ?? current?.label}
+      {text}
     </span>
   );
 }
@@ -206,7 +222,7 @@ export function TaskListItem({ label, status = "pending", className, children, .
       {...props}
     >
       <TaskListIndicator status={status} />
-      <span className="min-w-0 flex-1 truncate">{children ?? label}</span>
+      <span className="min-w-0 flex-1 text-pretty">{children ?? label}</span>
     </li>
   );
 }
@@ -223,6 +239,7 @@ export type TaskListIndicatorProps = TaskListStyleProps<ComponentProps<"span">, 
 
 export function TaskListIndicator({ status = "pending", className, ...props }: TaskListIndicatorProps) {
   const Icon = indicatorIcons[status];
+  const statusLabels = useContext(TaskListContext)?.statusLabels ?? taskStatusLabels;
 
   return (
     <span
@@ -233,9 +250,8 @@ export function TaskListIndicator({ status = "pending", className, ...props }: T
       className={cn("inline-flex shrink-0 items-center justify-center", className)}
       {...props}
     >
-      {/* loader, not expressive motion — like Spinner it keeps turning under reduced motion */}
-      <Icon aria-hidden="true" className="size-3.5" />
-      <span className="sr-only">{status}</span>
+      <Icon aria-hidden="true" data-motion-essential={status === "active" ? "" : undefined} className="size-3.5" />
+      <span className="sr-only">{statusLabels[status]}</span>
     </span>
   );
 }

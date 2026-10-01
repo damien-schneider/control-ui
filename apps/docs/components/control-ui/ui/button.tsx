@@ -37,6 +37,7 @@ export type ButtonProps = ComponentProps<"button"> &
   ButtonAppearanceProps & {
     render?: RenderProp<ComponentProps<"button">, { disabled: boolean }>;
     nativeButton?: boolean;
+    focusableWhenDisabled?: boolean;
   };
 
 export type ButtonLinkProps = ComponentProps<"a"> &
@@ -46,8 +47,7 @@ export type ButtonLinkProps = ComponentProps<"a"> &
 
 export type ButtonLabelProps = ComponentProps<"label"> & ButtonAppearanceProps;
 
-export const buttonStructureClasses =
-  "relative isolate inline-flex shrink-0 items-center justify-center overflow-visible whitespace-nowrap";
+export const buttonStructureClasses = "isolate inline-flex shrink-0 items-center justify-center overflow-visible whitespace-nowrap";
 
 export const buttonTrackStructureClasses = "data-[track=hover]:relative data-[track=hover]:isolate [&_[data-track-item]]:[isolation:auto]";
 

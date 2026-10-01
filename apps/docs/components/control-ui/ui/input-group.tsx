@@ -44,25 +44,12 @@ export function InputGroup({ size = "md", className, render, children, ...props 
 export function InputGroupAddon({ className, ...props }: InputGroupAddonProps) {
   return (
     <span
+      {...props}
       data-control-ui="input-group"
       data-control-family="field"
       data-field-kind="input-group"
       data-slot="addon"
       className={cn("inline-flex shrink-0 items-center", className)}
-      {...props}
-    />
-  );
-}
-
-export function InputGroupInput({ className, ...props }: ComponentProps<"input"> & { style?: CSSProperties & FieldKnobStyle }) {
-  return (
-    <input
-      data-control-ui="input-group"
-      data-control-family="field"
-      data-field-kind="input-group"
-      data-slot="input"
-      className={cn("h-full min-w-0 flex-1", className)}
-      {...props}
     />
   );
 }

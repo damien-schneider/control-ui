@@ -24,13 +24,13 @@ function renderComposerSubmit(options: ComposerOptions) {
   return renderComposer(options).submit;
 }
 
-function keyEvent(key: string, overrides: { shiftKey?: boolean; isComposing?: boolean } = {}) {
+function keyEvent(key: string, overrides: { shiftKey?: boolean; isComposing?: boolean; keyCode?: number } = {}) {
   let prevented = false;
   return {
     key,
     shiftKey: overrides.shiftKey ?? false,
     defaultPrevented: false,
-    nativeEvent: { isComposing: overrides.isComposing ?? false },
+    nativeEvent: { isComposing: overrides.isComposing ?? false, keyCode: overrides.keyCode ?? 13 },
     preventDefault: () => {
       prevented = true;
     },
@@ -82,7 +82,12 @@ describe("useChatComposer", () => {
     expect(submitted).toEqual(["hello"]);
     expect(enter.wasPrevented()).toBe(true);
 
-    for (const event of [keyEvent("Enter", { shiftKey: true }), keyEvent("Enter", { isComposing: true }), keyEvent("a")]) {
+    for (const event of [
+      keyEvent("Enter", { shiftKey: true }),
+      keyEvent("Enter", { isComposing: true }),
+      keyEvent("Enter", { keyCode: 229 }),
+      keyEvent("a"),
+    ]) {
       handleKeyDown(event);
       expect(event.wasPrevented()).toBe(false);
     }

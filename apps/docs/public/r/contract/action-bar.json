@@ -26,7 +26,23 @@
         "registryItems": [
           "action-bar"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          }
+        ]
       }
     }
   },

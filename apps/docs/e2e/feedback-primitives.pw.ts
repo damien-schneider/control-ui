@@ -79,7 +79,7 @@ for (const skin of ["none", "refined", "cuicui"]) {
 test("alert knobs reach the icon and text while long messages wrap without clipping", async ({ page }, testInfo) => {
   await page.setViewportSize({ width: 360, height: 900 });
   await page.goto("/primitives/alert");
-  const alert = page.getByRole("alert").first();
+  const alert = page.locator('[data-control-family="alert"][data-slot="root"]').first();
   await waitForReactHydration(alert);
   await alert.locator("..").screenshot({ path: testInfo.outputPath("alerts.png") });
   await alert.evaluate((node) => {
@@ -111,7 +111,7 @@ test("alert knobs reach the icon and text while long messages wrap without clipp
   await alert.locator(":scope > svg").evaluate((node) => node.remove());
   expect(
     await title.evaluate((node) => {
-      const panel = node.closest('[role="alert"]');
+      const panel = node.closest('[data-control-family="alert"][data-slot="root"]');
       if (!panel) throw new Error("Missing alert root");
       return node.getBoundingClientRect().x - panel.getBoundingClientRect().x;
     }),

@@ -8,7 +8,7 @@
 
   :where([data-control-family="button-group"][data-slot="text"]) {
     block-size: var(--control-h-md);
-    border: 1px solid var(--border);
+    border: var(--control-rim-width) solid var(--control-rim);
     border-radius: var(--cui-button-group-text-radius);
     background: var(--cui-button-group-text-background);
     box-shadow: var(--shadow-sm);
@@ -84,12 +84,10 @@
     z-index: 3;
   }
 
-  @media (pointer: coarse) {
-    :where(
-        [data-control-family="button-group"][data-slot="root"][data-orientation="vertical"] [data-control-family="button"][data-size="xs"]
-      )::after {
-      block-size: 100%;
-    }
+  :where(
+    [data-control-family="button-group"][data-slot="root"][data-orientation="vertical"] [data-control-family="button"][data-size="xs"]
+  )::after {
+    block-size: 100%;
   }
 }
 

@@ -29,6 +29,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-badge-font-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--text-caption)"
     }
   ],
   "parts": {
@@ -77,10 +83,6 @@
     }
   },
   "adornments": {},
-  "uncovered": [
-    "--cui-badge-background",
-    "--cui-badge-border-color",
-    "--cui-badge-foreground"
-  ],
+  "uncovered": [],
   "contrast": "/r/contract/badge.contrast.json"
 }

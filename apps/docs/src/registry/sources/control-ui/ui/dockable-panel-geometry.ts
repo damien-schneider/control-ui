@@ -24,3 +24,10 @@ export function dockablePanelSideAt(pointerX: number, width: number): "left" | "
 export function oppositeDockablePanelSide(placement: "left" | "right"): "left" | "right" {
   return placement === "left" ? "right" : "left";
 }
+
+export function dockablePanelSideForKey(key: string, placement: "left" | "right"): "left" | "right" | null {
+  if (key === "ArrowLeft") return "left";
+  if (key === "ArrowRight") return "right";
+  if (key === "Enter" || key === " ") return oppositeDockablePanelSide(placement);
+  return null;
+}

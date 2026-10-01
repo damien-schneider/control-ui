@@ -2,7 +2,7 @@
 
 import { AlertTriangleIcon, EyeIcon, EyeOffIcon, FileUpIcon, PlusIcon, RotateCcwIcon, SaveIcon, Trash2Icon } from "lucide-react";
 import type { ChangeEvent, ClipboardEvent, ComponentProps, CSSProperties, ReactNode } from "react";
-import { createContext, use, useId } from "react";
+import { createContext, use, useId, useRef, useState } from "react";
 import type { FormSubmitEvent } from "@/components/control-ui/control-props";
 import {
   type EnvironmentVariableRow,
@@ -19,7 +19,7 @@ import {
 } from "@/components/control-ui/lib/env-file";
 import { Button } from "@/components/control-ui/ui/button";
 import { Input } from "@/components/control-ui/ui/input";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/control-ui/ui/input-group";
+import { InputGroup, InputGroupAddon } from "@/components/control-ui/ui/input-group";
 
 export type EnvironmentVariablesRowErrors = Record<number, { key?: ReactNode; value?: ReactNode }>;
 
@@ -49,6 +49,8 @@ type EnvironmentVariablesContextValue = {
   keyPlaceholder: string;
   valuePlaceholder: string;
   duplicateKeyMessage: ReactNode;
+  revealValueLabel: (key: string) => string;
+  pending: boolean;
 };
 
 const EnvironmentVariablesContext = createContext<EnvironmentVariablesContextValue | null>(null);
@@ -72,6 +74,7 @@ export type EnvironmentVariablesRootProps<TRow extends EnvironmentVariableRow = 
   keyPlaceholder?: string;
   valuePlaceholder?: string;
   duplicateKeyMessage?: ReactNode;
+  revealValueLabel?: (key: string) => string;
   onSubmit?: (payload: EnvironmentVariablesSubmitPayload<TRow>) => void | Promise<void>;
 } & { style?: CSSProperties & EnvironmentVariablesKnobStyle };
 
@@ -83,18 +86,22 @@ export function EnvironmentVariablesRoot<TRow extends EnvironmentVariableRow = E
   keyLabel = "Key",
   valueLabel = "Value",
   keyPlaceholder = "OPENAI_API_KEY",
-  valuePlaceholder = "sk-...",
+  valuePlaceholder = "sk-…",
   duplicateKeyMessage = DUPLICATE_ENVIRONMENT_VARIABLE_MESSAGE,
+  revealValueLabel = (key) => `Show value for ${key}`,
   onSubmit,
   className,
   children,
   ...props
 }: EnvironmentVariablesRootProps<TRow>) {
-  function handleSubmit(event: FormSubmitEvent) {
+  const pendingRef = useRef(false);
+  const [pending, setPending] = useState(false);
+
+  async function handleSubmit(event: FormSubmitEvent) {
     if (event.defaultPrevented || !onSubmit) return;
 
     event.preventDefault();
-    if (editor.hasDuplicateKeys) return;
+    if (pendingRef.current || editor.hasDuplicateKeys) return;
 
     const rows = editor.getRowsForSubmit();
     const payload = {
@@ -104,7 +111,14 @@ export function EnvironmentVariablesRoot<TRow extends EnvironmentVariableRow = E
       reset: () => editor.resetRows(rows),
     } satisfies EnvironmentVariablesSubmitPayload<TRow>;
 
-    void onSubmit(payload);
+    pendingRef.current = true;
+    setPending(true);
+    try {
+      await onSubmit(payload);
+    } finally {
+      pendingRef.current = false;
+      setPending(false);
+    }
   }
 
   return (
@@ -119,6 +133,8 @@ export function EnvironmentVariablesRoot<TRow extends EnvironmentVariableRow = E
         keyPlaceholder,
         valuePlaceholder,
         duplicateKeyMessage,
+        revealValueLabel,
+        pending,
       }}
     >
       <form
@@ -128,6 +144,7 @@ export function EnvironmentVariablesRoot<TRow extends EnvironmentVariableRow = E
         data-surface="panel"
         data-disabled={disabled ? "true" : undefined}
         data-readonly={readOnly ? "true" : undefined}
+        aria-busy={pending || undefined}
         className={cn("flex min-w-0 flex-col", className)}
         onSubmit={handleSubmit}
         {...props}
@@ -323,6 +340,7 @@ export function EnvironmentVariablesUploadButton({
         type="file"
         accept=".env,text/plain"
         className="sr-only"
+        tabIndex={-1}
         disabled={isDisabled}
         aria-label={inputLabel}
         onChange={handleChange}
@@ -402,6 +420,7 @@ export function EnvironmentVariablesRow({ row, index, rowErrors, className, ...p
     keyPlaceholder,
     valuePlaceholder,
     duplicateKeyMessage,
+    revealValueLabel,
   } = useEnvironmentVariablesContext("EnvironmentVariables.Row");
   const resolvedRowErrors = rowErrors ?? contextRowErrors;
   const keyError = resolvedRowErrors?.[index]?.key ?? (editor.rowHasDuplicateKey(index) ? duplicateKeyMessage : null);
@@ -410,8 +429,11 @@ export function EnvironmentVariablesRow({ row, index, rowErrors, className, ...p
   const rowId = editor.getRowId(index);
   const keyInputId = `${rowId}-key`;
   const valueInputId = `${rowId}-value`;
-  const revealValueLabel = editor.isValueRevealed(index) ? "Hide value" : "Show value";
-  const removeRowLabel = `Remove environment variable ${row.key.trim() || index + 1}`;
+  const keyErrorId = `${keyInputId}-error`;
+  const valueErrorId = `${valueInputId}-error`;
+  const rowName = row.key.trim() || `row ${index + 1}`;
+  const valueRevealed = editor.isValueRevealed(index);
+  const removeRowLabel = `Remove environment variable ${rowName}`;
 
   function handlePaste(event: ClipboardEvent<HTMLInputElement>) {
     if (editor.handlePaste(index, event.clipboardData.getData("text"))) {
@@ -438,20 +460,18 @@ export function EnvironmentVariablesRow({ row, index, rowErrors, className, ...p
           {keyLabel}
         </label>
         <Input
-          data-control-ui="environment-variables"
-          data-control-family="environment-variables"
-          data-slot="key-input"
           id={keyInputId}
           size="sm"
           value={row.key}
           placeholder={keyPlaceholder}
           disabled={isDisabled}
           aria-invalid={Boolean(keyError)}
+          aria-describedby={keyError ? keyErrorId : undefined}
           onChange={(event) => editor.updateRow(index, { key: event.target.value })}
           onPaste={handlePaste}
         />
         {keyError ? (
-          <p data-control-ui="environment-variables" data-control-family="environment-variables" data-slot="field-error">
+          <p id={keyErrorId} data-control-ui="environment-variables" data-control-family="environment-variables" data-slot="field-error">
             {keyError}
           </p>
         ) : null}
@@ -467,47 +487,36 @@ export function EnvironmentVariablesRow({ row, index, rowErrors, className, ...p
         >
           {valueLabel}
         </label>
-        <InputGroup
-          data-control-ui="environment-variables"
-          data-control-family="environment-variables"
-          data-slot="value-group"
-          data-invalid={valueError ? "true" : undefined}
-          size="sm"
-        >
-          <InputGroupInput
-            data-control-ui="environment-variables"
-            data-control-family="environment-variables"
-            data-slot="value-input"
+        <InputGroup size="sm">
+          <Input
             id={valueInputId}
             value={row.value}
             placeholder={valuePlaceholder}
             disabled={isDisabled}
             aria-invalid={Boolean(valueError)}
-            type={editor.isValueRevealed(index) ? "text" : "password"}
+            aria-describedby={valueError ? valueErrorId : undefined}
+            type={valueRevealed ? "text" : "password"}
             onChange={(event) => editor.updateRow(index, { value: event.target.value })}
             onPaste={handlePaste}
           />
-          <InputGroupAddon className="pr-1">
+          <InputGroupAddon className="pe-1">
             <Button
               type="button"
               variant="quiet"
               size="sm"
               iconOnly
               disabled={isDisabled}
-              aria-label={revealValueLabel}
-              title={revealValueLabel}
+              aria-label={revealValueLabel(rowName)}
+              aria-pressed={valueRevealed}
+              title={revealValueLabel(rowName)}
               onClick={() => editor.toggleValueVisibility(index)}
             >
-              {editor.isValueRevealed(index) ? (
-                <EyeOffIcon aria-hidden="true" className="size-3.5" />
-              ) : (
-                <EyeIcon aria-hidden="true" className="size-3.5" />
-              )}
+              {valueRevealed ? <EyeOffIcon aria-hidden="true" className="size-3.5" /> : <EyeIcon aria-hidden="true" className="size-3.5" />}
             </Button>
           </InputGroupAddon>
         </InputGroup>
         {valueError ? (
-          <p data-control-ui="environment-variables" data-control-family="environment-variables" data-slot="field-error">
+          <p id={valueErrorId} data-control-ui="environment-variables" data-control-family="environment-variables" data-slot="field-error">
             {valueError}
           </p>
         ) : null}
@@ -523,7 +532,7 @@ export function EnvironmentVariablesRow({ row, index, rowErrors, className, ...p
           disabled={disabled}
           aria-label={removeRowLabel}
           title="Remove variable"
-          className="absolute top-2 right-1 sm:static sm:justify-self-end sm:self-start"
+          className="absolute top-2 end-1 sm:static sm:justify-self-end sm:self-start"
           onClick={() => editor.removeRow(index)}
         >
           <Trash2Icon aria-hidden="true" className="size-3.5" />
@@ -605,7 +614,7 @@ export function EnvironmentVariablesSubmitButton({
   disabled,
   ...props
 }: EnvironmentVariablesSubmitButtonProps) {
-  const { editor, disabled: contextDisabled, readOnly } = useEnvironmentVariablesContext("EnvironmentVariables.SubmitButton");
+  const { editor, disabled: contextDisabled, readOnly, pending } = useEnvironmentVariablesContext("EnvironmentVariables.SubmitButton");
   if (readOnly) return null;
 
   return (
@@ -614,7 +623,7 @@ export function EnvironmentVariablesSubmitButton({
       variant={variant}
       tone={tone}
       size={size}
-      disabled={disabled ?? (contextDisabled || editor.hasDuplicateKeys)}
+      disabled={disabled ?? (contextDisabled || pending || editor.hasDuplicateKeys)}
       {...props}
     >
       <SaveIcon aria-hidden="true" className="size-3.5" />
@@ -719,13 +728,15 @@ export type EnvironmentVariablesReadOnlyItemProps = Omit<ComponentProps<"div">, 
   name: ReactNode;
   value?: ReactNode;
   revealed?: boolean;
+  hiddenValueLabel?: string;
   style?: CSSProperties & EnvironmentVariablesKnobStyle;
 };
 
 export function EnvironmentVariablesReadOnlyItem({
   name,
-  value = "********",
+  value,
   revealed = false,
+  hiddenValueLabel = "Hidden value",
   className,
   ...props
 }: EnvironmentVariablesReadOnlyItemProps) {
@@ -742,6 +753,7 @@ export function EnvironmentVariablesReadOnlyItem({
         data-control-family="environment-variables"
         data-slot="readonly-key"
         className="min-w-0 truncate"
+        title={typeof name === "string" ? name : undefined}
       >
         {name}
       </span>
@@ -750,8 +762,16 @@ export function EnvironmentVariablesReadOnlyItem({
         data-control-family="environment-variables"
         data-slot="readonly-value"
         className="min-w-0 truncate"
+        title={revealed && typeof value === "string" ? value : undefined}
       >
-        {revealed ? value : "********"}
+        {revealed ? (
+          value
+        ) : (
+          <>
+            <span aria-hidden="true">••••••••</span>
+            <span className="sr-only">{hiddenValueLabel}</span>
+          </>
+        )}
       </span>
     </div>
   );

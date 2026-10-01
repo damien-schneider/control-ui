@@ -66,6 +66,12 @@
       "defaultValue": "none"
     },
     {
+      "name": "--cui-button-hover-background-image",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--cui-button-background-image)"
+    },
+    {
       "name": "--cui-button-foreground",
       "syntax": "<color>",
       "initialValue": "transparent",
@@ -93,7 +99,7 @@
       "name": "--cui-button-press-scale",
       "syntax": "<number>",
       "initialValue": "1",
-      "defaultValue": "0.98"
+      "defaultValue": "0.96"
     },
     {
       "name": "--cui-button-active-background",
@@ -576,6 +582,11 @@
     }
   },
   "adornments": {},
-  "uncovered": [],
+  "uncovered": [
+    "--cui-button-active-hover-background",
+    "--cui-button-hover-background",
+    "--cui-button-hover-foreground",
+    "--cui-button-press-background"
+  ],
   "contrast": "/r/contract/button.contrast.json"
 }

@@ -81,30 +81,14 @@ export function PageHeader({ variant = "flow", className, ...props }: PageHeader
 
 export type PageTitleProps = Omit<ComponentProps<"h1">, "style"> & { style?: PageStyle };
 
-export function PageTitle({ className, ...props }: PageTitleProps) {
-  return (
-    <h1
-      data-control-ui="page-layout"
-      data-control-family="page-layout"
-      data-slot="title"
-      className={cn("text-balance", className)}
-      {...props}
-    />
-  );
+export function PageTitle(props: PageTitleProps) {
+  return <h1 data-control-ui="page-layout" data-control-family="page-layout" data-slot="title" {...props} />;
 }
 
 export type PageDescriptionProps = Omit<ComponentProps<"p">, "style"> & { style?: PageStyle };
 
-export function PageDescription({ className, ...props }: PageDescriptionProps) {
-  return (
-    <p
-      data-control-ui="page-layout"
-      data-control-family="page-layout"
-      data-slot="description"
-      className={cn("text-pretty", className)}
-      {...props}
-    />
-  );
+export function PageDescription(props: PageDescriptionProps) {
+  return <p data-control-ui="page-layout" data-control-family="page-layout" data-slot="description" {...props} />;
 }
 
 export type PageActionsProps = Omit<ComponentProps<"div">, "style"> & { style?: PageStyle };

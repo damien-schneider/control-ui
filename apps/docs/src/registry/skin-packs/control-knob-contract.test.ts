@@ -30,7 +30,7 @@ const skins = readdirSync(SKIN_PACKS_DIR)
   .sort()
   .map((id) => ({ id, root: postcss.parse(readCssWithImports(path.join(SKIN_PACKS_DIR, id, "skin.css"))) }));
 
-const recipeOptionalCatalogIds = ["aspect-ratio", "checkbox-group", "email", "form", "responsive-dialog"] as const;
+const recipeOptionalCatalogIds = ["aspect-ratio", "checkbox-group", "email", "form", "live-status", "responsive-dialog"] as const;
 const catalogComponentSources = [
   ...componentEntries.map((entry) => ({ id: entry.id, source: entry.paths.source.path })),
   ...primitiveEntries
@@ -48,7 +48,7 @@ function knobsWithRepeatedFamilyPrefix(knobs: readonly string[]): string[] {
 }
 
 const KNOB_SUFFIX =
-  /-(?:background(?:-image)?|foreground|border-(?:color|width|style)|(?:ring|line|dot|marker|separator|handle|outline)-color|radius|shadow|fill|stroke|backdrop-(?:filter|blur)|opacity|scale|gap|icon|height|size|padding(?:-inline|-block)?|font-(?:size|weight)|easing|animation-duration|transition-(?:duration|delay)|indicator-(?:start|middle|end))$/;
+  /-(?:background(?:-image)?|foreground|border-(?:color|width|style)|(?:ring|line|dot|marker|separator|handle|outline)-color|radius|shadow|fill|stroke|backdrop-(?:filter|blur)|opacity|scale|gap|inset|icon|height|size|padding(?:-inline|-block)?|font-(?:size|weight)|line-height|letter-spacing|text-transform|easing|animation-duration|transition-(?:duration|delay)|indicator-(?:start|middle|end))$/;
 
 const knobsOutsideSuffixVocabulary = (knobs: readonly string[]) => knobs.filter((knob) => !KNOB_SUFFIX.test(knob));
 

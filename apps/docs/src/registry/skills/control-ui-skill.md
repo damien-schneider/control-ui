@@ -22,6 +22,7 @@ Control UI is installed source, not a dependency: the components, their recipe s
 
 - Import components from the installed control-ui directory through this app's alias, never from a package.
 - Props follow one convention: variant, tone, size, iconOnly; composition uses render instead of asChild. Read the exported prop types of the installed component before mapping a call site from another library, and treat a variant with no counterpart as a question, not a guess.
+- When adding or migrating control icons, verify their rendered SVG dimensions against the component recipe's size knob; icon libraries can supply oversized defaults, so default sizing belongs in the shared recipe rather than repeated call-site utilities.
 - A call site migrated from another component keeps its layout classes — width, flex, grid, gap — and sheds its styling ones: the border, radius, background and padding utilities the old component needed now fight the recipe underneath.
 
 ## Theming
@@ -71,14 +72,16 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --info-text [light+dark] Readable informational text color on base and card surfaces; defaults to --scale-blue-11.
 - --border [light+dark] Hairline border color (carries --ring-opacity).
 - --input [light+dark] Form field border color.
-- --ring [light+dark] Focus ring color.
+- --ring [light+dark] Ring palette color; --focus-ring defaults to it, so a skin that softens --ring into a halo must set --focus-ring.
 - --focus-ring [light+dark] Color of the keyboard focus indicator; defaults to --ring. Must clear 3:1 against every surface it lands on (WCAG 1.4.11).
 - --control-rim [light+dark] Boundary color of a control's own edge; defaults to --border.
+- --control-boundary [light+dark] Edge of a control that has no other outline (unchecked checkbox, radio, switch track); defaults to --foreground at 55% and must clear 3:1 on --background and --card (WCAG 1.4.11).
+- --image-outline [light+dark] Hairline inside images and media that separates them from any surface; 10% black in light, 10% white in dark.
 - --control-fill [light+dark] Resting fill shared by fields and surface controls; defaults to --card at 72% alpha.
 - --hover-fill [light+dark] Wash a row or control takes on hover; defaults to a 6% tint of --foreground.
 - --active-fill [light+dark] Wash a selected or pressed row keeps; defaults to an 8% tint of --foreground.
 - --canvas [light+dark] The page paper the scene/panels float on — a level BELOW --background.
-- --ring-opacity [shared] Alpha of the border/ring hairlines; 0 = borderless, defaults to 1.
+- --ring-opacity [shared] Alpha of the --border hairline; 0 = borderless, defaults to 1.
 - --scale-neutral-seed [light+dark] Seed of the neutral ramp; its hue and chroma drive --scale-neutral-1 to --scale-neutral-12.
 - --scale-primary-seed [light+dark] Seed of the primary ramp; its hue and chroma drive --scale-primary-1 to --scale-primary-12.
 - --scale-red-seed [light+dark] Seed of the red ramp; its hue and chroma drive --scale-red-1 to --scale-red-12.
@@ -175,11 +178,13 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --duration-fast [shared] Fast tempo for press feedback and small state transitions; frequent hover paint is instant.
 - --duration-base [shared] Base tempo (menus, indicators).
 - --duration-slow [shared] Slow tempo (panel/message entrances).
+- --duration-loop [shared] Period of one loader turn; essential loaders keep it under reduced motion.
 - --popover-opacity [shared] Floating-surface translucency; <1 + blur = frosted glass.
 - --backdrop-blur-popover [shared] Backdrop blur behind floating surfaces.
 - --overlay-opacity [shared] Modal overlay (dialog backdrop) dim strength.
 - --backdrop-blur-overlay [shared] Backdrop blur of the modal overlay.
 - --scroll-fade-size [shared] Edge-fade depth of scrollable surfaces; 0 = hard edges.
+- --disabled-opacity [shared] Opacity of a disabled control; defaults to 0.45.
 - --popover-padding [shared] Gap between popup container edge and rows (drives concentric corners).
 - --padding-x [shared] Horizontal content density of rounded surfaces (bubble, composer).
 - --padding-y [shared] Vertical content density of rounded surfaces.
@@ -191,3 +196,6 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --focus-ring-style [shared] Line style of the keyboard focus indicator (solid, dotted, dashed); none removes it and fails WCAG 2.4.7.
 - --focus-ring-offset [shared] Gap between a control edge and its focus indicator; negative draws the indicator inside.
 - --control-rim-width [shared] Thickness of a control's own edge; defaults to 1px, shared across modes.
+- --touch-target [shared] Minimum hit area of a control under a coarse pointer (WCAG 2.5.5); defaults to 44px.
+- --target-min [shared] Minimum hit area of a small control under a fine pointer (WCAG 2.5.8); defaults to 24px.
+- --text-input-min [shared] Smallest text-input font size under a coarse pointer, so iOS never zooms on focus; defaults to 16px.

@@ -1,3 +1,8 @@
+import {
+  createNotificationCanvasLoop,
+  createNotificationMotion,
+  type NotificationCanvasFrame,
+} from "@/components/control-ui/dynamic-notification-canvas-loop";
 import { DYNAMIC_NOTIFICATION_SIRI_WAVE_GLSL } from "@/components/control-ui/dynamic-notification-siri-wave";
 import { LIQUID_GLASS_OPTICS_GLSL } from "@/components/control-ui/lib/liquid-glass-optics";
 
@@ -238,24 +243,6 @@ function buildProgram(gl: WebGLRenderingContext): LiquidProgram | null {
     lift: gl.getUniformLocation(program, "u_lift"),
     ribbonHorizon: gl.getUniformLocation(program, "u_ribbonHorizon"),
   };
-}
-
-/* only while thinking — static pill and opened chat stay clean */
-function auroraTarget(state: string | undefined): number {
-  return state === "thinking" ? 1 : 0;
-}
-
-function revealTarget(state: string | undefined): number {
-  return state === "collapsed" ? 0 : 1;
-}
-
-function settleTarget(state: string | undefined): number {
-  return state === "expanded" ? 1 : 0;
-}
-
-function approachAt60Hz(current: number, target: number, response: number, deltaMs: number): number {
-  const frameScale = Math.max(0, deltaMs) / (1000 / 60);
-  return current + (target - current) * (1 - (1 - response) ** frameScale);
 }
 
 const EXCLUDE_SELECTOR = '[data-control-ui="dynamic-notification"]';
@@ -552,37 +539,16 @@ export function createDynamicNotificationLiquid(canvas: HTMLCanvasElement, optio
   }
 
   let destroyed = false;
-  let intersecting = true;
-  let pageVisible = !document.hidden;
-  let rafId = 0;
   let dpr = 1;
-  let radius = 0;
-  const initialState = canvas.parentElement?.dataset.state;
-  let aurora = auroraTarget(initialState);
-  let reveal = revealTarget(initialState);
-  let settle = settleTarget(initialState);
-  /* sends dying sheet toward top on exit; parked high whenever aurora is off */
-  let lift = 1 - aurora;
-  let staticFrameDrawn = false;
+  const motion = createNotificationMotion(canvas.parentElement?.dataset.state);
   /* kept for instant re-upload after context restore */
   let captured: SceneCapture | null = null;
   let textureFresh = false;
   let captureToken = 0;
   let captureTimer = 0;
   const startedAt = performance.now();
-  let previousFrameAt = startedAt;
-  const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  function reducedMotion(): boolean {
-    return reducedMotionQuery.matches || canvas.closest('[data-motion="reduced"]') !== null;
-  }
-
-  function targetRadius(host: HTMLElement): number {
-    const parsed = Number.parseFloat(getComputedStyle(host).borderTopLeftRadius);
-    return Number.isFinite(parsed) ? parsed : 0;
-  }
-
-  /* Called from draw(), never observer: setting canvas.width clears buffer, so separate resize task shows blank frame. */
+  /* Called from render(), never observer: setting canvas.width clears buffer, so separate resize task shows blank frame. */
   function resize(): void {
     // layout box, immune to the @starting-style scale at mount
     dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
@@ -622,7 +588,7 @@ export function createDynamicNotificationLiquid(canvas: HTMLCanvasElement, optio
       captured = result;
       delete canvas.dataset.glassFailed;
       uploadTexture();
-      invalidate();
+      loop.invalidate();
     });
   }
 
@@ -631,50 +597,7 @@ export function createDynamicNotificationLiquid(canvas: HTMLCanvasElement, optio
     captureTimer = window.setTimeout(recapture, 200);
   }
 
-  type MotionTargets = {
-    radius: number;
-    aurora: number;
-    reveal: number;
-    settle: number;
-    lift: number;
-  };
-
-  function advanceMotion(host: HTMLElement, reduced: boolean, deltaMs: number): MotionTargets {
-    const state = host.dataset.state;
-    const targetAurora = auroraTarget(state);
-    const targets = {
-      radius: targetRadius(host),
-      aurora: targetAurora,
-      reveal: revealTarget(state),
-      settle: settleTarget(state),
-      lift: targetAurora >= 0.5 ? 0 : 1,
-    };
-
-    radius = reduced ? targets.radius : approachAt60Hz(radius, targets.radius, 0.25, deltaMs);
-    aurora = reduced ? targets.aurora : approachAt60Hz(aurora, targets.aurora, 0.06, deltaMs);
-    reveal = reduced ? targets.reveal : approachAt60Hz(reveal, targets.reveal, 0.07, deltaMs);
-    settle = reduced ? targets.settle : approachAt60Hz(settle, targets.settle, 0.07, deltaMs);
-    /* linear exit so aurora clears surface before it collapses */
-    if (reduced) lift = targets.lift;
-    else if (targets.lift === 1) lift = Math.min(1, lift + deltaMs * 0.00216);
-    else lift = approachAt60Hz(lift, 0, 0.28, deltaMs);
-
-    return targets;
-  }
-
-  function shouldAnimate(host: HTMLElement, reduced: boolean, targets: MotionTargets): boolean {
-    return (
-      !reduced &&
-      (host.dataset.state === "thinking" ||
-        Math.abs(radius - targets.radius) > 0.05 ||
-        Math.abs(aurora - targets.aurora) > 0.002 ||
-        Math.abs(reveal - targets.reveal) > 0.002 ||
-        Math.abs(settle - targets.settle) > 0.002 ||
-        Math.abs(lift - targets.lift) > 0.002)
-    );
-  }
-
-  function draw(): boolean {
+  function render({ reduced, now, deltaMs }: NotificationCanvasFrame): boolean {
     if (!gl || !liquid || contextLost || !textureFresh) return false;
     const host = canvas.parentElement;
     if (!host) return false;
@@ -682,18 +605,15 @@ export function createDynamicNotificationLiquid(canvas: HTMLCanvasElement, optio
     const hostRect = host.getBoundingClientRect();
     const sceneRect = scene.getBoundingClientRect();
     if (sceneRect.width < 1 || sceneRect.height < 1) return false;
+    const hostRadius = Number.parseFloat(getComputedStyle(host).borderTopLeftRadius);
+    const keepAnimating = motion.advance(host.dataset.state, Number.isFinite(hostRadius) ? hostRadius : 0, reduced, deltaMs);
+    const { radius, aurora, reveal, settle, lift } = motion.values;
 
     gl.viewport(0, 0, canvas.width, canvas.height);
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
     // biome-ignore lint/correctness/useHookAtTopLevel: WebGL's useProgram, not a React hook.
     gl.useProgram(liquid.program);
-    const reduced = reducedMotion();
-    const now = performance.now();
-    const deltaMs = Math.min(100, now - previousFrameAt);
-    previousFrameAt = now;
-    const targets = advanceMotion(host, reduced, deltaMs);
-
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, liquid.sharpTexture);
     gl.activeTexture(gl.TEXTURE1);
@@ -720,35 +640,10 @@ export function createDynamicNotificationLiquid(canvas: HTMLCanvasElement, optio
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     delete canvas.dataset.glassFailed;
     if (canvas.dataset.glassReady !== "true") canvas.dataset.glassReady = "true";
-    return shouldAnimate(host, reduced, targets);
+    return keepAnimating;
   }
 
-  function visible(): boolean {
-    return intersecting && pageVisible;
-  }
-
-  function tick(): void {
-    rafId = 0;
-    if (destroyed || !visible() || contextLost) return;
-    const keepAnimating = draw();
-    if (!keepAnimating) {
-      staticFrameDrawn = true;
-      return;
-    }
-    staticFrameDrawn = false;
-    rafId = requestAnimationFrame(tick);
-  }
-
-  function invalidate(): void {
-    staticFrameDrawn = false;
-    if (destroyed || !visible() || contextLost || rafId !== 0) return;
-    rafId = requestAnimationFrame(tick);
-  }
-
-  function handleVisibility(): void {
-    pageVisible = !document.hidden;
-    invalidate();
-  }
+  const loop = createNotificationCanvasLoop(canvas, render);
 
   function handleContextLost(event: Event): void {
     event.preventDefault();
@@ -756,8 +651,7 @@ export function createDynamicNotificationLiquid(canvas: HTMLCanvasElement, optio
     textureFresh = false;
     delete canvas.dataset.glassReady;
     canvas.dataset.glassFailed = "context";
-    if (rafId !== 0) cancelAnimationFrame(rafId);
-    rafId = 0;
+    loop.cancel();
   }
 
   function handleContextRestored(): void {
@@ -769,18 +663,11 @@ export function createDynamicNotificationLiquid(canvas: HTMLCanvasElement, optio
       return;
     }
     uploadTexture();
-    invalidate();
+    loop.invalidate();
   }
 
-  const resizeObserver = new ResizeObserver(() => {
-    invalidate();
-  });
-  resizeObserver.observe(canvas);
-
   /* scene resizing changes capture geometry, not viewport */
-  const sceneResizeObserver = new ResizeObserver(() => {
-    scheduleRecapture();
-  });
+  const sceneResizeObserver = new ResizeObserver(scheduleRecapture);
   sceneResizeObserver.observe(scene);
 
   /* re-rasterize when the backdrop actually changes — mutations inside any island are the morph
@@ -796,43 +683,18 @@ export function createDynamicNotificationLiquid(canvas: HTMLCanvasElement, optio
   });
   sceneMutationObserver.observe(scene, { attributes: true, characterData: true, childList: true, subtree: true });
 
-  const intersectionObserver = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) intersecting = entry.isIntersecting;
-      invalidate();
-    },
-    { rootMargin: "64px" },
-  );
-  intersectionObserver.observe(canvas);
-
-  const motionObserver = new MutationObserver(() => {
-    if (!staticFrameDrawn || !reducedMotion()) invalidate();
-  });
-  motionObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-motion"] });
-
-  function handleMotionPreference(): void {
-    invalidate();
-  }
-
-  document.addEventListener("visibilitychange", handleVisibility);
-  reducedMotionQuery.addEventListener("change", handleMotionPreference);
   canvas.addEventListener("webglcontextlost", handleContextLost);
   canvas.addEventListener("webglcontextrestored", handleContextRestored);
 
   recapture();
-  invalidate();
+  loop.invalidate();
 
   return () => {
     destroyed = true;
-    if (rafId !== 0) cancelAnimationFrame(rafId);
+    loop.destroy();
     window.clearTimeout(captureTimer);
-    resizeObserver.disconnect();
     sceneResizeObserver.disconnect();
     sceneMutationObserver.disconnect();
-    intersectionObserver.disconnect();
-    motionObserver.disconnect();
-    document.removeEventListener("visibilitychange", handleVisibility);
-    reducedMotionQuery.removeEventListener("change", handleMotionPreference);
     canvas.removeEventListener("webglcontextlost", handleContextLost);
     canvas.removeEventListener("webglcontextrestored", handleContextRestored);
     delete canvas.dataset.glassReady;

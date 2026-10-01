@@ -1,10 +1,11 @@
 "use client";
 
-import { CircleIcon, FrameIcon, MousePointer2Icon, SquareIcon, TypeIcon } from "lucide-react";
+import { CircleIcon, FrameIcon, LayersIcon, MousePointer2Icon, SlidersHorizontalIcon, SquareIcon, TypeIcon } from "lucide-react";
 import type { ComponentProps, KeyboardEvent, PointerEvent, ReactNode } from "react";
 import { useRef, useState } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
+import { Drawer, DrawerContent, DrawerTitle } from "@/components/control-ui/ui/drawer";
 import {
   InfiniteCanvas,
   InfiniteCanvasContent,
@@ -14,7 +15,7 @@ import {
 } from "@/components/control-ui/ui/infinite-canvas";
 import { ResizableFloatingPanel } from "@/components/control-ui/ui/resizable";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
-import { Toolbar, ToolbarButton, ToolbarGroup } from "@/components/control-ui/ui/toolbar";
+import { Toolbar, ToolbarButton, ToolbarGroup, ToolbarSeparator } from "@/components/control-ui/ui/toolbar";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
 import {
   createDesignCanvasLayer,
@@ -38,6 +39,10 @@ export type DesignCanvasBlockProps = Omit<ComponentProps<"div">, "children" | "d
   onSelectedLayerIdChange?: (layerId: string | null) => void;
   defaultTransform?: InfiniteCanvasTransform;
   layout?: "viewport" | "contained";
+  layersLabel?: string;
+  propertiesLabel?: string;
+  openLayersLabel?: string;
+  openPropertiesLabel?: string;
 };
 
 const TOOLS: readonly { tool: DesignCanvasTool; label: string; shortcut: string; icon: ReactNode }[] = [
@@ -64,6 +69,9 @@ const NUDGE_DIRECTIONS: Partial<Record<string, { x: number; y: number }>> = {
 
 const DEFAULT_TRANSFORM: InfiniteCanvasTransform = { x: 0, y: 0, scale: 1 };
 const CLICK_TOLERANCE_PX = 4;
+const DELETE_KEYS = new Set(["Delete", "Backspace"]);
+const CANVAS_KEY_SHORTCUTS = `${TOOLS.map((entry) => entry.shortcut).join(" ")} Enter Delete Backspace Escape`;
+const LAYER_KEY_SHORTCUTS = "Enter Space ArrowLeft ArrowRight ArrowUp ArrowDown Delete Backspace";
 
 type DesignCanvasDraft = {
   kind: DesignCanvasLayerKind;
@@ -94,6 +102,10 @@ export function DesignCanvasBlock({
   onSelectedLayerIdChange,
   defaultTransform = DEFAULT_TRANSFORM,
   layout = "viewport",
+  layersLabel = "Layers",
+  propertiesLabel = "Properties",
+  openLayersLabel = "Show layers",
+  openPropertiesLabel = "Show properties",
   className,
   ...props
 }: DesignCanvasBlockProps) {
@@ -102,6 +114,8 @@ export function DesignCanvasBlock({
   const transformRef = useRef(defaultTransform);
   const [tool, setTool] = useState<DesignCanvasTool>("move");
   const [draft, setDraft] = useState<DesignCanvasDraft | null>(null);
+  const [layersOpen, setLayersOpen] = useState(false);
+  const [propertiesOpen, setPropertiesOpen] = useState(false);
   const currentLayers = layers ?? internalLayers;
   const currentSelectedLayerId = selectedLayerId === undefined ? internalSelectedLayerId : selectedLayerId;
   const selectedLayer = currentLayers.find((layer) => layer.id === currentSelectedLayerId);
@@ -120,10 +134,26 @@ export function DesignCanvasBlock({
     changeLayers(currentLayers.map((layer) => (layer.id === next.id ? next : layer)));
   }
 
+  function addLayer(layer: DesignCanvasLayer) {
+    changeLayers([...currentLayers, layer]);
+    selectLayer(layer.id);
+    setTool("move");
+  }
+
+  function toWorldPoint(local: DesignCanvasPoint) {
+    const { x, y, scale } = transformRef.current;
+    return { x: (local.x - x) / scale, y: (local.y - y) / scale };
+  }
+
   function worldPointAt(event: PointerEvent<HTMLElement>) {
     const bounds = event.currentTarget.getBoundingClientRect();
-    const { x, y, scale } = transformRef.current;
-    return { x: (event.clientX - bounds.left - x) / scale, y: (event.clientY - bounds.top - y) / scale };
+    return toWorldPoint({ x: event.clientX - bounds.left, y: event.clientY - bounds.top });
+  }
+
+  function addLayerAtViewportCenter(kind: DesignCanvasLayerKind, canvas: HTMLElement) {
+    const center = toWorldPoint({ x: canvas.clientWidth / 2, y: canvas.clientHeight / 2 });
+    const bounds = drawnDesignCanvasBounds(kind, center, center, CLICK_TOLERANCE_PX / transformRef.current.scale);
+    addLayer(createDesignCanvasLayer(kind, bounds, newLayerId(kind)));
   }
 
   function beginDrawOrDeselect(event: PointerEvent<HTMLElement>) {
@@ -152,41 +182,53 @@ export function DesignCanvasBlock({
 
   function commitDraft(event: PointerEvent<HTMLElement>) {
     if (draft?.pointerId !== event.pointerId) return;
-    const layer = layerFromDraft(draft, newLayerId(draft.kind));
     setDraft(null);
-    changeLayers([...currentLayers, layer]);
-    selectLayer(layer.id);
-    setTool("move");
+    addLayer(layerFromDraft(draft, newLayerId(draft.kind)));
   }
 
   function cancelDraft(event: PointerEvent<HTMLElement>) {
     if (draft?.pointerId === event.pointerId) setDraft(null);
   }
 
-  function editSelectedLayerWithKey(event: KeyboardEvent<HTMLElement>) {
-    if (!selectedLayer) return false;
+  function editLayerWithKey(layer: DesignCanvasLayer, event: KeyboardEvent<HTMLElement>) {
     const nudge = NUDGE_DIRECTIONS[event.key];
-    if (event.key === "Delete" || event.key === "Backspace") {
-      changeLayers(currentLayers.filter((layer) => layer.id !== selectedLayer.id));
-      selectLayer(null);
+    if (DELETE_KEYS.has(event.key)) {
+      changeLayers(currentLayers.filter((entry) => entry.id !== layer.id));
+      if (layer.id === currentSelectedLayerId) selectLayer(null);
     } else if (nudge) {
       const distance = event.shiftKey ? 10 : 1;
-      replaceLayer({ ...selectedLayer, x: selectedLayer.x + nudge.x * distance, y: selectedLayer.y + nudge.y * distance });
+      replaceLayer({ ...layer, x: layer.x + nudge.x * distance, y: layer.y + nudge.y * distance });
     } else return false;
     return true;
   }
 
-  function handleShortcut(event: KeyboardEvent<HTMLElement>) {
+  function handleLayerKey(layer: DesignCanvasLayer, event: KeyboardEvent<HTMLElement>) {
     if (event.metaKey || event.ctrlKey || event.altKey) return;
+    if (event.key === "Enter" || event.key === " ") selectLayer(layer.id);
+    else if (!editLayerWithKey(layer, event)) return;
+    event.preventDefault();
+    if (DELETE_KEYS.has(event.key)) {
+      event.currentTarget.closest<HTMLElement>('[data-control-family="infinite-canvas"][data-slot="root"]')?.focus();
+    }
+  }
+
+  function handleShortcut(event: KeyboardEvent<HTMLElement>) {
+    if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey) return;
     const shortcutTool = toolForShortcut(event.key);
     if (shortcutTool) setTool(shortcutTool);
     else if (event.key === "Escape") {
       setDraft(null);
       setTool("move");
       selectLayer(null);
-    } else if (!editSelectedLayerWithKey(event)) return;
+    } else if (event.key === "Enter" && tool !== "move" && event.target === event.currentTarget) {
+      addLayerAtViewportCenter(tool, event.currentTarget);
+    } else if (!selectedLayer || !editLayerWithKey(selectedLayer, event)) return;
     event.preventDefault();
   }
+
+  const layerList = <DesignCanvasLayerList layers={currentLayers} selectedLayerId={currentSelectedLayerId} onSelect={selectLayer} />;
+  const inspector = <DesignCanvasInspector layer={selectedLayer} onLayerChange={replaceLayer} />;
+  const propertiesTitle = selectedLayer?.name ?? "Design";
 
   return (
     <div
@@ -199,6 +241,7 @@ export function DesignCanvasBlock({
     >
       <InfiniteCanvas
         aria-label="Design canvas"
+        aria-keyshortcuts={CANVAS_KEY_SHORTCUTS}
         defaultTransform={defaultTransform}
         onTransformChange={(next) => {
           transformRef.current = next;
@@ -223,52 +266,139 @@ export function DesignCanvasBlock({
               layer={layer}
               selected={layer.id === currentSelectedLayerId}
               onSelect={() => selectLayer(layer.id)}
+              onKeyDown={(event) => handleLayerKey(layer, event)}
               onLayerChange={replaceLayer}
             />
           ))}
           {draft ? <DesignCanvasLayerNode layer={layerFromDraft(draft, "draft")} selected /> : null}
         </InfiniteCanvasContent>
-        <InfiniteCanvasControls className="top-3 right-auto bottom-auto left-3 @4xl/design-canvas:left-1/2 @4xl/design-canvas:-translate-x-1/2" />
+        <InfiniteCanvasControls className="start-3 end-auto top-3 bottom-auto w-max @4xl/design-canvas:inset-x-0 @4xl/design-canvas:mx-auto" />
       </InfiniteCanvas>
 
       <ResizableFloatingPanel side="left" defaultSize={224} minSize={180} maxSize={360} className="hidden @4xl/design-canvas:flex">
-        <aside aria-label="Layers" className="flex min-h-0 flex-1 flex-col">
-          <h2 className="flex h-11 shrink-0 items-center border-b px-3 text-caption font-medium">Layers</h2>
-          <ScrollArea className="min-h-0 flex-1">
-            <ul className="flex flex-col gap-0.5 p-2">
-              {currentLayers.toReversed().map((layer) => (
-                <li key={layer.id}>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    active={layer.id === currentSelectedLayerId}
-                    aria-pressed={layer.id === currentSelectedLayerId}
-                    className="w-full justify-start [&_svg]:size-3.5 [&_svg]:text-muted-foreground"
-                    onClick={() => selectLayer(layer.id)}
-                  >
-                    {LAYER_ICONS[layer.kind]}
-                    <span className="truncate">{layer.name}</span>
-                  </Button>
-                </li>
-              ))}
-            </ul>
-          </ScrollArea>
-        </aside>
+        <DesignCanvasPanel label={layersLabel} title={layersLabel}>
+          {layerList}
+        </DesignCanvasPanel>
       </ResizableFloatingPanel>
 
       <ResizableFloatingPanel defaultSize={280} minSize={256} maxSize={440} className="hidden @xl/design-canvas:flex">
-        <aside aria-label="Properties" className="flex min-h-0 flex-1 flex-col">
-          <h2 className="flex h-11 shrink-0 items-center border-b px-3 text-caption font-medium">
-            <span className="truncate">{selectedLayer?.name ?? "Design"}</span>
-          </h2>
-          <ScrollArea className="min-h-0 flex-1">
-            <DesignCanvasInspector layer={selectedLayer} onLayerChange={replaceLayer} />
-          </ScrollArea>
-        </aside>
+        <DesignCanvasPanel label={propertiesLabel} title={propertiesTitle}>
+          {inspector}
+        </DesignCanvasPanel>
       </ResizableFloatingPanel>
 
-      <DesignCanvasToolbar tool={tool} onToolChange={setTool} />
+      <Drawer side="left" open={layersOpen} onOpenChange={setLayersOpen}>
+        <DrawerContent side="left" className="gap-0 p-0">
+          <DesignCanvasPanel label={layersLabel} title={layersLabel} inDrawer>
+            {layerList}
+          </DesignCanvasPanel>
+        </DrawerContent>
+      </Drawer>
+
+      <Drawer side="right" open={propertiesOpen} onOpenChange={setPropertiesOpen}>
+        <DrawerContent side="right" className="gap-0 p-0">
+          <DesignCanvasPanel label={propertiesLabel} title={propertiesTitle} inDrawer>
+            {inspector}
+          </DesignCanvasPanel>
+        </DrawerContent>
+      </Drawer>
+
+      <TooltipProvider>
+        <Toolbar
+          variant="floating"
+          aria-label="Design tools"
+          className="absolute start-4 bottom-4 w-max @4xl/design-canvas:inset-x-0 @4xl/design-canvas:mx-auto"
+        >
+          <ToolbarGroup aria-label="Tools">
+            {TOOLS.map((entry) => (
+              <DesignCanvasToolbarButton
+                key={entry.tool}
+                label={entry.label}
+                hint={`${entry.label} · ${entry.shortcut}`}
+                pressed={tool === entry.tool}
+                onClick={() => setTool(entry.tool)}
+              >
+                {entry.icon}
+              </DesignCanvasToolbarButton>
+            ))}
+          </ToolbarGroup>
+          <ToolbarSeparator className="@4xl/design-canvas:hidden" />
+          <ToolbarGroup className="@4xl/design-canvas:hidden">
+            <DesignCanvasToolbarButton
+              label={openLayersLabel}
+              hint={openLayersLabel}
+              aria-haspopup="dialog"
+              aria-expanded={layersOpen}
+              onClick={() => setLayersOpen(true)}
+            >
+              <LayersIcon />
+            </DesignCanvasToolbarButton>
+            <DesignCanvasToolbarButton
+              label={openPropertiesLabel}
+              hint={openPropertiesLabel}
+              aria-haspopup="dialog"
+              aria-expanded={propertiesOpen}
+              className="@xl/design-canvas:hidden"
+              onClick={() => setPropertiesOpen(true)}
+            >
+              <SlidersHorizontalIcon />
+            </DesignCanvasToolbarButton>
+          </ToolbarGroup>
+        </Toolbar>
+      </TooltipProvider>
     </div>
+  );
+}
+
+type DesignCanvasPanelProps = {
+  label: string;
+  title: string;
+  inDrawer?: boolean;
+  children: ReactNode;
+};
+
+function DesignCanvasPanel({ label, title, inDrawer = false, children }: DesignCanvasPanelProps) {
+  const titleClassName = "flex h-11 shrink-0 items-center border-b px-3 text-caption font-medium";
+  const titleText = (
+    <span className="truncate" title={title}>
+      {title}
+    </span>
+  );
+  return (
+    <aside aria-label={label} className="flex min-h-0 flex-1 flex-col">
+      {inDrawer ? <DrawerTitle className={titleClassName}>{titleText}</DrawerTitle> : <h2 className={titleClassName}>{titleText}</h2>}
+      <ScrollArea className="min-h-0 flex-1">{children}</ScrollArea>
+    </aside>
+  );
+}
+
+type DesignCanvasLayerListProps = {
+  layers: readonly DesignCanvasLayer[];
+  selectedLayerId: string | null;
+  onSelect: (layerId: string) => void;
+};
+
+function DesignCanvasLayerList({ layers, selectedLayerId, onSelect }: DesignCanvasLayerListProps) {
+  return (
+    <ul className="flex flex-col gap-0.5 p-2">
+      {layers.toReversed().map((layer) => (
+        <li key={layer.id}>
+          <Button
+            variant="ghost"
+            size="sm"
+            active={layer.id === selectedLayerId}
+            aria-pressed={layer.id === selectedLayerId}
+            className="w-full justify-start [&_svg]:size-3.5 [&_svg]:text-muted-foreground"
+            onClick={() => onSelect(layer.id)}
+          >
+            {LAYER_ICONS[layer.kind]}
+            <span className="truncate" title={layer.name}>
+              {layer.name}
+            </span>
+          </Button>
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -276,24 +406,31 @@ type DesignCanvasLayerNodeProps = {
   layer: DesignCanvasLayer;
   selected: boolean;
   onSelect?: () => void;
+  onKeyDown?: (event: KeyboardEvent<HTMLDivElement>) => void;
   onLayerChange?: (layer: DesignCanvasLayer) => void;
 };
 
-function DesignCanvasLayerNode({ layer, selected, onSelect, onLayerChange }: DesignCanvasLayerNodeProps) {
+function DesignCanvasLayerNode({ layer, selected, onSelect, onKeyDown, onLayerChange }: DesignCanvasLayerNodeProps) {
   const fillColor = designCanvasFillColor(layer.fill);
+  const interactive = onSelect !== undefined;
   return (
     <InfiniteCanvasItem
       x={layer.x}
       y={layer.y}
       aria-label={layer.name}
+      role={interactive ? "button" : undefined}
+      tabIndex={interactive ? 0 : undefined}
+      aria-pressed={interactive ? selected : undefined}
+      aria-keyshortcuts={interactive ? LAYER_KEY_SHORTCUTS : undefined}
       data-selected={selected || undefined}
       className="outline-primary data-selected:outline-2"
       style={{ width: layer.width, height: layer.height, rotate: `${layer.rotation}deg`, opacity: layer.opacity / 100 }}
       onPointerDown={onSelect}
+      onKeyDown={onKeyDown}
       onPositionChange={onLayerChange && ((position) => onLayerChange({ ...layer, x: Math.round(position.x), y: Math.round(position.y) }))}
     >
       {layer.kind === "frame" ? (
-        <span className="absolute bottom-full left-0 mb-1 whitespace-nowrap text-caption text-muted-foreground">{layer.name}</span>
+        <span className="absolute start-0 bottom-full mb-1 whitespace-nowrap text-caption text-muted-foreground">{layer.name}</span>
       ) : null}
       {layer.kind === "text" ? (
         <p className="size-full overflow-hidden text-2xl leading-8 whitespace-nowrap" style={{ color: fillColor }}>
@@ -303,7 +440,7 @@ function DesignCanvasLayerNode({ layer, selected, onSelect, onLayerChange }: Des
         <div className="size-full" style={{ background: fillColor, borderRadius: layer.kind === "ellipse" ? "50%" : layer.cornerRadius }} />
       )}
       {selected ? (
-        <span className="absolute top-full left-1/2 mt-1.5 -translate-x-1/2 rounded-sm bg-primary px-1 text-[10px] leading-4 whitespace-nowrap text-primary-foreground tabular-nums">
+        <span className="absolute inset-x-0 top-full mx-auto mt-1.5 w-max rounded-sm bg-primary px-1 text-micro whitespace-nowrap text-primary-foreground tabular-nums">
           {layer.width} × {layer.height}
         </span>
       ) : null}
@@ -311,37 +448,22 @@ function DesignCanvasLayerNode({ layer, selected, onSelect, onLayerChange }: Des
   );
 }
 
-function DesignCanvasToolbar({ tool, onToolChange }: { tool: DesignCanvasTool; onToolChange: (tool: DesignCanvasTool) => void }) {
+type DesignCanvasToolbarButtonProps = Omit<ComponentProps<typeof ToolbarButton>, "aria-label" | "children"> & {
+  label: string;
+  hint: string;
+  pressed?: boolean;
+  children: ReactNode;
+};
+
+function DesignCanvasToolbarButton({ label, hint, pressed, children, ...props }: DesignCanvasToolbarButtonProps) {
   return (
-    <TooltipProvider>
-      <Toolbar
-        variant="floating"
-        aria-label="Design tools"
-        className="absolute bottom-4 left-4 w-max @4xl/design-canvas:left-1/2 @4xl/design-canvas:-translate-x-1/2"
+    <Tooltip>
+      <TooltipTrigger
+        render={<ToolbarButton {...props} aria-label={label} iconOnly aria-pressed={pressed} data-pressed={pressed ? "" : undefined} />}
       >
-        <ToolbarGroup aria-label="Tools">
-          {TOOLS.map((entry) => (
-            <Tooltip key={entry.tool}>
-              <TooltipTrigger
-                render={
-                  <ToolbarButton
-                    aria-label={entry.label}
-                    iconOnly
-                    aria-pressed={tool === entry.tool}
-                    data-pressed={tool === entry.tool ? "" : undefined}
-                    onClick={() => onToolChange(entry.tool)}
-                  />
-                }
-              >
-                {entry.icon}
-              </TooltipTrigger>
-              <TooltipContent>
-                {entry.label} · {entry.shortcut}
-              </TooltipContent>
-            </Tooltip>
-          ))}
-        </ToolbarGroup>
-      </Toolbar>
-    </TooltipProvider>
+        {children}
+      </TooltipTrigger>
+      <TooltipContent>{hint}</TooltipContent>
+    </Tooltip>
   );
 }

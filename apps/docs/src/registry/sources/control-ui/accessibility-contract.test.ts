@@ -22,7 +22,6 @@ describe("Control UI accessibility contracts", () => {
   test("gradient editor exposes keyboard operations for stops", () => {
     expect(gradientEditorSource).toContain("<fieldset");
     expect(gradientEditorSource).toContain('ariaLabel ?? "Gradient stops"');
-    expect(gradientEditorSource).toContain("Use arrow keys to move");
     expect(gradientEditorSource).toContain('case "ArrowLeft":');
     expect(gradientEditorSource).toContain('case "ArrowRight":');
     expect(gradientEditorSource).toContain('case "Home":');

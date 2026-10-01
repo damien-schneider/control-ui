@@ -1,0 +1,136 @@
+@layer components {
+  :where([data-control-family="sidebar"][data-slot="rail"]) {
+    inline-size: calc(var(--spacing) * 4);
+    background-image: linear-gradient(var(--cui-sidebar-rail-divider-background), var(--cui-sidebar-rail-divider-background));
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 2px 100%;
+  }
+
+  :where([data-control-family="sidebar"][data-collapsible="offcanvas"] [data-slot="rail"]) {
+    background-position: right;
+  }
+
+  :where([data-control-family="sidebar"][data-collapsible="offcanvas"] [data-slot="rail"]:dir(rtl)) {
+    background-position: left;
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="sidebar"][data-slot="rail"]:hover) {
+      --cui-sidebar-rail-divider-background: var(--sidebar-border);
+    }
+
+    :where([data-control-family="sidebar"][data-collapsible="offcanvas"] [data-slot="rail"]:not([data-resizable]):hover) {
+      background-color: var(--sidebar);
+    }
+  }
+
+  :where([data-control-family="sidebar"][data-slot="rail"][data-resizable]) {
+    inline-size: calc(var(--spacing) * 2);
+    background: none;
+  }
+
+  :where([data-control-family="sidebar"][data-slot="rail"][data-resizable])::after {
+    content: "";
+    position: absolute;
+    inset-block: 12.5%;
+    inset-inline-start: 50%;
+    inline-size: 1px;
+    background-image: linear-gradient(transparent, var(--cui-sidebar-rail-divider-background), transparent);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="rail"]:is(:focus-visible, [data-resizing="true"])) {
+    --cui-sidebar-rail-divider-background: var(--focus-ring);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="inset"]) {
+    background-color: var(--cui-sidebar-inset-background);
+    background-image: var(--cui-sidebar-inset-background-image);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="inset"]:focus-visible) {
+    --focus-ring-offset: calc(var(--focus-ring-width) * -1);
+  }
+
+  @media (width >= 64rem) {
+    :where(
+        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state]
+          ~ [data-control-family="sidebar"][data-slot="inset"]
+      ) {
+      margin: var(--cui-sidebar-inset-inset);
+      margin-inline-start: 0;
+      border: var(--cui-sidebar-inset-border-width) solid var(--cui-sidebar-inset-border-color);
+      border-radius: var(--cui-sidebar-inset-radius);
+      box-shadow: var(--cui-sidebar-inset-shadow);
+    }
+
+    :where(
+        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="collapsed"]
+          ~ [data-control-family="sidebar"][data-slot="inset"]
+      ) {
+      margin-inline-start: var(--cui-sidebar-inset-inset);
+    }
+  }
+
+  :where([data-control-family="sidebar"][data-slot="header"]),
+  :where([data-control-family="sidebar"][data-slot="footer"]) {
+    gap: calc(var(--spacing) * 2);
+    padding: calc(var(--spacing) * 2);
+    background-color: var(--cui-sidebar-header-background);
+    box-shadow: var(--cui-sidebar-header-shadow);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="content-stack"]) {
+    gap: calc(var(--spacing) * 2);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="group"]) {
+    padding: calc(var(--spacing) * 2);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="menu"]) {
+    gap: calc(var(--spacing) * 1);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="menu"][data-submenu]) {
+    margin-block: calc(var(--spacing) * 1);
+    margin-inline-start: calc(var(--spacing) * 3);
+    padding-inline-start: calc(var(--spacing) * 2);
+    border-inline-start: 1px solid var(--sidebar-border);
+    width: auto;
+  }
+
+  :where([data-control-family="sidebar"]:is([data-slot="group-label"], [data-slot="menu-button"])[aria-expanded] > [data-slot="chevron"]) {
+    margin-inline-start: auto;
+    transition: rotate var(--duration-base) var(--ease-standard);
+  }
+
+  :where([data-control-family="sidebar"][aria-expanded="true"] > [data-slot="chevron"]) {
+    rotate: 90deg;
+  }
+
+  :where([data-control-family="sidebar"][data-slot="group-label"][aria-expanded]) {
+    cursor: pointer;
+    width: 100%;
+    text-align: start;
+  }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="sidebar"][data-slot="menu-button"]) {
+      min-block-size: max(var(--cui-sidebar-menu-button-height), var(--touch-target));
+    }
+
+    :where([data-control-family="sidebar"][data-slot="group-label"][aria-expanded]) {
+      min-block-size: var(--touch-target);
+    }
+
+    :where([data-control-family="button"][data-sidebar-trigger]) {
+      min-inline-size: var(--touch-target);
+      min-block-size: var(--touch-target);
+    }
+  }
+
+  :where([data-control-family="sidebar"][data-slot="menu"]:is([data-indicator="hover"], [data-indicator="slide"])) {
+    gap: 0;
+  }
+}

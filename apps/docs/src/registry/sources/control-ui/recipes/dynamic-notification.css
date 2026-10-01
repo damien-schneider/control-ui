@@ -26,12 +26,13 @@
       1
     );
     --cui-dynamic-notification-expanded-radius: 1.65rem;
-    --cui-dynamic-notification-glass-foreground: white;
+    --cui-dynamic-notification-glass-foreground: oklch(1 0 0);
     --cui-dynamic-notification-glass-ring-color: oklch(1 0 0 / 0.12);
     --cui-dynamic-notification-indicator-end: oklch(0.7 0.17 250);
     --cui-dynamic-notification-indicator-middle: oklch(0.75 0.15 70);
     --cui-dynamic-notification-indicator-start: oklch(0.62 0.19 25);
-    --cui-dynamic-notification-liquid-foreground: white;
+    --cui-dynamic-notification-liquid-foreground: oklch(1 0 0);
+    --cui-dynamic-notification-liquid-text-shadow: 0 1px 2px oklch(0 0 0 / 0.25);
     --cui-dynamic-notification-morph-easing: linear(
       0,
       0.0568 3.85%,
@@ -65,18 +66,21 @@
     --cui-dynamic-notification-surface-foreground: var(--popover-foreground);
     --cui-dynamic-notification-surface-ring-color: var(--border);
     --cui-dynamic-notification-surface-shadow: var(--shadow-pop);
+    --cui-dynamic-notification-title-foreground: var(--muted-foreground);
     --_dynamic-notification-active-foreground: var(--cui-dynamic-notification-surface-foreground);
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="root"][data-variant="glass"]) {
     --_dynamic-notification-active-foreground: var(--cui-dynamic-notification-glass-foreground);
+    --cui-dynamic-notification-title-foreground: oklch(from var(--cui-dynamic-notification-glass-foreground) l c h / 0.6);
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="root"][data-variant="liquid"]) {
     --_dynamic-notification-active-foreground: var(--cui-dynamic-notification-liquid-foreground);
+    --cui-dynamic-notification-title-foreground: oklch(from var(--cui-dynamic-notification-liquid-foreground) l c h / 0.6);
   }
 
-  :where([data-control-family="dynamic-notification"][data-slot="island"][data-variant="glass"]) {
+  :where([data-control-family="dynamic-notification"][data-slot="island"]:is([data-variant="glass"], [data-variant="liquid"])) {
     background: linear-gradient(
       to bottom,
       oklch(0 0 0 / 0.97) 0%,
@@ -86,6 +90,9 @@
       var(--_dynamic-notification-ink-tail) var(--_dynamic-notification-ink-tail-stop),
       var(--_dynamic-notification-ink-tail) 100%
     );
+  }
+
+  :where([data-control-family="dynamic-notification"][data-slot="island"][data-variant="glass"]) {
     backdrop-filter: blur(4px) saturate(1.4);
     color: var(--cui-dynamic-notification-glass-foreground);
     box-shadow:
@@ -94,32 +101,24 @@
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="island"][data-variant="liquid"]) {
-    background: linear-gradient(
-      to bottom,
-      oklch(0 0 0 / 0.97) 0%,
-      oklch(0 0 0 / 0.97) var(--_dynamic-notification-ink-plateau),
-      var(--_dynamic-notification-ink-mid) var(--_dynamic-notification-ink-mid-stop),
-      var(--_dynamic-notification-ink-low) var(--_dynamic-notification-ink-low-stop),
-      var(--_dynamic-notification-ink-tail) var(--_dynamic-notification-ink-tail-stop),
-      var(--_dynamic-notification-ink-tail) 100%
-    );
     color: var(--cui-dynamic-notification-liquid-foreground);
-    text-shadow: 0 1px 2px oklch(0 0 0 / 0.25);
+    text-shadow: var(--cui-dynamic-notification-liquid-text-shadow);
   }
 
-  :where([data-control-family="dynamic-notification"][data-slot="island"][data-variant="glass"]:has([data-glass-ready="true"])),
-  :where([data-control-family="dynamic-notification"][data-slot="island"][data-variant="liquid"]:has([data-glass-ready="true"])) {
+  :where(
+    [data-control-family="dynamic-notification"][data-slot="island"]:is([data-variant="glass"], [data-variant="liquid"]):has(
+      [data-glass-ready="true"]
+    )
+  ) {
     background: transparent;
   }
 
-  :where([data-control-family="dynamic-notification"][data-slot="glass"]),
-  :where([data-control-family="dynamic-notification"][data-slot="liquid"]) {
+  :where([data-control-family="dynamic-notification"]:is([data-slot="glass"], [data-slot="liquid"])) {
     opacity: 0;
     transition: opacity var(--duration-base) var(--ease-standard);
   }
 
-  :where([data-control-family="dynamic-notification"][data-slot="glass"][data-glass-ready="true"]),
-  :where([data-control-family="dynamic-notification"][data-slot="liquid"][data-glass-ready="true"]) {
+  :where([data-control-family="dynamic-notification"]:is([data-slot="glass"], [data-slot="liquid"])[data-glass-ready="true"]) {
     opacity: 1;
   }
 
@@ -133,15 +132,15 @@
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="pill"]) {
+    --focus-ring-offset: calc(var(--focus-ring-width) * -1);
     gap: calc(var(--spacing) * 2);
     padding-inline: calc(var(--spacing) * 4);
     font-size: var(--text-caption);
-    outline-style: none;
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="title"]) {
     font-size: var(--text-caption);
-    opacity: 0.55;
+    color: var(--cui-dynamic-notification-title-foreground);
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--tracking-wide);
     text-wrap: balance;
@@ -149,7 +148,9 @@
 
   :where([data-control-family="dynamic-notification"][data-slot="message"]) {
     font-size: var(--text-body-lg);
-    line-height: 1.375;
+    line-height: var(--leading-snug);
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="indicator"]) {
@@ -168,6 +169,11 @@
     gap: calc(var(--spacing) * 2);
   }
 
+  :where([data-control-family="dynamic-notification"][data-slot="reply-error"]) {
+    font-size: var(--text-caption);
+    text-wrap: pretty;
+  }
+
   :where([data-control-family="dynamic-notification"][data-slot="reply-input"]) {
     block-size: calc(var(--spacing) * 9);
     padding-inline: calc(var(--spacing) * 3.5);
@@ -175,10 +181,6 @@
 
   :where([data-control-family="button"][data-dynamic-notification-close="true"]) {
     margin-inline-end: calc(var(--spacing) * -1.5);
-  }
-
-  :where([data-control-family="dynamic-notification"][data-slot="island"]) {
-    outline-style: none;
   }
 }
 
@@ -200,7 +202,19 @@
   initial-value: transparent;
 }
 
+@property --cui-dynamic-notification-liquid-text-shadow {
+  syntax: "*";
+  inherits: true;
+  initial-value: none;
+}
+
 @property --cui-dynamic-notification-surface-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-dynamic-notification-title-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

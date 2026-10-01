@@ -15,7 +15,6 @@
     --cui-dockable-panel-drop-zone-active-border-color: oklch(from var(--primary) l c h / 0.55);
     border: var(--cui-dockable-panel-border-width) solid var(--cui-dockable-panel-border-color);
     border-radius: var(--cui-dockable-panel-radius);
-    outline: none;
     background-color: var(--cui-dockable-panel-background);
     color: var(--cui-dockable-panel-foreground);
     box-shadow: var(--cui-dockable-panel-shadow);
@@ -39,7 +38,11 @@
   :where([data-control-family="dockable-panel"][data-slot="drag-handle"]) {
     padding-inline: calc(var(--spacing) * 2);
     border-radius: var(--radius-control);
-    text-align: left;
+    text-align: start;
+  }
+
+  :where([data-control-family="dockable-panel"][data-slot="drag-button"]) {
+    border-radius: inherit;
   }
 
   :where([data-control-family="dockable-panel"][data-slot="actions"]) {
@@ -52,7 +55,7 @@
 
   :where([data-control-family="dockable-panel"][data-slot="title"]) {
     color: var(--foreground);
-    font-size: var(--text-sm);
+    font-size: var(--text-body);
     font-weight: var(--font-weight-semibold);
   }
 

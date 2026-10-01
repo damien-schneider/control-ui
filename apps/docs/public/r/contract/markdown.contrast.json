@@ -7,6 +7,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -47,6 +48,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -96,6 +98,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -136,6 +139,48 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown",
+          "data-control-ui": "markdown",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown",
+          "data-control-ui": "markdown",
+          "data-slot": "inline-code"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -176,6 +221,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -209,6 +255,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -227,6 +274,48 @@
           "data-scroll": "inset",
           "data-slot": "root",
           "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown",
+          "data-control-ui": "markdown",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown",
+          "data-control-ui": "markdown",
+          "data-slot": "link",
+          "href": "#"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "wide"
         }
       },
       {
@@ -275,7 +364,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-markdown-table-header-background"
+        "fill": "--cui-markdown-inline-code-background",
+        "text": "--cui-markdown-inline-code-foreground"
       },
       "anatomy": 3,
       "rendersText": true,
@@ -283,7 +373,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-markdown-foreground"
+        "fill": "--cui-markdown-table-header-background"
       },
       "anatomy": 4,
       "rendersText": true,
@@ -291,9 +381,25 @@
     },
     {
       "knobs": {
-        "text": "--cui-markdown-link-foreground"
+        "text": "--cui-markdown-foreground"
       },
       "anatomy": 5,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-markdown-link-foreground"
+      },
+      "anatomy": 6,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-markdown-link-foreground"
+      },
+      "anatomy": 7,
       "rendersText": true,
       "state": false
     }

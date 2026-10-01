@@ -1,11 +1,13 @@
 "use client";
 
+import { Toolbar as ToolbarPrimitive } from "@base-ui/react/toolbar";
 import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
 import { createContext, useContext } from "react";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import type { ActionBarKnobStyle } from "@/components/control-ui/knob-contracts/action-bar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
+import { LiveStatus } from "@/components/control-ui/ui/live-status";
 
 export type ActionBarCopyValue = string | (() => string | Promise<string>);
 
@@ -63,38 +65,48 @@ export function ActionBar({
 
   return (
     <ActionBarContext.Provider value={actionContext}>
-      <div
+      <ToolbarPrimitive.Root
+        {...props}
         data-control-ui="action-bar"
         data-control-family="action-bar"
         data-slot="root"
-        role="toolbar"
         aria-label={label}
         className={cn("flex items-center", align === "end" ? "justify-end" : "justify-start", className)}
-        {...props}
       >
         {children}
-      </div>
+      </ToolbarPrimitive.Root>
     </ActionBarContext.Provider>
   );
 }
 
-export type ActionBarItemProps = ComponentProps<typeof Button> & {
+type ActionBarItemBaseProps = Omit<ComponentProps<typeof Button>, "iconOnly" | "children"> & {
   icon?: ReactNode;
 };
 
-export function ActionBarItem({ icon, children, className, ...props }: ActionBarItemProps) {
+export type ActionBarItemProps = ActionBarItemBaseProps &
+  ({ children: NonNullable<ReactNode> } | { children?: null; "aria-label": string });
+
+export function ActionBarItem({ icon, children, active, disabled, ...props }: ActionBarItemProps) {
   return (
-    <Button size="xs" className={className} {...props}>
-      {icon}
-      {children}
-    </Button>
+    <ToolbarPrimitive.Button
+      disabled={disabled}
+      focusableWhenDisabled={false}
+      render={
+        <Button size="xs" active={active} aria-pressed={active} iconOnly={children == null} {...props}>
+          {icon}
+          {children}
+        </Button>
+      }
+    />
   );
 }
 
-export type ActionBarCopyProps = Omit<ActionBarItemProps, "children"> & {
+export type ActionBarCopyProps = ActionBarItemBaseProps & {
   value?: ActionBarCopyValue;
-  children?: ReactNode;
+  children?: NonNullable<ReactNode>;
   copiedChildren?: ReactNode;
+  copiedAriaLabel?: string;
+  copyFailedLabel?: string;
   resetDelay?: number;
 };
 
@@ -102,6 +114,8 @@ export function ActionBarCopy({
   value,
   children = "Copy",
   copiedChildren = "Copied",
+  copiedAriaLabel = "Copied to clipboard",
+  copyFailedLabel = "Couldn't copy. Select the text and copy it manually.",
   resetDelay = 1200,
   disabled,
   onClick,
@@ -109,7 +123,7 @@ export function ActionBarCopy({
 }: ActionBarCopyProps) {
   const { copyValue: contextCopyValue, onCopy, onCopyError } = useContext(ActionBarContext);
   const copyValue = value ?? contextCopyValue;
-  const { isCopied, copyToClipboard } = useCopyToClipboard({
+  const { status, copyToClipboard } = useCopyToClipboard({
     copiedDuration: resetDelay,
     onCopy,
     onCopyError,
@@ -119,22 +133,41 @@ export function ActionBarCopy({
     onClick?.(event);
     if (event.defaultPrevented) return;
 
-    const nextValue = await resolveCopyValue(copyValue);
-    if (!nextValue) return;
-
-    await copyToClipboard(nextValue);
+    try {
+      const nextValue = await resolveCopyValue(copyValue);
+      if (!nextValue) return;
+      await copyToClipboard(nextValue);
+    } catch (error) {
+      onCopyError?.(error);
+    }
   }
 
+  let copyStatus = "";
+  if (status === "copied") copyStatus = copiedAriaLabel;
+  else if (status === "failed") copyStatus = copyFailedLabel;
+
   return (
-    <ActionBarItem aria-live="polite" disabled={disabled ?? !copyValue} onClick={handleClick} {...props}>
-      {isCopied ? copiedChildren : children}
-    </ActionBarItem>
+    <>
+      <ActionBarItem disabled={disabled ?? !copyValue} onClick={handleClick} {...props}>
+        {status === "copied" ? (
+          <>
+            <span aria-hidden="true" className="contents">
+              {copiedChildren}
+            </span>
+            <span className="sr-only">{children}</span>
+          </>
+        ) : (
+          children
+        )}
+      </ActionBarItem>
+      <LiveStatus message={copyStatus} />
+    </>
   );
 }
 
-export type ActionBarEditProps = Omit<ActionBarItemProps, "children"> & {
+export type ActionBarEditProps = ActionBarItemBaseProps & {
   value?: ActionBarCopyValue;
-  children?: ReactNode;
+  children?: NonNullable<ReactNode>;
 };
 
 export function ActionBarEdit({ value, children = "Edit", disabled, onClick, ...props }: ActionBarEditProps) {

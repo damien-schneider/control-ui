@@ -7,7 +7,6 @@
     color: var(--_dynamic-notification-active-foreground);
     box-shadow: inset 0 0 0 1px oklch(from var(--_dynamic-notification-active-foreground) l c h / 0.1);
     font-size: var(--text-body);
-    outline: none;
     transition: box-shadow var(--duration-fast) var(--ease-standard);
   }
 
@@ -16,20 +15,24 @@
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="reply-input"]:disabled) {
-    opacity: 0.5;
+    opacity: var(--disabled-opacity);
   }
 
   :where([data-control-family="button"][data-dynamic-notification-close="true"]) {
     color: oklch(from var(--_dynamic-notification-active-foreground) l c h / 0.55);
   }
 
-  :where([data-control-family="button"][data-dynamic-notification-close="true"]:hover) {
-    color: inherit;
+  @media (hover: hover) {
+    :where(
+        [data-control-family="button"][data-dynamic-notification-close="true"]:not(:disabled, [data-disabled], [aria-disabled="true"]):hover
+      ) {
+      color: inherit;
+    }
   }
 
   @media (pointer: coarse) {
     :where([data-control-family="dynamic-notification"][data-slot="reply-input"]) {
-      font-size: max(16px, var(--text-body));
+      font-size: max(var(--text-input-min), var(--text-body));
     }
   }
 }

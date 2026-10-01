@@ -75,10 +75,6 @@ describe("Activity", () => {
 
     expect(html).toContain('aria-expanded="true"');
     expect(html).toMatch(/<button[^>]*data-control-ui="activity"[^>]*data-slot="trigger"/);
-    expect(html).toContain('aria-busy="true"');
-    expect(html).toContain('data-slot="announcement"');
-    expect(html).toContain('role="status"');
-    expect(html).toContain('aria-live="polite"');
     expect(html).toContain('data-slot="content"');
     expect(html).toContain('data-control-ui="scroll-area"');
     expect(html).toContain('data-slot="content-viewport"');
@@ -87,18 +83,18 @@ describe("Activity", () => {
     expect(html).toContain("Ran the validation command");
   });
 
-  test("announces failures outside the disclosure trigger", () => {
+  test("announces state changes through one polite region that names the activity", () => {
     const html = renderToString(
-      <Activity state="error" statusLabel="Search failed">
+      <Activity state="error" name="web_search" statusLabel="Search failed">
         <ActivityRow>
-          <ActivityTitle>Search</ActivityTitle>
+          <ActivityTitle />
         </ActivityRow>
       </Activity>,
     );
 
-    expect(html).toContain('role="alert"');
-    expect(html).toContain('aria-live="assertive"');
-    expect(html).toContain("Search failed");
+    expect(html).toMatch(/<span[^>]*role="status"[^>]*aria-live="polite"[^>]*>Web search: Search failed<\/span>/);
+    expect(html).not.toContain('role="alert"');
+    expect(html).not.toContain("aria-busy");
   });
 
   test("allows the content height cap to be disabled explicitly", () => {

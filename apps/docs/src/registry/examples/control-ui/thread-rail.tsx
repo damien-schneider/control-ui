@@ -104,8 +104,8 @@ export function ThreadRailExample() {
           const overflow = turn.files.length - visible.length;
 
           return (
-            <ThreadRailItem key={turn.id} inView={turn.id === ACTIVE.id}>
-              <ThreadRailLine aria-label={turn.prompt} />
+            <ThreadRailItem key={turn.id} active={turn.id === ACTIVE.id}>
+              <ThreadRailLine />
               <ThreadRailPopover>
                 <ThreadRailTitle>{turn.prompt}</ThreadRailTitle>
                 <ThreadRailSummary>{turn.reply}</ThreadRailSummary>

@@ -10,7 +10,8 @@
   "registryDependencies": [
     "audio-visualizer",
     "button",
-    "core"
+    "core",
+    "live-status"
   ],
   "files": [
     {

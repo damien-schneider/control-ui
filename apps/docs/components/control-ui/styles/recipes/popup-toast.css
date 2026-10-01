@@ -1,10 +1,17 @@
 @layer components {
   :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="root"]) {
+    --cui-popup-title-font-size: var(--text-body);
+    --cui-popup-title-line-height: 1.35;
+    --cui-popup-status-success-foreground: var(--success-text);
+    --cui-popup-status-warning-foreground: var(--warning-text);
+    --cui-popup-status-info-foreground: var(--info-text);
+    --cui-popup-status-error-foreground: var(--destructive);
     --_toast-swipe-x: var(--toast-swipe-movement-x);
     --_toast-swipe-y: var(--toast-swipe-movement-y);
+    --_toast-y: calc(var(--_toast-swipe-y) - (var(--toast-index) * var(--peek)) - (var(--shrink) * var(--height)));
+    --_toast-scale: var(--scale);
     transform-origin: bottom;
-    transform: translateX(var(--_toast-swipe-x))
-      translateY(calc(var(--_toast-swipe-y) - (var(--toast-index) * var(--peek)) - (var(--shrink) * var(--height)))) scale(var(--scale));
+    transform: translateX(var(--_toast-swipe-x)) translateY(var(--_toast-y)) scale(var(--_toast-scale));
     transition:
       transform var(--duration-slow) var(--ease-emphasized),
       opacity var(--duration-slow) var(--ease-standard),
@@ -16,16 +23,21 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="root"][data-expanded]) {
-    transform: translateX(var(--_toast-swipe-x)) translateY(var(--offset-y));
+    --_toast-y: var(--offset-y);
+    --_toast-scale: 1;
   }
 
-  :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="root"][data-starting-style]),
+  :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="root"][data-starting-style]) {
+    transform: translateY(150%);
+  }
+
   :where(
     [data-control-family="popup"][data-popup-kind="toast"][data-slot="root"][data-ending-style]:not([data-limited]):not(
       [data-swipe-direction]
     )
   ) {
-    transform: translateY(150%);
+    transform: translateX(var(--_toast-swipe-x)) translateY(calc(var(--_toast-y) + var(--spacing) * 3)) scale(var(--_toast-scale));
+    transition-duration: var(--duration-fast);
   }
 
   :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="root"][data-ending-style][data-swipe-direction="down"]) {
@@ -63,38 +75,55 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="indicator"]) {
-    --_toast-indicator-background: var(--foreground);
-    margin-block-start: calc(var(--spacing) * 1.5);
-    inline-size: calc(var(--spacing) * 2);
-    block-size: calc(var(--spacing) * 2);
-    border-radius: 9999px;
-    background: var(--_toast-indicator-background);
+    display: flex;
+    align-items: center;
+    block-size: 1lh;
+    font-size: var(--cui-popup-title-font-size);
+    line-height: var(--cui-popup-title-line-height);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="toast"][data-type="success"] [data-slot="indicator"]) {
+    color: var(--cui-popup-status-success-foreground);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="toast"][data-type="warning"] [data-slot="indicator"]) {
+    color: var(--cui-popup-status-warning-foreground);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="toast"][data-type="info"] [data-slot="indicator"]) {
+    color: var(--cui-popup-status-info-foreground);
   }
 
   :where([data-control-family="popup"][data-popup-kind="toast"][data-type="error"] [data-slot="indicator"]) {
-    --_toast-indicator-background: var(--destructive);
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="title"]) {
-    font-size: var(--text-body);
-    font-weight: var(--font-weight-semibold);
-    line-height: 1;
-    letter-spacing: -0.025em;
-    text-wrap: balance;
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="description"]) {
-    color: var(--muted-foreground);
-    font-size: var(--text-body);
-    text-wrap: pretty;
+    color: var(--cui-popup-status-error-foreground);
   }
 
   :where([data-control-family="button"][data-popup-kind="toast"][data-popup-part="close"]) {
     margin-block-start: calc(var(--spacing) * -1);
     margin-inline-end: calc(var(--spacing) * -1);
   }
+}
 
-  :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="viewport"]) {
-    outline-style: none;
-  }
+@property --cui-popup-status-success-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-popup-status-warning-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-popup-status-info-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-popup-status-error-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
 }

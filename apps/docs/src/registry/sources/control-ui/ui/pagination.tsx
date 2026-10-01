@@ -4,11 +4,15 @@ import type { ComponentProps, CSSProperties } from "react";
 import type { PaginationKnobStyle } from "@/components/control-ui/knob-contracts/pagination-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
-export type PaginationEllipsisProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & PaginationKnobStyle };
+export type PaginationEllipsisProps = Omit<ComponentProps<"span">, "style" | "children"> & {
+  label?: string;
+  style?: CSSProperties & PaginationKnobStyle;
+};
 
 export type PaginationLinkProps = Omit<
   ComponentProps<"a"> & {
     isActive?: boolean;
+    disabled?: boolean;
   },
   "style"
 > & { style?: CSSProperties & PaginationKnobStyle };
@@ -16,9 +20,8 @@ export type PaginationLinkProps = Omit<
 // Links are control-shaped by hand rather than importing Button, so pagination installs alone.
 export function Pagination({ className, ...props }: ComponentProps<"nav"> & { style?: CSSProperties & PaginationKnobStyle }) {
   return (
-    // the <nav> already carries role; label names landmark
     <nav
-      aria-label="pagination"
+      aria-label="Pagination"
       data-control-ui="pagination"
       data-control-family="pagination"
       data-slot="root"
@@ -47,7 +50,7 @@ export function PaginationItem({ className, ...props }: ComponentProps<"li"> & {
 const paginationLinkChrome =
   "inline-flex h-[var(--control-h-sm)] min-w-[var(--control-h-sm)] cursor-pointer select-none items-center justify-center whitespace-nowrap aria-disabled:pointer-events-none [&>svg]:size-4 [&>svg]:shrink-0";
 
-export function PaginationLink({ isActive = false, className, ...props }: PaginationLinkProps) {
+export function PaginationLink({ isActive = false, disabled = false, href, className, ...props }: PaginationLinkProps) {
   return (
     <a
       aria-current={isActive ? "page" : undefined}
@@ -56,42 +59,44 @@ export function PaginationLink({ isActive = false, className, ...props }: Pagina
       data-slot="link"
       data-control="true"
       data-active={isActive ? "true" : undefined}
+      role={disabled ? "link" : undefined}
+      aria-disabled={disabled || undefined}
       className={cn(paginationLinkChrome, className)}
       {...props}
+      href={disabled ? undefined : href}
     />
   );
 }
 
-export function PaginationPrevious({ className, ...props }: ComponentProps<typeof PaginationLink>) {
+export function PaginationPrevious({ className, children = "Previous", ...props }: PaginationLinkProps) {
   return (
-    <PaginationLink aria-label="Go to previous page" className={className} {...props}>
-      <ChevronLeft />
-      <span>Previous</span>
+    <PaginationLink className={className} {...props}>
+      <ChevronLeft aria-hidden="true" data-icon-dir="inline" />
+      <span>{children}</span>
     </PaginationLink>
   );
 }
 
-export function PaginationNext({ className, ...props }: ComponentProps<typeof PaginationLink>) {
+export function PaginationNext({ className, children = "Next", ...props }: PaginationLinkProps) {
   return (
-    <PaginationLink aria-label="Go to next page" className={className} {...props}>
-      <span>Next</span>
-      <ChevronRight />
+    <PaginationLink className={className} {...props}>
+      <span>{children}</span>
+      <ChevronRight aria-hidden="true" data-icon-dir="inline" />
     </PaginationLink>
   );
 }
 
-export function PaginationEllipsis({ className, ...props }: PaginationEllipsisProps) {
+export function PaginationEllipsis({ label = "More pages", className, ...props }: PaginationEllipsisProps) {
   return (
     <span
-      aria-hidden="true"
       data-control-ui="pagination"
       data-control-family="pagination"
       data-slot="ellipsis"
       className={cn("flex h-[var(--control-h-sm)] min-w-[var(--control-h-sm)] items-center justify-center [&>svg]:size-4", className)}
       {...props}
     >
-      <MoreHorizontal />
-      <span className="sr-only">More pages</span>
+      <MoreHorizontal aria-hidden="true" />
+      <span className="sr-only">{label}</span>
     </span>
   );
 }

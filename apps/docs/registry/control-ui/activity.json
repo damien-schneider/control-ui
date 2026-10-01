@@ -10,6 +10,8 @@
   "registryDependencies": [
     "collapsible",
     "core",
+    "effects",
+    "live-status",
     "scroll-area"
   ],
   "files": [

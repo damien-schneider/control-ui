@@ -26,7 +26,7 @@ describe("registry source closure", () => {
     expect(installedPaths).toContain("src/registry/sources/control-ui/ui/button.tsx");
     expect(displayedPaths).not.toContain("src/registry/sources/control-ui/ui/button.tsx");
     expect(displayedPaths).not.toContain("src/registry/contracts.ts");
-    expect(component.registryDependencies.map((dependency) => dependency.registryKind)).toEqual(["button"]);
+    expect(component.registryDependencies.map((dependency) => dependency.registryKind)).toEqual(["button", "live-status"]);
   });
 
   test("discovers ChatComposer's transitive serializer from the registry graph", () => {

@@ -2,6 +2,7 @@ import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { useState } from "react";
 import type { FormSubmitEvent } from "@/components/control-ui/control-props";
 import type { ChatDensity } from "@/components/control-ui/hooks/use-chat-message";
+import { isComposingKey } from "@/components/control-ui/hooks/use-trigger-menu";
 import type { ChatComposerKnobStyle } from "@/components/control-ui/knob-contracts/chat-composer-knobs";
 
 export type ChatComposerSubmitPayload = {
@@ -30,7 +31,7 @@ type ComposerKeyEvent = {
   key: string;
   shiftKey: boolean;
   defaultPrevented: boolean;
-  nativeEvent: { isComposing: boolean };
+  nativeEvent: { isComposing: boolean; keyCode: number };
   preventDefault: () => void;
 };
 
@@ -71,8 +72,9 @@ export function useChatComposer({
   const [inputValue, setInputValue] = useControllableText({ value, defaultValue, onValueChange });
   const [sendCount, setSendCount] = useState(0);
   const normalizedValue = inputValue.trim();
-  const isDisabled = disabled || state === "disabled" || state === "submitting";
-  const canSubmit = (normalizedValue.length > 0 || allowEmptySubmit) && !isDisabled;
+  const isDisabled = disabled || state === "disabled";
+  const isLocked = state === "submitting";
+  const canSubmit = (normalizedValue.length > 0 || allowEmptySubmit) && !isDisabled && !isLocked;
   const isCompact = density === "compact";
 
   function clear() {
@@ -94,7 +96,7 @@ export function useChatComposer({
 
   // same contract as the rich editor keymap: Enter sends, Shift+Enter breaks the line
   function handleKeyDown(event: ComposerKeyEvent) {
-    if (event.defaultPrevented || event.key !== "Enter" || event.shiftKey || event.nativeEvent.isComposing) return;
+    if (event.defaultPrevented || event.key !== "Enter" || event.shiftKey || isComposingKey(event.nativeEvent)) return;
     event.preventDefault();
     submit();
   }
@@ -107,6 +109,7 @@ export function useChatComposer({
     density,
     isCompact,
     isDisabled,
+    isLocked,
     canSubmit,
     rows: isCompact ? 2 : 4,
     sendCount,

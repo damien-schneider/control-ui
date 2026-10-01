@@ -1,19 +1,20 @@
 "use client";
 
 import { Field, FieldDescription, FieldLabel } from "@/components/control-ui/ui/field";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/control-ui/ui/input-group";
+import { Input } from "@/components/control-ui/ui/input";
+import { InputGroup, InputGroupAddon } from "@/components/control-ui/ui/input-group";
 import { Kbd } from "@/components/control-ui/ui/kbd";
 
 export function PrimitiveInputGroupExample() {
   return (
     <div className="flex w-full max-w-sm flex-col gap-6">
       <Field>
-        <FieldLabel htmlFor="input-group-url">URL</FieldLabel>
+        <FieldLabel>URL</FieldLabel>
         <InputGroup>
           <InputGroupAddon>/dashboard/</InputGroupAddon>
-          <InputGroupInput id="input-group-url" aria-describedby="input-group-url-description" defaultValue="reflet" />
+          <Input defaultValue="reflet" />
         </InputGroup>
-        <FieldDescription id="input-group-url-description">Lowercase letters, numbers, and hyphens</FieldDescription>
+        <FieldDescription>Lowercase letters, numbers, and hyphens</FieldDescription>
       </Field>
       <div className="flex flex-col gap-2">
         <span className="text-caption font-medium text-muted-foreground">Addon + field</span>
@@ -24,7 +25,7 @@ export function PrimitiveInputGroupExample() {
               <path d="m10.5 10.5 3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
             </svg>
           </InputGroupAddon>
-          <InputGroupInput placeholder="Search documentation…" />
+          <Input type="search" aria-label="Search documentation" placeholder="Search documentation…" />
           <InputGroupAddon>
             <Kbd>⌘K</Kbd>
           </InputGroupAddon>

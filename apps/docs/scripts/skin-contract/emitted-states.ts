@@ -41,6 +41,7 @@ import type {
 import type { RichTooltipProgressVariant, RichTooltipTone } from "../../src/registry/sources/control-ui/ui/rich-tooltip";
 import type { ScrollAreaLockAxis, ScrollAreaScrollbarVisibility } from "../../src/registry/sources/control-ui/ui/scroll-area";
 import type {
+  SidebarLayoutMode,
   SidebarMenuButtonSize,
   SidebarMenuButtonVariant,
   SidebarSelectionIndicator,
@@ -62,7 +63,6 @@ export type EmittedStateContract = {
   "activity:root:data-activity-kind": ActivityKind;
   "activity:root:data-activity-name": string;
   "activity:root:data-activity-state": ActivityState;
-  "activity:announcement:data-status": ActivityState;
   "activity:detail-content:data-format": ActivityDetailFormat;
   "activity:status:data-status": ActivityState;
   "activity:status:data-kind": ActivityKind;
@@ -194,6 +194,7 @@ export type EmittedStateContract = {
   "phone-input:check:data-visible": true;
   "resizable:panel-group:data-variant": ResizablePanelGroupVariant;
   "toolbar:button:data-icon-only": true;
+  "toolbar:link:data-active": true;
   "toolbar:link:data-variant": ToolbarLinkVariant;
   "toolbar:root:data-variant": ToolbarVariant;
   "morphing-panel:content:data-state": "open" | "closed";
@@ -210,6 +211,7 @@ export type EmittedStateContract = {
   "scroll-area:root:data-lock-axis": ScrollAreaLockAxis;
   "progressive-blur:root:data-side": ProgressiveBlurSide;
   "progressive-blur:root:data-visible": true;
+  "sidebar:wrapper:data-layout": SidebarLayoutMode;
   "sidebar:root:data-collapsible": "offcanvas" | "icon" | "none";
   "sidebar:root:data-side": "left" | "right";
   "sidebar:root:data-state": "expanded" | "collapsed";

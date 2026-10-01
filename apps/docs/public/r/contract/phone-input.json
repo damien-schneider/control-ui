@@ -45,6 +45,13 @@
   ],
   "parts": {
     "phone-input": {
+      "root": {
+        "family": "phone-input",
+        "registryItems": [
+          "phone-input"
+        ],
+        "states": []
+      },
       "check": {
         "family": "phone-input",
         "registryItems": [
@@ -105,7 +112,9 @@
   },
   "adornments": {},
   "uncovered": [
-    "--cui-phone-input-trigger-focus-background"
+    "--cui-phone-input-metadata-foreground",
+    "--cui-phone-input-trigger-focus-background",
+    "--cui-phone-input-trigger-hover-background"
   ],
   "contrast": "/r/contract/phone-input.contrast.json"
 }

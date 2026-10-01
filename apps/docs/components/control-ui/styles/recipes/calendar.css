@@ -10,9 +10,9 @@
 
   :where([data-control-family="calendar"][data-slot="caption-label"]) {
     color: var(--foreground);
-    font-size: var(--text-sm);
+    font-size: var(--text-body);
     font-weight: var(--font-weight-medium);
-    line-height: var(--text-sm--line-height, 1.25rem);
+    line-height: 1.4;
   }
 
   :where([data-control-family="calendar"][data-slot="months"]) {
@@ -31,7 +31,7 @@
   :where([data-control-family="calendar"][data-slot="weekday"]) {
     padding-block-end: calc(var(--spacing) * 1.5);
     color: var(--muted-foreground);
-    font-size: 0.72rem;
+    font-size: var(--text-caption);
     font-weight: var(--font-weight-normal);
   }
 
@@ -39,42 +39,36 @@
     inline-size: calc(var(--spacing) * 8);
     block-size: calc(var(--spacing) * 8);
     border-radius: var(--radius-control);
-    outline: none;
     color: var(--muted-foreground);
   }
 
+  :where([data-control-family="calendar"]:is([data-slot="nav-button"], [data-slot="day"]):is(:disabled, [aria-disabled="true"])) {
+    opacity: var(--disabled-opacity);
+  }
+
   @media (hover: hover) {
-    :where([data-control-family="calendar"][data-slot="nav-button"]:hover) {
+    :where([data-control-family="calendar"][data-slot="nav-button"]:hover:not(:disabled, [aria-disabled="true"])) {
       background-color: var(--accent);
       color: var(--accent-foreground);
     }
-  }
-
-  :where([data-control-family="calendar"][data-slot="nav-button"]:disabled) {
-    opacity: 0.4;
   }
 
   :where([data-control-family="calendar"][data-slot="day"]) {
     block-size: calc(var(--spacing) * 9);
     min-inline-size: calc(var(--spacing) * 9);
     border-radius: var(--cui-calendar-day-radius);
-    outline: none;
     color: var(--foreground);
-    font-size: var(--text-sm);
+    font-size: var(--text-body);
     font-weight: var(--font-weight-normal);
     line-height: 1;
     font-variant-numeric: tabular-nums;
   }
 
   @media (hover: hover) {
-    :where([data-control-family="calendar"][data-slot="day"]:hover) {
+    :where([data-control-family="calendar"][data-slot="day"]:hover:not(:disabled, [aria-disabled="true"])) {
       background-color: var(--accent);
       color: var(--accent-foreground);
     }
-  }
-
-  :where([data-control-family="calendar"][data-slot="day"]:disabled) {
-    opacity: 0.4;
   }
 
   :where([data-control-family="calendar"][data-slot="day"][data-today]) {
@@ -97,13 +91,13 @@
   }
 
   :where([data-control-family="calendar"][data-slot="day"][data-range-start]) {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
   }
 
   :where([data-control-family="calendar"][data-slot="day"][data-range-end]) {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
   }
 
   :where([data-control-family="calendar"][data-slot="day-cell"]) {
@@ -117,8 +111,8 @@
 
   @media (pointer: coarse) {
     :where([data-control-family="calendar"][data-slot="day"]) {
-      min-inline-size: 44px;
-      min-block-size: 44px;
+      min-inline-size: var(--touch-target);
+      min-block-size: var(--touch-target);
     }
 
     :where([data-control-family="calendar"][data-slot="nav-button"]) {
@@ -131,7 +125,7 @@
       inset: 50% 50%;
       translate: -50% -50%;
       inline-size: 100%;
-      block-size: max(100%, 44px);
+      block-size: max(100%, var(--touch-target));
     }
   }
 }

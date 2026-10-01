@@ -38,15 +38,25 @@ export function nextFixLevel(levels: WcagLevels): WcagLevel | null {
   return null;
 }
 
-// background alpha ignored — WCAG assumes opaque backdrop
+// WCAG assumes an opaque backdrop, so a translucent foreground is measured as the color it actually paints over it
+function paintedOver(color: Rgba, background: Rgba): Rgba {
+  const blend = (channel: "r" | "g" | "b") => color[channel] * color.a + background[channel] * (1 - color.a);
+  return { r: blend("r"), g: blend("g"), b: blend("b"), a: 1 };
+}
+
 export function contrastOf(color: Hsva, background: Rgba): number {
-  return contrastRatio(hsvaToRgba(color), background);
+  return contrastRatio(paintedOver(hsvaToRgba(color), background), background);
+}
+
+// floored, never rounded, so a ratio just under a threshold can't read as passing it
+export function formatContrastRatio(ratio: number): string {
+  return (Math.floor(ratio * 100) / 100).toFixed(2);
 }
 
 // scans both directions, returns SMALLEST passing move; if none reach target, returns extreme with best worst-case ratio; null if already passing
 export function fixColorForContrast(color: Hsva, background: Rgba, target: number = AA_RATIO): Hsva | null {
   const ok = hsvaToOklcha(color);
-  const ratioAtL = (L: number) => contrastRatio(hsvaToRgba(oklchaToHsva({ L, C: ok.C, H: ok.H, a: 1 })), background);
+  const ratioAtL = (L: number) => contrastOf(oklchaToHsva({ L, C: ok.C, H: ok.H, a: color.a }), background);
   if (ratioAtL(ok.L) >= target) return null;
 
   let best: { L: number; dist: number } | null = null;

@@ -26,7 +26,7 @@ export function PrimitivePaginationExample() {
     <Pagination>
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious href="#" onClick={go(page - 1)} />
+          <PaginationPrevious href="#" disabled={page === 1} onClick={go(page - 1)} />
         </PaginationItem>
         <PaginationItem>
           <PaginationLink href="#" isActive={page === 1} onClick={go(1)}>
@@ -52,7 +52,7 @@ export function PrimitivePaginationExample() {
           </PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <PaginationNext href="#" onClick={go(page + 1)} />
+          <PaginationNext href="#" disabled={page === LAST_PAGE} onClick={go(page + 1)} />
         </PaginationItem>
       </PaginationContent>
     </Pagination>

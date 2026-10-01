@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 export type FilterBarScalar = string | number | boolean;
 export type FilterBarValue = FilterBarScalar | FilterBarScalar[] | null;
-export type FilterBarOperator = { id: string; label: string; arity?: "none" | "one" | "many" };
+export type FilterBarOperator = { id: string; label: string; ariaLabel?: string; arity?: "none" | "one" | "many" };
 export type FilterBarOption = { value: FilterBarScalar; label: string; icon?: ReactNode; disabled?: boolean };
 export type FilterBarQuery = { fieldId: string; operatorId: string; query: string };
 export type FilterBarField = {

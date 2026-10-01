@@ -98,6 +98,10 @@ export function groupFileExplorerItems<T extends { group?: string }>(items: read
   return [...groups].map(([label, groupedItems]) => ({ label, items: groupedItems }));
 }
 
+export function orderFileExplorerEntries(entries: readonly FileExplorerEntry[]) {
+  return groupFileExplorerItems(entries).flatMap((group) => group.items);
+}
+
 export function searchFileExplorer(location: FileExplorerLocation, query: string): readonly FileExplorerSearchResult[] {
   const normalizedQuery = query.trim().toLocaleLowerCase();
   if (!normalizedQuery) return [];

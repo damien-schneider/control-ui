@@ -118,7 +118,7 @@
       "name": "--cui-empty-font-size",
       "syntax": "<length>",
       "initialValue": "0px",
-      "defaultValue": "var(--text-sm)"
+      "defaultValue": "var(--text-body)"
     },
     {
       "name": "--cui-empty-title-font-weight",
@@ -174,10 +174,6 @@
     }
   },
   "adornments": {},
-  "uncovered": [
-    "--cui-empty-background",
-    "--cui-empty-media-background",
-    "--cui-empty-media-foreground"
-  ],
+  "uncovered": [],
   "contrast": "/r/contract/empty.contrast.json"
 }

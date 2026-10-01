@@ -37,20 +37,6 @@
     animation-delay: var(--duration-slow);
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    :where([data-control-family="chat-message"][data-slot="pending"] > span) {
-      animation: none;
-      opacity: 1;
-      scale: 1;
-    }
-  }
-
-  :where([data-motion="reduced"] [data-control-family="chat-message"][data-slot="pending"] > span) {
-    animation: none;
-    opacity: 1;
-    scale: 1;
-  }
-
   @keyframes chat-message-pending {
     0%,
     60%,
@@ -101,7 +87,7 @@
     background-image: var(--cui-chat-message-background-image);
     box-shadow: var(--cui-chat-message-shadow);
     color: var(--cui-chat-message-foreground);
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
     font-size: var(--text-body);
     line-height: calc(var(--spacing) * 5);
   }
@@ -114,9 +100,10 @@
     --cui-chat-message-shadow: var(--shadow-sm);
   }
 
-  :where([data-control-family="chat-message"][data-slot="content"][data-role="assistant"][data-streaming]) {
+  :where([data-control-family="chat-message"][data-slot="root"][data-role="assistant"][data-state="streaming"] [data-slot="header"]) {
     @apply shimmer-text;
   }
+
   :where([data-control-family="chat-message"][data-slot="actions"]) {
     margin-block-start: calc(var(--spacing) * 1);
     gap: calc(var(--spacing) * 1);

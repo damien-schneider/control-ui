@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "live-status",
+  "type": "registry:ui",
+  "title": "Live status",
+  "description": "Always-mounted polite status region that announces changes to assistive technology.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/live-status.tsx",
+      "target": "@components/control-ui/ui/live-status.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/live-status.json"
+  }
+}

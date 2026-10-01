@@ -10,7 +10,7 @@
       "name": "--cui-toolbar-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "calc(\n      min(var(--cui-toolbar-item-radius), calc(var(--control-h-sm) / 2)) +\n      clamp(0px, calc(min(var(--cui-toolbar-item-radius), calc(var(--control-h-sm) / 2)) * 1000), var(--cui-toolbar-padding))\n    )"
+      "defaultValue": "calc(\n      min(var(--cui-toolbar-item-radius), calc(var(--control-h-sm) / 2)) +\n      clamp(\n        0px,\n        calc(min(var(--cui-toolbar-item-radius), calc(var(--control-h-sm) / 2)) * 1000),\n        calc(var(--cui-toolbar-padding) + var(--cui-toolbar-border-width))\n      )\n    )"
     },
     {
       "name": "--cui-toolbar-padding",
@@ -22,7 +22,7 @@
       "name": "--cui-toolbar-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "oklch(from var(--card) l c h / 0.72)"
+      "defaultValue": "var(--control-fill)"
     },
     {
       "name": "--cui-toolbar-foreground",
@@ -247,6 +247,12 @@
           "toolbar"
         ],
         "states": [
+          {
+            "attribute": "data-active",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
           {
             "attribute": "data-orientation",
             "source": "external",

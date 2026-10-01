@@ -10,7 +10,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 export function Breadcrumb({ className, ...props }: ComponentProps<"nav"> & { style?: CSSProperties & BreadcrumbKnobStyle }) {
   return (
     <nav
-      aria-label="breadcrumb"
+      aria-label="Breadcrumb"
       data-control-ui="breadcrumb"
       data-control-family="breadcrumb"
       data-slot="root"
@@ -100,24 +100,26 @@ export function BreadcrumbSeparator({
       className={cn("[&>svg]:size-3.5", className)}
       {...props}
     >
-      {children ?? <ChevronRight />}
+      {children ?? <ChevronRight data-icon-dir="inline" />}
     </li>
   );
 }
 
-export function BreadcrumbEllipsis({ className, ...props }: ComponentProps<"span"> & { style?: CSSProperties & BreadcrumbKnobStyle }) {
+export function BreadcrumbEllipsis({
+  label = "Show hidden breadcrumbs",
+  className,
+  ...props
+}: Omit<ComponentProps<"span">, "children"> & { label?: string; style?: CSSProperties & BreadcrumbKnobStyle }) {
   return (
     <span
       data-control-ui="breadcrumb"
       data-control-family="breadcrumb"
       data-slot="ellipsis"
-      role="presentation"
-      aria-hidden="true"
       className={cn("flex items-center justify-center", className)}
       {...props}
     >
-      <MoreHorizontal className="size-4" />
-      <span className="sr-only">More</span>
+      <MoreHorizontal aria-hidden="true" className="size-4" />
+      <span className="sr-only">{label}</span>
     </span>
   );
 }

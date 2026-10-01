@@ -1,10 +1,105 @@
 @layer components {
-  :where([data-control-family="popup"][data-popup-kind="alert-dialog"][data-slot="content"]) {
-    outline-style: none;
+  :where([data-control-family="popup"][data-popup-kind="dialog"][data-slot="title"]),
+  :where([data-control-family="popup"][data-popup-kind="alert-dialog"][data-slot="title"]),
+  :where([data-control-family="popup"][data-popup-kind="sheet"][data-slot="title"]),
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="title"]),
+  :where([data-control-family="popup"][data-popup-kind="popover"][data-slot="title"]),
+  :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="title"]) {
+    color: var(--cui-popup-title-foreground);
+    font-size: var(--cui-popup-title-font-size);
+    font-weight: var(--cui-popup-title-font-weight);
+    line-height: var(--cui-popup-title-line-height);
+    letter-spacing: var(--cui-popup-title-letter-spacing);
+    text-wrap: balance;
   }
 
-  :where([data-control-family="popup"][data-popup-kind="hover-card"][data-slot="positioner"]) {
-    outline-style: none;
+  :where([data-control-family="popup"][data-popup-kind="dialog"][data-slot="description"]),
+  :where([data-control-family="popup"][data-popup-kind="alert-dialog"][data-slot="description"]),
+  :where([data-control-family="popup"][data-popup-kind="sheet"][data-slot="description"]),
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="description"]),
+  :where([data-control-family="popup"][data-popup-kind="popover"][data-slot="description"]),
+  :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="description"]) {
+    color: var(--cui-popup-description-foreground);
+    font-size: var(--text-body);
+    text-wrap: pretty;
+  }
+
+  :where([data-control-family="popup"][data-slot="arrow"]) {
+    color: var(--cui-popup-background);
+  }
+
+  :where([data-control-family="popup"][data-slot="arrow"][data-side="top"]) {
+    inset-block-end: -8px;
+    rotate: 180deg;
+  }
+
+  :where([data-control-family="popup"][data-slot="arrow"][data-side="bottom"]) {
+    inset-block-start: -8px;
+  }
+
+  :where([data-control-family="popup"][data-slot="arrow"][data-side="left"]) {
+    right: -10px;
+    rotate: 90deg;
+  }
+
+  :where([data-control-family="popup"][data-slot="arrow"][data-side="right"]) {
+    left: -10px;
+    rotate: -90deg;
+  }
+
+  :where([data-control-family="popup"][data-slot="arrow"][data-side="inline-start"]) {
+    inset-inline-end: -10px;
+    rotate: 90deg;
+  }
+
+  :where([data-control-family="popup"][data-slot="arrow"][data-side="inline-end"]) {
+    inset-inline-start: -10px;
+    rotate: -90deg;
+  }
+
+  :where([data-control-family="popup"][data-slot="arrow"][data-side="inline-start"]:dir(rtl)) {
+    rotate: -90deg;
+  }
+
+  :where([data-control-family="popup"][data-slot="arrow"][data-side="inline-end"]:dir(rtl)) {
+    rotate: 90deg;
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="tooltip"][data-slot="content"]) {
+    padding: calc(var(--spacing) * 1) calc(var(--spacing) * 2.5);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="dialog"][data-slot="content"]),
+  :where([data-control-family="popup"][data-popup-kind="alert-dialog"][data-slot="content"]),
+  :where([data-control-family="popup"][data-popup-kind="sheet"][data-slot="content"]) {
+    gap: calc(var(--spacing) * 4);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="dialog"][data-slot="header"]),
+  :where([data-control-family="popup"][data-popup-kind="alert-dialog"][data-slot="header"]) {
+    gap: calc(var(--spacing) * 1.5);
+    padding: calc(var(--spacing) * 4) calc(var(--spacing) * 4) 0;
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="dialog"][data-slot="footer"]),
+  :where([data-control-family="popup"][data-popup-kind="alert-dialog"][data-slot="footer"]) {
+    gap: calc(var(--spacing) * 2);
+    padding: 0 calc(var(--spacing) * 4) calc(var(--spacing) * 4);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="sheet"][data-slot="header"]) {
+    gap: calc(var(--spacing) * 1.5);
+    padding: calc(var(--spacing) * 4);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="popover"][data-slot="header"]) {
+    gap: calc(var(--spacing) * 1.5);
+    padding-block-end: calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="popover"][data-popup-part="surface"][data-padding="default"]),
+  :where([data-control-family="popup"][data-popup-kind="hover-card"][data-popup-part="surface"]) {
+    padding: calc(var(--spacing) * 4);
   }
 
   :where([data-control-family="popup"][data-popup-kind="hover-card"][data-slot="trigger"]:is(a)) {
@@ -19,57 +114,95 @@
     transition: text-decoration-color var(--duration-fast) var(--ease-standard);
   }
 
-  :where([data-control-family="popup"][data-popup-kind="hover-card"][data-slot="trigger"]:is(a):is(:hover, [data-popup-open])) {
+  :where([data-control-family="popup"][data-popup-kind="hover-card"][data-slot="trigger"]:is(a)[data-popup-open]) {
     text-decoration-color: var(--foreground);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="popup"][data-popup-kind="hover-card"][data-slot="trigger"]:is(a):hover) {
+      text-decoration-color: var(--foreground);
+    }
   }
 
   :where([data-control-family="popup"][data-popup-kind="navigation-menu"][data-slot="link"]) {
     text-decoration-line: none;
   }
 
-  :where([data-control-family="popup"][data-popup-kind="menubar"][data-slot="sub-trigger-indicator"]) {
-    line-height: 1;
-  }
-
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"]) {
-    text-align: left;
+    text-align: start;
   }
 
-  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-starting-style]) {
-    --_popup-rich-tooltip-content-opacity: 0%;
-    opacity: var(--_popup-rich-tooltip-content-opacity);
-  }
-
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-starting-style]),
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-ending-style]) {
-    --_popup-rich-tooltip-content-opacity: 0%;
-    opacity: var(--_popup-rich-tooltip-content-opacity);
+    opacity: 0;
   }
 
-  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="positioner"]) {
-    outline-style: none;
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="dialog"][data-slot="content"]) {
-    outline-style: none;
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="color-picker"][data-slot="positioner"]) {
-    outline-style: none;
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="context-menu"][data-slot="sub-trigger-indicator"]) {
-    line-height: 1;
-  }
-
-  :where([data-control-family="button"][data-slot="root"][data-popup-part="close"][data-icon-only="true"]) {
+  :where([data-control-family="button"][data-popup-part="close"][data-icon-only="true"]) {
     --_popup-button-root-close-opacity: 70%;
     opacity: var(--_popup-button-root-close-opacity);
   }
 
+  :where(
+    [data-control-family="popup"][data-surface="modal"] > [data-control-family="button"][data-popup-part="close"][data-icon-only="true"]
+  ) {
+    position: absolute;
+    inset-block-start: var(--cui-popup-close-inset);
+    inset-inline-end: var(--cui-popup-close-inset);
+  }
+
+  :where(
+    [data-control-family="popup"][data-surface="modal"]:has(> [data-control-family="button"][data-popup-part="close"])
+      [data-control-family="popup"][data-slot="header"]
+  ) {
+    padding-inline-end: calc(var(--cui-popup-close-inset) + var(--control-h-xs) + var(--spacing) * 2);
+  }
+
   @media (hover: hover) {
-    :where([data-control-family="button"][data-slot="root"][data-popup-part="close"][data-icon-only="true"]:hover) {
+    :where([data-control-family="button"][data-popup-part="close"][data-icon-only="true"]:hover) {
       --_popup-button-root-close-opacity: 100%;
       opacity: var(--_popup-button-root-close-opacity);
     }
   }
+}
+
+@property --cui-popup-title-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-popup-title-font-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-popup-title-font-weight {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 400;
+}
+
+@property --cui-popup-title-line-height {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --cui-popup-title-letter-spacing {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-popup-description-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-popup-close-inset {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }

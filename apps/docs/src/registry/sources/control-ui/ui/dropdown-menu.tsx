@@ -84,7 +84,7 @@ export function DropdownMenuTrigger({
 export function DropdownMenuContent({
   className,
   children,
-  side = "bottom",
+  side,
   sideOffset = 6,
   align = "start",
   alignOffset,
@@ -152,7 +152,7 @@ export function DropdownMenuSeparator({ className, ...props }: DropdownMenuSepar
 
 export function DropdownMenuLabel({ className, ...props }: DropdownMenuLabelProps) {
   return (
-    <div
+    <MenuPrimitive.GroupLabel
       data-control-ui="dropdown-menu"
       data-slot="label"
       data-control-family="popup"
@@ -234,7 +234,13 @@ export function DropdownMenuSubTrigger({ className, children, ...props }: Dropdo
       {...props}
     >
       {children}
-      <span data-control-ui="dropdown-menu" data-control-family="popup" data-slot="sub-trigger-indicator" aria-hidden="true">
+      <span
+        data-control-ui="dropdown-menu"
+        data-control-family="popup"
+        data-slot="sub-trigger-indicator"
+        data-icon-dir="inline"
+        aria-hidden="true"
+      >
         ›
       </span>
     </MenuPrimitive.SubmenuTrigger>
@@ -242,11 +248,18 @@ export function DropdownMenuSubTrigger({ className, children, ...props }: Dropdo
 }
 
 export function DropdownMenuSubContent(props: DropdownMenuSubContentProps) {
-  return (
-    <DropdownMenuContent data-control-ui="dropdown-menu" data-slot="sub-content" side="right" sideOffset={0} alignOffset={-3} {...props} />
-  );
+  return <DropdownMenuContent data-control-ui="dropdown-menu" data-slot="sub-content" sideOffset={0} alignOffset={-3} {...props} />;
 }
 
 export function DropdownMenuShortcut(props: DropdownMenuShortcutProps) {
-  return <span data-control-ui="dropdown-menu" data-control-family="popup" data-popup-part="shortcut" data-slot="shortcut" {...props} />;
+  return (
+    <span
+      data-control-ui="dropdown-menu"
+      data-control-family="popup"
+      data-popup-part="shortcut"
+      data-slot="shortcut"
+      aria-hidden="true"
+      {...props}
+    />
+  );
 }

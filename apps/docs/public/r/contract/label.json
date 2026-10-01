@@ -10,7 +10,7 @@
       "name": "--cui-label-root-foreground",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "var(--muted-foreground)"
+      "defaultValue": "var(--foreground)"
     }
   ],
   "parts": {

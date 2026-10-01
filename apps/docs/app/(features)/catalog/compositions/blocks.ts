@@ -21,7 +21,11 @@ export const blocksCompositions = {
       "Dropdown choice",
       part(
         "ThemeDropdown",
-        part("DropdownMenu", part("DropdownMenuTrigger"), part("DropdownMenuContent", part("DropdownMenuLabel"), part("DropdownMenuItem"))),
+        part(
+          "DropdownMenu",
+          part("DropdownMenuTrigger"),
+          part("DropdownMenuContent", part("DropdownMenuRadioGroup", part("DropdownMenuLabel"), part("DropdownMenuRadioItem"))),
+        ),
       ),
     ),
   ],

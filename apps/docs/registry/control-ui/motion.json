@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "motion",
+  "type": "registry:item",
+  "title": "Motion preferences",
+  "description": "Reduced-motion detection and duration-token parsing shared by scripted animations.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/motion.ts",
+      "target": "@components/control-ui/lib/motion.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "meta": {
+    "internal": true,
+    "sourceManifestPath": "registry/control-ui/motion.json"
+  }
+}

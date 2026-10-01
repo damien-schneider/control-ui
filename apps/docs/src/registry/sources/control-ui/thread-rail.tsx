@@ -1,7 +1,18 @@
 "use client";
 
-import type { ComponentProps, CSSProperties, ReactElement, ReactNode } from "react";
-import { Children, cloneElement, createContext, isValidElement, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+import type { ComponentProps, CSSProperties, KeyboardEvent, ReactElement, ReactNode, RefObject } from "react";
+import {
+  Children,
+  cloneElement,
+  createContext,
+  isValidElement,
+  useContext,
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import type { ChatRole } from "@/components/control-ui/hooks/use-chat-message";
 import type { ThreadRailKnobStyle } from "@/components/control-ui/knob-contracts/thread-rail-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -21,7 +32,13 @@ export type ThreadRailItemProps = Omit<ComponentProps<"div">, "style"> & {
 // plain effect on server so measuring never warns during SSR
 const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
-type RailContextValue = { current: number; activate: (index: number) => void };
+type RailContextValue = {
+  current: number;
+  count: number;
+  activate: (index: number) => void;
+  layerId: (index: number, part: "title" | "summary") => string;
+  lines: RefObject<Array<HTMLButtonElement | null>>;
+};
 const RailContext = createContext<RailContextValue | null>(null);
 
 function useRail() {
@@ -30,7 +47,7 @@ function useRail() {
   return context;
 }
 
-type ItemContextValue = { index: number; inView: boolean; activate: (index: number) => void };
+type ItemContextValue = { index: number; inView: boolean; active: boolean };
 const ItemContext = createContext<ItemContextValue | null>(null);
 
 function useItem() {
@@ -39,11 +56,15 @@ function useItem() {
   return context;
 }
 
+const LayerContext = createContext<number | null>(null);
+
 export function ThreadRail({ className, children, style, ...props }: ThreadRailProps) {
   const [hovered, setHovered] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
   const activeLayerRef = useRef<HTMLDivElement>(null);
   const [cardHeight, setCardHeight] = useState<number>();
+  const baseId = useId();
+  const lines = useRef<Array<HTMLButtonElement | null>>([]);
 
   const items = Children.toArray(children).filter((child): child is ReactElement<ThreadRailItemProps & { index?: number }> =>
     isValidElement(child),
@@ -69,7 +90,9 @@ export function ThreadRail({ className, children, style, ...props }: ThreadRailP
   };
 
   return (
-    <RailContext.Provider value={{ current: hovered, activate: setHovered }}>
+    <RailContext.Provider
+      value={{ current: hovered, count: items.length, activate: setHovered, layerId: (index, part) => `${baseId}-${index}-${part}`, lines }}
+    >
       <nav
         data-control-ui="thread-rail"
         data-control-family="thread-rail"
@@ -82,8 +105,10 @@ export function ThreadRail({ className, children, style, ...props }: ThreadRailP
       >
         {items.map((item, index) => cloneElement(item, { index }))}
 
+        {/* Visual preview only: each line takes its name and description from its layer by id. */}
         <div
           ref={cardRef}
+          aria-hidden="true"
           data-control-ui="thread-rail"
           data-control-family="thread-rail"
           data-slot="popover"
@@ -92,17 +117,17 @@ export function ThreadRail({ className, children, style, ...props }: ThreadRailP
           className={cn("pointer-events-none z-20 w-72 overflow-hidden", activePopover?.className)}
         >
           {items.map((item, index) => (
-            <div
-              data-control-ui="thread-rail"
-              data-control-family="thread-rail"
-              data-slot="popover-layer"
-              key={item.key ?? index}
-              ref={index === hovered ? activeLayerRef : undefined}
-              data-active={index === hovered ? "true" : undefined}
-              className=""
-            >
-              {popovers[index]?.children ?? null}
-            </div>
+            <LayerContext.Provider key={item.key ?? index} value={index}>
+              <div
+                data-control-ui="thread-rail"
+                data-control-family="thread-rail"
+                data-slot="popover-layer"
+                ref={index === hovered ? activeLayerRef : undefined}
+                data-active={index === hovered ? "true" : undefined}
+              >
+                {popovers[index]?.children ?? null}
+              </div>
+            </LayerContext.Provider>
           ))}
         </div>
       </nav>
@@ -123,7 +148,7 @@ export function ThreadRailItem({
   const isInView = inView || active;
 
   return (
-    <ItemContext.Provider value={{ index, inView: isInView, activate: rail.activate }}>
+    <ItemContext.Provider value={{ index, inView: isInView, active }}>
       <div
         data-control-ui="thread-rail"
         data-control-family="thread-rail"
@@ -147,19 +172,40 @@ export type ThreadRailLineProps = Omit<ComponentProps<"button">, "style"> & {
   style?: CSSProperties & ThreadRailKnobStyle;
 };
 
-export function ThreadRailLine({ className, ...props }: ThreadRailLineProps) {
-  const { index, inView, activate } = useItem();
+function rovingTarget(key: string, index: number, count: number): number | undefined {
+  const last = count - 1;
+  const targets: Record<string, number> = { ArrowDown: Math.min(index + 1, last), ArrowUp: Math.max(index - 1, 0), Home: 0, End: last };
+  return targets[key];
+}
+
+export function ThreadRailLine({ className, onKeyDown, "aria-label": ariaLabel, ...props }: ThreadRailLineProps) {
+  const { index, active } = useItem();
+  const rail = useRail();
 
   return (
     <button
+      ref={(node) => {
+        rail.lines.current[index] = node;
+      }}
       data-control-ui="thread-rail"
       data-control-family="thread-rail"
       data-slot="line"
       type="button"
-      aria-current={inView ? "location" : undefined}
-      onMouseEnter={() => activate(index)}
-      onFocus={() => activate(index)}
-      className={cn("relative block cursor-pointer before:absolute before:-inset-y-1 before:inset-x-0 before:content-['']", className)}
+      tabIndex={index === rail.current ? 0 : -1}
+      aria-current={active ? "location" : undefined}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabel === undefined ? rail.layerId(index, "title") : undefined}
+      aria-describedby={rail.layerId(index, "summary")}
+      onMouseEnter={() => rail.activate(index)}
+      onFocus={() => rail.activate(index)}
+      onKeyDown={(event: KeyboardEvent<HTMLButtonElement>) => {
+        onKeyDown?.(event);
+        const target = event.defaultPrevented ? undefined : rovingTarget(event.key, index, rail.count);
+        if (target === undefined) return;
+        event.preventDefault();
+        rail.lines.current[target]?.focus();
+      }}
+      className={cn("relative block cursor-pointer", className)}
       {...props}
     />
   );
@@ -174,17 +220,25 @@ export function ThreadRailPopover(_props: ThreadRailPopoverProps) {
   return null;
 }
 
+function useLayerId(part: "title" | "summary") {
+  const rail = useRail();
+  const layer = useContext(LayerContext);
+  return layer === null ? undefined : rail.layerId(layer, part);
+}
+
 export type ThreadRailTitleProps = Omit<ComponentProps<"div">, "style"> & {
   style?: CSSProperties & ThreadRailKnobStyle;
 };
 
 export function ThreadRailTitle({ className, ...props }: ThreadRailTitleProps) {
+  const id = useLayerId("title");
   return (
     <div
+      id={id}
       data-control-ui="thread-rail"
       data-control-family="thread-rail"
       data-slot="title"
-      className={cn("truncate", className)}
+      className={cn("line-clamp-2 text-pretty", className)}
       {...props}
     />
   );
@@ -194,12 +248,14 @@ export type ThreadRailSummaryProps = Omit<ComponentProps<"p">, "style"> & {
 };
 
 export function ThreadRailSummary({ className, ...props }: ThreadRailSummaryProps) {
+  const id = useLayerId("summary");
   return (
     <p
+      id={id}
       data-control-ui="thread-rail"
       data-control-family="thread-rail"
       data-slot="summary"
-      className={cn("line-clamp-3", className)}
+      className={cn("line-clamp-3 text-pretty", className)}
       {...props}
     />
   );

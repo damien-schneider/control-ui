@@ -80,6 +80,7 @@
         ]
       },
       "trigger": {
+        "family": "morphing-panel",
         "registryItems": [
           "morphing-panel"
         ],

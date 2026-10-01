@@ -5,7 +5,7 @@ import { history, redo, undo } from "prosemirror-history";
 import { keymap } from "prosemirror-keymap";
 import { EditorState, Plugin } from "prosemirror-state";
 import { EditorView } from "prosemirror-view";
-import { type CSSProperties, useEffect, useRef, useState } from "react";
+import { type CSSProperties, useEffect, useMemo, useRef, useState } from "react";
 
 import { useChatComposerContext } from "@/components/control-ui/chat-composer";
 import type { ChatComposerSubmitPayload } from "@/components/control-ui/hooks/use-chat-composer";
@@ -38,6 +38,9 @@ export function ChatComposerEditor({
   placeholder,
   style,
   extensions = [],
+  "aria-label": ariaLabel = "Message",
+  "aria-labelledby": ariaLabelledby,
+  "aria-describedby": ariaDescribedby,
 }: ChatComposerEditorProps & { style?: CSSProperties & ChatComposerKnobStyle }) {
   const input = useChatComposerContext();
 
@@ -49,6 +52,23 @@ export function ChatComposerEditor({
   }, [input]);
   const lastSerialized = useRef(input.value);
   const [mounted, setMounted] = useState(false);
+  const [hostAria, setHostAria] = useState<Readonly<Record<string, string>>>({});
+
+  const { isDisabled, isLocked } = input;
+  const hostAttributes = useMemo<Record<string, string>>(
+    () => ({
+      role: "textbox",
+      "aria-multiline": "true",
+      ...(ariaLabelledby ? { "aria-labelledby": ariaLabelledby } : { "aria-label": ariaLabel }),
+      ...(ariaDescribedby ? { "aria-describedby": ariaDescribedby } : {}),
+      ...(placeholder ? { "aria-placeholder": placeholder } : {}),
+      ...(isDisabled ? { "aria-disabled": "true" } : {}),
+      ...(isLocked ? { "aria-readonly": "true", "aria-busy": "true" } : {}),
+      ...hostAria,
+    }),
+    [ariaLabel, ariaLabelledby, ariaDescribedby, placeholder, isDisabled, isLocked, hostAria],
+  );
+  const hostAttributesRef = useRef(hostAttributes);
 
   const listenersRef = useRef(new Set<() => void>());
   const keyHandlersRef = useRef(new Set<(event: KeyboardEvent) => boolean>());
@@ -66,6 +86,7 @@ export function ChatComposerEditor({
         keyHandlersRef.current.delete(handler);
       };
     },
+    setHostAria,
   }));
   const [initialExtensions] = useState(extensions);
 
@@ -97,6 +118,7 @@ export function ChatComposerEditor({
             },
             handleDOMEvents: fileTransferPassthrough,
           },
+          filterTransaction: (transaction) => !transaction.docChanged || !inputRef.current.isLocked,
         }),
         ...extensionPlugins,
         history(),
@@ -114,7 +136,7 @@ export function ChatComposerEditor({
     const view = new EditorView(mount, {
       state,
       editable: () => !inputRef.current.isDisabled,
-      attributes: { "aria-label": "Message", "aria-multiline": "true", role: "textbox" },
+      attributes: () => hostAttributesRef.current,
       dispatchTransaction(transaction) {
         const next = view.state.apply(transaction);
         view.updateState(next);
@@ -147,11 +169,9 @@ export function ChatComposerEditor({
   }, [input.value]);
 
   useEffect(() => {
-    viewRef.current?.setProps({
-      editable: () => !input.isDisabled,
-      attributes: { "aria-label": "Message", "aria-multiline": "true", "aria-disabled": String(input.isDisabled), role: "textbox" },
-    });
-  }, [input.isDisabled]);
+    hostAttributesRef.current = hostAttributes;
+    viewRef.current?.setProps({});
+  }, [hostAttributes]);
 
   return (
     <div
@@ -167,7 +187,7 @@ export function ChatComposerEditor({
           data-control-ui="chat-composer-editor"
           data-control-family="chat-composer"
           data-slot="placeholder"
-          className="pointer-events-none absolute left-[var(--padding-x)] top-[var(--padding-y)]"
+          className="pointer-events-none absolute start-[var(--padding-x)] top-[var(--padding-y)]"
         >
           {placeholder}
         </div>
@@ -178,7 +198,7 @@ export function ChatComposerEditor({
         data-control-family="chat-composer"
         data-slot="editor"
         className={cn(
-          "[&_.ProseMirror]:max-h-[40dvh] [&_.ProseMirror]:min-h-16 [&_.ProseMirror]:w-full [&_.ProseMirror]:overflow-y-auto [&_.ProseMirror]:outline-none [&_.ProseMirror]:whitespace-pre-wrap [&_.ProseMirror]:break-words [&_.ProseMirror]:px-[var(--padding-x)] [&_.ProseMirror]:py-[var(--padding-y)]",
+          "[&_.ProseMirror]:max-h-[40dvh] [&_.ProseMirror]:min-h-16 [&_.ProseMirror]:w-full [&_.ProseMirror]:overflow-y-auto [&_.ProseMirror]:whitespace-pre-wrap [&_.ProseMirror]:break-words [&_.ProseMirror]:px-[var(--padding-x)] [&_.ProseMirror]:py-[var(--padding-y)]",
           mounted ? "" : "hidden",
         )}
       />
@@ -187,13 +207,15 @@ export function ChatComposerEditor({
           data-control-ui="chat-composer-editor"
           data-control-family="chat-composer"
           data-slot="fallback"
-          aria-label="Message"
+          aria-label={ariaLabelledby ? undefined : ariaLabel}
+          aria-labelledby={ariaLabelledby}
+          aria-describedby={ariaDescribedby}
           defaultValue={input.value}
           readOnly
           disabled={input.isDisabled}
           rows={2}
           placeholder={placeholder}
-          className="min-h-16 w-full resize-none outline-none px-[var(--padding-x)] py-[var(--padding-y)]"
+          className="min-h-16 w-full resize-none px-[var(--padding-x)] py-[var(--padding-y)]"
         />
       )}
       {mounted

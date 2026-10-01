@@ -25,16 +25,16 @@
 
   :where([data-control-family="dynamic-notification"][data-slot="island"]) {
     interpolate-size: allow-keywords;
-    width: 8.5rem;
-    height: 2.5rem;
+    inline-size: 8.5rem;
+    block-size: 2.5rem;
     border-radius: calc(2.5rem / 2);
     opacity: 1;
     scale: 1;
     translate: 0 0;
     filter: blur(0);
     transition:
-      width calc(var(--duration-slow) * 2) var(--cui-dynamic-notification-morph-easing),
-      height calc(var(--duration-slow) * 2) var(--cui-dynamic-notification-morph-easing),
+      inline-size calc(var(--duration-slow) * 2) var(--cui-dynamic-notification-morph-easing),
+      block-size calc(var(--duration-slow) * 2) var(--cui-dynamic-notification-morph-easing),
       border-radius calc(var(--duration-slow) * 2) var(--cui-dynamic-notification-morph-easing),
       box-shadow calc(var(--duration-slow) * 2) var(--ease-standard),
       opacity var(--duration-slow) var(--ease-emphasized),
@@ -60,14 +60,14 @@
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="island"][data-state="thinking"]) {
-    width: min(10rem, 100%);
-    height: 5.75rem;
+    inline-size: min(10rem, 100%);
+    block-size: 5.75rem;
     border-radius: 2.75rem;
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="island"][data-state="expanded"]) {
-    width: min(22.5rem, 100%);
-    height: auto;
+    inline-size: min(22.5rem, 100%);
+    block-size: auto;
     border-radius: var(--cui-dynamic-notification-expanded-radius);
   }
 
@@ -90,11 +90,11 @@
     scale: 0.8;
     pointer-events: none;
     transition-duration: var(--duration-fast);
-    transition-delay: calc(var(--duration-fast) * 0);
+    transition-delay: initial;
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="content"]) {
-    width: min(22.5rem, 100%);
+    inline-size: min(22.5rem, 100%);
     opacity: 1;
     filter: blur(0);
     translate: 0 0;
@@ -124,6 +124,7 @@
 
   :where([data-control-family="dynamic-notification"][data-slot="message"] [data-control-family="dynamic-notification"][data-slot="word"]) {
     display: inline-block;
+    max-inline-size: 100%;
   }
 
   :where(
@@ -150,18 +151,8 @@
         var(--cui-dynamic-notification-indicator-end),
         var(--cui-dynamic-notification-indicator-start)
       );
-    box-shadow: 0 0 8px oklch(0.7 0.17 250 / 0.55);
+    box-shadow: 0 0 8px oklch(from var(--cui-dynamic-notification-indicator-end) l c h / 0.55);
     animation: dn-indicator-breathe calc(var(--duration-slow) * 5) var(--ease-standard) infinite;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    :where([data-control-family="dynamic-notification"][data-slot="island"]) {
-      --_dynamic-notification-word-stagger: 0ms;
-    }
-  }
-
-  :where([data-motion="reduced"] :where([data-control-family="dynamic-notification"][data-slot="island"])) {
-    --_dynamic-notification-word-stagger: 0ms;
   }
 }
 

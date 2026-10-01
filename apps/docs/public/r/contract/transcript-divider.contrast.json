@@ -7,6 +7,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -41,6 +42,43 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "transcript-divider",
+          "data-control-ui": "transcript-divider",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "role": "separator"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -75,6 +113,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -119,6 +158,14 @@
         "text": "--cui-transcript-divider-foreground"
       },
       "anatomy": 1,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-transcript-divider-foreground"
+      },
+      "anatomy": 2,
       "rendersText": true,
       "state": false
     },
@@ -126,7 +173,7 @@
       "knobs": {
         "text": "--cui-transcript-divider-warning-foreground"
       },
-      "anatomy": 2,
+      "anatomy": 3,
       "rendersText": true,
       "state": false
     }

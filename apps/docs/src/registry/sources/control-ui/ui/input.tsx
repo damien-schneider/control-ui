@@ -15,24 +15,24 @@ export function Input({ size = "md", className, ...props }: InputProps) {
   if (useIsInsideInputGroup()) {
     return (
       <InputPrimitive
+        {...props}
         data-control-ui="input-group"
         data-control-family="field"
         data-field-kind="input-group"
         data-slot="input"
         className={cn("h-full min-w-0 flex-1", className)}
-        {...props}
       />
     );
   }
   return (
     <InputPrimitive
+      {...props}
       data-control-ui="input"
       data-slot="root"
       data-control-family="field"
       data-control="true"
       data-size={size}
       className={cn("w-full min-w-0", className)}
-      {...props}
     />
   );
 }

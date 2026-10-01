@@ -261,8 +261,12 @@ export function ThemeAccessibility() {
         <div className="flex max-w-2xl flex-wrap items-center gap-2 border-y border-border py-3">
           <code className="min-w-0 flex-1 overflow-x-auto font-mono text-caption text-foreground">{CLI_COMMAND}</code>
           <Button variant="surface" size="sm" onClick={commandCopy.handleCopy}>
-            {commandCopy.isCopied ? <CheckCircle2Icon aria-hidden className="size-3.5" /> : <CopyIcon aria-hidden className="size-3.5" />}
-            {commandCopy.isCopied ? "Copied" : "Copy command"}
+            {commandCopy.status === "copied" ? (
+              <CheckCircle2Icon aria-hidden className="size-3.5" />
+            ) : (
+              <CopyIcon aria-hidden className="size-3.5" />
+            )}
+            {commandCopy.status === "copied" ? "Copied" : "Copy command"}
           </Button>
         </div>
         <p className="flex max-w-2xl items-start gap-2 text-caption leading-5 text-muted-foreground">

@@ -11,6 +11,7 @@ import type {
 } from "react";
 import { createContext, useContext, useRef, useState } from "react";
 import type { ControlSize } from "@/components/control-ui/control-variants";
+import { useColorArea } from "@/components/control-ui/hooks/use-color-area";
 import type { GradientEditorKnobStyle } from "@/components/control-ui/knob-contracts/gradient-editor-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { formatGradient } from "@/components/control-ui/lib/color";
@@ -77,6 +78,7 @@ type GradientEditorContextValue = {
   selectedId: string;
   gradient: string;
   trackRef: RefObject<HTMLFieldSetElement | null>;
+  stopNodes: Map<string, HTMLButtonElement>;
   select: (id: string) => void;
   setStopColor: (id: string, color: string) => void;
   setStopPosition: (id: string, position: number) => void;
@@ -109,6 +111,7 @@ export function GradientEditor({
   const [selectedId, setSelectedId] = useState(defaultStops[0]?.id ?? "stop-1");
   const idCounter = useRef(defaultStops.length);
   const trackRef = useRef<HTMLFieldSetElement | null>(null);
+  const [stopNodes] = useState(() => new Map<string, HTMLButtonElement>());
 
   const gradient = formatGradient(stops, type, angle);
 
@@ -131,7 +134,7 @@ export function GradientEditor({
     if (stops.length <= 2) return; // a gradient needs at least two stops
     const nextStops = stops.filter((stop) => stop.id !== id);
     updateStops(nextStops);
-    if (selectedId === id) setSelectedId(nextStops[0]?.id ?? selectedId);
+    setSelectedId((current) => (current === id ? (nextStops[0]?.id ?? current) : current));
   };
   const setType = (nextType: GradientType) => {
     setTypeState(nextType);
@@ -145,6 +148,7 @@ export function GradientEditor({
     selectedId,
     gradient,
     trackRef,
+    stopNodes,
     select: setSelectedId,
     setStopColor,
     setStopPosition,
@@ -232,32 +236,43 @@ export function GradientEditorStop({
   onDoubleClick,
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledBy,
+  ref,
   ...props
 }: GradientEditorStopProps) {
-  const { stops, selectedId, select, setStopPosition, removeStop, trackRef } = useGradientEditor();
+  const { stops, selectedId, select, setStopPosition, removeStop, trackRef, stopNodes } = useGradientEditor();
   const selected = stop.id === selectedId;
   const canRemove = stops.length > 2;
+  const { onPointerDown: startDrag } = useColorArea<HTMLFieldSetElement>(
+    (offset, rect) => setStopPosition(stop.id, offset.x / rect.width),
+    trackRef,
+  );
 
   function handlePointerDown(event: ReactPointerEvent<HTMLButtonElement>) {
     onPointerDown?.(event);
     if (event.defaultPrevented) return;
     select(stop.id);
     event.currentTarget.focus();
-    event.preventDefault();
-    const track = trackRef.current;
-    if (!track) return;
-    const move = (moveEvent: globalThis.PointerEvent) => {
-      const rect = track.getBoundingClientRect();
-      setStopPosition(stop.id, (moveEvent.clientX - rect.left) / rect.width);
+    startDrag(event);
+  }
+
+  function registerStop(node: HTMLButtonElement) {
+    stopNodes.set(stop.id, node);
+    const cleanup = typeof ref === "function" ? ref(node) : undefined;
+    if (ref && typeof ref === "object") ref.current = node;
+    return () => {
+      stopNodes.delete(stop.id);
+      if (typeof cleanup === "function") cleanup();
+      else if (typeof ref === "function") ref(null);
+      else if (ref) ref.current = null;
     };
-    const up = () => {
-      window.removeEventListener("pointermove", move);
-      window.removeEventListener("pointerup", up);
-      document.body.style.userSelect = "";
-    };
-    document.body.style.userSelect = "none";
-    window.addEventListener("pointermove", move);
-    window.addEventListener("pointerup", up);
+  }
+
+  function remove() {
+    if (!canRemove) return;
+    const index = stops.findIndex((candidate) => candidate.id === stop.id);
+    const neighbour = stops[index + 1] ?? stops[index - 1];
+    if (neighbour) stopNodes.get(neighbour.id)?.focus();
+    removeStop(stop.id);
   }
 
   function handleFocus(event: ReactFocusEvent<HTMLButtonElement>) {
@@ -301,36 +316,40 @@ export function GradientEditorStop({
       case "Delete":
         if (!canRemove) return;
         event.preventDefault();
-        removeStop(stop.id);
+        remove();
         break;
     }
   }
 
   function handleDoubleClick(event: ReactMouseEvent<HTMLButtonElement>) {
     onDoubleClick?.(event);
-    if (!event.defaultPrevented) removeStop(stop.id);
+    if (!event.defaultPrevented) remove();
   }
 
   const percent = Math.round(stop.position * 100);
-  const defaultLabel = `Gradient stop at ${percent}%. Use arrow keys to move${canRemove ? ", Delete to remove" : ""}.`;
+  const defaultLabel = `Gradient stop ${stops.indexOf(stop) + 1}`;
 
   return (
     <button
+      ref={registerStop}
       type="button"
+      role="slider"
       data-control-ui="gradient-editor"
       data-control-family="gradient-editor"
       data-slot="stop"
       data-selected={selected ? "true" : undefined}
       aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? defaultLabel) : ariaLabel}
       aria-labelledby={ariaLabelledBy}
+      aria-orientation="horizontal"
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={percent}
+      aria-valuetext={`${percent}%, ${stop.color}`}
       onPointerDown={handlePointerDown}
       onFocus={handleFocus}
       onKeyDown={handleKeyDown}
       onDoubleClick={handleDoubleClick}
-      className={cn(
-        "-translate-x-1/2 absolute top-1/2 -translate-y-1/2 cursor-grab touch-pan-y overflow-hidden active:cursor-grabbing",
-        className,
-      )}
+      className={cn("-translate-x-1/2 absolute top-1/2 -translate-y-1/2 cursor-grab touch-pan-y active:cursor-grabbing", className)}
       style={{ ...style, left: `${stop.position * 100}%`, backgroundColor: stop.color }}
       {...props}
     />

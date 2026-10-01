@@ -12,6 +12,7 @@
     --cui-page-layout-sticky-gap: 0px;
     --cui-page-layout-background: var(--canvas);
     --cui-page-layout-sticky-header-background: oklch(from var(--cui-page-layout-background) l c h / 0.85);
+    --cui-page-layout-sticky-header-backdrop-filter: blur(12px);
     background: var(--cui-page-layout-background);
 
     /* Header and body both read this, so they stop at the same right edge. */
@@ -72,12 +73,14 @@
     font-weight: var(--text-heading-1--font-weight);
     letter-spacing: var(--text-heading-1--letter-spacing);
     color: var(--foreground);
+    text-wrap: balance;
   }
 
   :where([data-control-family="page-layout"][data-slot="description"]) {
     grid-area: description;
     font-size: var(--text-body);
     color: var(--muted-foreground);
+    text-wrap: pretty;
   }
 
   :where([data-control-family="page-layout"][data-slot="actions"]) {
@@ -98,17 +101,25 @@
 
   :where([data-control-family="page-layout"][data-slot="header"][data-variant="sticky"]) {
     position: sticky;
-    top: var(--cui-page-layout-sticky-gap);
+    inset-block-start: var(--cui-page-layout-sticky-gap);
     z-index: 20;
     background: var(--cui-page-layout-sticky-header-background);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: var(--cui-page-layout-sticky-header-backdrop-filter);
+    backdrop-filter: var(--cui-page-layout-sticky-header-backdrop-filter);
+  }
+
+  @media (prefers-reduced-transparency: reduce), (forced-colors: active) {
+    :where([data-control-family="page-layout"][data-slot="header"][data-variant="sticky"]) {
+      background: var(--cui-page-layout-background);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
   }
 
   /* Zero height: the band hangs over the body instead of displacing it. */
   :where([data-control-family="page-layout"][data-slot="header"][data-variant="floating"]) {
     position: sticky;
-    top: var(--cui-page-layout-sticky-gap);
+    inset-block-start: var(--cui-page-layout-sticky-gap);
     z-index: 20;
     align-items: start;
     height: 0;
@@ -132,10 +143,6 @@
     padding-inline: 0;
   }
 
-  :where([data-control-family="page-layout"][data-slot="aside"]) {
-    display: none;
-  }
-
   @media (width >= 80rem) {
     :where([data-control-family="page-layout"][data-slot="body"][data-aside]),
     :where(
@@ -152,10 +159,6 @@
 
     :where([data-control-family="page-layout"][data-slot="body"][data-aside]) {
       grid-template-columns: minmax(0, var(--cui-page-layout-article-size)) var(--cui-page-layout-aside-size);
-    }
-
-    :where([data-control-family="page-layout"][data-slot="aside"]) {
-      display: block;
     }
   }
 }
@@ -234,4 +237,9 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-page-layout-sticky-header-backdrop-filter {
+  syntax: "*";
+  inherits: true;
 }

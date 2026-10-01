@@ -6,12 +6,15 @@
     --cui-markdown-inline-code-background: color-mix(in oklab, var(--foreground) 8%, transparent);
     --cui-markdown-inline-code-foreground: var(--foreground);
     --cui-markdown-inline-code-radius: 0.25rem;
-    --cui-markdown-image-outline-color: oklch(from var(--foreground) l c h / 0.1);
+    --cui-markdown-image-outline-color: var(--image-outline);
     --cui-markdown-link-foreground: var(--primary-text);
     --cui-markdown-table-cell-border-color: var(--border);
     --cui-markdown-table-header-background: var(--muted);
+    --cui-markdown-font-size: var(--text-body);
+    --cui-markdown-line-height: var(--leading-relaxed);
     color: var(--cui-markdown-foreground);
-    font-size: var(--text-label);
+    font-size: var(--cui-markdown-font-size);
+    overflow-wrap: break-word;
   }
 
   :where([data-control-family="markdown"][data-slot="root"] img[data-streamdown="image"]) {
@@ -25,6 +28,7 @@
     border-style: solid;
     border-width: 1px;
     border-color: var(--cui-markdown-table-cell-border-color);
+    font-variant-numeric: tabular-nums;
   }
 
   :where([data-control-family="markdown"][data-slot="table-header"]) {
@@ -34,13 +38,13 @@
     border-width: 1px;
     border-color: var(--border);
     background-color: var(--cui-markdown-table-header-background);
-    text-align: left;
+    text-align: start;
     font-weight: var(--font-weight-semibold);
   }
 
   :where([data-control-family="markdown"][data-slot="table"]) {
     border-collapse: collapse;
-    font-size: var(--text-label);
+    font-size: var(--cui-markdown-font-size);
   }
 
   :where([data-control-family="markdown"][data-slot="emphasis"]) {
@@ -61,8 +65,8 @@
     margin-block: calc(var(--spacing) * 4);
     padding-inline-start: calc(var(--spacing) * 4);
     border-color: var(--cui-markdown-blockquote-border-color);
-    border-left-style: solid;
-    border-left-width: 2px;
+    border-inline-start-style: solid;
+    border-inline-start-width: 2px;
     color: var(--cui-markdown-blockquote-foreground);
     font-style: italic;
   }
@@ -73,6 +77,7 @@
     --_markdown-link-decoration: underline;
     text-decoration-line: var(--_markdown-link-decoration);
     text-underline-offset: 2px;
+    overflow-wrap: anywhere;
   }
 
   @media (hover: hover) {
@@ -83,41 +88,56 @@
   }
 
   :where([data-control-family="markdown"][data-slot="list-item"]) {
-    line-height: calc(var(--spacing) * 7);
+    line-height: var(--cui-markdown-line-height);
   }
 
   :where([data-control-family="markdown"][data-slot="paragraph"]) {
     margin-block: calc(var(--spacing) * 3);
-    line-height: calc(var(--spacing) * 7);
+    line-height: var(--cui-markdown-line-height);
     text-wrap: pretty;
   }
 
-  :where([data-control-family="markdown"][data-slot="h3"]) {
-    margin-block: calc(var(--spacing) * 5) calc(var(--spacing) * 2);
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--text-base);
-    line-height: var(--text-base--line-height);
+  :where(
+    [data-control-family="markdown"]:is(
+      [data-slot="h1"],
+      [data-slot="h2"],
+      [data-slot="h3"],
+      [data-slot="h4"],
+      [data-slot="h5"],
+      [data-slot="h6"]
+    )
+  ) {
     color: var(--foreground);
     text-wrap: balance;
     scroll-margin-block-start: calc(var(--spacing) * 6);
+  }
+
+  :where([data-control-family="markdown"]:is([data-slot="h3"], [data-slot="h4"], [data-slot="h5"], [data-slot="h6"])) {
+    margin-block: calc(var(--spacing) * 5) calc(var(--spacing) * 2);
+  }
+
+  :where([data-control-family="markdown"]:is([data-slot="h4"], [data-slot="h5"], [data-slot="h6"])) {
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-body);
+    line-height: var(--leading-tight);
+  }
+
+  :where([data-control-family="markdown"][data-slot="h3"]) {
+    font-weight: var(--text-heading-4--font-weight);
+    font-size: var(--text-heading-4);
+    line-height: var(--text-heading-4--line-height);
   }
 
   :where([data-control-family="markdown"][data-slot="h2"]) {
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--text-lg);
-    line-height: var(--text-lg--line-height);
-    color: var(--foreground);
-    text-wrap: balance;
-    scroll-margin-block-start: calc(var(--spacing) * 6);
+    font-weight: var(--text-heading-3--font-weight);
+    font-size: var(--text-heading-3);
+    line-height: var(--text-heading-3--line-height);
   }
 
   :where([data-control-family="markdown"][data-slot="h1"]) {
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--text-xl);
-    line-height: var(--text-xl--line-height);
-    color: var(--foreground);
-    text-wrap: balance;
-    scroll-margin-block-start: calc(var(--spacing) * 6);
+    font-weight: var(--text-heading-2--font-weight);
+    font-size: var(--text-heading-2);
+    line-height: var(--text-heading-2--line-height);
   }
 
   :where([data-control-family="markdown"][data-slot="h1"]),
@@ -125,7 +145,16 @@
     margin-block: calc(var(--spacing) * 6) calc(var(--spacing) * 3);
   }
 
-  :where([data-control-family="markdown"]:is([data-slot="h1"], [data-slot="h2"], [data-slot="h3"]):first-child) {
+  :where(
+    [data-control-family="markdown"]:is(
+      [data-slot="h1"],
+      [data-slot="h2"],
+      [data-slot="h3"],
+      [data-slot="h4"],
+      [data-slot="h5"],
+      [data-slot="h6"]
+    ):first-child
+  ) {
     margin-block-start: 0;
   }
 
@@ -158,6 +187,7 @@
     background-color: var(--cui-markdown-inline-code-background);
     font-family: var(--font-mono);
     font-size: 0.9em;
+    overflow-wrap: anywhere;
     color: var(--cui-markdown-inline-code-foreground);
   }
 }
@@ -220,4 +250,16 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-markdown-font-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-markdown-line-height {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1.5;
 }

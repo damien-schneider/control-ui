@@ -51,13 +51,17 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "currentColor"
+    },
+    {
+      "name": "--cui-rich-tooltip-focus-ring-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--cui-rich-tooltip-content-foreground)"
     }
   ],
   "parts": {},
   "adornments": {},
   "uncovered": [
-    "--cui-rich-tooltip-action-background",
-    "--cui-rich-tooltip-action-foreground",
     "--cui-rich-tooltip-dot-background"
   ],
   "contrast": "/r/contract/rich-tooltip.contrast.json"

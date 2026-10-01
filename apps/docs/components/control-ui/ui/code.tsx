@@ -5,11 +5,12 @@ import { CheckIcon, CopyIcon } from "lucide-react";
 import type { ChangeEvent, ComponentProps, CSSProperties, ReactNode } from "react";
 import { Children, createContext, isValidElement, useContext, useEffect, useMemo, useRef, useState } from "react";
 
-import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
+import { type CopyStatus, useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import type { CodeKnobStyle } from "@/components/control-ui/knob-contracts/code-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { type CodeTokenLines, highlightToTokens } from "@/components/control-ui/lib/code-tokens";
 import { Button } from "@/components/control-ui/ui/button";
+import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
 
@@ -65,6 +66,7 @@ export function Code({
         data-control-family="code"
         data-slot="root"
         data-surface="panel"
+        dir="ltr"
         data-chrome={chrome}
         data-density={density}
         data-header={hasHeader ? "true" : undefined}
@@ -93,15 +95,18 @@ export function CodeHeader({ className, ...props }: CodeHeaderProps) {
 
 export type CodeTitleProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & CodeKnobStyle };
 
-export function CodeTitle({ className, ...props }: CodeTitleProps) {
+export function CodeTitle({ className, children, ...props }: CodeTitleProps) {
   return (
     <span
       data-control-ui="code"
       data-control-family="code"
       data-slot="title"
+      title={typeof children === "string" ? children : undefined}
       className={cn("block min-w-0 truncate", className)}
       {...props}
-    />
+    >
+      {children}
+    </span>
   );
 }
 
@@ -124,45 +129,63 @@ export type CodeCopyProps = Omit<ComponentProps<typeof Button>, "children" | "on
   children?: ReactNode;
   copiedLabel?: ReactNode;
   copiedAriaLabel?: string;
+  copyFailedLabel?: string;
 };
+
+function copyStatusMessage(status: CopyStatus, copiedMessage: string, failedMessage: string) {
+  if (status === "copied") return copiedMessage;
+  if (status === "failed") return failedMessage;
+  return "";
+}
 
 export function CodeCopy({
   value,
   copiedLabel,
-  copiedAriaLabel = "Copied",
+  copiedAriaLabel = "Copied to clipboard",
+  copyFailedLabel = "Couldn't copy. Select the text and copy it manually.",
   children,
   className,
   "aria-label": ariaLabel,
   ...props
 }: CodeCopyProps) {
-  const { isCopied, handleCopy } = useCopyToClipboard({ text: value });
+  const { status, handleCopy } = useCopyToClipboard({ text: value });
   const isIconOnly = children === undefined;
   const label = ariaLabel ?? (isIconOnly ? "Copy code" : undefined);
   const copied = copiedLabel ?? (isIconOnly ? <CheckIcon aria-hidden="true" className="size-3.5" /> : "Copied");
+  const liveStatus = <LiveStatus message={copyStatusMessage(status, copiedAriaLabel, copyFailedLabel)} />;
 
   const button = (
     <Button
       type="button"
       variant="quiet"
       size="xs"
-      aria-live="polite"
-      aria-label={label && isCopied ? copiedAriaLabel : label}
+      aria-label={label}
       data-code-copy={isIconOnly ? "true" : undefined}
       className={className}
       {...props}
       onClick={handleCopy}
     >
-      {isCopied ? copied : (children ?? <CopyIcon aria-hidden="true" className="size-3.5" />)}
+      {status === "copied" ? copied : (children ?? <CopyIcon aria-hidden="true" className="size-3.5" />)}
     </Button>
   );
 
-  if (!isIconOnly) return button;
+  if (!isIconOnly) {
+    return (
+      <>
+        {button}
+        {liveStatus}
+      </>
+    );
+  }
 
   return (
-    <Tooltip>
-      <TooltipTrigger render={button} />
-      <TooltipContent side="left">{label}</TooltipContent>
-    </Tooltip>
+    <>
+      <Tooltip>
+        <TooltipTrigger render={button} />
+        <TooltipContent side="inline-start">{status === "copied" ? copiedAriaLabel : label}</TooltipContent>
+      </Tooltip>
+      {liveStatus}
+    </>
   );
 }
 
@@ -266,6 +289,7 @@ function CodeRow({
 export type CodeContentProps = Omit<ComponentProps<"div">, "children" | "style"> & {
   code: string;
   lang?: string;
+  fileName?: string;
   tokens?: CodeTokenLines | null;
   highlight?: CodeHighlight;
   showLineNumbers?: boolean;
@@ -279,6 +303,7 @@ export type CodeContentProps = Omit<ComponentProps<"div">, "children" | "style">
 export function CodeContent({
   code,
   lang,
+  fileName,
   tokens,
   highlight = "auto",
   showLineNumbers = false,
@@ -287,11 +312,14 @@ export function CodeContent({
   maxHeight = "32rem",
   virtualize,
   className,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledby,
   ref,
   style,
   ...props
 }: CodeContentProps) {
   const { density, overflow, hasHeader, copy } = useCodeContext();
+  const regionLabel = ariaLabelledby ? ariaLabel : (ariaLabel ?? fileName ?? (lang ? `${lang} code` : "Code"));
   const resolvedTokens = useCodeTokens({ code, lang, tokens, highlight });
   const plainLines = useMemo(() => code.split("\n"), [code]);
   const highlightedLineNumbers = new Set(highlightLines);
@@ -304,7 +332,6 @@ export function CodeContent({
     else if (ref) ref.current = node;
   }
   const shouldVirtualize = virtualize ?? plainLines.length > MAX_STATIC_CODE_LINES;
-  const useScrollArea = density !== "compact" || overflow !== "wrap";
 
   // react-doctor-disable-next-line react-hooks-js/incompatible-library
   const virtualizer = useVirtualizer({
@@ -372,9 +399,11 @@ export function CodeContent({
     </div>
   );
 
-  const content = useScrollArea ? (
+  const content = (
     <ScrollArea
       maxHeight={maxHeight}
+      aria-label={regionLabel}
+      aria-labelledby={ariaLabelledby}
       viewportClassName={className}
       viewportProps={{
         ...props,
@@ -387,18 +416,6 @@ export function CodeContent({
     >
       {grid}
     </ScrollArea>
-  ) : (
-    <div
-      ref={setScrollElement}
-      data-control-ui="code"
-      data-control-family="code"
-      data-slot="content"
-      className={cn("overflow-auto", className)}
-      style={{ ...style, maxHeight }}
-      {...props}
-    >
-      {grid}
-    </div>
   );
 
   if (hasHeader || !copy) return content;

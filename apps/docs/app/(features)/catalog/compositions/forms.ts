@@ -26,9 +26,7 @@ export const formsCompositions = {
   select: [example("Anatomy", part("Select", part("SelectTrigger", part("SelectValue")), part("SelectContent", part("SelectItem"))))],
   switch: [example("On/off control", part("Switch"))],
   input: [example("Text input", part("Input"))],
-  "input-group": [
-    example("Input with addons", part("InputGroup", part("InputGroupAddon", content("addon content")), part("InputGroupInput"))),
-  ],
+  "input-group": [example("Input with addons", part("InputGroup", part("InputGroupAddon", content("addon content")), part("Input")))],
   dropzone: [
     example(
       "File intake",

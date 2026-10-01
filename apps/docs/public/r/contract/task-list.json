@@ -82,7 +82,7 @@
       "name": "--cui-task-list-indicator-foreground",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "oklch(from var(--muted-foreground) l c h / 0.7)"
+      "defaultValue": "var(--muted-foreground)"
     },
     {
       "name": "--cui-task-list-indicator-active-foreground",

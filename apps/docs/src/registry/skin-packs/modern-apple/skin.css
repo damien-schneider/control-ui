@@ -116,9 +116,12 @@
 
   [data-skin="modern-apple"] :where([data-slot="wrapper"][data-control-family="sidebar"]) {
     --cui-sidebar-wrapper-background-image: var(--canvas-gradient);
-    --cui-sidebar-inset-background: var(--background);
+    --cui-sidebar-inset-background: transparent;
     --cui-sidebar-inset-background-image: none;
     --cui-sidebar-inset-shadow: none;
+    --cui-sidebar-inset-border-width: 0px;
+    --cui-sidebar-inset-radius: 0px;
+    --cui-sidebar-inset-inset: 0px;
     background-attachment: fixed;
   }
 
@@ -136,15 +139,9 @@
     --cui-sidebar-menu-button-hover-foreground: var(--foreground);
     --cui-sidebar-menu-button-active-background: var(--apple-sidebar-selection);
     --cui-sidebar-menu-button-active-foreground: var(--foreground);
-  }
-
-  [data-skin="modern-apple"] :where([data-control-family="sidebar"][data-slot="menu-button"]) {
-    font-size: var(--text-label);
-  }
-
-  [data-skin="modern-apple"] :where([data-control-family="sidebar"][data-slot="menu-button"][data-active]),
-  [data-skin="modern-apple"] :where([data-control-family="sidebar"][data-slot="group-label"]) {
-    font-weight: 600;
+    --cui-sidebar-menu-button-font-size: var(--text-label);
+    --cui-sidebar-menu-button-active-font-weight: 600;
+    --cui-sidebar-group-label-font-weight: 600;
   }
 
   [data-skin="modern-apple"]
@@ -169,14 +166,6 @@
 
   [data-skin="modern-apple"] :where([data-slot="inset"][data-control-family="sidebar"]) {
     background-attachment: fixed;
-  }
-
-  [data-skin="modern-apple"] [data-slot="content"][data-control-family="sidebar-layout"] {
-    margin: 0;
-    border-width: 0;
-    border-radius: 0;
-    background-color: transparent;
-    box-shadow: none;
   }
 
   [data-skin="modern-apple"] :where([data-control-family="button"][data-control="true"]) {
@@ -250,27 +239,12 @@
     --cui-popup-shadow: var(--apple-liquid-modal-shadow);
   }
 
-  [data-skin="modern-apple"] :where([data-control-family="popup"][data-slot="description"]) {
-    color: var(--cui-popup-foreground);
-  }
-
   [data-skin="modern-apple"] :where([data-popup-part="list-surface"]) {
     padding: var(--popover-padding);
   }
 
-  [data-skin="modern-apple"] :where([data-popup-part="item"]) {
-    min-height: 1.5rem;
-    padding-block: 0.125rem;
-    font-size: var(--text-label);
+  [data-skin="modern-apple"] :where([data-control-family="popup"][data-popup-part="item"]) {
     font-weight: 500;
-  }
-
-  [data-skin="modern-apple"] :where([data-popup-part="label"]) {
-    padding-block: 0.25rem;
-    font-size: var(--text-label);
-    font-weight: 600;
-    letter-spacing: normal;
-    text-transform: none;
   }
 
   [data-skin="modern-apple"]
@@ -284,16 +258,18 @@
     --cui-popup-item-highlight-muted-foreground: var(--foreground);
     --cui-popup-item-disabled-opacity: 0.4;
     --cui-popup-separator-color: var(--hairline);
-  }
-
-  [data-skin="modern-apple"] :where([data-popup-part="separator"]) {
-    margin-inline: 0;
-  }
-
-  [data-skin="modern-apple"] :where([data-popup-part="shortcut"]) {
-    margin-inline-start: auto;
-    font-size: var(--text-caption);
-    letter-spacing: normal;
+    --cui-popup-separator-inset: 0px;
+    --cui-popup-description-foreground: var(--cui-popup-foreground);
+    --cui-popup-item-min-height: 1.5rem;
+    --cui-popup-item-padding-block: 0.125rem;
+    --cui-popup-label-padding-block: 0.25rem;
+    --cui-popup-item-font-size: var(--text-label);
+    --cui-popup-label-font-size: var(--text-label);
+    --cui-popup-label-font-weight: 600;
+    --cui-popup-label-letter-spacing: 0px;
+    --cui-popup-label-text-transform: none;
+    --cui-popup-shortcut-font-size: var(--text-caption);
+    --cui-popup-shortcut-letter-spacing: 0px;
   }
 
   [data-skin="modern-apple"] :where([data-control-family="popup"][data-slot][data-popup-part="surface"][data-surface="modal"]) {
@@ -301,9 +277,9 @@
     --cui-popup-shadow: var(--apple-liquid-modal-shadow);
   }
 
-  [data-skin="modern-apple"] :where([data-control-ui="dialog"][data-slot="title"][data-control-family="popup"]) {
-    font-size: 0.9375rem;
-    font-weight: 600;
+  [data-skin="modern-apple"] :where([data-control-ui="dialog"][data-popup-part="surface"][data-control-family="popup"]) {
+    --cui-popup-title-font-size: 0.9375rem;
+    --cui-popup-title-font-weight: 600;
   }
 }
 

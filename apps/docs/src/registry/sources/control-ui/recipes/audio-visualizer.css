@@ -5,6 +5,11 @@
     --cui-audio-visualizer-bar-radius: var(--radius-control);
     --cui-audio-visualizer-line-fill: oklch(from var(--primary) l c h / 0.18);
     --cui-audio-visualizer-line-stroke: oklch(from var(--primary) l c h / 0.8);
+    --cui-audio-visualizer-baseline-stroke: oklch(from var(--border) l c h / 0.55);
+    --_audio-visualizer-inline-sign: 1;
+  }
+  :where([data-control-family="audio-visualizer"][data-variant]:dir(rtl)) {
+    --_audio-visualizer-inline-sign: -1;
   }
   :where([data-control-family="audio-visualizer"][data-slot="root"][data-variant]) {
     block-size: calc(var(--spacing) * 7);
@@ -42,7 +47,7 @@
       opacity: 0;
       --_audio-visualizer-bar-track-filter: blur(var(--blur-xs));
       filter: var(--_audio-visualizer-bar-track-filter);
-      translate: var(--spacing) 0;
+      translate: calc(var(--spacing) * var(--_audio-visualizer-inline-sign)) 0;
     }
   }
 
@@ -56,7 +61,7 @@
   }
 
   :where([data-control-family="audio-visualizer"][data-slot="baseline"]) {
-    stroke: oklch(from var(--border) l c h / 0.55);
+    stroke: var(--cui-audio-visualizer-baseline-stroke);
   }
 
   :where([data-control-family="audio-visualizer"][data-slot="waveform"]) {
@@ -91,6 +96,12 @@
 }
 
 @property --cui-audio-visualizer-line-stroke {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-audio-visualizer-baseline-stroke {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

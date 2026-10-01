@@ -26,6 +26,7 @@
     --cui-table-of-contents-trail-stroke: var(--primary-text);
     --cui-table-of-contents-trail-size: 2px;
     --cui-table-of-contents-indicator-foreground: var(--cui-table-of-contents-trail-stroke);
+    --cui-table-of-contents-scroll-inset: calc(var(--spacing) * 20);
     border: var(--cui-table-of-contents-border-width) solid var(--cui-table-of-contents-border-color);
     border-radius: var(--cui-table-of-contents-radius);
     background-color: var(--cui-table-of-contents-background);
@@ -35,6 +36,7 @@
     padding: var(--cui-table-of-contents-padding);
     font-size: var(--cui-table-of-contents-item-font-size);
     line-height: var(--cui-table-of-contents-item-line-height);
+    scroll-margin-block-start: var(--cui-table-of-contents-scroll-inset);
   }
 
   :where([data-control-family="table-of-contents"][data-slot="label"]) {
@@ -270,4 +272,10 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-table-of-contents-scroll-inset {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }

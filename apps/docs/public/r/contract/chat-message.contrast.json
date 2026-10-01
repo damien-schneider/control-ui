@@ -7,6 +7,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -60,6 +61,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -113,6 +115,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -157,6 +160,53 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-density": "comfortable",
+          "data-role": "assistant",
+          "data-slot": "root",
+          "data-state": "streaming"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-role": "assistant",
+          "data-slot": "content",
+          "data-streaming": ""
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -201,6 +251,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -245,6 +296,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -269,6 +321,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "contained",
           "data-slot": "wrapper"
         }
       },
@@ -276,15 +329,8 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "embedded",
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
@@ -359,6 +405,15 @@
         "text": "--cui-chat-message-foreground"
       },
       "anatomy": 5,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-chat-message-background",
+        "text": "--cui-chat-message-foreground"
+      },
+      "anatomy": 6,
       "rendersText": true,
       "state": false
     }

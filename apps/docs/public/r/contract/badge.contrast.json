@@ -1,6 +1,852 @@
 {
   "version": 1,
   "family": "badge",
-  "anatomies": [],
-  "probes": []
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-active": "true",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-size": "sm",
+          "data-slot": "menu-button",
+          "data-track-item": "",
+          "data-variant": "default",
+          "href": "#"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "yellow",
+          "data-control-family": "badge",
+          "data-control-ui": "badge",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-size": "sm",
+          "data-slot": "menu-button",
+          "data-track-item": "",
+          "data-variant": "default",
+          "href": "#"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "yellow",
+          "data-control-family": "badge",
+          "data-control-ui": "badge",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "header"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "neutral",
+          "data-control-family": "badge",
+          "data-control-ui": "badge",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "blue",
+          "data-control-family": "badge",
+          "data-control-ui": "badge",
+          "data-size": "md",
+          "data-slot": "root",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "green",
+          "data-control-family": "badge",
+          "data-control-ui": "badge",
+          "data-size": "md",
+          "data-slot": "root",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "neutral",
+          "data-control-family": "badge",
+          "data-control-ui": "badge",
+          "data-size": "md",
+          "data-slot": "root",
+          "data-variant": "default",
+          "href": "#"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "neutral",
+          "data-control-family": "badge",
+          "data-control-ui": "badge",
+          "data-size": "md",
+          "data-slot": "root",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "neutral",
+          "data-control-family": "badge",
+          "data-control-ui": "badge",
+          "data-size": "md",
+          "data-slot": "root",
+          "data-variant": "outline"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "neutral",
+          "data-control-family": "badge",
+          "data-control-ui": "badge",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "neutral",
+          "data-control-family": "badge",
+          "data-control-ui": "badge",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-variant": "outline"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "orange",
+          "data-control-family": "badge",
+          "data-control-ui": "badge",
+          "data-size": "md",
+          "data-slot": "root",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "pink",
+          "data-control-family": "badge",
+          "data-control-ui": "badge",
+          "data-size": "md",
+          "data-slot": "root",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "purple",
+          "data-control-family": "badge",
+          "data-control-ui": "badge",
+          "data-size": "md",
+          "data-slot": "root",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "red",
+          "data-control-family": "badge",
+          "data-control-ui": "badge",
+          "data-size": "md",
+          "data-slot": "root",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "yellow",
+          "data-control-family": "badge",
+          "data-control-ui": "badge",
+          "data-size": "md",
+          "data-slot": "root",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "neutral",
+          "data-control-family": "badge",
+          "data-control-ui": "badge",
+          "data-size": "md",
+          "data-slot": "root",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "neutral",
+          "data-control-family": "badge",
+          "data-control-ui": "badge",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-variant": "outline"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "yellow",
+          "data-control-family": "badge",
+          "data-control-ui": "badge",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-variant": "default"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "boundary": "--cui-badge-border-color",
+        "fill": "--cui-badge-background",
+        "text": "--cui-badge-foreground"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "boundary": "--cui-badge-border-color",
+        "fill": "--cui-badge-background",
+        "text": "--cui-badge-foreground"
+      },
+      "anatomy": 1,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "boundary": "--cui-badge-border-color",
+        "fill": "--cui-badge-background",
+        "text": "--cui-badge-foreground"
+      },
+      "anatomy": 2,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "boundary": "--cui-badge-border-color",
+        "fill": "--cui-badge-background",
+        "text": "--cui-badge-foreground"
+      },
+      "anatomy": 3,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "boundary": "--cui-badge-border-color",
+        "fill": "--cui-badge-background",
+        "text": "--cui-badge-foreground"
+      },
+      "anatomy": 4,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "boundary": "--cui-badge-border-color",
+        "fill": "--cui-badge-background",
+        "text": "--cui-badge-foreground"
+      },
+      "anatomy": 5,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "boundary": "--cui-badge-border-color",
+        "fill": "--cui-badge-background",
+        "text": "--cui-badge-foreground"
+      },
+      "anatomy": 6,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "boundary": "--cui-badge-border-color",
+        "fill": "--cui-badge-background",
+        "text": "--cui-badge-foreground"
+      },
+      "anatomy": 7,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "boundary": "--cui-badge-border-color",
+        "fill": "--cui-badge-background",
+        "text": "--cui-badge-foreground"
+      },
+      "anatomy": 8,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "boundary": "--cui-badge-border-color",
+        "fill": "--cui-badge-background",
+        "text": "--cui-badge-foreground"
+      },
+      "anatomy": 9,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "boundary": "--cui-badge-border-color",
+        "fill": "--cui-badge-background",
+        "text": "--cui-badge-foreground"
+      },
+      "anatomy": 10,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "boundary": "--cui-badge-border-color",
+        "fill": "--cui-badge-background",
+        "text": "--cui-badge-foreground"
+      },
+      "anatomy": 11,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "boundary": "--cui-badge-border-color",
+        "fill": "--cui-badge-background",
+        "text": "--cui-badge-foreground"
+      },
+      "anatomy": 12,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "boundary": "--cui-badge-border-color",
+        "fill": "--cui-badge-background",
+        "text": "--cui-badge-foreground"
+      },
+      "anatomy": 13,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "boundary": "--cui-badge-border-color",
+        "fill": "--cui-badge-background",
+        "text": "--cui-badge-foreground"
+      },
+      "anatomy": 14,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "boundary": "--cui-badge-border-color",
+        "fill": "--cui-badge-background",
+        "text": "--cui-badge-foreground"
+      },
+      "anatomy": 15,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "boundary": "--cui-badge-border-color",
+        "fill": "--cui-badge-background",
+        "text": "--cui-badge-foreground"
+      },
+      "anatomy": 16,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "boundary": "--cui-badge-border-color",
+        "fill": "--cui-badge-background",
+        "text": "--cui-badge-foreground"
+      },
+      "anatomy": 17,
+      "rendersText": true,
+      "state": false
+    }
+  ]
 }

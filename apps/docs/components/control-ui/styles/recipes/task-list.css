@@ -8,7 +8,7 @@
     --cui-task-list-ring-color: oklch(from var(--foreground) l c h / 0.04);
     --cui-task-list-shadow: var(--shadow-md);
     --cui-task-list-indicator-active-foreground: var(--primary-text);
-    --cui-task-list-indicator-foreground: oklch(from var(--muted-foreground) l c h / 0.7);
+    --cui-task-list-indicator-foreground: var(--muted-foreground);
     --cui-task-list-item-foreground: var(--foreground);
     --cui-task-list-item-pending-foreground: var(--muted-foreground);
     --cui-task-list-items-padding: calc(var(--spacing) * 2);
@@ -32,7 +32,7 @@
     gap: calc(var(--spacing) * 2);
     padding-inline: calc(var(--spacing) * 3);
     padding-block: calc(var(--spacing) * 2);
-    text-align: left;
+    text-align: start;
   }
 
   @media (hover: hover) {
@@ -53,10 +53,10 @@
     :where([data-control-family="task-list"][data-slot="trigger"])::after {
       content: "";
       position: absolute;
-      inset: 50% 50%;
-      translate: -50% -50%;
-      inline-size: 100%;
-      block-size: max(100%, 44px);
+      inset-inline: 0;
+      inset-block-start: 50%;
+      translate: 0 -50%;
+      block-size: max(100%, var(--touch-target));
     }
   }
 
@@ -94,7 +94,6 @@
 
   :where([data-control-family="task-list"][data-slot="item"][data-status="pending"]) {
     color: var(--cui-task-list-item-pending-foreground);
-    opacity: 0.7;
   }
 
   :where([data-control-family="task-list"][data-slot="item-indicator"]) {
@@ -106,18 +105,12 @@
   }
 
   :where([data-control-family="task-list"][data-slot="item-indicator"][data-status="active"] > svg) {
-    animation: task-list-spin calc(var(--duration-slow) * 2) linear infinite;
+    animation: cui-spin var(--duration-loop) linear infinite;
   }
 
   :where([data-control-family="task-list"][data-slot="progress"]) {
     font-weight: var(--font-weight-medium);
     font-variant-numeric: tabular-nums;
-  }
-}
-
-@keyframes task-list-spin {
-  to {
-    rotate: 360deg;
   }
 }
 

@@ -11,7 +11,9 @@
   "registryDependencies": [
     "button",
     "combobox",
-    "core"
+    "core",
+    "live-status",
+    "motion"
   ],
   "files": [
     {

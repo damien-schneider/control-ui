@@ -1,10 +1,10 @@
 @layer components {
   :where([data-send-aurora]) {
-    --aurora-1: oklch(0.66 0.24 356);
-    --aurora-2: oklch(0.71 0.19 41);
-    --aurora-3: oklch(0.85 0.15 91);
-    --aurora-4: oklch(0.86 0.03 235);
-    --aurora-5: oklch(0.45 0.19 262);
+    --_send-aurora-band-1: oklch(0.66 0.24 356);
+    --_send-aurora-band-2: oklch(0.71 0.19 41);
+    --_send-aurora-band-3: oklch(0.85 0.15 91);
+    --_send-aurora-band-4: oklch(0.86 0.03 235);
+    --_send-aurora-band-5: oklch(0.45 0.19 262);
     opacity: 0;
     animation: send-aurora-sweep calc(var(--duration-slow) * 4) var(--ease-emphasized) forwards;
   }
@@ -18,23 +18,23 @@
   }
 
   :where([data-send-aurora] [data-band="1"]) {
-    background-color: var(--aurora-1);
+    background-color: var(--_send-aurora-band-1);
   }
 
   :where([data-send-aurora] [data-band="2"]) {
-    background-color: var(--aurora-2);
+    background-color: var(--_send-aurora-band-2);
   }
 
   :where([data-send-aurora] [data-band="3"]) {
-    background-color: var(--aurora-3);
+    background-color: var(--_send-aurora-band-3);
   }
 
   :where([data-send-aurora] [data-band="4"]) {
-    background-color: var(--aurora-4);
+    background-color: var(--_send-aurora-band-4);
   }
 
   :where([data-send-aurora] [data-band="5"]) {
-    background-color: var(--aurora-5);
+    background-color: var(--_send-aurora-band-5);
   }
 }
 

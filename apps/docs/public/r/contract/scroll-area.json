@@ -314,8 +314,7 @@
   },
   "adornments": {},
   "uncovered": [
-    "--cui-scroll-area-corner-background",
-    "--cui-scroll-area-thumb-background"
+    "--cui-scroll-area-corner-background"
   ],
   "contrast": "/r/contract/scroll-area.contrast.json"
 }

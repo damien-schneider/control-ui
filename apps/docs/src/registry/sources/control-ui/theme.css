@@ -201,6 +201,7 @@
   --duration-fast: 150ms;
   --duration-base: 200ms;
   --duration-slow: 300ms;
+  --duration-loop: 1000ms;
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
   --z-overlay: 70;
@@ -225,9 +226,14 @@
 
   --control-rim: var(--border);
   --control-rim-width: 1px;
+  --control-boundary: oklch(from var(--foreground) l c h / 0.6);
   --control-fill: oklch(from var(--card) l c h / 0.72);
   --hover-fill: oklch(from var(--foreground) l c h / 0.06);
   --active-fill: oklch(from var(--foreground) l c h / 0.08);
+  --image-outline: oklch(0 0 0 / 0.1);
+  --disabled-opacity: 0.45;
+  --touch-target: 44px;
+  --target-min: 24px;
 
   --text-micro: 0.625rem;
   --text-caption: 0.6875rem;
@@ -250,6 +256,7 @@
   --text-display--line-height: 1.1;
   --text-display--font-weight: 600;
   --text-display--letter-spacing: -0.026em;
+  --text-input-min: 16px;
 
   --corner-shape: round;
   --corner-radius-fit: 0.5;
@@ -320,7 +327,7 @@
   --sidebar-accent: var(--hover-fill);
   --sidebar-accent-foreground: var(--foreground);
   --sidebar-border: var(--border);
-  --sidebar-ring: var(--ring);
+  --sidebar-ring: var(--focus-ring);
 }
 
 :where(.dark:root, .dark[data-skin], .dark [data-skin]) {
@@ -365,6 +372,7 @@
   --badge-fill-alpha: 0.2;
   --badge-border-alpha: 0.24;
   --badge-hover-alpha: 0.28;
+  --image-outline: oklch(1 0 0 / 0.1);
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -379,7 +387,9 @@
     --duration-slow: 0ms !important;
   }
 
-  :where(:root, :root *, [data-skin], [data-skin] *, [data-skin]::before, [data-skin]::after, [data-skin] *::before, [data-skin] *::after) {
+  :where(:root, :root *, [data-skin], [data-skin] *):where(:not([data-motion-essential], [data-motion-essential] *)),
+  :where(:root, :root *, [data-skin], [data-skin] *):where(:not([data-motion-essential], [data-motion-essential] *))::before,
+  :where(:root, :root *, [data-skin], [data-skin] *):where(:not([data-motion-essential], [data-motion-essential] *))::after {
     scroll-behavior: auto !important;
     transition-delay: 0ms !important;
     transition-duration: 0ms !important;
@@ -397,14 +407,9 @@
   --duration-slow: 0ms !important;
 }
 
-:where(
-  [data-motion="reduced"],
-  [data-motion="reduced"] *,
-  [data-motion="reduced"]::before,
-  [data-motion="reduced"]::after,
-  [data-motion="reduced"] *::before,
-  [data-motion="reduced"] *::after
-) {
+:where([data-motion="reduced"], [data-motion="reduced"] *):where(:not([data-motion-essential], [data-motion-essential] *)),
+:where([data-motion="reduced"], [data-motion="reduced"] *):where(:not([data-motion-essential], [data-motion-essential] *))::before,
+:where([data-motion="reduced"], [data-motion="reduced"] *):where(:not([data-motion-essential], [data-motion-essential] *))::after {
   scroll-behavior: auto !important;
   transition-delay: 0ms !important;
   transition-duration: 0ms !important;
@@ -413,6 +418,10 @@
   animation-iteration-count: 1 !important;
 }
 /* biome-ignore-end lint/complexity/noImportantStyles: Reduced motion must override skin and inline motion. */
+
+@theme static {
+  --breakpoint-lg: 64rem;
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -656,20 +665,29 @@
 
 @layer components {
   :where([data-control-family]):focus-visible,
-  :where([data-control-family][data-control="true"]):has(:focus-visible) {
+  :where([data-control-family][data-control="true"]):has(:focus-visible),
+  :where([data-control-family][data-focus-ring="within"]):has(:focus-visible) {
     outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring);
     outline-offset: var(--focus-ring-offset);
   }
 
-  :where([data-control-family][data-control="true"] [data-control-family]):focus-visible {
+  :where(
+    [data-control-family][data-control="true"] [data-control-family],
+    [data-control-family][data-focus-ring="within"] [data-control-family]
+  ):focus-visible {
     outline-width: 0;
   }
 
   @media (forced-colors: active) {
     :where([data-control-family]):focus-visible,
-    :where([data-control-family][data-control="true"]):has(:focus-visible) {
-      outline-color: transparent;
+    :where([data-control-family][data-control="true"]):has(:focus-visible),
+    :where([data-control-family][data-focus-ring="within"]):has(:focus-visible) {
+      outline-color: Highlight;
     }
+  }
+
+  :where([data-icon-dir="inline"]:dir(rtl)) {
+    scale: -1 1;
   }
 
   :where([data-control-ui="chat-message"][data-slot="root"], [data-control-ui="chat-composer"][data-slot="root"]) {

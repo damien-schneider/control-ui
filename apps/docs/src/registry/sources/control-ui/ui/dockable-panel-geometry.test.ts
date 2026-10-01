@@ -1,5 +1,10 @@
 import { describe, expect, test } from "bun:test";
-import { clampDockablePanelPosition, dockablePanelSideAt, oppositeDockablePanelSide } from "./dockable-panel-geometry";
+import {
+  clampDockablePanelPosition,
+  dockablePanelSideAt,
+  dockablePanelSideForKey,
+  oppositeDockablePanelSide,
+} from "./dockable-panel-geometry";
 
 describe("dockable panel geometry", () => {
   test("clamps the transient dragged panel inside its workspace", () => {
@@ -33,5 +38,14 @@ describe("dockable panel geometry", () => {
   test("toggles directly between the two precise slots", () => {
     expect(oppositeDockablePanelSide("left")).toBe("right");
     expect(oppositeDockablePanelSide("right")).toBe("left");
+  });
+
+  test("maps docking keys to the keyboard-equivalent slot", () => {
+    expect(dockablePanelSideForKey("ArrowLeft", "right")).toBe("left");
+    expect(dockablePanelSideForKey("ArrowLeft", "left")).toBe("left");
+    expect(dockablePanelSideForKey("ArrowRight", "left")).toBe("right");
+    expect(dockablePanelSideForKey("Enter", "right")).toBe("left");
+    expect(dockablePanelSideForKey(" ", "left")).toBe("right");
+    expect(dockablePanelSideForKey("Tab", "left")).toBeNull();
   });
 });

@@ -4,8 +4,9 @@ import { ArrowLeftIcon, SearchIcon, XIcon } from "lucide-react";
 import type { ComponentProps, ReactNode } from "react";
 import { useEffect, useId, useState } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
+import { prefersReducedMotion } from "@/components/control-ui/lib/motion";
 import { Button } from "@/components/control-ui/ui/button";
-import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/control-ui/ui/empty";
+import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/control-ui/ui/empty";
 import {
   Field,
   FieldContent,
@@ -16,7 +17,9 @@ import {
   FieldSeparator,
   FieldSet,
 } from "@/components/control-ui/ui/field";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/control-ui/ui/input-group";
+import { Input } from "@/components/control-ui/ui/input";
+import { InputGroup, InputGroupAddon } from "@/components/control-ui/ui/input-group";
+import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import {
   Sidebar,
@@ -50,6 +53,7 @@ export type SettingsBlockProps = Omit<ComponentProps<"div">, "children"> & {
   onActivePageChange?: (pageId: string) => void;
   backAction?: ReactNode;
   searchPlaceholder?: string;
+  searchLabel?: string;
   layout?: "viewport" | "contained";
 };
 
@@ -66,6 +70,7 @@ export function SettingsBlock({
   onActivePageChange,
   backAction,
   searchPlaceholder = "Search settings",
+  searchLabel = "Search settings",
   layout = "viewport",
   className,
   style,
@@ -88,12 +93,8 @@ export function SettingsBlock({
 
   return (
     <SidebarProvider
-      data-settings-layout={layout}
-      className={cn(
-        "overflow-hidden bg-background text-foreground",
-        layout === "viewport" ? "h-svh min-h-svh" : "relative h-full min-h-0",
-        className,
-      )}
+      layout={layout}
+      className={cn("bg-background text-foreground", layout === "viewport" && "h-svh overflow-hidden", className)}
       style={providerStyle}
       {...props}
     >
@@ -104,7 +105,7 @@ export function SettingsBlock({
         results={results}
         backAction={backAction}
         searchPlaceholder={searchPlaceholder}
-        contained={layout === "contained"}
+        searchLabel={searchLabel}
         instanceId={instanceId}
         pendingTarget={pendingTarget}
         onPendingTargetChange={setPendingTarget}
@@ -122,7 +123,7 @@ function SettingsShell({
   results,
   backAction,
   searchPlaceholder,
-  contained,
+  searchLabel,
   instanceId,
   pendingTarget,
   onPendingTargetChange,
@@ -135,7 +136,7 @@ function SettingsShell({
   results: readonly SettingsSearchResult[];
   backAction?: ReactNode;
   searchPlaceholder: string;
-  contained: boolean;
+  searchLabel: string;
   instanceId: string;
   pendingTarget: PendingTarget | null;
   onPendingTargetChange: (target: PendingTarget | null) => void;
@@ -150,10 +151,7 @@ function SettingsShell({
     const frame = requestAnimationFrame(() => {
       const row = document.getElementById(pendingTarget.rowId);
       const control = document.getElementById(pendingTarget.controlId);
-      row?.scrollIntoView({
-        block: "center",
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-      });
+      row?.scrollIntoView({ block: "center", behavior: prefersReducedMotion(row) ? "auto" : "smooth" });
       (control instanceof HTMLElement ? control : row)?.focus({ preventScroll: true });
       onPendingTargetChange(null);
     });
@@ -172,16 +170,21 @@ function SettingsShell({
     navigate(result.page.id);
   }
 
+  const trimmedQuery = query.trim();
+  const resultCount = `${results.length} ${results.length === 1 ? "setting" : "settings"} found`;
+  const searchStatus = results.length > 0 ? resultCount : "No matching settings";
+
   return (
     <>
-      <Sidebar collapsible="offcanvas" className={contained ? "absolute! inset-y-0! h-full" : undefined}>
+      <LiveStatus message={trimmedQuery ? searchStatus : ""} />
+      <Sidebar collapsible="offcanvas">
         <SidebarHeader className="gap-3 border-b border-sidebar-border p-3">
           {backAction ? <div className="min-w-0">{backAction}</div> : null}
-          <SettingsSearch value={query} placeholder={searchPlaceholder} onValueChange={onQueryChange} />
+          <SettingsSearch value={query} label={searchLabel} placeholder={searchPlaceholder} onValueChange={onQueryChange} />
         </SidebarHeader>
         <SidebarContent>
-          {query.trim() ? (
-            <SettingsSearchNavigation results={results} onSelect={openResult} />
+          {trimmedQuery ? (
+            <SettingsSearchNavigation results={results} onSelect={openResult} onClear={() => onQueryChange("")} />
           ) : (
             <SettingsPageNavigation pages={pages} activePageId={currentPage?.id} onSelect={navigate} />
           )}
@@ -189,9 +192,11 @@ function SettingsShell({
       </Sidebar>
 
       <SidebarInset className="h-full min-h-0 min-w-0">
-        <header className="flex h-12 shrink-0 items-center gap-2 border-b px-3 md:hidden">
+        <header className="flex h-12 shrink-0 items-center gap-2 border-b px-3 lg:hidden">
           <SidebarTrigger />
-          <span className="truncate text-label font-medium">{currentPage?.title ?? "Settings"}</span>
+          <span className="truncate text-label font-medium" title={currentPage?.title}>
+            {currentPage?.title ?? "Settings"}
+          </span>
         </header>
         <ScrollArea className="min-h-0 flex-1" lockAxis="x">
           {currentPage ? (
@@ -207,28 +212,30 @@ function SettingsShell({
 
 function SettingsSearch({
   value,
+  label,
   placeholder,
   onValueChange,
 }: {
   value: string;
+  label: string;
   placeholder: string;
   onValueChange: (value: string) => void;
 }) {
   return (
     <InputGroup size="sm">
-      <InputGroupAddon className="pl-2.5">
+      <InputGroupAddon className="ps-2.5">
         <SearchIcon className="size-3.5" aria-hidden="true" />
       </InputGroupAddon>
-      <InputGroupInput
+      <Input
         type="search"
-        aria-label={placeholder}
+        aria-label={label}
         placeholder={placeholder}
         value={value}
         onChange={(event) => onValueChange(event.currentTarget.value)}
       />
       {value ? (
-        <Button variant="ghost" size="xs" iconOnly aria-label="Clear settings search" className="mr-1" onClick={() => onValueChange("")}>
-          <XIcon className="size-3.5" />
+        <Button variant="ghost" size="xs" iconOnly aria-label="Clear settings search" className="me-1" onClick={() => onValueChange("")}>
+          <XIcon className="size-3.5" aria-hidden="true" />
         </Button>
       ) : null}
     </InputGroup>
@@ -264,12 +271,24 @@ function SettingsPageNavigation({
 function SettingsSearchNavigation({
   results,
   onSelect,
+  onClear,
 }: {
   results: readonly SettingsSearchResult[];
   onSelect: (result: SettingsSearchResult) => void;
+  onClear: () => void;
 }) {
   if (results.length === 0) {
-    return <SettingsEmpty title="No matching settings" description="Try another name or keyword." />;
+    return (
+      <SettingsEmpty
+        title="No matching settings"
+        description="Try another name or keyword."
+        action={
+          <Button variant="surface" size="sm" onClick={onClear}>
+            Clear search
+          </Button>
+        }
+      />
+    );
   }
 
   const groups = new Map<string, { page: SettingsPageDefinition; results: SettingsSearchResult[] }>();
@@ -281,9 +300,6 @@ function SettingsSearchNavigation({
 
   return (
     <>
-      <span className="sr-only" role="status" aria-live="polite">
-        {results.length} {results.length === 1 ? "setting" : "settings"} found
-      </span>
       {[...groups.values()].map((group) => (
         <SidebarGroup key={group.page.id}>
           <SidebarGroupLabel>
@@ -293,8 +309,8 @@ function SettingsSearchNavigation({
           <SidebarMenu>
             {group.results.map((result) => (
               <SidebarMenuItem key={`${result.section.id}/${result.setting.id}`}>
-                <SidebarMenuButton size="sm" className="h-auto min-h-[var(--control-h-sm)] py-1.5" onClick={() => onSelect(result)}>
-                  <span>{result.setting.title}</span>
+                <SidebarMenuButton size="sm" className="h-auto min-h-(--control-h-sm) py-1.5" onClick={() => onSelect(result)}>
+                  <span title={result.setting.title}>{result.setting.title}</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
@@ -306,9 +322,11 @@ function SettingsSearchNavigation({
 }
 
 function SettingsPage({ page, instanceId }: { page: SettingsPageDefinition; instanceId: string }) {
+  const { layout } = useSidebar();
+  const Heading = layout === "contained" ? "h2" : "h1";
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col gap-10 px-5 py-8 md:px-10 md:py-12">
-      <h1 className="text-heading font-semibold text-foreground text-balance">{page.title}</h1>
+      <Heading className="text-heading-2 text-foreground text-balance">{page.title}</Heading>
       {page.sections.map((section) => (
         <FieldSet key={section.id} className="gap-3">
           <FieldLegend className="text-body font-semibold">{section.title}</FieldLegend>
@@ -371,16 +389,17 @@ function SettingsRow({
   );
 }
 
-function SettingsEmpty({ title, description }: { title: string; description: string }) {
+function SettingsEmpty({ title, description, action }: { title: string; description: string; action?: ReactNode }) {
   return (
     <Empty className="min-h-40 gap-3 p-4">
       <EmptyHeader>
         <EmptyMedia className="mb-0 size-8">
-          <SearchIcon className="size-4" />
+          <SearchIcon className="size-4" aria-hidden="true" />
         </EmptyMedia>
         <EmptyTitle>{title}</EmptyTitle>
         <EmptyDescription>{description}</EmptyDescription>
       </EmptyHeader>
+      {action ? <EmptyContent>{action}</EmptyContent> : null}
     </Empty>
   );
 }
@@ -400,8 +419,8 @@ export function SettingsBackAction({
   ...props
 }: Omit<ComponentProps<typeof Button>, "children"> & { children?: ReactNode }) {
   return (
-    <Button variant="quiet" size="sm" className="-ml-1 justify-start gap-2" {...props}>
-      <ArrowLeftIcon className="size-4" />
+    <Button variant="quiet" size="sm" className="-ms-1 justify-start gap-2" {...props}>
+      <ArrowLeftIcon className="size-4" data-icon-dir="inline" aria-hidden="true" />
       {children}
     </Button>
   );

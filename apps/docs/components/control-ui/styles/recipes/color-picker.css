@@ -70,7 +70,6 @@
   :where([data-control-family="color-picker"][data-slot="hue"]),
   :where([data-control-family="color-picker"][data-slot="alpha"]) {
     block-size: calc(var(--spacing) * 4);
-    --_color-picker-slider-thumb-outline: none;
     --_color-picker-slider-thumb-scale: 1;
     --_color-picker-slider-thumb-transition-property: scale;
   }
@@ -83,7 +82,6 @@
     border-color: var(--color-white);
     background: var(--cui-color-picker-slider-thumb-background);
     box-shadow: 0 0 0 1px oklch(from var(--foreground) l c h / 0.35);
-    outline-style: var(--_color-picker-slider-thumb-outline);
     transition-property: var(--_color-picker-slider-thumb-transition-property);
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
@@ -93,6 +91,17 @@
   :where([data-control-family="color-picker"][data-slot="hue-thumb"][data-dragging]),
   :where([data-control-family="color-picker"][data-slot="alpha-thumb"][data-dragging]) {
     --_color-picker-slider-thumb-scale: 110% 110%;
+  }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="color-picker"]:is([data-slot="hue-thumb"], [data-slot="alpha-thumb"], [data-slot="swatch-add"]))::after {
+      content: "";
+      position: absolute;
+      inset: 50%;
+      translate: -50% -50%;
+      inline-size: max(100%, var(--touch-target));
+      block-size: max(100%, var(--touch-target));
+    }
   }
 
   :where([data-control-family="color-picker"][data-slot="wheel-thumb"]) {

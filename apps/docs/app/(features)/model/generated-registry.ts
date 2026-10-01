@@ -23,8 +23,8 @@ export const registryMetadata = {
     ],
   },
   "action-bar": {
-    dependencies: [],
-    registryDependencies: ["button", "core", "use-copy-to-clipboard"],
+    dependencies: ["@base-ui/react@^1.8.0"],
+    registryDependencies: ["button", "core", "live-status", "use-copy-to-clipboard"],
     sourceManifestPath: "registry/control-ui/action-bar.json",
     files: [
       {
@@ -46,7 +46,7 @@ export const registryMetadata = {
   },
   activity: {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["collapsible", "core", "scroll-area"],
+    registryDependencies: ["collapsible", "core", "effects", "live-status", "scroll-area"],
     sourceManifestPath: "registry/control-ui/activity.json",
     files: [
       {
@@ -67,7 +67,7 @@ export const registryMetadata = {
     ],
   },
   alert: {
-    dependencies: [],
+    dependencies: ["@base-ui/react@^1.8.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/alert.json",
     files: [
@@ -139,6 +139,7 @@ export const registryMetadata = {
       "autocomplete",
       "avatar",
       "badge",
+      "breadcrumb",
       "button",
       "button-group",
       "calendar",
@@ -185,6 +186,7 @@ export const registryMetadata = {
       "input-otp",
       "item",
       "kbd",
+      "live-status",
       "markdown",
       "markdown-block",
       "menubar",
@@ -205,6 +207,7 @@ export const registryMetadata = {
       "rich-tooltip",
       "scroll-area",
       "select",
+      "separator",
       "settings-block",
       "sidebar",
       "skeleton",
@@ -249,6 +252,7 @@ export const registryMetadata = {
       "autocomplete",
       "avatar",
       "badge",
+      "breadcrumb",
       "button",
       "button-group",
       "calendar",
@@ -295,6 +299,7 @@ export const registryMetadata = {
       "input-otp",
       "item",
       "kbd",
+      "live-status",
       "markdown",
       "markdown-block",
       "menubar",
@@ -315,6 +320,7 @@ export const registryMetadata = {
       "rich-tooltip",
       "scroll-area",
       "select",
+      "separator",
       "settings-block",
       "sidebar",
       "skeleton",
@@ -360,6 +366,7 @@ export const registryMetadata = {
       "autocomplete",
       "avatar",
       "badge",
+      "breadcrumb",
       "button",
       "button-group",
       "calendar",
@@ -406,6 +413,7 @@ export const registryMetadata = {
       "input-otp",
       "item",
       "kbd",
+      "live-status",
       "markdown",
       "markdown-block",
       "menubar",
@@ -426,6 +434,7 @@ export const registryMetadata = {
       "rich-tooltip",
       "scroll-area",
       "select",
+      "separator",
       "settings-block",
       "sidebar",
       "skeleton",
@@ -471,6 +480,7 @@ export const registryMetadata = {
       "autocomplete",
       "avatar",
       "badge",
+      "breadcrumb",
       "button",
       "button-group",
       "calendar",
@@ -517,6 +527,7 @@ export const registryMetadata = {
       "input-otp",
       "item",
       "kbd",
+      "live-status",
       "markdown",
       "markdown-block",
       "menubar",
@@ -537,6 +548,7 @@ export const registryMetadata = {
       "rich-tooltip",
       "scroll-area",
       "select",
+      "separator",
       "settings-block",
       "sidebar",
       "skeleton",
@@ -582,6 +594,7 @@ export const registryMetadata = {
       "autocomplete",
       "avatar",
       "badge",
+      "breadcrumb",
       "button",
       "button-group",
       "calendar",
@@ -628,6 +641,7 @@ export const registryMetadata = {
       "input-otp",
       "item",
       "kbd",
+      "live-status",
       "markdown",
       "markdown-block",
       "menubar",
@@ -648,6 +662,7 @@ export const registryMetadata = {
       "rich-tooltip",
       "scroll-area",
       "select",
+      "separator",
       "settings-block",
       "sidebar",
       "skeleton",
@@ -693,6 +708,7 @@ export const registryMetadata = {
       "autocomplete",
       "avatar",
       "badge",
+      "breadcrumb",
       "button",
       "button-group",
       "calendar",
@@ -739,6 +755,7 @@ export const registryMetadata = {
       "input-otp",
       "item",
       "kbd",
+      "live-status",
       "markdown",
       "markdown-block",
       "menubar",
@@ -759,6 +776,7 @@ export const registryMetadata = {
       "rich-tooltip",
       "scroll-area",
       "select",
+      "separator",
       "settings-block",
       "sidebar",
       "skeleton",
@@ -804,6 +822,7 @@ export const registryMetadata = {
       "autocomplete",
       "avatar",
       "badge",
+      "breadcrumb",
       "button",
       "button-group",
       "calendar",
@@ -850,6 +869,7 @@ export const registryMetadata = {
       "input-otp",
       "item",
       "kbd",
+      "live-status",
       "markdown",
       "markdown-block",
       "menubar",
@@ -870,6 +890,7 @@ export const registryMetadata = {
       "rich-tooltip",
       "scroll-area",
       "select",
+      "separator",
       "settings-block",
       "sidebar",
       "skeleton",
@@ -915,6 +936,7 @@ export const registryMetadata = {
       "autocomplete",
       "avatar",
       "badge",
+      "breadcrumb",
       "button",
       "button-group",
       "calendar",
@@ -961,6 +983,7 @@ export const registryMetadata = {
       "input-otp",
       "item",
       "kbd",
+      "live-status",
       "markdown",
       "markdown-block",
       "menubar",
@@ -981,6 +1004,7 @@ export const registryMetadata = {
       "rich-tooltip",
       "scroll-area",
       "select",
+      "separator",
       "settings-block",
       "sidebar",
       "skeleton",
@@ -1026,6 +1050,7 @@ export const registryMetadata = {
       "autocomplete",
       "avatar",
       "badge",
+      "breadcrumb",
       "button",
       "button-group",
       "calendar",
@@ -1072,6 +1097,7 @@ export const registryMetadata = {
       "input-otp",
       "item",
       "kbd",
+      "live-status",
       "markdown",
       "markdown-block",
       "menubar",
@@ -1092,6 +1118,7 @@ export const registryMetadata = {
       "rich-tooltip",
       "scroll-area",
       "select",
+      "separator",
       "settings-block",
       "sidebar",
       "skeleton",
@@ -1137,6 +1164,7 @@ export const registryMetadata = {
       "autocomplete",
       "avatar",
       "badge",
+      "breadcrumb",
       "button",
       "button-group",
       "calendar",
@@ -1183,6 +1211,7 @@ export const registryMetadata = {
       "input-otp",
       "item",
       "kbd",
+      "live-status",
       "markdown",
       "markdown-block",
       "menubar",
@@ -1203,6 +1232,7 @@ export const registryMetadata = {
       "rich-tooltip",
       "scroll-area",
       "select",
+      "separator",
       "settings-block",
       "sidebar",
       "skeleton",
@@ -1248,7 +1278,7 @@ export const registryMetadata = {
   },
   "audio-recorder": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["audio-visualizer", "button", "core"],
+    registryDependencies: ["audio-visualizer", "button", "core", "live-status"],
     sourceManifestPath: "registry/control-ui/audio-recorder.json",
     files: [
       {
@@ -1451,6 +1481,11 @@ export const registryMetadata = {
         type: "registry:component",
       },
       {
+        path: "src/registry/sources/control-ui/recipes/button-states.css",
+        target: "@components/control-ui/styles/recipes/button-states.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/button.css",
         target: "@components/control-ui/styles/recipes/button.css",
         type: "registry:file",
@@ -1507,7 +1542,7 @@ export const registryMetadata = {
     ],
   },
   card: {
-    dependencies: [],
+    dependencies: ["@base-ui/react@^1.8.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/card.json",
     files: [
@@ -1563,6 +1598,7 @@ export const registryMetadata = {
   },
   "chat-composer": {
     dependencies: [
+      "lucide-react@^1.47.0",
       "prosemirror-commands@^1.7.2",
       "prosemirror-history@^1.5.0",
       "prosemirror-keymap@^1.2.3",
@@ -1570,17 +1606,12 @@ export const registryMetadata = {
       "prosemirror-state@^1.4.4",
       "prosemirror-view@^1.42.3",
     ],
-    registryDependencies: ["button", "chat-message", "core", "trigger-menu"],
+    registryDependencies: ["button", "chat-message", "core", "live-status", "motion", "spinner", "trigger-menu"],
     sourceManifestPath: "registry/control-ui/chat-composer.json",
     files: [
       {
         path: "src/registry/hooks/use-chat-composer.ts",
         target: "@components/control-ui/hooks/use-chat-composer.ts",
-        type: "registry:hook",
-      },
-      {
-        path: "src/registry/hooks/use-keyboard-navigation.ts",
-        target: "@components/control-ui/hooks/use-keyboard-navigation.ts",
         type: "registry:hook",
       },
       {
@@ -1637,7 +1668,7 @@ export const registryMetadata = {
   },
   "chat-composer-attachment": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["button", "core", "scroll-area", "spinner"],
+    registryDependencies: ["button", "core", "live-status", "scroll-area", "spinner"],
     sourceManifestPath: "registry/control-ui/chat-composer-attachment.json",
     files: [
       {
@@ -1664,7 +1695,7 @@ export const registryMetadata = {
   },
   "chat-layout": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["button", "core", "scroll-area"],
+    registryDependencies: ["button", "chat-message", "core", "live-status", "motion", "scroll-area"],
     sourceManifestPath: "registry/control-ui/chat-layout.json",
     files: [
       {
@@ -1752,7 +1783,7 @@ export const registryMetadata = {
   },
   code: {
     dependencies: ["@tanstack/react-virtual@^3.14.13", "lucide-react@^1.47.0", "shiki@^4.4.3"],
-    registryDependencies: ["button", "core", "scroll-area", "tooltip", "use-copy-to-clipboard"],
+    registryDependencies: ["button", "core", "live-status", "scroll-area", "tooltip", "use-copy-to-clipboard"],
     sourceManifestPath: "registry/control-ui/code.json",
     files: [
       {
@@ -1979,7 +2010,7 @@ export const registryMetadata = {
   },
   command: {
     dependencies: ["cmdk@^1.1.1"],
-    registryDependencies: ["core", "dialog", "empty", "scroll-area", "surface-variants"],
+    registryDependencies: ["core", "dialog", "empty", "live-status", "scroll-area", "surface-variants"],
     sourceManifestPath: "registry/control-ui/command.json",
     files: [
       {
@@ -2180,6 +2211,7 @@ export const registryMetadata = {
       "button",
       "color-picker",
       "core",
+      "drawer",
       "empty",
       "infinite-canvas",
       "input-group",
@@ -2221,6 +2253,11 @@ export const registryMetadata = {
         type: "registry:component",
       },
       {
+        path: "src/registry/sources/control-ui/popup-parts.tsx",
+        target: "@components/control-ui/popup-parts.tsx",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/popup-controls.css",
         target: "@components/control-ui/styles/recipes/popup-controls.css",
         type: "registry:file",
@@ -2249,7 +2286,7 @@ export const registryMetadata = {
   },
   "dockable-panel": {
     dependencies: [],
-    registryDependencies: ["button", "core", "drawer", "scroll-area", "sidebar"],
+    registryDependencies: ["button", "core", "drawer", "live-status", "scroll-area", "sidebar"],
     sourceManifestPath: "registry/control-ui/dockable-panel.json",
     files: [
       {
@@ -2337,6 +2374,11 @@ export const registryMetadata = {
         type: "registry:component",
       },
       {
+        path: "src/registry/sources/control-ui/recipes/button-states.css",
+        target: "@components/control-ui/styles/recipes/button-states.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/button.css",
         target: "@components/control-ui/styles/recipes/button.css",
         type: "registry:file",
@@ -2370,7 +2412,7 @@ export const registryMetadata = {
   },
   dropzone: {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["button", "core", "item"],
+    registryDependencies: ["button", "core", "effects", "item"],
     sourceManifestPath: "registry/control-ui/dropzone.json",
     files: [
       {
@@ -2402,7 +2444,7 @@ export const registryMetadata = {
   },
   "dynamic-notification": {
     dependencies: [],
-    registryDependencies: ["button", "core", "liquid-glass-optics"],
+    registryDependencies: ["button", "core", "liquid-glass-optics", "live-status", "motion"],
     sourceManifestPath: "registry/control-ui/dynamic-notification.json",
     files: [
       {
@@ -2413,6 +2455,11 @@ export const registryMetadata = {
       {
         path: "src/registry/knob-contracts/dynamic-notification-knobs.ts",
         target: "@components/control-ui/knob-contracts/dynamic-notification-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/dynamic-notification-canvas-loop.ts",
+        target: "@components/control-ui/dynamic-notification-canvas-loop.ts",
         type: "registry:component",
       },
       {
@@ -2512,7 +2559,7 @@ export const registryMetadata = {
     ],
   },
   empty: {
-    dependencies: [],
+    dependencies: ["@base-ui/react@^1.8.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/empty.json",
     files: [
@@ -2594,7 +2641,20 @@ export const registryMetadata = {
   },
   "file-explorer-block": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["button", "core", "empty", "input-group", "resizable", "scroll-area", "sidebar"],
+    registryDependencies: [
+      "breadcrumb",
+      "button",
+      "core",
+      "drawer",
+      "dropdown-menu",
+      "empty",
+      "input",
+      "input-group",
+      "live-status",
+      "resizable",
+      "scroll-area",
+      "sidebar",
+    ],
     sourceManifestPath: "registry/control-ui/file-explorer-block.json",
     files: [
       {
@@ -2611,7 +2671,7 @@ export const registryMetadata = {
   },
   "filter-bar": {
     dependencies: ["@base-ui/react@^1.8.0", "lucide-react@^1.47.0"],
-    registryDependencies: ["button", "combobox", "core"],
+    registryDependencies: ["button", "combobox", "core", "live-status", "motion"],
     sourceManifestPath: "registry/control-ui/filter-bar.json",
     files: [
       {
@@ -2778,7 +2838,7 @@ export const registryMetadata = {
   },
   "inline-citation": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["button", "core", "popover", "source-badge"],
+    registryDependencies: ["button", "core", "live-status", "popover", "source-badge"],
     sourceManifestPath: "registry/control-ui/inline-citation.json",
     files: [
       {
@@ -2957,6 +3017,18 @@ export const registryMetadata = {
       },
     ],
   },
+  "live-status": {
+    dependencies: [],
+    registryDependencies: ["core"],
+    sourceManifestPath: "registry/control-ui/live-status.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/live-status.tsx",
+        target: "@components/control-ui/ui/live-status.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
   markdown: {
     dependencies: ["streamdown@^2.6.0"],
     registryDependencies: ["code", "code-diff", "core", "scroll-area"],
@@ -3020,6 +3092,11 @@ export const registryMetadata = {
         path: "src/registry/knob-contracts/popup-knobs.ts",
         target: "@components/control-ui/knob-contracts/popup-knobs.ts",
         type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/button-states.css",
+        target: "@components/control-ui/styles/recipes/button-states.css",
+        type: "registry:file",
       },
       {
         path: "src/registry/sources/control-ui/recipes/button.css",
@@ -3109,8 +3186,20 @@ export const registryMetadata = {
       },
     ],
   },
-  "native-select": {
+  motion: {
     dependencies: [],
+    registryDependencies: ["core"],
+    sourceManifestPath: "registry/control-ui/motion.json",
+    files: [
+      {
+        path: "src/registry/lib/motion.ts",
+        target: "@components/control-ui/lib/motion.ts",
+        type: "registry:lib",
+      },
+    ],
+  },
+  "native-select": {
+    dependencies: ["@base-ui/react@^1.8.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/native-select.json",
     files: [
@@ -3150,6 +3239,11 @@ export const registryMetadata = {
         path: "src/registry/knob-contracts/popup-knobs.ts",
         target: "@components/control-ui/knob-contracts/popup-knobs.ts",
         type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/button-states.css",
+        target: "@components/control-ui/styles/recipes/button-states.css",
+        type: "registry:file",
       },
       {
         path: "src/registry/sources/control-ui/recipes/button.css",
@@ -3273,7 +3367,7 @@ export const registryMetadata = {
   },
   "phone-input": {
     dependencies: ["libphonenumber-js@^1.13.13", "react-phone-number-input@^3.4.18", "zod@^4.6.5"],
-    registryDependencies: ["command", "core", "input-group", "popover"],
+    registryDependencies: ["command", "core", "input", "input-group", "popover"],
     sourceManifestPath: "registry/control-ui/phone-input.json",
     files: [
       {
@@ -3454,7 +3548,7 @@ export const registryMetadata = {
   },
   "rich-tooltip": {
     dependencies: ["@base-ui/react@^1.8.0", "lucide-react@^1.47.0"],
-    registryDependencies: ["core", "surface-variants"],
+    registryDependencies: ["core", "dialog", "motion", "surface-variants"],
     sourceManifestPath: "registry/control-ui/rich-tooltip.json",
     files: [
       {
@@ -3624,7 +3718,7 @@ export const registryMetadata = {
   },
   "settings-block": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["button", "core", "empty", "field", "input-group", "scroll-area", "sidebar"],
+    registryDependencies: ["button", "core", "empty", "field", "input", "input-group", "live-status", "motion", "scroll-area", "sidebar"],
     sourceManifestPath: "registry/control-ui/settings-block.json",
     files: [
       {
@@ -3657,7 +3751,7 @@ export const registryMetadata = {
     ],
   },
   sidebar: {
-    dependencies: ["@base-ui/react@^1.8.0", "class-variance-authority@^0.7.1", "lucide-react@^1.47.0"],
+    dependencies: ["@base-ui/react@^1.8.0", "lucide-react@^1.47.0"],
     registryDependencies: ["button", "core", "scroll-area", "sheet", "tooltip", "track-highlight"],
     sourceManifestPath: "registry/control-ui/sidebar.json",
     files: [
@@ -3674,6 +3768,11 @@ export const registryMetadata = {
       {
         path: "src/registry/sources/control-ui/recipes/sidebar-menu.css",
         target: "@components/control-ui/styles/recipes/sidebar-menu.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/sidebar-parts.css",
+        target: "@components/control-ui/styles/recipes/sidebar-parts.css",
         type: "registry:file",
       },
       {
@@ -4021,7 +4120,7 @@ export const registryMetadata = {
   },
   spinner: {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "effects"],
     sourceManifestPath: "registry/control-ui/spinner.json",
     files: [
       {
@@ -4170,7 +4269,7 @@ export const registryMetadata = {
   },
   "task-list": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["collapsible", "core"],
+    registryDependencies: ["collapsible", "core", "effects", "live-status"],
     sourceManifestPath: "registry/control-ui/task-list.json",
     files: [
       {
@@ -4191,7 +4290,7 @@ export const registryMetadata = {
     ],
   },
   textarea: {
-    dependencies: [],
+    dependencies: ["@base-ui/react@^1.8.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/textarea.json",
     files: [
@@ -4252,7 +4351,7 @@ export const registryMetadata = {
     ],
   },
   timeline: {
-    dependencies: [],
+    dependencies: ["@base-ui/react@^1.8.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/timeline.json",
     files: [
@@ -4274,8 +4373,8 @@ export const registryMetadata = {
     ],
   },
   toast: {
-    dependencies: ["@base-ui/react@^1.8.0"],
-    registryDependencies: ["button", "core"],
+    dependencies: ["@base-ui/react@^1.8.0", "lucide-react@^1.47.0"],
+    registryDependencies: ["button", "core", "dialog"],
     sourceManifestPath: "registry/control-ui/toast.json",
     files: [
       {
@@ -4320,6 +4419,11 @@ export const registryMetadata = {
     registryDependencies: ["button", "core", "track-highlight"],
     sourceManifestPath: "registry/control-ui/toggle.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/button-states.css",
+        target: "@components/control-ui/styles/recipes/button-states.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/button.css",
         target: "@components/control-ui/styles/recipes/button.css",
@@ -4376,7 +4480,7 @@ export const registryMetadata = {
   },
   tooltip: {
     dependencies: ["@base-ui/react@^1.8.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "dialog"],
     sourceManifestPath: "registry/control-ui/tooltip.json",
     files: [
       {
@@ -4565,6 +4669,7 @@ export const registryMetadata = {
       "autocomplete",
       "avatar",
       "badge",
+      "breadcrumb",
       "button",
       "button-group",
       "calendar",
@@ -4611,6 +4716,7 @@ export const registryMetadata = {
       "input-otp",
       "item",
       "kbd",
+      "live-status",
       "markdown",
       "markdown-block",
       "menubar",
@@ -4631,6 +4737,7 @@ export const registryMetadata = {
       "rich-tooltip",
       "scroll-area",
       "select",
+      "separator",
       "settings-block",
       "sidebar",
       "skeleton",
@@ -4675,7 +4782,7 @@ export const registryMetadata = {
   },
   "user-ask": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["button", "core", "kbd"],
+    registryDependencies: ["button", "core", "kbd", "live-status"],
     sourceManifestPath: "registry/control-ui/user-ask.json",
     files: [
       {
@@ -4707,7 +4814,7 @@ export const registryMetadata = {
   },
   "view-transition": {
     dependencies: [],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "motion"],
     sourceManifestPath: "registry/control-ui/view-transition.json",
     files: [
       {

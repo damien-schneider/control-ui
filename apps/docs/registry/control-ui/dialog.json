@@ -18,6 +18,11 @@
       "type": "registry:component"
     },
     {
+      "path": "src/registry/sources/control-ui/popup-parts.tsx",
+      "target": "@components/control-ui/popup-parts.tsx",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/popup-controls.css",
       "target": "@components/control-ui/styles/recipes/popup-controls.css",
       "type": "registry:file"

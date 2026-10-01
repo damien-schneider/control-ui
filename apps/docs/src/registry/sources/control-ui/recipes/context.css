@@ -61,7 +61,7 @@
   }
 
   :where([data-control-family="context"][data-slot="title"]) {
-    font-size: var(--text-sm);
+    font-size: var(--text-body);
     font-weight: var(--font-weight-medium);
     text-wrap: balance;
   }
@@ -74,7 +74,7 @@
 
   :where([data-control-family="context"][data-slot="summary"]) {
     gap: calc(var(--spacing) * 3);
-    font-size: var(--text-sm);
+    font-size: var(--text-body);
     font-variant-numeric: tabular-nums;
   }
 
@@ -169,7 +169,7 @@
   }
 
   :where([data-control-family="context"][data-slot="legend-label"]) {
-    font-size: var(--text-sm);
+    font-size: var(--text-body);
   }
 
   :where([data-control-family="context"]:is([data-slot="legend-description"], [data-slot="legend-value"])) {

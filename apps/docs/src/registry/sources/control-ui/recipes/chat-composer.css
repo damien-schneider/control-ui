@@ -32,11 +32,7 @@
     transition-timing-function: var(--ease-emphasized);
   }
 
-  :where(
-    [data-control-family="chat-composer"][data-slot="shell"][data-keyboard-navigation]:has(
-      :is(textarea, [contenteditable="true"]):focus-visible
-    )
-  ) {
+  :where([data-control-family="chat-composer"][data-slot="shell"]:has(:is(textarea, [contenteditable="true"]):focus-visible)) {
     outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring);
     outline-offset: var(--focus-ring-offset);
   }
@@ -52,7 +48,7 @@
 
   :where([data-control-family="chat-composer"]:is([data-slot="textarea"], [data-slot="fallback"], [data-slot="placeholder"])),
   :where([data-control-family="chat-composer"][data-slot="editor"] .ProseMirror) {
-    font-size: var(--text-sm);
+    font-size: var(--text-body);
     line-height: calc(var(--spacing) * 6);
   }
 
@@ -61,6 +57,7 @@
     border: 0;
     background: transparent;
     color: var(--cui-chat-composer-input-foreground);
+    --focus-ring-width: 0px;
     outline: none;
   }
 
@@ -71,12 +68,12 @@
   }
 
   :where([data-control-family="chat-composer"][data-slot="textarea"]:disabled) {
-    opacity: 0.6;
+    opacity: var(--disabled-opacity);
   }
 
   :where([data-control-family="chat-composer"][data-slot="editor"] [aria-disabled="true"]) {
     cursor: not-allowed;
-    opacity: 0.6;
+    opacity: var(--disabled-opacity);
   }
 
   :where([data-control-family="chat-composer"][data-slot="toolbar"]) {
@@ -129,7 +126,7 @@
   @media (pointer: coarse) {
     :where([data-control-family="chat-composer"]:is([data-slot="textarea"], [data-slot="fallback"], [data-slot="placeholder"])),
     :where([data-control-family="chat-composer"][data-slot="editor"] .ProseMirror) {
-      font-size: max(16px, var(--text-sm));
+      font-size: max(var(--text-input-min), var(--text-body));
     }
   }
 }

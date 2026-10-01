@@ -7,6 +7,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -67,6 +68,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -126,6 +128,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -183,6 +186,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -240,6 +244,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -309,6 +314,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -360,6 +366,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -414,6 +421,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -474,6 +482,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -533,6 +542,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -592,6 +602,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -649,6 +660,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -706,6 +718,641 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "full"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-disabled": "",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "root",
+          "data-variant": "plain",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-disabled": "",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "track",
+          "data-variant": "plain"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-disabled": "",
+          "data-focus-ring": "within",
+          "data-index": "0",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "thumb",
+          "data-variant": "plain"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "full"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-labeled": "true",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "root",
+          "data-variant": "plain",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-labeled": "true",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "track",
+          "data-variant": "plain"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-focus-ring": "within",
+          "data-index": "0",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "thumb",
+          "data-variant": "plain"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "full"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "root",
+          "data-variant": "default",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "track",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-focus-ring": "within",
+          "data-index": "0",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "thumb",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "full"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "root",
+          "data-variant": "plain",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "track",
+          "data-variant": "plain"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-focus-ring": "within",
+          "data-index": "0",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "thumb",
+          "data-variant": "plain"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "morphing-panel",
+          "data-control-ui": "morphing-panel",
+          "data-open": "",
+          "data-slot": "root",
+          "data-state": "open",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-labeled": "true",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "root",
+          "data-variant": "plain",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-labeled": "true",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "track",
+          "data-variant": "plain"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-focus-ring": "within",
+          "data-index": "0",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "thumb",
+          "data-variant": "plain"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-disabled": "",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "root",
+          "data-variant": "plain",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-disabled": "",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "track",
+          "data-variant": "plain"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-disabled": "",
+          "data-focus-ring": "within",
+          "data-index": "0",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "thumb",
+          "data-variant": "plain"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-labeled": "true",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "root",
+          "data-variant": "plain",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-labeled": "true",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "track",
+          "data-variant": "plain"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-focus-ring": "within",
+          "data-index": "0",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "thumb",
+          "data-variant": "plain"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-labeled": "true",
+          "data-orientation": "vertical",
+          "data-range-kind": "slider",
+          "data-slot": "root",
+          "data-variant": "plain",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-labeled": "true",
+          "data-orientation": "vertical",
+          "data-range-kind": "slider",
+          "data-slot": "track",
+          "data-variant": "plain"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-orientation": "vertical",
+          "data-range-kind": "slider",
+          "data-slot": "indicator",
+          "data-variant": "plain"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-focus-ring": "within",
+          "data-index": "0",
+          "data-orientation": "vertical",
+          "data-range-kind": "slider",
+          "data-slot": "thumb",
+          "data-variant": "plain"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "root",
+          "data-variant": "default",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "track",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-focus-ring": "within",
+          "data-index": "0",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "thumb",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "root",
+          "data-variant": "plain",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "track",
+          "data-variant": "plain"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "slider",
+          "data-focus-ring": "within",
+          "data-index": "0",
+          "data-orientation": "horizontal",
+          "data-range-kind": "slider",
+          "data-slot": "thumb",
+          "data-variant": "plain"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -755,6 +1402,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -804,6 +1452,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -851,6 +1500,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -898,6 +1548,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -957,6 +1608,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -1000,6 +1652,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -1045,6 +1698,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -1094,6 +1748,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -1143,6 +1798,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -1192,6 +1848,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -1239,6 +1896,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -1381,7 +2039,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-track-background"
+        "fill": "--cui-range-thumb-background"
       },
       "anatomy": 12,
       "rendersText": false,
@@ -1389,7 +2047,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-track-background"
+        "fill": "--cui-range-thumb-background"
       },
       "anatomy": 13,
       "rendersText": false,
@@ -1397,7 +2055,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-track-background"
+        "fill": "--cui-range-thumb-background"
       },
       "anatomy": 14,
       "rendersText": false,
@@ -1405,7 +2063,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-track-background"
+        "fill": "--cui-range-thumb-background"
       },
       "anatomy": 15,
       "rendersText": false,
@@ -1413,7 +2071,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-track-background"
+        "fill": "--cui-range-thumb-background"
       },
       "anatomy": 16,
       "rendersText": false,
@@ -1421,7 +2079,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-track-background"
+        "fill": "--cui-range-thumb-background"
       },
       "anatomy": 17,
       "rendersText": false,
@@ -1429,7 +2087,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-track-background"
+        "fill": "--cui-range-thumb-background"
       },
       "anatomy": 18,
       "rendersText": false,
@@ -1437,7 +2095,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-track-background"
+        "fill": "--cui-range-thumb-background"
       },
       "anatomy": 19,
       "rendersText": false,
@@ -1445,7 +2103,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-track-background"
+        "fill": "--cui-range-thumb-background"
       },
       "anatomy": 20,
       "rendersText": false,
@@ -1453,7 +2111,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-track-background"
+        "fill": "--cui-range-thumb-background"
       },
       "anatomy": 21,
       "rendersText": false,
@@ -1472,6 +2130,86 @@
         "fill": "--cui-range-track-background"
       },
       "anatomy": 23,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-range-track-background"
+      },
+      "anatomy": 24,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-range-track-background"
+      },
+      "anatomy": 25,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-range-track-background"
+      },
+      "anatomy": 26,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-range-track-background"
+      },
+      "anatomy": 27,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-range-track-background"
+      },
+      "anatomy": 28,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-range-track-background"
+      },
+      "anatomy": 29,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-range-track-background"
+      },
+      "anatomy": 30,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-range-track-background"
+      },
+      "anatomy": 31,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-range-track-background"
+      },
+      "anatomy": 32,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-range-track-background"
+      },
+      "anatomy": 33,
       "rendersText": false,
       "state": false
     }

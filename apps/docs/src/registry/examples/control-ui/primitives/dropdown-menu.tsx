@@ -40,9 +40,11 @@ export function PrimitiveDropdownMenuExample() {
         <DropdownMenu>
           <DropdownMenuTrigger>Actions</DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuLabel>Document</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => setLast("Rename")}>Rename</DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setLast("Duplicate")}>Duplicate</DropdownMenuItem>
+            <DropdownMenuGroup>
+              <DropdownMenuLabel>Document</DropdownMenuLabel>
+              <DropdownMenuItem onClick={() => setLast("Rename")}>Rename</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLast("Duplicate")}>Duplicate</DropdownMenuItem>
+            </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => setLast("Delete")}>Delete</DropdownMenuItem>
           </DropdownMenuContent>

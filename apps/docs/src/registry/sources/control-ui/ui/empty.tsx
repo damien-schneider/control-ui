@@ -1,5 +1,8 @@
-import type { ComponentProps, CSSProperties } from "react";
+"use client";
 
+import { useRender } from "@base-ui/react/use-render";
+import type { ComponentProps, CSSProperties } from "react";
+import type { RenderProp } from "@/components/control-ui/control-props";
 import type { EmptyKnobStyle } from "@/components/control-ui/knob-contracts/empty-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
@@ -13,7 +16,10 @@ export type EmptyContentProps = Omit<ComponentProps<"div">, "style"> & { style?:
 
 export type EmptyDescriptionProps = Omit<ComponentProps<"p">, "style"> & { style?: CSSProperties & EmptyKnobStyle };
 
-export type EmptyTitleProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & EmptyKnobStyle };
+export type EmptyTitleProps = Omit<ComponentProps<"div">, "style"> & {
+  render?: RenderProp<ComponentProps<"div">>;
+  style?: CSSProperties & EmptyKnobStyle;
+};
 
 export function Empty({ className, ...props }: EmptyProps) {
   return (
@@ -51,8 +57,12 @@ export function EmptyMedia({ className, ...props }: EmptyMediaProps) {
   );
 }
 
-export function EmptyTitle({ className, ...props }: EmptyTitleProps) {
-  return <div data-control-ui="empty" data-control-family="empty" data-slot="title" className={className} {...props} />;
+export function EmptyTitle({ render, ...props }: EmptyTitleProps) {
+  return useRender({
+    defaultTagName: "div",
+    render,
+    props: { ...props, "data-control-ui": "empty", "data-control-family": "empty", "data-slot": "title" },
+  });
 }
 
 export function EmptyDescription({ className, ...props }: EmptyDescriptionProps) {

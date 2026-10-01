@@ -24,7 +24,7 @@ const TEXT_ROLES = [
   "--warning-text",
   "--info-text",
 ];
-const LINE_ROLES = ["--border", "--input", "--control-rim", "--ring", "--focus-ring"];
+const LINE_ROLES = ["--border", "--input", "--control-rim", "--control-boundary", "--image-outline", "--ring", "--focus-ring"];
 const CONTROL_FILL_ROLES = ["--control-fill", "--hover-fill", "--active-fill"];
 const RAMP_SEEDS = COLOR_RAMPS.map((ramp) => `--scale-${ramp}-seed`);
 

@@ -120,6 +120,7 @@
 - `stepper` (Stepper) — Static and interactive workflow steps with horizontal and vertical layouts. — `npx shadcn@latest add http://127.0.0.1:3000/r/stepper.json`
 - `navigation-menu` (Navigation menu) — Site navigation menu with a shared animated viewport. — `npx shadcn@latest add http://127.0.0.1:3000/r/navigation-menu.json`
 - `pagination` (Pagination) — Page navigation for long lists and result sets. — `npx shadcn@latest add http://127.0.0.1:3000/r/pagination.json`
+- `breadcrumb` (Breadcrumb) — Location trail with links, the current page, and collapsed levels. — `npx shadcn@latest add http://127.0.0.1:3000/r/breadcrumb.json`
 
 **Feedback** — Tell the user what just happened, what is loading, or what is missing.
 - `skeleton` (Skeleton) **[beta]** — Loading placeholders with seamless shimmer, pulse, and static variants. Match their dimensions to the incoming content. — `npx shadcn@latest add http://127.0.0.1:3000/r/skeleton.json`
@@ -127,6 +128,7 @@
 - `progress` (Progress) — Determinate task progress with optional label and value rows. — `npx shadcn@latest add http://127.0.0.1:3000/r/progress.json`
 - `alert` (Alert) **[beta]** — Inline status panel for callouts, errors, and notices. — `npx shadcn@latest add http://127.0.0.1:3000/r/alert.json`
 - `empty` (Empty) **[beta]** — Empty-state layout for blank lists, zero results, and new workspaces. — `npx shadcn@latest add http://127.0.0.1:3000/r/empty.json`
+- `live-status` (Live status) — Always-mounted polite status region that announces changes to assistive technology. — `npx shadcn@latest add http://127.0.0.1:3000/r/live-status.json`
 - `spinner` (Spinner) — Accessible loading indicator for pending buttons, panels, and inline waits. — `npx shadcn@latest add http://127.0.0.1:3000/r/spinner.json`
 
 **Layout** — Content-agnostic structure: regions, panels, wrappers, scrolling, resizing, and disclosure. It never knows what is inside.
@@ -149,6 +151,7 @@
 - `badge` (Badge) **[beta]** — Compact status, label, or count chip. — `npx shadcn@latest add http://127.0.0.1:3000/r/badge.json`
 - `table` (Table) — Responsive data table for lists, comparisons, and structured records. — `npx shadcn@latest add http://127.0.0.1:3000/r/table.json`
 - `item` (Item) **[beta]** — List row with media, content, and trailing actions. — `npx shadcn@latest add http://127.0.0.1:3000/r/item.json`
+- `separator` (Separator) — Horizontal or vertical hairline divider. — `npx shadcn@latest add http://127.0.0.1:3000/r/separator.json`
 - `meter` (Meter) — Static range meter for quota, storage, score, or usage values. — `npx shadcn@latest add http://127.0.0.1:3000/r/meter.json`
 - `tree` (Tree) — Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure. — `npx shadcn@latest add http://127.0.0.1:3000/r/tree.json`
 

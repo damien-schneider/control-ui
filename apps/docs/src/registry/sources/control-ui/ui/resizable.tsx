@@ -68,6 +68,7 @@ export type ResizableFloatingPanelProps = Omit<ComponentProps<"div">, "style"> &
   maxSize?: number;
   handleVariant?: ResizableHandleVariant;
   handleLabel?: string;
+  getAriaValueText?: (size: number) => string;
   style?: ResizableFloatingPanelStyle;
 };
 
@@ -111,7 +112,14 @@ export function ResizablePanel({ className, ...props }: ResizablePanelProps) {
   return <Panel data-control-ui="resizable" data-control-family="resizable" data-slot="panel" className={className} {...props} />;
 }
 
-export function ResizableHandle({ className, variant = "solid", withHandle, children, ...props }: ResizableHandleProps) {
+export function ResizableHandle({
+  className,
+  variant = "solid",
+  withHandle,
+  children,
+  "aria-label": ariaLabel = "Resize panel",
+  ...props
+}: ResizableHandleProps) {
   const { orientation, disableCursor } = useContext(ResizableGroupContext);
   const axis = orientation === "horizontal" ? "vertical" : "horizontal";
   return (
@@ -123,6 +131,7 @@ export function ResizableHandle({ className, variant = "solid", withHandle, chil
       data-axis={axis}
       data-cursor={disableCursor ? "none" : undefined}
       className={cn("relative flex items-center justify-center", axis === "vertical" ? "w-px touch-pan-y" : "h-px touch-pan-x", className)}
+      aria-label={ariaLabel}
       {...props}
     >
       {withHandle ? (
@@ -151,6 +160,7 @@ export function ResizableFloatingPanel({
   maxSize = 640,
   handleVariant = "hover",
   handleLabel = "Resize panel",
+  getAriaValueText = (value) => `${value} pixels`,
   className,
   style,
   children,
@@ -247,6 +257,7 @@ export function ResizableFloatingPanel({
         aria-valuenow={size}
         aria-valuemin={minSize}
         aria-valuemax={maxSize}
+        aria-valuetext={getAriaValueText(size)}
         data-control-ui="resizable"
         data-control-family="resizable"
         data-slot="handle"
@@ -254,7 +265,7 @@ export function ResizableFloatingPanel({
         data-axis="vertical"
         data-separator={separatorState}
         className={cn(
-          "absolute inset-y-0 w-px touch-none after:absolute after:inset-y-0 after:-inset-x-1 after:content-['']",
+          "absolute inset-y-0 w-px touch-none after:absolute after:inset-y-0 after:inset-x-[calc((1px_-_var(--target-min))/2)] after:content-['']",
           side === "right" ? "left-0" : "right-0",
         )}
         onPointerDown={beginResize}

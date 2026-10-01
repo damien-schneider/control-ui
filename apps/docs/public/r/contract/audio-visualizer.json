@@ -36,6 +36,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "oklch(from var(--primary) l c h / 0.8)"
+    },
+    {
+      "name": "--cui-audio-visualizer-baseline-stroke",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--border) l c h / 0.55)"
     }
   ],
   "parts": {

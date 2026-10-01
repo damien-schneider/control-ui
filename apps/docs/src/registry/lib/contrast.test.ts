@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { type Hsva, parseColor, type Rgba } from "./color";
-import { AA_RATIO, contrastOf, contrastRatio, fixColorForContrast, nextFixLevel, wcagLevels } from "./contrast";
+import { AA_RATIO, contrastOf, contrastRatio, fixColorForContrast, formatContrastRatio, nextFixLevel, wcagLevels } from "./contrast";
 
 function present<T>(value: T | null): T {
   if (value === null) throw new Error("expected a non-null value");
@@ -32,6 +32,28 @@ describe("wcag levels", () => {
     expect(nextFixLevel({ AA: false, AAA: false })).toBe("AA");
     expect(nextFixLevel({ AA: true, AAA: false })).toBe("AAA");
     expect(nextFixLevel({ AA: true, AAA: true })).toBeNull();
+  });
+});
+
+describe("contrastOf", () => {
+  const white: Rgba = { r: 255, g: 255, b: 255, a: 1 };
+
+  test("measures a translucent color as painted over the background", () => {
+    const opaqueBlack: Hsva = { h: 0, s: 0, v: 0, a: 1 };
+    const halfBlack: Hsva = { h: 0, s: 0, v: 0, a: 0.5 };
+    expect(contrastOf(opaqueBlack, white)).toBeCloseTo(21, 1);
+    expect(contrastOf(halfBlack, white)).toBeLessThan(AA_RATIO);
+  });
+
+  test("a fully transparent color has no contrast", () => {
+    expect(contrastOf({ h: 0, s: 0, v: 0, a: 0 }, white)).toBeCloseTo(1, 5);
+  });
+});
+
+describe("formatContrastRatio", () => {
+  test("never rounds a failing ratio up to the threshold", () => {
+    expect(formatContrastRatio(4.496)).toBe("4.49");
+    expect(formatContrastRatio(4.5)).toBe("4.50");
   });
 });
 

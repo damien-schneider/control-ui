@@ -5,14 +5,6 @@
   background-image: linear-gradient(100deg, var(--muted) 30%, oklch(from var(--muted-foreground) l c h / 0.25) 50%, var(--muted) 70%);
   background-size: 220% 100%;
   animation: shimmer calc(var(--duration-slow) * 5) var(--ease-standard) infinite;
-
-  /* Reduced motion: hold resting gradient (infinite animation ignores 0ms collapse, must still explicitly) under OS pref + motion kill-switch attribute. */
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
-  :where([data-motion="reduced"]) & {
-    animation: none;
-  }
 }
 
 /* shimmer-text — same sweep clipped to text ("AI is generating" treatment); subtle --muted-foreground↔--foreground stops keep it readable. */
@@ -24,14 +16,6 @@
   -webkit-text-fill-color: transparent;
   color: transparent;
   animation: shimmer calc(var(--duration-slow) * 6) var(--ease-standard) infinite;
-
-  /* Reduced motion: static muted-foreground text, no sweep — stilled under OS pref + motion kill-switch (infinite animation ignores 0ms tempo). */
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
-  :where([data-motion="reduced"]) & {
-    animation: none;
-  }
 }
 
 @keyframes shimmer {
@@ -69,14 +53,6 @@
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   animation: aui-halftone calc(var(--duration-slow) * 6) var(--ease-standard) infinite;
-
-  /* Reduced motion: dots hold at their resting radius — still a legible placeholder, just no breathing. */
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
-  :where([data-motion="reduced"]) & {
-    animation: none;
-  }
 }
 
 @keyframes aui-halftone {
@@ -106,14 +82,6 @@
   color: transparent;
   text-shadow: none;
   animation: aui-progress-sweep calc(var(--duration-slow) * 12) linear infinite;
-
-  /* Reduced motion: static blocks, no march — stilled under OS pref + motion kill-switch (infinite animation ignores 0ms tempo). */
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
-  :where([data-motion="reduced"]) & {
-    animation: none;
-  }
 }
 
 @keyframes aui-progress-sweep {
@@ -122,5 +90,11 @@
   }
   to {
     background-position: -200% 0;
+  }
+}
+
+@keyframes cui-spin {
+  to {
+    rotate: 360deg;
   }
 }

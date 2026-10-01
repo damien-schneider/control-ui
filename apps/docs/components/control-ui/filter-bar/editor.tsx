@@ -17,7 +17,7 @@ import { type FilterBarContextValue, useFilterBarContext } from "./context";
 import { allowsCustomValue, fieldOperators, fieldOptions, parseCustomValue } from "./model";
 import type { FilterBarDraft, FilterBarField, FilterBarScalar, FilterBarStage } from "./types";
 
-type FilterChoice = { id: string; label: string; icon?: ReactNode; value?: FilterBarScalar; disabled?: boolean };
+type FilterChoice = { id: string; label: string; ariaLabel?: string; icon?: ReactNode; value?: FilterBarScalar; disabled?: boolean };
 
 function valueChoice(value: FilterBarScalar, label: string): FilterChoice {
   return { id: `${typeof value}:${value}`, value, label };
@@ -47,7 +47,11 @@ function editorChoices(context: FilterBarContextValue, draft: FilterBarDraft | n
   const field = context.fields.find((candidate) => candidate.id === draft.fieldId);
   if (!field) return [];
   if (draft.stage === "operator")
-    return fieldOperators(field, context.operators).map((operator) => ({ id: operator.id, label: operator.label }));
+    return fieldOperators(field, context.operators).map((operator) => ({
+      id: operator.id,
+      label: operator.label,
+      ariaLabel: operator.ariaLabel,
+    }));
   return valueChoices(field, draft.query);
 }
 
@@ -55,6 +59,10 @@ function searchLabel(stage: FilterBarStage, field: FilterBarField | undefined) {
   if (stage === "field") return "Filter field";
   if (stage === "operator") return "Filter operator";
   return `${field?.label ?? "Filter"} value`;
+}
+
+function statusId(owner: string) {
+  return `${owner}-filter-status`;
 }
 
 function handleSelection(context: FilterBarContextValue, draft: FilterBarDraft | null, choice: FilterChoice | FilterChoice[] | null) {
@@ -85,22 +93,24 @@ function handleEditorKeyDown(context: FilterBarContextValue, draft: FilterBarDra
   return true;
 }
 
-function EditorOptions({ field, invalidNumber }: { field?: FilterBarField; invalidNumber: boolean }) {
+function EditorOptions({ field, invalidNumber, owner }: { field?: FilterBarField; invalidNumber: boolean; owner: string }) {
   if (field?.loading || field?.error)
     return (
-      <div className="p-3 text-caption" role={field.error ? "alert" : "status"}>
+      <div id={statusId(owner)} className="p-3 text-caption">
         {field.error ?? "Loading values…"}
       </div>
     );
   return (
     <>
-      <ComboboxEmpty>{invalidNumber ? "Enter a finite number." : "No matching options."}</ComboboxEmpty>
+      <ComboboxEmpty>{invalidNumber ? "Enter a number, like 42 or 3.5." : "No matching options."}</ComboboxEmpty>
       <ComboboxList<FilterChoice>>
         {(choice) => (
-          <ComboboxItem key={choice.id} value={choice} disabled={choice.disabled}>
+          <ComboboxItem key={choice.id} value={choice} disabled={choice.disabled} aria-label={choice.ariaLabel}>
             <span className="flex min-w-0 items-center gap-2">
               {choice.icon}
-              <span className="truncate">{choice.label}</span>
+              <span className="truncate" title={choice.label}>
+                {choice.label}
+              </span>
             </span>
           </ComboboxItem>
         )}
@@ -143,7 +153,8 @@ function editorView(context: FilterBarContextValue, draft: FilterBarDraft | null
   const remote = stage === "value" && field?.optionsMode === "remote";
   const unavailable = stage === "value" && Boolean(field?.loading || field?.error);
   const label = searchLabel(stage, field);
-  return { field, stage, many, query, choices, selected, invalidNumber, remote, unavailable, label };
+  const described = stage === "value" && Boolean(field?.error);
+  return { field, stage, many, query, choices, selected, invalidNumber, remote, unavailable, label, described };
 }
 
 export function FilterBarEditor({
@@ -160,7 +171,7 @@ export function FilterBarEditor({
   const context = useFilterBarContext();
   const searchRef = useRef<HTMLInputElement>(null);
   const draft = context.draft?.owner === owner ? context.draft : null;
-  const { field, stage, many, query, choices, selected, invalidNumber, remote, unavailable, label } = editorView(context, draft);
+  const { field, stage, many, query, choices, selected, invalidNumber, remote, unavailable, label, described } = editorView(context, draft);
 
   const canCommitMany = selected.length > 0 && !unavailable && !context.disabled && !context.readOnly;
 
@@ -203,17 +214,18 @@ export function FilterBarEditor({
               ref={searchRef}
               size="sm"
               aria-label={label}
+              aria-describedby={described ? statusId(owner) : undefined}
               placeholder={label}
               inputMode={field?.type === "number" && stage === "value" ? "decimal" : undefined}
               onKeyDown={(event) => handleEditorKeyDown(context, draft, event)}
             />
           </div>
         )}
-        <EditorOptions field={stage === "value" ? field : undefined} invalidNumber={invalidNumber} />
+        <EditorOptions field={stage === "value" ? field : undefined} invalidNumber={invalidNumber} owner={owner} />
         {many && (
           <div className="flex justify-end p-2">
             <Button disabled={!canCommitMany} onClick={() => context.commit(draft?.values ?? [])}>
-              Done
+              Apply
             </Button>
           </div>
         )}
@@ -230,6 +242,7 @@ export function FilterBarInlineInput({
 }: Omit<ComboboxInputProps, "ref"> & { owner: string; inputRef: RefObject<HTMLInputElement | null> }) {
   const context = useFilterBarContext();
   const draft = context.draft?.owner === owner ? context.draft : null;
+  const { label, described } = editorView(context, draft);
   function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
     props.onKeyDown?.(event);
     if (event.defaultPrevented || event.nativeEvent.isComposing) return;
@@ -240,5 +253,15 @@ export function FilterBarInlineInput({
       context.remove(last);
     } else context.navigate(event);
   }
-  return <ComboboxInput ref={inputRef} size="sm" className={className} {...props} onKeyDown={handleKeyDown} />;
+  return (
+    <ComboboxInput
+      ref={inputRef}
+      size="sm"
+      className={className}
+      {...props}
+      aria-label={draft ? label : props["aria-label"]}
+      aria-describedby={described ? statusId(owner) : props["aria-describedby"]}
+      onKeyDown={handleKeyDown}
+    />
+  );
 }

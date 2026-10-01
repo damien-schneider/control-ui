@@ -7,6 +7,82 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "empty",
+          "data-control-ui": "empty",
+          "data-slot": "root"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "empty",
+          "data-control-ui": "empty",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "empty",
+          "data-control-ui": "empty",
+          "data-slot": "media"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -47,6 +123,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -86,7 +163,8 @@
   "probes": [
     {
       "knobs": {
-        "text": "--cui-empty-description-foreground"
+        "fill": "--cui-empty-background",
+        "text": "--cui-empty-foreground"
       },
       "anatomy": 0,
       "rendersText": true,
@@ -94,9 +172,26 @@
     },
     {
       "knobs": {
-        "text": "--cui-empty-foreground"
+        "fill": "--cui-empty-media-background",
+        "text": "--cui-empty-media-foreground"
       },
       "anatomy": 1,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-empty-description-foreground"
+      },
+      "anatomy": 2,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-empty-foreground"
+      },
+      "anatomy": 3,
       "rendersText": true,
       "state": false
     }

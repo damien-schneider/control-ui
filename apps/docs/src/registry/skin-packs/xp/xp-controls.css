@@ -72,6 +72,8 @@
     --cui-field-shadow: none;
     --cui-field-padding-inline: 4px;
     --cui-field-focus-border-color: var(--primary);
+    --cui-field-affordance-shadow: inset 1px 1px var(--xp-light), inset -1px -1px var(--xp-shadow);
+    --cui-field-affordance-foreground: var(--xp-glyph);
   }
   [data-skin="xp"] :where([data-control-ui="select"][data-slot="icon"][data-control-family="popup"]) {
     align-self: stretch;
@@ -80,7 +82,6 @@
     border: 1px solid var(--xp-field);
     border-radius: 2px;
     background: var(--xp-scroll);
-    color: var(--xp-edge);
     rotate: 0deg;
   }
   [data-skin="xp"]
@@ -105,11 +106,13 @@
   [data-skin="xp"] :where([data-control-family="switch"][data-slot="root"]) {
     --cui-switch-background: var(--secondary);
     --cui-switch-hover-background: var(--secondary);
+    --cui-switch-radius: 3px;
+    --cui-switch-border-width: 1px;
+    --cui-switch-border-color: var(--xp-field);
+    --cui-switch-checked-border-color: var(--xp-field);
     --cui-switch-thumb-radius: 2px;
     --cui-switch-thumb-background: var(--background);
     --cui-switch-thumb-shadow: inset 1px 1px var(--xp-light), inset -1px -1px var(--xp-shadow);
-    border-radius: 3px;
-    box-shadow: inset 0 0 0 1px var(--xp-field);
   }
   [data-skin="xp"] :where([data-control-family="tabs"][data-slot="root"]) {
     --cui-tabs-trigger-radius: 3px;
@@ -177,14 +180,14 @@
     display: grid;
     place-items: center;
     inset-block: 2px;
-    right: 2px;
+    inset-inline-end: 2px;
     inline-size: 17px;
-    background: var(--xp-scroll);
+    background-image: var(--xp-scroll);
     border: 1px solid var(--xp-field);
     border-radius: 2px;
-    box-shadow:
-      inset 1px 1px var(--xp-light),
-      inset -1px -1px var(--xp-shadow);
+  }
+  [data-skin="xp"] :where(div[data-control-family="field"][data-field-kind="native-select"]) {
+    --cui-field-affordance-shadow: inset 1px 1px var(--xp-light), inset -1px -1px var(--xp-shadow);
   }
   [data-skin="xp"] :where([data-control-family="field"][data-field-kind="native-select"][data-slot="root"]) {
     padding-inline-end: 23px;
@@ -196,10 +199,7 @@
         [data-control-family="field"][data-slot="decrement"]
       )
     ) {
-    background: var(--xp-scroll);
-    box-shadow:
-      inset 1px 1px var(--xp-light),
-      inset -1px -1px var(--xp-shadow);
+    background-image: var(--xp-scroll);
     border: 1px solid var(--xp-field);
     border-radius: 2px;
   }
@@ -210,6 +210,6 @@
         [data-control-family="field"][data-slot="decrement"]
       ):active
     ) {
-    box-shadow: var(--xp-default-rim);
+    --cui-field-affordance-shadow: var(--xp-default-rim);
   }
 }

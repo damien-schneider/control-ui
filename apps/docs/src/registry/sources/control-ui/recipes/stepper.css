@@ -1,28 +1,29 @@
 @layer components {
   :where([data-control-family="stepper"][data-slot="root"]) {
+    --cui-stepper-indicator-size: calc(var(--spacing) * 8);
     --cui-stepper-indicator-radius: 9999px;
     --cui-stepper-indicator-background: var(--background);
     --cui-stepper-indicator-foreground: var(--muted-foreground);
     --cui-stepper-indicator-border-color: var(--border);
     --cui-stepper-indicator-border-width: var(--control-rim-width);
+    --cui-stepper-indicator-current-border-width: 2px;
     --cui-stepper-separator-background: var(--border);
     --cui-stepper-title-foreground: var(--foreground);
+    --cui-stepper-title-current-font-weight: var(--font-weight-semibold);
   }
   :where([data-control-family="stepper"][data-slot="trigger"]) {
     border-radius: var(--radius-control);
-    outline: none;
     transition: color var(--duration-fast) var(--ease-standard);
-    --_stepper-trigger-text-align: left;
-    text-align: var(--_stepper-trigger-text-align);
+    text-align: start;
   }
 
   :where([data-control-family="stepper"][data-slot="trigger"]:disabled) {
-    opacity: 0.5;
+    opacity: var(--disabled-opacity);
   }
 
   :where([data-control-family="stepper"][data-slot="indicator"]) {
-    inline-size: calc(var(--spacing) * 8);
-    block-size: calc(var(--spacing) * 8);
+    inline-size: var(--cui-stepper-indicator-size);
+    block-size: var(--cui-stepper-indicator-size);
     --_stepper-indicator-shadow: 0 0 transparent;
     border: var(--cui-stepper-indicator-border-width) solid var(--cui-stepper-indicator-border-color);
     border-radius: var(--cui-stepper-indicator-radius);
@@ -46,6 +47,7 @@
   :where([data-control-family="stepper"][data-slot="indicator"][data-state="current"]:not([data-invalid])) {
     --cui-stepper-indicator-foreground: var(--primary-text);
     --cui-stepper-indicator-border-color: var(--primary);
+    --cui-stepper-indicator-border-width: var(--cui-stepper-indicator-current-border-width);
     --_stepper-indicator-shadow: 0 0 0 4px oklch(from var(--primary) l c h / 0.1);
   }
 
@@ -73,6 +75,10 @@
     line-height: var(--leading-tight);
   }
 
+  :where([data-control-family="stepper"][data-slot="item"][aria-current="step"] [data-slot="title"]) {
+    font-weight: var(--cui-stepper-title-current-font-weight);
+  }
+
   :where([data-control-family="stepper"][data-slot="description"]) {
     color: var(--muted-foreground);
     font-size: var(--text-body);
@@ -81,7 +87,6 @@
 
   :where([data-control-family="stepper"][data-slot="content"]) {
     margin-block-start: calc(var(--spacing) * 6);
-    outline: none;
   }
 
   :where([data-control-family="stepper"][data-slot="root"][data-orientation="vertical"] [data-slot="item"]) {
@@ -115,11 +120,6 @@
   }
 
   @container stepper (width < 28rem) {
-    :where([data-control-family="stepper"][data-slot="trigger"]) {
-      --_stepper-trigger-text-align: left;
-      text-align: var(--_stepper-trigger-text-align);
-    }
-
     :where([data-control-family="stepper"][data-slot="root"][data-orientation="horizontal"] [data-slot="item"]) {
       padding-block-end: calc(var(--spacing) * 6);
     }
@@ -182,4 +182,22 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-stepper-indicator-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-stepper-indicator-current-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-stepper-title-current-font-weight {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 400;
 }

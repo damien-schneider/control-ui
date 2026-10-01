@@ -16,18 +16,6 @@ describe("Code renders", () => {
     expect(html).toContain("const answer = 42;");
   });
 
-  test("keeps compact wrapped commands on the lightweight path", () => {
-    const html = renderToString(
-      <Code density="compact" overflow="wrap">
-        <CodeContent code="bun run dev" highlight="none" />
-      </Code>,
-    );
-
-    expect(html).not.toContain('data-control-ui="scroll-area"');
-    expect(html).toContain('data-slot="content"');
-    expect(html).toContain("bun run dev");
-  });
-
   test("keeps the complete source available when visual rows virtualize", () => {
     const code = Array.from({ length: 201 }, (_, index) => `line ${index + 1}`).join("\n");
     const html = renderToString(

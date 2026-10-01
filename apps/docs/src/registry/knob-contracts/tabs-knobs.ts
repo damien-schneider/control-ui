@@ -8,6 +8,7 @@ export const tabsKnobs = [
   "--cui-tabs-indicator-background",
   "--cui-tabs-foreground",
   "--cui-tabs-active-foreground",
+  "--cui-tabs-hover-foreground",
   "--cui-tabs-indicator-shadow",
   "--cui-tabs-list-shadow",
   "--cui-tabs-border-color",

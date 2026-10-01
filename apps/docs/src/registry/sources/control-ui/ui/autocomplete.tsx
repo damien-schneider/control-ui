@@ -110,7 +110,7 @@ export function AutocompleteInput({ size = "md", className, ...props }: Autocomp
         className={cn("w-full min-w-0 disabled:cursor-not-allowed", className)}
         {...props}
       />
-      <AutocompleteClear className="absolute right-1.5 top-1/2 -translate-y-1/2" />
+      <AutocompleteClear className="absolute end-1.5 top-1/2 -translate-y-1/2" />
     </AutocompletePrimitive.InputGroup>
   );
 }
@@ -150,7 +150,7 @@ export function AutocompleteContent({ className, children, sideOffset = 6, ...pr
 
 export function AutocompleteList<Value = unknown>({ className, children, ...props }: AutocompleteListProps<Value>) {
   return (
-    <ScrollArea className="w-full" maxHeight="min(18rem, var(--available-height))">
+    <ScrollArea className="w-full" viewportClassName="overscroll-contain" maxHeight="min(18rem, var(--available-height))" lockAxis="x">
       <AutocompletePrimitive.List
         data-control-ui="autocomplete"
         data-popup-kind="autocomplete"

@@ -12,6 +12,7 @@
   "registryDependencies": [
     "button",
     "core",
+    "live-status",
     "scroll-area",
     "tooltip",
     "use-copy-to-clipboard"

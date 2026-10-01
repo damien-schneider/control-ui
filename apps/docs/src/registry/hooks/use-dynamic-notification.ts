@@ -1,5 +1,5 @@
 import type { ComponentProps, CSSProperties } from "react";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { FormSubmitEvent, OpenChangeEventDetails, OpenChangeReason } from "@/components/control-ui/control-props";
 import type { DynamicNotificationKnobStyle } from "@/components/control-ui/knob-contracts/dynamic-notification-knobs";
 
@@ -21,6 +21,8 @@ export type DynamicNotificationProps = Omit<ComponentProps<"div">, "onChange" | 
   onReply?: (payload: DynamicNotificationReplyPayload) => void | Promise<void>;
   variant?: DynamicNotificationVariant;
   disabled?: boolean;
+  thinkingLabel?: string;
+  replyErrorLabel?: string;
   style?: CSSProperties & DynamicNotificationKnobStyle;
 };
 
@@ -74,13 +76,15 @@ function useControllableText({
 export type DynamicNotificationController = {
   open: boolean;
   disabled: boolean;
-  setOpen: (nextOpen: boolean, reason: OpenChangeReason, event: Event, trigger?: Element) => void;
+  setOpen: (nextOpen: boolean, reason: OpenChangeReason, event: Event, trigger?: Element) => boolean;
   reply: string;
   setReply: (nextValue: string) => void;
   normalizedReply: string;
   canSubmit: boolean;
+  replyPending: boolean;
+  replyFailed: boolean;
   clear: () => void;
-  submitReply: () => void;
+  submitReply: () => Promise<void>;
   handleReplySubmit: (event: FormSubmitEvent) => void;
 };
 
@@ -107,16 +111,20 @@ export function useDynamicNotification({
     onValueChange: onReplyValueChange,
   });
   const normalizedReply = reply.trim();
-  const canSubmit = normalizedReply.length > 0 && !disabled;
+  const [replyPending, setReplyPending] = useState(false);
+  const [replyFailed, setReplyFailed] = useState(false);
+  const replyInFlight = useRef(false);
+  const canSubmit = normalizedReply.length > 0 && !disabled && !replyPending;
 
   // Stable actions keep split contexts isolated when installed without React Compiler.
   const setOpen = useMemo(
     () => (nextOpen: boolean, reason: OpenChangeReason, event: Event, trigger?: Element) => {
-      if (disabled || nextOpen === isOpen) return;
+      if (disabled || nextOpen === isOpen) return false;
       const details = createOpenChangeEventDetails(reason, event, trigger);
       onOpenChange?.(nextOpen, details);
-      if (details.isCanceled) return;
+      if (details.isCanceled) return false;
       if (!isControlled) setInternalOpen(nextOpen);
+      return true;
     },
     [disabled, isControlled, isOpen, onOpenChange],
   );
@@ -129,9 +137,19 @@ export function useDynamicNotification({
   );
 
   const submitReply = useMemo(
-    () => () => {
-      if (!canSubmit) return;
-      void onReply?.({ value: normalizedReply, clear });
+    () => async () => {
+      if (!canSubmit || replyInFlight.current) return;
+      replyInFlight.current = true;
+      setReplyPending(true);
+      setReplyFailed(false);
+      try {
+        await onReply?.({ value: normalizedReply, clear });
+      } catch {
+        setReplyFailed(true);
+      } finally {
+        replyInFlight.current = false;
+        setReplyPending(false);
+      }
     },
     [canSubmit, clear, normalizedReply, onReply],
   );
@@ -139,7 +157,7 @@ export function useDynamicNotification({
   const handleReplySubmit = useMemo(
     () => (event: FormSubmitEvent) => {
       event.preventDefault();
-      submitReply();
+      void submitReply();
     },
     [submitReply],
   );
@@ -152,6 +170,8 @@ export function useDynamicNotification({
     setReply,
     normalizedReply,
     canSubmit,
+    replyPending,
+    replyFailed,
     clear,
     submitReply,
     handleReplySubmit,

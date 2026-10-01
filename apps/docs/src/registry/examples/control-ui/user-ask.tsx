@@ -94,7 +94,7 @@ export function UserAskExample() {
         ) : (
           <div className="grid gap-3">
             {answers ? (
-              <ChatMessage from="user" aria-live="polite">
+              <ChatMessage from="user">
                 <ChatMessageRow>
                   <ChatMessageBody>
                     <ChatMessageContent>

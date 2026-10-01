@@ -4,6 +4,7 @@
     --cui-audio-recorder-foreground: var(--muted-foreground);
     --cui-audio-recorder-recording-ring-color: oklch(from var(--destructive) l c h / 0.25);
     --cui-audio-recorder-error-foreground: var(--destructive-text);
+    --cui-audio-recorder-meta-foreground: var(--muted-foreground);
     min-block-size: calc(var(--spacing) * 8);
     gap: calc(var(--spacing) * 2);
     padding-inline-end: calc(var(--spacing) * 1);
@@ -36,13 +37,18 @@
     --_audio-recorder-content-visible-scale: 100%;
     opacity: 0;
     filter: blur(var(--blur-xs));
-    translate: calc(var(--spacing) * 1) 0;
+    --_audio-recorder-inline-sign: 1;
+    translate: calc(var(--spacing) * var(--_audio-recorder-inline-sign)) 0;
     scale: var(--_audio-recorder-content-hidden-scale);
     visibility: hidden;
     transition-property: opacity, filter, translate, scale, visibility;
     transition-duration: var(--duration-base);
     transition-timing-function: var(--ease-emphasized);
     transition-behavior: allow-discrete;
+  }
+
+  :where([data-control-ui="audio-recorder"]:dir(rtl)) {
+    --_audio-recorder-inline-sign: -1;
   }
 
   :where([data-control-ui="audio-recorder"]:is([data-slot="cancel"], [data-slot="submit"])) {
@@ -62,7 +68,7 @@
   }
 
   :where([data-control-ui="audio-recorder"]:is([data-slot="status"], [data-slot="duration"])) {
-    color: var(--muted-foreground);
+    color: var(--cui-audio-recorder-meta-foreground);
     font-size: var(--text-caption);
   }
 
@@ -72,7 +78,7 @@
 
   :where([data-control-ui="audio-recorder"][data-slot="duration"]) {
     inline-size: calc(var(--spacing) * 10);
-    text-align: right;
+    text-align: end;
     font-variant-numeric: tabular-nums;
   }
 }
@@ -96,6 +102,12 @@
 }
 
 @property --cui-audio-recorder-error-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-audio-recorder-meta-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

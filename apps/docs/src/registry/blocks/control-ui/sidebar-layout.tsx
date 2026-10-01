@@ -2,7 +2,6 @@
 
 import { BotIcon, LayoutDashboardIcon, SettingsIcon, SquareTerminalIcon, WorkflowIcon } from "lucide-react";
 import type { ComponentType, ReactNode } from "react";
-import { cn } from "@/components/control-ui/lib/cn";
 import {
   Sidebar,
   SidebarContent,
@@ -21,29 +20,31 @@ import {
 
 type SidebarLayoutNavItem = {
   title: string;
+  href: string;
   icon: ComponentType<{ className?: string }>;
 };
 
 const primaryNav: SidebarLayoutNavItem[] = [
-  { title: "Playground", icon: SquareTerminalIcon },
-  { title: "Agents", icon: BotIcon },
-  { title: "Workflows", icon: WorkflowIcon },
-  { title: "Dashboard", icon: LayoutDashboardIcon },
+  { title: "Playground", href: "/playground", icon: SquareTerminalIcon },
+  { title: "Agents", href: "/agents", icon: BotIcon },
+  { title: "Workflows", href: "/workflows", icon: WorkflowIcon },
+  { title: "Dashboard", href: "/dashboard", icon: LayoutDashboardIcon },
 ];
 
-// Same AppSidebar/SidebarLayout seam as default-skin block, on Control UI Sidebar (same shadcn contract:
-// provider+icon-collapse+inset), skinned via token cascade + per-slot config; advanced packs reskin from here.
 export function AppSidebar({ active = "Playground" }: { active?: string }) {
   return (
     <Sidebar collapsible="icon" variant="inset">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg">
-              <span className="flex size-6 shrink-0 items-center justify-center rounded-md bg-primary text-xs font-semibold text-primary-foreground">
+            <SidebarMenuButton size="lg" render={<a href="/" />}>
+              <span
+                aria-hidden="true"
+                className="flex size-6 shrink-0 items-center justify-center rounded-md bg-primary text-label font-semibold text-primary-foreground"
+              >
                 A
               </span>
-              <span className="text-sm font-semibold">Acme Studio</span>
+              <span className="text-body font-semibold">Acme Studio</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -54,7 +55,7 @@ export function AppSidebar({ active = "Playground" }: { active?: string }) {
           <SidebarMenu>
             {primaryNav.map((item) => (
               <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton isActive={item.title === active} tooltip={item.title}>
+                <SidebarMenuButton render={<a href={item.href} />} isActive={item.title === active}>
                   <item.icon />
                   <span>{item.title}</span>
                 </SidebarMenuButton>
@@ -66,7 +67,7 @@ export function AppSidebar({ active = "Playground" }: { active?: string }) {
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton tooltip="Settings">
+            <SidebarMenuButton render={<a href="/settings" />} isActive={active === "Settings"}>
               <SettingsIcon />
               <span>Settings</span>
             </SidebarMenuButton>
@@ -91,7 +92,7 @@ export function SidebarLayout({ children }: { children: ReactNode }) {
           data-control-family="sidebar-layout"
           data-slot="content"
           data-surface="panel"
-          className={cn("flex flex-1 flex-col gap-4 p-4")}
+          className="flex flex-1 flex-col gap-4 p-4"
         >
           {children}
         </div>

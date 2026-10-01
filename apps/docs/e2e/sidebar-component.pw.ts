@@ -78,9 +78,10 @@ test("collapsed navigation stays outside keyboard navigation and respects reduce
   await rail.press("Enter");
   await expect(container).toHaveCSS("transition-duration", "0s");
   await rail.press("Tab");
-  await expect(preview.getByRole("button", { name: "Toggle Sidebar", exact: true })).toBeFocused();
+  const trigger = preview.getByRole("button", { name: "Toggle sidebar", exact: true });
+  await expect(trigger).toBeFocused();
   await page.keyboard.press("Enter");
-  await expect(rail).toBeFocused();
+  await expect(trigger).toBeFocused();
   await expect(preview.getByRole("button", { name: "Agents", exact: true })).toBeVisible();
   const overflow = await preview.locator('[data-slot="inset"]').evaluate((element) => {
     const parent = element.parentElement;

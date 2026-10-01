@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/control-ui/ui/button";
 import {
   DockablePanel,
@@ -16,6 +16,7 @@ import {
 
 export function PrimitiveDockablePanelExample() {
   const [open, setOpen] = useState(true);
+  const openerRef = useRef<HTMLButtonElement>(null);
 
   return (
     <div className="relative h-96 w-full overflow-hidden bg-canvas">
@@ -24,13 +25,13 @@ export function PrimitiveDockablePanelExample() {
         className="absolute inset-0 bg-radial-[circle_at_center,oklch(from_var(--foreground)_l_c_h/0.18)_1px,transparent_1px] bg-size-[18px_18px] opacity-50"
       />
       <div className="absolute top-3 left-3 z-10">
-        <Button variant="surface" size="sm" onClick={() => setOpen(true)} disabled={open}>
+        <Button ref={openerRef} variant="surface" size="sm" onClick={() => setOpen(true)} disabled={open}>
           Open inspector
         </Button>
       </div>
       <div className="absolute top-24 left-1/2 h-36 w-52 -translate-x-1/2 rounded-[var(--radius-panel)] bg-primary/12 ring-1 ring-primary/30" />
 
-      <DockablePanel open={open} onOpenChange={setOpen} aria-label="Selection inspector">
+      <DockablePanel open={open} onOpenChange={setOpen} finalFocus={openerRef} aria-label="Selection inspector">
         <DockablePanelHeader>
           <DockablePanelDragHandle>
             <DockablePanelTitle>Selection</DockablePanelTitle>
@@ -47,7 +48,8 @@ export function PrimitiveDockablePanelExample() {
           <PanelRow label="Position" value="240, 128" />
           <PanelRow label="Size" value="320 × 180" />
           <p className="text-caption leading-relaxed text-muted-foreground">
-            Drag the title to reveal both side slots, then release over either half or use the placement buttons.
+            Drag the title to reveal both side slots, then release over either half. From the keyboard, focus the title and press the arrow
+            keys, or use the placement buttons.
           </p>
         </DockablePanelContent>
       </DockablePanel>

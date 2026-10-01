@@ -85,6 +85,7 @@ export function ContextMenuTrigger({ className, ...props }: ContextMenuTriggerPr
       data-control-family="popup"
       data-popup-kind="context-menu"
       data-slot="trigger"
+      tabIndex={0}
       className={className}
       {...props}
     />
@@ -245,6 +246,7 @@ export function ContextMenuShortcut({ className, ...props }: ContextMenuShortcut
       data-slot="shortcut"
       data-control-family="popup"
       data-popup-part="shortcut"
+      aria-hidden="true"
       className={cn(className)}
       {...props}
     />
@@ -273,6 +275,7 @@ export function ContextMenuSubTrigger({ className, inset = false, children, ...p
         data-popup-kind="context-menu"
         data-control-family="popup"
         data-slot="sub-trigger-indicator"
+        data-icon-dir="inline"
         aria-hidden="true"
       >
         ›

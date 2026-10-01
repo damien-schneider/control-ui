@@ -27,7 +27,6 @@
     background-color: var(--cui-infinite-canvas-background);
     background-image: radial-gradient(circle at center, var(--cui-infinite-canvas-grid-dot-color) 1px, transparent 1px);
     box-shadow: 0 0 0 1px var(--cui-infinite-canvas-border-color);
-    outline-style: none;
   }
 
   :where([data-control-family="infinite-canvas"][data-slot="root"][data-easing]) {

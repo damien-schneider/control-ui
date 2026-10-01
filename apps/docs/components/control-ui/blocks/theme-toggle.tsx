@@ -1,14 +1,15 @@
 "use client";
 
-import { CheckIcon, ChevronDownIcon, MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
+import { ChevronDownIcon, MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
 import type { ComponentProps, ComponentType, CSSProperties } from "react";
 import { useId } from "react";
 import { Button } from "@/components/control-ui/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/control-ui/ui/dropdown-menu";
 import { Switch } from "@/components/control-ui/ui/switch";
@@ -110,7 +111,7 @@ export function ThemeSwitch({
       checkedIcon={checkedIcon ?? defaultSwitchCheckedIcon}
       uncheckedIcon={uncheckedIcon ?? defaultSwitchUncheckedIcon}
       onCheckedChange={(checked) => onValueChange(checked ? onValue : offValue)}
-      aria-label={ariaLabel ?? "Dark mode"}
+      aria-label={ariaLabel ?? `${currentThemeOption(onValue, defaultThemeOptions).label} mode`}
       {...props}
     />
   );
@@ -135,9 +136,9 @@ export function ThemeSegmentedSwitch({
     choices.findIndex((option) => option.value === currentValue),
   );
   const indicatorStyle = {
+    "--_theme-switch-index": activeIndex,
     width: `calc((100% - var(--_theme-switch-padding) * 2) / ${choices.length})`,
-    transform: `translateX(${activeIndex * 100}%)`,
-  } satisfies CSSProperties;
+  } satisfies CSSProperties & Record<"--_theme-switch-index", number>;
 
   return (
     <div
@@ -158,7 +159,7 @@ export function ThemeSegmentedSwitch({
         data-control-ui="theme-toggle"
         data-control-family="theme-toggle"
         data-slot="indicator"
-        className="pointer-events-none absolute inset-y-(--_theme-switch-padding) left-(--_theme-switch-padding) rounded-(--_theme-switch-radius) bg-background shadow-(--shadow-sm) transition-transform duration-(--duration-base) ease-(--ease-standard)"
+        className="pointer-events-none absolute inset-y-(--_theme-switch-padding) start-(--_theme-switch-padding) translate-x-[calc(var(--_theme-switch-index)*100%)] rounded-(--_theme-switch-radius) bg-background shadow-(--shadow-sm) transition-transform duration-(--duration-base) ease-(--ease-standard) rtl:translate-x-[calc(var(--_theme-switch-index)*-100%)]"
         style={indicatorStyle}
       />
       {choices.map((option) => {
@@ -175,7 +176,7 @@ export function ThemeSegmentedSwitch({
             data-selected={selected ? "true" : undefined}
             data-disabled={option.disabled ? "true" : undefined}
             className={classes(
-              "relative z-[1] inline-flex h-(--control-h-xs) cursor-pointer items-center justify-center gap-1.5 rounded-(--_theme-switch-radius) px-1.5 text-label font-medium transition-colors duration-(--duration-fast) ease-(--ease-standard) hover:text-foreground data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-45 data-[selected=true]:text-foreground",
+              "relative z-[1] inline-flex h-(--control-h-xs) cursor-pointer items-center justify-center gap-1.5 rounded-(--_theme-switch-radius) px-1.5 text-label font-medium transition-colors duration-(--duration-fast) ease-(--ease-standard) not-data-[disabled=true]:hover:text-foreground data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-(--disabled-opacity) data-[selected=true]:text-foreground",
               showLabels ? "min-w-20" : "w-(--control-h-xs)",
             )}
           >
@@ -247,25 +248,29 @@ export function ThemeDropdown({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger aria-label={ariaLabel ?? label} className={classes("min-w-36 gap-2", className)} {...props}>
+      <DropdownMenuTrigger
+        aria-label={ariaLabel ?? `${label}: ${current.label}`}
+        className={classes("min-w-36 gap-2", className)}
+        {...props}
+      >
         <CurrentIcon className="size-3.5" aria-hidden />
         <span className="min-w-0 truncate">{current.label}</span>
         <ChevronDownIcon className="size-3 text-muted-foreground" aria-hidden />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="min-w-40">
-        <DropdownMenuLabel>{label}</DropdownMenuLabel>
-        {options.map((option) => {
-          const selected = option.value === value;
-          const Icon = option.icon;
+        <DropdownMenuRadioGroup value={value} onValueChange={onValueChange}>
+          <DropdownMenuLabel>{label}</DropdownMenuLabel>
+          {options.map((option) => {
+            const Icon = option.icon;
 
-          return (
-            <DropdownMenuItem key={option.value} disabled={option.disabled} onClick={() => onValueChange(option.value)}>
-              <Icon className="size-3.5" aria-hidden />
-              <span className="min-w-0 flex-1 truncate">{option.label}</span>
-              {selected ? <CheckIcon className="size-3.5" aria-hidden /> : <span className="size-3.5" aria-hidden />}
-            </DropdownMenuItem>
-          );
-        })}
+            return (
+              <DropdownMenuRadioItem key={option.value} value={option.value} disabled={option.disabled}>
+                <Icon className="size-3.5" aria-hidden />
+                <span className="min-w-0 flex-1 truncate">{option.label}</span>
+              </DropdownMenuRadioItem>
+            );
+          })}
+        </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   );

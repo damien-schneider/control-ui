@@ -28,6 +28,132 @@
   ],
   "knobs": [
     {
+      "name": "--cui-popup-title-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--cui-popup-foreground)"
+    },
+    {
+      "name": "--cui-popup-title-font-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--text-heading-3)"
+    },
+    {
+      "name": "--cui-popup-title-font-weight",
+      "syntax": "<number>",
+      "initialValue": "400",
+      "defaultValue": "var(--font-weight-semibold)"
+    },
+    {
+      "name": "--cui-popup-title-line-height",
+      "syntax": "<number>",
+      "initialValue": "1",
+      "defaultValue": "var(--text-heading-3--line-height)"
+    },
+    {
+      "name": "--cui-popup-title-letter-spacing",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "-0.025em"
+    },
+    {
+      "name": "--cui-popup-description-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-popup-close-inset",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3)"
+    },
+    {
+      "name": "--cui-popup-item-inset",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 8)"
+    },
+    {
+      "name": "--cui-popup-label-padding-block",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--cui-popup-item-padding-block)"
+    },
+    {
+      "name": "--cui-popup-label-padding-inline",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--cui-popup-item-padding-inline)"
+    },
+    {
+      "name": "--cui-popup-label-font-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--text-micro)"
+    },
+    {
+      "name": "--cui-popup-label-font-weight",
+      "syntax": "<number>",
+      "initialValue": "400",
+      "defaultValue": "var(--font-weight-medium)"
+    },
+    {
+      "name": "--cui-popup-label-letter-spacing",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "0.08em"
+    },
+    {
+      "name": "--cui-popup-label-text-transform",
+      "syntax": "none | uppercase | lowercase | capitalize",
+      "initialValue": "none",
+      "defaultValue": "uppercase"
+    },
+    {
+      "name": "--cui-popup-separator-inset",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--popover-padding) * -1)"
+    },
+    {
+      "name": "--cui-popup-shortcut-font-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--text-body)"
+    },
+    {
+      "name": "--cui-popup-shortcut-letter-spacing",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "0.02em"
+    },
+    {
+      "name": "--cui-popup-status-success-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--success-text)"
+    },
+    {
+      "name": "--cui-popup-status-warning-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--warning-text)"
+    },
+    {
+      "name": "--cui-popup-status-info-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--info-text)"
+    },
+    {
+      "name": "--cui-popup-status-error-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--destructive)"
+    },
+    {
       "name": "--cui-popup-radius",
       "syntax": "*",
       "initialValue": "",
@@ -88,6 +214,42 @@
       "defaultValue": "var(--radius-popup-item-fit)"
     },
     {
+      "name": "--cui-popup-item-font-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--text-body)"
+    },
+    {
+      "name": "--cui-popup-item-icon-size",
+      "syntax": "<length>",
+      "initialValue": "16px",
+      "defaultValue": "1rem"
+    },
+    {
+      "name": "--cui-popup-item-padding-block",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 1)"
+    },
+    {
+      "name": "--cui-popup-item-padding-inline",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--padding-x) * 0.5)"
+    },
+    {
+      "name": "--cui-popup-item-min-height",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "max(var(--target-min), var(--control-h-xs))"
+    },
+    {
+      "name": "--cui-popup-item-highlight-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.35)"
+    },
+    {
       "name": "--cui-popup-item-foreground",
       "syntax": "<color>",
       "initialValue": "transparent",
@@ -115,7 +277,7 @@
       "name": "--cui-popup-item-disabled-opacity",
       "syntax": "<number>",
       "initialValue": "1",
-      "defaultValue": "0.4"
+      "defaultValue": "var(--disabled-opacity)"
     },
     {
       "name": "--cui-popup-separator-color",
@@ -810,106 +972,6 @@
       }
     },
     "combobox": {
-      "root": {
-        "registryItems": [
-          "combobox"
-        ],
-        "states": [
-          {
-            "attribute": "data-dirty",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-disabled",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-field-kind",
-            "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "combobox"
-            ]
-          },
-          {
-            "attribute": "data-filled",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-focused",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-invalid",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-list-empty",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-placeholder",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-popup-open",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-popup-side",
-            "source": "external",
-            "valueKind": "enum",
-            "values": [
-              "bottom",
-              "inline-end",
-              "inline-start",
-              "left",
-              "right",
-              "top"
-            ]
-          },
-          {
-            "attribute": "data-pressed",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-readonly",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-touched",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-valid",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          }
-        ]
-      },
       "content": {
         "family": "popup",
         "registryItems": [
@@ -1331,6 +1393,22 @@
         ]
       },
       "list": {
+        "family": "popup",
+        "registryItems": [
+          "command"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "command"
+            ]
+          }
+        ]
+      },
+      "loading": {
         "family": "popup",
         "registryItems": [
           "command"
@@ -1799,6 +1877,14 @@
           "context-menu"
         ],
         "states": [
+          {
+            "attribute": "data-icon-dir",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "inline"
+            ]
+          },
           {
             "attribute": "data-popup-kind",
             "source": "control-ui",
@@ -2609,7 +2695,16 @@
         "registryItems": [
           "dropdown-menu"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-icon-dir",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "inline"
+            ]
+          }
+        ]
       }
     },
     "hover-card": {
@@ -3095,6 +3190,14 @@
           "menubar"
         ],
         "states": [
+          {
+            "attribute": "data-icon-dir",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "inline"
+            ]
+          },
           {
             "attribute": "data-popup-kind",
             "source": "control-ui",
@@ -3706,6 +3809,12 @@
         ],
         "states": [
           {
+            "attribute": "data-icon-only",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-popup-kind",
             "source": "control-ui",
             "valueKind": "enum",
@@ -3900,6 +4009,12 @@
         ],
         "states": [
           {
+            "attribute": "data-icon-only",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-popup-kind",
             "source": "control-ui",
             "valueKind": "enum",
@@ -3972,6 +4087,12 @@
           "rich-tooltip"
         ],
         "states": [
+          {
+            "attribute": "data-icon-only",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
           {
             "attribute": "data-popup-kind",
             "source": "control-ui",
@@ -4661,22 +4782,6 @@
           }
         ]
       },
-      "arrow-shape": {
-        "family": "popup",
-        "registryItems": [
-          "tooltip"
-        ],
-        "states": [
-          {
-            "attribute": "data-popup-kind",
-            "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "tooltip"
-            ]
-          }
-        ]
-      },
       "content": {
         "family": "popup",
         "registryItems": [
@@ -5057,6 +5162,11 @@
     }
   },
   "adornments": {},
-  "uncovered": [],
+  "uncovered": [
+    "--cui-popup-status-error-foreground",
+    "--cui-popup-status-info-foreground",
+    "--cui-popup-status-success-foreground",
+    "--cui-popup-status-warning-foreground"
+  ],
   "contrast": "/r/contract/popup.contrast.json"
 }

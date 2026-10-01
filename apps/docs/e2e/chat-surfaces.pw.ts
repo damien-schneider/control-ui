@@ -60,15 +60,16 @@ for (const skin of ["refined", "modern-apple", "none", "cuicui", "xp", "windows-
         .getByRole("textbox", { name: "Message" })
         .fill("A long task description that should wrap in the message. ".repeat(100));
       await composer.getByRole("button", { name: "Send message" }).click();
-      await expect.poll(() => thread.evaluate((element) => element.scrollHeight - element.clientHeight)).toBeGreaterThan(100);
+      const scroller = thread.locator('[data-control-family="scroll-area"][data-slot="viewport"]').first();
+      await expect.poll(() => scroller.evaluate((element) => element.scrollHeight - element.clientHeight)).toBeGreaterThan(100);
       for (const fraction of [0, 0.5, 1]) {
-        await thread.evaluate((element, position) => {
+        await scroller.evaluate((element, position) => {
           element.scrollTop = (element.scrollHeight - element.clientHeight) * position;
         }, fraction);
         const bottomGap = await dock.evaluate((element) => {
-          const scroller = element.closest('[data-control-ui="chat-thread"][data-slot="root"]');
-          if (!scroller) throw new Error("Composer must belong to the conversation scroller");
-          return scroller.getBoundingClientRect().bottom - element.getBoundingClientRect().bottom;
+          const viewport = element.closest('[data-control-family="scroll-area"][data-slot="viewport"]');
+          if (!viewport) throw new Error("Composer must belong to the conversation scroller");
+          return viewport.getBoundingClientRect().bottom - element.getBoundingClientRect().bottom;
         });
         expect(Math.abs(bottomGap)).toBeLessThanOrEqual(1);
       }

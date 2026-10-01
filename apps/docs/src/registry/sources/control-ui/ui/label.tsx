@@ -3,21 +3,10 @@ import type { LabelKnobStyle } from "@/components/control-ui/knob-contracts/labe
 
 export type LabelProps = Omit<ComponentProps<"label">, "style"> & { style?: CSSProperties & LabelKnobStyle };
 
-// renders real <label> when htmlFor is set, else a <span> for group captions
-export function Label({ className, htmlFor, children, ...props }: LabelProps) {
-  const classes = className;
-
-  if (htmlFor) {
-    return (
-      <label data-control-ui="label" data-control-family="label" data-slot="root" htmlFor={htmlFor} className={classes} {...props}>
-        {children}
-      </label>
-    );
-  }
-
+export function Label({ htmlFor, children, ...props }: LabelProps) {
   return (
-    <span data-control-ui="label" data-control-family="label" data-slot="root" className={classes} {...props}>
+    <label {...props} htmlFor={htmlFor} data-control-ui="label" data-control-family="label" data-slot="root">
       {children}
-    </span>
+    </label>
   );
 }

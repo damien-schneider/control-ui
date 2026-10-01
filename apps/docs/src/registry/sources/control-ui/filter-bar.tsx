@@ -5,8 +5,9 @@ import type { ComponentProps, CSSProperties, KeyboardEvent } from "react";
 import { useState } from "react";
 import type { FilterBarKnobStyle } from "@/components/control-ui/knob-contracts/filter-bar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { FilterBarContext, type FilterBarContextValue, type FilterBarExit } from "./filter-bar/context";
-import { fieldOperators, filterNavigationKeys } from "./filter-bar/model";
+import { describeFilter, fieldOperators, filterNavigationKeys } from "./filter-bar/model";
 import { filterMotionEnabled, useFilterBarMotion } from "./filter-bar/motion";
 import { FilterBarAddButton, FilterBarChip, FilterBarChips, FilterBarClear, FilterBarInput } from "./filter-bar/parts";
 import type { FilterBarDraft, FilterBarField, FilterBarItem, FilterBarOperator, FilterBarStage, FilterBarValue } from "./filter-bar/types";
@@ -32,6 +33,12 @@ export type FilterBarRootProps = Omit<ComponentProps<"fieldset">, "onChange" | "
   readOnly?: boolean;
   style?: CSSProperties & FilterBarKnobStyle;
 };
+
+function valueStatusMessage(field: FilterBarField | undefined): string | undefined {
+  if (field?.error) return typeof field.error === "string" ? field.error : "Couldn’t load values.";
+  if (field?.loading) return "Loading values…";
+  return undefined;
+}
 
 function FilterBarRoot({
   fields,
@@ -116,7 +123,7 @@ function FilterBarRoot({
     const item: FilterBarItem = { id: next.id, fieldId: next.fieldId, operatorId: next.operatorId, value: nextValue };
     motion.capture();
     onValueChange(next.editing ? value.map((current) => (current.id === item.id ? item : current)) : [...value, item]);
-    setAnnouncement(next.editing ? "Filter updated." : "Filter added.");
+    setAnnouncement(`${next.editing ? "Updated" : "Added"} filter: ${describeFilter(item, fields, operators)}`);
     if (next.anchor.isConnected) next.anchor.focus();
     setDraft(null);
   }
@@ -179,7 +186,7 @@ function FilterBarRoot({
     else focusEntry();
     if (draft?.id === item.id) setDraft(null);
     onValueChange(value.filter((candidate) => candidate.id !== item.id));
-    setAnnouncement("Filter removed.");
+    setAnnouncement(`Removed filter: ${describeFilter(item, fields, operators)}`);
   }
 
   function clear() {
@@ -189,7 +196,7 @@ function FilterBarRoot({
     setDraft(null);
     onValueChange([]);
     focusEntry();
-    setAnnouncement("Filters cleared.");
+    setAnnouncement("Cleared all filters");
   }
 
   function deleteFocusedFilter(event: KeyboardEvent<HTMLElement>, itemId: string) {
@@ -243,6 +250,9 @@ function FilterBarRoot({
     navigate,
   };
 
+  const draftField = draft?.stage === "value" ? fields.find((field) => field.id === draft.fieldId) : undefined;
+  const liveMessage = valueStatusMessage(draftField) ?? announcement;
+
   const rootElement = useRender({
     ref: [rootRef, ref ?? null],
     render: (
@@ -257,9 +267,7 @@ function FilterBarRoot({
         {...props}
       >
         {children}
-        <span className="sr-only" aria-live="polite">
-          {announcement}
-        </span>
+        <LiveStatus message={liveMessage} />
       </fieldset>
     ),
   });
@@ -280,10 +288,10 @@ export const DEFAULT_FILTER_OPERATORS: readonly FilterBarOperator[] = [
   { id: "is-not", label: "is not" },
   { id: "contains", label: "contains" },
   { id: "starts-with", label: "starts with" },
-  { id: "gt", label: ">" },
-  { id: "gte", label: "≥" },
-  { id: "lt", label: "<" },
-  { id: "lte", label: "≤" },
+  { id: "gt", label: ">", ariaLabel: "greater than" },
+  { id: "gte", label: "≥", ariaLabel: "at least" },
+  { id: "lt", label: "<", ariaLabel: "less than" },
+  { id: "lte", label: "≤", ariaLabel: "at most" },
   { id: "in", label: "is any of", arity: "many" },
   { id: "is-empty", label: "is empty", arity: "none" },
   { id: "is-not-empty", label: "is not empty", arity: "none" },

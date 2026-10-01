@@ -39,10 +39,14 @@ function tickPositions(min: number, max: number, step: number | undefined): numb
   return Array.from({ length: stepCount - 1 }, (_, i) => ((i + 1) / stepCount) * 100);
 }
 
-function displaySliderValue(values: readonly number[], formatValue?: (value: number) => string): string | number {
+function displaySliderValue(
+  formattedValues: readonly string[],
+  values: readonly number[],
+  formatValue?: (value: number) => string,
+): string {
   const value = values[0];
   if (value === undefined) return "";
-  return formatValue ? formatValue(value) : Math.round(value);
+  return formatValue ? formatValue(value) : (formattedValues[0] ?? "");
 }
 
 export function Slider({
@@ -132,51 +136,57 @@ export function Slider({
             />
           ))}
           <SliderPrimitive.Thumb
-            aria-label={ariaLabel}
+            aria-label={ariaLabel ?? (labeled ? undefined : label)}
+            getAriaValueText={formatValue ? (_, thumbValue) => formatValue(thumbValue) : undefined}
             data-control-ui="slider"
             data-control-family="range"
             data-range-kind="slider"
             data-slot="thumb"
             data-variant={variant}
-            className={cn("block", variant === "plain" && "after:absolute after:-inset-3 after:content-['']")}
+            data-focus-ring="within"
+            className="block"
             style={style}
           />
         </SliderPrimitive.Track>
       </SliderPrimitive.Control>
-      {labeled && (
-        <div
+      {labeled && <SliderLabelOverlay label={label} showValue={showValueResolved} formatValue={formatValue} />}
+    </SliderPrimitive.Root>
+  );
+}
+
+function SliderLabelOverlay({ label, showValue, formatValue }: Pick<SliderProps, "label" | "showValue" | "formatValue">) {
+  return (
+    <div
+      data-control-ui="slider"
+      data-control-family="range"
+      data-range-kind="slider"
+      data-slot="label-overlay"
+      className="pointer-events-none absolute inset-0 z-10 flex items-center justify-between"
+    >
+      {label ? (
+        <SliderPrimitive.Label
           data-control-ui="slider"
           data-control-family="range"
           data-range-kind="slider"
-          data-slot="label-overlay"
-          className="pointer-events-none absolute inset-0 z-10 flex items-center justify-between"
+          data-slot="label"
+          className="select-none"
         >
-          {label ? (
-            <SliderPrimitive.Label
-              data-control-ui="slider"
-              data-control-family="range"
-              data-range-kind="slider"
-              data-slot="label"
-              className="select-none"
-            >
-              {label}
-            </SliderPrimitive.Label>
-          ) : (
-            <span />
-          )}
-          {showValueResolved && (
-            <SliderPrimitive.Value
-              data-control-ui="slider"
-              data-control-family="range"
-              data-range-kind="slider"
-              data-slot="value"
-              className="select-none"
-            >
-              {(_, values) => displaySliderValue(values, formatValue)}
-            </SliderPrimitive.Value>
-          )}
-        </div>
+          {label}
+        </SliderPrimitive.Label>
+      ) : (
+        <span />
       )}
-    </SliderPrimitive.Root>
+      {showValue && (
+        <SliderPrimitive.Value
+          data-control-ui="slider"
+          data-control-family="range"
+          data-range-kind="slider"
+          data-slot="value"
+          className="select-none"
+        >
+          {(formattedValues, values) => displaySliderValue(formattedValues, values, formatValue)}
+        </SliderPrimitive.Value>
+      )}
+    </div>
   );
 }

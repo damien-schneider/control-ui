@@ -82,7 +82,7 @@
       "name": "--cui-alert-font-size",
       "syntax": "<length>",
       "initialValue": "0px",
-      "defaultValue": "var(--text-sm)"
+      "defaultValue": "var(--text-body)"
     },
     {
       "name": "--cui-alert-description-gap",
@@ -133,9 +133,6 @@
     }
   },
   "adornments": {},
-  "uncovered": [
-    "--cui-alert-background",
-    "--cui-alert-foreground"
-  ],
+  "uncovered": [],
   "contrast": "/r/contract/alert.contrast.json"
 }

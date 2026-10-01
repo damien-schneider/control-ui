@@ -1,12 +1,10 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
+import { prefersReducedMotion, readDurationMs } from "@/components/control-ui/lib/motion";
 
 export function filterMotionEnabled(element: HTMLElement) {
-  return (
-    !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
-    Number.parseFloat(getComputedStyle(element).getPropertyValue("--duration-fast")) > 0
-  );
+  return !prefersReducedMotion(element) && readDurationMs(element, "--duration-fast") > 0;
 }
 
 function animateMovement(element: HTMLElement, before: DOMRect, after: DOMRect, duration: number, easing: string) {
@@ -70,9 +68,8 @@ export function useFilterBarMotion() {
         captured = null;
         cancel();
         const next = measure();
-        const computed = getComputedStyle(root);
-        const duration = Number.parseFloat(computed.getPropertyValue("--duration-fast"));
-        const easing = computed.getPropertyValue("--ease-standard").trim();
+        const duration = readDurationMs(root, "--duration-fast");
+        const easing = getComputedStyle(root).getPropertyValue("--ease-standard").trim();
         animateLayout(elements, origin, next, animations, duration, easing);
       },
     };

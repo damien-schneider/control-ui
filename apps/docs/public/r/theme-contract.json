@@ -143,7 +143,7 @@
       "name": "--ring",
       "group": "color",
       "tier": "core",
-      "description": "Focus ring color."
+      "description": "Ring palette color; --focus-ring defaults to it, so a skin that softens --ring into a halo must set --focus-ring."
     },
     {
       "name": "--focus-ring",
@@ -156,6 +156,18 @@
       "group": "color",
       "tier": "derived",
       "description": "Boundary color of a control's own edge; defaults to --border."
+    },
+    {
+      "name": "--control-boundary",
+      "group": "color",
+      "tier": "derived",
+      "description": "Edge of a control that has no other outline (unchecked checkbox, radio, switch track); defaults to --foreground at 55% and must clear 3:1 on --background and --card (WCAG 1.4.11)."
+    },
+    {
+      "name": "--image-outline",
+      "group": "color",
+      "tier": "derived",
+      "description": "Hairline inside images and media that separates them from any surface; 10% black in light, 10% white in dark."
     },
     {
       "name": "--control-fill",
@@ -185,7 +197,7 @@
       "name": "--ring-opacity",
       "group": "color",
       "tier": "derived",
-      "description": "Alpha of the border/ring hairlines; 0 = borderless, defaults to 1."
+      "description": "Alpha of the --border hairline; 0 = borderless, defaults to 1."
     },
     {
       "name": "--scale-neutral-seed",
@@ -764,6 +776,12 @@
       "description": "Slow tempo (panel/message entrances)."
     },
     {
+      "name": "--duration-loop",
+      "group": "motion",
+      "tier": "derived",
+      "description": "Period of one loader turn; essential loaders keep it under reduced motion."
+    },
+    {
       "name": "--popover-opacity",
       "group": "surface",
       "tier": "advanced",
@@ -792,6 +810,12 @@
       "group": "surface",
       "tier": "advanced",
       "description": "Edge-fade depth of scrollable surfaces; 0 = hard edges."
+    },
+    {
+      "name": "--disabled-opacity",
+      "group": "surface",
+      "tier": "derived",
+      "description": "Opacity of a disabled control; defaults to 0.45."
     },
     {
       "name": "--popover-padding",
@@ -858,6 +882,24 @@
       "group": "layout",
       "tier": "derived",
       "description": "Thickness of a control's own edge; defaults to 1px, shared across modes."
+    },
+    {
+      "name": "--touch-target",
+      "group": "layout",
+      "tier": "derived",
+      "description": "Minimum hit area of a control under a coarse pointer (WCAG 2.5.5); defaults to 44px."
+    },
+    {
+      "name": "--target-min",
+      "group": "layout",
+      "tier": "derived",
+      "description": "Minimum hit area of a small control under a fine pointer (WCAG 2.5.8); defaults to 24px."
+    },
+    {
+      "name": "--text-input-min",
+      "group": "layout",
+      "tier": "derived",
+      "description": "Smallest text-input font size under a coarse pointer, so iOS never zooms on focus; defaults to 16px."
     }
   ]
 }

@@ -182,7 +182,7 @@ describe("useAudioRecorder controller", () => {
 
     await expect(controller.start()).resolves.toBe(false);
     expect(controller.getSnapshot().state).toBe("error");
-    expect(controller.getSnapshot().error?.message).toContain("Microphone recording is not available");
+    expect(controller.getSnapshot().error?.name).toBe("NotSupportedError");
   });
 
   test("handles denied microphone permission with a usable error state", async () => {
@@ -198,7 +198,7 @@ describe("useAudioRecorder controller", () => {
 
     await expect(controller.start()).resolves.toBe(false);
     expect(controller.getSnapshot().state).toBe("error");
-    expect(controller.getSnapshot().error?.message).toBe("Microphone permission was denied.");
+    expect(controller.getSnapshot().error?.name).toBe("NotAllowedError");
   });
 
   test("requests the selected microphone when a device id is provided", async () => {

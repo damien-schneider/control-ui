@@ -64,7 +64,7 @@
       "name": "--cui-chat-composer-attachment-image-outline-color",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "oklch(from var(--foreground) l c h / 0.1)"
+      "defaultValue": "var(--image-outline)"
     }
   ],
   "parts": {

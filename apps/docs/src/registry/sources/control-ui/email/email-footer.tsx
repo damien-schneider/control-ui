@@ -1,6 +1,14 @@
 import { Fragment, type ReactNode } from "react";
 import { Img, Section } from "react-email";
-import { EmailCaption, EmailDivider, type EmailFooterPlacement, EmailMutedLink } from "./email";
+import {
+  EmailCaption,
+  type EmailDirection,
+  EmailDivider,
+  type EmailFooterPlacement,
+  EmailMutedLink,
+  emailAlignClass,
+  emailSides,
+} from "./email";
 
 export type EmailNavLink = { label: string; href: string };
 
@@ -39,17 +47,18 @@ export function EmailFooter({
   children,
   align = "start",
   placement = "inside",
+  dir,
 }: {
   children: ReactNode;
   align?: EmailFooterAlign;
   placement?: EmailFooterPlacement;
+  dir?: EmailDirection;
 }) {
+  const alignClass = emailAlignClass(align, dir);
   return (
     <>
       {placement === "inside" ? <EmailDivider /> : null}
-      <Section className={`${placement === "inside" ? "" : "pt-6"} ${align === "center" ? "text-center" : "text-left"}`}>
-        {children}
-      </Section>
+      <Section className={`${placement === "inside" ? "" : "pt-6"} ${alignClass}`}>{children}</Section>
     </>
   );
 }
@@ -65,21 +74,26 @@ function resolveSocialLink(link: EmailSocialLink, iconBaseUrl?: string) {
   return { label, iconUrl, alt: link.iconAlt ?? label };
 }
 
+const socialGapClasses = { left: "ml-3", right: "mr-3" };
+
 export function EmailSocialLinks({
   links,
   iconBaseUrl,
   iconSize = 24,
+  dir,
 }: {
   links: EmailSocialLink[];
   iconBaseUrl?: string;
   iconSize?: number;
+  dir?: EmailDirection;
 }) {
+  const sides = emailSides(dir);
   if (links.length === 0) return null;
   return (
     <Section className="mb-4">
       {links.map((link, index) => {
         const { label, iconUrl, alt } = resolveSocialLink(link, iconBaseUrl);
-        const spacing = index < links.length - 1 ? "mr-3" : "";
+        const spacing = index < links.length - 1 ? socialGapClasses[sides.end] : "";
         return (
           <Fragment key={link.href}>
             {index > 0 ? " " : null}

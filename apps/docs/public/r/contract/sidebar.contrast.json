@@ -7,6 +7,65 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "footer"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "header"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -31,14 +90,27 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "contained",
           "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
         }
       },
       {
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "header"
         }
       }
     ],
@@ -47,6 +119,248 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "footer"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "header"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "icon",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "collapsed",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "footer"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "icon",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "collapsed",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "header"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
           "data-slot": "wrapper"
         }
       },
@@ -64,6 +378,50 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -97,6 +455,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -129,6 +488,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -160,6 +520,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -184,6 +545,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "contained",
           "data-slot": "wrapper"
         }
       },
@@ -215,6 +577,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -239,6 +602,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "contained",
           "data-slot": "wrapper"
         }
       },
@@ -269,6 +633,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -293,6 +658,70 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "header"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-size": "sm",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       }
@@ -302,6 +731,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -335,6 +765,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -359,63 +790,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-collapsible": "",
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-side": "left",
-          "data-slot": "root",
-          "data-state": "expanded",
-          "data-surface": "panel",
-          "data-variant": "sidebar"
-        }
-      },
-      {
-        "attributes": {
-          "aria-disabled": "false",
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-open": "",
-          "data-panel-open": "",
-          "data-slot": "group-label",
-          "data-state": "open",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
+          "data-layout": "contained",
           "data-slot": "wrapper"
         }
       },
@@ -438,12 +813,355 @@
           "data-slot": "group-label"
         }
       }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-open": "",
+          "data-panel-open": "",
+          "data-slot": "group-label",
+          "data-state": "open",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "group-label"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
+        }
+      },
+      {
+        "attributes": {
+          "data-active": "true",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-size": "default",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-popup-open": "",
+          "data-pressed": "",
+          "data-shape": "default",
+          "data-show-on-hover": "true",
+          "data-size": "sm",
+          "data-slot": "menu-action",
+          "data-tone": "neutral",
+          "data-variant": "surface",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-popup-open": "",
+          "data-pressed": "",
+          "data-shape": "default",
+          "data-show-on-hover": "true",
+          "data-size": "sm",
+          "data-slot": "menu-action",
+          "data-tone": "neutral",
+          "data-variant": "surface",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
+        }
+      },
+      {
+        "attributes": {
+          "data-active": "true",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-size": "default",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-shape": "default",
+          "data-show-on-hover": "true",
+          "data-size": "sm",
+          "data-slot": "menu-action",
+          "data-tone": "neutral",
+          "data-variant": "surface",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-size": "default",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-shape": "default",
+          "data-show-on-hover": "true",
+          "data-size": "sm",
+          "data-slot": "menu-action",
+          "data-tone": "neutral",
+          "data-variant": "surface",
+          "tabindex": "0"
+        }
+      }
     ]
   ],
   "probes": [
     {
       "knobs": {
-        "fill": "--cui-sidebar-inset-background"
+        "fill": "--cui-sidebar-header-background"
       },
       "anatomy": 0,
       "rendersText": true,
@@ -451,7 +1169,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-sidebar-inset-background"
+        "fill": "--cui-sidebar-header-background"
       },
       "anatomy": 1,
       "rendersText": true,
@@ -459,97 +1177,47 @@
     },
     {
       "knobs": {
-        "fill": "--cui-sidebar-menu-button-active-background",
-        "text": "--cui-sidebar-menu-button-active-foreground"
+        "fill": "--cui-sidebar-header-background"
       },
       "anatomy": 2,
       "rendersText": true,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-sidebar-menu-button-active-background",
-        "text": "--cui-sidebar-menu-button-active-foreground"
+        "fill": "--cui-sidebar-header-background"
       },
       "anatomy": 3,
       "rendersText": true,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-sidebar-menu-button-active-background",
-        "text": "--cui-sidebar-menu-button-active-foreground"
+        "fill": "--cui-sidebar-header-background"
       },
       "anatomy": 4,
       "rendersText": true,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-sidebar-menu-button-active-background",
-        "text": "--cui-sidebar-menu-button-active-foreground"
+        "fill": "--cui-sidebar-header-background"
       },
       "anatomy": 5,
       "rendersText": true,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-sidebar-menu-button-active-background",
-        "text": "--cui-sidebar-menu-button-active-foreground"
+        "fill": "--cui-sidebar-header-background"
       },
       "anatomy": 6,
       "rendersText": true,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-sidebar-menu-button-hover-background",
-        "text": "--cui-sidebar-menu-button-hover-foreground"
-      },
-      "anatomy": 2,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-sidebar-menu-button-hover-background",
-        "text": "--cui-sidebar-menu-button-hover-foreground"
-      },
-      "anatomy": 3,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-sidebar-menu-button-hover-background",
-        "text": "--cui-sidebar-menu-button-hover-foreground"
-      },
-      "anatomy": 4,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-sidebar-menu-button-hover-background",
-        "text": "--cui-sidebar-menu-button-hover-foreground"
-      },
-      "anatomy": 5,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-sidebar-menu-button-hover-background",
-        "text": "--cui-sidebar-menu-button-hover-foreground"
-      },
-      "anatomy": 6,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-sidebar-wrapper-background"
+        "fill": "--cui-sidebar-inset-background"
       },
       "anatomy": 7,
       "rendersText": true,
@@ -557,7 +1225,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-group-label-foreground"
+        "fill": "--cui-sidebar-inset-background"
       },
       "anatomy": 8,
       "rendersText": true,
@@ -565,15 +1233,117 @@
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-group-label-foreground"
+        "fill": "--cui-sidebar-menu-button-active-background",
+        "text": "--cui-sidebar-menu-button-active-foreground"
       },
       "anatomy": 9,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-active-background",
+        "text": "--cui-sidebar-menu-button-active-foreground"
+      },
+      "anatomy": 10,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-active-background",
+        "text": "--cui-sidebar-menu-button-active-foreground"
+      },
+      "anatomy": 11,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-active-background",
+        "text": "--cui-sidebar-menu-button-active-foreground"
+      },
+      "anatomy": 12,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-active-background",
+        "text": "--cui-sidebar-menu-button-active-foreground"
+      },
+      "anatomy": 13,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-active-background",
+        "text": "--cui-sidebar-menu-button-active-foreground"
+      },
+      "anatomy": 14,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-wrapper-background"
+      },
+      "anatomy": 15,
       "rendersText": true,
       "state": false
     },
     {
       "knobs": {
         "text": "--cui-sidebar-group-label-foreground"
+      },
+      "anatomy": 16,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-group-label-foreground"
+      },
+      "anatomy": 17,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-group-label-foreground"
+      },
+      "anatomy": 18,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-group-label-foreground"
+      },
+      "anatomy": 19,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-active-foreground"
+      },
+      "anatomy": 20,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-active-foreground"
+      },
+      "anatomy": 21,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-foreground"
       },
       "anatomy": 10,
       "rendersText": true,
@@ -583,7 +1353,7 @@
       "knobs": {
         "text": "--cui-sidebar-menu-button-foreground"
       },
-      "anatomy": 2,
+      "anatomy": 11,
       "rendersText": true,
       "state": false
     },
@@ -591,7 +1361,7 @@
       "knobs": {
         "text": "--cui-sidebar-menu-button-foreground"
       },
-      "anatomy": 3,
+      "anatomy": 13,
       "rendersText": true,
       "state": false
     },
@@ -599,7 +1369,7 @@
       "knobs": {
         "text": "--cui-sidebar-menu-button-foreground"
       },
-      "anatomy": 4,
+      "anatomy": 14,
       "rendersText": true,
       "state": false
     },
@@ -607,15 +1377,15 @@
       "knobs": {
         "text": "--cui-sidebar-menu-button-foreground"
       },
-      "anatomy": 5,
-      "rendersText": true,
+      "anatomy": 22,
+      "rendersText": false,
       "state": false
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-foreground"
+        "text": "--cui-sidebar-menu-button-track-active-foreground"
       },
-      "anatomy": 6,
+      "anatomy": 9,
       "rendersText": true,
       "state": false
     }

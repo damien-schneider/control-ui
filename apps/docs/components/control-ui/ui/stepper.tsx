@@ -2,7 +2,7 @@
 
 import { CheckIcon, CircleAlertIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties } from "react";
-import { createContext, useContext, useId, useState } from "react";
+import { createContext, useContext, useEffect, useId, useState } from "react";
 import type { StepperKnobStyle } from "@/components/control-ui/knob-contracts/stepper-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
@@ -12,6 +12,13 @@ export type StepperContentMode = "current" | "all";
 
 export type StepperState = "neutral" | "complete" | "current" | "upcoming";
 
+export type StepperStatusDetails = {
+  step: number;
+  state: StepperState;
+  invalid: boolean;
+  disabled: boolean;
+};
+
 export type StepperProps = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> & {
   value?: number | null;
   defaultValue?: number | null;
@@ -19,6 +26,7 @@ export type StepperProps = Omit<ComponentProps<"div">, "defaultValue" | "onChang
   orientation?: StepperOrientation;
   contentMode?: StepperContentMode;
   responsive?: boolean;
+  getStatusLabel?: (details: StepperStatusDetails) => string;
 } & { style?: CSSProperties & StepperKnobStyle };
 
 export type StepperListProps = ComponentProps<"ol"> & { style?: CSSProperties & StepperKnobStyle };
@@ -44,6 +52,8 @@ export type StepperContentProps = ComponentProps<"section"> & {
   keepMounted?: boolean;
 } & { style?: CSSProperties & StepperKnobStyle };
 
+type RegisterId = (id: string) => () => void;
+
 type StepperContextValue = {
   value: number | null;
   orientation: StepperOrientation;
@@ -51,6 +61,9 @@ type StepperContextValue = {
   responsive: boolean;
   baseId: string;
   selectStep: (step: number) => void;
+  getStatusLabel: (details: StepperStatusDetails) => string;
+  renderedIds: ReadonlySet<string>;
+  registerId: RegisterId;
 };
 
 const StepperContext = createContext<StepperContextValue | null>(null);
@@ -67,6 +80,8 @@ type StepperItemContextValue = {
   disabled: boolean;
   invalid: boolean;
   titleId: string;
+  descriptionId: string;
+  statusId: string;
   contentId: string;
 };
 
@@ -78,6 +93,20 @@ function useStepperItem() {
   return context;
 }
 
+function stepPartId(baseId: string, step: number, part: "title" | "description" | "status" | "content") {
+  return `${baseId}-step-${step}-${part}`;
+}
+
+function useRegisteredId(id: string, rendered = true) {
+  const { registerId } = useStepper();
+  useEffect(() => (rendered ? registerId(id) : undefined), [id, rendered, registerId]);
+}
+
+function renderedIdRefs(renderedIds: ReadonlySet<string>, ids: string[]): string | undefined {
+  const refs = ids.filter((id) => renderedIds.has(id));
+  return refs.length > 0 ? refs.join(" ") : undefined;
+}
+
 function stateForStep(value: number | null, step: number): StepperState {
   if (value === null) return "neutral";
   if (step < value) return "complete";
@@ -85,10 +114,15 @@ function stateForStep(value: number | null, step: number): StepperState {
   return "upcoming";
 }
 
-function indicatorStateLabel(state: StepperState, invalid: boolean): string | null {
+function statusStateLabel(state: StepperState, invalid: boolean): string | null {
   if (invalid) return "invalid";
   if (state === "neutral") return null;
   return state;
+}
+
+function defaultStatusLabel({ step, state, invalid, disabled }: StepperStatusDetails): string {
+  const stateLabel = statusStateLabel(state, invalid);
+  return [`Step ${step + 1}`, stateLabel, disabled ? "disabled" : null].filter(Boolean).join(", ");
 }
 
 function defaultIndicatorContent(step: number, state: StepperState, invalid: boolean) {
@@ -99,12 +133,12 @@ function defaultIndicatorContent(step: number, state: StepperState, invalid: boo
 
 function itemLayout(orientation: StepperOrientation, responsive: boolean) {
   if (orientation === "vertical") {
-    return "grid min-w-0 grid-cols-[2rem_minmax(0,1fr)]";
+    return "grid min-w-0 grid-cols-[var(--cui-stepper-indicator-size)_minmax(0,1fr)]";
   }
   return cn(
     "relative grid min-w-0 flex-1 grid-cols-1 justify-items-center",
     responsive &&
-      "@max-md/stepper:w-full @max-md/stepper:flex-none @max-md/stepper:grid-cols-[2rem_minmax(0,1fr)] @max-md/stepper:justify-items-stretch",
+      "@max-md/stepper:w-full @max-md/stepper:flex-none @max-md/stepper:grid-cols-[var(--cui-stepper-indicator-size)_minmax(0,1fr)] @max-md/stepper:justify-items-stretch",
   );
 }
 
@@ -138,6 +172,7 @@ export function Stepper({
   orientation = "horizontal",
   contentMode = "current",
   responsive = true,
+  getStatusLabel = defaultStatusLabel,
   id,
   className,
   children,
@@ -145,6 +180,17 @@ export function Stepper({
 }: StepperProps) {
   const generatedId = useId();
   const [internalValue, setInternalValue] = useState<number | null>(defaultValue);
+  const [renderedIds, setRenderedIds] = useState<ReadonlySet<string>>(() => new Set());
+  const [registerId] = useState<RegisterId>(() => (renderedId: string) => {
+    setRenderedIds((current) => (current.has(renderedId) ? current : new Set(current).add(renderedId)));
+    return () =>
+      setRenderedIds((current) => {
+        if (!current.has(renderedId)) return current;
+        const next = new Set(current);
+        next.delete(renderedId);
+        return next;
+      });
+  });
   const controlled = value !== undefined;
   const currentValue = value !== undefined ? value : internalValue;
 
@@ -162,6 +208,9 @@ export function Stepper({
         responsive,
         baseId: id ?? generatedId,
         selectStep,
+        getStatusLabel,
+        renderedIds,
+        registerId,
       }}
     >
       <div
@@ -207,8 +256,10 @@ export function StepperItem({ step, disabled = false, invalid = false, className
     state,
     disabled,
     invalid,
-    titleId: `${baseId}-step-${step}-title`,
-    contentId: `${baseId}-step-${step}-content`,
+    titleId: stepPartId(baseId, step, "title"),
+    descriptionId: stepPartId(baseId, step, "description"),
+    statusId: stepPartId(baseId, step, "status"),
+    contentId: stepPartId(baseId, step, "content"),
   } satisfies StepperItemContextValue;
 
   return (
@@ -232,8 +283,8 @@ export function StepperItem({ step, disabled = false, invalid = false, className
 }
 
 export function StepperTrigger({ disabled: disabledProp, className, onClick, type = "button", ...props }: StepperTriggerProps) {
-  const { orientation, responsive, selectStep } = useStepper();
-  const { step, state, disabled, invalid, contentId } = useStepperItem();
+  const { orientation, responsive, selectStep, renderedIds } = useStepper();
+  const { step, state, disabled, invalid, titleId, descriptionId, statusId, contentId } = useStepperItem();
   const isDisabled = disabled || Boolean(disabledProp);
 
   return (
@@ -246,13 +297,16 @@ export function StepperTrigger({ disabled: disabledProp, className, onClick, typ
       data-invalid={invalid ? "true" : undefined}
       type={type}
       disabled={isDisabled}
-      aria-controls={contentId}
+      aria-current={state === "current" ? "step" : undefined}
+      aria-labelledby={renderedIdRefs(renderedIds, [titleId])}
+      aria-describedby={renderedIdRefs(renderedIds, [statusId, descriptionId])}
+      aria-controls={renderedIdRefs(renderedIds, [contentId])}
       className={cn(
         "group/stepper-trigger col-span-full row-span-3 row-start-1 grid w-full min-w-0 grid-cols-1 justify-items-center disabled:pointer-events-none disabled:cursor-not-allowed",
-        orientation === "vertical" && "row-span-2 grid-cols-[2rem_minmax(0,1fr)] justify-items-stretch",
+        orientation === "vertical" && "row-span-2 grid-cols-[var(--cui-stepper-indicator-size)_minmax(0,1fr)] justify-items-stretch",
         orientation === "horizontal" &&
           responsive &&
-          "@max-md/stepper:row-span-2 @max-md/stepper:grid-cols-[2rem_minmax(0,1fr)] @max-md/stepper:justify-items-stretch",
+          "@max-md/stepper:row-span-2 @max-md/stepper:grid-cols-[var(--cui-stepper-indicator-size)_minmax(0,1fr)] @max-md/stepper:justify-items-stretch",
         className,
       )}
       onClick={(event) => {
@@ -264,10 +318,9 @@ export function StepperTrigger({ disabled: disabledProp, className, onClick, typ
 }
 
 export function StepperIndicator({ className, children, ...props }: StepperIndicatorProps) {
-  const { orientation, responsive } = useStepper();
-  const { step, state, disabled, invalid } = useStepperItem();
-  const stateLabel = indicatorStateLabel(state, invalid);
-  const status = [`Step ${step + 1}`, stateLabel, disabled ? "disabled" : null].filter(Boolean).join(", ");
+  const { orientation, responsive, getStatusLabel } = useStepper();
+  const { step, state, disabled, invalid, statusId } = useStepperItem();
+  useRegisteredId(statusId);
   const indicatorContent = children ?? defaultIndicatorContent(step, state, invalid);
 
   return (
@@ -281,7 +334,9 @@ export function StepperIndicator({ className, children, ...props }: StepperIndic
       className={cn("relative z-10 flex shrink-0 items-center justify-center", partLayout(orientation, responsive, "indicator"), className)}
     >
       <span aria-hidden="true">{indicatorContent}</span>
-      <span className="sr-only">{status}</span>
+      <span id={statusId} className="sr-only">
+        {getStatusLabel({ step, state, invalid, disabled })}
+      </span>
     </span>
   );
 }
@@ -300,11 +355,12 @@ export function StepperSeparator({ className, ...props }: StepperSeparatorProps)
       aria-hidden="true"
       className={cn(
         "absolute",
-        orientation === "horizontal" && "top-4 right-[calc(-50%+1rem)] left-[calc(50%+1rem)]",
-        orientation === "vertical" && "top-8 bottom-0 left-4",
+        orientation === "horizontal" &&
+          "top-[calc(var(--cui-stepper-indicator-size)/2)] start-[calc(50%_+_var(--cui-stepper-indicator-size)/2)] end-[calc(var(--cui-stepper-indicator-size)/2_-_50%)]",
+        orientation === "vertical" && "top-(--cui-stepper-indicator-size) bottom-0 start-[calc(var(--cui-stepper-indicator-size)/2)]",
         orientation === "horizontal" &&
           responsive &&
-          "@max-md/stepper:top-8 @max-md/stepper:right-auto @max-md/stepper:bottom-0 @max-md/stepper:left-4",
+          "@max-md/stepper:top-(--cui-stepper-indicator-size) @max-md/stepper:end-auto @max-md/stepper:bottom-0 @max-md/stepper:start-[calc(var(--cui-stepper-indicator-size)/2)]",
         className,
       )}
     />
@@ -314,6 +370,7 @@ export function StepperSeparator({ className, ...props }: StepperSeparatorProps)
 export function StepperTitle({ className, ...props }: StepperTitleProps) {
   const { orientation, responsive } = useStepper();
   const { titleId } = useStepperItem();
+  useRegisteredId(titleId);
   return (
     <span
       {...props}
@@ -328,9 +385,12 @@ export function StepperTitle({ className, ...props }: StepperTitleProps) {
 
 export function StepperDescription({ className, ...props }: StepperDescriptionProps) {
   const { orientation, responsive } = useStepper();
+  const { descriptionId } = useStepperItem();
+  useRegisteredId(descriptionId);
   return (
     <span
       {...props}
+      id={descriptionId}
       data-control-ui="stepper"
       data-control-family="stepper"
       data-slot="description"
@@ -343,18 +403,21 @@ export function StepperContent({ step, keepMounted = true, className, ...props }
   const { value, contentMode, baseId } = useStepper();
   const active = value === step;
   const hidden = contentMode === "current" && !active;
-  if (hidden && !keepMounted) return null;
+  const rendered = !hidden || keepMounted;
+  const contentId = stepPartId(baseId, step, "content");
+  useRegisteredId(contentId, rendered);
+  if (!rendered) return null;
 
   return (
     <section
       {...props}
-      id={`${baseId}-step-${step}-content`}
+      id={contentId}
       data-control-ui="stepper"
       data-control-family="stepper"
       data-slot="content"
       data-state={active ? "active" : "inactive"}
       hidden={hidden}
-      aria-labelledby={`${baseId}-step-${step}-title`}
+      aria-labelledby={stepPartId(baseId, step, "title")}
       className={className}
     />
   );

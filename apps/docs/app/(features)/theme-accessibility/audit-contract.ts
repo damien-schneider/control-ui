@@ -384,6 +384,77 @@ const boundaryPair = (id: string, label: string, foreground: string, background:
   severity: "warning",
 });
 
+const agentNode = (family: string, slot: string, attributes: Readonly<Record<string, string>> = {}): ThemeAuditNode => ({
+  attributes: { "data-control-family": family, "data-slot": slot, ...attributes },
+});
+
+const agentTextPair = (
+  id: string,
+  label: string,
+  pair: Omit<ThemeAuditPair, "id" | "label" | "category" | "threshold" | "severity">,
+): ThemeAuditPair => ({ ...pair, id, label, category: "Text surfaces", threshold: 4.5, severity: "warning" });
+
+const TRANSCRIPT_TONES = [
+  ["default", "--cui-transcript-divider-foreground"],
+  ["success", "--cui-transcript-divider-success-foreground"],
+  ["warning", "--cui-transcript-divider-warning-foreground"],
+  ["danger", "--cui-transcript-divider-danger-foreground"],
+] as const;
+
+// Agent-surface text the harvest never reaches on a docs route; each part paints itself from its own recipe.
+const agentSurfacePairs = (["background", "card"] as const).flatMap((surface): ThemeAuditPair[] => [
+  agentTextPair(`chat-message-user-on-${surface}`, `Chat message user bubble over ${surface}`, {
+    foreground: "--cui-chat-message-foreground",
+    background: "--cui-chat-message-background",
+    backgroundAnatomy: [agentNode("chat-message", "root", { "data-role": "user" }), agentNode("chat-message", "content")],
+    surface: `--${surface}`,
+  }),
+  ...TRANSCRIPT_TONES.map(([tone, foreground]) =>
+    agentTextPair(`transcript-divider-${tone}-on-${surface}`, `Transcript divider ${tone} text on ${surface}`, {
+      foreground,
+      foregroundAnatomy: [agentNode("transcript-divider", "root", tone === "default" ? {} : { "data-tone": tone })],
+      background: `--${surface}`,
+      surface: `--${surface}`,
+    }),
+  ),
+  agentTextPair(`chat-composer-placeholder-on-${surface}`, `Composer placeholder over ${surface}`, {
+    foreground: "--cui-chat-composer-input-placeholder-foreground",
+    foregroundAnatomy: [agentNode("chat-composer", "placeholder")],
+    background: "--cui-chat-composer-shell-background",
+    backgroundAnatomy: [agentNode("chat-composer", "root"), agentNode("chat-composer", "shell")],
+    surface: `--${surface}`,
+  }),
+  agentTextPair(`dynamic-notification-title-on-${surface}`, `Dynamic notification title over ${surface}`, {
+    foreground: "--cui-dynamic-notification-surface-foreground",
+    foregroundAnatomy: [agentNode("dynamic-notification", "title")],
+    background: "--cui-dynamic-notification-surface-background",
+    backgroundAnatomy: [
+      agentNode("dynamic-notification", "root", { "data-variant": "surface" }),
+      agentNode("dynamic-notification", "island", { "data-variant": "surface" }),
+    ],
+    surface: `--${surface}`,
+  }),
+  agentTextPair(`inline-attachment-description-on-${surface}`, `Inline attachment description over ${surface}`, {
+    foreground: "--cui-inline-attachment-content-foreground",
+    foregroundAnatomy: [agentNode("inline-attachment", "description")],
+    background: "--cui-inline-attachment-content-background",
+    backgroundAnatomy: [agentNode("inline-attachment", "root"), agentNode("inline-attachment", "content")],
+    surface: `--${surface}`,
+  }),
+  agentTextPair(`inline-citation-trigger-on-${surface}`, `Inline citation trigger over ${surface}`, {
+    foreground: "--cui-inline-citation-trigger-foreground",
+    background: "--cui-inline-citation-trigger-background",
+    backgroundAnatomy: [agentNode("inline-citation", "root"), agentNode("inline-citation", "trigger")],
+    surface: `--${surface}`,
+  }),
+  agentTextPair(`task-list-pending-on-${surface}`, `Task list pending item on ${surface}`, {
+    foreground: "--cui-task-list-item-pending-foreground",
+    foregroundAnatomy: [agentNode("task-list", "root"), agentNode("task-list", "item", { "data-status": "pending" })],
+    background: `--${surface}`,
+    surface: `--${surface}`,
+  }),
+]);
+
 const archetypeFillPairs = (["background", "card"] as const).flatMap((surface): ThemeAuditPair[] =>
   (["hover", "active"] as const).map((state) => ({
     id: `${state}-fill-on-${surface}`,
@@ -470,11 +541,17 @@ export const THEME_AUDIT_PAIRS: readonly ThemeAuditPair[] = [
   boundaryPair("border-on-card", "Border on card", "--border", "--card"),
   boundaryPair("input-on-background", "Input boundary on background", "--input", "--background"),
   boundaryPair("input-on-card", "Input boundary on card", "--input", "--card"),
-  boundaryPair("ring-on-background", "Focus ring on background", "--ring", "--background"),
-  boundaryPair("ring-on-card", "Focus ring on card", "--ring", "--card"),
+  boundaryPair("ring-on-background", "Ring accent (--ring) on background", "--ring", "--background"),
+  boundaryPair("ring-on-card", "Ring accent (--ring) on card", "--ring", "--card"),
+  {
+    ...boundaryPair("control-boundary-on-background", "Control boundary on background", "--control-boundary", "--background"),
+    severity: "error",
+  },
+  { ...boundaryPair("control-boundary-on-card", "Control boundary on card", "--control-boundary", "--card"), severity: "error" },
   boundaryPair("control-rim-on-background", "Control rim on background", "--control-rim", "--background"),
   boundaryPair("control-rim-on-card", "Control rim on card", "--control-rim", "--card"),
   ...archetypeFillPairs,
+  ...agentSurfacePairs,
   ...anatomyPairs,
 ];
 

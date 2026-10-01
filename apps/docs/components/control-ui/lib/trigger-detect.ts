@@ -9,7 +9,7 @@ export type TriggerMatch = {
   end: number;
 };
 
-const WHITESPACE = new Set([" ", "\n", "\t", " "]);
+const WHITESPACE = /\s/u;
 
 // only fires when char sits at start or after whitespace, so `path/to` never triggers on "/"
 export function detectTrigger(textBeforeCaret: string, triggerChars: readonly string[]): TriggerMatch | null {
@@ -17,10 +17,10 @@ export function detectTrigger(textBeforeCaret: string, triggerChars: readonly st
   for (let i = textBeforeCaret.length - 1; i >= 0; i -= 1) {
     const char = textBeforeCaret.at(i);
     if (char === undefined) return null;
-    if (WHITESPACE.has(char)) return null;
+    if (WHITESPACE.test(char)) return null;
     if (triggerSet.has(char)) {
       const preceding = i === 0 ? "" : (textBeforeCaret.at(i - 1) ?? "");
-      if (preceding === "" || WHITESPACE.has(preceding)) {
+      if (preceding === "" || WHITESPACE.test(preceding)) {
         return { char, query: textBeforeCaret.slice(i + 1), start: i, end: textBeforeCaret.length };
       }
       return null;
@@ -31,6 +31,8 @@ export function detectTrigger(textBeforeCaret: string, triggerChars: readonly st
 
 // layout-affecting properties mirrored onto measuring div so its caret column matches textarea's
 const MIRROR_PROPERTIES = [
+  "direction",
+  "writing-mode",
   "box-sizing",
   "width",
   "font-family",
@@ -39,6 +41,7 @@ const MIRROR_PROPERTIES = [
   "font-style",
   "font-variant",
   "letter-spacing",
+  "word-spacing",
   "text-transform",
   "text-indent",
   "line-height",

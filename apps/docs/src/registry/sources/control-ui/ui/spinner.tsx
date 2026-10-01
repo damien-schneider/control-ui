@@ -7,23 +7,24 @@ import { cn } from "@/components/control-ui/lib/cn";
 export type SpinnerProps = Omit<
   ComponentProps<"span"> & {
     size?: ControlSize;
+    label?: string;
   },
-  "style"
+  "style" | "children"
 > & { style?: CSSProperties & SpinnerKnobStyle };
 
-// Deliberately outside motion kill-switch — loader must keep turning under reduced motion.
-export function Spinner({ size = "sm", className, ...props }: SpinnerProps) {
+export function Spinner({ size = "sm", label = "Loading", className, ...props }: SpinnerProps) {
   return (
     <span
       role="status"
       data-control-ui="spinner"
       data-control-family="spinner"
       data-slot="root"
+      data-motion-essential=""
       className={cn("inline-flex", className)}
       {...props}
     >
       <Loader2 aria-hidden="true" data-control-ui="spinner" data-control-family="spinner" data-slot="indicator" data-size={size} />
-      <span className="sr-only">Loading</span>
+      <span className="sr-only">{label}</span>
     </span>
   );
 }

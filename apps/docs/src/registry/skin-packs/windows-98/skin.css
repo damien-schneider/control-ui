@@ -17,8 +17,10 @@
   --win98-pressed:
     inset -1px -1px var(--win98-white), inset 1px 1px var(--win98-dark), inset -2px -2px var(--win98-light),
     inset 2px 2px var(--win98-shadow);
-  --win98-titlebar: linear-gradient(90deg, oklch(0.2711 0.1879 264.052), oklch(0.594 0.1477 245.841));
+  /* light end held at L 0.56 so a white title that runs that far still clears 4.5:1 */
+  --win98-titlebar: linear-gradient(90deg, oklch(0.2711 0.1879 264.052), oklch(0.56 0.1477 245.841));
   --win98-tooltip: oklch(0.9922 0.039 107.089);
+  --win98-close-inline-size: 18px;
 }
 
 @layer components {
@@ -38,24 +40,28 @@
     --cui-popup-item-highlight-background: var(--primary);
     --cui-popup-item-highlight-foreground: var(--primary-foreground);
     --cui-popup-item-highlight-muted-foreground: var(--primary-foreground);
+    --cui-popup-item-highlight-shadow: none;
+    --cui-popup-item-min-height: 20px;
+    --cui-popup-item-padding-block: 2px;
+    --cui-popup-label-text-transform: none;
+    --cui-popup-label-letter-spacing: 0px;
     --cui-popup-separator-color: var(--win98-shadow);
+    --cui-popup-close-inset: 5px;
   }
   [data-skin="windows-98"] :where([data-control-family="popup"][data-popup-part="list-surface"]) {
     padding: 3px;
   }
-  [data-skin="windows-98"] :where([data-control-family="popup"][data-popup-part="item"]) {
-    min-block-size: 20px;
-    padding-block: 2px;
-  }
   [data-skin="windows-98"] :where([data-control-family="popup"][data-popup-part="separator"]) {
     box-shadow: 0 1px var(--win98-white);
   }
-  [data-skin="windows-98"] :where([data-control-family="popup"][data-popup-part="label"]) {
-    text-transform: none;
-    letter-spacing: normal;
-  }
   [data-skin="windows-98"]
     :where([data-control-family="popup"][data-popup-part="surface"]:is([data-popup-kind="dialog"], [data-popup-kind="alert-dialog"])) {
+    --cui-popup-title-font-size: 11px;
+    --cui-popup-title-font-weight: 700;
+    --cui-popup-title-line-height: calc(12 / 11);
+    --cui-popup-title-letter-spacing: 0px;
+    --cui-popup-title-foreground: var(--win98-white);
+    --cui-popup-description-foreground: var(--foreground);
     padding: 3px;
     gap: 12px;
   }
@@ -67,16 +73,14 @@
   [data-skin="windows-98"]
     :where([data-control-family="popup"][data-slot="title"]:is([data-popup-kind="dialog"], [data-popup-kind="alert-dialog"])) {
     min-block-size: 20px;
-    padding: 4px 27px 4px 3px;
+    padding-block: 4px;
+    padding-inline: 3px calc(var(--cui-popup-close-inset) + var(--win98-close-inline-size) + 4px);
     background: var(--win98-titlebar);
-    color: var(--win98-white);
-    font: 700 11px / 12px var(--font-sans);
-    letter-spacing: normal;
+    font-family: var(--font-sans);
   }
   [data-skin="windows-98"]
     :where([data-control-family="popup"][data-slot="description"]:is([data-popup-kind="dialog"], [data-popup-kind="alert-dialog"])) {
     padding-inline: 9px;
-    color: var(--foreground);
   }
   [data-skin="windows-98"] :where([data-control-family="button"][data-popup-part="close"][data-icon-only="true"]) {
     opacity: 1;
@@ -85,9 +89,7 @@
     --cui-button-hover-shadow: var(--win98-raised);
     --cui-button-height: 16px;
     --cui-button-icon: 10px;
-    top: 5px;
-    right: 5px;
-    width: 18px;
+    inline-size: var(--win98-close-inline-size);
     aspect-ratio: auto;
   }
   [data-skin="windows-98"] :where([data-control-family="popup"][data-popup-kind="tooltip"][data-popup-part="surface"]) {
@@ -103,12 +105,28 @@
     --cui-sidebar-inner-radius: 0px;
     --cui-sidebar-inner-shadow: var(--win98-raised);
     --cui-sidebar-group-label-foreground: var(--foreground);
+    --cui-sidebar-group-label-padding: 0px 4px;
+    --cui-sidebar-group-label-font-weight: 400;
+    --cui-sidebar-group-label-text-transform: none;
+    --cui-sidebar-group-label-letter-spacing: 0px;
+    --cui-sidebar-menu-button-height: 20px;
+    --cui-sidebar-menu-button-padding-block: 3px;
+    --cui-sidebar-menu-button-padding-inline: 4px;
     --cui-sidebar-menu-button-radius: 0px;
     --cui-sidebar-menu-button-foreground: var(--foreground);
     --cui-sidebar-menu-button-hover-background: transparent;
     --cui-sidebar-menu-button-hover-foreground: var(--foreground);
     --cui-sidebar-menu-button-active-background: var(--primary);
     --cui-sidebar-menu-button-active-foreground: var(--primary-foreground);
+    --cui-sidebar-menu-button-track-active-foreground: var(--primary-foreground);
+  }
+  [data-skin="windows-98"]
+    :where([data-control-family="sidebar"][data-slot="menu-track"])
+    > :where([data-control-family="track-highlight"][data-slot="root"]) {
+    --cui-track-highlight-background: var(--cui-sidebar-menu-button-active-background);
+    --cui-track-highlight-radius: 0px;
+    --cui-track-highlight-ring-color: transparent;
+    --cui-track-highlight-shadow: none;
   }
   [data-skin="windows-98"]
     :where([data-control-family="sidebar"][data-slot="inner"] [data-control-family="scroll-area"][data-slot="root"]) {
@@ -124,11 +142,7 @@
     padding: 0 3px;
   }
   [data-skin="windows-98"] :where([data-control-family="sidebar"][data-slot="group-label"]) {
-    padding-inline: 4px;
     min-block-size: 22px;
-    font-weight: 400;
-    text-transform: none;
-    letter-spacing: normal;
   }
   [data-skin="windows-98"] :where([data-control-family="sidebar"][data-slot="menu"]) {
     margin-inline-start: 9px;
@@ -140,11 +154,6 @@
   }
   [data-skin="windows-98"] :where([data-control-family="sidebar"][data-slot="menu"] [data-control-family="sidebar"][data-slot="menu"]) {
     border-inline-start: 1px dotted var(--win98-shadow);
-  }
-  [data-skin="windows-98"] :where([data-control-family="sidebar"][data-slot="menu-button"]) {
-    min-block-size: 20px;
-    height: auto;
-    padding: 3px 4px;
   }
   [data-skin="windows-98"] :where([data-control-family="tree"][data-slot="root"]) {
     --cui-tree-item-trigger-radius: 0px;
@@ -226,31 +235,30 @@
   }
   @media (pointer: coarse) {
     [data-skin="windows-98"]
-      :where(
-        [data-control-family="button"][data-control="true"],
-        [data-control-family="field"][data-control="true"],
-        [data-control-family="sidebar"][data-slot="menu-button"],
-        [data-control-family="popup"][data-popup-part="item"]
-      ) {
-      min-block-size: 44px;
+      :where([data-control-family="button"][data-control="true"], [data-control-family="field"][data-control="true"]) {
+      min-block-size: var(--touch-target);
     }
-    [data-skin="windows-98"] :where([data-control-family="button"][data-popup-part="close"][data-icon-only="true"]) {
-      top: 3px;
-      right: 3px;
-      width: 44px;
+    [data-skin="windows-98"] {
+      --win98-close-inline-size: var(--touch-target);
+    }
+    [data-skin="windows-98"]
+      :where(
+        [data-control-family="popup"][data-popup-part="surface"],
+        [data-control-family="popup"][data-popup-part="list-surface"],
+        [data-control-family="popup"][data-popup-part="bar"]
+      ) {
+      --cui-popup-item-min-height: var(--touch-target);
+      --cui-popup-close-inset: 3px;
+    }
+    [data-skin="windows-98"]
+      :where([data-control-family="popup"][data-slot="title"]:is([data-popup-kind="dialog"], [data-popup-kind="alert-dialog"])) {
+      min-block-size: 50px;
+      padding-block: 17px;
     }
   }
 }
 
 @layer components {
-  @media (pointer: coarse) {
-    [data-skin="windows-98"]
-      :where([data-control-family="popup"][data-slot="title"]:is([data-popup-kind="dialog"], [data-popup-kind="alert-dialog"])) {
-      min-block-size: 50px;
-      padding-block: 17px;
-      padding-inline-end: 52px;
-    }
-  }
   [data-skin="windows-98"]
     :where([data-control-family="toolbar"][data-slot="root"][data-variant="inverse"] [data-control-family="button"][data-control="true"]) {
     --cui-button-background: var(--cui-toolbar-item-background);

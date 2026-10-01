@@ -55,6 +55,7 @@ export function SourceFavicon({ faviconSrc, href, imageProps, fallbackProps, cla
 
 export function SourceBadge({ faviconSrc, href, children, className, rel, target, ...props }: SourceBadgeProps) {
   const hostname = sourceHostname(href);
+  const label = children ?? hostname;
   const resolvedRel = rel ?? (target === "_blank" ? "noreferrer noopener" : undefined);
 
   return (
@@ -74,8 +75,8 @@ export function SourceBadge({ faviconSrc, href, children, className, rel, target
       }
     >
       <SourceFavicon href={href} faviconSrc={faviconSrc} />
-      <span data-control-ui="source-badge" data-slot="label" className="truncate">
-        {children ?? hostname}
+      <span data-control-ui="source-badge" data-slot="label" title={typeof label === "string" ? label : undefined} className="truncate">
+        {label}
       </span>
     </Badge>
   );

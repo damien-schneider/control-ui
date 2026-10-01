@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import type { ReactNode, Ref } from "react";
+import type { ReactNode } from "react";
 
 import { CodeBlock, CommandBlock } from "@/app/(features)/components/source";
 import { StatusBadge } from "@/app/(features)/components/status";

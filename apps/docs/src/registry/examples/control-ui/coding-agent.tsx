@@ -36,7 +36,6 @@ import {
 import { ChatTurn } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
 import { ModelSwitcher } from "@/components/control-ui/model-switcher";
-import { Button } from "@/components/control-ui/ui/button";
 
 const navigation: readonly CodingAgentNavigationItem[] = [
   { id: "pull-requests", label: "Pull requests", icon: <GitPullRequestIcon /> },
@@ -193,15 +192,16 @@ export function CodingAgentExample() {
             <ModelSwitcher models={models} value={model} onValueChange={setModel} size="xs" variant="ghost" />
           </ChatComposerTools>
           <div className="flex min-w-0 items-center gap-1">
-            {isRunning ? (
-              <Button variant="solid" size="sm" iconOnly shape="circle" aria-label="Stop response" onClick={() => setIsRunning(false)}>
-                <span className="size-2 rounded-[2px] bg-current" />
-              </Button>
-            ) : (
-              <ChatComposerSubmit size="sm" iconOnly shape="circle" aria-label="Send message">
-                <ArrowUpIcon className="size-4" />
-              </ChatComposerSubmit>
-            )}
+            <ChatComposerSubmit
+              size="sm"
+              iconOnly
+              shape="circle"
+              aria-label="Send message"
+              onStop={() => setIsRunning(false)}
+              stopIcon={<span aria-hidden="true" className="size-2 rounded-[2px] bg-current" />}
+            >
+              <ArrowUpIcon className="size-4" />
+            </ChatComposerSubmit>
           </div>
         </ChatComposerToolbar>
       </ChatComposerShell>

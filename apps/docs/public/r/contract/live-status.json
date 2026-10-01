@@ -1,0 +1,22 @@
+{
+  "version": 9,
+  "family": "live-status",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "live-status"
+  ],
+  "knobs": [],
+  "parts": {
+    "live-status": {
+      "root": {
+        "registryItems": [
+          "live-status"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/live-status.contrast.json"
+}

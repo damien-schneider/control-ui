@@ -1,7 +1,7 @@
 "use client";
 
 import type { ComponentProps, CSSProperties, ReactNode, RefObject } from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { TableOfContentsKnobStyle } from "@/components/control-ui/knob-contracts/table-of-contents-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
@@ -25,8 +25,6 @@ export type TableOfContentsProps = Omit<Omit<ComponentProps<"nav">, "children">,
   indicator?: ReactNode;
 };
 
-const DETECTION_MARGIN = "-80px 0px -20% 0px";
-
 function getScrollContainer(el: HTMLElement): HTMLElement | null {
   let node = el.parentElement;
   while (node) {
@@ -36,7 +34,7 @@ function getScrollContainer(el: HTMLElement): HTMLElement | null {
   return null;
 }
 
-export function useVisibleSections(ids: string[]): string[] {
+export function useVisibleSections(ids: string[], knobSourceRef: RefObject<HTMLElement | null>): string[] {
   const [visibleState, setVisibleState] = useState<{ idsKey: string; visibleIds: string[] }>({ idsKey: "", visibleIds: [] });
   const idsKey = ids.join("|");
 
@@ -45,6 +43,8 @@ export function useVisibleSections(ids: string[]): string[] {
     const elements = idList.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => el !== null);
     const firstElement = elements[0];
     if (!firstElement) return;
+    const knobSource = knobSourceRef.current;
+    const scrollInset = knobSource ? readLengthKnob(getComputedStyle(knobSource), "--cui-table-of-contents-scroll-inset") : 0;
 
     const order = new Map(elements.map((el, index) => [el.id, index]));
     const visible = new Set<string>();
@@ -60,14 +60,27 @@ export function useVisibleSections(ids: string[]): string[] {
           visibleIds: [...visible].sort((a, b) => (order.get(a) ?? 0) - (order.get(b) ?? 0)),
         });
       },
-      { root: getScrollContainer(firstElement), rootMargin: DETECTION_MARGIN, threshold: 0 },
+      { root: getScrollContainer(firstElement), rootMargin: `-${scrollInset}px 0px -20% 0px`, threshold: 0 },
     );
 
     for (const el of elements) observer.observe(el);
     return () => observer.disconnect();
-  }, [idsKey]);
+  }, [idsKey, knobSourceRef]);
 
   return visibleState.idsKey === idsKey ? visibleState.visibleIds : [];
+}
+
+function subscribeToHash(onChange: () => void) {
+  window.addEventListener("hashchange", onChange);
+  return () => window.removeEventListener("hashchange", onChange);
+}
+
+function useLocationHash() {
+  return useSyncExternalStore(
+    subscribeToHash,
+    () => window.location.hash,
+    () => "",
+  );
 }
 
 type TocNode = Omit<TableOfContentsProps["items"][number], "children" | "level"> & {
@@ -209,9 +222,11 @@ export function TableOfContents({
   const normalizedItems = normalizeItems(items, baseLevel);
   const flatItems = flattenItems(normalizedItems);
   const targetIds = flatItems.map((item) => item.href.replace(/^#/, ""));
-  const visibleIds = useVisibleSections(targetIds);
+  const visibleIds = useVisibleSections(targetIds, trackRef);
   const activeItems = findActiveItems(visibleIds, flatItems, targetIds);
   const activeHrefs = new Set(activeItems.map((item) => item.href));
+  const locationHash = useLocationHash();
+  const currentHref = activeHrefs.has(locationHash) ? locationHash : activeItems[0]?.href;
   const rail = useRailGeometry(trackRef, itemElements);
   const hasActiveSection = activeItems.length > 0;
 
@@ -251,7 +266,7 @@ export function TableOfContents({
             />
           </svg>
         )}
-        <TocList items={normalizedItems} activeHrefs={activeHrefs} itemElements={itemElements} root />
+        <TocList items={normalizedItems} activeHrefs={activeHrefs} currentHref={currentHref} itemElements={itemElements} root />
         {rail && indicator && (
           <span
             aria-hidden
@@ -273,11 +288,13 @@ export function TableOfContents({
 function TocList({
   items,
   activeHrefs,
+  currentHref,
   itemElements,
   root = false,
 }: {
   items: TocNode[];
   activeHrefs: Set<string>;
+  currentHref: string | undefined;
   itemElements: ItemElements;
   root?: boolean;
 }) {
@@ -308,14 +325,16 @@ function TocList({
               data-active={isActive || undefined}
               data-level={item.level}
               data-depth={item.depth}
-              aria-current={isActive ? "location" : undefined}
+              aria-current={item.href === currentHref ? "location" : undefined}
               href={item.href}
               className="block"
               style={itemStyle}
             >
               {item.label}
             </a>
-            {item.children && <TocList items={item.children} activeHrefs={activeHrefs} itemElements={itemElements} />}
+            {item.children && (
+              <TocList items={item.children} activeHrefs={activeHrefs} currentHref={currentHref} itemElements={itemElements} />
+            )}
           </li>
         );
       })}

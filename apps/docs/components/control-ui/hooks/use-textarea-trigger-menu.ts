@@ -4,7 +4,7 @@ import type { RefObject } from "react";
 import { useEffect, useEffectEvent } from "react";
 import { caretRectInTextarea, detectTrigger } from "../lib/trigger-detect";
 import type { TriggerConfig, TriggerMenuItemData } from "./use-trigger-menu";
-import { useTriggerMenu } from "./use-trigger-menu";
+import { isComposingKey, useTriggerMenu } from "./use-trigger-menu";
 
 // Same `triggers` config as ProseMirror path, so primitive works with no editor installed.
 
@@ -48,6 +48,7 @@ export function useTextareaTriggerMenu<Item extends TriggerMenuItemData>(
   });
 
   const handleKeyDown = useEffectEvent((event: KeyboardEvent) => {
+    if (isComposingKey(event)) return;
     if (controller.open && controller.handleKeyDown(event.key)) event.preventDefault();
   });
 

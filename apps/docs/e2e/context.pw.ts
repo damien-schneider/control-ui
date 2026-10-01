@@ -6,19 +6,20 @@ function settled(locator: Locator) {
   });
 }
 
-test("context trigger reveals progressively and the inspector dismisses accessibly", async ({ page }) => {
+test("context trigger is named by its visible label and the inspector dismisses accessibly", async ({ page }) => {
   await page.goto("/components/context");
   await page.waitForLoadState("networkidle");
 
   const root = page.locator('[data-control-ui="context"][data-slot="root"]');
-  const trigger = root.getByRole("button", { name: /Context window:/ });
+  const trigger = root.getByRole("button", { name: "50% context", exact: true });
   const label = root.locator('[data-control-ui="context"][data-slot="trigger-label"]');
   const popup = page.locator('[data-control-ui="popover"][data-slot="content"]');
 
   await expect(root).toHaveCount(1);
   await expect(root.getByRole("button")).toHaveCount(1);
   await expect(trigger).toBeVisible();
-  await expect(label).toBeHidden();
+  await expect(label).toBeVisible();
+  await expect(trigger).toHaveAccessibleDescription(/100,000 of 200,000 tokens used/);
   await expect(popup).toHaveCount(0);
 
   await trigger.hover();
@@ -40,7 +41,7 @@ test("context trigger reveals progressively and the inspector dismisses accessib
   await expect(label).toHaveCSS("opacity", "1");
   await expect(label).toBeVisible();
   await expect(label).toHaveText("50% context");
-  await expect(popup.getByText("100,000 / 200,000 tokens", { exact: true })).toBeVisible();
+  await expect(popup.getByText("100,000 of 200,000 tokens", { exact: true })).toBeVisible();
   await expect(popup.locator('[data-control-ui="context"][data-slot="segment"]')).toHaveCount(5);
   const legendRows = popup.locator('[data-control-ui="context"][data-slot="legend-item"]');
   await expect(legendRows).toHaveCount(6);
@@ -64,7 +65,7 @@ test("context inspector stays bounded and scrollable on narrow viewports", async
   await page.waitForLoadState("networkidle");
 
   const root = page.locator('[data-control-ui="context"][data-slot="root"]');
-  const trigger = root.getByRole("button", { name: /Context window:/ });
+  const trigger = root.getByRole("button", { name: "50% context", exact: true });
   const popup = page.locator('[data-control-ui="popover"][data-slot="content"]');
 
   await trigger.focus();

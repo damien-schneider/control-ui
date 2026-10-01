@@ -10,6 +10,7 @@
   "registryDependencies": [
     "button",
     "core",
+    "effects",
     "item"
   ],
   "files": [

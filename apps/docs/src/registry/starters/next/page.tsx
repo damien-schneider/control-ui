@@ -21,7 +21,8 @@ export default function Page() {
             tone="primary"
             size="md"
           >
-            Browse the registry
+            View Control UI on GitHub
+            <span className="sr-only"> (opens in a new tab)</span>
           </ButtonLink>
           <code className="text-caption text-muted-foreground">components/control-ui</code>
         </div>

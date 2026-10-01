@@ -17,6 +17,11 @@
       "type": "registry:component"
     },
     {
+      "path": "src/registry/sources/control-ui/recipes/button-states.css",
+      "target": "@components/control-ui/styles/recipes/button-states.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/button.css",
       "target": "@components/control-ui/styles/recipes/button.css",
       "type": "registry:file"
@@ -28,7 +33,8 @@
     }
   ],
   "css": {
-    "@import \"../components/control-ui/styles/recipes/button.css\"": {}
+    "@import \"../components/control-ui/styles/recipes/button.css\"": {},
+    "@import \"../components/control-ui/styles/recipes/button-states.css\"": {}
   },
   "meta": {
     "sourceManifestPath": "registry/control-ui/button.json"

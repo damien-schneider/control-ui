@@ -8,11 +8,20 @@
     --cui-tree-item-trigger-selected-foreground: var(--foreground);
     --cui-tree-item-trigger-font-size: var(--text-body);
     --cui-tree-item-trigger-selected-font-weight: var(--font-weight-normal);
+    --cui-tree-indent-inset: 1.25rem;
   }
 
-  :where([data-control-family="tree"][data-slot="root"]),
+  :where([data-control-family="tree"][data-slot="list"]) {
+    --_tree-focus-ring-width: var(--focus-ring-width);
+  }
+
   :where([data-control-family="tree"][data-slot="item"]) {
-    outline: none;
+    --focus-ring-width: 0px;
+  }
+
+  :where([data-control-family="tree"][data-slot="item"]:focus-visible > [data-slot="item-trigger"]) {
+    outline: var(--_tree-focus-ring-width) var(--focus-ring-style) var(--focus-ring);
+    outline-offset: calc(var(--_tree-focus-ring-width) * -1);
   }
 
   :where([data-control-family="tree"][data-slot="root"] > [data-control-family="track-highlight"]) {
@@ -24,13 +33,13 @@
   :where([data-control-family="tree"][data-slot="item-trigger"]) {
     gap: calc(var(--spacing) * 1.5);
     padding-block: calc(var(--spacing) * 1);
+    padding-inline-start: calc(var(--_tree-level, 1) * var(--cui-tree-indent-inset));
     padding-inline-end: calc(var(--spacing) * 2);
     border-radius: var(--cui-tree-item-trigger-radius);
     background-color: transparent;
     color: var(--cui-tree-item-trigger-foreground);
     font-size: var(--cui-tree-item-trigger-font-size);
     font-weight: var(--font-weight-normal);
-    outline: none;
   }
 
   @media (hover: hover) {
@@ -47,7 +56,7 @@
   }
 
   :where([data-control-family="tree"][data-slot="item-trigger"][aria-disabled="true"]) {
-    opacity: 0.5;
+    opacity: var(--disabled-opacity);
   }
 
   :where(
@@ -68,6 +77,18 @@
 
   :where([data-control-family="tree"][data-slot="item-indicator"][data-state="open"]) {
     rotate: 90deg;
+  }
+
+  :where([data-control-family="tree"][data-slot="item-indicator"][data-state="open"]:has(> [data-icon-dir="inline"]):dir(rtl)) {
+    rotate: -90deg;
+  }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="tree"][data-slot="item-trigger"][data-selected]) {
+      forced-color-adjust: none;
+      background-color: Highlight;
+      color: HighlightText;
+    }
   }
 
   :where([data-control-family="tree"][data-slot="item-content"]) {
@@ -140,4 +161,10 @@
   syntax: "<number>";
   inherits: true;
   initial-value: 400;
+}
+
+@property --cui-tree-indent-inset {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }

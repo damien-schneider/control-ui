@@ -1,7 +1,7 @@
 "use client";
 
-import type { ChangeEvent, ComponentProps, CSSProperties, KeyboardEvent, MouseEvent } from "react";
-import { createContext, useContext, useEffect, useId, useMemo, useRef } from "react";
+import type { ChangeEvent, ComponentProps, CSSProperties, KeyboardEvent, MouseEvent, RefObject } from "react";
+import { createContext, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { FormSubmitEvent } from "@/components/control-ui/control-props";
 import { createDynamicNotificationGlass } from "@/components/control-ui/dynamic-notification-glass";
 import { createDynamicNotificationLiquid } from "@/components/control-ui/dynamic-notification-liquid";
@@ -10,6 +10,7 @@ import { type DynamicNotificationController, useDynamicNotification } from "@/co
 import type { DynamicNotificationKnobStyle } from "@/components/control-ui/knob-contracts/dynamic-notification-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
+import { LiveStatus } from "@/components/control-ui/ui/live-status";
 
 export type DynamicNotificationState = "collapsed" | "thinking" | "expanded";
 
@@ -19,12 +20,15 @@ type DynamicNotificationShellContextValue = Pick<DynamicNotificationController, 
   state: DynamicNotificationState;
   variant: DynamicNotificationVariant;
   contentId: string;
+  publishMessage: (text: string) => void;
+  pillRef: RefObject<HTMLButtonElement | null>;
+  focusReplyOnExpandRef: RefObject<boolean>;
 };
 
 type DynamicNotificationReplyContextValue = Pick<
   DynamicNotificationController,
-  "reply" | "setReply" | "normalizedReply" | "canSubmit" | "clear" | "submitReply" | "handleReplySubmit"
->;
+  "reply" | "setReply" | "normalizedReply" | "canSubmit" | "replyPending" | "replyFailed" | "clear" | "submitReply" | "handleReplySubmit"
+> & { replyErrorLabel: string };
 
 const DynamicNotificationShellContext = createContext<DynamicNotificationShellContextValue | null>(null);
 const DynamicNotificationReplyContext = createContext<DynamicNotificationReplyContextValue | null>(null);
@@ -33,6 +37,27 @@ function resolveNotificationState(open: boolean, loading: boolean): DynamicNotif
   if (!open) return "collapsed";
   if (loading) return "thinking";
   return "expanded";
+}
+
+function resolveAnnouncement({
+  state,
+  loading,
+  replyFailed,
+  message,
+  thinkingLabel,
+  replyErrorLabel,
+}: {
+  state: DynamicNotificationState;
+  loading: boolean;
+  replyFailed: boolean;
+  message: string;
+  thinkingLabel: string;
+  replyErrorLabel: string;
+}) {
+  if (replyFailed) return replyErrorLabel;
+  if (loading) return thinkingLabel;
+  if (state === "expanded") return message;
+  return "";
 }
 
 function useDynamicNotificationShellContext() {
@@ -64,6 +89,8 @@ export function DynamicNotification({
   onReply,
   variant = "surface",
   disabled = false,
+  thinkingLabel = "Assistant is thinking",
+  replyErrorLabel = "Couldn't send your reply. Try again.",
   className,
   children,
   ...props
@@ -79,7 +106,18 @@ export function DynamicNotification({
     disabled,
   });
   const contentId = useId();
+  const [message, setMessage] = useState("");
+  const pillRef = useRef<HTMLButtonElement | null>(null);
+  const focusReplyOnExpandRef = useRef(false);
   const state = resolveNotificationState(notification.open, loading);
+  const announcement = resolveAnnouncement({
+    state,
+    loading,
+    replyFailed: notification.replyFailed,
+    message,
+    thinkingLabel,
+    replyErrorLabel,
+  });
   const shellContext = useMemo(
     () =>
       ({
@@ -89,6 +127,9 @@ export function DynamicNotification({
         state,
         variant,
         contentId,
+        publishMessage: setMessage,
+        pillRef,
+        focusReplyOnExpandRef,
       }) satisfies DynamicNotificationShellContextValue,
     [notification.open, notification.disabled, notification.setOpen, state, variant, contentId],
   );
@@ -99,6 +140,9 @@ export function DynamicNotification({
         setReply: notification.setReply,
         normalizedReply: notification.normalizedReply,
         canSubmit: notification.canSubmit,
+        replyPending: notification.replyPending,
+        replyFailed: notification.replyFailed,
+        replyErrorLabel,
         clear: notification.clear,
         submitReply: notification.submitReply,
         handleReplySubmit: notification.handleReplySubmit,
@@ -108,6 +152,9 @@ export function DynamicNotification({
       notification.setReply,
       notification.normalizedReply,
       notification.canSubmit,
+      notification.replyPending,
+      notification.replyFailed,
+      replyErrorLabel,
       notification.clear,
       notification.submitReply,
       notification.handleReplySubmit,
@@ -126,6 +173,7 @@ export function DynamicNotification({
           className={cn("relative flex w-full justify-center", className)}
           {...props}
         >
+          <LiveStatus message={announcement} />
           {children}
         </div>
       </DynamicNotificationReplyContext.Provider>
@@ -216,17 +264,33 @@ export function DynamicNotificationLiquid({ className, ...props }: DynamicNotifi
 
 export type DynamicNotificationPillProps = ComponentProps<"button"> & { style?: CSSProperties & DynamicNotificationKnobStyle };
 
-export function DynamicNotificationPill({ className, children, onClick, ...props }: DynamicNotificationPillProps) {
-  const { contentId, disabled, open, setOpen } = useDynamicNotificationShellContext();
+export function DynamicNotificationPill({ className, children, onClick, ref, ...props }: DynamicNotificationPillProps) {
+  const { contentId, disabled, open, setOpen, pillRef, focusReplyOnExpandRef } = useDynamicNotificationShellContext();
+
+  useLayoutEffect(() => {
+    if (open) return;
+    focusReplyOnExpandRef.current = false;
+    const pill = pillRef.current;
+    const active = pill?.ownerDocument.activeElement;
+    if (!pill || !active || active === pill) return;
+    if (pill.closest('[data-slot="island"]')?.contains(active)) pill.focus({ preventScroll: true });
+  }, [open, pillRef, focusReplyOnExpandRef]);
+
+  function setPillRef(node: HTMLButtonElement | null) {
+    pillRef.current = node;
+    if (typeof ref === "function") ref(node);
+    else if (ref) ref.current = node;
+  }
 
   function handleClick(event: MouseEvent<HTMLButtonElement>) {
     onClick?.(event);
     if (event.defaultPrevented) return;
-    setOpen(true, "trigger-press", event.nativeEvent, event.currentTarget);
+    if (setOpen(true, "trigger-press", event.nativeEvent, event.currentTarget)) focusReplyOnExpandRef.current = true;
   }
 
   return (
     <button
+      ref={setPillRef}
       type="button"
       aria-expanded={open}
       aria-controls={contentId}
@@ -298,16 +362,22 @@ export type DynamicNotificationMessageProps = Omit<ComponentProps<"p">, "childre
 } & { style?: CSSProperties & DynamicNotificationKnobStyle };
 
 export function DynamicNotificationMessage({ className, children, ...props }: DynamicNotificationMessageProps) {
+  const { publishMessage } = useDynamicNotificationShellContext();
+
+  useEffect(() => {
+    publishMessage(children);
+    return () => publishMessage("");
+  }, [children, publishMessage]);
+
   return (
     <p
-      aria-live="polite"
       data-control-ui="dynamic-notification"
       data-control-family="dynamic-notification"
       data-slot="message"
       className={className}
       {...props}
     >
-      <DynamicNotificationWords key={children} text={children} />
+      <DynamicNotificationWords text={children} />
     </p>
   );
 }
@@ -319,7 +389,7 @@ function DynamicNotificationWords({ text }: { text: string }) {
     const style: DynamicNotificationWordStyle = { "--_dynamic-notification-word-index": `${wordIndex}` };
     wordIndex += 1;
     return (
-      // biome-ignore lint/suspicious/noArrayIndexKey: split positions are stable for a given text; the list remounts wholesale (key={text}) when the message changes.
+      // biome-ignore lint/suspicious/noArrayIndexKey: a word's split position is its only identity.
       <span key={position} data-control-ui="dynamic-notification" data-control-family="dynamic-notification" data-slot="word" style={style}>
         {part}
       </span>
@@ -329,8 +399,9 @@ function DynamicNotificationWords({ text }: { text: string }) {
 
 export type DynamicNotificationReplyProps = ComponentProps<"form"> & { style?: CSSProperties & DynamicNotificationKnobStyle };
 
-export function DynamicNotificationReply({ className, onSubmit, ...props }: DynamicNotificationReplyProps) {
-  const { handleReplySubmit } = useDynamicNotificationReplyContext();
+export function DynamicNotificationReply({ className, onSubmit, children, ...props }: DynamicNotificationReplyProps) {
+  const { handleReplySubmit, replyPending, replyFailed, replyErrorLabel } = useDynamicNotificationReplyContext();
+  const errorId = useId();
 
   function handleSubmit(event: FormSubmitEvent) {
     onSubmit?.(event);
@@ -340,29 +411,47 @@ export function DynamicNotificationReply({ className, onSubmit, ...props }: Dyna
 
   return (
     <form
+      aria-busy={replyPending || undefined}
+      aria-describedby={replyFailed ? errorId : undefined}
       data-control-ui="dynamic-notification"
       data-control-family="dynamic-notification"
       data-slot="reply"
       onSubmit={handleSubmit}
-      className={cn("flex items-center", className)}
+      className={cn("flex flex-wrap items-center", className)}
       {...props}
-    />
+    >
+      {children}
+      {replyFailed ? (
+        <p
+          id={errorId}
+          data-control-ui="dynamic-notification"
+          data-control-family="dynamic-notification"
+          data-slot="reply-error"
+          className="basis-full"
+        >
+          {replyErrorLabel}
+        </p>
+      ) : null}
+    </form>
   );
 }
 
 export type DynamicNotificationReplyInputProps = ComponentProps<"input"> & { style?: CSSProperties & DynamicNotificationKnobStyle };
 
 export function DynamicNotificationReplyInput({ className, onChange, disabled, ...props }: DynamicNotificationReplyInputProps) {
-  const { disabled: contextDisabled, state } = useDynamicNotificationShellContext();
+  const { disabled: contextDisabled, state, focusReplyOnExpandRef } = useDynamicNotificationShellContext();
   const { reply, setReply } = useDynamicNotificationReplyContext();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   // waits out the "thinking" phase — content is inert until expanded, so focus would be dropped
   useEffect(() => {
-    if (state !== "expanded") return;
-    const frame = requestAnimationFrame(() => inputRef.current?.focus({ preventScroll: true }));
+    if (state !== "expanded" || !focusReplyOnExpandRef.current) return;
+    const frame = requestAnimationFrame(() => {
+      focusReplyOnExpandRef.current = false;
+      inputRef.current?.focus({ preventScroll: true });
+    });
     return () => cancelAnimationFrame(frame);
-  }, [state]);
+  }, [state, focusReplyOnExpandRef]);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     onChange?.(event);
@@ -415,9 +504,15 @@ export function DynamicNotificationReplySubmit({ className, disabled, children, 
   );
 }
 
-export type DynamicNotificationCloseProps = ComponentProps<typeof Button>;
+export type DynamicNotificationCloseProps = ComponentProps<typeof Button> & { collapseLabel?: string };
 
-export function DynamicNotificationClose({ className, children, onClick, ...props }: DynamicNotificationCloseProps) {
+export function DynamicNotificationClose({
+  className,
+  children,
+  onClick,
+  collapseLabel = "Collapse notification",
+  ...props
+}: DynamicNotificationCloseProps) {
   const { setOpen } = useDynamicNotificationShellContext();
 
   function handleClick(event: MouseEvent<HTMLButtonElement>) {
@@ -435,7 +530,7 @@ export function DynamicNotificationClose({ className, children, onClick, ...prop
       size="sm"
       iconOnly
       shape="circle"
-      aria-label="Dismiss"
+      aria-label={collapseLabel}
       onClick={handleClick}
       className={cn("shrink-0", className)}
       {...props}

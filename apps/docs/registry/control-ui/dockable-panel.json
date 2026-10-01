@@ -9,6 +9,7 @@
     "button",
     "core",
     "drawer",
+    "live-status",
     "scroll-area",
     "sidebar"
   ],

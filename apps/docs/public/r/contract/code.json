@@ -53,6 +53,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "oklch(from var(--primary) l c h / 0.08)"
+    },
+    {
+      "name": "--cui-code-header-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
     }
   ],
   "parts": {

@@ -1,10 +1,16 @@
 "use client";
 
 import type { ComponentProps, CSSProperties } from "react";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useRef } from "react";
 
 import type { ChatMessageProps } from "@/components/control-ui/hooks/use-chat-message";
-import { useChatMessage } from "@/components/control-ui/hooks/use-chat-message";
+import {
+  chatAuthorLabels,
+  chatMessageStatusLabels,
+  chatMessageTransition,
+  useChatMessage,
+  useChatThreadAnnounce,
+} from "@/components/control-ui/hooks/use-chat-message";
 import type { ChatMessageKnobStyle } from "@/components/control-ui/knob-contracts/chat-message-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
@@ -18,8 +24,30 @@ function useChatMessageContext() {
   return context;
 }
 
-export function ChatMessage({ from, state = "idle", density = "comfortable", className, children, ...props }: ChatMessageProps) {
+export function ChatMessage({
+  from,
+  state = "idle",
+  density = "comfortable",
+  authorLabel = chatAuthorLabels[from],
+  statusLabels,
+  className,
+  children,
+  ...props
+}: ChatMessageProps) {
   const message = useChatMessage({ from, state, density });
+  const announce = useChatThreadAnnounce();
+  const previousState = useRef(state);
+  const pendingLabel = statusLabels?.pending ?? chatMessageStatusLabels.pending;
+  const repliedLabel = statusLabels?.replied ?? chatMessageStatusLabels.replied;
+  const errorLabel = statusLabels?.error ?? chatMessageStatusLabels.error;
+
+  useEffect(() => {
+    const previous = previousState.current;
+    previousState.current = state;
+    if (from === "user") return;
+    const announcement = chatMessageTransition(previous, state, { pending: pendingLabel, replied: repliedLabel, error: errorLabel });
+    if (announcement !== null) announce(announcement);
+  }, [announce, from, state, pendingLabel, repliedLabel, errorLabel]);
 
   return (
     <ChatMessageContext.Provider value={message}>
@@ -30,6 +58,7 @@ export function ChatMessage({ from, state = "idle", density = "comfortable", cla
         data-role={from}
         data-state={state}
         data-density={density}
+        aria-label={authorLabel}
         className={cn("w-full", className)}
         {...props}
       >
@@ -126,27 +155,26 @@ export function ChatMessageContent({ className, ...props }: ChatMessageContentPr
 }
 
 export type ChatMessagePendingProps = Omit<ComponentProps<"div">, "style" | "children"> & {
-  label?: string;
   style?: CSSProperties & ChatMessageKnobStyle;
 };
 
-export function ChatMessagePending({ label = "Assistant is replying", className, ...props }: ChatMessagePendingProps) {
+/** Visual only: the pending transition is announced by `ChatMessage` through the thread's status region. */
+export function ChatMessagePending({ className, ...props }: ChatMessagePendingProps) {
   const message = useChatMessageContext();
   if (!message.isPending) return null;
 
   return (
     <div
-      role="status"
-      aria-label={label}
+      aria-hidden="true"
       data-control-ui="chat-message"
       data-control-family="chat-message"
       data-slot="pending"
       className={cn("inline-flex items-center", className)}
       {...props}
     >
-      <span aria-hidden="true" />
-      <span aria-hidden="true" />
-      <span aria-hidden="true" />
+      <span />
+      <span />
+      <span />
     </div>
   );
 }

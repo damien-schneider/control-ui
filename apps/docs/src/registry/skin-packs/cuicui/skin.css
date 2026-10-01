@@ -12,7 +12,7 @@
   --cuicui-stops-legible:
     oklch(from var(--cuicui-sky) 0.46 c h), oklch(from var(--cuicui-violet) 0.46 c h), oklch(from var(--cuicui-rose) 0.46 c h),
     oklch(from var(--cuicui-orange) 0.46 c h);
-  --cuicui-gradient-text: linear-gradient(to right, var(--cuicui-sky), var(--cuicui-violet), var(--cuicui-rose), var(--cuicui-orange));
+  --cuicui-gradient-text: linear-gradient(to right, var(--cuicui-stops-legible));
   --cuicui-gradient-top: linear-gradient(-45deg, var(--cuicui-yellow), var(--cuicui-pink), var(--cuicui-blue), var(--cuicui-mint));
   --cuicui-gradient-soft: linear-gradient(
     135deg,
@@ -42,6 +42,13 @@
   --cuicui-control-bg: oklch(0.708 0 0 / 0.14);
   --cuicui-control-hover: oklch(0.708 0 0 / 0.2);
   --cuicui-control-shadow: 0 1px 2px oklch(0 0 0 / 0.18);
+  --cuicui-gradient-text: linear-gradient(
+    to right,
+    var(--cuicui-sky),
+    oklch(from var(--cuicui-violet) 0.68 c h),
+    var(--cuicui-rose),
+    var(--cuicui-orange)
+  );
 }
 
 @layer base {
@@ -193,14 +200,6 @@
 }
 
 @layer components {
-  @media (prefers-reduced-motion: reduce) {
-    [data-skin="cuicui"] .cuicui-animated-gradient {
-      animation: none;
-    }
-  }
-}
-
-@layer components {
   [data-skin="cuicui"]
     :where([data-control-family="popup"][data-popup-part="surface"], [data-control-family="popup"][data-popup-part="list-surface"]) {
     --cui-popup-radius: var(--radius-popover);
@@ -212,16 +211,6 @@
     --cui-popup-backdrop-filter: blur(var(--backdrop-blur-popover));
   }
 
-  [data-skin="cuicui"] :where([data-popup-part="item"]) {
-    padding: 0.25rem 0.625rem;
-    font-size: 0.8125rem;
-  }
-
-  [data-skin="cuicui"] :where([data-popup-part="label"]) {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.6875rem;
-  }
-
   [data-skin="cuicui"]
     :where(
       [data-control-family="popup"][data-popup-part="surface"],
@@ -231,16 +220,14 @@
     --cui-popup-item-highlight-background: var(--cuicui-control-bg);
     --cui-popup-item-disabled-opacity: 0.45;
     --cui-popup-separator-color: var(--control-rim);
-  }
-
-  [data-skin="cuicui"] :where([data-popup-part="separator"]) {
-    margin-inline: 0.25rem;
-  }
-
-  [data-skin="cuicui"] :where([data-popup-part="shortcut"]) {
-    margin-inline-start: auto;
-    font-size: 0.6875rem;
-    letter-spacing: 0.025em;
+    --cui-popup-item-font-size: 0.8125rem;
+    --cui-popup-item-padding-block: 0.25rem;
+    --cui-popup-label-padding-inline: 0.5rem;
+    --cui-popup-item-padding-inline: 0.625rem;
+    --cui-popup-label-font-size: var(--text-caption);
+    --cui-popup-separator-inset: 0.25rem;
+    --cui-popup-shortcut-font-size: var(--text-caption);
+    --cui-popup-shortcut-letter-spacing: 0.025em;
   }
 
   [data-skin="cuicui"] :where([data-control-ui="navigation-menu"][data-slot="viewport"][data-control-family="popup"]) {
@@ -282,10 +269,10 @@
     padding: 1.5rem;
   }
 
-  [data-skin="cuicui"] :where([data-control-ui="dialog"][data-slot="title"][data-control-family="popup"]) {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
+  [data-skin="cuicui"] :where([data-control-ui="dialog"][data-popup-part="surface"][data-control-family="popup"]) {
+    --cui-popup-title-font-size: 0.9375rem;
+    --cui-popup-title-font-weight: 600;
+    --cui-popup-title-letter-spacing: -0.01em;
   }
 
   [data-skin="cuicui"] :where([data-control-ui="tooltip"][data-popup-part="surface"][data-control-family="popup"]) {
@@ -355,17 +342,18 @@
 
   [data-skin="cuicui"] :where([data-slot="menu-button"][data-control-family="sidebar"]) {
     border: 1px solid transparent;
-    padding-inline: calc(var(--spacing) * 3);
-    font-size: var(--text-sm);
-    line-height: var(--text-sm--line-height);
-    font-weight: var(--font-weight-medium);
+    line-height: calc(1.25 / 0.875);
   }
 
   [data-skin="cuicui"] :where([data-slot="wrapper"][data-control-family="sidebar"]) {
     --cui-sidebar-wrapper-background: var(--cuicui-page-from);
     --cui-sidebar-wrapper-background-image: var(--cuicui-page-bg);
-    --cui-sidebar-inset-background: var(--cuicui-page-from);
-    --cui-sidebar-inset-background-image: var(--cuicui-page-bg);
+    --cui-sidebar-inset-background: var(--cuicui-main-container);
+    --cui-sidebar-inset-background-image: none;
+    --cui-sidebar-inset-border-color: var(--cuicui-container-border);
+    --cui-sidebar-inset-border-width: 1px;
+    --cui-sidebar-inset-radius: var(--radius);
+    --cui-sidebar-inset-shadow: none;
   }
 
   [data-skin="cuicui"] :where([data-slot="root"][data-control-family="sidebar"]) {
@@ -380,15 +368,17 @@
     --cui-sidebar-menu-button-active-background: oklch(0 0 0 / 0.05);
     --cui-sidebar-menu-button-active-foreground: oklch(0 0 0 / 0.7);
     --cui-sidebar-group-label-foreground: var(--scale-neutral-11);
+    --cui-sidebar-group-label-padding: var(--spacing) calc(var(--spacing) * 3);
+    --cui-sidebar-group-label-font-size: var(--text-label);
+    --cui-sidebar-group-label-font-weight: var(--font-weight-medium);
+    --cui-sidebar-group-label-letter-spacing: var(--tracking-tight);
+    --cui-sidebar-menu-button-padding-inline: calc(var(--spacing) * 3);
+    --cui-sidebar-menu-button-font-size: var(--text-body);
+    --cui-sidebar-menu-button-font-weight: var(--font-weight-medium);
   }
 
   [data-skin="cuicui"] :where([data-slot="group-label"][data-control-family="sidebar"]) {
-    padding-inline: calc(var(--spacing) * 3);
-    padding-block: var(--spacing);
-    font-size: var(--text-xs);
-    line-height: var(--text-xs--line-height);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: var(--tracking-tight);
+    line-height: calc(1 / 0.75);
   }
 
   .dark[data-skin="cuicui"] :where([data-slot="root"][data-control-family="sidebar"]),
@@ -398,13 +388,6 @@
     --cui-sidebar-menu-button-hover-foreground: oklch(1 0 0 / 0.7);
     --cui-sidebar-menu-button-active-background: oklch(1 0 0 / 0.1);
     --cui-sidebar-menu-button-active-foreground: oklch(1 0 0 / 0.8);
-  }
-
-  [data-skin="cuicui"] :where([data-slot="content"][data-control-family="sidebar-layout"]) {
-    border: 1px solid var(--cuicui-container-border);
-    border-radius: var(--radius);
-    background-color: var(--cuicui-main-container);
-    box-shadow: none;
   }
 
   [data-skin="cuicui"] :where([data-slot="root"][data-control-family="alert"]) {

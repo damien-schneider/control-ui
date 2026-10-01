@@ -7,6 +7,26 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -42,6 +62,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -96,6 +117,14 @@
         "fill": "--cui-card-background"
       },
       "anatomy": 1,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-card-background"
+      },
+      "anatomy": 2,
       "rendersText": true,
       "state": false
     }

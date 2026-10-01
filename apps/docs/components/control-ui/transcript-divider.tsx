@@ -12,6 +12,7 @@ export type TranscriptDividerProps = Omit<ComponentProps<"div">, "style"> & {
 export function TranscriptDivider({ tone = "neutral", className, children, ...props }: TranscriptDividerProps) {
   return (
     <div
+      role={children == null ? "separator" : undefined}
       data-control-ui="transcript-divider"
       data-control-family="transcript-divider"
       data-slot="root"
@@ -32,7 +33,7 @@ export function TranscriptDividerLabel({ className, ...props }: TranscriptDivide
       data-control-ui="transcript-divider"
       data-control-family="transcript-divider"
       data-slot="label"
-      className={cn("min-w-0 truncate", className)}
+      className={cn("min-w-0 text-center text-pretty", className)}
       {...props}
     />
   );

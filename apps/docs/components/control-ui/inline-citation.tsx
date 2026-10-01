@@ -8,6 +8,7 @@ import type { InlineCitationKnobStyle } from "@/components/control-ui/knob-contr
 import { cn } from "@/components/control-ui/lib/cn";
 import { SourceFavicon, sourceHostname } from "@/components/control-ui/source-badge";
 import { Button } from "@/components/control-ui/ui/button";
+import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/control-ui/ui/popover";
 
 export type SourceReference = {
@@ -40,8 +41,24 @@ type InlineCitationContextValue = {
   previous: () => void;
   sourceRef: RefObject<HTMLElement | null>;
   sources: readonly SourceReference[];
+  announcement: string;
 };
 
+export type CitationLabelTemplates = {
+  emptyLabel?: string;
+  viewSourcesLabel?: (count: number) => string;
+  positionLabel?: (position: number, count: number) => string;
+};
+
+const defaultViewSourcesLabel = (count: number) => (count === 1 ? "view 1 source" : `view ${count} sources`);
+const defaultPositionLabel = (position: number, count: number) => `Source ${position} of ${count}`;
+
+export function citationLabel(sources: readonly SourceReference[], emptyLabel = "No sources") {
+  const firstSource = sources[0];
+  if (!firstSource) return emptyLabel;
+  const additional = sources.length - 1;
+  return `${sourceHostname(firstSource.href)}${additional > 0 ? ` +${additional}` : ""}`;
+}
 const InlineCitationContext = createContext<InlineCitationContextValue | null>(null);
 
 function useInlineCitation() {
@@ -57,6 +74,7 @@ export type InlineCitationProps = ComponentProps<"span"> & {
   open?: PopoverRootProps["open"];
   defaultOpen?: PopoverRootProps["defaultOpen"];
   onOpenChange?: PopoverRootProps["onOpenChange"];
+  positionLabel?: CitationLabelTemplates["positionLabel"];
 } & { style?: CSSProperties & InlineCitationKnobStyle };
 
 // No anchor positioning = no hold animation = nothing ever unmounts clone.
@@ -64,10 +82,20 @@ function supportsCrossSlide() {
   return typeof CSS !== "undefined" && CSS.supports("(anchor-name: --aui-slide-panel) and (anchor-scope: --aui-slide-panel)");
 }
 
-export function InlineCitation({ sources, open, defaultOpen, onOpenChange, className, children, ...props }: InlineCitationProps) {
+export function InlineCitation({
+  sources,
+  open,
+  defaultOpen,
+  onOpenChange,
+  positionLabel = defaultPositionLabel,
+  className,
+  children,
+  ...props
+}: InlineCitationProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [entering, setEntering] = useState<EnteringSlide | null>(null);
   const [exiting, setExiting] = useState<ExitingSlide | null>(null);
+  const [announcement, setAnnouncement] = useState("");
   const sourceRef = useRef<HTMLElement | null>(null);
   const exitCount = useRef(0);
   const clearEntering = useRef(0);
@@ -86,6 +114,7 @@ export function InlineCitation({ sources, open, defaultOpen, onOpenChange, class
     const leaving = sources[currentIndex];
 
     setSelectedIndex(nextIndex);
+    setAnnouncement(positionLabel(nextIndex + 1, sources.length));
     setEntering({ direction, previousHeight: sourceRef.current?.getBoundingClientRect().height });
     if (leaving && supportsCrossSlide()) {
       exitCount.current += 1;
@@ -104,11 +133,13 @@ export function InlineCitation({ sources, open, defaultOpen, onOpenChange, class
     if (!nextOpen) {
       setEntering(null);
       setExiting(null);
+      setAnnouncement("");
     }
     onOpenChange?.(...args);
   };
 
   const context = {
+    announcement,
     currentIndex,
     currentSource,
     entering,
@@ -144,10 +175,13 @@ export function InlineCitation({ sources, open, defaultOpen, onOpenChange, class
   );
 }
 
-export type InlineCitationTriggerProps = InlineCitationStyleProps<ComponentProps<typeof PopoverTrigger>, InlineCitationKnobStyle>;
+export type InlineCitationTriggerProps = InlineCitationStyleProps<ComponentProps<typeof PopoverTrigger>, InlineCitationKnobStyle> &
+  Pick<CitationLabelTemplates, "emptyLabel" | "viewSourcesLabel">;
 
 export function InlineCitationTrigger({
   "aria-label": ariaLabel,
+  emptyLabel,
+  viewSourcesLabel = defaultViewSourcesLabel,
   className,
   children,
   disabled,
@@ -156,8 +190,7 @@ export function InlineCitationTrigger({
 }: InlineCitationTriggerProps) {
   const { sources } = useInlineCitation();
   const firstSource = sources[0];
-  const sourceCount = sources.length;
-  const accessibleLabel = sourceCount === 1 ? "View 1 source" : `View ${sourceCount} sources`;
+  const accessibleLabel = `${citationLabel(sources, emptyLabel)}, ${viewSourcesLabel(sources.length)}`;
 
   return (
     <PopoverTrigger
@@ -173,7 +206,7 @@ export function InlineCitationTrigger({
       {children ?? (
         <>
           <InlineCitationFavicons />
-          <InlineCitationLabel />
+          <InlineCitationLabel emptyLabel={emptyLabel} />
         </>
       )}
     </PopoverTrigger>
@@ -208,24 +241,22 @@ export function InlineCitationFavicons({ limit = 3, className, ...props }: Inlin
   );
 }
 
-export type InlineCitationLabelProps = ComponentProps<"span"> & { style?: CSSProperties & InlineCitationKnobStyle };
+export type InlineCitationLabelProps = ComponentProps<"span"> &
+  Pick<CitationLabelTemplates, "emptyLabel"> & { style?: CSSProperties & InlineCitationKnobStyle };
 
-export function InlineCitationLabel({ className, children, ...props }: InlineCitationLabelProps) {
+export function InlineCitationLabel({ emptyLabel, className, children, ...props }: InlineCitationLabelProps) {
   const { sources } = useInlineCitation();
-  const firstSource = sources[0];
-  const additionalSourceCount = Math.max(0, sources.length - 1);
+  const label = citationLabel(sources, emptyLabel);
   return (
     <span
       data-control-ui="inline-citation"
       data-control-family="inline-citation"
       data-slot="label"
+      title={children === undefined ? label : undefined}
       {...props}
       className={cn("min-w-0 truncate", className)}
     >
-      {children ??
-        (firstSource
-          ? `${sourceHostname(firstSource.href)}${additionalSourceCount > 0 ? ` +${additionalSourceCount}` : ""}`
-          : "No sources")}
+      {children ?? label}
     </span>
   );
 }
@@ -332,20 +363,20 @@ export function InlineCitationNext({ className, children, disabled, onClick, ...
 export type InlineCitationPositionProps = InlineCitationStyleProps<ComponentProps<"span">, InlineCitationKnobStyle>;
 
 export function InlineCitationPosition({ className, children, ...props }: InlineCitationPositionProps) {
-  const { currentIndex, sources } = useInlineCitation();
+  const { announcement, currentIndex, sources } = useInlineCitation();
   return (
-    <span
-      role="status"
-      aria-live="polite"
-      aria-atomic="true"
-      data-control-ui="inline-citation"
-      data-control-family="inline-citation"
-      data-slot="position"
-      {...props}
-      className={cn(className)}
-    >
-      {children ?? `${sources.length === 0 ? 0 : currentIndex + 1}/${sources.length}`}
-    </span>
+    <>
+      <span
+        data-control-ui="inline-citation"
+        data-control-family="inline-citation"
+        data-slot="position"
+        {...props}
+        className={cn(className)}
+      >
+        {children ?? `${sources.length === 0 ? 0 : currentIndex + 1}/${sources.length}`}
+      </span>
+      <LiveStatus message={announcement} />
+    </>
   );
 }
 

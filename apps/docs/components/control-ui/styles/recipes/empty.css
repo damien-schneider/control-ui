@@ -18,7 +18,7 @@
     --cui-empty-content-size: 24rem;
     --cui-empty-media-size: calc(var(--spacing) * 10);
     --cui-empty-media-icon-size: calc(var(--spacing) * 5);
-    --cui-empty-font-size: var(--text-sm);
+    --cui-empty-font-size: var(--text-body);
     --cui-empty-title-font-weight: var(--font-weight-medium);
     border: var(--cui-empty-border-width) var(--cui-empty-border-style) var(--cui-empty-border-color);
     border-radius: var(--cui-empty-radius);
@@ -53,7 +53,7 @@
   :where([data-control-family="empty"][data-slot="content"]) {
     gap: var(--cui-empty-content-gap);
     font-size: var(--cui-empty-font-size);
-    line-height: var(--text-sm--line-height);
+    line-height: var(--leading-normal);
     text-wrap: balance;
   }
 
@@ -61,11 +61,12 @@
     font-size: var(--cui-empty-font-size);
     line-height: var(--leading-relaxed);
     color: var(--cui-empty-description-foreground);
+    text-wrap: pretty;
   }
 
   :where([data-control-family="empty"][data-slot="title"]) {
     font-size: var(--cui-empty-font-size);
-    line-height: var(--text-sm--line-height);
+    line-height: var(--leading-normal);
     font-weight: var(--cui-empty-title-font-weight);
     color: var(--cui-empty-foreground);
   }

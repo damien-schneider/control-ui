@@ -1,15 +1,16 @@
 "use client";
 
-import type { ChangeEvent, ComponentProps, CSSProperties, KeyboardEvent } from "react";
+import { Square } from "lucide-react";
+import type { ChangeEvent, ComponentProps, CSSProperties, KeyboardEvent, MouseEvent, ReactNode } from "react";
 import { createContext, useContext } from "react";
 import type { ChatComposerProps } from "@/components/control-ui/hooks/use-chat-composer";
 import { useChatComposer } from "@/components/control-ui/hooks/use-chat-composer";
-import { useKeyboardNavigation } from "@/components/control-ui/hooks/use-keyboard-navigation";
 import type { ChatComposerKnobStyle } from "@/components/control-ui/knob-contracts/chat-composer-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { hasSkinAdornment, skinAdornment } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
+import { Spinner } from "@/components/control-ui/ui/spinner";
 
 type ChatComposerContextValue = ReturnType<typeof useChatComposer>;
 
@@ -76,11 +77,9 @@ export type ChatComposerShellProps = Omit<ComponentProps<"div">, "style"> & { st
 
 export function ChatComposerShell({ className, ...props }: ChatComposerShellProps) {
   const input = useChatComposerContext();
-  const keyboardNavigation = useKeyboardNavigation();
 
   return (
     <div
-      data-keyboard-navigation={keyboardNavigation ? "" : undefined}
       data-control-ui="chat-composer"
       data-control-family="chat-composer"
       data-slot="shell"
@@ -111,7 +110,7 @@ export type ChatComposerTextareaProps = Omit<ComponentProps<"textarea">, "style"
   style?: CSSProperties & ChatComposerKnobStyle;
 };
 
-export function ChatComposerTextarea({ className, rows, disabled, onChange, onKeyDown, ...props }: ChatComposerTextareaProps) {
+export function ChatComposerTextarea({ className, rows, disabled, readOnly, onChange, onKeyDown, ...props }: ChatComposerTextareaProps) {
   const input = useChatComposerContext();
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
@@ -135,9 +134,11 @@ export function ChatComposerTextarea({ className, rows, disabled, onChange, onKe
       onChange={handleChange}
       onKeyDown={handleKeyDown}
       disabled={disabled || input.isDisabled}
+      readOnly={readOnly || input.isLocked}
+      aria-busy={input.isLocked || undefined}
       rows={rows ?? input.rows}
       className={cn(
-        "field-sizing-content min-h-16 max-h-[40dvh] w-full resize-none outline-none px-[var(--padding-x)] py-[var(--padding-y)] disabled:cursor-not-allowed",
+        "field-sizing-content min-h-16 max-h-[40dvh] w-full resize-none px-[var(--padding-x)] py-[var(--padding-y)] disabled:cursor-not-allowed",
         className,
       )}
     />
@@ -178,24 +179,65 @@ export function ChatComposerFooter({ className, ...props }: ChatComposerFooterPr
   return <div data-control-ui="chat-composer" data-control-family="chat-composer" data-slot="footer" className={className} {...props} />;
 }
 
-export type ChatComposerSubmitProps = ComponentProps<typeof Button>;
+export type ChatComposerSubmitProps = ComponentProps<typeof Button> & {
+  /** While the composer is submitting, turns this same button into Stop so focus stays put. */
+  onStop?: () => void;
+  stopLabel?: string;
+  /** Content of an `iconOnly` button in its Stop state; `stopLabel` becomes its name. */
+  stopIcon?: ReactNode;
+};
 
-export function ChatComposerSubmit({ className, disabled, children = "Send", ...props }: ChatComposerSubmitProps) {
+export function ChatComposerSubmit({
+  className,
+  disabled,
+  iconOnly = false,
+  children = "Send",
+  onStop,
+  stopLabel = "Stop response",
+  stopIcon = <Square aria-hidden="true" className="fill-current" />,
+  onClick,
+  "aria-label": ariaLabel,
+  ...props
+}: ChatComposerSubmitProps) {
   const input = useChatComposerContext();
+  const isStop = input.isLocked && onStop !== undefined;
+  const isBusy = input.isLocked && !isStop;
+
+  function handleClick(event: MouseEvent<HTMLButtonElement>) {
+    onClick?.(event);
+    if (isStop && !event.defaultPrevented) onStop();
+  }
+
+  function content() {
+    if (isStop) return iconOnly ? stopIcon : stopLabel;
+    if (!isBusy) return children;
+    if (iconOnly) return <Spinner aria-hidden="true" />;
+    return (
+      <>
+        <Spinner aria-hidden="true" />
+        {children}
+      </>
+    );
+  }
 
   return (
     <Button
       data-control-ui="chat-composer"
       data-slot="submit"
-      type="submit"
+      data-stop={isStop ? "true" : undefined}
+      type={isStop ? "button" : "submit"}
       variant="solid"
       tone="primary"
       size="xs"
-      disabled={disabled || !input.canSubmit}
+      iconOnly={iconOnly}
+      disabled={isStop ? disabled : disabled || !input.canSubmit}
+      aria-busy={isBusy || undefined}
+      aria-label={isStop && iconOnly ? stopLabel : ariaLabel}
+      onClick={handleClick}
       className={className}
       {...props}
     >
-      {children}
+      {content()}
     </Button>
   );
 }

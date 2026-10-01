@@ -97,9 +97,9 @@ describe("dropzone validation", () => {
     );
 
     expect(errors).toEqual([
-      { code: DropzoneErrorCode.FileInvalidType, message: "File type is not accepted." },
-      { code: DropzoneErrorCode.FileTooSmall, message: "File is smaller than the 5 B minimum." },
-      { code: DropzoneErrorCode.FileTooLarge, message: "File is larger than the 3 B limit." },
+      { code: DropzoneErrorCode.FileInvalidType, message: "File type is not accepted. Use .png." },
+      { code: DropzoneErrorCode.FileTooSmall, message: "File is smaller than the 5 B minimum. Choose a larger file." },
+      { code: DropzoneErrorCode.FileTooLarge, message: "File is larger than the 3 B limit. Choose a smaller file." },
       { code: "malware", message: "Custom failure." },
     ]);
   });
@@ -253,7 +253,7 @@ describe("dropzone selection reconciliation", () => {
     expect(result.fileRejections).toEqual([
       {
         file: overflow,
-        errors: [{ code: DropzoneErrorCode.TooManyFiles, message: "Too many files." }],
+        errors: [{ code: DropzoneErrorCode.TooManyFiles, message: "Too many files. Choose up to 2 files." }],
       },
     ]);
   });
@@ -292,7 +292,7 @@ describe("dropzone selection reconciliation", () => {
     expect(result.removedFiles).toEqual([current]);
     expect(result.fileRejections[0]?.errors[0]).toEqual({
       code: DropzoneErrorCode.TooManyFiles,
-      message: "Too many files.",
+      message: "Too many files. Choose up to 1 file.",
     });
   });
 
@@ -311,7 +311,7 @@ describe("dropzone selection reconciliation", () => {
     expect(result.removedFiles).toEqual([]);
     expect(result.fileRejections[0]?.errors[0]).toEqual({
       code: DropzoneErrorCode.FileInvalidType,
-      message: "File type is not accepted.",
+      message: "File type is not accepted. Use .png.",
     });
   });
 });

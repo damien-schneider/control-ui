@@ -60,7 +60,12 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token("--info-text", "color", "derived", "Readable informational text color on base and card surfaces; defaults to --scale-blue-11."),
   token("--border", "color", "core", "Hairline border color (carries --ring-opacity)."),
   token("--input", "color", "core", "Form field border color."),
-  token("--ring", "color", "core", "Focus ring color."),
+  token(
+    "--ring",
+    "color",
+    "core",
+    "Ring palette color; --focus-ring defaults to it, so a skin that softens --ring into a halo must set --focus-ring.",
+  ),
   token(
     "--focus-ring",
     "color",
@@ -68,12 +73,24 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
     "Color of the keyboard focus indicator; defaults to --ring. Must clear 3:1 against every surface it lands on (WCAG 1.4.11).",
   ),
   token("--control-rim", "color", "derived", "Boundary color of a control's own edge; defaults to --border."),
+  token(
+    "--control-boundary",
+    "color",
+    "derived",
+    "Edge of a control that has no other outline (unchecked checkbox, radio, switch track); defaults to --foreground at 55% and must clear 3:1 on --background and --card (WCAG 1.4.11).",
+  ),
+  token(
+    "--image-outline",
+    "color",
+    "derived",
+    "Hairline inside images and media that separates them from any surface; 10% black in light, 10% white in dark.",
+  ),
   token("--control-fill", "color", "derived", "Resting fill shared by fields and surface controls; defaults to --card at 72% alpha."),
   token("--hover-fill", "color", "derived", "Wash a row or control takes on hover; defaults to a 6% tint of --foreground."),
   token("--active-fill", "color", "derived", "Wash a selected or pressed row keeps; defaults to an 8% tint of --foreground."),
   token("--canvas", "color", "core", "The page paper the scene/panels float on — a level BELOW --background."),
 
-  token("--ring-opacity", "color", "derived", "Alpha of the border/ring hairlines; 0 = borderless, defaults to 1."),
+  token("--ring-opacity", "color", "derived", "Alpha of the --border hairline; 0 = borderless, defaults to 1."),
   ...rampSeedTokens,
   ...badgeColorTokens,
 
@@ -135,12 +152,14 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token("--duration-fast", "motion", "core", "Fast tempo for press feedback and small state transitions; frequent hover paint is instant."),
   token("--duration-base", "motion", "core", "Base tempo (menus, indicators)."),
   token("--duration-slow", "motion", "core", "Slow tempo (panel/message entrances)."),
+  token("--duration-loop", "motion", "derived", "Period of one loader turn; essential loaders keep it under reduced motion."),
 
   token("--popover-opacity", "surface", "advanced", "Floating-surface translucency; <1 + blur = frosted glass."),
   token("--backdrop-blur-popover", "surface", "advanced", "Backdrop blur behind floating surfaces."),
   token("--overlay-opacity", "surface", "advanced", "Modal overlay (dialog backdrop) dim strength."),
   token("--backdrop-blur-overlay", "surface", "advanced", "Backdrop blur of the modal overlay."),
   token("--scroll-fade-size", "surface", "advanced", "Edge-fade depth of scrollable surfaces; 0 = hard edges."),
+  token("--disabled-opacity", "surface", "derived", "Opacity of a disabled control; defaults to 0.45."),
 
   token("--popover-padding", "layout", "advanced", "Gap between popup container edge and rows (drives concentric corners)."),
   token("--padding-x", "layout", "advanced", "Horizontal content density of rounded surfaces (bubble, composer)."),
@@ -163,6 +182,14 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
     "Gap between a control edge and its focus indicator; negative draws the indicator inside.",
   ),
   token("--control-rim-width", "layout", "derived", "Thickness of a control's own edge; defaults to 1px, shared across modes."),
+  token("--touch-target", "layout", "derived", "Minimum hit area of a control under a coarse pointer (WCAG 2.5.5); defaults to 44px."),
+  token("--target-min", "layout", "derived", "Minimum hit area of a small control under a fine pointer (WCAG 2.5.8); defaults to 24px."),
+  token(
+    "--text-input-min",
+    "layout",
+    "derived",
+    "Smallest text-input font size under a coarse pointer, so iOS never zooms on focus; defaults to 16px.",
+  ),
 ];
 
 export const THEME_CONTRACT_NAMES: ReadonlySet<string> = new Set(THEME_CONTRACT.map((entry) => entry.name));

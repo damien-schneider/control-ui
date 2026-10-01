@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { type FileExplorerLocation, resolveFileExplorer, searchFileExplorer } from "./file-explorer-data";
+import { type FileExplorerLocation, orderFileExplorerEntries, resolveFileExplorer, searchFileExplorer } from "./file-explorer-data";
 
 const location: FileExplorerLocation = {
   id: "workspace",
@@ -38,5 +38,15 @@ describe("file explorer data", () => {
     expect(results).toHaveLength(1);
     expect(results[0]?.path).toEqual(["src", "components", "button"]);
     expect(results[0]?.parents).toEqual(["src", "components"]);
+  });
+
+  test("orders entries the way grouped columns render them so arrow keys follow the visual order", () => {
+    const ordered = orderFileExplorerEntries([
+      { id: "a", name: "a", kind: "file", group: "Today" },
+      { id: "b", name: "b", kind: "file", group: "Yesterday" },
+      { id: "c", name: "c", kind: "file", group: "Today" },
+    ]);
+
+    expect(ordered.map((entry) => entry.id)).toEqual(["a", "c", "b"]);
   });
 });

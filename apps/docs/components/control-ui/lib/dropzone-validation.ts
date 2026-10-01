@@ -126,21 +126,22 @@ export async function validateDropzoneFile(
   const maxSize = policy?.maxSize ?? DEFAULT_POLICY.maxSize;
 
   if (!isDropzoneFileAccepted(file, policy?.accept)) {
+    const accepted = compileDropzoneAccept(policy?.accept)?.split(",").join(", ");
     errors.push({
       code: DropzoneErrorCode.FileInvalidType,
-      message: "File type is not accepted.",
+      message: accepted ? `File type is not accepted. Use ${accepted}.` : "File type is not accepted.",
     });
   }
   if (file.size < minSize) {
     errors.push({
       code: DropzoneErrorCode.FileTooSmall,
-      message: `File is smaller than the ${formatDropzoneFileSize(minSize)} minimum.`,
+      message: `File is smaller than the ${formatDropzoneFileSize(minSize)} minimum. Choose a larger file.`,
     });
   }
   if (file.size > maxSize) {
     errors.push({
       code: DropzoneErrorCode.FileTooLarge,
-      message: `File is larger than the ${formatDropzoneFileSize(maxSize)} limit.`,
+      message: `File is larger than the ${formatDropzoneFileSize(maxSize)} limit. Choose a smaller file.`,
     });
   }
 
@@ -152,6 +153,37 @@ export async function validateDropzoneFile(
   }
 
   return errors;
+}
+
+type DropzoneSelection = {
+  files: File[];
+  identities: Set<string>;
+  allowDuplicates: boolean;
+  capacity: number;
+};
+
+function createDropzoneSelection(currentValue: readonly File[], policy: DropzonePolicy | undefined): DropzoneSelection {
+  const appended = getDropzoneSelectionMode(policy) === "append" ? currentValue : [];
+  const allowDuplicates = policy?.allowDuplicates ?? false;
+  return {
+    files: [...appended],
+    identities: new Set(allowDuplicates ? [] : appended.map(getDropzoneFileIdentity)),
+    allowDuplicates,
+    capacity: getDropzoneCapacity(policy),
+  };
+}
+
+function getDropzoneSelectionErrors(file: File, identity: string, selection: DropzoneSelection): readonly DropzoneFileError[] {
+  if (!selection.allowDuplicates && selection.identities.has(identity)) {
+    return [{ code: DropzoneErrorCode.FileAlreadySelected, message: `File "${file.name}" is already selected.` }];
+  }
+  if (selection.files.length >= selection.capacity) {
+    const { capacity } = selection;
+    return [
+      { code: DropzoneErrorCode.TooManyFiles, message: `Too many files. Choose up to ${capacity} ${capacity === 1 ? "file" : "files"}.` },
+    ];
+  }
+  return [];
 }
 
 export async function processDropzoneFiles(
@@ -167,11 +199,7 @@ export async function processDropzoneFiles(
   const acceptedFiles: File[] = [];
   const fileRejections: DropzoneFileRejection[] = [];
   const selectionMode = getDropzoneSelectionMode(policy);
-  const capacity = getDropzoneCapacity(policy);
-  const selectedFiles = selectionMode === "append" ? [...currentValue] : [];
-  const selectedIdentities = new Set(
-    policy?.allowDuplicates ? [] : (selectionMode === "append" ? currentValue : []).map(getDropzoneFileIdentity),
-  );
+  const selection = createDropzoneSelection(currentValue, policy);
 
   for (const { file, errors } of validatedFiles) {
     if (errors.length > 0) {
@@ -180,30 +208,15 @@ export async function processDropzoneFiles(
     }
 
     const identity = getDropzoneFileIdentity(file);
-    if (!policy?.allowDuplicates && selectedIdentities.has(identity)) {
-      fileRejections.push({
-        file,
-        errors: [
-          {
-            code: DropzoneErrorCode.FileAlreadySelected,
-            message: `File "${file.name}" is already selected.`,
-          },
-        ],
-      });
-      continue;
-    }
-
-    if (selectedFiles.length >= capacity) {
-      fileRejections.push({
-        file,
-        errors: [{ code: DropzoneErrorCode.TooManyFiles, message: "Too many files." }],
-      });
+    const selectionErrors = getDropzoneSelectionErrors(file, identity, selection);
+    if (selectionErrors.length > 0) {
+      fileRejections.push({ file, errors: selectionErrors });
       continue;
     }
 
     acceptedFiles.push(file);
-    selectedFiles.push(file);
-    selectedIdentities.add(identity);
+    selection.files.push(file);
+    selection.identities.add(identity);
   }
 
   if (selectionMode === "replace" && acceptedFiles.length === 0) {
@@ -218,8 +231,8 @@ export async function processDropzoneFiles(
   return {
     acceptedFiles,
     fileRejections,
-    value: selectedFiles,
-    removedFiles: selectionMode === "replace" ? getRemovedFiles(currentValue, selectedFiles) : [],
+    value: selection.files,
+    removedFiles: selectionMode === "replace" ? getRemovedFiles(currentValue, selection.files) : [],
   };
 }
 

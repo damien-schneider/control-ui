@@ -1,11 +1,10 @@
 import { preview, sourceFile } from "./shared";
 
 const surfaceVariantsFile = sourceFile("Surface variants", "src/registry/sources/control-ui/surface-variants.ts", "surface-variants");
-const buttonRecipeFile = sourceFile(
-  "Button recipe — paint + @property knobs",
-  "src/registry/sources/control-ui/recipes/button.css",
-  "recipe-css",
-);
+const buttonRecipeFiles = [
+  sourceFile("Button recipe — paint + @property knobs", "src/registry/sources/control-ui/recipes/button.css", "recipe-css"),
+  sourceFile("Button recipe — interaction states", "src/registry/sources/control-ui/recipes/button-states.css", "recipe-css"),
+] as const;
 const fieldRecipeFiles = [
   sourceFile("Field recipe — controls + @property knobs", "src/registry/sources/control-ui/recipes/field.css", "recipe-css"),
   sourceFile("Field recipe — descendants", "src/registry/sources/control-ui/recipes/field-parts.css", "recipe-css"),
@@ -107,6 +106,16 @@ const accordionRecipeFile = sourceFile(
   "recipe-css",
 );
 const kbdRecipeFile = sourceFile("Kbd recipe — paint + @property knobs", "src/registry/sources/control-ui/recipes/kbd.css", "recipe-css");
+const breadcrumbRecipeFile = sourceFile(
+  "Breadcrumb recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/breadcrumb.css",
+  "recipe-css",
+);
+const separatorRecipeFile = sourceFile(
+  "Separator recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/separator.css",
+  "recipe-css",
+);
 const paginationRecipeFile = sourceFile(
   "Pagination recipe — paint + @property knobs",
   "src/registry/sources/control-ui/recipes/pagination.css",
@@ -232,7 +241,7 @@ export const primitiveEntries = [
         example: sourceFile("Button preview", "src/registry/examples/control-ui/primitives/button.tsx", "example"),
         source: sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "component"),
         supportFiles: [
-          buttonRecipeFile,
+          ...buttonRecipeFiles,
           sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants"),
         ],
         registryKind: "button",
@@ -344,6 +353,7 @@ export const primitiveEntries = [
           sourceFile("Mobile hook", "src/registry/hooks/use-mobile.ts", "hook"),
           sourceFile("Sheet slot", "src/registry/sources/control-ui/ui/sheet.tsx", "skin-control"),
           sidebarRecipeFile,
+          sourceFile("Sidebar parts recipe", "src/registry/sources/control-ui/recipes/sidebar-parts.css", "recipe-css"),
           sourceFile("Sidebar menu recipe", "src/registry/sources/control-ui/recipes/sidebar-menu.css", "recipe-css"),
         ],
 
@@ -671,7 +681,7 @@ export const primitiveEntries = [
         source: sourceFile("Base UI Dropdown Menu slot", "src/registry/sources/control-ui/ui/dropdown-menu.tsx", "component"),
         supportFiles: [
           sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants"),
-          buttonRecipeFile,
+          ...buttonRecipeFiles,
           ...popupRecipeFiles,
         ],
         registryKind: "dropdown-menu",
@@ -713,7 +723,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/toggle.tsx",
         example: sourceFile("Toggle preview", "src/registry/examples/control-ui/primitives/toggle.tsx", "example"),
         source: sourceFile("Base UI Toggle slot", "src/registry/sources/control-ui/ui/toggle.tsx", "component"),
-        supportFiles: [buttonRecipeFile],
+        supportFiles: [...buttonRecipeFiles],
         registryKind: "toggle",
       },
     },
@@ -1243,7 +1253,7 @@ export const primitiveEntries = [
         source: sourceFile("Base UI Menubar slot", "src/registry/sources/control-ui/ui/menubar.tsx", "component"),
         supportFiles: [
           sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants"),
-          buttonRecipeFile,
+          ...buttonRecipeFiles,
           ...popupRecipeFiles,
         ],
         registryKind: "menubar",
@@ -1267,7 +1277,7 @@ export const primitiveEntries = [
         source: sourceFile("Base UI Navigation Menu slot", "src/registry/sources/control-ui/ui/navigation-menu.tsx", "component"),
         supportFiles: [
           sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants"),
-          buttonRecipeFile,
+          ...buttonRecipeFiles,
           ...popupRecipeFiles,
         ],
         registryKind: "navigation-menu",
@@ -1291,10 +1301,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/field.tsx",
         example: sourceFile("Field preview", "src/registry/examples/control-ui/primitives/field.tsx", "example"),
         source: sourceFile("Base UI Field slot", "src/registry/sources/control-ui/ui/field.tsx", "component"),
-        supportFiles: [
-          sourceFile("Separator slot", "src/registry/sources/control-ui/ui/separator.tsx", "skin-control"),
-          ...fieldRecipeFiles,
-        ],
+        supportFiles: [...fieldRecipeFiles],
         registryKind: "field",
       },
     },
@@ -1582,7 +1589,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/item.tsx",
         example: sourceFile("Item preview", "src/registry/examples/control-ui/primitives/item.tsx", "example"),
         source: sourceFile("Item slot", "src/registry/sources/control-ui/ui/item.tsx", "component"),
-        supportFiles: [sourceFile("Separator slot", "src/registry/sources/control-ui/ui/separator.tsx", "skin-control"), itemRecipeFile],
+        supportFiles: [itemRecipeFile],
 
         registryKind: "item",
       },
@@ -1609,6 +1616,64 @@ export const primitiveEntries = [
     },
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/primitives/pagination").then((mod) => ({ default: mod.PrimitivePaginationExample })),
+    ),
+  },
+  {
+    id: "breadcrumb",
+    category: "navigation",
+    kind: "Primitive",
+    name: "Breadcrumb",
+    summary: "Location trail with links, the current page, and collapsed levels.",
+    shadcnDocsUrl: "https://ui.shadcn.com/docs/components/breadcrumb",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/breadcrumb.tsx",
+        example: sourceFile("Breadcrumb preview", "src/registry/examples/control-ui/primitives/breadcrumb.tsx", "example"),
+        source: sourceFile("Breadcrumb slot", "src/registry/sources/control-ui/ui/breadcrumb.tsx", "component"),
+        supportFiles: [breadcrumbRecipeFile],
+        registryKind: "breadcrumb",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/breadcrumb").then((mod) => ({ default: mod.PrimitiveBreadcrumbExample })),
+    ),
+  },
+  {
+    id: "separator",
+    category: "display",
+    kind: "Primitive",
+    name: "Separator",
+    summary: "Horizontal or vertical hairline divider.",
+    shadcnDocsUrl: "https://ui.shadcn.com/docs/components/separator",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/separator.tsx",
+        example: sourceFile("Separator preview", "src/registry/examples/control-ui/primitives/separator.tsx", "example"),
+        source: sourceFile("Base UI Separator slot", "src/registry/sources/control-ui/ui/separator.tsx", "component"),
+        supportFiles: [separatorRecipeFile],
+        registryKind: "separator",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/separator").then((mod) => ({ default: mod.PrimitiveSeparatorExample })),
+    ),
+  },
+  {
+    id: "live-status",
+    category: "feedback",
+    kind: "Primitive",
+    name: "Live status",
+    summary: "Always-mounted polite status region that announces changes to assistive technology.",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/live-status.tsx",
+        example: sourceFile("Live status preview", "src/registry/examples/control-ui/primitives/live-status.tsx", "example"),
+        source: sourceFile("Live status slot", "src/registry/sources/control-ui/ui/live-status.tsx", "component"),
+        registryKind: "live-status",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/live-status").then((mod) => ({ default: mod.PrimitiveLiveStatusExample })),
     ),
   },
   {

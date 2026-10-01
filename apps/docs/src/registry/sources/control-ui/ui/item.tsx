@@ -25,7 +25,10 @@ export type ItemFooterProps = Omit<ComponentProps<"div">, "style"> & { style?: C
 
 export type ItemMediaProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ItemKnobStyle };
 
-export type ItemTitleProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ItemKnobStyle };
+export type ItemTitleProps = Omit<ComponentProps<"div">, "style"> & {
+  render?: RenderProp<ComponentProps<"div">>;
+  style?: CSSProperties & ItemKnobStyle;
+};
 
 export type ItemGroupProps = ComponentProps<"div"> & { style?: CSSProperties & ItemKnobStyle };
 
@@ -89,16 +92,18 @@ export function ItemContent({ className, ...props }: ComponentProps<"div"> & { s
   );
 }
 
-export function ItemTitle({ className, ...props }: ItemTitleProps) {
-  return (
-    <div
-      data-control-ui="item"
-      data-control-family="item"
-      data-slot="title"
-      className={cn("flex w-fit items-center", className)}
-      {...props}
-    />
-  );
+export function ItemTitle({ render, className, ...props }: ItemTitleProps) {
+  return useRender({
+    defaultTagName: "div",
+    render,
+    props: {
+      ...props,
+      "data-control-ui": "item",
+      "data-control-family": "item",
+      "data-slot": "title",
+      className: cn("flex w-fit items-center", className),
+    },
+  });
 }
 
 export function ItemDescription({ className, ...props }: ItemDescriptionProps) {

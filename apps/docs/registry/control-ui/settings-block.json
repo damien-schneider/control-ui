@@ -12,7 +12,10 @@
     "core",
     "empty",
     "field",
+    "input",
     "input-group",
+    "live-status",
+    "motion",
     "scroll-area",
     "sidebar"
   ],

@@ -9,7 +9,7 @@
       calc(var(--cui-inline-attachment-padding) + var(--_inline-attachment-content-line-height) / 2 + var(--spacing))
     );
     --cui-inline-attachment-ring-color: var(--border);
-    --cui-inline-attachment-image-outline-color: oklch(from var(--foreground) l c h / 0.1);
+    --cui-inline-attachment-image-outline-color: var(--image-outline);
     --cui-inline-attachment-shadow: var(--shadow-sm);
     --cui-inline-attachment-content-background: oklch(from var(--background) l c h / 0.85);
     --cui-inline-attachment-content-foreground: var(--foreground);
@@ -26,7 +26,7 @@
     box-shadow:
       inset 0 0 0 var(--control-rim-width) var(--cui-inline-attachment-ring-color),
       var(--cui-inline-attachment-shadow);
-    text-align: left;
+    text-align: start;
     transition-property: box-shadow;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
@@ -45,7 +45,7 @@
         var(--cui-inline-attachment-hover-shadow);
     }
 
-    :where([data-control-family="inline-attachment"][data-slot="root"]:disabled:hover) {
+    :where([data-control-family="inline-attachment"][data-slot="root"]:is(:disabled, [aria-disabled="true"]):hover) {
       box-shadow:
         inset 0 0 0 var(--control-rim-width) var(--cui-inline-attachment-ring-color),
         var(--cui-inline-attachment-shadow);

@@ -22,9 +22,11 @@ describe("attachment upload progress", () => {
 
   test("completion and failure clear the veil even when the host retains its last progress value", () => {
     for (const status of ["uploaded", "error"] as const) {
-      const html = renderToStaticMarkup(<ChatComposerAttachment name="report.pdf" status={status} progress={64} />);
+      const html = renderToStaticMarkup(
+        <ChatComposerAttachment name="report.pdf" status={status} progress={64} errorLabel="Retry the upload" />,
+      );
       expect(html).not.toContain('role="progressbar"');
-      if (status === "error") expect(html).toContain("Upload failed");
+      expect(html.includes("Retry the upload")).toBe(status === "error");
     }
   });
 });

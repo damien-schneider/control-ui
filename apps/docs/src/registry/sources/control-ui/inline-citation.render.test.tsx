@@ -22,10 +22,11 @@ const sources = [
 ];
 
 describe("InlineCitation", () => {
-  test("renders a compact multi-source trigger with an accessible count", () => {
+  test("the trigger's accessible name starts with its visible label", () => {
     const html = renderToStaticMarkup(<InlineCitation sources={sources} />);
 
-    expect(html).toContain('aria-label="View 2 sources"');
+    const name = html.match(/aria-label="([^"]+)"/)?.[1] ?? "";
+    expect(name.startsWith("example.com +1")).toBe(true);
     expect(html).toContain("example.com +1");
     expect(html.match(/data-slot="favicon"/g)).toHaveLength(2);
   });
@@ -63,7 +64,7 @@ describe("InlineCitation", () => {
   test("disables the disclosure trigger when no sources are available", () => {
     const html = renderToStaticMarkup(<InlineCitation sources={[]} />);
 
-    expect(html).toContain('aria-label="View 0 sources"');
+    expect(html.match(/aria-label="([^"]+)"/)?.[1]?.startsWith("No sources")).toBe(true);
     expect(html).toContain("disabled");
     expect(html).toContain("No sources");
   });

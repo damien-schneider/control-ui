@@ -9,7 +9,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export function OpenInAgent({ name, pathname }: { name: string; pathname: string }) {
   const [copyError, setCopyError] = useState<string | null>(null);
-  const { isCopied, handleCopy } = useCopyToClipboard({
+  const { status, handleCopy } = useCopyToClipboard({
     text: buildPagePrompt({ origin: siteConfig.url.origin, name, pathname }),
     onCopyError: () => setCopyError("The prompt could not be copied. Check clipboard permissions and try again."),
   });
@@ -25,7 +25,7 @@ export function OpenInAgent({ name, pathname }: { name: string; pathname: string
           void handleCopy();
         }}
       >
-        {isCopied ? <CheckCircle2Icon aria-hidden className="size-3.5" /> : <CopyIcon aria-hidden className="size-3.5" />}
+        {status === "copied" ? <CheckCircle2Icon aria-hidden className="size-3.5" /> : <CopyIcon aria-hidden className="size-3.5" />}
         <span className="grid">
           <span aria-hidden className="invisible col-start-1 row-start-1">
             Open in your agent
@@ -34,7 +34,7 @@ export function OpenInAgent({ name, pathname }: { name: string; pathname: string
             Prompt copied
           </span>
           <span aria-live="polite" className="col-start-1 row-start-1">
-            {isCopied ? "Prompt copied" : "Open in your agent"}
+            {status === "copied" ? "Prompt copied" : "Open in your agent"}
           </span>
         </span>
       </Button>

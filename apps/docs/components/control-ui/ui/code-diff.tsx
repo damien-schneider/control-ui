@@ -3,6 +3,7 @@
 import { useVirtualizer } from "@tanstack/react-virtual";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import type { CodeDiffKnobStyle } from "@/components/control-ui/knob-contracts/code-diff-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { type CodeTokenLines, highlightToTokens, mergeCodeTokenLineWithEmphasis } from "@/components/control-ui/lib/code-tokens";
@@ -13,7 +14,7 @@ import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
 export type DiffStyle = "unified" | "split";
 
-export type DiffIndicators = "classic" | "bars" | "none";
+export type DiffIndicators = "classic" | "bars";
 
 export type DiffLineKind = "word" | "char" | "none";
 
@@ -131,11 +132,15 @@ function expandedContext(file: DiffFile, gapIndex: number): DiffLine[] {
 
 type DiffHunk = DiffFile["hunks"][number];
 
+function expandedRowId(gapIndex: number, line: DiffLine): string {
+  return `exp-${gapIndex}-${line.oldNo ?? line.newNo ?? 0}`;
+}
+
 function gapRows(file: DiffFile, hunk: DiffHunk, gapIndex: number, diffStyle: DiffStyle, expanded: ReadonlySet<number>): VisualRow[] {
   const hasGap = gapIndex > 0 || hunk.collapsedBefore > 0;
   if (!hasGap) return [];
   if (expanded.has(gapIndex) && !file.isPartial) {
-    return expandedContext(file, gapIndex).map((line) => rowForLine(diffStyle, line, `exp-${gapIndex}-${line.oldNo ?? line.newNo ?? 0}`));
+    return expandedContext(file, gapIndex).map((line) => rowForLine(diffStyle, line, expandedRowId(gapIndex, line)));
   }
 
   const label = hunk.header ?? `@@ -${hunk.oldStart},${hunk.oldCount} +${hunk.newStart},${hunk.newCount} @@`;
@@ -241,8 +246,7 @@ function Gutter({ children, type }: { children: ReactNode; type: DiffLine["type"
   );
 }
 
-function Marker({ type, indicators }: { type: DiffLine["type"]; indicators: DiffIndicators }) {
-  if (indicators !== "classic") return null;
+function Marker({ type }: { type: DiffLine["type"] }) {
   return (
     <span
       data-control-ui="code-diff"
@@ -280,7 +284,7 @@ function UnifiedRow({
     >
       <Gutter type={line.type}>{line.oldNo ?? ""}</Gutter>
       <Gutter type={line.type}>{line.newNo ?? ""}</Gutter>
-      <Marker type={line.type} indicators={indicators} />
+      <Marker type={line.type} />
       <DiffCode line={line} tokens={tokens} overflow={overflow} />
     </div>
   );
@@ -322,7 +326,7 @@ function SplitHalf({
       className="flex min-w-0 flex-1"
     >
       <Gutter type={line.type}>{side === "left" ? (line.oldNo ?? "") : (line.newNo ?? "")}</Gutter>
-      <Marker type={line.type} indicators={indicators} />
+      <Marker type={line.type} />
       <DiffCode line={line} tokens={tokens} overflow={overflow} />
     </div>
   );
@@ -335,11 +339,14 @@ function fileTitle(file: DiffFile): string {
 function DiffStats({ additions, deletions }: { additions: number; deletions: number }) {
   return (
     <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="stat" className="flex items-center">
-      <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="stat-additions">
+      <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="stat-additions" aria-hidden="true">
         +{additions}
       </span>
-      <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="stat-deletions">
+      <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="stat-deletions" aria-hidden="true">
         −{deletions}
+      </span>
+      <span className="sr-only">
+        {additions} {additions === 1 ? "addition" : "additions"}, {deletions} {deletions === 1 ? "deletion" : "deletions"}
       </span>
     </span>
   );
@@ -398,10 +405,12 @@ function CodeDiffFileSection({
   showFileHeader: boolean;
 }) {
   const [expanded, setExpanded] = useState<ReadonlySet<number>>(() => new Set());
+  const [revealedRowId, setRevealedRowId] = useState<string | null>(null);
   const texts = useMemo(() => sideTexts(file), [file]);
   const tokens = useSideTokens(texts.old, texts.new, lang, Boolean(lang));
   const rows = useMemo(() => buildRows(file, diffStyle, expanded), [file, diffStyle, expanded]);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const revealedRowRef = useRef<HTMLDivElement>(null);
   const shouldVirtualize = rows.length > VIRTUALIZE_THRESHOLD;
   // react-doctor-disable-next-line react-hooks-js/incompatible-library
   const virtualizer = useVirtualizer({
@@ -413,7 +422,22 @@ function CodeDiffFileSection({
   });
 
   function expandGap(gapIndex: number) {
-    setExpanded((current) => new Set(current).add(gapIndex));
+    const firstLine = expandedContext(file, gapIndex)[0];
+    flushSync(() => {
+      setExpanded((current) => new Set(current).add(gapIndex));
+      setRevealedRowId(firstLine ? expandedRowId(gapIndex, firstLine) : null);
+    });
+    revealedRowRef.current?.focus();
+  }
+
+  function rowFrameProps(id: string) {
+    if (id !== revealedRowId) return {};
+    return { tabIndex: -1, "data-control-ui": "code-diff", "data-control-family": "code-diff", "data-slot": "revealed-row" };
+  }
+
+  function measureRevealedRow(node: HTMLDivElement | null) {
+    revealedRowRef.current = node;
+    virtualizer.measureElement(node);
   }
 
   const gridClassName = overflow === "scroll" ? "w-max min-w-full" : "w-full";
@@ -438,7 +462,13 @@ function CodeDiffFileSection({
           ) : (
             <span aria-hidden="true">⋯</span>
           )}
-          <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="expander-label" className="truncate">
+          <span
+            data-control-ui="code-diff"
+            data-control-family="code-diff"
+            data-slot="expander-label"
+            title={row.label}
+            className="truncate"
+          >
             {row.label}
           </span>
         </div>
@@ -476,7 +506,13 @@ function CodeDiffFileSection({
           data-slot="file-header"
           className="flex items-center justify-between"
         >
-          <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="file-title" className="min-w-0 truncate">
+          <span
+            data-control-ui="code-diff"
+            data-control-family="code-diff"
+            data-slot="file-title"
+            title={fileTitle(file)}
+            className="min-w-0 truncate"
+          >
             {fileTitle(file)}
           </span>
           <DiffStats additions={file.additions} deletions={file.deletions} />
@@ -487,7 +523,7 @@ function CodeDiffFileSection({
       </pre>
       <ScrollArea
         maxHeight={maxHeight}
-        viewportClassName={undefined}
+        aria-label={fileTitle(file)}
         viewportProps={{
           "data-control-ui": "code-diff",
           "data-control-family": "code-diff",
@@ -503,8 +539,9 @@ function CodeDiffFileSection({
               return (
                 <div
                   key={row.id}
-                  ref={virtualizer.measureElement}
+                  ref={row.id === revealedRowId ? measureRevealedRow : virtualizer.measureElement}
                   data-index={item.index}
+                  {...rowFrameProps(row.id)}
                   style={{ position: "absolute", top: 0, left: 0, width: "100%", transform: `translateY(${item.start}px)` }}
                 >
                   {renderRow(row)}
@@ -515,7 +552,9 @@ function CodeDiffFileSection({
         ) : (
           <div className={gridClassName}>
             {rows.map((row) => (
-              <div key={row.id}>{renderRow(row)}</div>
+              <div key={row.id} ref={row.id === revealedRowId ? revealedRowRef : undefined} {...rowFrameProps(row.id)}>
+                {renderRow(row)}
+              </div>
             ))}
           </div>
         )}
@@ -549,6 +588,7 @@ export function CodeDiff({
   const deletions = files.reduce((total, file) => total + file.deletions, 0);
   const copyValue = patch ?? newText ?? "";
   const firstFile = files[0];
+  const title = files.length === 1 && firstFile ? fileTitle(firstFile) : `${files.length} files`;
 
   return (
     <figure
@@ -556,6 +596,7 @@ export function CodeDiff({
       data-control-family="code-diff"
       data-slot="root"
       data-surface="panel"
+      dir="ltr"
       data-diff-style={diffStyle}
       data-file-count={files.length}
       data-header={header ? "true" : undefined}
@@ -570,8 +611,8 @@ export function CodeDiff({
           data-slot="header"
           className="flex items-center justify-between"
         >
-          <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="title" className="min-w-0 truncate">
-            {files.length === 1 && firstFile ? fileTitle(firstFile) : `${files.length} files`}
+          <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="title" title={title} className="min-w-0 truncate">
+            {title}
           </span>
           <div data-control-ui="code-diff" data-control-family="code-diff" data-slot="actions" className="flex shrink-0 items-center">
             <DiffStats additions={additions} deletions={deletions} />

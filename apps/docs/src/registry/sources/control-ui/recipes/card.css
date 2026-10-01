@@ -47,7 +47,7 @@
 
   :where([data-control-family="card"][data-slot="title"]) {
     font-weight: var(--font-weight-semibold);
-    line-height: 1;
+    line-height: var(--leading-tight);
     text-wrap: balance;
   }
 

@@ -7,6 +7,7 @@ import type { ActivityKnobStyle } from "@/components/control-ui/knob-contracts/a
 import { cn } from "@/components/control-ui/lib/cn";
 import type { CollapsibleProps } from "@/components/control-ui/ui/collapsible";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
+import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import type { ScrollAreaProps } from "@/components/control-ui/ui/scroll-area";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
@@ -44,7 +45,6 @@ const activityStatusIcons = {
 } satisfies Record<ActivityState, typeof CircleDashed>;
 
 type ActivityContextValue = {
-  isError: boolean;
   isRunning: boolean;
   kind: ActivityKind;
   name?: string;
@@ -71,13 +71,13 @@ function formatActivityTitle(value: string) {
 
 export function Activity({ kind = "default", name, state = "pending", statusLabel, className, children, ...props }: ActivityProps) {
   const context = {
-    isError: state === "error",
     isRunning: state === "running",
     kind,
     name,
     state,
     statusLabel: statusLabel ?? activityStatusLabels[state],
   };
+  const statusText = typeof context.statusLabel === "string" ? context.statusLabel : activityStatusLabels[state];
   return (
     <ActivityContext.Provider value={context}>
       <Collapsible
@@ -87,22 +87,10 @@ export function Activity({ kind = "default", name, state = "pending", statusLabe
         data-activity-state={state}
         data-activity-kind={kind}
         data-activity-name={name}
-        aria-busy={context.isRunning || undefined}
         className={cn("group/activity min-w-0", className)}
         {...props}
       >
-        <span
-          role={context.isError ? "alert" : "status"}
-          aria-live={context.isError ? "assertive" : "polite"}
-          aria-atomic="true"
-          data-control-ui="activity"
-          data-control-family="activity"
-          data-slot="announcement"
-          data-status={state}
-          className="sr-only"
-        >
-          {context.statusLabel}
-        </span>
+        <LiveStatus message={name ? `${formatActivityTitle(name)}: ${statusText}` : statusText} />
         {children}
       </Collapsible>
     </ActivityContext.Provider>
@@ -166,7 +154,7 @@ export function ActivityIcon({ className, children, ...props }: ActivityIconProp
       {...props}
       className={cn("flex shrink-0 items-center justify-center [&_svg]:size-4", className)}
     >
-      {children ?? <Icon />}
+      {children ?? <Icon data-motion-essential={activity.isRunning ? "" : undefined} />}
     </span>
   );
 }
@@ -175,15 +163,17 @@ export type ActivityTitleProps = ActivityStyleProps<ComponentProps<"span">, Acti
 
 export function ActivityTitle({ className, children, ...props }: ActivityTitleProps) {
   const activity = useActivityContext();
+  const text = children ?? (activity.name ? formatActivityTitle(activity.name) : undefined);
   return (
     <span
       data-control-ui="activity"
       data-control-family="activity"
       data-slot="title"
+      title={typeof text === "string" ? text : undefined}
       {...props}
       className={cn("min-w-0 flex-1 truncate", className)}
     >
-      {children ?? (activity.name ? formatActivityTitle(activity.name) : undefined)}
+      {text}
     </span>
   );
 }

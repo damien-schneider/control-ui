@@ -1,6 +1,7 @@
 @layer components {
   :where([data-control-family="spinner"][data-slot="root"]) {
     --cui-spinner-foreground: var(--muted-foreground);
+    --cui-spinner-animation-duration: var(--duration-loop);
     color: var(--cui-spinner-foreground);
   }
 
@@ -11,7 +12,7 @@
   :where([data-control-family="spinner"][data-slot="indicator"]) {
     inline-size: calc(var(--spacing) * 4);
     block-size: calc(var(--spacing) * 4);
-    animation: spin calc(var(--duration-slow) * 3.333) linear infinite;
+    animation: cui-spin var(--cui-spinner-animation-duration) linear infinite;
   }
 
   :where([data-control-family="spinner"][data-slot="indicator"][data-size="xs"]) {
@@ -34,4 +35,10 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-spinner-animation-duration {
+  syntax: "<time>";
+  inherits: true;
+  initial-value: 0s;
 }

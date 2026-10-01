@@ -1,13 +1,14 @@
 @layer components {
   :where([data-control-family="label"][data-slot="root"]) {
-    --cui-label-root-foreground: var(--muted-foreground);
+    --cui-label-root-foreground: var(--foreground);
     color: var(--cui-label-root-foreground);
-    font-size: var(--text-caption);
+    font-size: var(--text-label);
     font-weight: var(--font-weight-medium);
   }
 
-  :where([data-control-family="field"][data-control="true"]:disabled ~ [data-control-family="label"][data-slot="root"]) {
-    opacity: 70%;
+  :where([data-control-family="label"][data-slot="root"]:has(:disabled, [data-disabled])) {
+    cursor: not-allowed;
+    opacity: var(--disabled-opacity);
   }
 }
 

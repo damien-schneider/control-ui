@@ -27,7 +27,6 @@
 
   :where([data-control-family="resizable"][data-slot="handle"]) {
     --_resizable-gradient-color: var(--cui-resizable-handle-color);
-    outline-style: none;
   }
 
   :where([data-control-family="resizable"][data-slot="handle"][data-axis="vertical"]:not([data-cursor="none"])) {
@@ -77,12 +76,8 @@
     background-color: var(--cui-resizable-handle-active-background);
   }
 
-  :where([data-control-family="resizable"][data-slot="handle"][data-separator="focus"]) {
-    box-shadow: 0 0 0 2px oklch(from var(--foreground) l c h / 0.2);
-  }
-
   :where([data-control-family="resizable"][data-slot="handle"][data-separator="disabled"]) {
-    opacity: 0.5;
+    opacity: var(--disabled-opacity);
   }
 
   :where([data-control-family="resizable"][data-slot="handle"][data-variant="hover"])::before {

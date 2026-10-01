@@ -8,5 +8,6 @@ export const codeKnobs = [
   "--cui-code-title-foreground",
   "--cui-code-text-foreground",
   "--cui-code-line-highlight-background",
+  "--cui-code-header-background",
 ] as const;
 export type CodeKnobStyle = Partial<Record<(typeof codeKnobs)[number], string>>;

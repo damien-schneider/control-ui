@@ -6,6 +6,7 @@ import {
   EmailCaption,
   EmailColumns,
   EmailDetailRow,
+  type EmailDirection,
   EmailDivider,
   EmailHeading,
   EmailLayout,
@@ -20,7 +21,14 @@ import { type EmailBrand, EmailBrandFooter, EmailBrandHeader, type EmailFooterCo
 import { EmailCodeBlock, EmailInlineCode, EmailMarkdown } from "./email-code";
 import type { EmailTheme } from "./theme";
 
-type EmailMessageProps = { theme: EmailTheme; brand: EmailBrand; footer: EmailFooterContent; variant?: EmailVariant; head?: ReactNode };
+type EmailMessageProps = {
+  theme: EmailTheme;
+  brand: EmailBrand;
+  footer: EmailFooterContent;
+  variant?: EmailVariant;
+  head?: ReactNode;
+  dir?: EmailDirection;
+};
 type EmailBrandProps = EmailMessageProps & { browserUrl?: string };
 
 export type EmailHighlight = { title: string; description: string };
@@ -29,6 +37,7 @@ export function InvitationEmail({
   theme,
   variant,
   head,
+  dir,
   brand,
   browserUrl,
   footer,
@@ -40,10 +49,10 @@ export function InvitationEmail({
   workspace: string;
   inviteUrl: string;
 }) {
-  const layout = { theme, variant, head, footer: <EmailBrandFooter footer={footer} />, footerPlacement: footer.placement };
+  const layout = { theme, variant, head, dir, footer: <EmailBrandFooter footer={footer} dir={dir} />, footerPlacement: footer.placement };
   return (
     <EmailLayout {...layout} preview={`${inviter} invited you to ${workspace}`}>
-      <EmailBrandHeader brand={brand} browserUrl={browserUrl} colorScheme={theme.colorScheme} />
+      <EmailBrandHeader dir={dir} brand={brand} browserUrl={browserUrl} colorScheme={theme.colorScheme} />
       <EmailHeading>A place for your next idea.</EmailHeading>
       <EmailText>
         {inviter} invited you to join <strong>{workspace}</strong>. Bring your work, share a little inspiration, and make something
@@ -64,6 +73,7 @@ export function ProductEmail({
   theme,
   variant,
   head,
+  dir,
   brand,
   browserUrl,
   footer,
@@ -81,19 +91,19 @@ export function ProductEmail({
   highlights?: EmailHighlight[];
   actionUrl: string;
 }) {
-  const layout = { theme, variant, head, footer: <EmailBrandFooter footer={footer} />, footerPlacement: footer.placement };
+  const layout = { theme, variant, head, dir, footer: <EmailBrandFooter footer={footer} dir={dir} />, footerPlacement: footer.placement };
   return (
     <EmailLayout {...layout} preview={title}>
-      <EmailBrandHeader brand={brand} browserUrl={browserUrl} colorScheme={theme.colorScheme} align="center" />
-      <EmailCaption align="center" className="mb-6">
-        ANNOUNCEMENT
+      <EmailBrandHeader dir={dir} brand={brand} browserUrl={browserUrl} colorScheme={theme.colorScheme} align="center" />
+      <EmailCaption eyebrow align="center" className="mb-6">
+        Announcement
       </EmailCaption>
       <Img src={imageUrl} alt={imageAlt} width="552" className="mb-6 block h-auto w-full rounded-scene" />
       <EmailHeading size="display" align="center">
         {title}
       </EmailHeading>
       <EmailText align="center">{description}</EmailText>
-      <EmailColumns>
+      <EmailColumns dir={dir}>
         {highlights.map((highlight) => (
           <EmailSection key={highlight.title} align="center">
             <EmailHeading as="h4" align="center" className="mb-1">
@@ -116,6 +126,7 @@ export function EditorialEmail({
   theme,
   variant,
   head,
+  dir,
   brand,
   browserUrl,
   footer,
@@ -131,20 +142,22 @@ export function EditorialEmail({
   imageAlt: string;
   articleUrl: string;
 }) {
-  const layout = { theme, variant, head, footer: <EmailBrandFooter footer={footer} />, footerPlacement: footer.placement };
+  const layout = { theme, variant, head, dir, footer: <EmailBrandFooter footer={footer} dir={dir} />, footerPlacement: footer.placement };
   return (
     <EmailLayout {...layout} preview={title}>
-      <EmailBrandHeader brand={brand} browserUrl={browserUrl} colorScheme={theme.colorScheme} />
-      <EmailCaption className="mb-6">IN GOOD COMPANY</EmailCaption>
+      <EmailBrandHeader dir={dir} brand={brand} browserUrl={browserUrl} colorScheme={theme.colorScheme} />
+      <EmailCaption eyebrow className="mb-6">
+        In good company
+      </EmailCaption>
       <EmailHeading size="heading-2">Fresh perspectives.</EmailHeading>
-      <EmailColumns widths={["36%", "64%"]}>
+      <EmailColumns dir={dir} widths={["36%", "64%"]}>
         <Img src={imageUrl} alt={imageAlt} width="198" className="block h-auto w-full rounded-scene" />
         <EmailSection>
           <EmailHeading as="h2" size="heading-3">
             {title}
           </EmailHeading>
           <EmailText>{description}</EmailText>
-          <EmailLink href={articleUrl}>Read the story</EmailLink>
+          <EmailLink href={articleUrl}>Read “{title}”</EmailLink>
         </EmailSection>
       </EmailColumns>
     </EmailLayout>
@@ -157,6 +170,7 @@ export function NewsletterEmail({
   theme,
   variant,
   head,
+  dir,
   brand,
   browserUrl,
   footer,
@@ -164,12 +178,12 @@ export function NewsletterEmail({
 }: EmailBrandProps & {
   articles: EmailArticle[];
 }) {
-  const layout = { theme, variant, head, footer: <EmailBrandFooter footer={footer} />, footerPlacement: footer.placement };
+  const layout = { theme, variant, head, dir, footer: <EmailBrandFooter footer={footer} dir={dir} />, footerPlacement: footer.placement };
   return (
     <EmailLayout {...layout} preview="A few things worth making time for.">
-      <EmailBrandHeader brand={brand} browserUrl={browserUrl} colorScheme={theme.colorScheme} align="center" />
-      <EmailCaption align="center" className="mb-6">
-        THE WEEKLY EDIT
+      <EmailBrandHeader dir={dir} brand={brand} browserUrl={browserUrl} colorScheme={theme.colorScheme} align="center" />
+      <EmailCaption eyebrow align="center" className="mb-6">
+        The weekly edit
       </EmailCaption>
       <EmailHeading align="center">A little room for inspiration.</EmailHeading>
       <EmailText align="center" tone="muted" className="mb-8">
@@ -180,7 +194,7 @@ export function NewsletterEmail({
           <Img src={article.imageUrl} alt={article.imageAlt} width="552" className="mb-4 block h-auto w-full rounded-scene" />
           <EmailHeading as="h2">{article.title}</EmailHeading>
           <EmailText>{article.description}</EmailText>
-          <EmailLink href={article.href}>Read the story</EmailLink>
+          <EmailLink href={article.href}>Read “{article.title}”</EmailLink>
         </EmailSection>
       ))}
     </EmailLayout>
@@ -191,6 +205,7 @@ export function SummaryEmail({
   theme,
   variant,
   head,
+  dir,
   brand,
   browserUrl,
   footer,
@@ -204,10 +219,10 @@ export function SummaryEmail({
   details: { label: string; value: string }[];
   dashboardUrl: string;
 }) {
-  const layout = { theme, variant, head, footer: <EmailBrandFooter footer={footer} />, footerPlacement: footer.placement };
+  const layout = { theme, variant, head, dir, footer: <EmailBrandFooter footer={footer} dir={dir} />, footerPlacement: footer.placement };
   return (
     <EmailLayout {...layout} preview={`Your team’s progress · ${period}`}>
-      <EmailBrandHeader brand={brand} browserUrl={browserUrl} colorScheme={theme.colorScheme} />
+      <EmailBrandHeader dir={dir} brand={brand} browserUrl={browserUrl} colorScheme={theme.colorScheme} />
       <EmailCaption className="mb-6">{period}</EmailCaption>
       <EmailHeading size="heading-2">Good work adds up.</EmailHeading>
       <EmailText>Here’s what your team moved forward this week.</EmailText>
@@ -226,7 +241,7 @@ export function SummaryEmail({
         </Row>
       </EmailPanel>
       {details.map((detail) => (
-        <EmailDetailRow key={detail.label} label={detail.label} value={detail.value} />
+        <EmailDetailRow dir={dir} key={detail.label} label={detail.label} value={detail.value} />
       ))}
       <EmailButton href={dashboardUrl} className="mt-4">
         View your workspace
@@ -239,6 +254,7 @@ export function VerificationEmail({
   theme,
   variant,
   head,
+  dir,
   brand,
   footer,
   code,
@@ -249,10 +265,10 @@ export function VerificationEmail({
   expiresInMinutes: number;
   supportUrl: string;
 }) {
-  const layout = { theme, variant, head, footer: <EmailBrandFooter footer={footer} />, footerPlacement: footer.placement };
+  const layout = { theme, variant, head, dir, footer: <EmailBrandFooter footer={footer} dir={dir} />, footerPlacement: footer.placement };
   return (
     <EmailLayout {...layout} preview={`${code} is your verification code`}>
-      <EmailBrandHeader brand={brand} colorScheme={theme.colorScheme} align="center" />
+      <EmailBrandHeader dir={dir} brand={brand} colorScheme={theme.colorScheme} align="center" />
       <EmailHeading size="heading-2" align="center">
         Confirm your email address
       </EmailHeading>
@@ -274,6 +290,7 @@ export function ReceiptEmail({
   theme,
   variant,
   head,
+  dir,
   brand,
   footer,
   orderNumber,
@@ -290,21 +307,23 @@ export function ReceiptEmail({
   paymentMethod: string;
   invoiceUrl: string;
 }) {
-  const layout = { theme, variant, head, footer: <EmailBrandFooter footer={footer} />, footerPlacement: footer.placement };
+  const layout = { theme, variant, head, dir, footer: <EmailBrandFooter footer={footer} dir={dir} />, footerPlacement: footer.placement };
   return (
     <EmailLayout {...layout} preview={`Receipt ${orderNumber} · ${total}`}>
-      <EmailBrandHeader brand={brand} colorScheme={theme.colorScheme} />
-      <EmailCaption className="mb-6">RECEIPT</EmailCaption>
+      <EmailBrandHeader dir={dir} brand={brand} colorScheme={theme.colorScheme} />
+      <EmailCaption eyebrow className="mb-6">
+        Receipt
+      </EmailCaption>
       <EmailHeading size="heading-3">Thanks for your order.</EmailHeading>
       <EmailText>
         Order <EmailInlineCode>{orderNumber}</EmailInlineCode> was confirmed on {orderDate}. Keep this receipt for your records.
       </EmailText>
       <EmailPanel>
         {lines.map((line) => (
-          <EmailDetailRow key={line.label} label={line.label} value={line.value} />
+          <EmailDetailRow dir={dir} key={line.label} label={line.label} value={line.value} />
         ))}
         <EmailDivider className="my-3" />
-        <EmailDetailRow label="Total" value={total} emphasis />
+        <EmailDetailRow dir={dir} label="Total" value={total} emphasis />
       </EmailPanel>
       <EmailCaption className="mb-6">Paid with {paymentMethod}.</EmailCaption>
       <EmailButton href={invoiceUrl}>View invoice</EmailButton>
@@ -318,6 +337,7 @@ export function ReleaseNotesEmail({
   theme,
   variant,
   head,
+  dir,
   brand,
   browserUrl,
   footer,
@@ -333,22 +353,24 @@ export function ReleaseNotesEmail({
   migration?: { notes: string; language: PrismLanguage; code: string };
   changelogUrl: string;
 }) {
-  const layout = { theme, variant, head, footer: <EmailBrandFooter footer={footer} />, footerPlacement: footer.placement };
+  const layout = { theme, variant, head, dir, footer: <EmailBrandFooter footer={footer} dir={dir} />, footerPlacement: footer.placement };
   return (
     <EmailLayout {...layout} preview={`What shipped in ${version}`}>
-      <EmailBrandHeader brand={brand} browserUrl={browserUrl} colorScheme={theme.colorScheme} />
-      <EmailCaption className="mb-6">RELEASE {version}</EmailCaption>
+      <EmailBrandHeader dir={dir} brand={brand} browserUrl={browserUrl} colorScheme={theme.colorScheme} />
+      <EmailCaption eyebrow className="mb-6">
+        Release {version}
+      </EmailCaption>
       <EmailHeading size="heading-2">What shipped this month.</EmailHeading>
       <EmailText>{summary}</EmailText>
       {sections.map((section) => (
         <EmailSection key={section.title} className="mb-4">
           <EmailHeading as="h3">{section.title}</EmailHeading>
-          <EmailBulletList items={section.changes} />
+          <EmailBulletList dir={dir} items={section.changes} />
         </EmailSection>
       ))}
       {migration ? (
         <>
-          <EmailMarkdown theme={theme} variant={variant}>
+          <EmailMarkdown theme={theme} variant={variant} dir={dir}>
             {migration.notes}
           </EmailMarkdown>
           <EmailCodeBlock theme={theme} language={migration.language} code={migration.code} />

@@ -5,6 +5,7 @@ import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
 import type { ComponentProps, CSSProperties, Ref } from "react";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { PopupArrowShape } from "@/components/control-ui/popup-parts";
 import { controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 
@@ -107,33 +108,13 @@ export function TooltipContent({
               data-control-family="popup"
               data-popup-kind="tooltip"
               data-slot="arrow"
-              className={cn(
-                "flex",
-                "data-[side=top]:-bottom-[8px]",
-                "data-[side=bottom]:-top-[8px]",
-                "data-[side=left]:-right-[10px]",
-                "data-[side=right]:-left-[10px]",
-              )}
+              className="flex"
             >
-              <TooltipArrowSvg />
+              <PopupArrowShape />
             </TooltipPrimitive.Arrow>
           ) : null}
         </TooltipPrimitive.Popup>
       </TooltipPrimitive.Positioner>
     </TooltipPrimitive.Portal>
-  );
-}
-
-function TooltipArrowSvg() {
-  return (
-    <svg aria-hidden="true" focusable="false" width="12" height="8" viewBox="0 0 12 8" fill="none" overflow="visible">
-      <path
-        data-control-ui="tooltip"
-        data-popup-kind="tooltip"
-        data-control-family="popup"
-        data-slot="arrow-shape"
-        d="M0 7L4 2Q6 0 8 2L12 7L12 8L0 8Z"
-      />
-    </svg>
   );
 }

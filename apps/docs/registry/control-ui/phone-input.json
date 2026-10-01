@@ -12,6 +12,7 @@
   "registryDependencies": [
     "command",
     "core",
+    "input",
     "input-group",
     "popover"
   ],

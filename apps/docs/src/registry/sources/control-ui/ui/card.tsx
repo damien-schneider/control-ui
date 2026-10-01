@@ -1,4 +1,8 @@
+"use client";
+
+import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps, CSSProperties } from "react";
+import type { RenderProp } from "@/components/control-ui/control-props";
 import type { CardKnobStyle } from "@/components/control-ui/knob-contracts/card-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
@@ -8,7 +12,10 @@ export type CardProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProp
 
 export type CardHeaderProps = ComponentProps<"div"> & { style?: CSSProperties & CardKnobStyle };
 
-export type CardTitleProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & CardKnobStyle };
+export type CardTitleProps = Omit<ComponentProps<"div">, "style"> & {
+  render?: RenderProp<ComponentProps<"div">>;
+  style?: CSSProperties & CardKnobStyle;
+};
 
 export type CardDescriptionProps = ComponentProps<"div"> & { style?: CSSProperties & CardKnobStyle };
 
@@ -44,8 +51,12 @@ export function CardHeader({ className, ...props }: CardHeaderProps) {
   );
 }
 
-export function CardTitle({ className, ...props }: CardTitleProps) {
-  return <div data-control-ui="card" data-control-family="card" data-slot="title" className={className} {...props} />;
+export function CardTitle({ render, ...props }: CardTitleProps) {
+  return useRender({
+    defaultTagName: "div",
+    render,
+    props: { ...props, "data-control-ui": "card", "data-control-family": "card", "data-slot": "title" },
+  });
 }
 
 export function CardDescription({ className, ...props }: CardDescriptionProps) {

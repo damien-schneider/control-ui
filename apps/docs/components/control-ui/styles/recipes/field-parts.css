@@ -1,11 +1,14 @@
 @layer components {
   :where([data-control-family="field"][data-field-kind="input-group"][data-slot="addon"]),
-  :where([data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]),
-  :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]),
-  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="decrement"]),
-  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="increment"]),
-  :where([data-control-family="field"][data-field-kind="native-select"][data-slot="icon"]) {
+  :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]) {
     color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]),
+  :where([data-control-family="field"][data-field-kind="number-field"]:is([data-slot="decrement"], [data-slot="increment"])) {
+    background-color: var(--cui-field-affordance-background);
+    box-shadow: var(--cui-field-affordance-shadow);
+    color: var(--cui-field-affordance-foreground);
   }
 
   :where([data-control-family="field"][data-slot="root"][data-control="true"]:is(button, a)) {
@@ -14,20 +17,25 @@
     text-align: start;
   }
 
-  :where([data-control-family="field"][data-slot="root"][data-control="true"]:is(button, a):hover) {
-    color: var(--foreground);
+  @media (hover: hover) {
+    :where(
+        [data-control-family="field"][data-slot="root"][data-control="true"]:is(button, a):hover:not(
+          :disabled,
+          [data-disabled],
+          [aria-disabled="true"]
+        )
+      ) {
+      color: var(--foreground);
+    }
   }
 
   :where([data-control-family="field"][data-field-kind="input-group"][data-slot="input"]),
-  :where([data-control-family="field"][data-field-kind="phone-input"][data-slot="input"]),
   :where([data-control-family="field"][data-field-kind="number-field"][data-slot="input"]) {
-    outline: none;
     background: transparent;
     color: var(--foreground);
   }
 
   :where([data-control-family="field"][data-field-kind="input-group"][data-slot="input"])::placeholder,
-  :where([data-control-family="field"][data-field-kind="phone-input"][data-slot="input"])::placeholder,
   :where([data-control-family="field"][data-field-kind="number-field"][data-slot="input"])::placeholder {
     color: var(--muted-foreground);
   }
@@ -35,14 +43,17 @@
   :where([data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]),
   :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]) {
     border-radius: var(--radius-control);
-    outline: none;
   }
 
   @media (hover: hover) {
-    :where([data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]:hover),
-    :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]:hover),
-    :where([data-control-family="field"][data-field-kind="number-field"][data-slot="decrement"]:hover),
-    :where([data-control-family="field"][data-field-kind="number-field"][data-slot="increment"]:hover) {
+    :where([data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]:hover:not(:disabled, [data-disabled])),
+    :where([data-control-family="field"][data-field-kind="number-field"][data-slot="decrement"]:hover:not(:disabled, [data-disabled])),
+    :where([data-control-family="field"][data-field-kind="number-field"][data-slot="increment"]:hover:not(:disabled, [data-disabled])) {
+      background-color: var(--cui-field-affordance-hover-background);
+      color: var(--foreground);
+    }
+
+    :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]:hover:not(:disabled, [data-disabled])) {
       background: var(--hover-fill);
       color: var(--foreground);
     }
@@ -51,7 +62,7 @@
   :where([data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]:disabled),
   :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]:disabled) {
     cursor: not-allowed;
-    opacity: 0.45;
+    opacity: var(--disabled-opacity);
   }
 
   :where([data-control-family="field"][data-field-kind="combobox"][data-slot="icon"]) {
@@ -75,13 +86,8 @@
     border-inline-start: 1px solid var(--border);
   }
 
-  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="decrement"]),
-  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="increment"]) {
-    outline: none;
-  }
-
-  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="decrement"]:active),
-  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="increment"]:active) {
+  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="decrement"]:active:not(:disabled, [data-disabled])),
+  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="increment"]:active:not(:disabled, [data-disabled])) {
     background: oklch(from var(--foreground) l c h / 0.06);
   }
 
@@ -172,7 +178,7 @@
   }
 
   :where([data-control-family="field"][data-field-kind="field"][data-slot="label"][data-disabled]) {
-    opacity: 0.5;
+    opacity: var(--disabled-opacity);
   }
 
   :where([data-control-family="field"][data-field-kind="field"][data-slot="description"]) {

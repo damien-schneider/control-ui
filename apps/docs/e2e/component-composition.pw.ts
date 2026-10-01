@@ -71,7 +71,7 @@ test("custom combobox filtering matches repository aliases and recovers from no 
   await expect(page.getByRole("option", { name: "Reflet", exact: true })).not.toBeVisible();
   await input.press("Enter");
   await expect(input).toHaveValue("Control UI");
-  await expect(page.getByRole("status")).toHaveText("Selected repository: Control UI");
+  await expect(page.getByRole("status").filter({ hasText: "Selected repository:" })).toHaveText("Selected repository: Control UI");
 });
 
 test("sidebar row actions reveal on focus, keep menus open, and hide during icon collapse", async ({ page }) => {

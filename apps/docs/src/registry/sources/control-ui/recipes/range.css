@@ -8,6 +8,7 @@
     --cui-range-thumb-background: var(--background);
     --cui-range-thumb-border-color: var(--control-rim);
     --cui-range-thumb-shadow: var(--shadow-sm);
+    --cui-range-indeterminate-size: 40%;
     --_range-thumb-border-width: var(--control-rim-width);
   }
 
@@ -94,19 +95,14 @@
     border-radius: var(--cui-range-thumb-radius);
     background: var(--cui-range-thumb-background);
     box-shadow: var(--cui-range-thumb-shadow);
-    outline: none;
     touch-action: pan-y;
     transition-property: scale, box-shadow, height, width;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
   }
 
-  :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"]:focus-visible) {
-    --cui-range-thumb-shadow: var(--shadow-sm);
-  }
-
   @media (hover: hover) and (pointer: fine) {
-    :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"]:hover) {
+    :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"]:hover:not([data-disabled])) {
       scale: 1.1;
     }
   }
@@ -121,13 +117,16 @@
     width: 0.125rem;
   }
 
-  :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-variant="plain"]:where(:hover, [data-dragging])) {
-    --cui-range-thumb-background: oklch(from var(--foreground) l c h / 0.5);
-    scale: 1;
+  @media (hover: hover) {
+    :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-variant="plain"]:hover:not([data-disabled])) {
+      --cui-range-thumb-background: oklch(from var(--foreground) l c h / 0.5);
+      scale: 1;
+    }
   }
 
   :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-variant="plain"][data-dragging]) {
     --cui-range-thumb-background: oklch(from var(--foreground) l c h / 0.7);
+    scale: 1;
     height: 1.25rem;
   }
 
@@ -176,7 +175,7 @@
   }
 
   :where([data-control-family="range"][data-range-kind="slider"][data-slot="root"][data-disabled]) {
-    opacity: 50%;
+    opacity: var(--disabled-opacity);
   }
 
   :where([data-control-family="range"][data-range-kind="slider"][data-orientation="vertical"][data-slot="control"]) {
@@ -222,7 +221,7 @@
   :where([data-control-family="range"][data-range-kind="slider"][data-orientation="vertical"][data-slot="root"] [data-slot="tick"]) {
     inline-size: calc(var(--spacing) * 1.5);
     block-size: 1px;
-    left: 0;
+    inset-inline-start: 0;
   }
 
   :where(
@@ -237,6 +236,23 @@
     transition-property: width;
     transition-duration: var(--duration-slow);
     transition-timing-function: var(--ease-emphasized);
+  }
+
+  :where([data-control-family="range"][data-range-kind="progress"][data-slot="indicator"][data-indeterminate]) {
+    inline-size: var(--cui-range-indeterminate-size);
+    animation: cui-range-indeterminate calc(var(--duration-loop) * 1.5) var(--ease-standard) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-control-family="range"][data-range-kind="progress"][data-slot="indicator"][data-indeterminate]) {
+      animation: none;
+      opacity: 0.6;
+    }
+  }
+
+  :where([data-motion="reduced"] [data-control-family="range"][data-range-kind="progress"][data-slot="indicator"][data-indeterminate]) {
+    animation: none;
+    opacity: 0.6;
   }
 
   :where([data-control-family="range"][data-range-kind="progress"][data-slot="value"]) {
@@ -269,16 +285,36 @@
     color: var(--foreground);
   }
 
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"])::after {
+    content: "";
+    position: absolute;
+    inset: 50%;
+    translate: -50% -50%;
+    inline-size: max(100%, var(--target-min));
+    block-size: max(100%, var(--target-min));
+  }
+
   @media (pointer: coarse) {
-    :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-variant="default"])::after {
-      content: "";
-      position: absolute;
-      inset: 50% 50%;
-      translate: -50% -50%;
-      inline-size: max(100%, 44px);
-      block-size: max(100%, 44px);
+    :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"])::after {
+      inline-size: max(100%, var(--touch-target));
+      block-size: max(100%, var(--touch-target));
     }
   }
+}
+
+@keyframes cui-range-indeterminate {
+  from {
+    margin-inline-start: calc(var(--cui-range-indeterminate-size) * -1);
+  }
+  to {
+    margin-inline-start: 100%;
+  }
+}
+
+@property --cui-range-indeterminate-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 40%;
 }
 
 @property --cui-range-track-radius {

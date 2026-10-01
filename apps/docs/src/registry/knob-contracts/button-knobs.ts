@@ -9,6 +9,7 @@ export const buttonKnobs = [
   "--cui-button-font-size",
   "--cui-button-background",
   "--cui-button-background-image",
+  "--cui-button-hover-background-image",
   "--cui-button-foreground",
   "--cui-button-hover-background",
   "--cui-button-hover-foreground",

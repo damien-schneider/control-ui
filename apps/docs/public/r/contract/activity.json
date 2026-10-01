@@ -75,25 +75,6 @@
           }
         ]
       },
-      "announcement": {
-        "family": "activity",
-        "registryItems": [
-          "activity"
-        ],
-        "states": [
-          {
-            "attribute": "data-status",
-            "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "error",
-              "pending",
-              "running",
-              "success"
-            ]
-          }
-        ]
-      },
       "chevron": {
         "family": "activity",
         "registryItems": [

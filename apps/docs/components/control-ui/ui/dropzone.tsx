@@ -1,7 +1,17 @@
 "use client";
 
 import { CircleAlert, CloudUpload, FileIcon, LoaderCircle, Search, XIcon } from "lucide-react";
-import { type ComponentProps, type CSSProperties, createContext, type ReactNode, useContext, useEffect, useState } from "react";
+import {
+  type ComponentProps,
+  type CSSProperties,
+  createContext,
+  type ReactNode,
+  type Ref,
+  type RefCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import type { DropzoneVisualState } from "@/components/control-ui/hooks/use-dropzone";
 import {
   type DropzoneDropDetails,
@@ -57,7 +67,13 @@ export type DropzoneStatusProps = Omit<ComponentProps<"div">, "children" | "styl
 export type DropzoneRemoveProps = ComponentProps<typeof Button> & { file: File };
 export type DropzoneClearProps = ComponentProps<typeof Button>;
 
+type DropzoneFocusTargets = {
+  register: (kind: "trigger" | "remove", node: HTMLElement) => () => void;
+  focusAfterRemoval: (control: HTMLElement, all: boolean) => void;
+};
+
 const DropzoneContext = createContext<DropzoneContextValue | null>(null);
+const DropzoneFocusContext = createContext<DropzoneFocusTargets | null>(null);
 const fileRenderKeys = new WeakMap<File, string>();
 let nextFileRenderKey = 0;
 
@@ -76,6 +92,51 @@ export function useDropzoneContext() {
   return context;
 }
 
+function createFocusTargets(): DropzoneFocusTargets {
+  const triggers = new Set<HTMLElement>();
+  const removes = new Set<HTMLElement>();
+  const inDocumentOrder = (nodes: Set<HTMLElement>) =>
+    [...nodes]
+      .filter((node) => !node.matches(":disabled"))
+      .sort((a, b) => (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
+  return {
+    register(kind, node) {
+      const nodes = kind === "trigger" ? triggers : removes;
+      nodes.add(node);
+      return () => {
+        nodes.delete(node);
+      };
+    },
+    focusAfterRemoval(control, all) {
+      const siblings = all ? [] : inDocumentOrder(removes);
+      const index = siblings.indexOf(control);
+      const next = siblings[index + 1] ?? siblings[index - 1] ?? inDocumentOrder(triggers)[0];
+      next?.focus();
+    },
+  };
+}
+
+function useFocusTargetRef<T extends HTMLElement>(kind: "trigger" | "remove", ref: Ref<T> | undefined): RefCallback<T> {
+  const focusTargets = useContext(DropzoneFocusContext);
+  return (node: T) => {
+    const unregister = focusTargets?.register(kind, node);
+    let release: (() => void) | undefined;
+    if (typeof ref === "function") {
+      const cleanup = ref(node);
+      release = typeof cleanup === "function" ? cleanup : () => ref(null);
+    } else if (ref) {
+      ref.current = node;
+      release = () => {
+        ref.current = null;
+      };
+    }
+    return () => {
+      unregister?.();
+      release?.();
+    };
+  };
+}
+
 export function Dropzone({
   value,
   defaultValue,
@@ -92,6 +153,7 @@ export function Dropzone({
   ...props
 }: DropzoneProps) {
   const [globalOverlayCount, setGlobalOverlayCount] = useState(0);
+  const [focusTargets] = useState(createFocusTargets);
   const [registerGlobalOverlay] = useState<() => () => void>(() => () => {
     let registered = true;
     setGlobalOverlayCount((count) => count + 1);
@@ -119,17 +181,19 @@ export function Dropzone({
 
   return (
     <DropzoneContext.Provider value={context}>
-      <div
-        {...props}
-        data-control-ui="dropzone"
-        data-control-family="dropzone"
-        data-slot="root"
-        data-disabled={dropzone.disabled ? "true" : undefined}
-        data-empty={empty ? "true" : undefined}
-        className={cn("min-w-0", className)}
-      >
-        {children}
-      </div>
+      <DropzoneFocusContext.Provider value={focusTargets}>
+        <div
+          {...props}
+          data-control-ui="dropzone"
+          data-control-family="dropzone"
+          data-slot="root"
+          data-disabled={dropzone.disabled ? "true" : undefined}
+          data-empty={empty ? "true" : undefined}
+          className={cn("min-w-0", className)}
+        >
+          {children}
+        </div>
+      </DropzoneFocusContext.Provider>
     </DropzoneContext.Provider>
   );
 }
@@ -161,6 +225,7 @@ export function DropzoneInput({ className, "aria-label": ariaLabel, "aria-labell
   return (
     <input
       {...inputProps}
+      tabIndex={-1}
       data-control-ui="dropzone"
       data-control-family="dropzone"
       data-slot="input"
@@ -169,22 +234,30 @@ export function DropzoneInput({ className, "aria-label": ariaLabel, "aria-labell
   );
 }
 
-export function DropzoneTrigger({ className, children, onClick, disabled, ...props }: DropzoneTriggerProps) {
+export function DropzoneTrigger({ className, children, onClick, disabled, ref, ...props }: DropzoneTriggerProps) {
   const context = useDropzoneContext();
-  const triggerDisabled = disabled || context.disabled || context.isProcessing;
+  const triggerRef = useFocusTargetRef("trigger", ref);
+  const triggerDisabled = disabled || context.disabled;
+  const busy = context.isProcessing && !triggerDisabled;
 
   return (
     <button
       {...props}
+      ref={triggerRef}
       type="button"
       disabled={triggerDisabled}
+      aria-disabled={busy ? "true" : undefined}
       data-control-ui="dropzone"
       data-control-family="dropzone"
       data-slot="trigger"
       data-state={context.visualState}
-      data-disabled={triggerDisabled ? "true" : undefined}
-      className={cn("flex w-full cursor-pointer flex-col items-center justify-center disabled:cursor-not-allowed", className)}
+      data-disabled={triggerDisabled || busy ? "true" : undefined}
+      className={cn(
+        "flex w-full cursor-pointer flex-col items-center justify-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed",
+        className,
+      )}
       onClick={(event) => {
+        if (busy) return;
         onClick?.(event);
         if (!event.defaultPrevented) context.open();
       }}
@@ -306,11 +379,14 @@ export function DropzoneStatus({ className, children, role = "status", "aria-liv
   );
 }
 
-export function DropzoneRemove({ file, children, onClick, disabled, ...props }: DropzoneRemoveProps) {
+export function DropzoneRemove({ file, children, onClick, disabled, ref, ...props }: DropzoneRemoveProps) {
   const context = useDropzoneContext();
+  const focusTargets = useContext(DropzoneFocusContext);
+  const removeRef = useFocusTargetRef("remove", ref);
   return (
     <Button
       {...props}
+      ref={removeRef}
       type="button"
       variant={props.variant ?? "quiet"}
       size={props.size ?? "sm"}
@@ -319,7 +395,9 @@ export function DropzoneRemove({ file, children, onClick, disabled, ...props }: 
       disabled={disabled || context.disabled || context.isProcessing}
       onClick={(event) => {
         onClick?.(event);
-        if (!event.defaultPrevented) context.removeFile(file);
+        if (event.defaultPrevented) return;
+        focusTargets?.focusAfterRemoval(event.currentTarget, false);
+        context.removeFile(file);
       }}
     >
       {children ?? <XIcon aria-hidden="true" />}
@@ -329,6 +407,7 @@ export function DropzoneRemove({ file, children, onClick, disabled, ...props }: 
 
 export function DropzoneClear({ children, onClick, disabled, ...props }: DropzoneClearProps) {
   const context = useDropzoneContext();
+  const focusTargets = useContext(DropzoneFocusContext);
   const empty = context.value.length === 0 && context.fileRejections.length === 0;
   return (
     <Button
@@ -339,7 +418,9 @@ export function DropzoneClear({ children, onClick, disabled, ...props }: Dropzon
       disabled={disabled || context.disabled || context.isProcessing || empty}
       onClick={(event) => {
         onClick?.(event);
-        if (!event.defaultPrevented) context.reset();
+        if (event.defaultPrevented) return;
+        focusTargets?.focusAfterRemoval(event.currentTarget, true);
+        context.reset();
       }}
     >
       {children ?? "Clear all"}
@@ -351,7 +432,15 @@ function DropzoneFeedback({ state }: { state: DropzoneVisualState }) {
   let icon: ReactNode = <CloudUpload aria-hidden="true" />;
   let message = "Drop files here or choose files.";
   if (state === "processing") {
-    icon = <LoaderCircle data-control-ui="dropzone" data-control-family="dropzone" data-slot="feedback-spinner" aria-hidden="true" />;
+    icon = (
+      <LoaderCircle
+        data-control-ui="dropzone"
+        data-control-family="dropzone"
+        data-slot="feedback-spinner"
+        data-motion-essential=""
+        aria-hidden="true"
+      />
+    );
     message = "Checking files…";
   } else if (state === "accept") {
     icon = <CloudUpload aria-hidden="true" />;

@@ -7,6 +7,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -60,6 +61,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -113,6 +115,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -157,6 +160,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -175,55 +179,6 @@
           "data-scroll": "inset",
           "data-slot": "root",
           "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "resizable",
-          "data-control-ui": "resizable",
-          "data-slot": "panel-group",
-          "data-surface": "panel",
-          "data-variant": "framed"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
         }
       },
       {
@@ -269,14 +224,6 @@
         "fill": "--cui-resizable-group-background"
       },
       "anatomy": 3,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-resizable-group-background"
-      },
-      "anatomy": 4,
       "rendersText": true,
       "state": false
     }

@@ -1,3 +1,5 @@
+import { prefersReducedMotion } from "@/components/control-ui/lib/motion";
+
 // Two things naive startViewTransition() gets wrong in router-driven app, fixed here: completion stays pending until
 // finishPageViewTransition() so browser snapshots NEW page, and transition started mid-flight skips running one.
 const FINISH_TIMEOUT_MS = 500;
@@ -13,12 +15,6 @@ export function supportsViewTransition() {
   return typeof document !== "undefined" && typeof document.startViewTransition === "function";
 }
 
-export function motionReduced() {
-  return (
-    document.documentElement.getAttribute("data-motion") === "reduced" || window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  );
-}
-
 /** Call once new view is on screen. */
 export function finishPageViewTransition() {
   finishTransition?.();
@@ -26,7 +22,7 @@ export function finishPageViewTransition() {
 }
 
 export function startPageViewTransition(update: () => void, { finishTimeout = FINISH_TIMEOUT_MS }: { finishTimeout?: number } = {}) {
-  if (!supportsViewTransition() || motionReduced()) {
+  if (!supportsViewTransition() || prefersReducedMotion(document.documentElement)) {
     update();
     return;
   }
@@ -84,7 +80,7 @@ export function startPageViewTransition(update: () => void, { finishTimeout = FI
 // morph), and second morph skips first rather than fighting it over overlay. Uniqueness of shared name stays
 // caller's job — two live elements holding one name abort transition outright.
 export function startMorphViewTransition(update: () => void) {
-  if (!supportsViewTransition() || motionReduced()) {
+  if (!supportsViewTransition() || prefersReducedMotion(document.documentElement)) {
     update();
     return;
   }

@@ -32,6 +32,7 @@ export type InfiniteCanvasItemProps = Omit<ComponentProps<"div">, "style"> & {
   x: number;
   y: number;
   onPositionChange?: (position: InfiniteCanvasPoint) => void;
+  movableItemLabel?: string;
   style?: CSSProperties & InfiniteCanvasKnobStyle;
 };
 
@@ -46,6 +47,7 @@ const KEYBOARD_PAN_STEP = 32;
 const GRID_SIZE = 24;
 const WHEEL_ZOOM_SPEED = 0.004;
 const MAX_WHEEL_ZOOM_DELTA = 50;
+const CANVAS_KEY_SHORTCUTS = "ArrowLeft ArrowRight ArrowUp ArrowDown + - 0";
 const NOTCHED_WHEEL_DELTA = 40;
 const KEYBOARD_PAN_DIRECTIONS: Partial<Record<string, { x: number; y: number }>> = {
   ArrowLeft: { x: -1, y: 0 },
@@ -53,6 +55,16 @@ const KEYBOARD_PAN_DIRECTIONS: Partial<Record<string, { x: number; y: number }>>
   ArrowUp: { x: 0, y: -1 },
   ArrowDown: { x: 0, y: 1 },
 };
+
+const KEYBOARD_ZOOM_FACTORS: Partial<Record<string, number>> = {
+  "+": 1.15,
+  "=": 1.15,
+  "-": 1 / 1.15,
+};
+
+function keyboardPanStep(shiftKey: boolean) {
+  return shiftKey ? KEYBOARD_PAN_STEP * 3 : KEYBOARD_PAN_STEP;
+}
 
 type InfiniteCanvasPanSession = {
   pointerId: number;
@@ -129,6 +141,7 @@ export function InfiniteCanvas({
   onWheel,
   onKeyDown,
   "aria-label": ariaLabel = "Infinite canvas",
+  "aria-keyshortcuts": ariaKeyShortcuts,
   ...props
 }: InfiniteCanvasProps) {
   const minScale = Math.max(0.1, minScaleProp);
@@ -243,13 +256,11 @@ export function InfiniteCanvas({
     return () => root.removeEventListener("wheel", listener);
   }, []);
 
-  function moveWithKeyboard(event: ReactKeyboardEvent<HTMLElement>) {
-    onKeyDown?.(event);
-    if (event.defaultPrevented) return;
-    const currentTransform = transformRef.current;
-    const direction = KEYBOARD_PAN_DIRECTIONS[event.key];
+  function applyKeyboardCommand(key: string, shiftKey: boolean) {
+    const direction = KEYBOARD_PAN_DIRECTIONS[key];
     if (direction) {
-      const panStep = event.shiftKey ? KEYBOARD_PAN_STEP * 3 : KEYBOARD_PAN_STEP;
+      const currentTransform = transformRef.current;
+      const panStep = keyboardPanStep(shiftKey);
       commitTransform(
         {
           ...currentTransform,
@@ -258,11 +269,23 @@ export function InfiniteCanvas({
         },
         "keyboard",
       );
-    } else if (event.key === "+" || event.key === "=") zoomBy(1.15, "keyboard");
-    else if (event.key === "-") zoomBy(1 / 1.15, "keyboard");
-    else if (event.key === "0") reset("keyboard");
-    else return;
-    event.preventDefault();
+      return true;
+    }
+    const zoomFactor = KEYBOARD_ZOOM_FACTORS[key];
+    if (zoomFactor) {
+      zoomBy(zoomFactor, "keyboard");
+      return true;
+    }
+    if (key !== "0") return false;
+    reset("keyboard");
+    return true;
+  }
+
+  function moveWithKeyboard(event: ReactKeyboardEvent<HTMLElement>) {
+    onKeyDown?.(event);
+    if (event.defaultPrevented || event.target !== event.currentTarget) return;
+    if (event.ctrlKey || event.metaKey || event.altKey) return;
+    if (applyKeyboardCommand(event.key, event.shiftKey)) event.preventDefault();
   }
 
   const context: InfiniteCanvasContextValue = { transform, minScale, maxScale, reset, zoomBy };
@@ -284,7 +307,7 @@ export function InfiniteCanvas({
         data-easing={easing || undefined}
         aria-label={ariaLabel}
         role="application"
-        aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown + - 0"
+        aria-keyshortcuts={ariaKeyShortcuts ? `${CANVAS_KEY_SHORTCUTS} ${ariaKeyShortcuts}` : CANVAS_KEY_SHORTCUTS}
         tabIndex={0}
         className={cn("relative isolate overflow-hidden overscroll-contain touch-none select-none data-panning:cursor-grabbing", className)}
         style={canvasStyle}
@@ -325,12 +348,14 @@ export function InfiniteCanvasItem({
   x,
   y,
   onPositionChange,
+  movableItemLabel = "Movable item",
   className,
   style,
   onPointerDown,
   onPointerMove,
   onPointerUp,
   onPointerCancel,
+  onKeyDown,
   ...props
 }: InfiniteCanvasItemProps) {
   const { transform } = useInfiniteCanvas();
@@ -376,8 +401,34 @@ export function InfiniteCanvasItem({
     finishDrag(event);
   }
 
+  function moveWithKeyboard(event: ReactKeyboardEvent<HTMLDivElement>) {
+    onKeyDown?.(event);
+    if (event.defaultPrevented || !onPositionChange || event.target !== event.currentTarget) return;
+    if (event.ctrlKey || event.metaKey || event.altKey) return;
+    const direction = KEYBOARD_PAN_DIRECTIONS[event.key];
+    if (!direction) return;
+    event.preventDefault();
+    const step = keyboardPanStep(event.shiftKey) / transform.scale;
+    onPositionChange({ x: x + direction.x * step, y: y + direction.y * step });
+  }
+
+  const interaction = onPositionChange
+    ? {
+        role: "group",
+        "aria-roledescription": movableItemLabel,
+        "aria-keyshortcuts": "ArrowLeft ArrowRight ArrowUp ArrowDown",
+        tabIndex: 0,
+        onPointerDown: beginDrag,
+        onPointerMove: updateDrag,
+        onPointerUp: endDrag,
+        onPointerCancel: cancelDrag,
+        onKeyDown: moveWithKeyboard,
+      }
+    : { onPointerDown, onPointerMove, onPointerUp, onPointerCancel, onKeyDown };
+
   return (
     <div
+      {...interaction}
       {...props}
       data-control-ui="infinite-canvas"
       data-control-family="infinite-canvas"
@@ -385,10 +436,6 @@ export function InfiniteCanvasItem({
       data-dragging={dragging || undefined}
       className={cn("absolute", onPositionChange && "cursor-grab touch-none data-dragging:cursor-grabbing", className)}
       style={{ ...style, left: x, top: y }}
-      onPointerDown={beginDrag}
-      onPointerMove={updateDrag}
-      onPointerUp={endDrag}
-      onPointerCancel={cancelDrag}
     />
   );
 }

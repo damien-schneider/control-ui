@@ -38,7 +38,7 @@
       inset: 50% 50%;
       translate: -50% -50%;
       inline-size: 100%;
-      block-size: max(100%, 44px);
+      block-size: max(100%, var(--touch-target));
     }
   }
 

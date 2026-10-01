@@ -4,7 +4,7 @@ export interface EnvironmentVariableEntry {
 }
 
 export const ENV_FILE_MAX_SIZE = 64 * 1024;
-export const DUPLICATE_ENVIRONMENT_VARIABLE_MESSAGE = "Environment variable keys must be unique";
+export const DUPLICATE_ENVIRONMENT_VARIABLE_MESSAGE = "Rename or remove the duplicate key.";
 
 export class DuplicateEnvironmentVariableKeyError extends Error {
   constructor(public readonly key: string) {
@@ -214,23 +214,23 @@ export async function readEnvFile(
   const maxSize = options.maxSize ?? ENV_FILE_MAX_SIZE;
 
   if (file.size > maxSize) {
-    return { ok: false, error: `File is too large (max ${Math.ceil(maxSize / 1024)} KB).` };
+    return { ok: false, error: `That file is over ${Math.ceil(maxSize / 1024)} KB. Choose a smaller .env file.` };
   }
 
   let text: string;
   try {
     text = await readFileText(file);
   } catch {
-    return { ok: false, error: "Could not read the selected file. Please try again." };
+    return { ok: false, error: "Couldn't read that file. Try selecting it again." };
   }
 
   if (text.includes("\0")) {
-    return { ok: false, error: "File appears to be binary. Please import a plain-text .env file." };
+    return { ok: false, error: "That file isn't plain text. Choose a .env text file." };
   }
 
   const entries = parseEnvFileText(text);
   if (entries.length === 0) {
-    return { ok: false, error: "No valid environment variables found in the file." };
+    return { ok: false, error: "No variables found. Use one KEY=value per line." };
   }
 
   return { ok: true, entries };

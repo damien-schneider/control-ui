@@ -5,6 +5,7 @@ import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { PopupCloseButton } from "@/components/control-ui/popup-parts";
 import { controlEffectsAttribute, skinAdornment } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import type { ButtonProps } from "@/components/control-ui/ui/button";
@@ -20,6 +21,7 @@ export type DialogProps = {
 
 export type DialogContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
   showCloseButton?: boolean;
+  closeLabel?: string;
 };
 
 export function Dialog(props: DialogProps) {
@@ -65,7 +67,7 @@ export function DialogClose({
   );
 }
 
-export function DialogContent({ className, children, showCloseButton = true, ...props }: DialogContentProps) {
+export function DialogContent({ className, children, showCloseButton = true, closeLabel = "Close", ...props }: DialogContentProps) {
   const skin = useSkin();
   return (
     <DialogPrimitive.Portal>
@@ -93,14 +95,7 @@ export function DialogContent({ className, children, showCloseButton = true, ...
       >
         {skinAdornment(skin, "dialog", "titlebar", {})}
         {children}
-        {showCloseButton ? (
-          <DialogClose variant="ghost" size="xs" iconOnly className="absolute">
-            <svg viewBox="0 0 16 16" className="size-4" aria-hidden="true" fill="none">
-              <path d="M4 4 12 12M12 4 4 12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-            </svg>
-            <span className="sr-only">Close</span>
-          </DialogClose>
-        ) : null}
+        {showCloseButton ? <DialogPrimitive.Close render={<PopupCloseButton label={closeLabel} />} /> : null}
       </DialogPrimitive.Popup>
     </DialogPrimitive.Portal>
   );

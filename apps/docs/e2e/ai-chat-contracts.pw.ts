@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY, THEME_STORAGE_KEY } from "../components/theme";
+import { waitForReactHydration } from "./browser-test-helpers";
 
 for (const skin of ["refined", "modern-apple", "none", "cuicui", "xp", "windows-98", "rig", "linear", "liquid-metal"]) {
   for (const appearance of ["light", "dark"]) {
@@ -20,8 +21,8 @@ for (const skin of ["refined", "modern-apple", "none", "cuicui", "xp", "windows-
       const thinking = composer.getByRole("combobox", { name: "Thinking level" });
       await expect(input).toBeVisible();
       await input.click();
-      await expect(input).toHaveCSS("outline-style", "none");
-      await expect(shell).toHaveCSS("outline-style", "none");
+      await expect(input).toHaveCSS("outline-width", "0px");
+      await expect(shell).not.toHaveCSS("outline-style", "none");
       await input.press("Tab");
       await expect(model).toBeFocused();
       await model.press("Shift+Tab");
@@ -40,7 +41,7 @@ for (const skin of ["refined", "modern-apple", "none", "cuicui", "xp", "windows-
       await page.getByRole("option", { name: "High", exact: true }).click();
       await expect(thinking).toContainText("High");
       await input.click();
-      await expect(shell).toHaveCSS("outline-style", "none");
+      await expect(shell).not.toHaveCSS("outline-style", "none");
       await input.fill("Draft the deployment announcement.");
       await input.press("Shift+Enter");
       await input.pressSequentially("Include a rollback plan.");
@@ -92,7 +93,7 @@ test("reasoning reuses Activity and editing reuses Textarea", async ({ page }) =
   );
 });
 
-test("rich composer keeps focus, inherited knobs, and disabled state consistent", async ({ page }) => {
+test("rich composer keeps focus, inherited knobs, and locks read-only while responding", async ({ page }) => {
   await page.goto("/use-cases/chat");
   const preview = page.locator("#preview");
   const composer = preview.locator('[data-control-ui="chat-composer"][data-slot="root"]');
@@ -102,24 +103,26 @@ test("rich composer keeps focus, inherited knobs, and disabled state consistent"
   await composer.evaluate((element) => element.style.setProperty("--cui-chat-composer-input-foreground", "oklch(0.6 0.1 250)"));
   await expect(input).toHaveCSS("color", "oklch(0.6 0.1 250)");
   await input.click();
-  await expect(shell).toHaveCSS("outline-style", "none");
+  await expect(shell).not.toHaveCSS("outline-style", "none");
   await input.press("Tab");
   await page.keyboard.press("Shift+Tab");
   await expect(input).toBeFocused();
   await expect(shell).not.toHaveCSS("outline-style", "none");
   await input.fill("Summarize the note.");
   await input.press("Enter");
-  await expect(input).toHaveAttribute("contenteditable", "false");
-  await expect(input).toHaveAttribute("aria-disabled", "true");
-  await preview.getByRole("button", { name: "Stop", exact: true }).click();
   await expect(input).toHaveAttribute("contenteditable", "true");
-  await expect(input).toHaveAttribute("aria-disabled", "false");
+  await expect(input).toHaveAttribute("aria-readonly", "true");
+  await expect(input).toHaveAttribute("aria-busy", "true");
+  await preview.getByRole("button", { name: "Stop response", exact: true }).click();
+  await expect(input).not.toHaveAttribute("aria-readonly", "true");
+  await expect(input).not.toHaveAttribute("aria-busy", "true");
 });
 
 test("citation is stable and its source preview remains keyboard accessible", async ({ page }) => {
   await page.goto("/components/inline-citation");
   const preview = page.locator("#preview");
-  const citation = preview.getByRole("button", { name: "View 3 sources" });
+  const citation = preview.getByRole("button", { name: "view 3 sources" });
+  await waitForReactHydration(citation);
   await citation.focus();
   await citation.press("Enter");
   await expect(page.getByRole("link", { name: "Popover — shadcn/ui", exact: true })).toBeVisible();

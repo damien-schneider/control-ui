@@ -17,8 +17,13 @@ describe("Context", () => {
     const html = renderToStaticMarkup(<Context segments={segments} maxTokens={200_000} model="GPT-5" />);
 
     expect(html.match(/<button/g)).toHaveLength(1);
-    expect(html).toContain('aria-label="Context window: 100,000 of 200,000 tokens used (50%)"');
+    const button = html.match(/<button[^>]*>/)?.[0] ?? "";
+    expect(button).not.toContain("aria-label=");
     expect(html).toContain("50% context");
+    const describedBy = button.match(/aria-describedby="([^"]+)"/)?.[1];
+    expect(describedBy).toBeDefined();
+    const description = html.match(new RegExp(`id="${describedBy}"[^>]*>([^<]*)<`))?.[1];
+    expect(description).toBe("100,000 of 200,000 tokens used (50%)");
     expect(html).toContain('data-control-ui="context" data-control-family="context" data-slot="root"');
     expect(html).toContain('data-control-ui="context" data-control-family="context" data-slot="trigger"');
     expect(html).toContain('data-control-ui="context" data-control-family="context" data-slot="trigger-indicator"');
@@ -37,7 +42,11 @@ describe("Context", () => {
     );
 
     expect(html).toContain("50% used");
-    expect(html).toContain("100,000 / 200,000 tokens");
+    expect(html).toContain("100,000 of 200,000 tokens");
+    expect(html).toContain('role="meter"');
+    expect(html).toContain('aria-valuenow="100000"');
+    expect(html).toContain('aria-valuemax="200000"');
+    expect(html).toContain('aria-valuetext="100,000 of 200,000 tokens used (50%)"');
     expect(html.match(/data-slot="segment"/g)).toHaveLength(5);
     expect(html.match(/data-slot="legend-item"/g)).toHaveLength(6);
     for (const label of ["System prompt", "Tools", "Messages", "Sources", "Reasoning"]) {
@@ -83,7 +92,8 @@ describe("Context", () => {
 
     expect(html).toContain('data-status="over-limit"');
     expect(html).toContain("120% used");
-    expect(html).toContain("120 / 100 tokens");
+    expect(html).toContain("120 of 100 tokens");
+    expect(html).toContain('aria-valuenow="100"');
     expect(html).toContain('data-slot="limit-marker"');
     expect(html).toContain("20 tokens over limit");
   });

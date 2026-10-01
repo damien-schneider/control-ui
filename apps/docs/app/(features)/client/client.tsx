@@ -27,7 +27,6 @@ import { DocsSearchProvider } from "@/app/(features)/sidebar/search";
 import { DocsSidebarContent } from "@/app/(features)/sidebar/sidebar";
 import { ControlEffectsRuntime } from "@/components/control-ui/extensions/control-effects-root";
 import { cn } from "@/components/control-ui/lib/cn";
-import { ButtonLink } from "@/components/control-ui/ui/button";
 import { PageActions, PageBody, PageHeader, PageLayout, type PageWidth, usePageScroll } from "@/components/control-ui/ui/page-layout";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/control-ui/ui/sidebar";
 import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
@@ -43,8 +42,6 @@ import {
   updateDocsSetupPreference,
   useIsHydrated,
 } from "./setup-preference";
-
-const docsMainId = "docs-main";
 
 type DocsShellViewProps = DocsShellData & {
   children: ReactNode;
@@ -235,14 +232,6 @@ function DocsShellContent({
       minWidth={DOCS_SIDEBAR_MIN_WIDTH}
       maxWidth={DOCS_SIDEBAR_MAX_WIDTH}
     >
-      <ButtonLink
-        href={`#${docsMainId}`}
-        variant="surface"
-        size="sm"
-        className="fixed start-3 top-3 z-(--z-popup) translate-y-[calc(-100%-1rem)] focus-visible:translate-y-0"
-      >
-        Skip to content
-      </ButtonLink>
       <DocsSearchProvider items={searchItems}>
         <DocsSidebarContent
           active={activePage}
@@ -258,17 +247,9 @@ function DocsShellContent({
           skinPages={skinPages}
           searchItems={searchItems}
         />
-        <SidebarInset
-          data-docs-inset=""
-          id={docsMainId}
-          tabIndex={-1}
-          className="min-h-0 lg:peer-data-[state=collapsed]:[&_[data-docs-sidebar-trigger]]:flex"
-        >
+        <SidebarInset data-docs-inset="" className="min-h-0 lg:peer-data-[state=collapsed]:[&_[data-docs-sidebar-trigger]]:flex">
           <div
             data-docs-content=""
-            data-control-ui="sidebar-layout"
-            data-control-family="sidebar-layout"
-            data-slot="content"
             data-surface="panel"
             className={cn("relative flex min-h-0 flex-1 flex-col", !scrollsPage && "overflow-hidden")}
           >

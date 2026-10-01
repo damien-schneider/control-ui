@@ -1,8 +1,8 @@
 "use client";
 
 import { useRender } from "@base-ui/react/use-render";
-import type { ComponentProps, CSSProperties, RefObject } from "react";
-import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+import type { ComponentProps, CSSProperties, MouseEvent, RefObject } from "react";
+import { createContext, useContext, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { SIDEBAR_COOKIE_NAME } from "@/components/control-ui/control-props";
 import { useIsMobile } from "@/components/control-ui/hooks/use-mobile";
 import type { SidebarKnobStyle } from "@/components/control-ui/knob-contracts/sidebar-knobs";
@@ -22,7 +22,10 @@ export type SidebarStyle = CSSProperties &
 const SIDEBAR_WIDTH = "16rem";
 const SIDEBAR_WIDTH_ICON = "3rem";
 const SIDEBAR_KEYBOARD_SHORTCUT = "b";
-const SIDEBAR_MOBILE_BREAKPOINT = 1024;
+const SIDEBAR_MOBILE_BREAKPOINT = "--breakpoint-lg";
+
+export type SidebarLayoutMode = "viewport" | "contained";
+
 type SidebarContextProps = {
   state: "expanded" | "collapsed";
   open: boolean;
@@ -35,6 +38,10 @@ type SidebarContextProps = {
   minWidth: number;
   maxWidth: number;
   setWidth: (width: number) => void;
+  layout: SidebarLayoutMode;
+  keyboardShortcut: string | null;
+  sidebarId: string;
+  contentId: string;
 };
 
 type SidebarElements = {
@@ -42,6 +49,7 @@ type SidebarElements = {
   offcanvasRef: RefObject<HTMLDivElement | null>;
   railRef: RefObject<HTMLElement | null>;
   triggerRef: RefObject<HTMLButtonElement | null>;
+  insetRef: RefObject<HTMLElement | null>;
 };
 
 const SidebarElementsContext = createContext<SidebarElements | null>(null);
@@ -63,7 +71,11 @@ export function useSidebarSurface() {
   return surface;
 }
 
-function focusOutsideCollapsedContent({ offcanvasRef, railRef, triggerRef }: SidebarElements) {
+function focusOutsideCollapsedContent({
+  offcanvasRef,
+  railRef,
+  triggerRef,
+}: Pick<SidebarElements, "offcanvasRef" | "railRef" | "triggerRef">) {
   const container = offcanvasRef.current;
   if (!container?.contains(document.activeElement)) return;
   const target = railRef.current ?? triggerRef.current;
@@ -93,6 +105,9 @@ export type SidebarProviderProps = Omit<ComponentProps<"div">, "style"> & {
   onWidthChange?: (width: number) => void;
   persistOpen?: boolean;
   keyboardShortcut?: string | null;
+  layout?: SidebarLayoutMode;
+  skipLinkLabel?: string;
+  contentId?: string;
   style?: SidebarStyle;
 };
 
@@ -107,6 +122,9 @@ export function SidebarProvider({
   onWidthChange,
   persistOpen = true,
   keyboardShortcut = SIDEBAR_KEYBOARD_SHORTCUT,
+  layout = "viewport",
+  skipLinkLabel = "Skip to content",
+  contentId: contentIdProp,
   ref,
   className,
   style,
@@ -120,7 +138,11 @@ export function SidebarProvider({
   const offcanvasRef = useRef<HTMLDivElement>(null);
   const railRef = useRef<HTMLElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
-  const elements = { wrapperRef, offcanvasRef, railRef, triggerRef };
+  const insetRef = useRef<HTMLElement>(null);
+  const elements = { wrapperRef, offcanvasRef, railRef, triggerRef, insetRef };
+  const sidebarId = useId();
+  const generatedContentId = useId();
+  const contentId = contentIdProp ?? generatedContentId;
   const [internalWidth, setInternalWidth] = useState(defaultWidth);
   function clampWidth(nextWidth: number) {
     return Math.min(maxWidth, Math.max(minWidth, nextWidth));
@@ -136,7 +158,7 @@ export function SidebarProvider({
   const [internalOpen, setInternalOpen] = useState(defaultOpen);
   const open = openProp ?? internalOpen;
   useLayoutEffect(() => {
-    if (!open && !isMobile) focusOutsideCollapsedContent({ wrapperRef, offcanvasRef, railRef, triggerRef });
+    if (!open && !isMobile) focusOutsideCollapsedContent({ offcanvasRef, railRef, triggerRef });
   }, [open, isMobile]);
 
   const setOpen = (value: boolean | ((value: boolean) => boolean)) => {
@@ -159,12 +181,15 @@ export function SidebarProvider({
 
   useEffect(() => {
     if (keyboardShortcut === null) return;
+    const shortcut = keyboardShortcut.toLowerCase();
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === keyboardShortcut && (event.metaKey || event.ctrlKey)) {
-        event.preventDefault();
-        toggleRef.current();
-      }
+      if (event.defaultPrevented || event.repeat || event.altKey || event.shiftKey) return;
+      if (!(event.metaKey || event.ctrlKey) || event.key.toLowerCase() !== shortcut) return;
+      const target = event.target;
+      if (target instanceof HTMLElement && (target.isContentEditable || target.closest("input, textarea, select") !== null)) return;
+      event.preventDefault();
+      toggleRef.current();
     };
 
     window.addEventListener("keydown", handleKeyDown);
@@ -185,6 +210,10 @@ export function SidebarProvider({
     setWidth,
     minWidth,
     maxWidth,
+    layout,
+    keyboardShortcut,
+    sidebarId,
+    contentId,
   };
 
   const wrapperStyle: SidebarStyle = {
@@ -194,6 +223,13 @@ export function SidebarProvider({
     ...(width === undefined ? {} : { "--sidebar-width": `${width}px` }),
   };
 
+  function skipToContent(event: MouseEvent<HTMLAnchorElement>) {
+    const inset = insetRef.current;
+    if (!inset) return;
+    event.preventDefault();
+    inset.focus();
+  }
+
   const wrapper = useRender({
     defaultTagName: "div",
     ref: [ref ?? null, wrapperRef],
@@ -202,9 +238,21 @@ export function SidebarProvider({
       "data-control-ui": "sidebar",
       "data-control-family": "sidebar",
       "data-slot": "wrapper",
+      "data-layout": layout,
       style: wrapperStyle,
-      className: cn("group/sidebar-wrapper flex min-h-svh w-full", className),
-      children,
+      className: cn(
+        "group/sidebar-wrapper relative flex w-full",
+        layout === "contained" ? "h-full min-h-0 overflow-hidden" : "min-h-svh",
+        className,
+      ),
+      children: (
+        <>
+          <a href={`#${contentId}`} data-control-ui="sidebar" data-control-family="sidebar" data-slot="skip-link" onClick={skipToContent}>
+            {skipLinkLabel}
+          </a>
+          {children}
+        </>
+      ),
     },
   });
 

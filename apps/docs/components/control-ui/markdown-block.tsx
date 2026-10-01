@@ -48,7 +48,7 @@ export function MarkdownBlockHeader({ className, ...props }: MarkdownBlockHeader
       data-control-ui="markdown-block"
       data-control-family="markdown-block"
       data-slot="header"
-      className={cn("sticky top-0 z-10 flex items-center justify-between", className)}
+      className={cn("flex items-center justify-between", className)}
       {...props}
     />
   );
@@ -76,7 +76,9 @@ export function MarkdownBlockTitle({ children = "Markdown", className, ...props 
       >
         MD
       </span>
-      <span className="truncate">{children}</span>
+      <span className="truncate" title={typeof children === "string" ? children : undefined}>
+        {children}
+      </span>
     </div>
   );
 }

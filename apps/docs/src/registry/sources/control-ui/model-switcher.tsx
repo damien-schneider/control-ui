@@ -21,6 +21,7 @@ export type ModelSwitcherProps = {
   size?: "xs" | "sm";
   variant?: SelectTriggerVariant;
   className?: string;
+  label?: string;
   style?: SelectTriggerProps["style"];
 };
 
@@ -33,13 +34,14 @@ export function ModelSwitcher({
   size = "sm",
   variant = "surface",
   className,
+  label = "Model",
   style,
 }: ModelSwitcherProps) {
   const fallback = defaultValue ?? models[0]?.value;
 
   return (
     <Select value={value} defaultValue={fallback} onValueChange={onValueChange} disabled={disabled || models.length === 0}>
-      <SelectTrigger size={size} variant={variant} className={cn("max-w-52", className)} style={style} aria-label="Model">
+      <SelectTrigger size={size} variant={variant} className={cn("max-w-52", className)} style={style} aria-label={label}>
         <span
           data-control-ui="model-switcher"
           data-control-family="button"
@@ -47,7 +49,7 @@ export function ModelSwitcher({
           data-slot="value"
           className="flex min-w-0 items-center"
         >
-          <SelectValue placeholder="Model">
+          <SelectValue placeholder={label}>
             {(current: string) => {
               const model = models.find((option) => option.value === current);
               return (
@@ -57,7 +59,9 @@ export function ModelSwitcher({
                       {model.icon}
                     </span>
                   ) : null}
-                  <span className="truncate">{model?.label ?? "Model"}</span>
+                  <span className="truncate" title={model?.label ?? label}>
+                    {model?.label ?? label}
+                  </span>
                 </span>
               );
             }}
@@ -72,7 +76,9 @@ export function ModelSwitcher({
                 {model.icon}
               </span>
             ) : null}
-            <span className="truncate">{model.label}</span>
+            <span className="truncate" title={model.label}>
+              {model.label}
+            </span>
             {model.hint ? (
               <span data-control-ui="model-switcher" data-control-family="popup" data-popup-kind="model-switcher" data-slot="hint">
                 {model.hint}

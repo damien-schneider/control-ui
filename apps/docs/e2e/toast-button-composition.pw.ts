@@ -23,7 +23,7 @@ for (const skin of ["refined", "xp"]) {
     await page.keyboard.press("Tab");
     await expect(undo).toBeFocused();
 
-    const close = archivedToast.getByRole("button", { name: "Close", exact: true });
+    const close = archivedToast.getByRole("button", { name: "Dismiss notification", exact: true });
     for (const button of [undo, close]) {
       await button.evaluate((element) => element.style.setProperty("--cui-button-radius", "9px"));
       await expect(button).toHaveCSS("border-radius", "9px");

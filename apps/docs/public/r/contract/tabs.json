@@ -55,6 +55,12 @@
       "defaultValue": "var(--foreground)"
     },
     {
+      "name": "--cui-tabs-hover-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
       "name": "--cui-tabs-indicator-shadow",
       "syntax": "*",
       "initialValue": "none",
@@ -316,8 +322,6 @@
     }
   },
   "adornments": {},
-  "uncovered": [
-    "--cui-tabs-indicator-background"
-  ],
+  "uncovered": [],
   "contrast": "/r/contract/tabs.contrast.json"
 }

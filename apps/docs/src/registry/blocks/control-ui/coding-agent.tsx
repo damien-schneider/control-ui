@@ -83,13 +83,14 @@ export function CodingAgentBlock({
   style,
   ...props
 }: CodingAgentBlockProps) {
-  const contained = layout === "contained";
+  const Heading = layout === "contained" ? "h2" : "h1";
 
   const providerStyle: SidebarStyle = { "--sidebar-width": "17.5rem", ...style };
 
   return (
     <SidebarProvider
-      className={cn("overflow-hidden bg-background text-foreground", contained ? "relative h-full min-h-0" : "h-svh min-h-svh", className)}
+      layout={layout}
+      className={cn("bg-background text-foreground", layout === "viewport" && "h-svh overflow-hidden", className)}
       style={providerStyle}
       {...props}
     >
@@ -100,7 +101,6 @@ export function CodingAgentBlock({
         navigation={navigation}
         projects={projects}
         activeTaskId={activeTaskId}
-        contained={contained}
         sidebarFooter={sidebarFooter}
         onNavigationSelect={onNavigationSelect}
         onTaskSelect={onTaskSelect}
@@ -109,9 +109,11 @@ export function CodingAgentBlock({
       />
       <SidebarInset className="h-full min-h-0 min-w-0 overflow-hidden">
         <header className="flex h-12 shrink-0 items-center gap-2 border-b border-border/70 px-3">
-          <SidebarTrigger size="xs" className="md:hidden" />
+          <SidebarTrigger size="xs" className="lg:hidden" />
           <FolderIcon className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
-          <h1 className="min-w-0 flex-1 truncate text-label font-medium">{activeTaskTitle}</h1>
+          <Heading className="min-w-0 flex-1 truncate text-label font-medium" title={activeTaskTitle}>
+            {activeTaskTitle}
+          </Heading>
           {headerActions ? <div className="flex shrink-0 items-center gap-1">{headerActions}</div> : null}
         </header>
         <div className="min-h-0 flex-1 overflow-hidden">{children}</div>
@@ -127,7 +129,6 @@ function CodingAgentSidebar({
   navigation,
   projects,
   activeTaskId,
-  contained,
   sidebarFooter,
   onNavigationSelect,
   onTaskSelect,
@@ -140,7 +141,6 @@ function CodingAgentSidebar({
   navigation: readonly CodingAgentNavigationItem[];
   projects: readonly CodingAgentProject[];
   activeTaskId?: string;
-  contained: boolean;
   sidebarFooter?: ReactNode;
   onNavigationSelect?: (item: CodingAgentNavigationItem) => void;
   onTaskSelect?: (task: CodingAgentTask, project: CodingAgentProject) => void;
@@ -159,7 +159,7 @@ function CodingAgentSidebar({
   }
 
   return (
-    <Sidebar collapsible="offcanvas" className={contained ? "absolute! inset-y-0! h-full border-r border-sidebar-border" : undefined}>
+    <Sidebar collapsible="offcanvas">
       <SidebarHeader className="gap-1.5 border-b border-sidebar-border px-2 pb-2 pt-3">
         {sidebarTop}
         <div className="flex min-w-0 items-center gap-2 px-1 py-1">
@@ -169,11 +169,15 @@ function CodingAgentSidebar({
                 <BotIcon className="size-3.5" aria-hidden="true" />
               </span>
             )}
-            <span className="truncate text-label font-semibold">{appName}</span>
+            <span className="truncate text-label font-semibold" title={appName}>
+              {appName}
+            </span>
           </div>
-          <Button variant="ghost" size="sm" iconOnly aria-label="Search tasks" onClick={onSearch}>
-            <SearchIcon className="size-3.5" />
-          </Button>
+          {onSearch ? (
+            <Button variant="ghost" size="sm" iconOnly aria-label="Search tasks" onClick={onSearch}>
+              <SearchIcon className="size-3.5" aria-hidden="true" />
+            </Button>
+          ) : null}
         </div>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -200,7 +204,7 @@ function CodingAgentSidebar({
                   >
                     {item.icon}
                     <span>{item.label}</span>
-                    {item.trailing ? <span className="ml-auto shrink-0">{item.trailing}</span> : null}
+                    {item.trailing ? <span className="ms-auto shrink-0">{item.trailing}</span> : null}
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -221,27 +225,23 @@ function CodingAgentSidebar({
                   <span className="truncate">{project.name}</span>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
-                  <SidebarMenu className="mt-1 pl-5">
-                    {project.tasks.map((task) => {
-                      const isActive = task.id === activeTaskId;
-                      return (
-                        <SidebarMenuItem key={task.id}>
-                          <SidebarMenuButton
-                            size="sm"
-                            isActive={isActive}
-                            aria-current={isActive ? "page" : undefined}
-                            onClick={() => {
-                              onTaskSelect?.(task, project);
-                              finishMobileNavigation();
-                            }}
-                          >
-                            <CircleIcon className="size-1.5 fill-current opacity-35" aria-hidden="true" />
-                            <span>{task.title}</span>
-                            {task.trailing ? <span className="ml-auto shrink-0">{task.trailing}</span> : null}
-                          </SidebarMenuButton>
-                        </SidebarMenuItem>
-                      );
-                    })}
+                  <SidebarMenu className="mt-1 ps-5">
+                    {project.tasks.map((task) => (
+                      <SidebarMenuItem key={task.id}>
+                        <SidebarMenuButton
+                          size="sm"
+                          isActive={task.id === activeTaskId}
+                          onClick={() => {
+                            onTaskSelect?.(task, project);
+                            finishMobileNavigation();
+                          }}
+                        >
+                          <CircleIcon className="size-1.5 fill-current opacity-35" aria-hidden="true" />
+                          <span>{task.title}</span>
+                          {task.trailing ? <span className="ms-auto shrink-0">{task.trailing}</span> : null}
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))}
                   </SidebarMenu>
                 </CollapsibleContent>
               </Collapsible>
@@ -301,8 +301,8 @@ export function CodingAgentEmptyState({
       <div className="mb-5 flex size-11 items-center justify-center rounded-2xl border bg-card text-muted-foreground shadow-sm">
         {icon ?? <BotIcon className="size-5" aria-hidden="true" />}
       </div>
-      <h2 className="text-balance text-xl font-medium tracking-tight sm:text-2xl">{title}</h2>
-      {description ? <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">{description}</p> : null}
+      <h2 className="text-balance text-heading-3 sm:text-heading-2">{title}</h2>
+      {description ? <p className="mt-2 max-w-xl text-pretty text-body text-muted-foreground">{description}</p> : null}
       {suggestions.length > 0 ? (
         <div className="mt-8 grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {suggestions.map((suggestion) => (
@@ -310,12 +310,12 @@ export function CodingAgentEmptyState({
               key={suggestion.id}
               variant="surface"
               size="lg"
-              className="h-auto min-h-28 w-full items-start justify-start whitespace-normal rounded-[var(--radius-panel)] px-4 py-4 text-left"
+              className="h-auto min-h-28 w-full items-start justify-start whitespace-normal rounded-[var(--radius-panel)] px-4 py-4 text-start"
               onClick={() => onSuggestionSelect?.(suggestion.prompt ?? suggestion.title, suggestion)}
             >
               <span className="flex min-w-0 flex-col items-start gap-3">
                 <span className="text-primary-text">{suggestion.icon}</span>
-                <span className="text-sm font-medium leading-5 text-foreground">{suggestion.title}</span>
+                <span className="text-body font-medium text-foreground">{suggestion.title}</span>
                 {suggestion.description ? (
                   <span className="text-caption leading-5 text-muted-foreground">{suggestion.description}</span>
                 ) : null}

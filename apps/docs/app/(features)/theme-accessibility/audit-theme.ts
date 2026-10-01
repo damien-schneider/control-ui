@@ -47,14 +47,16 @@ function rgbCss([red, green, blue]: Rgb): string {
   return `rgb(${red} ${green} ${blue})`;
 }
 
-function paintPixel(context: CanvasRenderingContext2D, layers: string[]): Rgb {
+function paintPixel(context: CanvasRenderingContext2D, layers: string[], topOpacity = 1): Rgb {
   context.clearRect(0, 0, 1, 1);
   context.fillStyle = "#fff";
   context.fillRect(0, 0, 1, 1);
-  for (const color of layers) {
+  for (const [index, color] of layers.entries()) {
+    context.globalAlpha = index === layers.length - 1 ? topOpacity : 1;
     context.fillStyle = color;
     context.fillRect(0, 0, 1, 1);
   }
+  context.globalAlpha = 1;
   const [red, green, blue] = context.getImageData(0, 0, 1, 1).data;
   return [red, green, blue];
 }
@@ -130,13 +132,22 @@ function sampleBackground(element: HTMLElement, backdrops: Rgb[], context: Canva
   return { css: image, pixels: uniquePixels(pixels) };
 }
 
-function minimumContrast(foreground: string, backgrounds: Rgb[], context: CanvasRenderingContext2D): number {
+function minimumContrast(foreground: string, opacity: number, backgrounds: Rgb[], context: CanvasRenderingContext2D): number {
   return Math.min(
     ...backgrounds.map((background) => {
-      const foregroundPixel = paintPixel(context, [rgbCss(background), foreground]);
+      const foregroundPixel = paintPixel(context, [rgbCss(background), foreground], opacity);
       return contrastRatio(foregroundPixel, background);
     }),
   );
+}
+
+/** Opacity on the glyph's part, or on a wrapper between it and its backdrop, fades the glyph and never the backdrop. */
+function opacityAbove(element: HTMLElement, backdrop: HTMLElement): number {
+  let opacity = 1;
+  for (let node: HTMLElement | null = element; node && node !== backdrop; node = node.parentElement) {
+    opacity *= Number.parseFloat(getComputedStyle(node).opacity);
+  }
+  return opacity;
 }
 
 function unresolvedResult(pair: ThemeAuditPair, resolvedForeground: string | null, resolvedBackground: string | null): ThemeAuditResult {
@@ -263,11 +274,12 @@ function auditTokenPair(root: HTMLElement, pair: ThemeAuditPair, context: Canvas
   const paintsOverChain = !measuresOutline || resolvedForeground.insideOutline;
   const comparisonBackground =
     resolvedBackground && paintsOverChain ? backdropUnder(foreground, resolvedBackground, context) : resolvedBackground;
+  const opacity = opacityAbove(foreground, parent);
   container.remove();
   if (!resolvedForeground.paint || !resolvedForeground.dependenciesResolve || !comparisonBackground) {
     return unresolvedResult(pair, resolvedForeground.paint, comparisonBackground?.css ?? null);
   }
-  const ratio = minimumContrast(resolvedForeground.paint, comparisonBackground.pixels, context);
+  const ratio = minimumContrast(resolvedForeground.paint, opacity, comparisonBackground.pixels, context);
   return {
     ...pair,
     ratio,

@@ -32,19 +32,12 @@ describe("phone input registry contract", () => {
     expect(html).toContain("readOnly");
   });
 
-  test("forwards typed knob overrides to owned country controls", () => {
+  test("applies layout styles to the field root only", () => {
     const html = renderToString(
-      <PhoneInput
-        defaultCountry="FR"
-        style={{
-          "--cui-phone-input-country-border-color": "oklch(0.5 0.1 250)",
-          "--cui-phone-input-chevron-foreground": "oklch(0.4 0.1 250)",
-        }}
-      />,
+      <PhoneInput defaultCountry="FR" style={{ width: "12rem", "--cui-phone-input-country-border-color": "oklch(0.5 0.1 250)" }} />,
     );
 
-    expect(html.match(/--cui-phone-input-country-border-color:oklch\(0.5 0.1 250\)/g)?.length).toBeGreaterThan(1);
-    expect(html.match(/--cui-phone-input-chevron-foreground:oklch\(0.4 0.1 250\)/g)?.length).toBeGreaterThan(1);
+    expect(html.match(/width:12rem/g)).toHaveLength(1);
   });
 
   test("owns its domain helper and references shared primitives", () => {

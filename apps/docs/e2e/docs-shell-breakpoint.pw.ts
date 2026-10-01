@@ -12,8 +12,8 @@ for (const { name, width, docked } of [
 
     const dockedSidebar = page.locator('[data-control-ui="sidebar"][data-slot="container"]');
     const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
-    const sidebarTrigger = page.getByRole("button", { name: "Toggle Sidebar" });
-    const contentPanel = page.locator('[data-control-ui="sidebar-layout"][data-slot="content"]');
+    const sidebarTrigger = page.getByRole("button", { name: "Toggle sidebar", exact: true });
+    const contentPanel = page.locator("[data-docs-content]");
 
     await expect(dockedSidebar).toHaveCount(docked ? 1 : 0);
     await expect(resizeHandle).toHaveCount(docked ? 1 : 0);
@@ -39,8 +39,8 @@ test("desktop shell keeps equal panel gutters and reopens from the top left", as
   const sidebarRoot = page.locator('[data-control-ui="sidebar"][data-slot="root"].peer');
   const sidebarGap = page.locator('[data-control-ui="sidebar"][data-slot="gap"]');
   const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
-  const contentPanel = page.locator('[data-control-ui="sidebar-layout"][data-slot="content"]');
-  const sidebarTrigger = page.locator("[data-docs-sidebar-trigger]").getByRole("button", { name: "Toggle Sidebar" });
+  const contentPanel = page.locator("[data-docs-content]");
+  const sidebarTrigger = page.locator("[data-docs-sidebar-trigger]").getByRole("button", { name: "Toggle sidebar", exact: true });
   const sidebarInner = page.locator('[data-control-ui="sidebar"][data-slot="inner"]');
 
   const expandedGapBox = await sidebarGap.boundingBox();
@@ -86,7 +86,7 @@ test("Cuicui inherits shell spacing and aligns sidebar sections", async ({ page 
   await resizeHandle.focus();
   await resizeHandle.press("ArrowLeft");
   await expect(resizeHandle).toHaveAttribute("aria-valuenow", "310");
-  const contentPanel = page.locator('[data-control-ui="sidebar-layout"][data-slot="content"]');
+  const contentPanel = page.locator("[data-docs-content]");
   await expect(contentPanel).toHaveCSS("margin-top", "8px");
   await expect(contentPanel).toHaveCSS("margin-right", "8px");
   await expect(contentPanel).toHaveCSS("margin-bottom", "8px");

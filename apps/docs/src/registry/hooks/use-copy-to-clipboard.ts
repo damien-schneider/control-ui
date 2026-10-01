@@ -7,8 +7,10 @@ export type UseCopyToClipboardOptions = {
   onCopyError?: (error: unknown) => void;
 };
 
+export type CopyStatus = "idle" | "copied" | "failed";
+
 export type UseCopyToClipboardResult = {
-  isCopied: boolean;
+  status: CopyStatus;
   copyToClipboard: (value: string) => Promise<boolean>;
   resetCopied: () => void;
 };
@@ -38,8 +40,8 @@ function copyViaSelection(value: string) {
   textarea.setAttribute("readonly", "");
   textarea.setAttribute("aria-hidden", "true");
   textarea.style.position = "fixed";
-  textarea.style.top = "0";
-  textarea.style.left = "0";
+  textarea.style.insetBlockStart = "0";
+  textarea.style.insetInlineStart = "0";
   textarea.style.width = "1px";
   textarea.style.height = "1px";
   textarea.style.opacity = "0";
@@ -48,7 +50,7 @@ function copyViaSelection(value: string) {
   document.body.appendChild(textarea);
 
   try {
-    textarea.focus();
+    textarea.focus({ preventScroll: true });
     textarea.select();
     textarea.setSelectionRange(0, value.length);
     return document.execCommand("copy");
@@ -68,7 +70,7 @@ export async function copyTextToClipboard(value: string) {
 export function useCopyToClipboard(options: UseCopyToClipboardOptions & { text: string }): UseCopyToClipboardConfiguredResult;
 export function useCopyToClipboard(options?: UseCopyToClipboardOptions): UseCopyToClipboardResult;
 export function useCopyToClipboard({ text, copiedDuration = 1200, onCopy, onCopyError }: UseCopyToClipboardOptions = {}) {
-  const [isCopied, setIsCopied] = useState(false);
+  const [status, setStatus] = useState<CopyStatus>("idle");
   const resetTimeout = useRef<number | null>(null);
 
   useEffect(() => {
@@ -82,35 +84,37 @@ export function useCopyToClipboard({ text, copiedDuration = 1200, onCopy, onCopy
   function resetCopied() {
     if (resetTimeout.current) window.clearTimeout(resetTimeout.current);
     resetTimeout.current = null;
-    setIsCopied(false);
+    setStatus("idle");
+  }
+
+  function settle(next: Exclude<CopyStatus, "idle">) {
+    setStatus(next);
+    if (resetTimeout.current) window.clearTimeout(resetTimeout.current);
+    resetTimeout.current = next === "copied" ? window.setTimeout(() => setStatus("idle"), copiedDuration) : null;
+    return next === "copied";
   }
 
   async function copyToClipboard(value: string) {
     const copied = await copyTextToClipboard(value);
     if (!copied) {
-      const error = new Error("Unable to copy text");
-      onCopyError?.(error);
-      setIsCopied(false);
-      return false;
+      onCopyError?.(new Error("Unable to copy text"));
+      return settle("failed");
     }
 
     try {
       onCopy?.(value);
     } catch (error) {
       onCopyError?.(error);
-      setIsCopied(false);
-      return false;
+      return settle("failed");
     }
 
-    setIsCopied(true);
-    if (resetTimeout.current) window.clearTimeout(resetTimeout.current);
-    resetTimeout.current = window.setTimeout(() => setIsCopied(false), copiedDuration);
-    return true;
+    return settle("copied");
   }
 
   function handleCopy() {
     return text !== undefined ? copyToClipboard(text) : Promise.resolve(false);
   }
 
-  return text === undefined ? { isCopied, copyToClipboard, resetCopied } : { isCopied, copyToClipboard, handleCopy, resetCopied };
+  const state = { status, copyToClipboard, resetCopied };
+  return text === undefined ? state : { ...state, handleCopy };
 }

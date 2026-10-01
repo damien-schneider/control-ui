@@ -6,6 +6,7 @@
     --cui-badge-background: var(--_badge-color-background);
     --cui-badge-foreground: var(--_badge-color-foreground);
     --cui-badge-border-color: transparent;
+    --cui-badge-font-size: var(--text-caption);
     --_badge-color-background: var(--badge-neutral);
     --_badge-color-foreground: var(--badge-neutral-foreground);
     --_badge-color-border: var(--badge-neutral-border);
@@ -15,10 +16,11 @@
     border-radius: var(--cui-badge-radius);
     background: var(--cui-badge-background);
     color: var(--cui-badge-foreground);
-    outline: none;
+    font-size: var(--cui-badge-font-size);
   }
 
   :where([data-control-family="badge"][data-slot="root"][data-size="sm"]) {
+    --cui-badge-font-size: var(--text-micro);
     block-size: calc(var(--spacing) * 4);
     padding: 0 calc(var(--spacing) * 1.5);
   }
@@ -29,9 +31,11 @@
     --_badge-hover-background: var(--_badge-color-background);
   }
 
-  :where(a[data-control-family="badge"][data-slot="root"]:hover),
-  :where(button[data-control-family="badge"][data-slot="root"]:hover) {
-    background: var(--_badge-hover-background);
+  @media (hover: hover) {
+    :where(a[data-control-family="badge"][data-slot="root"]:hover),
+    :where(button[data-control-family="badge"][data-slot="root"]:not(:disabled):hover) {
+      background: var(--_badge-hover-background);
+    }
   }
 
   :where([data-control-family="badge"][data-slot="root"][data-color="red"]) {
@@ -106,4 +110,10 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-badge-font-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }

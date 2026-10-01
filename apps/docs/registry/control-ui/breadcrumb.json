@@ -3,7 +3,7 @@
   "name": "breadcrumb",
   "type": "registry:ui",
   "title": "Breadcrumb",
-  "description": "Semantic breadcrumb styled with Control UI tokens.",
+  "description": "Location trail with links, the current page, and collapsed levels.",
   "dependencies": [
     "@base-ui/react@^1.8.0",
     "lucide-react@^1.47.0"
@@ -32,7 +32,6 @@
     "@import \"../components/control-ui/styles/recipes/breadcrumb.css\"": {}
   },
   "meta": {
-    "internal": true,
     "sourceManifestPath": "registry/control-ui/breadcrumb.json"
   }
 }

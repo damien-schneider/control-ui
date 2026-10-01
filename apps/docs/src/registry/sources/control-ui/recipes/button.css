@@ -1,27 +1,23 @@
 @layer components {
-  @media (pointer: coarse) {
-    :where([data-control-family="button"][data-size="xs"]) {
-      position: relative;
-    }
-
-    :where([data-control-family="button"][data-size="xs"])::after {
-      content: "";
-      position: absolute;
-      inset: 50% 50%;
-      translate: -50% -50%;
-      inline-size: 100%;
-      block-size: max(100%, 44px);
-    }
-  }
-
-  :where(
-    [data-control-family="popup"][data-popup-kind="dialog"][data-slot="content"]
-      > [data-control-family="button"][data-popup-part="close"][data-icon-only="true"]
-  ) {
+  :where([data-control-family="button"][data-size="xs"])::after {
+    content: "";
     position: absolute;
-    top: 12px;
-    right: 12px;
+    inset: 50%;
+    translate: -50% -50%;
+    inline-size: max(100%, var(--target-min));
+    block-size: max(100%, var(--target-min));
   }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="button"][data-size="xs"])::after {
+      block-size: max(100%, var(--touch-target));
+    }
+
+    :where([data-control-family="button"][data-size="xs"][data-icon-only="true"])::after {
+      inline-size: max(100%, var(--touch-target));
+    }
+  }
+
   :where([data-control-family="button"][data-control="true"]) {
     --cui-button-radius: var(--radius-control);
     --cui-button-gap: calc(var(--spacing) * 1.5);
@@ -34,9 +30,10 @@
     --cui-button-background-image: none;
     --cui-button-foreground: var(--muted-foreground);
     --cui-button-hover-background: var(--hover-fill);
+    --cui-button-hover-background-image: var(--cui-button-background-image);
     --cui-button-hover-foreground: var(--foreground);
     --cui-button-press-background: var(--cui-button-hover-background);
-    --cui-button-press-scale: 0.98;
+    --cui-button-press-scale: 0.96;
     --cui-button-active-background: var(--active-fill);
     --cui-button-active-foreground: var(--foreground);
     --cui-button-active-hover-background: var(--cui-button-active-background);
@@ -54,7 +51,6 @@
     color: var(--cui-button-foreground);
     cursor: pointer;
     font-weight: var(--font-weight-medium);
-    outline: none;
     transition-property: scale, translate;
     transition-timing-function: var(--ease-standard);
     transition-duration: var(--duration-fast);
@@ -62,6 +58,11 @@
 
   :where([data-control-family="button"]) {
     gap: var(--cui-button-gap);
+  }
+
+  /* Position lives in the recipe, not a utility, so a part rule such as the popup close can re-place the root. */
+  :where([data-control-family="button"][data-slot="root"]) {
+    position: relative;
   }
 
   :where([data-control-family="button"][data-size="xs"]) {
@@ -133,7 +134,7 @@
   :where([data-control-family="button"][data-variant="solid"]) {
     --cui-button-background: var(--primary);
     --cui-button-foreground: var(--primary-foreground);
-    --cui-button-hover-background: oklch(from var(--primary) l c h / 0.9);
+    --cui-button-hover-background: color-mix(in oklch, var(--primary) 90%, var(--foreground));
     --cui-button-hover-foreground: var(--primary-foreground);
     --cui-button-shadow: var(--shadow-sm);
     --cui-button-active-background: var(--cui-button-background);
@@ -165,7 +166,7 @@
   :where([data-control-family="button"][data-tone="danger"][data-variant="solid"]) {
     --cui-button-background: var(--destructive);
     --cui-button-foreground: var(--destructive-foreground);
-    --cui-button-hover-background: oklch(from var(--destructive) l c h / 0.9);
+    --cui-button-hover-background: oklch(from var(--destructive) calc(l - 0.05) c h);
     --cui-button-hover-foreground: var(--destructive-foreground);
     --cui-button-active-background: var(--cui-button-background);
     --cui-button-active-foreground: var(--cui-button-foreground);
@@ -179,68 +180,6 @@
 
   :where([data-control-family="button"][data-shape="circle"]) {
     --cui-button-radius: 9999px;
-  }
-
-  @media (hover: hover) {
-    :where([data-control-family="button"][data-control="true"]:hover) {
-      background-color: var(--cui-button-hover-background);
-      box-shadow: var(--cui-button-hover-shadow);
-      color: var(--cui-button-hover-foreground);
-    }
-  }
-
-  :where([data-control-family="button"][data-popup-open]) {
-    background-color: var(--cui-button-open-background);
-    color: var(--cui-button-open-foreground);
-    box-shadow: var(--cui-button-open-shadow);
-  }
-
-  :where([data-control-family="button"][data-active="true"]) {
-    background-color: var(--cui-button-active-background);
-    box-shadow: var(--cui-button-active-shadow);
-    color: var(--cui-button-active-foreground);
-  }
-
-  @media (hover: hover) {
-    :where([data-control-family="button"][data-active="true"]:hover) {
-      background-color: var(--cui-button-active-hover-background);
-      color: var(--cui-button-active-foreground);
-    }
-  }
-
-  @scope ([data-track="hover"]) to ([data-track]) {
-    @media (hover: hover) {
-      :where(
-          [data-track="hover"] [data-control-family="button"][data-track-item]:hover:not([data-active="true"], [data-popup-open], :active)
-        ) {
-        background-color: var(--cui-button-background);
-        box-shadow: var(--cui-button-shadow);
-      }
-
-      :where(
-          [data-track="hover"] [data-control-family="button"][data-track-item][data-active="true"]:hover:not([data-popup-open], :active)
-        ) {
-        background-color: var(--cui-button-active-background);
-      }
-    }
-  }
-
-  @scope ([data-track="slide"]) to ([data-track]) {
-    :where([data-track="slide"] [data-control-family="button"][data-track-item]:not([data-popup-open], :active)) {
-      background-color: var(--cui-button-background);
-      box-shadow: var(--cui-button-shadow);
-    }
-  }
-
-  :where([data-control-family="button"][data-control="true"]:active) {
-    background-color: var(--cui-button-press-background);
-    box-shadow: var(--cui-button-press-shadow);
-    scale: var(--cui-button-press-scale);
-  }
-
-  :where([data-control-family="button"]:is(:disabled, [data-disabled], [aria-disabled="true"])) {
-    cursor: not-allowed;
-    opacity: 0.45;
   }
 
   :where([data-control-family="button"][data-button-kind="model-switcher"][data-slot="value"]) {
@@ -301,6 +240,11 @@
 }
 
 @property --cui-button-background-image {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-button-hover-background-image {
   syntax: "*";
   inherits: true;
 }

@@ -1,6 +1,3036 @@
 {
   "version": 1,
   "family": "scroll-area",
-  "anatomies": [],
-  "probes": []
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "full"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-header": "true",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "full"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "full"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-header": "true",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "full"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-scrolling": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-x-end": "",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-scrolling": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-mask": "true",
+          "data-overflow-x-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "horizontal",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-scrolling": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-scrolling": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-scrolling": "",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-scrolling": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-x-end": "",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-mask": "true",
+          "data-overflow-x-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "horizontal",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-start": "",
+          "data-scrolling": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-scrolling": "",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-start": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-scrolling": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-role": "assistant",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-block",
+          "data-control-ui": "markdown-block",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-scrolling": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-scrolling": "",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-role": "assistant",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-block",
+          "data-control-ui": "markdown-block",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-overflow-y-start": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "compact",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-overflow-y-start": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-role": "assistant",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-block",
+          "data-control-ui": "markdown-block",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-overflow-y-start": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-header": "true",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-x-end": "",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-header": "true",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-mask": "true",
+          "data-overflow-x-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "horizontal",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-header": "true",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-x-end": "",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "comfortable",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-lock-axis": "y",
+          "data-mask": "true",
+          "data-overflow-x-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "horizontal",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "code-diff",
+          "data-control-ui": "code-diff",
+          "data-diff-style": "split",
+          "data-file-count": "1",
+          "data-header": "true",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-mask": "true",
+          "data-overflow-x-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "horizontal",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-block",
+          "data-control-ui": "markdown-block",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-lock-axis": "y",
+          "data-mask": "true",
+          "data-overflow-x-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "horizontal",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-overflow-y-start": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 0,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 1,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 2,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 3,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 4,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 5,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 6,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 7,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 8,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 9,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 10,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 11,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 12,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 13,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 14,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 15,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 16,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 17,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 18,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 19,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 20,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 21,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 22,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 23,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 24,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 25,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 26,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 27,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 28,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 29,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 30,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 31,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 32,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 33,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 34,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 35,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 36,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 37,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 38,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 39,
+      "rendersText": false,
+      "state": false
+    }
+  ]
 }

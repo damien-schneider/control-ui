@@ -65,7 +65,7 @@
   }
 
   :where([data-control-family="activity"][data-slot="root"][data-activity-state="running"] [data-slot="icon"][data-status-icon] svg) {
-    animation: activity-spin calc(var(--duration-slow) * 2) linear infinite;
+    animation: cui-spin var(--duration-loop) linear infinite;
   }
 
   :where([data-control-family="activity"][data-slot="root"][data-activity-state="error"] [data-slot="icon"]) {
@@ -117,17 +117,11 @@
     :where([data-control-family="activity"][data-slot="trigger"])::after {
       content: "";
       position: absolute;
-      inset: 50% 50%;
-      translate: -50% -50%;
-      inline-size: 100%;
-      block-size: max(100%, 44px);
+      inset-inline: 0;
+      inset-block-start: 50%;
+      translate: 0 -50%;
+      block-size: max(100%, var(--touch-target));
     }
-  }
-}
-
-@keyframes activity-spin {
-  to {
-    rotate: 360deg;
   }
 }
 

@@ -27,6 +27,18 @@ import type { EmailTheme } from "./theme";
 
 export type EmailVariant = "contained" | "plain";
 export type EmailFooterPlacement = "inside" | "outside";
+export type EmailDirection = "ltr" | "rtl";
+
+const physicalSides = {
+  ltr: { start: "left", end: "right" },
+  rtl: { start: "right", end: "left" },
+} as const;
+
+export type EmailSides = (typeof physicalSides)[EmailDirection];
+
+export function emailSides(dir: EmailDirection = "ltr"): EmailSides {
+  return physicalSides[dir];
+}
 
 export function surfaceColors(theme: EmailTheme, variant: EmailVariant) {
   if (variant === "contained") return theme.colors;
@@ -70,7 +82,7 @@ export function EmailLayout({
   footerPlacement?: EmailFooterPlacement;
   head?: ReactNode;
   lang?: string;
-  dir?: "ltr" | "rtl";
+  dir?: EmailDirection;
   variant?: EmailVariant;
 }) {
   const contained = variant === "contained";
@@ -99,12 +111,13 @@ export function EmailLayout({
   );
 }
 
-export type EmailAlign = "left" | "center" | "right";
+export type EmailAlign = "start" | "center" | "end";
 
 const alignClasses = { left: "text-left", center: "text-center", right: "text-right" };
 
-function alignClass(align?: EmailAlign) {
-  return align ? alignClasses[align] : "";
+export function emailAlignClass(align: EmailAlign | undefined, dir: EmailDirection = "ltr") {
+  if (!align) return "";
+  return alignClasses[align === "center" ? "center" : emailSides(dir)[align]];
 }
 
 const headingSizeClasses = {
@@ -123,32 +136,48 @@ export function EmailHeading({
   as = "h1",
   size,
   align,
+  dir,
   className = "",
   ...props
-}: Omit<HeadingProps, "as"> & { as?: keyof typeof headingSizeForTag; size?: EmailHeadingSize; align?: EmailAlign }) {
+}: Omit<HeadingProps, "as" | "dir"> & {
+  as?: keyof typeof headingSizeForTag;
+  size?: EmailHeadingSize;
+  align?: EmailAlign;
+  dir?: EmailDirection;
+}) {
   const sizeClass = headingSizeClasses[size ?? headingSizeForTag[as]];
   return (
-    <Heading {...props} as={as} className={`mb-4 mt-0 font-display text-card-foreground ${sizeClass} ${alignClass(align)} ${className}`} />
+    <Heading
+      {...props}
+      as={as}
+      className={`mb-4 mt-0 font-display text-card-foreground ${sizeClass} ${emailAlignClass(align, dir)} ${className}`}
+    />
   );
 }
 
-export function EmailSection({ align, className = "", ...props }: SectionProps & { align?: EmailAlign }) {
-  return <Section {...props} className={`${alignClass(align)} ${className}`} />;
+export function EmailSection({
+  align,
+  dir,
+  className = "",
+  ...props
+}: Omit<SectionProps, "dir"> & { align?: EmailAlign; dir?: EmailDirection }) {
+  return <Section {...props} className={`${emailAlignClass(align, dir)} ${className}`} />;
 }
 
 export function EmailText({
   tone = "default",
   align,
+  dir,
   className = "",
   style,
   ...props
-}: TextProps & { tone?: "default" | "muted"; align?: EmailAlign }) {
+}: Omit<TextProps, "dir"> & { tone?: "default" | "muted"; align?: EmailAlign; dir?: EmailDirection }) {
   const textColor = tone === "muted" ? "text-muted-foreground" : "text-card-foreground";
   return (
     <Text
       {...props}
       style={{ overflowWrap: "break-word", ...style }}
-      className={`mb-4 mt-0 font-body text-body ${textColor} ${alignClass(align)} ${className}`}
+      className={`mb-4 mt-0 font-body text-body ${textColor} ${emailAlignClass(align, dir)} ${className}`}
     />
   );
 }
@@ -167,8 +196,12 @@ export function EmailLink({ className = "", ...props }: LinkProps) {
   return <Link {...props} className={`font-body text-primary-text underline ${className}`} />;
 }
 
-export function EmailCaption({ className = "", ...props }: TextProps & { align?: EmailAlign }) {
-  return <EmailText tone="muted" {...props} className={`text-caption ${className}`} />;
+export function EmailCaption({
+  eyebrow = false,
+  className = "",
+  ...props
+}: Omit<TextProps, "dir"> & { align?: EmailAlign; dir?: EmailDirection; eyebrow?: boolean }) {
+  return <EmailText tone="muted" {...props} className={`text-caption ${eyebrow ? "uppercase tracking-[0.08em]" : ""} ${className}`} />;
 }
 
 export function EmailMutedLink({ className = "", ...props }: LinkProps) {
@@ -191,10 +224,12 @@ export function EmailOneTimeCode({ children, className = "" }: { children: React
   );
 }
 
-export function EmailBulletList({ items, className = "" }: { items: ReactNode[]; className?: string }) {
+const listIndentClasses = { left: "pl-5", right: "pr-5" };
+
+export function EmailBulletList({ items, dir, className = "" }: { items: ReactNode[]; dir?: EmailDirection; className?: string }) {
   if (items.length === 0) return null;
   return (
-    <ul className={`mb-4 mt-0 list-disc pl-5 font-body text-body text-card-foreground ${className}`}>
+    <ul className={`mb-4 mt-0 list-disc ${listIndentClasses[emailSides(dir).start]} font-body text-body text-card-foreground ${className}`}>
       {items.map((item, index) => (
         // biome-ignore lint/suspicious/noArrayIndexKey: list entries are positional content with no stable identity.
         <li key={index} className="mb-1 font-body text-body text-card-foreground">
@@ -210,41 +245,58 @@ export function EmailColumns({
   widths,
   gap = 20,
   verticalAlign = "top",
+  dir,
   className = "",
 }: {
   children: ReactNode[];
   widths?: string[];
   gap?: number;
   verticalAlign?: "top" | "middle" | "bottom";
+  dir?: EmailDirection;
   className?: string;
 }) {
+  const sides = emailSides(dir);
   if (children.length === 0) return null;
   const evenWidth = `${(100 / children.length).toFixed(4)}%`;
   return (
     <Row className={`mb-6 table-fixed ${className}`}>
-      {children.map((child, index) => (
-        <Column
-          // biome-ignore lint/suspicious/noArrayIndexKey: columns are positional slots with no stable identity.
-          key={index}
-          width={widths?.[index] ?? evenWidth}
-          className={`max-[480px]:block max-[480px]:w-full max-[480px]:pl-0 ${index === 0 ? "" : `max-[480px]:pt-[${gap}px]`}`}
-          style={{ verticalAlign, paddingLeft: index === 0 ? 0 : gap }}
-        >
-          {child}
-        </Column>
-      ))}
+      {children.map((child, index) => {
+        const inset = index === 0 ? 0 : gap;
+        return (
+          <Column
+            // biome-ignore lint/suspicious/noArrayIndexKey: columns are positional slots with no stable identity.
+            key={index}
+            width={widths?.[index] ?? evenWidth}
+            className={`max-[480px]:block max-[480px]:w-full max-[480px]:px-0 ${index === 0 ? "" : `max-[480px]:pt-[${gap}px]`}`}
+            style={{ verticalAlign, ...(sides.start === "left" ? { paddingLeft: inset } : { paddingRight: inset }) }}
+          >
+            {child}
+          </Column>
+        );
+      })}
     </Row>
   );
 }
 
-export function EmailDetailRow({ label, value, emphasis = false }: { label: ReactNode; value: ReactNode; emphasis?: boolean }) {
+export function EmailDetailRow({
+  label,
+  value,
+  emphasis = false,
+  dir,
+}: {
+  label: ReactNode;
+  value: ReactNode;
+  emphasis?: boolean;
+  dir?: EmailDirection;
+}) {
+  const sides = emailSides(dir);
   const valueWeight = emphasis ? "font-semibold" : "";
   return (
     <Row className="table-fixed">
       <Column className="align-top">
         <EmailText className="mb-2">{label}</EmailText>
       </Column>
-      <Column align="right" className="align-top">
+      <Column align={sides.end} className="align-top">
         <EmailText className={`mb-2 ${valueWeight}`}>{value}</EmailText>
       </Column>
     </Row>

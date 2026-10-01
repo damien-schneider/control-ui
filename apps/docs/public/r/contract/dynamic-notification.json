@@ -28,7 +28,7 @@
       "name": "--cui-dynamic-notification-glass-foreground",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "white"
+      "defaultValue": "oklch(1 0 0)"
     },
     {
       "name": "--cui-dynamic-notification-glass-ring-color",
@@ -40,13 +40,25 @@
       "name": "--cui-dynamic-notification-liquid-foreground",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "white"
+      "defaultValue": "oklch(1 0 0)"
+    },
+    {
+      "name": "--cui-dynamic-notification-liquid-text-shadow",
+      "syntax": "*",
+      "initialValue": "none",
+      "defaultValue": "0 1px 2px oklch(0 0 0 / 0.25)"
     },
     {
       "name": "--cui-dynamic-notification-surface-background",
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--popover)"
+    },
+    {
+      "name": "--cui-dynamic-notification-title-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
     },
     {
       "name": "--cui-dynamic-notification-surface-foreground",
@@ -205,6 +217,13 @@
         ],
         "states": []
       },
+      "reply-error": {
+        "family": "dynamic-notification",
+        "registryItems": [
+          "dynamic-notification"
+        ],
+        "states": []
+      },
       "reply-input": {
         "family": "dynamic-notification",
         "registryItems": [
@@ -245,7 +264,8 @@
   "uncovered": [
     "--cui-dynamic-notification-glass-foreground",
     "--cui-dynamic-notification-surface-background",
-    "--cui-dynamic-notification-surface-foreground"
+    "--cui-dynamic-notification-surface-foreground",
+    "--cui-dynamic-notification-title-foreground"
   ],
   "contrast": "/r/contract/dynamic-notification.contrast.json"
 }

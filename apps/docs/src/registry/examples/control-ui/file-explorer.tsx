@@ -26,13 +26,19 @@ import {
 import { FileExplorerBlock, type FileExplorerLocation } from "@/components/control-ui/blocks/file-explorer";
 import { Button } from "@/components/control-ui/ui/button";
 import { ButtonGroup } from "@/components/control-ui/ui/button-group";
+import {
+  DropdownMenuItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+} from "@/components/control-ui/ui/dropdown-menu";
 
 const projectFiles = [
   {
     id: "readme",
     name: "README.md",
     kind: "file" as const,
-    icon: <FileTextIcon className="text-[oklch(0.72_0.14_235)]" />,
+    icon: <FileTextIcon className="text-info-text" />,
     description: "Markdown document",
     details: [
       { label: "Size", value: "8 KB" },
@@ -40,11 +46,11 @@ const projectFiles = [
       { label: "Kind", value: "Markdown" },
     ],
     preview: (
-      <div className="overflow-hidden rounded-[var(--radius-panel)] border bg-card text-left shadow-sm">
+      <div className="overflow-hidden rounded-[var(--radius-panel)] border bg-card text-start shadow-sm">
         <div className="border-b px-4 py-2 text-caption font-medium text-muted-foreground">README.md</div>
         <div className="space-y-3 p-4">
-          <h3 className="text-base font-semibold">Control UI</h3>
-          <p className="text-caption leading-5 text-muted-foreground">
+          <h3 className="text-heading-4 font-semibold">Control UI</h3>
+          <p className="text-caption text-muted-foreground">
             An owned-source component registry for polished agent interfaces, complete blocks, and swappable skins.
           </p>
           <div className="rounded-[var(--radius-control)] bg-foreground/6 px-3 py-2 font-mono text-micro text-foreground">
@@ -200,6 +206,7 @@ export function FileExplorerExample() {
         defaultActiveLocationId="github"
         defaultSelectedPath={["control-ui", "readme"]}
         headerActions={<FinderActions />}
+        headerMenuItems={<FinderMenuItems />}
         sidebarFooter={
           <Button variant="ghost" size="sm" className="w-full justify-start">
             <Trash2Icon className="size-4" />
@@ -234,6 +241,25 @@ function FinderActions() {
       <Button variant="ghost" size="sm" iconOnly aria-label="More actions" disabled>
         <MoreHorizontalIcon className="size-3.5" />
       </Button>
+    </>
+  );
+}
+
+function FinderMenuItems() {
+  return (
+    <>
+      <DropdownMenuRadioGroup value="columns" aria-label="View mode">
+        <DropdownMenuRadioItem value="grid" disabled>
+          Grid view
+        </DropdownMenuRadioItem>
+        <DropdownMenuRadioItem value="list" disabled>
+          List view
+        </DropdownMenuRadioItem>
+        <DropdownMenuRadioItem value="columns">Column view</DropdownMenuRadioItem>
+      </DropdownMenuRadioGroup>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem disabled>Share</DropdownMenuItem>
+      <DropdownMenuItem disabled>Tags</DropdownMenuItem>
     </>
   );
 }

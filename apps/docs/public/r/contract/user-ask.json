@@ -285,7 +285,8 @@
   "adornments": {},
   "uncovered": [
     "--cui-user-ask-input-background",
-    "--cui-user-ask-input-foreground"
+    "--cui-user-ask-input-foreground",
+    "--cui-user-ask-option-hover-background"
   ],
   "contrast": "/r/contract/user-ask.contrast.json"
 }

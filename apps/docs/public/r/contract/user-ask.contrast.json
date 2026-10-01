@@ -7,6 +7,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -42,6 +43,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -69,15 +71,6 @@
           "data-slot": "root",
           "data-surface": "panel",
           "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "user-ask",
-          "data-control-ui": "user-ask",
-          "data-freeform": "",
-          "data-slot": "option",
-          "role": "radio"
         }
       },
       {
@@ -93,100 +86,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "user-ask",
-          "data-control-ui": "user-ask",
-          "data-slot": "root",
-          "data-surface": "panel",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "user-ask",
-          "data-control-ui": "user-ask",
-          "data-slot": "option",
-          "role": "radio"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "user-ask",
-          "data-control-ui": "user-ask",
-          "data-slot": "option-indicator"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "user-ask",
-          "data-control-ui": "user-ask",
-          "data-slot": "root",
-          "data-surface": "panel",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "user-ask",
-          "data-control-ui": "user-ask",
-          "data-freeform": "",
-          "data-slot": "option",
-          "role": "radio"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -223,50 +123,8 @@
           "data-recommended": "",
           "data-selected": "",
           "data-slot": "option",
-          "role": "radio"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "user-ask",
-          "data-control-ui": "user-ask",
-          "data-slot": "root",
-          "data-surface": "panel",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "user-ask",
-          "data-control-ui": "user-ask",
-          "data-slot": "option",
-          "role": "radio"
+          "role": "radio",
+          "tabindex": "0"
         }
       }
     ]
@@ -292,42 +150,9 @@
     },
     {
       "knobs": {
-        "fill": "--cui-user-ask-indicator-background",
-        "text": "--cui-user-ask-indicator-foreground"
-      },
-      "anatomy": 2,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-user-ask-option-hover-background"
-      },
-      "anatomy": 3,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-user-ask-option-hover-background"
-      },
-      "anatomy": 4,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-user-ask-option-hover-background"
-      },
-      "anatomy": 5,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
         "fill": "--cui-user-ask-option-selected-background"
       },
-      "anatomy": 4,
+      "anatomy": 2,
       "rendersText": true,
       "state": false
     }

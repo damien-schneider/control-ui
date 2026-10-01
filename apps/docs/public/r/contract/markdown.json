@@ -52,7 +52,7 @@
       "name": "--cui-markdown-image-outline-color",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "oklch(from var(--foreground) l c h / 0.1)"
+      "defaultValue": "var(--image-outline)"
     },
     {
       "name": "--cui-markdown-table-cell-border-color",
@@ -65,6 +65,18 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--muted)"
+    },
+    {
+      "name": "--cui-markdown-font-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--text-body)"
+    },
+    {
+      "name": "--cui-markdown-line-height",
+      "syntax": "<number>",
+      "initialValue": "1.5",
+      "defaultValue": "var(--leading-relaxed)"
     }
   ],
   "parts": {
@@ -105,6 +117,27 @@
         "states": []
       },
       "h3": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "h4": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "h5": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "h6": {
         "family": "markdown",
         "registryItems": [
           "markdown"

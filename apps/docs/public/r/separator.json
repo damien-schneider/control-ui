@@ -3,7 +3,7 @@
   "name": "separator",
   "type": "registry:ui",
   "title": "Separator",
-  "description": "Hairline divider using the shared border token.",
+  "description": "Horizontal or vertical hairline divider.",
   "dependencies": [
     "@base-ui/react@^1.8.0"
   ],
@@ -32,8 +32,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/separator.css\"": {}
-  },
-  "meta": {
-    "internal": true
   }
 }

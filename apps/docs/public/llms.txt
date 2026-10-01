@@ -120,6 +120,9 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Empty](http://127.0.0.1:3000/primitives/empty): Empty-state layout for blank lists, zero results, and new workspaces. Status: beta.
 - [Item](http://127.0.0.1:3000/primitives/item): List row with media, content, and trailing actions. Status: beta.
 - [Pagination](http://127.0.0.1:3000/primitives/pagination): Page navigation for long lists and result sets.
+- [Breadcrumb](http://127.0.0.1:3000/primitives/breadcrumb): Location trail with links, the current page, and collapsed levels.
+- [Separator](http://127.0.0.1:3000/primitives/separator): Horizontal or vertical hairline divider.
+- [Live status](http://127.0.0.1:3000/primitives/live-status): Always-mounted polite status region that announces changes to assistive technology.
 - [Spinner](http://127.0.0.1:3000/primitives/spinner): Accessible loading indicator for pending buttons, panels, and inline waits.
 - [Meter](http://127.0.0.1:3000/primitives/meter): Static range meter for quota, storage, score, or usage values.
 - [Tree](http://127.0.0.1:3000/primitives/tree): Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure.

@@ -9,7 +9,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { Button, type ButtonProps } from "@/components/control-ui/ui/button";
 import { useFilterBarContext } from "./context";
 import { FilterBarEditor, FilterBarInlineInput } from "./editor";
-import { formatFilterValue } from "./model";
+import { describeFilter, formatFilterValue } from "./model";
 import type { FilterBarField, FilterBarItem, FilterBarOperator, FilterBarStage } from "./types";
 
 export type FilterBarChipProps = ComponentProps<"div"> & {
@@ -18,11 +18,11 @@ export type FilterBarChipProps = ComponentProps<"div"> & {
   style?: CSSProperties & FilterBarKnobStyle;
 };
 
-type FilterBarSegmentData = { stage: FilterBarStage; label: string; icon?: ReactNode };
+type FilterBarSegmentData = { stage: FilterBarStage; label: string; spokenLabel?: string; icon?: ReactNode };
 
 function chipSegments(item: FilterBarItem, field: FilterBarField | undefined, operator: FilterBarOperator | undefined, draft: boolean) {
   const segments: FilterBarSegmentData[] = [{ stage: "field", label: field?.label ?? item.fieldId, icon: field?.icon }];
-  if (operator || draft) segments.push({ stage: "operator", label: operator?.label ?? "Operator…" });
+  if (operator || draft) segments.push({ stage: "operator", label: operator?.label ?? "Operator…", spokenLabel: operator?.ariaLabel });
   if (item.value !== null || (draft && operator))
     segments.push({ stage: "value", label: item.value === null ? "Value…" : formatFilterValue(item, field) });
   return segments;
@@ -59,7 +59,7 @@ function FilterBarChipContent({ item, readOnly = false, className, ref, ...props
             data-control-ui="filter-bar"
             data-control-family="filter-bar"
             data-slot="remove"
-            aria-label={`Remove ${field?.label ?? item.fieldId} filter`}
+            aria-label={`Remove filter: ${describeFilter(item, context.fields, context.operators)}`}
             disabled={context.disabled}
             onClick={() => context.remove(item)}
             onKeyDown={(event) => context.navigate(event, item.id, "remove")}
@@ -89,7 +89,10 @@ function FilterBarSegment({
       <span data-control-ui="filter-bar" data-control-family="filter-bar" data-slot="segment" className="inline-flex min-w-0 items-center">
         <span className="flex min-w-0 items-center gap-1.5">
           {segment.icon}
-          <span className="truncate">{segment.label}</span>
+          <span className="truncate" title={segment.label} aria-hidden={segment.spokenLabel ? true : undefined}>
+            {segment.label}
+          </span>
+          {segment.spokenLabel ? <span className="sr-only">{segment.spokenLabel}</span> : null}
         </span>
       </span>
     );
@@ -102,7 +105,7 @@ function FilterBarSegment({
       data-control-family="filter-bar"
       data-slot="segment"
       className="shrink"
-      aria-label={`Edit ${segment.stage}: ${segment.label}`}
+      aria-label={`Edit ${segment.stage}: ${segment.spokenLabel ?? segment.label}`}
       aria-haspopup="listbox"
       aria-expanded={context.draft?.owner === item.id && context.draft.stage === segment.stage}
       disabled={context.disabled || draft}
@@ -110,7 +113,9 @@ function FilterBarSegment({
       onKeyDown={(event) => context.navigate(event, item.id, segment.stage)}
     >
       {segment.icon}
-      <span className="truncate">{segment.label}</span>
+      <span className="truncate" title={segment.label}>
+        {segment.label}
+      </span>
     </Button>
   );
 }
