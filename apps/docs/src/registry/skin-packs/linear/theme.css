@@ -70,6 +70,7 @@
   --shadow-modal-multiplier: 8;
 
   /* A 1px focus hairline, not a 2px halo — Linear rings with the indigo, it does not glow. */
+  --focus-ring: var(--ring);
   --focus-ring-width: 1px;
 
   /* Measured off the app: light darkens less than dark lightens. */

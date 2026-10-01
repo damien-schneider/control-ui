@@ -1,15 +1,13 @@
-/* Neutral surfaces, DM Sans rhythm, violet-led accent. Texture, gradient, and glass live in skin.css. */
-
 [data-skin="cuicui"][data-skin] {
   --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "Geist Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
 
-  /* type scale — small chrome bumped one rung (11/13px micro/label); body stays 14px */
   --text-micro: 0.6875rem;
   --text-label: 0.8125rem;
 
   --primary: oklch(0.574 0.2067 283.833);
   --primary-foreground: oklch(1 0 0);
+  --focus-ring: var(--primary);
   --destructive: oklch(0.576 0.1761 14.132);
   --destructive-foreground: oklch(1 0 0);
   --popover-opacity: 0.9;
@@ -70,7 +68,6 @@
   --border: oklch(from oklch(0.708 0 0) l c h / calc(0.22 * var(--ring-opacity)));
   --input: oklch(from oklch(0.708 0 0) l c h / 0.28);
   --ring: oklch(from var(--primary) l c h / 0.38);
-  --focus-ring: var(--primary);
   --canvas: oklch(0.985 0 0);
   --control-rim: oklch(from var(--foreground) l c h / 0.16);
 }
@@ -93,7 +90,6 @@
   --border: oklch(from oklch(0.708 0 0) l c h / calc(0.16 * var(--ring-opacity)));
   --input: oklch(from oklch(0.708 0 0) l c h / 0.18);
   --ring: oklch(from var(--primary) l c h / 0.52);
-  --focus-ring: var(--primary);
   --canvas: oklch(0.145 0 0);
   --control-rim: oklch(1 0 0 / 0.13);
   --popover-opacity: 0.82;

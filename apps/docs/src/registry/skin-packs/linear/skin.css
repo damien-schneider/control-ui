@@ -199,7 +199,6 @@
     --cui-field-foreground: var(--foreground);
     --cui-field-border-color: var(--input);
     --cui-field-shadow: 0 0 transparent;
-    --cui-field-focus-border-color: var(--primary);
   }
 
   [data-skin="linear"] :where([data-control-family="field"][data-field-kind="combobox"][data-slot="input-group"]) {

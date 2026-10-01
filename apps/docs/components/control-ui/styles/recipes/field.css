@@ -13,7 +13,7 @@
     --cui-field-border-width: var(--control-rim-width);
     --cui-field-shadow: var(--shadow-inset);
     --cui-field-backdrop-filter: blur(0px);
-    --cui-field-focus-border-color: var(--border);
+    --focus-ring-offset: calc(var(--focus-ring-width) * -1);
     --cui-field-height: var(--control-h-md);
     --cui-field-padding-inline: var(--padding-x);
     --cui-field-font-size: var(--text-body);
@@ -92,10 +92,6 @@
       ) {
       background: var(--cui-field-background);
     }
-  }
-
-  :where([data-control-family="field"][data-control="true"]:is(:focus-visible, :focus-within)) {
-    border-color: var(--cui-field-focus-border-color);
   }
 
   :where([data-control-family="field"][data-control="true"][data-invalid]),
@@ -284,12 +280,6 @@
 @property --cui-field-backdrop-filter {
   syntax: "*";
   inherits: true;
-}
-
-@property --cui-field-focus-border-color {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
 }
 
 @property --cui-field-height {

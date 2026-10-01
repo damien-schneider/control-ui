@@ -87,7 +87,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/primitives",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -125,7 +125,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/primitives",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -3912,7 +3912,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/primitives",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -3953,7 +3953,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/primitives",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -7390,6 +7390,120 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/empty",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "empty",
+            "data-control-ui": "empty",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/components/emoji-picker",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "empty",
+            "data-control-ui": "empty",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/components/emoji-picker",
     },
     {
       knobs: {
@@ -11304,7 +11418,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -13440,7 +13554,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "card",
       rendersText: true,
       state: false,
-      route: "/primitives",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -18449,7 +18563,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "empty",
       rendersText: true,
       state: false,
-      route: "/primitives/empty",
+      route: "/components/emoji-picker",
     },
     {
       knobs: {
@@ -18500,7 +18614,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "empty",
       rendersText: false,
       state: false,
-      route: "/primitives/empty",
+      route: "/components/emoji-picker",
     },
     {
       knobs: {
@@ -19396,7 +19510,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: true,
       state: false,
-      route: "/primitives",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -21380,7 +21494,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: true,
       state: false,
-      route: "/build-a-screen",
+      route: "/primitives/select",
     },
     {
       knobs: {
@@ -22443,7 +22557,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "kbd",
       rendersText: true,
       state: false,
-      route: "/primitives",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -23489,7 +23603,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "page-layout",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -26662,7 +26776,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/components/chat-composer",
+      route: "/primitives/select",
     },
     {
       knobs: {
@@ -30011,7 +30125,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/primitives",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -32733,6 +32847,69 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-control-family": "empty",
+            "data-control-ui": "empty",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "scroll-area",
+            "data-control-ui": "scroll-area",
+            "data-orientation": "vertical",
+            "data-slot": "thumb",
+          },
+        },
+      ],
+      recipe: "scroll-area",
+      rendersText: false,
+      state: false,
+      route: "/components/emoji-picker",
+    },
+    {
+      knobs: {
+        fill: "--cui-scroll-area-thumb-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "scroll-area",
+            "data-control-ui": "scroll-area",
+            "data-has-overflow-y": "",
+            "data-lock-axis": "x",
+            "data-mask": "true",
+            "data-overflow-y-end": "",
+            "data-slot": "root",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "markdown-block",
             "data-control-ui": "markdown-block",
             "data-slot": "root",
@@ -33098,7 +33275,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/create",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -33618,7 +33795,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-parts",
       rendersText: true,
       state: false,
-      route: "/primitives",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -33656,7 +33833,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-parts",
       rendersText: true,
       state: false,
-      route: "/primitives",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -34162,7 +34339,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/primitives",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -36428,7 +36605,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -36969,7 +37146,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/components/email",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -44020,7 +44197,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "empty",
       rendersText: true,
       state: false,
-      route: "/primitives/empty",
+      route: "/components/emoji-picker",
     },
     {
       knobs: {
@@ -44320,7 +44497,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/primitives",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -45324,7 +45501,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/build-a-screen",
+      route: "/primitives/select",
     },
     {
       knobs: {
@@ -45380,7 +45557,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/build-a-screen",
+      route: "/primitives/select",
     },
     {
       knobs: {
@@ -48147,7 +48324,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/components/chat-composer",
+      route: "/primitives/select",
     },
     {
       knobs: {
@@ -50719,7 +50896,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/primitives",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -51311,7 +51488,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/primitives",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -52180,7 +52357,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -52506,7 +52683,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -52995,7 +53172,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: true,
-      route: "/create",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -53104,7 +53281,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: true,
-      route: "/create",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -53423,7 +53600,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -53638,7 +53815,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/components/email",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -54158,7 +54335,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/components/email",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -54798,7 +54975,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: true,
-      route: "/components/email",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -54880,7 +55057,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: true,
-      route: "/components/email",
+      route: "/primitives/input",
     },
     {
       knobs: {
@@ -56624,7 +56801,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     "--cui-environment-variables-message-background",
     "--cui-environment-variables-message-foreground",
     "--cui-field-affordance-hover-background",
-    "--cui-field-focus-border-color",
     "--cui-field-hover-background",
     "--cui-filter-bar-background",
     "--cui-filter-bar-foreground",

@@ -67,7 +67,6 @@
     --cui-field-border-width: 0px;
     --cui-field-shadow: var(--win98-sunken);
     --cui-field-padding-inline: 4px;
-    --cui-field-focus-border-color: var(--win98-dark);
     --cui-field-affordance-background: var(--win98-face);
     --cui-field-affordance-foreground: var(--foreground);
     --cui-field-affordance-shadow: var(--win98-raised);

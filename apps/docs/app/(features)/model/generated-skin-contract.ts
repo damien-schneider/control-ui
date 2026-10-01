@@ -14872,12 +14872,6 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "blur(0px)",
       },
       {
-        name: "--cui-field-focus-border-color",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--border)",
-      },
-      {
         name: "--cui-field-height",
         syntax: "<length-percentage>",
         initialValue: "0px",

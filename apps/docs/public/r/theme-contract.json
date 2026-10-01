@@ -143,13 +143,13 @@
       "name": "--ring",
       "group": "color",
       "tier": "core",
-      "description": "Ring palette color; --focus-ring defaults to it, so a skin that softens --ring into a halo must set --focus-ring."
+      "description": "Ring palette color; --focus-ring derives from it at 70% alpha, so a skin whose ring loses 3:1 there (a saturated accent or a softened halo) must set --focus-ring."
     },
     {
       "name": "--focus-ring",
       "group": "color",
       "tier": "derived",
-      "description": "Color of the keyboard focus indicator; defaults to --ring. Must clear 3:1 against every surface it lands on (WCAG 1.4.11)."
+      "description": "Color of the keyboard focus indicator; defaults to --ring at 70% alpha. Must clear 3:1 against every surface it lands on (WCAG 1.4.11)."
     },
     {
       "name": "--control-rim",
@@ -875,7 +875,7 @@
       "name": "--focus-ring-offset",
       "group": "layout",
       "tier": "derived",
-      "description": "Gap between a control edge and its focus indicator; negative draws the indicator inside."
+      "description": "Gap between a control edge and its focus ring; negative draws it inside. Bordered fields ignore it and paint the indicator over their border."
     },
     {
       "name": "--control-rim-width",

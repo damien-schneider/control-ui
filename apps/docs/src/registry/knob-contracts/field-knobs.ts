@@ -12,7 +12,6 @@ export const fieldKnobs = [
   "--cui-field-border-width",
   "--cui-field-shadow",
   "--cui-field-backdrop-filter",
-  "--cui-field-focus-border-color",
   "--cui-field-height",
   "--cui-field-padding-inline",
   "--cui-field-font-size",

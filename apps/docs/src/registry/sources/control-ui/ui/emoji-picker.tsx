@@ -46,7 +46,7 @@ export function EmojiPickerSearch({
         data-slot="search-input"
         placeholder={placeholder}
         aria-label={ariaLabel}
-        className={cn("min-w-0 flex-1 outline-none", className)}
+        className={cn("min-w-0 flex-1", className)}
         {...props}
       />
     </div>

@@ -53,8 +53,10 @@
 </GuideSection>
 
 <GuideSection id="focus" title="Focus">
-  The keyboard focus indicator is its own role: color, width, style, and offset. It must clear 3:1 against every
-  surface it lands on.
+  The focus indicator is its own role: color, width, style, and offset. It appears on `:focus-visible` only, so a
+  pointer press on a button, tab, or checkbox draws nothing, while a text field shows it on click because typing goes
+  there next. Each control draws one indicator: fields, the composer, and highlighted menu items paint it on their own
+  edge, and everything else gets a ring at `--focus-ring-offset`. It must clear 3:1 against every surface it lands on.
 
   <FocusFoundations />
 </GuideSection>

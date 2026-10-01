@@ -52,7 +52,6 @@
     --cui-field-border-color: transparent;
     --cui-field-border-width: 0px;
     --cui-field-shadow: inset 0 0 0 1.5px var(--aui-liquid-control-ring), var(--aui-liquid-control-shadow);
-    --cui-field-focus-border-color: transparent;
   }
 
   :root[data-skin="liquid-metal"] [data-control-family="pagination"][data-control="true"][data-liquid-metal="active"] {

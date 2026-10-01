@@ -130,7 +130,6 @@
   [data-skin="refined"] :where([data-control-family="field"][data-control="true"]) {
     --cui-field-border-color: var(--input);
     --cui-field-border-width: 0px;
-    --cui-field-focus-border-color: var(--focus-ring);
     --cui-field-shadow: var(--refined-surface-shadow);
   }
 

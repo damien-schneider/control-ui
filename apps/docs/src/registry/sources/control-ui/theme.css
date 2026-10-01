@@ -219,7 +219,7 @@
   --warning-text: var(--scale-yellow-11);
   --info-text: var(--scale-blue-11);
   --ring-opacity: 1;
-  --focus-ring: var(--ring);
+  --focus-ring: oklch(from var(--ring) l c h / calc(alpha * 0.7));
   --focus-ring-width: 2px;
   --focus-ring-style: solid;
   --focus-ring-offset: 2px;
@@ -362,7 +362,6 @@
   --destructive: oklch(0.551 0.1799 32);
   --destructive-foreground: oklch(0.9645 0.008 84);
   --ring: oklch(0.66 0 0);
-  --focus-ring: oklch(0.66 0 0);
   --shadow-color: oklch(0 0 0);
   --destructive-text: oklch(from var(--destructive) 0.78 c h);
   --shadow-highlight: oklch(1 0 0 / 0.055);
@@ -676,6 +675,10 @@
     [data-control-family][data-focus-ring="within"] [data-control-family]
   ):focus-visible {
     outline-width: 0;
+  }
+
+  :where([data-control-family][data-highlighted]):focus-visible {
+    outline-offset: calc(var(--focus-ring-width) * -1);
   }
 
   @media (forced-colors: active) {

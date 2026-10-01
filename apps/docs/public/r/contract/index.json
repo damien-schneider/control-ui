@@ -85,7 +85,7 @@
         "toggle"
       ],
       "knobs": 25,
-      "probes": 163
+      "probes": 165
     },
     "button-group": {
       "registryItems": [
@@ -242,7 +242,7 @@
         "select",
         "textarea"
       ],
-      "knobs": 16,
+      "knobs": 15,
       "probes": 69
     },
     "filter-bar": {
@@ -412,7 +412,7 @@
         "scroll-area"
       ],
       "knobs": 3,
-      "probes": 44
+      "probes": 45
     },
     "separator": {
       "registryItems": [

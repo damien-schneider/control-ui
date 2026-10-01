@@ -34,7 +34,7 @@
 
   :where([data-control-family="chat-composer"][data-slot="shell"]:has(:is(textarea, [contenteditable="true"]):focus-visible)) {
     outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring);
-    outline-offset: var(--focus-ring-offset);
+    outline-offset: calc(var(--focus-ring-width) * -1);
   }
 
   :where([data-control-family="chat-composer"][data-slot="shell"] [data-control-family="dropzone"][data-slot="overlay"]) {

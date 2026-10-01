@@ -72,8 +72,8 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --info-text [light+dark] Readable informational text color on base and card surfaces; defaults to --scale-blue-11.
 - --border [light+dark] Hairline border color (carries --ring-opacity).
 - --input [light+dark] Form field border color.
-- --ring [light+dark] Ring palette color; --focus-ring defaults to it, so a skin that softens --ring into a halo must set --focus-ring.
-- --focus-ring [light+dark] Color of the keyboard focus indicator; defaults to --ring. Must clear 3:1 against every surface it lands on (WCAG 1.4.11).
+- --ring [light+dark] Ring palette color; --focus-ring derives from it at 70% alpha, so a skin whose ring loses 3:1 there (a saturated accent or a softened halo) must set --focus-ring.
+- --focus-ring [light+dark] Color of the keyboard focus indicator; defaults to --ring at 70% alpha. Must clear 3:1 against every surface it lands on (WCAG 1.4.11).
 - --control-rim [light+dark] Boundary color of a control's own edge; defaults to --border.
 - --control-boundary [light+dark] Edge of a control that has no other outline (unchecked checkbox, radio, switch track); defaults to --foreground at 55% and must clear 3:1 on --background and --card (WCAG 1.4.11).
 - --image-outline [light+dark] Hairline inside images and media that separates them from any surface; 10% black in light, 10% white in dark.
@@ -194,7 +194,7 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --control-h-lg [shared] Derived control height: lg (×1.11, px-snapped).
 - --focus-ring-width [shared] Thickness of the keyboard focus indicator; 0 removes it and fails WCAG 2.4.7.
 - --focus-ring-style [shared] Line style of the keyboard focus indicator (solid, dotted, dashed); none removes it and fails WCAG 2.4.7.
-- --focus-ring-offset [shared] Gap between a control edge and its focus indicator; negative draws the indicator inside.
+- --focus-ring-offset [shared] Gap between a control edge and its focus ring; negative draws it inside. Bordered fields ignore it and paint the indicator over their border.
 - --control-rim-width [shared] Thickness of a control's own edge; defaults to 1px, shared across modes.
 - --touch-target [shared] Minimum hit area of a control under a coarse pointer (WCAG 2.5.5); defaults to 44px.
 - --target-min [shared] Minimum hit area of a small control under a fine pointer (WCAG 2.5.8); defaults to 24px.

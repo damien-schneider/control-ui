@@ -71,7 +71,6 @@
     --cui-field-border-width: 1px;
     --cui-field-shadow: none;
     --cui-field-padding-inline: 4px;
-    --cui-field-focus-border-color: var(--primary);
     --cui-field-affordance-shadow: inset 1px 1px var(--xp-light), inset -1px -1px var(--xp-shadow);
     --cui-field-affordance-foreground: var(--xp-glyph);
   }

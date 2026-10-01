@@ -33,20 +33,11 @@
     box-shadow: var(--shadow-inset);
     color: var(--foreground);
     font-size: var(--text-label);
-    transition-property: border-color, box-shadow;
-    transition-duration: var(--duration-fast);
-    transition-timing-function: var(--ease-standard);
+    --focus-ring-offset: calc(var(--focus-ring-width) * -1);
   }
 
   :where([data-control-family="emoji-picker"][data-slot="search-input"])::placeholder {
     color: var(--muted-foreground);
-  }
-
-  :where([data-control-family="emoji-picker"][data-slot="search-input"]:focus-visible) {
-    border-color: var(--border);
-    box-shadow:
-      var(--shadow-inset),
-      0 0 0 2px oklch(from var(--ring) l c h / 0.4);
   }
 
   :where([data-control-family="emoji-picker"][data-slot="content"]) {

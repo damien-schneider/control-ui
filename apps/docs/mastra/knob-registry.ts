@@ -1812,12 +1812,6 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="field"][data-control="true"])',
       },
       {
-        name: "--cui-field-focus-border-color",
-        syntax: "<color>",
-        defaultValue: "var(--border)",
-        selector: ':where([data-control-family="field"][data-control="true"])',
-      },
-      {
         name: "--cui-field-font-size",
         syntax: "<length-percentage>",
         defaultValue: "var(--text-body)",

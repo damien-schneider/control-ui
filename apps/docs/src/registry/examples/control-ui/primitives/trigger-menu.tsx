@@ -4,10 +4,9 @@ import { useRef, useState } from "react";
 import { useTextareaTriggerMenu } from "@/components/control-ui/hooks/use-textarea-trigger-menu";
 import type { TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/hooks/use-trigger-menu";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
+import { Textarea } from "@/components/control-ui/ui/textarea";
 import { TriggerMenu, TriggerMenuEmpty, TriggerMenuIcon, TriggerMenuItem, TriggerMenuList } from "@/components/control-ui/ui/trigger-menu";
 
-// Standalone: trigger-menu driving plain <textarea>, no editor/chat-composer; one `triggers` config
-// powers both "/" and "@".
 const commands: TriggerMenuItemData[] = [
   { id: "summarize", label: "Summarize", description: "Condense the thread", icon: "✦" },
   { id: "translate", label: "Translate", description: "To another language", icon: "🌐" },
@@ -37,14 +36,14 @@ export function PrimitiveTriggerMenuExample() {
 
   return (
     <div className="w-full max-w-md">
-      <textarea
+      <Textarea
         ref={ref}
         value={value}
         onChange={(event) => setValue(event.currentTarget.value)}
         rows={4}
         aria-label="Trigger menu demo"
         {...menu.inputAria}
-        className="field-sizing-content min-h-24 w-full resize-none rounded-field border bg-card/78 px-3 py-2 text-sm leading-6 shadow-sm outline-none ring-1 ring-inset ring-border transition placeholder:text-muted-foreground focus:ring-2 focus:ring-foreground/20"
+        className="min-h-24 leading-6"
         placeholder="Type / or @"
       />
       <LiveStatus message={status} />

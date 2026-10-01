@@ -34,9 +34,7 @@
   --border: oklch(0 0 0 / var(--ring-opacity));
   --input: oklch(0 0 0 / 0.16);
   --ring: var(--primary);
-  --focus-ring: var(--primary);
-  --focus-ring-width: 2px;
-  --focus-ring-offset: 2px;
+  --focus-ring: var(--ring);
 
   --canvas: oklch(0.9466 0 0);
 

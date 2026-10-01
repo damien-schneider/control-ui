@@ -293,7 +293,6 @@
     --cui-field-border-color: var(--input);
     --cui-field-border-width: 1px;
     --cui-field-shadow: var(--cuicui-control-shadow);
-    --cui-field-focus-border-color: var(--input);
   }
 }
 

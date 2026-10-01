@@ -32,8 +32,13 @@
 
   [data-skin="sketch"] [data-control-family="field"][data-control="true"] {
     --cui-field-shadow: none;
-    --cui-field-focus-border-color: var(--primary);
     font-weight: 400;
+  }
+
+  [data-skin="sketch"] [data-control-family="field"][data-control="true"]:is(:focus-visible, :has(:focus-visible)) {
+    --sketch-outline-color: var(--focus-ring);
+    --sketch-outline-width: calc(var(--cui-field-border-width) * 2);
+    outline-width: 0;
   }
 
   [data-skin="sketch"] [data-control-family="card"][data-slot="root"] {
