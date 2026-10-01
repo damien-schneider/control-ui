@@ -83,7 +83,7 @@
     },
     "packages/components": {
       "name": "@ctrl-ui/react",
-      "version": "0.8.7",
+      "version": "0.8.8",
       "devDependencies": {
         "@types/bun": "^1.4.2",
         "@types/react": "^19.3.0",
@@ -96,6 +96,7 @@
         "clsx": "^2.1.1",
         "cmdk": "^1.1.1",
         "diff": "^9.0.0",
+        "frimousse": "^0.4.0",
         "libphonenumber-js": "^1.13.13",
         "lucide-react": "^1.47.0",
         "prosemirror-commands": "^1.7.2",
@@ -119,6 +120,7 @@
         "@tanstack/react-virtual",
         "cmdk",
         "diff",
+        "frimousse",
         "libphonenumber-js",
         "prosemirror-commands",
         "prosemirror-history",
