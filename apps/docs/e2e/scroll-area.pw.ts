@@ -2,6 +2,79 @@ import { expect, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { waitForReactHydration } from "./browser-test-helpers";
 
+test("Windows XP keeps its sidebar scrollbar visible beside the viewport", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.addInitScript((storageKey) => {
+    localStorage.setItem(storageKey, JSON.stringify({ skin: "xp" }));
+  }, THEME_EDITOR_STORAGE_KEY);
+  await page.goto("/primitives/scroll-area");
+  const navigation = page.locator("[data-docs-sidebar-navigation]");
+  const viewport = navigation.locator("[data-scroll-area-viewport]");
+  const scrollArea = viewport.locator("..");
+  const scrollbar = scrollArea.locator('[data-slot="scrollbar"][data-orientation="vertical"]');
+  await expect(scrollArea).toHaveAttribute("data-scrollbar-gutter", "stable");
+  await expect(scrollbar).toHaveCSS("opacity", "1");
+  await expect(scrollbar).toHaveCSS("width", "16px");
+  await expect(scrollArea.locator('[data-slot="scrollbar"][data-orientation="horizontal"]')).toHaveCount(0);
+  const viewportBounds = await viewport.boundingBox();
+  const scrollbarBounds = await scrollbar.boundingBox();
+  if (!viewportBounds || !scrollbarBounds) throw new Error("Missing sidebar scroll bounds");
+  expect(viewportBounds.x + viewportBounds.width).toBeLessThanOrEqual(scrollbarBounds.x);
+  await viewport.evaluate((element) => {
+    element.scrollTop = 300;
+  });
+  await expect(scrollArea).toHaveAttribute("data-overflow-y-start", "");
+  await page.mouse.move(1000, 100);
+  await expect(scrollbar).toHaveCSS("opacity", "1");
+
+  const roadmap = page.getByLabel("Horizontal roadmap", { exact: true }).locator("..");
+  await expect(roadmap.locator('[data-slot="scrollbar"][data-orientation="vertical"]')).toHaveCount(0);
+  const horizontal = roadmap.locator('[data-slot="scrollbar"][data-orientation="horizontal"]');
+  await expect(horizontal).toHaveCSS("opacity", "1");
+  const roadmapBounds = await roadmap.locator("[data-scroll-area-viewport]").boundingBox();
+  const horizontalBounds = await horizontal.boundingBox();
+  if (!roadmapBounds || !horizontalBounds) throw new Error("Missing horizontal scroll bounds");
+  expect(roadmapBounds.y + roadmapBounds.height).toBeLessThanOrEqual(horizontalBounds.y);
+});
+
+for (const direction of ["ltr", "rtl"] as const) {
+  test(`stable gutters keep their size when overflow changes in ${direction}`, async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/primitives/scroll-area");
+    const viewport = page.getByRole("region", { name: "Stable scrollbar gutter", exact: true });
+    const scrollArea = viewport.locator("..");
+    const toggle = page.getByRole("button", { name: "Overflow content", exact: true });
+    await waitForReactHydration(toggle);
+    await toggle.scrollIntoViewIfNeeded();
+    await scrollArea.evaluate((element, dir) => element.setAttribute("dir", dir), direction);
+    await expect(scrollArea).toHaveAttribute("data-has-overflow-x", "");
+    await expect(scrollArea).toHaveAttribute("data-has-overflow-y", "");
+    const vertical = scrollArea.locator('[data-slot="scrollbar"][data-orientation="vertical"]');
+    const horizontal = scrollArea.locator('[data-slot="scrollbar"][data-orientation="horizontal"]');
+    const viewportBounds = await viewport.boundingBox();
+    const verticalBounds = await vertical.boundingBox();
+    const horizontalBounds = await horizontal.boundingBox();
+    if (!viewportBounds || !verticalBounds || !horizontalBounds) throw new Error("Missing gutter bounds");
+    if (direction === "rtl") expect(verticalBounds.x + verticalBounds.width).toBeLessThanOrEqual(viewportBounds.x);
+    else expect(viewportBounds.x + viewportBounds.width).toBeLessThanOrEqual(verticalBounds.x);
+    expect(viewportBounds.y + viewportBounds.height).toBeLessThanOrEqual(horizontalBounds.y);
+    await expect(scrollArea.locator('[data-slot="corner"]')).toBeVisible();
+    await toggle.click();
+    await expect(scrollArea).not.toHaveAttribute("data-has-overflow-x");
+    await expect(scrollArea).not.toHaveAttribute("data-has-overflow-y");
+    await expect(vertical).toHaveCSS("opacity", "1");
+    await expect(horizontal).toHaveCSS("opacity", "1");
+    await expect(vertical.locator('[data-slot="thumb"]')).toBeHidden();
+    await expect(horizontal.locator('[data-slot="thumb"]')).toBeHidden();
+    expect(await viewport.boundingBox()).toEqual(viewportBounds);
+    await toggle.click();
+    await expect(scrollArea).toHaveAttribute("data-has-overflow-x", "");
+    await expect(scrollArea).toHaveAttribute("data-has-overflow-y", "");
+    await expect(vertical.locator('[data-slot="thumb"]')).toBeVisible();
+    expect(await viewport.boundingBox()).toEqual(viewportBounds);
+  });
+}
+
 test("macOS preserves its corner shape and fades overflow until keyboard focus", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.addInitScript((storageKey) => {

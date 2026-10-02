@@ -10182,6 +10182,12 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
+              attribute: "data-scrollbar-gutter",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["auto", "stable"],
+            },
+            {
               attribute: "data-scrolling",
               source: "external",
               valueKind: "presence",

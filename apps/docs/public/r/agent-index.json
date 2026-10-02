@@ -814,7 +814,7 @@
         "id": "scroll-area",
         "name": "Scroll area",
         "kind": "Primitive",
-        "summary": "Scroll container with overlay scrollbars, edge fades, and optional progressive blur.",
+        "summary": "Scroll container with overlay or space-reserving scrollbars, edge fades, and optional progressive blur.",
         "href": "/primitives/scroll-area",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/scroll-area.json"
       },

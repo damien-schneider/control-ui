@@ -5,6 +5,50 @@
     --cui-scroll-area-corner-background: transparent;
   }
 
+  :where([data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"]) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+
+  :where(
+    [data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"] > [data-scroll-area-viewport],
+    [data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"] > [data-control-family="progressive-blur"]
+  ) {
+    grid-area: 1 / 1;
+    min-inline-size: 0;
+    min-block-size: 0;
+  }
+
+  :where(
+    [data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"]
+      > [data-slot="scrollbar"][data-orientation="vertical"]
+  ) {
+    grid-area: 1 / 2;
+  }
+
+  :where(
+    [data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"]
+      > [data-slot="scrollbar"][data-orientation="horizontal"]
+  ) {
+    grid-area: 2 / 1;
+  }
+
+  :where([data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"] > [data-slot="corner"]) {
+    grid-area: 2 / 2;
+  }
+
+  :where(
+    [data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"]
+      > [data-slot="scrollbar"][data-orientation="vertical"]:not([data-has-overflow-y])
+      > [data-slot="thumb"],
+    [data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"]
+      > [data-slot="scrollbar"][data-orientation="horizontal"]:not([data-has-overflow-x])
+      > [data-slot="thumb"]
+  ) {
+    display: none;
+  }
+
   @supports (corner-shape: squircle) {
     @container not style(--corner-shape: round) {
       :where([data-control-family="scroll-area"][data-slot="root"] > [data-control-family="progressive-blur"]) {

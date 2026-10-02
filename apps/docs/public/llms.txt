@@ -74,7 +74,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Sidebar](http://127.0.0.1:3000/primitives/sidebar): Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus. Status: beta.
 - [App shell](http://127.0.0.1:3000/primitives/app-shell): Persistent sidebar and content frame with one scroll policy for loading, empty, and loaded pages. Status: beta.
 - [Page layout](http://127.0.0.1:3000/primitives/page-layout): Page shell that owns the scroll container, the shared measure, and the title and actions row. Status: beta.
-- [Scroll area](http://127.0.0.1:3000/primitives/scroll-area): Scroll container with overlay scrollbars, edge fades, and optional progressive blur.
+- [Scroll area](http://127.0.0.1:3000/primitives/scroll-area): Scroll container with overlay or space-reserving scrollbars, edge fades, and optional progressive blur.
 - [Progressive blur](http://127.0.0.1:3000/primitives/progressive-blur): CSS-driven backdrop blur that grows toward an edge, with masked layers and interruptible staggered transitions.
 - [Table of contents](http://127.0.0.1:3000/primitives/table-of-contents): Sticky in-page navigation with scroll-spy range highlighting.
 - [Timeline](http://127.0.0.1:3000/primitives/timeline): Static chronological events with independent status, connectors, descriptions, and metadata.

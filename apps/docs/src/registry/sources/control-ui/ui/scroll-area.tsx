@@ -11,6 +11,10 @@ export const scrollAreaScrollbarVisibilities = ["scroll", "hover", "always"] as 
 
 export type ScrollAreaScrollbarVisibility = (typeof scrollAreaScrollbarVisibilities)[number];
 
+export const scrollAreaScrollbarGutters = ["auto", "stable"] as const;
+
+export type ScrollAreaScrollbarGutter = (typeof scrollAreaScrollbarGutters)[number];
+
 export type ScrollAreaLockAxis = "x" | "y" | "both";
 
 export type ScrollAreaViewportProps = Omit<ComponentProps<"div">, "children" | "className" | "ref"> & {
@@ -31,25 +35,30 @@ export type ScrollAreaProps = Omit<ComponentProps<"div">, "style"> & { style?: C
   blurProps?: Pick<ProgressiveBlurProps, "style">;
   lockAxis?: ScrollAreaLockAxis;
   scrollbarVisibility?: ScrollAreaScrollbarVisibility;
+  scrollbarGutter?: ScrollAreaScrollbarGutter;
 };
 
 function Scrollbar({
   orientation,
   visibility,
+  gutter,
   thumbStyle,
 }: {
   orientation: "vertical" | "horizontal";
   visibility: ScrollAreaProps["scrollbarVisibility"];
+  gutter: ScrollAreaScrollbarGutter;
   thumbStyle?: CSSProperties & ScrollAreaKnobStyle;
 }) {
   return (
     <ScrollAreaPrimitive.Scrollbar
       orientation={orientation}
+      keepMounted={gutter === "stable"}
       data-control-ui="scroll-area"
       data-control-family="scroll-area"
       data-slot="scrollbar"
       data-visibility={visibility}
       className={cn("m-px flex touch-none select-none", orientation === "vertical" ? "justify-center" : "flex-col")}
+      style={gutter === "stable" ? { position: "relative", inset: "auto" } : undefined}
     >
       <ScrollAreaPrimitive.Thumb
         data-control-ui="scroll-area"
@@ -104,7 +113,8 @@ export function ScrollArea({
   blur,
   blurProps,
   lockAxis,
-  scrollbarVisibility = "hover",
+  scrollbarVisibility,
+  scrollbarGutter,
   children,
   style,
   "aria-label": ariaLabel,
@@ -113,6 +123,8 @@ export function ScrollArea({
 }: ScrollAreaProps) {
   const skin = useSkin();
   const resolvedBlur = blur ?? skin.scrollAreaBlur ?? false;
+  const resolvedVisibility = scrollbarVisibility ?? skin.scrollAreaScrollbarVisibility ?? "hover";
+  const resolvedGutter = scrollbarGutter ?? skin.scrollAreaScrollbarGutter ?? "auto";
   const lockX = lockAxis === "x" || lockAxis === "both";
   const lockY = lockAxis === "y" || lockAxis === "both";
   const { style: viewportPropsStyle, ...resolvedViewportProps } = viewportProps ?? {};
@@ -129,6 +141,7 @@ export function ScrollArea({
       data-mask={mask || undefined}
       data-blur={resolvedBlur || undefined}
       data-lock-axis={lockAxis}
+      data-scrollbar-gutter={resolvedGutter}
       className={cn("relative overflow-hidden", className)}
       style={style}
     >
@@ -154,14 +167,14 @@ export function ScrollArea({
         </ScrollAreaPrimitive.Content>
       </ScrollAreaPrimitive.Viewport>
       {resolvedBlur && <EdgeBlurs blurProps={blurProps} lockX={lockX} lockY={lockY} />}
-      {!lockY && <Scrollbar orientation="vertical" visibility={scrollbarVisibility} thumbStyle={thumbStyle} />}
-      {!lockX && <Scrollbar orientation="horizontal" visibility={scrollbarVisibility} thumbStyle={thumbStyle} />}
+      {!lockY && <Scrollbar orientation="vertical" visibility={resolvedVisibility} gutter={resolvedGutter} thumbStyle={thumbStyle} />}
+      {!lockX && <Scrollbar orientation="horizontal" visibility={resolvedVisibility} gutter={resolvedGutter} thumbStyle={thumbStyle} />}
       {!lockX && !lockY && (
         <ScrollAreaPrimitive.Corner
           data-control-ui="scroll-area"
           data-control-family="scroll-area"
           data-slot="corner"
-          style={cornerStyle}
+          style={resolvedGutter === "stable" ? { ...cornerStyle, position: "relative", inset: "auto" } : cornerStyle}
         />
       )}
     </ScrollAreaPrimitive.Root>

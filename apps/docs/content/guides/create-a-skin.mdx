@@ -61,6 +61,11 @@ export function AppTheme({ children }: { children: ReactNode }) {
   The CSS selector and provider id must agree. A portalled popover, dialog, or menu receives that same id.
   Each provider scopes its own subtree; omitting a provider uses the neutral defaults and root theme.
 
+  Set `scrollAreaScrollbarVisibility: "always"` and `scrollAreaScrollbarGutter: "stable"` in the skin config for
+  persistent scrollbar tracks that reserve layout space, as in Windows XP. ScrollArea's `scrollbarVisibility` and
+  `scrollbarGutter` props override these defaults for individual instances. The neutral defaults are `"hover"` and
+  `"auto"`, which use overlay scrollbars.
+
   The example packs resolve the required token contract explicitly so each has a complete, independent appearance.
   A consumer theme may inherit defaults and override only the values it needs.
 </GuideSection>

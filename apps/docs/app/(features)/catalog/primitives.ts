@@ -474,7 +474,7 @@ export const primitiveEntries = [
     category: "layout",
     kind: "Primitive",
     name: "Scroll area",
-    summary: "Scroll container with overlay scrollbars, edge fades, and optional progressive blur.",
+    summary: "Scroll container with overlay or space-reserving scrollbars, edge fades, and optional progressive blur.",
     shadcnDocsUrl: "https://ui.shadcn.com/docs/components/scroll-area",
     paths: {
       registry: {
@@ -489,6 +489,17 @@ export const primitiveEntries = [
       import("@/src/registry/examples/control-ui/primitives/scroll-area").then((mod) => ({ default: mod.PrimitiveScrollAreaExample })),
     ),
     additionalPreviews: [
+      {
+        id: "stable-gutter",
+        title: "Stable scrollbar gutter",
+        previewClassName: "min-h-80",
+        description:
+          'Set scrollbarGutter="stable" to reserve space for each unlocked scrollbar, even when the content fits. Combine it with scrollbarVisibility="always" for persistent tracks. Both props override the skin defaults; Windows XP uses always-visible, space-reserving scrollbars.',
+        source: sourceFile("Stable scrollbar gutter", "src/registry/examples/control-ui/primitives/scroll-area.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/scroll-area").then((mod) => ({ default: mod.ScrollAreaGutterExample })),
+        ),
+      },
       {
         id: "progressive-blur",
         title: "Progressive blur",

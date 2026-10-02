@@ -141,7 +141,7 @@
 - `sidebar` (Sidebar) **[beta]** — Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus. — `npx shadcn@latest add http://127.0.0.1:3000/r/sidebar.json`
 - `app-shell` (App shell) **[beta]** — Persistent sidebar and content frame with one scroll policy for loading, empty, and loaded pages. — `npx shadcn@latest add http://127.0.0.1:3000/r/app-shell.json`
 - `page-layout` (Page layout) **[beta]** — Page shell that owns the scroll container, the shared measure, and the title and actions row. — `npx shadcn@latest add http://127.0.0.1:3000/r/page-layout.json`
-- `scroll-area` (Scroll area) — Scroll container with overlay scrollbars, edge fades, and optional progressive blur. — `npx shadcn@latest add http://127.0.0.1:3000/r/scroll-area.json`
+- `scroll-area` (Scroll area) — Scroll container with overlay or space-reserving scrollbars, edge fades, and optional progressive blur. — `npx shadcn@latest add http://127.0.0.1:3000/r/scroll-area.json`
 - `accordion` (Accordion) — Stacked disclosure rows with measured panel animation. — `npx shadcn@latest add http://127.0.0.1:3000/r/accordion.json`
 - `card` (Card) **[beta]** — Content surface for panels, tiles, and settings groups. — `npx shadcn@latest add http://127.0.0.1:3000/r/card.json`
 - `aspect-ratio` (Aspect ratio) **[beta]** — Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3]. — `npx shadcn@latest add http://127.0.0.1:3000/r/aspect-ratio.json`

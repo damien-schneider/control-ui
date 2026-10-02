@@ -15,7 +15,7 @@
       "path": "src/registry/skin-packs/xp/skin.config.tsx",
       "target": "@components/control-ui/skin.config.tsx",
       "type": "registry:lib",
-      "content": "import type { ControlUiSkin } from \"@/components/control-ui/skin\";\n\nexport const skin: ControlUiSkin = {\n  id: \"xp\",\n  motion: \"reduced\",\n  sidebarLayout: \"sidebar\",\n  indicators: { sidebar: \"none\", tree: \"none\" },\n  adornments: {\n    \"chat-layout\": {\n      titlebar: (\n        <div\n          aria-hidden=\"true\"\n          className=\"flex h-[27px] shrink-0 select-none items-center rounded-t-[5px] bg-[image:var(--xp-titlebar)] px-2 font-['Trebuchet_MS',Tahoma,sans-serif] text-[13px] font-bold text-[var(--xp-white)] text-shadow-[1px_1px_var(--xp-title-shadow)]\"\n        >\n          Agent Chat\n        </div>\n      ),\n    },\n  },\n};\n"
+      "content": "import type { ControlUiSkin } from \"@/components/control-ui/skin\";\n\nexport const skin: ControlUiSkin = {\n  id: \"xp\",\n  motion: \"reduced\",\n  sidebarLayout: \"sidebar\",\n  scrollAreaScrollbarVisibility: \"always\",\n  scrollAreaScrollbarGutter: \"stable\",\n  indicators: { sidebar: \"none\", tree: \"none\" },\n  adornments: {\n    \"chat-layout\": {\n      titlebar: (\n        <div\n          aria-hidden=\"true\"\n          className=\"flex h-[27px] shrink-0 select-none items-center rounded-t-[5px] bg-[image:var(--xp-titlebar)] px-2 font-['Trebuchet_MS',Tahoma,sans-serif] text-[13px] font-bold text-[var(--xp-white)] text-shadow-[1px_1px_var(--xp-title-shadow)]\"\n        >\n          Agent Chat\n        </div>\n      ),\n    },\n  },\n};\n"
     },
     {
       "path": "src/registry/skin-packs/xp/skin.css",

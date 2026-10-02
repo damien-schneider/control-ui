@@ -32,6 +32,8 @@ export type ControlUiSkin = {
 
   sidebarLayout?: SidebarLayout;
   scrollAreaBlur?: boolean;
+  scrollAreaScrollbarVisibility?: "scroll" | "hover" | "always";
+  scrollAreaScrollbarGutter?: "auto" | "stable";
   indicators?: SkinIndicators;
 
   sidebarWidth?: string;

@@ -4,6 +4,8 @@ export const skin: ControlUiSkin = {
   id: "xp",
   motion: "reduced",
   sidebarLayout: "sidebar",
+  scrollAreaScrollbarVisibility: "always",
+  scrollAreaScrollbarGutter: "stable",
   indicators: { sidebar: "none", tree: "none" },
   adornments: {
     "chat-layout": {

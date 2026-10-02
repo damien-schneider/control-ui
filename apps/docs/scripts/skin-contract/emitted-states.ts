@@ -40,7 +40,11 @@ import type {
   ResizablePanelGroupVariant,
 } from "../../src/registry/sources/control-ui/ui/resizable";
 import type { RichTooltipProgressVariant, RichTooltipTone } from "../../src/registry/sources/control-ui/ui/rich-tooltip";
-import type { ScrollAreaLockAxis, ScrollAreaScrollbarVisibility } from "../../src/registry/sources/control-ui/ui/scroll-area";
+import type {
+  ScrollAreaLockAxis,
+  ScrollAreaScrollbarGutter,
+  ScrollAreaScrollbarVisibility,
+} from "../../src/registry/sources/control-ui/ui/scroll-area";
 import type {
   SidebarLayoutMode,
   SidebarMenuButtonSize,
@@ -228,6 +232,7 @@ export type EmittedStateContract = {
   "scroll-area:root:data-mask": true;
   "scroll-area:root:data-blur": true;
   "scroll-area:root:data-lock-axis": ScrollAreaLockAxis;
+  "scroll-area:root:data-scrollbar-gutter": ScrollAreaScrollbarGutter;
   "progressive-blur:root:data-side": ProgressiveBlurSide;
   "progressive-blur:root:data-visible": true;
   "sidebar:wrapper:data-layout": SidebarLayoutMode;

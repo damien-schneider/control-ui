@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
@@ -46,6 +47,23 @@ export function PrimitiveScrollAreaExample() {
         viewportClassName controls viewport padding and scrolling. Put flex or grid on a child container: the viewport contains an internal
         content wrapper. lockAxis="y" prevents vertical scrolling.
       </p>
+    </div>
+  );
+}
+
+export function ScrollAreaGutterExample() {
+  const [overflow, setOverflow] = useState(true);
+
+  return (
+    <div className="flex w-full max-w-sm flex-col gap-4">
+      <Button variant="surface" aria-pressed={overflow} onClick={() => setOverflow((value) => !value)}>
+        Overflow content
+      </Button>
+      <ScrollArea aria-label="Stable scrollbar gutter" className="h-48" scrollbarVisibility="always" scrollbarGutter="stable" mask={false}>
+        <div className={overflow ? "h-96 w-[36rem] p-4" : "p-4"}>
+          <p className="text-sm text-muted-foreground">The scrollbar tracks keep their space when content fits.</p>
+        </div>
+      </ScrollArea>
     </div>
   );
 }
