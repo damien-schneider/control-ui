@@ -12131,6 +12131,12 @@ export const generatedSkinContract: SkinContract = {
               values: ["panel"],
             },
             {
+              attribute: "data-slide-exiting",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-starting-style",
               source: "external",
               valueKind: "presence",

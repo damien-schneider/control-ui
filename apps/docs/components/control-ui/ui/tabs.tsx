@@ -2,7 +2,7 @@
 
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
 import type { ComponentProps, CSSProperties, ReactNode, Ref } from "react";
-import { Children, createContext, Fragment, isValidElement, useContext, useRef, useState } from "react";
+import { Children, createContext, Fragment, isValidElement, useContext, useEffect, useRef, useState } from "react";
 import type { ControlledChoice, RenderProp } from "@/components/control-ui/control-props";
 import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { TabsKnobStyle } from "@/components/control-ui/knob-contracts/tabs-knobs";
@@ -33,12 +33,21 @@ export type TabsPanelProps = Omit<ComponentProps<"div">, "style"> & { style?: CS
 
 type RegisterTabsPanel = (value: string, node: HTMLDivElement | null) => (() => void) | undefined;
 
-const TabsPanelsContext = createContext<RegisterTabsPanel | null>(null);
+type ActiveTabsPanel = { value: string; node: HTMLDivElement; height: number };
 
-function useRegisterTabsPanel() {
-  const registerPanel = useContext(TabsPanelsContext);
-  if (!registerPanel) throw new Error("TabsPanel must be rendered inside <Tabs>.");
-  return registerPanel;
+type TabsPanelsContextValue = { registerPanel: RegisterTabsPanel; exitingValue: string | null };
+
+function refreshTabsPanelHeight(panel: ActiveTabsPanel) {
+  if (panel.node.inert || panel.node.hidden) return;
+  panel.height = panel.node.getBoundingClientRect().height;
+}
+
+const TabsPanelsContext = createContext<TabsPanelsContextValue | null>(null);
+
+function useTabsPanels() {
+  const context = useContext(TabsPanelsContext);
+  if (!context) throw new Error("TabsPanel must be rendered inside <Tabs>.");
+  return context;
 }
 
 function setRef<T>(ref: Ref<T> | undefined, value: T | null) {
@@ -46,38 +55,60 @@ function setRef<T>(ref: Ref<T> | undefined, value: T | null) {
   if (ref) ref.current = value;
 }
 
-// rides Base UI's --active-tab-width/--active-tab-left, so one transition slides it between tabs
 export function Tabs<TValue extends string = string>({ className, onValueChange, children, ...props }: TabsProps<TValue>) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const panelsRef = useRef(new Map<string, HTMLDivElement>());
-  const clearPrevHeight = useRef(0);
+  const activePanelRef = useRef<ActiveTabsPanel | null>(null);
+  const clearPreviousHeightFrame = useRef(0);
+  const [exitingValue, setExitingValue] = useState<string | null>(null);
+  const [holdPreviousHeight] = useState(() => (height: string) => {
+    const root = rootRef.current;
+    if (!root) return;
+    root.style.setProperty("--aui-slide-prev-height", height);
+    cancelAnimationFrame(clearPreviousHeightFrame.current);
+    clearPreviousHeightFrame.current = requestAnimationFrame(() => {
+      clearPreviousHeightFrame.current = requestAnimationFrame(() => {
+        root.style.removeProperty("--aui-slide-prev-height");
+        root.removeAttribute("data-slide-starting");
+      });
+    });
+  });
+  useEffect(() => () => cancelAnimationFrame(clearPreviousHeightFrame.current), []);
   const [registerPanel] = useState<RegisterTabsPanel>(() => (value: string, node: HTMLDivElement | null) => {
-    if (!node) return;
-    panelsRef.current.set(value, node);
+    const panelCanBeMeasured = node && !node.inert && !node.hidden;
+    if (!panelCanBeMeasured) return;
+    const previousPanel = activePanelRef.current;
+    const root = rootRef.current;
+    const switchingPanels = root && previousPanel && previousPanel.value !== value;
+    if (switchingPanels) {
+      root.setAttribute("data-slide-starting", "");
+      holdPreviousHeight(root.style.getPropertyValue("--aui-slide-prev-height") || `${previousPanel.height}px`);
+      setExitingValue(previousPanel.value);
+    }
+    activePanelRef.current = { value, node, height: node.getBoundingClientRect().height };
+    if (root) {
+      root.style.setProperty("--_tabs-panel-top", `${node.offsetTop}px`);
+      root.style.setProperty("--_tabs-panel-left", `${node.offsetLeft}px`);
+      root.style.setProperty("--_tabs-panel-width", `${node.offsetWidth}px`);
+      root.style.setProperty("--_tabs-panel-height", `${node.offsetHeight}px`);
+    }
     return () => {
-      if (panelsRef.current.get(value) === node) panelsRef.current.delete(value);
+      const currentPanel = activePanelRef.current;
+      if (currentPanel && currentPanel.node === node) refreshTabsPanelHeight(currentPanel);
     };
   });
 
-  // Captured height bridges CSS's auto-to-auto transition gap.
   const handleValueChange = (value: TValue) => {
-    const root = rootRef.current;
-    if (root) {
-      for (const panel of panelsRef.current.values()) {
-        if (panel.inert || panel.hidden) continue;
-        root.style.setProperty("--aui-slide-prev-height", `${panel.getBoundingClientRect().height}px`);
-        cancelAnimationFrame(clearPrevHeight.current);
-        clearPrevHeight.current = requestAnimationFrame(() => {
-          clearPrevHeight.current = requestAnimationFrame(() => root.style.removeProperty("--aui-slide-prev-height"));
-        });
-        break;
-      }
+    const activePanel = activePanelRef.current;
+    if (activePanel) {
+      refreshTabsPanelHeight(activePanel);
+      holdPreviousHeight(`${activePanel.height}px`);
+      setExitingValue(activePanel.value);
     }
     onValueChange?.(value);
   };
 
   return (
-    <TabsPanelsContext.Provider value={registerPanel}>
+    <TabsPanelsContext.Provider value={{ registerPanel, exitingValue }}>
       <TabsPrimitive.Root
         data-control-ui="tabs"
         data-control-family="tabs"
@@ -155,7 +186,7 @@ export function TabsTab({ className, ...props }: TabsTabProps) {
 }
 
 export function TabsPanel({ className, value, ref, ...props }: TabsPanelProps) {
-  const registerPanel = useRegisterTabsPanel();
+  const { registerPanel, exitingValue } = useTabsPanels();
   const panelRef = (node: HTMLDivElement | null) => {
     const unregister = registerPanel(value, node);
     const cleanup = setRef(ref, node);
@@ -175,7 +206,12 @@ export function TabsPanel({ className, value, ref, ...props }: TabsPanelProps) {
       data-control-family="tabs"
       data-slot="panel"
       data-slide="panel"
-      className={cn("data-[hidden]:hidden [&[hidden]]:hidden", className)}
+      data-slide-exiting={exitingValue === value ? "" : undefined}
+      className={cn(
+        "data-[hidden]:hidden [&[hidden]]:hidden [&[inert]:not([data-slide=panel][data-slide-exiting][data-ending-style])]:hidden [&[inert][data-ending-style]]:m-0",
+        "not-supports-[anchor-name:--aui-slide-panel]:[&[inert]]:hidden not-supports-[anchor-scope:--aui-slide-panel]:[&[inert]]:hidden",
+        className,
+      )}
       {...props}
     />
   );
