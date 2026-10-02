@@ -121,7 +121,10 @@ export function SidebarMenu({
       data-control-family="sidebar"
       data-slot="menu"
       data-indicator={resolvedIndicator}
-      className={cn("flex min-w-0 flex-col", hasHighlight ? undefined : className)}
+      className={cn(
+        "flex min-w-0 flex-col group-data-[collapsible=icon]:mx-0 group-data-[collapsible=icon]:border-0 group-data-[collapsible=icon]:px-0",
+        hasHighlight ? undefined : className,
+      )}
       style={hasHighlight ? undefined : style}
       {...props}
     >
@@ -189,6 +192,7 @@ export function SidebarMenuButton({
 }: SidebarMenuButtonProps) {
   const { isMobile, state } = useSidebar();
   const surface = useContext(SidebarSurfaceContext);
+  const tooltipEnabled = !isMobile && state === "collapsed" && surface?.collapsible === "icon";
   const indicator = useContext(SidebarMenuContext);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [textLabel, setTextLabel] = useState("");
@@ -209,7 +213,7 @@ export function SidebarMenuButton({
       "data-active": isActive || undefined,
       "data-track-item": indicator !== "none" ? "" : undefined,
       className: cn(
-        "peer/menu-button flex w-full items-center overflow-hidden text-start group-data-[collapsible=icon]:w-(--cui-sidebar-menu-button-height) disabled:pointer-events-none aria-disabled:pointer-events-none [&>span]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+        "peer/menu-button flex items-center overflow-hidden text-start disabled:pointer-events-none aria-disabled:pointer-events-none [&>span]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
         className,
       ),
       children,
@@ -220,16 +224,13 @@ export function SidebarMenuButton({
 
   return (
     <Tooltip
+      disabled={!tooltipEnabled}
       onOpenChange={(open) => {
         if (open && !tooltip) setTextLabel(buttonRef.current?.textContent?.trim() ?? "");
       }}
     >
       <TooltipTrigger render={button} />
-      <TooltipContent
-        side={surface?.side === "right" ? "inline-start" : "inline-end"}
-        align="center"
-        hidden={state !== "collapsed" || isMobile}
-      >
+      <TooltipContent side={surface?.side === "right" ? "inline-start" : "inline-end"} align="center" hidden={!tooltipEnabled}>
         {tooltip ?? textLabel}
       </TooltipContent>
     </Tooltip>

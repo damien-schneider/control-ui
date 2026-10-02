@@ -339,6 +339,10 @@
     padding: calc(var(--spacing) * 3);
   }
 
+  [data-skin="cuicui"] :where([data-control-family="sidebar"][data-collapsible="icon"] [data-control-family="sidebar"][data-slot="inner"]) {
+    padding: 0;
+  }
+
   [data-skin="cuicui"] :where([data-slot="menu-button"][data-control-family="sidebar"]) {
     border: 1px solid transparent;
     line-height: calc(1.25 / 0.875);

@@ -16347,7 +16347,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-sidebar-menu-button-padding-inline",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue: "var(--padding-x)",
+        defaultValue: "calc(var(--sidebar-width-icon) / 2 - var(--spacing) * 4)",
       },
       {
         name: "--cui-sidebar-menu-button-font-size",

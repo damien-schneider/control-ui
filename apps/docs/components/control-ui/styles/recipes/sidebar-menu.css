@@ -11,6 +11,7 @@
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-button"]) {
+    inline-size: 100%;
     gap: calc(var(--spacing) * 1.5);
     block-size: var(--cui-sidebar-menu-button-height);
     border-radius: var(--cui-sidebar-menu-button-radius);
@@ -24,18 +25,24 @@
 
   :where([data-control-family="sidebar"][data-slot="menu-button"][data-size="sm"]) {
     --cui-sidebar-menu-button-height: var(--control-h-sm);
-    --cui-sidebar-menu-button-padding-inline: calc(var(--padding-x) * 0.75);
     --cui-sidebar-menu-button-font-size: var(--text-label);
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-button"][data-size="lg"]) {
     --cui-sidebar-menu-button-height: var(--control-h-lg);
-    --cui-sidebar-menu-button-padding-inline: calc(var(--padding-x) * 1.25);
     gap: calc(var(--spacing) * 2);
   }
 
-  :where([data-control-family="sidebar"][data-collapsible="icon"] [data-control-family="sidebar"][data-slot="menu-button"]) {
-    --cui-sidebar-menu-button-padding-inline: 0px;
+  :where(
+    [data-control-family="sidebar"][data-collapsible="icon"] [data-control-family="sidebar"][data-slot="menu-button"] > :not(:first-child)
+  ) {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    opacity: 0;
+    white-space: nowrap;
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-action"]) {
@@ -261,5 +268,15 @@
     :where([data-control-family="sidebar"][data-slot="menu-button"]:has(~ [data-slot="menu-badge"]):has(~ [data-slot="menu-action"])) {
       padding-inline-end: calc(var(--touch-target) + var(--spacing) * 10);
     }
+  }
+
+  :where([data-control-family="sidebar"][data-collapsible="icon"] [data-control-family="sidebar"][data-slot="menu-button"]) {
+    --cui-sidebar-menu-button-padding-inline: 0px;
+    inline-size: calc(var(--sidebar-width-icon) - var(--spacing) * 4);
+    max-inline-size: 100%;
+    padding-inline: var(--cui-sidebar-menu-button-padding-inline);
+    justify-content: center;
+    gap: 0;
+    overflow: visible;
   }
 }

@@ -113,7 +113,13 @@ test("drag collapse restores the committed width and drag expand tracks the poin
 
   await resizeHandle.press("Enter");
   await expect(sidebarRoot).toHaveAttribute("data-state", "collapsed");
-  await expect(sidebarContainer).toHaveCSS("left", "-420px");
+  await expect
+    .poll(async () => {
+      const bounds = await sidebarContainer.boundingBox();
+      if (!bounds) throw new Error("Sidebar container is not rendered");
+      return bounds.x + bounds.width;
+    })
+    .toBeLessThanOrEqual(0);
   await resizeHandle.hover();
   await page.mouse.down();
   await page.mouse.move(300, 450);

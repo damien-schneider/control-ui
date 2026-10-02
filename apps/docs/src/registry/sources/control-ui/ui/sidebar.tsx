@@ -100,7 +100,7 @@ function SidebarSurface({
   ...props
 }: SidebarProps & { railContainerRef: Ref<HTMLDivElement> }) {
   const { side, collapsible } = useSidebarSurface();
-  const { offcanvasRef } = useSidebarElements();
+  const { offcanvasRef, triggerRef } = useSidebarElements();
   const skin = useSkin();
   const { isMobile, state, openMobile, setOpenMobile, layout, sidebarId } = useSidebar();
   const resolvedVariant = variant ?? skin.sidebarLayout ?? "sidebar";
@@ -118,9 +118,7 @@ function SidebarSurface({
       className: cn(
         layout === "contained" ? "absolute h-full" : "fixed h-svh",
         "inset-y-0 z-10 hidden w-(--sidebar-width) lg:flex",
-        side === "left"
-          ? "start-0 group-data-[collapsible=offcanvas]:start-[calc(var(--sidebar-width)*-1)]"
-          : "end-0 group-data-[collapsible=offcanvas]:end-[calc(var(--sidebar-width)*-1)]",
+        side === "left" ? "start-0" : "end-0",
         resolvedVariant === "floating" || resolvedVariant === "inset"
           ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
           : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
@@ -171,7 +169,7 @@ function SidebarSurface({
 
     return (
       <Sheet open={openMobile} onOpenChange={setOpenMobile}>
-        <SheetContent side={side} className="w-(--sidebar-width) gap-0 p-0" style={mobileSheetStyle}>
+        <SheetContent side={side} finalFocus={triggerRef} className="w-(--sidebar-width) gap-0 p-0" style={mobileSheetStyle}>
           <SheetHeader className="sr-only">
             <SheetTitle>{label}</SheetTitle>
           </SheetHeader>

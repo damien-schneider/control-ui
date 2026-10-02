@@ -69,7 +69,7 @@
     --cui-sidebar-group-label-padding: 0px calc(var(--spacing) * 2);
     --cui-sidebar-menu-button-height: var(--control-h-md);
     --cui-sidebar-menu-button-padding-block: 0px;
-    --cui-sidebar-menu-button-padding-inline: var(--padding-x);
+    --cui-sidebar-menu-button-padding-inline: calc(var(--sidebar-width-icon) / 2 - var(--spacing) * 4);
     --cui-sidebar-menu-button-font-size: var(--text-body);
     --cui-sidebar-menu-button-font-weight: 400;
     --cui-sidebar-menu-button-active-font-weight: 500;
@@ -96,6 +96,7 @@
 
   :where([data-control-family="sidebar"][data-slot="gap"]) {
     background-color: transparent;
+    transition: width var(--duration-base) var(--ease-standard);
   }
 
   :where([data-control-family="sidebar"][data-slot="root"][data-variant="sidebar"][data-side="left"] [data-slot="container"]) {

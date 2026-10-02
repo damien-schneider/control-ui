@@ -202,18 +202,7 @@
   [data-skin="rig"] [data-slot="menu-button"][data-control-family="sidebar"] {
     transition:
       background-color var(--duration-fast) var(--ease-standard),
-      box-shadow var(--duration-fast) var(--ease-standard),
-      transform var(--duration-fast) var(--ease-standard);
-  }
-
-  @media (hover: hover) {
-    [data-skin="rig"] [data-slot="menu-button"][data-control-family="sidebar"]:hover {
-      transform: translateX(2px);
-    }
-  }
-
-  [data-skin="rig"] [data-slot="menu-button"][data-active="true"][data-control-family="sidebar"] {
-    transform: translateX(2px);
+      box-shadow var(--duration-fast) var(--ease-standard);
   }
 
   [data-skin="rig"] [data-slot="group-label"][data-control-family="sidebar"],

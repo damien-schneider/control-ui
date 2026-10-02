@@ -29,10 +29,10 @@ import {
 } from "@/components/control-ui/ui/sidebar";
 
 const workspaceItems = [
-  { title: "Agents", icon: SparklesIcon, unread: 3 },
-  { title: "Workflows", icon: LayersIcon, unread: 12 },
-  { title: "Tools", icon: HashIcon, disabled: true },
-];
+  { title: "Agents", icon: SparklesIcon, size: "default", disabled: false, unread: 3 },
+  { title: "Workflows", icon: LayersIcon, size: "sm", disabled: false, unread: 12 },
+  { title: "Tools", icon: HashIcon, size: "default", disabled: true, unread: 0 },
+] as const;
 const projectPages = ["Overview", "Design system", "API integration"];
 
 function WorkspaceNavigation({
@@ -56,6 +56,7 @@ function WorkspaceNavigation({
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton
                   isActive={active === item.title}
+                  size={item.size}
                   onClick={() => onNavigate(item.title)}
                   disabled={item.disabled}
                   tooltip={item.title}
@@ -142,12 +143,14 @@ function Workspace({
   nested,
   resizable,
   side,
+  collapsible,
 }: {
   variant: SidebarLayout;
   resizable: boolean;
   side: "left" | "right";
   indicator?: SidebarSelectionIndicator;
   nested: boolean;
+  collapsible: "icon" | "offcanvas" | "none";
 }) {
   const [active, setActive] = useState(nested ? "Design system" : "Agents");
   const { setOpenMobile } = useSidebar();
@@ -159,28 +162,41 @@ function Workspace({
 
   return (
     <>
-      <Sidebar variant={variant} side={side} collapsible={resizable ? "offcanvas" : "icon"} className="h-full">
+      <Sidebar variant={variant} side={side} collapsible={resizable ? "offcanvas" : collapsible} className="h-full">
         <SidebarHeader>
-          <div className="flex h-9 items-center gap-2 overflow-hidden px-1">
-            <span className="flex size-7 shrink-0 items-center justify-center rounded-(--radius-control) bg-primary text-label font-semibold text-primary-foreground">
+          <SidebarMenuButton size="lg" tooltip="Acme workspace" onClick={() => navigate("Overview")}>
+            <span
+              aria-hidden="true"
+              className="flex size-7 shrink-0 items-center justify-center rounded-(--radius-control) bg-primary text-label font-semibold text-primary-foreground"
+            >
               A
             </span>
-            <span className="truncate font-medium group-data-[collapsible=icon]:hidden">Acme workspace</span>
-          </div>
+            <span className="font-medium">Acme workspace</span>
+          </SidebarMenuButton>
         </SidebarHeader>
         <WorkspaceNavigation active={active} onNavigate={navigate} indicator={indicator} nested={nested} />
         <SidebarFooter>
-          <div className="flex items-center gap-2 overflow-hidden px-1 py-1 text-label text-muted-foreground">
-            <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-muted text-caption font-medium">JD</span>
-            <span className="truncate group-data-[collapsible=icon]:hidden">Jamie Davis</span>
-            <SidebarTrigger className="ml-auto lg:hidden" />
-          </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger render={<SidebarMenuButton size="lg" tooltip="Jamie Davis" />}>
+              <span
+                aria-hidden="true"
+                className="flex size-7 shrink-0 items-center justify-center rounded-full bg-muted text-caption font-medium"
+              >
+                JD
+              </span>
+              <span>Jamie Davis</span>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent side="inline-end" align="end">
+              <DropdownMenuItem onClick={() => navigate("Profile")}>Profile</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("Settings")}>Settings</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </SidebarFooter>
         {resizable ? <SidebarRail resizable /> : null}
       </Sidebar>
       <SidebarInset>
         <header className="flex h-14 shrink-0 items-center gap-2 border-b border-border px-3">
-          <SidebarTrigger />
+          {resizable || collapsible !== "none" ? <SidebarTrigger /> : null}
           <span className="truncate text-label font-medium">{active}</span>
         </header>
         <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-auto p-5">
@@ -232,8 +248,12 @@ function SidebarExample({
   const [width, setWidth] = useState(280);
   const [indicator, setIndicator] = useState<SidebarSelectionIndicator>();
   const [layout, setLayout] = useState<SidebarLayout>();
+  const [sidebarSide, setSidebarSide] = useState(side);
+  const [collapsible, setCollapsible] = useState<"icon" | "offcanvas" | "none">("icon");
   const layoutId = useId();
   const highlightId = useId();
+  const sideId = useId();
+  const collapseId = useId();
 
   return (
     <fieldset aria-label={label} className="w-full min-w-0">
@@ -276,6 +296,35 @@ function SidebarExample({
               <option value="hover">Fluid hover</option>
             </NativeSelect>
           </div>
+          <label htmlFor={sideId}>Side</label>
+          <div className="w-24">
+            <NativeSelect
+              id={sideId}
+              value={sidebarSide}
+              onChange={(event) => {
+                const value = event.target.value;
+                if (value === "left" || value === "right") setSidebarSide(value);
+              }}
+            >
+              <option value="left">Left</option>
+              <option value="right">Right</option>
+            </NativeSelect>
+          </div>
+          <label htmlFor={collapseId}>Collapse</label>
+          <div className="w-32">
+            <NativeSelect
+              id={collapseId}
+              value={collapsible}
+              onChange={(event) => {
+                const value = event.target.value;
+                if (value === "icon" || value === "offcanvas" || value === "none") setCollapsible(value);
+              }}
+            >
+              <option value="icon">Icon rail</option>
+              <option value="offcanvas">Off-canvas</option>
+              <option value="none">Fixed</option>
+            </NativeSelect>
+          </div>
         </div>
       ) : null}
       <div className="relative isolate h-[30rem] w-full overflow-hidden rounded-(--radius-panel) border border-border bg-canvas [transform:translateZ(0)]">
@@ -287,7 +336,14 @@ function SidebarExample({
           className="min-h-0! h-full"
           style={{ "--sidebar-width": "14rem" }}
         >
-          <Workspace variant={layout ?? variant} indicator={indicator} nested={nested} resizable={resizable} side={side} />
+          <Workspace
+            variant={layout ?? variant}
+            indicator={indicator}
+            nested={nested}
+            resizable={resizable}
+            side={sidebarSide}
+            collapsible={collapsible}
+          />
         </SidebarProvider>
       </div>
     </fieldset>

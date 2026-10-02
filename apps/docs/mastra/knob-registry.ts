@@ -3444,7 +3444,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-sidebar-menu-button-padding-inline",
         syntax: "<length-percentage>",
-        defaultValue: "var(--padding-x)",
+        defaultValue: "calc(var(--sidebar-width-icon) / 2 - var(--spacing) * 4)",
         selector: ':where([data-control-family="sidebar"][data-slot="root"])',
       },
       {

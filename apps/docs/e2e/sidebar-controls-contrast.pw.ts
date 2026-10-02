@@ -34,47 +34,43 @@ async function glyphRegions(controls: Locator): Promise<GlyphRegion[]> {
       glyph.getAttribute("fill") === "currentColor" ||
       glyph.querySelector('[stroke="currentColor"], [fill="currentColor"]') !== null;
 
-    const glyphsOf = (element: HTMLElement) => {
-      const nested = [...element.querySelectorAll("svg, span")]
-        .filter(paintsWithTextColor)
-        .map((glyph) => ({ rect: glyph.getBoundingClientRect(), text: (glyph.textContent ?? "").trim().length > 0 }))
-        .filter(({ rect }) => rect.width > 1 && rect.height > 1);
-      if (nested.length > 0 || element.querySelector("svg, span")) return nested;
-      const range = document.createRange();
-      range.selectNodeContents(element);
-      const contentRect = range.getBoundingClientRect();
-      if (contentRect.width <= 1 || contentRect.height <= 1) return [];
-      return [{ rect: contentRect, text: (element.textContent ?? "").trim().length > 0 }];
+    const textGlyphs = (element: HTMLElement) => {
+      const glyphs: { rect: DOMRect; color: string; hasText: boolean }[] = [];
+      const textNodes = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+      while (textNodes.nextNode()) {
+        const node = textNodes.currentNode;
+        const parent = node.parentElement;
+        if (!(node.textContent?.trim() && parent && isMeasurable(parent))) continue;
+        const range = document.createRange();
+        range.selectNode(node);
+        glyphs.push({ rect: range.getBoundingClientRect(), color: getComputedStyle(parent).color, hasText: true });
+      }
+      return glyphs;
     };
 
-    const regions: GlyphRegion[] = [];
-    for (const element of controlsElement.querySelectorAll("button, a")) {
-      if (!isMeasurable(element)) continue;
-      const glyphs = glyphsOf(element);
-      if (glyphs.length === 0) continue;
+    const iconGlyphs = (element: HTMLElement) =>
+      [...element.querySelectorAll("svg")]
+        .filter((icon) => icon.checkVisibility() && paintsWithTextColor(icon))
+        .map((icon) => ({ rect: icon.getBoundingClientRect(), color: getComputedStyle(icon).color, hasText: false }));
+
+    return [...controlsElement.querySelectorAll("button, a")].filter(isMeasurable).flatMap((element) => {
+      const name = element.getAttribute("aria-label") ?? element.getAttribute("title") ?? (element.textContent ?? "").trim();
       const own = element.getBoundingClientRect();
-      const left = Math.max(own.left, Math.min(...glyphs.map(({ rect }) => rect.left)));
-      const top = Math.max(own.top, Math.min(...glyphs.map(({ rect }) => rect.top)));
-      const right = Math.min(own.right, Math.max(...glyphs.map(({ rect }) => rect.right)));
-      const bottom = Math.min(own.bottom, Math.max(...glyphs.map(({ rect }) => rect.bottom)));
-      if (right - left < 2 || bottom - top < 2) continue;
-      regions.push({
-        name: element.getAttribute("aria-label") ?? element.getAttribute("title") ?? (element.textContent ?? "").trim(),
-        x: left - host.left,
-        y: top - host.top,
-        width: right - left,
-        height: bottom - top,
-        color: getComputedStyle(element).color,
-        hasText: glyphs.some(({ text }) => text),
+      return [...textGlyphs(element), ...iconGlyphs(element)].flatMap(({ rect, color, hasText }) => {
+        const left = Math.max(own.left, rect.left);
+        const top = Math.max(own.top, rect.top);
+        const right = Math.min(own.right, rect.right);
+        const bottom = Math.min(own.bottom, rect.bottom);
+        if (right - left < 2 || bottom - top < 2) return [];
+        return [{ name, x: left - host.left, y: top - host.top, width: right - left, height: bottom - top, color, hasText }];
       });
-    }
-    return regions;
+    });
   });
 }
 
 async function minimumContrasts(controls: Locator, regions: GlyphRegion[]): Promise<number[]> {
   await controls.evaluate((controlsElement) => {
-    for (const element of controlsElement.querySelectorAll("button, a")) {
+    for (const element of controlsElement.querySelectorAll("button, a, button *, a *")) {
       if (element instanceof HTMLElement) element.style.setProperty("color", "transparent", "important");
     }
     for (const icon of controlsElement.querySelectorAll("button svg, a svg")) {
@@ -83,7 +79,7 @@ async function minimumContrasts(controls: Locator, regions: GlyphRegion[]): Prom
   });
   const shot = await controls.screenshot({ animations: "disabled" });
   await controls.evaluate((controlsElement) => {
-    for (const element of controlsElement.querySelectorAll("button, a")) {
+    for (const element of controlsElement.querySelectorAll("button, a, button *, a *")) {
       if (element instanceof HTMLElement) element.style.removeProperty("color");
     }
     for (const icon of controlsElement.querySelectorAll("button svg, a svg")) {
