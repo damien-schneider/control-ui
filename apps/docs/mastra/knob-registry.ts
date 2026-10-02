@@ -186,6 +186,41 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     ],
   },
   {
+    id: "app-shell-header",
+    knobs: [
+      {
+        name: "--cui-app-shell-header-background",
+        syntax: "<color>",
+        defaultValue: "var(--background)",
+        selector: ':where([data-control-family="app-shell-header"][data-slot="root"])',
+      },
+      {
+        name: "--cui-app-shell-header-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--border)",
+        selector: ':where([data-control-family="app-shell-header"][data-slot="root"])',
+      },
+      {
+        name: "--cui-app-shell-header-border-width",
+        syntax: "<length>",
+        defaultValue: "1px",
+        selector: ':where([data-control-family="app-shell-header"][data-slot="root"])',
+      },
+      {
+        name: "--cui-app-shell-header-height",
+        syntax: "<length>",
+        defaultValue: "calc(var(--spacing) * 14)",
+        selector: ':where([data-control-family="app-shell-header"][data-slot="root"])',
+      },
+      {
+        name: "--cui-app-shell-header-padding-inline",
+        syntax: "<length>",
+        defaultValue: "calc(var(--spacing) * 4)",
+        selector: ':where([data-control-family="app-shell-header"][data-slot="root"])',
+      },
+    ],
+  },
+  {
     id: "audio-recorder",
     knobs: [
       {

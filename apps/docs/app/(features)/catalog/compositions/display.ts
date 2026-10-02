@@ -63,6 +63,21 @@ export const displayCompositions = {
       ),
     ),
   ],
+  "app-shell": [
+    example(
+      "Persistent application frame",
+      part(
+        "AppShell",
+        part("Sidebar", part("SidebarContent"), part("SidebarRail")),
+        part(
+          "AppShellContent",
+          part("AppShellHeader", part("SidebarTrigger")),
+          part("PageLayout", part("PageHeader", part("PageTitle")), part("PageBody", content("route content"))),
+        ),
+      ),
+      "AppShell includes SidebarProvider. Set scroll once: page uses the document, inset lets PageLayout scroll, and none lets workspace panes own scrolling. Keep the shell mounted while route content loads.",
+    ),
+  ],
   "page-layout": [
     example(
       "Page shell",

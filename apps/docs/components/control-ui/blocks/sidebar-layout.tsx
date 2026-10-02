@@ -2,6 +2,8 @@
 
 import { BotIcon, LayoutDashboardIcon, SettingsIcon, SquareTerminalIcon, WorkflowIcon } from "lucide-react";
 import type { ComponentType, ReactNode } from "react";
+import { AppShell, AppShellContent, AppShellHeader } from "@/components/control-ui/ui/app-shell";
+import { PageLayout } from "@/components/control-ui/ui/page-layout";
 import {
   Sidebar,
   SidebarContent,
@@ -9,11 +11,9 @@ import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarHeader,
-  SidebarInset,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarProvider,
   SidebarRail,
   SidebarTrigger,
 } from "@/components/control-ui/ui/sidebar";
@@ -81,22 +81,24 @@ export function AppSidebar({ active = "Playground" }: { active?: string }) {
 
 export function SidebarLayout({ children }: { children: ReactNode }) {
   return (
-    <SidebarProvider>
+    <AppShell scroll="inset">
       <AppSidebar />
-      <SidebarInset>
-        <header className="flex h-14 shrink-0 items-center gap-2 border-b px-4">
+      <AppShellContent>
+        <AppShellHeader>
           <SidebarTrigger />
-        </header>
-        <div
-          data-control-ui="sidebar-layout"
-          data-control-family="sidebar-layout"
-          data-slot="content"
-          data-surface="panel"
-          className="flex flex-1 flex-col gap-4 p-4"
-        >
-          {children}
-        </div>
-      </SidebarInset>
-    </SidebarProvider>
+        </AppShellHeader>
+        <PageLayout width="full">
+          <div
+            data-control-ui="sidebar-layout"
+            data-control-family="sidebar-layout"
+            data-slot="content"
+            data-surface="panel"
+            className="flex flex-1 flex-col gap-4 p-4"
+          >
+            {children}
+          </div>
+        </PageLayout>
+      </AppShellContent>
+    </AppShell>
   );
 }

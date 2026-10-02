@@ -190,6 +190,31 @@
       "syntax": "<number>"
     },
     {
+      "name": "--cui-app-shell-header-background",
+      "description": "Control UI app-shell-header knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-app-shell-header-border-color",
+      "description": "Control UI app-shell-header knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-app-shell-header-border-width",
+      "description": "Control UI app-shell-header knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
+      "name": "--cui-app-shell-header-height",
+      "description": "Control UI app-shell-header knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
+      "name": "--cui-app-shell-header-padding-inline",
+      "description": "Control UI app-shell-header knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
       "name": "--cui-audio-recorder-active-foreground",
       "description": "Control UI audio-recorder knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"

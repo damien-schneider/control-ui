@@ -17,40 +17,41 @@
   An explicit `variant` takes precedence over the skin default. Page removes the sidebar divider and inset
   frame while retaining the fixed desktop navigation, collapse controls, resize rail, and mobile drawer.
 
-  Keep `SidebarProvider` in normal document flow: its default minimum height fills the viewport without
-  limiting the page height. Render content directly inside `SidebarInset`; do not add `h-svh`, an
-  overflow-constrained ancestor, or a full-screen `ScrollArea` around the main content. `SidebarContent`
-  can still scroll the navigation independently.
+  Use `AppShell` once in your persistent layout. It includes `SidebarProvider`, so collapse, resize,
+  keyboard shortcuts, mobile navigation, and the skip link keep the same state while routes change.
+  The host application owns authentication, routing, and data fetching.
 
 ```tsx
 import type { ReactNode } from "react";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/control-ui/ui/sidebar";
+import { AppShell, AppShellContent, AppShellHeader } from "@/components/control-ui/ui/app-shell";
+import { PageLayout, PageBody } from "@/components/control-ui/ui/page-layout";
+import { Sidebar, SidebarContent, SidebarTrigger } from "@/components/control-ui/ui/sidebar";
 
-export function PageLayout({ navigation, children }: { navigation: ReactNode; children: ReactNode }) {
+export function DashboardLayout({ navigation, children }: { navigation: ReactNode; children: ReactNode }) {
   return (
-    <SidebarProvider>
+    <AppShell scroll="page">
       <Sidebar variant="page">
         <SidebarContent>{navigation}</SidebarContent>
       </Sidebar>
-      <SidebarInset>
-        <header className="p-4">
-          <SidebarTrigger />
-        </header>
-        {children}
-      </SidebarInset>
-    </SidebarProvider>
+      <AppShellContent>
+        <AppShellHeader><SidebarTrigger /></AppShellHeader>
+        <PageLayout><PageBody>{children}</PageBody></PageLayout>
+      </AppShellContent>
+    </AppShell>
   );
 }
 ```
 
-  Omit `variant="page"` when the skin should choose the layout. The sidebar component playground confines
-  every variant to its preview frame; use the composition above for native window scrolling.
+  `scroll="page"` keeps native document scrolling and fills short pages to the bottom of the viewport.
+  `scroll="inset"` bounds the shell to the viewport and lets `PageLayout` scroll below the persistent header.
+  `scroll="none"` bounds the shell for independently scrolling workspace panes, such as an inbox.
+  `PageLayout` inherits this policy unless its `scroll` prop is explicit. Do not mix a document-scrolling
+  page with a bounded shell. With `scroll="auto"`, the skin chooses page or inset scrolling.
+
+  Use `layout="contained"` inside an already sized parent, such as a preview or embedded workspace.
+  Sidebar appearance remains a separate choice through its `variant` prop or the skin.
+  Loading and empty states belong inside the same `PageLayout` as the loaded content. Replace the data
+  region with a meaningful skeleton while keeping the page title, actions, and frame stable.
 </GuideSection>
 
 <GuideSection id="feedback" title="Keep frequent feedback immediate">

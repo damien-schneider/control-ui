@@ -38,6 +38,7 @@ export const registryKindIds = [
   "tabs",
   "track-highlight",
   "sidebar",
+  "app-shell",
   "page-layout",
   "scroll-area",
   "progressive-blur",

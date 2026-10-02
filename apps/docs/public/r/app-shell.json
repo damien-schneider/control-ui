@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "app-shell",
+  "type": "registry:ui",
+  "title": "App shell",
+  "description": "Persistent sidebar and content frame with one scroll policy for loading, empty, and loaded pages.",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json",
+    "http://127.0.0.1:3000/r/page-layout.json",
+    "http://127.0.0.1:3000/r/sidebar.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/knob-contracts/app-shell-header-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/app-shell-header-knobs.ts",
+      "type": "registry:component",
+      "content": "// Generated from src/registry/sources/control-ui/recipes/app-shell-header.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.\nexport const appShellHeaderKnobs = [\n  \"--cui-app-shell-header-height\",\n  \"--cui-app-shell-header-padding-inline\",\n  \"--cui-app-shell-header-background\",\n  \"--cui-app-shell-header-border-color\",\n  \"--cui-app-shell-header-border-width\",\n] as const;\nexport type AppShellHeaderKnobStyle = Partial<Record<(typeof appShellHeaderKnobs)[number], string>>;\n"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/app-shell-header.css",
+      "target": "@components/control-ui/styles/recipes/app-shell-header.css",
+      "type": "registry:file",
+      "content": "@layer components {\n  :where([data-control-family=\"app-shell-header\"][data-slot=\"root\"]) {\n    --cui-app-shell-header-height: calc(var(--spacing) * 14);\n    --cui-app-shell-header-padding-inline: calc(var(--spacing) * 4);\n    --cui-app-shell-header-background: var(--background);\n    --cui-app-shell-header-border-width: 1px;\n    --cui-app-shell-header-border-color: var(--border);\n    min-height: var(--cui-app-shell-header-height);\n    padding-inline: var(--cui-app-shell-header-padding-inline);\n    background: var(--cui-app-shell-header-background);\n    border-block-end: var(--cui-app-shell-header-border-width) solid var(--cui-app-shell-header-border-color);\n  }\n}\n\n@property --cui-app-shell-header-height {\n  syntax: \"<length>\";\n  inherits: true;\n  initial-value: 0px;\n}\n\n@property --cui-app-shell-header-padding-inline {\n  syntax: \"<length>\";\n  inherits: true;\n  initial-value: 0px;\n}\n\n@property --cui-app-shell-header-background {\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: transparent;\n}\n\n@property --cui-app-shell-header-border-color {\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: transparent;\n}\n\n@property --cui-app-shell-header-border-width {\n  syntax: \"<length>\";\n  inherits: true;\n  initial-value: 0px;\n}\n"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/app-shell.tsx",
+      "target": "@components/control-ui/ui/app-shell.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\";\n\nimport type { ComponentProps, CSSProperties } from \"react\";\nimport type { AppShellHeaderKnobStyle } from \"@/components/control-ui/knob-contracts/app-shell-header-knobs\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { type PageScroll, PageScrollContext, usePageScroll } from \"@/components/control-ui/ui/page-layout\";\nimport { SidebarInset, type SidebarInsetProps, SidebarProvider, type SidebarProviderProps } from \"@/components/control-ui/ui/sidebar\";\n\nexport type AppShellProps = SidebarProviderProps & { scroll?: PageScroll };\n\nexport function AppShell({ scroll = \"auto\", layout = \"viewport\", className, ...props }: AppShellProps) {\n  const resolvedScroll = usePageScroll(scroll);\n  return (\n    <PageScrollContext.Provider value={resolvedScroll}>\n      <SidebarProvider\n        data-app-shell=\"\"\n        data-scroll={resolvedScroll}\n        layout={layout}\n        className={cn(layout === \"viewport\" && (resolvedScroll === \"page\" ? \"min-h-dvh\" : \"h-dvh min-h-0 overflow-hidden\"), className)}\n        {...props}\n      />\n    </PageScrollContext.Provider>\n  );\n}\n\nexport function AppShellContent({ className, ...props }: SidebarInsetProps) {\n  const scroll = usePageScroll();\n  return <SidebarInset data-app-shell-content=\"\" className={cn(\"min-h-0\", scroll !== \"page\" && \"overflow-hidden\", className)} {...props} />;\n}\n\nexport type AppShellHeaderProps = Omit<ComponentProps<\"header\">, \"style\"> & {\n  style?: CSSProperties & AppShellHeaderKnobStyle;\n};\n\nexport function AppShellHeader({ className, ...props }: AppShellHeaderProps) {\n  return (\n    <header\n      data-control-ui=\"app-shell\"\n      data-control-family=\"app-shell-header\"\n      data-slot=\"root\"\n      className={cn(\"sticky top-0 z-30 flex shrink-0 items-center gap-2\", className)}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/app-shell-header.css\"": {}
+  }
+}

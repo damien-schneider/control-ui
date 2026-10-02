@@ -11,6 +11,7 @@
     "http://127.0.0.1:3000/r/activity.json",
     "http://127.0.0.1:3000/r/alert.json",
     "http://127.0.0.1:3000/r/alert-dialog.json",
+    "http://127.0.0.1:3000/r/app-shell.json",
     "http://127.0.0.1:3000/r/aspect-ratio.json",
     "http://127.0.0.1:3000/r/audio-recorder.json",
     "http://127.0.0.1:3000/r/audio-visualizer.json",

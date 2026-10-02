@@ -224,6 +224,7 @@
         "http://127.0.0.1:3000/r/activity.json",
         "http://127.0.0.1:3000/r/alert.json",
         "http://127.0.0.1:3000/r/alert-dialog.json",
+        "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
@@ -347,6 +348,7 @@
         "http://127.0.0.1:3000/r/activity.json",
         "http://127.0.0.1:3000/r/alert.json",
         "http://127.0.0.1:3000/r/alert-dialog.json",
+        "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
@@ -477,6 +479,7 @@
         "http://127.0.0.1:3000/r/activity.json",
         "http://127.0.0.1:3000/r/alert.json",
         "http://127.0.0.1:3000/r/alert-dialog.json",
+        "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
@@ -607,6 +610,7 @@
         "http://127.0.0.1:3000/r/activity.json",
         "http://127.0.0.1:3000/r/alert.json",
         "http://127.0.0.1:3000/r/alert-dialog.json",
+        "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
@@ -737,6 +741,7 @@
         "http://127.0.0.1:3000/r/activity.json",
         "http://127.0.0.1:3000/r/alert.json",
         "http://127.0.0.1:3000/r/alert-dialog.json",
+        "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
@@ -867,6 +872,7 @@
         "http://127.0.0.1:3000/r/activity.json",
         "http://127.0.0.1:3000/r/alert.json",
         "http://127.0.0.1:3000/r/alert-dialog.json",
+        "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
@@ -997,6 +1003,7 @@
         "http://127.0.0.1:3000/r/activity.json",
         "http://127.0.0.1:3000/r/alert.json",
         "http://127.0.0.1:3000/r/alert-dialog.json",
+        "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
@@ -1127,6 +1134,7 @@
         "http://127.0.0.1:3000/r/activity.json",
         "http://127.0.0.1:3000/r/alert.json",
         "http://127.0.0.1:3000/r/alert-dialog.json",
+        "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
@@ -1257,6 +1265,7 @@
         "http://127.0.0.1:3000/r/activity.json",
         "http://127.0.0.1:3000/r/alert.json",
         "http://127.0.0.1:3000/r/alert-dialog.json",
+        "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
@@ -1387,6 +1396,7 @@
         "http://127.0.0.1:3000/r/activity.json",
         "http://127.0.0.1:3000/r/alert.json",
         "http://127.0.0.1:3000/r/alert-dialog.json",
+        "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
@@ -1502,6 +1512,42 @@
       },
       "meta": {
         "sourceManifestPath": "registry/control-ui/all-xp.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "app-shell",
+      "type": "registry:ui",
+      "title": "App shell",
+      "description": "Persistent sidebar and content frame with one scroll policy for loading, empty, and loaded pages.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/page-layout.json",
+        "http://127.0.0.1:3000/r/sidebar.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/knob-contracts/app-shell-header-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/app-shell-header-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/app-shell-header.css",
+          "target": "@components/control-ui/styles/recipes/app-shell-header.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/app-shell.tsx",
+          "target": "@components/control-ui/ui/app-shell.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/app-shell-header.css\"": {}
+      },
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/app-shell.json"
       }
     },
     {
@@ -6526,6 +6572,7 @@
         "http://127.0.0.1:3000/r/activity.json",
         "http://127.0.0.1:3000/r/alert.json",
         "http://127.0.0.1:3000/r/alert-dialog.json",
+        "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",

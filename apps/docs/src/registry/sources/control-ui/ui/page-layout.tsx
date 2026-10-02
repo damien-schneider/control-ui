@@ -1,6 +1,7 @@
 "use client";
 
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import { createContext, useContext } from "react";
 import type { PageLayoutKnobStyle } from "@/components/control-ui/knob-contracts/page-layout-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { useSkin } from "@/components/control-ui/skin-provider";
@@ -18,9 +19,13 @@ export type PageHeaderVariant = (typeof pageHeaderVariants)[number];
 
 type PageStyle = CSSProperties & PageLayoutKnobStyle;
 
+export const PageScrollContext = createContext<PageScrollMode | null>(null);
+
 export function usePageScroll(scroll: PageScroll = "auto"): PageScrollMode {
   const skin = useSkin();
+  const inheritedScroll = useContext(PageScrollContext);
   if (scroll !== "auto") return scroll;
+  if (inheritedScroll) return inheritedScroll;
   return skin.sidebarLayout === "page" ? "page" : "inset";
 }
 
@@ -42,7 +47,7 @@ export function PageLayout({ scroll = "auto", width = "prose", scrollViewportRef
       data-slot="root"
       data-scroll={resolvedScroll}
       data-width={width}
-      className={cn("flex w-full flex-col", resolvedScroll !== "page" && "min-h-0 flex-1 overflow-hidden", className)}
+      className={cn("flex min-w-0 w-full flex-col", resolvedScroll === "page" ? "grow" : "min-h-0 flex-1 overflow-hidden", className)}
       {...props}
     >
       {scrollsInset ? (

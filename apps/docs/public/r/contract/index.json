@@ -32,6 +32,13 @@
       "knobs": 15,
       "probes": 4
     },
+    "app-shell-header": {
+      "registryItems": [
+        "app-shell"
+      ],
+      "knobs": 5,
+      "probes": 1
+    },
     "aspect-ratio": {
       "registryItems": [
         "aspect-ratio"
@@ -66,7 +73,7 @@
         "badge"
       ],
       "knobs": 5,
-      "probes": 18
+      "probes": 21
     },
     "breadcrumb": {
       "registryItems": [
@@ -85,7 +92,7 @@
         "toggle"
       ],
       "knobs": 25,
-      "probes": 165
+      "probes": 168
     },
     "button-group": {
       "registryItems": [
@@ -106,7 +113,7 @@
         "card"
       ],
       "knobs": 6,
-      "probes": 3
+      "probes": 4
     },
     "chat-composer": {
       "registryItems": [
@@ -219,7 +226,7 @@
         "empty"
       ],
       "knobs": 20,
-      "probes": 4
+      "probes": 1
     },
     "environment-variables": {
       "registryItems": [
@@ -243,7 +250,7 @@
         "textarea"
       ],
       "knobs": 15,
-      "probes": 69
+      "probes": 71
     },
     "filter-bar": {
       "registryItems": [
@@ -292,7 +299,7 @@
         "kbd"
       ],
       "knobs": 5,
-      "probes": 6
+      "probes": 7
     },
     "label": {
       "registryItems": [
@@ -334,7 +341,7 @@
         "page-layout"
       ],
       "knobs": 14,
-      "probes": 5
+      "probes": 7
     },
     "pagination": {
       "registryItems": [
@@ -412,7 +419,7 @@
         "scroll-area"
       ],
       "knobs": 3,
-      "probes": 45
+      "probes": 46
     },
     "separator": {
       "registryItems": [
@@ -426,7 +433,7 @@
         "sidebar"
       ],
       "knobs": 47,
-      "probes": 36
+      "probes": 45
     },
     "sidebar-layout": {
       "registryItems": [
@@ -482,14 +489,14 @@
         "table-of-contents"
       ],
       "knobs": 27,
-      "probes": 30
+      "probes": 36
     },
     "tabs": {
       "registryItems": [
         "tabs"
       ],
       "knobs": 13,
-      "probes": 36
+      "probes": 41
     },
     "task-list": {
       "registryItems": [

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "app-shell",
+  "type": "registry:ui",
+  "title": "App shell",
+  "description": "Persistent sidebar and content frame with one scroll policy for loading, empty, and loaded pages.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core",
+    "page-layout",
+    "sidebar"
+  ],
+  "files": [
+    {
+      "path": "src/registry/knob-contracts/app-shell-header-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/app-shell-header-knobs.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/app-shell-header.css",
+      "target": "@components/control-ui/styles/recipes/app-shell-header.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/app-shell.tsx",
+      "target": "@components/control-ui/ui/app-shell.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/app-shell-header.css\"": {}
+  },
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/app-shell.json"
+  }
+}

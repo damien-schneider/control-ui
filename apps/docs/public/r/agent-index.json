@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 187,
+    "count": 188,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -791,6 +791,15 @@
         "href": "/primitives/sidebar",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/sidebar.json"
+      },
+      {
+        "id": "app-shell",
+        "name": "App shell",
+        "kind": "Primitive",
+        "summary": "Persistent sidebar and content frame with one scroll policy for loading, empty, and loaded pages.",
+        "href": "/primitives/app-shell",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/app-shell.json"
       },
       {
         "id": "page-layout",

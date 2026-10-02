@@ -430,6 +430,26 @@ export const primitiveEntries = [
     ],
   },
   {
+    id: "app-shell",
+    category: "layout",
+    kind: "Primitive",
+    status: "beta",
+    name: "App shell",
+    summary: "Persistent sidebar and content frame with one scroll policy for loading, empty, and loaded pages.",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/app-shell.tsx",
+        example: sourceFile("App shell preview", "src/registry/examples/control-ui/primitives/app-shell.tsx", "example"),
+        source: sourceFile("App shell", "src/registry/sources/control-ui/ui/app-shell.tsx", "component"),
+        supportFiles: [sourceFile("App shell recipe", "src/registry/sources/control-ui/recipes/app-shell-header.css", "recipe-css")],
+        registryKind: "app-shell",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/app-shell").then((mod) => ({ default: mod.PrimitiveAppShellExample })),
+    ),
+  },
+  {
     id: "page-layout",
     category: "layout",
     kind: "Primitive",

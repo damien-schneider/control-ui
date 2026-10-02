@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "family": "empty",
+  "family": "app-shell-header",
   "anatomies": [
     [
       {
@@ -8,6 +8,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
+          "data-scroll": "inset",
           "data-slot": "wrapper"
         }
       },
@@ -30,16 +31,26 @@
       },
       {
         "attributes": {
-          "data-control-family": "empty",
-          "data-control-ui": "empty",
-          "data-slot": "root"
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
         }
       },
       {
         "attributes": {
-          "data-control-family": "empty",
-          "data-control-ui": "empty",
-          "data-slot": "title"
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "app-shell-header",
+          "data-control-ui": "app-shell",
+          "data-slot": "root"
         }
       }
     ]
@@ -47,7 +58,7 @@
   "probes": [
     {
       "knobs": {
-        "text": "--cui-empty-foreground"
+        "fill": "--cui-app-shell-header-background"
       },
       "anatomy": 0,
       "rendersText": true,

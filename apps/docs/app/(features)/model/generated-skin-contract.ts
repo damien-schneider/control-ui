@@ -11,6 +11,7 @@ export const generatedSkinContract: SkinContract = {
     activity: ["activity"],
     alert: ["alert"],
     "alert-dialog": ["alert-dialog"],
+    "app-shell": ["app-shell"],
     "aspect-ratio": ["aspect-ratio"],
     "audio-recorder": ["audio-recorder"],
     "audio-visualizer": ["audio-visualizer", "audio-visualizer-line"],
@@ -550,6 +551,16 @@ export const generatedSkinContract: SkinContract = {
         },
       },
       registryItems: ["alert-dialog"],
+    },
+    "app-shell": {
+      parts: {
+        root: {
+          family: "app-shell-header",
+          registryItems: ["app-shell"],
+          states: [],
+        },
+      },
+      registryItems: ["app-shell"],
     },
     "aspect-ratio": {
       parts: {
@@ -13330,6 +13341,38 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<number>",
         initialValue: "500",
         defaultValue: "var(--font-weight-medium)",
+      },
+    ],
+    "app-shell-header": [
+      {
+        name: "--cui-app-shell-header-height",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 14)",
+      },
+      {
+        name: "--cui-app-shell-header-padding-inline",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 4)",
+      },
+      {
+        name: "--cui-app-shell-header-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--background)",
+      },
+      {
+        name: "--cui-app-shell-header-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--border)",
+      },
+      {
+        name: "--cui-app-shell-header-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "1px",
       },
     ],
     "audio-recorder": [

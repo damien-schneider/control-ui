@@ -1,0 +1,54 @@
+{
+  "version": 9,
+  "family": "app-shell-header",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "app-shell"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-app-shell-header-height",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 14)"
+    },
+    {
+      "name": "--cui-app-shell-header-padding-inline",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 4)"
+    },
+    {
+      "name": "--cui-app-shell-header-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--background)"
+    },
+    {
+      "name": "--cui-app-shell-header-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-app-shell-header-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    }
+  ],
+  "parts": {
+    "app-shell": {
+      "root": {
+        "family": "app-shell-header",
+        "registryItems": [
+          "app-shell"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/app-shell-header.contrast.json"
+}

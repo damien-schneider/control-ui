@@ -745,6 +745,36 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "header"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "field",
+          "data-control-ui": "select",
+          "data-field-kind": "select",
+          "data-size": "sm",
+          "data-slot": "trigger",
+          "role": "combobox",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -2424,6 +2454,44 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "header"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "field",
+          "data-control-ui": "select",
+          "data-field-kind": "select",
+          "data-size": "sm",
+          "data-slot": "trigger",
+          "role": "combobox",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-popup-kind": "select",
+          "data-slot": "icon"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -3505,7 +3573,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 13,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3514,7 +3582,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 14,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3532,15 +3600,6 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 16,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-field-background",
-        "text": "--cui-field-foreground"
-      },
-      "anatomy": 17,
       "rendersText": true,
       "state": false
     },
@@ -3549,8 +3608,17 @@
         "fill": "--cui-field-background",
         "text": "--cui-field-foreground"
       },
-      "anatomy": 18,
+      "anatomy": 17,
       "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-field-background",
+        "text": "--cui-field-foreground"
+      },
+      "anatomy": 18,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3577,7 +3645,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 21,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3604,7 +3672,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 24,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3631,7 +3699,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 27,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3649,7 +3717,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 29,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3703,7 +3771,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 35,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3721,7 +3789,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 37,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3775,7 +3843,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 43,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3793,7 +3861,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 45,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3811,7 +3879,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 47,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3843,11 +3911,12 @@
     },
     {
       "knobs": {
-        "fill": "--cui-field-background"
+        "fill": "--cui-field-background",
+        "text": "--cui-field-foreground"
       },
-      "anatomy": 45,
-      "rendersText": false,
-      "state": true
+      "anatomy": 51,
+      "rendersText": true,
+      "state": false
     },
     {
       "knobs": {
@@ -3859,11 +3928,11 @@
     },
     {
       "knobs": {
-        "text": "--cui-field-affordance-foreground"
+        "fill": "--cui-field-background"
       },
-      "anatomy": 51,
+      "anatomy": 47,
       "rendersText": false,
-      "state": false
+      "state": true
     },
     {
       "knobs": {
@@ -3982,6 +4051,22 @@
         "text": "--cui-field-affordance-foreground"
       },
       "anatomy": 66,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-field-affordance-foreground"
+      },
+      "anatomy": 67,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-field-affordance-foreground"
+      },
+      "anatomy": 68,
       "rendersText": false,
       "state": false
     }

@@ -209,6 +209,7 @@
         "damien-schneider/control-ui/activity",
         "damien-schneider/control-ui/alert",
         "damien-schneider/control-ui/alert-dialog",
+        "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
@@ -329,6 +330,7 @@
         "damien-schneider/control-ui/activity",
         "damien-schneider/control-ui/alert",
         "damien-schneider/control-ui/alert-dialog",
+        "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
@@ -456,6 +458,7 @@
         "damien-schneider/control-ui/activity",
         "damien-schneider/control-ui/alert",
         "damien-schneider/control-ui/alert-dialog",
+        "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
@@ -583,6 +586,7 @@
         "damien-schneider/control-ui/activity",
         "damien-schneider/control-ui/alert",
         "damien-schneider/control-ui/alert-dialog",
+        "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
@@ -710,6 +714,7 @@
         "damien-schneider/control-ui/activity",
         "damien-schneider/control-ui/alert",
         "damien-schneider/control-ui/alert-dialog",
+        "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
@@ -837,6 +842,7 @@
         "damien-schneider/control-ui/activity",
         "damien-schneider/control-ui/alert",
         "damien-schneider/control-ui/alert-dialog",
+        "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
@@ -964,6 +970,7 @@
         "damien-schneider/control-ui/activity",
         "damien-schneider/control-ui/alert",
         "damien-schneider/control-ui/alert-dialog",
+        "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
@@ -1091,6 +1098,7 @@
         "damien-schneider/control-ui/activity",
         "damien-schneider/control-ui/alert",
         "damien-schneider/control-ui/alert-dialog",
+        "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
@@ -1218,6 +1226,7 @@
         "damien-schneider/control-ui/activity",
         "damien-schneider/control-ui/alert",
         "damien-schneider/control-ui/alert-dialog",
+        "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
@@ -1345,6 +1354,7 @@
         "damien-schneider/control-ui/activity",
         "damien-schneider/control-ui/alert",
         "damien-schneider/control-ui/alert-dialog",
+        "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
@@ -1457,6 +1467,39 @@
         "@import \"../components/control-ui/styles/effects.css\"": {},
         "@import \"../components/control-ui/styles/skin-theme.css\"": {},
         "@import \"../components/control-ui/styles/skin.css\"": {}
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "app-shell",
+      "type": "registry:ui",
+      "title": "App shell",
+      "description": "Persistent sidebar and content frame with one scroll policy for loading, empty, and loaded pages.",
+      "dependencies": [],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/page-layout",
+        "damien-schneider/control-ui/sidebar"
+      ],
+      "files": [
+        {
+          "path": "apps/docs/src/registry/knob-contracts/app-shell-header-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/app-shell-header-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/recipes/app-shell-header.css",
+          "target": "@components/control-ui/styles/recipes/app-shell-header.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/ui/app-shell.tsx",
+          "target": "@components/control-ui/ui/app-shell.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/app-shell-header.css\"": {}
       }
     },
     {
@@ -6136,6 +6179,7 @@
         "damien-schneider/control-ui/activity",
         "damien-schneider/control-ui/alert",
         "damien-schneider/control-ui/alert-dialog",
+        "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",

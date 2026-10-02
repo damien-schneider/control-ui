@@ -8,7 +8,9 @@
     "lucide-react@^1.47.0"
   ],
   "registryDependencies": [
+    "app-shell",
     "core",
+    "page-layout",
     "sidebar"
   ],
   "files": [

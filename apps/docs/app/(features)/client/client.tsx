@@ -27,8 +27,9 @@ import { DocsSearchProvider } from "@/app/(features)/sidebar/search";
 import { DocsSidebarContent } from "@/app/(features)/sidebar/sidebar";
 import { ControlEffectsRuntime } from "@/components/control-ui/extensions/control-effects-root";
 import { cn } from "@/components/control-ui/lib/cn";
+import { AppShell, AppShellContent } from "@/components/control-ui/ui/app-shell";
 import { PageActions, PageBody, PageHeader, PageLayout, type PageWidth, usePageScroll } from "@/components/control-ui/ui/page-layout";
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/control-ui/ui/sidebar";
+import { SidebarTrigger } from "@/components/control-ui/ui/sidebar";
 import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
 import { isThemeCategoryPath, THEME_EDITOR_PATH } from "@/components/theme-drawer/theme-categories";
 import { DocsGithubLink } from "./github-link";
@@ -140,8 +141,6 @@ function PersistedDocsShell(props: PersistedDocsShellProps) {
 
 export function DocsShell(props: DocsShellViewProps) {
   const isHydrated = useIsHydrated();
-  // Same two sources the head script already applied to the DOM, read on the first client render so React's
-  // model matches what is painted instead of correcting it a frame later.
   const [sidebarOpen, setSidebarOpen] = useState(() => !storedSidebarCollapsed());
   const [sidebarWidth, setSidebarWidth] = useState(readStoredSidebarWidth);
 
@@ -222,9 +221,9 @@ function DocsShellContent({
   );
 
   return (
-    <SidebarProvider
+    <AppShell
       data-docs-shell=""
-      className={cn("bg-canvas text-foreground", !scrollsPage && "h-svh")}
+      className="bg-canvas text-foreground"
       open={sidebarOpen}
       onOpenChange={onSidebarOpenChange}
       width={sidebarWidth}
@@ -247,7 +246,7 @@ function DocsShellContent({
           skinPages={skinPages}
           searchItems={searchItems}
         />
-        <SidebarInset data-docs-inset="" className="min-h-0 lg:peer-data-[state=collapsed]:[&_[data-docs-sidebar-trigger]]:flex">
+        <AppShellContent data-docs-inset="" className="min-h-0 lg:peer-data-[state=collapsed]:[&_[data-docs-sidebar-trigger]]:flex">
           <div
             data-docs-content=""
             data-surface="panel"
@@ -277,8 +276,8 @@ function DocsShellContent({
               )}
             </PageLayout>
           </div>
-        </SidebarInset>
+        </AppShellContent>
       </DocsSearchProvider>
-    </SidebarProvider>
+    </AppShell>
   );
 }

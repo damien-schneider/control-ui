@@ -83,7 +83,7 @@
     },
     "packages/components": {
       "name": "@ctrl-ui/react",
-      "version": "0.8.9",
+      "version": "0.8.10",
       "devDependencies": {
         "@types/bun": "^1.4.2",
         "@types/react": "^19.3.0",
