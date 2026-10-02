@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 
 import { type CustomSkin, writeCustomSkinTheme } from "./custom-skins";
-import { DEFAULT_THEME, loadStored, readThemeState, store } from "./presets";
+import { DEFAULT_THEME, loadInitialTheme, readThemeState, store, themeForSkin } from "./presets";
 import { readContractTokens } from "./read-vars";
 import { isColorValuedToken } from "./token-metadata";
 import type { KnobRule, SkinId, ThemeState, TokenValues } from "./types";
@@ -139,17 +139,7 @@ export function usePersistentTheme() {
   // A generation completing on a saved skin rebases it onto the model's skin and keeps writing through to it.
   function selectSkin(skin: SkinId, customSkinId: string | null = null) {
     updateTheme((previous) => {
-      const next: ThemeState = {
-        ...previous,
-        skin,
-        overrides: {},
-        light: {},
-        dark: {},
-        textFixes: {},
-        knobs: [],
-        fontUrl: "",
-        customSkinId,
-      };
+      const next = themeForSkin(previous, skin, customSkinId);
       writeVars(next);
       return next;
     });
@@ -169,7 +159,7 @@ export function usePersistentTheme() {
 
   useLayoutEffect(() => {
     setIsDark(document.documentElement.classList.contains("dark"));
-    const theme = loadStored() ?? DEFAULT_THEME;
+    const theme = loadInitialTheme(window.location.search);
     writeVars(theme);
     setRuntime({ theme, hydrated: true });
   }, []);

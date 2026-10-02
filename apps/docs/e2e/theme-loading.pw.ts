@@ -2,6 +2,84 @@ import { expect, test } from "@playwright/test";
 import { DEFAULT_SKIN_ID, MODE_LOCKED_SKINS, THEME_EDITOR_STORAGE_KEY, THEME_INIT_SKIN_IDS, THEME_STORAGE_KEY } from "@/components/theme";
 import { SKIN_META_BY_ID } from "@/components/theme-drawer/presets";
 
+for (const skin of ["refined", "windows-98", "none"] as const) {
+  test(`shared ${skin} preset applies before hydration and stays active afterward`, async ({ page }) => {
+    const errors: string[] = [];
+    page.on("pageerror", (error) => errors.push(error.message));
+    page.on("console", (message) => {
+      if (message.type() === "error" && /hydration|hydrated/i.test(message.text())) errors.push(message.text());
+    });
+    await page.addInitScript(
+      ({ editorKey, modeKey }) => {
+        localStorage.setItem(modeKey, "dark");
+        localStorage.setItem(
+          editorKey,
+          JSON.stringify({
+            skin: "refined",
+            customSkinId: "saved-custom-skin",
+            overrides: { "--radius-control": "13px" },
+            dark: { "--background": "oklch(0.2 0.01 50)" },
+            knobs: [{ selector: "[data-control-family=button]", tokens: { "--cui-button-radius": "13px" } }],
+          }),
+        );
+      },
+      { editorKey: THEME_EDITOR_STORAGE_KEY, modeKey: THEME_STORAGE_KEY },
+    );
+    let releaseScripts = () => {};
+    const scriptsHeld = new Promise<void>((resolve) => {
+      releaseScripts = resolve;
+    });
+    await page.route("**/_next/**/*.js*", async (route) => {
+      await scriptsHeld;
+      await route.continue();
+    });
+    const root = page.locator("html");
+    try {
+      await page.goto(`/primitives/button?skin=${skin}`, { waitUntil: "commit" });
+      await expect(page.getByRole("heading", { name: "Button", exact: true }).first()).toBeVisible();
+      await expect(root).toHaveAttribute("data-skin", skin);
+      await expect(root).toHaveAttribute("data-docs-layout", skin === "refined" ? "page" : "contained");
+      await expect(root).toHaveClass(skin === "windows-98" ? /^(?!.*\bdark\b)/ : /\bdark\b/);
+      expect(await root.evaluate((html) => html.style.getPropertyValue("--radius-control"))).toBe("");
+      await expect(page.locator("#control-ui-editor-overrides")).toHaveCount(0);
+      releaseScripts();
+      await expect
+        .poll(() => page.evaluate((editorKey) => localStorage.getItem(editorKey), THEME_EDITOR_STORAGE_KEY))
+        .not.toContain("saved-custom-skin");
+      const picker = page.getByRole("combobox", { name: "Skin", exact: true });
+      await expect(picker).toContainText(SKIN_META_BY_ID[skin].label);
+      await expect(root).toHaveAttribute("data-skin", skin);
+      expect(await root.evaluate((html) => html.style.getPropertyValue("--radius-control"))).toBe("");
+      await expect(page.locator("#control-ui-editor-overrides")).toHaveCount(0);
+      expect(errors).toEqual([]);
+      await picker.click();
+      await page.getByRole("option", { name: "Linear", exact: true }).click();
+      await expect(root).toHaveAttribute("data-skin", "linear");
+      await expect(root).toHaveClass(/\bdark\b/);
+    } finally {
+      releaseScripts();
+    }
+  });
+}
+
+test("homepage redirect preserves a shared skin preset and other query parameters", async ({ page }) => {
+  await page.goto("/?skin=rig&source=shared");
+  await expect(page).toHaveURL("/get-started?skin=rig&source=shared");
+  await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("Rig");
+  await expect(page.locator("html")).toHaveAttribute("data-skin", "rig");
+});
+
+test("unknown skin query preserves saved edits", async ({ page }) => {
+  await page.addInitScript(
+    (editorKey) => localStorage.setItem(editorKey, JSON.stringify({ skin: "rig", overrides: { "--radius-control": "13px" } })),
+    THEME_EDITOR_STORAGE_KEY,
+  );
+  await page.goto("/primitives/button?skin=unknown");
+  await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("Rig");
+  await expect(page.locator("html")).toHaveAttribute("data-skin", "rig");
+  expect(await page.locator("html").evaluate((html) => html.style.getPropertyValue("--radius-control"))).toBe("13px");
+});
+
 for (const skin of THEME_INIT_SKIN_IDS) {
   test(`${skin} restores before application JavaScript loads`, async ({ page }, testInfo) => {
     const errors: string[] = [];
@@ -94,7 +172,7 @@ test("blocked storage still honors the system color scheme", async ({ page }) =>
   await page.goto("/primitives/button");
   await expect(page.locator("html")).toHaveAttribute("data-skin", DEFAULT_SKIN_ID);
   await expect(page.locator("html")).toHaveClass(/\bdark\b/);
-  await expect(page.locator("html")).toHaveAttribute("data-motion", "reduced");
+  await expect(page.locator("html")).not.toHaveAttribute("data-motion", "reduced");
 });
 
 test("Liquid Metal effects activate on selection and clean up when leaving", async ({ page }) => {

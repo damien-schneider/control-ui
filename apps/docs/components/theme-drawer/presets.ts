@@ -28,6 +28,20 @@ export const DEFAULT_THEME: ThemeState = {
   customSkinId: null,
 };
 
+export function themeForSkin(theme: ThemeState, skin: SkinId, customSkinId: string | null = null): ThemeState {
+  return {
+    ...theme,
+    skin,
+    overrides: {},
+    light: {},
+    dark: {},
+    textFixes: {},
+    knobs: [],
+    fontUrl: "",
+    customSkinId,
+  };
+}
+
 function readTokenMap(value: unknown): TokenValues {
   if (typeof value !== "object" || value === null || Array.isArray(value)) return {};
   const out: TokenValues = {};
@@ -100,6 +114,12 @@ export function loadStored(storage?: Pick<Storage, "getItem">): ThemeState | nul
   } catch {
     return null;
   }
+}
+
+export function loadInitialTheme(search: string, storage?: Pick<Storage, "getItem">): ThemeState {
+  const theme = loadStored(storage) ?? DEFAULT_THEME;
+  const skin = new URLSearchParams(search).get("skin");
+  return isSkinId(skin) ? themeForSkin(theme, skin) : theme;
 }
 
 export function store(t: ThemeState, storage?: Pick<Storage, "setItem" | "removeItem">): boolean {

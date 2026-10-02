@@ -15,7 +15,7 @@ const bundle = await Bun.build({
       name: "inline-theme-metadata",
       setup(build) {
         build.onLoad({ filter: /\/catalog\/skins\.ts$/ }, () => ({
-          contents: `export const skinMetas = ${JSON.stringify(skinMetas)};`,
+          contents: `export const skinMetas = ${JSON.stringify(skinMetas.map(({ id }) => ({ id })))};`,
           loader: "js",
         }));
         build.onLoad({ filter: /\/lib\/theme-contract\.ts$/ }, () => ({
