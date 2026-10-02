@@ -1,0 +1,239 @@
+@import "./mastra-fonts.css";
+@import "./mastra-controls.css";
+
+[data-skin="mastra"] {
+  --mastra-fill: var(--active-fill);
+  --mastra-fill-tint: oklch(from var(--hover-fill) l c h / 1);
+  --mastra-field-on-surface: var(--card);
+  --mastra-field-rim-on-surface: oklch(0 0 0 / 0.14);
+  --mastra-boundary-rest: oklch(0.205 0 0 / 0.19);
+  --mastra-fill-hover: oklch(from var(--hover-fill) l c h / 0.09);
+  --mastra-fill-press: oklch(from var(--hover-fill) l c h / 0.12);
+  --mastra-lip: 0 0 transparent;
+  --mastra-raised-shadow: 0 1px 2px -1px oklch(0 0 0 / 0.05), 0 1px 3px -2px oklch(0 0 0 / 0.04);
+  --mastra-overlay-shadow: 0 2px 4px -1px oklch(0 0 0 / 0.08), 0 4px 8px -2px oklch(0 0 0 / 0.06), 0 8px 16px -4px oklch(0 0 0 / 0.06);
+  --mastra-inset-rim: oklch(0 0 0 / 0.08);
+  --mastra-inset-highlight: oklch(1 0 0 / 0.55);
+  --mastra-danger-subtle: oklch(0.94 0.029 24);
+  --mastra-danger-subtle-press: oklch(0.88 0.062 24);
+  --mastra-danger-disabled: oklch(0.8 0.112 24);
+  --mastra-danger-disabled-foreground: var(--destructive-foreground);
+}
+
+.dark[data-skin="mastra"],
+:where(.dark) [data-skin="mastra"] {
+  --mastra-field-on-surface: var(--muted);
+  --mastra-field-rim-on-surface: var(--control-rim);
+  --mastra-boundary-rest: oklch(1 0 0 / 0.19);
+  --mastra-lip: inset 0 1px 0 oklch(1 0 0 / 0.03);
+  --mastra-raised-shadow: 0 1px 2px -1px oklch(0 0 0 / 0.22), 0 2px 3px -2px oklch(0 0 0 / 0.14);
+  --mastra-overlay-shadow: 0 2px 2px oklch(0 0 0 / 0.1), 0 4px 4px oklch(0 0 0 / 0.1), 0 8px 8px oklch(0 0 0 / 0.1);
+  --mastra-inset-rim: oklch(1 0 0 / 0.07);
+  --mastra-inset-highlight: oklch(1 0 0 / 0.07);
+  --mastra-danger-subtle: oklch(0.24 0.07 24);
+  --mastra-danger-subtle-press: oklch(0.32 0.11 24);
+  --mastra-danger-disabled: oklch(0.31 0.075 24);
+  --mastra-danger-disabled-foreground: oklch(0.76 0.1 24);
+}
+
+@layer components {
+  [data-skin="mastra"] :where([data-control-family="card"][data-slot="root"]) {
+    --cui-card-radius: var(--radius-panel);
+    --cui-card-border-width: 0px;
+    --cui-card-shadow: var(--mastra-lip), inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--mastra-raised-shadow);
+    gap: 0;
+    padding-block: 0;
+  }
+
+  [data-skin="mastra"] :where([data-control-family="card"][data-slot="header"]) {
+    padding: 0.25rem 0.75rem;
+  }
+
+  [data-skin="mastra"] :where([data-control-family="card"][data-slot="content"]) {
+    padding: 0.75rem;
+  }
+
+  [data-skin="mastra"] :where([data-control-family="card"][data-slot="footer"]) {
+    padding: 0 0.75rem 0.75rem;
+  }
+
+  [data-skin="mastra"] :where([data-control-family="card"][data-slot="title"]) {
+    font-size: var(--text-heading-4);
+    font-weight: 500;
+    line-height: 1.43;
+  }
+
+  [data-skin="mastra"] :where([data-control-family="card"][data-slot="description"]) {
+    font-size: var(--text-caption);
+  }
+
+  [data-skin="mastra"]
+    :where([data-control-family="popup"][data-popup-part="surface"], [data-control-family="popup"][data-popup-part="list-surface"]) {
+    --cui-popup-background: var(--popover);
+    --cui-popup-foreground: var(--popover-foreground);
+    --cui-popup-border-width: 0px;
+    --cui-popup-shadow: var(--mastra-lip), inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--mastra-overlay-shadow);
+    --cui-popup-item-font-size: var(--text-label);
+    --cui-popup-item-radius: var(--radius-control);
+    --cui-popup-item-padding-block: 0.375rem;
+    --cui-popup-item-padding-inline: 0.5rem;
+    --cui-popup-item-highlight-background: var(--hover-fill);
+    --cui-popup-title-font-size: var(--text-heading-3);
+    --cui-popup-title-font-weight: 500;
+    --cui-popup-label-font-size: var(--text-caption);
+    --cui-popup-label-letter-spacing: 0em;
+    --cui-popup-label-text-transform: none;
+  }
+
+  [data-skin="mastra"]
+    :where(
+      [data-control-family="card"][data-slot="root"] [data-control-family="field"][data-control="true"],
+      [data-control-family="popup"][data-popup-part="surface"] [data-control-family="field"][data-control="true"]
+    ) {
+    --mastra-field-disabled: var(--mastra-field-on-surface);
+    --cui-field-background: var(--mastra-field-on-surface);
+    --cui-field-hover-background: color-mix(in srgb, var(--mastra-field-on-surface), var(--mastra-fill-tint) 4%);
+    --mastra-field-rim: var(--mastra-field-rim-on-surface);
+  }
+
+  [data-skin="mastra"]
+    :where(
+      [data-control-family="card"][data-slot="root"] [data-control-family="button"][data-variant="surface"],
+      [data-control-family="popup"][data-popup-part="surface"] [data-control-family="button"][data-variant="surface"]
+    ) {
+    --mastra-button-fill: var(--mastra-field-on-surface);
+    --mastra-button-rim: var(--mastra-field-rim-on-surface);
+  }
+
+  [data-skin="mastra"] :where([data-control-family="tabs"][data-slot="root"]) {
+    --cui-tabs-trigger-radius: 9999px;
+    --cui-tabs-list-radius: 9999px;
+    --cui-tabs-list-background: var(--hover-fill);
+    --cui-tabs-list-shadow: none;
+    --cui-tabs-list-padding: 0.25rem;
+    --cui-tabs-indicator-background: var(--mastra-fill-hover);
+    --cui-tabs-indicator-shadow: none;
+  }
+
+  [data-skin="mastra"] :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"]) {
+    --cui-tabs-trigger-radius: var(--radius-control);
+  }
+
+  [data-skin="mastra"] :where([data-control-family="badge"][data-slot="root"]) {
+    --cui-badge-radius: calc(var(--radius) * 1.75);
+    --cui-badge-font-size: var(--text-caption);
+    box-shadow:
+      inset 0 1px 0 var(--mastra-inset-highlight),
+      inset 0 0 0 var(--control-rim-width) var(--mastra-inset-rim);
+  }
+
+  [data-skin="mastra"] :where([data-control-family="badge"][data-slot="root"][data-size="sm"]) {
+    --cui-badge-font-size: var(--text-micro);
+  }
+
+  [data-skin="mastra"]
+    :where([data-control-family="avatar"][data-slot="badge"]:is([data-status="online"], [data-status="away"], [data-status="offline"])) {
+    --cui-avatar-badge-foreground: var(--background);
+  }
+
+  [data-skin="mastra"] :where([data-control-family="avatar"][data-slot="badge"][data-status="busy"]) {
+    --cui-avatar-badge-foreground: var(--destructive-foreground);
+  }
+
+  [data-skin="mastra"] :where([data-control-family="avatar"][data-slot="badge"][data-status="offline"]) {
+    --cui-avatar-badge-background: var(--muted-foreground);
+  }
+
+  [data-skin="mastra"] :where([data-control-family="sidebar"][data-slot="wrapper"]) {
+    --cui-sidebar-wrapper-background: var(--canvas);
+    --cui-sidebar-inset-background: var(--background);
+    --cui-sidebar-inset-shadow: var(--mastra-lip), inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--mastra-raised-shadow);
+    --cui-sidebar-inset-radius: var(--radius-scene);
+    --cui-sidebar-inset-border-width: 0px;
+  }
+
+  [data-skin="mastra"] :where([data-control-family="sidebar"][data-slot="root"]) {
+    --cui-sidebar-inner-background: var(--canvas);
+    --cui-sidebar-menu-button-font-size: var(--text-label);
+    --cui-sidebar-menu-button-font-weight: 500;
+    --cui-sidebar-menu-button-padding-inline: 0.75rem;
+    --cui-sidebar-menu-button-padding-block: 0.25rem;
+    --cui-sidebar-menu-button-radius: var(--radius-control);
+    --cui-sidebar-menu-button-foreground: var(--muted-foreground);
+    --cui-sidebar-menu-button-active-background: var(--mastra-fill);
+    --cui-sidebar-menu-button-active-foreground: var(--foreground);
+    --cui-sidebar-group-label-foreground: var(--muted-foreground);
+    --cui-sidebar-group-label-font-size: var(--text-caption);
+  }
+
+  [data-skin="mastra"] :where([data-control-family="tree"][data-slot="root"]) {
+    --cui-tree-item-trigger-radius: var(--radius-control);
+    --cui-tree-item-trigger-font-size: var(--text-label);
+    --cui-tree-item-trigger-foreground: var(--muted-foreground);
+    --cui-tree-item-trigger-selected-foreground: var(--foreground);
+    --cui-tree-item-trigger-selected-font-weight: 500;
+  }
+
+  [data-skin="mastra"] :where([data-control-family="table"][data-slot="root"]) {
+    --cui-table-row-hover-background: var(--hover-fill);
+    --cui-table-row-selected-background: var(--active-fill);
+    font-size: var(--text-label);
+  }
+
+  [data-skin="mastra"] :where([data-control-family="table"][data-slot="head"]) {
+    block-size: 1.75rem;
+    font-size: var(--text-caption);
+  }
+
+  [data-skin="mastra"] :where([data-control-family="table"][data-slot="cell"]) {
+    block-size: 2.5rem;
+  }
+
+  [data-skin="mastra"] :where([data-control-family="chat-composer"][data-slot="root"]) {
+    --cui-chat-composer-shell-background: var(--card);
+    --cui-chat-composer-shell-border-width: 0px;
+    --cui-chat-composer-shell-shadow:
+      var(--mastra-lip), inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--mastra-raised-shadow);
+    --cui-chat-composer-shell-radius: var(--radius-panel);
+  }
+
+  [data-skin="mastra"] :where([data-control-family="chat-message"][data-slot="root"][data-role="user"][data-layout="bubble"]) {
+    --cui-chat-message-background: var(--muted);
+    --cui-chat-message-foreground: var(--foreground);
+    --cui-chat-message-radius: var(--radius-panel);
+    --cui-chat-message-corner-radius: var(--radius-panel);
+    --cui-chat-message-shadow: none;
+  }
+
+  [data-skin="mastra"] :where([data-control-family="chat-message"][data-slot="root"][data-role="assistant"][data-layout="bubble"]) {
+    --cui-chat-message-background: transparent;
+    --cui-chat-message-foreground: var(--foreground);
+    --cui-chat-message-shadow: none;
+  }
+
+  [data-skin="mastra"] :where([data-control-family="code"][data-slot="root"]) {
+    --cui-code-background: var(--card);
+    --cui-code-shadow: var(--mastra-raised-shadow);
+  }
+
+  [data-skin="mastra"] :where([data-control-family="code-diff"][data-slot="root"]) {
+    --cui-code-diff-background: var(--card);
+    --cui-code-diff-shadow: var(--mastra-raised-shadow);
+  }
+
+  [data-skin="mastra"] :where([data-control-family="kbd"][data-slot="root"]) {
+    --cui-kbd-radius: var(--radius);
+    --cui-kbd-background: var(--mastra-fill);
+    --cui-kbd-shadow: inset 0 0 0 var(--control-rim-width) var(--border);
+  }
+
+  [data-skin="mastra"] :where([data-control-family="item"][data-slot="root"]) {
+    --cui-item-active-scale: 1;
+  }
+
+  [data-skin="mastra"] :where([data-control-family="track-highlight"][data-slot="root"]) {
+    --cui-track-highlight-background: var(--active-fill);
+    --cui-track-highlight-shadow: none;
+    --cui-track-highlight-ring-color: transparent;
+  }
+}

@@ -107,6 +107,19 @@ function CuicuiLogo({ className }: { className: string }) {
   );
 }
 
+function MastraLogo({ className }: { className: string }) {
+  return (
+    <Image
+      src="/logos/mastra.svg"
+      alt=""
+      aria-hidden="true"
+      width={34}
+      height={21}
+      className={cn(className, "object-contain dark:invert")}
+    />
+  );
+}
+
 function RefinedLogo({ className }: { className: string }) {
   return (
     <svg viewBox="0 0 28 28" className={className} aria-hidden="true">
@@ -127,6 +140,7 @@ export function SkinLogo({ id, size = "lg" }: { id: SkinId; size?: SkinLogoSize 
   if (id === "none") return <DefaultLogo className={className} />;
   if (id === "cuicui") return <CuicuiLogo className={className} />;
   if (id === "linear") return <LinearLogo className={className} />;
+  if (id === "mastra") return <MastraLogo className={className} />;
   if (id === "refined") return <RefinedLogo className={className} />;
   return null;
 }

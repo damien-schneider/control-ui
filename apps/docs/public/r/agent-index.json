@@ -1,12 +1,20 @@
 {
   "type": "index",
   "data": {
-    "count": 190,
+    "count": 191,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
     },
     "fullInstalls": [
+      {
+        "id": "all-mastra",
+        "skin": "mastra",
+        "name": "All components — Mastra",
+        "summary": "Mastra Playground UI: Mona Sans and Commit Mono, compact pill controls, neutral inverse actions, quiet navigation, inset badges, and layered surfaces.",
+        "manifestUrl": "http://127.0.0.1:3000/r/all-mastra.json",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-mastra.json"
+      },
       {
         "id": "all-refined",
         "skin": "refined",
@@ -259,6 +267,14 @@
         "kind": "Skin",
         "summary": "Author complete token-driven Control UI skins with slots, adornments, motion controls, and one shared component source.",
         "href": "/skins"
+      },
+      {
+        "id": "mastra",
+        "name": "Mastra",
+        "kind": "Skin",
+        "summary": "Mastra Playground UI: Mona Sans and Commit Mono, compact pill controls, neutral inverse actions, quiet navigation, inset badges, and layered surfaces.",
+        "href": "/skins/mastra",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-mastra.json --overwrite"
       },
       {
         "id": "refined",

@@ -34,6 +34,26 @@ const retroSystemFont = sourceFile(
 
 export const skinMetas = [
   {
+    id: "mastra",
+    label: "Mastra",
+    kind: "advanced",
+    description:
+      "Mastra Playground UI: Mona Sans and Commit Mono, compact pill controls, neutral inverse actions, quiet navigation, inset badges, and layered surfaces.",
+    packManifestPath: "registry/mastra/skin.json",
+    paths: skinPackFiles("mastra", [
+      sourceFile(
+        "mastra-controls.css — buttons, fields, choices, switches, and ranges",
+        "src/registry/skin-packs/mastra/mastra-controls.css",
+        "controls",
+      ),
+      sourceFile(
+        "mastra-fonts.css — embedded Mona Sans and Commit Mono with their SIL Open Font Licenses",
+        "src/registry/skin-packs/mastra/mastra-fonts.css",
+        "font",
+      ),
+    ]),
+  },
+  {
     id: "refined",
     label: "Refined",
     kind: "theme",

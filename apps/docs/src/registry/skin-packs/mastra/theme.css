@@ -1,0 +1,168 @@
+[data-skin="mastra"][data-skin] {
+  --font-sans: "Mona Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "CommitMono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --text-micro: 0.625rem;
+  --text-caption: 0.75rem;
+  --text-label: 0.8125rem;
+  --text-body: 0.875rem;
+  --text-body-lg: 0.875rem;
+  --text-heading-4: 0.875rem;
+  --text-heading-4--line-height: 1.43;
+  --text-heading-4--font-weight: 500;
+  --text-heading-3: 1rem;
+  --text-heading-3--line-height: 1.5;
+  --text-heading-3--font-weight: 500;
+  --text-heading-2: 1.125rem;
+  --text-heading-2--line-height: 1.33;
+  --text-heading-2--font-weight: 500;
+  --text-heading-1: 1.125rem;
+  --text-heading-1--line-height: 1.33;
+  --text-heading-1--font-weight: 500;
+  --text-heading-1--letter-spacing: -0.01em;
+  --text-display: 1.375rem;
+  --text-display--line-height: 1.27;
+  --text-display--font-weight: 500;
+  --text-display--letter-spacing: -0.01em;
+
+  --background: oklch(0.9851 0 0);
+  --foreground: oklch(0.1286 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: var(--foreground);
+  --primary-foreground: var(--background);
+  --primary-text: var(--foreground);
+  --muted: oklch(0.9431 0 0);
+  --muted-foreground: oklch(0.4459 0 0);
+  --secondary: var(--muted);
+  --secondary-foreground: var(--foreground);
+  --accent: oklch(from var(--foreground) l c h / 0.06);
+  --accent-foreground: var(--foreground);
+  --destructive: oklch(0.56 0.22 24);
+  --destructive-foreground: oklch(0.97 0.013 24);
+  --destructive-text: oklch(0.56 0.22 24);
+  --success-text: oklch(0.39 0.1 150);
+  --warning-text: oklch(0.5 0.12 54);
+  --info-text: oklch(0.39 0.14 260);
+  --border: oklch(0.205 0 0 / calc(0.09 * var(--ring-opacity)));
+  --input: oklch(0 0 0 / 0.08);
+  --control-rim: var(--input);
+  --control-boundary: oklch(0.205 0 0 / 0.5);
+  --control-fill: var(--card);
+  --hover-fill: oklch(0.205 0 0 / 0.04);
+  --active-fill: oklch(0.205 0 0 / 0.06);
+  --ring: var(--control-boundary);
+  --focus-ring: var(--ring);
+  --focus-ring-width: 1px;
+  --focus-ring-offset: 2px;
+  --canvas: oklch(0.9642 0 0);
+
+  --radius: 0.25rem;
+  --radius-control: calc(var(--radius) * 2.5);
+  --radius-field: 9999px;
+  --radius-panel: calc(var(--radius) * 3.5);
+  --radius-scene: calc(var(--radius) * 6);
+  --radius-popup-item: calc(var(--radius) * 2.5);
+  --popover-padding: 0.25rem;
+  --padding-x: 0.73125rem;
+  --padding-y: 0.5rem;
+  --control-h: 1.875rem;
+  --control-h-sm: calc(var(--control-h) - 2px);
+  --control-h-lg: calc(var(--control-h) + 2px);
+  --control-rim-width: 1px;
+
+  --popover-opacity: 1;
+  --backdrop-blur-popover: 0px;
+  --overlay-opacity: 0.45;
+  --backdrop-blur-overlay: 0px;
+  --scroll-fade-size: 1.5rem;
+  --shadow-color: oklch(0 0 0);
+  --shadow-highlight: oklch(1 0 0 / 0.55);
+  --shadow-size: 1;
+  --shadow-opacity: 0.6;
+  --ease-standard: cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-emphasized: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+
+  --badge-neutral: var(--active-fill);
+  --badge-neutral-foreground: var(--muted-foreground);
+  --badge-neutral-border: var(--border);
+  --badge-neutral-hover: var(--hover-fill);
+  --badge-green: oklch(0.7 0.15 150 / 0.2);
+  --badge-green-foreground: oklch(0.39 0.1 150);
+  --badge-green-border: oklch(0.8 0.11 150);
+  --badge-red: oklch(0.7 0.18 24 / 0.2);
+  --badge-red-foreground: oklch(0.4 0.15 24);
+  --badge-red-border: oklch(0.8 0.112 24);
+  --badge-blue: oklch(0.7 0.157 260 / 0.2);
+  --badge-blue-foreground: oklch(0.39 0.14 260);
+  --badge-blue-border: oklch(0.8 0.1 260);
+  --badge-yellow: oklch(0.8 0.163 78 / 0.2);
+  --badge-yellow-foreground: oklch(0.5 0.12 54);
+  --badge-yellow-border: oklch(0.86 0.146 84);
+  --badge-orange: oklch(0.7 0.17 50 / 0.2);
+  --badge-orange-foreground: oklch(0.39 0.103 50);
+  --badge-orange-border: oklch(0.8 0.12 50);
+  --badge-purple: oklch(0.7 0.195 304 / 0.2);
+  --badge-purple-foreground: oklch(0.39 0.15 304);
+  --badge-purple-border: oklch(0.8 0.124 304);
+  --badge-pink: oklch(0.7 0.19 350 / 0.2);
+  --badge-pink-foreground: oklch(0.39 0.14 350);
+  --badge-pink-border: oklch(0.8 0.13 350);
+}
+
+.dark[data-skin="mastra"][data-skin],
+:where(.dark) [data-skin="mastra"][data-skin] {
+  --background: oklch(0.1591 0 0);
+  --foreground: oklch(0.9851 0 0);
+  --card: oklch(0.1913 0 0);
+  --muted: oklch(0.2178 0 0);
+  --muted-foreground: oklch(0.65 0 0);
+  --accent: oklch(1 0 0 / 0.06);
+  --destructive-text: oklch(0.7 0.18 24);
+  --success-text: oklch(0.88 0.07 150);
+  --warning-text: oklch(0.91 0.105 88);
+  --info-text: oklch(0.88 0.058 260);
+  --border: oklch(1 0 0 / calc(0.09 * var(--ring-opacity)));
+  --input: oklch(1 0 0 / 0.05);
+  --control-boundary: oklch(1 0 0 / 0.4);
+  --hover-fill: oklch(1 0 0 / 0.04);
+  --active-fill: oklch(1 0 0 / 0.06);
+  --canvas: oklch(0.1382 0 0);
+  --overlay-opacity: 0.75;
+  --shadow-highlight: oklch(1 0 0 / 0.03);
+  --shadow-opacity: 1;
+  --badge-neutral-foreground: var(--foreground);
+  --badge-green: oklch(0.55 0.151 150 / 0.32);
+  --badge-green-foreground: oklch(0.88 0.07 150);
+  --badge-green-border: oklch(0.47 0.129 150);
+  --badge-red: oklch(0.56 0.22 24 / 0.32);
+  --badge-red-foreground: oklch(0.88 0.062 24);
+  --badge-red-border: oklch(0.48 0.19 24);
+  --badge-blue: oklch(0.55 0.21 260 / 0.32);
+  --badge-blue-foreground: oklch(0.88 0.058 260);
+  --badge-blue-border: oklch(0.47 0.18 260);
+  --badge-yellow: oklch(0.66 0.146 64 / 0.32);
+  --badge-yellow-foreground: oklch(0.91 0.105 88);
+  --badge-yellow-border: oklch(0.58 0.136 58);
+  --badge-orange: oklch(0.55 0.145 50 / 0.32);
+  --badge-orange-foreground: oklch(0.88 0.07 50);
+  --badge-orange-border: oklch(0.47 0.124 50);
+  --badge-purple: oklch(0.55 0.23 304 / 0.32);
+  --badge-purple-foreground: oklch(0.88 0.072 304);
+  --badge-purple-border: oklch(0.47 0.2 304);
+  --badge-pink: oklch(0.55 0.21 350 / 0.32);
+  --badge-pink-foreground: oklch(0.88 0.075 350);
+  --badge-pink-border: oklch(0.47 0.18 350);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-skin="mastra"][data-skin] {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+  }
+}

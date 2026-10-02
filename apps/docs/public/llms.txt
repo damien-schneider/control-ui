@@ -158,6 +158,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 ## Skins
 
 - [Skinning Control UI](http://127.0.0.1:3000/skins): Author complete token-driven Control UI skins with slots, adornments, motion controls, and one shared component source.
+- [Mastra](http://127.0.0.1:3000/skins/mastra): Mastra Playground UI: Mona Sans and Commit Mono, compact pill controls, neutral inverse actions, quiet navigation, inset badges, and layered surfaces.
 - [Refined](http://127.0.0.1:3000/skins/refined): Craft-inspired neutral surfaces, Inter typography, pill controls, and quiet layered shadows.
 - [Windows XP](http://127.0.0.1:3000/skins/xp): Windows XP Luna with compact system typography, glossy controls, blue window frames, and Explorer task panes.
 - [Windows 98](http://127.0.0.1:3000/skins/windows-98): Classic Windows 98 with bitmap system typography, raised gray controls, recessed fields, navy title bars, and Explorer tree navigation. Fixed to its original light palette.

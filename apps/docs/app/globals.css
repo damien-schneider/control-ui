@@ -108,6 +108,8 @@
 @import "../src/registry/skin-packs/cuicui/skin.css";
 @import "../src/registry/skin-packs/linear/theme.css";
 @import "../src/registry/skin-packs/linear/skin.css";
+@import "../src/registry/skin-packs/mastra/theme.css";
+@import "../src/registry/skin-packs/mastra/skin.css";
 @import "./docs-shell.css";
 @import "../src/registry/sources/control-ui/code.css";
 @import "../src/registry/sources/control-ui/chat-composer-editor.css";

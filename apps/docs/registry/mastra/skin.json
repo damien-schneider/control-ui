@@ -1,0 +1,47 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skin-mastra",
+  "type": "registry:style",
+  "title": "Mastra skin",
+  "description": "Mastra Playground UI: Mona Sans and Commit Mono, compact pill controls, neutral inverse actions, quiet navigation, inset badges, and layered surfaces.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/skin-packs/mastra/mastra-controls.css",
+      "target": "@components/control-ui/styles/mastra-controls.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/skin-packs/mastra/mastra-fonts.css",
+      "target": "@components/control-ui/styles/mastra-fonts.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/skin-packs/mastra/skin.config.tsx",
+      "target": "@components/control-ui/skin.config.tsx",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/skin-packs/mastra/skin.css",
+      "target": "@components/control-ui/styles/skin.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/skin-packs/mastra/theme.css",
+      "target": "@components/control-ui/styles/skin-theme.css",
+      "type": "registry:file"
+    }
+  ],
+  "css": {
+    "@import \"../components/control-ui/styles/skin-theme.css\"": {},
+    "@import \"../components/control-ui/styles/skin.css\"": {},
+    "@import \"../components/control-ui/styles/mastra-controls.css\"": {},
+    "@import \"../components/control-ui/styles/mastra-fonts.css\"": {}
+  },
+  "meta": {
+    "sourceManifestPath": "registry/mastra/skin.json"
+  }
+}
