@@ -103,7 +103,7 @@ function resolveActivePage(activePage: ActivePageId | undefined, catalog: Active
     matchedElsewhere || activeSkinsOverview || activeSkinPage ? undefined : components.find((item) => item.id === activePage);
 
   return {
-    pageWidth: guidePageWidth(activeGuide?.layout, activeCatalogOverview),
+    pageWidth: activeSkinPage ? "wide" : guidePageWidth(activeGuide?.layout, activeCatalogOverview),
     links: pageLinks({
       activeGuide,
       activeSkill,

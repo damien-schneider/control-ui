@@ -66,7 +66,7 @@ const FOUNDATION_BY_GROUP: Record<ThemeContractGroup, () => ReactNode> = {
   layout: LayoutFoundations,
 };
 
-export function ThemePreviewCanvas({ category, actions }: { category: ThemeCategoryId; actions: ReactNode }) {
+export function ThemePreviewCanvas({ category, actions }: { category: ThemeCategoryId; actions?: ReactNode }) {
   const foundationGroup = category === SKIN_CATEGORY ? null : category;
   const Foundation = foundationGroup ? FOUNDATION_BY_GROUP[foundationGroup] : null;
   return (

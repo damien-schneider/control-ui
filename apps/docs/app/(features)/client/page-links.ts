@@ -77,8 +77,10 @@ function catalogOverviewPageLinks(overview: CatalogOverviewId): PageLink[] {
 }
 
 function skinPageLinks(skin: DocsSkinPage): PageLink[] {
-  if (skin.docsOnly || skin.files.length === 0) return [{ href: "#install", label: "Availability" }];
-  return [{ href: "#install", label: "Installation" }];
+  return [
+    ...(skin.files.length > 0 ? [{ href: "#source", label: "Source" }] : []),
+    { href: "#install", label: skin.docsOnly || skin.files.length === 0 ? "Availability" : "Installation" },
+  ];
 }
 
 function skillPageLinks(skill: DocsSkill): PageLink[] {

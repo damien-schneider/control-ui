@@ -16,7 +16,7 @@ import { ContrastPanel } from "./contrast-panel";
 import { VarTag } from "./controls";
 import { ThemePreviewCanvas } from "./preview-canvas";
 import { parseSkinTheme, skinChangedTokenNames, themeFile, useSkinSource } from "./skin-source";
-import { SkinSourcePanel } from "./skin-source-view";
+import { SkinWorkspace } from "./skin-source-view";
 import { SKIN_CATEGORY, type ThemeCategoryId } from "./theme-categories";
 import { ThemeGeneratorDrawer } from "./theme-generator-drawer";
 import { useThemeRuntime } from "./theme-runtime-context";
@@ -83,6 +83,18 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
   const activeTokenCategory = TOKEN_CATEGORIES.find((item) => item.group === category);
 
   const panelIntroByGroup: Partial<Record<ThemeContractGroup, ReactNode>> = { motion: reduceMotionRow };
+  const actions = (
+    <div className="flex flex-wrap items-center gap-2">
+      <ButtonLink render={<Link href="/theme-accessibility" />} variant="quiet" size="sm">
+        <ShieldCheckIcon aria-hidden className="size-3.5" />
+        Accessibility audit
+      </ButtonLink>
+      <ThemeGeneratorDrawer />
+      <Button variant="solid" tone="primary" size="sm" onClick={cssCopy.handleCopy}>
+        {cssCopy.status === "copied" ? "Copied ✓" : "Copy CSS variables"}
+      </Button>
+    </div>
+  );
 
   return (
     <div className="flex min-w-0 flex-col gap-3">
@@ -97,56 +109,46 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
         </p>
       ) : null}
 
-      <div className={cn("grid min-w-0 items-start gap-6", !stacked && "grid-cols-[minmax(0,1fr)_21rem]")}>
-        <div className="min-w-0">
-          <ThemePreviewCanvas
-            category={category}
-            actions={
-              <div className="flex flex-wrap items-center gap-2">
-                <ButtonLink render={<Link href="/theme-accessibility" />} variant="quiet" size="sm">
-                  <ShieldCheckIcon aria-hidden className="size-3.5" />
-                  Accessibility audit
-                </ButtonLink>
-                <ThemeGeneratorDrawer />
-                <Button variant="solid" tone="primary" size="sm" onClick={cssCopy.handleCopy}>
-                  {cssCopy.status === "copied" ? "Copied ✓" : "Copy CSS variables"}
-                </Button>
-              </div>
-            }
-          />
+      {category === SKIN_CATEGORY ? (
+        <SkinWorkspace skin={theme.skin} source={skinSource} onRetry={retrySource} actions={actions}>
+          <ThemePreviewCanvas category={category} />
+        </SkinWorkspace>
+      ) : (
+        <div className={cn("grid min-w-0 items-start gap-6", !stacked && "grid-cols-[minmax(0,1fr)_21rem]")}>
+          <div className="min-w-0">
+            <ThemePreviewCanvas category={category} actions={actions} />
+          </div>
+
+          <aside
+            aria-label="Theme variables"
+            className={cn(
+              "min-w-0 rounded-[var(--radius-panel)] border border-border/70 bg-card p-3",
+              stacked ? "order-first" : "sticky top-3 max-h-[calc(100svh-1.5rem)] overflow-y-auto",
+            )}
+          >
+            {activeTokenCategory ? (
+              <TokenPanel
+                category={activeTokenCategory}
+                editor={editor}
+                headerAction={
+                  <span className="flex items-center gap-2 text-micro text-muted-foreground">
+                    CSS names
+                    <Switch
+                      aria-label="Caption every control with its CSS variable name"
+                      checked={theme.labelMode === "css"}
+                      onCheckedChange={(checked) => patch({ labelMode: checked ? "css" : "friendly" })}
+                    />
+                  </span>
+                }
+                beforeTokens={panelIntroByGroup[activeTokenCategory.group] ?? null}
+                afterCore={
+                  activeTokenCategory.group === "color" ? <ContrastPanel t={theme} onFix={(textFixes) => patch({ textFixes })} /> : null
+                }
+              />
+            ) : null}
+          </aside>
         </div>
-
-        <aside
-          aria-label="Theme variables"
-          className={cn(
-            "min-w-0 rounded-[var(--radius-panel)] border border-border/70 bg-card p-3",
-            stacked ? "order-first" : "sticky top-3 max-h-[calc(100svh-1.5rem)] overflow-y-auto",
-          )}
-        >
-          {category === SKIN_CATEGORY ? <SkinSourcePanel skin={theme.skin} source={skinSource} onRetry={retrySource} /> : null}
-
-          {activeTokenCategory ? (
-            <TokenPanel
-              category={activeTokenCategory}
-              editor={editor}
-              headerAction={
-                <span className="flex items-center gap-2 text-micro text-muted-foreground">
-                  CSS names
-                  <Switch
-                    aria-label="Caption every control with its CSS variable name"
-                    checked={theme.labelMode === "css"}
-                    onCheckedChange={(checked) => patch({ labelMode: checked ? "css" : "friendly" })}
-                  />
-                </span>
-              }
-              beforeTokens={panelIntroByGroup[activeTokenCategory.group] ?? null}
-              afterCore={
-                activeTokenCategory.group === "color" ? <ContrastPanel t={theme} onFix={(textFixes) => patch({ textFixes })} /> : null
-              }
-            />
-          ) : null}
-        </aside>
-      </div>
+      )}
     </div>
   );
 }

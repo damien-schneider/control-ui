@@ -113,9 +113,9 @@ function SourcePath({ path }: { path: string }) {
   const directory = path.slice(0, path.length - name.length);
 
   return (
-    <CodeTitle>
-      <span className="text-muted-foreground">{directory}</span>
-      <span className="text-foreground">{name}</span>
+    <CodeTitle title={path} className="flex min-w-0">
+      <span className="truncate text-muted-foreground">{directory}</span>
+      <span className="shrink-0 text-foreground">{name}</span>
     </CodeTitle>
   );
 }
@@ -129,10 +129,14 @@ export function SourceTabs({ files, overflow }: { files: SourceFile[]; overflow?
   if (!activeFile) return null;
 
   return (
-    <Tabs value={selectedPath} onValueChange={setActivePath}>
+    <Tabs value={selectedPath} onValueChange={setActivePath} className="min-w-0">
       {files.length > 1 ? (
         <ScrollArea>
-          <TabsList variant={scrollsPage ? "default" : "browser"} className={scrollsPage ? "mb-3 w-fit" : "w-full shadow-none"}>
+          <TabsList
+            aria-label="Source files"
+            variant={scrollsPage ? "default" : "browser"}
+            className={scrollsPage ? "mb-3 w-fit" : "w-full shadow-none"}
+          >
             {files.map((file) => (
               <TabsTab key={file.path} value={file.path}>
                 {sourceFileName(file.path)}

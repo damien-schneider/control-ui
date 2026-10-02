@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { skinsOverview } from "@/app/(features)/catalog/skins";
-import { CodeBlock } from "@/app/(features)/components/source";
+import { CodeBlock, SourceTabs } from "@/app/(features)/components/source";
 import { generatedSkinContract } from "@/app/(features)/model/generated-skin-contract";
 import { fullInstallCommand, fullInstallManifestHref, packInstallCommand } from "@/app/(features)/model/registry";
 import type { DocsSkinPage } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
+import { ButtonLink } from "@/components/control-ui/ui/button";
 import { Card } from "@/components/control-ui/ui/card";
+import { SkinSourceGuide } from "@/components/theme-drawer/skin-source-view";
 import { InstallPanel, PageHeader, SectionStack, SectionTitle } from "./shared";
 import { TokenContractTable } from "./token-contract";
 
@@ -28,7 +30,24 @@ export function SkinPage({ skin }: { skin: DocsSkinPage }) {
   return (
     <section className="docs-article">
       <PageHeader label={`Skin / ${kindLabel}`} title={skin.label} summary={skin.description} />
+      <div className="mb-8 flex flex-wrap gap-2">
+        <ButtonLink render={<Link href={`/theme-editor?skin=${skin.id}`} />} variant="solid" tone="primary" size="sm">
+          Preview {skin.label}
+        </ButtonLink>
+        <ButtonLink render={<Link href="/architecture" />} variant="quiet" size="sm">
+          How skin layers resolve
+        </ButtonLink>
+      </div>
       <SectionStack>
+        {skin.files.length > 0 ? (
+          <section id="source" className="@container/source min-w-0 scroll-mt-20">
+            <SectionTitle title="Source" description="Explore the files that define this skin. Copy any file to make it your own." />
+            <div className="grid min-w-0 gap-5">
+              <SkinSourceGuide files={skin.files} />
+              <SourceTabs files={skin.files} overflow="scroll" />
+            </div>
+          </section>
+        ) : null}
         {unavailable ? (
           <div
             id="install"
