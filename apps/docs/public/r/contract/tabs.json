@@ -3,6 +3,7 @@
   "family": "tabs",
   "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
   "registryItems": [
+    "emoji-icon-picker",
     "tabs"
   ],
   "knobs": [
@@ -86,6 +87,15 @@
     }
   ],
   "parts": {
+    "emoji-icon-picker": {
+      "root": {
+        "family": "tabs",
+        "registryItems": [
+          "emoji-icon-picker"
+        ],
+        "states": []
+      }
+    },
     "tabs": {
       "root": {
         "family": "tabs",

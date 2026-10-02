@@ -1,0 +1,202 @@
+{
+  "version": 9,
+  "family": "icon-picker",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "icon-picker"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-icon-picker-cell-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 10)"
+    },
+    {
+      "name": "--cui-icon-picker-cell-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-icon-picker-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-icon-picker-active-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--accent)"
+    }
+  ],
+  "parts": {
+    "icon-picker": {
+      "root": {
+        "family": "icon-picker",
+        "registryItems": [
+          "icon-picker"
+        ],
+        "states": []
+      },
+      "color": {
+        "family": "icon-picker",
+        "registryItems": [
+          "icon-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-checked",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-dirty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-filled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focused",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-invalid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-readonly",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-required",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-touched",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-unchecked",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-valid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "colors": {
+        "family": "icon-picker",
+        "registryItems": [
+          "icon-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "content": {
+        "family": "icon-picker",
+        "registryItems": [
+          "icon-picker"
+        ],
+        "states": []
+      },
+      "empty": {
+        "family": "icon-picker",
+        "registryItems": [
+          "icon-picker"
+        ],
+        "states": []
+      },
+      "grid": {
+        "family": "icon-picker",
+        "registryItems": [
+          "icon-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          }
+        ]
+      },
+      "icon": {
+        "family": "icon-picker",
+        "registryItems": [
+          "icon-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focusable",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/icon-picker.contrast.json"
+}

@@ -1606,7 +1606,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-emoji-picker-cell-size",
         syntax: "<length>",
-        defaultValue: "calc(var(--spacing) * 8)",
+        defaultValue: "calc(var(--spacing) * 10)",
         selector: ':where([data-control-family="emoji-picker"][data-slot="root"])',
       },
       {
@@ -1619,6 +1619,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-emoji-picker-header-foreground",
         syntax: "<color>",
         defaultValue: "var(--muted-foreground)",
+        selector: ':where([data-control-family="emoji-picker"][data-slot="root"])',
+      },
+      {
+        name: "--cui-emoji-picker-height",
+        syntax: "<length>",
+        defaultValue: "22rem",
         selector: ':where([data-control-family="emoji-picker"][data-slot="root"])',
       },
     ],
@@ -2017,6 +2023,35 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         syntax: "<length-percentage>",
         defaultValue: "9999px",
         selector: ':where([data-control-family="gradient-editor"][data-slot="root"])',
+      },
+    ],
+  },
+  {
+    id: "icon-picker",
+    knobs: [
+      {
+        name: "--cui-icon-picker-active-background",
+        syntax: "<color>",
+        defaultValue: "var(--accent)",
+        selector: ':where([data-control-family="icon-picker"][data-slot="root"])',
+      },
+      {
+        name: "--cui-icon-picker-cell-radius",
+        syntax: "<length-percentage>",
+        defaultValue: "var(--radius-control)",
+        selector: ':where([data-control-family="icon-picker"][data-slot="root"])',
+      },
+      {
+        name: "--cui-icon-picker-cell-size",
+        syntax: "<length>",
+        defaultValue: "calc(var(--spacing) * 10)",
+        selector: ':where([data-control-family="icon-picker"][data-slot="root"])',
+      },
+      {
+        name: "--cui-icon-picker-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--foreground)",
+        selector: ':where([data-control-family="icon-picker"][data-slot="root"])',
       },
     ],
   },

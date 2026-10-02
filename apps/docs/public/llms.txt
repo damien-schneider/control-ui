@@ -139,6 +139,8 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Morphing Panel](http://127.0.0.1:3000/primitives/morphing-panel): Accessible disclosure surface that morphs between explicit collapsed and expanded dimensions. Status: experimental.
 - [Color Picker](http://127.0.0.1:3000/primitives/color-picker): Color input with picker UI, formats, presets, and contrast helpers. Status: beta.
 - [Emoji Picker](http://127.0.0.1:3000/primitives/emoji-picker): Searchable, virtualized emoji grid with skin-aware cells and an active emoji footer. Status: beta.
+- [Icon Picker](http://127.0.0.1:3000/primitives/icon-picker): Searchable icon grid and color swatches using an app-supplied icon catalog. Status: beta.
+- [Emoji Icon Picker](http://127.0.0.1:3000/primitives/emoji-icon-picker): Emoji and icon selection in one popover with an animated height between panels. Status: beta.
 - [Gradient Editor](http://127.0.0.1:3000/primitives/gradient-editor): CSS gradient editor with draggable stops and live preview. Status: beta.
 - [Resizable](http://127.0.0.1:3000/primitives/resizable): Accessible resizable panel groups and split layouts with keyboard support. Status: beta.
 - [Calendar](http://127.0.0.1:3000/primitives/calendar): Date selection grid built on react-day-picker and themed through tokens.

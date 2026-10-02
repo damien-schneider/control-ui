@@ -48,6 +48,7 @@ export const generatedSkinContract: SkinContract = {
     "dropdown-menu": ["dropdown-menu"],
     dropzone: ["dropzone"],
     "dynamic-notification": ["dynamic-notification"],
+    "emoji-icon-picker": ["emoji-icon-picker"],
     "emoji-picker": ["emoji-picker"],
     empty: ["empty"],
     "environment-variables": ["environment-variables"],
@@ -56,6 +57,7 @@ export const generatedSkinContract: SkinContract = {
     form: ["form"],
     "gradient-editor": ["gradient-editor"],
     "hover-card": ["hover-card"],
+    "icon-picker": ["icon-picker"],
     "infinite-canvas": ["infinite-canvas"],
     "inline-attachment": ["inline-attachment"],
     "inline-citation": ["inline-citation"],
@@ -5727,12 +5729,83 @@ export const generatedSkinContract: SkinContract = {
       },
       registryItems: ["dynamic-notification"],
     },
+    "emoji-icon-picker": {
+      parts: {
+        root: {
+          family: "tabs",
+          registryItems: ["emoji-icon-picker"],
+          states: [],
+        },
+      },
+      registryItems: ["emoji-icon-picker"],
+    },
     "emoji-picker": {
       parts: {
         root: {
           family: "emoji-picker",
           registryItems: ["emoji-picker"],
-          states: [],
+          states: [
+            {
+              attribute: "data-disabled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-orientation",
+              source: "external",
+              valueKind: "enum",
+              values: ["horizontal", "vertical"],
+            },
+            {
+              attribute: "data-variant",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["reactions"],
+            },
+          ],
+        },
+        categories: {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [
+            {
+              attribute: "data-disabled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-orientation",
+              source: "external",
+              valueKind: "enum",
+              values: ["horizontal", "vertical"],
+            },
+          ],
+        },
+        category: {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [
+            {
+              attribute: "data-disabled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-focusable",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-orientation",
+              source: "external",
+              valueKind: "enum",
+              values: ["horizontal", "vertical"],
+            },
+          ],
         },
         "category-header": {
           family: "emoji-picker",
@@ -5754,9 +5827,32 @@ export const generatedSkinContract: SkinContract = {
               valueKind: "presence",
               values: [],
             },
+            {
+              attribute: "data-disabled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-focusable",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-orientation",
+              source: "external",
+              valueKind: "enum",
+              values: ["horizontal", "vertical"],
+            },
           ],
         },
         empty: {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [],
+        },
+        error: {
           family: "emoji-picker",
           registryItems: ["emoji-picker"],
           states: [],
@@ -5787,6 +5883,20 @@ export const generatedSkinContract: SkinContract = {
           states: [],
         },
         loading: {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [],
+        },
+        recent: {
+          family: "emoji-picker",
+          registryItems: ["emoji-picker"],
+          states: [],
+        },
+        "recent-grid": {
+          registryItems: ["emoji-picker"],
+          states: [],
+        },
+        "recent-label": {
           family: "emoji-picker",
           registryItems: ["emoji-picker"],
           states: [],
@@ -6632,6 +6742,152 @@ export const generatedSkinContract: SkinContract = {
         },
       },
       registryItems: ["hover-card"],
+    },
+    "icon-picker": {
+      parts: {
+        root: {
+          family: "icon-picker",
+          registryItems: ["icon-picker"],
+          states: [],
+        },
+        color: {
+          family: "icon-picker",
+          registryItems: ["icon-picker"],
+          states: [
+            {
+              attribute: "data-checked",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-dirty",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-disabled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-filled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-focused",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-invalid",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-readonly",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-required",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-touched",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-unchecked",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-valid",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        colors: {
+          family: "icon-picker",
+          registryItems: ["icon-picker"],
+          states: [
+            {
+              attribute: "data-disabled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        content: {
+          family: "icon-picker",
+          registryItems: ["icon-picker"],
+          states: [],
+        },
+        empty: {
+          family: "icon-picker",
+          registryItems: ["icon-picker"],
+          states: [],
+        },
+        grid: {
+          family: "icon-picker",
+          registryItems: ["icon-picker"],
+          states: [
+            {
+              attribute: "data-disabled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-orientation",
+              source: "external",
+              valueKind: "enum",
+              values: ["horizontal", "vertical"],
+            },
+          ],
+        },
+        icon: {
+          family: "icon-picker",
+          registryItems: ["icon-picker"],
+          states: [
+            {
+              attribute: "data-disabled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-focusable",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-orientation",
+              source: "external",
+              valueKind: "enum",
+              values: ["horizontal", "vertical"],
+            },
+          ],
+        },
+      },
+      registryItems: ["icon-picker"],
     },
     "infinite-canvas": {
       parts: {
@@ -9004,6 +9260,30 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
+            },
+          ],
+        },
+        viewport: {
+          family: "popup",
+          registryItems: ["popover"],
+          states: [
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["popover"],
+            },
+          ],
+        },
+        "viewport-content": {
+          family: "popup",
+          registryItems: ["popover"],
+          states: [
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["popover"],
             },
           ],
         },
@@ -14653,7 +14933,13 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-emoji-picker-cell-size",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "calc(var(--spacing) * 8)",
+        defaultValue: "calc(var(--spacing) * 10)",
+      },
+      {
+        name: "--cui-emoji-picker-height",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "22rem",
       },
       {
         name: "--cui-emoji-picker-cell-radius",
@@ -15060,6 +15346,32 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length>",
         initialValue: "0px",
         defaultValue: "var(--control-rim-width)",
+      },
+    ],
+    "icon-picker": [
+      {
+        name: "--cui-icon-picker-cell-size",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 10)",
+      },
+      {
+        name: "--cui-icon-picker-cell-radius",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--radius-control)",
+      },
+      {
+        name: "--cui-icon-picker-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--foreground)",
+      },
+      {
+        name: "--cui-icon-picker-active-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--accent)",
       },
     ],
     "infinite-canvas": [

@@ -92,7 +92,7 @@
         "toggle"
       ],
       "knobs": 25,
-      "probes": 168
+      "probes": 173
     },
     "button-group": {
       "registryItems": [
@@ -141,7 +141,7 @@
         "chat-message"
       ],
       "knobs": 21,
-      "probes": 31
+      "probes": 32
     },
     "checkbox-group": {
       "registryItems": [
@@ -218,8 +218,8 @@
       "registryItems": [
         "emoji-picker"
       ],
-      "knobs": 5,
-      "probes": 2
+      "knobs": 6,
+      "probes": 7
     },
     "empty": {
       "registryItems": [
@@ -250,7 +250,7 @@
         "textarea"
       ],
       "knobs": 15,
-      "probes": 71
+      "probes": 72
     },
     "filter-bar": {
       "registryItems": [
@@ -265,6 +265,13 @@
       ],
       "knobs": 10,
       "probes": 0
+    },
+    "icon-picker": {
+      "registryItems": [
+        "icon-picker"
+      ],
+      "knobs": 4,
+      "probes": 2
     },
     "infinite-canvas": {
       "registryItems": [
@@ -384,7 +391,7 @@
         "trigger-menu"
       ],
       "knobs": 44,
-      "probes": 130
+      "probes": 132
     },
     "progressive-blur": {
       "registryItems": [
@@ -493,10 +500,11 @@
     },
     "tabs": {
       "registryItems": [
+        "emoji-icon-picker",
         "tabs"
       ],
       "knobs": 13,
-      "probes": 41
+      "probes": 47
     },
     "task-list": {
       "registryItems": [

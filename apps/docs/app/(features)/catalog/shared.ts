@@ -104,6 +104,8 @@ export const registryKindIds = [
   "morphing-panel",
   "color-picker",
   "emoji-picker",
+  "icon-picker",
+  "emoji-icon-picker",
   "gradient-editor",
   "resizable",
   "calendar",

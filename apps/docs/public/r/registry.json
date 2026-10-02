@@ -248,6 +248,7 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
@@ -257,6 +258,7 @@
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
+        "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
         "http://127.0.0.1:3000/r/inline-citation.json",
@@ -369,6 +371,7 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
@@ -378,6 +381,7 @@
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
+        "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
         "http://127.0.0.1:3000/r/inline-citation.json",
@@ -497,6 +501,7 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
@@ -506,6 +511,7 @@
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
+        "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
         "http://127.0.0.1:3000/r/inline-citation.json",
@@ -625,6 +631,7 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
@@ -634,6 +641,7 @@
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
+        "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
         "http://127.0.0.1:3000/r/inline-citation.json",
@@ -753,6 +761,7 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
@@ -762,6 +771,7 @@
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
+        "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
         "http://127.0.0.1:3000/r/inline-citation.json",
@@ -881,6 +891,7 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
@@ -890,6 +901,7 @@
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
+        "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
         "http://127.0.0.1:3000/r/inline-citation.json",
@@ -1009,6 +1021,7 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
@@ -1018,6 +1031,7 @@
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
+        "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
         "http://127.0.0.1:3000/r/inline-citation.json",
@@ -1137,6 +1151,7 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
@@ -1146,6 +1161,7 @@
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
+        "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
         "http://127.0.0.1:3000/r/inline-citation.json",
@@ -1265,6 +1281,7 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
@@ -1274,6 +1291,7 @@
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
+        "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
         "http://127.0.0.1:3000/r/inline-citation.json",
@@ -1393,6 +1411,7 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
@@ -1402,6 +1421,7 @@
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
+        "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
         "http://127.0.0.1:3000/r/inline-citation.json",
@@ -3231,11 +3251,42 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "emoji-icon-picker",
+      "type": "registry:ui",
+      "title": "Emoji Icon Picker",
+      "description": "Emoji and icon selection in one popover with an animated height between panels.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/emoji-picker.json",
+        "http://127.0.0.1:3000/r/icon-picker.json",
+        "http://127.0.0.1:3000/r/popover.json",
+        "http://127.0.0.1:3000/r/tabs.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/recipes/tabs.css",
+          "target": "@components/control-ui/styles/recipes/tabs.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/emoji-icon-picker.tsx",
+          "target": "@components/control-ui/ui/emoji-icon-picker.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/tabs.css\"": {}
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "emoji-picker",
       "type": "registry:ui",
       "title": "Emoji Picker",
       "description": "Searchable, virtualized emoji grid with skin-aware cells and an active emoji footer.",
       "dependencies": [
+        "@base-ui/react@^1.8.0",
         "frimousse@^0.4.0",
         "lucide-react@^1.47.0"
       ],
@@ -3592,6 +3643,40 @@
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "icon-picker",
+      "type": "registry:ui",
+      "title": "Icon Picker",
+      "description": "Searchable icon grid and color swatches using an app-supplied icon catalog.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/knob-contracts/icon-picker-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/icon-picker-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/icon-picker.css",
+          "target": "@components/control-ui/styles/recipes/icon-picker.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/icon-picker.tsx",
+          "target": "@components/control-ui/ui/icon-picker.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/icon-picker.css\"": {}
       }
     },
     {
@@ -6218,6 +6303,7 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
+        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
@@ -6227,6 +6313,7 @@
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
+        "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
         "http://127.0.0.1:3000/r/inline-citation.json",

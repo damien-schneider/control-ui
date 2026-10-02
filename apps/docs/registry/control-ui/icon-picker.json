@@ -1,0 +1,37 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "icon-picker",
+  "type": "registry:ui",
+  "title": "Icon Picker",
+  "description": "Searchable icon grid and color swatches using an app-supplied icon catalog.",
+  "dependencies": [
+    "@base-ui/react@^1.8.0"
+  ],
+  "registryDependencies": [
+    "core",
+    "input"
+  ],
+  "files": [
+    {
+      "path": "src/registry/knob-contracts/icon-picker-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/icon-picker-knobs.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/icon-picker.css",
+      "target": "@components/control-ui/styles/recipes/icon-picker.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/icon-picker.tsx",
+      "target": "@components/control-ui/ui/icon-picker.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/icon-picker.css\"": {}
+  },
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/icon-picker.json"
+  }
+}

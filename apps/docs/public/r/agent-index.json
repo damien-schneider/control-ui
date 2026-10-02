@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 188,
+    "count": 190,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -1343,6 +1343,24 @@
         "href": "/primitives/emoji-picker",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/emoji-picker.json"
+      },
+      {
+        "id": "icon-picker",
+        "name": "Icon Picker",
+        "kind": "Primitive",
+        "summary": "Searchable icon grid and color swatches using an app-supplied icon catalog.",
+        "href": "/primitives/icon-picker",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/icon-picker.json"
+      },
+      {
+        "id": "emoji-icon-picker",
+        "name": "Emoji Icon Picker",
+        "kind": "Primitive",
+        "summary": "Emoji and icon selection in one popover with an animated height between panels.",
+        "href": "/primitives/emoji-icon-picker",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/emoji-icon-picker.json"
       },
       {
         "id": "gradient-editor",

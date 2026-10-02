@@ -1,4 +1,14 @@
 @layer components {
+  :where([data-control-family="popup"][data-popup-kind="popover"][data-slot="viewport"]) {
+    block-size: var(--_popover-viewport-height, auto);
+    overflow: clip;
+    transition: block-size var(--duration-base) var(--ease-emphasized);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="popover"][data-slot="viewport-content"]) {
+    display: flow-root;
+  }
+
   :where([data-control-family="popup"][data-popup-kind="sheet"][data-popup-part="surface"]) {
     transition-property: translate;
     transition-duration: var(--duration-base);

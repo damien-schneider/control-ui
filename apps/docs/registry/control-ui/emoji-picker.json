@@ -5,6 +5,7 @@
   "title": "Emoji Picker",
   "description": "Searchable, virtualized emoji grid with skin-aware cells and an active emoji footer.",
   "dependencies": [
+    "@base-ui/react@^1.8.0",
     "frimousse@^0.4.0",
     "lucide-react@^1.47.0"
   ],

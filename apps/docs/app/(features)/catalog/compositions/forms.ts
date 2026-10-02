@@ -153,7 +153,41 @@ export const formsCompositions = {
     ),
   ],
   "emoji-picker": [
-    example("Popover emoji picker", part("EmojiPicker", part("EmojiPickerSearch"), part("EmojiPickerContent"), part("EmojiPickerFooter"))),
+    example(
+      "Popover emoji picker",
+      part(
+        "EmojiPicker",
+        part("EmojiPickerSearch"),
+        part("EmojiPickerCategories"),
+        part("EmojiPickerRecent"),
+        part("EmojiPickerContent"),
+        part("EmojiPickerFooter"),
+      ),
+    ),
+    example(
+      "Quick reactions",
+      part("PopoverViewport", part("EmojiPickerReactions")),
+      "EmojiPickerReactions works without an EmojiPicker root. The app supplies emoji labels and handles selection.",
+    ),
+  ],
+  "icon-picker": [
+    example(
+      "Icon grid",
+      part("IconPicker", part("IconPickerSearch"), part("IconPickerColors"), part("IconPickerContent")),
+      "The app supplies icons, search keywords, and color choices. IconPickerColors controls a separate color value; apply it through --cui-icon-picker-foreground.",
+    ),
+  ],
+  "emoji-icon-picker": [
+    example(
+      "Emoji or icon",
+      part(
+        "EmojiIconPicker",
+        part("EmojiIconPickerTabs"),
+        part("EmojiIconPickerEmoji", part("EmojiPickerSearch"), part("EmojiPickerContent")),
+        part("EmojiIconPickerIcons", part("IconPickerSearch"), part("IconPickerContent")),
+      ),
+      "Place inside PopoverContent. Each panel owns its selection callback; the host stores the selected symbol and closes the popover.",
+    ),
   ],
   "color-picker": [
     example(

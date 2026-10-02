@@ -18,6 +18,11 @@ export const overlaysCompositions = {
   ],
   popover: [
     example(
+      "Resizing content",
+      part("Popover", part("PopoverTrigger"), part("PopoverContent", part("PopoverViewport", content("changing panel content")))),
+      "PopoverViewport animates content height with the shared motion tokens and preserves automatic sizing before hydration.",
+    ),
+    example(
       "Anchored inspector",
       part(
         "Popover",

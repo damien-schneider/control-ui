@@ -1,7 +1,7 @@
 "use client";
 
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
-import type { ComponentProps, CSSProperties } from "react";
+import { type ComponentProps, type CSSProperties, useImperativeHandle, useLayoutEffect, useRef } from "react";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { controlEffectsAttribute } from "@/components/control-ui/skin";
@@ -74,6 +74,33 @@ export function PopoverContent({
         </PopoverPrimitive.Popup>
       </PopoverPrimitive.Positioner>
     </PopoverPrimitive.Portal>
+  );
+}
+
+export function PopoverViewport({ children, ref, ...props }: ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle }) {
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  useImperativeHandle(ref, () => {
+    if (!viewportRef.current) throw new Error("PopoverViewport is not mounted.");
+    return viewportRef.current;
+  }, []);
+  useLayoutEffect(() => {
+    const viewport = viewportRef.current;
+    const content = contentRef.current;
+    if (!viewport || !content) return;
+    const updateHeight = () => viewport.style.setProperty("--_popover-viewport-height", `${content.offsetHeight}px`);
+    updateHeight();
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(content);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div data-control-ui="popover" data-control-family="popup" data-popup-kind="popover" data-slot="viewport" {...props} ref={viewportRef}>
+      <div data-control-ui="popover" data-control-family="popup" data-popup-kind="popover" data-slot="viewport-content" ref={contentRef}>
+        {children}
+      </div>
+    </div>
   );
 }
 

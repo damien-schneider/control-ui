@@ -2010,6 +2010,65 @@ export const primitiveEntries = [
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/primitives/emoji-picker").then((mod) => ({ default: mod.PrimitiveEmojiPickerExample })),
     ),
+    additionalPreviews: [
+      {
+        id: "reactions",
+        previewClassName: "min-h-[200px]",
+        title: "Chat reactions",
+        description:
+          "Pick a common reaction or expand the same popover to search all emoji. The app owns reaction counts and recent emoji.",
+        source: sourceFile("Chat reaction example", "src/registry/examples/control-ui/primitives/emoji-reactions.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/emoji-reactions").then((mod) => ({ default: mod.EmojiReactionsExample })),
+        ),
+      },
+    ],
+  },
+  {
+    id: "icon-picker",
+    category: "forms",
+    kind: "Primitive",
+    name: "Icon Picker",
+    summary: "Searchable icon grid and color swatches using an app-supplied icon catalog.",
+    status: "beta",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/icon-picker.tsx",
+        example: sourceFile("Icon picker preview", "src/registry/examples/control-ui/primitives/icon-picker.tsx", "example"),
+        source: sourceFile("Icon picker slots", "src/registry/sources/control-ui/ui/icon-picker.tsx", "component"),
+        supportFiles: [sourceFile("Icon picker recipe", "src/registry/sources/control-ui/recipes/icon-picker.css", "recipe-css")],
+        registryKind: "icon-picker",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/icon-picker").then((mod) => ({ default: mod.PrimitiveIconPickerExample })),
+    ),
+  },
+  {
+    id: "emoji-icon-picker",
+    category: "forms",
+    kind: "Primitive",
+    name: "Emoji Icon Picker",
+    summary: "Emoji and icon selection in one popover with an animated height between panels.",
+    status: "beta",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/emoji-icon-picker.tsx",
+        example: sourceFile(
+          "Emoji and icon picker preview",
+          "src/registry/examples/control-ui/primitives/emoji-icon-picker.tsx",
+          "example",
+        ),
+        source: sourceFile("Emoji and icon picker slots", "src/registry/sources/control-ui/ui/emoji-icon-picker.tsx", "component"),
+        supportFiles: [tabsRecipeFile],
+        registryKind: "emoji-icon-picker",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/emoji-icon-picker").then((mod) => ({
+        default: mod.PrimitiveEmojiIconPickerExample,
+      })),
+    ),
   },
   {
     id: "gradient-editor",

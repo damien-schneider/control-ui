@@ -1,5 +1,6 @@
 "use client";
 
+import type { Emoji } from "frimousse";
 import { MessageSquareTextIcon, MoreHorizontalIcon, SmilePlusIcon } from "lucide-react";
 import type { ReactElement } from "react";
 import { useState } from "react";
@@ -22,27 +23,52 @@ import {
 import { Avatar, AvatarBadge, AvatarFallback, AvatarGroup } from "@/components/control-ui/ui/avatar";
 import { Button } from "@/components/control-ui/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
-import { EmojiPicker, EmojiPickerContent, EmojiPickerFooter, EmojiPickerSearch } from "@/components/control-ui/ui/emoji-picker";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/control-ui/ui/popover";
+import {
+  EmojiPicker,
+  EmojiPickerCategories,
+  EmojiPickerContent,
+  EmojiPickerFooter,
+  EmojiPickerReactions,
+  EmojiPickerRecent,
+  EmojiPickerSearch,
+} from "@/components/control-ui/ui/emoji-picker";
+import { Popover, PopoverContent, PopoverTrigger, PopoverViewport } from "@/components/control-ui/ui/popover";
+import { commonReactions, rememberEmoji } from "../primitives/emoji-picker-data";
 import { formatMessageTime, people, type TeamMessage, type TeamPerson, viewerId } from "./data";
 
 export function EmojiPickerPopover({ trigger, onPick }: { trigger: ReactElement; onPick: (emoji: string) => void }) {
-  const [open, setOpen] = useState(false);
+  const [view, setView] = useState<"closed" | "quick" | "all">("closed");
+  const [recentEmoji, setRecentEmoji] = useState<Emoji[]>([]);
+  const focusSearch = typeof window !== "undefined" && !window.matchMedia("(pointer: coarse)").matches;
+  const selectEmoji = (emoji: Emoji) => {
+    onPick(emoji.emoji);
+    setRecentEmoji((recent) => rememberEmoji(recent, emoji));
+    setView("closed");
+  };
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={view !== "closed"} onOpenChange={(open) => setView(open ? "quick" : "closed")}>
       <PopoverTrigger render={trigger} />
-      <PopoverContent padding="none" className="w-fit" align="end">
-        <EmojiPicker
-          onEmojiSelect={({ emoji }) => {
-            onPick(emoji);
-            setOpen(false);
-          }}
-        >
-          <EmojiPickerSearch />
-          <EmojiPickerContent />
-          <EmojiPickerFooter />
-        </EmojiPicker>
+      <PopoverContent padding="none" className="w-fit max-w-[calc(100vw-1rem)]" align="end">
+        <PopoverViewport>
+          {view === "all" ? (
+            <EmojiPicker onEmojiSelect={selectEmoji}>
+              <EmojiPickerSearch autoFocus={focusSearch} />
+              <EmojiPickerCategories />
+              <EmojiPickerRecent emojis={recentEmoji} />
+              <EmojiPickerContent />
+              <EmojiPickerFooter />
+            </EmojiPicker>
+          ) : (
+            <div className="p-2">
+              <EmojiPickerReactions emojis={commonReactions} onEmojiSelect={selectEmoji} />
+              <Button variant="ghost" className="mt-1 w-full" onClick={() => setView("all")}>
+                <SmilePlusIcon aria-hidden="true" />
+                More emoji
+              </Button>
+            </div>
+          )}
+        </PopoverViewport>
       </PopoverContent>
     </Popover>
   );

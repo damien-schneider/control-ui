@@ -10,7 +10,13 @@
       "name": "--cui-emoji-picker-cell-size",
       "syntax": "<length>",
       "initialValue": "0px",
-      "defaultValue": "calc(var(--spacing) * 8)"
+      "defaultValue": "calc(var(--spacing) * 10)"
+    },
+    {
+      "name": "--cui-emoji-picker-height",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "22rem"
     },
     {
       "name": "--cui-emoji-picker-cell-radius",
@@ -44,7 +50,83 @@
         "registryItems": [
           "emoji-picker"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "reactions"
+            ]
+          }
+        ]
+      },
+      "categories": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          }
+        ]
+      },
+      "category": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focusable",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          }
+        ]
       },
       "category-header": {
         "family": "emoji-picker",
@@ -71,10 +153,38 @@
             "source": "control-ui",
             "valueKind": "presence",
             "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focusable",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
           }
         ]
       },
       "empty": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      },
+      "error": {
         "family": "emoji-picker",
         "registryItems": [
           "emoji-picker"
@@ -123,6 +233,26 @@
         ],
         "states": []
       },
+      "recent": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      },
+      "recent-grid": {
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      },
+      "recent-label": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      },
       "row": {
         "family": "emoji-picker",
         "registryItems": [
@@ -154,8 +284,6 @@
     }
   },
   "adornments": {},
-  "uncovered": [
-    "--cui-emoji-picker-active-background"
-  ],
+  "uncovered": [],
   "contrast": "/r/contract/emoji-picker.contrast.json"
 }

@@ -104,6 +104,8 @@
 - `number-field` (Number Field) — Numeric input with stepper buttons and optional drag-to-change behavior. — `npx shadcn@latest add http://127.0.0.1:3000/r/number-field.json`
 - `color-picker` (Color Picker) **[beta]** — Color input with picker UI, formats, presets, and contrast helpers. — `npx shadcn@latest add http://127.0.0.1:3000/r/color-picker.json`
 - `emoji-picker` (Emoji Picker) **[beta]** — Searchable, virtualized emoji grid with skin-aware cells and an active emoji footer. — `npx shadcn@latest add http://127.0.0.1:3000/r/emoji-picker.json`
+- `icon-picker` (Icon Picker) **[beta]** — Searchable icon grid and color swatches using an app-supplied icon catalog. — `npx shadcn@latest add http://127.0.0.1:3000/r/icon-picker.json`
+- `emoji-icon-picker` (Emoji Icon Picker) **[beta]** — Emoji and icon selection in one popover with an animated height between panels. — `npx shadcn@latest add http://127.0.0.1:3000/r/emoji-icon-picker.json`
 - `gradient-editor` (Gradient Editor) **[beta]** — CSS gradient editor with draggable stops and live preview. — `npx shadcn@latest add http://127.0.0.1:3000/r/gradient-editor.json`
 - `calendar` (Calendar) — Date selection grid built on react-day-picker and themed through tokens. — `npx shadcn@latest add http://127.0.0.1:3000/r/calendar.json`
 

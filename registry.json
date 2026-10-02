@@ -248,6 +248,7 @@
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
         "damien-schneider/control-ui/email",
+        "damien-schneider/control-ui/emoji-icon-picker",
         "damien-schneider/control-ui/emoji-picker",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
@@ -257,6 +258,7 @@
         "damien-schneider/control-ui/form",
         "damien-schneider/control-ui/gradient-editor",
         "damien-schneider/control-ui/hover-card",
+        "damien-schneider/control-ui/icon-picker",
         "damien-schneider/control-ui/infinite-canvas",
         "damien-schneider/control-ui/inline-attachment",
         "damien-schneider/control-ui/inline-citation",
@@ -369,6 +371,7 @@
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
         "damien-schneider/control-ui/email",
+        "damien-schneider/control-ui/emoji-icon-picker",
         "damien-schneider/control-ui/emoji-picker",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
@@ -378,6 +381,7 @@
         "damien-schneider/control-ui/form",
         "damien-schneider/control-ui/gradient-editor",
         "damien-schneider/control-ui/hover-card",
+        "damien-schneider/control-ui/icon-picker",
         "damien-schneider/control-ui/infinite-canvas",
         "damien-schneider/control-ui/inline-attachment",
         "damien-schneider/control-ui/inline-citation",
@@ -497,6 +501,7 @@
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
         "damien-schneider/control-ui/email",
+        "damien-schneider/control-ui/emoji-icon-picker",
         "damien-schneider/control-ui/emoji-picker",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
@@ -506,6 +511,7 @@
         "damien-schneider/control-ui/form",
         "damien-schneider/control-ui/gradient-editor",
         "damien-schneider/control-ui/hover-card",
+        "damien-schneider/control-ui/icon-picker",
         "damien-schneider/control-ui/infinite-canvas",
         "damien-schneider/control-ui/inline-attachment",
         "damien-schneider/control-ui/inline-citation",
@@ -625,6 +631,7 @@
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
         "damien-schneider/control-ui/email",
+        "damien-schneider/control-ui/emoji-icon-picker",
         "damien-schneider/control-ui/emoji-picker",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
@@ -634,6 +641,7 @@
         "damien-schneider/control-ui/form",
         "damien-schneider/control-ui/gradient-editor",
         "damien-schneider/control-ui/hover-card",
+        "damien-schneider/control-ui/icon-picker",
         "damien-schneider/control-ui/infinite-canvas",
         "damien-schneider/control-ui/inline-attachment",
         "damien-schneider/control-ui/inline-citation",
@@ -753,6 +761,7 @@
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
         "damien-schneider/control-ui/email",
+        "damien-schneider/control-ui/emoji-icon-picker",
         "damien-schneider/control-ui/emoji-picker",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
@@ -762,6 +771,7 @@
         "damien-schneider/control-ui/form",
         "damien-schneider/control-ui/gradient-editor",
         "damien-schneider/control-ui/hover-card",
+        "damien-schneider/control-ui/icon-picker",
         "damien-schneider/control-ui/infinite-canvas",
         "damien-schneider/control-ui/inline-attachment",
         "damien-schneider/control-ui/inline-citation",
@@ -881,6 +891,7 @@
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
         "damien-schneider/control-ui/email",
+        "damien-schneider/control-ui/emoji-icon-picker",
         "damien-schneider/control-ui/emoji-picker",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
@@ -890,6 +901,7 @@
         "damien-schneider/control-ui/form",
         "damien-schneider/control-ui/gradient-editor",
         "damien-schneider/control-ui/hover-card",
+        "damien-schneider/control-ui/icon-picker",
         "damien-schneider/control-ui/infinite-canvas",
         "damien-schneider/control-ui/inline-attachment",
         "damien-schneider/control-ui/inline-citation",
@@ -1009,6 +1021,7 @@
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
         "damien-schneider/control-ui/email",
+        "damien-schneider/control-ui/emoji-icon-picker",
         "damien-schneider/control-ui/emoji-picker",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
@@ -1018,6 +1031,7 @@
         "damien-schneider/control-ui/form",
         "damien-schneider/control-ui/gradient-editor",
         "damien-schneider/control-ui/hover-card",
+        "damien-schneider/control-ui/icon-picker",
         "damien-schneider/control-ui/infinite-canvas",
         "damien-schneider/control-ui/inline-attachment",
         "damien-schneider/control-ui/inline-citation",
@@ -1137,6 +1151,7 @@
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
         "damien-schneider/control-ui/email",
+        "damien-schneider/control-ui/emoji-icon-picker",
         "damien-schneider/control-ui/emoji-picker",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
@@ -1146,6 +1161,7 @@
         "damien-schneider/control-ui/form",
         "damien-schneider/control-ui/gradient-editor",
         "damien-schneider/control-ui/hover-card",
+        "damien-schneider/control-ui/icon-picker",
         "damien-schneider/control-ui/infinite-canvas",
         "damien-schneider/control-ui/inline-attachment",
         "damien-schneider/control-ui/inline-citation",
@@ -1265,6 +1281,7 @@
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
         "damien-schneider/control-ui/email",
+        "damien-schneider/control-ui/emoji-icon-picker",
         "damien-schneider/control-ui/emoji-picker",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
@@ -1274,6 +1291,7 @@
         "damien-schneider/control-ui/form",
         "damien-schneider/control-ui/gradient-editor",
         "damien-schneider/control-ui/hover-card",
+        "damien-schneider/control-ui/icon-picker",
         "damien-schneider/control-ui/infinite-canvas",
         "damien-schneider/control-ui/inline-attachment",
         "damien-schneider/control-ui/inline-citation",
@@ -1393,6 +1411,7 @@
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
         "damien-schneider/control-ui/email",
+        "damien-schneider/control-ui/emoji-icon-picker",
         "damien-schneider/control-ui/emoji-picker",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
@@ -1402,6 +1421,7 @@
         "damien-schneider/control-ui/form",
         "damien-schneider/control-ui/gradient-editor",
         "damien-schneider/control-ui/hover-card",
+        "damien-schneider/control-ui/icon-picker",
         "damien-schneider/control-ui/infinite-canvas",
         "damien-schneider/control-ui/inline-attachment",
         "damien-schneider/control-ui/inline-citation",
@@ -3231,11 +3251,42 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "emoji-icon-picker",
+      "type": "registry:ui",
+      "title": "Emoji Icon Picker",
+      "description": "Emoji and icon selection in one popover with an animated height between panels.",
+      "dependencies": [],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/emoji-picker",
+        "damien-schneider/control-ui/icon-picker",
+        "damien-schneider/control-ui/popover",
+        "damien-schneider/control-ui/tabs"
+      ],
+      "files": [
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/recipes/tabs.css",
+          "target": "@components/control-ui/styles/recipes/tabs.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/ui/emoji-icon-picker.tsx",
+          "target": "@components/control-ui/ui/emoji-icon-picker.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/tabs.css\"": {}
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "emoji-picker",
       "type": "registry:ui",
       "title": "Emoji Picker",
       "description": "Searchable, virtualized emoji grid with skin-aware cells and an active emoji footer.",
       "dependencies": [
+        "@base-ui/react@^1.8.0",
         "frimousse@^0.4.0",
         "lucide-react@^1.47.0"
       ],
@@ -3592,6 +3643,40 @@
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "icon-picker",
+      "type": "registry:ui",
+      "title": "Icon Picker",
+      "description": "Searchable icon grid and color swatches using an app-supplied icon catalog.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/input"
+      ],
+      "files": [
+        {
+          "path": "apps/docs/src/registry/knob-contracts/icon-picker-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/icon-picker-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/recipes/icon-picker.css",
+          "target": "@components/control-ui/styles/recipes/icon-picker.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/ui/icon-picker.tsx",
+          "target": "@components/control-ui/ui/icon-picker.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/icon-picker.css\"": {}
       }
     },
     {
@@ -6218,6 +6303,7 @@
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
         "damien-schneider/control-ui/email",
+        "damien-schneider/control-ui/emoji-icon-picker",
         "damien-schneider/control-ui/emoji-picker",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
@@ -6227,6 +6313,7 @@
         "damien-schneider/control-ui/form",
         "damien-schneider/control-ui/gradient-editor",
         "damien-schneider/control-ui/hover-card",
+        "damien-schneider/control-ui/icon-picker",
         "damien-schneider/control-ui/infinite-canvas",
         "damien-schneider/control-ui/inline-attachment",
         "damien-schneider/control-ui/inline-citation",

@@ -3734,6 +3734,38 @@
             "values": []
           }
         ]
+      },
+      "viewport": {
+        "family": "popup",
+        "registryItems": [
+          "popover"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "popover"
+            ]
+          }
+        ]
+      },
+      "viewport-content": {
+        "family": "popup",
+        "registryItems": [
+          "popover"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "popover"
+            ]
+          }
+        ]
       }
     },
     "resizable": {
