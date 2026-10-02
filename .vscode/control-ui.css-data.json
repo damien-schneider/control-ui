@@ -1809,6 +1809,11 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-markdown-flow-gap",
+      "description": "Control UI markdown knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
       "name": "--cui-markdown-font-size",
       "description": "Control UI markdown knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
@@ -1817,6 +1822,11 @@
       "name": "--cui-markdown-foreground",
       "description": "Control UI markdown knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-markdown-heading-gap",
+      "description": "Control UI markdown knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
     },
     {
       "name": "--cui-markdown-image-outline-color",

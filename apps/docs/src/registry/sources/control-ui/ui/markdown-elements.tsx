@@ -47,11 +47,11 @@ export function MarkdownCode({ className, children, node: _node, ...props }: Mar
 
   const value = rawValue.replace(/^\n/, "").replace(/\n$/, "");
   if (lang === "diff" && value.includes("@@")) {
-    return <CodeDiff patch={value} lang="diff" diffStyle="unified" className="my-4" />;
+    return <CodeDiff patch={value} lang="diff" diffStyle="unified" />;
   }
 
   return (
-    <Code className="my-4">
+    <Code>
       <CodeHeader>
         {lang ? <CodeTitle>{lang}</CodeTitle> : null}
         <CodeActions>
@@ -159,7 +159,7 @@ export function MarkdownTd({ className, node: _node, ...props }: MarkdownElement
   return <td data-control-ui="markdown" data-control-family="markdown" data-slot="table-cell" className={className} {...props} />;
 }
 
-// `pre` must stay unoverridden: Streamdown only routes fenced blocks to `code` with language-* className while it is default.
+// `pre` overrides break Streamdown's fence detection.
 export const markdownComponents = {
   code: MarkdownCode,
   inlineCode: MarkdownInlineCode,

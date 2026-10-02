@@ -6,18 +6,13 @@ import type { MarkdownKnobStyle } from "@/components/control-ui/knob-contracts/m
 import { cn } from "@/components/control-ui/lib/cn";
 import { markdownComponents } from "@/components/control-ui/ui/markdown-elements";
 
-export type MarkdownProps = Omit<ComponentProps<"div">, "children" | "style"> & {
-  content: string;
+export type MarkdownRootProps = Omit<ComponentProps<"div">, "style"> & {
   style?: CSSProperties & MarkdownKnobStyle;
 };
 
-// Chrome-less on purpose so it drops straight into chat message; MarkdownBlock composes it for headered, copyable block.
+export type MarkdownProps = Omit<MarkdownRootProps, "children"> & { content: string };
 
-// Markdown parts read their paint from knobs this root declares, so prose assembled elsewhere (MDX) needs it too.
-export function MarkdownRoot({
-  className,
-  ...props
-}: Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & MarkdownKnobStyle }) {
+export function MarkdownRoot({ className, ...props }: MarkdownRootProps) {
   return (
     <div
       data-control-ui="markdown"
@@ -29,18 +24,25 @@ export function MarkdownRoot({
   );
 }
 
+export function MarkdownFlow(props: MarkdownRootProps) {
+  return <div data-control-ui="markdown" data-control-family="markdown" data-slot="flow" {...props} />;
+}
+
 export function Markdown({ content, className, ...props }: MarkdownProps) {
   return (
     <MarkdownRoot className={className} {...props}>
-      <Streamdown
-        mode="streaming"
-        parseIncompleteMarkdown
-        controls={false}
-        components={markdownComponents}
-        className="space-y-4 whitespace-normal [&>*:first-child]:mt-0 [&>*:last-child]:mb-0"
-      >
-        {content}
-      </Streamdown>
+      <MarkdownFlow>
+        {/* Streamdown's wrapper drops DOM props and adds utility margins. */}
+        <Streamdown
+          mode="streaming"
+          parseIncompleteMarkdown
+          controls={false}
+          components={markdownComponents}
+          className="cui-markdown-streamdown [&>[data-control-family]]:[margin-block:revert-layer]"
+        >
+          {content}
+        </Streamdown>
+      </MarkdownFlow>
     </MarkdownRoot>
   );
 }

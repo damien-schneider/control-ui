@@ -2371,6 +2371,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="markdown"][data-slot="root"])',
       },
       {
+        name: "--cui-markdown-flow-gap",
+        syntax: "<length>",
+        defaultValue: "calc(var(--spacing) * 4)",
+        selector: ':where([data-control-family="markdown"][data-slot="root"])',
+      },
+      {
         name: "--cui-markdown-font-size",
         syntax: "<length>",
         defaultValue: "var(--text-body)",
@@ -2380,6 +2386,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-markdown-foreground",
         syntax: "<color>",
         defaultValue: "oklch(from var(--foreground) l c h / 0.9)",
+        selector: ':where([data-control-family="markdown"][data-slot="root"])',
+      },
+      {
+        name: "--cui-markdown-heading-gap",
+        syntax: "<length>",
+        defaultValue: "calc(var(--spacing) * 6)",
         selector: ':where([data-control-family="markdown"][data-slot="root"])',
       },
       {

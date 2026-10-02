@@ -287,9 +287,13 @@ export const displayCompositions = {
   markdown: [
     example(
       "Rendered markdown",
-      part("Markdown", part("MarkdownRoot", content("rendered prose and code fences"))),
-      "Pass the source in content. Markdown supplies the root and parsed children.",
+      part("Markdown", part("MarkdownRoot", part("MarkdownFlow", content("rendered prose and code fences")))),
+      "Pass the source in content. MarkdownRoot supplies tokens; MarkdownFlow owns block spacing.",
     ),
-    example("Custom prose", part("MarkdownRoot", content("consumer-rendered prose"))),
+    example(
+      "Custom prose",
+      part("MarkdownRoot", part("MarkdownFlow", content("consumer-rendered prose"))),
+      "Compose MDX or Markdown parts inside MarkdownFlow. Re-value --cui-markdown-flow-gap and --cui-markdown-heading-gap on MarkdownRoot.",
+    ),
   ],
 } as const;

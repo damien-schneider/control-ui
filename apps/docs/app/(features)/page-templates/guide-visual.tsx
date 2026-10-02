@@ -14,7 +14,7 @@ export function GuideVisual({
   className?: string;
 }) {
   return (
-    <figure className={cn("mt-5 overflow-hidden rounded-xl border border-border/80 bg-card/45 text-foreground", className)}>
+    <figure className={cn("overflow-hidden rounded-xl border border-border/80 bg-card/45 text-foreground", className)}>
       <figcaption className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-border/70 border-b px-4 py-3">
         <span className="font-medium text-label">{title}</span>
         {description ? <span className="text-caption text-muted-foreground">{description}</span> : null}

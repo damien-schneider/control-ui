@@ -30,7 +30,7 @@ describe("Markdown renders", () => {
     expect(html).toContain('data-control-ui="markdown"');
     expect(html).toContain("<h2");
     expect(html).toContain("<strong");
-    expect(html).toContain("<table"); // gfm table
+    expect(html).toContain("<table");
   });
 
   test("a plain code fence routes to Code", () => {

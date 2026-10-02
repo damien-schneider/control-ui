@@ -12,5 +12,7 @@ export const markdownKnobs = [
   "--cui-markdown-table-header-background",
   "--cui-markdown-font-size",
   "--cui-markdown-line-height",
+  "--cui-markdown-flow-gap",
+  "--cui-markdown-heading-gap",
 ] as const;
 export type MarkdownKnobStyle = Partial<Record<(typeof markdownKnobs)[number], string>>;

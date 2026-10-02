@@ -319,7 +319,7 @@
       "registryItems": [
         "markdown"
       ],
-      "knobs": 12,
+      "knobs": 14,
       "probes": 8
     },
     "markdown-block": {

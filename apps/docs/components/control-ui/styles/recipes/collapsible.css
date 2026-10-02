@@ -38,6 +38,7 @@
   }
 
   :where([data-control-family="collapsible"][data-slot="content"]) {
+    height: var(--collapsible-panel-height);
     transition-property: height, opacity;
     transition-duration: var(--duration-slow);
     transition-timing-function: var(--ease-standard);
@@ -45,7 +46,21 @@
 
   :where([data-control-family="collapsible"][data-slot="content"][data-starting-style]),
   :where([data-control-family="collapsible"][data-slot="content"][data-ending-style]) {
+    height: 0;
+    overflow: clip;
     opacity: 0;
+  }
+
+  @supports (transition-behavior: allow-discrete) {
+    :where([data-control-family="collapsible"][data-slot="content"]) {
+      transition-property: height, opacity, overflow;
+      transition-timing-function: var(--ease-standard), var(--ease-standard), step-end;
+      transition-behavior: normal, normal, allow-discrete;
+    }
+
+    :where([data-control-family="collapsible"][data-slot="content"][data-ending-style]) {
+      transition-timing-function: var(--ease-standard), var(--ease-standard), step-start;
+    }
   }
 
   :where([data-control-family="collapsible"][data-slot="trigger"][data-state="open"] > svg) {

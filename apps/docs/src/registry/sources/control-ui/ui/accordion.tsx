@@ -28,7 +28,6 @@ export type AccordionTriggerProps = Omit<ComponentProps<"button">, "style"> & { 
 
 export type AccordionPanelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AccordionKnobStyle };
 
-// Panel height animates from Base UI's --accordion-panel-height, with no JS measuring.
 export function Accordion({ className, ...props }: AccordionProps) {
   return (
     <AccordionPrimitive.Root

@@ -55,13 +55,25 @@
     font-size: var(--text-body);
     text-wrap: pretty;
     height: var(--accordion-panel-height);
-    overflow: hidden;
     transition: height var(--duration-base) var(--ease-emphasized);
   }
 
   :where([data-control-family="accordion"][data-slot="panel"][data-starting-style]),
   :where([data-control-family="accordion"][data-slot="panel"][data-ending-style]) {
     height: 0;
+    overflow: clip;
+  }
+
+  @supports (transition-behavior: allow-discrete) {
+    :where([data-control-family="accordion"][data-slot="panel"]) {
+      transition-property: height, overflow;
+      transition-timing-function: var(--ease-emphasized), step-end;
+      transition-behavior: normal, allow-discrete;
+    }
+
+    :where([data-control-family="accordion"][data-slot="panel"][data-ending-style]) {
+      transition-timing-function: var(--ease-emphasized), step-start;
+    }
   }
 }
 

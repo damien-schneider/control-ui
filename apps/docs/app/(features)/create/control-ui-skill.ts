@@ -30,6 +30,7 @@ Control UI is installed source, not a dependency: the components, their recipe s
 - Import components from the installed control-ui directory through this app's alias, never from a package.
 - Props follow one convention: variant, tone, size, iconOnly; composition uses render instead of asChild. Read the exported prop types of the installed component before mapping a call site from another library, and treat a variant with no counterpart as a question, not a guess.
 - When adding or migrating control icons, verify their rendered SVG dimensions against the component recipe's size knob; icon libraries can supply oversized defaults, so default sizing belongs in the shared recipe rather than repeated call-site utilities.
+- Never add overflow-hidden or overflow: clip to a layout container without a concrete clipping requirement. Rounded surfaces do not need clipping; it cuts off child shadows and focus rings. Folding panels clip only while animating and leave settled content visible.
 - A call site migrated from another component keeps its layout classes — width, flex, grid, gap — and sheds its styling ones: the border, radius, background and padding utilities the old component needed now fight the recipe underneath.
 
 ## Theming

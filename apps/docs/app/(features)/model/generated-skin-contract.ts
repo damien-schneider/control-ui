@@ -7324,6 +7324,11 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["markdown"],
           states: [],
         },
+        flow: {
+          family: "markdown",
+          registryItems: ["markdown"],
+          states: [],
+        },
         h1: {
           family: "markdown",
           registryItems: ["markdown"],
@@ -15434,6 +15439,18 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<number>",
         initialValue: "1.5",
         defaultValue: "var(--leading-relaxed)",
+      },
+      {
+        name: "--cui-markdown-flow-gap",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 4)",
+      },
+      {
+        name: "--cui-markdown-heading-gap",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 6)",
       },
     ],
     "markdown-block": [

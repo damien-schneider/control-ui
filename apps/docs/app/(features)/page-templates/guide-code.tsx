@@ -7,6 +7,7 @@ import { guideCodeForKind, languageForGuideCode } from "@/app/(features)/model/r
 import type { GuideSection as GuideSectionData, IntegrationId } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Card } from "@/components/control-ui/ui/card";
+import { MarkdownFlow } from "@/components/control-ui/ui/markdown";
 import { IntegrationSelect, integrationChangesCode } from "./integration";
 
 type GuideCodeKind = NonNullable<GuideSectionData["code"]>;
@@ -18,7 +19,7 @@ export function GuideCode({ kind, lang, integration }: GuideCodeMdxProps & { int
   const codeChangesWithIntegration = integrationChangesCode((id) => guideCodeForKind(kind, id));
 
   return (
-    <div className="mt-4 min-w-0">
+    <div className="min-w-0">
       {codeChangesWithIntegration ? (
         <div className="mb-3">
           <IntegrationSelect />
@@ -33,7 +34,7 @@ export function GuideSection({ id, title, children }: { id: string; title: strin
   return (
     <section id={id} className="min-w-0 scroll-mt-20">
       <h2 className="text-heading-2 font-display text-balance">{title}</h2>
-      <div className="mt-2 min-w-0 text-body leading-6 text-muted-foreground [&>p]:text-pretty">{children}</div>
+      <MarkdownFlow className="mt-2 text-body leading-6 text-muted-foreground">{children}</MarkdownFlow>
     </section>
   );
 }
@@ -83,7 +84,7 @@ export function InstallPaths({ current }: { current: InstallPathId }) {
 
 export function GuideCheck({ children }: { children: ReactNode }) {
   return (
-    <Card className="mt-4 gap-1 px-4 py-3">
+    <Card className="gap-1 px-4 py-3">
       <span className="text-caption font-medium text-primary-text">What you should see now</span>
       <div className="text-body leading-6 text-foreground [&>p]:text-pretty">{children}</div>
     </Card>
@@ -91,7 +92,7 @@ export function GuideCheck({ children }: { children: ReactNode }) {
 }
 
 export function GuidePoints({ children }: { children: ReactNode }) {
-  return <div className="mt-4 grid divide-y divide-border/60 border-border/70 border-y">{children}</div>;
+  return <div className="grid divide-y divide-border/60 border-border/70 border-y">{children}</div>;
 }
 
 export function GuidePoint({ className, ...props }: ComponentProps<"div">) {

@@ -57,7 +57,6 @@ function CollapsibleTriggerElement({
   });
 }
 
-// emits its own anatomy and state hooks, so consumers never style on Base UI's private attributes
 export function Collapsible({ className, ...props }: CollapsibleProps) {
   return (
     <CollapsiblePrimitive.Root
@@ -97,7 +96,6 @@ export function CollapsibleTrigger({ render, className, children, ...props }: Co
 export function CollapsibleContent({ className, children, ...props }: CollapsibleContentProps) {
   return (
     <CollapsiblePrimitive.Panel
-      className="h-[var(--collapsible-panel-height)] overflow-hidden data-ending-style:h-0 data-starting-style:h-0"
       {...props}
       render={(renderProps, state) => (
         <div

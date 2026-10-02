@@ -26,6 +26,8 @@ And the new helper:
 export const slugify = (s: string) => s.trim().toLowerCase().replace(/\\s+/g, "-");
 \`\`\`
 
+### Before you ship
+
 | Env | Status |
 | --- | ------ |
 | prod | ✅ |
