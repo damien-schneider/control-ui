@@ -65,6 +65,8 @@ type PanelTransitionCapture = {
 };
 
 async function captureTransition(trigger: HTMLElement): Promise<PanelTransitionCapture> {
+  await new Promise(requestAnimationFrame);
+  await new Promise(requestAnimationFrame);
   const root = trigger.closest('[data-slot="root"]') ?? trigger.closest("main")?.querySelector('[data-slot="root"]');
   if (!root) throw new Error("Tabs root is missing");
   const previousPanel = root.querySelector('[data-slot="panel"]:not([inert])');
