@@ -62,11 +62,6 @@
     z-index: 0;
     border-radius: inherit;
     outline: none;
-    transition:
-      --_scroll-area-fade-top var(--duration-fast) var(--ease-standard),
-      --_scroll-area-fade-bottom var(--duration-fast) var(--ease-standard),
-      --_scroll-area-fade-left var(--duration-fast) var(--ease-standard),
-      --_scroll-area-fade-right var(--duration-fast) var(--ease-standard);
   }
 
   :where(
@@ -97,39 +92,26 @@
   }
 
   :where(
-    [data-control-family="scroll-area"][data-slot="root"][data-overflow-y-start]:not([data-lock-axis="y"], [data-lock-axis="both"])
-      > [data-scroll-area-viewport]
+    [data-control-family="scroll-area"][data-slot="root"]:not([data-lock-axis="y"], [data-lock-axis="both"]) > [data-scroll-area-viewport]
   ) {
-    --_scroll-area-fade-top: var(--scroll-fade-size);
+    --_scroll-area-fade-top: min(var(--scroll-fade-size), var(--scroll-area-overflow-y-start, 0px));
+    --_scroll-area-fade-bottom: min(var(--scroll-fade-size), var(--scroll-area-overflow-y-end, 0px));
   }
 
   :where(
-    [data-control-family="scroll-area"][data-slot="root"][data-overflow-y-end]:not([data-lock-axis="y"], [data-lock-axis="both"])
+    [data-control-family="scroll-area"][data-slot="root"]:not([data-lock-axis="x"], [data-lock-axis="both"]):dir(ltr)
       > [data-scroll-area-viewport]
   ) {
-    --_scroll-area-fade-bottom: var(--scroll-fade-size);
+    --_scroll-area-fade-left: min(var(--scroll-fade-size), var(--scroll-area-overflow-x-start, 0px));
+    --_scroll-area-fade-right: min(var(--scroll-fade-size), var(--scroll-area-overflow-x-end, 0px));
   }
 
   :where(
-    [data-control-family="scroll-area"][data-slot="root"][data-overflow-x-start]:not([data-lock-axis="x"], [data-lock-axis="both"]):dir(ltr)
-      > [data-scroll-area-viewport]
-  ),
-  :where(
-    [data-control-family="scroll-area"][data-slot="root"][data-overflow-x-end]:not([data-lock-axis="x"], [data-lock-axis="both"]):dir(rtl)
+    [data-control-family="scroll-area"][data-slot="root"]:not([data-lock-axis="x"], [data-lock-axis="both"]):dir(rtl)
       > [data-scroll-area-viewport]
   ) {
-    --_scroll-area-fade-left: var(--scroll-fade-size);
-  }
-
-  :where(
-    [data-control-family="scroll-area"][data-slot="root"][data-overflow-x-end]:not([data-lock-axis="x"], [data-lock-axis="both"]):dir(ltr)
-      > [data-scroll-area-viewport]
-  ),
-  :where(
-    [data-control-family="scroll-area"][data-slot="root"][data-overflow-x-start]:not([data-lock-axis="x"], [data-lock-axis="both"]):dir(rtl)
-      > [data-scroll-area-viewport]
-  ) {
-    --_scroll-area-fade-right: var(--scroll-fade-size);
+    --_scroll-area-fade-left: min(var(--scroll-fade-size), var(--scroll-area-overflow-x-end, 0px));
+    --_scroll-area-fade-right: min(var(--scroll-fade-size), var(--scroll-area-overflow-x-start, 0px));
   }
 
   :where(
