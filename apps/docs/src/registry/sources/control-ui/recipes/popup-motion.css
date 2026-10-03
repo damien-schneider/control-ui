@@ -1,3 +1,9 @@
+@property --_popover-viewport-height {
+  syntax: "<length> | auto";
+  inherits: false;
+  initial-value: auto;
+}
+
 @layer components {
   :where([data-control-family="popup"][data-popup-kind="popover"][data-slot="viewport"]) {
     block-size: var(--_popover-viewport-height, auto);

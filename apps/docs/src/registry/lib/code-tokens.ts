@@ -208,6 +208,9 @@ export async function highlightToTokens(code: string, language?: string | null):
   if (cached !== undefined) return cached;
 
   const highlighter = await getHighlighter();
+  // Concurrent callers can populate the cache while this call awaits the shared highlighter.
+  const shared = cacheGet(key);
+  if (shared !== undefined) return shared;
   const { tokens } = highlighter.codeToTokens(code, { lang, theme: CODE_THEME_NAME });
   const lines: CodeTokenLines = tokens.map((line) => line.map((token) => ({ content: token.content, style: tokenStyle(token) })));
 

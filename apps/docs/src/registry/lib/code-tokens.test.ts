@@ -17,6 +17,13 @@ describe("normalizeLanguage", () => {
 });
 
 describe("highlightToTokens", () => {
+  test("concurrent requests for the same source share the expensive tokenization", async () => {
+    const code = Array.from({ length: 200 }, (_, index) => `export const sharedValue${index} = ${index};`).join("\n");
+    const results = await Promise.all(Array.from({ length: 12 }, (_, index) => highlightToTokens(code, index % 2 ? "ts" : "typescript")));
+    expect(results[0]).toHaveLength(200);
+    expect(new Set(results).size).toBe(1);
+  });
+
   test("returns null for an unknown language (plain-text fallback)", async () => {
     expect(await highlightToTokens("hello", "brainfuck")).toBeNull();
   });

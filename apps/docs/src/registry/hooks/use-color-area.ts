@@ -35,8 +35,6 @@ export function useColorArea<Element extends HTMLElement = HTMLDivElement>(
       setDragging(false);
     }
 
-    const previousSelect = document.body.style.userSelect;
-    document.body.style.userSelect = "none";
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onEnd);
     window.addEventListener("pointercancel", onEnd);
@@ -45,7 +43,6 @@ export function useColorArea<Element extends HTMLElement = HTMLDivElement>(
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", onEnd);
       window.removeEventListener("pointercancel", onEnd);
-      document.body.style.userSelect = previousSelect;
     };
   }, [dragging, areaRef]);
 
@@ -57,6 +54,7 @@ export function useColorArea<Element extends HTMLElement = HTMLDivElement>(
       onChange({ x: event.clientX - rect.left, y: event.clientY - rect.top }, { width: rect.width, height: rect.height });
     }
     setDragging(true);
+    // Prevent native selection at the gesture source without restyling the entire document.
     event.preventDefault();
   }
 

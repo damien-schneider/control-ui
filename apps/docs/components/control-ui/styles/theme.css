@@ -832,3 +832,28 @@
     }
   }
 }
+
+/* Base UI panel dimensions are consumed by the panel itself. Keep updates local to it. */
+@property --collapsible-panel-height {
+  syntax: "<length> | auto";
+  inherits: false;
+  initial-value: auto;
+}
+
+@property --collapsible-panel-width {
+  syntax: "<length> | auto";
+  inherits: false;
+  initial-value: auto;
+}
+
+@property --accordion-panel-height {
+  syntax: "<length> | auto";
+  inherits: false;
+  initial-value: auto;
+}
+
+@property --accordion-panel-width {
+  syntax: "<length> | auto";
+  inherits: false;
+  initial-value: auto;
+}

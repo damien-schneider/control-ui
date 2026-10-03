@@ -19,7 +19,7 @@ for (const lineCount of [500, 1500]) {
         },
       }),
     );
-    await page.goto("/theme-editor");
+    await page.goto("/theme-editor?view=source");
     const code = page.locator('#theme-skin [data-control-family="code"][data-slot="root"]');
     const viewport = code.locator("[data-scroll-area-viewport]");
     const lines = viewport.locator('[data-slot="line"]');

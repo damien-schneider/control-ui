@@ -37,6 +37,11 @@
       "syntax": "<percentage>"
     },
     {
+      "name": "--_popover-viewport-height",
+      "description": "Control UI popup-motion knob — registered syntax <length> | auto, fallback auto. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length> | auto"
+    },
+    {
       "name": "--_scroll-area-fade-bottom",
       "description": "Control UI scroll-area knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"

@@ -47,6 +47,10 @@ and check warmed medians. Run them without other CPU-heavy checks. Tracing and d
 so recorder and diagnostic work do not count against application budgets.
 Tab coverage includes populated docs panels and a 200-item fixture, plus synchronized slides, height changes, keyboard navigation,
 reduced motion, interrupted transitions, and retained example and scroll state.
+Run `bun run test:browser e2e/component-performance.pw.ts` for 400-entry accordions, collapsibles, and resizing popovers.
+It records total CPU and style recalculation time and checks both budgets in default and Mastra skins.
+Run `bun run test:browser e2e/color-picker-performance.pw.ts` for complete color drag gestures, text selection, and gradient keyboard behavior.
+The tokenizer unit tests also verify that concurrent consumers share one cached result for identical source and language aliases.
 
 React Compiler is enabled in the docs app. Start `NEXT_PUBLIC_REACT_SCAN=1 bun run dev` to enable React Scan;
 use its toolbar to inspect which components rerender and how much render time they take. It is excluded from production.
