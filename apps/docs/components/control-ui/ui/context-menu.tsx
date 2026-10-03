@@ -1,10 +1,12 @@
 "use client";
 
 import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu";
+import { mergeProps } from "@base-ui/react/merge-props";
 import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
 import type { ControlledChoice, OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { popupItemFocusProps } from "@/components/control-ui/lib/popup-item-focus";
 import { controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
@@ -141,7 +143,7 @@ export function ContextMenuItem({ className, inset = false, ...props }: ContextM
       data-popup-part="item"
       data-inset={inset || undefined}
       className={cn(itemClasses, className)}
-      {...props}
+      {...mergeProps(popupItemFocusProps, props)}
     />
   );
 }
@@ -155,7 +157,7 @@ export function ContextMenuCheckboxItem({ className, children, ...props }: Conte
       data-control-family="popup"
       data-popup-part="item"
       className={cn(itemClasses, className)}
-      {...props}
+      {...mergeProps(popupItemFocusProps, props)}
     >
       <span className="pointer-events-none absolute start-2 flex size-4 items-center justify-center">
         <ContextMenuPrimitive.CheckboxItemIndicator>
@@ -182,16 +184,17 @@ export function ContextMenuRadioGroup<TValue extends string = string>({ classNam
   );
 }
 
-export function ContextMenuRadioItem({ className, children, ...props }: ContextMenuRadioItemProps) {
+export function ContextMenuRadioItem({ className, children, value, ...props }: ContextMenuRadioItemProps) {
   return (
     <ContextMenuPrimitive.RadioItem
+      value={value}
       data-control-ui="context-menu"
       data-popup-kind="context-menu"
       data-slot="radio-item"
       data-control-family="popup"
       data-popup-part="item"
       className={cn(itemClasses, className)}
-      {...props}
+      {...mergeProps(popupItemFocusProps, props)}
     >
       <span className="pointer-events-none absolute start-2 flex size-4 items-center justify-center">
         <ContextMenuPrimitive.RadioItemIndicator>

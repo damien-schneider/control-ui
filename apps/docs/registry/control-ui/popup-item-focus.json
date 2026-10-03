@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popup-item-focus",
+  "type": "registry:item",
+  "title": "Popup item focus",
+  "description": "Direct focus handoff between nested item targets in popup lists.",
+  "dependencies": [
+    "@base-ui/react@^1.8.0"
+  ],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/popup-item-focus.ts",
+      "target": "@components/control-ui/lib/popup-item-focus.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "meta": {
+    "internal": true,
+    "sourceManifestPath": "registry/control-ui/popup-item-focus.json"
+  }
+}

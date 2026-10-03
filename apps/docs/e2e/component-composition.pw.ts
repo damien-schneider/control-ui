@@ -38,6 +38,14 @@ test("menu choices persist, link items compose, and submenus work from the keybo
   await page.keyboard.press("Enter");
   await expect(example.getByRole("status")).toHaveText("Last action: Copy workspace link");
   await expect(trigger).toBeFocused();
+  await trigger.click();
+  await notifications.hover();
+  await share.hover();
+  await expect(copy).toBeVisible();
+  await copy.hover();
+  await copy.click();
+  await expect(menu).not.toBeVisible();
+  await expect(trigger).toBeFocused();
 });
 
 test.describe("touch sidebar actions", () => {

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popup-item-focus",
+  "type": "registry:item",
+  "title": "Popup item focus",
+  "description": "Direct focus handoff between nested item targets in popup lists.",
+  "dependencies": [
+    "@base-ui/react@^1.8.0"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/popup-item-focus.ts",
+      "target": "@components/control-ui/lib/popup-item-focus.ts",
+      "type": "registry:lib",
+      "content": "import type { BaseUIEvent } from \"@base-ui/react/types\";\nimport type { PointerEvent } from \"react\";\n\nexport const popupItemFocusProps = {\n  onPointerLeave(event: BaseUIEvent<PointerEvent<HTMLElement>>) {\n    if (event.pointerType === \"touch\" || !(event.relatedTarget instanceof Element)) return;\n    const nextItem = event.relatedTarget.closest('[role=\"option\"], [role=\"menuitem\"], [role=\"menuitemcheckbox\"], [role=\"menuitemradio\"]');\n    const list = event.currentTarget.closest('[role=\"listbox\"], [role=\"menu\"]');\n    // Base UI recognizes the next item itself, but not its nested text or icons.\n    // Preserve the direct focus handoff instead of clearing and restoring the highlight.\n    if (nextItem && list && nextItem.closest('[role=\"listbox\"], [role=\"menu\"]') === list) event.preventBaseUIHandler();\n  },\n};\n"
+    }
+  ],
+  "meta": {
+    "internal": true
+  }
+}

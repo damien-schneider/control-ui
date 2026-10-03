@@ -1,5 +1,6 @@
 "use client";
 
+import { mergeProps } from "@base-ui/react/merge-props";
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { ControlledChoice } from "@/components/control-ui/control-props";
@@ -8,6 +9,7 @@ import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/but
 import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { popupItemFocusProps } from "@/components/control-ui/lib/popup-item-focus";
 import { controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
@@ -177,7 +179,7 @@ export function SelectItem({ className, children, disabled, ...props }: SelectIt
       data-popup-part="item"
       disabled={disabled}
       className={cn(popupItemStructureClasses, className)}
-      {...props}
+      {...mergeProps(popupItemFocusProps, props)}
     >
       <SelectPrimitive.ItemText
         data-control-ui="select"

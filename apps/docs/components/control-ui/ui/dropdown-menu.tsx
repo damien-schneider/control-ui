@@ -1,11 +1,13 @@
 "use client";
 
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
+import { mergeProps } from "@base-ui/react/merge-props";
 import type { ComponentProps, CSSProperties } from "react";
 import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { popupItemFocusProps } from "@/components/control-ui/lib/popup-item-focus";
 import { controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
@@ -132,7 +134,7 @@ export function DropdownMenuItem({ className, ...props }: DropdownMenuItemProps)
       data-control-family="popup"
       data-popup-part="item"
       className={cn(popupItemStructureClasses, className)}
-      {...props}
+      {...mergeProps(popupItemFocusProps, props)}
     />
   );
 }
@@ -179,7 +181,7 @@ export function DropdownMenuCheckboxItem({ className, children, ...props }: Drop
       data-popup-part="item"
       data-slot="checkbox-item"
       className={cn("relative", popupItemStructureClasses, className)}
-      {...props}
+      {...mergeProps(popupItemFocusProps, props)}
     >
       <MenuPrimitive.CheckboxItemIndicator className="pointer-events-none absolute start-2 flex size-4 items-center justify-center">
         <DropdownMenuCheck />
@@ -193,15 +195,16 @@ export function DropdownMenuRadioGroup(props: DropdownMenuRadioGroupProps) {
   return <MenuPrimitive.RadioGroup data-control-ui="dropdown-menu" data-control-family="popup" data-slot="radio-group" {...props} />;
 }
 
-export function DropdownMenuRadioItem({ className, children, ...props }: DropdownMenuRadioItemProps) {
+export function DropdownMenuRadioItem({ className, children, value, ...props }: DropdownMenuRadioItemProps) {
   return (
     <MenuPrimitive.RadioItem
+      value={value}
       data-control-ui="dropdown-menu"
       data-control-family="popup"
       data-popup-part="item"
       data-slot="radio-item"
       className={cn("relative", popupItemStructureClasses, className)}
-      {...props}
+      {...mergeProps(popupItemFocusProps, props)}
     >
       <MenuPrimitive.RadioItemIndicator className="pointer-events-none absolute start-2 flex size-4 items-center justify-center">
         <DropdownMenuCheck />

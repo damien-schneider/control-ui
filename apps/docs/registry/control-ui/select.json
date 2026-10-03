@@ -10,6 +10,7 @@
   "registryDependencies": [
     "button",
     "core",
+    "popup-item-focus",
     "scroll-area",
     "surface-variants"
   ],

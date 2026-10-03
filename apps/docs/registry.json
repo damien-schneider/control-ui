@@ -2978,6 +2978,7 @@
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/popup-item-focus.json",
         "http://127.0.0.1:3000/r/surface-variants.json"
       ],
       "files": [
@@ -3304,6 +3305,7 @@
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/popup-item-focus.json",
         "http://127.0.0.1:3000/r/surface-variants.json"
       ],
       "files": [
@@ -5224,6 +5226,7 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/popup-item-focus.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/surface-variants.json"
       ],

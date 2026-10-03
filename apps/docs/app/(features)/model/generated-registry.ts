@@ -2296,7 +2296,7 @@ export const registryMetadata = {
   },
   "context-menu": {
     dependencies: ["@base-ui/react@^1.8.0"],
-    registryDependencies: ["core", "surface-variants"],
+    registryDependencies: ["core", "popup-item-focus", "surface-variants"],
     sourceManifestPath: "registry/control-ui/context-menu.json",
     files: [
       {
@@ -2584,7 +2584,7 @@ export const registryMetadata = {
   },
   "dropdown-menu": {
     dependencies: ["@base-ui/react@^1.8.0"],
-    registryDependencies: ["core", "surface-variants"],
+    registryDependencies: ["core", "popup-item-focus", "surface-variants"],
     sourceManifestPath: "registry/control-ui/dropdown-menu.json",
     files: [
       {
@@ -3724,6 +3724,18 @@ export const registryMetadata = {
       },
     ],
   },
+  "popup-item-focus": {
+    dependencies: ["@base-ui/react@^1.8.0"],
+    registryDependencies: ["core"],
+    sourceManifestPath: "registry/control-ui/popup-item-focus.json",
+    files: [
+      {
+        path: "src/registry/lib/popup-item-focus.ts",
+        target: "@components/control-ui/lib/popup-item-focus.ts",
+        type: "registry:lib",
+      },
+    ],
+  },
   progress: {
     dependencies: ["@base-ui/react@^1.8.0"],
     registryDependencies: ["core"],
@@ -3912,7 +3924,7 @@ export const registryMetadata = {
   },
   select: {
     dependencies: ["@base-ui/react@^1.8.0"],
-    registryDependencies: ["button", "core", "scroll-area", "surface-variants"],
+    registryDependencies: ["button", "core", "popup-item-focus", "scroll-area", "surface-variants"],
     sourceManifestPath: "registry/control-ui/select.json",
     files: [
       {

@@ -176,6 +176,15 @@ const internalDefinitions: Definition[] = [
     internal: true,
   },
   {
+    id: "popup-item-focus",
+    type: "registry:item",
+    title: "Popup item focus",
+    description: "Direct focus handoff between nested item targets in popup lists.",
+    seeds: ["src/registry/lib/popup-item-focus.ts"],
+    primary: ["src/registry/lib/popup-item-focus.ts"],
+    internal: true,
+  },
+  {
     id: "use-copy-to-clipboard",
     type: "registry:item",
     title: "useCopyToClipboard",

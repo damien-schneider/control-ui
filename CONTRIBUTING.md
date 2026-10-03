@@ -53,6 +53,8 @@ Run `bun run test:browser e2e/color-picker-performance.pw.ts` for complete color
 The tokenizer unit tests also verify that concurrent consumers share one cached result for identical source and language aliases.
 Run `bun run test:browser e2e/search-performance.pw.ts` for Cmd+K opening, filtering, clearing, and closing a populated search.
 It uses direct keyboard events, checks CPU and style budgets, and verifies selection, scrolling, and query reset without limiting results.
+Run `bun run test:browser e2e/dropdown-hover-performance.pw.ts` for pointer movement through 200-item selects, dropdown menus, and context menus.
+It measures CPU, style work, React commits, and focus changes, and verifies disabled items, keyboard selection, and nested pointer targets.
 
 React Compiler is enabled in the docs app. Start `NEXT_PUBLIC_REACT_SCAN=1 bun run dev` to enable React Scan;
 use its toolbar to inspect which components rerender and how much render time they take. It is excluded from production.
