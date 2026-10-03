@@ -51,6 +51,8 @@ Run `bun run test:browser e2e/component-performance.pw.ts` for 400-entry accordi
 It records total CPU and style recalculation time and checks both budgets in default and Mastra skins.
 Run `bun run test:browser e2e/color-picker-performance.pw.ts` for complete color drag gestures, text selection, and gradient keyboard behavior.
 The tokenizer unit tests also verify that concurrent consumers share one cached result for identical source and language aliases.
+Run `bun run test:browser e2e/search-performance.pw.ts` for Cmd+K opening, filtering, clearing, and closing a populated search.
+It uses direct keyboard events, checks CPU and style budgets, and verifies selection, scrolling, and query reset without limiting results.
 
 React Compiler is enabled in the docs app. Start `NEXT_PUBLIC_REACT_SCAN=1 bun run dev` to enable React Scan;
 use its toolbar to inspect which components rerender and how much render time they take. It is excluded from production.

@@ -1,5 +1,6 @@
 import { expect, type Page, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY, THEME_STORAGE_KEY } from "../components/theme";
+import { waitForReactHydration } from "./browser-test-helpers";
 
 async function readScreenshotRow(page: Page, screenshotBase64: string, bottomInsetPx: number) {
   return page.evaluate(
@@ -90,7 +91,7 @@ for (const mode of ["light", "dark"] as const) {
   });
 }
 
-test("search glass follows the scrolling page with JavaScript paused", async ({ page }) => {
+test("search dialog glass blocks background scrolling with JavaScript paused", async ({ page }) => {
   await page.addInitScript(
     ({ skinKey, modeKey }) => {
       localStorage.setItem(skinKey, JSON.stringify({ skin: "modern-apple", reduceMotion: true }));
@@ -114,9 +115,12 @@ test("search glass follows the scrolling page with JavaScript paused", async ({ 
     });
     grid.append(backdrop);
   });
-  const search = page.getByRole("combobox", { name: "Search documentation" });
-  await search.focus();
-  const popup = page.locator('[data-control-ui="command"][data-slot="popup"]');
+  const trigger = page.getByRole("button", { name: "Search documentation", exact: true });
+  await waitForReactHydration(trigger);
+  await trigger.click();
+  const popup = page.getByRole("dialog", { name: "Search documentation", exact: true });
+  const search = popup.getByRole("combobox", { name: "Search documentation", exact: true });
+  await expect(search).toBeFocused();
   await expect(popup).toBeVisible();
   await expect(popup).not.toHaveCSS("backdrop-filter", "none");
   await expect(popup.locator("canvas")).toHaveCount(0);
@@ -135,11 +139,11 @@ test("search glass follows the scrolling page with JavaScript paused", async ({ 
     await session.send("Emulation.setScriptExecutionDisabled", { value: false });
     await session.detach();
   }
-  await expect.poll(() => viewport.evaluate((element) => element.scrollTop)).toBeGreaterThan(600);
+  expect(await viewport.evaluate((element) => element.scrollTop)).toBe(0);
   const rows = await Promise.all([readScreenshotRow(page, before.data, 6), readScreenshotRow(page, after.data, 6)]);
   const transmitted = rows.map((row) => colorAtFraction(row, 0.5));
   expect(transmitted[0][2] - transmitted[0][0], JSON.stringify(transmitted)).toBeGreaterThan(45);
-  expect(transmitted[1][0] - transmitted[1][2], JSON.stringify(transmitted)).toBeGreaterThan(45);
+  expect(transmitted[1][2] - transmitted[1][0], JSON.stringify(transmitted)).toBeGreaterThan(45);
   await search.fill("Popover");
   await expect(popup.getByRole("option", { name: /^Popover / })).toBeVisible();
   await search.press("Escape");

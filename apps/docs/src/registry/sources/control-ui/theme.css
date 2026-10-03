@@ -833,7 +833,7 @@
   }
 }
 
-/* Base UI panel dimensions are consumed by the panel itself. Keep updates local to it. */
+/* Measured panel and list dimensions are consumed locally. */
 @property --collapsible-panel-height {
   syntax: "<length> | auto";
   inherits: false;
@@ -856,4 +856,10 @@
   syntax: "<length> | auto";
   inherits: false;
   initial-value: auto;
+}
+
+@property --cmdk-list-height {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
 }

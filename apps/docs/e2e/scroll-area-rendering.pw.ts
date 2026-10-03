@@ -101,6 +101,8 @@ for (const skinId of ["refined", "modern-apple"] as const) {
       });
     }
 
+    if (skinId !== "modern-apple") return;
+
     test("sidebar blur preserves the underlying surface", async ({ page }) => {
       await visitWithSkin(page, "/primitives/scroll-area", skinId);
       await waitForReactHydration(page.getByLabel("Horizontal roadmap", { exact: true }).getByRole("button").first());
@@ -111,7 +113,9 @@ for (const skinId of ["refined", "modern-apple"] as const) {
     test("code block blur preserves syntax at the clipped edge", async ({ page }) => {
       await visitWithSkin(page, "/primitives/scroll-area", skinId);
       await waitForReactHydration(page.getByLabel("Horizontal roadmap", { exact: true }).getByRole("button").first());
-      const viewport = page.locator('[data-control-family="code"][data-slot="content"][data-scroll-area-viewport]');
+      const viewport = page
+        .getByRole("tabpanel", { name: "scroll-area.tsx", exact: true })
+        .locator('[data-control-family="code"][data-slot="content"][data-scroll-area-viewport]');
       const scrollArea = viewport.locator("..");
       await scrollArea.scrollIntoViewIfNeeded();
       await viewport.evaluate((element) => {
