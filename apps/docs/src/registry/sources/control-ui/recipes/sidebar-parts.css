@@ -1,13 +1,21 @@
 @layer components {
+  :where([data-control-family="sidebar"][data-slot="root"]) {
+    --_sidebar-transition-duration: var(--duration-base);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="root"]:has(> [data-slot="container"] > div > [data-slot="rail"]:focus-visible)) {
+    --_sidebar-transition-duration: 0s;
+  }
+
   :where([data-control-family="sidebar"][data-slot="container"]) {
     translate: 0;
     transition:
-      width var(--duration-base) var(--ease-standard),
-      translate var(--duration-base) var(--ease-standard);
+      width var(--_sidebar-transition-duration) var(--ease-standard),
+      translate var(--_sidebar-transition-duration) var(--ease-standard);
   }
 
   :where([data-control-family="sidebar"][data-slot="inner"]) {
-    transition: padding var(--duration-base) var(--ease-standard);
+    transition: padding var(--_sidebar-transition-duration) var(--ease-standard);
   }
 
   :where([data-control-family="sidebar"][data-collapsible="offcanvas"][data-side="left"]:dir(ltr) [data-slot="container"]),
@@ -22,10 +30,6 @@
 
   :where(
     [data-control-family="sidebar"][data-slot="wrapper"][data-resizing]
-      [data-control-family="sidebar"]:is([data-slot="container"], [data-slot="gap"], [data-slot="inner"])
-  ),
-  :where(
-    [data-control-family="sidebar"][data-slot="wrapper"]:has([data-control-family="sidebar"][data-slot="rail"]:focus-visible)
       [data-control-family="sidebar"]:is([data-slot="container"], [data-slot="gap"], [data-slot="inner"])
   ) {
     transition: none;

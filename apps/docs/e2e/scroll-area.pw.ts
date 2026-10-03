@@ -2,6 +2,27 @@ import { expect, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { waitForReactHydration } from "./browser-test-helpers";
 
+test("keyboard focus reveals the viewport scrollbar without pointer hover", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.addInitScript((storageKey) => {
+    localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" }));
+  }, THEME_EDITOR_STORAGE_KEY);
+  await page.goto("/primitives/scroll-area");
+  const viewport = page.getByLabel("Horizontal roadmap", { exact: true });
+  await waitForReactHydration(viewport.getByRole("button").first());
+  await viewport.scrollIntoViewIfNeeded();
+  await page.mouse.move(0, 0);
+  const scrollbar = viewport.locator("..").locator('[data-slot="scrollbar"][data-orientation="horizontal"]');
+  await expect(scrollbar).toHaveCSS("opacity", "0");
+  await page.keyboard.press("Tab");
+  await viewport.focus();
+  await expect(viewport).toBeFocused();
+  await expect(scrollbar).toHaveCSS("opacity", "1");
+  await expect(viewport).toHaveCSS("mask-image", "none");
+  await viewport.evaluate((element) => element.blur());
+  await expect(scrollbar).toHaveCSS("opacity", "0");
+});
+
 test("Windows XP keeps its sidebar scrollbar visible beside the viewport", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.addInitScript((storageKey) => {

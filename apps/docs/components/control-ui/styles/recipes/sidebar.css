@@ -96,7 +96,7 @@
 
   :where([data-control-family="sidebar"][data-slot="gap"]) {
     background-color: transparent;
-    transition: width var(--duration-base) var(--ease-standard);
+    transition: width var(--_sidebar-transition-duration) var(--ease-standard);
   }
 
   :where([data-control-family="sidebar"][data-slot="root"][data-variant="sidebar"][data-side="left"] [data-slot="container"]) {

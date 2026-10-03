@@ -13,6 +13,11 @@ for (const side of ["left", "right"] as const) {
     await rail.focus();
     await rail.press("End");
     await expect(rail).toHaveAttribute("aria-valuenow", "420");
+    await expect(preview.locator('[data-slot="container"]')).toHaveCSS("transition-duration", "0s, 0s");
+    await expect(preview.locator('[data-slot="gap"]')).toHaveCSS("transition-duration", "0s");
+    await expect(preview.locator('[data-slot="inner"]')).toHaveCSS("transition-duration", "0s");
+    const containerWidth = await preview.locator('[data-slot="container"]').evaluate((element) => element.getBoundingClientRect().width);
+    expect(containerWidth).toBe(420);
     await rail.press(side === "left" ? "ArrowLeft" : "ArrowRight");
     await expect(rail).toHaveAttribute("aria-valuenow", "410");
     const bounds = await wrapper.boundingBox();

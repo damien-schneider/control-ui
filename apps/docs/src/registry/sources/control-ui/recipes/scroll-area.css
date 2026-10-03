@@ -170,7 +170,7 @@
   :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-visibility="always"]),
   :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-visibility="hover"]:is([data-hovering], [data-scrolling])),
   :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-visibility="scroll"][data-scrolling]),
-  :where([data-control-family="scroll-area"][data-slot="root"]:has(> [data-scroll-area-viewport]:focus-visible) > [data-slot="scrollbar"]) {
+  :where([data-control-family="scroll-area"][data-slot="root"] > [data-scroll-area-viewport]:focus-visible ~ [data-slot="scrollbar"]) {
     opacity: 1;
   }
 

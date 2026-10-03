@@ -96,6 +96,7 @@
     "babel-plugin-react-compiler": "^1.0.0",
     "postcss": "^8.5.28",
     "postcss-selector-parser": "^7.1.6",
+    "react-scan": "^0.5.7",
     "shadcn": "4.21.0",
     "tailwindcss": "^4.3.3"
   }

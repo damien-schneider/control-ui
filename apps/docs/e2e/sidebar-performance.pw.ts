@@ -11,6 +11,7 @@ for (const skinId of ["none", "refined", "linear", "mastra"]) {
     await page.addInitScript(
       ({ skin, storageKey }) => {
         window.__REACT_GRAB_DISABLED__ = true;
+        window.__REACT_SCAN_DISABLED__ = true;
         localStorage.setItem(storageKey, JSON.stringify({ skin }));
       },
       { skin: skinId, storageKey: THEME_EDITOR_STORAGE_KEY },
@@ -36,7 +37,7 @@ for (const skinId of ["none", "refined", "linear", "mastra"]) {
       expect(point.y).toBeLessThan(1000);
     }
     const session = await page.context().newCDPSession(page);
-    await session.send("Performance.enable");
+    await session.send("Performance.enable", { timeDomain: "threadTicks" });
     const settle = () =>
       page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
     try {
