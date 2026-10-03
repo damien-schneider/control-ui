@@ -15,7 +15,7 @@ import type { ChatTone } from "../../src/registry/sources/control-ui/transcript-
 import type { AlertVariant } from "../../src/registry/sources/control-ui/ui/alert";
 import type { AvatarBadgeStatus } from "../../src/registry/sources/control-ui/ui/avatar";
 import type { BadgeColor, BadgeSize, BadgeVariant } from "../../src/registry/sources/control-ui/ui/badge";
-import type { ButtonShape, ButtonTone, ButtonVariant } from "../../src/registry/sources/control-ui/ui/button";
+import type { ButtonLayout, ButtonShape, ButtonTone, ButtonVariant } from "../../src/registry/sources/control-ui/ui/button";
 import type { CardVariant } from "../../src/registry/sources/control-ui/ui/card";
 import type { CodeChrome, CodeDensity } from "../../src/registry/sources/control-ui/ui/code";
 import type { DiffIndicators, DiffStyle } from "../../src/registry/sources/control-ui/ui/code-diff";
@@ -94,6 +94,7 @@ export type EmittedStateContract = {
   "badge:root:data-variant": BadgeVariant;
   "button:root:data-size": ControlSize;
   "button:root:data-icon-only": true;
+  "button:root:data-layout": ButtonLayout;
   "button:root:data-shape": ButtonShape;
   "button:root:data-tone": ButtonTone;
   "button:root:data-variant": ButtonVariant;
@@ -281,6 +282,7 @@ export type EmittedStateContract = {
   "transcript-divider:root:data-tone": ChatTone;
   "toggle:root:data-size": ControlSize;
   "toggle:root:data-icon-only": true;
+  "toggle:root:data-layout": ButtonLayout;
   "toggle:group:data-track": HoverIndicator;
   "toggle:root:data-tone": ButtonTone;
   "toggle:root:data-variant": ButtonVariant;

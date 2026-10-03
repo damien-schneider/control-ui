@@ -9,11 +9,16 @@
   }
 
   @media (pointer: coarse) {
-    :where([data-control-family="button"][data-size="xs"])::after {
+    :where([data-control-family="button"][data-size])::after {
+      content: "";
+      position: absolute;
+      inset: 50%;
+      translate: -50% -50%;
+      inline-size: 100%;
       block-size: max(100%, var(--touch-target));
     }
 
-    :where([data-control-family="button"][data-size="xs"][data-icon-only="true"])::after {
+    :where([data-control-family="button"][data-size][data-icon-only="true"])::after {
       inline-size: max(100%, var(--touch-target));
     }
   }
@@ -108,6 +113,17 @@
   :where([data-control-family="button"][data-icon-only="true"]) {
     aspect-ratio: 1;
     padding-inline: 0;
+  }
+
+  :where([data-control-family="button"][data-layout="stacked"]) {
+    flex-direction: column;
+    block-size: auto;
+    padding-block: calc(var(--spacing) * 1.5);
+    padding-inline: var(--cui-button-padding-inline);
+  }
+
+  :where([data-control-family="button"][data-layout="stacked"] > [data-slot="content"]) {
+    flex-direction: column;
   }
 
   :where([data-control-family="button"][data-control="true"] svg) {

@@ -17,6 +17,7 @@
     background: var(--cui-badge-background);
     color: var(--cui-badge-foreground);
     font-size: var(--cui-badge-font-size);
+    font-variant-numeric: tabular-nums;
   }
 
   :where([data-control-family="badge"][data-slot="root"][data-size="sm"]) {

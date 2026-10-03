@@ -58,6 +58,19 @@
     font-size: var(--cui-field-font-size);
   }
 
+  :where(
+    input[data-control-family="field"]:is(
+      [type="number"],
+      [type="date"],
+      [type="time"],
+      [type="datetime-local"],
+      [inputmode="numeric"],
+      [inputmode="decimal"]
+    )
+  ) {
+    font-variant-numeric: tabular-nums;
+  }
+
   :where([data-control-family="field"][data-control="true"])::placeholder {
     color: var(--muted-foreground);
   }

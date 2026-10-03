@@ -1326,6 +1326,12 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
+              attribute: "data-layout",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["inline", "stacked"],
+            },
+            {
               attribute: "data-shape",
               source: "control-ui",
               valueKind: "enum",
@@ -12607,6 +12613,12 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "presence",
               values: [],
+            },
+            {
+              attribute: "data-layout",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["inline", "stacked"],
             },
             {
               attribute: "data-size",

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRightIcon, CheckIcon, PlusIcon } from "lucide-react";
+import { ArrowUpRightIcon, CheckIcon, MonitorIcon, PlusIcon, SmartphoneIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 
@@ -74,6 +74,16 @@ export function PrimitiveButtonExample() {
         <Button variant="surface">
           <CheckIcon className="size-3.5" />
           With icon
+        </Button>
+      </Row>
+      <Row label="Stacked">
+        <Button variant="surface" layout="stacked">
+          <MonitorIcon className="size-4" />
+          Desktop
+        </Button>
+        <Button variant="surface" layout="stacked" active>
+          <SmartphoneIcon className="size-4" />
+          Mobile
         </Button>
       </Row>
       <Row label="Link">

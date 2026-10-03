@@ -23,6 +23,10 @@ export const buttonShapes = ["default", "circle"] as const;
 
 export type ButtonShape = (typeof buttonShapes)[number];
 
+export const buttonLayouts = ["inline", "stacked"] as const;
+
+export type ButtonLayout = (typeof buttonLayouts)[number];
+
 export type ButtonAppearanceProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
@@ -30,6 +34,7 @@ export type ButtonAppearanceProps = {
   active?: boolean;
   iconOnly?: boolean;
   shape?: ButtonShape;
+  layout?: ButtonLayout;
   style?: CSSProperties & ButtonKnobStyle;
 };
 
@@ -92,6 +97,7 @@ export function Button({
   active = false,
   iconOnly = false,
   shape = "default",
+  layout = "inline",
   type = "button",
   disabled,
   render,
@@ -116,6 +122,7 @@ export function Button({
       data-active={active ? "true" : undefined}
       data-icon-only={iconOnly ? "true" : undefined}
       data-shape={shape}
+      data-layout={layout}
       data-variant={variant}
       data-tone={tone}
       data-size={size}
@@ -138,6 +145,7 @@ export function ButtonLink({
   active = false,
   iconOnly = false,
   shape = "default",
+  layout = "inline",
   render,
   className,
   children,
@@ -158,6 +166,7 @@ export function ButtonLink({
       "data-active": active ? "true" : undefined,
       "data-icon-only": iconOnly ? "true" : undefined,
       "data-shape": shape,
+      "data-layout": layout,
       "data-variant": variant,
       "data-tone": tone,
       "data-size": size,
@@ -174,6 +183,7 @@ export function ButtonLabel({
   active = false,
   iconOnly = false,
   shape = "default",
+  layout = "inline",
   className,
   children,
   ...props
@@ -192,6 +202,7 @@ export function ButtonLabel({
       data-active={active ? "true" : undefined}
       data-icon-only={iconOnly ? "true" : undefined}
       data-shape={shape}
+      data-layout={layout}
       data-variant={variant}
       data-tone={tone}
       data-size={size}
