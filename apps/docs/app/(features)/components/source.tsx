@@ -184,13 +184,20 @@ export function PreviewTabs({
   previewFramed?: boolean;
 }) {
   const [tab, setTab] = useState("preview");
+  const [codeVisited, setCodeVisited] = useState(false);
   const scrollsPage = usePageScroll() === "page";
   const showPanelFrame = previewFramed && !scrollsPage;
   const Surface = showPanelFrame ? TabsSurface : "div";
 
   return (
     <div id={anchorId ?? undefined} className="mb-8 min-w-0 scroll-mt-20">
-      <Tabs value={tab} onValueChange={setTab}>
+      <Tabs
+        value={tab}
+        onValueChange={(value) => {
+          if (value === "code") setCodeVisited(true);
+          setTab(value);
+        }}
+      >
         {/* Base UI tablists consume arrow keys, so controls sit outside the list. */}
         <div className="relative">
           <TabsList variant={scrollsPage ? "default" : "browser"} className={scrollsPage ? "mb-3 w-fit" : "w-full shadow-none"}>
@@ -203,10 +210,10 @@ export function PreviewTabs({
           </div>
         </div>
         <Surface className={cn(!scrollsPage && "-mt-px", showPanelFrame && "overflow-hidden")}>
-          <TabsPanel value="preview" className={cn("flex min-h-[280px] items-center justify-center p-6", previewClassName)}>
+          <TabsPanel value="preview" keepMounted className={cn("flex min-h-[280px] items-center justify-center p-6", previewClassName)}>
             {children}
           </TabsPanel>
-          <TabsPanel value="code">
+          <TabsPanel value="code" keepMounted={codeVisited}>
             <Code copy={false} chrome={showPanelFrame ? "embedded" : "standalone"}>
               <CodeContent code={code} lang="tsx" />
             </Code>

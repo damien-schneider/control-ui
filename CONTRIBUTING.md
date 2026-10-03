@@ -41,10 +41,12 @@ cd apps/docs && bun test
 
 Browser tests (`bun run test:browser` in `apps/docs`) require Playwright browsers installed locally.
 
-For interaction performance, run `bun run test:browser e2e/sidebar-performance.pw.ts e2e/dropdown-performance.pw.ts` in `apps/docs`.
+For interaction performance, run `bun run test:browser e2e/sidebar-performance.pw.ts e2e/dropdown-performance.pw.ts e2e/tabs-performance.pw.ts e2e/tabs-transition.pw.ts` in `apps/docs`.
 These tests measure Chromium main-thread CPU time over repeated real pointer interactions, attach the samples to the test report,
 and check warmed medians. Run them without other CPU-heavy checks. Tracing and development overlays are disabled for these measurements
 so recorder and diagnostic work do not count against application budgets.
+Tab coverage includes populated docs panels and a 200-item fixture, plus synchronized slides, height changes, keyboard navigation,
+reduced motion, interrupted transitions, and retained example and scroll state.
 
 React Compiler is enabled in the docs app. Start `NEXT_PUBLIC_REACT_SCAN=1 bun run dev` to enable React Scan;
 use its toolbar to inspect which components rerender and how much render time they take. It is excluded from production.

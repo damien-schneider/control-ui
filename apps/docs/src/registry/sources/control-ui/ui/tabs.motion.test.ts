@@ -66,7 +66,7 @@ describe("Control UI cross-slide panel switch", () => {
     expect(CSS).toMatch(
       /translate\s+var\(--duration-slow\)\s+var\(--ease-emphasized\),\s*height\s+var\(--duration-slow\)\s+var\(--ease-emphasized\)/,
     );
-    expect(TABS_TSX).toContain("--aui-slide-prev-height");
+    expect(TABS_TSX).toContain("--_tabs-prev-height");
     expect(INLINE_CITATION_TSX).toContain("--aui-slide-prev-height");
     // stamp is cleared right after starting frame — controlled switch that bypasses
     // onValueChange must never morph from stale height.

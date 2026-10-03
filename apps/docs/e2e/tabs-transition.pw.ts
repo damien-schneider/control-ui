@@ -6,6 +6,9 @@ import { expect, test } from "@playwright/test";
 import tailwind from "@tailwindcss/postcss";
 import postcss from "postcss";
 
+// Recording DOM snapshots changes animation timing and adds CPU work to the measurements.
+test.use({ trace: "off" });
+
 const buildDirectory = mkdtempSync(path.join(tmpdir(), "control-ui-tabs-"));
 const theme = readFileSync(path.resolve("src/registry/sources/control-ui/theme.css"), "utf8");
 const tabsRecipe = ["tabs", "tabs-motion"]
@@ -74,7 +77,7 @@ async function captureTransition(trigger: HTMLElement): Promise<PanelTransitionC
   const previousPanel = root.querySelector('[data-slot="panel"]:not([inert])');
   if (!(previousPanel instanceof HTMLElement)) throw new Error("Active panel is missing");
   const previousBounds = previousPanel.getBoundingClientRect();
-  const rootBounds = root.getBoundingClientRect();
+  const rootBounds = (previousPanel.offsetParent ?? root).getBoundingClientRect();
   const initial = {
     x: rootBounds.x + previousPanel.offsetLeft,
     y: rootBounds.y + previousPanel.offsetTop,
@@ -191,6 +194,15 @@ for (const width of [390, 1440]) {
   }
 }
 
+test("wrapped panels keep both slide directions synchronized", async ({ page }) => {
+  await page.goto("http://tabs.test/?wrapped");
+  await page.addStyleTag({ content: '[data-slide="scope"] { --duration-slow: 500ms; }' });
+  for (const name of ["Settings", "Releases"]) {
+    const transition = await page.getByRole("tab", { name, exact: true }).evaluate(captureTransition);
+    expectAlignedTransition(transition, "horizontal");
+  }
+});
+
 test("external selection and uncontrolled browser tabs keep the slide aligned", async ({ page }) => {
   await page.addStyleTag({ content: '[data-slide="scope"] { --duration-slow: 500ms; }' });
   await page.getByRole("tabpanel", { name: "Releases" }).evaluate(async (panel) => {
@@ -274,4 +286,51 @@ test("paints clipped panels during the slide", async ({ page }, testInfo) => {
     for (let frame = 0; frame < 2; frame += 1) await new Promise(requestAnimationFrame);
   });
   await page.screenshot({ path: testInfo.outputPath("transition.png") });
+});
+
+test.describe("populated panel performance", () => {
+  test("switches large mounted panels within the CPU budget", async ({ page }) => {
+    await page.goto("http://tabs.test/?dense");
+    const root = page.locator('[data-slide="scope"]');
+    await expect(root.getByRole("article")).toHaveCount(200);
+    const session = await page.context().newCDPSession(page);
+    await session.send("Performance.enable", { timeDomain: "threadTicks" });
+    const samples = [];
+    try {
+      for (let round = 0; round < 4; round++) {
+        for (const name of ["Settings", "Releases"]) {
+          const trigger = root.getByRole("tab", { name, exact: true });
+          const box = await trigger.boundingBox();
+          if (!box) throw new Error("Tab trigger is not rendered");
+          await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+          const before = await session.send("Performance.getMetrics");
+          await page.mouse.down();
+          await page.mouse.up();
+          await root.evaluate(async (element) => {
+            for (let frame = 0; frame < 4; frame++) await new Promise(requestAnimationFrame);
+            await Promise.all(element.getAnimations({ subtree: true }).map((animation) => animation.finished.catch(() => {})));
+            for (let frame = 0; frame < 2; frame++) await new Promise(requestAnimationFrame);
+          });
+          const after = await session.send("Performance.getMetrics");
+          const cpu = (metrics: typeof before.metrics) => {
+            const entry = metrics.find((metric) => metric.name === "TaskDuration");
+            if (!entry) throw new Error("Chromium main-thread CPU metric is unavailable");
+            return entry.value;
+          };
+          samples.push({ name, round, mainThreadMs: (cpu(after.metrics) - cpu(before.metrics)) * 1000 });
+          await expect(root.getByRole("tabpanel", { name, exact: true })).toBeVisible();
+        }
+      }
+      await test.info().attach("populated-panel-cpu", { body: JSON.stringify(samples), contentType: "application/json" });
+      for (const name of ["Settings", "Releases"]) {
+        const warmed = samples
+          .filter((sample) => sample.name === name && sample.round > 0)
+          .map((sample) => sample.mainThreadMs)
+          .sort((a, b) => a - b);
+        expect(warmed[1], `${name} switch median exceeds 100 ms of CPU`).toBeLessThan(100);
+      }
+    } finally {
+      await session.detach();
+    }
+  });
 });

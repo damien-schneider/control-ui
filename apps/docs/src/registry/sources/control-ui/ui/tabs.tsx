@@ -50,6 +50,10 @@ function refreshTabsPanelHeight(panel: ActiveTabsPanel) {
   panel.height = panel.node.getBoundingClientRect().height;
 }
 
+function setTabsPanelsStarting(panels: HTMLDivElement[], starting: boolean) {
+  for (const panel of panels) panel.toggleAttribute("data-slide-starting", starting);
+}
+
 const TabsPanelsContext = createContext<TabsPanelsContextValue | null>(null);
 
 function useTabsPanels() {
@@ -66,17 +70,21 @@ function setRef<T>(ref: Ref<T> | undefined, value: T | null) {
 export function Tabs<TValue extends string = string>({ className, onValueChange, children, ...props }: TabsProps<TValue>) {
   const rootRef = useRef<HTMLDivElement>(null);
   const activePanelRef = useRef<ActiveTabsPanel | null>(null);
+  const startingPanelsRef = useRef<HTMLDivElement[]>([]);
+  const previousHeightRef = useRef<string | null>(null);
   const clearPreviousHeightFrame = useRef(0);
   const [exitingValue, setExitingValue] = useState<string | null>(null);
   const [holdPreviousHeight] = useState(() => (height: string) => {
     const root = rootRef.current;
     if (!root) return;
-    root.style.setProperty("--aui-slide-prev-height", height);
+    previousHeightRef.current = height;
     cancelAnimationFrame(clearPreviousHeightFrame.current);
     clearPreviousHeightFrame.current = requestAnimationFrame(() => {
       clearPreviousHeightFrame.current = requestAnimationFrame(() => {
-        root.style.removeProperty("--aui-slide-prev-height");
-        root.removeAttribute("data-slide-starting");
+        previousHeightRef.current = null;
+        activePanelRef.current?.node.style.removeProperty("--_tabs-prev-height");
+        setTabsPanelsStarting(startingPanelsRef.current, false);
+        startingPanelsRef.current = [];
       });
     });
   });
@@ -88,16 +96,21 @@ export function Tabs<TValue extends string = string>({ className, onValueChange,
     const root = rootRef.current;
     const switchingPanels = root && previousPanel && previousPanel.value !== value;
     if (switchingPanels) {
-      root.setAttribute("data-slide-starting", "");
-      holdPreviousHeight(root.style.getPropertyValue("--aui-slide-prev-height") || `${previousPanel.height}px`);
+      setTabsPanelsStarting(startingPanelsRef.current, false);
+      startingPanelsRef.current = [previousPanel.node, node];
+      setTabsPanelsStarting(startingPanelsRef.current, true);
+      const previousHeight = previousHeightRef.current || `${previousPanel.height}px`;
+      node.style.setProperty("--_tabs-prev-height", previousHeight);
+      holdPreviousHeight(previousHeight);
       setExitingValue(previousPanel.value);
     }
     activePanelRef.current = { value, node, height: node.getBoundingClientRect().height };
-    if (root) {
-      root.style.setProperty("--_tabs-panel-top", `${node.offsetTop}px`);
-      root.style.setProperty("--_tabs-panel-left", `${node.offsetLeft}px`);
-      root.style.setProperty("--_tabs-panel-width", `${node.offsetWidth}px`);
-      root.style.setProperty("--_tabs-panel-height", `${node.offsetHeight}px`);
+    if (switchingPanels) {
+      const { offsetTop, offsetLeft, offsetWidth, offsetHeight } = node;
+      previousPanel.node.style.setProperty("--_tabs-panel-top", `${offsetTop}px`);
+      previousPanel.node.style.setProperty("--_tabs-panel-left", `${offsetLeft}px`);
+      previousPanel.node.style.setProperty("--_tabs-panel-width", `${offsetWidth}px`);
+      previousPanel.node.style.setProperty("--_tabs-panel-height", `${offsetHeight}px`);
     }
     return () => {
       const currentPanel = activePanelRef.current;

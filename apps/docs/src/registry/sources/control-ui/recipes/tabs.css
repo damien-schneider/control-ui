@@ -179,6 +179,7 @@
   }
 
   :where([data-control-family="tabs"][data-slot="panel"]) {
+    min-height: 0;
     outline-style: none;
   }
 
