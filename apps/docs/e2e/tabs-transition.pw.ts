@@ -8,7 +8,9 @@ import postcss from "postcss";
 
 const buildDirectory = mkdtempSync(path.join(tmpdir(), "control-ui-tabs-"));
 const theme = readFileSync(path.resolve("src/registry/sources/control-ui/theme.css"), "utf8");
-const tabsRecipe = readFileSync(path.resolve("src/registry/sources/control-ui/recipes/tabs.css"), "utf8");
+const tabsRecipe = ["tabs", "tabs-motion"]
+  .map((name) => readFileSync(path.resolve(`src/registry/sources/control-ui/recipes/${name}.css`), "utf8"))
+  .join("\n");
 let script: string;
 let stylesheet: string;
 

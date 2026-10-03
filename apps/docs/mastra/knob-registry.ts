@@ -567,7 +567,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-button-radius",
         syntax: "<length-percentage>",
-        defaultValue: "var(--radius-control)",
+        defaultValue: "var(--nest-radius, var(--radius-control))",
         selector: ':where([data-control-family="button"][data-control="true"])',
       },
       {
@@ -1885,7 +1885,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-field-radius",
         syntax: "<length-percentage>",
-        defaultValue: "var(--radius-control)",
+        defaultValue: "var(--nest-radius, var(--radius-control))",
         selector: ':where([data-control-family="field"][data-control="true"])',
       },
       {
@@ -4156,6 +4156,18 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-tabs-list-shadow",
         syntax: "*",
         defaultValue: "inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--shadow-inset)",
+        selector: ':where([data-control-family="tabs"][data-slot="root"])',
+      },
+      {
+        name: "--cui-tabs-surface-background",
+        syntax: "<color>",
+        defaultValue: "var(--background)",
+        selector: ':where([data-control-family="tabs"][data-slot="root"])',
+      },
+      {
+        name: "--cui-tabs-surface-radius",
+        syntax: "<length>",
+        defaultValue: "var(--radius-panel)",
         selector: ':where([data-control-family="tabs"][data-slot="root"])',
       },
       {

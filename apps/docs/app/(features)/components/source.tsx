@@ -18,7 +18,7 @@ import {
 import { CollapsibleContent, CollapsibleTrigger, Collapsible as UICollapsible } from "@/components/control-ui/ui/collapsible";
 import { usePageScroll } from "@/components/control-ui/ui/page-layout";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
-import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/control-ui/ui/tabs";
+import { Tabs, TabsList, TabsPanel, TabsSurface, TabsTab } from "@/components/control-ui/ui/tabs";
 
 export function CodeBlock({ code, lang = "tsx" }: { code: string; lang?: string }) {
   if (!code.includes("\n")) return <CodeSnippet code={code} lang={lang} />;
@@ -128,6 +128,21 @@ export function SourceTabs({ files, overflow }: { files: SourceFile[]; overflow?
 
   if (!activeFile) return null;
 
+  const connected = files.length > 1 && !scrollsPage;
+  const content = (
+    <Code overflow={overflow} chrome={connected ? "embedded" : "standalone"}>
+      <CodeHeader>
+        <SourcePath path={activeFile.path} />
+        <CodeActions>
+          <CodeCopy value={activeFile.code} />
+        </CodeActions>
+      </CodeHeader>
+      <TabsPanel key={activeFile.path} value={activeFile.path}>
+        <CodeContent code={activeFile.code} lang={languageForPath(activeFile.path)} />
+      </TabsPanel>
+    </Code>
+  );
+
   return (
     <Tabs value={selectedPath} onValueChange={setActivePath} className="min-w-0">
       {files.length > 1 ? (
@@ -148,17 +163,7 @@ export function SourceTabs({ files, overflow }: { files: SourceFile[]; overflow?
           </TabsList>
         </ScrollArea>
       ) : null}
-      <Code overflow={overflow} className={cn(files.length > 1 && !scrollsPage && "-mt-px")}>
-        <CodeHeader>
-          <SourcePath path={activeFile.path} />
-          <CodeActions>
-            <CodeCopy value={activeFile.code} />
-          </CodeActions>
-        </CodeHeader>
-        <TabsPanel key={activeFile.path} value={activeFile.path}>
-          <CodeContent code={activeFile.code} lang={languageForPath(activeFile.path)} />
-        </TabsPanel>
-      </Code>
+      {connected ? <TabsSurface className="-mt-px overflow-hidden">{content}</TabsSurface> : content}
     </Tabs>
   );
 }
@@ -181,6 +186,7 @@ export function PreviewTabs({
   const [tab, setTab] = useState("preview");
   const scrollsPage = usePageScroll() === "page";
   const showPanelFrame = previewFramed && !scrollsPage;
+  const Surface = showPanelFrame ? TabsSurface : "div";
 
   return (
     <div id={anchorId ?? undefined} className="mb-8 min-w-0 scroll-mt-20">
@@ -196,7 +202,7 @@ export function PreviewTabs({
             {tab === "code" ? <CodeCopy value={code} /> : null}
           </div>
         </div>
-        <div className={cn(!scrollsPage && "-mt-px", showPanelFrame && "docs-panel overflow-hidden")}>
+        <Surface className={cn(!scrollsPage && "-mt-px", showPanelFrame && "overflow-hidden")}>
           <TabsPanel value="preview" className={cn("flex min-h-[280px] items-center justify-center p-6", previewClassName)}>
             {children}
           </TabsPanel>
@@ -205,7 +211,7 @@ export function PreviewTabs({
               <CodeContent code={code} lang="tsx" />
             </Code>
           </TabsPanel>
-        </div>
+        </Surface>
       </Tabs>
     </div>
   );

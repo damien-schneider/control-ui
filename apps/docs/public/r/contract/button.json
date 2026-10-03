@@ -15,7 +15,7 @@
       "name": "--cui-button-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-control)"
+      "defaultValue": "var(--nest-radius, var(--radius-control))"
     },
     {
       "name": "--cui-button-gap",

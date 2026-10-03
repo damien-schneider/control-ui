@@ -3563,6 +3563,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/sources/control-ui/recipes/tabs-motion.css",
+          "target": "@components/control-ui/styles/recipes/tabs-motion.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/tabs.css",
           "target": "@components/control-ui/styles/recipes/tabs.css",
           "type": "registry:file"
@@ -3574,7 +3579,8 @@
         }
       ],
       "css": {
-        "@import \"../components/control-ui/styles/recipes/tabs.css\"": {}
+        "@import \"../components/control-ui/styles/recipes/tabs.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/tabs-motion.css\"": {}
       },
       "meta": {
         "sourceManifestPath": "registry/control-ui/emoji-icon-picker.json"
@@ -6185,6 +6191,11 @@
           "type": "registry:component"
         },
         {
+          "path": "src/registry/sources/control-ui/recipes/tabs-motion.css",
+          "target": "@components/control-ui/styles/recipes/tabs-motion.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/tabs.css",
           "target": "@components/control-ui/styles/recipes/tabs.css",
           "type": "registry:file"
@@ -6196,7 +6207,8 @@
         }
       ],
       "css": {
-        "@import \"../components/control-ui/styles/recipes/tabs.css\"": {}
+        "@import \"../components/control-ui/styles/recipes/tabs.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/tabs-motion.css\"": {}
       },
       "meta": {
         "sourceManifestPath": "registry/control-ui/tabs.json"

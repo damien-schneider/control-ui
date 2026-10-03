@@ -6,6 +6,10 @@ const paintedKnobs = new Set(collectPaintRules().flatMap((rule) => Object.values
 const probedKnobs = new Set(generatedContrastAnatomy.probes.flatMap((probe) => Object.values(probe.knobs)));
 
 describe("contrast anatomy artifact", () => {
+  test("connected tab surfaces have rendered contrast coverage", () => {
+    expect(probedKnobs.has("--cui-tabs-surface-background")).toBe(true);
+  });
+
   test("every knob a recipe paints from is either probed or named as a blind spot", () => {
     const unaccounted = [...paintedKnobs].filter((knob) => !probedKnobs.has(knob) && !generatedContrastAnatomy.uncovered.includes(knob));
     expect(unaccounted).toEqual([]);

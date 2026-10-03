@@ -647,7 +647,19 @@
       "name": "--radius-field",
       "group": "radius",
       "tier": "advanced",
-      "description": "User bubble / composer shell corner; --radius × 2.2."
+      "description": "User bubble corner; --radius × 2.2."
+    },
+    {
+      "name": "--radius-composer",
+      "group": "radius",
+      "tier": "derived",
+      "description": "Composer shell corner, concentric with the fitted control corner plus composer padding and rim."
+    },
+    {
+      "name": "--composer-padding",
+      "group": "layout",
+      "tier": "derived",
+      "description": "Inset shared by the composer shell, toolbar controls, and nested corner geometry."
     },
     {
       "name": "--radius-panel",

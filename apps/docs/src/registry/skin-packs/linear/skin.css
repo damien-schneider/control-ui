@@ -154,7 +154,7 @@
   }
 
   [data-skin="linear"] :where([data-control-ui="menubar"][data-slot="trigger"][data-control-family="button"]) {
-    --cui-button-radius: var(--radius-control);
+    --cui-button-radius: var(--nest-radius, var(--radius-control));
   }
   [data-skin="linear"]
     :where(
@@ -195,7 +195,7 @@
 
 @layer components {
   [data-skin="linear"] :where([data-control-family="field"][data-control="true"]) {
-    --cui-field-radius: var(--radius-control);
+    --cui-field-radius: var(--nest-radius, var(--radius-control));
     --cui-field-foreground: var(--foreground);
     --cui-field-border-color: var(--input);
     --cui-field-shadow: 0 0 transparent;

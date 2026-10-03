@@ -2788,6 +2788,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/emoji-icon-picker.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/tabs-motion.css",
+        target: "@components/control-ui/styles/recipes/tabs-motion.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/tabs.css",
         target: "@components/control-ui/styles/recipes/tabs.css",
         type: "registry:file",
@@ -4571,6 +4576,11 @@ export const registryMetadata = {
         path: "src/registry/knob-contracts/tabs-knobs.ts",
         target: "@components/control-ui/knob-contracts/tabs-knobs.ts",
         type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/tabs-motion.css",
+        target: "@components/control-ui/styles/recipes/tabs-motion.css",
+        type: "registry:file",
       },
       {
         path: "src/registry/sources/control-ui/recipes/tabs.css",

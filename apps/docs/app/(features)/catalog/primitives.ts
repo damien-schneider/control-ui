@@ -30,11 +30,10 @@ const cardRecipeFile = sourceFile(
   "src/registry/sources/control-ui/recipes/card.css",
   "recipe-css",
 );
-const tabsRecipeFile = sourceFile(
-  "Tabs recipe — paint + @property knobs",
-  "src/registry/sources/control-ui/recipes/tabs.css",
-  "recipe-css",
-);
+const tabsRecipeFiles = [
+  sourceFile("Tabs recipe — paint + @property knobs", "src/registry/sources/control-ui/recipes/tabs.css", "recipe-css"),
+  sourceFile("Tabs recipe — panel motion", "src/registry/sources/control-ui/recipes/tabs-motion.css", "recipe-css"),
+] as const;
 const choiceRecipeFile = sourceFile(
   "Choice recipe — paint + @property knobs",
   "src/registry/sources/control-ui/recipes/choice.css",
@@ -288,7 +287,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/tabs.tsx",
         example: sourceFile("Tabs preview", "src/registry/examples/control-ui/primitives/tabs.tsx", "example"),
         source: sourceFile("Base UI Tabs slot", "src/registry/sources/control-ui/ui/tabs.tsx", "component"),
-        supportFiles: [tabsRecipeFile],
+        supportFiles: [...tabsRecipeFiles],
         registryKind: "tabs",
       },
     },
@@ -2071,7 +2070,7 @@ export const primitiveEntries = [
           "example",
         ),
         source: sourceFile("Emoji and icon picker slots", "src/registry/sources/control-ui/ui/emoji-icon-picker.tsx", "component"),
-        supportFiles: [tabsRecipeFile],
+        supportFiles: [...tabsRecipeFiles],
         registryKind: "emoji-icon-picker",
       },
     },

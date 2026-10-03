@@ -12144,6 +12144,11 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        surface: {
+          family: "tabs",
+          registryItems: ["tabs"],
+          states: [],
+        },
         tab: {
           family: "tabs",
           registryItems: ["tabs"],
@@ -13861,7 +13866,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-button-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue: "var(--radius-control)",
+        defaultValue: "var(--nest-radius, var(--radius-control))",
       },
       {
         name: "--cui-button-gap",
@@ -15149,7 +15154,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-field-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue: "var(--radius-control)",
+        defaultValue: "var(--nest-radius, var(--radius-control))",
       },
       {
         name: "--cui-field-background",
@@ -17284,6 +17289,18 @@ export const generatedSkinContract: SkinContract = {
     ],
     tabs: [
       {
+        name: "--cui-tabs-surface-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--background)",
+      },
+      {
+        name: "--cui-tabs-surface-radius",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "var(--radius-panel)",
+      },
+      {
         name: "--cui-tabs-trigger-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
@@ -18442,6 +18459,10 @@ export const generatedSkinContract: SkinContract = {
         {
           scope: "sidebar",
           part: "root",
+        },
+        {
+          scope: "tabs",
+          part: "surface",
         },
         {
           scope: "task-list",

@@ -1,7 +1,7 @@
 @layer components {
   [data-skin="mastra"] :where([data-control-family="button"][data-control="true"]) {
     --disabled-opacity: 1;
-    --cui-button-radius: 9999px;
+    --cui-button-radius: var(--nest-radius, 9999px);
     --cui-button-font-size: var(--text-label);
     --cui-button-padding-inline: 0.9em;
     --cui-button-icon-padding-inline: calc(var(--cui-button-padding-inline) - 0.3em);
@@ -84,7 +84,7 @@
     --mastra-field-disabled: var(--hover-fill);
     --mastra-field-rim: var(--control-rim);
     --mastra-field-tint: transparent;
-    --cui-field-radius: 9999px;
+    --cui-field-radius: var(--nest-radius, 9999px);
     --cui-field-background: var(--card);
     --cui-field-hover-background: color-mix(in srgb, var(--card), var(--mastra-fill-tint) 4%);
     --cui-field-font-size: var(--text-label);
@@ -121,7 +121,7 @@
   }
 
   [data-skin="mastra"] :where([data-control-family="field"][data-control="true"][data-field-kind="textarea"]) {
-    --cui-field-radius: var(--radius-panel);
+    --cui-field-radius: var(--nest-radius, var(--radius-panel));
   }
 
   [data-skin="mastra"] :where([data-control-family="choice"]:is([data-choice-kind="checkbox"], [data-choice-kind="radio-group"])) {

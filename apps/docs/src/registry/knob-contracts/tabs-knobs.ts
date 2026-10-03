@@ -1,5 +1,7 @@
 // Generated from src/registry/sources/control-ui/recipes/tabs.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.
 export const tabsKnobs = [
+  "--cui-tabs-surface-background",
+  "--cui-tabs-surface-radius",
   "--cui-tabs-trigger-radius",
   "--cui-tabs-list-padding",
   "--cui-tabs-list-radius",

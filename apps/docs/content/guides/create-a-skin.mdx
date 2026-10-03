@@ -82,4 +82,16 @@ export function AppTheme({ children }: { children: ReactNode }) {
 
   Every knob's name, syntax, initial value, and recipe default appear in its family's `/r/contract/` file.
   Re-value knobs at family roots so their parts inherit the treatment.
+
+  Browser tabs and their connected content share `--cui-tabs-surface-background`, `--cui-tabs-surface-radius`, and the
+  tabs border knobs. Use `TabsSurface` around content when wrappers separate the list from its panels, and embed a
+  `Code` with `chrome="embedded"` so it uses that surface. `--cui-tabs-indicator-background` styles segmented tabs;
+  changing it does not split the connected browser surface.
+
+  Nested buttons and fields derive their default corner from the containing surface's radius, border, and padding.
+  Their `--cui-button-radius` and `--cui-field-radius` knobs remain authoritative: setting one explicitly overrides
+  that fitted default, including inside a composer. A circle-shaped button also keeps its circular shape.
+  When a skin changes its control default, use `var(--nest-radius, <skin-radius>)` as the knob value to retain the
+  container's fitted corner inside composed controls.
+  The composer uses `--radius-composer` and `--composer-padding`; `--radius-field` controls message bubbles.
 </GuideSection>

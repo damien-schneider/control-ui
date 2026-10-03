@@ -15516,6 +15516,13 @@
             }
           ]
         },
+        "surface": {
+          "family": "tabs",
+          "registryItems": [
+            "tabs"
+          ],
+          "states": []
+        },
         "tab": {
           "family": "tabs",
           "registryItems": [
@@ -17652,7 +17659,7 @@
         "name": "--cui-button-radius",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "var(--radius-control)"
+        "defaultValue": "var(--nest-radius, var(--radius-control))"
       },
       {
         "name": "--cui-button-gap",
@@ -18934,7 +18941,7 @@
         "name": "--cui-field-radius",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "var(--radius-control)"
+        "defaultValue": "var(--nest-radius, var(--radius-control))"
       },
       {
         "name": "--cui-field-background",
@@ -21063,6 +21070,18 @@
     ],
     "tabs": [
       {
+        "name": "--cui-tabs-surface-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--background)"
+      },
+      {
+        "name": "--cui-tabs-surface-radius",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "var(--radius-panel)"
+      },
+      {
         "name": "--cui-tabs-trigger-radius",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
@@ -22217,6 +22236,10 @@
         {
           "scope": "sidebar",
           "part": "root"
+        },
+        {
+          "scope": "tabs",
+          "part": "surface"
         },
         {
           "scope": "task-list",

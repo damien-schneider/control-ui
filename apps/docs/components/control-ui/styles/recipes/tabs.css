@@ -11,6 +11,8 @@
     --cui-tabs-list-shadow: inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--shadow-inset);
     --cui-tabs-list-backdrop-filter: none;
     --cui-tabs-indicator-background: var(--background);
+    --cui-tabs-surface-background: var(--background);
+    --cui-tabs-surface-radius: var(--radius-panel);
     --cui-tabs-foreground: var(--muted-foreground);
     --cui-tabs-active-foreground: var(--foreground);
     --cui-tabs-hover-foreground: var(--foreground);
@@ -106,15 +108,14 @@
 
   :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"]) {
     --_tabs-browser-corner-double: calc(var(--_tabs-trigger-radius-fit) + var(--_tabs-trigger-radius-fit));
-    --_tabs-browser-inset: calc(var(--_tabs-trigger-radius-fit) + var(--radius-panel));
+    --_tabs-browser-inset: calc(var(--_tabs-trigger-radius-fit) + var(--cui-tabs-surface-radius));
     min-height: calc(var(--_tabs-trigger-h) + var(--cui-tabs-list-padding));
     width: auto;
     align-items: flex-end;
     isolation: isolate;
     z-index: 1;
     --cui-tabs-list-background: transparent;
-    --cui-tabs-list-shadow: inset 0 -1px 0 var(--cui-tabs-border-color);
-    --cui-tabs-indicator-background: var(--background);
+    --cui-tabs-list-shadow: inset 0 calc(-1 * var(--cui-tabs-border-width)) 0 var(--cui-tabs-border-color);
     --cui-tabs-active-foreground: var(--foreground);
     border-radius: var(--cui-tabs-list-radius) var(--cui-tabs-list-radius) 0 0;
   }
@@ -133,7 +134,7 @@
     border: var(--cui-tabs-border-width) solid var(--cui-tabs-border-color);
     border-bottom: none;
     border-radius: var(--_tabs-trigger-radius-fit) var(--_tabs-trigger-radius-fit) 0 0;
-    background: var(--cui-tabs-indicator-background);
+    background: var(--cui-tabs-surface-background);
   }
 
   :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"] [data-slot="indicator"])::after {
@@ -146,17 +147,17 @@
         circle at 0 -1px,
         transparent calc(var(--_tabs-trigger-radius-fit) - 0.5px),
         var(--cui-tabs-border-color) var(--_tabs-trigger-radius-fit) calc(var(--_tabs-trigger-radius-fit) + 0.5px),
-        var(--cui-tabs-indicator-background) calc(var(--_tabs-trigger-radius-fit) + 1px)
+        var(--cui-tabs-surface-background) calc(var(--_tabs-trigger-radius-fit) + 1px)
       )
       left / calc(var(--_tabs-trigger-radius-fit) + 1px) 100% no-repeat,
       radial-gradient(
         circle at 100% -1px,
         transparent calc(var(--_tabs-trigger-radius-fit) - 0.5px),
         var(--cui-tabs-border-color) var(--_tabs-trigger-radius-fit) calc(var(--_tabs-trigger-radius-fit) + 0.5px),
-        var(--cui-tabs-indicator-background) calc(var(--_tabs-trigger-radius-fit) + 1px)
+        var(--cui-tabs-surface-background) calc(var(--_tabs-trigger-radius-fit) + 1px)
       )
       right / calc(var(--_tabs-trigger-radius-fit) + 1px) 100% no-repeat,
-      linear-gradient(var(--cui-tabs-indicator-background) 0 0) center / calc(100% - var(--_tabs-browser-corner-double)) 100% no-repeat;
+      linear-gradient(var(--cui-tabs-surface-background) 0 0) center / calc(100% - var(--_tabs-browser-corner-double)) 100% no-repeat;
   }
 
   :where([data-control-family="tabs"][data-slot="list"][data-single="true"]) {
@@ -179,104 +180,6 @@
     outline-style: none;
   }
 
-  @supports ((anchor-name: --aui-slide-panel) and (anchor-scope: --aui-slide-panel)) {
-    :where([data-control-family="tabs"][data-slot="panel"][data-slide="panel"][inert][data-slide-exiting][data-ending-style]) {
-      display: block;
-      position: absolute;
-      top: var(--_tabs-panel-top);
-      left: var(--_tabs-panel-left);
-      right: auto;
-      bottom: auto;
-      width: var(--_tabs-panel-width);
-      height: var(--_tabs-panel-height);
-      margin: 0;
-      overflow: clip;
-      animation: aui-slide-exit-hold var(--duration-slow) var(--ease-emphasized) both;
-    }
-
-    @supports (height: anchor-size(height)) {
-      :where([data-control-family="tabs"][data-slot="panel"][data-slide="panel"][inert][data-slide-exiting][data-ending-style]) {
-        height: anchor-size(height);
-      }
-    }
-
-    :where(
-        [data-control-family="tabs"][data-slot="panel"][data-slide="panel"][inert][data-ending-style][data-activation-direction="right"]
-      ) {
-      translate: -100% 0;
-    }
-
-    :where(
-        [data-control-family="tabs"][data-slot="panel"][data-slide="panel"][inert][data-ending-style][data-activation-direction="left"]
-      ) {
-      translate: 100% 0;
-    }
-
-    :where(
-        [data-control-family="tabs"][data-slot="panel"][data-slide="panel"][inert][data-ending-style][data-activation-direction="down"]
-      ) {
-      translate: 0 -100%;
-    }
-
-    :where([data-control-family="tabs"][data-slot="panel"][data-slide="panel"][inert][data-ending-style][data-activation-direction="up"]) {
-      translate: 0 100%;
-    }
-
-    :where(
-        [data-control-family="tabs"][data-slot="root"]:has(> [data-slot="panel"][data-starting-style])
-          > [data-slot="panel"][inert][data-ending-style]
-      ) {
-      translate: 0 0;
-      transition: none;
-    }
-
-    :where([data-control-family="tabs"][data-slot="panel"][data-slide="panel"][data-starting-style]) {
-      transition: none;
-    }
-
-    :where([data-control-family="tabs"][data-slot="root"][data-slide-starting] > [data-slot="panel"][data-slide="panel"]) {
-      transition: none;
-    }
-
-    :where([data-control-family="tabs"][data-slot="root"][data-slide-starting] > [data-slot="panel"][inert]) {
-      translate: 0 0;
-    }
-
-    :where(
-        [data-control-family="tabs"][data-slot="root"][data-slide-starting]
-          > [data-slot="panel"]:not([inert])[data-activation-direction="right"]
-      ) {
-      translate: 100% 0;
-    }
-
-    :where(
-        [data-control-family="tabs"][data-slot="root"][data-slide-starting]
-          > [data-slot="panel"]:not([inert])[data-activation-direction="left"]
-      ) {
-      translate: -100% 0;
-    }
-
-    :where(
-        [data-control-family="tabs"][data-slot="root"][data-slide-starting]
-          > [data-slot="panel"]:not([inert])[data-activation-direction="down"]
-      ) {
-      translate: 0 100%;
-    }
-
-    :where(
-        [data-control-family="tabs"][data-slot="root"][data-slide-starting]
-          > [data-slot="panel"]:not([inert])[data-activation-direction="up"]
-      ) {
-      translate: 0 -100%;
-    }
-
-    @supports (height: calc-size(auto, size)) {
-      :where([data-control-family="tabs"][data-slot="root"][data-slide-starting] > [data-slot="panel"][data-slide="panel"]:not([inert])) {
-        height: var(--aui-slide-prev-height, calc-size(auto, size));
-      }
-    }
-  }
-
   :where([data-control-family="tabs"][data-slot="root"][data-orientation="vertical"] > [data-slot="panel"]) {
     min-width: 0;
     flex: 1;
@@ -291,9 +194,16 @@
   :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"] ~ [data-slot="panel"]) {
     border: var(--cui-tabs-border-width) solid var(--cui-tabs-border-color);
     border-top: none;
-    border-radius: 0 0 var(--radius-panel) var(--radius-panel);
-    background: var(--cui-tabs-indicator-background);
+    border-radius: 0 0 var(--cui-tabs-surface-radius) var(--cui-tabs-surface-radius);
+    background: var(--cui-tabs-surface-background);
     padding: calc(var(--spacing) * 4);
+  }
+
+  :where([data-control-family="tabs"][data-slot="surface"]) {
+    min-width: 0;
+    border: var(--cui-tabs-border-width) solid var(--cui-tabs-border-color);
+    border-radius: var(--cui-tabs-surface-radius);
+    background: var(--cui-tabs-surface-background);
   }
 
   :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"] [data-control-family="tabs"][data-slot="tab"]) {
@@ -318,6 +228,18 @@
       block-size: 100%;
     }
   }
+}
+
+@property --cui-tabs-surface-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-tabs-surface-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-tabs-trigger-radius {

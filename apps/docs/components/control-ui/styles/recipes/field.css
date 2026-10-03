@@ -1,7 +1,7 @@
 @layer components {
   :where([data-control-family="field"][data-control="true"]) {
     gap: calc(var(--spacing) * 1.5);
-    --cui-field-radius: var(--radius-control);
+    --cui-field-radius: var(--nest-radius, var(--radius-control));
     --cui-field-background: var(--control-fill);
     --cui-field-hover-background: var(--hover-fill);
     --cui-field-affordance-background: transparent;
@@ -18,7 +18,7 @@
     --cui-field-padding-inline: var(--padding-x);
     --cui-field-font-size: var(--text-body);
     border: var(--cui-field-border-width) solid var(--cui-field-border-color);
-    border-radius: var(--nest-radius, var(--cui-field-radius));
+    border-radius: var(--cui-field-radius);
     background: var(--cui-field-background);
     box-shadow: var(--cui-field-shadow);
     color: var(--cui-field-foreground);

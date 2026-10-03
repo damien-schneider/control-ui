@@ -157,7 +157,9 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --radius-lg [shared] Scale rung: --radius × 1.
 - --radius-xl [shared] Scale rung: --radius × 1.4.
 - --radius-2xl [shared] Scale rung: --radius × 1.6.
-- --radius-field [shared] User bubble / composer shell corner; --radius × 2.2.
+- --radius-field [shared] User bubble corner; --radius × 2.2.
+- --radius-composer [shared] Composer shell corner, concentric with the fitted control corner plus composer padding and rim.
+- --composer-padding [shared] Inset shared by the composer shell, toolbar controls, and nested corner geometry.
 - --radius-panel [shared] Code / markdown panel corner; --radius × 2.6.
 - --radius-scene [shared] Scene frame / large media corner; --radius × 2.8.
 - --corner-shape [shared] Progressive corner reshape (round | squircle | scoop | …); defaults to round.

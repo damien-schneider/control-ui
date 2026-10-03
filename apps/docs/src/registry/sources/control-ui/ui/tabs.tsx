@@ -31,6 +31,14 @@ export type TabsPanelProps = Omit<ComponentProps<"div">, "style"> & { style?: CS
   keepMounted?: boolean;
 };
 
+export type TabsSurfaceProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & TabsKnobStyle };
+
+export function TabsSurface({ className, ...props }: TabsSurfaceProps) {
+  return (
+    <div data-control-ui="tabs" data-control-family="tabs" data-slot="surface" data-surface="panel" className={className} {...props} />
+  );
+}
+
 type RegisterTabsPanel = (value: string, node: HTMLDivElement | null) => (() => void) | undefined;
 
 type ActiveTabsPanel = { value: string; node: HTMLDivElement; height: number };

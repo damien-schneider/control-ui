@@ -285,7 +285,7 @@
 
 @layer components {
   [data-skin="modern-apple"] :where([data-control-family="field"][data-control="true"]) {
-    --cui-field-radius: var(--radius-control);
+    --cui-field-radius: var(--nest-radius, var(--radius-control));
     --cui-field-foreground: var(--foreground);
     --cui-field-border-color: var(--input);
     --cui-field-border-width: 1px;

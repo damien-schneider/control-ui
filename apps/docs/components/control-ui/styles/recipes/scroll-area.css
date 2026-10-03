@@ -11,10 +11,8 @@
     grid-template-rows: minmax(0, 1fr) auto;
   }
 
-  :where(
-    [data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"] > [data-scroll-area-viewport],
-    [data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"] > [data-control-family="progressive-blur"]
-  ) {
+  :where([data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"] > [data-scroll-area-viewport]),
+  :where([data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"] > [data-control-family="progressive-blur"]) {
     grid-area: 1 / 1;
     min-inline-size: 0;
     min-block-size: 0;
@@ -41,7 +39,9 @@
   :where(
     [data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"]
       > [data-slot="scrollbar"][data-orientation="vertical"]:not([data-has-overflow-y])
-      > [data-slot="thumb"],
+      > [data-slot="thumb"]
+  ),
+  :where(
     [data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"]
       > [data-slot="scrollbar"][data-orientation="horizontal"]:not([data-has-overflow-x])
       > [data-slot="thumb"]

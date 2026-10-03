@@ -630,13 +630,13 @@ function unreadKnobOffenders(root: Root, knobs: readonly string[]): string[] {
   return knobs.filter((knob) => !read.has(knob)).map((knob) => `${declarationLines.get(knob) ?? "?"} ${knob}`);
 }
 
-function privateFallbackOffenders(root: Root, knobs: readonly string[]): string[] {
+function knobFallbackOffenders(root: Root, knobs: readonly string[]): string[] {
   const contract = new Set(knobs);
   const offenders: string[] = [];
   root.walkDecls((declaration) => {
-    for (const match of declaration.value.matchAll(/var\(\s*--_[\w-]+\s*,\s*var\(\s*(--[\w-]+)\s*\)\s*\)/g)) {
-      const knob = match[1];
-      if (knob && contract.has(knob)) offenders.push(`${declaration.source?.start?.line ?? "?"} ${knob}`);
+    for (const match of declaration.value.matchAll(/var\(\s*(--[\w-]+)\s*,\s*var\(\s*(--[\w-]+)\s*\)\s*\)/g)) {
+      const [, outer, knob] = match;
+      if (knob && contract.has(knob) && !contract.has(outer)) offenders.push(`${declaration.source?.start?.line ?? "?"} ${knob}`);
     }
   });
   return offenders;
@@ -757,7 +757,16 @@ describe("recipe architecture guards", () => {
     const invalid = postcss.parse(`
       :where([data-control-family="example"]) { --example-knob: red; color: var(--_example-knob, var(--example-knob)); }
     `);
-    expect(privateFallbackOffenders(invalid, ["--example-knob"])).toEqual(["2 --example-knob"]);
+    expect(knobFallbackOffenders(invalid, ["--example-knob"])).toEqual(["2 --example-knob"]);
+  });
+
+  test("rejects contextual values that bypass public knobs", () => {
+    const invalid = postcss.parse("a { border-radius: var(--nest-radius, var(--cui-button-radius)); }");
+    expect(knobFallbackOffenders(invalid, ["--cui-button-radius"])).toEqual(["1 --cui-button-radius"]);
+    const valid = postcss.parse(
+      "a { --cui-button-radius: var(--nest-radius, var(--radius-control)); border-radius: var(--cui-button-radius); }",
+    );
+    expect(knobFallbackOffenders(valid, ["--cui-button-radius"])).toEqual([]);
   });
 
   test("rejects recipe selectors keyed by data-control-ui", () => {
@@ -853,8 +862,8 @@ for (const family of families) {
       expect(unreadKnobOffenders(root, family.knobs)).toEqual([]);
     });
 
-    test("public knobs are never read through a private fallback", () => {
-      expect(privateFallbackOffenders(root, family.knobs)).toEqual([]);
+    test("public knobs are never bypassed by contextual fallbacks", () => {
+      expect(knobFallbackOffenders(root, family.knobs)).toEqual([]);
     });
 
     test("recipe selectors key on data-control-family", () => {

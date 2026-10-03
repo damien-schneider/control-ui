@@ -6,7 +6,10 @@ export const navigationCompositions = {
     example("Navigation link", part("ButtonLink", content("link content"))),
     example("Label-backed control", part("ButtonLabel", content("label content"))),
   ],
-  tabs: [example("Anatomy", part("Tabs", part("TabsList", part("TabsTab")), part("TabsPanel")))],
+  tabs: [
+    example("Anatomy", part("Tabs", part("TabsList", part("TabsTab")), part("TabsPanel"))),
+    example("Connected surface", part("Tabs", part("TabsList", part("TabsTab")), part("TabsSurface", part("TabsPanel")))),
+  ],
   "track-highlight": [
     example(
       "Custom hover or selection track",

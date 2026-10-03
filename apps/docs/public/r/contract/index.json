@@ -426,7 +426,7 @@
         "scroll-area"
       ],
       "knobs": 3,
-      "probes": 46
+      "probes": 48
     },
     "separator": {
       "registryItems": [
@@ -440,7 +440,7 @@
         "sidebar"
       ],
       "knobs": 47,
-      "probes": 45
+      "probes": 47
     },
     "sidebar-layout": {
       "registryItems": [
@@ -503,8 +503,8 @@
         "emoji-icon-picker",
         "tabs"
       ],
-      "knobs": 13,
-      "probes": 47
+      "knobs": 15,
+      "probes": 48
     },
     "task-list": {
       "registryItems": [

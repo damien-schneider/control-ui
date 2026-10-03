@@ -25,6 +25,7 @@ const SQUIRCLE_FALLBACK_TOKENS = new Set([
   "--radius-control",
   "--radius-popup-item",
   "--radius-popover",
+  "--radius-composer",
   "--radius-sm",
   "--radius-md",
   "--radius-lg",
