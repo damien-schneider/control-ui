@@ -93,6 +93,10 @@
     font-weight: var(--font-weight-medium);
   }
 
+  :where([data-control-family="tabs"][data-slot="list"]:not([data-orientation="vertical"], [data-variant="browser"]) [data-slot="tab"]) {
+    flex-grow: 1;
+  }
+
   @media (hover: hover) {
     :where([data-control-family="tabs"][data-slot="tab"]:hover:not([data-disabled])) {
       color: var(--cui-tabs-hover-foreground);

@@ -76,12 +76,12 @@ export function PrimitiveButtonExample() {
           With icon
         </Button>
       </Row>
-      <Row label="Stacked">
-        <Button variant="surface" layout="stacked">
+      <Row label="Tile">
+        <Button variant="surface" layout="tile">
           <MonitorIcon className="size-4" />
           Desktop
         </Button>
-        <Button variant="surface" layout="stacked" active>
+        <Button variant="surface" layout="tile" active>
           <SmartphoneIcon className="size-4" />
           Mobile
         </Button>

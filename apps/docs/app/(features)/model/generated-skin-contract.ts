@@ -1329,7 +1329,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-layout",
               source: "control-ui",
               valueKind: "enum",
-              values: ["inline", "stacked"],
+              values: ["inline", "tile"],
             },
             {
               attribute: "data-shape",
@@ -12624,7 +12624,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-layout",
               source: "control-ui",
               valueKind: "enum",
-              values: ["inline", "stacked"],
+              values: ["inline", "tile"],
             },
             {
               attribute: "data-size",

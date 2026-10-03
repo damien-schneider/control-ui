@@ -194,7 +194,7 @@
             "valueKind": "enum",
             "values": [
               "inline",
-              "stacked"
+              "tile"
             ]
           },
           {
@@ -509,7 +509,7 @@
             "valueKind": "enum",
             "values": [
               "inline",
-              "stacked"
+              "tile"
             ]
           },
           {

@@ -23,7 +23,7 @@ export const buttonShapes = ["default", "circle"] as const;
 
 export type ButtonShape = (typeof buttonShapes)[number];
 
-export const buttonLayouts = ["inline", "stacked"] as const;
+export const buttonLayouts = ["inline", "tile"] as const;
 
 export type ButtonLayout = (typeof buttonLayouts)[number];
 

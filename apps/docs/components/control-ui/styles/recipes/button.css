@@ -115,14 +115,15 @@
     padding-inline: 0;
   }
 
-  :where([data-control-family="button"][data-layout="stacked"]) {
+  :where([data-control-family="button"][data-layout="tile"]) {
+    --cui-button-radius: var(--nest-radius, min(var(--radius-control), var(--radius-field)));
     flex-direction: column;
     block-size: auto;
     padding-block: calc(var(--spacing) * 1.5);
     padding-inline: var(--cui-button-padding-inline);
   }
 
-  :where([data-control-family="button"][data-layout="stacked"] > [data-slot="content"]) {
+  :where([data-control-family="button"][data-layout="tile"] > [data-slot="content"]) {
     flex-direction: column;
   }
 
