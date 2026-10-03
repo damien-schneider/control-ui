@@ -1,7 +1,12 @@
-import { expect, test } from "@playwright/test";
+import { expect, type Locator, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { waitForReactHydration } from "./browser-test-helpers";
 import { disableAnchorSupport, expectHighlightOn } from "./track-highlight-helpers";
+
+async function expectSidebarHoverOn(row: Locator) {
+  const fill = await row.evaluate((node) => getComputedStyle(node).getPropertyValue("--cui-sidebar-menu-button-hover-background").trim());
+  await expect(row).toHaveCSS("background-color", fill);
+}
 
 test("track highlight is discoverable as a primitive with working hover and selection examples", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
@@ -78,40 +83,62 @@ for (const positioning of ["anchors", "fallback"]) {
       await waitForReactHydration(page.getByRole("combobox", { name: "Menu highlight" }));
       await page.getByRole("combobox", { name: "Menu highlight" }).selectOption("hover");
       const group = page.getByRole("group", { name: "Sidebar", exact: true });
-      const highlight = group.locator('[data-control-family="track-highlight"]').first();
       const agents = group.getByRole("button", { name: "Agents", exact: true });
       const workflows = group.getByRole("button", { name: "Workflows", exact: true });
       const settings = group.getByRole("button", { name: "Settings", exact: true });
       await waitForReactHydration(agents);
+      const selectedFill = await agents.evaluate((node) => getComputedStyle(node).backgroundColor);
+      const idleFill = await workflows.evaluate((node) => getComputedStyle(node).backgroundColor);
       await workflows.hover();
-      await expectHighlightOn(highlight, workflows);
-      await expect(highlight).toHaveCSS("border-radius", await workflows.evaluate((node) => getComputedStyle(node).borderRadius));
+      await expectSidebarHoverOn(workflows);
+      await expect(agents).toHaveCSS("background-color", selectedFill);
       await expect(agents).toHaveAttribute("data-active", "true");
       await expect(workflows).not.toHaveAttribute("data-active");
-      await group.getByRole("button", { name: "Tools", exact: true }).hover({ force: true });
-      if (positioning === "anchors") await expect(highlight).toBeHidden();
-      else await expect(highlight).toHaveCSS("opacity", "0");
+      const disabled = group.getByRole("button", { name: "Tools", exact: true });
+      await disabled.hover({ force: true });
+      await expect(disabled).toHaveCSS("background-color", idleFill);
+      await expect(workflows).toHaveCSS("background-color", idleFill);
       await settings.hover();
-      await expectHighlightOn(highlight, settings);
+      await expectSidebarHoverOn(settings);
       await settings.click();
       await expect(settings).toHaveAttribute("data-active", "true");
-      const otherGroup = group.locator('[data-slot="menu-track"]').last();
-      const otherHighlight = otherGroup.locator('[data-control-family="track-highlight"]');
-      const documentation = otherGroup.getByRole("link", { name: "Documentation", exact: true });
+      await expect(settings).toHaveCSS("background-color", selectedFill);
+      const documentation = group.getByRole("link", { name: "Documentation", exact: true });
       await documentation.hover();
-      await expectHighlightOn(otherHighlight, documentation);
-      if (positioning === "anchors") await expect(highlight).toBeHidden();
-      else await expect(highlight).toHaveCSS("opacity", "0");
+      await expectSidebarHoverOn(documentation);
+      await expect(workflows).toHaveCSS("background-color", idleFill);
       await page.keyboard.press("Tab");
       await workflows.focus();
-      await expectHighlightOn(highlight, workflows);
+      await expectSidebarHoverOn(workflows);
+      await agents.hover();
+      await expect(agents).toHaveCSS("background-color", idleFill);
+      await expectSidebarHoverOn(workflows);
       await page.keyboard.press("Tab");
       await expect(group.getByRole("button", { name: "Workflows actions", exact: true })).toBeFocused();
       await page.keyboard.press("Tab");
       await expect(settings).toBeFocused();
-      await expectHighlightOn(highlight, settings);
-      await expect(group.getByRole("button", { name: "Tools", exact: true })).toBeDisabled();
-      expect(await highlight.evaluate((node) => Boolean(node.style.top))).toBe(positioning === "fallback");
+      await expect(settings).toHaveCSS("background-color", selectedFill);
+      await expect(disabled).toBeDisabled();
+    });
+
+    test("sidebar sliding indicators preview hover and return to the selected row", async ({ page }) => {
+      await page.goto("/primitives/sidebar");
+      await waitForReactHydration(page.getByRole("combobox", { name: "Menu highlight" }));
+      await page.getByRole("combobox", { name: "Menu highlight" }).selectOption("slide");
+      const group = page.getByRole("group", { name: "Sidebar", exact: true });
+      const highlight = group.locator('[data-control-family="track-highlight"]').first();
+      const agents = group.getByRole("button", { name: "Agents", exact: true });
+      const workflows = group.getByRole("button", { name: "Workflows", exact: true });
+      await expectHighlightOn(highlight, agents);
+      await workflows.hover();
+      await expectHighlightOn(highlight, workflows);
+      await expect(agents).toHaveAttribute("data-active", "true");
+      await page.mouse.move(0, 0);
+      await expectHighlightOn(highlight, agents);
+      await workflows.click();
+      await expect(workflows).toHaveAttribute("data-active", "true");
+      await page.mouse.move(0, 0);
+      await expectHighlightOn(highlight, workflows);
     });
 
     test("checkbox hover keeps all selections and tracks full labels", async ({ page }) => {
@@ -149,28 +176,28 @@ test("CSS hover highlight snaps to unequal rows with either motion preference", 
   await waitForReactHydration(page.getByRole("combobox", { name: "Menu highlight" }));
   await page.getByRole("combobox", { name: "Menu highlight" }).selectOption("hover");
   const group = page.getByRole("group", { name: "Sidebar", exact: true });
-  const highlight = group.locator('[data-control-family="track-highlight"]').first();
   const first = group.getByRole("button", { name: "Agents", exact: true });
   const last = group.getByRole("button", { name: "Settings", exact: true });
+  const selectedFill = await first.evaluate((node) => getComputedStyle(node).backgroundColor);
+  await last.evaluate((node) => node.style.setProperty("height", "64px"));
+  await expect(last).toHaveCSS("height", "64px");
   await first.hover();
-  await expectHighlightOn(highlight, first);
-  const lastBox = await last.boundingBox();
-  if (!lastBox) throw new Error("Sidebar row is not laid out");
+  await expect(first).toHaveCSS("background-color", selectedFill);
   await last.hover();
-  const positions = await highlight.evaluate(async (node) => {
-    const framePositions: number[] = [];
+  const frames = await last.evaluate(async (node) => {
+    const fills: string[] = [];
     for (let frame = 0; frame < 12; frame++) {
       await new Promise(requestAnimationFrame);
-      framePositions.push(node.getBoundingClientRect().y);
+      fills.push(getComputedStyle(node).backgroundColor);
     }
-    return framePositions;
+    return { fills, expected: getComputedStyle(node).getPropertyValue("--cui-sidebar-menu-button-hover-background").trim() };
   });
-  expect(positions.every((top) => Math.abs(top - lastBox.y) < 1)).toBe(true);
-  await expectHighlightOn(highlight, last);
+  expect(frames.fills.every((fill) => fill === frames.expected)).toBe(true);
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await expect(highlight).toHaveCSS("transition-duration", "0s");
   await first.hover();
-  await expectHighlightOn(highlight, first);
+  await expect(first).toHaveCSS("background-color", selectedFill);
+  await last.hover();
+  await expectSidebarHoverOn(last);
 });
 
 test("highlight works in static markup without JavaScript", async ({ page, browser }) => {
@@ -187,7 +214,7 @@ test("highlight works in static markup without JavaScript", async ({ page, brows
     const group = staticPage.getByRole("group", { name: "Sidebar", exact: true });
     const workflows = group.getByRole("button", { name: "Workflows", exact: true });
     await workflows.hover();
-    await expectHighlightOn(group.locator('[data-control-family="track-highlight"]').first(), workflows);
+    await expectSidebarHoverOn(workflows);
   } finally {
     await staticPage.close();
   }
@@ -203,7 +230,7 @@ test("anchor syntax support without transitions uses the measured fallback", asy
   });
   await page.goto("/primitives/sidebar");
   await waitForReactHydration(page.getByRole("combobox", { name: "Menu highlight" }));
-  await page.getByRole("combobox", { name: "Menu highlight" }).selectOption("hover");
+  await page.getByRole("combobox", { name: "Menu highlight" }).selectOption("slide");
   const group = page.getByRole("group", { name: "Sidebar", exact: true });
   const workflows = group.getByRole("button", { name: "Workflows", exact: true });
   const highlight = group.locator('[data-control-family="track-highlight"]').first();

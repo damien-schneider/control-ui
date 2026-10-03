@@ -58,8 +58,7 @@
   }
 
   :where(
-    [data-control-family="sidebar"]:is([data-indicator="slide"], [data-indicator="hover"])
-      [data-control-family="sidebar"][data-slot="menu-button"][data-active]
+    [data-control-family="sidebar"][data-slot="menu-button"]:is([data-indicator="slide"], [data-indicator="hover"])[data-active]
       ~ [data-slot="menu-action"]
   ) {
     color: var(--cui-sidebar-menu-button-track-active-foreground);
@@ -134,21 +133,36 @@
   }
 
   :where(
-    [data-control-family="sidebar"][data-indicator="slide"]
-      [data-control-family="sidebar"][data-slot="menu-button"]:is(:hover, :active, [data-active], [data-popup-open])
+    [data-control-family="sidebar"][data-slot="menu-button"][data-indicator="slide"]:is(:hover, :active, [data-active], [data-popup-open])
   ) {
     background-color: transparent;
   }
 
-  :where(
-    [data-control-family="sidebar"]:is([data-indicator="slide"], [data-indicator="hover"])
-      [data-control-family="sidebar"][data-slot="menu-button"][data-active]
-  ) {
+  :where([data-control-family="sidebar"][data-slot="menu-button"]:is([data-indicator="slide"], [data-indicator="hover"])[data-active]) {
     color: var(--cui-sidebar-menu-button-track-active-foreground);
   }
 
+  :where(
+    [data-control-family="sidebar"][data-slot="menu-button"][data-indicator="hover"]:focus-visible:not(
+      [data-active],
+      :disabled,
+      [data-disabled],
+      [aria-disabled="true"]
+    )
+  ) {
+    background-color: var(--cui-sidebar-menu-button-hover-background);
+    color: var(--cui-sidebar-menu-button-hover-foreground);
+    box-shadow: var(--cui-sidebar-menu-button-hover-shadow);
+  }
+
   @media (hover: hover) {
-    :where([data-control-family="sidebar"][data-indicator="hover"] [data-slot="menu-button"]:hover:not([data-active])) {
+    :where(
+        [data-control-family="sidebar"][data-slot="menu"][data-indicator="hover"]:has(
+            > [data-slot="menu-item"] > [data-slot="menu-button"]:focus-visible
+          )
+          > [data-slot="menu-item"]
+          > [data-slot="menu-button"][data-indicator="hover"]:hover:not([data-active], :focus-visible)
+      ) {
       background-color: transparent;
       box-shadow: none;
     }

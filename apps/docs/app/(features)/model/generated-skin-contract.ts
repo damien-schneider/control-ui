@@ -10926,6 +10926,12 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
+              attribute: "data-indicator",
+              source: "control-ui",
+              valueKind: "open",
+              values: [],
+            },
+            {
               attribute: "data-size",
               source: "control-ui",
               valueKind: "enum",

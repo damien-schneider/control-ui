@@ -242,6 +242,7 @@ export type EmittedStateContract = {
   "sidebar:root:data-state": "expanded" | "collapsed";
   "sidebar:root:data-variant": SidebarLayout;
   "sidebar:menu:data-indicator": SidebarSelectionIndicator;
+  "sidebar:menu-button:data-indicator": SidebarSelectionIndicator;
   "sidebar:menu-track:data-indicator": SidebarSelectionIndicator;
   "sidebar:menu-track:data-track": SidebarSelectionIndicator;
   "sidebar:menu-button:data-active": true;

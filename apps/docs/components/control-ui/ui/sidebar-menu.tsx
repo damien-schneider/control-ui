@@ -113,7 +113,7 @@ export function SidebarMenu({
 } & { style?: CSSProperties & SidebarKnobStyle }) {
   const skin = useSkin();
   const resolvedIndicator = indicator ?? skin.indicators?.sidebar ?? "none";
-  const hasHighlight = resolvedIndicator !== "none";
+  const hasHighlight = resolvedIndicator === "slide";
 
   const list = (
     <ul
@@ -211,7 +211,8 @@ export function SidebarMenuButton({
       "data-size": size,
       "data-variant": variant,
       "data-active": isActive || undefined,
-      "data-track-item": indicator !== "none" ? "" : undefined,
+      "data-indicator": indicator,
+      "data-track-item": indicator === "slide" ? "" : undefined,
       className: cn(
         "peer/menu-button flex items-center overflow-hidden text-start disabled:pointer-events-none aria-disabled:pointer-events-none [&>span]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
         className,

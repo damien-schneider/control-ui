@@ -1,7 +1,7 @@
 "use client";
 
-import type { ComponentProps, CSSProperties, KeyboardEvent, PointerEvent as ReactPointerEvent, Ref } from "react";
-import { createContext, useContext, useRef, useState } from "react";
+import type { ComponentProps, CSSProperties, KeyboardEvent, PointerEvent as ReactPointerEvent, Ref, RefObject } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { Group, Panel, Separator } from "react-resizable-panels";
 import type { ResizableKnobStyle } from "@/components/control-ui/knob-contracts/resizable-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -81,6 +81,30 @@ type FloatingResizeSession = { pointerId: number; startX: number; startSize: num
 const FLOATING_KEYBOARD_STEP_PX = 10;
 const FLOATING_ARROW_DIRECTIONS: Partial<Record<string, number>> = { ArrowLeft: -1, ArrowRight: 1 };
 
+function useResizeCursor(handleRef: RefObject<HTMLDivElement | null>, disableCursor: boolean) {
+  useEffect(() => {
+    const handle = handleRef.current;
+    if (!handle || disableCursor) return;
+    const ownerDocument = handle.ownerDocument;
+    const cursorStyle = ownerDocument.createElement("style");
+    function updateCursor() {
+      const state = handle?.getAttribute("data-separator");
+      if (state === "hover" || state === "active") {
+        const cursor = handle?.getAttribute("data-axis") === "vertical" ? "col-resize" : "row-resize";
+        cursorStyle.textContent = `*, *:hover { cursor: ${cursor} !important; }`;
+        if (!cursorStyle.isConnected) ownerDocument.head.append(cursorStyle);
+      } else cursorStyle.remove();
+    }
+    const observer = new MutationObserver(updateCursor);
+    observer.observe(handle, { attributes: true, attributeFilter: ["data-separator", "data-axis"] });
+    updateCursor();
+    return () => {
+      observer.disconnect();
+      cursorStyle.remove();
+    };
+  }, [handleRef, disableCursor]);
+}
+
 export function ResizablePanelGroup({
   className,
   orientation = "horizontal",
@@ -121,6 +145,8 @@ export function ResizableHandle({
   ...props
 }: ResizableHandleProps) {
   const { orientation, disableCursor } = useContext(ResizableGroupContext);
+  const handleRef = useRef<HTMLDivElement>(null);
+  useResizeCursor(handleRef, disableCursor);
   const axis = orientation === "horizontal" ? "vertical" : "horizontal";
   return (
     <Separator
@@ -133,6 +159,7 @@ export function ResizableHandle({
       className={cn("relative flex items-center justify-center", axis === "vertical" ? "w-px touch-pan-y" : "h-px touch-pan-x", className)}
       aria-label={ariaLabel}
       {...props}
+      elementRef={handleRef}
     >
       {withHandle ? (
         <span
@@ -171,6 +198,8 @@ export function ResizableFloatingPanel({
   const [focused, setFocused] = useState(false);
   const [resizing, setResizing] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
+  const handleRef = useRef<HTMLDivElement>(null);
+  useResizeCursor(handleRef, false);
   const resizeRef = useRef<FloatingResizeSession | null>(null);
   const size = controlledSize ?? uncontrolledSize;
   const growthPerPointerPx = side === "right" ? -1 : 1;
@@ -250,6 +279,7 @@ export function ResizableFloatingPanel({
       {children}
       {/* biome-ignore lint/a11y/useSemanticElements: focusable window splitter needs pointer and key handlers an <hr> cannot carry */}
       <div
+        ref={handleRef}
         role="separator"
         tabIndex={0}
         aria-label={handleLabel}
@@ -272,6 +302,7 @@ export function ResizableFloatingPanel({
         onPointerMove={updateResize}
         onPointerUp={endResize}
         onPointerCancel={endResize}
+        onLostPointerCapture={endResize}
         onPointerEnter={() => setHovered(true)}
         onPointerLeave={() => setHovered(false)}
         onFocus={() => setFocused(true)}
