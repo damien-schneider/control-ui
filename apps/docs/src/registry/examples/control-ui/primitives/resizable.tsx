@@ -1,15 +1,16 @@
 "use client";
 
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/control-ui/ui/resizable";
 // Three-region layout (sidebar/editor/console) on react-resizable-panels v4; right panel nests a
 // vertical group uses nested variant to stay inside one surface. Sidebar collapsible: drag past
 // minSize to snap shut. v4 gotcha: number=px, string=%, so percentages are quoted ("26%") unlike v2.
 // Handles keep default variant="solid" (always-visible hairline); see hover-handle example for fade-in one.
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/control-ui/ui/resizable";
+import { Text } from "@/components/control-ui/ui/typography";
 
 function Pane({ label, hint }: { label: string; hint?: string }) {
   return (
     <div className="flex h-full flex-col items-center justify-center gap-1 text-center">
-      <span className="text-sm font-medium text-foreground">{label}</span>
+      <Text weight="medium">{label}</Text>
       {hint ? <span className="text-caption text-muted-foreground">{hint}</span> : null}
     </div>
   );

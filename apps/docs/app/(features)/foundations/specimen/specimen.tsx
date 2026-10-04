@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { Heading } from "@/components/control-ui/ui/typography";
 import { VarTag } from "@/components/theme-drawer/controls";
 import { THEME_CONTRACT, THEME_CONTRACT_NAMES, type ThemeContractGroup } from "@/src/registry/lib/theme-contract";
 import { useContractTokens } from "./theme-readouts";
@@ -20,7 +21,9 @@ export function contractDescription(name: string) {
 export function SpecimenGroup({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div className="mt-6 grid min-w-0 gap-3">
-      <h3 className="text-heading-4 font-display text-foreground">{title}</h3>
+      <Heading level={3} size="heading-4">
+        {title}
+      </Heading>
       {children}
     </div>
   );

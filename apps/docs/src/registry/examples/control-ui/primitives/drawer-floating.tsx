@@ -32,7 +32,7 @@ export function PrimitiveFloatingDrawerExample() {
               <DrawerDescription>Inset from every edge, so all four corners keep the panel radius.</DrawerDescription>
             </DrawerHeader>
             <DrawerBody className="min-h-24 items-center justify-center px-4">
-              <div className="w-full rounded-[var(--radius-panel)] bg-foreground/4 p-4 text-center text-sm text-muted-foreground ring-1 ring-inset ring-border">
+              <div className="w-full rounded-[var(--radius-panel)] bg-foreground/4 p-4 text-center text-body text-muted-foreground ring-1 ring-inset ring-border">
                 Detached surface
               </div>
             </DrawerBody>

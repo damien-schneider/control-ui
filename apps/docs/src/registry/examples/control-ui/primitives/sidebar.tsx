@@ -27,6 +27,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/control-ui/ui/sidebar";
+import { Heading } from "@/components/control-ui/ui/typography";
 
 const workspaceItems = [
   { title: "Agents", icon: SparklesIcon, size: "default", disabled: false, unread: 3 },
@@ -202,7 +203,9 @@ function Workspace({
         <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-auto p-5">
           <div>
             <p className="text-caption text-muted-foreground">Acme workspace</p>
-            <h3 className="mt-1 text-heading-3 font-semibold">{active}</h3>
+            <Heading level={3} className="mt-1">
+              {active}
+            </Heading>
           </div>
           <div className="rounded-(--radius-panel) border border-border p-4">
             <p className="text-label font-medium">Your workspace, at a glance</p>

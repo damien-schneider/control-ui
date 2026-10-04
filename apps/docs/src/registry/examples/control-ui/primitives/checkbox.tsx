@@ -7,7 +7,7 @@ import { Checkbox } from "@/components/control-ui/ui/checkbox";
 
 function Row({ id, label, children }: { id: string; label: string; children: ReactNode }) {
   return (
-    <div className="flex items-center gap-2.5 text-[13px] font-medium text-foreground">
+    <div className="flex items-center gap-2.5 text-body font-medium text-foreground">
       {children}
       <label htmlFor={id}>{label}</label>
     </div>

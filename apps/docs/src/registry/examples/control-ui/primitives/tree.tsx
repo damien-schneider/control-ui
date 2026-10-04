@@ -9,7 +9,7 @@ export function PrimitiveTreeExample() {
       indicator="slide"
       defaultExpandedValue={["src", "src/lib"]}
       defaultValue={["src/app.tsx"]}
-      className="w-full max-w-xs text-sm"
+      className="w-full max-w-xs text-body"
     >
       <TreeItem value="src">
         <TreeItemTrigger>

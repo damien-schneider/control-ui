@@ -3,6 +3,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import { ButtonLink } from "@/components/control-ui/ui/button";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia } from "@/components/control-ui/ui/empty";
+import { Heading } from "@/components/control-ui/ui/typography";
 
 export default function NotFound() {
   return (
@@ -11,7 +12,9 @@ export default function NotFound() {
         <EmptyMedia>
           <HugeiconsIcon aria-hidden icon={FileNotFoundIcon} strokeWidth={1.7} />
         </EmptyMedia>
-        <h1 className="text-balance text-heading-3 text-foreground">We couldn’t find that page</h1>
+        <Heading level={1} size="heading-3">
+          We couldn’t find that page
+        </Heading>
         <EmptyDescription className="text-pretty">
           The URL may be outdated, or the page moved while the library was reorganised.
         </EmptyDescription>

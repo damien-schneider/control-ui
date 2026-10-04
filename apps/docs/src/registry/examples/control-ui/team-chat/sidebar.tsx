@@ -77,7 +77,7 @@ export function TeamChatSidebar({ activeId, onSelect }: { activeId: string; onSe
               return (
                 <SidebarMenuItem key={personId}>
                   <SidebarMenuButton isActive={personId === activeId} onClick={() => onSelect(personId)}>
-                    <PersonAvatar person={person} className="size-5 text-[0.5625rem]" />
+                    <PersonAvatar person={person} className="size-5 text-micro" />
                     <span className={unread > 0 ? "font-semibold text-sidebar-foreground" : undefined}>{person.name}</span>
                   </SidebarMenuButton>
                   {unread > 0 ? (

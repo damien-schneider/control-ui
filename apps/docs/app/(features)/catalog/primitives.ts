@@ -2203,13 +2203,15 @@ export const primitiveEntries = [
     category: "content",
     kind: "Primitive",
     name: "Typography",
-    summary: "The token-driven type scale — one --text-* rung per size, named by role. Publish the utilities, not a component.",
+    summary:
+      "Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role. Native tags may still wear one text-* rung directly.",
     shadcnDocsUrl: "https://ui.shadcn.com/docs/components/typography",
     paths: {
       registry: {
-        target: "components/control-ui/styles/type-scale.css",
+        target: "components/control-ui/ui/typography.tsx",
         example: sourceFile("Type specimen", "src/registry/examples/control-ui/primitives/typography.tsx", "example"),
-        source: sourceFile("Type scale", "src/registry/examples/control-ui/primitives/type-scale.css", "tokens"),
+        source: sourceFile("Heading and Text", "src/registry/sources/control-ui/ui/typography.tsx", "component"),
+        supportFiles: [sourceFile("Type scale", "src/registry/examples/control-ui/primitives/type-scale.css", "tokens")],
         registryKind: "typography",
       },
     },

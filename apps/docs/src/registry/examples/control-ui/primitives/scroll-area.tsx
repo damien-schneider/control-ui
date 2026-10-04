@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const changelog = [
   "Streamed the first tokens back to the client.",
@@ -23,7 +24,7 @@ export function PrimitiveScrollAreaExample() {
   return (
     <div className="flex w-full max-w-sm flex-col gap-6">
       <ScrollArea maxHeight="200px">
-        <ol className="flex flex-col gap-2 p-4 text-sm text-muted-foreground">
+        <ol className="flex flex-col gap-2 p-4 text-body text-muted-foreground">
           {changelog.map((line, index) => (
             <li key={line} className="flex gap-2">
               <span className="shrink-0 tabular-nums text-foreground/40">{String(index + 1).padStart(2, "0")}</span>
@@ -43,10 +44,10 @@ export function PrimitiveScrollAreaExample() {
           ))}
         </ol>
       </ScrollArea>
-      <p className="text-xs text-muted-foreground">
+      <Text as="p" size="label" tone="muted">
         viewportClassName controls viewport padding and scrolling. Put flex or grid on a child container: the viewport contains an internal
         content wrapper. lockAxis="y" prevents vertical scrolling.
-      </p>
+      </Text>
     </div>
   );
 }
@@ -61,7 +62,9 @@ export function ScrollAreaGutterExample() {
       </Button>
       <ScrollArea aria-label="Stable scrollbar gutter" className="h-48" scrollbarVisibility="always" scrollbarGutter="stable" mask={false}>
         <div className={overflow ? "h-96 w-[36rem] p-4" : "p-4"}>
-          <p className="text-sm text-muted-foreground">The scrollbar tracks keep their space when content fits.</p>
+          <Text as="p" tone="muted">
+            The scrollbar tracks keep their space when content fits.
+          </Text>
         </div>
       </ScrollArea>
     </div>

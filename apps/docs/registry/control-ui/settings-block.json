@@ -17,7 +17,8 @@
     "live-status",
     "motion",
     "scroll-area",
-    "sidebar"
+    "sidebar",
+    "typography"
   ],
   "files": [
     {

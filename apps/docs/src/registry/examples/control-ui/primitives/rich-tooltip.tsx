@@ -43,7 +43,7 @@ export function PrimitiveRichTooltipExample() {
       <button
         type="button"
         onClick={() => setStep(steps[0])}
-        className="h-8 cursor-pointer rounded-[var(--radius-control)] px-3 text-sm text-muted-foreground ring-1 ring-inset ring-border transition hover:bg-foreground/5"
+        className="h-8 cursor-pointer rounded-[var(--radius-control)] px-3 text-body text-muted-foreground ring-1 ring-inset ring-border transition hover:bg-foreground/5"
       >
         Replay the tour
       </button>

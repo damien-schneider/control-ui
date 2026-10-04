@@ -3167,7 +3167,8 @@
         "http://127.0.0.1:3000/r/separator.json",
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
-        "http://127.0.0.1:3000/r/tooltip.json"
+        "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/typography.json"
       ],
       "files": [
         {
@@ -5470,7 +5471,8 @@
         "http://127.0.0.1:3000/r/live-status.json",
         "http://127.0.0.1:3000/r/motion.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
-        "http://127.0.0.1:3000/r/sidebar.json"
+        "http://127.0.0.1:3000/r/sidebar.json",
+        "http://127.0.0.1:3000/r/typography.json"
       ],
       "files": [
         {
@@ -6916,9 +6918,9 @@
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "typography",
-      "type": "registry:style",
+      "type": "registry:ui",
       "title": "Typography",
-      "description": "The token-driven type scale — one --text-* rung per size, named by role. Publish the utilities, not a component.",
+      "description": "Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role. Native tags may still wear one text-* rung directly.",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -6928,6 +6930,11 @@
           "path": "src/registry/examples/control-ui/primitives/type-scale.css",
           "target": "@components/control-ui/styles/type-scale.css",
           "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/typography.tsx",
+          "target": "@components/control-ui/ui/typography.tsx",
+          "type": "registry:ui"
         }
       ],
       "css": {

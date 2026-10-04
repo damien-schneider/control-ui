@@ -2,7 +2,6 @@
 
 import { Braces, FileCode2 } from "lucide-react";
 import { useState } from "react";
-
 import {
   Dropzone,
   DropzoneArea,
@@ -13,6 +12,7 @@ import {
   DropzoneRejectionList,
   DropzoneStatus,
 } from "@/components/control-ui/ui/dropzone";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const workspacePolicy: DropzonePolicy = {
   accept: {
@@ -55,11 +55,11 @@ export function PrimitiveDropzoneOverlayExample() {
       <DropzoneInput />
       <DropzoneArea>
         <div className="relative min-h-64 overflow-hidden rounded-[var(--radius-panel)] border border-border bg-card p-5">
-          <div className="flex items-center gap-2 border-b border-border pb-3 text-sm font-medium text-foreground">
+          <div className="flex items-center gap-2 border-b border-border pb-3 text-body font-medium text-foreground">
             <Braces className="size-4 text-muted-foreground" aria-hidden="true" />
             Configuration workspace
           </div>
-          <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
+          <div className="mt-4 flex items-center gap-2 text-body text-muted-foreground">
             <FileCode2 className="size-4" aria-hidden="true" />
             Drop JSON or CSS anywhere on this workspace.
           </div>
@@ -69,9 +69,9 @@ export function PrimitiveDropzoneOverlayExample() {
       <DropzoneFileList />
       <DropzoneRejectionList />
       {intakeError ? (
-        <p role="alert" className="mt-3 text-sm text-destructive-text">
+        <Text as="p" role="alert" tone="destructive" className="mt-3">
           {intakeError}
-        </p>
+        </Text>
       ) : null}
       <DropzoneStatus className="sr-only" />
     </Dropzone>

@@ -30,12 +30,18 @@ const skins = readdirSync(SKIN_PACKS_DIR)
   .sort()
   .map((id) => ({ id, root: postcss.parse(readCssWithImports(path.join(SKIN_PACKS_DIR, id, "skin.css"))) }));
 
-const recipeOptionalCatalogIds = ["aspect-ratio", "checkbox-group", "email", "form", "live-status", "responsive-dialog"] as const;
+const recipeOptionalCatalogIds = [
+  "aspect-ratio",
+  "checkbox-group",
+  "email",
+  "form",
+  "live-status",
+  "responsive-dialog",
+  "typography",
+] as const;
 const catalogComponentSources = [
   ...componentEntries.map((entry) => ({ id: entry.id, source: entry.paths.source.path })),
-  ...primitiveEntries
-    .filter((entry) => entry.id !== "typography")
-    .map((entry) => ({ id: entry.id, source: entry.paths.registry.source.path })),
+  ...primitiveEntries.map((entry) => ({ id: entry.id, source: entry.paths.registry.source.path })),
 ];
 function knobsWithRepeatedFamilyPrefix(knobs: readonly string[]): string[] {
   return knobs.filter((knob) => {

@@ -21,7 +21,7 @@ export function PrimitiveEmojiPickerExample() {
   const [recentEmoji, setRecentEmoji] = useState<Emoji[]>(initialRecentEmoji);
 
   return (
-    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+    <div className="flex items-center gap-3 text-body text-muted-foreground">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger render={<Button variant="surface" iconOnly aria-label="Add reaction" />}>
           <SmilePlusIcon aria-hidden="true" />

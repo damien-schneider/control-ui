@@ -11,7 +11,7 @@ export function PrimitiveCollapsibleExample() {
         Reasoning steps
       </CollapsibleTrigger>
       <CollapsibleContent>
-        <div className="mt-1 space-y-1.5 px-3 py-1 text-sm text-muted-foreground">
+        <div className="mt-1 space-y-1.5 px-3 py-1 text-body text-muted-foreground">
           <p>Parsed the request and grouped the constraints.</p>
           <p>Checked each candidate against the contract.</p>
           <p>Kept the smallest change that satisfied all of them.</p>

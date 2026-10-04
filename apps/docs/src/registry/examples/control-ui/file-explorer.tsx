@@ -32,6 +32,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
 } from "@/components/control-ui/ui/dropdown-menu";
+import { Heading } from "@/components/control-ui/ui/typography";
 
 const projectFiles = [
   {
@@ -49,7 +50,9 @@ const projectFiles = [
       <div className="overflow-hidden rounded-[var(--radius-panel)] border bg-card text-start shadow-sm">
         <div className="border-b px-4 py-2 text-caption font-medium text-muted-foreground">README.md</div>
         <div className="space-y-3 p-4">
-          <h3 className="text-heading-4 font-semibold">Control UI</h3>
+          <Heading level={3} size="heading-4">
+            Control UI
+          </Heading>
           <p className="text-caption text-muted-foreground">
             An owned-source component registry for polished agent interfaces, complete blocks, and swappable skins.
           </p>

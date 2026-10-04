@@ -44,7 +44,7 @@ function SurfaceSwatch({ role }: { role: string }) {
   return (
     <Specimen token={role} companionTokens={pairedForegrounds} description={contractDescription(role)}>
       <div
-        className="grid h-20 place-items-center rounded-[var(--radius-panel)] text-heading-3 font-display ring-1 ring-inset ring-border"
+        className="grid h-20 place-items-center rounded-[var(--radius-panel)] text-heading-3 ring-1 ring-inset ring-border"
         style={{ background: `var(${role})`, color: `var(${foreground})` }}
       >
         Aa

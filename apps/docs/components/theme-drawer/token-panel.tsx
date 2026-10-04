@@ -131,7 +131,7 @@ export function TokenPanel({
     <section id="theme-tokens" aria-labelledby="theme-tokens-title" className="flex min-w-0 flex-col gap-4">
       <header className="min-w-0">
         <div className="flex flex-wrap items-center gap-2">
-          <h2 id="theme-tokens-title" className="text-heading-4 font-semibold text-foreground">
+          <h2 id="theme-tokens-title" className="text-heading-4">
             {category.title}
           </h2>
           {touched > 0 ? <Badge size="sm">{touched} edited</Badge> : null}

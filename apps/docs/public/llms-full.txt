@@ -163,7 +163,7 @@
 - `tree` (Tree) — Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure. — `npx shadcn@latest add http://127.0.0.1:3000/r/tree.json`
 
 **Content** — Render a document you authored or generated, from prose to code to email.
-- `typography` (Typography) — The token-driven type scale — one --text-* rung per size, named by role. Publish the utilities, not a component. — `npx shadcn@latest add http://127.0.0.1:3000/r/typography.json`
+- `typography` (Typography) — Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role. Native tags may still wear one text-* rung directly. — `npx shadcn@latest add http://127.0.0.1:3000/r/typography.json`
 - `code` (Code) — Shared code surface: Shiki-highlighted lines, gutter, clean copy, editable content, and virtualization for large files. — `npx shadcn@latest add http://127.0.0.1:3000/r/code.json`
 - `code-diff` (Code Diff) — Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting. — `npx shadcn@latest add http://127.0.0.1:3000/r/code-diff.json`
 - `markdown` (Markdown) — Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff. — `npx shadcn@latest add http://127.0.0.1:3000/r/markdown.json`

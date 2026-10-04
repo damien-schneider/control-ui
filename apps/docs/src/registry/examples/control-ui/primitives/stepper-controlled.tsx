@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-
 import { Button } from "@/components/control-ui/ui/button";
 import {
   Stepper,
@@ -14,6 +13,7 @@ import {
   StepperTitle,
   StepperTrigger,
 } from "@/components/control-ui/ui/stepper";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function PrimitiveControlledStepperExample() {
   const [step, setStep] = useState(0);
@@ -47,13 +47,19 @@ export function PrimitiveControlledStepperExample() {
       </StepperList>
 
       <StepperContent step={0}>
-        <p className="text-sm text-muted-foreground">Add the public details used to identify this project across the workspace.</p>
+        <Text as="p" tone="muted">
+          Add the public details used to identify this project across the workspace.
+        </Text>
       </StepperContent>
       <StepperContent step={1}>
-        <p className="text-sm text-muted-foreground">Invite collaborators and decide which team members can edit the project.</p>
+        <Text as="p" tone="muted">
+          Invite collaborators and decide which team members can edit the project.
+        </Text>
       </StepperContent>
       <StepperContent step={2}>
-        <p className="text-sm text-muted-foreground">Review the project configuration and publish when everything looks right.</p>
+        <Text as="p" tone="muted">
+          Review the project configuration and publish when everything looks right.
+        </Text>
       </StepperContent>
 
       <div className="mt-4 flex items-center gap-2">

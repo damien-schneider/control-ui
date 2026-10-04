@@ -7,6 +7,7 @@ import { Preview, PrimitivePreview } from "@/app/(features)/components/previews"
 import { StatusBadge } from "@/app/(features)/components/status";
 import type { CatalogGalleryGroup, CatalogGalleryItem } from "@/app/(features)/model/catalog-gallery";
 import { useDocsIntegration } from "@/app/(features)/page-templates/integration";
+import { Heading } from "@/components/control-ui/ui/typography";
 import { PageHeader } from "./shared";
 
 export function CatalogGalleryPage({
@@ -29,7 +30,7 @@ export function CatalogGalleryPage({
         {groups.map((group) => (
           <section key={group.id} id={group.id} className="min-w-0 scroll-mt-20">
             <div className="mb-5 grid max-w-2xl gap-1.5">
-              <h2 className="font-display text-heading-2 text-balance">{group.title}</h2>
+              <Heading level={2}>{group.title}</Heading>
               <p className="text-body-sm text-pretty text-muted-foreground">{group.summary}</p>
             </div>
             <div className="grid min-w-0 gap-x-4 gap-y-8 @2xl/gallery:grid-cols-2 @4xl/gallery:grid-cols-3">

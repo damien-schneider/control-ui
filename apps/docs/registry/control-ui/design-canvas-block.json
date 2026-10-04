@@ -21,7 +21,8 @@
     "separator",
     "toggle",
     "toolbar",
-    "tooltip"
+    "tooltip",
+    "typography"
   ],
   "files": [
     {

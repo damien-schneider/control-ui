@@ -71,9 +71,7 @@ function renderMastraTurn(from: "user" | "assistant", children: ReactNode, state
       <ChatMessage from={from} density="compact" state={state}>
         <ChatMessageRow className="py-0">
           <ChatMessageBody className={from === "assistant" ? "max-w-full flex-1" : undefined}>
-            <ChatMessageContent className={from === "assistant" ? "overflow-visible text-sm leading-7" : "text-sm leading-6"}>
-              {children}
-            </ChatMessageContent>
+            <ChatMessageContent className={from === "assistant" ? "overflow-visible" : undefined}>{children}</ChatMessageContent>
           </ChatMessageBody>
         </ChatMessageRow>
       </ChatMessage>
@@ -105,7 +103,7 @@ function PreviewConversation({ onEdit }: { onEdit: (value: string) => void }) {
           <ChatMessage from="user" density="compact">
             <ChatMessageRow className="py-0">
               <ChatMessageBody className="max-w-full">
-                <ChatMessageContent className="text-sm leading-6">{userPrompt}</ChatMessageContent>
+                <ChatMessageContent>{userPrompt}</ChatMessageContent>
               </ChatMessageBody>
             </ChatMessageRow>
           </ChatMessage>
@@ -129,7 +127,7 @@ function PreviewConversation({ onEdit }: { onEdit: (value: string) => void }) {
         <ChatMessage from="assistant" density="compact">
           <ChatMessageRow className="py-0">
             <ChatMessageBody className="max-w-full flex-1">
-              <ChatMessageContent className="overflow-visible text-sm leading-7">
+              <ChatMessageContent className="overflow-visible">
                 <p>{assistantLead}</p>
                 <MarkdownBlock code={noteMarkdown}>
                   <MarkdownBlockHeader>

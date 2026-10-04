@@ -115,6 +115,7 @@ export const generatedSkinContract: SkinContract = {
     "transcript-divider": ["transcript-divider"],
     tree: ["tree"],
     "trigger-menu": ["trigger-menu"],
+    typography: ["typography"],
     "user-ask": ["user-ask"],
   },
   scopes: {
@@ -13462,6 +13463,21 @@ export const generatedSkinContract: SkinContract = {
         },
       },
       registryItems: ["trigger-menu"],
+    },
+    typography: {
+      parts: {
+        heading: {
+          family: "typography",
+          registryItems: ["typography"],
+          states: [],
+        },
+        text: {
+          family: "typography",
+          registryItems: ["typography"],
+          states: [],
+        },
+      },
+      registryItems: ["typography"],
     },
     "user-ask": {
       parts: {

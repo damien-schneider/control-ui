@@ -81,7 +81,7 @@ export function SkinFileStack() {
         <FlowArrow className="hidden md:grid" />
         <FlowArrow direction="down" className="md:hidden" />
         <div className="grid place-items-center rounded-lg bg-primary/8 p-5 text-center ring-1 ring-primary/20">
-          <div className="grid size-16 place-items-center rounded-[max(0px,calc(var(--radius-lg)-1.25rem))] bg-background font-display text-heading-3 ring-1 ring-border">
+          <div className="grid size-16 place-items-center rounded-[max(0px,calc(var(--radius-lg)-1.25rem))] bg-background text-heading-3 ring-1 ring-border">
             UI
           </div>
           <div className="mt-3 font-medium text-label">One component tree</div>

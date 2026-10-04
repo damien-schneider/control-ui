@@ -14,6 +14,7 @@ import {
   ContextMenuSubTrigger,
   ContextMenuTrigger,
 } from "@/components/control-ui/ui/context-menu";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function PrimitiveContextMenuExample() {
   const [lastAction, setLastAction] = useState("No action yet");
@@ -23,7 +24,7 @@ export function PrimitiveContextMenuExample() {
       <ContextMenu>
         <ContextMenuTrigger className="grid min-h-56 place-items-center rounded-[var(--radius-panel)] bg-canvas text-center ring-1 ring-border/70">
           <div className="grid gap-1">
-            <span className="text-sm font-medium">Canvas surface</span>
+            <Text weight="medium">Canvas surface</Text>
             <span className="text-caption text-muted-foreground">Right-click or long-press anywhere here</span>
           </div>
         </ContextMenuTrigger>

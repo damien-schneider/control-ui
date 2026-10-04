@@ -301,7 +301,7 @@ export function CodingAgentEmptyState({
       <div className="mb-5 flex size-11 items-center justify-center rounded-2xl border bg-card text-muted-foreground shadow-sm">
         {icon ?? <BotIcon className="size-5" aria-hidden="true" />}
       </div>
-      <h2 className="text-balance text-heading-3 sm:text-heading-2">{title}</h2>
+      <h2 className="text-heading-3 sm:text-heading-2">{title}</h2>
       {description ? <p className="mt-2 max-w-xl text-pretty text-body text-muted-foreground">{description}</p> : null}
       {suggestions.length > 0 ? (
         <div className="mt-8 grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">

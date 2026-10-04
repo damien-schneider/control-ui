@@ -293,7 +293,7 @@ function componentDefinitions(): Definition[] {
 function primitiveDefinitions(): Definition[] {
   return primitiveEntries.map<Definition>((entry) => ({
     id: entry.id,
-    type: entry.id === "typography" ? "registry:style" : "registry:ui",
+    type: "registry:ui",
     title: entry.name,
     description: entry.summary,
     seeds: [entry.paths.registry.source.path, ...supportFilePaths(entry.paths.registry)],

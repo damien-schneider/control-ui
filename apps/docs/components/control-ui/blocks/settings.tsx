@@ -36,6 +36,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/control-ui/ui/sidebar";
+import { Heading } from "@/components/control-ui/ui/typography";
 import {
   type SettingDefinition,
   type SettingsControlProps,
@@ -323,10 +324,11 @@ function SettingsSearchNavigation({
 
 function SettingsPage({ page, instanceId }: { page: SettingsPageDefinition; instanceId: string }) {
   const { layout } = useSidebar();
-  const Heading = layout === "contained" ? "h2" : "h1";
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col gap-10 px-5 py-8 md:px-10 md:py-12">
-      <Heading className="text-heading-2 text-foreground text-balance">{page.title}</Heading>
+      <Heading level={layout === "contained" ? 2 : 1} size="heading-2">
+        {page.title}
+      </Heading>
       {page.sections.map((section) => (
         <FieldSet key={section.id} className="gap-3">
           <FieldLegend className="text-body font-semibold">{section.title}</FieldLegend>

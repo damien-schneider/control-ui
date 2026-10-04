@@ -4,7 +4,6 @@ import { ChevronsUpDown } from "lucide-react";
 import type { ReactNode } from "react";
 import { useState } from "react";
 import { Button } from "@/components/control-ui/ui/button";
-
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -21,6 +20,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/control-ui/ui/dropdown-menu";
+import { Text } from "@/components/control-ui/ui/typography";
 
 function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
@@ -73,9 +73,9 @@ export function PrimitiveDropdownMenuExample() {
             <DropdownMenuItem>Workspace settings</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        <p className="text-xs text-muted-foreground">
+        <Text as="p" size="label" tone="muted">
           The trigger already owns button styling. Set size and variant on DropdownMenuTrigger, including when composing with render.
-        </p>
+        </Text>
       </Row>
       <DropdownMenuChoicesExample />
       <span className="text-caption text-muted-foreground">{last ? `Last action: ${last}` : "No action yet"}</span>

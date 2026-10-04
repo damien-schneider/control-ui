@@ -261,9 +261,7 @@ function ActiveTask({ prompt, isRunning }: { prompt: string; isRunning: boolean 
           <ChatMessage from="assistant" density="compact">
             <ChatMessageRow className="py-0">
               <ChatMessageBody className="max-w-full flex-1">
-                <ChatMessageContent className="text-sm leading-7">
-                  The workspace shell is ready. Choose another task or send a follow-up to continue.
-                </ChatMessageContent>
+                <ChatMessageContent>The workspace shell is ready. Choose another task or send a follow-up to continue.</ChatMessageContent>
               </ChatMessageBody>
             </ChatMessageRow>
           </ChatMessage>

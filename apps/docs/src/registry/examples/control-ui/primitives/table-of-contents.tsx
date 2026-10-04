@@ -2,6 +2,7 @@
 
 import type { TocItem } from "@/components/control-ui/ui/table-of-contents";
 import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 
 type ExampleSection = Omit<TocItem, "children" | "level"> & {
   body: string;
@@ -106,8 +107,10 @@ export function PrimitiveTableOfContentsExample() {
 function PreviewSection({ section }: { section: ExampleSection }) {
   return (
     <section id={section.href.slice(1)} className="scroll-mt-4 pb-8 last:pb-24">
-      <SectionHeading level={section.level}>{section.label}</SectionHeading>
-      <p className="mt-2 text-sm leading-6 text-muted-foreground">{section.body}</p>
+      <Heading level={section.level}>{section.label}</Heading>
+      <Text as="p" tone="muted" className="mt-2 leading-6">
+        {section.body}
+      </Text>
       {section.children ? (
         <div className={section.level === 2 ? "mt-6 grid gap-5" : "mt-4 grid gap-4"}>
           {section.children.map((child) => (
@@ -117,10 +120,4 @@ function PreviewSection({ section }: { section: ExampleSection }) {
       ) : null}
     </section>
   );
-}
-
-function SectionHeading({ level, children }: { level: ExampleSection["level"]; children: string }) {
-  if (level === 2) return <h2 className="text-xl font-semibold tracking-tight text-foreground">{children}</h2>;
-  if (level === 3) return <h3 className="text-base font-semibold text-foreground">{children}</h3>;
-  return <h4 className="text-sm font-medium text-foreground">{children}</h4>;
 }

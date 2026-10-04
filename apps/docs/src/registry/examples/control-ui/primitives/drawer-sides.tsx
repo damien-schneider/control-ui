@@ -32,7 +32,7 @@ export function PrimitiveDrawerSidesExample() {
               <DrawerDescription>Swipe toward the {side} edge or use the close action to dismiss.</DrawerDescription>
             </DrawerHeader>
             <DrawerBody className="min-h-24 items-center justify-center px-4">
-              <div className="w-full rounded-[var(--radius-panel)] bg-foreground/4 p-4 text-center text-sm text-muted-foreground ring-1 ring-inset ring-border">
+              <div className="w-full rounded-[var(--radius-panel)] bg-foreground/4 p-4 text-center text-body text-muted-foreground ring-1 ring-inset ring-border">
                 Edge-aligned content
               </div>
             </DrawerBody>

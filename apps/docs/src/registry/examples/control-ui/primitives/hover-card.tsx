@@ -1,20 +1,23 @@
 "use client";
 
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/control-ui/ui/hover-card";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function PrimitiveHoverCardExample() {
   return (
-    <div className="max-w-sm text-sm leading-relaxed text-foreground">
+    <div className="max-w-sm text-body leading-relaxed text-foreground">
       Shipped by{" "}
       <HoverCard>
         <HoverCardTrigger href="#">@ada</HoverCardTrigger> and the platform team.
         <HoverCardContent align="start">
           <div className="flex gap-3">
-            <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
+            <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary text-body font-semibold text-primary-foreground">
               AL
             </span>
             <div className="min-w-0">
-              <p className="text-sm font-semibold text-foreground">Ada Lovelace</p>
+              <Text as="p" weight="semibold">
+                Ada Lovelace
+              </Text>
               <p className="text-caption text-muted-foreground">@ada · Platform</p>
               <p className="mt-2 text-caption leading-relaxed text-muted-foreground">
                 Building the agent UI registry. Occasionally writes the first program.

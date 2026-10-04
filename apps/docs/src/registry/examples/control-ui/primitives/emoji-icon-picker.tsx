@@ -12,6 +12,7 @@ import {
 import { EmojiPickerCategories, EmojiPickerContent, EmojiPickerRecent, EmojiPickerSearch } from "@/components/control-ui/ui/emoji-picker";
 import { IconPickerColors, IconPickerContent, IconPickerSearch } from "@/components/control-ui/ui/icon-picker";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/control-ui/ui/popover";
+import { Text } from "@/components/control-ui/ui/typography";
 import { initialRecentEmoji, rememberEmoji } from "./emoji-picker-data";
 import { pickerColors, pickerIcons } from "./picker-data";
 
@@ -69,9 +70,9 @@ export function PrimitiveEmojiIconPickerExample() {
           </EmojiIconPicker>
         </PopoverContent>
       </Popover>
-      <span className="text-sm text-muted-foreground" aria-live="polite">
+      <Text tone="muted" aria-live="polite">
         {symbol.kind === "emoji" ? symbol.emoji.label : selectedIcon?.label}
-      </span>
+      </Text>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { AlertCircleIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia } from "@/components/control-ui/ui/empty";
+import { Heading } from "@/components/control-ui/ui/typography";
 import "./globals.css";
 
 export default function GlobalError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
@@ -16,7 +17,9 @@ export default function GlobalError({ error, reset }: { error: Error & { digest?
               <EmptyMedia>
                 <HugeiconsIcon aria-hidden icon={AlertCircleIcon} strokeWidth={1.7} />
               </EmptyMedia>
-              <h1 className="text-balance text-heading-3 text-foreground">Control UI could not start</h1>
+              <Heading level={1} size="heading-3">
+                Control UI could not start
+              </Heading>
               <EmptyDescription className="text-pretty">
                 The documentation shell failed to render. Retrying usually clears it.
               </EmptyDescription>

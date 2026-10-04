@@ -21,7 +21,7 @@ export function PrimitivePopoverExample() {
             <PopoverTitle>Dimensions</PopoverTitle>
             <PopoverDescription>Set the width and height for the layer.</PopoverDescription>
           </PopoverHeader>
-          <div className="grid grid-cols-[1fr_auto] items-center gap-2 text-sm">
+          <div className="grid grid-cols-[1fr_auto] items-center gap-2 text-body">
             <label htmlFor="popover-width" className="text-muted-foreground">
               Width
             </label>

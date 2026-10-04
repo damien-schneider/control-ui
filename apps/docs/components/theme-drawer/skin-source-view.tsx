@@ -142,7 +142,7 @@ export function SkinSourcePanel({ skin, source, onRetry }: { skin: SkinId; sourc
     <section id="theme-skin" aria-label={`${meta.label} source`} className="@container/source flex min-w-0 flex-col gap-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <h2 className="text-heading-4 font-display">Skin source</h2>
+          <h2 className="text-heading-4">Skin source</h2>
           <Badge variant="outline" size="sm">
             Read only
           </Badge>

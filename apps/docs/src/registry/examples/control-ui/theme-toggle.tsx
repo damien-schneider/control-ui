@@ -2,6 +2,7 @@
 
 import { type ReactNode, useState } from "react";
 import { ThemeDropdown, type ThemeMode, ThemeSegmentedSwitch, ThemeSwitch, ThemeToggle } from "@/components/control-ui/blocks/theme-toggle";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const themeLabels: Record<ThemeMode, string> = {
   light: "Light",
@@ -19,8 +20,12 @@ function ControlRow({ label, detail, children }: { label: string; detail: string
   return (
     <div className="flex min-h-12 flex-wrap items-center justify-between gap-3 rounded-[var(--radius-panel)] border border-border bg-card px-3 py-2 text-card-foreground">
       <div className="min-w-0">
-        <div className="text-sm font-medium">{label}</div>
-        <div className="text-xs text-muted-foreground">{detail}</div>
+        <Text as="div" weight="medium">
+          {label}
+        </Text>
+        <Text as="div" size="label" tone="muted">
+          {detail}
+        </Text>
       </div>
       {children}
     </div>
@@ -34,8 +39,10 @@ export function ThemeToggleExample() {
     <div className="w-full max-w-xl rounded-[var(--radius-panel)] border border-border bg-background p-4 text-foreground shadow-pop">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex min-w-0 flex-col gap-0.5">
-          <span className="text-sm font-semibold">Appearance</span>
-          <span className="text-xs text-muted-foreground">{themeStatus[theme]}</span>
+          <Text weight="semibold">Appearance</Text>
+          <Text size="label" tone="muted">
+            {themeStatus[theme]}
+          </Text>
         </div>
         <ThemeDropdown value={theme} onValueChange={setTheme} />
       </div>

@@ -7,7 +7,7 @@ import { Switch } from "@/components/control-ui/ui/switch";
 
 function Row({ htmlFor, label, children }: { htmlFor: string; label: string; children: ReactNode }) {
   return (
-    <div className="flex items-center justify-between gap-4 text-[13px] font-medium text-foreground">
+    <div className="flex items-center justify-between gap-4 text-body font-medium text-foreground">
       <label htmlFor={htmlFor}>{label}</label>
       {children}
     </div>

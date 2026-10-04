@@ -161,7 +161,7 @@ export function TeamChatMessage({ message, continuation, onToggleReaction, onOpe
             <ChatMessageReplySummary onClick={(event) => onOpenThread(event.currentTarget)}>
               <AvatarGroup aria-hidden="true" className="-space-x-1.5">
                 {repliers.map((person) => (
-                  <Avatar key={person.id} className="size-5 text-[0.5625rem]">
+                  <Avatar key={person.id} className="size-5 text-micro">
                     <AvatarFallback>{person.initials}</AvatarFallback>
                   </Avatar>
                 ))}

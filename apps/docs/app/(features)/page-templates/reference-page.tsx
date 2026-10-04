@@ -4,6 +4,7 @@ import { docsPageForPath } from "@/app/(features)/catalog/pages";
 import { getDocsData } from "@/app/(features)/model/data";
 import { guideNavSections } from "@/app/(features)/sidebar/nav-items";
 import { Card } from "@/components/control-ui/ui/card";
+import { Heading } from "@/components/control-ui/ui/typography";
 
 export function ReferencePage() {
   const sections = guideNavSections(getDocsData().guides).reference.map((group) => ({
@@ -18,13 +19,15 @@ export function ReferencePage() {
   return (
     <section className="docs-article">
       <div className="text-caption font-medium text-muted-foreground">Docs</div>
-      <h1 className="mt-2 text-display font-display text-balance">{referenceOverview.name}</h1>
+      <Heading level={1} size="display" className="mt-2">
+        {referenceOverview.name}
+      </Heading>
       <p className="mt-3 text-body-lg text-pretty text-muted-foreground">{referenceOverview.summary}</p>
 
       <div className="mt-10 grid min-w-0 gap-10">
         {sections.map((section) => (
           <section key={section.id} id={section.id} className="min-w-0 scroll-mt-20">
-            <h2 className="text-heading-2 font-display text-balance">{section.title}</h2>
+            <Heading level={2}>{section.title}</Heading>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
               {section.entries.map((entry) => (
                 <Link key={entry.id} href={entry.href} className="group block min-w-0">

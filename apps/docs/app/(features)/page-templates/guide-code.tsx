@@ -8,6 +8,7 @@ import type { GuideSection as GuideSectionData, IntegrationId } from "@/app/(fea
 import { cn } from "@/components/control-ui/lib/cn";
 import { Card } from "@/components/control-ui/ui/card";
 import { MarkdownFlow } from "@/components/control-ui/ui/markdown";
+import { Heading } from "@/components/control-ui/ui/typography";
 import { IntegrationSelect, integrationChangesCode } from "./integration";
 
 type GuideCodeKind = NonNullable<GuideSectionData["code"]>;
@@ -33,7 +34,7 @@ export function GuideCode({ kind, lang, integration }: GuideCodeMdxProps & { int
 export function GuideSection({ id, title, children }: { id: string; title: string; children: ReactNode }) {
   return (
     <section id={id} className="min-w-0 scroll-mt-20">
-      <h2 className="text-heading-2 font-display text-balance">{title}</h2>
+      <Heading level={2}>{title}</Heading>
       <MarkdownFlow className="mt-2 text-body leading-6 text-muted-foreground">{children}</MarkdownFlow>
     </section>
   );
@@ -70,7 +71,7 @@ export function InstallPaths({ current }: { current: InstallPathId }) {
             <Link
               href={path.href}
               aria-current={id === current ? "page" : undefined}
-              className="-mb-px block border-transparent border-b-2 pb-2 font-display text-heading-3 text-muted-foreground transition-colors hover:text-foreground aria-[current=page]:border-primary aria-[current=page]:text-foreground"
+              className="-mb-px block border-transparent border-b-2 pb-2 text-heading-3 text-muted-foreground transition-colors hover:text-foreground aria-[current=page]:border-primary aria-[current=page]:text-foreground"
             >
               {path.label}
             </Link>

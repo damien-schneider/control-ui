@@ -102,7 +102,7 @@ function TextTokenField(props: TokenFieldProps) {
             e.currentTarget.blur();
           }
         }}
-        className="h-7 w-full rounded-[var(--radius-control)] border border-border bg-card/70 px-2 font-mono text-micro text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus-visible:ring-2 focus-visible:ring-ring/60 motion-reduce:transition-none [@media(pointer:coarse)]:text-[16px]"
+        className="h-7 w-full rounded-[var(--radius-control)] border border-border bg-card/70 px-2 font-mono text-micro text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus-visible:ring-2 focus-visible:ring-ring/60 motion-reduce:transition-none [@media(pointer:coarse)]:text-(length:--text-input-min)"
       />
     </div>
   );

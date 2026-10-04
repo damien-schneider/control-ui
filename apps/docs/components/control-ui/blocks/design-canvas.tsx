@@ -17,6 +17,7 @@ import { ResizableFloatingPanel } from "@/components/control-ui/ui/resizable";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Toolbar, ToolbarButton, ToolbarGroup, ToolbarSeparator } from "@/components/control-ui/ui/toolbar";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
+import { Text } from "@/components/control-ui/ui/typography";
 import {
   createDesignCanvasLayer,
   type DesignCanvasLayer,
@@ -433,9 +434,9 @@ function DesignCanvasLayerNode({ layer, selected, onSelect, onKeyDown, onLayerCh
         <span className="absolute start-0 bottom-full mb-1 whitespace-nowrap text-caption text-muted-foreground">{layer.name}</span>
       ) : null}
       {layer.kind === "text" ? (
-        <p className="size-full overflow-hidden text-2xl leading-8 whitespace-nowrap" style={{ color: fillColor }}>
+        <Text as="p" size="heading-2" weight="normal" className="size-full overflow-hidden whitespace-nowrap" style={{ color: fillColor }}>
           {layer.text}
-        </p>
+        </Text>
       ) : (
         <div className="size-full" style={{ background: fillColor, borderRadius: layer.kind === "ellipse" ? "50%" : layer.cornerRadius }} />
       )}

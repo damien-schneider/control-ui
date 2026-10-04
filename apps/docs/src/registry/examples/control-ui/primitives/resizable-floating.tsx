@@ -1,6 +1,7 @@
 "use client";
 
 import { ResizableFloatingPanel } from "@/components/control-ui/ui/resizable";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function PrimitiveResizableFloatingExample() {
   return (
@@ -11,7 +12,7 @@ export function PrimitiveResizableFloatingExample() {
       />
       <ResizableFloatingPanel defaultSize={240} minSize={200} maxSize={400}>
         <div className="flex flex-col gap-1 p-4">
-          <span className="text-sm font-medium text-foreground">Inspector</span>
+          <Text weight="medium">Inspector</Text>
           <span className="text-caption text-muted-foreground">Drag the left edge or focus it and use the arrow keys.</span>
         </div>
       </ResizableFloatingPanel>

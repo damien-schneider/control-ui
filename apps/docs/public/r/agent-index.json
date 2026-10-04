@@ -1409,7 +1409,7 @@
         "id": "typography",
         "name": "Typography",
         "kind": "Primitive",
-        "summary": "The token-driven type scale — one --text-* rung per size, named by role. Publish the utilities, not a component.",
+        "summary": "Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role. Native tags may still wear one text-* rung directly.",
         "href": "/primitives/typography",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/typography.json"
       },

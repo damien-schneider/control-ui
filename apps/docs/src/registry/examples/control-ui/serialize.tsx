@@ -44,11 +44,11 @@ export function SerializeExample() {
       <div className="grid gap-3 sm:grid-cols-2">
         <figure className="grid gap-1">
           <figcaption className="text-micro text-muted-foreground">Live serialized text (editor value)</figcaption>
-          <pre className="min-h-16 overflow-x-auto rounded-lg border bg-muted/40 p-3 text-xs leading-5">{value || "…"}</pre>
+          <pre className="min-h-16 overflow-x-auto rounded-lg border bg-muted/40 p-3 text-label leading-5">{value || "…"}</pre>
         </figure>
         <figure className="grid gap-1">
           <figcaption className="text-micro text-muted-foreground">Last submitted payload</figcaption>
-          <pre className="min-h-16 overflow-x-auto rounded-lg border bg-muted/40 p-3 text-xs leading-5">
+          <pre className="min-h-16 overflow-x-auto rounded-lg border bg-muted/40 p-3 text-label leading-5">
             {submitted ? JSON.stringify(submitted, null, 2) : "Press Serialize to capture { text, mentions }"}
           </pre>
         </figure>

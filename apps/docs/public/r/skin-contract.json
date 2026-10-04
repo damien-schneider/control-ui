@@ -332,6 +332,9 @@
     "trigger-menu": [
       "trigger-menu"
     ],
+    "typography": [
+      "typography"
+    ],
     "user-ask": [
       "user-ask"
     ]
@@ -17264,6 +17267,27 @@
       },
       "registryItems": [
         "trigger-menu"
+      ]
+    },
+    "typography": {
+      "parts": {
+        "heading": {
+          "family": "typography",
+          "registryItems": [
+            "typography"
+          ],
+          "states": []
+        },
+        "text": {
+          "family": "typography",
+          "registryItems": [
+            "typography"
+          ],
+          "states": []
+        }
+      },
+      "registryItems": [
+        "typography"
       ]
     },
     "user-ask": {

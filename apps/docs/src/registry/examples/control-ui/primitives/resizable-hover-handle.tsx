@@ -1,14 +1,15 @@
 "use client";
 
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/control-ui/ui/resizable";
 // variant="hover" keeps divider off screen until pointer or keyboard focus reaches it, then fades in a
 // gradient line running from --cui-resizable-handle-color to alpha 0 — calm option when permanent hairline
 // would compete with content it separates. Track thickness matches variant="solid", so nothing shifts.
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/control-ui/ui/resizable";
+import { Text } from "@/components/control-ui/ui/typography";
 
 function Pane({ label, hint }: { label: string; hint?: string }) {
   return (
     <div className="flex h-full flex-col items-center justify-center gap-1 text-center">
-      <span className="text-sm font-medium text-foreground">{label}</span>
+      <Text weight="medium">{label}</Text>
       {hint ? <span className="text-caption text-muted-foreground">{hint}</span> : null}
     </div>
   );

@@ -7,6 +7,7 @@ import {
   InfiniteCanvasControls,
   InfiniteCanvasItem,
 } from "@/components/control-ui/ui/infinite-canvas";
+import { Heading } from "@/components/control-ui/ui/typography";
 
 const initialItems = [
   { id: "brief", title: "Research brief", detail: "Customer signals and open questions", x: 24, y: 24 },
@@ -31,7 +32,9 @@ export function PrimitiveInfiniteCanvasExample() {
               }
               className="w-52 rounded-[var(--radius-panel)] bg-card p-4 text-card-foreground shadow-sm ring-1 ring-border"
             >
-              <h3 className="text-sm font-medium">{item.title}</h3>
+              <Heading level={3} size="heading-4">
+                {item.title}
+              </Heading>
               <p className="mt-1 text-caption text-muted-foreground">{item.detail}</p>
             </InfiniteCanvasItem>
           ))}

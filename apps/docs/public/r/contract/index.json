@@ -570,6 +570,13 @@
       "knobs": 9,
       "probes": 5
     },
+    "typography": {
+      "registryItems": [
+        "typography"
+      ],
+      "knobs": 0,
+      "probes": 0
+    },
     "user-ask": {
       "registryItems": [
         "user-ask"

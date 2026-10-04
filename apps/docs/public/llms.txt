@@ -144,7 +144,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Gradient Editor](http://127.0.0.1:3000/primitives/gradient-editor): CSS gradient editor with draggable stops and live preview. Status: beta.
 - [Resizable](http://127.0.0.1:3000/primitives/resizable): Accessible resizable panel groups and split layouts with keyboard support. Status: beta.
 - [Calendar](http://127.0.0.1:3000/primitives/calendar): Date selection grid built on react-day-picker and themed through tokens.
-- [Typography](http://127.0.0.1:3000/primitives/typography): The token-driven type scale — one --text-* rung per size, named by role. Publish the utilities, not a component.
+- [Typography](http://127.0.0.1:3000/primitives/typography): Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role. Native tags may still wear one text-* rung directly.
 - [Code](http://127.0.0.1:3000/primitives/code): Shared code surface: Shiki-highlighted lines, gutter, clean copy, editable content, and virtualization for large files.
 - [Code Diff](http://127.0.0.1:3000/primitives/code-diff): Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting.
 - [Markdown](http://127.0.0.1:3000/primitives/markdown): Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff.

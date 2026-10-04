@@ -38,7 +38,7 @@ export function PrimitiveNestedDrawerExample() {
         <DrawerBody>
           <dl className="grid gap-1 px-4">
             {summaryRows.map(([label, value]) => (
-              <div key={label} className="flex items-center justify-between rounded-[var(--radius-control)] px-3 py-2 text-sm">
+              <div key={label} className="flex items-center justify-between rounded-[var(--radius-control)] px-3 py-2 text-body">
                 <dt className="text-muted-foreground">{label}</dt>
                 <dd className="font-medium text-foreground">{value}</dd>
               </div>
@@ -61,7 +61,7 @@ export function PrimitiveNestedDrawerExample() {
                   {accessRows.map(([label, value]) => (
                     <div
                       key={label}
-                      className="flex items-center justify-between rounded-[var(--radius-control)] bg-foreground/4 px-3 py-2.5 text-sm"
+                      className="flex items-center justify-between rounded-[var(--radius-control)] bg-foreground/4 px-3 py-2.5 text-body"
                     >
                       <dt className="text-foreground">{label}</dt>
                       <dd className="text-muted-foreground">{value}</dd>
@@ -81,7 +81,7 @@ export function PrimitiveNestedDrawerExample() {
                     </DrawerHeader>
 
                     <DrawerBody>
-                      <div className="mx-4 rounded-[var(--radius-panel)] bg-primary/8 p-4 text-sm text-foreground ring-1 ring-inset ring-primary/20">
+                      <div className="mx-4 rounded-[var(--radius-panel)] bg-primary/8 p-4 text-body text-foreground ring-1 ring-inset ring-primary/20">
                         Production will receive the latest commit from main. Existing deployments stay available during the rollout.
                       </div>
                     </DrawerBody>

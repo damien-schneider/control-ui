@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
 import type { UserAskAnswers } from "@/components/control-ui/hooks/use-user-ask";
 import { Button } from "@/components/control-ui/ui/button";
+import { Text } from "@/components/control-ui/ui/typography";
 import {
   UserAsk,
   UserAskDismiss,
@@ -106,9 +106,9 @@ export function UserAskExample() {
                 </ChatMessageRow>
               </ChatMessage>
             ) : (
-              <p className="text-sm text-muted-foreground" role="status">
+              <Text as="p" tone="muted" role="status">
                 Question dismissed
-              </p>
+              </Text>
             )}
             <Button type="button" variant="quiet" size="sm" className="justify-self-end" onClick={() => setAsking(true)}>
               Ask again

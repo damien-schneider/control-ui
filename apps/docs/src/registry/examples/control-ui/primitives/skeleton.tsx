@@ -2,6 +2,7 @@
 
 import { Card, CardContent } from "@/components/control-ui/ui/card";
 import { Skeleton, skeletonVariants } from "@/components/control-ui/ui/skeleton";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const variantLabels = { shimmer: "Shimmer", pulse: "Pulse", none: "Static" };
 
@@ -11,7 +12,9 @@ export function PrimitiveSkeletonExample() {
       <CardContent className="flex flex-col gap-6">
         {skeletonVariants.map((variant) => (
           <div key={variant} className="flex flex-col gap-3">
-            <span className="text-xs font-medium text-muted-foreground">{variantLabels[variant]}</span>
+            <Text size="label" weight="medium" tone="muted">
+              {variantLabels[variant]}
+            </Text>
             <div className="flex items-start gap-3">
               <Skeleton variant={variant} className="size-10 shrink-0" style={{ "--cui-skeleton-radius": "50%" }} />
               <div className="flex min-w-0 flex-1 flex-col gap-2 py-1">

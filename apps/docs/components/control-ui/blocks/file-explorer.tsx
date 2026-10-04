@@ -566,9 +566,7 @@ function FileExplorerColumns({
                     <DrawerBody>
                       <FileExplorerPreviewContent
                         entry={selectedEntry}
-                        title={
-                          <DrawerTitle className="mt-4 max-w-full truncate text-heading-4 font-semibold">{selectedEntry.name}</DrawerTitle>
-                        }
+                        title={<DrawerTitle className="mt-4 max-w-full truncate text-heading-4">{selectedEntry.name}</DrawerTitle>}
                       />
                     </DrawerBody>
                   ) : null}
@@ -729,7 +727,7 @@ function FileExplorerPreview({ entry, headingAs: Heading }: { entry?: FileExplor
         entry={entry}
         className="px-6 py-10"
         title={
-          <Heading className="mt-4 max-w-full truncate text-heading-4 font-semibold" title={entry.name}>
+          <Heading className="mt-4 max-w-full truncate text-heading-4" title={entry.name}>
             {entry.name}
           </Heading>
         }

@@ -2,6 +2,7 @@
 
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/control-ui/ui/card";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function PrimitiveCardExample() {
   return (
@@ -14,12 +15,15 @@ export function PrimitiveCardExample() {
         </CardAction>
       </CardHeader>
       <CardContent>
-        <p className="text-2xl font-semibold tracking-tight">
-          $29<span className="text-sm font-normal text-muted-foreground">/mo</span>
-        </p>
+        <Text as="p" size="heading-2">
+          $29
+          <Text weight="normal" tone="muted">
+            /mo
+          </Text>
+        </Text>
       </CardContent>
       <CardFooter>
-        <span className="text-sm text-muted-foreground">Billed monthly. Cancel anytime.</span>
+        <Text tone="muted">Billed monthly. Cancel anytime.</Text>
       </CardFooter>
     </Card>
   );

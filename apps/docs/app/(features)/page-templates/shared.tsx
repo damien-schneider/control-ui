@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import type { ReactNode } from "react";
-
 import { CodeBlock, CommandBlock } from "@/app/(features)/components/source";
 import { StatusBadge } from "@/app/(features)/components/status";
 import type { Composition, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
+import { Heading } from "@/components/control-ui/ui/typography";
 
 import { CompositionTree } from "./composition-tree";
 
@@ -29,13 +29,15 @@ export function PageHeader({
     <div className={compact ? "mb-5" : "mb-7"}>
       {compact ? null : <div className="text-caption font-medium text-muted-foreground">{label}</div>}
       <div className={cn("flex flex-wrap items-center gap-3", !compact && "mt-2")}>
-        <h1
+        <Heading
+          level={1}
+          size={compact ? "heading-1" : "display"}
           ref={focusOnMount ? focusHeading : undefined}
           tabIndex={focusOnMount ? -1 : undefined}
-          className={cn("font-display text-balance outline-none", compact ? "text-heading-1" : "text-display")}
+          className="outline-none"
         >
           {title}
-        </h1>
+        </Heading>
         {status ? <StatusBadge status={status} /> : null}
       </div>
       <p className={cn("max-w-2xl text-pretty text-muted-foreground", compact ? "mt-1 text-body" : "mt-3 text-body-lg")}>{summary}</p>
@@ -58,7 +60,7 @@ export function SectionStack({ children, className }: { children: ReactNode; cla
 export function SectionTitle({ title, description }: { title: string; description?: string }) {
   return (
     <div className="mb-3">
-      <h2 className="text-heading-2 font-display text-balance">{title}</h2>
+      <Heading level={2}>{title}</Heading>
       {description ? <p className="mt-1 text-body text-pretty text-muted-foreground">{description}</p> : null}
     </div>
   );

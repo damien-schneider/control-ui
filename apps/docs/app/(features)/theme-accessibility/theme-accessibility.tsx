@@ -8,6 +8,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/control-ui/ui/empty";
 import { Skeleton } from "@/components/control-ui/ui/skeleton";
+import { Heading } from "@/components/control-ui/ui/typography";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
 import { THEME_AUDIT_CATEGORIES, type ThemeAuditCategory, type ThemeAuditResult, type ThemeAuditStatus } from "./audit-contract";
 import { useThemeAudit } from "./use-theme-audit";
@@ -62,12 +63,9 @@ function AuditTable({ category, results }: { category: ThemeAuditCategory; resul
   return (
     <section className="grid gap-3" aria-labelledby={`audit-${category.replaceAll(" ", "-").toLowerCase()}`}>
       <header className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2
-          id={`audit-${category.replaceAll(" ", "-").toLowerCase()}`}
-          className="text-balance text-heading-4 font-semibold text-foreground"
-        >
+        <Heading level={2} size="heading-4" id={`audit-${category.replaceAll(" ", "-").toLowerCase()}`}>
           {category}
-        </h2>
+        </Heading>
         <span className="text-caption tabular-nums text-muted-foreground">
           {issueCount === 0 ? `${results.length} passed` : `${issueCount} ${issueCount === 1 ? "issue" : "issues"}`}
         </span>
@@ -221,9 +219,9 @@ export function ThemeAccessibility() {
               )}
             </span>
             <div>
-              <h2 id="active-theme-audit" className="text-balance text-heading-4 font-semibold tabular-nums text-foreground">
+              <Heading level={2} size="heading-4" id="active-theme-audit" className="tabular-nums">
                 {auditSummary}
-              </h2>
+              </Heading>
               <p className="mt-1 max-w-2xl text-caption leading-5 text-pretty text-muted-foreground">
                 Resolves contract colors and rendered active-tab paint, including alpha layers and sampled gradient stops. Switch modes to
                 inspect light and dark independently.
@@ -250,9 +248,9 @@ export function ThemeAccessibility() {
 
       <section className="grid gap-4 border-t border-border pt-8" aria-labelledby="optional-cli-check">
         <div className="max-w-2xl">
-          <h2 id="optional-cli-check" className="text-balance text-heading-4 font-semibold text-foreground">
+          <Heading level={2} size="heading-4" id="optional-cli-check">
             Optional CLI check
-          </h2>
+          </Heading>
           <p className="mt-1.5 text-body leading-6 text-pretty text-muted-foreground">
             Audit any skin <code>theme.css</code> in light and dark. A sibling <code>skin.css</code> is loaded when present; slot classes
             from <code>skin.config</code> remain a live-preview check. Required failures or unresolved paints exit non-zero.

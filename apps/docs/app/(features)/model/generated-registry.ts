@@ -2494,6 +2494,7 @@ export const registryMetadata = {
       "toggle",
       "toolbar",
       "tooltip",
+      "typography",
     ],
     sourceManifestPath: "registry/control-ui/design-canvas-block.json",
     files: [
@@ -4080,7 +4081,19 @@ export const registryMetadata = {
   },
   "settings-block": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["button", "core", "empty", "field", "input", "input-group", "live-status", "motion", "scroll-area", "sidebar"],
+    registryDependencies: [
+      "button",
+      "core",
+      "empty",
+      "field",
+      "input",
+      "input-group",
+      "live-status",
+      "motion",
+      "scroll-area",
+      "sidebar",
+      "typography",
+    ],
     sourceManifestPath: "registry/control-ui/settings-block.json",
     files: [
       {
@@ -5063,6 +5076,11 @@ export const registryMetadata = {
         path: "src/registry/examples/control-ui/primitives/type-scale.css",
         target: "@components/control-ui/styles/type-scale.css",
         type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/ui/typography.tsx",
+        target: "@components/control-ui/ui/typography.tsx",
+        type: "registry:ui",
       },
     ],
   },

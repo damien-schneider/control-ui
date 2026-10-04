@@ -5,6 +5,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia } from "@/components/control-ui/ui/empty";
+import { Heading } from "@/components/control-ui/ui/typography";
 
 export default function DocsError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   return (
@@ -13,7 +14,9 @@ export default function DocsError({ error, reset }: { error: Error & { digest?: 
         <EmptyMedia>
           <HugeiconsIcon aria-hidden icon={AlertCircleIcon} strokeWidth={1.7} />
         </EmptyMedia>
-        <h1 className="text-balance text-heading-3 text-foreground">This page stopped loading</h1>
+        <Heading level={1} size="heading-3">
+          This page stopped loading
+        </Heading>
         <EmptyDescription className="text-pretty">
           Something failed while rendering the documentation. Retrying usually clears it.
         </EmptyDescription>

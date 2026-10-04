@@ -16,6 +16,7 @@ import type { GuideId, GuidePage as GuidePageData, IntegrationId } from "@/app/(
 import { ThemeAccessibility } from "@/app/(features)/theme-accessibility/theme-accessibility";
 import { Card } from "@/components/control-ui/ui/card";
 import { MarkdownRoot } from "@/components/control-ui/ui/markdown";
+import { Heading } from "@/components/control-ui/ui/typography";
 import { SKIN_CATEGORY, type ThemeCategoryId } from "@/components/theme-drawer/theme-categories";
 import { ThemeEditor } from "@/components/theme-drawer/theme-editor";
 import AgentSkillContent from "@/content/guides/agent-skill.mdx";
@@ -146,7 +147,9 @@ export function GuidePage({
       <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
         <div className="w-full max-w-2xl">
           <div className="text-caption font-medium text-muted-foreground">Guide</div>
-          <h1 className="mt-2 text-display font-display text-balance">{page.name}</h1>
+          <Heading level={1} size="display" className="mt-2">
+            {page.name}
+          </Heading>
           <p className="mt-3 text-body-lg text-pretty text-muted-foreground">{page.summary}</p>
         </div>
         <OpenInAgent name={page.name} pathname={`/${page.id}`} />
@@ -156,7 +159,7 @@ export function GuidePage({
         <GuidePageContent page={page} integration={integration} themeCategory={themeCategory} />
         {page.faqs && page.faqs.length > 0 ? (
           <section id="faq" className="min-w-0 scroll-mt-20">
-            <h2 className="text-heading-2 font-display text-balance">Frequently asked questions</h2>
+            <Heading level={2}>Frequently asked questions</Heading>
             <dl className="mt-4 grid gap-3">
               {page.faqs.map((faq) => (
                 <Card key={faq.question} className="gap-1.5 px-4 py-3">

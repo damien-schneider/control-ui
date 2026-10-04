@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "family": "typography",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "typography"
+  ],
+  "knobs": [],
+  "parts": {
+    "typography": {
+      "heading": {
+        "family": "typography",
+        "registryItems": [
+          "typography"
+        ],
+        "states": []
+      },
+      "text": {
+        "family": "typography",
+        "registryItems": [
+          "typography"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/typography.contrast.json"
+}

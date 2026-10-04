@@ -238,9 +238,14 @@ export const displayCompositions = {
   ],
   typography: [
     example(
-      "Semantic text",
-      content("text utilities on semantic HTML", part("h1"), part("h2"), part("p"), part("span")),
-      "One text-* rung on the native element; there is no Typography component. Heading level is the document outline and the rung is the look, decoupled on purpose: an h3 may wear text-heading-2. Heading rungs already carry font-display and text-balance, so add no other type utility.",
+      "Heading and Text",
+      content("page section", part("Heading"), part("Text")),
+      "Heading takes level (the document outline) and size (the rung); they are decoupled on purpose, so an h3 may wear heading-2. Text takes as, size, weight, and tone. className is for layout only: size, weight, face, and color come from props.",
+    ),
+    example(
+      "Native tag",
+      content("one rung on the element", part("h2"), part("p")),
+      "A native tag may wear one text-* rung directly. Heading rungs already carry font-display and text-balance, so add no other type utility beside them.",
     ),
   ],
   code: [
