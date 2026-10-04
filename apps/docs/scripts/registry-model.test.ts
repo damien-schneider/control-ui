@@ -51,7 +51,7 @@ describe("Control UI starter registry items", () => {
   test("next-app owns only the default App Router layout and page", () => {
     const nextApp = registryItem("next-app");
 
-    expect(nextApp.registryDependencies).toEqual(["all", "button", "core"]);
+    expect(nextApp.registryDependencies).toEqual(["all", "button", "core", "typography"]);
     expect(nextApp.dependencies).toEqual([]);
     expect(nextApp.files.map((file) => [file.type, file.target])).toEqual([
       ["registry:page", "~/app/layout.tsx"],

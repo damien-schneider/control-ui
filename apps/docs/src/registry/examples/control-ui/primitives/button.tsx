@@ -3,11 +3,14 @@
 import { ArrowUpRightIcon, CheckIcon, MonitorIcon, PlusIcon, SmartphoneIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { Button, ButtonLink } from "@/components/control-ui/ui/button";
+import { Text } from "@/components/control-ui/ui/typography";
 
 function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-caption font-medium text-muted-foreground">{label}</span>
+      <Text size="caption" weight="medium" tone="muted">
+        {label}
+      </Text>
       <div className="flex flex-wrap items-center gap-2">{children}</div>
     </div>
   );

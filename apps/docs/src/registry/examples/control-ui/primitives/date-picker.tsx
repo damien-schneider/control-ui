@@ -4,13 +4,16 @@ import { useState } from "react";
 import { Button } from "@/components/control-ui/ui/button";
 import { Calendar } from "@/components/control-ui/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/control-ui/ui/popover";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function PrimitiveDatePickerExample() {
   const [date, setDate] = useState<Date | undefined>();
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-1.5">
-      <span className="text-caption font-medium text-muted-foreground">Date</span>
+      <Text size="caption" weight="medium" tone="muted">
+        Date
+      </Text>
       <Popover>
         <PopoverTrigger
           render={<Button variant="surface" tone="neutral" />}

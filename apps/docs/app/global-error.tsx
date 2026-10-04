@@ -4,7 +4,7 @@ import { AlertCircleIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia } from "@/components/control-ui/ui/empty";
-import { Heading } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 import "./globals.css";
 
 export default function GlobalError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
@@ -32,7 +32,11 @@ export default function GlobalError({ error, reset }: { error: Error & { digest?
                 Back to the guides
               </ButtonLink>
             </EmptyContent>
-            {error.digest ? <p className="font-mono text-caption text-muted-foreground">Reference {error.digest}</p> : null}
+            {error.digest ? (
+              <Text as="p" size="caption" tone="muted" className="font-mono">
+                Reference {error.digest}
+              </Text>
+            ) : null}
           </Empty>
         </main>
       </body>

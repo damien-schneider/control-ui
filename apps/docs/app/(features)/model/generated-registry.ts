@@ -2125,7 +2125,7 @@ export const registryMetadata = {
   },
   "coding-agent-block": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["button", "chat-layout", "collapsible", "core", "sidebar"],
+    registryDependencies: ["button", "chat-layout", "collapsible", "core", "sidebar", "typography"],
     sourceManifestPath: "registry/control-ui/coding-agent-block.json",
     files: [
       {
@@ -2570,7 +2570,7 @@ export const registryMetadata = {
   },
   "discussion-block": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["button", "chat-composer", "chat-message", "core", "kbd", "markdown", "markdown-editor"],
+    registryDependencies: ["button", "chat-composer", "chat-message", "core", "kbd", "markdown", "markdown-editor", "typography"],
     sourceManifestPath: "registry/control-ui/discussion-block.json",
     files: [
       {
@@ -2999,6 +2999,7 @@ export const registryMetadata = {
       "resizable",
       "scroll-area",
       "sidebar",
+      "typography",
     ],
     sourceManifestPath: "registry/control-ui/file-explorer-block.json",
     files: [
@@ -3704,7 +3705,7 @@ export const registryMetadata = {
   },
   "next-app": {
     dependencies: [],
-    registryDependencies: ["all", "button", "core"],
+    registryDependencies: ["all", "button", "core", "typography"],
     sourceManifestPath: "registry/control-ui/next-app.json",
     files: [
       {
@@ -4253,7 +4254,7 @@ export const registryMetadata = {
   },
   "sidebar-layout-block": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["app-shell", "core", "page-layout", "sidebar"],
+    registryDependencies: ["app-shell", "core", "page-layout", "sidebar", "typography"],
     sourceManifestPath: "registry/control-ui/sidebar-layout-block.json",
     files: [
       {

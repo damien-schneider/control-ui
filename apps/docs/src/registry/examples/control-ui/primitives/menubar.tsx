@@ -16,6 +16,7 @@ import {
   MenubarSubTrigger,
   MenubarTrigger,
 } from "@/components/control-ui/ui/menubar";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function PrimitiveMenubarExample() {
   const [last, setLast] = useState<string | null>(null);
@@ -84,7 +85,9 @@ export function PrimitiveMenubarExample() {
         </MenubarMenu>
       </Menubar>
 
-      <span className="text-caption text-muted-foreground">{last ? `Last action: ${last}` : "No action yet"}</span>
+      <Text size="caption" tone="muted">
+        {last ? `Last action: ${last}` : "No action yet"}
+      </Text>
     </div>
   );
 }

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AspectRatio } from "@/components/control-ui/ui/aspect-ratio";
 import { Slider } from "@/components/control-ui/ui/slider";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const surfaceClassName =
   "flex items-center justify-center overflow-hidden rounded-[var(--radius-lg)] border bg-linear-to-br from-muted to-accent text-caption font-medium text-muted-foreground";
@@ -12,11 +13,15 @@ export function PrimitiveAspectRatioExample() {
     <>
       <div className="flex flex-col gap-1.5">
         <div className={`${surfaceClassName} aspect-video`}>aspect-video</div>
-        <span className="text-caption text-muted-foreground">Widescreen</span>
+        <Text size="caption" tone="muted">
+          Widescreen
+        </Text>
       </div>
       <div className="flex flex-col gap-1.5">
         <div className={`${surfaceClassName} aspect-square`}>aspect-square</div>
-        <span className="text-caption text-muted-foreground">Square</span>
+        <Text size="caption" tone="muted">
+          Square
+        </Text>
       </div>
     </>
   );

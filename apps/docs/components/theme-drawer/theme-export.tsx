@@ -4,6 +4,7 @@ import { CheckIcon, CopyIcon } from "lucide-react";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import { Button } from "@/components/control-ui/ui/button";
 import { Code, CodeContent } from "@/components/control-ui/ui/code";
+import { Text } from "@/components/control-ui/ui/typography";
 import { siteConfig } from "@/lib/site-config";
 import { SKIN_META_BY_ID } from "./presets";
 import { useThemeRuntime } from "./theme-runtime-context";
@@ -33,10 +34,10 @@ Explain the proposed changes before editing, then verify the theme in the applic
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-0 max-w-xl">
           <h2 className="text-heading-4">Use this theme</h2>
-          <p className="mt-1 text-caption text-pretty text-muted-foreground">
+          <Text as="p" size="caption" tone="muted" className="mt-1 text-pretty">
             Copy a prompt with the {skin.label} skin and your current edits to paste into your coding agent, or export just your CSS
             overrides.
-          </p>
+          </Text>
         </div>
         <div className="flex flex-wrap gap-2">
           <Button variant="quiet" size="sm" onClick={cssCopy.handleCopy}>
@@ -50,9 +51,9 @@ Explain the proposed changes before editing, then verify the theme in the applic
         </div>
       </div>
       {cssCopy.status === "failed" || promptCopy.status === "failed" ? (
-        <p role="alert" className="mt-3 text-caption text-destructive-text">
+        <Text role="alert" as="p" size="caption" tone="destructive" className="mt-3">
           Could not copy {cssCopy.status === "failed" ? "CSS overrides" : "the theme prompt"}. Try again or allow clipboard access.
-        </p>
+        </Text>
       ) : null}
       <details className="mt-3">
         <summary className="cursor-pointer text-caption text-muted-foreground">Preview agent prompt</summary>

@@ -12,6 +12,7 @@ import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Spinner } from "@/components/control-ui/ui/spinner";
 import { Tabs, TabsList, TabsPanel, TabsSurface, TabsTab } from "@/components/control-ui/ui/tabs";
 import { Toggle } from "@/components/control-ui/ui/toggle";
+import { Text } from "@/components/control-ui/ui/typography";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
 import { SKIN_META_BY_ID } from "./presets";
 import { SkinPresetControls } from "./skin-preset-controls";
@@ -71,14 +72,14 @@ function SkinSourceBrowser({ files }: { files: SourceFile[] }) {
           </TabsPanel>
         </Code>
       </TabsSurface>
-      <div className="flex min-w-0 flex-wrap items-center justify-between gap-x-4 gap-y-1 px-1 pt-2 text-micro text-muted-foreground">
+      <Text as="div" size="micro" tone="muted" className="flex min-w-0 flex-wrap items-center justify-between gap-x-4 gap-y-1 px-1 pt-2">
         <span className="min-w-0 truncate font-mono" title={file.path}>
           {file.path}
         </span>
         <span className="shrink-0">
           {language.toUpperCase()} · {lineCount.toLocaleString()} lines
         </span>
-      </div>
+      </Text>
     </Tabs>
   );
 }
@@ -93,7 +94,9 @@ function SkinSourceFiles({ label, source, onRetry }: { label: string; source: Sk
         className="flex min-h-80 flex-col items-center justify-center gap-3 rounded-(--radius-panel) border border-border bg-card px-6 text-center"
       >
         <FileCodeIcon aria-hidden className="size-6 text-muted-foreground" />
-        <p className="text-label text-muted-foreground">The {label} source could not be loaded.</p>
+        <Text as="p" size="label" tone="muted">
+          The {label} source could not be loaded.
+        </Text>
         <Button variant="surface" size="sm" onClick={onRetry}>
           Try again
         </Button>
@@ -102,13 +105,16 @@ function SkinSourceFiles({ label, source, onRetry }: { label: string; source: Sk
   }
 
   return (
-    <div
+    <Text
       role="status"
-      className="flex min-h-80 items-center justify-center gap-2 rounded-(--radius-panel) border border-border bg-card text-label text-muted-foreground"
+      as="div"
+      size="label"
+      tone="muted"
+      className="flex min-h-80 items-center justify-center gap-2 rounded-(--radius-panel) border border-border bg-card"
     >
       <Spinner />
       Loading {label} source
-    </div>
+    </Text>
   );
 }
 
@@ -123,8 +129,12 @@ export function SkinSourceGuide({ files }: { files: readonly Pick<SourceFile, "l
           const [name, role] = file.label.split(" — ");
           return (
             <div key={file.path} className="min-w-0">
-              <dt className="font-mono text-caption font-medium text-foreground">{name}</dt>
-              <dd className="mt-1 text-caption text-pretty text-muted-foreground">{role}</dd>
+              <Text as="dt" size="caption" weight="medium" tone="foreground" className="font-mono">
+                {name}
+              </Text>
+              <Text as="dd" size="caption" tone="muted" className="mt-1 text-pretty">
+                {role}
+              </Text>
             </div>
           );
         })}
@@ -194,11 +204,15 @@ function SkinWorkspaceContent({ skin, source, onRetry, children }: SkinWorkspace
     <section aria-label="Skin workspace" className="@container/workspace flex min-w-0 flex-col gap-5">
       <header className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4 lg:hidden">
         <div className="flex min-w-0 flex-col gap-2">
-          <span className="text-caption font-medium text-muted-foreground">Skin preset</span>
+          <Text size="caption" weight="medium" tone="muted">
+            Skin preset
+          </Text>
           <SkinPresetControls label="Skin preset" className="w-full" />
         </div>
         <div className="flex flex-col gap-2">
-          <span className="text-caption font-medium text-muted-foreground">Appearance</span>
+          <Text size="caption" weight="medium" tone="muted">
+            Appearance
+          </Text>
           <ThemeModeSwitch />
         </div>
       </header>
@@ -222,10 +236,10 @@ function SkinWorkspaceContent({ skin, source, onRetry, children }: SkinWorkspace
         </div>
         <TabsPanel value="preview" keepMounted={previewVisited} className="min-w-0">
           <nav aria-label="Customize theme" className="mb-4 flex flex-wrap items-center gap-x-1 gap-y-2 lg:hidden">
-            <span className="mr-2 inline-flex items-center gap-2 text-caption text-muted-foreground">
+            <Text size="caption" tone="muted" className="mr-2 inline-flex items-center gap-2">
               <PaletteIcon aria-hidden className="size-3.5" />
               Customize
-            </span>
+            </Text>
             {THEME_CATEGORIES.filter((category) => category.id !== "skin").map((category) => (
               <ButtonLink
                 key={category.id}

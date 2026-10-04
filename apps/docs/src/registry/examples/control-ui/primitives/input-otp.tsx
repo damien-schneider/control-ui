@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { InputOTP } from "@/components/control-ui/ui/input-otp";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function PrimitiveInputOtpExample() {
   const [code, setCode] = useState("");
@@ -15,9 +16,9 @@ export function PrimitiveInputOtpExample() {
           Verification code
         </label>
         <InputOTP id="otp-verify" length={6} value={code} onValueChange={setCode} aria-label="Verification code" />
-        <span className="text-caption text-muted-foreground">
+        <Text size="caption" tone="muted">
           {code.length === 6 ? "Code complete — verifying…" : `Enter the 6-digit code (${code.length}/6)`}
-        </span>
+        </Text>
       </div>
       <div className="flex flex-col gap-2">
         <label htmlFor="otp-pin" className="text-caption font-medium text-muted-foreground">

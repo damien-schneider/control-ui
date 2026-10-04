@@ -5,6 +5,7 @@ import { useIsMobile } from "@/components/control-ui/hooks/use-mobile";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Switch } from "@/components/control-ui/ui/switch";
 import { Toggle } from "@/components/control-ui/ui/toggle";
+import { Text } from "@/components/control-ui/ui/typography";
 import { BASE_SKIN_ID } from "@/components/theme";
 import { useThemeModePreference } from "@/components/theme-toggle";
 import type { ThemeContractGroup } from "@/src/registry/lib/theme-contract";
@@ -52,7 +53,9 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
   const reduceMotionRow = (
     <div className="flex items-center justify-between gap-3 rounded-[var(--radius-control)] bg-foreground/5 px-3 py-2.5">
       <span className="flex min-w-0 flex-col">
-        <span className="text-caption font-medium text-foreground">Reduce motion</span>
+        <Text size="caption" weight="medium" tone="foreground">
+          Reduce motion
+        </Text>
         <VarTag>data-motion</VarTag>
       </span>
       <Toggle
@@ -74,9 +77,9 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
   return (
     <div className="flex min-w-0 flex-col gap-3">
       {storageError ? (
-        <p role="alert" className="text-caption text-destructive-text">
+        <Text role="alert" as="p" size="caption" tone="destructive">
           {storageError}
-        </p>
+        </Text>
       ) : null}
       {category === SKIN_CATEGORY ? (
         <SkinWorkspace skin={theme.skin} source={skinSource} onRetry={retrySource}>
@@ -100,14 +103,14 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
                 category={activeTokenCategory}
                 editor={editor}
                 headerAction={
-                  <span className="flex items-center gap-2 text-micro text-muted-foreground">
+                  <Text size="micro" tone="muted" className="flex items-center gap-2">
                     CSS names
                     <Switch
                       aria-label="Caption every control with its CSS variable name"
                       checked={theme.labelMode === "css"}
                       onCheckedChange={(checked) => patch({ labelMode: checked ? "css" : "friendly" })}
                     />
-                  </span>
+                  </Text>
                 }
                 beforeTokens={panelIntroByGroup[activeTokenCategory.group] ?? null}
                 afterCore={

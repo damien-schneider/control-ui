@@ -1,3 +1,4 @@
+import { Text } from "@/components/control-ui/ui/typography";
 import { DiagramNode, FlowArrow, GuideVisual } from "./guide-visual";
 
 const customizationRungs = [
@@ -18,12 +19,16 @@ export function ArchitectureLayers() {
         <div className="flex min-w-0 flex-col justify-center">
           <DiagramNode className="border-dashed bg-muted/35">
             <div className="font-medium">Host app runtime</div>
-            <div className="mt-0.5 text-caption text-muted-foreground">streaming · transport · persistence · tools</div>
+            <Text as="div" size="caption" tone="muted" className="mt-0.5">
+              streaming · transport · persistence · tools
+            </Text>
           </DiagramNode>
           <FlowArrow direction="down" />
           <DiagramNode>
             <div className="font-medium">Usage composition</div>
-            <div className="mt-0.5 text-caption text-muted-foreground">native provider parts rendered directly</div>
+            <Text as="div" size="caption" tone="muted" className="mt-0.5">
+              native provider parts rendered directly
+            </Text>
           </DiagramNode>
         </div>
 
@@ -31,26 +36,36 @@ export function ArchitectureLayers() {
         <FlowArrow direction="down" className="md:hidden" />
 
         <div className="min-w-0 border-primary/20 border-l-2 pl-3">
-          <div className="mb-2 font-mono text-micro text-primary-text">installed source</div>
+          <Text as="div" size="micro" tone="primary" className="mb-2 font-mono">
+            installed source
+          </Text>
           <div className="grid gap-2">
             <DiagramNode className="border-primary/30">
               <div className="font-medium">Blocks</div>
-              <div className="text-caption text-muted-foreground">complete recipes composed from public surfaces</div>
+              <Text as="div" size="caption" tone="muted">
+                complete recipes composed from public surfaces
+              </Text>
             </DiagramNode>
             <div className="grid gap-2 sm:grid-cols-[1.35fr_0.65fr]">
               <DiagramNode>
                 <div className="font-medium">Components</div>
-                <div className="text-caption text-muted-foreground">behavior · markup · stable anatomy</div>
+                <Text as="div" size="caption" tone="muted">
+                  behavior · markup · stable anatomy
+                </Text>
               </DiagramNode>
               <DiagramNode>
                 <div className="font-medium">Hooks</div>
-                <div className="text-caption text-muted-foreground">reusable local UI behavior</div>
+                <Text as="div" size="caption" tone="muted">
+                  reusable local UI behavior
+                </Text>
               </DiagramNode>
             </div>
             <DiagramNode className="border-primary/30 bg-primary/5">
               <div className="flex flex-wrap items-baseline justify-between gap-1">
                 <span className="font-medium">Skin data</span>
-                <span className="font-mono text-micro text-primary-text">theme.css · skin.css · skin.config.tsx</span>
+                <Text size="micro" tone="primary" className="font-mono">
+                  theme.css · skin.css · skin.config.tsx
+                </Text>
               </div>
             </DiagramNode>
           </div>
@@ -67,15 +82,21 @@ export function SkinFileStack() {
         <ol className="relative grid gap-2 pl-4">
           <li className="relative z-30 translate-x-0 rounded-lg border border-primary/35 bg-background px-4 py-3 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:translate-x-1 motion-reduce:transition-none">
             <div className="font-mono text-label">skin.config.tsx</div>
-            <div className="mt-0.5 text-caption text-muted-foreground">typed slots · DS choices · adornments</div>
+            <Text as="div" size="caption" tone="muted" className="mt-0.5">
+              typed slots · DS choices · adornments
+            </Text>
           </li>
           <li className="relative z-20 ml-2 rounded-lg border border-border bg-muted/65 px-4 py-3 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:translate-x-1 motion-reduce:transition-none">
             <div className="font-mono text-label">skin.css</div>
-            <div className="mt-0.5 text-caption text-muted-foreground">pseudo-elements · keyframes · descendant families</div>
+            <Text as="div" size="caption" tone="muted" className="mt-0.5">
+              pseudo-elements · keyframes · descendant families
+            </Text>
           </li>
           <li className="relative z-10 ml-4 rounded-lg border border-border bg-muted/35 px-4 py-3 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:translate-x-1 motion-reduce:transition-none">
             <div className="font-mono text-label">theme.css</div>
-            <div className="mt-0.5 text-caption text-muted-foreground">token values scoped by data-skin</div>
+            <Text as="div" size="caption" tone="muted" className="mt-0.5">
+              token values scoped by data-skin
+            </Text>
           </li>
         </ol>
         <FlowArrow className="hidden md:grid" />
@@ -84,8 +105,12 @@ export function SkinFileStack() {
           <div className="grid size-16 place-items-center rounded-[max(0px,calc(var(--radius-lg)-1.25rem))] bg-background text-heading-3 ring-1 ring-border">
             UI
           </div>
-          <div className="mt-3 font-medium text-label">One component tree</div>
-          <div className="mt-1 text-caption text-muted-foreground">never a skin-specific fork</div>
+          <Text as="div" size="label" weight="medium" className="mt-3">
+            One component tree
+          </Text>
+          <Text as="div" size="caption" tone="muted" className="mt-1">
+            never a skin-specific fork
+          </Text>
         </div>
       </div>
     </GuideVisual>
@@ -116,10 +141,10 @@ export function SkinResolutionMap() {
             <span className="rounded-md bg-primary px-2 py-1.5 text-primary-foreground">caller className wins</span>
           </div>
         </div>
-        <div className="text-caption text-muted-foreground">
+        <Text as="div" size="caption" tone="muted">
           Refined config: <code className="font-mono text-foreground">{`{ id: "refined" }`}</code>. Every installed pack supplies this file;
           no provider or wrapper is required.
-        </div>
+        </Text>
       </div>
     </GuideVisual>
   );
@@ -129,9 +154,9 @@ export function CustomizationLadder() {
   return (
     <GuideVisual title="Escalation ladder" description="Start at 1. Stop as soon as the change fits.">
       <div className="grid gap-3 md:grid-cols-[auto_1fr]">
-        <div className="hidden items-center text-micro text-muted-foreground md:flex [writing-mode:vertical-rl]">
+        <Text as="div" size="micro" tone="muted" className="hidden items-center md:flex [writing-mode:vertical-rl]">
           cheaper and easier to undo → deeper ownership
-        </div>
+        </Text>
         <ol className="grid gap-1.5">
           {customizationRungs.map((rung, index) => (
             <li
@@ -142,10 +167,16 @@ export function CustomizationLadder() {
                 {index + 1}
               </span>
               <span className="min-w-0">
-                <span className="block font-medium text-label">{rung.name}</span>
-                <span className="block truncate font-mono text-micro text-primary-text">{rung.file}</span>
+                <Text size="label" weight="medium" className="block">
+                  {rung.name}
+                </Text>
+                <Text size="micro" tone="primary" className="block truncate font-mono">
+                  {rung.file}
+                </Text>
               </span>
-              <span className="text-caption text-muted-foreground">{rung.note}</span>
+              <Text size="caption" tone="muted">
+                {rung.note}
+              </Text>
             </li>
           ))}
         </ol>
@@ -166,7 +197,9 @@ export function RegistryPipeline() {
         </div>
         <FlowArrow className="hidden md:grid" />
         <div className="rounded-lg bg-primary px-4 py-4 text-center text-primary-foreground">
-          <div className="font-medium text-label">Registry model</div>
+          <Text as="div" size="label" weight="medium">
+            Registry model
+          </Text>
           <div className="mt-1 text-caption opacity-80">ownership · deps · install closure</div>
         </div>
         <FlowArrow className="hidden md:grid" />

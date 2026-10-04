@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/control-ui/ui/select";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const MODELS = [
   { value: "opus", label: "Claude Opus 4.8" },
@@ -14,7 +15,9 @@ const MODELS = [
 function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-caption font-medium text-muted-foreground">{label}</span>
+      <Text size="caption" weight="medium" tone="muted">
+        {label}
+      </Text>
       {children}
     </div>
   );

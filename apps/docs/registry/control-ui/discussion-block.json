@@ -14,7 +14,8 @@
     "core",
     "kbd",
     "markdown",
-    "markdown-editor"
+    "markdown-editor",
+    "typography"
   ],
   "files": [
     {

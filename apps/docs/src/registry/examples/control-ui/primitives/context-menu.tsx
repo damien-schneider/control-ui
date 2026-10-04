@@ -25,7 +25,9 @@ export function PrimitiveContextMenuExample() {
         <ContextMenuTrigger className="grid min-h-56 place-items-center rounded-[var(--radius-panel)] bg-canvas text-center ring-1 ring-border/70">
           <div className="grid gap-1">
             <Text weight="medium">Canvas surface</Text>
-            <span className="text-caption text-muted-foreground">Right-click or long-press anywhere here</span>
+            <Text size="caption" tone="muted">
+              Right-click or long-press anywhere here
+            </Text>
           </div>
         </ContextMenuTrigger>
         <ContextMenuContent>
@@ -48,7 +50,9 @@ export function PrimitiveContextMenuExample() {
           </ContextMenuItem>
         </ContextMenuContent>
       </ContextMenu>
-      <span className="text-caption text-muted-foreground">{lastAction}</span>
+      <Text size="caption" tone="muted">
+        {lastAction}
+      </Text>
     </div>
   );
 }

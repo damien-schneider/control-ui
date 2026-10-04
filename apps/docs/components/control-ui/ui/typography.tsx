@@ -17,7 +17,9 @@ const sizeClassNames = {
 
 const toneClassNames = {
   default: undefined,
+  foreground: "text-foreground",
   muted: "text-muted-foreground",
+  primary: "text-primary-text",
   destructive: "text-destructive-text",
 } as const;
 
@@ -56,7 +58,20 @@ export function Heading({ level, size = headingSizeByLevel[level], tone = "defau
   );
 }
 
-export type TextTag = "p" | "span" | "div" | "small" | "strong" | "em" | "li" | "dt" | "dd" | "figcaption" | "legend" | "blockquote";
+export type TextTag =
+  | "p"
+  | "span"
+  | "div"
+  | "small"
+  | "strong"
+  | "em"
+  | "code"
+  | "li"
+  | "dt"
+  | "dd"
+  | "figcaption"
+  | "legend"
+  | "blockquote";
 
 export type TextProps = HTMLAttributes<HTMLElement> & {
   ref?: Ref<HTMLElement>;

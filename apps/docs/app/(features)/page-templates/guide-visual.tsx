@@ -1,6 +1,7 @@
 import type { ComponentProps, ReactNode } from "react";
 
 import { cn } from "@/components/control-ui/lib/cn";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function GuideVisual({
   title,
@@ -16,8 +17,14 @@ export function GuideVisual({
   return (
     <figure className={cn("overflow-hidden rounded-xl border border-border/80 bg-card/45 text-foreground", className)}>
       <figcaption className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-border/70 border-b px-4 py-3">
-        <span className="font-medium text-label">{title}</span>
-        {description ? <span className="text-caption text-muted-foreground">{description}</span> : null}
+        <Text size="label" weight="medium">
+          {title}
+        </Text>
+        {description ? (
+          <Text size="caption" tone="muted">
+            {description}
+          </Text>
+        ) : null}
       </figcaption>
       <div className="p-4 sm:p-5">{children}</div>
     </figure>

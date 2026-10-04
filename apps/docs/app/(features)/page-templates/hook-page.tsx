@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { SourceTabs } from "@/app/(features)/components/source";
 import type { DocsHook } from "@/app/(features)/model/types";
+import { Text } from "@/components/control-ui/ui/typography";
 import { PageHeader, SectionStack, SectionTitle } from "./shared";
 
 export function HookPage({ hook }: { hook: DocsHook }) {
@@ -11,9 +12,9 @@ export function HookPage({ hook }: { hook: DocsHook }) {
       <PageHeader label="Hooks" title={hook.name} summary={hook.summary} />
       <SectionStack>
         <div id="install" className="min-w-0 scroll-mt-20 rounded-xl border bg-background p-5">
-          <p className="text-body leading-6 text-muted-foreground">
+          <Text as="p" tone="muted" className="leading-6">
             Installed to <code>{hook.target}</code> with {hook.install}. It is local UI behavior — yours to own and edit.
-          </p>
+          </Text>
           {hook.references && hook.references.length > 0 ? (
             <div className="mt-3 flex flex-wrap gap-2">
               {hook.references.map((reference) => (

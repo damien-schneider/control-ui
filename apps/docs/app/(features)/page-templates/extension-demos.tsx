@@ -6,6 +6,7 @@ import type { ExtensionId } from "@/app/(features)/model/types";
 import { ControlEffectsRoot } from "@/components/control-ui/extensions/control-effects-root";
 import type { ControlEffect } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function ExtensionDemo({ extensionId }: { extensionId: ExtensionId }) {
   if (extensionId === "control-effects") return <ControlEffectsDemo />;
@@ -30,7 +31,9 @@ function ControlEffectsDemo() {
   return (
     <div className="grid min-w-0 gap-3">
       <div className="flex flex-wrap items-center gap-1.5">
-        <span className="text-caption font-medium text-muted-foreground">Effects</span>
+        <Text size="caption" weight="medium" tone="muted">
+          Effects
+        </Text>
         {controlEffectPresets.map((preset) => {
           const active = effects.includes(preset.id);
 

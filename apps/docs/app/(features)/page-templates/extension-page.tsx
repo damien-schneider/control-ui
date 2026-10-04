@@ -4,6 +4,7 @@ import { SourceTabs } from "@/app/(features)/components/source";
 import { registryInstallCommands } from "@/app/(features)/model/registry";
 import type { DocsExtension } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
+import { Text } from "@/components/control-ui/ui/typography";
 import { hasExtensionDemo } from "./extension-demo-ids";
 import { ExtensionDemo } from "./extension-demos";
 import { InstallPanel, PageHeader, RegistryDependencyReferences, SectionCode, SectionStack, SectionTitle } from "./shared";
@@ -31,7 +32,7 @@ export function ExtensionPage({ extension }: { extension: DocsExtension }) {
           </section>
         ) : null}
         <div id="attach" className="min-w-0 scroll-mt-20 rounded-xl border bg-background p-5">
-          <p className="text-body leading-6 text-muted-foreground">
+          <Text as="p" tone="muted" className="leading-6">
             <Badge variant="outline" size="sm" className="mr-2">
               {extension.attach === "anchored" ? "Anchored" : "Root-mounted"}
             </Badge>
@@ -47,7 +48,7 @@ export function ExtensionPage({ extension }: { extension: DocsExtension }) {
                 removes every byte. Not installed means no import, no listener, no cost.
               </>
             )}
-          </p>
+          </Text>
         </div>
         <InstallPanel commands={commands} manifestHref={`/r/${extension.registryKind}.json`}>
           Installs to <code>{extension.target}</code>. Extensions are optional items layered on the library — no component bundle carries

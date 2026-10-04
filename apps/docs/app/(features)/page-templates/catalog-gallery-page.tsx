@@ -79,9 +79,9 @@ function CatalogPreviewCard({
         </DeferredPreview>
       </div>
       <div className="mt-3 flex min-w-0 items-center gap-2 px-0.5">
-        <h3 id={nameId} className="min-w-0 truncate font-display text-body-lg font-medium text-foreground">
+        <Heading level={3} id={nameId} size="heading-4" tone="foreground" className="min-w-0 truncate">
           {item.name}
-        </h3>
+        </Heading>
         {item.status ? <StatusBadge status={item.status} compact className="shrink-0" /> : null}
       </div>
       <p id={summaryId} className="sr-only">

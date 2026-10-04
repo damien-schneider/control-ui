@@ -32,7 +32,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
 } from "@/components/control-ui/ui/dropdown-menu";
-import { Heading } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 
 const projectFiles = [
   {
@@ -48,17 +48,19 @@ const projectFiles = [
     ],
     preview: (
       <div className="overflow-hidden rounded-[var(--radius-panel)] border bg-card text-start shadow-sm">
-        <div className="border-b px-4 py-2 text-caption font-medium text-muted-foreground">README.md</div>
+        <Text as="div" size="caption" weight="medium" tone="muted" className="border-b px-4 py-2">
+          README.md
+        </Text>
         <div className="space-y-3 p-4">
           <Heading level={3} size="heading-4">
             Control UI
           </Heading>
-          <p className="text-caption text-muted-foreground">
+          <Text as="p" size="caption" tone="muted">
             An owned-source component registry for polished agent interfaces, complete blocks, and swappable skins.
-          </p>
-          <div className="rounded-[var(--radius-control)] bg-foreground/6 px-3 py-2 font-mono text-micro text-foreground">
+          </Text>
+          <Text as="div" size="micro" tone="foreground" className="rounded-[var(--radius-control)] bg-foreground/6 px-3 py-2 font-mono">
             bun run validate
-          </div>
+          </Text>
         </div>
       </div>
     ),

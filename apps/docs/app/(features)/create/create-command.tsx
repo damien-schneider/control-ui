@@ -5,6 +5,7 @@ import { CodeSnippet } from "@/app/(features)/components/source";
 import { Button } from "@/components/control-ui/ui/button";
 import { CodeCopy } from "@/components/control-ui/ui/code";
 import { Input } from "@/components/control-ui/ui/input";
+import { Text } from "@/components/control-ui/ui/typography";
 import { env } from "@/env";
 import { createAppCommand, normalizeProjectName, type PackageManagerId, packageManagerIds } from "./command";
 
@@ -36,13 +37,15 @@ export function CreateCommand() {
           spellCheck={false}
           aria-describedby="project-name-hint"
         />
-        <p id="project-name-hint" className="text-caption text-muted-foreground">
+        <Text id="project-name-hint" as="p" size="caption" tone="muted">
           Creates the folder <code className="font-mono text-foreground">{normalizedProjectName}</code>.
-        </p>
+        </Text>
       </div>
 
       <fieldset className="space-y-2">
-        <legend className="text-label font-medium text-foreground">Package manager</legend>
+        <Text as="legend" size="label" weight="medium" tone="foreground">
+          Package manager
+        </Text>
         <div className="grid grid-cols-4 gap-1 rounded-[var(--radius-control)] bg-muted/60 p-1">
           {packageManagerIds.map((id) => (
             <Button
@@ -62,13 +65,15 @@ export function CreateCommand() {
       </fieldset>
 
       <div className="space-y-2">
-        <p className="text-label font-medium text-foreground">Run this command</p>
+        <Text as="p" size="label" weight="medium" tone="foreground">
+          Run this command
+        </Text>
         <CodeSnippet code={command} highlight="none">
           <CodeCopy value={command} variant="solid" tone="primary" aria-label="Copy command" />
         </CodeSnippet>
-        <p className="text-caption leading-relaxed text-muted-foreground">
+        <Text as="p" size="caption" tone="muted" className="leading-relaxed">
           Dependencies install automatically. When Next.js is ready, open the Local URL printed in your terminal.
-        </p>
+        </Text>
       </div>
     </div>
   );

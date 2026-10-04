@@ -27,7 +27,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/control-ui/ui/sidebar";
-import { Heading } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 
 const workspaceItems = [
   { title: "Agents", icon: SparklesIcon, size: "default", disabled: false, unread: 3 },
@@ -166,12 +166,14 @@ function Workspace({
       <Sidebar variant={variant} side={side} collapsible={resizable ? "offcanvas" : collapsible} className="h-full">
         <SidebarHeader>
           <SidebarMenuButton size="lg" tooltip="Acme workspace" onClick={() => navigate("Overview")}>
-            <span
+            <Text
               aria-hidden="true"
-              className="flex size-7 shrink-0 items-center justify-center rounded-(--radius-control) bg-primary text-label font-semibold text-primary-foreground"
+              size="label"
+              weight="semibold"
+              className="flex size-7 shrink-0 items-center justify-center rounded-(--radius-control) bg-primary text-primary-foreground"
             >
               A
-            </span>
+            </Text>
             <span className="font-medium">Acme workspace</span>
           </SidebarMenuButton>
         </SidebarHeader>
@@ -179,12 +181,14 @@ function Workspace({
         <SidebarFooter>
           <DropdownMenu>
             <DropdownMenuTrigger render={<SidebarMenuButton size="lg" tooltip="Jamie Davis" />}>
-              <span
+              <Text
                 aria-hidden="true"
-                className="flex size-7 shrink-0 items-center justify-center rounded-full bg-muted text-caption font-medium"
+                size="caption"
+                weight="medium"
+                className="flex size-7 shrink-0 items-center justify-center rounded-full bg-muted"
               >
                 JD
-              </span>
+              </Text>
               <span>Jamie Davis</span>
             </DropdownMenuTrigger>
             <DropdownMenuContent side="inline-end" align="end">
@@ -198,18 +202,26 @@ function Workspace({
       <SidebarInset>
         <header className="flex h-14 shrink-0 items-center gap-2 border-b border-border px-3">
           {resizable || collapsible !== "none" ? <SidebarTrigger /> : null}
-          <span className="truncate text-label font-medium">{active}</span>
+          <Text size="label" weight="medium" className="truncate">
+            {active}
+          </Text>
         </header>
         <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-auto p-5">
           <div>
-            <p className="text-caption text-muted-foreground">Acme workspace</p>
+            <Text as="p" size="caption" tone="muted">
+              Acme workspace
+            </Text>
             <Heading level={3} className="mt-1">
               {active}
             </Heading>
           </div>
           <div className="rounded-(--radius-panel) border border-border p-4">
-            <p className="text-label font-medium">Your workspace, at a glance</p>
-            <p className="mt-1 text-label text-muted-foreground">Browse your team’s agents, workflows, and projects from the sidebar.</p>
+            <Text as="p" size="label" weight="medium">
+              Your workspace, at a glance
+            </Text>
+            <Text as="p" size="label" tone="muted" className="mt-1">
+              Browse your team’s agents, workflows, and projects from the sidebar.
+            </Text>
           </div>
           <div className="min-h-0 overflow-x-auto rounded-(--radius-panel) border border-border">
             <div className="min-w-96 divide-y divide-border text-label">
@@ -261,7 +273,7 @@ function SidebarExample({
   return (
     <fieldset aria-label={label} className="w-full min-w-0">
       {controls ? (
-        <div className="mb-3 flex flex-wrap items-center justify-end gap-2 text-caption text-muted-foreground">
+        <Text as="div" size="caption" tone="muted" className="mb-3 flex flex-wrap items-center justify-end gap-2">
           <label htmlFor={layoutId} className="shrink-0">
             Layout
           </label>
@@ -328,7 +340,7 @@ function SidebarExample({
               <option value="none">Fixed</option>
             </NativeSelect>
           </div>
-        </div>
+        </Text>
       ) : null}
       <div className="relative isolate h-[30rem] w-full overflow-hidden rounded-(--radius-panel) border border-border bg-canvas [transform:translateZ(0)]">
         <SidebarProvider

@@ -1,5 +1,6 @@
 import type { SourceReference } from "@/components/control-ui/inline-citation";
 import { InlineCitation } from "@/components/control-ui/inline-citation";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const sources = [
   {
@@ -23,9 +24,9 @@ const sources = [
 
 export function InlineCitationExample() {
   return (
-    <div className="mx-auto max-w-xl text-body leading-7 text-foreground">
+    <Text as="div" tone="foreground" className="mx-auto max-w-xl leading-7">
       A citation with several references stays compact in the answer, then opens a keyboard-accessible source preview
       <InlineCitation sources={sources} />. Each source keeps its own title, excerpt, and outbound link.
-    </div>
+    </Text>
   );
 }

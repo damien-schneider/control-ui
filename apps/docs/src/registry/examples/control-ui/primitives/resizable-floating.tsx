@@ -13,7 +13,9 @@ export function PrimitiveResizableFloatingExample() {
       <ResizableFloatingPanel defaultSize={240} minSize={200} maxSize={400}>
         <div className="flex flex-col gap-1 p-4">
           <Text weight="medium">Inspector</Text>
-          <span className="text-caption text-muted-foreground">Drag the left edge or focus it and use the arrow keys.</span>
+          <Text size="caption" tone="muted">
+            Drag the left edge or focus it and use the arrow keys.
+          </Text>
         </div>
       </ResizableFloatingPanel>
     </div>

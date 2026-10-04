@@ -36,6 +36,7 @@ import {
 import { ChatTurn } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
 import { ModelSwitcher } from "@/components/control-ui/model-switcher";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const navigation: readonly CodingAgentNavigationItem[] = [
   { id: "pull-requests", label: "Pull requests", icon: <GitPullRequestIcon /> },
@@ -172,7 +173,7 @@ export function CodingAgentExample() {
       onSubmit={submitPrompt}
     >
       <ChatComposerShell>
-        <div className="flex min-w-0 items-center gap-3 border-b border-border/60 px-3 py-2 text-caption text-muted-foreground">
+        <Text as="div" size="caption" tone="muted" className="flex min-w-0 items-center gap-3 border-b border-border/60 px-3 py-2">
           <span className="flex min-w-0 items-center gap-1.5">
             <FolderIcon className="size-3.5 shrink-0" aria-hidden="true" />
             <span className="truncate">control-ui</span>
@@ -185,7 +186,7 @@ export function CodingAgentExample() {
             <GitBranchIcon className="size-3.5 shrink-0" aria-hidden="true" />
             <span className="truncate">feat/coding-agent-block</span>
           </span>
-        </div>
+        </Text>
         <ChatComposerTextarea className="min-h-18" placeholder="Do anything" />
         <ChatComposerToolbar>
           <ChatComposerTools>

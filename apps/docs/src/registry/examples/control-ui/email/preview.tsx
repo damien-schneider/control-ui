@@ -5,6 +5,7 @@ import { z } from "zod";
 import type { EmailVariant } from "@/components/control-ui/email/email";
 import { Button } from "@/components/control-ui/ui/button";
 import { Skeleton } from "@/components/control-ui/ui/skeleton";
+import { Text } from "@/components/control-ui/ui/typography";
 import { downloadFile } from "@/components/theme-drawer/download";
 import { useThemeRuntime } from "@/components/theme-drawer/theme-runtime-context";
 import { type EmailLayoutId, type EmailPreviewResult, emailPreviewResult, emailVariants } from "./options";
@@ -127,7 +128,9 @@ export function EmailPreview({ layout }: { layout: EmailLayoutId }) {
   return (
     <div className="w-full min-w-0 space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-caption text-muted-foreground">React Email · current Control UI theme</p>
+        <Text as="p" size="caption" tone="muted">
+          React Email · current Control UI theme
+        </Text>
         <div className="flex flex-wrap items-center gap-3">
           <fieldset className="flex gap-1" aria-label={`${layout} preview surface`}>
             {emailVariants.map((option) => (

@@ -431,7 +431,9 @@ function DesignCanvasLayerNode({ layer, selected, onSelect, onKeyDown, onLayerCh
       onPositionChange={onLayerChange && ((position) => onLayerChange({ ...layer, x: Math.round(position.x), y: Math.round(position.y) }))}
     >
       {layer.kind === "frame" ? (
-        <span className="absolute start-0 bottom-full mb-1 whitespace-nowrap text-caption text-muted-foreground">{layer.name}</span>
+        <Text size="caption" tone="muted" className="absolute start-0 bottom-full mb-1 whitespace-nowrap">
+          {layer.name}
+        </Text>
       ) : null}
       {layer.kind === "text" ? (
         <Text as="p" size="heading-2" weight="normal" className="size-full overflow-hidden whitespace-nowrap" style={{ color: fillColor }}>

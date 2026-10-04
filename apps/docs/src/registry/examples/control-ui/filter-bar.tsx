@@ -9,6 +9,7 @@ import {
   type FilterBarItem,
   type FilterBarScalar,
 } from "@/components/control-ui/filter-bar";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const fields: readonly FilterBarField[] = [
   {
@@ -106,10 +107,12 @@ function IssueFilters({ input = false }: { input?: boolean }) {
   return (
     <div className="flex w-full max-w-3xl flex-col gap-4">
       <div className="flex items-center justify-between">
-        <span className="text-label font-semibold">Issues</span>
-        <span className="text-caption text-muted-foreground" role="status">
+        <Text size="label" weight="semibold">
+          Issues
+        </Text>
+        <Text size="caption" tone="muted" role="status">
           {matching.length} of {issues.length} issues
-        </span>
+        </Text>
       </div>
       <FilterBar.Root
         fields={fields}
@@ -126,13 +129,19 @@ function IssueFilters({ input = false }: { input?: boolean }) {
       <ul className="divide-y rounded-[var(--radius-lg)] border bg-card">
         {matching.map((issue) => (
           <li key={issue.id} className="flex items-center gap-3 px-4 py-3">
-            <span className="text-caption text-muted-foreground">{issue.id}</span>
+            <Text size="caption" tone="muted">
+              {issue.id}
+            </Text>
             <span className="min-w-0 flex-1 text-label">{issue.title}</span>
-            <span className="shrink-0 text-caption text-muted-foreground">{issue.status.replace("-", " ")}</span>
+            <Text size="caption" tone="muted" className="shrink-0">
+              {issue.status.replace("-", " ")}
+            </Text>
           </li>
         ))}
         {matching.length === 0 && (
-          <li className="px-4 py-6 text-center text-caption text-muted-foreground">No issues match these filters.</li>
+          <Text as="li" size="caption" tone="muted" className="px-4 py-6 text-center">
+            No issues match these filters.
+          </Text>
         )}
       </ul>
     </div>

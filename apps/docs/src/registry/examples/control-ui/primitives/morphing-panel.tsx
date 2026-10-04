@@ -9,6 +9,7 @@ import { MorphingPanel, MorphingPanelContent, MorphingPanelTrigger } from "@/com
 import { Slider } from "@/components/control-ui/ui/slider";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/control-ui/ui/tabs";
 import { Textarea } from "@/components/control-ui/ui/textarea";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const sections = {
   dimensions: { width: "320px", height: "240px" },
@@ -157,10 +158,10 @@ export function PrimitiveMorphingPanelExample() {
 function SettingsFooter({ saved, onApply, compact = false }: { saved: boolean; onApply: () => void; compact?: boolean }) {
   return (
     <div className="flex items-center justify-between gap-3">
-      <span className="flex min-w-0 items-center gap-2 text-caption text-muted-foreground">
+      <Text size="caption" tone="muted" className="flex min-w-0 items-center gap-2">
         <span aria-hidden="true" className={cn("size-1.5 rounded-full", saved ? "bg-muted-foreground" : "bg-primary")} />
         {saved ? "Saved" : "Changes"}
-      </span>
+      </Text>
       <Button variant="solid" tone="primary" size={compact ? "xs" : "sm"} onClick={onApply}>
         {saved ? <CheckIcon aria-hidden="true" className="size-3.5" /> : null}
         Apply

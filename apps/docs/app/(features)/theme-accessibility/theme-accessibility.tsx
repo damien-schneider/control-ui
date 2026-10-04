@@ -8,7 +8,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/control-ui/ui/empty";
 import { Skeleton } from "@/components/control-ui/ui/skeleton";
-import { Heading } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
 import { THEME_AUDIT_CATEGORIES, type ThemeAuditCategory, type ThemeAuditResult, type ThemeAuditStatus } from "./audit-contract";
 import { useThemeAudit } from "./use-theme-audit";
@@ -23,17 +23,20 @@ function AuditOutcome({ result }: { result: ThemeAuditResult }) {
   };
 
   return (
-    <span
+    <Text
+      size="micro"
+      weight="semibold"
+      tone={result.status === "unresolved" ? "muted" : "default"}
       className={cn(
-        "inline-flex min-w-14 justify-center rounded-full px-2 py-1 text-micro font-semibold tabular-nums",
+        "inline-flex min-w-14 justify-center rounded-full px-2 py-1 tabular-nums",
         result.status === "pass" && "bg-emerald-500/15 text-emerald-700 dark:text-emerald-400",
         result.status === "fail" && result.severity === "error" && "bg-red-500/15 text-red-700 dark:text-red-400",
         result.status === "fail" && result.severity === "warning" && "bg-amber-500/15 text-amber-800 dark:text-amber-300",
-        result.status === "unresolved" && "bg-muted text-muted-foreground",
+        result.status === "unresolved" && "bg-muted",
       )}
     >
       {statusLabel[result.status]}
-    </span>
+    </Text>
   );
 }
 
@@ -44,15 +47,17 @@ function ContrastSample({ result }: { result: ThemeAuditResult }) {
       className="inline-flex size-9 items-center justify-center overflow-hidden rounded-[var(--radius-control)] border border-border"
       style={{ background: result.surfacePaint ?? `var(${result.surface})` }}
     >
-      <span
-        className="grid size-full place-items-center text-caption font-semibold"
+      <Text
+        size="caption"
+        weight="semibold"
+        className="grid size-full place-items-center"
         style={{
           color: result.resolvedForeground ?? `var(${result.foreground})`,
           background: result.resolvedBackground ?? result.backgroundPaint ?? `var(${result.background})`,
         }}
       >
         Aa
-      </span>
+      </Text>
     </span>
   );
 }
@@ -66,9 +71,9 @@ function AuditTable({ category, results }: { category: ThemeAuditCategory; resul
         <Heading level={2} size="heading-4" id={`audit-${category.replaceAll(" ", "-").toLowerCase()}`}>
           {category}
         </Heading>
-        <span className="text-caption tabular-nums text-muted-foreground">
+        <Text size="caption" tone="muted" className="tabular-nums">
           {issueCount === 0 ? `${results.length} passed` : `${issueCount} ${issueCount === 1 ? "issue" : "issues"}`}
-        </span>
+        </Text>
       </header>
       <div className="overflow-x-auto border-y border-border">
         <table className="w-full min-w-3xl border-collapse text-left text-caption">
@@ -111,7 +116,9 @@ function AuditTable({ category, results }: { category: ThemeAuditCategory; resul
                 </td>
                 <td className="py-2.5 pr-4 text-right font-mono tabular-nums text-foreground">
                   {result.ratio === null ? "—" : `${result.ratio.toFixed(2)}:1`}
-                  <span className="mt-0.5 block text-micro text-muted-foreground">min {result.threshold}:1</span>
+                  <Text size="micro" tone="muted" className="mt-0.5 block">
+                    min {result.threshold}:1
+                  </Text>
                 </td>
                 <td className="py-2.5 text-right">
                   <AuditOutcome result={result} />
@@ -222,10 +229,10 @@ export function ThemeAccessibility() {
               <Heading level={2} size="heading-4" id="active-theme-audit" className="tabular-nums">
                 {auditSummary}
               </Heading>
-              <p className="mt-1 max-w-2xl text-caption leading-5 text-pretty text-muted-foreground">
+              <Text as="p" size="caption" tone="muted" className="mt-1 max-w-2xl leading-5 text-pretty">
                 Resolves contract colors and rendered active-tab paint, including alpha layers and sampled gradient stops. Switch modes to
                 inspect light and dark independently.
-              </p>
+              </Text>
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -237,7 +244,9 @@ export function ThemeAccessibility() {
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <p className="text-caption tabular-nums text-muted-foreground">{advisorySummary}</p>
+          <Text as="p" size="caption" tone="muted" className="tabular-nums">
+            {advisorySummary}
+          </Text>
           <Button variant="quiet" size="sm" active={issuesOnly} onClick={() => setIssuesOnly((current) => !current)}>
             {issuesOnly ? "Show all pairs" : "Show issues only"}
           </Button>
@@ -251,13 +260,15 @@ export function ThemeAccessibility() {
           <Heading level={2} size="heading-4" id="optional-cli-check">
             Optional CLI check
           </Heading>
-          <p className="mt-1.5 text-body leading-6 text-pretty text-muted-foreground">
+          <Text as="p" tone="muted" className="mt-1.5 leading-6 text-pretty">
             Audit any skin <code>theme.css</code> in light and dark. A sibling <code>skin.css</code> is loaded when present; slot classes
             from <code>skin.config</code> remain a live-preview check. Required failures or unresolved paints exit non-zero.
-          </p>
+          </Text>
         </div>
         <div className="flex max-w-2xl flex-wrap items-center gap-2 border-y border-border py-3">
-          <code className="min-w-0 flex-1 overflow-x-auto font-mono text-caption text-foreground">{CLI_COMMAND}</code>
+          <Text as="code" size="caption" tone="foreground" className="min-w-0 flex-1 overflow-x-auto font-mono">
+            {CLI_COMMAND}
+          </Text>
           <Button variant="surface" size="sm" onClick={commandCopy.handleCopy}>
             {commandCopy.status === "copied" ? (
               <CheckCircle2Icon aria-hidden className="size-3.5" />
@@ -267,10 +278,10 @@ export function ThemeAccessibility() {
             {commandCopy.status === "copied" ? "Copied" : "Copy command"}
           </Button>
         </div>
-        <p className="flex max-w-2xl items-start gap-2 text-caption leading-5 text-muted-foreground">
+        <Text as="p" size="caption" tone="muted" className="flex max-w-2xl items-start gap-2 leading-5">
           <CircleHelpIcon aria-hidden className="mt-0.5 size-3.5 shrink-0" /> Run without a path to audit every built-in skin pack. Add
           <code className="font-mono"> --json</code> for machine-readable output in an agent or CI workflow.
-        </p>
+        </Text>
       </section>
     </div>
   );

@@ -14,6 +14,7 @@ import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/control-ui/ui/command";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/control-ui/ui/empty";
 import { Kbd } from "@/components/control-ui/ui/kbd";
+import { Text } from "@/components/control-ui/ui/typography";
 import { useCloseMobileSidebar } from "./use-close-mobile-sidebar";
 
 function isTypingTarget(target: EventTarget | null) {
@@ -28,7 +29,9 @@ function DocsSearchResult({ item, onSelect }: { item: SearchItem; onSelect: (ite
     <CommandItem value={item.id} onSelect={() => onSelect(item)}>
       <div className="min-w-0 flex-1">
         <div className="truncate font-medium">{item.name}</div>
-        <div className="truncate text-label text-muted-foreground">{item.summary}</div>
+        <Text as="div" size="label" tone="muted" className="truncate">
+          {item.summary}
+        </Text>
       </div>
       {item.status ? <StatusBadge status={item.status} compact /> : null}
       <Badge variant="outline" size="sm">

@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Heading } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 import { VarTag } from "@/components/theme-drawer/controls";
 import { THEME_CONTRACT, THEME_CONTRACT_NAMES, type ThemeContractGroup } from "@/src/registry/lib/theme-contract";
 import { useContractTokens } from "./theme-readouts";
@@ -51,9 +51,17 @@ export function Specimen({
           {companionTokens.map((companion) => (
             <VarTag key={companion}>{companion}</VarTag>
           ))}
-          {readout ? <span className="font-mono text-micro tabular-nums text-muted-foreground">{readout}</span> : null}
+          {readout ? (
+            <Text size="micro" tone="muted" className="font-mono tabular-nums">
+              {readout}
+            </Text>
+          ) : null}
         </span>
-        {description ? <span className="text-caption leading-4 text-muted-foreground">{description}</span> : null}
+        {description ? (
+          <Text size="caption" tone="muted" className="leading-4">
+            {description}
+          </Text>
+        ) : null}
       </figcaption>
     </figure>
   );
@@ -68,9 +76,9 @@ export function TokenValueList({ names }: { names: readonly string[] }) {
           <dt className="shrink-0">
             <VarTag>{name}</VarTag>
           </dt>
-          <dd className="min-w-0 truncate font-mono text-micro text-muted-foreground" title={tokens[name]}>
+          <Text as="dd" size="micro" tone="muted" className="min-w-0 truncate font-mono" title={tokens[name]}>
             {tokens[name] ?? "—"}
-          </dd>
+          </Text>
         </div>
       ))}
     </dl>

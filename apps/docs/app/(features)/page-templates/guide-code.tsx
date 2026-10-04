@@ -8,7 +8,7 @@ import type { GuideSection as GuideSectionData, IntegrationId } from "@/app/(fea
 import { cn } from "@/components/control-ui/lib/cn";
 import { Card } from "@/components/control-ui/ui/card";
 import { MarkdownFlow } from "@/components/control-ui/ui/markdown";
-import { Heading } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 import { IntegrationSelect, integrationChangesCode } from "./integration";
 
 type GuideCodeKind = NonNullable<GuideSectionData["code"]>;
@@ -78,7 +78,9 @@ export function InstallPaths({ current }: { current: InstallPathId }) {
           </li>
         ))}
       </ul>
-      <p className="mt-3 text-body leading-6 text-muted-foreground">{installPaths[current].description}</p>
+      <Text as="p" tone="muted" className="mt-3 leading-6">
+        {installPaths[current].description}
+      </Text>
     </nav>
   );
 }
@@ -86,8 +88,12 @@ export function InstallPaths({ current }: { current: InstallPathId }) {
 export function GuideCheck({ children }: { children: ReactNode }) {
   return (
     <Card className="gap-1 px-4 py-3">
-      <span className="text-caption font-medium text-primary-text">What you should see now</span>
-      <div className="text-body leading-6 text-foreground [&>p]:text-pretty">{children}</div>
+      <Text size="caption" weight="medium" tone="primary">
+        What you should see now
+      </Text>
+      <Text as="div" tone="foreground" className="leading-6 [&>p]:text-pretty">
+        {children}
+      </Text>
     </Card>
   );
 }

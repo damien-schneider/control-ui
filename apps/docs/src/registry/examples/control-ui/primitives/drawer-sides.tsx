@@ -12,6 +12,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/control-ui/ui/drawer";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const sides = [
   { side: "top", label: "Top" },
@@ -32,9 +33,13 @@ export function PrimitiveDrawerSidesExample() {
               <DrawerDescription>Swipe toward the {side} edge or use the close action to dismiss.</DrawerDescription>
             </DrawerHeader>
             <DrawerBody className="min-h-24 items-center justify-center px-4">
-              <div className="w-full rounded-[var(--radius-panel)] bg-foreground/4 p-4 text-center text-body text-muted-foreground ring-1 ring-inset ring-border">
+              <Text
+                as="div"
+                tone="muted"
+                className="w-full rounded-[var(--radius-panel)] bg-foreground/4 p-4 text-center ring-1 ring-inset ring-border"
+              >
                 Edge-aligned content
-              </div>
+              </Text>
             </DrawerBody>
             <DrawerFooter>
               <DrawerClose render={<Button variant="surface" />}>Close</DrawerClose>

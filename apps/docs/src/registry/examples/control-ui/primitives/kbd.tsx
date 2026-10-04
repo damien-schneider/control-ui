@@ -1,10 +1,11 @@
 "use client";
 
 import { Kbd, KbdGroup } from "@/components/control-ui/ui/kbd";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function PrimitiveKbdExample() {
   return (
-    <div className="flex w-full max-w-sm flex-col gap-6 text-body text-muted-foreground">
+    <Text as="div" tone="muted" className="flex w-full max-w-sm flex-col gap-6">
       <div className="flex items-center gap-2">
         <span>Single key</span>
         <Kbd>Esc</Kbd>
@@ -27,6 +28,6 @@ export function PrimitiveKbdExample() {
         <span>Inline hint</span>
         <Kbd variant="ghost">⌘K</Kbd>
       </div>
-    </div>
+    </Text>
   );
 }

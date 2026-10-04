@@ -13,6 +13,7 @@ import {
   DockablePanelTitle,
   DockablePanelToggle,
 } from "@/components/control-ui/ui/dockable-panel";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function PrimitiveDockablePanelExample() {
   const [open, setOpen] = useState(true);
@@ -47,10 +48,10 @@ export function PrimitiveDockablePanelExample() {
           <PanelRow label="Layer" value="Launch card" />
           <PanelRow label="Position" value="240, 128" />
           <PanelRow label="Size" value="320 × 180" />
-          <p className="text-caption leading-relaxed text-muted-foreground">
+          <Text as="p" size="caption" tone="muted" className="leading-relaxed">
             Drag the title to reveal both side slots, then release over either half. From the keyboard, focus the title and press the arrow
             keys, or use the placement buttons.
-          </p>
+          </Text>
         </DockablePanelContent>
       </DockablePanel>
     </div>

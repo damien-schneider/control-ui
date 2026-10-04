@@ -1,6 +1,7 @@
 "use client";
 
 import { BADGE_COLORS, Badge } from "@/components/control-ui/ui/badge";
+import { Text } from "@/components/control-ui/ui/typography";
 import { COLOR_RAMPS, RAMP_STEP_COUNT } from "@/src/registry/lib/theme-contract";
 import { contractDescription, contractTokensNamed, Specimen, SpecimenGroup, TokenValueList } from "./specimen/specimen";
 
@@ -80,24 +81,28 @@ function RampTable() {
       <div className={RAMP_GRID_COLUMNS}>
         <span />
         {STEP_PURPOSES.map(({ span, purpose }) => (
-          <span
+          <Text
             key={purpose}
-            className="truncate border-b border-border pb-1 text-center text-micro text-muted-foreground"
+            size="micro"
+            tone="muted"
+            className="truncate border-b border-border pb-1 text-center"
             style={{ gridColumn: `span ${span}` }}
           >
             {purpose}
-          </span>
+          </Text>
         ))}
         <span />
         {RAMP_STEPS.map((step) => (
-          <span key={step} className="text-center font-mono text-micro tabular-nums text-muted-foreground">
+          <Text key={step} size="micro" tone="muted" className="text-center font-mono tabular-nums">
             {step}
-          </span>
+          </Text>
         ))}
       </div>
       {COLOR_RAMPS.map((ramp) => (
         <div key={ramp} className={RAMP_GRID_COLUMNS}>
-          <span className="self-center truncate font-mono text-micro text-foreground">{ramp}</span>
+          <Text size="micro" tone="foreground" className="self-center truncate font-mono">
+            {ramp}
+          </Text>
           {RAMP_STEPS.map((step) => (
             <div
               key={step}

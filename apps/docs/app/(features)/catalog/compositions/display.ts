@@ -245,7 +245,7 @@ export const displayCompositions = {
     example(
       "Native tag",
       content("one rung on the element", part("h2"), part("p")),
-      "A native tag may wear one text-* rung directly. Heading rungs already carry font-display and text-balance, so add no other type utility beside them.",
+      "A native tag may wear one text-* rung and nothing else from the scale: pair it with a tone or weight and it becomes Text or Heading. Heading rungs already carry font-display and text-balance.",
     ),
   ],
   code: [

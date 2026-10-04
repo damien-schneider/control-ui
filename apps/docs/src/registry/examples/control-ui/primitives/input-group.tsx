@@ -4,6 +4,7 @@ import { Field, FieldDescription, FieldLabel } from "@/components/control-ui/ui/
 import { Input } from "@/components/control-ui/ui/input";
 import { InputGroup, InputGroupAddon } from "@/components/control-ui/ui/input-group";
 import { Kbd } from "@/components/control-ui/ui/kbd";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function PrimitiveInputGroupExample() {
   return (
@@ -17,7 +18,9 @@ export function PrimitiveInputGroupExample() {
         <FieldDescription>Lowercase letters, numbers, and hyphens</FieldDescription>
       </Field>
       <div className="flex flex-col gap-2">
-        <span className="text-caption font-medium text-muted-foreground">Addon + field</span>
+        <Text size="caption" weight="medium" tone="muted">
+          Addon + field
+        </Text>
         <InputGroup size="sm">
           <InputGroupAddon>
             <svg viewBox="0 0 16 16" className="size-3.5" aria-hidden="true" fill="none">
@@ -32,7 +35,9 @@ export function PrimitiveInputGroupExample() {
         </InputGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <span className="text-caption font-medium text-muted-foreground">Render prop — the group renders as a button</span>
+        <Text size="caption" weight="medium" tone="muted">
+          Render prop — the group renders as a button
+        </Text>
         <InputGroup render={<button type="button" aria-label="Search documentation" />} size="sm">
           <InputGroupAddon>
             <svg viewBox="0 0 16 16" className="size-3.5" aria-hidden="true" fill="none">

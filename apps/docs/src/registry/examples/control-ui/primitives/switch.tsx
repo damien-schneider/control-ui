@@ -4,13 +4,14 @@ import { CheckIcon, MoonIcon, SunIcon, XIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { useState } from "react";
 import { Switch } from "@/components/control-ui/ui/switch";
+import { Text } from "@/components/control-ui/ui/typography";
 
 function Row({ htmlFor, label, children }: { htmlFor: string; label: string; children: ReactNode }) {
   return (
-    <div className="flex items-center justify-between gap-4 text-body font-medium text-foreground">
+    <Text as="div" weight="medium" tone="foreground" className="flex items-center justify-between gap-4">
       <label htmlFor={htmlFor}>{label}</label>
       {children}
-    </div>
+    </Text>
   );
 }
 

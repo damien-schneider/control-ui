@@ -16,7 +16,7 @@ import type { GuideId, GuidePage as GuidePageData, IntegrationId } from "@/app/(
 import { ThemeAccessibility } from "@/app/(features)/theme-accessibility/theme-accessibility";
 import { Card } from "@/components/control-ui/ui/card";
 import { MarkdownRoot } from "@/components/control-ui/ui/markdown";
-import { Heading } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 import { SKIN_CATEGORY, type ThemeCategoryId } from "@/components/theme-drawer/theme-categories";
 import { ThemeEditor } from "@/components/theme-drawer/theme-editor";
 import AgentSkillContent from "@/content/guides/agent-skill.mdx";
@@ -152,11 +152,15 @@ export function GuidePage({
     <section className="docs-article">
       <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
         <div className="w-full max-w-2xl">
-          <div className="text-caption font-medium text-muted-foreground">Guide</div>
+          <Text as="div" size="caption" weight="medium" tone="muted">
+            Guide
+          </Text>
           <Heading level={1} size="display" className="mt-2">
             {page.name}
           </Heading>
-          <p className="mt-3 text-body-lg text-pretty text-muted-foreground">{page.summary}</p>
+          <Text as="p" size="body-lg" tone="muted" className="mt-3 text-pretty">
+            {page.summary}
+          </Text>
         </div>
         <OpenInAgent name={page.name} pathname={`/${page.id}`} />
       </div>
@@ -169,8 +173,12 @@ export function GuidePage({
             <dl className="mt-4 grid gap-3">
               {page.faqs.map((faq) => (
                 <Card key={faq.question} className="gap-1.5 px-4 py-3">
-                  <dt className="font-medium text-label">{faq.question}</dt>
-                  <dd className="text-body leading-6 text-muted-foreground">{faq.answer}</dd>
+                  <Text as="dt" size="label" weight="medium">
+                    {faq.question}
+                  </Text>
+                  <Text as="dd" tone="muted" className="leading-6">
+                    {faq.answer}
+                  </Text>
                 </Card>
               ))}
             </dl>

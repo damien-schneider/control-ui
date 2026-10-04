@@ -11,7 +11,8 @@
     "app-shell",
     "core",
     "page-layout",
-    "sidebar"
+    "sidebar",
+    "typography"
   ],
   "files": [
     {

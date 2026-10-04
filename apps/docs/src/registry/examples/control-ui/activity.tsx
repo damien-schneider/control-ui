@@ -24,6 +24,7 @@ import {
   TimelineSeparator,
   TimelineTitle,
 } from "@/components/control-ui/ui/timeline";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const thinkingTrace = [
   { icon: <SquareTerminal />, label: "Ran the registry validation command", state: "success" },
@@ -102,10 +103,10 @@ export function ActivityExample() {
               MDN
             </SourceBadge>
           </div>
-          <p className="text-label leading-5 text-muted-foreground">
+          <Text as="p" size="label" tone="muted" className="leading-5">
             The shared activity anatomy owns disclosure and overflow. Source links stay inside the expanded content, never inside its
             button.
-          </p>
+          </Text>
         </ActivityContent>
       </Activity>
 

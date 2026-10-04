@@ -1,5 +1,6 @@
 "use client";
 
+import { Text } from "@/components/control-ui/ui/typography";
 import { VarTag } from "@/components/theme-drawer/controls";
 import { LayerPreview } from "@/components/theme-drawer/layer-previews";
 import { contractTokenNames, SpecimenGroup, TokenValueList } from "./specimen/specimen";
@@ -15,7 +16,9 @@ function SurfaceStack() {
           <VarTag>--card</VarTag>
           <div className="flex w-full max-w-xs flex-col items-start gap-2 self-end rounded-[var(--radius-popover)] bg-popover p-3 text-popover-foreground shadow-pop backdrop-blur-[var(--backdrop-blur-popover)]">
             <VarTag>--popover</VarTag>
-            <span className="text-caption text-muted-foreground">Menus, selects and dialogs float here.</span>
+            <Text size="caption" tone="muted">
+              Menus, selects and dialogs float here.
+            </Text>
           </div>
         </div>
       </div>

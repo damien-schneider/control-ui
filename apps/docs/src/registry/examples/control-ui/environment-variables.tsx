@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { EnvironmentVariables } from "@/components/control-ui/environment-variables";
 import type { EnvironmentVariableRow } from "@/components/control-ui/hooks/use-environment-variables";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const initialRows: EnvironmentVariableRow[] = [
   { key: "OPENAI_API_KEY", value: "sk-live-****************" },
@@ -21,9 +22,9 @@ export function EnvironmentVariablesExample() {
         onSubmit={({ variables }) => setSaved(variables)}
       />
       {saved ? (
-        <div className="mt-3 rounded-[var(--radius-lg)] border bg-card px-3 py-2 text-caption text-muted-foreground shadow-sm">
+        <Text as="div" size="caption" tone="muted" className="mt-3 rounded-[var(--radius-lg)] border bg-card px-3 py-2 shadow-sm">
           {Object.keys(saved).length} variables ready for submit
-        </div>
+        </Text>
       ) : null}
     </div>
   );

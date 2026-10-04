@@ -25,7 +25,9 @@ import { Text } from "@/components/control-ui/ui/typography";
 function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
     <fieldset aria-label={label} className="flex min-w-0 flex-col gap-2">
-      <span className="text-caption font-medium text-muted-foreground">{label}</span>
+      <Text size="caption" weight="medium" tone="muted">
+        {label}
+      </Text>
       {children}
     </fieldset>
   );
@@ -78,7 +80,9 @@ export function PrimitiveDropdownMenuExample() {
         </Text>
       </Row>
       <DropdownMenuChoicesExample />
-      <span className="text-caption text-muted-foreground">{last ? `Last action: ${last}` : "No action yet"}</span>
+      <Text size="caption" tone="muted">
+        {last ? `Last action: ${last}` : "No action yet"}
+      </Text>
     </div>
   );
 }

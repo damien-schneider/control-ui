@@ -4,11 +4,14 @@ import { BoldIcon, ItalicIcon, UnderlineIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { useState } from "react";
 import { Toggle, ToggleGroup } from "@/components/control-ui/ui/toggle";
+import { Text } from "@/components/control-ui/ui/typography";
 
 function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-caption font-medium text-muted-foreground">{label}</span>
+      <Text size="caption" weight="medium" tone="muted">
+        {label}
+      </Text>
       {children}
     </div>
   );

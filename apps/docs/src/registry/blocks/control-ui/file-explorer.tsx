@@ -38,6 +38,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/control-ui/ui/sidebar";
+import { Text } from "@/components/control-ui/ui/typography";
 import {
   type FileExplorerBreadcrumb,
   type FileExplorerColumn,
@@ -555,7 +556,9 @@ function FileExplorerColumns({
                   <span className="truncate">{parentColumn.label}</span>
                 </Button>
               ) : (
-                <span className="min-w-0 truncate px-1 text-label font-medium">{activeColumn?.label}</span>
+                <Text size="label" weight="medium" className="min-w-0 truncate px-1">
+                  {activeColumn?.label}
+                </Text>
               )}
               <Drawer>
                 <DrawerTrigger render={<Button variant="ghost" size="xs" className="ms-auto" disabled={!selectedEntry} />}>
@@ -690,9 +693,9 @@ function FileExplorerColumnView({
           return group.label ? (
             // biome-ignore lint/a11y/useSemanticElements: WAI-ARIA listbox groups options with role="group"; a fieldset is not a valid listbox child.
             <div key={group.label} role="group" aria-labelledby={labelId} className="grid min-w-0 gap-0.5">
-              <div role="presentation" id={labelId} className="mb-1 px-2 text-caption font-semibold text-muted-foreground">
+              <Text role="presentation" id={labelId} as="div" size="caption" weight="semibold" tone="muted" className="mb-1 px-2">
                 {group.label}
-              </div>
+              </Text>
               {options}
             </div>
           ) : (
@@ -743,7 +746,11 @@ function FileExplorerPreviewContent({ entry, title, className }: { entry: FileEx
         <FileExplorerEntryIcon entry={entry} />
       </div>
       {title}
-      {entry.description ? <div className="mt-1 text-caption text-muted-foreground">{entry.description}</div> : null}
+      {entry.description ? (
+        <Text as="div" size="caption" tone="muted" className="mt-1">
+          {entry.description}
+        </Text>
+      ) : null}
       {entry.details && entry.details.length > 0 ? (
         <dl className="mt-6 grid w-full grid-cols-[auto_1fr] gap-x-4 gap-y-2 border-t border-border/70 pt-4 text-start text-caption">
           {entry.details.map((detail) => (
@@ -816,7 +823,9 @@ function FileExplorerSearchResults({
   return (
     <ScrollArea className="h-full" lockAxis="x">
       <div className="mx-auto grid w-full max-w-3xl gap-1 p-4">
-        <div className="mb-2 px-2 text-caption text-muted-foreground tabular-nums">{status}</div>
+        <Text as="div" size="caption" tone="muted" className="mb-2 px-2 tabular-nums">
+          {status}
+        </Text>
         <div role="listbox" aria-label={label} className="grid gap-1">
           {results.map((result, index) => (
             <Button
@@ -839,8 +848,12 @@ function FileExplorerSearchResults({
                 <FileExplorerEntryIcon entry={result.entry} />
               </span>
               <span className="min-w-0 flex-1">
-                <span className="block truncate text-label text-foreground">{result.entry.name}</span>
-                <span className="block truncate text-caption text-muted-foreground">{result.parents.join(" / ") || "Top level"}</span>
+                <Text size="label" tone="foreground" className="block truncate">
+                  {result.entry.name}
+                </Text>
+                <Text size="caption" tone="muted" className="block truncate">
+                  {result.parents.join(" / ") || "Top level"}
+                </Text>
               </span>
             </Button>
           ))}

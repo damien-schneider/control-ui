@@ -7,7 +7,7 @@ import {
   InfiniteCanvasControls,
   InfiniteCanvasItem,
 } from "@/components/control-ui/ui/infinite-canvas";
-import { Heading } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 
 const initialItems = [
   { id: "brief", title: "Research brief", detail: "Customer signals and open questions", x: 24, y: 24 },
@@ -35,13 +35,20 @@ export function PrimitiveInfiniteCanvasExample() {
               <Heading level={3} size="heading-4">
                 {item.title}
               </Heading>
-              <p className="mt-1 text-caption text-muted-foreground">{item.detail}</p>
+              <Text as="p" size="caption" tone="muted" className="mt-1">
+                {item.detail}
+              </Text>
             </InfiniteCanvasItem>
           ))}
         </InfiniteCanvasContent>
-        <div className="pointer-events-none absolute top-(--cui-infinite-canvas-padding) left-(--cui-infinite-canvas-padding) rounded-(--cui-infinite-canvas-controls-radius) bg-card/90 px-2.5 py-1.5 text-caption text-muted-foreground shadow-xs ring-1 ring-border backdrop-blur-sm">
+        <Text
+          as="div"
+          size="caption"
+          tone="muted"
+          className="pointer-events-none absolute top-(--cui-infinite-canvas-padding) left-(--cui-infinite-canvas-padding) rounded-(--cui-infinite-canvas-controls-radius) bg-card/90 px-2.5 py-1.5 shadow-xs ring-1 ring-border backdrop-blur-sm"
+        >
           Drag cards to move them · Drag the background or scroll to pan · Pinch or hold ⌘ while scrolling to zoom
-        </div>
+        </Text>
         <InfiniteCanvasControls />
       </InfiniteCanvas>
     </div>

@@ -55,14 +55,14 @@ export function PrimitiveDropzoneOverlayExample() {
       <DropzoneInput />
       <DropzoneArea>
         <div className="relative min-h-64 overflow-hidden rounded-[var(--radius-panel)] border border-border bg-card p-5">
-          <div className="flex items-center gap-2 border-b border-border pb-3 text-body font-medium text-foreground">
+          <Text as="div" weight="medium" tone="foreground" className="flex items-center gap-2 border-b border-border pb-3">
             <Braces className="size-4 text-muted-foreground" aria-hidden="true" />
             Configuration workspace
-          </div>
-          <div className="mt-4 flex items-center gap-2 text-body text-muted-foreground">
+          </Text>
+          <Text as="div" tone="muted" className="mt-4 flex items-center gap-2">
             <FileCode2 className="size-4" aria-hidden="true" />
             Drop JSON or CSS anywhere on this workspace.
-          </div>
+          </Text>
           <DropzoneOverlay scope="global" />
         </div>
       </DropzoneArea>

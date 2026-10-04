@@ -11,6 +11,7 @@ import {
   type FilterBarQuery,
   type FilterBarScalar,
 } from "@/components/control-ui/filter-bar";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const assignees: readonly FilterBarOption[] = [
   { value: "maya", label: "Maya Chen" },
@@ -91,7 +92,9 @@ export function FilterBarRemoteExample() {
         <FilterBar.AddButton />
         <FilterBar.Clear />
       </FilterBar.Root>
-      <p className="text-caption text-muted-foreground">Search assignees from a simulated API. Type “offline” to try its error state.</p>
+      <Text as="p" size="caption" tone="muted">
+        Search assignees from a simulated API. Type “offline” to try its error state.
+      </Text>
       <span className="text-caption" role="status">
         {filters.length === 0
           ? "All assignees"

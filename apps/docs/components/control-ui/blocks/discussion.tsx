@@ -27,6 +27,7 @@ import type { MarkdownImageUploader } from "@/components/control-ui/markdown-edi
 import { Button } from "@/components/control-ui/ui/button";
 import { Kbd, KbdGroup } from "@/components/control-ui/ui/kbd";
 import { Markdown } from "@/components/control-ui/ui/markdown";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const DiscussionMarkdownInput = lazy(() => import("./discussion-markdown-input"));
 
@@ -116,7 +117,9 @@ export function DiscussionComposer({
           </p>
         ) : null}
         <ChatComposerToolbar>
-          <span className="flex min-w-0 items-center gap-1.5 text-caption text-muted-foreground">{hint}</span>
+          <Text size="caption" tone="muted" className="flex min-w-0 items-center gap-1.5">
+            {hint}
+          </Text>
           <span className="flex items-center gap-2">
             {secondaryAction}
             <ChatComposerSubmit disabled={blocked || submitting}>{submitLabel}</ChatComposerSubmit>

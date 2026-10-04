@@ -10,6 +10,7 @@ import {
   NumberFieldInput,
   NumberFieldScrubArea,
 } from "@/components/control-ui/ui/number-field";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function PrimitiveNumberFieldExample() {
   const [quantity, setQuantity] = useState<number | null>(1);
@@ -66,7 +67,9 @@ export function PrimitiveNumberFieldExample() {
         </NumberField>
       </div>
 
-      <span className="text-caption text-muted-foreground">{quantity === null ? "No quantity set" : `Selected quantity: ${quantity}`}</span>
+      <Text size="caption" tone="muted">
+        {quantity === null ? "No quantity set" : `Selected quantity: ${quantity}`}
+      </Text>
     </div>
   );
 }

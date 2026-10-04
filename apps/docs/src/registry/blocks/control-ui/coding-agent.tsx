@@ -23,6 +23,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/control-ui/ui/sidebar";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export type CodingAgentNavigationItem = {
   id: string;
@@ -169,9 +170,9 @@ function CodingAgentSidebar({
                 <BotIcon className="size-3.5" aria-hidden="true" />
               </span>
             )}
-            <span className="truncate text-label font-semibold" title={appName}>
+            <Text size="label" weight="semibold" className="truncate" title={appName}>
               {appName}
-            </span>
+            </Text>
           </div>
           {onSearch ? (
             <Button variant="ghost" size="sm" iconOnly aria-label="Search tasks" onClick={onSearch}>
@@ -302,7 +303,11 @@ export function CodingAgentEmptyState({
         {icon ?? <BotIcon className="size-5" aria-hidden="true" />}
       </div>
       <h2 className="text-heading-3 sm:text-heading-2">{title}</h2>
-      {description ? <p className="mt-2 max-w-xl text-pretty text-body text-muted-foreground">{description}</p> : null}
+      {description ? (
+        <Text as="p" tone="muted" className="mt-2 max-w-xl text-pretty">
+          {description}
+        </Text>
+      ) : null}
       {suggestions.length > 0 ? (
         <div className="mt-8 grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {suggestions.map((suggestion) => (
@@ -315,9 +320,13 @@ export function CodingAgentEmptyState({
             >
               <span className="flex min-w-0 flex-col items-start gap-3">
                 <span className="text-primary-text">{suggestion.icon}</span>
-                <span className="text-body font-medium text-foreground">{suggestion.title}</span>
+                <Text weight="medium" tone="foreground">
+                  {suggestion.title}
+                </Text>
                 {suggestion.description ? (
-                  <span className="text-caption leading-5 text-muted-foreground">{suggestion.description}</span>
+                  <Text size="caption" tone="muted" className="leading-5">
+                    {suggestion.description}
+                  </Text>
                 ) : null}
               </span>
             </Button>

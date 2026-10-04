@@ -4,7 +4,7 @@ import { docsPageForPath } from "@/app/(features)/catalog/pages";
 import { getDocsData } from "@/app/(features)/model/data";
 import { guideNavSections } from "@/app/(features)/sidebar/nav-items";
 import { Card } from "@/components/control-ui/ui/card";
-import { Heading } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 
 export function ReferencePage() {
   const sections = guideNavSections(getDocsData().guides).reference.map((group) => ({
@@ -18,11 +18,15 @@ export function ReferencePage() {
 
   return (
     <section className="docs-article">
-      <div className="text-caption font-medium text-muted-foreground">Docs</div>
+      <Text as="div" size="caption" weight="medium" tone="muted">
+        Docs
+      </Text>
       <Heading level={1} size="display" className="mt-2">
         {referenceOverview.name}
       </Heading>
-      <p className="mt-3 text-body-lg text-pretty text-muted-foreground">{referenceOverview.summary}</p>
+      <Text as="p" size="body-lg" tone="muted" className="mt-3 text-pretty">
+        {referenceOverview.summary}
+      </Text>
 
       <div className="mt-10 grid min-w-0 gap-10">
         {sections.map((section) => (
@@ -32,8 +36,12 @@ export function ReferencePage() {
               {section.entries.map((entry) => (
                 <Link key={entry.id} href={entry.href} className="group block min-w-0">
                   <Card className="h-full gap-1.5 px-4 py-3 transition-colors group-hover:bg-sidebar-accent">
-                    <span className="font-medium text-label group-hover:underline group-hover:underline-offset-4">{entry.name}</span>
-                    <p className="text-body leading-6 text-muted-foreground">{entry.summary}</p>
+                    <Text size="label" weight="medium" className="group-hover:underline group-hover:underline-offset-4">
+                      {entry.name}
+                    </Text>
+                    <Text as="p" tone="muted" className="leading-6">
+                      {entry.summary}
+                    </Text>
                   </Card>
                 </Link>
               ))}

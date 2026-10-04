@@ -15,6 +15,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/control-ui/ui/sidebar";
+import { Text } from "@/components/control-ui/ui/typography";
 import { channels, directMessagePeople, people, unreadDirectMessages } from "./data";
 import { PersonAvatar } from "./message";
 
@@ -26,7 +27,9 @@ export function TeamChatSidebar({ activeId, onSelect }: { activeId: string; onSe
   return (
     <Sidebar collapsible="offcanvas">
       <SidebarHeader className="flex-row items-center justify-between gap-2 border-b border-sidebar-border p-3">
-        <span className="truncate text-label font-semibold">Northwind</span>
+        <Text size="label" weight="semibold" className="truncate">
+          Northwind
+        </Text>
         <Button variant="ghost" size="xs" iconOnly aria-label="New message">
           <PenSquareIcon aria-hidden="true" />
         </Button>

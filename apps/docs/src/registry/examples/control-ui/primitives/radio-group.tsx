@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { Radio, RadioGroup, RadioGroupItem } from "@/components/control-ui/ui/radio-group";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const plans = [
   { value: "starter", label: "Starter", detail: "1 project, community support" },
@@ -20,7 +21,9 @@ export function PrimitiveRadioGroupExample() {
           <Radio id={`plan-${option.value}`} value={option.value} aria-label={option.label} />
           <span className="flex flex-col">
             <span className="font-medium text-foreground">{option.label}</span>
-            <span className="text-caption text-muted-foreground">{option.detail}</span>
+            <Text size="caption" tone="muted">
+              {option.detail}
+            </Text>
           </span>
         </RadioGroupItem>
       ))}

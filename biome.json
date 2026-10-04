@@ -3,6 +3,7 @@
   "files": {
     "includes": [
       "**",
+      "!**/.claude/worktrees",
       "!**/.next",
       "!**/.turbo",
       "!**/.vercel",

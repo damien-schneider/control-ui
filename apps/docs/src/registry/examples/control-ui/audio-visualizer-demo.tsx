@@ -4,6 +4,7 @@ import type { ComponentType } from "react";
 import { useEffect, useState } from "react";
 import type { AudioVisualizerProps } from "@/components/control-ui/audio-visualizer";
 import { Button } from "@/components/control-ui/ui/button";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const WINDOW_SIZE = 48;
 
@@ -61,7 +62,9 @@ export function AudioVisualizerDemo({ Visualizer }: { Visualizer: ComponentType<
   return (
     <div className="flex w-full max-w-md flex-col gap-4 py-4">
       <div className="flex items-center justify-between gap-3">
-        <span className="text-caption text-muted-foreground">{active ? "Live waveform" : "Ready to listen"}</span>
+        <Text size="caption" tone="muted">
+          {active ? "Live waveform" : "Ready to listen"}
+        </Text>
         <Button variant="surface" size="sm" onClick={() => setActive((previous) => !previous)}>
           {active ? "Pause" : "Listen"}
         </Button>

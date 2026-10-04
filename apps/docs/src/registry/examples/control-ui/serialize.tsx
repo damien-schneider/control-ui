@@ -7,6 +7,7 @@ import { ChatComposerEditor } from "@/components/control-ui/chat-composer-editor
 import { mentionExtension } from "@/components/control-ui/chat-composer-editor/extensions/mention";
 import type { ChatComposerSubmitPayload, MentionItem } from "@/components/control-ui/hooks/use-chat-composer";
 import type { TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/hooks/use-trigger-menu";
+import { Text } from "@/components/control-ui/ui/typography";
 
 // Preview for `serializeDoc`: editor pushes serialized plain-text to ChatComposer value live; pressing
 // Send surfaces full payload (text + structured `mentions[]` from mention extension).
@@ -35,7 +36,9 @@ export function SerializeExample() {
         <ChatComposerShell>
           <ChatComposerEditor placeholder="Type a message, then @mention someone…" extensions={extensions} />
           <ChatComposerToolbar>
-            <span className="text-micro text-muted-foreground">Rich editor doc → plain text</span>
+            <Text size="micro" tone="muted">
+              Rich editor doc → plain text
+            </Text>
             <ChatComposerSubmit>Serialize</ChatComposerSubmit>
           </ChatComposerToolbar>
         </ChatComposerShell>
@@ -43,11 +46,15 @@ export function SerializeExample() {
 
       <div className="grid gap-3 sm:grid-cols-2">
         <figure className="grid gap-1">
-          <figcaption className="text-micro text-muted-foreground">Live serialized text (editor value)</figcaption>
+          <Text as="figcaption" size="micro" tone="muted">
+            Live serialized text (editor value)
+          </Text>
           <pre className="min-h-16 overflow-x-auto rounded-lg border bg-muted/40 p-3 text-label leading-5">{value || "…"}</pre>
         </figure>
         <figure className="grid gap-1">
-          <figcaption className="text-micro text-muted-foreground">Last submitted payload</figcaption>
+          <Text as="figcaption" size="micro" tone="muted">
+            Last submitted payload
+          </Text>
           <pre className="min-h-16 overflow-x-auto rounded-lg border bg-muted/40 p-3 text-label leading-5">
             {submitted ? JSON.stringify(submitted, null, 2) : "Press Serialize to capture { text, mentions }"}
           </pre>

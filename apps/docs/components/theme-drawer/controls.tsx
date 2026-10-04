@@ -7,6 +7,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/control-ui/ui/select";
 import { Slider as RangeSlider } from "@/components/control-ui/ui/slider";
+import { Text } from "@/components/control-ui/ui/typography";
 import type { ThemeContractToken } from "@/src/registry/lib/theme-contract";
 import { cssColorToHexDom, hexToOklchColor } from "./color-utils";
 import { resolveLengthPx } from "./read-vars";
@@ -15,9 +16,14 @@ import type { LabelMode } from "./types";
 
 export function VarTag({ children }: { children: ReactNode }) {
   return (
-    <code className="inline-flex max-w-full items-center rounded-[var(--radius-sm)] bg-foreground/5 px-1.5 py-0.5 font-mono text-micro leading-none text-muted-foreground ring-1 ring-inset ring-border/70">
+    <Text
+      as="code"
+      size="micro"
+      tone="muted"
+      className="inline-flex max-w-full items-center rounded-[var(--radius-sm)] bg-foreground/5 px-1.5 py-0.5 font-mono leading-none ring-1 ring-inset ring-border/70"
+    >
       <span className="min-w-0 break-all">{children}</span>
-    </code>
+    </Text>
   );
 }
 
@@ -50,14 +56,14 @@ function TokenHead({ token, labelMode, overridden, changedBySkin, onReset }: Omi
   return (
     <span className="flex min-w-0 items-center gap-1.5" title={`${token.name} — ${token.description}${hint}`}>
       {(overridden || changedBySkin) && <ChangeDot tone={overridden ? "edit" : "skin"} />}
-      <span
-        className={cn(
-          "min-w-0 truncate",
-          labelMode === "css" ? "font-mono text-micro text-muted-foreground" : "text-caption font-medium text-muted-foreground",
-        )}
+      <Text
+        size={labelMode === "css" ? "micro" : "caption"}
+        weight={labelMode === "css" ? undefined : "medium"}
+        tone="muted"
+        className={cn("min-w-0 truncate", labelMode === "css" && "font-mono")}
       >
         {label}
-      </span>
+      </Text>
       {overridden ? (
         <button
           type="button"
@@ -129,7 +135,9 @@ function ColorTokenField(props: TokenFieldProps) {
           className="size-5 shrink-0 rounded-[var(--radius-sm)] shadow-[inset_0_0_0_1px_oklch(from_var(--foreground)_l_c_h_/_0.16)]"
           style={{ backgroundColor: hex ?? "transparent" }}
         />
-        <span className="min-w-0 truncate font-mono text-micro text-muted-foreground">{hex ?? "unset"}</span>
+        <Text size="micro" tone="muted" className="min-w-0 truncate font-mono">
+          {hex ?? "unset"}
+        </Text>
       </Button>
       <input
         ref={inputRef}

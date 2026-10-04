@@ -12,6 +12,7 @@ import {
   ItemMedia,
   ItemTitle,
 } from "@/components/control-ui/ui/item";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function PrimitiveItemExample() {
   return (
@@ -43,8 +44,12 @@ export function PrimitiveItemExample() {
 
       <Item variant="outline">
         <ItemHeader>
-          <span className="text-caption text-muted-foreground">Deploy</span>
-          <span className="text-caption text-muted-foreground">2 min ago</span>
+          <Text size="caption" tone="muted">
+            Deploy
+          </Text>
+          <Text size="caption" tone="muted">
+            2 min ago
+          </Text>
         </ItemHeader>
         <ItemContent>
           <ItemTitle>Production build finished</ItemTitle>

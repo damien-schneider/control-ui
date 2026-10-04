@@ -19,6 +19,7 @@ import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyTitle } from "
 import { Input } from "@/components/control-ui/ui/input";
 import { InputGroup, InputGroupAddon } from "@/components/control-ui/ui/input-group";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/control-ui/ui/tabs";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 import type { ThemeContractGroup } from "@/src/registry/lib/theme-contract";
 import { SKIN_CATEGORY, type ThemeCategoryId, TOKEN_GROUP_TITLES } from "./theme-categories";
 
@@ -51,7 +52,9 @@ function PreviewSection({ id, title, wide, children }: { id: PrimitiveId; title:
       className={cn("flex min-w-0 flex-col rounded-(--radius-panel) border border-border bg-card", wide && "@3xl/canvas:col-span-2")}
     >
       <div className="flex items-center justify-between gap-3 border-b border-border bg-muted/30 px-4 py-2">
-        <h3 className="text-label font-medium text-foreground">{title}</h3>
+        <Heading level={3} size="label" tone="foreground">
+          {title}
+        </Heading>
         <ButtonLink
           render={<Link href={`/primitives/${id}`} />}
           variant="quiet"
@@ -124,9 +127,9 @@ export function ThemePreviewCanvas({ category, actions }: { category: ThemeCateg
       <TabsPanel value="components" keepMounted className="min-w-0">
         <h2 className="sr-only">Component previews</h2>
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <p role="status" className="text-caption text-muted-foreground">
+          <Text role="status" as="p" size="caption" tone="muted">
             {query.trim() ? `${visibleTiles.length} of ${tiles.length}` : tiles.length} component previews
-          </p>
+          </Text>
           <div className="w-full @lg/canvas:w-64">
             <InputGroup size="sm">
               <InputGroupAddon>

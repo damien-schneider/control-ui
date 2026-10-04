@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { Checkbox } from "@/components/control-ui/ui/checkbox";
 import { CheckboxGroup, CheckboxGroupItem } from "@/components/control-ui/ui/checkbox-group";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const ALL_VALUES = ["email", "sms", "push", "slack"];
 
@@ -29,28 +30,36 @@ export function PrimitiveCheckboxGroupExample() {
         <Checkbox id="channel-email" value="email" aria-label="Email" />
         <span className="flex flex-col">
           <span className="font-medium text-foreground">Email</span>
-          <span className="text-caption text-muted-foreground">Digest and receipts</span>
+          <Text size="caption" tone="muted">
+            Digest and receipts
+          </Text>
         </span>
       </CheckboxGroupItem>
       <CheckboxGroupItem htmlFor="channel-sms" className="ml-6">
         <Checkbox id="channel-sms" value="sms" aria-label="SMS" />
         <span className="flex flex-col">
           <span className="font-medium text-foreground">SMS</span>
-          <span className="text-caption text-muted-foreground">Critical alerts only</span>
+          <Text size="caption" tone="muted">
+            Critical alerts only
+          </Text>
         </span>
       </CheckboxGroupItem>
       <CheckboxGroupItem htmlFor="channel-push" className="ml-6">
         <Checkbox id="channel-push" value="push" aria-label="Push" />
         <span className="flex flex-col">
           <span className="font-medium text-foreground">Push</span>
-          <span className="text-caption text-muted-foreground">Mobile and desktop</span>
+          <Text size="caption" tone="muted">
+            Mobile and desktop
+          </Text>
         </span>
       </CheckboxGroupItem>
       <CheckboxGroupItem htmlFor="channel-slack" className="ml-6">
         <Checkbox id="channel-slack" value="slack" aria-label="Slack" />
         <span className="flex flex-col">
           <span className="font-medium text-foreground">Slack</span>
-          <span className="text-caption text-muted-foreground">Post to #alerts</span>
+          <Text size="caption" tone="muted">
+            Post to #alerts
+          </Text>
         </span>
       </CheckboxGroupItem>
     </CheckboxGroup>

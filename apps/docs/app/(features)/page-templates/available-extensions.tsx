@@ -6,6 +6,7 @@ import { registryInstallCommand } from "@/app/(features)/model/registry";
 import type { ComponentId, DocsExtension, PrimitiveId } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Card } from "@/components/control-ui/ui/card";
+import { Text } from "@/components/control-ui/ui/typography";
 import { hasExtensionDemo } from "./extension-demo-ids";
 import { ExtensionDemo } from "./extension-demos";
 import { SectionTitle } from "./shared";
@@ -34,7 +35,9 @@ export function AvailableExtensions({ hostId, extensions }: { hostId: ComponentI
                 {extension.attach === "anchored" ? "Anchored" : "Root-mounted"}
               </Badge>
             </div>
-            <p className="mb-3 text-body leading-6 text-muted-foreground">{extension.summary}</p>
+            <Text as="p" tone="muted" className="mb-3 leading-6">
+              {extension.summary}
+            </Text>
             {hasExtensionDemo(extension.id) ? (
               <div className="mb-3 min-w-0">
                 <ExtensionDemo extensionId={extension.id} />

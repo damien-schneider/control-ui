@@ -8,6 +8,7 @@ import { Button } from "@/components/control-ui/ui/button";
 import { Field, FieldControl, FieldDescription, FieldError, FieldLabel } from "@/components/control-ui/ui/field";
 import { Form } from "@/components/control-ui/ui/form";
 import { PhoneInput } from "@/components/control-ui/ui/phone-input";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const formSchema = object({ phone: phoneNumberSchema });
 
@@ -52,9 +53,9 @@ export function PrimitivePhoneInputExample() {
       <Button type="submit" variant="solid" size="sm" tone="primary" className="self-start">
         Validate number
       </Button>
-      <p className="min-h-4 text-caption text-muted-foreground" aria-live="polite">
+      <Text as="p" size="caption" tone="muted" className="min-h-4" aria-live="polite">
         {submittedPhone ? `Submitted: ${submittedPhone}` : null}
-      </p>
+      </Text>
     </Form>
   );
 }

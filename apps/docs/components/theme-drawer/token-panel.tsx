@@ -4,6 +4,7 @@ import { ChevronDownIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
+import { Text } from "@/components/control-ui/ui/typography";
 import type { ThemeContractToken } from "@/src/registry/lib/theme-contract";
 import { MiniColorSwatch, TokenControl } from "./controls";
 import { BADGE_TOKEN_ROWS, type TokenCategory, tokenControlSpec } from "./token-metadata";
@@ -65,18 +66,18 @@ function TokenList({
 function BadgePaletteRows({ values, overridden, changedBySkin, onChange, onReset }: Omit<TokenEditorProps, "labelMode">) {
   return (
     <div className="flex flex-col gap-1.5">
-      <div className="flex items-center gap-2 px-0.5 text-micro font-medium text-muted-foreground">
+      <Text as="div" size="micro" weight="medium" tone="muted" className="flex items-center gap-2 px-0.5">
         <span className="flex-1" />
         <span className="w-6 text-center">Fill</span>
         <span className="w-6 text-center">Text</span>
         <span className="w-6 text-center">Line</span>
         <span className="w-6 text-center">Hover</span>
-      </div>
+      </Text>
       {BADGE_TOKEN_ROWS.map((row) => {
         const touched = row.tokens.some((token) => overridden.has(token.name));
         return (
           <div key={row.color} className="flex items-center gap-2 px-0.5">
-            <span className="min-w-0 flex-1 truncate text-caption font-medium text-muted-foreground">
+            <Text size="caption" weight="medium" tone="muted" className="min-w-0 flex-1 truncate">
               {row.color}
               {touched ? (
                 <button
@@ -89,7 +90,7 @@ function BadgePaletteRows({ values, overridden, changedBySkin, onChange, onReset
                   reset
                 </button>
               ) : null}
-            </span>
+            </Text>
             {row.tokens.map((token) => (
               <MiniColorSwatch
                 key={token.name}
@@ -137,11 +138,13 @@ export function TokenPanel({
           {touched > 0 ? <Badge size="sm">{touched} edited</Badge> : null}
           <span className="ml-auto">{headerAction}</span>
         </div>
-        <p className="mt-1 text-micro leading-4 text-muted-foreground">{category.description}</p>
-        <p className="mt-1 text-micro tabular-nums text-muted-foreground">
+        <Text as="p" size="micro" tone="muted" className="mt-1 leading-4">
+          {category.description}
+        </Text>
+        <Text as="p" size="micro" tone="muted" className="mt-1 tabular-nums">
           {allNames.length} tokens
           {skinTouched > 0 ? ` · ${skinTouched} set by the skin` : ""}
-        </p>
+        </Text>
       </header>
 
       {beforeTokens}
@@ -155,16 +158,24 @@ export function TokenPanel({
               aria-hidden
               className="size-3 text-muted-foreground transition-transform in-data-[state=open]:rotate-180 motion-reduce:transition-none"
             />
-            <span className="text-caption font-semibold text-foreground">Advanced</span>
-            <span className="ml-auto text-micro tabular-nums text-muted-foreground">{advancedTotal}</span>
+            <Text size="caption" weight="semibold" tone="foreground">
+              Advanced
+            </Text>
+            <Text size="micro" tone="muted" className="ml-auto tabular-nums">
+              {advancedTotal}
+            </Text>
           </CollapsibleTrigger>
           <CollapsibleContent>
             <div className="flex flex-col gap-4 pt-3">
-              <p className="text-micro text-muted-foreground">Derived and fine-grained values</p>
+              <Text as="p" size="micro" tone="muted">
+                Derived and fine-grained values
+              </Text>
               <TokenList tokens={category.advanced} {...editor} />
               {isColor ? (
                 <div className="flex flex-col gap-2">
-                  <span className="text-caption font-medium text-muted-foreground">Badge palette</span>
+                  <Text size="caption" weight="medium" tone="muted">
+                    Badge palette
+                  </Text>
                   <BadgePaletteRows
                     values={editor.values}
                     overridden={editor.overridden}

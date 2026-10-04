@@ -16,6 +16,7 @@ import {
   SidebarTrigger,
 } from "@/components/control-ui/ui/sidebar";
 import { Skeleton } from "@/components/control-ui/ui/skeleton";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function PrimitiveAppShellExample() {
   const [loading, setLoading] = useState(false);
@@ -63,9 +64,9 @@ export function PrimitiveAppShellExample() {
                 <Skeleton className="h-20 w-full" />
               </div>
             ) : (
-              <p className="text-body text-muted-foreground">
+              <Text as="p" tone="muted">
                 AppShellContent holds the current page. Toggle loading to see the sidebar and header stay in place.
-              </p>
+              </Text>
             )}
           </PageBody>
         </PageLayout>

@@ -12,6 +12,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/control-ui/ui/drawer";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const summaryRows = [
   ["Environment", "Production"],
@@ -81,9 +82,13 @@ export function PrimitiveNestedDrawerExample() {
                     </DrawerHeader>
 
                     <DrawerBody>
-                      <div className="mx-4 rounded-[var(--radius-panel)] bg-primary/8 p-4 text-body text-foreground ring-1 ring-inset ring-primary/20">
+                      <Text
+                        as="div"
+                        tone="foreground"
+                        className="mx-4 rounded-[var(--radius-panel)] bg-primary/8 p-4 ring-1 ring-inset ring-primary/20"
+                      >
                         Production will receive the latest commit from main. Existing deployments stay available during the rollout.
-                      </div>
+                      </Text>
                     </DrawerBody>
 
                     <DrawerFooter>

@@ -5,35 +5,40 @@ import { Text } from "@/components/control-ui/ui/typography";
 
 export function PrimitiveHoverCardExample() {
   return (
-    <div className="max-w-sm text-body leading-relaxed text-foreground">
+    <Text as="div" tone="foreground" className="max-w-sm leading-relaxed">
       Shipped by{" "}
       <HoverCard>
         <HoverCardTrigger href="#">@ada</HoverCardTrigger> and the platform team.
         <HoverCardContent align="start">
           <div className="flex gap-3">
-            <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary text-body font-semibold text-primary-foreground">
+            <Text
+              weight="semibold"
+              className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground"
+            >
               AL
-            </span>
+            </Text>
             <div className="min-w-0">
               <Text as="p" weight="semibold">
                 Ada Lovelace
               </Text>
-              <p className="text-caption text-muted-foreground">@ada · Platform</p>
-              <p className="mt-2 text-caption leading-relaxed text-muted-foreground">
+              <Text as="p" size="caption" tone="muted">
+                @ada · Platform
+              </Text>
+              <Text as="p" size="caption" tone="muted" className="mt-2 leading-relaxed">
                 Building the agent UI registry. Occasionally writes the first program.
-              </p>
-              <div className="mt-3 flex gap-4 text-caption text-muted-foreground">
+              </Text>
+              <Text as="div" size="caption" tone="muted" className="mt-3 flex gap-4">
                 <span>
                   <span className="font-semibold text-foreground">128</span> repos
                 </span>
                 <span>
                   <span className="font-semibold text-foreground">4.2k</span> followers
                 </span>
-              </div>
+              </Text>
             </div>
           </div>
         </HoverCardContent>
       </HoverCard>
-    </div>
+    </Text>
   );
 }

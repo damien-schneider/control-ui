@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/components/control-ui/lib/cn";
+import { Text } from "@/components/control-ui/ui/typography";
 import { contractTokenNames, Specimen, SpecimenGroup, TokenValueList } from "./specimen/specimen";
 import { useContractTokens } from "./specimen/theme-readouts";
 
@@ -25,14 +26,14 @@ export function ElevationFoundations() {
         <div className="grid gap-6 rounded-[var(--radius-scene)] bg-canvas p-6 ring-1 ring-inset ring-border sm:grid-cols-2 lg:grid-cols-4">
           {ELEVATION_TIERS.map((tier) => (
             <Specimen key={tier.label} token={tier.knob} readout={tokens[tier.knob]}>
-              <div
-                className={cn(
-                  "grid h-20 place-items-center rounded-[var(--radius-panel)] bg-card text-label font-medium text-card-foreground",
-                  tier.shadowClass,
-                )}
+              <Text
+                as="div"
+                size="label"
+                weight="medium"
+                className={cn("grid h-20 place-items-center rounded-[var(--radius-panel)] bg-card text-card-foreground", tier.shadowClass)}
               >
                 {tier.label}
-              </div>
+              </Text>
             </Specimen>
           ))}
         </div>

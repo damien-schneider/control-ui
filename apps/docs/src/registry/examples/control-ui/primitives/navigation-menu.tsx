@@ -9,6 +9,7 @@ import {
   NavigationMenuTrigger,
   NavigationMenuViewport,
 } from "@/components/control-ui/ui/navigation-menu";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const overview = [
   { title: "Quick start", description: "Install and assemble your first component." },
@@ -35,8 +36,12 @@ export function PrimitiveNavigationMenuExample() {
                 {overview.map((item) => (
                   <li key={item.title}>
                     <NavigationMenuLink href="#">
-                      <div className="text-label font-medium text-foreground">{item.title}</div>
-                      <p className="mt-0.5 text-caption text-muted-foreground">{item.description}</p>
+                      <Text as="div" size="label" weight="medium" tone="foreground">
+                        {item.title}
+                      </Text>
+                      <Text as="p" size="caption" tone="muted" className="mt-0.5">
+                        {item.description}
+                      </Text>
                     </NavigationMenuLink>
                   </li>
                 ))}
@@ -51,8 +56,12 @@ export function PrimitiveNavigationMenuExample() {
                 {resources.map((item) => (
                   <li key={item.title}>
                     <NavigationMenuLink href="#">
-                      <div className="text-label font-medium text-foreground">{item.title}</div>
-                      <p className="mt-0.5 text-caption text-muted-foreground">{item.description}</p>
+                      <Text as="div" size="label" weight="medium" tone="foreground">
+                        {item.title}
+                      </Text>
+                      <Text as="p" size="caption" tone="muted" className="mt-0.5">
+                        {item.description}
+                      </Text>
                     </NavigationMenuLink>
                   </li>
                 ))}

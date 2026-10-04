@@ -18,6 +18,7 @@ import type {
   SourceFile,
 } from "@/app/(features)/model/types";
 import { Button } from "@/components/control-ui/ui/button";
+import { Text } from "@/components/control-ui/ui/typography";
 import { AvailableExtensions } from "./available-extensions";
 import { IntegrationSelect, integrationChangesCode } from "./integration";
 import { RegistryItemPage } from "./registry-item-page";
@@ -154,7 +155,9 @@ function VersionPicker({
 }) {
   return (
     <>
-      <span className="hidden text-caption font-medium text-muted-foreground sm:inline">Version</span>
+      <Text size="caption" weight="medium" tone="muted" className="hidden sm:inline">
+        Version
+      </Text>
       {versions.map((version) => {
         const active = version.id === activeId;
 

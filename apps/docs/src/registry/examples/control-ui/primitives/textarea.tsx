@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { Textarea } from "@/components/control-ui/ui/textarea";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function PrimitiveTextareaExample() {
   const [value, setValue] = useState("Summarize the thread, then draft a reply.");
@@ -18,7 +19,9 @@ export function PrimitiveTextareaExample() {
         onChange={(event) => setValue(event.target.value)}
         placeholder="Describe how the agent should behave…"
       />
-      <span className="text-caption text-muted-foreground">The box grows as you type — try adding a few lines.</span>
+      <Text size="caption" tone="muted">
+        The box grows as you type — try adding a few lines.
+      </Text>
     </div>
   );
 }

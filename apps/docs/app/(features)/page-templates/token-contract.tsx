@@ -1,5 +1,6 @@
 "use client";
 
+import { Text } from "@/components/control-ui/ui/typography";
 import { THEME_CONTRACT, type ThemeContractGroup, type ThemeContractToken } from "@/src/registry/lib/theme-contract";
 
 const GROUP_ORDER = [
@@ -34,9 +35,15 @@ const derivedTokens = GROUP_ORDER.flatMap((group) => THEME_CONTRACT.filter((toke
 function TokenRow({ token }: { token: ThemeContractToken }) {
   return (
     <div className="flex min-w-0 flex-col gap-0.5 px-4 py-2 sm:flex-row sm:items-baseline sm:gap-3">
-      <code className="shrink-0 font-mono text-label text-foreground sm:w-56">{token.name}</code>
-      <span className="hidden shrink-0 text-caption text-muted-foreground sm:inline sm:w-20">{GROUP_LABELS[token.group]}</span>
-      <span className="min-w-0 text-label leading-5 text-muted-foreground">{token.description}</span>
+      <Text as="code" size="label" tone="foreground" className="shrink-0 font-mono sm:w-56">
+        {token.name}
+      </Text>
+      <Text size="caption" tone="muted" className="hidden shrink-0 sm:inline sm:w-20">
+        {GROUP_LABELS[token.group]}
+      </Text>
+      <Text size="label" tone="muted" className="min-w-0 leading-5">
+        {token.description}
+      </Text>
     </div>
   );
 }
@@ -45,9 +52,9 @@ export function TokenContractTable() {
   return (
     <div className="grid min-w-0 gap-4">
       <div className="docs-panel overflow-hidden">
-        <div className="border-b border-border bg-muted/30 px-4 py-2 text-caption font-medium text-muted-foreground">
+        <Text as="div" size="caption" weight="medium" tone="muted" className="border-b border-border bg-muted/30 px-4 py-2">
           Core — the <span className="tabular-nums">{coreTokens.length}</span> tokens a skin typically re-values first
-        </div>
+        </Text>
         <div className="divide-y divide-border">
           {coreTokens.map((token) => (
             <TokenRow key={token.name} token={token} />
@@ -58,13 +65,13 @@ export function TokenContractTable() {
       <details className="docs-panel group overflow-hidden">
         <summary className="flex cursor-pointer list-none items-baseline gap-2 px-4 py-2 text-body [&::-webkit-details-marker]:hidden">
           <span className="font-medium">Derived — optional overrides</span>
-          <span className="text-caption text-muted-foreground">
+          <Text size="caption" tone="muted">
             <span className="tabular-nums">{derivedTokens.length}</span> tokens with a core default; re-value one in theme.css only to
             diverge
-          </span>
-          <span aria-hidden className="ml-auto text-caption text-muted-foreground transition-transform group-open:rotate-90">
+          </Text>
+          <Text aria-hidden size="caption" tone="muted" className="ml-auto transition-transform group-open:rotate-90">
             ›
-          </span>
+          </Text>
         </summary>
         <div className="divide-y divide-border border-t border-border">
           {derivedTokens.map((token) => (
@@ -77,12 +84,12 @@ export function TokenContractTable() {
         <details key={group} className="docs-panel group overflow-hidden">
           <summary className="flex cursor-pointer list-none items-baseline gap-2 px-4 py-2 text-body [&::-webkit-details-marker]:hidden">
             <span className="font-medium">Advanced — {GROUP_LABELS[group]}</span>
-            <span className="text-caption text-muted-foreground">
+            <Text size="caption" tone="muted">
               <span className="tabular-nums">{tokens.length}</span> {tokens.length === 1 ? "token" : "tokens"}
-            </span>
-            <span aria-hidden className="ml-auto text-caption text-muted-foreground transition-transform group-open:rotate-90">
+            </Text>
+            <Text aria-hidden size="caption" tone="muted" className="ml-auto transition-transform group-open:rotate-90">
               ›
-            </span>
+            </Text>
           </summary>
           <div className="divide-y divide-border border-t border-border">
             {tokens.map((token) => (

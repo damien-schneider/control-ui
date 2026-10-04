@@ -6,6 +6,7 @@ import { PreviewTabs, SourceTabs } from "@/app/(features)/components/source";
 import { publicRegistryHref, registryInstallCommands } from "@/app/(features)/model/registry";
 import type { DocsBlock, IntegrationId, SourceFile } from "@/app/(features)/model/types";
 import { Card } from "@/components/control-ui/ui/card";
+import { Text } from "@/components/control-ui/ui/typography";
 import { blockPreviewCode } from "./block-preview-code";
 import { IntegrationSelect, integrationChangesCode } from "./integration";
 import {
@@ -62,7 +63,9 @@ function BlockFile({ file }: { file: SourceFile }) {
   return (
     <Card className="min-w-0 flex-row items-center justify-between gap-4 px-4 py-3 text-body">
       <span className="font-medium">{file.label}</span>
-      <code className="min-w-0 truncate text-label text-muted-foreground">{file.path}</code>
+      <Text as="code" size="label" tone="muted" className="min-w-0 truncate">
+        {file.path}
+      </Text>
     </Card>
   );
 }

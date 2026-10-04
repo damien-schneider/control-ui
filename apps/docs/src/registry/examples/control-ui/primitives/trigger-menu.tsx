@@ -6,6 +6,7 @@ import type { TriggerConfig, TriggerMenuItemData } from "@/components/control-ui
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { Textarea } from "@/components/control-ui/ui/textarea";
 import { TriggerMenu, TriggerMenuEmpty, TriggerMenuIcon, TriggerMenuItem, TriggerMenuList } from "@/components/control-ui/ui/trigger-menu";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const commands: TriggerMenuItemData[] = [
   { id: "summarize", label: "Summarize", description: "Condense the thread", icon: "✦" },
@@ -61,7 +62,11 @@ export function PrimitiveTriggerMenuExample() {
             >
               {item.icon ? <TriggerMenuIcon>{item.icon}</TriggerMenuIcon> : null}
               <span className="flex-1 truncate">{item.label}</span>
-              {item.description ? <span className="truncate text-micro text-muted-foreground">{item.description}</span> : null}
+              {item.description ? (
+                <Text size="micro" tone="muted" className="truncate">
+                  {item.description}
+                </Text>
+              ) : null}
             </TriggerMenuItem>
           ))}
         </TriggerMenuList>

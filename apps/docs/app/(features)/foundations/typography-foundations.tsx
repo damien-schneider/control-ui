@@ -1,5 +1,6 @@
 "use client";
 
+import { Text } from "@/components/control-ui/ui/typography";
 import { contractDescription, contractTokenNames, contractTokensNamed, Specimen, SpecimenGroup } from "./specimen/specimen";
 import { formatPx, useComputedReadout } from "./specimen/theme-readouts";
 
@@ -24,9 +25,9 @@ function FontSpecimen({ role }: { role: string }) {
   const [ref, family] = useComputedReadout<HTMLParagraphElement>(readFirstFontFamily);
   return (
     <Specimen token={role} readout={family} description={contractDescription(role)}>
-      <p ref={ref} className="truncate text-heading-2 text-foreground" style={{ fontFamily: `var(${role})` }}>
+      <Text ref={ref} as="p" size="heading-2" tone="foreground" className="truncate" style={{ fontFamily: `var(${role})` }}>
         Aa Bb Gg 0123
-      </p>
+      </Text>
     </Specimen>
   );
 }

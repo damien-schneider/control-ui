@@ -21,6 +21,7 @@ import { CollapsibleContent, CollapsibleTrigger, Collapsible as UICollapsible } 
 import { usePageScroll } from "@/components/control-ui/ui/page-layout";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Tabs, TabsList, TabsPanel, TabsSurface, TabsTab } from "@/components/control-ui/ui/tabs";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function CodeBlock({ code, lang = "tsx" }: { code: string; lang?: string }) {
   if (!code.includes("\n")) return <CodeSnippet code={code} lang={lang} />;
@@ -158,7 +159,9 @@ export function SourceTabs({ files, overflow }: { files: SourceFile[]; overflow?
               <TabsTab key={file.path} value={file.path}>
                 {sourceFileName(file.path)}
                 {file.shared ? (
-                  <span className="ml-1.5 font-normal text-micro text-muted-foreground uppercase tracking-wide">shared</span>
+                  <Text size="micro" weight="normal" tone="muted" className="ml-1.5 uppercase tracking-wide">
+                    shared
+                  </Text>
                 ) : null}
               </TabsTab>
             ))}
@@ -197,7 +200,11 @@ export function PreviewTabs({
 
   return (
     <div id={anchorId ?? undefined} className="mb-8 min-w-0 scroll-mt-20">
-      {previewDescription ? <p className="mb-3 text-body text-muted-foreground">{previewDescription}</p> : null}
+      {previewDescription ? (
+        <Text as="p" tone="muted" className="mb-3">
+          {previewDescription}
+        </Text>
+      ) : null}
       <Tabs
         value={tab}
         onValueChange={(value) => {

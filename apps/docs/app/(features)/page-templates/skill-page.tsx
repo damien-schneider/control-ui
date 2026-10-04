@@ -2,6 +2,7 @@
 
 import type { DocsSkill, DocsSkillConcern } from "@/app/(features)/model/types";
 import { Card } from "@/components/control-ui/ui/card";
+import { Text } from "@/components/control-ui/ui/typography";
 import { PageHeader, SectionTitle } from "./shared";
 
 export function SkillPage({ skill, concern }: { skill: DocsSkill; concern?: DocsSkillConcern }) {
@@ -12,9 +13,17 @@ export function SkillPage({ skill, concern }: { skill: DocsSkill; concern?: Docs
       <PageHeader label={label} title={skill.title} summary={skill.summary} />
       <div className="grid min-w-0 gap-8">
         <Card className="min-w-0 gap-0 p-5">
-          <div className="text-label font-medium uppercase tracking-[0.08em] text-muted-foreground">Goal</div>
-          <p className="mt-2 text-body leading-6 text-foreground">{skill.goal}</p>
-          {concern ? <p className="mt-3 text-body leading-6 text-muted-foreground">{concern.summary}</p> : null}
+          <Text as="div" size="label" weight="medium" tone="muted" className="uppercase tracking-[0.08em]">
+            Goal
+          </Text>
+          <Text as="p" tone="foreground" className="mt-2 leading-6">
+            {skill.goal}
+          </Text>
+          {concern ? (
+            <Text as="p" tone="muted" className="mt-3 leading-6">
+              {concern.summary}
+            </Text>
+          ) : null}
         </Card>
 
         <SkillRuleList id="checks" title="Checks" items={skill.checks} />
@@ -26,10 +35,10 @@ export function SkillPage({ skill, concern }: { skill: DocsSkill; concern?: Docs
               title="Source"
               description="Imported as local Control UI skill guidance, with this repo owning the final wording."
             />
-            <div className="rounded-xl border bg-background p-5 text-body leading-6 text-muted-foreground">
+            <Text as="div" tone="muted" className="rounded-xl border bg-background p-5 leading-6">
               <div className="font-medium text-foreground">{skill.source.label}</div>
               <code className="mt-2 block overflow-hidden text-ellipsis whitespace-nowrap text-label">{skill.source.path}</code>
-            </div>
+            </Text>
           </section>
         ) : null}
       </div>
@@ -44,9 +53,14 @@ function SkillRuleList({ id, title, items, muted = false }: { id: string; title:
       <div className="grid gap-2">
         {items.map((item, index) => (
           <Card key={item} className="flex-row gap-3 px-4 py-3 text-body leading-6">
-            <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full border bg-background text-caption font-medium text-muted-foreground">
+            <Text
+              size="caption"
+              weight="medium"
+              tone="muted"
+              className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full border bg-background"
+            >
               {index + 1}
-            </span>
+            </Text>
             <span className={muted ? "text-muted-foreground" : "text-foreground"}>{item}</span>
           </Card>
         ))}

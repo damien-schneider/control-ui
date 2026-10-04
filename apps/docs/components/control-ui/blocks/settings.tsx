@@ -36,7 +36,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/control-ui/ui/sidebar";
-import { Heading } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 import {
   type SettingDefinition,
   type SettingsControlProps,
@@ -195,9 +195,9 @@ function SettingsShell({
       <SidebarInset className="h-full min-h-0 min-w-0">
         <header className="flex h-12 shrink-0 items-center gap-2 border-b px-3 lg:hidden">
           <SidebarTrigger />
-          <span className="truncate text-label font-medium" title={currentPage?.title}>
+          <Text size="label" weight="medium" className="truncate" title={currentPage?.title}>
             {currentPage?.title ?? "Settings"}
-          </span>
+          </Text>
         </header>
         <ScrollArea className="min-h-0 flex-1" lockAxis="x">
           {currentPage ? (

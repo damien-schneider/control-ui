@@ -3,6 +3,7 @@
 import { AlertTriangleIcon, CheckCircle2Icon } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/components/control-ui/lib/cn";
+import { Text } from "@/components/control-ui/ui/typography";
 import { useThemeAudit } from "./use-theme-audit";
 
 export function ThemeAuditStatus({ root, className }: { root: HTMLElement | null; className?: string }) {
@@ -11,7 +12,12 @@ export function ThemeAuditStatus({ root, className }: { root: HTMLElement | null
   const warnings = results.filter((result) => result.severity === "warning" && result.status !== "pass");
   const requiredCount = results.filter((result) => result.severity === "error").length;
 
-  if (results.length === 0) return <p className={cn("text-caption text-muted-foreground", className)}>Checking theme contrast…</p>;
+  if (results.length === 0)
+    return (
+      <Text as="p" size="caption" tone="muted" className={className}>
+        Checking theme contrast…
+      </Text>
+    );
 
   return (
     <div className={cn("grid gap-2 text-caption", className)} aria-live="polite">

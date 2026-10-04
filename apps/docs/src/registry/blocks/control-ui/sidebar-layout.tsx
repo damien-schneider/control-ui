@@ -17,6 +17,7 @@ import {
   SidebarRail,
   SidebarTrigger,
 } from "@/components/control-ui/ui/sidebar";
+import { Text } from "@/components/control-ui/ui/typography";
 
 type SidebarLayoutNavItem = {
   title: string;
@@ -38,13 +39,15 @@ export function AppSidebar({ active = "Playground" }: { active?: string }) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" render={<a href="/" />}>
-              <span
+              <Text
                 aria-hidden="true"
-                className="flex size-6 shrink-0 items-center justify-center rounded-md bg-primary text-label font-semibold text-primary-foreground"
+                size="label"
+                weight="semibold"
+                className="flex size-6 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground"
               >
                 A
-              </span>
-              <span className="text-body font-semibold">Acme Studio</span>
+              </Text>
+              <Text weight="semibold">Acme Studio</Text>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

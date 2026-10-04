@@ -13,6 +13,7 @@ import {
   EmojiPickerSearch,
 } from "@/components/control-ui/ui/emoji-picker";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/control-ui/ui/popover";
+import { Text } from "@/components/control-ui/ui/typography";
 import { initialRecentEmoji, rememberEmoji } from "./emoji-picker-data";
 
 export function PrimitiveEmojiPickerExample() {
@@ -21,7 +22,7 @@ export function PrimitiveEmojiPickerExample() {
   const [recentEmoji, setRecentEmoji] = useState<Emoji[]>(initialRecentEmoji);
 
   return (
-    <div className="flex items-center gap-3 text-body text-muted-foreground">
+    <Text as="div" tone="muted" className="flex items-center gap-3">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger render={<Button variant="surface" iconOnly aria-label="Add reaction" />}>
           <SmilePlusIcon aria-hidden="true" />
@@ -43,6 +44,6 @@ export function PrimitiveEmojiPickerExample() {
         </PopoverContent>
       </Popover>
       <span aria-live="polite">{pickedEmoji ? `Picked ${pickedEmoji}` : "No emoji picked yet"}</span>
-    </div>
+    </Text>
   );
 }

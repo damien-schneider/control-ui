@@ -6,6 +6,7 @@ import type { PreviewLayout } from "@/app/(features)/catalog/shared";
 
 import { PreviewTabs, SourceTabs } from "@/app/(features)/components/source";
 import type { Composition, DocsKnobFamily, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
+import { Text } from "@/components/control-ui/ui/typography";
 import { CompositionSection, DependencySection, InstallPanel, PageHeader, SectionCode, SectionStack, SectionTitle } from "./shared";
 
 type RegistryItemPreview = {
@@ -173,20 +174,31 @@ function KnobsSection({ families }: { families: DocsKnobFamily[] }) {
       <div className="grid min-w-0 gap-4">
         {families.map((family) => (
           <div key={family.id} className="docs-panel overflow-hidden">
-            <div className="flex items-baseline justify-between gap-3 border-b border-border bg-muted/30 px-4 py-2 text-caption text-muted-foreground">
+            <Text
+              as="div"
+              size="caption"
+              tone="muted"
+              className="flex items-baseline justify-between gap-3 border-b border-border bg-muted/30 px-4 py-2"
+            >
               <span>
                 <KnobFamilyName id={family.id} href={family.href} /> · <span className="tabular-nums">{family.knobs.length}</span> knobs
               </span>
               <Link href="/skins#component-knobs" className="shrink-0 underline underline-offset-4 hover:text-foreground">
                 How the cascade resolves
               </Link>
-            </div>
+            </Text>
             <div className="divide-y divide-border">
               {family.knobs.map((knob) => (
                 <div key={knob.name} className="flex min-w-0 flex-col gap-0.5 px-4 py-2 sm:flex-row sm:items-baseline sm:gap-3">
-                  <code className="min-w-0 break-all font-mono text-label text-foreground sm:w-72 sm:shrink-0">{knob.name}</code>
-                  <code className="shrink-0 font-mono text-caption text-muted-foreground sm:w-40">{knob.syntax}</code>
-                  <code className="min-w-0 break-all font-mono text-caption text-muted-foreground">{knob.defaultValue}</code>
+                  <Text as="code" size="label" tone="foreground" className="min-w-0 break-all font-mono sm:w-72 sm:shrink-0">
+                    {knob.name}
+                  </Text>
+                  <Text as="code" size="caption" tone="muted" className="shrink-0 font-mono sm:w-40">
+                    {knob.syntax}
+                  </Text>
+                  <Text as="code" size="caption" tone="muted" className="min-w-0 break-all font-mono">
+                    {knob.defaultValue}
+                  </Text>
                 </div>
               ))}
             </div>

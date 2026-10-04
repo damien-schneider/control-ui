@@ -3,6 +3,7 @@
 import { PlayIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/control-ui/ui/button";
+import { Text } from "@/components/control-ui/ui/typography";
 import { contractTokenNames, SpecimenGroup, TokenValueList } from "./specimen/specimen";
 
 const MOTION_TOKENS = contractTokenNames("motion");
@@ -12,9 +13,9 @@ const EASINGS = MOTION_TOKENS.filter((name) => name.startsWith("--ease-"));
 function MotionTrack({ duration, easing, arrived }: { duration: string; easing: string; arrived: boolean }) {
   return (
     <div className="grid gap-1.5">
-      <span className="font-mono text-micro text-muted-foreground">
+      <Text size="micro" tone="muted" className="font-mono">
         {duration} · {easing}
-      </span>
+      </Text>
       <div className="relative h-6 rounded-full bg-muted">
         <span
           className="absolute top-1 size-4 rounded-full bg-primary"

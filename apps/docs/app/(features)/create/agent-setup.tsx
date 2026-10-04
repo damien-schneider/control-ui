@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import { Button } from "@/components/control-ui/ui/button";
 import { Code, CodeActions, CodeContent, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
+import { Text } from "@/components/control-ui/ui/typography";
 import { siteConfig } from "@/lib/site-config";
 import { buildSetupPrompt } from "./setup-prompt";
 
@@ -39,9 +40,9 @@ export function SetupPromptCopyButton({ className, compact }: { className?: stri
         {copied ? copiedLabel : idleLabel}
       </Button>
       {copyError ? (
-        <p role="alert" className="mt-2 text-caption text-destructive-text">
+        <Text role="alert" as="p" size="caption" tone="destructive" className="mt-2">
           {copyError}
-        </p>
+        </Text>
       ) : null}
     </div>
   );
@@ -65,9 +66,9 @@ export function AgentSetup() {
         <CodeContent code={setupPrompt} lang="markdown" maxHeight="24rem" />
       </Code>
       {copyError ? (
-        <p role="alert" className="text-caption text-destructive-text">
+        <Text role="alert" as="p" size="caption" tone="destructive">
           {copyError}
-        </p>
+        </Text>
       ) : null}
     </div>
   );

@@ -11,7 +11,11 @@ function Pane({ label, hint }: { label: string; hint?: string }) {
   return (
     <div className="flex h-full flex-col items-center justify-center gap-1 text-center">
       <Text weight="medium">{label}</Text>
-      {hint ? <span className="text-caption text-muted-foreground">{hint}</span> : null}
+      {hint ? (
+        <Text size="caption" tone="muted">
+          {hint}
+        </Text>
+      ) : null}
     </div>
   );
 }

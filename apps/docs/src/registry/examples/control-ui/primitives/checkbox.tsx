@@ -4,13 +4,14 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 
 import { Checkbox } from "@/components/control-ui/ui/checkbox";
+import { Text } from "@/components/control-ui/ui/typography";
 
 function Row({ id, label, children }: { id: string; label: string; children: ReactNode }) {
   return (
-    <div className="flex items-center gap-2.5 text-body font-medium text-foreground">
+    <Text as="div" weight="medium" tone="foreground" className="flex items-center gap-2.5">
       {children}
       <label htmlFor={id}>{label}</label>
-    </div>
+    </Text>
   );
 }
 

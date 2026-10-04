@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxItem, ComboboxList } from "@/components/control-ui/ui/combobox";
+import { Text } from "@/components/control-ui/ui/typography";
 
 interface Framework {
   value: string;
@@ -25,7 +26,9 @@ export function PrimitiveComboboxExample() {
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-2">
-      <span className="text-caption font-medium text-muted-foreground">Framework</span>
+      <Text size="caption" weight="medium" tone="muted">
+        Framework
+      </Text>
       <Combobox items={FRAMEWORKS} value={framework} onValueChange={setFramework}>
         <ComboboxInput placeholder="Search framework…" aria-label="Framework" />
         <ComboboxContent>
@@ -39,7 +42,9 @@ export function PrimitiveComboboxExample() {
           </ComboboxList>
         </ComboboxContent>
       </Combobox>
-      <span className="text-caption text-muted-foreground">{framework ? `Selected: ${framework.label}` : "Nothing selected"}</span>
+      <Text size="caption" tone="muted">
+        {framework ? `Selected: ${framework.label}` : "Nothing selected"}
+      </Text>
       <RepositorySearchExample />
     </div>
   );

@@ -3,6 +3,7 @@
 import { UtilPreview } from "@/app/(features)/components/previews";
 import { SourceTabs } from "@/app/(features)/components/source";
 import type { DocsUtil } from "@/app/(features)/model/types";
+import { Text } from "@/components/control-ui/ui/typography";
 import { PageHeader, SectionStack, SectionTitle } from "./shared";
 
 export function UtilPage({ util }: { util: DocsUtil }) {
@@ -19,10 +20,10 @@ export function UtilPage({ util }: { util: DocsUtil }) {
           </section>
         ) : null}
         <div id="install" className="min-w-0 scroll-mt-20 rounded-xl border bg-background p-5">
-          <p className="text-body leading-6 text-muted-foreground">
+          <Text as="p" tone="muted" className="leading-6">
             Installed to <code>{util.target}</code> with {util.install ?? "every Control UI component"}, so the shared helper stays in one
             place.
-          </p>
+          </Text>
         </div>
         <section id="source" className="min-w-0 scroll-mt-20">
           <SectionTitle title="Source" description="Installed util source" />

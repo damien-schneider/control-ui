@@ -1,6 +1,7 @@
 "use client";
 
 import { AudioVisualizer } from "@/components/control-ui/audio-visualizer-bar";
+import { Text } from "@/components/control-ui/ui/typography";
 import { useDemoAudioLevels } from "@/src/registry/examples/control-ui/audio-visualizer-demo";
 
 const alignments = ["center", "start", "end"] as const;
@@ -21,7 +22,9 @@ export function AudioVisualizerBarExample() {
               aria-label={`${align} aligned frequency bars`}
               className="h-16 w-full"
             />
-            <span className="text-caption text-muted-foreground">{align}</span>
+            <Text size="caption" tone="muted">
+              {align}
+            </Text>
           </div>
         ))}
       </div>
@@ -30,12 +33,16 @@ export function AudioVisualizerBarExample() {
         {idleModes.map((idle) => (
           <div key={idle} className="grid gap-2 text-center">
             <AudioVisualizer levels={[]} points={8} active={false} idle={idle} aria-label={`Idle ${idle} bars`} className="h-8 w-full" />
-            <span className="text-caption text-muted-foreground">{idle}</span>
+            <Text size="caption" tone="muted">
+              {idle}
+            </Text>
           </div>
         ))}
         <div className="grid gap-2 text-center">
           <AudioVisualizer levels={[]} points={8} loading aria-label="Connecting audio" className="h-8 w-full" />
-          <span className="text-caption text-muted-foreground">loading</span>
+          <Text size="caption" tone="muted">
+            loading
+          </Text>
         </div>
       </div>
     </div>

@@ -11,6 +11,7 @@ import type { ActivePageId } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { ButtonLink } from "@/components/control-ui/ui/button";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@/components/control-ui/ui/sidebar";
+import { Text } from "@/components/control-ui/ui/typography";
 import { SkinPresetControls } from "@/components/theme-drawer/skin-preset-controls";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
 import { catalogNavGroupIcons, sidebarDoors, themeEditorDoor, useCaseKindSidebarIcons } from "./icons";
@@ -107,9 +108,9 @@ export function DocsSidebarContent({
             <div className="relative flex min-w-0 items-center">
               <Link href="/" onClick={closeSidebar} className="flex min-w-0 items-center gap-1.5">
                 <ControlUiLogo />
-                <span className="block truncate font-display text-body font-semibold leading-none tracking-tighter text-sidebar-foreground">
+                <Text size="heading-4" className="block truncate leading-none text-sidebar-foreground">
                   control.ui
-                </span>
+                </Text>
               </Link>
               <Badge size="sm" className="absolute -top-1 left-full ml-1">
                 alpha
@@ -171,7 +172,7 @@ export function DocsSidebarContent({
         <SidebarFooter>
           <div className="flex items-center justify-between gap-2">
             <ThemeModeSwitch />
-            <p className="text-right text-micro leading-none text-muted-foreground">
+            <Text as="p" size="micro" tone="muted" className="text-right leading-none">
               by{" "}
               <a
                 href="https://x.com/damien_schneid"
@@ -181,7 +182,7 @@ export function DocsSidebarContent({
               >
                 Damien Schneider
               </a>
-            </p>
+            </Text>
           </div>
         </SidebarFooter>
       </div>

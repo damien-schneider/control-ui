@@ -6,6 +6,7 @@ import { Button } from "@/components/control-ui/ui/button";
 import { ProgressiveBlur, type ProgressiveBlurSide } from "@/components/control-ui/ui/progressive-blur";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Switch } from "@/components/control-ui/ui/switch";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const blurSides: { side: ProgressiveBlurSide; label: string }[] = [
   { side: "top", label: "Top" },
@@ -58,12 +59,16 @@ export function PrimitiveProgressiveBlurExample() {
       <div className="relative isolate overflow-hidden rounded-(--radius-panel) border border-border bg-background">
         <div className="flex flex-col gap-4 p-6">
           <p className="text-heading">A little further away.</p>
-          <p className="text-body text-muted-foreground">Details soften as they approach the edge. The surface stays transparent.</p>
+          <Text as="p" tone="muted">
+            Details soften as they approach the edge. The surface stays transparent.
+          </Text>
           <div
             aria-hidden="true"
             className="h-40 bg-[repeating-conic-gradient(var(--primary)_0%_25%,var(--muted)_0%_50%)] bg-size-[48px_48px]"
           />
-          <p className="text-caption text-muted-foreground">Soft light. Sharp details. Room to breathe.</p>
+          <Text as="p" size="caption" tone="muted">
+            Soft light. Sharp details. Room to breathe.
+          </Text>
         </div>
         <ProgressiveBlur side={side} visible={visible} style={{ "--cui-progressive-blur-size": "50%" }} />
       </div>

@@ -5,7 +5,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia } from "@/components/control-ui/ui/empty";
-import { Heading } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 
 export default function DocsError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   return (
@@ -29,7 +29,11 @@ export default function DocsError({ error, reset }: { error: Error & { digest?: 
           Back to the guides
         </ButtonLink>
       </EmptyContent>
-      {error.digest ? <p className="font-mono text-caption text-muted-foreground">Reference {error.digest}</p> : null}
+      {error.digest ? (
+        <Text as="p" size="caption" tone="muted" className="font-mono">
+          Reference {error.digest}
+        </Text>
+      ) : null}
     </Empty>
   );
 }

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { buildPagePrompt } from "@/app/(features)/create/page-prompt";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import { Button } from "@/components/control-ui/ui/button";
+import { Text } from "@/components/control-ui/ui/typography";
 import { siteConfig } from "@/lib/site-config";
 
 export function OpenInAgent({ name, pathname }: { name: string; pathname: string }) {
@@ -39,9 +40,9 @@ export function OpenInAgent({ name, pathname }: { name: string; pathname: string
         </span>
       </Button>
       {copyError ? (
-        <p role="alert" className="mt-2 text-caption text-destructive-text">
+        <Text role="alert" as="p" size="caption" tone="destructive" className="mt-2">
           {copyError}
-        </p>
+        </Text>
       ) : null}
     </div>
   );

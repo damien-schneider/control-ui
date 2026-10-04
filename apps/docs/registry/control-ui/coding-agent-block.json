@@ -12,7 +12,8 @@
     "chat-layout",
     "collapsible",
     "core",
-    "sidebar"
+    "sidebar",
+    "typography"
   ],
   "files": [
     {

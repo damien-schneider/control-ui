@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { cn } from "@/components/control-ui/lib/cn";
+import { Text } from "@/components/control-ui/ui/typography";
 import { TARGET_RATIO, type WcagLevel, type WcagLevels } from "./color-math";
 import { rgbToHex } from "./color-utils";
 import { analyzeContrast, type ContrastRow, fixTextForeground, maxForegroundRatio, offeredFixLevel, readVarRgb } from "./contrast";
@@ -12,17 +13,20 @@ import type { ThemeState } from "./types";
 // fixed hues on purpose: pass/fail is status, not theme
 function LevelBadge({ level, state }: { level: WcagLevel; state: "pass" | "fail" | "unknown" }) {
   return (
-    <span
+    <Text
+      size="micro"
+      weight="semibold"
+      tone={state === "unknown" ? "muted" : "default"}
       title={level === "AA" ? "WCAG AA · 4.5:1" : "WCAG AAA · 7:1"}
       className={cn(
-        "shrink-0 rounded-full px-1.5 py-0.5 text-micro font-semibold uppercase tracking-wide tabular-nums",
+        "shrink-0 rounded-full px-1.5 py-0.5 uppercase tracking-wide tabular-nums",
         state === "pass" && "bg-emerald-500/15 text-emerald-700 dark:text-emerald-400",
         state === "fail" && "bg-red-500/15 text-red-700 dark:text-red-400",
-        state === "unknown" && "bg-muted text-muted-foreground",
+        state === "unknown" && "bg-muted",
       )}
     >
       {level}
-    </span>
+    </Text>
   );
 }
 
@@ -102,7 +106,9 @@ export function ContrastPanel({ t, onFix }: { t: ThemeState; onFix: (textFixes: 
   return (
     <div className="flex flex-col gap-3">
       <span className="flex items-baseline justify-between gap-2.5">
-        <span className="text-caption font-medium text-muted-foreground">Accessibility · contrast</span>
+        <Text size="caption" weight="medium" tone="muted">
+          Accessibility · contrast
+        </Text>
         <VarTag>WCAG AA 4.5 · AAA 7</VarTag>
       </span>
       <div className="flex flex-col gap-1 rounded-[8px] border border-border p-1.5">
@@ -110,17 +116,21 @@ export function ContrastPanel({ t, onFix }: { t: ThemeState; onFix: (textFixes: 
           const fixLevel = rowFixLevel(r);
           return (
             <div key={r.label} className="flex items-center gap-2.5 rounded-[6px] px-2 py-1.5">
-              <span
+              <Text
                 aria-hidden
-                className="grid size-8 shrink-0 place-items-center rounded-[5px] border border-border text-caption font-semibold"
+                size="caption"
+                weight="semibold"
+                className="grid size-8 shrink-0 place-items-center rounded-[5px] border border-border"
                 style={{ color: `var(${r.fg})`, background: `var(${r.bg})` }}
               >
                 Aa
-              </span>
-              <span className="min-w-0 flex-1 truncate text-label text-foreground">{r.label}</span>
-              <span className="font-mono text-caption tabular-nums text-muted-foreground">
+              </Text>
+              <Text size="label" tone="foreground" className="min-w-0 flex-1 truncate">
+                {r.label}
+              </Text>
+              <Text size="caption" tone="muted" className="font-mono tabular-nums">
                 {r.ratio === null ? "—" : `${r.ratio.toFixed(2)}:1`}
-              </span>
+              </Text>
               <span className="flex shrink-0 items-center gap-1.5">
                 <LevelBadge level="AA" state={levelState(r.levels, r.ratio, "AA")} />
                 <LevelBadge level="AAA" state={levelState(r.levels, r.ratio, "AAA")} />
@@ -130,7 +140,9 @@ export function ContrastPanel({ t, onFix }: { t: ThemeState; onFix: (textFixes: 
           );
         })}
       </div>
-      <span className="text-micro text-muted-foreground">{hint}</span>
+      <Text size="micro" tone="muted">
+        {hint}
+      </Text>
     </div>
   );
 }

@@ -7,7 +7,7 @@ import { StatusBadge } from "@/app/(features)/components/status";
 import type { Composition, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
 import { ButtonLink } from "@/components/control-ui/ui/button";
-import { Heading } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 
 import { CompositionTree } from "./composition-tree";
 
@@ -28,7 +28,11 @@ export function PageHeader({
 }) {
   return (
     <div className={compact ? "mb-5" : "mb-7"}>
-      {compact ? null : <div className="text-caption font-medium text-muted-foreground">{label}</div>}
+      {compact ? null : (
+        <Text as="div" size="caption" weight="medium" tone="muted">
+          {label}
+        </Text>
+      )}
       <div className={cn("flex flex-wrap items-center gap-3", !compact && "mt-2")}>
         <Heading
           level={1}
@@ -42,7 +46,9 @@ export function PageHeader({
         {status ? <StatusBadge status={status} /> : null}
       </div>
       {summary ? (
-        <p className={cn("max-w-2xl text-pretty text-muted-foreground", compact ? "mt-1 text-body" : "mt-3 text-body-lg")}>{summary}</p>
+        <Text as="p" size={compact ? "body" : "body-lg"} tone="muted" className={cn("max-w-2xl text-pretty", compact ? "mt-1" : "mt-3")}>
+          {summary}
+        </Text>
       ) : null}
     </div>
   );
@@ -64,7 +70,11 @@ export function SectionTitle({ title, description }: { title: string; descriptio
   return (
     <div className="mb-3">
       <Heading level={2}>{title}</Heading>
-      {description ? <p className="mt-1 text-body text-pretty text-muted-foreground">{description}</p> : null}
+      {description ? (
+        <Text as="p" tone="muted" className="mt-1 text-pretty">
+          {description}
+        </Text>
+      ) : null}
     </div>
   );
 }
@@ -100,8 +110,14 @@ export function CompositionSection({ items }: { items: Composition }) {
       <div className="grid min-w-0 gap-12">
         {items.map((item) => (
           <div key={item.title} className="min-w-0">
-            <h3 className="text-body font-normal text-balance text-muted-foreground">{item.title}</h3>
-            {item.description ? <p className="mt-2 text-label text-pretty text-muted-foreground">{item.description}</p> : null}
+            <Heading level={3} size="body" tone="muted">
+              {item.title}
+            </Heading>
+            {item.description ? (
+              <Text as="p" size="label" tone="muted" className="mt-2 text-pretty">
+                {item.description}
+              </Text>
+            ) : null}
             <div className="mt-6 min-w-0">
               <CompositionTree tree={item.tree} ownParts={item.ownParts} />
             </div>
@@ -155,7 +171,9 @@ export function DependencySection({
       ) : null}
       {usage ? (
         <div className="mt-4 min-w-0">
-          <p className="mb-3 text-body leading-6 text-muted-foreground">{usage.description}</p>
+          <Text as="p" tone="muted" className="mb-3 leading-6">
+            {usage.description}
+          </Text>
           <CodeBlock code={usage.code} />
         </div>
       ) : null}
@@ -172,9 +190,13 @@ function DependencyRow({ name, detail, kind, href }: { name: string; detail: str
     <>
       <span className="flex min-w-0 items-baseline gap-2">
         <span className="font-medium">{name}</span>
-        <code className="min-w-0 truncate text-label text-muted-foreground">{detail}</code>
+        <Text as="code" size="label" tone="muted" className="min-w-0 truncate">
+          {detail}
+        </Text>
       </span>
-      <span className="shrink-0 text-caption text-muted-foreground">{kind}</span>
+      <Text size="caption" tone="muted" className="shrink-0">
+        {kind}
+      </Text>
     </>
   );
   const className = "flex min-w-0 items-baseline justify-between gap-4 px-4 py-2.5 text-body";
@@ -215,15 +237,19 @@ export function InstallPanel({
     <section id="install" className="min-w-0 scroll-mt-20">
       <SectionTitle title="Installation" description={subtitle} />
       {requiresSkin ? (
-        <p className="mb-3 text-body leading-6 text-muted-foreground">
+        <Text as="p" tone="muted" className="mb-3 leading-6">
           First install and activate one{" "}
           <Link href="/skins" className="font-medium text-foreground underline underline-offset-4">
             skin
           </Link>
           . Core deliberately contains no visual token defaults.
-        </p>
+        </Text>
       ) : null}
-      {children ? <p className="mb-3 text-body leading-6 text-muted-foreground">{children}</p> : null}
+      {children ? (
+        <Text as="p" tone="muted" className="mb-3 leading-6">
+          {children}
+        </Text>
+      ) : null}
       <div className="grid min-w-0 gap-2">
         {commands.map((command) => (
           <CommandBlock key={command.label} label={command.label} command={command.value} />

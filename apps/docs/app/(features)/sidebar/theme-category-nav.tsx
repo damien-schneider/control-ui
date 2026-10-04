@@ -6,6 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { Button } from "@/components/control-ui/ui/button";
 import { SidebarGroup, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/control-ui/ui/sidebar";
+import { Text } from "@/components/control-ui/ui/typography";
 import { setDrawerOpen } from "@/components/theme-drawer/generation-store";
 import { THEME_CATEGORIES, themeCategoryForPath } from "@/components/theme-drawer/theme-categories";
 import { useThemeRuntime } from "@/components/theme-drawer/theme-runtime-context";
@@ -67,9 +68,9 @@ function ThemeCategoryNavContent({ onNavigate }: { onNavigate: () => void }) {
                 >
                   <span className="min-w-0 truncate">{category.title}</span>
                   {editCount > 0 ? (
-                    <span aria-hidden className="ml-auto text-caption text-muted-foreground">
+                    <Text aria-hidden size="caption" tone="muted" className="ml-auto">
                       {editCount}
-                    </span>
+                    </Text>
                   ) : null}
                 </SidebarMenuButton>
               </SidebarMenuItem>
