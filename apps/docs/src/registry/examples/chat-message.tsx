@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import {
   Activity,
   ActivityContent,
@@ -9,15 +12,23 @@ import {
   ActivityTitle,
   ActivityTrigger,
 } from "@/components/control-ui/activity";
-import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageHeader, ChatMessageRow } from "@/components/control-ui/chat-message";
+import {
+  ChatMessage,
+  ChatMessageBody,
+  ChatMessageContent,
+  ChatMessageEditable,
+  ChatMessageHeader,
+  ChatMessageRow,
+} from "@/components/control-ui/chat-message";
 
 export function ChatMessageExample() {
+  const [prompt, setPrompt] = useState("Does this render the active setup?");
   return (
     <div>
       <ChatMessage from="user">
         <ChatMessageRow>
           <ChatMessageBody>
-            <ChatMessageContent>Does this render the active setup?</ChatMessageContent>
+            <ChatMessageEditable value={prompt} onSave={setPrompt} />
           </ChatMessageBody>
         </ChatMessageRow>
       </ChatMessage>

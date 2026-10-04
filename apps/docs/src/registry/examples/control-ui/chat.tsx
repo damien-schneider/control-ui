@@ -2,7 +2,7 @@
 
 import { MastraReactProvider, MessageFactory, type MessageRoleRendererProps, type MessageRoleRenderers, useChat } from "@mastra/react";
 import { type ReactNode, useState } from "react";
-import { ActionBar, ActionBarCopy, ActionBarEdit } from "@/components/control-ui/action-bar";
+import { ActionBar, ActionBarCopy } from "@/components/control-ui/action-bar";
 import { Activity, ActivityContent, ActivityIcon, ActivityTitle, ActivityTrigger } from "@/components/control-ui/activity";
 import { ChatBlock } from "@/components/control-ui/blocks/chat";
 import {
@@ -16,7 +16,13 @@ import {
 import { ChatComposerEditor } from "@/components/control-ui/chat-composer-editor";
 import { mentionExtension } from "@/components/control-ui/chat-composer-editor/extensions/mention";
 import { ChatTurn } from "@/components/control-ui/chat-layout";
-import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
+import {
+  ChatMessage,
+  ChatMessageBody,
+  ChatMessageContent,
+  ChatMessageEditable,
+  ChatMessageRow,
+} from "@/components/control-ui/chat-message";
 import type { ChatComposerSubmitPayload } from "@/components/control-ui/hooks/use-chat-composer";
 import type { ChatState } from "@/components/control-ui/hooks/use-chat-message";
 import type { TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/hooks/use-trigger-menu";
@@ -89,7 +95,8 @@ function mastraMessageRoles(streamingMessageId: string | undefined): MessageRole
   };
 }
 
-function PreviewConversation({ onEdit }: { onEdit: (value: string) => void }) {
+function PreviewConversation() {
+  const [prompt, setPrompt] = useState(userPrompt);
   return (
     <>
       <ChatTurn from="user">
@@ -103,15 +110,11 @@ function PreviewConversation({ onEdit }: { onEdit: (value: string) => void }) {
           <ChatMessage from="user" density="compact">
             <ChatMessageRow className="py-0">
               <ChatMessageBody className="max-w-full">
-                <ChatMessageContent>{userPrompt}</ChatMessageContent>
+                <ChatMessageEditable value={prompt} onSave={setPrompt} />
               </ChatMessageBody>
             </ChatMessageRow>
           </ChatMessage>
         </div>
-        <ActionBar align="end" label="Your message actions" copyValue={userPrompt} editValue={userPrompt} onEdit={onEdit}>
-          <ActionBarCopy />
-          <ActionBarEdit />
-        </ActionBar>
       </ChatTurn>
 
       <ChatTurn from="assistant">
@@ -199,7 +202,7 @@ function MastraChatPreview() {
           </ChatComposer>
         }
       >
-        <PreviewConversation onEdit={setInputValue} />
+        <PreviewConversation />
         {messages.map((message) => (
           <MessageFactory
             key={message.id}

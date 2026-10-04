@@ -180,7 +180,7 @@ export function ActionBarEdit({ value, children = "Edit", disabled, onClick, ...
 
     try {
       const nextValue = await resolveCopyValue(editValue);
-      if (!nextValue) return;
+      if (nextValue === undefined) return;
       onEdit(nextValue);
     } catch (error) {
       onEditError?.(error);
@@ -188,7 +188,7 @@ export function ActionBarEdit({ value, children = "Edit", disabled, onClick, ...
   }
 
   return (
-    <ActionBarItem disabled={disabled ?? (!editValue || !onEdit)} onClick={handleClick} {...props}>
+    <ActionBarItem disabled={disabled ?? (editValue === undefined || !onEdit)} onClick={handleClick} {...props}>
       {children}
     </ActionBarItem>
   );

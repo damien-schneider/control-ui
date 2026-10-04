@@ -599,7 +599,7 @@
         "id": "chat-message",
         "name": "ChatMessage",
         "kind": "Component",
-        "summary": "Composable chat message for assistant turns or people talking: bubble or flat layout, grouped bursts, reactions, and replies.",
+        "summary": "Composable chat message with stable inline editing, bubble or flat layout, grouped bursts, reactions, and replies.",
         "href": "/components/chat-message",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-message.json"
       },

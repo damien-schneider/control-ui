@@ -32,7 +32,7 @@
 
 ### Components (installable surfaces)
 **Chat & agents** — Everything that composes an AI conversation: the transcript, the composer and the surfaces that replace it, and what the agent is doing while you wait.
-- `chat-message` (ChatMessage) — Composable chat message for assistant turns or people talking: bubble or flat layout, grouped bursts, reactions, and replies. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-message.json`
+- `chat-message` (ChatMessage) — Composable chat message with stable inline editing, bubble or flat layout, grouped bursts, reactions, and replies. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-message.json`
 - `chat-composer` (ChatComposer) — Message composer with controlled text, Enter or ⌘ Enter submit, caret text insertion, and trigger-menu support. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer.json`
 - `chat-composer-attachment` (ChatComposerAttachment) — Composer attachment rail with file previews, upload progress, and removal. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer-attachment.json`
 - `user-ask` (UserAsk) — Keyboard-first agent question panel that temporarily replaces the chat composer inside its container. — `npx shadcn@latest add http://127.0.0.1:3000/r/user-ask.json`

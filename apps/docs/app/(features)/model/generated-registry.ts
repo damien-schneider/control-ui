@@ -1984,7 +1984,7 @@ export const registryMetadata = {
   },
   "chat-message": {
     dependencies: [],
-    registryDependencies: ["core", "effects"],
+    registryDependencies: ["action-bar", "core", "effects", "live-status"],
     sourceManifestPath: "registry/control-ui/chat-message.json",
     files: [
       {
@@ -2006,6 +2006,11 @@ export const registryMetadata = {
         path: "src/registry/sources/control-ui/chat-message/social.tsx",
         target: "@components/control-ui/chat-message/social.tsx",
         type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/chat-message-edit.css",
+        target: "@components/control-ui/styles/recipes/chat-message-edit.css",
+        type: "registry:file",
       },
       {
         path: "src/registry/sources/control-ui/recipes/chat-message-social.css",

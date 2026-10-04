@@ -2,6 +2,7 @@ import { emailEntry } from "./email";
 import { type CatalogComponentAlternative, type CatalogComponentVariant, preview, sourceFile } from "./shared";
 
 const chatMessageRecipeFiles = [
+  sourceFile("Chat message recipe — inline editing", "src/registry/sources/control-ui/recipes/chat-message-edit.css", "recipe-css"),
   sourceFile("Chat message recipe — paint + @property knobs", "src/registry/sources/control-ui/recipes/chat-message.css", "recipe-css"),
   sourceFile(
     "Chat message recipe — footer, reactions, replies, typing",
@@ -96,8 +97,7 @@ export const componentEntries = [
     category: "chat",
     kind: "Component",
     name: "ChatMessage",
-    summary:
-      "Composable chat message for assistant turns or people talking: bubble or flat layout, grouped bursts, reactions, and replies.",
+    summary: "Composable chat message with stable inline editing, bubble or flat layout, grouped bursts, reactions, and replies.",
     registryKind: "chat-message",
     paths: {
       example: sourceFile("Example", "src/registry/examples/chat-message.tsx", "example"),

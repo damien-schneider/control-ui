@@ -2072,6 +2072,55 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        "edit-error": {
+          family: "chat-message",
+          registryItems: ["chat-message"],
+          states: [],
+        },
+        "edit-input": {
+          family: "chat-message",
+          registryItems: ["chat-message"],
+          states: [],
+        },
+        "edit-sizer": {
+          family: "chat-message",
+          registryItems: ["chat-message"],
+          states: [],
+        },
+        "edit-toolbar": {
+          family: "chat-message",
+          registryItems: ["chat-message"],
+          states: [
+            {
+              attribute: "data-active",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        "edit-toolbars": {
+          family: "chat-message",
+          registryItems: ["chat-message"],
+          states: [],
+        },
+        "edit-value": {
+          family: "chat-message",
+          registryItems: ["chat-message"],
+          states: [],
+        },
+        editable: {
+          family: "chat-message",
+          registryItems: ["chat-message"],
+          states: [
+            {
+              attribute: "data-editing",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
         footer: {
           family: "chat-message",
           registryItems: ["chat-message"],

@@ -21,6 +21,7 @@
 @import "../src/registry/sources/control-ui/recipes/item.css";
 @import "../src/registry/sources/control-ui/recipes/table.css";
 @import "../src/registry/sources/control-ui/recipes/chat-message.css";
+@import "../src/registry/sources/control-ui/recipes/chat-message-edit.css";
 @import "../src/registry/sources/control-ui/recipes/chat-message-social.css";
 @import "../src/registry/sources/control-ui/recipes/skeleton.css";
 @import "../src/registry/sources/control-ui/recipes/popup-toast.css";

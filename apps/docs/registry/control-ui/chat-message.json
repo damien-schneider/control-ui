@@ -3,11 +3,13 @@
   "name": "chat-message",
   "type": "registry:component",
   "title": "ChatMessage",
-  "description": "Composable chat message for assistant turns or people talking: bubble or flat layout, grouped bursts, reactions, and replies.",
+  "description": "Composable chat message with stable inline editing, bubble or flat layout, grouped bursts, reactions, and replies.",
   "dependencies": [],
   "registryDependencies": [
+    "action-bar",
     "core",
-    "effects"
+    "effects",
+    "live-status"
   ],
   "files": [
     {
@@ -31,6 +33,11 @@
       "type": "registry:component"
     },
     {
+      "path": "src/registry/sources/control-ui/recipes/chat-message-edit.css",
+      "target": "@components/control-ui/styles/recipes/chat-message-edit.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/chat-message-social.css",
       "target": "@components/control-ui/styles/recipes/chat-message-social.css",
       "type": "registry:file"
@@ -43,6 +50,7 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/chat-message.css\"": {},
+    "@import \"../components/control-ui/styles/recipes/chat-message-edit.css\"": {},
     "@import \"../components/control-ui/styles/recipes/chat-message-social.css\"": {}
   },
   "meta": {

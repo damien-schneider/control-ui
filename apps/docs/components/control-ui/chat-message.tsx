@@ -1,7 +1,9 @@
 "use client";
 
 import type { ComponentProps, CSSProperties, JSX } from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
+
+import { ActionBar, ActionBarCopy, ActionBarEdit, ActionBarItem } from "@/components/control-ui/action-bar";
 
 import type { ChatMessageProps } from "@/components/control-ui/hooks/use-chat-message";
 import {
@@ -15,6 +17,7 @@ import {
 } from "@/components/control-ui/hooks/use-chat-message";
 import type { ChatMessageKnobStyle } from "@/components/control-ui/knob-contracts/chat-message-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { LiveStatus } from "@/components/control-ui/ui/live-status";
 
 // biome-ignore lint/performance/noBarrelFile: Preserve the chat message install-facing API.
 export {
@@ -206,6 +209,215 @@ export function ChatMessageContent({ className, ...props }: ChatMessageContentPr
       className={cn(message.isBubble && "px-[var(--padding-x)] py-[var(--padding-y)]", className)}
       {...props}
     />
+  );
+}
+
+export type ChatMessageEditableProps = Omit<ChatMessagePartProps<"div">, "onError"> & {
+  value: string;
+  /** Persist the text in the host. Reject to keep the draft open for retry. */
+  onSave: (value: string) => void | Promise<void>;
+  onSaveError?: (error: unknown) => void;
+  editorLabel?: string;
+  saveLabel?: string;
+  cancelLabel?: string;
+  savingLabel?: string;
+  saveErrorLabel?: string;
+};
+
+function useMessageEditor({ value, onSave, onSaveError }: Pick<ChatMessageEditableProps, "value" | "onSave" | "onSaveError">) {
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(value);
+  const [originalValue, setOriginalValue] = useState(value);
+  const [saving, setSaving] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+  const savingRef = useRef(false);
+  const mountedRef = useRef(false);
+  const errorId = useId();
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
+  useLayoutEffect(() => {
+    if (editing) {
+      const input = inputRef.current;
+      input?.focus({ preventScroll: true });
+      input?.setSelectionRange(input.value.length, input.value.length);
+    } else if (triggerRef.current) {
+      triggerRef.current.focus({ preventScroll: true });
+      triggerRef.current = null;
+    }
+  }, [editing]);
+
+  function startEditing() {
+    if (savingRef.current) return;
+    triggerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setDraft(value);
+    setOriginalValue(value);
+    setFailed(false);
+    setEditing(true);
+  }
+
+  function cancelEditing() {
+    if (savingRef.current) return;
+    setFailed(false);
+    setEditing(false);
+  }
+
+  async function save() {
+    if (!editing || savingRef.current || !draft.trim()) return;
+    if (draft === value) {
+      cancelEditing();
+      return;
+    }
+    savingRef.current = true;
+    setSaving(true);
+    setFailed(false);
+    try {
+      await onSave(draft);
+      if (mountedRef.current) setEditing(false);
+    } catch (error) {
+      if (mountedRef.current) {
+        setFailed(true);
+        onSaveError?.(error);
+      }
+    } finally {
+      savingRef.current = false;
+      if (mountedRef.current) setSaving(false);
+    }
+  }
+
+  return {
+    editing,
+    draft,
+    setDraft,
+    saving,
+    failed,
+    inputRef,
+    errorId,
+    startEditing,
+    cancelEditing,
+    save,
+    displayValue: editing ? originalValue : value,
+  };
+}
+
+/** Plain-text editing in the message surface. Children replace the default Copy/Edit actions. */
+export function ChatMessageEditable({
+  value,
+  onSave,
+  onSaveError,
+  editorLabel = "Edit message",
+  saveLabel = "Save",
+  cancelLabel = "Cancel",
+  savingLabel = "Saving…",
+  saveErrorLabel = "Couldn't save your message. Try again.",
+  children,
+  className,
+  ...props
+}: ChatMessageEditableProps) {
+  const message = useChatMessageContext();
+  const { editing, draft, setDraft, saving, failed, inputRef, errorId, startEditing, cancelEditing, save, displayValue } = useMessageEditor(
+    { value, onSave, onSaveError },
+  );
+
+  return (
+    <div
+      {...props}
+      data-control-ui="chat-message"
+      data-control-family="chat-message"
+      data-slot="editable"
+      data-editing={editing ? "" : undefined}
+      className={cn("min-w-0", className)}
+    >
+      <ChatMessageContent data-editable="">
+        <span data-control-ui="chat-message" data-control-family="chat-message" data-slot="edit-value" aria-hidden={editing}>
+          {displayValue || "\u200b"}
+        </span>
+        <span data-control-ui="chat-message" data-control-family="chat-message" data-slot="edit-sizer" aria-hidden="true">
+          {`${draft}\u200b`}
+        </span>
+        <textarea
+          ref={inputRef}
+          data-control-ui="chat-message"
+          data-control-family="chat-message"
+          data-slot="edit-input"
+          aria-keyshortcuts="Control+Enter Meta+Enter Escape"
+          aria-label={editorLabel}
+          aria-describedby={failed ? errorId : undefined}
+          aria-hidden={!editing}
+          aria-busy={saving}
+          tabIndex={editing ? 0 : -1}
+          readOnly={!editing || saving}
+          value={editing ? draft : value}
+          rows={1}
+          onChange={(event) => setDraft(event.currentTarget.value)}
+          onKeyDown={(event) => {
+            if (event.nativeEvent.isComposing || event.nativeEvent.keyCode === 229) return;
+            if (event.key === "Escape") {
+              event.preventDefault();
+              event.stopPropagation();
+              cancelEditing();
+            } else if (event.key === "Enter" && (event.metaKey || event.ctrlKey)) {
+              event.preventDefault();
+              void save();
+            }
+          }}
+        />
+      </ChatMessageContent>
+      <div data-control-ui="chat-message" data-control-family="chat-message" data-slot="edit-toolbars">
+        <div
+          data-control-ui="chat-message"
+          data-control-family="chat-message"
+          data-slot="edit-toolbar"
+          data-active={!editing ? "" : undefined}
+          inert={editing}
+          aria-hidden={editing}
+        >
+          <ActionBar align={message.isEndAligned ? "end" : "start"} copyValue={value} onEdit={startEditing}>
+            {children ?? (
+              <>
+                <ActionBarCopy />
+                <ActionBarEdit />
+              </>
+            )}
+          </ActionBar>
+        </div>
+        <div
+          data-control-ui="chat-message"
+          data-control-family="chat-message"
+          data-slot="edit-toolbar"
+          data-active={editing ? "" : undefined}
+          inert={!editing}
+          aria-hidden={!editing}
+        >
+          <ActionBar align={message.isEndAligned ? "end" : "start"} label="Edit actions" aria-busy={saving}>
+            <ActionBarItem type="button" disabled={saving || !draft.trim()} onClick={() => void save()}>
+              {saveLabel}
+            </ActionBarItem>
+            <ActionBarItem type="button" disabled={saving} onClick={cancelEditing}>
+              {cancelLabel}
+            </ActionBarItem>
+          </ActionBar>
+        </div>
+      </div>
+      <LiveStatus message={saving ? savingLabel : ""} />
+      <span
+        id={errorId}
+        role="alert"
+        data-control-ui="chat-message"
+        data-control-family="chat-message"
+        data-slot="edit-error"
+        hidden={!failed}
+      >
+        {failed ? saveErrorLabel : ""}
+      </span>
+    </div>
   );
 }
 

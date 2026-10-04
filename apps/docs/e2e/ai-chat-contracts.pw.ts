@@ -67,7 +67,7 @@ for (const skin of ["refined", "modern-apple", "none", "cuicui", "xp", "windows-
   }
 }
 
-test("reasoning reuses Activity and editing reuses Textarea", async ({ page }) => {
+test("reasoning reuses Activity and messages edit in place", async ({ page }) => {
   await page.goto("/components/chat-layout");
   const preview = page.locator("#preview");
   const reasoning = preview.getByRole("button", { name: "Thought for 2 seconds" });
@@ -84,13 +84,11 @@ test("reasoning reuses Activity and editing reuses Textarea", async ({ page }) =
   await edit.press("Enter");
   const input = preview.getByRole("textbox", { name: "Edit message" });
   await expect(input).toBeFocused();
-  await expect(input).toHaveAttribute("data-control-ui", "textarea");
+  await expect(input).toHaveAttribute("data-slot", "edit-input");
   await input.fill("Keep the composer above the conversation.");
   await preview.getByRole("button", { name: "Save", exact: true }).click();
   await expect(edit).toBeFocused();
-  await expect(preview.locator('[data-control-ui="chat-message"][data-slot="content"]').first()).toHaveText(
-    "Keep the composer above the conversation.",
-  );
+  await expect(preview.locator('[data-slot="edit-value"]').first()).toHaveText("Keep the composer above the conversation.");
 });
 
 test("rich composer keeps focus, inherited knobs, and locks read-only while responding", async ({ page }) => {
@@ -154,7 +152,7 @@ test("message actions stay visible on touch screens", async ({ browser }) => {
   const page = await context.newPage();
   await page.goto("http://127.0.0.1:3000/components/action-bar");
   const preview = page.locator("#preview");
-  await expect(preview.getByRole("toolbar", { name: "Your message actions" })).toHaveCSS("opacity", "1");
+  await expect(preview.getByRole("toolbar", { name: "Message actions" })).toHaveCSS("opacity", "1");
   await preview.getByRole("button", { name: "Edit", exact: true }).click();
   await expect(preview.getByRole("textbox", { name: "Edit message" })).toBeFocused();
   await preview.getByRole("button", { name: "Cancel", exact: true }).click();
