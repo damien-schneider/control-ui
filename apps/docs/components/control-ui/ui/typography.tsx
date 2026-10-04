@@ -90,7 +90,7 @@ function attachRef(ref: Ref<HTMLElement> | undefined, node: HTMLElement | null) 
 export function Text({ as: Tag = "span", size = "body", weight, tone = "default", className, ref, ...props }: TextProps) {
   return (
     <Tag
-      ref={(node: HTMLElement | null) => attachRef(ref, node)}
+      ref={ref ? (node: HTMLElement | null) => attachRef(ref, node) : undefined}
       data-control-ui="typography"
       data-control-family="typography"
       data-slot="text"
