@@ -1,7 +1,7 @@
 "use client";
 
 import { CornerDownRightIcon } from "lucide-react";
-import type { ComponentProps, ReactNode } from "react";
+import { type ComponentProps, lazy, type ReactNode, Suspense, useState } from "react";
 import {
   ChatComposer,
   ChatComposerShell,
@@ -22,8 +22,13 @@ import {
   ChatMessageRow,
   ChatMessageTime,
 } from "@/components/control-ui/chat-message";
+import type { MarkdownEditorStatus } from "@/components/control-ui/markdown-editor";
+import type { MarkdownImageUploader } from "@/components/control-ui/markdown-editor/uploads";
 import { Button } from "@/components/control-ui/ui/button";
 import { Kbd, KbdGroup } from "@/components/control-ui/ui/kbd";
+import { Markdown } from "@/components/control-ui/ui/markdown";
+
+const DiscussionMarkdownInput = lazy(() => import("./discussion-markdown-input"));
 
 export type DiscussionComposerProps = Omit<ComponentProps<typeof ChatComposer>, "submitKey" | "children"> & {
   label: string;
@@ -32,6 +37,8 @@ export type DiscussionComposerProps = Omit<ComponentProps<typeof ChatComposer>, 
   secondaryAction?: ReactNode;
   hint?: ReactNode;
   autoFocus?: boolean;
+  format?: "plain" | "markdown";
+  onUploadImage?: MarkdownImageUploader;
 };
 
 export function DiscussionComposer({
@@ -49,22 +56,70 @@ export function DiscussionComposer({
     </>
   ),
   autoFocus,
+  format = "plain",
+  onUploadImage,
+  onSubmit,
   ...props
 }: DiscussionComposerProps) {
+  const [draft, setDraft] = useState(props.defaultValue ?? "");
+  const value = props.value ?? draft;
+  const [status, setStatus] = useState<MarkdownEditorStatus>({ isEmpty: false, hasPendingUploads: false });
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const blocked = format === "markdown" && (status.isEmpty || status.hasPendingUploads);
   return (
-    <ChatComposer submitKey="mod-enter" {...props}>
+    <ChatComposer
+      submitKey="mod-enter"
+      {...props}
+      value={value}
+      onValueChange={(next) => {
+        setDraft(next);
+        props.onValueChange?.(next);
+      }}
+      state={submitting ? "submitting" : props.state}
+      onSubmit={async (payload) => {
+        if (blocked || submitting) return;
+        setSubmitting(true);
+        setError(null);
+        try {
+          await onSubmit?.({ ...payload, value: format === "markdown" ? value : payload.value });
+        } catch (cause) {
+          setError(cause instanceof Error ? cause.message : "Couldn't post your comment. Please try again.");
+        } finally {
+          setSubmitting(false);
+        }
+      }}
+    >
       <ChatComposerShell>
-        <ChatComposerTextarea
-          aria-label={label}
-          placeholder={placeholder}
-          autoFocus={autoFocus}
-          aria-keyshortcuts="Meta+Enter Control+Enter"
-        />
+        {format === "markdown" ? (
+          <Suspense fallback={<ChatComposerTextarea aria-label={label} placeholder={placeholder} disabled />}>
+            <DiscussionMarkdownInput
+              label={label}
+              placeholder={placeholder}
+              autoFocus={autoFocus}
+              onUploadImage={onUploadImage}
+              onStatusChange={setStatus}
+              blocked={blocked}
+            />
+          </Suspense>
+        ) : (
+          <ChatComposerTextarea
+            aria-label={label}
+            placeholder={placeholder}
+            autoFocus={autoFocus}
+            aria-keyshortcuts="Meta+Enter Control+Enter"
+          />
+        )}
+        {error ? (
+          <p role="alert" className="px-3">
+            {error}
+          </p>
+        ) : null}
         <ChatComposerToolbar>
           <span className="flex min-w-0 items-center gap-1.5 text-caption text-muted-foreground">{hint}</span>
           <span className="flex items-center gap-2">
             {secondaryAction}
-            <ChatComposerSubmit>{submitLabel}</ChatComposerSubmit>
+            <ChatComposerSubmit disabled={blocked || submitting}>{submitLabel}</ChatComposerSubmit>
           </span>
         </ChatComposerToolbar>
       </ChatComposerShell>
@@ -78,7 +133,8 @@ export type DiscussionCommentProps = Omit<ComponentProps<typeof ChatMessage>, "f
   sentAt: string;
   timeLabel: ReactNode;
   edited?: boolean;
-  children: ReactNode;
+  children?: ReactNode;
+  markdown?: string;
   actions?: ReactNode;
   onReply?: () => void;
   replyLabel?: ReactNode;
@@ -101,6 +157,7 @@ export function DiscussionComment({
   timeLabel,
   edited = false,
   children,
+  markdown,
   actions,
   onReply,
   replyLabel = "Reply",
@@ -120,7 +177,7 @@ export function DiscussionComment({
             <ChatMessageTime dateTime={sentAt}>{timeLabel}</ChatMessageTime>
             {edited ? <span>(edited)</span> : null}
           </ChatMessageHeader>
-          <ChatMessageContent>{children}</ChatMessageContent>
+          <ChatMessageContent>{markdown !== undefined ? <Markdown content={markdown} mode="static" /> : children}</ChatMessageContent>
           {onReply ? (
             <ChatMessageFooter>
               <Button variant="ghost" size="xs" onClick={onReply} className="-ms-2">

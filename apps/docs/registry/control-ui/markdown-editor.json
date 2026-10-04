@@ -1,0 +1,78 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "markdown-editor",
+  "type": "registry:component",
+  "title": "MarkdownEditor",
+  "description": "Compose Markdown with formatting, task lists, images, source editing, and application-owned uploads.",
+  "dependencies": [
+    "@tiptap/core@3.31.4",
+    "@tiptap/extension-image@3.31.4",
+    "@tiptap/extension-list@3.31.4",
+    "@tiptap/extension-paragraph@3.31.4",
+    "@tiptap/extension-table@3.31.4",
+    "@tiptap/markdown@3.31.4",
+    "@tiptap/pm@3.31.4",
+    "@tiptap/react@3.31.4",
+    "@tiptap/starter-kit@3.31.4",
+    "lucide-react@^1.47.0"
+  ],
+  "registryDependencies": [
+    "button",
+    "chat-composer-attachment",
+    "core",
+    "input",
+    "label",
+    "popover",
+    "textarea",
+    "toolbar",
+    "tooltip"
+  ],
+  "files": [
+    {
+      "path": "src/registry/knob-contracts/markdown-editor-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/markdown-editor-knobs.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor.tsx",
+      "target": "@components/control-ui/markdown-editor.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/context.ts",
+      "target": "@components/control-ui/markdown-editor/context.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/extensions.ts",
+      "target": "@components/control-ui/markdown-editor/extensions.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/toolbar.tsx",
+      "target": "@components/control-ui/markdown-editor/toolbar.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/uploads.ts",
+      "target": "@components/control-ui/markdown-editor/uploads.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/use-image-uploads.ts",
+      "target": "@components/control-ui/markdown-editor/use-image-uploads.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/markdown-editor.css",
+      "target": "@components/control-ui/styles/recipes/markdown-editor.css",
+      "type": "registry:file"
+    }
+  ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/markdown-editor.css\"": {}
+  },
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/markdown-editor.json"
+  }
+}

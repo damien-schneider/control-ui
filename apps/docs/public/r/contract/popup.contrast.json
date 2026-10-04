@@ -472,6 +472,134 @@
       },
       {
         "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "comfortable",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-editor",
+          "data-control-ui": "markdown-editor",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "center",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "default",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-editor",
+          "data-control-ui": "markdown-editor",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "center",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "default",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "tabs",
           "data-control-ui": "tabs",
           "data-slot": "surface",
@@ -7771,6 +7899,160 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "comfortable",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-editor",
+          "data-control-ui": "markdown-editor",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "center",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "default",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-popup-kind": "popover",
+          "data-slot": "title"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-editor",
+          "data-control-ui": "markdown-editor",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "toolbar",
+          "data-control-ui": "toolbar",
+          "data-orientation": "horizontal",
+          "data-slot": "root",
+          "data-variant": "default",
+          "role": "toolbar"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "center",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "default",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-popup-kind": "popover",
+          "data-slot": "title"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -8513,7 +8795,7 @@
         "text": "--cui-popup-foreground"
       },
       "anatomy": 30,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -8549,7 +8831,7 @@
         "text": "--cui-popup-foreground"
       },
       "anatomy": 34,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -8680,8 +8962,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-popup-item-highlight-background",
-        "text": "--cui-popup-item-highlight-foreground"
+        "fill": "--cui-popup-background",
+        "text": "--cui-popup-foreground"
       },
       "anatomy": 49,
       "rendersText": true,
@@ -8689,8 +8971,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-popup-item-highlight-background",
-        "text": "--cui-popup-item-highlight-foreground"
+        "fill": "--cui-popup-background",
+        "text": "--cui-popup-foreground"
       },
       "anatomy": 50,
       "rendersText": true,
@@ -8779,35 +9061,37 @@
     },
     {
       "knobs": {
-        "fill": "--cui-popup-item-highlight-background"
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
       },
       "anatomy": 60,
       "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
+      },
+      "anatomy": 61,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-popup-item-highlight-background"
+      },
+      "anatomy": 62,
+      "rendersText": true,
       "state": true
     },
     {
       "knobs": {
         "fill": "--cui-popup-item-highlight-background"
       },
-      "anatomy": 61,
+      "anatomy": 63,
       "rendersText": true,
       "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-popup-separator-color"
-      },
-      "anatomy": 62,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-popup-separator-color"
-      },
-      "anatomy": 63,
-      "rendersText": false,
-      "state": false
     },
     {
       "knobs": {
@@ -8835,18 +9119,18 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-description-foreground"
+        "fill": "--cui-popup-separator-color"
       },
       "anatomy": 67,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
       "knobs": {
-        "text": "--cui-popup-description-foreground"
+        "fill": "--cui-popup-separator-color"
       },
       "anatomy": 68,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -8899,7 +9183,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-item-foreground"
+        "text": "--cui-popup-description-foreground"
       },
       "anatomy": 75,
       "rendersText": true,
@@ -8907,7 +9191,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-item-foreground"
+        "text": "--cui-popup-description-foreground"
       },
       "anatomy": 76,
       "rendersText": true,
@@ -9229,14 +9513,6 @@
       "knobs": {
         "text": "--cui-popup-item-foreground"
       },
-      "anatomy": 61,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-popup-item-foreground"
-      },
       "anatomy": 116,
       "rendersText": true,
       "state": false
@@ -9246,6 +9522,14 @@
         "text": "--cui-popup-item-foreground"
       },
       "anatomy": 117,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-item-foreground"
+      },
+      "anatomy": 63,
       "rendersText": true,
       "state": false
     },
@@ -9355,7 +9639,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-shortcut-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 131,
       "rendersText": true,
@@ -9363,7 +9647,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-shortcut-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 132,
       "rendersText": true,
@@ -9387,7 +9671,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-title-foreground"
+        "text": "--cui-popup-shortcut-foreground"
       },
       "anatomy": 135,
       "rendersText": true,
@@ -9395,7 +9679,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-title-foreground"
+        "text": "--cui-popup-shortcut-foreground"
       },
       "anatomy": 136,
       "rendersText": true,
@@ -9446,6 +9730,38 @@
         "text": "--cui-popup-title-foreground"
       },
       "anatomy": 142,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 143,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 144,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 145,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 146,
       "rendersText": true,
       "state": false
     }

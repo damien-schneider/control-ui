@@ -71,6 +71,7 @@ export const generatedSkinContract: SkinContract = {
     "live-status": ["live-status"],
     markdown: ["markdown"],
     "markdown-block": ["markdown-block"],
+    "markdown-editor": ["markdown-editor"],
     menubar: ["menubar"],
     meter: ["meter"],
     "model-switcher": ["model-switcher"],
@@ -7828,6 +7829,38 @@ export const generatedSkinContract: SkinContract = {
         },
       },
       registryItems: ["markdown-block"],
+    },
+    "markdown-editor": {
+      parts: {
+        root: {
+          family: "markdown-editor",
+          registryItems: ["markdown-editor"],
+          states: [
+            {
+              attribute: "data-disabled",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        content: {
+          family: "markdown-editor",
+          registryItems: ["markdown-editor"],
+          states: [],
+        },
+        source: {
+          family: "markdown-editor",
+          registryItems: ["markdown-editor"],
+          states: [],
+        },
+        uploads: {
+          family: "markdown-editor",
+          registryItems: ["markdown-editor"],
+          states: [],
+        },
+      },
+      registryItems: ["markdown-editor"],
     },
     menubar: {
       parts: {
@@ -15998,6 +16031,74 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "oklch(from var(--foreground) l c h / 0.08)",
+      },
+    ],
+    "markdown-editor": [
+      {
+        name: "--cui-markdown-editor-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--background)",
+      },
+      {
+        name: "--cui-markdown-editor-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--foreground)",
+      },
+      {
+        name: "--cui-markdown-editor-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--border)",
+      },
+      {
+        name: "--cui-markdown-editor-radius",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--radius-panel)",
+      },
+      {
+        name: "--cui-markdown-editor-padding",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 3)",
+      },
+      {
+        name: "--cui-markdown-editor-min-height",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 32)",
+      },
+      {
+        name: "--cui-markdown-editor-max-height",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "60dvh",
+      },
+      {
+        name: "--cui-markdown-editor-gap",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 3)",
+      },
+      {
+        name: "--cui-markdown-editor-muted-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted-foreground)",
+      },
+      {
+        name: "--cui-markdown-editor-code-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted)",
+      },
+      {
+        name: "--cui-markdown-editor-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "var(--control-rim-width)",
       },
     ],
     "morphing-panel": [

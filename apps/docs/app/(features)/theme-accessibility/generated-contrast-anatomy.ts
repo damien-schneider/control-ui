@@ -46,7 +46,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/components/audio-visualizer",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -89,7 +89,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -171,7 +171,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -220,7 +220,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/components/audio-visualizer",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -1119,6 +1119,66 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/use-cases/team-chat",
+    },
+    {
+      knobs: {
+        boundary: "--cui-markdown-blockquote-border-color",
+        text: "--cui-markdown-blockquote-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown",
+            "data-control-ui": "markdown",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown",
+            "data-control-ui": "markdown",
+            "data-slot": "blockquote",
+          },
+        },
+      ],
+      recipe: "markdown",
+      rendersText: true,
+      state: false,
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -4110,7 +4170,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -4153,7 +4213,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -4303,6 +4363,74 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components/audio-visualizer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "center",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "default",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-disabled": "",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
     },
     {
       knobs: {
@@ -4502,6 +4630,318 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: false,
       route: "/components/audio-recorder",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "center",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "default",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-disabled": "",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "center",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "default",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "chat-composer",
+            "data-disabled": "",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "submit",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
     },
     {
       knobs: {
@@ -5144,6 +5584,171 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "center",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "default",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-disabled": "",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/components/markdown-editor",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "center",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "default",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/components/markdown-editor",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "audio-device-select",
@@ -5333,7 +5938,59 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
     },
     {
       knobs: {
@@ -14797,7 +15454,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "card",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -15120,6 +15777,52 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components/chat-composer-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-composer-root-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+      ],
+      recipe: "chat-composer",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
     },
     {
       knobs: {
@@ -15477,6 +16180,61 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-composer-shell-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+      ],
+      recipe: "chat-composer",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
     },
     {
       knobs: {
@@ -15953,6 +16711,138 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-role": "participant",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-role": "participant",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-layout": "flat",
+            "data-slot": "avatar",
+          },
+        },
+      ],
+      recipe: "chat-message",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-message-avatar-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-role": "participant",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-layout": "flat",
+            "data-slot": "avatar",
+          },
+        },
+      ],
+      recipe: "chat-message",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-message-avatar-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
             "data-slot": "wrapper",
           },
         },
@@ -16177,6 +17067,26 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "chat-message",
             "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-role": "participant",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
             "data-role": "participant",
             "data-slot": "content",
           },
@@ -16185,7 +17095,64 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: true,
       state: false,
-      route: "/primitives/emoji-picker",
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-message-background",
+        text: "--cui-chat-message-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-role": "participant",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "participant",
+            "data-slot": "content",
+          },
+        },
+      ],
+      recipe: "chat-message",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
     },
     {
       knobs: {
@@ -17486,6 +18453,74 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/use-cases/team-chat",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-message-row-hover-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-role": "participant",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-role": "participant",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+      ],
+      recipe: "chat-message",
+      rendersText: true,
+      state: true,
+      route: "/blocks/discussion",
     },
     {
       knobs: {
@@ -21153,7 +22188,254 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
+    },
+    {
+      knobs: {
+        fill: "--cui-field-background",
+        text: "--cui-field-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "center",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "default",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "input",
+            "data-size": "md",
+            "data-slot": "root",
+          },
+        },
+      ],
+      recipe: "field",
+      rendersText: false,
+      state: false,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        fill: "--cui-field-background",
+        text: "--cui-field-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "center",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "default",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "input",
+            "data-size": "md",
+            "data-slot": "root",
+          },
+        },
+      ],
+      recipe: "field",
+      rendersText: false,
+      state: false,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        fill: "--cui-field-background",
+        text: "--cui-field-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "center",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "default",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "input",
+            "data-size": "md",
+            "data-slot": "root",
+          },
+        },
+      ],
+      recipe: "field",
+      rendersText: false,
+      state: false,
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -24544,7 +25826,71 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "kbd",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
+    },
+    {
+      knobs: {
+        fill: "--cui-kbd-background",
+        text: "--cui-kbd-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "kbd",
+            "data-control-ui": "kbd",
+            "data-slot": "root",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "kbd",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
     },
     {
       knobs: {
@@ -25608,7 +26954,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "page-layout",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -26562,6 +27908,154 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/emoji-icon-picker",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-background",
+        text: "--cui-popup-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "center",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "default",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-background",
+        text: "--cui-popup-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "center",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "default",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -32920,7 +34414,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -33161,7 +34655,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -36741,7 +38235,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-parts",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -36780,7 +38274,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-parts",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -37504,7 +38998,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -37593,7 +39087,50 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-menu-button-active-background",
+        text: "--cui-sidebar-menu-button-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "hover",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: true,
+      route: "/blocks/discussion",
     },
     {
       knobs: {
@@ -39993,7 +41530,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -40609,7 +42146,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -41252,7 +42789,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -41679,6 +43216,142 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-background",
+        text: "--cui-toolbar-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: false,
+      route: "/components/markdown-editor",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-background",
+        text: "--cui-toolbar-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
             "data-slot": "wrapper",
           },
         },
@@ -42285,6 +43958,502 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-pressed": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-background",
+        text: "--cui-toolbar-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-pressed": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-background",
+        text: "--cui-toolbar-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-pressed": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-background",
+        text: "--cui-toolbar-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-pressed": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/components/markdown-editor",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-background",
+        text: "--cui-toolbar-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-pressed": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/components/markdown-editor",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-background",
+        text: "--cui-toolbar-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-pressed": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: false,
+      route: "/components/markdown-editor",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-background",
+        text: "--cui-toolbar-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
             "data-slot": "wrapper",
           },
         },
@@ -42656,6 +44825,502 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: false,
       route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-pressed": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: true,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-pressed": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: true,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-pressed": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: true,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-pressed": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: true,
+      route: "/components/markdown-editor",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-pressed": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: true,
+      route: "/components/markdown-editor",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-pressed": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: true,
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -43559,6 +46224,158 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: true,
       route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-separator-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "vertical",
+            "data-slot": "separator",
+            role: "separator",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-separator-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "vertical",
+            "data-slot": "separator",
+            role: "separator",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -48490,7 +51307,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -50385,6 +53202,502 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: false,
       route: "/primitives/icon-picker",
+    },
+    {
+      knobs: {
+        text: "--cui-label-root-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "center",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "default",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "label",
+            "data-control-ui": "label",
+            "data-slot": "root",
+          },
+        },
+      ],
+      recipe: "label",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        text: "--cui-label-root-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "center",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "default",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "label",
+            "data-control-ui": "label",
+            "data-slot": "root",
+          },
+        },
+      ],
+      recipe: "label",
+      rendersText: true,
+      state: false,
+      route: "/components/markdown-editor",
+    },
+    {
+      knobs: {
+        text: "--cui-markdown-editor-foreground",
+        fill: "--cui-markdown-editor-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+      ],
+      recipe: "markdown-editor",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        text: "--cui-markdown-editor-foreground",
+        fill: "--cui-markdown-editor-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+      ],
+      recipe: "markdown-editor",
+      rendersText: true,
+      state: false,
+      route: "/components/markdown-editor",
+    },
+    {
+      knobs: {
+        text: "--cui-markdown-editor-muted-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {},
+        },
+      ],
+      recipe: "markdown-editor",
+      rendersText: true,
+      state: false,
+      route: "/components/markdown-editor",
+    },
+    {
+      knobs: {
+        text: "--cui-markdown-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "participant",
+            "data-slot": "content",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown",
+            "data-control-ui": "markdown",
+            "data-slot": "root",
+          },
+        },
+      ],
+      recipe: "markdown",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        text: "--cui-markdown-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "participant",
+            "data-slot": "content",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown",
+            "data-control-ui": "markdown",
+            "data-slot": "root",
+          },
+        },
+      ],
+      recipe: "markdown",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        text: "--cui-markdown-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown",
+            "data-control-ui": "markdown",
+            "data-slot": "root",
+          },
+        },
+      ],
+      recipe: "markdown",
+      rendersText: true,
+      state: false,
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -55526,6 +58839,178 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "comfortable",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "center",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "default",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-popup-kind": "popover",
+            "data-slot": "title",
+          },
+        },
+      ],
+      recipe: "popup-controls",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-title-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-editor",
+            "data-control-ui": "markdown-editor",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "center",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "default",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-popup-kind": "popover",
+            "data-slot": "title",
+          },
+        },
+      ],
+      recipe: "popup-controls",
+      rendersText: true,
+      state: false,
+      route: "/components/markdown-editor",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-title-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
             "data-slot": "wrapper",
           },
         },
@@ -56106,7 +59591,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -56742,7 +60227,49 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
+    },
+    {
+      knobs: {
+        text: "--cui-sidebar-menu-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "hover",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: false,
+      route: "/blocks/discussion",
     },
     {
       knobs: {
@@ -57272,7 +60799,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -57675,7 +61202,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -58005,7 +61532,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -58439,7 +61966,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: true,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -58494,7 +62021,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: true,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -59199,7 +62726,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -59435,7 +62962,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -60185,7 +63712,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -60949,7 +64476,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: true,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -61032,7 +64559,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: true,
-      route: "/components/audio-device-select",
+      route: "/components/markdown-editor",
     },
     {
       knobs: {
@@ -63354,9 +66881,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     "--cui-inline-citation-quote-background",
     "--cui-item-hover-background",
     "--cui-item-hover-border-color",
-    "--cui-label-root-foreground",
-    "--cui-markdown-blockquote-border-color",
-    "--cui-markdown-blockquote-foreground",
+    "--cui-markdown-editor-code-background",
     "--cui-phone-input-metadata-foreground",
     "--cui-phone-input-trigger-focus-background",
     "--cui-phone-input-trigger-hover-background",

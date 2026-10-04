@@ -250,9 +250,6 @@
     }
   },
   "adornments": {},
-  "uncovered": [
-    "--cui-markdown-blockquote-border-color",
-    "--cui-markdown-blockquote-foreground"
-  ],
+  "uncovered": [],
   "contrast": "/r/contract/markdown.contrast.json"
 }

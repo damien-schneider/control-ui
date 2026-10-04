@@ -1,0 +1,196 @@
+@layer components {
+  :where([data-control-family="markdown-editor"][data-slot="root"]) {
+    --cui-markdown-editor-background: var(--background);
+    --cui-markdown-editor-foreground: var(--foreground);
+    --cui-markdown-editor-border-width: var(--control-rim-width);
+    --cui-markdown-editor-border-color: var(--border);
+    --cui-markdown-editor-radius: var(--radius-panel);
+    --cui-markdown-editor-padding: calc(var(--spacing) * 3);
+    --cui-markdown-editor-min-height: calc(var(--spacing) * 32);
+    --cui-markdown-editor-max-height: 60dvh;
+    --cui-markdown-editor-gap: calc(var(--spacing) * 3);
+    --cui-markdown-editor-muted-foreground: var(--muted-foreground);
+    --cui-markdown-editor-code-background: var(--muted);
+    color: var(--cui-markdown-editor-foreground);
+    background: var(--cui-markdown-editor-background);
+    border: var(--cui-markdown-editor-border-width) solid var(--cui-markdown-editor-border-color);
+    border-radius: var(--cui-markdown-editor-radius);
+    overflow: clip;
+    font-size: var(--text-body);
+    line-height: var(--leading-relaxed);
+  }
+  :where([data-control-family="markdown-editor"][data-slot="content"] .tiptap) {
+    min-block-size: var(--cui-markdown-editor-min-height);
+    max-block-size: var(--cui-markdown-editor-max-height);
+    overflow: auto;
+    padding: var(--cui-markdown-editor-padding);
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+  }
+  :where([data-control-family="markdown-editor"] .tiptap:focus-visible) {
+    outline: 2px solid var(--ring);
+    outline-offset: -2px;
+  }
+  :where([data-control-family="markdown-editor"][data-slot="source"]),
+  :where([data-control-family="markdown-editor"][data-slot="uploads"]) {
+    padding: var(--cui-markdown-editor-padding);
+  }
+  :where([data-control-family="markdown-editor"] .tiptap > * + *) {
+    margin-block-start: var(--cui-markdown-editor-gap);
+  }
+  :where([data-control-family="markdown-editor"] .tiptap:has(> p:only-child > br:only-child))::before {
+    content: attr(data-placeholder);
+    color: var(--cui-markdown-editor-muted-foreground);
+    pointer-events: none;
+    float: inline-start;
+    block-size: 0;
+  }
+  :where([data-control-family="markdown-editor"] .tiptap h1) {
+    font-size: var(--text-heading-2);
+    font-weight: var(--font-weight-semibold);
+  }
+  :where([data-control-family="markdown-editor"] .tiptap h2) {
+    font-size: var(--text-heading-3);
+    font-weight: var(--font-weight-semibold);
+  }
+  :where([data-control-family="markdown-editor"] .tiptap :is(h3, h4, h5, h6)) {
+    font-size: var(--text-heading-4);
+    font-weight: var(--font-weight-semibold);
+  }
+  :where([data-control-family="markdown-editor"] .tiptap strong) {
+    font-weight: var(--font-weight-semibold);
+  }
+  :where([data-control-family="markdown-editor"] .tiptap em) {
+    font-style: italic;
+  }
+  :where([data-control-family="markdown-editor"] .tiptap s) {
+    text-decoration: line-through;
+  }
+  :where([data-control-family="markdown-editor"] .tiptap a) {
+    text-decoration: underline;
+    color: var(--primary);
+  }
+  :where([data-control-family="markdown-editor"] .tiptap ul) {
+    list-style: disc;
+    padding-inline-start: calc(var(--spacing) * 6);
+  }
+  :where([data-control-family="markdown-editor"] .tiptap ol) {
+    list-style: decimal;
+    padding-inline-start: calc(var(--spacing) * 6);
+  }
+  :where([data-control-family="markdown-editor"] .tiptap ul[data-type="taskList"]) {
+    list-style: none;
+    padding-inline-start: 0;
+  }
+  :where([data-control-family="markdown-editor"] .tiptap li[data-type="taskItem"]) {
+    display: flex;
+    align-items: baseline;
+    gap: var(--cui-markdown-editor-gap);
+  }
+  :where([data-control-family="markdown-editor"] .tiptap li[data-type="taskItem"] > div) {
+    flex: 1;
+    min-inline-size: 0;
+  }
+  :where([data-control-family="markdown-editor"] .tiptap blockquote) {
+    border-inline-start: var(--cui-markdown-editor-border-width) solid var(--cui-markdown-editor-border-color);
+    padding-inline-start: var(--cui-markdown-editor-padding);
+    color: var(--cui-markdown-editor-muted-foreground);
+  }
+  :where([data-control-family="markdown-editor"] .tiptap :is(code, pre)) {
+    font-family: var(--font-mono);
+    background: var(--cui-markdown-editor-code-background);
+    border-radius: var(--radius-sm);
+  }
+  :where([data-control-family="markdown-editor"] .tiptap pre) {
+    padding: var(--cui-markdown-editor-padding);
+    overflow: auto;
+  }
+  :where([data-control-family="markdown-editor"] .tiptap img[src]) {
+    display: block;
+    max-inline-size: 100%;
+    block-size: auto;
+    border-radius: var(--radius-sm);
+  }
+  :where([data-control-family="markdown-editor"] .tiptap .ProseMirror-selectednode) {
+    outline: 2px solid var(--ring);
+  }
+  :where([data-control-family="markdown-editor"] .tiptap [data-image-upload]) {
+    padding: var(--cui-markdown-editor-padding);
+    border: var(--cui-markdown-editor-border-width) dashed var(--cui-markdown-editor-border-color);
+    color: var(--cui-markdown-editor-muted-foreground);
+  }
+  :where([data-control-family="markdown-editor"] .tiptap table) {
+    border-collapse: collapse;
+    inline-size: 100%;
+  }
+  :where([data-control-family="markdown-editor"] .tiptap :is(td, th)) {
+    border: var(--cui-markdown-editor-border-width) solid var(--cui-markdown-editor-border-color);
+    padding: var(--cui-markdown-editor-padding);
+  }
+}
+
+@property --cui-markdown-editor-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-markdown-editor-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-markdown-editor-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-markdown-editor-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-markdown-editor-padding {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-markdown-editor-min-height {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-markdown-editor-max-height {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-markdown-editor-gap {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-markdown-editor-muted-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-markdown-editor-code-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-markdown-editor-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}

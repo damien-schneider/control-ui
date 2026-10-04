@@ -300,6 +300,13 @@ export const agentsCompositions = {
       ),
     ),
   ],
+  "markdown-editor": [
+    example(
+      "Markdown composition",
+      part("MarkdownEditor", part("MarkdownEditorToolbar"), part("MarkdownEditorContent"), part("MarkdownEditorUploads")),
+      "Markdown strings stay application-owned. Supply onUploadImage to enable file paste and drop; use permanent image URLs.",
+    ),
+  ],
   "markdown-block": [
     example(
       "Anatomy",

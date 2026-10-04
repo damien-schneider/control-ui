@@ -62,6 +62,7 @@
 @import "../src/registry/sources/control-ui/recipes/activity.css";
 @import "../src/registry/sources/control-ui/recipes/markdown.css";
 @import "../src/registry/sources/control-ui/recipes/markdown-block.css";
+@import "../src/registry/sources/control-ui/recipes/markdown-editor.css";
 @import "../src/registry/sources/control-ui/recipes/chat-layout.css";
 @import "../src/registry/sources/control-ui/recipes/audio-recorder.css";
 @import "../src/registry/sources/control-ui/recipes/audio-device-select.css";

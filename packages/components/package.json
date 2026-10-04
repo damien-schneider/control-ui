@@ -36,6 +36,15 @@
   "peerDependencies": {
     "@base-ui/react": "^1.8.0",
     "@tanstack/react-virtual": "^3.14.13",
+    "@tiptap/core": "3.31.4",
+    "@tiptap/extension-image": "3.31.4",
+    "@tiptap/extension-list": "3.31.4",
+    "@tiptap/extension-paragraph": "3.31.4",
+    "@tiptap/extension-table": "3.31.4",
+    "@tiptap/markdown": "3.31.4",
+    "@tiptap/pm": "3.31.4",
+    "@tiptap/react": "3.31.4",
+    "@tiptap/starter-kit": "3.31.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -62,6 +71,33 @@
   },
   "peerDependenciesMeta": {
     "@tanstack/react-virtual": {
+      "optional": true
+    },
+    "@tiptap/core": {
+      "optional": true
+    },
+    "@tiptap/extension-image": {
+      "optional": true
+    },
+    "@tiptap/extension-list": {
+      "optional": true
+    },
+    "@tiptap/extension-paragraph": {
+      "optional": true
+    },
+    "@tiptap/extension-table": {
+      "optional": true
+    },
+    "@tiptap/markdown": {
+      "optional": true
+    },
+    "@tiptap/pm": {
+      "optional": true
+    },
+    "@tiptap/react": {
+      "optional": true
+    },
+    "@tiptap/starter-kit": {
       "optional": true
     },
     "cmdk": {

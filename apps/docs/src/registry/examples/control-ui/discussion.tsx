@@ -6,6 +6,7 @@ import { DiscussionComment, DiscussionComposer } from "@/components/control-ui/b
 import type { ChatComposerSubmitPayload } from "@/components/control-ui/hooks/use-chat-composer";
 import { Button } from "@/components/control-ui/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
+import { Markdown } from "@/components/control-ui/ui/markdown";
 
 type Comment = { id: string; author: string; sentAt: string; timeLabel: string; body: string; edited?: boolean; replies: Comment[] };
 
@@ -17,7 +18,7 @@ const initialComments: Comment[] = [
     author: "Maya Chen",
     sentAt: "2026-10-01T08:10:00Z",
     timeLabel: "about 1 hour ago",
-    body: "Our support team would use this daily. Could the predicted label show its confidence so agents know when to double-check?",
+    body: "Our support team would use this **daily**. Could the predicted label show its confidence so agents know when to double-check?",
     replies: [
       {
         id: "c1r1",
@@ -104,6 +105,7 @@ export function DiscussionExample() {
         replyComposer={
           replyingToId === comment.id ? (
             <DiscussionComposer
+              format="markdown"
               label={`Reply to ${comment.author}`}
               placeholder="Write a reply…"
               submitLabel="Reply"
@@ -120,6 +122,7 @@ export function DiscussionExample() {
       >
         {isEditing ? (
           <DiscussionComposer
+            format="markdown"
             label="Edit comment"
             defaultValue={comment.body}
             submitLabel="Save"
@@ -133,7 +136,7 @@ export function DiscussionExample() {
             }
           />
         ) : (
-          <span className="whitespace-pre-wrap">{comment.body}</span>
+          <Markdown content={comment.body} mode="static" />
         )}
       </DiscussionComment>
     );
@@ -145,6 +148,7 @@ export function DiscussionExample() {
         Discussion <span className="font-normal text-muted-foreground">({countComments(comments)})</span>
       </h2>
       <DiscussionComposer
+        format="markdown"
         label="Write a comment"
         placeholder="Write a comment…"
         value={draft}

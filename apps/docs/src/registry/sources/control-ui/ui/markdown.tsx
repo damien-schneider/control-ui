@@ -10,7 +10,7 @@ export type MarkdownRootProps = Omit<ComponentProps<"div">, "style"> & {
   style?: CSSProperties & MarkdownKnobStyle;
 };
 
-export type MarkdownProps = Omit<MarkdownRootProps, "children"> & { content: string };
+export type MarkdownProps = Omit<MarkdownRootProps, "children"> & { content: string; mode?: "streaming" | "static" };
 
 export function MarkdownRoot({ className, ...props }: MarkdownRootProps) {
   return (
@@ -28,14 +28,14 @@ export function MarkdownFlow(props: MarkdownRootProps) {
   return <div data-control-ui="markdown" data-control-family="markdown" data-slot="flow" {...props} />;
 }
 
-export function Markdown({ content, className, ...props }: MarkdownProps) {
+export function Markdown({ content, mode = "streaming", className, ...props }: MarkdownProps) {
   return (
     <MarkdownRoot className={className} {...props}>
       <MarkdownFlow>
         {/* Streamdown's wrapper drops DOM props and adds utility margins. */}
         <Streamdown
-          mode="streaming"
-          parseIncompleteMarkdown
+          mode={mode}
+          parseIncompleteMarkdown={mode === "streaming"}
           controls={false}
           components={markdownComponents}
           className="cui-markdown-streamdown [&>[data-control-family]]:[margin-block:revert-layer]"

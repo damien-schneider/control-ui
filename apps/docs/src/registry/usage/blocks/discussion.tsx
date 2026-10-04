@@ -11,6 +11,7 @@ export default function FeedbackDiscussion({ comments, onPost }: { comments: Com
   return (
     <section aria-label="Discussion" className="flex flex-col gap-4">
       <DiscussionComposer
+        format="markdown"
         label="Write a comment"
         placeholder="Write a comment…"
         value={draft}
@@ -21,9 +22,13 @@ export default function FeedbackDiscussion({ comments, onPost }: { comments: Com
         }}
       />
       {comments.map((comment) => (
-        <DiscussionComment key={comment.id} author={comment.author} sentAt={comment.createdAt} timeLabel={comment.relativeTime}>
-          {comment.body}
-        </DiscussionComment>
+        <DiscussionComment
+          key={comment.id}
+          author={comment.author}
+          sentAt={comment.createdAt}
+          timeLabel={comment.relativeTime}
+          markdown={comment.body}
+        />
       ))}
     </section>
   );

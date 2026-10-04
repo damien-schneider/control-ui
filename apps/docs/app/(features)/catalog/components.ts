@@ -637,6 +637,28 @@ export const componentEntries = [
     preview: preview(() => import("@/src/registry/examples/inline-attachment").then((mod) => ({ default: mod.InlineAttachmentExample }))),
   },
   {
+    id: "markdown-editor",
+    category: "chat",
+    kind: "Component",
+    name: "MarkdownEditor",
+    summary: "Compose Markdown with formatting, task lists, images, source editing, and application-owned uploads.",
+    status: "beta",
+    registryKind: "markdown-editor",
+    paths: {
+      example: sourceFile("Example", "src/registry/examples/markdown-editor.tsx", "example"),
+      usage: {
+        mastra: sourceFile("Usage", "src/registry/usage/components/markdown-editor.tsx", "usage"),
+        "ai-sdk": sourceFile("Usage", "src/registry/usage/components/markdown-editor.tsx", "usage"),
+      },
+      source: sourceFile("Component", "src/registry/sources/control-ui/markdown-editor.tsx", "component"),
+      supportFiles: [
+        sourceFile("Formatting and images", "src/registry/sources/control-ui/markdown-editor/toolbar.tsx", "component"),
+        sourceFile("Editor recipe", "src/registry/sources/control-ui/recipes/markdown-editor.css", "recipe-css"),
+      ],
+    },
+    preview: preview(() => import("@/src/registry/examples/markdown-editor").then((mod) => ({ default: mod.MarkdownEditorExample }))),
+  },
+  {
     id: "markdown-block",
     category: "chat",
     kind: "Component",

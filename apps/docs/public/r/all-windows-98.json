@@ -73,6 +73,7 @@
     "http://127.0.0.1:3000/r/live-status.json",
     "http://127.0.0.1:3000/r/markdown.json",
     "http://127.0.0.1:3000/r/markdown-block.json",
+    "http://127.0.0.1:3000/r/markdown-editor.json",
     "http://127.0.0.1:3000/r/menubar.json",
     "http://127.0.0.1:3000/r/meter.json",
     "http://127.0.0.1:3000/r/morphing-panel.json",

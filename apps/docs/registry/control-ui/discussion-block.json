@@ -12,9 +12,16 @@
     "chat-composer",
     "chat-message",
     "core",
-    "kbd"
+    "kbd",
+    "markdown",
+    "markdown-editor"
   ],
   "files": [
+    {
+      "path": "src/registry/blocks/control-ui/discussion-markdown-input.tsx",
+      "target": "@components/control-ui/blocks/discussion-markdown-input.tsx",
+      "type": "registry:block"
+    },
     {
       "path": "src/registry/blocks/control-ui/discussion.tsx",
       "target": "@components/control-ui/blocks/discussion.tsx",

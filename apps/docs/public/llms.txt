@@ -48,6 +48,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [SourceBadge](http://127.0.0.1:3000/components/source-badge): Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.
 - [ActionBar](http://127.0.0.1:3000/components/action-bar): Reusable hover actions for message and response controls.
 - [InlineAttachment](http://127.0.0.1:3000/components/inline-attachment): Inline file and media previews for chat turns. Status: beta.
+- [MarkdownEditor](http://127.0.0.1:3000/components/markdown-editor): Compose Markdown with formatting, task lists, images, source editing, and application-owned uploads. Status: beta.
 - [MarkdownBlock](http://127.0.0.1:3000/components/markdown-block): Assistant markdown output rendered to prose, with a header and copy-source action.
 - [ChatLayout](http://127.0.0.1:3000/components/chat-layout): A scrolling conversation with a pinned header, message turns, and a floating composer dock.
 - [ThreadRail](http://127.0.0.1:3000/components/thread-rail): Conversation minimap for scanning and jumping between chat turns.

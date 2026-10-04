@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 191,
+    "count": 192,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -743,6 +743,15 @@
         "href": "/components/inline-attachment",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/inline-attachment.json"
+      },
+      {
+        "id": "markdown-editor",
+        "name": "MarkdownEditor",
+        "kind": "Component",
+        "summary": "Compose Markdown with formatting, task lists, images, source editing, and application-owned uploads.",
+        "href": "/components/markdown-editor",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/markdown-editor.json"
       },
       {
         "id": "markdown-block",

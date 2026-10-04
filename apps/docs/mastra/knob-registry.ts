@@ -2556,6 +2556,77 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     ],
   },
   {
+    id: "markdown-editor",
+    knobs: [
+      {
+        name: "--cui-markdown-editor-background",
+        syntax: "<color>",
+        defaultValue: "var(--background)",
+        selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
+      },
+      {
+        name: "--cui-markdown-editor-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--border)",
+        selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
+      },
+      {
+        name: "--cui-markdown-editor-border-width",
+        syntax: "<length>",
+        defaultValue: "var(--control-rim-width)",
+        selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
+      },
+      {
+        name: "--cui-markdown-editor-code-background",
+        syntax: "<color>",
+        defaultValue: "var(--muted)",
+        selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
+      },
+      {
+        name: "--cui-markdown-editor-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--foreground)",
+        selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
+      },
+      {
+        name: "--cui-markdown-editor-gap",
+        syntax: "<length>",
+        defaultValue: "calc(var(--spacing) * 3)",
+        selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
+      },
+      {
+        name: "--cui-markdown-editor-max-height",
+        syntax: "<length>",
+        defaultValue: "60dvh",
+        selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
+      },
+      {
+        name: "--cui-markdown-editor-min-height",
+        syntax: "<length>",
+        defaultValue: "calc(var(--spacing) * 32)",
+        selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
+      },
+      {
+        name: "--cui-markdown-editor-muted-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--muted-foreground)",
+        selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
+      },
+      {
+        name: "--cui-markdown-editor-padding",
+        syntax: "<length>",
+        defaultValue: "calc(var(--spacing) * 3)",
+        selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
+      },
+      {
+        name: "--cui-markdown-editor-radius",
+        syntax: "<length-percentage>",
+        defaultValue: "var(--radius-panel)",
+        selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
+      },
+    ],
+  },
+  {
     id: "morphing-panel",
     knobs: [
       {
