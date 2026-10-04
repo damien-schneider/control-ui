@@ -192,7 +192,7 @@ export function CodeCopy({
 export type CodeFloatingCopyProps = Omit<CodeCopyProps, "children" | "copiedLabel">;
 
 export function CodeFloatingCopy({ className, ...props }: CodeFloatingCopyProps) {
-  return <CodeCopy data-code-floating="true" className={cn("absolute z-10", className)} {...props} />;
+  return <CodeCopy variant="surface" data-code-floating="true" className={cn("absolute z-10", className)} {...props} />;
 }
 
 export function useCodeTokens({

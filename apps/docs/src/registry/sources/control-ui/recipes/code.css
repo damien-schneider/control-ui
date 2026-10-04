@@ -59,6 +59,10 @@
     margin-inline-start: auto;
   }
 
+  :where([data-control-family="code"][data-slot="floating-frame"]) {
+    padding-block-start: calc(var(--spacing) * 9);
+  }
+
   :where([data-control-family="code"][data-slot="line"]) {
     min-block-size: calc(var(--spacing) * 5);
   }

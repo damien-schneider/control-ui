@@ -187,7 +187,7 @@
   }
 
   :where([data-control-family="field"][data-field-kind="field"][data-slot="root"]) {
-    gap: calc(var(--spacing) * 3);
+    gap: calc(var(--spacing) * 1.5) calc(var(--spacing) * 3);
   }
 
   :where([data-control-family="field"][data-field-kind="field"][data-slot="content"]) {

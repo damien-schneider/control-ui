@@ -6,6 +6,7 @@ import { CodeBlock, CommandBlock } from "@/app/(features)/components/source";
 import { StatusBadge } from "@/app/(features)/components/status";
 import type { Composition, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
+import { ButtonLink } from "@/components/control-ui/ui/button";
 import { Heading } from "@/components/control-ui/ui/typography";
 
 import { CompositionTree } from "./composition-tree";
@@ -226,14 +227,9 @@ export function InstallPanel({
           <CommandBlock key={command.label} label={command.label} command={command.value} />
         ))}
       </div>
-      <a
-        href={manifestHref}
-        target="_blank"
-        rel="noreferrer"
-        className="mt-3 inline-flex h-8 items-center rounded-md border bg-background px-3 text-label font-medium hover:bg-muted"
-      >
+      <ButtonLink href={manifestHref} target="_blank" rel="noreferrer" variant="surface" size="sm" className="mt-3">
         See registry manifest
-      </a>
+      </ButtonLink>
     </section>
   );
 }
