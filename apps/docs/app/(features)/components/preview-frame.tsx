@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import type { PreviewLayout } from "@/app/(features)/catalog/shared";
 
 const layouts = {
-  full: "w-full min-w-0",
+  full: "flex w-full min-w-0 flex-col items-center",
   centered: "flex w-full min-w-0 justify-center",
   stack: "flex w-full max-w-64 min-w-0 flex-col gap-3",
   grid: "grid w-full max-w-md min-w-0 grid-cols-2 gap-4",
