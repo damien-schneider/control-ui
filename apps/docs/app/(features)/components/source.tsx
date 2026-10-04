@@ -53,7 +53,7 @@ export function CodeSnippet({
 
 export function CommandBlock({ label, command }: { label: string; command: string }) {
   return (
-    <Code density="compact" overflow="wrap">
+    <Code overflow="wrap">
       <CodeHeader>
         <CodeTitle>{label}</CodeTitle>
         <CodeActions>

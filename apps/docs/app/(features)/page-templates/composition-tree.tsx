@@ -47,7 +47,7 @@ function TreeNode({ node, owned, nested = false }: { node: CompositionNode; owne
             ))}
           </ul>
           {node.kind === "part" ? (
-            <span data-tag="close" className={`${TAG} text-muted-foreground/45 ${isOwned ? "" : "opacity-55"}`}>
+            <span data-tag="close" className={`${TAG} text-muted-foreground ${isOwned ? "" : "opacity-55"}`}>
               {`</${node.name}>`}
             </span>
           ) : null}
