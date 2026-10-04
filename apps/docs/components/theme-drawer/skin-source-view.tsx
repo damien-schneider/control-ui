@@ -17,6 +17,7 @@ import { SKIN_META_BY_ID } from "./presets";
 import { SkinPresetControls } from "./skin-preset-controls";
 import type { SkinSourceState } from "./skin-source";
 import { THEME_CATEGORIES } from "./theme-categories";
+import { ThemeExport } from "./theme-export";
 import type { SkinId } from "./types";
 
 function SkinSourceBrowser({ files }: { files: SourceFile[] }) {
@@ -147,7 +148,6 @@ export function SkinSourcePanel({ skin, source, onRetry }: { skin: SkinId; sourc
             Read only
           </Badge>
         </div>
-        <span className="text-caption text-muted-foreground">Use Copy CSS variables to export your customizations.</span>
       </div>
       <SkinSourceFiles key={skin} label={meta.label} source={source} onRetry={onRetry} />
       <SkinSourceGuide files={meta.paths ?? []} />
@@ -159,7 +159,6 @@ type SkinWorkspaceProps = {
   skin: SkinId;
   source: SkinSourceState;
   onRetry: () => void;
-  actions: ReactNode;
   children: ReactNode;
 };
 
@@ -177,8 +176,7 @@ export function SkinWorkspace(props: SkinWorkspaceProps) {
   );
 }
 
-function SkinWorkspaceContent({ skin, source, onRetry, actions, children }: SkinWorkspaceProps) {
-  const meta = SKIN_META_BY_ID[skin];
+function SkinWorkspaceContent({ skin, source, onRetry, children }: SkinWorkspaceProps) {
   const searchParams = useSearchParams();
   const view = searchParams.get("view") === "source" ? "source" : "preview";
   const [previewVisited, setPreviewVisited] = useState(view === "preview");
@@ -194,29 +192,15 @@ function SkinWorkspaceContent({ skin, source, onRetry, actions, children }: Skin
 
   return (
     <section aria-label="Skin workspace" className="@container/workspace flex min-w-0 flex-col gap-5">
-      <header className="rounded-(--radius-panel) border border-border bg-muted/30 p-4">
-        <div className="grid items-end gap-3 @lg/workspace:grid-cols-[1fr_auto]">
-          <div className="grid min-w-0 grid-cols-[minmax(0,1fr)_auto] items-end gap-4 @lg/workspace:flex @lg/workspace:gap-6">
-            <div className="flex min-w-0 flex-col gap-2 @lg/workspace:w-52">
-              <span className="text-caption font-medium text-muted-foreground">Skin preset</span>
-              <SkinPresetControls label="Skin preset" className="w-full" />
-            </div>
-            <div className="flex flex-col gap-2">
-              <span className="text-caption font-medium text-muted-foreground">Appearance</span>
-              <ThemeModeSwitch />
-            </div>
-          </div>
-          <ButtonLink
-            render={<Link href={`/skins/${skin}#source`} />}
-            variant="quiet"
-            size="sm"
-            className="justify-self-start @lg/workspace:justify-self-end"
-          >
-            <BookOpenIcon aria-hidden />
-            Skin documentation
-          </ButtonLink>
+      <header className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4 lg:hidden">
+        <div className="flex min-w-0 flex-col gap-2">
+          <span className="text-caption font-medium text-muted-foreground">Skin preset</span>
+          <SkinPresetControls label="Skin preset" className="w-full" />
         </div>
-        <p className="mt-3 hidden max-w-3xl text-caption text-pretty text-muted-foreground @lg/workspace:block">{meta.description}</p>
+        <div className="flex flex-col gap-2">
+          <span className="text-caption font-medium text-muted-foreground">Appearance</span>
+          <ThemeModeSwitch />
+        </div>
       </header>
 
       <Tabs value={view} onValueChange={changeView} className="flex min-w-0 flex-col gap-5">
@@ -231,7 +215,10 @@ function SkinWorkspaceContent({ skin, source, onRetry, actions, children }: Skin
               Source
             </TabsTab>
           </TabsList>
-          {actions}
+          <ButtonLink render={<Link href={`/skins/${skin}#source`} />} variant="quiet" size="sm">
+            <BookOpenIcon aria-hidden />
+            Skin documentation
+          </ButtonLink>
         </div>
         <TabsPanel value="preview" keepMounted={previewVisited} className="min-w-0">
           <nav aria-label="Customize theme" className="mb-4 flex flex-wrap items-center gap-x-1 gap-y-2 lg:hidden">
@@ -253,7 +240,8 @@ function SkinWorkspaceContent({ skin, source, onRetry, actions, children }: Skin
           </nav>
           {children}
         </TabsPanel>
-        <TabsPanel value="source" keepMounted className="min-w-0">
+        <TabsPanel value="source" keepMounted className="flex min-w-0 flex-col gap-6">
+          <ThemeExport />
           <SkinSourcePanel skin={skin} source={source} onRetry={onRetry} />
         </TabsPanel>
       </Tabs>

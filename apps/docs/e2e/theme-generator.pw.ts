@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 
 import { expect, test } from "@playwright/test";
+import { waitForReactHydration } from "./browser-test-helpers";
 
 const CANVAS = "oklch(0.16 0.012 60)";
 const PRIMARY = "oklch(0.78 0.17 62)";
@@ -36,7 +37,9 @@ const streamedLines = [
 
 async function openGenerator(page: import("@playwright/test").Page) {
   await page.goto("/theme-editor");
-  await page.getByRole("button", { name: "Generate a theme" }).click();
+  const trigger = page.getByRole("button", { name: "Generate a theme" });
+  await waitForReactHydration(trigger);
+  await trigger.click();
   return page.locator('[data-control-ui="chat-composer"][data-slot="root"]');
 }
 

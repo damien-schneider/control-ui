@@ -29,7 +29,7 @@ export function sidebarPaneForActivePage(
 ): SidebarPane {
   const kind = searchItems.find((item) => item.id === active)?.kind;
 
-  if (active === "theme-editor") return "theme-editor";
+  if (active === "theme-editor" || active === "theme-accessibility") return "theme-editor";
   if (kind === "Block") return "use-cases";
   if (kind === "Skill") return "practices";
   if (active === referenceOverview.id || referenceGroups.some((group) => group.items.some((item) => item.id === active)))

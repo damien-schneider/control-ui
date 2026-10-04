@@ -21,7 +21,7 @@ export function PageHeader({
 }: {
   label: string;
   title: string;
-  summary: string;
+  summary?: string;
   status?: DocsStatus;
   focusOnMount?: boolean;
   compact?: boolean;
@@ -41,7 +41,9 @@ export function PageHeader({
         </Heading>
         {status ? <StatusBadge status={status} /> : null}
       </div>
-      <p className={cn("max-w-2xl text-pretty text-muted-foreground", compact ? "mt-1 text-body" : "mt-3 text-body-lg")}>{summary}</p>
+      {summary ? (
+        <p className={cn("max-w-2xl text-pretty text-muted-foreground", compact ? "mt-1 text-body" : "mt-3 text-body-lg")}>{summary}</p>
+      ) : null}
     </div>
   );
 }

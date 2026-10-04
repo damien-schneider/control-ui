@@ -4,6 +4,7 @@ import { CustomizeIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { ControlUiLogo } from "@/app/(features)/brand/control-ui-logo";
 import type { ActivePageId } from "@/app/(features)/model/types";
@@ -84,11 +85,19 @@ export function DocsSidebarContent({
   searchItems,
 }: DocsSidebarContentProps) {
   const closeSidebar = useCloseMobileSidebar();
+  const pathname = usePathname();
   const guideSections = guideNavSections(guides);
   const startGroup = guideSections.top.find((group) => group.id === "start");
   const pane = sidebarPaneForActivePage(active, searchItems, guideSections.reference);
-  const [rootPaneOnPage, setRootPaneOnPage] = useState<ActivePageId>();
-  const openDoor = rootPaneOnPage === active ? undefined : [...sidebarDoors, themeEditorDoor].find((door) => door.id === pane);
+  const [navigation, setNavigation] = useState({ pathname, showRoot: false });
+  if (navigation.pathname !== pathname) setNavigation({ pathname, showRoot: false });
+  const showRoot = navigation.pathname === pathname && navigation.showRoot;
+  const openDoor = showRoot ? undefined : [...sidebarDoors, themeEditorDoor].find((door) => door.id === pane);
+
+  function openThemeEditor() {
+    setNavigation({ pathname, showRoot: false });
+    closeSidebar();
+  }
 
   return (
     <Sidebar collapsible={DOCS_SIDEBAR_COLLAPSIBLE} className="group-data-[side=left]:border-r-0 group-data-[side=right]:border-l-0">
@@ -110,9 +119,9 @@ export function DocsSidebarContent({
           </div>
           {/* biome-ignore lint/a11y/useSemanticElements: a labelled row of sidebar controls, not a form fieldset. */}
           <div role="group" aria-label="Documentation controls" className="flex items-center gap-1.5">
-            <SkinPresetControls className="min-w-0 flex-1 justify-between" onNavigate={closeSidebar} />
+            <SkinPresetControls className="min-w-0 flex-1 justify-between" onNavigate={openThemeEditor} />
             <ButtonLink
-              render={<Link href="/theme-editor" onClick={closeSidebar} />}
+              render={<Link href="/theme-editor" onClick={openThemeEditor} />}
               variant="surface"
               size="sm"
               iconOnly
@@ -126,7 +135,12 @@ export function DocsSidebarContent({
         </SidebarHeader>
         <SidebarContent>
           {openDoor ? (
-            <SidebarDoorPane door={openDoor} active={active} onNavigate={closeSidebar} onBack={() => setRootPaneOnPage(active)}>
+            <SidebarDoorPane
+              door={openDoor}
+              active={active}
+              onNavigate={closeSidebar}
+              onBack={() => setNavigation({ pathname, showRoot: true })}
+            >
               <DoorNavGroups
                 doorId={openDoor.id}
                 referenceGroups={guideSections.reference}

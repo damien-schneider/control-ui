@@ -1,12 +1,8 @@
 "use client";
 
-import { CopyIcon, ShieldCheckIcon } from "lucide-react";
-import Link from "next/link";
-import { type ReactNode, useMemo, useState } from "react";
-import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
+import { type ReactNode, useMemo } from "react";
 import { useIsMobile } from "@/components/control-ui/hooks/use-mobile";
 import { cn } from "@/components/control-ui/lib/cn";
-import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 import { Switch } from "@/components/control-ui/ui/switch";
 import { Toggle } from "@/components/control-ui/ui/toggle";
 import { BASE_SKIN_ID } from "@/components/theme";
@@ -23,7 +19,6 @@ import { useThemeRuntime } from "./theme-runtime-context";
 import { TOKEN_CATEGORIES } from "./token-metadata";
 import { type TokenEditorProps, TokenPanel } from "./token-panel";
 import type { ThemeState } from "./types";
-import { toCss } from "./write-vars";
 
 const WORKSPACE_BREAKPOINT = 1024;
 
@@ -32,18 +27,11 @@ function overriddenTokenNames(theme: ThemeState): Set<string> {
 }
 
 export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
-  const [copyError, setCopyError] = useState<string | null>(null);
   const stacked = useIsMobile(WORKSPACE_BREAKPOINT);
   const { t: theme, values, isDark, storageError, setTokens, resetToken, patch } = useThemeRuntime();
   useThemeModePreference();
   const { source: skinSource, retry: retrySource } = useSkinSource(theme.skin);
   const { source: baseSkinSource } = useSkinSource(BASE_SKIN_ID);
-
-  const cssCopy = useCopyToClipboard({
-    text: toCss(theme),
-    onCopy: () => setCopyError(null),
-    onCopyError: () => setCopyError("Could not copy CSS variables. Try again or allow clipboard access."),
-  });
 
   const changedBySkin = useMemo(() => {
     if (skinSource.status !== "ready" || baseSkinSource.status !== "ready") return null;
@@ -83,20 +71,6 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
   const activeTokenCategory = TOKEN_CATEGORIES.find((item) => item.group === category);
 
   const panelIntroByGroup: Partial<Record<ThemeContractGroup, ReactNode>> = { motion: reduceMotionRow };
-  const actions = (
-    <div className="flex flex-wrap items-center gap-2">
-      <ButtonLink render={<Link href="/theme-accessibility" />} variant="quiet" size="sm">
-        <ShieldCheckIcon aria-hidden className="size-3.5" />
-        Accessibility audit
-      </ButtonLink>
-      <ThemeGeneratorDrawer />
-      <Button variant="solid" tone="primary" size="sm" onClick={cssCopy.handleCopy}>
-        <CopyIcon aria-hidden />
-        {cssCopy.status === "copied" ? "Copied ✓" : "Copy CSS variables"}
-      </Button>
-    </div>
-  );
-
   return (
     <div className="flex min-w-0 flex-col gap-3">
       {storageError ? (
@@ -104,20 +78,14 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
           {storageError}
         </p>
       ) : null}
-      {copyError ? (
-        <p role="alert" className="text-caption text-destructive-text">
-          {copyError}
-        </p>
-      ) : null}
-
       {category === SKIN_CATEGORY ? (
-        <SkinWorkspace skin={theme.skin} source={skinSource} onRetry={retrySource} actions={actions}>
+        <SkinWorkspace skin={theme.skin} source={skinSource} onRetry={retrySource}>
           <ThemePreviewCanvas category={category} />
         </SkinWorkspace>
       ) : (
         <div className={cn("grid min-w-0 items-start gap-6", !stacked && "grid-cols-[minmax(0,1fr)_21rem]")}>
           <div className="min-w-0">
-            <ThemePreviewCanvas category={category} actions={actions} />
+            <ThemePreviewCanvas category={category} />
           </div>
 
           <aside
@@ -150,6 +118,7 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
           </aside>
         </div>
       )}
+      <ThemeGeneratorDrawer />
     </div>
   );
 }

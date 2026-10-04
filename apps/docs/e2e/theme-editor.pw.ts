@@ -1,6 +1,67 @@
 import { expect, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 
+test("theme navigation reopens after browsing the catalog and stays in context for the audit", async ({ page }) => {
+  await page.goto("/theme-editor", { waitUntil: "networkidle" });
+  const sidebar = page.locator("[data-docs-sidebar-navigation]");
+  await expect(sidebar.getByRole("button", { name: "Generate a theme", exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Copy CSS overrides", exact: true })).toBeHidden();
+  await expect(page.getByRole("button", { name: "Open in your agent", exact: true })).toHaveCount(0);
+
+  await sidebar.getByRole("button", { name: "Leave Theme editor", exact: true }).click();
+  await expect(sidebar.getByRole("link", { name: "Accessibility audit", exact: true })).toBeHidden();
+  await sidebar.getByRole("link", { name: "Edit theme", exact: true }).click();
+  await expect(sidebar.getByRole("link", { name: "Skin", exact: true })).toHaveAttribute("aria-current", "page");
+
+  await sidebar.getByRole("link", { name: "Accessibility audit", exact: true }).click();
+  await expect(page).toHaveURL(/\/theme-accessibility$/);
+  await expect(sidebar.getByRole("link", { name: "Accessibility audit", exact: true })).toHaveAttribute("aria-current", "page");
+  await expect(sidebar.getByRole("link", { name: "Skin", exact: true })).not.toHaveAttribute("aria-current", "page");
+  await sidebar.getByRole("link", { name: /^Radius & corners/ }).click();
+  await expect(page).toHaveURL(/\/theme-editor\/radius$/);
+  await page.goBack();
+  await expect(sidebar.getByRole("link", { name: "Accessibility audit", exact: true })).toHaveAttribute("aria-current", "page");
+
+  await sidebar.getByRole("button", { name: "Leave Theme editor", exact: true }).click();
+  await sidebar.getByRole("link", { name: "Button", exact: true }).click();
+  await sidebar.getByRole("link", { name: "Edit theme", exact: true }).click();
+  await expect(sidebar.getByRole("link", { name: "Skin", exact: true })).toHaveAttribute("aria-current", "page");
+});
+
+for (const width of [360, 1280]) {
+  test(`theme prompt exports the selected skin and edits at ${width}px`, async ({ page, context }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+    await page.addInitScript(
+      (key) => localStorage.setItem(key, JSON.stringify({ skin: "refined", overrides: { "--radius-control": "7px" }, reduceMotion: true })),
+      THEME_EDITOR_STORAGE_KEY,
+    );
+    await page.goto("/theme-editor?view=source", { waitUntil: "networkidle" });
+    await page.getByRole("button", { name: "Copy theme prompt", exact: true }).click();
+    const prompt = await page.evaluate(() => navigator.clipboard.readText());
+    expect(prompt).toContain("/skins/refined");
+    expect(prompt).toContain('data-skin="refined"');
+    expect(prompt).toContain("--radius-control: 7px");
+    expect(prompt).toContain('data-motion="reduced"');
+    await page.getByText("Preview agent prompt", { exact: true }).click();
+    await expect(page.getByRole("region", { name: "Use this theme", exact: true })).toContainText(prompt.split("\n")[0]);
+    if (width >= 1024) {
+      await expect(page.getByRole("link", { name: "Source & export", exact: true })).toHaveAttribute("aria-current", "page");
+    }
+  });
+}
+
+test("theme generation opens from the mobile sidebar", async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 900 });
+  await page.goto("/theme-editor", { waitUntil: "networkidle" });
+  await page.locator("[data-docs-sidebar-trigger]").getByRole("button", { name: "Toggle Sidebar" }).click();
+  await page.getByRole("button", { name: "Generate a theme", exact: true }).click();
+  await expect(page.getByRole("dialog", { name: "Generate a theme", exact: true })).toBeVisible();
+  await expect(page.getByRole("textbox", { name: "Message", exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "Close", exact: true }).click();
+  await expect(page.getByRole("region", { name: "Skin workspace", exact: true })).toBeVisible();
+});
+
 for (const { name, width, height, reducedMotion } of [
   { name: "mobile", width: 360, height: 900, reducedMotion: "no-preference" },
   { name: "desktop", width: 1280, height: 900, reducedMotion: "no-preference" },
@@ -88,7 +149,8 @@ test("theme edits survive navigation, direct loads, and refresh", async ({ page,
     .poll(() => page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--radius-control").trim()))
     .toBe("1px");
 
-  await page.getByRole("button", { name: "Copy CSS variables", exact: true }).click();
+  await page.getByRole("link", { name: "Source & export", exact: true }).click();
+  await page.getByRole("button", { name: "Copy CSS overrides", exact: true }).click();
   await expect.poll(() => page.evaluate(() => navigator.clipboard.readText())).toContain("--radius-control: 1px");
   await page.getByRole("link", { name: "Accessibility audit" }).click();
   await expect(page).toHaveURL(/\/theme-accessibility$/);
@@ -232,13 +294,14 @@ test("copy failure stays actionable without reporting success", async ({ page })
     };
     document.execCommand = () => false;
   });
-  await page.getByRole("button", { name: "Copy CSS variables", exact: true }).click();
+  await page.getByRole("link", { name: "Source & export", exact: true }).click();
+  await page.getByRole("button", { name: "Copy CSS overrides", exact: true }).click();
   const copyStatus = page
     .locator('[data-control-family="page-layout"][data-slot="body"]')
     .getByRole("alert")
-    .filter({ hasText: "Could not copy CSS variables" });
-  await expect(copyStatus).toHaveText("Could not copy CSS variables. Try again or allow clipboard access.");
-  await expect(page.getByRole("button", { name: "Copy CSS variables", exact: true })).toBeEnabled();
+    .filter({ hasText: "Could not copy CSS overrides" });
+  await expect(copyStatus).toHaveText("Could not copy CSS overrides. Try again or allow clipboard access.");
+  await expect(page.getByRole("button", { name: "Copy CSS overrides", exact: true })).toBeEnabled();
 });
 
 test("preview search and form values survive switching to source", async ({ page }) => {
@@ -271,10 +334,11 @@ for (const width of [360, 1280]) {
     await context.grantPermissions(["clipboard-read", "clipboard-write"]);
     await page.goto("/theme-editor?view=source", { waitUntil: "networkidle" });
     const workspace = page.getByRole("region", { name: "Skin workspace", exact: true });
-    await workspace.getByRole("combobox", { name: "Skin preset", exact: true }).click();
+    const controls = width < 1024 ? workspace : page.locator("[data-docs-sidebar-navigation]");
+    await controls.getByRole("combobox", { name: width < 1024 ? "Skin preset" : "Skin", exact: true }).click();
     await page.getByRole("option", { name: "Refined", exact: true }).click();
     await expect(page.locator("html")).toHaveAttribute("data-skin", "refined");
-    await workspace.getByRole("radio", { name: "Dark", exact: true }).press("Space");
+    await controls.getByRole("radio", { name: "Dark", exact: true }).press("Space");
     await expect(page.locator("html")).toHaveClass(/dark/);
 
     const source = workspace.getByRole("region", { name: "Refined source", exact: true });

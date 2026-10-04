@@ -45,8 +45,8 @@ test("saved Flat themes retain their overrides as No skin", async ({ page, conte
   await page.goto("/primitives/popover");
   await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("No skin");
   await expect(page.getByRole("button", { name: "Dimensions", exact: true })).toHaveCSS("border-radius", "7px");
-  await page.goto("/theme-editor");
-  await page.getByRole("button", { name: "Copy CSS variables", exact: true }).click();
+  await page.goto("/theme-editor?view=source");
+  await page.getByRole("button", { name: "Copy CSS overrides", exact: true }).click();
   await expect.poll(() => page.evaluate(() => navigator.clipboard.readText())).toContain(":root {");
   const css = await page.evaluate(() => navigator.clipboard.readText());
   expect(css).toContain("--radius-control: 7px");

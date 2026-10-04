@@ -134,8 +134,14 @@ export function GuidePage({
     return (
       <section className="flex min-w-0 w-full flex-col px-4 pt-[calc(var(--control-h-sm)+1rem)] pb-6 lg:px-6 lg:pt-12">
         <div className="flex flex-wrap items-start justify-between gap-4">
-          <PageHeader label="Guide" title={page.name} summary={page.summary} focusOnMount compact={page.id === "theme-editor"} />
-          <OpenInAgent name={page.name} pathname={`/${page.id}`} />
+          <PageHeader
+            label="Guide"
+            title={page.name}
+            summary={page.id === "theme-editor" ? undefined : page.summary}
+            focusOnMount
+            compact={page.id === "theme-editor"}
+          />
+          {page.id === "theme-editor" ? null : <OpenInAgent name={page.name} pathname={`/${page.id}`} />}
         </div>
         <GuidePageContent page={page} integration={integration} themeCategory={themeCategory} />
       </section>

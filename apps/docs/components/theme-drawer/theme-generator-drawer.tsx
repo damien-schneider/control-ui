@@ -1,6 +1,6 @@
 "use client";
 
-import { PlusIcon, Trash2Icon, WandSparklesIcon, XIcon } from "lucide-react";
+import { PlusIcon, Trash2Icon, XIcon } from "lucide-react";
 
 import {
   AlertDialog,
@@ -21,7 +21,6 @@ import {
   DrawerDescription,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger,
 } from "@/components/control-ui/ui/drawer";
 import { setDrawerOpen } from "./generation-store";
 import { ThemeGenerator } from "./theme-generator";
@@ -66,14 +65,6 @@ export function ThemeGeneratorDrawer() {
     // press or focus move, which would unmount a generation mid-stream and take the log with it.
     // Open state lives in the store because selecting a page-scrolled skin remounts this whole subtree.
     <Drawer side="right" modal={false} disablePointerDismissal open={isOpen} onOpenChange={setDrawerOpen}>
-      <DrawerTrigger
-        render={
-          <Button variant="surface" size="sm">
-            <WandSparklesIcon aria-hidden className="size-3.5" />
-            Generate a theme
-          </Button>
-        }
-      />
       <DrawerContent
         side="right"
         variant="floating"
