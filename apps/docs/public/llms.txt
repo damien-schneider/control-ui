@@ -36,8 +36,9 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [ChatComposerAttachment](http://127.0.0.1:3000/components/chat-composer-attachment): Composer attachment rail with file previews, upload progress, and removal.
 - [UserAsk](http://127.0.0.1:3000/components/user-ask): Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.
 - [TaskList](http://127.0.0.1:3000/components/task-list): Floating agent task progress pill above the composer that expands into the full task list.
+- [AudioDeviceSelect](http://127.0.0.1:3000/components/audio-device-select): Composable audio input selector with permission, loading, default-device, and disconnected states.
 - [AudioRecorder](http://127.0.0.1:3000/components/audio-recorder): Voice recorder with realtime waveform, duration, cancel, and submit controls.
-- [AudioVisualizer](http://127.0.0.1:3000/components/audio-visualizer): Levels-driven realtime audio visualizer offered in two usage versions - bars and line - sharing one export and one props contract. Status: beta.
+- [AudioVisualizer](http://127.0.0.1:3000/components/audio-visualizer): Levels-driven audio visualizer with live waveform, line envelope, and frequency bar versions, including idle and loading states. Status: beta.
 - [DynamicNotification](http://127.0.0.1:3000/components/dynamic-notification): Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass. Status: experimental.
 - [FilterBar](http://127.0.0.1:3000/components/filter-bar): Build editable field, operator, and value filters with a button or inline search.
 - [EnvironmentVariables](http://127.0.0.1:3000/components/environment-variables): Composable environment variable editor with .env upload, bulk paste, reveal controls, and submit helpers. Status: experimental.

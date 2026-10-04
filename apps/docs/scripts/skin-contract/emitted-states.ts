@@ -4,6 +4,8 @@ import type { DynamicNotificationVariant } from "../../src/registry/hooks/use-dy
 import type { CodeDiffLineType } from "../../src/registry/lib/diff";
 import type { SidebarLayout } from "../../src/registry/skin";
 import type { ActivityDetailFormat, ActivityKind, ActivityState } from "../../src/registry/sources/control-ui/activity";
+import type { AudioDevicePermission } from "../../src/registry/sources/control-ui/audio-device-select";
+import type { BarAudioVisualizerProps } from "../../src/registry/sources/control-ui/audio-visualizer-bar";
 import type { ChatLayoutChrome } from "../../src/registry/sources/control-ui/chat-layout";
 import type { ContextSegmentKind, ContextStatus } from "../../src/registry/sources/control-ui/context-model";
 import type { HoverIndicator } from "../../src/registry/sources/control-ui/control-props";
@@ -84,6 +86,10 @@ export type EmittedStateContract = {
   "context:legend-item:data-tone": "available" | "over-limit";
   "context:legend-indicator:data-kind": ContextSegmentKind;
   "audio-recorder:root:data-disabled": true;
+  "audio-device-select:trigger:data-permission": AudioDevicePermission;
+  "audio-visualizer:root:data-align": NonNullable<BarAudioVisualizerProps["align"]>;
+  "audio-visualizer:root:data-idle": NonNullable<BarAudioVisualizerProps["idle"]>;
+  "audio-visualizer:bar:data-index": number;
   "audio-recorder:root:data-error": true;
   "audio-recorder:root:data-state": "idle" | "requesting" | "recording" | "recorded" | "submitting" | "error";
   "audio-recorder:trigger:data-recorder-state": "idle" | "requesting" | "recording" | "recorded" | "submitting" | "error";

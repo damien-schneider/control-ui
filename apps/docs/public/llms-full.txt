@@ -37,8 +37,9 @@
 - `chat-composer-attachment` (ChatComposerAttachment) — Composer attachment rail with file previews, upload progress, and removal. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer-attachment.json`
 - `user-ask` (UserAsk) — Keyboard-first agent question panel that temporarily replaces the chat composer inside its container. — `npx shadcn@latest add http://127.0.0.1:3000/r/user-ask.json`
 - `task-list` (TaskList) — Floating agent task progress pill above the composer that expands into the full task list. — `npx shadcn@latest add http://127.0.0.1:3000/r/task-list.json`
+- `audio-device-select` (AudioDeviceSelect) — Composable audio input selector with permission, loading, default-device, and disconnected states. — `npx shadcn@latest add http://127.0.0.1:3000/r/audio-device-select.json`
 - `audio-recorder` (AudioRecorder) — Voice recorder with realtime waveform, duration, cancel, and submit controls. — `npx shadcn@latest add http://127.0.0.1:3000/r/audio-recorder.json`
-- `audio-visualizer` (AudioVisualizer) **[beta]** — Levels-driven realtime audio visualizer offered in two usage versions - bars and line - sharing one export and one props contract. — `npx shadcn@latest add http://127.0.0.1:3000/r/audio-visualizer.json`
+- `audio-visualizer` (AudioVisualizer) **[beta]** — Levels-driven audio visualizer with live waveform, line envelope, and frequency bar versions, including idle and loading states. — `npx shadcn@latest add http://127.0.0.1:3000/r/audio-visualizer.json`
 - `activity` (Activity) — Shared static and collapsible activity anatomy with bounded, scrollable detail content. — `npx shadcn@latest add http://127.0.0.1:3000/r/activity.json`
 - `transcript-divider` (TranscriptDivider) — Toned run-boundary separator for transcripts: steering, interruptions, and condensed context. — `npx shadcn@latest add http://127.0.0.1:3000/r/transcript-divider.json`
 - `context` (Context) **[beta]** — Compact context-window usage with an automatically derived token graph and anchored detail inspector. — `npx shadcn@latest add http://127.0.0.1:3000/r/context.json`

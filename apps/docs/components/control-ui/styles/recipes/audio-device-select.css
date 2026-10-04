@@ -1,0 +1,15 @@
+@layer components {
+  :where([data-control-family="audio-device-select"][data-slot="root"]) {
+    --cui-audio-device-select-status-foreground: var(--muted-foreground);
+  }
+
+  :where([data-control-family="audio-device-select"][data-slot="status"]) {
+    color: var(--cui-audio-device-select-status-foreground);
+  }
+}
+
+@property --cui-audio-device-select-status-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

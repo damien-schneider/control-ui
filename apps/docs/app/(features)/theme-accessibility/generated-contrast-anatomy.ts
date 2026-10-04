@@ -22,6 +22,93 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-active": "true",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "hover",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+        {
+          attributes: {
+            "data-color": "yellow",
+            "data-control-family": "badge",
+            "data-control-ui": "badge",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "badge",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-visualizer",
+    },
+    {
+      knobs: {
+        boundary: "--cui-badge-border-color",
+        fill: "--cui-badge-background",
+        text: "--cui-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "hover",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+        {
+          attributes: {
+            "data-color": "yellow",
+            "data-control-family": "badge",
+            "data-control-ui": "badge",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "badge",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        boundary: "--cui-badge-border-color",
+        fill: "--cui-badge-background",
+        text: "--cui-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-size": "sm",
@@ -84,7 +171,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -125,49 +212,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "badge",
             "data-control-ui": "badge",
             "data-size": "md",
-            "data-slot": "root",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "badge",
-      rendersText: true,
-      state: false,
-      route: "/primitives/icon-picker",
-    },
-    {
-      knobs: {
-        boundary: "--cui-badge-border-color",
-        fill: "--cui-badge-background",
-        text: "--cui-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-active": "true",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-size": "sm",
-            "data-slot": "menu-button",
-            "data-track-item": "",
-            "data-variant": "default",
-            href: "#",
-          },
-        },
-        {
-          attributes: {
-            "data-color": "yellow",
-            "data-control-family": "badge",
-            "data-control-ui": "badge",
-            "data-size": "sm",
             "data-slot": "root",
             "data-variant": "default",
           },
@@ -2023,6 +2067,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-layout": "viewport",
+            "data-scroll": "inset",
             "data-slot": "wrapper",
           },
         },
@@ -2045,11 +2090,81 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
             "data-active": "true",
             "data-control-family": "audio-visualizer",
             "data-control-ui": "audio-visualizer",
             "data-slot": "root",
             "data-variant": "bars",
+            role: "img",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "audio-visualizer",
+            "data-control-ui": "audio-visualizer",
+            "data-slot": "bar",
+          },
+        },
+      ],
+      recipe: "audio-visualizer",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        fill: "--cui-audio-visualizer-bar-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "audio-visualizer",
+            "data-control-ui": "audio-visualizer",
+            "data-slot": "root",
+            "data-variant": "bars",
+            role: "img",
           },
         },
         {
@@ -3197,6 +3312,72 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "browser",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-pressed": "true",
+            "data-active": "true",
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button-states",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-visualizer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-active-background",
+        text: "--cui-button-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
             "data-slot": "wrapper",
           },
         },
@@ -3310,69 +3491,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/toggle",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-active-background",
-        text: "--cui-button-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-active": "true",
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button-states",
-      rendersText: true,
-      state: false,
-      route: "/components/audio-visualizer",
     },
     {
       knobs: {
@@ -3979,6 +4097,92 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "button",
             "data-control-ui": "button",
             "data-icon-only": "true",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "header",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "header",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
             "data-shape": "default",
             "data-size": "sm",
             "data-slot": "root",
@@ -4069,6 +4273,71 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "browser",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-pressed": "false",
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-visualizer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
             "data-align": "end",
             "data-control-family": "popup",
             "data-control-ui": "popover",
@@ -4101,6 +4370,138 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/emoji-picker",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "compact",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-slot": "header",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-recorder",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -4252,6 +4653,132 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/app-shell",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "audio-recorder",
+            "data-icon-only": "true",
+            "data-layout": "inline",
+            "data-recorder-state": "error",
+            "data-shape": "circle",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            "data-tone": "danger",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-recorder",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "audio-recorder",
+            "data-icon-only": "true",
+            "data-layout": "inline",
+            "data-recorder-state": "idle",
+            "data-shape": "circle",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -4574,6 +5101,239 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components/chat-layout",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "audio-device-select",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "permission",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-recorder",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "audio-recorder",
+            "data-icon-only": "true",
+            "data-layout": "inline",
+            "data-shape": "circle",
+            "data-size": "sm",
+            "data-slot": "cancel",
+            "data-tone": "danger",
+            "data-variant": "quiet",
+            "data-visible": "true",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-recorder",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -5752,112 +6512,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "aria-disabled": "false",
             "data-control": "true",
             "data-control-family": "button",
-            "data-control-ui": "audio-recorder",
-            "data-icon-only": "true",
-            "data-recorder-state": "error",
-            "data-shape": "circle",
-            "data-size": "sm",
-            "data-slot": "trigger",
-            "data-tone": "danger",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/components/audio-recorder",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "audio-recorder",
-            "data-icon-only": "true",
-            "data-recorder-state": "idle",
-            "data-shape": "circle",
-            "data-size": "sm",
-            "data-slot": "trigger",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/components/audio-recorder",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control": "true",
-            "data-control-family": "button",
             "data-control-ui": "navigation-menu",
             "data-cursor": "default",
             "data-shape": "default",
@@ -6097,68 +6751,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/dialog",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/components/audio-visualizer",
     },
     {
       knobs: {
@@ -10819,57 +11411,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control": "true",
             "data-control-family": "button",
-            "data-control-ui": "audio-recorder",
-            "data-icon-only": "true",
-            "data-shape": "circle",
-            "data-size": "sm",
-            "data-slot": "cancel",
-            "data-tone": "danger",
-            "data-variant": "quiet",
-            "data-visible": "true",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/components/audio-recorder",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
             "data-control-ui": "button",
             "data-disabled": "",
             "data-shape": "default",
@@ -14256,7 +14797,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "card",
       rendersText: true,
       state: false,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -17489,6 +18030,101 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "compact",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-recorder",
+    },
+    {
+      knobs: {
+        fill: "--cui-code-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-recorder",
+    },
+    {
+      knobs: {
+        fill: "--cui-code-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
             "data-slot": "wrapper",
           },
         },
@@ -18251,6 +18887,61 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/code-diff",
+    },
+    {
+      knobs: {
+        fill: "--cui-code-header-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "compact",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-slot": "header",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -20124,147 +20815,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "field",
-            "data-control-ui": "combobox",
-            "data-field-kind": "combobox",
-            "data-popup-open": "",
-            "data-popup-side": "bottom",
-            "data-pressed": "",
-            "data-slot": "input-group",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "field",
-            "data-control-ui": "combobox",
-            "data-field-kind": "combobox",
-            "data-popup-open": "",
-            "data-popup-side": "bottom",
-            "data-pressed": "",
-            "data-size": "md",
-            "data-slot": "input",
-            role: "combobox",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "field",
-            "data-control-ui": "combobox",
-            "data-field-kind": "combobox",
-            "data-popup-open": "",
-            "data-popup-side": "bottom",
-            "data-pressed": "",
-            "data-slot": "trigger",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "field-parts",
-      rendersText: false,
-      state: false,
-      route: "/components/audio-recorder",
-    },
-    {
-      knobs: {
-        fill: "--cui-field-affordance-background",
-        text: "--cui-field-affordance-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "field",
-            "data-control-ui": "combobox",
-            "data-field-kind": "combobox",
-            "data-slot": "input-group",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "field",
-            "data-control-ui": "combobox",
-            "data-field-kind": "combobox",
-            "data-size": "md",
-            "data-slot": "input",
-            role: "combobox",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "field",
-            "data-control-ui": "combobox",
-            "data-field-kind": "combobox",
-            "data-slot": "trigger",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "field-parts",
-      rendersText: false,
-      state: false,
-      route: "/components/audio-recorder",
-    },
-    {
-      knobs: {
-        fill: "--cui-field-affordance-background",
-        text: "--cui-field-affordance-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
             "data-control-family": "table-of-contents",
             "data-control-ui": "table-of-contents",
             "data-slot": "root",
@@ -20603,7 +21153,307 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: true,
       state: false,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        fill: "--cui-field-background",
+        text: "--cui-field-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "audio-device-select",
+            "data-disabled": "",
+            "data-field-kind": "select",
+            "data-loading": "true",
+            "data-permission": "granted",
+            "data-placeholder": "",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "field",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        fill: "--cui-field-background",
+        text: "--cui-field-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "audio-device-select",
+            "data-field-kind": "select",
+            "data-missing": "true",
+            "data-permission": "granted",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "field",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        fill: "--cui-field-background",
+        text: "--cui-field-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "audio-device-select",
+            "data-field-kind": "select",
+            "data-permission": "granted",
+            "data-placeholder": "",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "field",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        fill: "--cui-field-background",
+        text: "--cui-field-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "audio-device-select",
+            "data-field-kind": "select",
+            "data-permission": "granted",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "field",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        fill: "--cui-field-background",
+        text: "--cui-field-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "audio-device-select",
+            "data-field-kind": "select",
+            "data-permission": "prompt",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "field",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -21759,57 +22609,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "combobox",
             "data-field-kind": "combobox",
             "data-popup-open": "",
-            "data-popup-side": "bottom",
-            "data-pressed": "",
-            "data-size": "md",
-            "data-slot": "input",
-            role: "combobox",
-          },
-        },
-      ],
-      recipe: "field",
-      rendersText: false,
-      state: false,
-      route: "/components/audio-recorder",
-    },
-    {
-      knobs: {
-        fill: "--cui-field-background",
-        text: "--cui-field-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "field",
-            "data-control-ui": "combobox",
-            "data-field-kind": "combobox",
-            "data-popup-open": "",
             "data-popup-side": "top",
             "data-pressed": "",
             "data-size": "sm",
@@ -21822,54 +22621,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: false,
       route: "/components/filter-bar",
-    },
-    {
-      knobs: {
-        fill: "--cui-field-background",
-        text: "--cui-field-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "field",
-            "data-control-ui": "combobox",
-            "data-field-kind": "combobox",
-            "data-size": "md",
-            "data-slot": "input",
-            role: "combobox",
-          },
-        },
-      ],
-      recipe: "field",
-      rendersText: false,
-      state: false,
-      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -23793,7 +24544,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "kbd",
       rendersText: true,
       state: false,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -24857,7 +25608,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "page-layout",
       rendersText: true,
       state: false,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -25741,6 +26492,59 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-align": "start",
             "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "top",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "presentation",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-background",
+        text: "--cui-popup-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
             "data-control-ui": "popover",
             "data-open": "",
             "data-padding": "none",
@@ -25758,6 +26562,230 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/emoji-icon-picker",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-background",
+        text: "--cui-popup-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "audio-device-select",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "permission",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "presentation",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-recorder",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-background",
+        text: "--cui-popup-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "presentation",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-background",
+        text: "--cui-popup-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "audio-device-select",
+            "data-field-kind": "select",
+            "data-permission": "granted",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "top",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "presentation",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -26220,58 +27248,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components/filter-bar",
-    },
-    {
-      knobs: {
-        fill: "--cui-popup-background",
-        text: "--cui-popup-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "combobox",
-            "data-open": "",
-            "data-popup-kind": "combobox",
-            "data-popup-part": "list-surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "presentation",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -28004,6 +28980,408 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "top",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "presentation",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-highlighted": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-selected": "",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-item-highlight-background",
+        text: "--cui-popup-item-highlight-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "top",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "presentation",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-highlighted": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-selected": "",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-item-highlight-background",
+        text: "--cui-popup-item-highlight-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "audio-device-select",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "permission",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "presentation",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-highlighted": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-selected": "",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-recorder",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-item-highlight-background",
+        text: "--cui-popup-item-highlight-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "presentation",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-highlighted": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-selected": "",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-item-highlight-background",
+        text: "--cui-popup-item-highlight-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "audio-device-select",
+            "data-field-kind": "select",
+            "data-permission": "granted",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "top",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "presentation",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "true",
+            "aria-selected": "true",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-disabled": "",
+            "data-highlighted": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-selected": "",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-item-highlight-background",
+        text: "--cui-popup-item-highlight-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
             "data-slot": "wrapper",
           },
         },
@@ -28058,71 +29436,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-popup-item-highlight-background",
-        text: "--cui-popup-item-highlight-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "combobox",
-            "data-open": "",
-            "data-popup-kind": "combobox",
-            "data-popup-part": "list-surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "presentation",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "aria-selected": "true",
-            "data-control-family": "popup",
-            "data-control-ui": "combobox",
-            "data-highlighted": "",
-            "data-popup-kind": "combobox",
-            "data-popup-part": "item",
-            "data-selected": "",
-            "data-slot": "item",
-            role: "option",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -31607,7 +32920,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -31688,6 +33001,149 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-lock-axis": "x",
             "data-mask": "true",
             "data-overflow-y-end": "",
+            "data-overflow-y-start": "",
+            "data-scrollbar-gutter": "auto",
+            "data-scrolling": "",
+            "data-slot": "root",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "scroll-area",
+            "data-control-ui": "scroll-area",
+            "data-has-overflow-x": "",
+            "data-mask": "true",
+            "data-overflow-x-end": "",
+            "data-scrollbar-gutter": "auto",
+            "data-slot": "root",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "scroll-area",
+            "data-control-ui": "scroll-area",
+            "data-orientation": "horizontal",
+            "data-slot": "thumb",
+          },
+        },
+      ],
+      recipe: "scroll-area",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-recorder",
+    },
+    {
+      knobs: {
+        fill: "--cui-scroll-area-thumb-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "scroll-area",
+            "data-control-ui": "scroll-area",
+            "data-has-overflow-y": "",
+            "data-lock-axis": "x",
+            "data-mask": "true",
+            "data-overflow-y-end": "",
+            "data-overflow-y-start": "",
+            "data-scrollbar-gutter": "auto",
+            "data-scrolling": "",
+            "data-slot": "root",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "scroll-area",
+            "data-control-ui": "scroll-area",
+            "data-orientation": "vertical",
+            "data-scrolling": "",
+            "data-slot": "thumb",
+          },
+        },
+      ],
+      recipe: "scroll-area",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-recorder",
+    },
+    {
+      knobs: {
+        fill: "--cui-scroll-area-thumb-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "scroll-area",
+            "data-control-ui": "scroll-area",
+            "data-has-overflow-y": "",
+            "data-lock-axis": "x",
+            "data-mask": "true",
+            "data-overflow-y-end": "",
             "data-scrollbar-gutter": "auto",
             "data-slot": "root",
             role: "presentation",
@@ -31705,7 +33161,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -32709,85 +34165,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "scroll-area",
             "data-control-ui": "scroll-area",
-            "data-has-overflow-x": "",
-            "data-mask": "true",
-            "data-overflow-x-end": "",
-            "data-slot": "root",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "scroll-area",
-            "data-control-ui": "scroll-area",
-            "data-orientation": "horizontal",
-            "data-slot": "thumb",
-          },
-        },
-      ],
-      recipe: "scroll-area",
-      rendersText: false,
-      state: false,
-      route: "/components/audio-recorder",
-    },
-    {
-      knobs: {
-        fill: "--cui-scroll-area-thumb-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "scroll-area",
-            "data-control-ui": "scroll-area",
-            "data-has-overflow-y": "",
-            "data-lock-axis": "x",
-            "data-mask": "true",
-            "data-overflow-y-end": "",
-            "data-overflow-y-start": "",
-            "data-scrolling": "",
-            "data-slot": "root",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "data-chrome": "standalone",
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-density": "default",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "scroll-area",
-            "data-control-ui": "scroll-area",
             "data-has-overflow-y": "",
             "data-mask": "true",
             "data-overflow-y-end": "",
@@ -33033,84 +34410,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: false,
       route: "/components/chat-message",
-    },
-    {
-      knobs: {
-        fill: "--cui-scroll-area-thumb-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "scroll-area",
-            "data-control-ui": "scroll-area",
-            "data-has-overflow-y": "",
-            "data-lock-axis": "x",
-            "data-mask": "true",
-            "data-overflow-y-end": "",
-            "data-overflow-y-start": "",
-            "data-slot": "root",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "data-chrome": "standalone",
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-density": "default",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "scroll-area",
-            "data-control-ui": "scroll-area",
-            "data-has-overflow-x": "",
-            "data-mask": "true",
-            "data-overflow-x-end": "",
-            "data-slot": "root",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "scroll-area",
-            "data-control-ui": "scroll-area",
-            "data-orientation": "horizontal",
-            "data-slot": "thumb",
-          },
-        },
-      ],
-      recipe: "scroll-area",
-      rendersText: false,
-      state: false,
-      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -35442,7 +36741,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-parts",
       rendersText: true,
       state: false,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -35481,7 +36780,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-parts",
       rendersText: true,
       state: false,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -36194,6 +37493,51 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-active": "true",
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
+            "data-indicator": "hover",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: true,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-menu-button-active-background",
+        text: "--cui-sidebar-menu-button-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-active": "true",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
             "data-size": "sm",
             "data-slot": "menu-button",
             "data-track-item": "",
@@ -36206,6 +37550,50 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: true,
       route: "/components/chat-layout",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-menu-button-active-background",
+        text: "--cui-sidebar-menu-button-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "hover",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: true,
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -38605,7 +39993,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -39221,7 +40609,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -39864,7 +41252,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -44784,6 +46172,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-layout": "viewport",
+            "data-scroll": "inset",
             "data-slot": "wrapper",
           },
         },
@@ -44802,6 +46191,14 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-scroll": "inset",
             "data-slot": "root",
             "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
           },
         },
         {
@@ -44839,6 +46236,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-layout": "viewport",
+            "data-scroll": "inset",
             "data-slot": "wrapper",
           },
         },
@@ -44857,6 +46255,14 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-scroll": "inset",
             "data-slot": "root",
             "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
           },
         },
         {
@@ -44885,6 +46291,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-layout": "viewport",
+            "data-scroll": "inset",
             "data-slot": "wrapper",
           },
         },
@@ -44903,6 +46310,14 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-scroll": "inset",
             "data-slot": "root",
             "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
           },
         },
         {
@@ -46106,6 +47521,117 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "compact",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "compact",
+            "data-slot": "grid",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-recorder",
+    },
+    {
+      knobs: {
+        text: "--cui-code-text-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "grid",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-recorder",
+    },
+    {
+      knobs: {
+        text: "--cui-code-text-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
             "data-slot": "wrapper",
           },
         },
@@ -46313,6 +47839,68 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/build-a-screen",
+    },
+    {
+      knobs: {
+        text: "--cui-code-title-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "compact",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-slot": "header",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-slot": "title",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -46902,7 +48490,751 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        text: "--cui-field-affordance-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "audio-device-select",
+            "data-disabled": "",
+            "data-field-kind": "select",
+            "data-loading": "true",
+            "data-permission": "granted",
+            "data-placeholder": "",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-slot": "icon",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        text: "--cui-field-affordance-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "audio-device-select",
+            "data-field-kind": "select",
+            "data-missing": "true",
+            "data-permission": "granted",
+            "data-popup-open": "",
+            "data-popup-side": "top",
+            "data-pressed": "",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-slot": "icon",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        text: "--cui-field-affordance-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "audio-device-select",
+            "data-field-kind": "select",
+            "data-missing": "true",
+            "data-permission": "granted",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-slot": "icon",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        text: "--cui-field-affordance-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "audio-device-select",
+            "data-field-kind": "select",
+            "data-permission": "granted",
+            "data-placeholder": "",
+            "data-popup-open": "",
+            "data-popup-side": "top",
+            "data-pressed": "",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-slot": "icon",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        text: "--cui-field-affordance-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "audio-device-select",
+            "data-field-kind": "select",
+            "data-permission": "granted",
+            "data-placeholder": "",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-slot": "icon",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        text: "--cui-field-affordance-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "audio-device-select",
+            "data-field-kind": "select",
+            "data-permission": "granted",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-slot": "icon",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        text: "--cui-field-affordance-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "audio-device-select",
+            "data-field-kind": "select",
+            "data-permission": "granted",
+            "data-popup-open": "",
+            "data-popup-side": "top",
+            "data-pressed": "",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-slot": "icon",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        text: "--cui-field-affordance-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "audio-device-select",
+            "data-field-kind": "select",
+            "data-permission": "granted",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-slot": "icon",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        text: "--cui-field-affordance-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "audio-device-select",
+            "data-field-kind": "select",
+            "data-permission": "prompt",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-slot": "icon",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-recorder",
+    },
+    {
+      knobs: {
+        text: "--cui-field-affordance-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "audio-device-select",
+            "data-field-kind": "select",
+            "data-permission": "prompt",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-slot": "icon",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-recorder",
+    },
+    {
+      knobs: {
+        text: "--cui-field-affordance-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "select",
+            "data-field-kind": "select",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-slot": "icon",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: false,
+      state: false,
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -48895,6 +51227,450 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "browser",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "top",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "presentation",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "false",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "top",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "presentation",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "false",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "browser",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "top",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "presentation",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "true",
+            "aria-selected": "false",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-disabled": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "presentation",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "true",
+            "aria-selected": "false",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-disabled": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "presentation",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "false",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "presentation",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "false",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
             "data-slot": "wrapper",
           },
         },
@@ -49526,68 +52302,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components/filter-bar",
-    },
-    {
-      knobs: {
-        text: "--cui-popup-item-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "combobox",
-            "data-open": "",
-            "data-popup-kind": "combobox",
-            "data-popup-part": "list-surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "presentation",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "aria-selected": "false",
-            "data-control-family": "popup",
-            "data-control-ui": "combobox",
-            "data-popup-kind": "combobox",
-            "data-popup-part": "item",
-            "data-slot": "item",
-            role: "option",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -53392,7 +56106,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -53986,6 +56700,49 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: false,
       route: "/primitives/sidebar",
+    },
+    {
+      knobs: {
+        text: "--cui-sidebar-menu-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "hover",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -54504,6 +57261,50 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-active": "true",
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
+            "data-indicator": "hover",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: false,
+      route: "/components/audio-device-select",
+    },
+    {
+      knobs: {
+        text: "--cui-sidebar-menu-button-track-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-active": "true",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
             "data-size": "sm",
             "data-slot": "menu-button",
             "data-track-item": "",
@@ -54874,7 +57675,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -55204,7 +58005,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -55638,7 +58439,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: true,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -55693,7 +58494,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: true,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -56398,7 +59199,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -56634,7 +59435,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -57384,7 +60185,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -58148,7 +60949,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: true,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -58231,7 +61032,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: true,
-      route: "/primitives/tabs",
+      route: "/components/audio-device-select",
     },
     {
       knobs: {
@@ -60509,6 +63310,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
   ),
   uncovered: [
+    "--cui-audio-device-select-status-foreground",
     "--cui-audio-recorder-active-foreground",
     "--cui-audio-recorder-meta-foreground",
     "--cui-button-active-hover-background",

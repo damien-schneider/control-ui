@@ -3,6 +3,8 @@
     --cui-audio-visualizer-radius: var(--radius-control);
     --cui-audio-visualizer-bar-background: oklch(from var(--primary) l c h / 0.8);
     --cui-audio-visualizer-bar-radius: var(--radius-control);
+    --cui-audio-visualizer-bar-size: calc(var(--spacing) * 1);
+    --cui-audio-visualizer-bar-gap: 1px;
     --cui-audio-visualizer-line-fill: oklch(from var(--primary) l c h / 0.18);
     --cui-audio-visualizer-line-stroke: oklch(from var(--primary) l c h / 0.8);
     --cui-audio-visualizer-baseline-stroke: oklch(from var(--border) l c h / 0.55);
@@ -24,7 +26,7 @@
   }
 
   :where([data-control-family="audio-visualizer"][data-slot="track"]) {
-    gap: 1px;
+    gap: var(--cui-audio-visualizer-bar-gap);
     opacity: 0.55;
     transition: opacity var(--duration-base) var(--ease-standard);
   }
@@ -34,7 +36,9 @@
   }
 
   :where([data-control-family="audio-visualizer"][data-slot="bar-track"]) {
-    inline-size: calc(var(--spacing) * 1);
+    inline-size: var(--cui-audio-visualizer-bar-size);
+    min-inline-size: 0;
+    flex-shrink: 1;
     transition:
       opacity var(--duration-base) var(--ease-emphasized),
       filter var(--duration-base) var(--ease-emphasized),
@@ -69,6 +73,97 @@
     stroke: var(--cui-audio-visualizer-line-stroke);
     transition: d var(--duration-base) var(--ease-standard);
   }
+
+  :where([data-control-family="audio-visualizer"][data-variant="bars"][data-active="true"] [data-slot="bar"]) {
+    transition: none;
+  }
+
+  :where([data-control-family="audio-visualizer"][data-variant="line"]:not([data-active="true"]) [data-slot="waveform"]) {
+    opacity: 0;
+  }
+
+  :where([data-control-family="audio-visualizer"][data-variant="line"]:not([data-active="true"]) [data-slot="baseline"]) {
+    stroke-dasharray: 1 4;
+    stroke-linecap: round;
+  }
+
+  :where([data-control-family="audio-visualizer"][data-slot="root"][data-variant="bar"]) {
+    --cui-audio-visualizer-bar-size: calc(var(--spacing) * 1.5);
+    --cui-audio-visualizer-bar-gap: calc(var(--spacing) * 0.75);
+    padding-block: calc(var(--spacing) * 1);
+  }
+
+  :where([data-control-family="audio-visualizer"][data-variant="bar"] [data-slot="track"]) {
+    display: flex;
+    block-size: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  :where([data-control-family="audio-visualizer"][data-variant="bar"][data-align="start"] [data-slot="track"]) {
+    align-items: flex-start;
+  }
+
+  :where([data-control-family="audio-visualizer"][data-variant="bar"][data-align="end"] [data-slot="track"]) {
+    align-items: flex-end;
+  }
+
+  :where([data-control-family="audio-visualizer"][data-variant="bar"] [data-slot="bar"]) {
+    min-inline-size: 0;
+    max-inline-size: var(--cui-audio-visualizer-bar-size);
+    flex: 1;
+    transform-origin: center;
+    transition:
+      height var(--duration-fast) var(--ease-standard),
+      opacity var(--duration-fast) var(--ease-standard);
+  }
+
+  :where([data-control-family="audio-visualizer"][data-variant="bar"][data-align="start"] [data-slot="bar"]) {
+    transform-origin: top;
+  }
+
+  :where([data-control-family="audio-visualizer"][data-variant="bar"][data-align="end"] [data-slot="bar"]) {
+    transform-origin: bottom;
+  }
+
+  :where([data-control-family="audio-visualizer"][data-variant="bar"][data-idle="pulse"]:not([data-active="true"]) [data-slot="bar"]) {
+    animation: cui-audio-bar-pulse calc(var(--duration-slow) * 4) var(--ease-standard) infinite;
+  }
+
+  :where([data-control-family="audio-visualizer"][data-variant="bar"][data-idle="wave"]:not([data-active="true"]) [data-slot="bar"]),
+  :where([data-control-family="audio-visualizer"][data-variant="bar"][data-loading="true"] [data-slot="bar"]) {
+    animation: cui-audio-bar-pulse calc(var(--duration-slow) * 4) var(--ease-standard) infinite;
+    animation-delay: var(--_audio-visualizer-delay);
+  }
+
+  @keyframes cui-audio-bar-pulse {
+    0%,
+    100% {
+      transform: scaleY(1);
+    }
+    50% {
+      transform: scaleY(4);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-control-family="audio-visualizer"] [data-slot]) {
+      animation: none;
+      transition: none;
+    }
+  }
+}
+
+@property --cui-audio-visualizer-bar-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 4px;
+}
+
+@property --cui-audio-visualizer-bar-gap {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 1px;
 }
 
 @property --cui-audio-visualizer-radius {

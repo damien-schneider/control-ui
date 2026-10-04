@@ -43,6 +43,7 @@ export type UseAudioInputDevicesResult = {
   loading: boolean;
   error: Error | null;
   hasPermission: boolean;
+  permission: "granted" | "prompt" | "denied";
   refresh: () => Promise<void>;
   requestPermission: () => Promise<void>;
 };
@@ -144,7 +145,7 @@ export function useAudioInputDevices(): UseAudioInputDevicesResult {
   const [devices, setDevices] = useState<MediaDeviceInfo[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
-  const [hasPermission, setHasPermission] = useState(false);
+  const [permission, setPermission] = useState<"granted" | "prompt" | "denied">("prompt");
 
   async function refresh() {
     setLoading(true);
@@ -153,8 +154,7 @@ export function useAudioInputDevices(): UseAudioInputDevicesResult {
     try {
       const nextDevices = await enumerateAudioInputDevices();
       setDevices(nextDevices);
-      // labels only populate once mic permission granted, so presence = permission signal
-      if (nextDevices.some((device) => device.label)) setHasPermission(true);
+      if (nextDevices.some((device) => device.label)) setPermission("granted");
     } catch (nextError) {
       setError(asError(nextError));
     } finally {
@@ -174,9 +174,11 @@ export function useAudioInputDevices(): UseAudioInputDevicesResult {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       for (const track of stream.getTracks()) track.stop();
-      setHasPermission(true);
+      setPermission("granted");
       setDevices(await enumerateAudioInputDevices());
     } catch (nextError) {
+      const failure = asError(nextError);
+      if (failure.name === "NotAllowedError" || failure.name === "SecurityError") setPermission("denied");
       setError(microphoneError(nextError));
     } finally {
       setLoading(false);
@@ -190,6 +192,32 @@ export function useAudioInputDevices(): UseAudioInputDevicesResult {
   }, []);
 
   useEffect(() => {
+    if (typeof navigator === "undefined" || !navigator.permissions?.query) return;
+    let disposed = false;
+    let status: PermissionStatus | undefined;
+    function updatePermission() {
+      if (disposed || !status) return;
+      setPermission(status.state);
+      void refreshFromEffect();
+    }
+    void navigator.permissions
+      .query({ name: "microphone" })
+      .then((nextStatus) => {
+        if (disposed) return;
+        status = nextStatus;
+        setPermission(nextStatus.state);
+        status.addEventListener("change", updatePermission);
+      })
+      .catch(() => {
+        // Some browsers enumerate microphones but do not expose microphone permission queries.
+      });
+    return () => {
+      disposed = true;
+      status?.removeEventListener("change", updatePermission);
+    };
+  }, []);
+
+  useEffect(() => {
     if (typeof navigator === "undefined" || !navigator.mediaDevices?.addEventListener) return;
 
     const handleDeviceChange = () => {
@@ -200,7 +228,7 @@ export function useAudioInputDevices(): UseAudioInputDevicesResult {
     return () => navigator.mediaDevices.removeEventListener("devicechange", handleDeviceChange);
   }, []);
 
-  return { devices, loading, error, hasPermission, refresh, requestPermission };
+  return { devices, loading, error, hasPermission: permission === "granted", permission, refresh, requestPermission };
 }
 
 function browserEnvironment(): AudioRecorderControllerEnvironment<MediaStream> {

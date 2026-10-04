@@ -84,8 +84,9 @@ export function ComponentPage({
   const files = filesFor(component, version);
   const manifestHref = publicRegistryHref(registryKind);
   const exampleCode = version ? version.example.code : component.example.code;
-  const usageCode = component.usage[integration].code;
-  const usageChangesWithIntegration = integrationChangesCode((id) => component.usage[id].code);
+  const usage = version?.usage ?? component.usage;
+  const usageCode = usage[integration].code;
+  const usageChangesWithIntegration = integrationChangesCode((id) => usage[id].code);
   const { installDescription, sourceDescription } = versionCopy(version, versionsShareItem, registryKind);
 
   return (

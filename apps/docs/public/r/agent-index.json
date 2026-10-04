@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 191,
+    "count": 192,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -643,6 +643,14 @@
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/task-list.json"
       },
       {
+        "id": "audio-device-select",
+        "name": "AudioDeviceSelect",
+        "kind": "Component",
+        "summary": "Composable audio input selector with permission, loading, default-device, and disconnected states.",
+        "href": "/components/audio-device-select",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/audio-device-select.json"
+      },
+      {
         "id": "audio-recorder",
         "name": "AudioRecorder",
         "kind": "Component",
@@ -654,7 +662,7 @@
         "id": "audio-visualizer",
         "name": "AudioVisualizer",
         "kind": "Component",
-        "summary": "Levels-driven realtime audio visualizer offered in two usage versions - bars and line - sharing one export and one props contract.",
+        "summary": "Levels-driven audio visualizer with live waveform, line envelope, and frequency bar versions, including idle and loading states.",
         "href": "/components/audio-visualizer",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/audio-visualizer.json"

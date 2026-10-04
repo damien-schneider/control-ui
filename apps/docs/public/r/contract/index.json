@@ -46,6 +46,13 @@
       "knobs": 0,
       "probes": 0
     },
+    "audio-device-select": {
+      "registryItems": [
+        "audio-device-select"
+      ],
+      "knobs": 1,
+      "probes": 0
+    },
     "audio-recorder": {
       "registryItems": [
         "audio-recorder"
@@ -56,10 +63,11 @@
     "audio-visualizer": {
       "registryItems": [
         "audio-visualizer",
+        "audio-visualizer-bar",
         "audio-visualizer-line"
       ],
-      "knobs": 6,
-      "probes": 1
+      "knobs": 8,
+      "probes": 2
     },
     "avatar": {
       "registryItems": [
@@ -73,7 +81,7 @@
         "badge"
       ],
       "knobs": 5,
-      "probes": 21
+      "probes": 22
     },
     "breadcrumb": {
       "registryItems": [
@@ -92,7 +100,7 @@
         "toggle"
       ],
       "knobs": 25,
-      "probes": 173
+      "probes": 180
     },
     "button-group": {
       "registryItems": [
@@ -163,7 +171,7 @@
         "code"
       ],
       "knobs": 9,
-      "probes": 15
+      "probes": 21
     },
     "code-diff": {
       "registryItems": [
@@ -250,7 +258,7 @@
         "textarea"
       ],
       "knobs": 15,
-      "probes": 72
+      "probes": 84
     },
     "filter-bar": {
       "registryItems": [
@@ -391,7 +399,7 @@
         "trigger-menu"
       ],
       "knobs": 44,
-      "probes": 132
+      "probes": 144
     },
     "progressive-blur": {
       "registryItems": [
@@ -440,7 +448,7 @@
         "sidebar"
       ],
       "knobs": 47,
-      "probes": 47
+      "probes": 51
     },
     "sidebar-layout": {
       "registryItems": [

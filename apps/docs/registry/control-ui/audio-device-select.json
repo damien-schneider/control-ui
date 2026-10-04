@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "audio-device-select",
+  "type": "registry:component",
+  "title": "AudioDeviceSelect",
+  "description": "Composable audio input selector with permission, loading, default-device, and disconnected states.",
+  "dependencies": [
+    "lucide-react@^1.47.0"
+  ],
+  "registryDependencies": [
+    "button",
+    "core",
+    "select"
+  ],
+  "files": [
+    {
+      "path": "src/registry/knob-contracts/audio-device-select-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/audio-device-select-knobs.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/audio-device-select.tsx",
+      "target": "@components/control-ui/audio-device-select.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/audio-device-select.css",
+      "target": "@components/control-ui/styles/recipes/audio-device-select.css",
+      "type": "registry:file"
+    }
+  ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/audio-device-select.css\"": {}
+  },
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/audio-device-select.json"
+  }
+}

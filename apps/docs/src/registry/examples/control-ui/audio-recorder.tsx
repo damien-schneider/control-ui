@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { AudioDeviceSelect } from "@/components/control-ui/audio-device-select";
 import {
   AudioRecorder,
   AudioRecorderCancel,
@@ -14,58 +15,31 @@ import {
 } from "@/components/control-ui/audio-recorder";
 import { formatAudioInputDeviceLabel, useAudioInputDevices } from "@/components/control-ui/hooks/use-audio-recorder";
 import { formatAudioRecorderDuration } from "@/components/control-ui/lib/format-audio-recorder-duration";
-import { Button } from "@/components/control-ui/ui/button";
-import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxItem, ComboboxList } from "@/components/control-ui/ui/combobox";
-
-type MicrophoneOption = {
-  value: string;
-  label: string;
-};
-
-const SYSTEM_DEFAULT: MicrophoneOption = { value: "", label: "System default" };
-
 export function AudioRecorderExample() {
   const [recording, setRecording] = useState<AudioRecording | null>(null);
-  const [deviceId, setDeviceId] = useState("");
-  const { devices, hasPermission, requestPermission } = useAudioInputDevices();
-
-  // Device selection lives in app, not recorder: Combobox wired to useAudioInputDevices, chosen id
-  // handed to <AudioRecorder deviceId>. Swap for any list UI.
-  const options: MicrophoneOption[] = [
-    SYSTEM_DEFAULT,
-    ...devices.map((device, index) => ({
-      value: device.deviceId,
-      label: formatAudioInputDeviceLabel(device, `Microphone ${index + 1}`),
-    })),
-  ];
-  const selected = options.find((option) => option.value === deviceId) ?? SYSTEM_DEFAULT;
+  const [deviceId, setDeviceId] = useState("default");
+  const { devices, loading, permission, error, requestPermission } = useAudioInputDevices();
+  const options = devices.map((device, index) => ({
+    deviceId: device.deviceId,
+    label: formatAudioInputDeviceLabel(device, `Microphone ${index + 1}`),
+  }));
+  const inputs = options.some((device) => device.deviceId === "default")
+    ? options
+    : [{ deviceId: "default", label: "System default" }, ...options];
 
   return (
     <div className="flex w-full max-w-md flex-col gap-4">
-      <div className="flex flex-wrap items-center gap-2">
-        <div className="min-w-44 flex-1">
-          <Combobox items={options} value={selected} onValueChange={(option: MicrophoneOption | null) => setDeviceId(option?.value ?? "")}>
-            <ComboboxInput placeholder="Search microphones…" aria-label="Microphone" />
-            <ComboboxContent>
-              <ComboboxEmpty>No microphones found.</ComboboxEmpty>
-              <ComboboxList>
-                {(option: MicrophoneOption) => (
-                  <ComboboxItem key={option.value || "system-default"} value={option}>
-                    {option.label}
-                  </ComboboxItem>
-                )}
-              </ComboboxList>
-            </ComboboxContent>
-          </Combobox>
-        </div>
-        {hasPermission ? null : (
-          <Button className="shrink-0" variant="surface" tone="neutral" size="sm" onClick={() => void requestPermission()}>
-            Allow access
-          </Button>
-        )}
-      </div>
+      <AudioDeviceSelect
+        devices={inputs}
+        value={deviceId}
+        onValueChange={setDeviceId}
+        loading={loading}
+        permission={permission}
+        error={error?.message}
+        onRequestPermission={requestPermission}
+      />
 
-      <AudioRecorder deviceId={deviceId || undefined} onRecordingComplete={setRecording} maxDurationMs={30_000}>
+      <AudioRecorder deviceId={deviceId === "default" ? undefined : deviceId} onRecordingComplete={setRecording} maxDurationMs={30_000}>
         <AudioRecorderTrigger />
         <div className="grid min-w-0 flex-1 items-center overflow-hidden">
           <AudioRecorderStatus className="col-start-1 row-start-1 w-full flex-none" />

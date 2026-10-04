@@ -13,8 +13,9 @@ export const generatedSkinContract: SkinContract = {
     "alert-dialog": ["alert-dialog"],
     "app-shell": ["app-shell"],
     "aspect-ratio": ["aspect-ratio"],
+    "audio-device-select": ["audio-device-select"],
     "audio-recorder": ["audio-recorder"],
-    "audio-visualizer": ["audio-visualizer", "audio-visualizer-line"],
+    "audio-visualizer": ["audio-visualizer", "audio-visualizer-bar", "audio-visualizer-line"],
     "audio-visualizer-line": ["audio-visualizer-line"],
     autocomplete: ["autocomplete"],
     avatar: ["avatar"],
@@ -585,6 +586,64 @@ export const generatedSkinContract: SkinContract = {
       },
       registryItems: ["aspect-ratio"],
     },
+    "audio-device-select": {
+      parts: {
+        root: {
+          family: "audio-device-select",
+          registryItems: ["audio-device-select"],
+          states: [],
+        },
+        content: {
+          registryItems: ["audio-device-select"],
+          states: [],
+        },
+        item: {
+          registryItems: ["audio-device-select"],
+          states: [],
+        },
+        permission: {
+          registryItems: ["audio-device-select"],
+          states: [],
+        },
+        preview: {
+          registryItems: ["audio-device-select"],
+          states: [],
+        },
+        status: {
+          family: "audio-device-select",
+          registryItems: ["audio-device-select"],
+          states: [],
+        },
+        trigger: {
+          registryItems: ["audio-device-select"],
+          states: [
+            {
+              attribute: "data-loading",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-missing",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-permission",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["denied", "granted", "prompt"],
+            },
+          ],
+        },
+        value: {
+          registryItems: ["audio-device-select"],
+          states: [],
+        },
+      },
+      registryItems: ["audio-device-select"],
+    },
     "audio-recorder": {
       parts: {
         root: {
@@ -708,7 +767,7 @@ export const generatedSkinContract: SkinContract = {
       parts: {
         root: {
           family: "audio-visualizer",
-          registryItems: ["audio-visualizer", "audio-visualizer-line"],
+          registryItems: ["audio-visualizer", "audio-visualizer-bar", "audio-visualizer-line"],
           states: [
             {
               attribute: "data-active",
@@ -717,17 +776,48 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
+              attribute: "data-align",
+              source: "control-ui",
+              valueKind: "open",
+              values: [],
+            },
+            {
+              attribute: "data-idle",
+              source: "control-ui",
+              valueKind: "open",
+              values: [],
+            },
+            {
+              attribute: "data-loading",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-mirrored",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-variant",
               source: "control-ui",
               valueKind: "enum",
-              values: ["bars", "line"],
+              values: ["bar", "bars", "line"],
             },
           ],
         },
         bar: {
           family: "audio-visualizer",
-          registryItems: ["audio-visualizer"],
-          states: [],
+          registryItems: ["audio-visualizer", "audio-visualizer-bar"],
+          states: [
+            {
+              attribute: "data-index",
+              source: "control-ui",
+              valueKind: "open",
+              values: [],
+            },
+          ],
         },
         "bar-track": {
           family: "audio-visualizer",
@@ -741,7 +831,7 @@ export const generatedSkinContract: SkinContract = {
         },
         track: {
           family: "audio-visualizer",
-          registryItems: ["audio-visualizer", "audio-visualizer-line"],
+          registryItems: ["audio-visualizer", "audio-visualizer-bar", "audio-visualizer-line"],
           states: [
             {
               attribute: "data-active",
@@ -752,7 +842,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
       },
-      registryItems: ["audio-visualizer", "audio-visualizer-line"],
+      registryItems: ["audio-visualizer", "audio-visualizer-bar", "audio-visualizer-line"],
     },
     "audio-visualizer-line": {
       parts: {
@@ -13719,6 +13809,14 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "1px",
       },
     ],
+    "audio-device-select": [
+      {
+        name: "--cui-audio-device-select-status-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted-foreground)",
+      },
+    ],
     "audio-recorder": [
       {
         name: "--cui-audio-recorder-foreground",
@@ -13752,6 +13850,18 @@ export const generatedSkinContract: SkinContract = {
       },
     ],
     "audio-visualizer": [
+      {
+        name: "--cui-audio-visualizer-bar-size",
+        syntax: "<length>",
+        initialValue: "4px",
+        defaultValue: "calc(var(--spacing) * 1)",
+      },
+      {
+        name: "--cui-audio-visualizer-bar-gap",
+        syntax: "<length>",
+        initialValue: "1px",
+        defaultValue: "1px",
+      },
       {
         name: "--cui-audio-visualizer-radius",
         syntax: "<length-percentage>",

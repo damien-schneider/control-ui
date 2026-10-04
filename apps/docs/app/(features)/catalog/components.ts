@@ -220,6 +220,41 @@ export const componentEntries = [
     preview: preview(() => import("@/src/registry/examples/control-ui/task-list").then((mod) => ({ default: mod.TaskListExample }))),
   },
   {
+    id: "audio-device-select",
+    category: "chat",
+    kind: "Component",
+    name: "AudioDeviceSelect",
+    summary: "Composable audio input selector with permission, loading, default-device, and disconnected states.",
+    registryKind: "audio-device-select",
+    paths: {
+      example: sourceFile("Example", "src/registry/examples/control-ui/audio-device-select.tsx", "example"),
+      usage: {
+        mastra: sourceFile("Usage", "src/registry/usage/components/audio-device-select.tsx", "usage"),
+        "ai-sdk": sourceFile("Usage", "src/registry/usage/components/audio-device-select.tsx", "usage"),
+      },
+      source: sourceFile("Component", "src/registry/sources/control-ui/audio-device-select.tsx", "component"),
+      supportFiles: [
+        sourceFile("Audio device selector recipe", "src/registry/sources/control-ui/recipes/audio-device-select.css", "recipe-css"),
+      ],
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/audio-device-select").then((mod) => ({ default: mod.AudioDeviceSelectExample })),
+    ),
+    additionalPreviews: [
+      {
+        id: "device-states",
+        title: "Device and permission states",
+        description:
+          "Default and optional inputs, disconnected devices, loading, and microphone permission states. Device lists and permission requests are supplied by the host application.",
+        source: sourceFile("Device states", "src/registry/examples/control-ui/audio-device-select.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/audio-device-select").then((mod) => ({ default: mod.AudioDeviceSelectStatesExample })),
+        ),
+        previewClassName: "min-h-[240px]",
+      },
+    ],
+  },
+  {
     id: "audio-recorder",
     category: "chat",
     kind: "Component",
@@ -262,7 +297,7 @@ export const componentEntries = [
     kind: "Component",
     name: "AudioVisualizer",
     summary:
-      "Levels-driven realtime audio visualizer offered in two usage versions - bars and line - sharing one export and one props contract.",
+      "Levels-driven audio visualizer with live waveform, line envelope, and frequency bar versions, including idle and loading states.",
     registryKind: "audio-visualizer",
     status: "beta",
     paths: {
@@ -280,7 +315,7 @@ export const componentEntries = [
     versions: [
       {
         id: "bars",
-        label: "Bars",
+        label: "Live waveform",
         registryKind: "audio-visualizer",
         paths: {
           example: sourceFile("Example", "src/registry/examples/control-ui/audio-visualizer.tsx", "example"),
@@ -302,6 +337,23 @@ export const componentEntries = [
         },
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/audio-visualizer-line").then((mod) => ({ default: mod.AudioVisualizerLineExample })),
+        ),
+      },
+      {
+        id: "bar",
+        label: "Bar visualizer",
+        registryKind: "audio-visualizer-bar",
+        paths: {
+          example: sourceFile("Example", "src/registry/examples/control-ui/audio-visualizer-bar.tsx", "example"),
+          usage: {
+            mastra: sourceFile("Usage", "src/registry/usage/components/audio-visualizer-bar.tsx", "usage"),
+            "ai-sdk": sourceFile("Usage", "src/registry/usage/components/audio-visualizer-bar.tsx", "usage"),
+          },
+          source: sourceFile("Component", "src/registry/sources/control-ui/audio-visualizer-bar.tsx", "component"),
+          supportFiles: [audioVisualizerRecipeFile],
+        },
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/audio-visualizer-bar").then((mod) => ({ default: mod.AudioVisualizerBarExample })),
         ),
       },
     ],

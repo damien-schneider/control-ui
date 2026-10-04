@@ -142,6 +142,20 @@ export const agentsCompositions = {
       "Trigger and item children can be omitted to use their built-in content.",
     ),
   ],
+  "audio-device-select": [
+    example(
+      "Device selector with preview",
+      part(
+        "AudioDeviceSelect",
+        part("AudioDeviceSelectTrigger", part("AudioDeviceSelectValue")),
+        part("AudioDeviceSelectContent", part("AudioDeviceSelectItem")),
+        part("AudioDeviceSelectPreview", part("AudioVisualizer")),
+        part("AudioDeviceSelectStatus"),
+        part("AudioDeviceSelectPermission"),
+      ),
+      "Omit children to use the built-in selector, status, and permission controls. Supply a device list and keep its selected id when a device disconnects.",
+    ),
+  ],
   "audio-recorder": [
     example(
       "Anatomy",
@@ -157,7 +171,11 @@ export const agentsCompositions = {
     ),
   ],
   "audio-visualizer": [
-    example("Levels-driven visualizer", part("AudioVisualizer"), "Both the bars and line versions use the same component and levels prop."),
+    example(
+      "Levels-driven visualizer",
+      part("AudioVisualizer"),
+      "Live waveform and line versions read a rolling history. The bar visualizer reads frequency bands and adds alignment, mirroring, idle, and loading options.",
+    ),
   ],
   "dynamic-notification": [
     example(

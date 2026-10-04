@@ -199,6 +199,7 @@ export type DocsComponentVersion = {
   label: string;
   registryKind: RegistryKindId;
   example: SourceFile;
+  usage?: Record<IntegrationId, SourceFile>;
   source: SourceFile;
   supportFiles: SourceFile[];
 };

@@ -1,0 +1,98 @@
+{
+  "version": 9,
+  "family": "audio-device-select",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "audio-device-select"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-audio-device-select-status-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    }
+  ],
+  "parts": {
+    "audio-device-select": {
+      "root": {
+        "family": "audio-device-select",
+        "registryItems": [
+          "audio-device-select"
+        ],
+        "states": []
+      },
+      "content": {
+        "registryItems": [
+          "audio-device-select"
+        ],
+        "states": []
+      },
+      "item": {
+        "registryItems": [
+          "audio-device-select"
+        ],
+        "states": []
+      },
+      "permission": {
+        "registryItems": [
+          "audio-device-select"
+        ],
+        "states": []
+      },
+      "preview": {
+        "registryItems": [
+          "audio-device-select"
+        ],
+        "states": []
+      },
+      "status": {
+        "family": "audio-device-select",
+        "registryItems": [
+          "audio-device-select"
+        ],
+        "states": []
+      },
+      "trigger": {
+        "registryItems": [
+          "audio-device-select"
+        ],
+        "states": [
+          {
+            "attribute": "data-loading",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-missing",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-permission",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "denied",
+              "granted",
+              "prompt"
+            ]
+          }
+        ]
+      },
+      "value": {
+        "registryItems": [
+          "audio-device-select"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-audio-device-select-status-foreground"
+  ],
+  "contrast": "/r/contract/audio-device-select.contrast.json"
+}

@@ -274,15 +274,15 @@ function componentDefinitions(): Definition[] {
 
   const audioVisualizer = componentEntries.find((entry) => entry.id === "audio-visualizer");
   if (audioVisualizer && "versions" in audioVisualizer) {
-    const line = audioVisualizer.versions.find((version) => version.id === "line");
-    if (line) {
+    for (const version of audioVisualizer.versions) {
+      if (version.registryKind === audioVisualizer.registryKind) continue;
       components.push({
-        id: "audio-visualizer-line",
+        id: version.registryKind,
         type: "registry:component",
-        title: "AudioVisualizer — line",
-        description: "Line rendering of the shared realtime audio visualizer contract.",
-        seeds: [line.paths.source.path],
-        primary: [line.paths.source.path],
+        title: `AudioVisualizer — ${version.label}`,
+        description: `${version.label} rendering of the shared audio visualizer family.`,
+        seeds: [version.paths.source.path, ...supportFilePaths(version.paths)],
+        primary: [version.paths.source.path],
       });
     }
   }

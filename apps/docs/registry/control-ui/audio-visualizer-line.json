@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "audio-visualizer-line",
   "type": "registry:component",
-  "title": "AudioVisualizer — line",
-  "description": "Line rendering of the shared realtime audio visualizer contract.",
+  "title": "AudioVisualizer — Line",
+  "description": "Line rendering of the shared audio visualizer family.",
   "dependencies": [],
   "registryDependencies": [
     "audio-visualizer",
@@ -14,8 +14,16 @@
       "path": "src/registry/sources/control-ui/audio-visualizer-line.tsx",
       "target": "@components/control-ui/audio-visualizer-line.tsx",
       "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/audio-visualizer.css",
+      "target": "@components/control-ui/styles/recipes/audio-visualizer.css",
+      "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/audio-visualizer.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/audio-visualizer-line.json"
   }

@@ -660,9 +660,78 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-indicator": "hover",
+          "data-size": "sm",
+          "data-slot": "menu-button",
+          "data-variant": "default",
+          "href": "#"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
+        }
+      },
+      {
+        "attributes": {
+          "data-active": "true",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
           "data-size": "sm",
           "data-slot": "menu-button",
           "data-track-item": "",
+          "data-variant": "default",
+          "href": "#"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-indicator": "hover",
+          "data-size": "sm",
+          "data-slot": "menu-button",
           "data-variant": "default",
           "href": "#"
         }
@@ -2111,7 +2180,7 @@
         "text": "--cui-sidebar-menu-button-active-foreground"
       },
       "anatomy": 19,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -2129,7 +2198,7 @@
         "text": "--cui-sidebar-menu-button-active-foreground"
       },
       "anatomy": 21,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -2138,7 +2207,7 @@
         "text": "--cui-sidebar-menu-button-active-foreground"
       },
       "anatomy": 22,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -2156,7 +2225,7 @@
         "text": "--cui-sidebar-menu-button-active-foreground"
       },
       "anatomy": 24,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -2170,23 +2239,25 @@
     },
     {
       "knobs": {
-        "fill": "--cui-sidebar-wrapper-background"
+        "fill": "--cui-sidebar-menu-button-active-background",
+        "text": "--cui-sidebar-menu-button-active-foreground"
       },
       "anatomy": 26,
       "rendersText": true,
-      "state": false
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-active-background",
+        "text": "--cui-sidebar-menu-button-active-foreground"
+      },
+      "anatomy": 27,
+      "rendersText": true,
+      "state": true
     },
     {
       "knobs": {
         "fill": "--cui-sidebar-wrapper-background"
-      },
-      "anatomy": 27,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-group-label-foreground"
       },
       "anatomy": 28,
       "rendersText": true,
@@ -2194,7 +2265,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-group-label-foreground"
+        "fill": "--cui-sidebar-wrapper-background"
       },
       "anatomy": 29,
       "rendersText": true,
@@ -2226,25 +2297,25 @@
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-active-foreground"
-      },
-      "anatomy": 19,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-menu-button-active-foreground"
+        "text": "--cui-sidebar-group-label-foreground"
       },
       "anatomy": 33,
-      "rendersText": false,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-group-label-foreground"
+      },
+      "anatomy": 34,
+      "rendersText": true,
       "state": false
     },
     {
       "knobs": {
         "text": "--cui-sidebar-menu-button-active-foreground"
       },
-      "anatomy": 34,
+      "anatomy": 21,
       "rendersText": false,
       "state": false
     },
@@ -2258,9 +2329,25 @@
     },
     {
       "knobs": {
+        "text": "--cui-sidebar-menu-button-active-foreground"
+      },
+      "anatomy": 36,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-active-foreground"
+      },
+      "anatomy": 37,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
         "text": "--cui-sidebar-menu-button-foreground"
       },
-      "anatomy": 15,
+      "anatomy": 16,
       "rendersText": true,
       "state": false
     },
@@ -2276,7 +2363,7 @@
       "knobs": {
         "text": "--cui-sidebar-menu-button-foreground"
       },
-      "anatomy": 18,
+      "anatomy": 19,
       "rendersText": true,
       "state": false
     },
@@ -2284,24 +2371,16 @@
       "knobs": {
         "text": "--cui-sidebar-menu-button-foreground"
       },
-      "anatomy": 36,
+      "anatomy": 20,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-foreground"
+      },
+      "anatomy": 38,
       "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-menu-button-foreground"
-      },
-      "anatomy": 23,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-menu-button-foreground"
-      },
-      "anatomy": 24,
-      "rendersText": true,
       "state": false
     },
     {
@@ -2316,7 +2395,23 @@
       "knobs": {
         "text": "--cui-sidebar-menu-button-foreground"
       },
-      "anatomy": 37,
+      "anatomy": 26,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-foreground"
+      },
+      "anatomy": 27,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-foreground"
+      },
+      "anatomy": 39,
       "rendersText": false,
       "state": false
     },
@@ -2332,7 +2427,15 @@
       "knobs": {
         "text": "--cui-sidebar-menu-button-track-active-foreground"
       },
-      "anatomy": 16,
+      "anatomy": 15,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-track-active-foreground"
+      },
+      "anatomy": 18,
       "rendersText": true,
       "state": false
     }

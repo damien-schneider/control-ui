@@ -3,7 +3,7 @@
   "name": "audio-visualizer",
   "type": "registry:component",
   "title": "AudioVisualizer",
-  "description": "Levels-driven realtime audio visualizer offered in two usage versions - bars and line - sharing one export and one props contract.",
+  "description": "Levels-driven audio visualizer with live waveform, line envelope, and frequency bar versions, including idle and loading states.",
   "dependencies": [],
   "registryDependencies": [
     "core"
@@ -13,6 +13,11 @@
       "path": "src/registry/knob-contracts/audio-visualizer-knobs.ts",
       "target": "@components/control-ui/knob-contracts/audio-visualizer-knobs.ts",
       "type": "registry:component"
+    },
+    {
+      "path": "src/registry/lib/audio-visualizer-levels.ts",
+      "target": "@components/control-ui/lib/audio-visualizer-levels.ts",
+      "type": "registry:lib"
     },
     {
       "path": "src/registry/sources/control-ui/audio-visualizer.tsx",

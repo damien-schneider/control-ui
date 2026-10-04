@@ -8,6 +8,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
+          "data-scroll": "inset",
           "data-slot": "wrapper"
         }
       },
@@ -30,11 +31,72 @@
       },
       {
         "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
           "data-active": "true",
           "data-control-family": "audio-visualizer",
           "data-control-ui": "audio-visualizer",
           "data-slot": "root",
-          "data-variant": "bars"
+          "data-variant": "bars",
+          "role": "img"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "audio-visualizer",
+          "data-control-ui": "audio-visualizer",
+          "data-slot": "bar"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "audio-visualizer",
+          "data-control-ui": "audio-visualizer",
+          "data-slot": "root",
+          "data-variant": "bars",
+          "role": "img"
         }
       },
       {
@@ -52,6 +114,14 @@
         "fill": "--cui-audio-visualizer-bar-background"
       },
       "anatomy": 0,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-audio-visualizer-bar-background"
+      },
+      "anatomy": 1,
       "rendersText": false,
       "state": false
     }

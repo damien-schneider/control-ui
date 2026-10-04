@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "audio-visualizer-bar",
+  "type": "registry:component",
+  "title": "AudioVisualizer — Bar visualizer",
+  "description": "Bar visualizer rendering of the shared audio visualizer family.",
+  "dependencies": [],
+  "registryDependencies": [
+    "audio-visualizer",
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/audio-visualizer-bar.tsx",
+      "target": "@components/control-ui/audio-visualizer-bar.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/audio-visualizer.css",
+      "target": "@components/control-ui/styles/recipes/audio-visualizer.css",
+      "type": "registry:file"
+    }
+  ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/audio-visualizer.css\"": {}
+  },
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/audio-visualizer-bar.json"
+  }
+}

@@ -23,11 +23,15 @@
     "aspect-ratio": [
       "aspect-ratio"
     ],
+    "audio-device-select": [
+      "audio-device-select"
+    ],
     "audio-recorder": [
       "audio-recorder"
     ],
     "audio-visualizer": [
       "audio-visualizer",
+      "audio-visualizer-bar",
       "audio-visualizer-line"
     ],
     "audio-visualizer-line": [
@@ -924,6 +928,86 @@
         "aspect-ratio"
       ]
     },
+    "audio-device-select": {
+      "parts": {
+        "root": {
+          "family": "audio-device-select",
+          "registryItems": [
+            "audio-device-select"
+          ],
+          "states": []
+        },
+        "content": {
+          "registryItems": [
+            "audio-device-select"
+          ],
+          "states": []
+        },
+        "item": {
+          "registryItems": [
+            "audio-device-select"
+          ],
+          "states": []
+        },
+        "permission": {
+          "registryItems": [
+            "audio-device-select"
+          ],
+          "states": []
+        },
+        "preview": {
+          "registryItems": [
+            "audio-device-select"
+          ],
+          "states": []
+        },
+        "status": {
+          "family": "audio-device-select",
+          "registryItems": [
+            "audio-device-select"
+          ],
+          "states": []
+        },
+        "trigger": {
+          "registryItems": [
+            "audio-device-select"
+          ],
+          "states": [
+            {
+              "attribute": "data-loading",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-missing",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-permission",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "denied",
+                "granted",
+                "prompt"
+              ]
+            }
+          ]
+        },
+        "value": {
+          "registryItems": [
+            "audio-device-select"
+          ],
+          "states": []
+        }
+      },
+      "registryItems": [
+        "audio-device-select"
+      ]
+    },
     "audio-recorder": {
       "parts": {
         "root": {
@@ -1086,6 +1170,7 @@
           "family": "audio-visualizer",
           "registryItems": [
             "audio-visualizer",
+            "audio-visualizer-bar",
             "audio-visualizer-line"
           ],
           "states": [
@@ -1096,10 +1181,35 @@
               "values": []
             },
             {
+              "attribute": "data-align",
+              "source": "control-ui",
+              "valueKind": "open",
+              "values": []
+            },
+            {
+              "attribute": "data-idle",
+              "source": "control-ui",
+              "valueKind": "open",
+              "values": []
+            },
+            {
+              "attribute": "data-loading",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-mirrored",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
               "attribute": "data-variant",
               "source": "control-ui",
               "valueKind": "enum",
               "values": [
+                "bar",
                 "bars",
                 "line"
               ]
@@ -1109,9 +1219,17 @@
         "bar": {
           "family": "audio-visualizer",
           "registryItems": [
-            "audio-visualizer"
+            "audio-visualizer",
+            "audio-visualizer-bar"
           ],
-          "states": []
+          "states": [
+            {
+              "attribute": "data-index",
+              "source": "control-ui",
+              "valueKind": "open",
+              "values": []
+            }
+          ]
         },
         "bar-track": {
           "family": "audio-visualizer",
@@ -1131,6 +1249,7 @@
           "family": "audio-visualizer",
           "registryItems": [
             "audio-visualizer",
+            "audio-visualizer-bar",
             "audio-visualizer-line"
           ],
           "states": [
@@ -1145,6 +1264,7 @@
       },
       "registryItems": [
         "audio-visualizer",
+        "audio-visualizer-bar",
         "audio-visualizer-line"
       ]
     },
@@ -17526,6 +17646,14 @@
         "defaultValue": "1px"
       }
     ],
+    "audio-device-select": [
+      {
+        "name": "--cui-audio-device-select-status-foreground",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--muted-foreground)"
+      }
+    ],
     "audio-recorder": [
       {
         "name": "--cui-audio-recorder-foreground",
@@ -17559,6 +17687,18 @@
       }
     ],
     "audio-visualizer": [
+      {
+        "name": "--cui-audio-visualizer-bar-size",
+        "syntax": "<length>",
+        "initialValue": "4px",
+        "defaultValue": "calc(var(--spacing) * 1)"
+      },
+      {
+        "name": "--cui-audio-visualizer-bar-gap",
+        "syntax": "<length>",
+        "initialValue": "1px",
+        "defaultValue": "1px"
+      },
       {
         "name": "--cui-audio-visualizer-radius",
         "syntax": "<length-percentage>",

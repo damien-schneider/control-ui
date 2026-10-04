@@ -221,6 +221,17 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     ],
   },
   {
+    id: "audio-device-select",
+    knobs: [
+      {
+        name: "--cui-audio-device-select-status-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--muted-foreground)",
+        selector: ':where([data-control-family="audio-device-select"][data-slot="root"])',
+      },
+    ],
+  },
+  {
     id: "audio-recorder",
     knobs: [
       {
@@ -265,9 +276,21 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="audio-visualizer"][data-variant])',
       },
       {
+        name: "--cui-audio-visualizer-bar-gap",
+        syntax: "<length>",
+        defaultValue: "1px",
+        selector: ':where([data-control-family="audio-visualizer"][data-variant])',
+      },
+      {
         name: "--cui-audio-visualizer-bar-radius",
         syntax: "<length-percentage>",
         defaultValue: "var(--radius-control)",
+        selector: ':where([data-control-family="audio-visualizer"][data-variant])',
+      },
+      {
+        name: "--cui-audio-visualizer-bar-size",
+        syntax: "<length>",
+        defaultValue: "calc(var(--spacing) * 1)",
         selector: ':where([data-control-family="audio-visualizer"][data-variant])',
       },
       {

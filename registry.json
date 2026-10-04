@@ -211,6 +211,7 @@
         "damien-schneider/control-ui/alert-dialog",
         "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
+        "damien-schneider/control-ui/audio-device-select",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
         "damien-schneider/control-ui/autocomplete",
@@ -334,6 +335,7 @@
         "damien-schneider/control-ui/alert-dialog",
         "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
+        "damien-schneider/control-ui/audio-device-select",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
         "damien-schneider/control-ui/autocomplete",
@@ -464,6 +466,7 @@
         "damien-schneider/control-ui/alert-dialog",
         "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
+        "damien-schneider/control-ui/audio-device-select",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
         "damien-schneider/control-ui/autocomplete",
@@ -594,6 +597,7 @@
         "damien-schneider/control-ui/alert-dialog",
         "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
+        "damien-schneider/control-ui/audio-device-select",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
         "damien-schneider/control-ui/autocomplete",
@@ -724,6 +728,7 @@
         "damien-schneider/control-ui/alert-dialog",
         "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
+        "damien-schneider/control-ui/audio-device-select",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
         "damien-schneider/control-ui/autocomplete",
@@ -854,6 +859,7 @@
         "damien-schneider/control-ui/alert-dialog",
         "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
+        "damien-schneider/control-ui/audio-device-select",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
         "damien-schneider/control-ui/autocomplete",
@@ -984,6 +990,7 @@
         "damien-schneider/control-ui/alert-dialog",
         "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
+        "damien-schneider/control-ui/audio-device-select",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
         "damien-schneider/control-ui/autocomplete",
@@ -1114,6 +1121,7 @@
         "damien-schneider/control-ui/alert-dialog",
         "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
+        "damien-schneider/control-ui/audio-device-select",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
         "damien-schneider/control-ui/autocomplete",
@@ -1244,6 +1252,7 @@
         "damien-schneider/control-ui/alert-dialog",
         "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
+        "damien-schneider/control-ui/audio-device-select",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
         "damien-schneider/control-ui/autocomplete",
@@ -1374,6 +1383,7 @@
         "damien-schneider/control-ui/alert-dialog",
         "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
+        "damien-schneider/control-ui/audio-device-select",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
         "damien-schneider/control-ui/autocomplete",
@@ -1504,6 +1514,7 @@
         "damien-schneider/control-ui/alert-dialog",
         "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
+        "damien-schneider/control-ui/audio-device-select",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
         "damien-schneider/control-ui/autocomplete",
@@ -1672,6 +1683,41 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "audio-device-select",
+      "type": "registry:component",
+      "title": "AudioDeviceSelect",
+      "description": "Composable audio input selector with permission, loading, default-device, and disconnected states.",
+      "dependencies": [
+        "lucide-react@^1.47.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/button",
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/select"
+      ],
+      "files": [
+        {
+          "path": "apps/docs/src/registry/knob-contracts/audio-device-select-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/audio-device-select-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/audio-device-select.tsx",
+          "target": "@components/control-ui/audio-device-select.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/recipes/audio-device-select.css",
+          "target": "@components/control-ui/styles/recipes/audio-device-select.css",
+          "type": "registry:file"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/audio-device-select.css\"": {}
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "audio-recorder",
       "type": "registry:component",
       "title": "AudioRecorder",
@@ -1731,7 +1777,7 @@
       "name": "audio-visualizer",
       "type": "registry:component",
       "title": "AudioVisualizer",
-      "description": "Levels-driven realtime audio visualizer offered in two usage versions - bars and line - sharing one export and one props contract.",
+      "description": "Levels-driven audio visualizer with live waveform, line envelope, and frequency bar versions, including idle and loading states.",
       "dependencies": [],
       "registryDependencies": [
         "damien-schneider/control-ui/core"
@@ -1741,6 +1787,11 @@
           "path": "apps/docs/src/registry/knob-contracts/audio-visualizer-knobs.ts",
           "target": "@components/control-ui/knob-contracts/audio-visualizer-knobs.ts",
           "type": "registry:component"
+        },
+        {
+          "path": "apps/docs/src/registry/lib/audio-visualizer-levels.ts",
+          "target": "@components/control-ui/lib/audio-visualizer-levels.ts",
+          "type": "registry:lib"
         },
         {
           "path": "apps/docs/src/registry/sources/control-ui/audio-visualizer.tsx",
@@ -1759,10 +1810,37 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "audio-visualizer-bar",
+      "type": "registry:component",
+      "title": "AudioVisualizer — Bar visualizer",
+      "description": "Bar visualizer rendering of the shared audio visualizer family.",
+      "dependencies": [],
+      "registryDependencies": [
+        "damien-schneider/control-ui/audio-visualizer",
+        "damien-schneider/control-ui/core"
+      ],
+      "files": [
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/audio-visualizer-bar.tsx",
+          "target": "@components/control-ui/audio-visualizer-bar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/recipes/audio-visualizer.css",
+          "target": "@components/control-ui/styles/recipes/audio-visualizer.css",
+          "type": "registry:file"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/audio-visualizer.css\"": {}
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "audio-visualizer-line",
       "type": "registry:component",
-      "title": "AudioVisualizer — line",
-      "description": "Line rendering of the shared realtime audio visualizer contract.",
+      "title": "AudioVisualizer — Line",
+      "description": "Line rendering of the shared audio visualizer family.",
       "dependencies": [],
       "registryDependencies": [
         "damien-schneider/control-ui/audio-visualizer",
@@ -1773,8 +1851,16 @@
           "path": "apps/docs/src/registry/sources/control-ui/audio-visualizer-line.tsx",
           "target": "@components/control-ui/audio-visualizer-line.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/recipes/audio-visualizer.css",
+          "target": "@components/control-ui/styles/recipes/audio-visualizer.css",
+          "type": "registry:file"
         }
-      ]
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/audio-visualizer.css\"": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -6455,6 +6541,7 @@
         "damien-schneider/control-ui/alert-dialog",
         "damien-schneider/control-ui/app-shell",
         "damien-schneider/control-ui/aspect-ratio",
+        "damien-schneider/control-ui/audio-device-select",
         "damien-schneider/control-ui/audio-recorder",
         "damien-schneider/control-ui/audio-visualizer",
         "damien-schneider/control-ui/autocomplete",

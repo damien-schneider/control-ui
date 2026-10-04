@@ -1,30 +1,18 @@
 import type { CSSProperties } from "react";
 
 import type { AudioVisualizerProps } from "@/components/control-ui/audio-visualizer";
+import { audioVisualizerHistory } from "@/components/control-ui/lib/audio-visualizer-levels";
 import { cn } from "@/components/control-ui/lib/cn";
-
-// Line reading. audio-visualizer.tsx exports same `AudioVisualizer` on same props, so swapping is import-path change.
-// Drawn as mirrored SVG envelope — no canvas, no rAF.
 
 const LINE_VIEWBOX_WIDTH = 100;
 const LINE_VIEWBOX_HEIGHT = 32;
 const LINE_CENTER = LINE_VIEWBOX_HEIGHT / 2;
 const LINE_PADDING = 3;
-const MIN_AMPLITUDE = 1.25;
+const MIN_AMPLITUDE = 0;
 const CURVE_TENSION = 0.18;
-const DEFAULT_POINTS = 28;
-const MAX_POINTS = 128;
 
 type Point = { x: number; y: number };
 type AudioVisualizerPathStyle = CSSProperties & { d: string };
-
-// local so either visualizer installs as complete, independent choice
-function resolveAudioVisualizerLevels(levels: readonly number[], points?: number) {
-  const requestedPoints = Number.isFinite(points) ? Math.floor(points ?? DEFAULT_POINTS) : DEFAULT_POINTS;
-  const pointCount = Math.min(MAX_POINTS, Math.max(1, requestedPoints));
-  const visible = levels.slice(-pointCount).map((level) => (Number.isFinite(level) ? Math.min(1, Math.max(0, level)) : 0));
-  return visible.length === pointCount ? visible : [...new Array<number>(pointCount - visible.length).fill(0), ...visible];
-}
 
 function smoothPath(points: readonly Point[]) {
   const [first, ...rest] = points;
@@ -41,13 +29,14 @@ function smoothPath(points: readonly Point[]) {
 }
 
 function envelopePath(levels: readonly number[]) {
-  const step = LINE_VIEWBOX_WIDTH / Math.max(1, levels.length - 1);
+  const envelope = levels.length === 1 ? [levels[0] ?? 0, levels[0] ?? 0] : levels;
+  const step = LINE_VIEWBOX_WIDTH / Math.max(1, envelope.length - 1);
   const maxAmplitude = LINE_CENTER - LINE_PADDING;
-  const upper = levels.map((level, index) => ({
+  const upper = envelope.map((level, index) => ({
     x: index * step,
     y: LINE_CENTER - MIN_AMPLITUDE - Math.sqrt(level) * (maxAmplitude - MIN_AMPLITUDE),
   }));
-  const lower = levels.map((level, index) => ({
+  const lower = envelope.map((level, index) => ({
     x: index * step,
     y: LINE_CENTER + MIN_AMPLITUDE + Math.sqrt(level) * (maxAmplitude - MIN_AMPLITUDE),
   }));
@@ -57,9 +46,10 @@ function envelopePath(levels: readonly number[]) {
 }
 
 export function AudioVisualizer({ levels, points, active = true, className, style, ...props }: AudioVisualizerProps) {
-  const visible = resolveAudioVisualizerLevels(levels, points);
+  const visible = audioVisualizerHistory(levels, points, active).map(({ level }) => level);
   const path = envelopePath(visible);
   const pathStyle: AudioVisualizerPathStyle = { d: `path('${path}')` };
+  const labelled = Boolean(props["aria-label"] || props["aria-labelledby"]);
 
   return (
     <div
@@ -68,7 +58,8 @@ export function AudioVisualizer({ levels, points, active = true, className, styl
       data-slot="root"
       data-variant="line"
       data-active={active ? "true" : undefined}
-      aria-hidden="true"
+      role={labelled ? "img" : undefined}
+      aria-hidden={labelled ? undefined : true}
       className={cn("shrink-0 overflow-hidden", className)}
       style={style}
       {...props}

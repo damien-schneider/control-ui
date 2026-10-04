@@ -4,9 +4,22 @@
   "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
   "registryItems": [
     "audio-visualizer",
+    "audio-visualizer-bar",
     "audio-visualizer-line"
   ],
   "knobs": [
+    {
+      "name": "--cui-audio-visualizer-bar-size",
+      "syntax": "<length>",
+      "initialValue": "4px",
+      "defaultValue": "calc(var(--spacing) * 1)"
+    },
+    {
+      "name": "--cui-audio-visualizer-bar-gap",
+      "syntax": "<length>",
+      "initialValue": "1px",
+      "defaultValue": "1px"
+    },
     {
       "name": "--cui-audio-visualizer-radius",
       "syntax": "<length-percentage>",
@@ -50,6 +63,7 @@
         "family": "audio-visualizer",
         "registryItems": [
           "audio-visualizer",
+          "audio-visualizer-bar",
           "audio-visualizer-line"
         ],
         "states": [
@@ -60,10 +74,35 @@
             "values": []
           },
           {
+            "attribute": "data-align",
+            "source": "control-ui",
+            "valueKind": "open",
+            "values": []
+          },
+          {
+            "attribute": "data-idle",
+            "source": "control-ui",
+            "valueKind": "open",
+            "values": []
+          },
+          {
+            "attribute": "data-loading",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-mirrored",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-variant",
             "source": "control-ui",
             "valueKind": "enum",
             "values": [
+              "bar",
               "bars",
               "line"
             ]
@@ -73,9 +112,17 @@
       "bar": {
         "family": "audio-visualizer",
         "registryItems": [
-          "audio-visualizer"
+          "audio-visualizer",
+          "audio-visualizer-bar"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-index",
+            "source": "control-ui",
+            "valueKind": "open",
+            "values": []
+          }
+        ]
       },
       "bar-track": {
         "family": "audio-visualizer",
@@ -95,6 +142,7 @@
         "family": "audio-visualizer",
         "registryItems": [
           "audio-visualizer",
+          "audio-visualizer-bar",
           "audio-visualizer-line"
         ],
         "states": [

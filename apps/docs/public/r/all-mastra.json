@@ -13,6 +13,7 @@
     "http://127.0.0.1:3000/r/alert-dialog.json",
     "http://127.0.0.1:3000/r/app-shell.json",
     "http://127.0.0.1:3000/r/aspect-ratio.json",
+    "http://127.0.0.1:3000/r/audio-device-select.json",
     "http://127.0.0.1:3000/r/audio-recorder.json",
     "http://127.0.0.1:3000/r/audio-visualizer.json",
     "http://127.0.0.1:3000/r/autocomplete.json",

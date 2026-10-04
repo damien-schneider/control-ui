@@ -245,6 +245,11 @@
       "syntax": "<length>"
     },
     {
+      "name": "--cui-audio-device-select-status-foreground",
+      "description": "Control UI audio-device-select knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
       "name": "--cui-audio-recorder-active-foreground",
       "description": "Control UI audio-recorder knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
@@ -275,9 +280,19 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-audio-visualizer-bar-gap",
+      "description": "Control UI audio-visualizer knob — registered syntax <length>, fallback 1px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
       "name": "--cui-audio-visualizer-bar-radius",
       "description": "Control UI audio-visualizer knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-audio-visualizer-bar-size",
+      "description": "Control UI audio-visualizer knob — registered syntax <length>, fallback 4px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
     },
     {
       "name": "--cui-audio-visualizer-baseline-stroke",

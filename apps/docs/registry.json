@@ -226,6 +226,7 @@
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
+        "http://127.0.0.1:3000/r/audio-device-select.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
         "http://127.0.0.1:3000/r/autocomplete.json",
@@ -352,6 +353,7 @@
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
+        "http://127.0.0.1:3000/r/audio-device-select.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
         "http://127.0.0.1:3000/r/autocomplete.json",
@@ -485,6 +487,7 @@
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
+        "http://127.0.0.1:3000/r/audio-device-select.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
         "http://127.0.0.1:3000/r/autocomplete.json",
@@ -618,6 +621,7 @@
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
+        "http://127.0.0.1:3000/r/audio-device-select.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
         "http://127.0.0.1:3000/r/autocomplete.json",
@@ -751,6 +755,7 @@
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
+        "http://127.0.0.1:3000/r/audio-device-select.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
         "http://127.0.0.1:3000/r/autocomplete.json",
@@ -884,6 +889,7 @@
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
+        "http://127.0.0.1:3000/r/audio-device-select.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
         "http://127.0.0.1:3000/r/autocomplete.json",
@@ -1017,6 +1023,7 @@
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
+        "http://127.0.0.1:3000/r/audio-device-select.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
         "http://127.0.0.1:3000/r/autocomplete.json",
@@ -1150,6 +1157,7 @@
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
+        "http://127.0.0.1:3000/r/audio-device-select.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
         "http://127.0.0.1:3000/r/autocomplete.json",
@@ -1283,6 +1291,7 @@
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
+        "http://127.0.0.1:3000/r/audio-device-select.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
         "http://127.0.0.1:3000/r/autocomplete.json",
@@ -1416,6 +1425,7 @@
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
+        "http://127.0.0.1:3000/r/audio-device-select.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
         "http://127.0.0.1:3000/r/autocomplete.json",
@@ -1549,6 +1559,7 @@
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
+        "http://127.0.0.1:3000/r/audio-device-select.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
         "http://127.0.0.1:3000/r/autocomplete.json",
@@ -1726,6 +1737,44 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "audio-device-select",
+      "type": "registry:component",
+      "title": "AudioDeviceSelect",
+      "description": "Composable audio input selector with permission, loading, default-device, and disconnected states.",
+      "dependencies": [
+        "lucide-react@^1.47.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/knob-contracts/audio-device-select-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/audio-device-select-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/audio-device-select.tsx",
+          "target": "@components/control-ui/audio-device-select.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/audio-device-select.css",
+          "target": "@components/control-ui/styles/recipes/audio-device-select.css",
+          "type": "registry:file"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/audio-device-select.css\"": {}
+      },
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/audio-device-select.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "audio-recorder",
       "type": "registry:component",
       "title": "AudioRecorder",
@@ -1788,7 +1837,7 @@
       "name": "audio-visualizer",
       "type": "registry:component",
       "title": "AudioVisualizer",
-      "description": "Levels-driven realtime audio visualizer offered in two usage versions - bars and line - sharing one export and one props contract.",
+      "description": "Levels-driven audio visualizer with live waveform, line envelope, and frequency bar versions, including idle and loading states.",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -1798,6 +1847,11 @@
           "path": "src/registry/knob-contracts/audio-visualizer-knobs.ts",
           "target": "@components/control-ui/knob-contracts/audio-visualizer-knobs.ts",
           "type": "registry:component"
+        },
+        {
+          "path": "src/registry/lib/audio-visualizer-levels.ts",
+          "target": "@components/control-ui/lib/audio-visualizer-levels.ts",
+          "type": "registry:lib"
         },
         {
           "path": "src/registry/sources/control-ui/audio-visualizer.tsx",
@@ -1819,10 +1873,40 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "audio-visualizer-bar",
+      "type": "registry:component",
+      "title": "AudioVisualizer — Bar visualizer",
+      "description": "Bar visualizer rendering of the shared audio visualizer family.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/audio-visualizer.json",
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/audio-visualizer-bar.tsx",
+          "target": "@components/control-ui/audio-visualizer-bar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/audio-visualizer.css",
+          "target": "@components/control-ui/styles/recipes/audio-visualizer.css",
+          "type": "registry:file"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/audio-visualizer.css\"": {}
+      },
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/audio-visualizer-bar.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "audio-visualizer-line",
       "type": "registry:component",
-      "title": "AudioVisualizer — line",
-      "description": "Line rendering of the shared realtime audio visualizer contract.",
+      "title": "AudioVisualizer — Line",
+      "description": "Line rendering of the shared audio visualizer family.",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/audio-visualizer.json",
@@ -1833,8 +1917,16 @@
           "path": "src/registry/sources/control-ui/audio-visualizer-line.tsx",
           "target": "@components/control-ui/audio-visualizer-line.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/audio-visualizer.css",
+          "target": "@components/control-ui/styles/recipes/audio-visualizer.css",
+          "type": "registry:file"
         }
       ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/audio-visualizer.css\"": {}
+      },
       "meta": {
         "sourceManifestPath": "registry/control-ui/audio-visualizer-line.json"
       }
@@ -6860,6 +6952,7 @@
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/app-shell.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
+        "http://127.0.0.1:3000/r/audio-device-select.json",
         "http://127.0.0.1:3000/r/audio-recorder.json",
         "http://127.0.0.1:3000/r/audio-visualizer.json",
         "http://127.0.0.1:3000/r/autocomplete.json",

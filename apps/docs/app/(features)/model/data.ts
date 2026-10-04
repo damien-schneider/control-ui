@@ -172,6 +172,7 @@ function getComponentVersions(
       label: version.label,
       registryKind: version.registryKind,
       example: sourceFrom(version.paths.example),
+      usage: "usage" in version.paths ? sourceRequiredRecord(integrationIds, version.paths.usage) : undefined,
       source: installed.source,
       supportFiles: installed.supportFiles,
     };

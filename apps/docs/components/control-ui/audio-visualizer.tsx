@@ -1,34 +1,55 @@
+"use client";
+
 import type { ComponentProps, CSSProperties } from "react";
+import { useLayoutEffect, useRef } from "react";
 import type { AudioVisualizerKnobStyle } from "@/components/control-ui/knob-contracts/audio-visualizer-knobs";
+import { audioVisualizerHistory } from "@/components/control-ui/lib/audio-visualizer-levels";
 import { cn } from "@/components/control-ui/lib/cn";
 
 export type AudioVisualizerProps = Omit<ComponentProps<"div">, "children" | "style"> & {
-  levels: readonly number[];
+  levels: ArrayLike<number>;
   active?: boolean;
   points?: number;
   style?: CSSProperties & AudioVisualizerKnobStyle;
 };
 
-// Bars reading. audio-visualizer-line.tsx exports same `AudioVisualizer` on same props, so swapping is import-path change.
-// Runtime-agnostic — feed it any rolling 0..1 window.
-
 type AudioVisualizerLevelStyle = CSSProperties & Record<"--_audio-visualizer-level-opacity", string>;
 
-const DEFAULT_POINTS = 28;
-const MAX_POINTS = 128;
-const MIN_VISIBLE_LEVEL = 0.12;
+const MIN_VISIBLE_LEVEL = 0.04;
 
-// local so either visualizer installs as complete, independent choice
-function resolveAudioVisualizerLevels(levels: readonly number[], points?: number) {
-  const requestedPoints = Number.isFinite(points) ? Math.floor(points ?? DEFAULT_POINTS) : DEFAULT_POINTS;
-  const pointCount = Math.min(MAX_POINTS, Math.max(1, requestedPoints));
-  const visible = levels.slice(-pointCount).map((level) => (Number.isFinite(level) ? Math.min(1, Math.max(0, level)) : 0));
-  const padded = visible.length === pointCount ? visible : [...new Array<number>(pointCount - visible.length).fill(0), ...visible];
-  return padded.map((level, position) => ({ key: `bar-${position}`, level }));
+type HistorySample = { levels: number[]; time: number; active: boolean };
+
+function historyAdvanced(previous: HistorySample | null, next: HistorySample) {
+  if (!previous?.active || !next.active || previous.levels.length !== next.levels.length || next.levels.length < 2) return false;
+  const moved = previous.levels.slice(1).every((level, index) => level === next.levels[index]);
+  const changed = previous.levels.some((level, index) => level !== next.levels[index]);
+  return moved && changed;
 }
 
 export function AudioVisualizer({ levels, points, active = true, className, style, ...props }: AudioVisualizerProps) {
-  const visible = resolveAudioVisualizerLevels(levels, points);
+  const visible = audioVisualizerHistory(levels, points, active);
+  const labelled = Boolean(props["aria-label"] || props["aria-labelledby"]);
+  const trackRef = useRef<HTMLSpanElement | null>(null);
+  const firstBarRef = useRef<HTMLSpanElement | null>(null);
+  const previousSample = useRef<HistorySample | null>(null);
+
+  useLayoutEffect(() => {
+    const next = { levels: visible.map(({ level }) => level), time: performance.now(), active };
+    const previous = previousSample.current;
+    previousSample.current = next;
+    const track = trackRef.current;
+    const firstBar = firstBarRef.current;
+    if (!track || !firstBar || !historyAdvanced(previous, next) || document.hidden) return;
+    const duration = next.time - (previous?.time ?? next.time);
+    if (duration < 16 || duration > 250 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const direction = getComputedStyle(track).direction === "rtl" ? -1 : 1;
+    const pitch = (track.clientWidth - firstBar.clientWidth) / (visible.length - 1);
+    const animation = track.animate([{ transform: `translateX(${pitch * direction}px)` }, { transform: "translateX(0)" }], {
+      duration,
+      easing: "linear",
+    });
+    return () => animation.cancel();
+  }, [visible, active]);
 
   return (
     <div
@@ -37,17 +58,19 @@ export function AudioVisualizer({ levels, points, active = true, className, styl
       data-slot="root"
       data-variant="bars"
       data-active={active ? "true" : undefined}
-      aria-hidden="true"
-      className={cn("shrink-0 overflow-hidden", className)}
+      role={labelled ? "img" : undefined}
+      aria-hidden={labelled ? undefined : true}
+      className={cn("shrink-0 overflow-hidden mask-x-from-90%", className)}
       style={style}
       {...props}
     >
       <span
+        ref={trackRef}
         data-control-ui="audio-visualizer"
         data-control-family="audio-visualizer"
         data-slot="track"
         data-active={active ? "true" : undefined}
-        className="flex size-full items-stretch justify-end mask-l-from-90% rtl:mask-l-from-100% rtl:mask-r-from-90%"
+        className="flex size-full items-stretch justify-between"
       >
         {visible.map(({ key, level }) => {
           const perceptualLevel = Math.sqrt(level);
@@ -60,10 +83,11 @@ export function AudioVisualizer({ levels, points, active = true, className, styl
           return (
             <span
               key={key}
+              ref={key === "bar-0" ? firstBarRef : undefined}
               data-control-ui="audio-visualizer"
               data-control-family="audio-visualizer"
               data-slot="bar-track"
-              className="flex shrink-0 items-center"
+              className="flex items-center"
             >
               <span
                 data-control-ui="audio-visualizer"

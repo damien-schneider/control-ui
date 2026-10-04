@@ -3,6 +3,7 @@ import path from "node:path";
 
 type Manifest = {
   name: string;
+  type?: string;
   registryDependencies?: string[];
   dependencies?: string[];
   files?: { path: string; target: string }[];
@@ -30,7 +31,7 @@ function readManifests() {
   return manifests;
 }
 
-function itemsInInstallOrder(root: string) {
+function itemsInInstallOrder(roots: readonly string[]) {
   const manifests = readManifests();
   const visited = new Set<string>();
   const items: Manifest[] = [];
@@ -42,7 +43,7 @@ function itemsInInstallOrder(root: string) {
     for (const dependency of manifest.registryDependencies ?? []) visit(dependency);
     items.push(manifest);
   };
-  visit(root);
+  for (const root of roots) visit(root);
   return items;
 }
 
@@ -86,7 +87,8 @@ function collectStyles(items: Manifest[]) {
 }
 
 export function closure() {
-  const items = itemsInInstallOrder("all");
+  const componentItems = [...readManifests().values()].filter((item) => item.type === "registry:component").map((item) => item.name);
+  const items = itemsInInstallOrder(["all", ...componentItems]);
   return { files: collectFiles(items), dependencies: collectDependencies(items), styles: collectStyles(items) };
 }
 

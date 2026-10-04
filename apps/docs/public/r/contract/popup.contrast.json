@@ -387,6 +387,49 @@
         "attributes": {
           "data-align": "start",
           "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "presentation",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
           "data-control-ui": "popover",
           "data-open": "",
           "data-padding": "none",
@@ -396,6 +439,200 @@
           "data-slot": "content",
           "data-surface": "floating",
           "role": "dialog",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "audio-device-select",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "sm",
+          "data-slot": "permission",
+          "data-tone": "neutral",
+          "data-variant": "surface",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "presentation",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "surface",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "presentation",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "field",
+          "data-control-ui": "audio-device-select",
+          "data-field-kind": "select",
+          "data-permission": "granted",
+          "data-size": "sm",
+          "data-slot": "trigger",
+          "role": "combobox",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "presentation",
           "tabindex": "-1"
         }
       }
@@ -778,48 +1015,6 @@
           "data-slot": "content",
           "data-surface": "floating",
           "role": "dialog",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "start",
-          "data-control-family": "popup",
-          "data-control-ui": "combobox",
-          "data-open": "",
-          "data-popup-kind": "combobox",
-          "data-popup-part": "list-surface",
-          "data-side": "bottom",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "presentation",
           "tabindex": "-1"
         }
       }
@@ -2270,6 +2465,358 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "presentation",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-selected": "true",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-highlighted": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "item",
+          "data-selected": "",
+          "data-slot": "item",
+          "role": "option",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "presentation",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-selected": "true",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-highlighted": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "item",
+          "data-selected": "",
+          "data-slot": "item",
+          "role": "option",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "audio-device-select",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "sm",
+          "data-slot": "permission",
+          "data-tone": "neutral",
+          "data-variant": "surface",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "presentation",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-selected": "true",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-highlighted": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "item",
+          "data-selected": "",
+          "data-slot": "item",
+          "role": "option",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "surface",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "presentation",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-selected": "true",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-highlighted": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "item",
+          "data-selected": "",
+          "data-slot": "item",
+          "role": "option",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "field",
+          "data-control-ui": "audio-device-select",
+          "data-field-kind": "select",
+          "data-permission": "granted",
+          "data-size": "sm",
+          "data-slot": "trigger",
+          "role": "combobox",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "presentation",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "true",
+          "aria-selected": "true",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-disabled": "",
+          "data-highlighted": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "item",
+          "data-selected": "",
+          "data-slot": "item",
+          "role": "option",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -2317,61 +2864,6 @@
           "data-slot": "item",
           "role": "option",
           "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "start",
-          "data-control-family": "popup",
-          "data-control-ui": "combobox",
-          "data-open": "",
-          "data-popup-kind": "combobox",
-          "data-popup-part": "list-surface",
-          "data-side": "bottom",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "presentation",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "aria-selected": "true",
-          "data-control-family": "popup",
-          "data-control-ui": "combobox",
-          "data-highlighted": "",
-          "data-popup-kind": "combobox",
-          "data-popup-part": "item",
-          "data-selected": "",
-          "data-slot": "item",
-          "role": "option"
         }
       }
     ],
@@ -3577,6 +4069,396 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-activation-direction": "none",
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-orientation": "horizontal",
+          "data-size": "sm",
+          "data-slot": "list",
+          "data-variant": "browser",
+          "role": "tablist"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "presentation",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-selected": "false",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-popup-kind": "select",
+          "data-popup-part": "item",
+          "data-slot": "item",
+          "role": "option",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "presentation",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-selected": "false",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-popup-kind": "select",
+          "data-popup-part": "item",
+          "data-slot": "item",
+          "role": "option",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-activation-direction": "none",
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-orientation": "horizontal",
+          "data-size": "sm",
+          "data-slot": "list",
+          "data-variant": "browser",
+          "role": "tablist"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "presentation",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "true",
+          "aria-selected": "false",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-disabled": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "item",
+          "data-slot": "item",
+          "role": "option",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "presentation",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "true",
+          "aria-selected": "false",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-disabled": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "item",
+          "data-slot": "item",
+          "role": "option",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "presentation",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-selected": "false",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-popup-kind": "select",
+          "data-popup-part": "item",
+          "data-slot": "item",
+          "role": "option",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "presentation",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-selected": "false",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-popup-kind": "select",
+          "data-popup-part": "item",
+          "data-slot": "item",
+          "role": "option",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
           "data-slot": "wrapper"
         }
       },
@@ -4108,59 +4990,6 @@
           "data-slot": "content",
           "data-surface": "floating",
           "role": "dialog",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "aria-selected": "false",
-          "data-control-family": "popup",
-          "data-control-ui": "combobox",
-          "data-popup-kind": "combobox",
-          "data-popup-part": "item",
-          "data-slot": "item",
-          "role": "option"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "start",
-          "data-control-family": "popup",
-          "data-control-ui": "combobox",
-          "data-open": "",
-          "data-popup-kind": "combobox",
-          "data-popup-part": "list-surface",
-          "data-side": "bottom",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "presentation",
           "tabindex": "-1"
         }
       },
@@ -7657,7 +8486,7 @@
         "text": "--cui-popup-foreground"
       },
       "anatomy": 27,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -7675,7 +8504,7 @@
         "text": "--cui-popup-foreground"
       },
       "anatomy": 29,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -7684,7 +8513,7 @@
         "text": "--cui-popup-foreground"
       },
       "anatomy": 30,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7702,7 +8531,7 @@
         "text": "--cui-popup-foreground"
       },
       "anatomy": 32,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7824,8 +8653,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-popup-item-highlight-background",
-        "text": "--cui-popup-item-highlight-foreground"
+        "fill": "--cui-popup-background",
+        "text": "--cui-popup-foreground"
       },
       "anatomy": 46,
       "rendersText": true,
@@ -7833,8 +8662,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-popup-item-highlight-background",
-        "text": "--cui-popup-item-highlight-foreground"
+        "fill": "--cui-popup-background",
+        "text": "--cui-popup-foreground"
       },
       "anatomy": 47,
       "rendersText": true,
@@ -7842,8 +8671,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-popup-item-highlight-background",
-        "text": "--cui-popup-item-highlight-foreground"
+        "fill": "--cui-popup-background",
+        "text": "--cui-popup-foreground"
       },
       "anatomy": 48,
       "rendersText": true,
@@ -7887,17 +8716,80 @@
     },
     {
       "knobs": {
-        "fill": "--cui-popup-item-highlight-background"
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
       },
       "anatomy": 53,
       "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
+      },
+      "anatomy": 54,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
+      },
+      "anatomy": 55,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
+      },
+      "anatomy": 56,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
+      },
+      "anatomy": 57,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
+      },
+      "anatomy": 58,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
+      },
+      "anatomy": 59,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-popup-item-highlight-background"
+      },
+      "anatomy": 60,
+      "rendersText": true,
       "state": true
     },
     {
       "knobs": {
         "fill": "--cui-popup-item-highlight-background"
       },
-      "anatomy": 54,
+      "anatomy": 61,
       "rendersText": true,
       "state": true
     },
@@ -7905,96 +8797,40 @@
       "knobs": {
         "fill": "--cui-popup-separator-color"
       },
-      "anatomy": 55,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-popup-separator-color"
-      },
-      "anatomy": 56,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-popup-separator-color"
-      },
-      "anatomy": 57,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-popup-separator-color"
-      },
-      "anatomy": 58,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-popup-separator-color"
-      },
-      "anatomy": 59,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-popup-description-foreground"
-      },
-      "anatomy": 60,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-popup-description-foreground"
-      },
-      "anatomy": 61,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-popup-description-foreground"
-      },
       "anatomy": 62,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
       "knobs": {
-        "text": "--cui-popup-description-foreground"
+        "fill": "--cui-popup-separator-color"
       },
       "anatomy": 63,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
       "knobs": {
-        "text": "--cui-popup-description-foreground"
+        "fill": "--cui-popup-separator-color"
       },
       "anatomy": 64,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
       "knobs": {
-        "text": "--cui-popup-description-foreground"
+        "fill": "--cui-popup-separator-color"
       },
       "anatomy": 65,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
       "knobs": {
-        "text": "--cui-popup-description-foreground"
+        "fill": "--cui-popup-separator-color"
       },
       "anatomy": 66,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -8007,7 +8843,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-item-foreground"
+        "text": "--cui-popup-description-foreground"
       },
       "anatomy": 68,
       "rendersText": true,
@@ -8015,7 +8851,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-item-foreground"
+        "text": "--cui-popup-description-foreground"
       },
       "anatomy": 69,
       "rendersText": true,
@@ -8023,7 +8859,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-item-foreground"
+        "text": "--cui-popup-description-foreground"
       },
       "anatomy": 70,
       "rendersText": true,
@@ -8031,7 +8867,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-item-foreground"
+        "text": "--cui-popup-description-foreground"
       },
       "anatomy": 71,
       "rendersText": true,
@@ -8039,7 +8875,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-item-foreground"
+        "text": "--cui-popup-description-foreground"
       },
       "anatomy": 72,
       "rendersText": true,
@@ -8047,7 +8883,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-item-foreground"
+        "text": "--cui-popup-description-foreground"
       },
       "anatomy": 73,
       "rendersText": true,
@@ -8055,7 +8891,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-item-foreground"
+        "text": "--cui-popup-description-foreground"
       },
       "anatomy": 74,
       "rendersText": true,
@@ -8297,14 +9133,6 @@
       "knobs": {
         "text": "--cui-popup-item-foreground"
       },
-      "anatomy": 54,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-popup-item-foreground"
-      },
       "anatomy": 104,
       "rendersText": true,
       "state": false
@@ -8401,6 +9229,14 @@
       "knobs": {
         "text": "--cui-popup-item-foreground"
       },
+      "anatomy": 61,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-item-foreground"
+      },
       "anatomy": 116,
       "rendersText": true,
       "state": false
@@ -8423,7 +9259,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-shortcut-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 119,
       "rendersText": true,
@@ -8431,7 +9267,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-shortcut-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 120,
       "rendersText": true,
@@ -8439,7 +9275,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-shortcut-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 121,
       "rendersText": true,
@@ -8447,7 +9283,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-shortcut-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 122,
       "rendersText": true,
@@ -8455,7 +9291,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-title-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 123,
       "rendersText": true,
@@ -8463,7 +9299,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-title-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 124,
       "rendersText": true,
@@ -8471,7 +9307,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-title-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 125,
       "rendersText": true,
@@ -8479,7 +9315,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-title-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 126,
       "rendersText": true,
@@ -8487,7 +9323,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-title-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 127,
       "rendersText": true,
@@ -8495,7 +9331,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-title-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 128,
       "rendersText": true,
@@ -8503,7 +9339,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-title-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 129,
       "rendersText": true,
@@ -8511,9 +9347,105 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-title-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 130,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-shortcut-foreground"
+      },
+      "anatomy": 131,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-shortcut-foreground"
+      },
+      "anatomy": 132,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-shortcut-foreground"
+      },
+      "anatomy": 133,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-shortcut-foreground"
+      },
+      "anatomy": 134,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 135,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 136,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 137,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 138,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 139,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 140,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 141,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 142,
       "rendersText": true,
       "state": false
     }
