@@ -130,6 +130,25 @@ test("drag collapse restores the committed width and drag expand tracks the poin
   await expect(resizeHandle).toHaveAttribute("aria-valuenow", "300");
 });
 
+test("drag width is measured from the sidebar's own edge when it sits beside another column", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto("/primitives/code-diff");
+  await page.addStyleTag({
+    content:
+      '[data-control-ui="sidebar"][data-slot="root"].peer { margin-inline-start: 80px; } [data-control-ui="sidebar"][data-slot="container"] { left: 80px !important; }',
+  });
+
+  const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
+  const wrapper = page.locator('[data-control-ui="sidebar"][data-slot="wrapper"]');
+  await waitForSidebarHydration(resizeHandle);
+  await resizeHandle.hover();
+  await page.mouse.down();
+  await page.mouse.move(380, 450);
+  await page.mouse.up();
+
+  await expect(wrapper).toHaveCSS("--sidebar-width", "300px");
+});
+
 test("switching to the mobile sidebar aborts an active resize gesture", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto("/primitives/code-diff");

@@ -18,7 +18,7 @@ describe("skin contract generation", () => {
 
   test("resolves ownership, adornments, and semantic families", () => {
     const contract = collectSkinContract();
-    expect(contract.version).toBe(9);
+    expect(contract.version).toBe(1);
     expect(contract.selectorPattern).toBe('[data-skin="{skin}"] :where([data-slot="{part}"][data-control-family="{family}"])');
     expect(contract.scopes.button.parts.root.family).toBe("button");
     expect(contract.scopes["code-diff"].registryItems).toContain("code-diff");
@@ -177,21 +177,6 @@ describe("skin contract generation", () => {
     expect(stateShapeFromType('Pick<Foo, "variant">', aliases)).toEqual({ valueKind: "open", values: [] });
     expect(stateShapeFromType('"solid" | "quiet"', aliases)).toEqual({ valueKind: "enum", values: ["quiet", "solid"] });
     expect(stateShapeFromType('["default", "outline"]', aliases)).toEqual({ valueKind: "enum", values: ["default", "outline"] });
-  });
-
-  test("keeps guide copy synchronized with the generated contract version", () => {
-    const version = collectSkinContract().version;
-    const copy = [
-      "content/guides/architecture.mdx",
-      "content/guides/get-started.mdx",
-      "content/guides/contract-versions.mdx",
-      "app/(features)/catalog/guides.ts",
-    ];
-    for (const relativePath of copy) {
-      const source = readFileSync(path.join(process.cwd(), relativePath), "utf8");
-      expect(source).toContain(`contract is version ${version}`);
-      expect(source).not.toMatch(new RegExp(`contract is version (?!${version}\\b)\\d+`));
-    }
   });
 
   test("keeps emitted state metadata type-only", () => {

@@ -462,9 +462,16 @@
   --radius-lg: var(--radius-lg);
   --radius-xl: var(--radius-xl);
   --radius-2xl: var(--radius-2xl);
+  --radius-control: var(--radius-control);
   --radius-field: var(--radius-field);
   --radius-panel: var(--radius-panel);
   --radius-scene: var(--radius-scene);
+
+  --spacing-control: var(--control-h);
+  --spacing-control-xs: var(--control-h-xs);
+  --spacing-control-sm: var(--control-h-sm);
+  --spacing-control-md: var(--control-h-md);
+  --spacing-control-lg: var(--control-h-lg);
 
   --text-micro: var(--text-micro);
   --text-caption: var(--text-caption);
@@ -594,6 +601,31 @@
   --default-transition-timing-function: var(--ease-standard);
 }
 
+@utility text-display {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
+@utility text-heading-1 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
+@utility text-heading-2 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
+@utility text-heading-3 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
+@utility text-heading-4 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
 @layer base {
   *,
   ::after,
@@ -636,6 +668,14 @@
     font-synthesis: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    background-color: var(--background);
+  }
+
+  :root:has([data-control-family="sidebar"][data-slot="wrapper"] [data-control-family="sidebar"][data-variant="inset"][data-state]) {
+    background-color: var(--sidebar);
   }
 
   :where(

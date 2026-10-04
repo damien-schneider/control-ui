@@ -33,13 +33,39 @@
   --text-display--letter-spacing: -0.02em;
 
   /* Font ROLES: body+display default to --font-sans; brand re-values ONE token for headings(font-display)/body(font-body)
-     own face. Headings apply `font-display` utility on element (font-family isn't a paired --text-* prop). */
+     own face. */
   --font-body: var(--font-sans);
   --font-display: var(--font-sans);
 }
 
 /*
+ * Heading rungs also carry the display face and balanced wrapping (Tailwind merges this into the same `text-heading-N` class),
+ * so a heading is ONE class: `text-heading-2`, never `text-heading-2 font-display text-balance font-semibold`.
+ */
+@utility text-display {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+@utility text-heading-1 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+@utility text-heading-2 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+@utility text-heading-3 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+@utility text-heading-4 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
+/*
  * History: fixed 3 competing type systems (Tailwind defaults + named rungs + raw text-[Npx]) into one rung/role; 14px = body.
- * Usage: apply utility directly to element (no <Text> component), e.g. text-heading-1 on <h1>, text-body on <p>.
+ * Usage: apply the rung directly to the semantic element (no <Text> component), e.g. text-heading-1 on <h1>, text-body on <p>.
+ * Heading LEVEL is the document outline; the RUNG is the look. They are decoupled on purpose: an <h3> may wear text-heading-2.
  * Control chrome text is sized by its recipe (`--cui-button-font-size`, `--cui-field-font-size`), not by these utilities.
  */

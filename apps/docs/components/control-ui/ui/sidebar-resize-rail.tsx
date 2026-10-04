@@ -59,7 +59,8 @@ export function SidebarResizeRail({ className, ref, onPointerDown, onClick, onKe
     const pointerId = event.pointerId;
     const startX = event.clientX;
     const anchoredLeft = anchoredToLeftEdge(handle);
-    const wrapperBounds = wrapper.getBoundingClientRect();
+    const sidebarRoot = handle.closest('[data-control-family="sidebar"][data-slot="root"]') ?? wrapper;
+    const sidebarBounds = sidebarRoot.getBoundingClientRect();
     const initialWidth = measure.getBoundingClientRect().width;
     const previousWidth = wrapper.style.getPropertyValue("--sidebar-width");
     const previousCursor = document.body.style.cursor;
@@ -109,7 +110,7 @@ export function SidebarResizeRail({ className, ref, onPointerDown, onClick, onKe
       document.body.style.userSelect = "none";
       wrapper.setAttribute("data-resizing", "true");
       handle.setAttribute("data-resizing", "true");
-      const cursorWidth = anchoredLeft ? pointer.clientX - wrapperBounds.left : wrapperBounds.right - pointer.clientX;
+      const cursorWidth = anchoredLeft ? pointer.clientX - sidebarBounds.left : sidebarBounds.right - pointer.clientX;
       if (updateCollapse(cursorWidth)) return;
       draftWidth = clampWidth(cursorWidth);
       wrapper.style.setProperty("--sidebar-width", `${draftWidth}px`);

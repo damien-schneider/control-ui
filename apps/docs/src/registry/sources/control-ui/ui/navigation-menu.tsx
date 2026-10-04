@@ -141,7 +141,7 @@ export function NavigationMenuLink({ variant = "default", className, active, chi
       active={active}
       className={cn(
         "block select-none",
-        variant === "compact" && "inline-flex h-[var(--control-h-sm)] items-center px-[calc(var(--padding-x)*0.75)]",
+        variant === "compact" && "inline-flex h-control-sm items-center px-[calc(var(--padding-x)*0.75)]",
         className,
       )}
       {...props}

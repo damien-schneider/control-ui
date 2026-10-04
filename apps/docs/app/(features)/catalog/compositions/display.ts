@@ -240,7 +240,7 @@ export const displayCompositions = {
     example(
       "Semantic text",
       content("text utilities on semantic HTML", part("h1"), part("h2"), part("p"), part("span")),
-      "Apply the text-* utilities to native elements; there is no Typography component.",
+      "One text-* rung on the native element; there is no Typography component. Heading level is the document outline and the rung is the look, decoupled on purpose: an h3 may wear text-heading-2. Heading rungs already carry font-display and text-balance, so add no other type utility.",
     ),
   ],
   code: [

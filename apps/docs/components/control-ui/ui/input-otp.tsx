@@ -53,7 +53,7 @@ export function InputOTPSlot({ index, length, className, ...props }: InputOTPSlo
       data-control="true"
       aria-label={slotAriaLabel(index, length)}
       aria-labelledby={index === 0 ? labelId : undefined}
-      className={cn("relative flex size-[var(--control-h-md)] items-center justify-center", className)}
+      className={cn("relative flex size-control-md items-center justify-center", className)}
       {...props}
     />
   );

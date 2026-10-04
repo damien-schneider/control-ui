@@ -89,8 +89,8 @@ export function SidebarGroupLabel({ className, render, children, ...props }: Sid
       "data-control-family": "sidebar",
       "data-slot": "group-label",
       className: cn(
-        "flex h-[var(--control-h-sm)] shrink-0 items-center [&>svg]:size-4 [&>svg]:shrink-0",
-        "group-data-[collapsible=icon]:invisible group-data-[collapsible=icon]:-mt-[var(--control-h-sm)] group-data-[collapsible=icon]:opacity-0",
+        "flex h-control-sm shrink-0 items-center [&>svg]:size-4 [&>svg]:shrink-0",
+        "group-data-[collapsible=icon]:invisible group-data-[collapsible=icon]:-mt-control-sm group-data-[collapsible=icon]:opacity-0",
         className,
       ),
       children,

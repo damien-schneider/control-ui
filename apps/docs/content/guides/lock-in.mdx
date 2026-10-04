@@ -17,9 +17,9 @@
     theme tool. Everything past tokens — `skin.css`, knob re-values, adornments — is expressive precisely because it is
     not portable. A shadcn theme is strictly more portable; a skin is strictly more expressive. Pick per
     project.</GuidePoint>
-    <GuidePoint>**Governance: high, today.** The contract tests, generators, and validation tooling run in this
-    repository, not in your install. A versioned contract artifact and a consumer-side doctor are planned, not
-    shipped.</GuidePoint>
+    <GuidePoint>**Governance: medium.** The contract tests, generators, and validation tooling run in this
+    repository, not in your install. The install ships the read-only doctor and reads the published contract slices;
+    it ships no migration layer, so a breaking change is a reinstall.</GuidePoint>
   </GuidePoints>
 </GuideSection>
 
@@ -38,7 +38,7 @@
   and the generated payloads themselves are committed to the GitHub repository under MIT. A fork can regenerate and
   serve the registry without any private piece.
 
-  What a fork does not get yet is governance — semver on the anatomy contract, a changelog, rename aliases, and a
-  doctor that runs against your install rather than this repo. Until those ship, the honest summary is: the code
-  survives anything; the system that maintains the code survives through this repository.
+  What a fork does not get is a migration layer: rename aliases and a changelog of breaking changes do not exist yet.
+  The honest summary is: the code survives anything; the system that maintains the code survives through this
+  repository.
 </GuideSection>

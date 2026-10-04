@@ -40,6 +40,10 @@ for (const variant of ["sidebar", "inset", "floating", "page"]) {
       const content = page.locator("[data-app-shell-content]");
       const route = page.locator('[data-control-family="page-layout"][data-slot="root"]');
       await expect(route).toHaveAttribute("data-scroll", "page");
+      const canvasBackground = await page.evaluate(() => getComputedStyle(document.documentElement).backgroundColor);
+      const shellBackground = await page.locator("[data-app-shell]").evaluate((shell) => getComputedStyle(shell).backgroundColor);
+      expect(canvasBackground).not.toBe("rgba(0, 0, 0, 0)");
+      if (variant === "inset") expect(canvasBackground).toBe(shellBackground);
       const contentBounds = await content.boundingBox();
       const routeBounds = await route.boundingBox();
       if (!contentBounds || !routeBounds) throw new Error("Missing shell bounds");
@@ -68,6 +72,7 @@ for (const scroll of ["inset", "none"]) {
       await page.mouse.wheel(0, 700);
       await expect.poll(() => viewport.evaluate((element) => element.scrollTop)).toBeGreaterThan(300);
       expect(await page.evaluate(() => window.scrollY)).toBe(0);
+      expect(await page.evaluate(() => getComputedStyle(document.documentElement).overscrollBehaviorY)).toBe("auto");
       expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(width);
       await expect(page.getByRole("button", { name: "Toggle sidebar", exact: true })).toBeInViewport();
     });

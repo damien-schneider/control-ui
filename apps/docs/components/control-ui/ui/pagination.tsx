@@ -48,7 +48,7 @@ export function PaginationItem({ className, ...props }: ComponentProps<"li"> & {
 }
 
 const paginationLinkChrome =
-  "inline-flex h-[var(--control-h-sm)] min-w-[var(--control-h-sm)] cursor-pointer select-none items-center justify-center whitespace-nowrap aria-disabled:pointer-events-none [&>svg]:size-4 [&>svg]:shrink-0";
+  "inline-flex h-control-sm min-w-control-sm cursor-pointer select-none items-center justify-center whitespace-nowrap aria-disabled:pointer-events-none [&>svg]:size-4 [&>svg]:shrink-0";
 
 export function PaginationLink({ isActive = false, disabled = false, href, className, ...props }: PaginationLinkProps) {
   return (
@@ -92,7 +92,7 @@ export function PaginationEllipsis({ label = "More pages", className, ...props }
       data-control-ui="pagination"
       data-control-family="pagination"
       data-slot="ellipsis"
-      className={cn("flex h-[var(--control-h-sm)] min-w-[var(--control-h-sm)] items-center justify-center [&>svg]:size-4", className)}
+      className={cn("flex h-control-sm min-w-control-sm items-center justify-center [&>svg]:size-4", className)}
       {...props}
     >
       <MoreHorizontal aria-hidden="true" />

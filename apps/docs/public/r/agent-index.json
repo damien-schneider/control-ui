@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 192,
+    "count": 191,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -183,13 +183,6 @@
         "kind": "Guide",
         "summary": "Updating is a reinstall: the update manifest refreshes every installed source and never touches the three skin-owned files.",
         "href": "/update"
-      },
-      {
-        "id": "contract-versions",
-        "name": "Contract versions",
-        "kind": "Guide",
-        "summary": "The skin contract is version 9. Crossing a version reinstalls core, the affected items, and the skin together.",
-        "href": "/contract-versions"
       },
       {
         "id": "setup-prompt",

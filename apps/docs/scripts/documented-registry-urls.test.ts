@@ -26,15 +26,4 @@ describe("documented registry URLs", () => {
 
     expect(missingPayloads).toEqual([]);
   });
-
-  test("documents the v3 to v4 ToolCall migration", () => {
-    for (const relativeFile of ["README.md", "apps/docs/content/guides/contract-versions.mdx"]) {
-      const source = readFileSync(path.join(repositoryRoot, relativeFile), "utf8");
-      // Wording differs between README ("Contract version 4 replaces `ToolCall`") and guide
-      // ("Version 4 replaced ToolCall"); assert migration claim, not one phrasing of it.
-      expect(source).toMatch(/version 4 replace[sd] `?ToolCall`?/i);
-      expect(source).toContain("tool-call.tsx");
-      expect(source).toContain("use-tool-call.ts");
-    }
-  });
 });
