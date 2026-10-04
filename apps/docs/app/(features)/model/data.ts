@@ -192,6 +192,8 @@ function getComponents(): DocsComponent[] {
       summary: entry.summary,
       status: catalogStatus(entry),
       previewClassName: "previewClassName" in entry ? entry.previewClassName : undefined,
+      previewLayout: entry.preview.layout,
+      previewDescription: entry.preview.description,
       example: sourceFrom(entry.paths.example),
       examples:
         "additionalPreviews" in entry
@@ -201,6 +203,7 @@ function getComponents(): DocsComponent[] {
               description: example.description,
               source: sourceFrom(example.source),
               previewClassName: example.previewClassName,
+              previewLayout: example.preview.layout,
             }))
           : undefined,
       usage: sourceRequiredRecord(integrationIds, entry.paths.usage),
@@ -248,6 +251,9 @@ function getPrimitives(): DocsPrimitive[] {
       name: entry.name,
       summary: entry.summary,
       status: catalogStatus(entry),
+      previewClassName: "previewClassName" in entry ? entry.previewClassName : undefined,
+      previewLayout: entry.preview.layout,
+      previewDescription: entry.preview.description,
       shadcnDocsUrl: "shadcnDocsUrl" in entry ? entry.shadcnDocsUrl : undefined,
       registry: {
         target: entry.paths.registry.target,
@@ -260,6 +266,7 @@ function getPrimitives(): DocsPrimitive[] {
                 description: example.description,
                 source: sourceFrom(example.source),
                 previewClassName: example.previewClassName,
+                previewLayout: example.preview.layout,
               }))
             : undefined,
         source: installed.source,

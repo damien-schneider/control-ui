@@ -3,6 +3,8 @@
 import { ChevronRightIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { useState } from "react";
+import type { PreviewLayout } from "@/app/(features)/catalog/shared";
+import { PreviewFrame } from "@/app/(features)/components/preview-frame";
 import type { SourceFile } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
 import {
@@ -174,6 +176,8 @@ export function PreviewTabs({
   children,
   controls,
   previewClassName,
+  previewLayout,
+  previewDescription,
   previewFramed = true,
 }: {
   anchorId?: string | null;
@@ -181,6 +185,8 @@ export function PreviewTabs({
   children: ReactNode;
   controls?: ReactNode;
   previewClassName?: string;
+  previewLayout?: PreviewLayout;
+  previewDescription?: string;
   previewFramed?: boolean;
 }) {
   const [tab, setTab] = useState("preview");
@@ -191,6 +197,7 @@ export function PreviewTabs({
 
   return (
     <div id={anchorId ?? undefined} className="mb-8 min-w-0 scroll-mt-20">
+      {previewDescription ? <p className="mb-3 text-body text-muted-foreground">{previewDescription}</p> : null}
       <Tabs
         value={tab}
         onValueChange={(value) => {
@@ -211,7 +218,7 @@ export function PreviewTabs({
         </div>
         <Surface className={cn(!scrollsPage && "-mt-px", showPanelFrame && "overflow-hidden")}>
           <TabsPanel value="preview" keepMounted className={cn("flex min-h-[280px] items-center justify-center p-6", previewClassName)}>
-            {children}
+            <PreviewFrame layout={previewLayout}>{children}</PreviewFrame>
           </TabsPanel>
           <TabsPanel value="code" keepMounted={codeVisited}>
             <Code copy={false} chrome={showPanelFrame ? "embedded" : "standalone"}>

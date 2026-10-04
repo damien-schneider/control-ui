@@ -97,18 +97,16 @@ export function ComponentPage({
       preview={{
         code: exampleCode,
         className: component.previewClassName,
+        layout: component.previewLayout ?? "full",
+        description: component.previewDescription,
         controls:
           component.versions && version ? (
             <VersionPicker versions={component.versions} activeId={version.id} onPick={setPickedVersionId} />
           ) : undefined,
-        children: (
-          <div className="w-full">
-            {version ? (
-              <ComponentVersionPreview componentId={component.id} versionId={version.id} integration={integration} />
-            ) : (
-              <Preview componentId={component.id} integration={integration} />
-            )}
-          </div>
+        children: version ? (
+          <ComponentVersionPreview componentId={component.id} versionId={version.id} integration={integration} />
+        ) : (
+          <Preview componentId={component.id} integration={integration} />
         ),
       }}
       examples={
@@ -118,11 +116,8 @@ export function ComponentPage({
           description: example.description,
           source: example.source,
           previewClassName: example.previewClassName,
-          children: (
-            <div className="flex w-full justify-center">
-              <ComponentExamplePreview componentId={component.id} exampleId={example.id} />
-            </div>
-          ),
+          previewLayout: example.previewLayout ?? "centered",
+          children: <ComponentExamplePreview componentId={component.id} exampleId={example.id} />,
         })) ?? []
       }
       composition={component.composition}

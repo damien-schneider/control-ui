@@ -2,7 +2,7 @@ import { blockEntries, type UseCaseKindId, useCaseKinds } from "@/app/(features)
 import { categoriesWithEntries } from "@/app/(features)/catalog/categories";
 import { componentEntries } from "@/app/(features)/catalog/components";
 import { primitiveEntries } from "@/app/(features)/catalog/primitives";
-import { catalogStatus } from "@/app/(features)/catalog/shared";
+import { catalogStatus, type PreviewLayout } from "@/app/(features)/catalog/shared";
 import type { BlockId, ComponentId, DocsStatus, PrimitiveId } from "@/app/(features)/model/types";
 
 type CatalogGalleryItemBase = {
@@ -11,6 +11,7 @@ type CatalogGalleryItemBase = {
   status?: DocsStatus;
   href: string;
   previewClassName?: string;
+  previewLayout?: PreviewLayout;
 };
 
 export type CatalogGalleryItem =
@@ -60,6 +61,7 @@ export function componentGalleryGroups(): CatalogGalleryGroup[] {
                 status: catalogStatus(entry),
                 href: `/components/${entry.id}`,
                 previewClassName: "previewClassName" in entry ? entry.previewClassName : undefined,
+                previewLayout: entry.preview.layout,
               },
             ]
           : [],
@@ -85,6 +87,7 @@ export function primitiveGalleryGroups(): CatalogGalleryGroup[] {
                 status: catalogStatus(entry),
                 href: `/primitives/${entry.id}`,
                 previewClassName: "previewClassName" in entry ? entry.previewClassName : undefined,
+                previewLayout: entry.preview.layout,
               },
             ]
           : [],

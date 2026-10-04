@@ -8,7 +8,7 @@ import type { GuideCodeId, GuideGroupId, guideEntries } from "@/app/(features)/c
 import type { hookEntries, utilEntries } from "@/app/(features)/catalog/hooks-utils";
 import type { CatalogOverviewId } from "@/app/(features)/catalog/overviews";
 import type { primitiveEntries } from "@/app/(features)/catalog/primitives";
-import type { CatalogStatus, integrationIds, registryKindIds } from "@/app/(features)/catalog/shared";
+import type { CatalogStatus, integrationIds, PreviewLayout, registryKindIds } from "@/app/(features)/catalog/shared";
 import type { CatalogSkinKind, skinMetas } from "@/app/(features)/catalog/skins";
 
 export type GuideId = (typeof guideEntries)[number]["id"];
@@ -77,6 +77,7 @@ export type DocsPrimitiveExample = {
   description?: string;
   source: SourceFile;
   previewClassName?: string;
+  previewLayout?: PreviewLayout;
 };
 
 export type CompositionExample = CatalogCompositionExample & {
@@ -94,6 +95,9 @@ export type DocsPrimitive = {
   name: string;
   summary: string;
   status?: DocsStatus;
+  previewClassName?: string;
+  previewLayout?: PreviewLayout;
+  previewDescription?: string;
   // library-original primitive has no shadcn equivalent
   shadcnDocsUrl?: string;
   registry: {
@@ -207,6 +211,8 @@ export type DocsComponent = {
   summary: string;
   status?: DocsStatus;
   previewClassName?: string;
+  previewLayout?: PreviewLayout;
+  previewDescription?: string;
   example: SourceFile;
   examples?: DocsPrimitiveExample[];
   usage: Record<IntegrationId, SourceFile>;

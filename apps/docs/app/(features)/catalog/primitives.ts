@@ -434,7 +434,7 @@ export const primitiveEntries = [
     kind: "Primitive",
     status: "beta",
     name: "App shell",
-    summary: "Persistent sidebar and content frame with one scroll policy for loading, empty, and loaded pages.",
+    summary: "The application container: persistent navigation and header around changing page content, with one shared scroll policy.",
     paths: {
       registry: {
         target: "components/control-ui/ui/app-shell.tsx",
@@ -444,8 +444,13 @@ export const primitiveEntries = [
         registryKind: "app-shell",
       },
     },
-    preview: preview(() =>
-      import("@/src/registry/examples/control-ui/primitives/app-shell").then((mod) => ({ default: mod.PrimitiveAppShellExample })),
+    preview: preview(
+      () => import("@/src/registry/examples/control-ui/primitives/app-shell").then((mod) => ({ default: mod.PrimitiveAppShellExample })),
+      {
+        layout: "contained",
+        description:
+          'The outlined area is the AppShell container. Collapse the sidebar or toggle loading: the frame stays in place while page content changes. This embedded preview uses layout="contained"; a full application uses the default viewport layout.',
+      },
     ),
   },
   {
@@ -1552,8 +1557,10 @@ export const primitiveEntries = [
         registryKind: "aspect-ratio",
       },
     },
-    preview: preview(() =>
-      import("@/src/registry/examples/control-ui/primitives/aspect-ratio").then((mod) => ({ default: mod.PrimitiveAspectRatioExample })),
+    preview: preview(
+      () =>
+        import("@/src/registry/examples/control-ui/primitives/aspect-ratio").then((mod) => ({ default: mod.PrimitiveAspectRatioExample })),
+      { layout: "grid" },
     ),
     additionalPreviews: [
       {
@@ -1563,8 +1570,12 @@ export const primitiveEntries = [
         description:
           "Reach for the component when the ratio only exists at runtime. Tailwind compiles the classes it can read in the source, so an aspect-[] class assembled from a variable never becomes a rule; the component writes the value as an inline style instead.",
         source: sourceFile("Runtime aspect ratio", "src/registry/examples/control-ui/primitives/aspect-ratio.tsx", "example"),
-        preview: preview(() =>
-          import("@/src/registry/examples/control-ui/primitives/aspect-ratio").then((mod) => ({ default: mod.AspectRatioRuntimeExample })),
+        preview: preview(
+          () =>
+            import("@/src/registry/examples/control-ui/primitives/aspect-ratio").then((mod) => ({
+              default: mod.AspectRatioRuntimeExample,
+            })),
+          { layout: "stack" },
         ),
       },
     ],

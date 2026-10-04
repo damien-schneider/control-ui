@@ -23,6 +23,8 @@ After changing registry source, catalog metadata, or skin packs:
 bun run sync
 ```
 
+Keep documentation-only sizing, spacing, and framing out of example source. Declare a layout with `preview(loader, { layout })` in the catalog: `full`, `centered`, `stack`, `grid`, or `contained`. The preview tabs and catalog gallery share these frames; component composition stays in the example. Use `description` in the same options object when the main preview needs explanation.
+
 Commit the regenerated outputs together with your change. Generated files are marked `linguist-generated` so they stay collapsed in review; `bun run validate` fails on any drift between sources and outputs.
 
 `packages/components` is generated from the same manifests: `bun run build` regenerates its `src/` from `apps/docs/registry` before bundling, so run `bun run sync` first and never edit `src/` by hand.

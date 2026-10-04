@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import type { ReactNode } from "react";
+import type { PreviewLayout } from "@/app/(features)/catalog/shared";
 
 import { PreviewTabs, SourceTabs } from "@/app/(features)/components/source";
 import type { Composition, DocsKnobFamily, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
@@ -12,6 +13,8 @@ type RegistryItemPreview = {
   children: ReactNode;
   controls?: ReactNode;
   className?: string;
+  layout?: PreviewLayout;
+  description?: string;
 };
 
 export type RegistryItemExample = {
@@ -20,6 +23,7 @@ export type RegistryItemExample = {
   description?: string;
   source: SourceFile;
   previewClassName?: string;
+  previewLayout?: PreviewLayout;
   children: ReactNode;
 };
 
@@ -83,7 +87,13 @@ export function RegistryItemPage({
   return (
     <section className="docs-article">
       <PageHeader label={label} title={title} summary={summary} status={status} />
-      <PreviewTabs code={preview.code} controls={preview.controls} previewClassName={preview.className}>
+      <PreviewTabs
+        code={preview.code}
+        controls={preview.controls}
+        previewClassName={preview.className}
+        previewLayout={preview.layout}
+        previewDescription={preview.description}
+      >
         {preview.children}
       </PreviewTabs>
 
@@ -114,7 +124,12 @@ function RegistryItemExamples({ examples }: { examples: RegistryItemExample[] })
         {examples.map((example) => (
           <section key={example.id} id={`example-${example.id}`} className="min-w-0 scroll-mt-20">
             <SectionTitle title={example.title} description={example.description} />
-            <PreviewTabs anchorId={null} code={example.source.code} previewClassName={example.previewClassName}>
+            <PreviewTabs
+              anchorId={null}
+              code={example.source.code}
+              previewClassName={example.previewClassName}
+              previewLayout={example.previewLayout}
+            >
               {example.children}
             </PreviewTabs>
           </section>

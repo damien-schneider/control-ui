@@ -133,7 +133,12 @@ export type CatalogSourceFile = {
 export type IntegrationPreviewProps = { integration?: CatalogIntegrationId };
 
 type PreviewLoader = () => Promise<{ default: ComponentType<IntegrationPreviewProps> }>;
-export type CatalogPreview = {
+export type PreviewLayout = "full" | "centered" | "stack" | "grid" | "contained";
+type PreviewOptions = {
+  layout?: PreviewLayout;
+  description?: string;
+};
+export type CatalogPreview = PreviewOptions & {
   Component: LazyExoticComponent<ComponentType<IntegrationPreviewProps>>;
   load: PreviewLoader;
 };
@@ -160,8 +165,8 @@ export function sourceFile(label: string, path: string, slot?: string): CatalogS
   return { label, path, slot };
 }
 
-export function preview(load: PreviewLoader): CatalogPreview {
-  return { Component: lazy(load), load };
+export function preview(load: PreviewLoader, options: PreviewOptions = {}): CatalogPreview {
+  return { Component: lazy(load), load, ...options };
 }
 
 export function isCatalogIntegrationId(value: string): value is CatalogIntegrationId {

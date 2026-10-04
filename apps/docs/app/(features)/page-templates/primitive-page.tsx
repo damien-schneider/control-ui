@@ -22,11 +22,10 @@ export function PrimitivePage({ primitive, extensions }: { primitive: DocsPrimit
       status={primitive.status}
       preview={{
         code: exampleCode,
-        children: (
-          <div className="flex w-full justify-center">
-            <PrimitivePreview primitiveId={primitive.id} />
-          </div>
-        ),
+        className: primitive.previewClassName,
+        layout: primitive.previewLayout ?? "centered",
+        description: primitive.previewDescription,
+        children: <PrimitivePreview primitiveId={primitive.id} />,
       }}
       examples={examplesForPrimitive(primitive.id, primitive.registry.examples)}
       composition={primitive.registry.composition}
@@ -57,11 +56,8 @@ function examplesForPrimitive(primitiveId: DocsPrimitive["id"], examples?: DocsP
       description: example.description,
       source: example.source,
       previewClassName: example.previewClassName,
-      children: (
-        <div className="flex w-full justify-center">
-          <PrimitiveExamplePreview primitiveId={primitiveId} exampleId={example.id} />
-        </div>
-      ),
+      previewLayout: example.previewLayout ?? "centered",
+      children: <PrimitiveExamplePreview primitiveId={primitiveId} exampleId={example.id} />,
     })) ?? []
   );
 }

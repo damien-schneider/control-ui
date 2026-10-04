@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { DeferredPreview } from "@/app/(features)/components/deferred-preview";
+import { PreviewFrame } from "@/app/(features)/components/preview-frame";
 import { Preview, PrimitivePreview } from "@/app/(features)/components/previews";
 import { StatusBadge } from "@/app/(features)/components/status";
 import type { CatalogGalleryGroup, CatalogGalleryItem } from "@/app/(features)/model/catalog-gallery";
@@ -67,11 +68,13 @@ function CatalogPreviewCard({
       />
       <div className="relative grid h-60 min-w-0 place-items-center overflow-hidden rounded-[inherit] border border-border/70 bg-canvas transition-[border-color,background-color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-hover:border-foreground/20 group-hover:bg-muted/35 group-focus-within:border-ring/60">
         <DeferredPreview className={item.previewClassName}>
-          {item.kind === "component" ? (
-            <Preview componentId={item.id} integration={integration} />
-          ) : (
-            <PrimitivePreview primitiveId={item.id} />
-          )}
+          <PreviewFrame layout={item.previewLayout}>
+            {item.kind === "component" ? (
+              <Preview componentId={item.id} integration={integration} />
+            ) : (
+              <PrimitivePreview primitiveId={item.id} />
+            )}
+          </PreviewFrame>
         </DeferredPreview>
       </div>
       <div className="mt-3 flex min-w-0 items-center gap-2 px-0.5">

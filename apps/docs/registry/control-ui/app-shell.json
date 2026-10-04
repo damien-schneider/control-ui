@@ -3,7 +3,7 @@
   "name": "app-shell",
   "type": "registry:ui",
   "title": "App shell",
-  "description": "Persistent sidebar and content frame with one scroll policy for loading, empty, and loaded pages.",
+  "description": "The application container: persistent navigation and header around changing page content, with one shared scroll policy.",
   "dependencies": [],
   "registryDependencies": [
     "core",

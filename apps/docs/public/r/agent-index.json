@@ -812,7 +812,7 @@
         "id": "app-shell",
         "name": "App shell",
         "kind": "Primitive",
-        "summary": "Persistent sidebar and content frame with one scroll policy for loading, empty, and loaded pages.",
+        "summary": "The application container: persistent navigation and header around changing page content, with one shared scroll policy.",
         "href": "/primitives/app-shell",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/app-shell.json"
