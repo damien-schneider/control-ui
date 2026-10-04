@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import { CodeBlock, CommandBlock } from "@/app/(features)/components/source";
 import { StatusBadge } from "@/app/(features)/components/status";
 import type { Composition, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
+import { cn } from "@/components/control-ui/lib/cn";
 
 import { CompositionTree } from "./composition-tree";
 
@@ -15,27 +16,29 @@ export function PageHeader({
   summary,
   status,
   focusOnMount,
+  compact = false,
 }: {
   label: string;
   title: string;
   summary: string;
   status?: DocsStatus;
   focusOnMount?: boolean;
+  compact?: boolean;
 }) {
   return (
-    <div className="mb-7">
-      <div className="text-caption font-medium text-muted-foreground">{label}</div>
-      <div className="mt-2 flex flex-wrap items-center gap-3">
+    <div className={compact ? "mb-5" : "mb-7"}>
+      {compact ? null : <div className="text-caption font-medium text-muted-foreground">{label}</div>}
+      <div className={cn("flex flex-wrap items-center gap-3", !compact && "mt-2")}>
         <h1
           ref={focusOnMount ? focusHeading : undefined}
           tabIndex={focusOnMount ? -1 : undefined}
-          className="text-display font-display text-balance outline-none"
+          className={cn("font-display text-balance outline-none", compact ? "text-heading-1" : "text-display")}
         >
           {title}
         </h1>
         {status ? <StatusBadge status={status} /> : null}
       </div>
-      <p className="mt-3 max-w-2xl text-body-lg text-pretty text-muted-foreground">{summary}</p>
+      <p className={cn("max-w-2xl text-pretty text-muted-foreground", compact ? "mt-1 text-body" : "mt-3 text-body-lg")}>{summary}</p>
     </div>
   );
 }

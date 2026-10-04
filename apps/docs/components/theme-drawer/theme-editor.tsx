@@ -1,6 +1,6 @@
 "use client";
 
-import { ShieldCheckIcon } from "lucide-react";
+import { CopyIcon, ShieldCheckIcon } from "lucide-react";
 import Link from "next/link";
 import { type ReactNode, useMemo, useState } from "react";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
@@ -91,6 +91,7 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
       </ButtonLink>
       <ThemeGeneratorDrawer />
       <Button variant="solid" tone="primary" size="sm" onClick={cssCopy.handleCopy}>
+        <CopyIcon aria-hidden />
         {cssCopy.status === "copied" ? "Copied ✓" : "Copy CSS variables"}
       </Button>
     </div>

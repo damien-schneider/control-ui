@@ -26,7 +26,15 @@ function SkinOption({ icon, label }: { icon: ReactNode; label: string }) {
 
 const customSkinIcon = <WandSparklesIcon aria-hidden className="size-4 shrink-0" />;
 
-export function SkinPresetControls({ className, onNavigate }: { className?: string; onNavigate?: () => void }) {
+export function SkinPresetControls({
+  className,
+  onNavigate,
+  label = "Skin",
+}: {
+  className?: string;
+  onNavigate?: () => void;
+  label?: string;
+}) {
   const { t, selectSkin, selectCustomSkin } = useThemeRuntime();
   const { customSkins, activeCustomSkin, startNewTheme } = useThemeConversation();
   const router = useRouter();
@@ -54,7 +62,7 @@ export function SkinPresetControls({ className, onNavigate }: { className?: stri
 
   return (
     <Select value={selectedValue} onValueChange={selectValue}>
-      <SelectTrigger aria-label="Skin" className={className}>
+      <SelectTrigger aria-label={label} className={className}>
         <SelectValue placeholder="Skin">
           {() =>
             activeCustomSkin ? (

@@ -240,3 +240,78 @@ test("copy failure stays actionable without reporting success", async ({ page })
   await expect(copyStatus).toHaveText("Could not copy CSS variables. Try again or allow clipboard access.");
   await expect(page.getByRole("button", { name: "Copy CSS variables", exact: true })).toBeEnabled();
 });
+
+test("preview search and form values survive switching to source", async ({ page }) => {
+  await page.goto("/theme-editor", { waitUntil: "networkidle" });
+  const workspace = page.getByRole("region", { name: "Skin workspace", exact: true });
+  const views = workspace.getByRole("tablist", { name: "Skin views" });
+  const search = workspace.getByRole("searchbox", { name: "Search component previews" });
+
+  await search.fill("field");
+  await expect(workspace.getByRole("region", { name: "Fields", exact: true })).toBeVisible();
+  await expect(workspace.getByRole("region", { name: "Buttons", exact: true })).toHaveCount(0);
+  await workspace.getByRole("textbox", { name: "Display name" }).fill("Theme preview");
+  await views.getByRole("tab", { name: "Source", exact: true }).click();
+  await expect(page).toHaveURL(/view=source$/);
+  await views.getByRole("tab", { name: "Preview", exact: true }).click();
+  await expect(search).toHaveValue("field");
+  await expect(workspace.getByRole("textbox", { name: "Display name" })).toHaveValue("Theme preview");
+
+  await search.fill("no-such-component");
+  await expect(workspace.getByText("No matching components", { exact: true })).toBeVisible();
+  await workspace.getByRole("button", { name: "Clear search", exact: true }).click();
+  await expect(search).toHaveValue("");
+  await expect(search).toBeFocused();
+  await expect(workspace.getByRole("region", { name: "Buttons", exact: true })).toBeVisible();
+});
+
+for (const width of [360, 1280]) {
+  test(`workspace controls and source tools work at ${width}px`, async ({ page, context }, testInfo) => {
+    await page.setViewportSize({ width, height: 900 });
+    await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+    await page.goto("/theme-editor?view=source", { waitUntil: "networkidle" });
+    const workspace = page.getByRole("region", { name: "Skin workspace", exact: true });
+    await workspace.getByRole("combobox", { name: "Skin preset", exact: true }).click();
+    await page.getByRole("option", { name: "Refined", exact: true }).click();
+    await expect(page.locator("html")).toHaveAttribute("data-skin", "refined");
+    await workspace.getByRole("radio", { name: "Dark", exact: true }).press("Space");
+    await expect(page.locator("html")).toHaveClass(/dark/);
+
+    const source = workspace.getByRole("region", { name: "Refined source", exact: true });
+    await source.getByRole("tab", { name: "skin.css", exact: true }).click();
+    const wrap = source.getByRole("button", { name: "Wrap lines", exact: true });
+    await wrap.click();
+    await expect(wrap).toHaveAttribute("aria-pressed", "true");
+    await expect(source.locator('[data-control-family="code"][data-slot="root"]')).toHaveAttribute("data-chrome", "embedded");
+    await expect
+      .poll(() =>
+        source
+          .locator('[data-slot="line"] code')
+          .first()
+          .evaluate((element) => getComputedStyle(element).whiteSpace),
+      )
+      .toBe("pre-wrap");
+    await source.getByRole("button", { name: "Copy code", exact: true }).click();
+    const copiedSource = await page.evaluate(() => navigator.clipboard.readText());
+    expect(copiedSource).toContain("refined");
+
+    const downloadStarted = page.waitForEvent("download");
+    await source.getByRole("link", { name: "Download skin.css", exact: true }).click();
+    const download = await downloadStarted;
+    expect(download.suggestedFilename()).toBe("skin.css");
+    const stream = await download.createReadStream();
+    if (!stream) throw new Error("The source download did not produce a file.");
+    const chunks: Buffer[] = [];
+    for await (const chunk of stream) chunks.push(Buffer.from(chunk));
+    expect(Buffer.concat(chunks).toString("utf8")).toBe(copiedSource);
+
+    await expect
+      .poll(() =>
+        page
+          .locator('[data-control-family="page-layout"][data-slot="body"]')
+          .evaluate((element) => element.scrollWidth - element.clientWidth),
+      )
+      .toBeLessThanOrEqual(1);
+    await page.screenshot({ path: testInfo.outputPath(`source-tools-${width}.png`) });
+  });
+}
