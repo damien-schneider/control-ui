@@ -194,7 +194,7 @@ export function ComboboxContent({ className, children, sideOffset = 6, anchor, .
 
 export function ComboboxList<Value = unknown>({ className, children, ...props }: ComboboxListProps<Value>) {
   return (
-    <ScrollArea className="w-full" viewportClassName="overscroll-contain" maxHeight="min(18rem, var(--available-height))" lockAxis="x">
+    <ScrollArea className="w-full" viewportClassName="overscroll-y-contain" maxHeight="min(18rem, var(--available-height))" lockAxis="x">
       <ComboboxPrimitive.List
         data-control-ui="combobox"
         data-popup-kind="combobox"

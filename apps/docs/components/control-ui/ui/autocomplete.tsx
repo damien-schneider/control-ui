@@ -150,7 +150,7 @@ export function AutocompleteContent({ className, children, sideOffset = 6, ...pr
 
 export function AutocompleteList<Value = unknown>({ className, children, ...props }: AutocompleteListProps<Value>) {
   return (
-    <ScrollArea className="w-full" viewportClassName="overscroll-contain" maxHeight="min(18rem, var(--available-height))" lockAxis="x">
+    <ScrollArea className="w-full" viewportClassName="overscroll-y-contain" maxHeight="min(18rem, var(--available-height))" lockAxis="x">
       <AutocompletePrimitive.List
         data-control-ui="autocomplete"
         data-popup-kind="autocomplete"
