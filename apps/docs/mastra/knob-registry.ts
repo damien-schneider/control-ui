@@ -2548,6 +2548,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
       },
       {
+        name: "--cui-markdown-editor-gutter-size",
+        syntax: "<length>",
+        defaultValue: "var(--control-h-xs)",
+        selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
+      },
+      {
         name: "--cui-markdown-editor-max-height",
         syntax: "<length>",
         defaultValue: "60dvh",
@@ -2568,7 +2574,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-markdown-editor-padding",
         syntax: "<length>",
-        defaultValue: "calc(var(--spacing) * 3)",
+        defaultValue: "calc(var(--spacing) * 4)",
         selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
       },
       {

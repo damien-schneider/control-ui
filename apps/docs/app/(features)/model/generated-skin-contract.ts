@@ -12826,6 +12826,12 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["toolbar"],
           states: [
             {
+              attribute: "data-chrome",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["embedded", "standalone"],
+            },
+            {
               attribute: "data-disabled",
               source: "external",
               valueKind: "presence",
@@ -16001,7 +16007,13 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-markdown-editor-padding",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "calc(var(--spacing) * 3)",
+        defaultValue: "calc(var(--spacing) * 4)",
+      },
+      {
+        name: "--cui-markdown-editor-gutter-size",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "var(--control-h-xs)",
       },
       {
         name: "--cui-markdown-editor-min-height",

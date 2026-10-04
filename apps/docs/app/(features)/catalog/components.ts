@@ -636,7 +636,7 @@ export const componentEntries = [
     category: "chat",
     kind: "Component",
     name: "MarkdownEditor",
-    summary: "Compose Markdown with formatting, task lists, images, source editing, and application-owned uploads.",
+    summary: "Compose Markdown with draggable blocks, slash commands, people mentions, formatting, and application-owned image uploads.",
     status: "beta",
     registryKind: "markdown-editor",
     paths: {
@@ -648,6 +648,8 @@ export const componentEntries = [
       source: sourceFile("Component", "src/registry/sources/control-ui/markdown-editor.tsx", "component"),
       supportFiles: [
         sourceFile("Formatting and images", "src/registry/sources/control-ui/markdown-editor/toolbar.tsx", "component"),
+        sourceFile("Slash commands and mentions", "src/registry/sources/control-ui/markdown-editor/suggestions.tsx", "component"),
+        sourceFile("Block drag handle", "src/registry/sources/control-ui/markdown-editor/drag-handle.tsx", "component"),
         sourceFile("Editor recipe", "src/registry/sources/control-ui/recipes/markdown-editor.css", "recipe-css"),
       ],
     },

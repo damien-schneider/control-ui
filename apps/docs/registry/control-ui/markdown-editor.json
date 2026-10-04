@@ -3,7 +3,7 @@
   "name": "markdown-editor",
   "type": "registry:component",
   "title": "MarkdownEditor",
-  "description": "Compose Markdown with formatting, task lists, images, source editing, and application-owned uploads.",
+  "description": "Compose Markdown with draggable blocks, slash commands, people mentions, formatting, and application-owned image uploads.",
   "dependencies": [
     "@tiptap/core@3.31.4",
     "@tiptap/extension-image@3.31.4",
@@ -22,10 +22,12 @@
     "core",
     "input",
     "label",
+    "live-status",
     "popover",
     "textarea",
     "toolbar",
-    "tooltip"
+    "tooltip",
+    "trigger-menu"
   ],
   "files": [
     {
@@ -44,8 +46,18 @@
       "type": "registry:component"
     },
     {
+      "path": "src/registry/sources/control-ui/markdown-editor/drag-handle.tsx",
+      "target": "@components/control-ui/markdown-editor/drag-handle.tsx",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/sources/control-ui/markdown-editor/extensions.ts",
       "target": "@components/control-ui/markdown-editor/extensions.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/suggestions.tsx",
+      "target": "@components/control-ui/markdown-editor/suggestions.tsx",
       "type": "registry:component"
     },
     {

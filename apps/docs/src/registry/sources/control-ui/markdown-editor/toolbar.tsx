@@ -67,7 +67,7 @@ export function MarkdownEditorToolbar({ children }: { children?: ReactNode }) {
   ];
   return (
     <TooltipProvider>
-      <Toolbar aria-label="Markdown formatting" className="flex w-full flex-wrap">
+      <Toolbar aria-label="Markdown formatting" chrome="embedded" className="flex w-full flex-wrap">
         {actions.map(({ label, Icon, active, run }) => (
           <Tooltip key={label}>
             <TooltipTrigger

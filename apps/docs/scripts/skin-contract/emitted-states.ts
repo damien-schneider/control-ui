@@ -59,7 +59,7 @@ import type { StepperContentMode, StepperOrientation, StepperState } from "../..
 import type { TableOfContentsVariant } from "../../src/registry/sources/control-ui/ui/table-of-contents";
 import type { TabsListVariant } from "../../src/registry/sources/control-ui/ui/tabs";
 import type { TimelineState } from "../../src/registry/sources/control-ui/ui/timeline";
-import type { ToolbarLinkVariant, ToolbarVariant } from "../../src/registry/sources/control-ui/ui/toolbar";
+import type { ToolbarChrome, ToolbarLinkVariant, ToolbarVariant } from "../../src/registry/sources/control-ui/ui/toolbar";
 import type { TreeSelectionIndicator } from "../../src/registry/sources/control-ui/ui/tree";
 
 export type EmittedStateContract = {
@@ -227,6 +227,7 @@ export type EmittedStateContract = {
   "toolbar:link:data-active": true;
   "toolbar:link:data-variant": ToolbarLinkVariant;
   "toolbar:root:data-variant": ToolbarVariant;
+  "toolbar:root:data-chrome": ToolbarChrome;
   "morphing-panel:content:data-state": "open" | "closed";
   "morphing-panel:root:data-state": "open" | "closed";
   "morphing-panel:trigger:data-state": "open" | "closed";

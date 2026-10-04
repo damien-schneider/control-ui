@@ -1874,6 +1874,11 @@
       "syntax": "<length>"
     },
     {
+      "name": "--cui-markdown-editor-gutter-size",
+      "description": "Control UI markdown-editor knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
       "name": "--cui-markdown-editor-max-height",
       "description": "Control UI markdown-editor knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"

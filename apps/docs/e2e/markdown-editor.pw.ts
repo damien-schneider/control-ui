@@ -209,3 +209,140 @@ test("publishing source Markdown preserves significant leading spaces", async ({
   await page.getByRole("button", { name: "Edit saved comment" }).click();
   await expect(page.getByRole("textbox", { name: "Comment", exact: true })).toHaveValue("    indented code");
 });
+
+test("slash commands filter, keep editor focus, and support keyboard and pointer selection", async ({ page }) => {
+  const editor = page.getByRole("textbox", { name: "Comment", exact: true });
+  await editor.pressSequentially("/h2");
+  await expect(page.getByRole("listbox", { name: "Insert block" })).toBeVisible();
+  await expect(page.getByRole("option", { name: "Heading 2", exact: true })).toBeVisible();
+  await expect(editor).toBeFocused();
+  await editor.press("Enter");
+  await editor.pressSequentially("A heading");
+  await expect(editor.locator("h2")).toHaveText("A heading");
+  await expect(page.getByLabel("Markdown value")).toHaveText("## A heading");
+  await expect(page.getByRole("listbox")).toHaveCount(0);
+  await editor.press("Enter");
+  await editor.pressSequentially("/task");
+  await page.getByRole("option", { name: "Task list" }).click();
+  await editor.pressSequentially("Ship it");
+  await expect(editor.getByRole("checkbox")).toHaveCount(1);
+  await expect(page.getByLabel("Markdown value")).toContainText("- [ ] Ship it");
+});
+
+test("mentions retain identity through source editing, save, reopen, and undo", async ({ page }) => {
+  const editor = page.getByRole("textbox", { name: "Comment", exact: true });
+  await editor.pressSequentially("Hello @");
+  await expect(page.getByRole("listbox", { name: "Mention people" })).toBeVisible();
+  await editor.press("ArrowDown");
+  await expect(page.getByRole("option", { name: "Sam Rivera" })).toHaveAttribute("aria-selected", "true");
+  await editor.press("Enter");
+  await expect(editor.getByRole("link", { name: "@Sam Rivera" })).toHaveAttribute("href", "/people/sam");
+  await expect(editor).toBeFocused();
+  await expect(page.getByLabel("Markdown value")).toContainText("[@Sam Rivera](/people/sam)");
+  await page.getByRole("button", { name: "Markdown source" }).click();
+  await expect(editor).toHaveValue(/\[@Sam Rivera\]\(\/people\/sam\)/);
+  await page.getByRole("button", { name: "Markdown source" }).click();
+  await page.getByRole("button", { name: "Post", exact: true }).click();
+  await page.getByRole("button", { name: "Edit saved comment" }).click();
+  await expect(editor.getByRole("link", { name: "@Sam Rivera" })).toHaveAttribute("href", "/people/sam");
+  await editor.press("End");
+  await editor.pressSequentially(" @alex");
+  await page.getByRole("option", { name: "Alex Morgan" }).click();
+  await expect(editor.getByRole("link", { name: "@Alex Morgan" })).toBeVisible();
+  await page.getByRole("button", { name: "Undo", exact: true }).click();
+  await expect(editor.getByRole("link", { name: "@Alex Morgan" })).toHaveCount(0);
+});
+
+test("suggestions respect Escape, empty results, code, source, disabled state and IME", async ({ page }) => {
+  const editor = page.getByRole("textbox", { name: "Comment", exact: true });
+  await editor.pressSequentially("@");
+  await editor.press("Escape");
+  await expect(page.getByRole("listbox")).toHaveCount(0);
+  await editor.press("Shift");
+  await expect(page.getByRole("listbox")).toHaveCount(0);
+  await editor.pressSequentially("nobody");
+  await expect(page.getByText("No people found", { exact: true })).toBeVisible();
+  await editor.press("Enter");
+  await expect(editor.locator("p")).toHaveCount(2);
+  await editor.pressSequentially("@");
+  await editor.dispatchEvent("keydown", { key: "Enter", isComposing: true, keyCode: 229 });
+  await expect(editor.getByRole("link")).toHaveCount(0);
+  await page.getByRole("button", { name: "Toggle disabled" }).click();
+  await expect(page.getByRole("listbox")).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Drag to reorder block" })).toHaveCount(0);
+  await page.getByRole("button", { name: "Toggle disabled" }).click();
+  await page.getByRole("button", { name: "Clear draft" }).click();
+  await page.getByRole("button", { name: "Code block", exact: true }).click();
+  await editor.pressSequentially("@alex /h2");
+  await expect(page.getByRole("listbox")).toHaveCount(0);
+  await page.getByRole("button", { name: "Markdown source" }).click();
+  await editor.fill("@alex\n/h2");
+  await expect(page.getByRole("listbox")).toHaveCount(0);
+});
+
+test("block handles reorder complete blocks by keyboard and preserve undo", async ({ page }) => {
+  const editor = page.getByRole("textbox", { name: "Comment", exact: true });
+  await page.getByRole("button", { name: "Load blocks" }).click();
+  await editor.locator("h2").hover();
+  const handle = page.getByRole("button", { name: "Drag to reorder block" });
+  await handle.focus();
+  await handle.press("Alt+ArrowUp");
+  await expect(page.getByLabel("Markdown value")).toHaveText("## First\n\nSecond paragraph\n\n- [ ] Third task");
+  await handle.press("Alt+ArrowDown");
+  await expect(page.getByLabel("Markdown value")).toHaveText("Second paragraph\n\n## First\n\n- [ ] Third task");
+  await handle.press("Alt+ArrowDown");
+  await expect(page.getByLabel("Markdown value")).toHaveText("Second paragraph\n\n- [ ] Third task\n\n## First");
+  await expect(editor.locator("h2")).toHaveCount(1);
+  await page.getByRole("button", { name: "Undo", exact: true }).click();
+  await expect(page.getByLabel("Markdown value")).toContainText("## First\n\n- [ ] Third task");
+});
+
+test("dragging a handle moves a block instead of copying it", async ({ page }) => {
+  const editor = page.getByRole("textbox", { name: "Comment", exact: true });
+  await page.getByRole("button", { name: "Load blocks" }).click();
+  await editor.locator("h2").hover();
+  const handle = page.getByRole("button", { name: "Drag to reorder block" });
+  const bounds = await editor.boundingBox();
+  if (!bounds) throw new Error("Editor must have a visible drop target");
+  await handle.dragTo(editor, { targetPosition: { x: 70, y: bounds.height - 4 } });
+  await expect(editor.locator("h2")).toHaveCount(1);
+  await expect(editor.locator("h2")).toHaveText("First");
+  await expect(page.getByLabel("Markdown value")).toHaveText("Second paragraph\n\n- [ ] Third task\n\n## First");
+  await page.getByRole("button", { name: "Undo", exact: true }).click();
+  await expect(page.getByLabel("Markdown value")).toHaveText("## First\n\nSecond paragraph\n\n- [ ] Third task");
+});
+
+test("editor has one frame and an embedded shared toolbar at narrow widths", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  const editor = page.getByRole("textbox", { name: "Comment", exact: true });
+  await editor.click();
+  await expect(editor).toHaveCSS("outline-style", "none");
+  const toolbar = page.getByRole("toolbar", { name: "Markdown formatting" });
+  await expect(toolbar).toHaveAttribute("data-chrome", "embedded");
+  await expect(toolbar).toHaveCSS("box-shadow", "none");
+  await expect(toolbar).toHaveCSS("border-top-width", "0px");
+  await editor.pressSequentially("/head");
+  await expect(page.getByRole("listbox", { name: "Insert block" })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await editor.press("Escape");
+  await page.getByRole("button", { name: "Markdown source" }).click();
+  await expect(editor).toHaveCSS("box-shadow", "none");
+  await expect(editor).toHaveCSS("border-width", "0px");
+});
+
+for (const skin of ["modern-apple", "refined"]) {
+  test(`${skin} keeps editor and source controls embedded`, async ({ page }) => {
+    await page.locator("body").evaluate((body, value) => body.setAttribute("data-skin", value), skin);
+    const toolbar = page.getByRole("toolbar", { name: "Markdown formatting" });
+    await expect(toolbar).toHaveCSS("box-shadow", "none");
+    await expect(toolbar).toHaveCSS("border-top-width", "0px");
+    await page.getByRole("button", { name: "Markdown source" }).click();
+    const source = page.getByRole("textbox", { name: "Comment", exact: true });
+    await source.fill("## Source title");
+    await expect(source).toHaveCSS("box-shadow", "none");
+    await expect(source).toHaveCSS("border-width", "0px");
+    await expect(source).toHaveCSS("border-radius", "0px");
+    await page.getByRole("button", { name: "Markdown source" }).click();
+    await expect(page.getByRole("heading", { name: "Source title" })).toBeVisible();
+  });
+}

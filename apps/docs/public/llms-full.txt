@@ -47,7 +47,7 @@
 - `source-badge` (SourceBadge) — Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback. — `npx shadcn@latest add http://127.0.0.1:3000/r/source-badge.json`
 - `action-bar` (ActionBar) — Reusable hover actions for message and response controls. — `npx shadcn@latest add http://127.0.0.1:3000/r/action-bar.json`
 - `inline-attachment` (InlineAttachment) **[beta]** — Inline file and media previews for chat turns. — `npx shadcn@latest add http://127.0.0.1:3000/r/inline-attachment.json`
-- `markdown-editor` (MarkdownEditor) **[beta]** — Compose Markdown with formatting, task lists, images, source editing, and application-owned uploads. — `npx shadcn@latest add http://127.0.0.1:3000/r/markdown-editor.json`
+- `markdown-editor` (MarkdownEditor) **[beta]** — Compose Markdown with draggable blocks, slash commands, people mentions, formatting, and application-owned image uploads. — `npx shadcn@latest add http://127.0.0.1:3000/r/markdown-editor.json`
 - `markdown-block` (MarkdownBlock) — Assistant markdown output rendered to prose, with a header and copy-source action. — `npx shadcn@latest add http://127.0.0.1:3000/r/markdown-block.json`
 - `chat-layout` (ChatLayout) — A scrolling conversation with a pinned header, message turns, and a floating composer dock. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-layout.json`
 - `thread-rail` (ThreadRail) — Conversation minimap for scanning and jumping between chat turns. — `npx shadcn@latest add http://127.0.0.1:3000/r/thread-rail.json`

@@ -5,7 +5,8 @@
     --cui-markdown-editor-border-width: var(--control-rim-width);
     --cui-markdown-editor-border-color: var(--border);
     --cui-markdown-editor-radius: var(--radius-panel);
-    --cui-markdown-editor-padding: calc(var(--spacing) * 3);
+    --cui-markdown-editor-padding: calc(var(--spacing) * 4);
+    --cui-markdown-editor-gutter-size: var(--control-h-xs);
     --cui-markdown-editor-min-height: calc(var(--spacing) * 32);
     --cui-markdown-editor-max-height: 60dvh;
     --cui-markdown-editor-gap: calc(var(--spacing) * 3);
@@ -19,17 +20,48 @@
     font-size: var(--text-body);
     line-height: var(--leading-relaxed);
   }
-  :where([data-control-family="markdown-editor"][data-slot="content"] .tiptap) {
-    min-block-size: var(--cui-markdown-editor-min-height);
+  :where([data-control-family="markdown-editor"][data-slot="content"]) {
+    position: relative;
     max-block-size: var(--cui-markdown-editor-max-height);
     overflow: auto;
+  }
+  :where([data-control-family="markdown-editor"][data-slot="content"] .tiptap) {
+    min-block-size: var(--cui-markdown-editor-min-height);
     padding: var(--cui-markdown-editor-padding);
+    padding-inline-start: calc(var(--cui-markdown-editor-padding) + var(--cui-markdown-editor-gutter-size));
     overflow-wrap: anywhere;
     white-space: pre-wrap;
+    outline: none;
   }
-  :where([data-control-family="markdown-editor"] .tiptap:focus-visible) {
-    outline: 2px solid var(--ring);
-    outline-offset: -2px;
+  :where([data-control-family="markdown-editor"][data-slot="root"]:has(.tiptap:focus-visible, textarea:focus-visible)) {
+    outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+  }
+  :where([data-control-family="markdown-editor"] > [data-control-family="toolbar"]) {
+    padding-inline: var(--cui-markdown-editor-padding);
+    border-block-end: var(--cui-markdown-editor-border-width) solid var(--cui-markdown-editor-border-color);
+  }
+  :where([data-control-family="markdown-editor"] [data-markdown-drag-handle]) {
+    position: absolute;
+    inset-inline-start: calc(var(--cui-markdown-editor-padding) / 2);
+    top: var(--cui-markdown-editor-padding);
+    cursor: grab;
+    opacity: 0;
+    pointer-events: none;
+  }
+  :where([data-control-family="markdown-editor"] [data-markdown-drag-handle]:is([data-visible], :focus-visible)) {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  :where([data-control-family="markdown-editor"] [data-markdown-drag-handle]:active) {
+    cursor: grabbing;
+  }
+  :where([data-control-family="markdown-editor"][data-slot="source"] textarea) {
+    --focus-ring-width: 0px;
+    min-block-size: var(--cui-markdown-editor-min-height);
+    max-block-size: var(--cui-markdown-editor-max-height);
+    padding: 0;
+    font-family: var(--font-mono);
   }
   :where([data-control-family="markdown-editor"][data-slot="source"]),
   :where([data-control-family="markdown-editor"][data-slot="uploads"]) {
@@ -154,6 +186,12 @@
 }
 
 @property --cui-markdown-editor-padding {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-markdown-editor-gutter-size {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;

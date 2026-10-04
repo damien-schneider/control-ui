@@ -6,12 +6,14 @@ import type { ToolbarKnobStyle } from "@/components/control-ui/knob-contracts/to
 import { cn } from "@/components/control-ui/lib/cn";
 
 export type ToolbarVariant = "default" | "inverse" | "floating";
+export type ToolbarChrome = "standalone" | "embedded";
 
 export type ToolbarLinkVariant = "default" | "track";
 
 export type ToolbarProps = Omit<ComponentProps<"div">, "style"> & {
   orientation?: "horizontal" | "vertical";
   variant?: ToolbarVariant;
+  chrome?: ToolbarChrome;
   style?: CSSProperties & ToolbarKnobStyle;
 };
 
@@ -37,7 +39,14 @@ export type ToolbarInputProps = Omit<ComponentProps<"input">, "style"> & {
   style?: CSSProperties & ToolbarKnobStyle;
 };
 
-export function Toolbar({ orientation = "horizontal", variant = "default", className, children, ...props }: ToolbarProps) {
+export function Toolbar({
+  orientation = "horizontal",
+  variant = "default",
+  chrome = "standalone",
+  className,
+  children,
+  ...props
+}: ToolbarProps) {
   return (
     <ToolbarPrimitive.Root
       orientation={orientation}
@@ -45,6 +54,7 @@ export function Toolbar({ orientation = "horizontal", variant = "default", class
       data-control-family="toolbar"
       data-slot="root"
       data-variant={variant}
+      data-chrome={chrome}
       className={cn("group/toolbar inline-flex", orientation === "vertical" ? "flex-col items-stretch" : "items-center", className)}
       {...props}
     >

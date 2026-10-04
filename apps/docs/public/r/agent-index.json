@@ -739,7 +739,7 @@
         "id": "markdown-editor",
         "name": "MarkdownEditor",
         "kind": "Component",
-        "summary": "Compose Markdown with formatting, task lists, images, source editing, and application-owned uploads.",
+        "summary": "Compose Markdown with draggable blocks, slash commands, people mentions, formatting, and application-owned image uploads.",
         "href": "/components/markdown-editor",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/markdown-editor.json"

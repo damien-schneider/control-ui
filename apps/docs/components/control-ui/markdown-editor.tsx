@@ -8,6 +8,7 @@ import type { MarkdownEditorKnobStyle } from "@/components/control-ui/knob-contr
 import { cn } from "@/components/control-ui/lib/cn";
 import { Textarea } from "@/components/control-ui/ui/textarea";
 import { MarkdownEditorContext, useMarkdownEditor } from "./markdown-editor/context";
+import { MarkdownEditorDragHandle } from "./markdown-editor/drag-handle";
 import { createMarkdownCodec, hasMarkdownContent, markdownExtensions, requiresMarkdownSource } from "./markdown-editor/extensions";
 import type { MarkdownImageUploader } from "./markdown-editor/uploads";
 import { useImageUploads } from "./markdown-editor/use-image-uploads";
@@ -159,6 +160,7 @@ export type MarkdownEditorContentProps = {
 };
 
 export function MarkdownEditorContent({ label, placeholder, autoFocus = false, className }: MarkdownEditorContentProps) {
+  const container = useRef<HTMLDivElement>(null);
   const { editor, disabled, source, sourceRequired, markdown, setMarkdown, setContentAttributes } = useMarkdownEditor();
   useEffect(() => {
     setContentAttributes({
@@ -187,16 +189,20 @@ export function MarkdownEditorContent({ label, placeholder, autoFocus = false, c
           disabled={disabled || !editor}
           onChange={(event) => setMarkdown(event.target.value)}
           rows={5}
+          autoFocus={autoFocus}
+          style={{
+            "--cui-field-background": "transparent",
+            "--cui-field-border-width": "0px",
+            "--cui-field-radius": "0px",
+            "--cui-field-shadow": "none",
+          }}
         />
       </div>
     );
   return (
-    <EditorContent
-      editor={editor}
-      data-control-ui="markdown-editor"
-      data-control-family="markdown-editor"
-      data-slot="content"
-      className={className}
-    />
+    <div ref={container} data-control-ui="markdown-editor" data-control-family="markdown-editor" data-slot="content" className={className}>
+      <EditorContent editor={editor} />
+      <MarkdownEditorDragHandle container={container} />
+    </div>
   );
 }

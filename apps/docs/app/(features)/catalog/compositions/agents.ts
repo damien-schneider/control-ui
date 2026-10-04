@@ -289,8 +289,14 @@ export const agentsCompositions = {
   "markdown-editor": [
     example(
       "Markdown composition",
-      part("MarkdownEditor", part("MarkdownEditorToolbar"), part("MarkdownEditorContent"), part("MarkdownEditorUploads")),
-      "Markdown strings stay application-owned. Supply onUploadImage to enable file paste and drop; use permanent image URLs.",
+      part(
+        "MarkdownEditor",
+        part("MarkdownEditorToolbar"),
+        part("MarkdownEditorContent"),
+        part("MarkdownEditorSuggestions"),
+        part("MarkdownEditorUploads"),
+      ),
+      "Markdown strings stay application-owned. Content includes block drag handles (Alt+ArrowUp/ArrowDown also moves blocks). Suggestions adds slash commands and accepts people with persistent profile URLs; mentions save as Markdown links. Supply onUploadImage to enable image paste and drop.",
     ),
   ],
   "markdown-block": [

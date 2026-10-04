@@ -23,6 +23,7 @@ import {
   ChatMessageTime,
 } from "@/components/control-ui/chat-message";
 import type { MarkdownEditorStatus } from "@/components/control-ui/markdown-editor";
+import type { MarkdownEditorMention } from "@/components/control-ui/markdown-editor/suggestions";
 import type { MarkdownImageUploader } from "@/components/control-ui/markdown-editor/uploads";
 import { Button } from "@/components/control-ui/ui/button";
 import { Kbd, KbdGroup } from "@/components/control-ui/ui/kbd";
@@ -40,6 +41,7 @@ export type DiscussionComposerProps = Omit<ComponentProps<typeof ChatComposer>, 
   autoFocus?: boolean;
   format?: "plain" | "markdown";
   onUploadImage?: MarkdownImageUploader;
+  mentions?: readonly MarkdownEditorMention[];
 };
 
 export function DiscussionComposer({
@@ -59,6 +61,7 @@ export function DiscussionComposer({
   autoFocus,
   format = "plain",
   onUploadImage,
+  mentions,
   onSubmit,
   ...props
 }: DiscussionComposerProps) {
@@ -99,6 +102,7 @@ export function DiscussionComposer({
               placeholder={placeholder}
               autoFocus={autoFocus}
               onUploadImage={onUploadImage}
+              mentions={mentions}
               onStatusChange={setStatus}
               blocked={blocked}
             />

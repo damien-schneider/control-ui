@@ -2,6 +2,7 @@
 
 import { useChatComposerContext } from "@/components/control-ui/chat-composer";
 import { MarkdownEditor, MarkdownEditorContent, type MarkdownEditorStatus } from "@/components/control-ui/markdown-editor";
+import { type MarkdownEditorMention, MarkdownEditorSuggestions } from "@/components/control-ui/markdown-editor/suggestions";
 import { MarkdownEditorToolbar, MarkdownEditorUploads } from "@/components/control-ui/markdown-editor/toolbar";
 import type { MarkdownImageUploader } from "@/components/control-ui/markdown-editor/uploads";
 
@@ -10,6 +11,7 @@ export default function DiscussionMarkdownInput({
   placeholder,
   autoFocus,
   onUploadImage,
+  mentions,
   onStatusChange,
   blocked,
 }: {
@@ -17,6 +19,7 @@ export default function DiscussionMarkdownInput({
   placeholder?: string;
   autoFocus?: boolean;
   onUploadImage?: MarkdownImageUploader;
+  mentions?: readonly MarkdownEditorMention[];
   onStatusChange: (status: MarkdownEditorStatus) => void;
   blocked: boolean;
 }) {
@@ -44,6 +47,7 @@ export default function DiscussionMarkdownInput({
     >
       <MarkdownEditorToolbar />
       <MarkdownEditorContent label={label} placeholder={placeholder} autoFocus={autoFocus} />
+      <MarkdownEditorSuggestions mentions={mentions} />
       <MarkdownEditorUploads />
     </MarkdownEditor>
   );

@@ -32,6 +32,13 @@
     gap: calc(var(--spacing) * 1);
   }
 
+  :where([data-control-family="toolbar"][data-slot="root"][data-chrome="embedded"]) {
+    --cui-toolbar-background: transparent;
+    --cui-toolbar-border-width: 0px;
+    --cui-toolbar-radius: 0px;
+    --cui-toolbar-shadow: none;
+  }
+
   :where([data-control-family="toolbar"][data-slot="root"][data-variant="floating"]) {
     --cui-toolbar-background: transparent;
     --cui-toolbar-border-color: transparent;
@@ -112,7 +119,7 @@
     }
   }
 
-  :where([data-control-family="toolbar"][data-slot="button"]:is([data-pressed], [data-active])),
+  :where([data-control-family="toolbar"][data-slot="button"]:is([data-pressed], [data-active], [aria-pressed="true"])),
   :where([data-control-family="toolbar"][data-slot="link"]:is([data-pressed], [data-active])) {
     background-color: var(--cui-toolbar-item-active-background);
     color: var(--cui-toolbar-item-active-foreground);

@@ -3421,7 +3421,19 @@ export const registryMetadata = {
       "@tiptap/starter-kit@3.31.4",
       "lucide-react@^1.47.0",
     ],
-    registryDependencies: ["button", "chat-composer-attachment", "core", "input", "label", "popover", "textarea", "toolbar", "tooltip"],
+    registryDependencies: [
+      "button",
+      "chat-composer-attachment",
+      "core",
+      "input",
+      "label",
+      "live-status",
+      "popover",
+      "textarea",
+      "toolbar",
+      "tooltip",
+      "trigger-menu",
+    ],
     sourceManifestPath: "registry/control-ui/markdown-editor.json",
     files: [
       {
@@ -3440,8 +3452,18 @@ export const registryMetadata = {
         type: "registry:component",
       },
       {
+        path: "src/registry/sources/control-ui/markdown-editor/drag-handle.tsx",
+        target: "@components/control-ui/markdown-editor/drag-handle.tsx",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/markdown-editor/extensions.ts",
         target: "@components/control-ui/markdown-editor/extensions.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/markdown-editor/suggestions.tsx",
+        target: "@components/control-ui/markdown-editor/suggestions.tsx",
         type: "registry:component",
       },
       {

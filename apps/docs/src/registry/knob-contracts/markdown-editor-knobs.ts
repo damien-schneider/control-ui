@@ -5,6 +5,7 @@ export const markdownEditorKnobs = [
   "--cui-markdown-editor-border-color",
   "--cui-markdown-editor-radius",
   "--cui-markdown-editor-padding",
+  "--cui-markdown-editor-gutter-size",
   "--cui-markdown-editor-min-height",
   "--cui-markdown-editor-max-height",
   "--cui-markdown-editor-gap",

@@ -112,6 +112,15 @@
         ],
         "states": [
           {
+            "attribute": "data-chrome",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "embedded",
+              "standalone"
+            ]
+          },
+          {
             "attribute": "data-disabled",
             "source": "external",
             "valueKind": "presence",
