@@ -103,10 +103,16 @@
       "defaultValue": "calc(var(--spacing) * 4)"
     },
     {
+      "name": "--cui-switch-thumb-press-inline-size",
+      "syntax": "<length>",
+      "initialValue": "20px",
+      "defaultValue": "calc(var(--cui-switch-thumb-inline-size) * 1.25)"
+    },
+    {
       "name": "--cui-switch-thumb-press-scale",
       "syntax": "*",
       "initialValue": "",
-      "defaultValue": "1.25 1"
+      "defaultValue": "1"
     },
     {
       "name": "--cui-switch-thumb-backdrop-filter",

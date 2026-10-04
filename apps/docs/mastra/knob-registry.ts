@@ -3943,9 +3943,15 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="switch"][data-slot="root"])',
       },
       {
+        name: "--cui-switch-thumb-press-inline-size",
+        syntax: "<length>",
+        defaultValue: "calc(var(--cui-switch-thumb-inline-size) * 1.25)",
+        selector: ':where([data-control-family="switch"][data-slot="root"])',
+      },
+      {
         name: "--cui-switch-thumb-press-scale",
         syntax: "*",
-        defaultValue: "1.25 1",
+        defaultValue: "1",
         selector: ':where([data-control-family="switch"][data-slot="root"])',
       },
       {

@@ -324,6 +324,7 @@
     --cui-switch-thumb-background: oklch(1 0 0);
     --cui-switch-thumb-shadow: 0 3px 36px oklch(0 0 0 / 0.05);
     --cui-switch-thumb-press-scale: 1.12 1.2;
+    --cui-switch-thumb-press-inline-size: var(--cui-switch-thumb-inline-size);
   }
 
   [data-skin="modern-apple"] :where([data-control-family="switch"][data-slot="root"]:is(:active, [data-dragging])) {

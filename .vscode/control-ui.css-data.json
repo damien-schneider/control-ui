@@ -2961,6 +2961,11 @@
       "syntax": "<length>"
     },
     {
+      "name": "--cui-switch-thumb-press-inline-size",
+      "description": "Control UI switch knob — registered syntax <length>, fallback 20px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
       "name": "--cui-switch-thumb-press-scale",
       "description": "Control UI switch knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },

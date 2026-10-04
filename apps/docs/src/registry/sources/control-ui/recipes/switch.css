@@ -4,11 +4,13 @@
     --cui-switch-height: calc(var(--spacing) * 5);
     --cui-switch-padding: calc(var(--spacing) * 0.5);
     --cui-switch-thumb-inline-size: calc(var(--spacing) * 4);
-    --cui-switch-thumb-press-scale: 1.25 1;
+    --cui-switch-thumb-press-inline-size: calc(var(--cui-switch-thumb-inline-size) * 1.25);
+    --cui-switch-thumb-press-scale: 1;
     --cui-switch-thumb-backdrop-filter: none;
     --_switch-direction: 1;
     --_switch-progress: 0;
-    --_switch-travel: calc(var(--cui-switch-inline-size) - var(--cui-switch-padding) * 2 - var(--cui-switch-thumb-inline-size));
+    --_switch-thumb-inline-size: var(--cui-switch-thumb-inline-size);
+    --_switch-travel: calc(var(--cui-switch-inline-size) - var(--cui-switch-padding) * 2 - var(--_switch-thumb-inline-size));
     block-size: var(--cui-switch-height);
     inline-size: var(--cui-switch-inline-size);
     padding: var(--cui-switch-padding);
@@ -79,13 +81,13 @@
     border-radius: var(--cui-switch-thumb-radius);
     background: var(--cui-switch-thumb-background);
     box-shadow: var(--cui-switch-thumb-shadow);
-    inline-size: var(--cui-switch-thumb-inline-size);
+    inline-size: var(--_switch-thumb-inline-size);
     block-size: calc(var(--cui-switch-height) - var(--cui-switch-padding) * 2);
     translate: calc(var(--_switch-direction) * var(--_switch-travel) * var(--_switch-progress)) 0;
     transform-origin: left center;
     -webkit-backdrop-filter: var(--cui-switch-thumb-backdrop-filter);
     backdrop-filter: var(--cui-switch-thumb-backdrop-filter);
-    transition-property: translate, scale, background-color, box-shadow;
+    transition-property: translate, inline-size, scale, background-color, box-shadow;
     transition-duration: var(--duration-base);
     transition-timing-function: var(--ease-emphasized);
   }
@@ -136,6 +138,10 @@
     transform-origin: left center;
   }
 
+  :where([data-control-family="switch"][data-slot="root"]:is(:active, [data-dragging]):not([data-disabled], [data-readonly])) {
+    --_switch-thumb-inline-size: var(--cui-switch-thumb-press-inline-size);
+  }
+
   :where(
     [data-control-family="switch"][data-slot="root"]:is(:active, [data-dragging]):not([data-disabled], [data-readonly]) [data-slot="thumb"]
   ) {
@@ -157,7 +163,7 @@
   }
 
   :where([data-control-family="switch"][data-slot="root"][data-dragging] [data-slot="thumb"]) {
-    transition-property: scale, background-color, box-shadow;
+    transition-property: inline-size, scale, background-color, box-shadow;
   }
 }
 
@@ -253,6 +259,12 @@
   syntax: "<length>";
   inherits: true;
   initial-value: 16px;
+}
+
+@property --cui-switch-thumb-press-inline-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 20px;
 }
 
 @property --cui-switch-thumb-press-scale {

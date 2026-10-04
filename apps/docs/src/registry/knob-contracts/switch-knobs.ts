@@ -16,6 +16,7 @@ export const switchKnobs = [
   "--cui-switch-height",
   "--cui-switch-padding",
   "--cui-switch-thumb-inline-size",
+  "--cui-switch-thumb-press-inline-size",
   "--cui-switch-thumb-press-scale",
   "--cui-switch-thumb-backdrop-filter",
 ] as const;

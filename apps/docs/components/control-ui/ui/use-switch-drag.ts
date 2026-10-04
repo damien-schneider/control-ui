@@ -47,7 +47,10 @@ export function useSwitchDrag() {
       setDragProgress(null);
       const styles = getComputedStyle(root);
       const travel =
-        root.clientWidth - Number.parseFloat(styles.paddingLeft) - Number.parseFloat(styles.paddingRight) - thumbRef.current.offsetWidth;
+        root.clientWidth -
+        Number.parseFloat(styles.paddingLeft) -
+        Number.parseFloat(styles.paddingRight) -
+        Number.parseFloat(styles.getPropertyValue("--cui-switch-thumb-inline-size"));
       if (travel <= 0) return;
       const progress = root.hasAttribute("data-checked") ? 1 : 0;
       gestureRef.current = {
