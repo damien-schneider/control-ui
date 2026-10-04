@@ -71,9 +71,9 @@ export function InstallPaths({ current }: { current: InstallPathId }) {
             <Link
               href={path.href}
               aria-current={id === current ? "page" : undefined}
-              className="-mb-px block border-transparent border-b-2 pb-2 text-heading-3 text-muted-foreground transition-colors hover:text-foreground aria-[current=page]:border-primary aria-[current=page]:text-foreground"
+              className="-mb-px block border-transparent border-b-2 pb-2 text-muted-foreground transition-colors hover:text-foreground aria-[current=page]:border-primary aria-[current=page]:text-foreground"
             >
-              {path.label}
+              <Text size="heading-3">{path.label}</Text>
             </Link>
           </li>
         ))}
@@ -104,9 +104,10 @@ export function GuidePoints({ children }: { children: ReactNode }) {
 
 export function GuidePoint({ className, ...props }: ComponentProps<"div">) {
   return (
-    <div
+    <Text
+      as="div"
       className={cn(
-        "relative py-3 pr-2 pl-5 text-body leading-6 before:absolute before:top-[1.35rem] before:left-0 before:size-1.5 before:rounded-full before:bg-primary/70",
+        "relative py-3 pr-2 pl-5 leading-6 before:absolute before:top-[1.35rem] before:left-0 before:size-1.5 before:rounded-full before:bg-primary/70",
         className,
       )}
       {...props}

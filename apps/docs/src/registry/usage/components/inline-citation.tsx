@@ -1,5 +1,6 @@
 import type { SourceReference } from "@/components/control-ui/inline-citation";
 import { InlineCitation } from "@/components/control-ui/inline-citation";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const sources = [
   {
@@ -16,9 +17,9 @@ const sources = [
 
 export function Example() {
   return (
-    <p>
+    <Text as="p">
       The answer can cite several references without turning every source into a permanent panel
       <InlineCitation sources={sources} />.
-    </p>
+    </Text>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Label } from "@/components/control-ui/ui/label";
 
 import { NativeSelect } from "@/components/control-ui/ui/native-select";
 
@@ -9,9 +10,7 @@ export function PrimitiveNativeSelectExample() {
 
   return (
     <div className="flex w-full max-w-xs flex-col gap-2">
-      <label htmlFor="ns-model" className="text-caption font-medium text-muted-foreground">
-        Default model
-      </label>
+      <Label htmlFor="ns-model">Default model</Label>
       <NativeSelect id="ns-model" size="sm" value={model} onChange={(event) => setModel(event.target.value)}>
         <option value="sonnet">Claude Sonnet</option>
         <option value="opus">Claude Opus</option>

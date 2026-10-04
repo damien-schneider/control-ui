@@ -5,6 +5,7 @@ import { CodeSnippet } from "@/app/(features)/components/source";
 import { Button } from "@/components/control-ui/ui/button";
 import { CodeCopy } from "@/components/control-ui/ui/code";
 import { Input } from "@/components/control-ui/ui/input";
+import { Label } from "@/components/control-ui/ui/label";
 import { Text } from "@/components/control-ui/ui/typography";
 import { env } from "@/env";
 import { createAppCommand, normalizeProjectName, type PackageManagerId, packageManagerIds } from "./command";
@@ -25,9 +26,9 @@ export function CreateCommand() {
   return (
     <div className="mt-4 min-w-0 space-y-6">
       <div className="space-y-2">
-        <label htmlFor="project-name" className="block text-label font-medium text-foreground">
+        <Label htmlFor="project-name" className="block">
           Project name
-        </label>
+        </Label>
         <Input
           id="project-name"
           value={projectName}
@@ -38,7 +39,11 @@ export function CreateCommand() {
           aria-describedby="project-name-hint"
         />
         <Text id="project-name-hint" as="p" size="caption" tone="muted">
-          Creates the folder <code className="font-mono text-foreground">{normalizedProjectName}</code>.
+          Creates the folder{" "}
+          <Text as="code" size="caption" tone="foreground" className="font-mono">
+            {normalizedProjectName}
+          </Text>
+          .
         </Text>
       </div>
 

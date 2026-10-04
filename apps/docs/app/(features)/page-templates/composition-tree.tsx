@@ -1,4 +1,5 @@
 import type { CompositionNode } from "@/app/(features)/catalog/compositions/types";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const TREE_HOVER =
   "[&:has(span[data-tag]:hover)_li:not(:has(>span[data-tag]:hover))>span[data-tag]]:opacity-30 [&_span[data-tag]]:transition-[opacity,background-color] [&_span[data-tag]]:duration-[var(--duration-fast)]";
@@ -15,7 +16,7 @@ export function CompositionTree({ tree, ownParts }: { tree: CompositionNode; own
       aria-label="Composition tree"
       // biome-ignore lint/a11y/noNoninteractiveTabindex: Overflowing trees must support keyboard scrolling.
       tabIndex={0}
-      className={`docs-panel overflow-x-auto px-5 py-4 font-mono text-label leading-7 ${TREE_HOVER}`}
+      className={`docs-panel overflow-x-auto px-5 py-4 font-mono ${TREE_HOVER}`}
     >
       <ul className="grid min-w-max">
         <TreeNode node={tree} owned={owned} />
@@ -31,13 +32,21 @@ function TreeNode({ node, owned, nested = false }: { node: CompositionNode; owne
   return (
     <li className={nested ? `${NESTED_ROW} ${ROW_PAIR}` : `grid ${ROW_PAIR}`}>
       {node.kind === "part" ? (
-        <span data-tag="open" className={isOwned ? TAG : `${TAG} opacity-55`}>
-          <span className="text-muted-foreground/60">&lt;</span>
-          <span className="text-foreground">{node.name}</span>
-          <span className="text-muted-foreground/60">{hasChildren ? ">" : " />"}</span>
-        </span>
+        <Text size="label" data-tag="open" className={`${TAG} leading-7 ${isOwned ? "" : "opacity-55"}`}>
+          <Text size="label" tone="muted" className="opacity-60">
+            &lt;
+          </Text>
+          <Text size="label" tone="foreground">
+            {node.name}
+          </Text>
+          <Text size="label" tone="muted" className="opacity-60">
+            {hasChildren ? ">" : " />"}
+          </Text>
+        </Text>
       ) : (
-        <span className={`${TAG} text-muted-foreground`}>{node.name}</span>
+        <Text size="label" tone="muted" className={`${TAG} leading-7`}>
+          {node.name}
+        </Text>
       )}
       {hasChildren ? (
         <>
@@ -47,9 +56,9 @@ function TreeNode({ node, owned, nested = false }: { node: CompositionNode; owne
             ))}
           </ul>
           {node.kind === "part" ? (
-            <span data-tag="close" className={`${TAG} text-muted-foreground ${isOwned ? "" : "opacity-55"}`}>
+            <Text size="label" tone="muted" data-tag="close" className={`${TAG} leading-7 ${isOwned ? "" : "opacity-55"}`}>
               {`</${node.name}>`}
-            </span>
+            </Text>
           ) : null}
         </>
       ) : null}

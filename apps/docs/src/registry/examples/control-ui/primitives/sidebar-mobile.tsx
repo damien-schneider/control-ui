@@ -101,9 +101,9 @@ function MobileWorkspace({ floating }: { floating: boolean }) {
               : "Use the bottom bar for your main destinations and Menu for the complete navigation."}
           </Text>
           {activity.map((entry) => (
-            <div key={entry} className="shrink-0 rounded-(--radius-panel) border border-border p-4 text-label">
+            <Text as="div" size="label" key={entry} className="shrink-0 rounded-(--radius-panel) border border-border p-4">
               {entry}
-            </div>
+            </Text>
           ))}
         </div>
       </SidebarInset>

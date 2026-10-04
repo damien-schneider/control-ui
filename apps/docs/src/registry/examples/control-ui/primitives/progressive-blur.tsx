@@ -3,6 +3,7 @@
 import { DirectionProvider } from "@base-ui/react/direction-provider";
 import { useId, useState } from "react";
 import { Button } from "@/components/control-ui/ui/button";
+import { Label } from "@/components/control-ui/ui/label";
 import { ProgressiveBlur, type ProgressiveBlurSide } from "@/components/control-ui/ui/progressive-blur";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Switch } from "@/components/control-ui/ui/switch";
@@ -51,10 +52,10 @@ export function PrimitiveProgressiveBlurExample() {
             </Button>
           ))}
         </fieldset>
-        <label htmlFor={visibilityId} className="flex items-center gap-2 text-caption">
+        <Label htmlFor={visibilityId} className="flex items-center gap-2">
           <Switch id={visibilityId} checked={visible} onCheckedChange={setVisible} aria-label="Show blur" />
           Blur
-        </label>
+        </Label>
       </div>
       <div className="relative isolate overflow-hidden rounded-(--radius-panel) border border-border bg-background">
         <div className="flex flex-col gap-4 p-6">
@@ -85,14 +86,14 @@ export function ProgressiveBlurScrollExample() {
   return (
     <div className="flex w-full max-w-md flex-col gap-4">
       <div className="flex gap-5">
-        <label htmlFor={blurId} className="flex items-center gap-2 text-caption">
+        <Label htmlFor={blurId} className="flex items-center gap-2">
           <Switch id={blurId} checked={blur} onCheckedChange={setBlur} aria-label="Progressive blur" />
           Blur
-        </label>
-        <label htmlFor={maskId} className="flex items-center gap-2 text-caption">
+        </Label>
+        <Label htmlFor={maskId} className="flex items-center gap-2">
           <Switch id={maskId} checked={mask} onCheckedChange={setMask} aria-label="Edge fade" />
           Fade
-        </label>
+        </Label>
       </div>
       <ScrollArea blur={blur} mask={mask} lockAxis="x" maxHeight="260px" viewportProps={{ "aria-label": "Places to explore" }}>
         <ol className="flex flex-col gap-1 p-4">

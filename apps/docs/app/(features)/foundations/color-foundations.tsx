@@ -44,12 +44,14 @@ function SurfaceSwatch({ role }: { role: string }) {
   const foreground = pairedForegrounds[0] ?? "--foreground";
   return (
     <Specimen token={role} companionTokens={pairedForegrounds} description={contractDescription(role)}>
-      <div
-        className="grid h-20 place-items-center rounded-[var(--radius-panel)] text-heading-3 ring-1 ring-inset ring-border"
+      <Text
+        as="div"
+        size="heading-3"
+        className="grid h-20 place-items-center rounded-[var(--radius-panel)] ring-1 ring-inset ring-border"
         style={{ background: `var(${role})`, color: `var(${foreground})` }}
       >
         Aa
-      </div>
+      </Text>
     </Specimen>
   );
 }
@@ -57,12 +59,14 @@ function SurfaceSwatch({ role }: { role: string }) {
 function TextSwatch({ role }: { role: string }) {
   return (
     <Specimen token={role} description={contractDescription(role)}>
-      <p
-        className="rounded-[var(--radius-panel)] bg-background px-4 py-3 text-body-lg ring-1 ring-inset ring-border"
+      <Text
+        as="p"
+        size="body-lg"
+        className="rounded-[var(--radius-panel)] bg-background px-4 py-3 ring-1 ring-inset ring-border"
         style={{ color: `var(${role})` }}
       >
         The quick brown fox
-      </p>
+      </Text>
     </Specimen>
   );
 }

@@ -155,7 +155,11 @@ function RegistryItemSource({ files, title = "Raw code", description = "Primary 
 }
 
 function KnobFamilyName({ id, href }: { id: string; href?: string }) {
-  const name = <code className="font-medium text-foreground">--cui-{id}-*</code>;
+  const name = (
+    <Text as="code" size="caption" weight="medium" tone="foreground">
+      --cui-{id}-*
+    </Text>
+  );
   if (!href) return name;
 
   return (

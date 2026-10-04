@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Label } from "@/components/control-ui/ui/label";
 
 import {
   NumberField,
@@ -21,9 +22,9 @@ export function PrimitiveNumberFieldExample() {
           to change the value in addition to the ± buttons and keyboard arrows. */}
       <NumberField id="quantity" value={quantity} onValueChange={setQuantity} min={0} max={99}>
         <NumberFieldScrubArea>
-          <label htmlFor="quantity" className="cursor-ew-resize text-caption font-medium text-muted-foreground">
+          <Label htmlFor="quantity" className="cursor-ew-resize">
             Quantity
-          </label>
+          </Label>
         </NumberFieldScrubArea>
         <NumberFieldGroup>
           <NumberFieldDecrement />
@@ -41,9 +42,7 @@ export function PrimitiveNumberFieldExample() {
         step={100}
         format={{ style: "currency", currency: "USD", maximumFractionDigits: 0 }}
       >
-        <label htmlFor="budget" className="text-caption font-medium text-muted-foreground">
-          Monthly budget
-        </label>
+        <Label htmlFor="budget">Monthly budget</Label>
         <NumberFieldGroup>
           <NumberFieldDecrement />
           <NumberFieldInput className="w-28" />

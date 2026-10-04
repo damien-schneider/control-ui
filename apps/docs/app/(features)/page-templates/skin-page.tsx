@@ -50,20 +50,15 @@ export function SkinPage({ skin }: { skin: DocsSkinPage }) {
           </section>
         ) : null}
         {unavailable ? (
-          <Text
-            id="install"
-            as="div"
-            tone="muted"
-            className="min-w-0 scroll-mt-20 rounded-xl border border-dashed bg-muted/20 p-6 leading-6"
-          >
+          <div id="install" className="min-w-0 scroll-mt-20 rounded-xl border border-dashed bg-muted/20 p-6">
             <Badge variant="outline" size="sm">
               Docs demonstration
             </Badge>
-            <p className="mt-3">
+            <Text as="p" tone="muted" className="mt-3 leading-6">
               {skin.label} is demonstrated live in these docs through the theme editor, but is not shipped as an installable pack — so there
               is no pack source to install here. Open the theme editor (paintbrush, top-right) to preview it over any page.
-            </p>
-          </Text>
+            </Text>
+          </div>
         ) : null}
         {!unavailable && install && fullInstall && manifestHref ? (
           <InstallPanel
@@ -159,11 +154,13 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
           <SectionTitle title="Where skin values live" description="One owner for each visual decision." />
           <div className="grid gap-2">
             {SKIN_VALUE_RULES.map((rule) => (
-              <Card key={rule.label} className="flex-row gap-3 px-4 py-3 text-body leading-6">
+              <Card key={rule.label} className="flex-row gap-3 px-4 py-3">
                 <Badge variant="outline" size="sm">
                   {rule.label}
                 </Badge>
-                <span className="text-foreground">{rule.body}</span>
+                <Text tone="foreground" className="leading-6">
+                  {rule.body}
+                </Text>
               </Card>
             ))}
           </div>
@@ -193,16 +190,21 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
           </Text>
           <div className="grid gap-2">
             {Object.entries(generatedSkinContract.scopes).map(([scope, anatomy]) => (
-              <Card key={scope} className="gap-0 px-4 py-3 text-body">
+              <Card key={scope} className="gap-0 px-4 py-3">
                 <details>
-                  <summary className="cursor-pointer font-mono text-label font-medium">
-                    {scope} <span className="text-muted-foreground">({Object.keys(anatomy.parts).length})</span>
+                  <summary className="cursor-pointer">
+                    <Text size="label" weight="medium" className="font-mono">
+                      {scope}{" "}
+                      <Text size="label" tone="muted">
+                        ({Object.keys(anatomy.parts).length})
+                      </Text>
+                    </Text>
                   </summary>
                   <div className="mt-3 flex flex-wrap gap-1.5">
                     {Object.keys(anatomy.parts).map((part) => (
-                      <code key={part} className="rounded-md border bg-background px-1.5 py-0.5 text-caption">
+                      <Text as="code" size="caption" key={part} className="rounded-md border bg-background px-1.5 py-0.5">
                         {part}
-                      </code>
+                      </Text>
                     ))}
                   </div>
                 </details>
@@ -218,11 +220,13 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
           />
           <div className="grid gap-2">
             {SKIN_REQUIREMENTS.map((rule) => (
-              <Card key={rule.label} className="flex-row gap-3 px-4 py-3 text-body leading-6">
+              <Card key={rule.label} className="flex-row gap-3 px-4 py-3">
                 <Badge variant="outline" size="sm" className="self-start">
                   {rule.label}
                 </Badge>
-                <span className="text-foreground">{rule.body}</span>
+                <Text tone="foreground" className="leading-6">
+                  {rule.body}
+                </Text>
               </Card>
             ))}
           </div>
@@ -272,7 +276,7 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
 
               return (
                 <Link key={skin.id} href={`/skins/${skin.id}`} className="block min-w-0">
-                  <Card className="min-w-0 flex-row items-center justify-between gap-4 px-4 py-3 text-body transition-colors hover:bg-muted/30">
+                  <Card className="min-w-0 flex-row items-center justify-between gap-4 px-4 py-3 transition-colors hover:bg-muted/30">
                     <span className="flex min-w-0 flex-col">
                       <Text weight="medium">{skin.label}</Text>
                       <Text size="label" tone="muted" className="min-w-0 truncate">

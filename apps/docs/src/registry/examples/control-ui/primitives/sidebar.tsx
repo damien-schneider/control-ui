@@ -224,18 +224,22 @@ function Workspace({
             </Text>
           </div>
           <div className="min-h-0 overflow-x-auto rounded-(--radius-panel) border border-border">
-            <div className="min-w-96 divide-y divide-border text-label">
-              <div className="flex justify-between gap-8 px-4 py-3 text-muted-foreground">
-                <span>Project</span>
-                <span>Last updated</span>
+            <div className="min-w-96 divide-y divide-border">
+              <div className="flex justify-between gap-8 px-4 py-3">
+                <Text size="label" tone="muted">
+                  Project
+                </Text>
+                <Text size="label" tone="muted">
+                  Last updated
+                </Text>
               </div>
               <div className="flex justify-between gap-8 px-4 py-3">
-                <span>Customer support</span>
-                <span>Today</span>
+                <Text size="label">Customer support</Text>
+                <Text size="label">Today</Text>
               </div>
               <div className="flex justify-between gap-8 px-4 py-3">
-                <span>Research assistant</span>
-                <span>Yesterday</span>
+                <Text size="label">Research assistant</Text>
+                <Text size="label">Yesterday</Text>
               </div>
             </div>
           </div>

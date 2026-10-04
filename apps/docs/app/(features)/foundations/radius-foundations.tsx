@@ -4,7 +4,15 @@ import { contractDescription, Specimen, SpecimenGroup, TokenValueList } from "./
 import { formatPx, useComputedReadout } from "./specimen/theme-readouts";
 
 const RADIUS_SCALE = ["--radius-sm", "--radius-md", "--radius-lg", "--radius-xl", "--radius-2xl"];
-const RADIUS_ROLES = ["--radius-popup-item", "--radius-control", "--radius-field", "--radius-popover", "--radius-panel", "--radius-scene"];
+const RADIUS_ROLES = [
+  "--radius-popup-item",
+  "--radius-control",
+  "--radius-field",
+  "--radius-composer",
+  "--radius-popover",
+  "--radius-panel",
+  "--radius-scene",
+];
 
 function readCornerRadius(style: CSSStyleDeclaration) {
   return formatPx(style.borderTopLeftRadius);

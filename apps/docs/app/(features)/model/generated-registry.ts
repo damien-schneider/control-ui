@@ -2979,7 +2979,7 @@ export const registryMetadata = {
   },
   "filter-bar": {
     dependencies: ["@base-ui/react@^1.8.0", "lucide-react@^1.47.0"],
-    registryDependencies: ["button", "combobox", "core", "live-status", "motion"],
+    registryDependencies: ["button", "combobox", "core", "live-status", "motion", "typography"],
     sourceManifestPath: "registry/control-ui/filter-bar.json",
     files: [
       {
@@ -3433,6 +3433,7 @@ export const registryMetadata = {
       "toolbar",
       "tooltip",
       "trigger-menu",
+      "typography",
     ],
     sourceManifestPath: "registry/control-ui/markdown-editor.json",
     files: [

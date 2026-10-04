@@ -33,6 +33,7 @@ import {
   EmojiPickerSearch,
 } from "@/components/control-ui/ui/emoji-picker";
 import { Popover, PopoverContent, PopoverTrigger, PopoverViewport } from "@/components/control-ui/ui/popover";
+import { Text } from "@/components/control-ui/ui/typography";
 import { commonReactions, rememberEmoji } from "../primitives/emoji-picker-data";
 import { formatMessageTime, people, type TeamMessage, type TeamPerson, viewerId } from "./data";
 
@@ -166,9 +167,9 @@ export function TeamChatMessage({ message, continuation, onToggleReaction, onOpe
                   </Avatar>
                 ))}
               </AvatarGroup>
-              <span className="font-medium text-foreground">
+              <Text size="caption" weight="medium" tone="foreground">
                 {message.replies.length} {message.replies.length === 1 ? "reply" : "replies"}
-              </span>
+              </Text>
               <span>{lastReplyLabel(message.replies)}</span>
             </ChatMessageReplySummary>
           ) : null}

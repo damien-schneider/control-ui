@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Label } from "@/components/control-ui/ui/label";
 
 import { Textarea } from "@/components/control-ui/ui/textarea";
 import { Text } from "@/components/control-ui/ui/typography";
@@ -10,9 +11,7 @@ export function PrimitiveTextareaExample() {
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-2">
-      <label htmlFor="ta-prompt" className="text-caption font-medium text-muted-foreground">
-        System prompt
-      </label>
+      <Label htmlFor="ta-prompt">System prompt</Label>
       <Textarea
         id="ta-prompt"
         value={value}

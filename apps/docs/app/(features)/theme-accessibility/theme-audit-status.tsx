@@ -20,8 +20,10 @@ export function ThemeAuditStatus({ root, className }: { root: HTMLElement | null
     );
 
   return (
-    <div className={cn("grid gap-2 text-caption", className)} aria-live="polite">
-      <p
+    <div className={cn("grid gap-2", className)} aria-live="polite">
+      <Text
+        as="p"
+        size="caption"
         className={cn(
           "flex items-start gap-2",
           errors.length > 0 ? "text-red-700 dark:text-red-400" : "text-emerald-700 dark:text-emerald-400",
@@ -40,21 +42,27 @@ export function ThemeAuditStatus({ root, className }: { root: HTMLElement | null
             ? ` ${warnings.length} focus or boundary ${warnings.length === 1 ? "warning remains" : "warnings remain"}.`
             : ""}
         </span>
-      </p>
+      </Text>
       {errors.length > 0 ? (
         <details>
-          <summary className="cursor-pointer font-medium text-foreground">Show failing checks</summary>
-          <ul className="mt-1.5 grid list-disc gap-1 pl-5 text-muted-foreground">
+          <summary className="cursor-pointer">
+            <Text size="caption" weight="medium" tone="foreground">
+              Show failing checks
+            </Text>
+          </summary>
+          <ul className="mt-1.5 grid list-disc gap-1 pl-5">
             {errors.map((result) => (
-              <li key={result.id}>
+              <Text as="li" size="caption" tone="muted" key={result.id}>
                 {result.label}: {result.ratio === null ? "unresolved" : `${result.ratio.toFixed(2)}:1`}
-              </li>
+              </Text>
             ))}
           </ul>
         </details>
       ) : null}
-      <Link href="/theme-accessibility" className="w-fit font-medium text-primary-text underline underline-offset-4">
-        Open the active theme audit
+      <Link href="/theme-accessibility" className="w-fit underline underline-offset-4">
+        <Text size="caption" weight="medium" tone="primary">
+          Open the active theme audit
+        </Text>
       </Link>
     </div>
   );

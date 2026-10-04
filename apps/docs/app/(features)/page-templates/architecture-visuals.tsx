@@ -164,8 +164,8 @@ export function SkinResolutionMap() {
           </Text>
         </div>
         <Text as="div" size="caption" tone="muted">
-          Refined config: <code className="font-mono text-foreground">{`{ id: "refined" }`}</code>. Every installed pack supplies this file;
-          no provider or wrapper is required.
+          Refined config: <Text as="code" size="caption" tone="foreground" className="font-mono">{`{ id: "refined" }`}</Text>. Every
+          installed pack supplies this file; no provider or wrapper is required.
         </Text>
       </div>
     </GuideVisual>

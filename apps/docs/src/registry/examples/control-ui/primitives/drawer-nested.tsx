@@ -39,9 +39,13 @@ export function PrimitiveNestedDrawerExample() {
         <DrawerBody>
           <dl className="grid gap-1 px-4">
             {summaryRows.map(([label, value]) => (
-              <div key={label} className="flex items-center justify-between rounded-[var(--radius-control)] px-3 py-2 text-body">
-                <dt className="text-muted-foreground">{label}</dt>
-                <dd className="font-medium text-foreground">{value}</dd>
+              <div key={label} className="flex items-center justify-between rounded-[var(--radius-control)] px-3 py-2">
+                <Text as="dt" tone="muted">
+                  {label}
+                </Text>
+                <Text as="dd" weight="medium" tone="foreground">
+                  {value}
+                </Text>
               </div>
             ))}
           </dl>
@@ -62,10 +66,14 @@ export function PrimitiveNestedDrawerExample() {
                   {accessRows.map(([label, value]) => (
                     <div
                       key={label}
-                      className="flex items-center justify-between rounded-[var(--radius-control)] bg-foreground/4 px-3 py-2.5 text-body"
+                      className="flex items-center justify-between rounded-[var(--radius-control)] bg-foreground/4 px-3 py-2.5"
                     >
-                      <dt className="text-foreground">{label}</dt>
-                      <dd className="text-muted-foreground">{value}</dd>
+                      <Text as="dt" tone="foreground">
+                        {label}
+                      </Text>
+                      <Text as="dd" tone="muted">
+                        {value}
+                      </Text>
                     </div>
                   ))}
                 </dl>

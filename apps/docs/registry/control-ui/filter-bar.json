@@ -13,7 +13,8 @@
     "combobox",
     "core",
     "live-status",
-    "motion"
+    "motion",
+    "typography"
   ],
   "files": [
     {

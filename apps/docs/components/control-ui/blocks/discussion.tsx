@@ -116,9 +116,9 @@ export function DiscussionComposer({
           />
         )}
         {error ? (
-          <p role="alert" className="px-3">
+          <Text as="p" role="alert" className="px-3">
             {error}
-          </p>
+          </Text>
         ) : null}
         <ChatComposerToolbar>
           <Text size="caption" tone="muted" className="flex min-w-0 items-center gap-1.5">

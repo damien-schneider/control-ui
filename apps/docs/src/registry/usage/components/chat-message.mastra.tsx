@@ -30,6 +30,7 @@ import {
   InlineAttachmentTitle,
 } from "@/components/control-ui/inline-attachment";
 import { SourceBadge } from "@/components/control-ui/source-badge";
+import { Text } from "@/components/control-ui/ui/typography";
 
 function renderJson(value: unknown) {
   return typeof value === "string" ? value : JSON.stringify(value, null, 2);
@@ -140,11 +141,27 @@ const messageRoles = {
 } satisfies MessageRoleRenderers;
 
 const messageStatus = {
-  Tripwire: ({ text }) => <p role="alert">{text}</p>,
-  Warning: ({ text }) => <p role="status">{text}</p>,
-  Error: ({ text }) => <p role="alert">{text}</p>,
+  Tripwire: ({ text }) => (
+    <Text as="p" role="alert">
+      {text}
+    </Text>
+  ),
+  Warning: ({ text }) => (
+    <Text as="p" role="status">
+      {text}
+    </Text>
+  ),
+  Error: ({ text }) => (
+    <Text as="p" role="alert">
+      {text}
+    </Text>
+  ),
   Pending: ({ children }) => <div aria-busy="true">{children}</div>,
-  Task: ({ passed }) => <p role="status">Task {passed ? "completed" : "needs another step"}</p>,
+  Task: ({ passed }) => (
+    <Text as="p" role="status">
+      Task {passed ? "completed" : "needs another step"}
+    </Text>
+  ),
 } satisfies MessageStatusRenderers;
 
 export function Example({ message }: { message: MastraDBMessage }) {

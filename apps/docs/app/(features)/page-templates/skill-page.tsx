@@ -39,7 +39,9 @@ export function SkillPage({ skill, concern }: { skill: DocsSkill; concern?: Docs
               <Text as="div" weight="medium" tone="foreground">
                 {skill.source.label}
               </Text>
-              <code className="mt-2 block overflow-hidden text-ellipsis whitespace-nowrap text-label">{skill.source.path}</code>
+              <Text as="code" size="label" className="mt-2 block overflow-hidden text-ellipsis whitespace-nowrap">
+                {skill.source.path}
+              </Text>
             </Text>
           </section>
         ) : null}
@@ -54,7 +56,7 @@ function SkillRuleList({ id, title, items, muted = false }: { id: string; title:
       <SectionTitle title={title} />
       <div className="grid gap-2">
         {items.map((item, index) => (
-          <Card key={item} className="flex-row gap-3 px-4 py-3 text-body leading-6">
+          <Card key={item} className="flex-row gap-3 px-4 py-3">
             <Text
               size="caption"
               weight="medium"
@@ -63,7 +65,9 @@ function SkillRuleList({ id, title, items, muted = false }: { id: string; title:
             >
               {index + 1}
             </Text>
-            <span className={muted ? "text-muted-foreground" : "text-foreground"}>{item}</span>
+            <Text tone={muted ? "muted" : "foreground"} className="leading-6">
+              {item}
+            </Text>
           </Card>
         ))}
       </div>

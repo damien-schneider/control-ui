@@ -105,9 +105,9 @@ function AuditTable({ category, results }: { category: ThemeAuditCategory; resul
                 </td>
                 <th scope="row" className="py-2.5 pr-4 font-medium text-foreground">
                   {result.label}
-                  <span className="mt-0.5 block font-normal text-muted-foreground">
+                  <Text size="caption" weight="normal" tone="muted" className="mt-0.5 block">
                     {result.severity === "warning" ? "Advisory" : "Required"} {result.threshold >= 4.5 ? "text" : "non-text"} contrast
-                  </span>
+                  </Text>
                 </th>
                 <td className="py-2.5 pr-4 font-mono text-micro leading-5 text-muted-foreground">
                   <code>{result.foreground}</code>
@@ -135,9 +135,9 @@ function AuditTable({ category, results }: { category: ThemeAuditCategory; resul
 function AuditResultsSkeleton() {
   return (
     <div className="grid gap-9">
-      <p role="status" className="sr-only">
+      <Text as="p" role="status" className="sr-only">
         Resolving theme tokens…
-      </p>
+      </Text>
       {[0, 1].map((group) => (
         <div key={group} className="grid gap-3">
           <div className="flex items-baseline justify-between gap-2">

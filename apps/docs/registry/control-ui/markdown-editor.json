@@ -27,7 +27,8 @@
     "textarea",
     "toolbar",
     "tooltip",
-    "trigger-menu"
+    "trigger-menu",
+    "typography"
   ],
   "files": [
     {

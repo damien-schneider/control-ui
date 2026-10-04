@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/control-ui/ui/button";
 import { Input } from "@/components/control-ui/ui/input";
+import { Label } from "@/components/control-ui/ui/label";
 import {
   Popover,
   PopoverContent,
@@ -21,14 +22,10 @@ export function PrimitivePopoverExample() {
             <PopoverTitle>Dimensions</PopoverTitle>
             <PopoverDescription>Set the width and height for the layer.</PopoverDescription>
           </PopoverHeader>
-          <div className="grid grid-cols-[1fr_auto] items-center gap-2 text-body">
-            <label htmlFor="popover-width" className="text-muted-foreground">
-              Width
-            </label>
+          <div className="grid grid-cols-[1fr_auto] items-center gap-2">
+            <Label htmlFor="popover-width">Width</Label>
             <Input id="popover-width" defaultValue="320px" className="w-24 text-right" />
-            <label htmlFor="popover-height" className="text-muted-foreground">
-              Height
-            </label>
+            <Label htmlFor="popover-height">Height</Label>
             <Input id="popover-height" defaultValue="180px" className="w-24 text-right" />
           </div>
         </PopoverContent>

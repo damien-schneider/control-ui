@@ -13,6 +13,7 @@ import {
   ComboboxItem,
   ComboboxList,
 } from "@/components/control-ui/ui/combobox";
+import { Text } from "@/components/control-ui/ui/typography";
 import { type FilterBarContextValue, useFilterBarContext } from "./context";
 import { allowsCustomValue, fieldOperators, fieldOptions, parseCustomValue } from "./model";
 import type { FilterBarDraft, FilterBarField, FilterBarScalar, FilterBarStage } from "./types";
@@ -96,9 +97,9 @@ function handleEditorKeyDown(context: FilterBarContextValue, draft: FilterBarDra
 function EditorOptions({ field, invalidNumber, owner }: { field?: FilterBarField; invalidNumber: boolean; owner: string }) {
   if (field?.loading || field?.error)
     return (
-      <div id={statusId(owner)} className="p-3 text-caption">
+      <Text as="div" size="caption" id={statusId(owner)} className="p-3">
         {field.error ?? "Loading values…"}
-      </div>
+      </Text>
     );
   return (
     <>

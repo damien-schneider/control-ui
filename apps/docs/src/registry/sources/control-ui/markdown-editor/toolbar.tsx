@@ -25,6 +25,7 @@ import { Label } from "@/components/control-ui/ui/label";
 import { Popover, PopoverContent, PopoverTitle, PopoverTrigger } from "@/components/control-ui/ui/popover";
 import { Toolbar, ToolbarButton, ToolbarSeparator } from "@/components/control-ui/ui/toolbar";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
+import { Text } from "@/components/control-ui/ui/typography";
 import { useMarkdownEditor } from "./context";
 import { isEditorUrl } from "./extensions";
 import { markdownImageTypes } from "./uploads";
@@ -246,7 +247,11 @@ export function MarkdownEditorUploads() {
   const { uploads, uploadError, retryUpload, removeUpload, disabled } = useMarkdownEditor();
   return (
     <>
-      {uploadError ? <p role="alert">{uploadError}</p> : null}
+      {uploadError ? (
+        <Text as="p" role="alert">
+          {uploadError}
+        </Text>
+      ) : null}
       {uploads.length > 0 ? (
         <div data-control-ui="markdown-editor" data-control-family="markdown-editor" data-slot="uploads">
           <ChatComposerAttachments label="Image uploads">
