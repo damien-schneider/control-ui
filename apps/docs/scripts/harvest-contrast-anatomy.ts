@@ -15,6 +15,9 @@ import { formatGeneratedTypeScript } from "./format-generated-typescript";
 import { publicPayloadPath, publicPayloads } from "./public-payloads";
 
 const checkOnly = process.argv.includes("--check");
+const includeMobile = process.argv.includes("--mobile");
+const browserExecutable = process.argv.find((argument) => argument.startsWith("--browser-executable="))?.split("=")[1];
+const requestedKnobPrefix = process.argv.find((argument) => argument.startsWith("--knob-prefix="))?.split("=")[1];
 const artifactPath = publicPayloadPath(publicPayloads.contrastAnatomy);
 const modulePath = "app/(features)/theme-accessibility/generated-contrast-anatomy.ts";
 const baseUrl = "http://127.0.0.1:3000";
@@ -61,10 +64,13 @@ const input = {
 };
 const probes = new Map<string, { probe: ContrastProbe; order: number }>();
 const unreproduced = new Set<string>();
+const selected = (probe: Pick<ContrastProbe, "knobs">) =>
+  !requestedKnobPrefix || Object.values(probe.knobs).some((knob) => knob.startsWith(requestedKnobPrefix));
 
 const record = (route: string, order: number) => (harvested: RouteHarvest) => {
   for (const selector of harvested.unreproduced) unreproduced.add(selector);
   for (const probe of harvested.probes) {
+    if (!selected(probe)) continue;
     const key = JSON.stringify([probe.knobs, probe.anatomy]);
     const known = probes.get(key);
     const rendersText = probe.rendersText || (known?.probe.rendersText ?? false);
@@ -109,11 +115,15 @@ const requestedRoutes = process.argv.slice(2).filter((argument) => argument.star
 const documented = await documentedRoutes();
 const routes = requestedRoutes.length > 0 ? requestedRoutes : documented;
 
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({ headless: true, executablePath: browserExecutable });
 try {
   let cursor = 0;
   const worker = async () => {
     let page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+    await page.addInitScript(() => {
+      window.__REACT_GRAB_DISABLED__ = true;
+      window.__REACT_SCAN_DISABLED__ = true;
+    });
     while (cursor < routes.length) {
       const index = cursor;
       cursor += 1;
@@ -123,9 +133,18 @@ try {
         console.log(`${route} rendered nothing — retrying on a fresh page`);
         await page.close();
         page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+        await page.addInitScript(() => {
+          window.__REACT_GRAB_DISABLED__ = true;
+          window.__REACT_SCAN_DISABLED__ = true;
+        });
         rendered = await visit(page, route, index);
       }
       if (rendered === 0) unrendered.push(route);
+      if (includeMobile) {
+        await page.setViewportSize({ width: 390, height: 844 });
+        await visit(page, route, index);
+        await page.setViewportSize({ width: 1440, height: 900 });
+      }
       console.log(`[${index + 1}/${routes.length}] ${route} — ${probes.size} probes`);
     }
     await page.close();
@@ -152,14 +171,22 @@ const committedPath = path.join(process.cwd(), artifactPath);
 const committed: ContrastProbe[] = existsSync(committedPath) ? JSON.parse(readFileSync(committedPath, "utf8")).probes : [];
 for (const probe of committed) {
   const key = JSON.stringify([probe.knobs, probe.anatomy]);
-  const refreshed = routes.includes(probe.route) || probes.has(key);
-  if (refreshed || stale(probe)) continue;
+  const refreshed = (selected(probe) && routes.includes(probe.route)) || probes.has(key);
+  if (refreshed || (selected(probe) && stale(probe))) continue;
   probes.set(key, { probe, order: Number.MAX_SAFE_INTEGER });
 }
 
+const committedOrder = new Map(committed.map((probe, index) => [JSON.stringify(probe), index]));
 const sorted = [...probes.values()]
   .map((entry) => entry.probe)
-  .sort((left, right) => JSON.stringify(left).localeCompare(JSON.stringify(right)));
+  .sort((left, right) => {
+    if (requestedKnobPrefix) {
+      const leftOrder = committedOrder.get(JSON.stringify(left)) ?? committed.length;
+      const rightOrder = committedOrder.get(JSON.stringify(right)) ?? committed.length;
+      if (leftOrder !== rightOrder) return leftOrder - rightOrder;
+    }
+    return JSON.stringify(left).localeCompare(JSON.stringify(right));
+  });
 const harvestedKnobs = new Set(sorted.flatMap((probe) => Object.values(probe.knobs)));
 const uncovered = [...new Set(rules.flatMap((rule) => Object.values(rule.knobs)))].filter((knob) => !harvestedKnobs.has(knob)).sort();
 

@@ -49,6 +49,7 @@ type SidebarElements = {
   offcanvasRef: RefObject<HTMLDivElement | null>;
   railRef: RefObject<HTMLElement | null>;
   triggerRef: RefObject<HTMLButtonElement | null>;
+  activeTriggerRef: RefObject<HTMLButtonElement | null>;
   insetRef: RefObject<HTMLElement | null>;
 };
 
@@ -134,12 +135,14 @@ export function SidebarProvider({
   const skin = useSkin();
   const isMobile = useIsMobile(SIDEBAR_MOBILE_BREAKPOINT);
   const [openMobile, setOpenMobile] = useState(false);
+  if (!isMobile && openMobile) setOpenMobile(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const offcanvasRef = useRef<HTMLDivElement>(null);
   const railRef = useRef<HTMLElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const activeTriggerRef = useRef<HTMLButtonElement>(null);
   const insetRef = useRef<HTMLElement>(null);
-  const elements = { wrapperRef, offcanvasRef, railRef, triggerRef, insetRef };
+  const elements = { wrapperRef, offcanvasRef, railRef, triggerRef, activeTriggerRef, insetRef };
   const sidebarId = useId();
   const generatedContentId = useId();
   const contentId = contentIdProp ?? generatedContentId;

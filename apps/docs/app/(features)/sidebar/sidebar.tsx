@@ -101,7 +101,11 @@ export function DocsSidebarContent({
   }
 
   return (
-    <Sidebar collapsible={DOCS_SIDEBAR_COLLAPSIBLE} className="group-data-[side=left]:border-r-0 group-data-[side=right]:border-l-0">
+    <Sidebar
+      mobileVariant="drawer"
+      collapsible={DOCS_SIDEBAR_COLLAPSIBLE}
+      className="group-data-[side=left]:border-r-0 group-data-[side=right]:border-l-0"
+    >
       <div data-docs-sidebar-navigation="" className="flex min-h-0 flex-1 flex-col p-2">
         <SidebarHeader className="gap-2">
           <div className="flex items-center justify-between gap-2">

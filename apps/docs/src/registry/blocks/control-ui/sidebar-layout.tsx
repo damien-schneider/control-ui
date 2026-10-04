@@ -14,8 +14,12 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMobileNav,
+  SidebarMobileNavItem,
+  SidebarMobileTrigger,
   SidebarRail,
   SidebarTrigger,
+  useSidebar,
 } from "@/components/control-ui/ui/sidebar";
 import { Text } from "@/components/control-ui/ui/typography";
 
@@ -23,18 +27,31 @@ type SidebarLayoutNavItem = {
   title: string;
   href: string;
   icon: ComponentType<{ className?: string }>;
+  mobilePrimary: boolean;
 };
 
-const primaryNav: SidebarLayoutNavItem[] = [
-  { title: "Playground", href: "/playground", icon: SquareTerminalIcon },
-  { title: "Agents", href: "/agents", icon: BotIcon },
-  { title: "Workflows", href: "/workflows", icon: WorkflowIcon },
-  { title: "Dashboard", href: "/dashboard", icon: LayoutDashboardIcon },
+const navigation: SidebarLayoutNavItem[] = [
+  { title: "Playground", href: "/playground", icon: SquareTerminalIcon, mobilePrimary: true },
+  { title: "Agents", href: "/agents", icon: BotIcon, mobilePrimary: true },
+  { title: "Workflows", href: "/workflows", icon: WorkflowIcon, mobilePrimary: true },
+  { title: "Dashboard", href: "/dashboard", icon: LayoutDashboardIcon, mobilePrimary: true },
+  { title: "Settings", href: "/settings", icon: SettingsIcon, mobilePrimary: false },
 ];
+
+function NavigationItem({ item, active, mobile = false }: { item: SidebarLayoutNavItem; active: string; mobile?: boolean }) {
+  const { setOpenMobile } = useSidebar();
+  const Item = mobile ? SidebarMobileNavItem : SidebarMenuButton;
+  return (
+    <Item render={<a href={item.href} />} isActive={item.title === active} onClick={() => setOpenMobile(false)}>
+      <item.icon aria-hidden="true" />
+      <span>{item.title}</span>
+    </Item>
+  );
+}
 
 export function AppSidebar({ active = "Playground" }: { active?: string }) {
   return (
-    <Sidebar collapsible="icon" variant="inset">
+    <Sidebar collapsible="icon" variant="inset" mobileVariant="drawer">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -56,25 +73,25 @@ export function AppSidebar({ active = "Playground" }: { active?: string }) {
         <SidebarGroup>
           <SidebarGroupLabel>Platform</SidebarGroupLabel>
           <SidebarMenu>
-            {primaryNav.map((item) => (
-              <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton render={<a href={item.href} />} isActive={item.title === active}>
-                  <item.icon />
-                  <span>{item.title}</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
+            {navigation
+              .filter((item) => item.mobilePrimary)
+              .map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <NavigationItem item={item} active={active} />
+                </SidebarMenuItem>
+              ))}
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton render={<a href="/settings" />} isActive={active === "Settings"}>
-              <SettingsIcon />
-              <span>Settings</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
+          {navigation
+            .filter((item) => !item.mobilePrimary)
+            .map((item) => (
+              <SidebarMenuItem key={item.title}>
+                <NavigationItem item={item} active={active} />
+              </SidebarMenuItem>
+            ))}
         </SidebarMenu>
       </SidebarFooter>
       <SidebarRail />
@@ -82,13 +99,26 @@ export function AppSidebar({ active = "Playground" }: { active?: string }) {
   );
 }
 
-export function SidebarLayout({ children }: { children: ReactNode }) {
+export function AppMobileNavigation({ active = "Playground" }: { active?: string }) {
+  return (
+    <SidebarMobileNav>
+      {navigation
+        .filter((item) => item.mobilePrimary)
+        .map((item) => (
+          <NavigationItem key={item.title} item={item} active={active} mobile />
+        ))}
+      <SidebarMobileTrigger />
+    </SidebarMobileNav>
+  );
+}
+
+export function SidebarLayout({ children, active = "Playground" }: { children: ReactNode; active?: string }) {
   return (
     <AppShell scroll="inset">
-      <AppSidebar />
+      <AppSidebar active={active} />
       <AppShellContent>
         <AppShellHeader>
-          <SidebarTrigger />
+          <SidebarTrigger className="hidden lg:inline-flex" />
         </AppShellHeader>
         <PageLayout width="full">
           <div
@@ -102,6 +132,7 @@ export function SidebarLayout({ children }: { children: ReactNode }) {
           </div>
         </PageLayout>
       </AppShellContent>
+      <AppMobileNavigation active={active} />
     </AppShell>
   );
 }

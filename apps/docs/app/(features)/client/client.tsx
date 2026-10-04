@@ -29,7 +29,7 @@ import { ControlEffectsRuntime } from "@/components/control-ui/extensions/contro
 import { cn } from "@/components/control-ui/lib/cn";
 import { AppShell, AppShellContent } from "@/components/control-ui/ui/app-shell";
 import { PageActions, PageBody, PageHeader, PageLayout, type PageWidth, usePageScroll } from "@/components/control-ui/ui/page-layout";
-import { SidebarTrigger } from "@/components/control-ui/ui/sidebar";
+import { SidebarMobileNav, SidebarMobileTrigger, SidebarTrigger } from "@/components/control-ui/ui/sidebar";
 import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
 import { isThemeCategoryPath, THEME_EDITOR_PATH } from "@/components/theme-drawer/theme-categories";
 import { DocsGithubLink } from "./github-link";
@@ -277,6 +277,9 @@ function DocsShellContent({
             </PageLayout>
           </div>
         </AppShellContent>
+        <SidebarMobileNav variant="floating" aria-label="Documentation mobile navigation">
+          <SidebarMobileTrigger />
+        </SidebarMobileNav>
       </DocsSearchProvider>
     </AppShell>
   );

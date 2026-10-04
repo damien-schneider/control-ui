@@ -2732,6 +2732,55 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-sidebar-nav-background",
+      "description": "Control UI sidebar-mobile knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-sidebar-nav-border-color",
+      "description": "Control UI sidebar-mobile knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-sidebar-nav-border-width",
+      "description": "Control UI sidebar-mobile knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
+      "name": "--cui-sidebar-nav-foreground",
+      "description": "Control UI sidebar-mobile knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-sidebar-nav-gap",
+      "description": "Control UI sidebar-mobile knob — registered syntax <length>, fallback 12px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
+      "name": "--cui-sidebar-nav-height",
+      "description": "Control UI sidebar-mobile knob — registered syntax <length>, fallback 72px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
+      "name": "--cui-sidebar-nav-item-active-background",
+      "description": "Control UI sidebar-mobile knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-sidebar-nav-item-active-foreground",
+      "description": "Control UI sidebar-mobile knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-sidebar-nav-item-radius",
+      "description": "Control UI sidebar-mobile knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-sidebar-nav-shadow",
+      "description": "Control UI sidebar-mobile knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
       "name": "--cui-sidebar-rail-divider-background",
       "description": "Control UI sidebar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"

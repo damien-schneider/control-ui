@@ -4202,7 +4202,7 @@ export const registryMetadata = {
   },
   sidebar: {
     dependencies: ["@base-ui/react@^1.8.0", "lucide-react@^1.47.0"],
-    registryDependencies: ["button", "core", "scroll-area", "sheet", "tooltip", "track-highlight"],
+    registryDependencies: ["button", "core", "drawer", "scroll-area", "sheet", "tooltip", "track-highlight"],
     sourceManifestPath: "registry/control-ui/sidebar.json",
     files: [
       {
@@ -4221,6 +4221,11 @@ export const registryMetadata = {
         type: "registry:file",
       },
       {
+        path: "src/registry/sources/control-ui/recipes/sidebar-mobile.css",
+        target: "@components/control-ui/styles/recipes/sidebar-mobile.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/sidebar-parts.css",
         target: "@components/control-ui/styles/recipes/sidebar-parts.css",
         type: "registry:file",
@@ -4233,6 +4238,11 @@ export const registryMetadata = {
       {
         path: "src/registry/sources/control-ui/ui/sidebar-menu.tsx",
         target: "@components/control-ui/ui/sidebar-menu.tsx",
+        type: "registry:ui",
+      },
+      {
+        path: "src/registry/sources/control-ui/ui/sidebar-mobile.tsx",
+        target: "@components/control-ui/ui/sidebar-mobile.tsx",
         type: "registry:ui",
       },
       {

@@ -4,6 +4,7 @@ import { waitForReactHydration } from "./browser-test-helpers";
 
 test.beforeEach(async ({ page }) => {
   await page.addInitScript((storageKey) => {
+    Object.assign(window, { __REACT_GRAB_DISABLED__: true, __REACT_SCAN_DISABLED__: true });
     localStorage.setItem(storageKey, JSON.stringify({ skin: "refined", mode: "light" }));
   }, THEME_EDITOR_STORAGE_KEY);
 });
@@ -45,7 +46,7 @@ test("the page layout frame reaches the first paint, before any hydration", asyn
   await expect(content).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
 });
 
-test("mobile page scrolling resumes after closing the navigation sheet", async ({ page }) => {
+test("mobile page scrolling resumes after closing the navigation drawer", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/primitives/button");
   const trigger = page.getByRole("button", { name: "Toggle sidebar", exact: true });
@@ -55,7 +56,7 @@ test("mobile page scrolling resumes after closing the navigation sheet", async (
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(300);
   await expect(trigger).toBeInViewport();
   await trigger.click();
-  const sheet = page.locator('[data-popup-kind="sheet"][data-popup-part="surface"]');
+  const sheet = page.locator('[data-popup-kind="drawer"][data-popup-part="surface"]');
   await expect(sheet).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(sheet).toHaveCount(0);
@@ -72,6 +73,9 @@ test("switching skins changes scroll ownership without leaving the page locked",
   await page.goto("/primitives/button");
   const skinPicker = page.getByRole("combobox", { name: "Skin", exact: true });
   await waitForReactHydration(skinPicker);
+  await expect(skinPicker).toHaveText("Refined");
+  const pageHeading = page.getByRole("heading", { name: "Button", level: 1, exact: true });
+  await expect.poll(() => pageHeading.evaluate((element) => element.closest('[data-control-ui="scroll-area"]') === null)).toBe(true);
   await page.mouse.move(950, 700);
   await page.mouse.wheel(0, 550);
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(300);

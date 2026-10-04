@@ -1,4 +1,9 @@
 import { expect, type Locator, test } from "@playwright/test";
+import { waitForReactHydration } from "./browser-test-helpers";
+
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => Object.assign(window, { __REACT_GRAB_DISABLED__: true, __REACT_SCAN_DISABLED__: true }));
+});
 
 async function waitForSidebarHydration(resizeHandle: Locator) {
   await expect(resizeHandle).toHaveAttribute("data-resize-ready", "");
@@ -217,7 +222,7 @@ test("committed width and collapsed state survive a skin remount", async ({ page
   await expect(resizeHandle).toHaveAttribute("aria-valuenow", "420");
 });
 
-test("persisted desktop collapse leaves the mobile sheet interactive", async ({ page }) => {
+test("persisted desktop collapse leaves the mobile drawer interactive", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto("/primitives/code-diff");
   const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
@@ -227,7 +232,10 @@ test("persisted desktop collapse leaves the mobile sheet interactive", async ({ 
 
   await page.setViewportSize({ width: 800, height: 900 });
   await page.reload();
-  await page.getByRole("button", { name: "Toggle Sidebar" }).click();
+  const trigger = page.getByRole("button", { name: "Toggle Sidebar" });
+  await waitForReactHydration(trigger);
+  await expect(trigger).not.toHaveAttribute("aria-controls", /.+/);
+  await trigger.click();
 
   const sidebarNavigation = page.locator("[data-docs-sidebar-navigation]");
   await expect(sidebarNavigation).toBeVisible();

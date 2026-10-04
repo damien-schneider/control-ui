@@ -1,5 +1,15 @@
 // Generated from src/registry/sources/control-ui/recipes/sidebar.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.
 export const sidebarKnobs = [
+  "--cui-sidebar-nav-height",
+  "--cui-sidebar-nav-background",
+  "--cui-sidebar-nav-foreground",
+  "--cui-sidebar-nav-border-color",
+  "--cui-sidebar-nav-border-width",
+  "--cui-sidebar-nav-shadow",
+  "--cui-sidebar-nav-item-radius",
+  "--cui-sidebar-nav-item-active-background",
+  "--cui-sidebar-nav-item-active-foreground",
+  "--cui-sidebar-nav-gap",
   "--cui-sidebar-menu-badge-height",
   "--cui-sidebar-menu-badge-background",
   "--cui-sidebar-menu-badge-foreground",

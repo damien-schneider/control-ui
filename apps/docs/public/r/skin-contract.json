@@ -14270,6 +14270,69 @@
             }
           ]
         },
+        "mobile-nav": {
+          "family": "sidebar",
+          "registryItems": [
+            "sidebar"
+          ],
+          "states": [
+            {
+              "attribute": "data-variant",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "bar",
+                "floating"
+              ]
+            }
+          ]
+        },
+        "mobile-nav-container": {
+          "family": "sidebar",
+          "registryItems": [
+            "sidebar"
+          ],
+          "states": [
+            {
+              "attribute": "data-layout",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "contained",
+                "viewport"
+              ]
+            },
+            {
+              "attribute": "data-variant",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "bar",
+                "floating"
+              ]
+            }
+          ]
+        },
+        "mobile-trigger": {
+          "family": "sidebar",
+          "registryItems": [
+            "sidebar"
+          ],
+          "states": [
+            {
+              "attribute": "data-mobile-nav-item",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-sidebar-trigger",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            }
+          ]
+        },
         "rail": {
           "family": "sidebar",
           "registryItems": [
@@ -20642,6 +20705,66 @@
       }
     ],
     "sidebar": [
+      {
+        "name": "--cui-sidebar-nav-height",
+        "syntax": "<length>",
+        "initialValue": "72px",
+        "defaultValue": "4.5rem"
+      },
+      {
+        "name": "--cui-sidebar-nav-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--sidebar)"
+      },
+      {
+        "name": "--cui-sidebar-nav-foreground",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--sidebar-foreground)"
+      },
+      {
+        "name": "--cui-sidebar-nav-border-color",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--sidebar-border)"
+      },
+      {
+        "name": "--cui-sidebar-nav-border-width",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "var(--control-rim-width)"
+      },
+      {
+        "name": "--cui-sidebar-nav-shadow",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "var(--shadow-md)"
+      },
+      {
+        "name": "--cui-sidebar-nav-item-radius",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "var(--radius-control)"
+      },
+      {
+        "name": "--cui-sidebar-nav-item-active-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--active-fill)"
+      },
+      {
+        "name": "--cui-sidebar-nav-item-active-foreground",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--foreground)"
+      },
+      {
+        "name": "--cui-sidebar-nav-gap",
+        "syntax": "<length>",
+        "initialValue": "12px",
+        "defaultValue": "calc(var(--spacing) * 3)"
+      },
       {
         "name": "--cui-sidebar-menu-badge-height",
         "syntax": "<length>",

@@ -4,6 +4,16 @@ export const displayCompositions = {
   collapsible: [example("Anatomy", part("Collapsible", part("CollapsibleTrigger"), part("CollapsibleContent")))],
   sidebar: [
     example(
+      "Shared mobile navigation",
+      part(
+        "SidebarProvider",
+        part("Sidebar", content('mobileVariant="drawer"; complete navigation', part("SidebarContent", part("SidebarMenu")))),
+        part("SidebarInset", content("route content")),
+        part("SidebarMobileNav", part("SidebarMobileNavItem"), part("SidebarMobileTrigger")),
+      ),
+      "Declare destinations and their behavior once in the application. Render the same items for the desktop sidebar and mobile primary destinations; Menu opens the existing sidebar content. The provider shares visibility, while the application owns route selection.",
+    ),
+    example(
       "Application shell",
       part(
         "SidebarProvider",

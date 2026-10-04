@@ -2,10 +2,11 @@ import { expect, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { waitForReactHydration } from "./browser-test-helpers";
 
-const sidebarPopup = '[data-popup-kind="sheet"][data-popup-part="surface"]';
+const sidebarPopup = '[data-popup-part="surface"]:is([data-popup-kind="sheet"], [data-popup-kind="drawer"]):has([data-mobile])';
 
 test.beforeEach(async ({ page }) => {
   await page.addInitScript((storageKey) => {
+    Object.assign(window, { __REACT_GRAB_DISABLED__: true, __REACT_SCAN_DISABLED__: true });
     localStorage.setItem(storageKey, JSON.stringify({ skin: "refined", mode: "light" }));
   }, THEME_EDITOR_STORAGE_KEY);
 });
@@ -20,7 +21,7 @@ test("mobile docs sidebar slides, restores focus, and respects reduced motion", 
   await trigger.press("Enter");
   const popup = page.locator(sidebarPopup);
   await expect(popup).toBeVisible();
-  await expect(popup).toHaveCSS("transition-property", "translate");
+  await expect(popup).toHaveCSS("transition-property", /translate/);
   expect(await popup.evaluate((element) => Number.parseFloat(getComputedStyle(element).transitionDuration))).toBeGreaterThan(0);
   await expect(trigger).toHaveAttribute("aria-expanded", "true");
   await page.keyboard.press("Escape");
@@ -31,18 +32,18 @@ test("mobile docs sidebar slides, restores focus, and respects reduced motion", 
     if (!(element instanceof HTMLButtonElement)) throw new Error("Sidebar trigger missing");
     element.click();
     const positions: number[] = [];
-    let width = 0;
+    let height = 0;
     for (let frame = 0; frame < 15; frame++) {
       await new Promise(requestAnimationFrame);
       const surface = document.querySelector(popupSelector);
       if (!surface) continue;
       const bounds = surface.getBoundingClientRect();
-      width = bounds.width;
-      positions.push(bounds.x);
+      height = bounds.height;
+      positions.push(bounds.y);
     }
-    return { positions, width };
+    return { positions, height, viewportHeight: window.innerHeight };
   }, sidebarPopup);
-  expect(entering.positions.some((x) => x < -1 && x > -entering.width + 1)).toBe(true);
+  expect(entering.positions.some((y) => y > entering.viewportHeight - entering.height + 1 && y < entering.viewportHeight - 1)).toBe(true);
   await page.keyboard.press("Escape");
   await expect(popup).toHaveCount(0);
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -143,7 +144,7 @@ test.describe("touch navigation", () => {
       if (!bounds) throw new Error("Mobile navigation control is not laid out");
       expect(bounds.height).toBeGreaterThanOrEqual(44);
     }
-    await page.locator('[data-popup-kind="sheet"][data-slot="backdrop"]').tap({ position: { x: 350, y: 400 } });
+    await page.touchscreen.tap(195, 30);
     await expect(popup).toHaveCount(0);
   });
 });

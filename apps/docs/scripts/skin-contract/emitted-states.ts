@@ -243,6 +243,9 @@ export type EmittedStateContract = {
   "progressive-blur:root:data-side": ProgressiveBlurSide;
   "progressive-blur:root:data-visible": true;
   "sidebar:wrapper:data-layout": SidebarLayoutMode;
+  "sidebar:mobile-nav-container:data-layout": SidebarLayoutMode;
+  "sidebar:mobile-nav-container:data-variant": "bar" | "floating";
+  "sidebar:mobile-nav:data-variant": "bar" | "floating";
   "sidebar:root:data-collapsible": "offcanvas" | "icon" | "none";
   "sidebar:root:data-side": "left" | "right";
   "sidebar:root:data-state": "expanded" | "collapsed";

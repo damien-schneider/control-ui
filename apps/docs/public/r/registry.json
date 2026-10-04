@@ -5294,6 +5294,7 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/drawer.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/sheet.json",
         "http://127.0.0.1:3000/r/tooltip.json",
@@ -5316,6 +5317,11 @@
           "type": "registry:file"
         },
         {
+          "path": "src/registry/sources/control-ui/recipes/sidebar-mobile.css",
+          "target": "@components/control-ui/styles/recipes/sidebar-mobile.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/sidebar-parts.css",
           "target": "@components/control-ui/styles/recipes/sidebar-parts.css",
           "type": "registry:file"
@@ -5328,6 +5334,11 @@
         {
           "path": "src/registry/sources/control-ui/ui/sidebar-menu.tsx",
           "target": "@components/control-ui/ui/sidebar-menu.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/sidebar-mobile.tsx",
+          "target": "@components/control-ui/ui/sidebar-mobile.tsx",
           "type": "registry:ui"
         },
         {
@@ -5349,6 +5360,7 @@
       "css": {
         "@import \"../components/control-ui/styles/recipes/sidebar.css\"": {},
         "@import \"../components/control-ui/styles/recipes/sidebar-menu.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/sidebar-mobile.css\"": {},
         "@import \"../components/control-ui/styles/recipes/sidebar-parts.css\"": {}
       }
     },

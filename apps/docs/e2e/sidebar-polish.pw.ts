@@ -2,6 +2,10 @@ import { expect, type Locator, type Page, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { skinMetas } from "../app/(features)/catalog/skins";
 
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => Object.assign(window, { __REACT_GRAB_DISABLED__: true, __REACT_SCAN_DISABLED__: true }));
+});
+
 async function waitForExampleNavigation(example: Locator) {
   await expect
     .poll(

@@ -354,11 +354,13 @@ export const primitiveEntries = [
           sourceFile("Sidebar state", "src/registry/sources/control-ui/ui/sidebar-provider.tsx", "support"),
           sourceFile("Sidebar resizing", "src/registry/sources/control-ui/ui/sidebar-resize-rail.tsx", "support"),
           sourceFile("Sidebar menus", "src/registry/sources/control-ui/ui/sidebar-menu.tsx", "support"),
+          sourceFile("Mobile navigation", "src/registry/sources/control-ui/ui/sidebar-mobile.tsx", "support"),
           sourceFile("Mobile hook", "src/registry/hooks/use-mobile.ts", "hook"),
           sourceFile("Sheet slot", "src/registry/sources/control-ui/ui/sheet.tsx", "skin-control"),
           sidebarRecipeFile,
           sourceFile("Sidebar parts recipe", "src/registry/sources/control-ui/recipes/sidebar-parts.css", "recipe-css"),
           sourceFile("Sidebar menu recipe", "src/registry/sources/control-ui/recipes/sidebar-menu.css", "recipe-css"),
+          sourceFile("Sidebar mobile recipe", "src/registry/sources/control-ui/recipes/sidebar-mobile.css", "recipe-css"),
         ],
 
         registryKind: "sidebar",
@@ -368,6 +370,32 @@ export const primitiveEntries = [
       import("@/src/registry/examples/control-ui/primitives/sidebar").then((mod) => ({ default: mod.PrimitiveSidebarExample })),
     ),
     additionalPreviews: [
+      {
+        id: "bottom-navigation",
+        title: "Mobile bottom navigation",
+        previewClassName: "min-h-0",
+        description:
+          'Below lg, SidebarMobileNav shows four primary destinations and Menu. Define destinations, icons, availability, and active state once, then render the same items with SidebarMenuButton or SidebarMobileNavItem. Sidebar mobileVariant="drawer" reuses the complete navigation in a bottom drawer, including with collapsible="none". Keep at most five visible controls, counting Menu. Desktop navigation stays in the sidebar.',
+        source: sourceFile("Shared mobile navigation", "src/registry/examples/control-ui/primitives/sidebar-mobile.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/sidebar-mobile").then((mod) => ({
+            default: mod.PrimitiveSidebarBottomNavExample,
+          })),
+        ),
+      },
+      {
+        id: "mobile-floating",
+        title: "Floating mobile menu",
+        previewClassName: "min-h-0",
+        description:
+          'Use SidebarMobileNav variant="floating" with SidebarMobileTrigger when a persistent destination bar is not useful. The labelled Menu button opens the same complete navigation. Both presentations share SidebarProvider, support safe areas, reserve content space, and stay inside a layout="contained" preview. Keep the navigation definition and route matching in your application; use render for your router links.',
+        source: sourceFile("Floating mobile menu", "src/registry/examples/control-ui/primitives/sidebar-mobile.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/sidebar-mobile").then((mod) => ({
+            default: mod.PrimitiveSidebarMobileFloatingExample,
+          })),
+        ),
+      },
       {
         id: "resizable",
         title: "Resizable sidebar",

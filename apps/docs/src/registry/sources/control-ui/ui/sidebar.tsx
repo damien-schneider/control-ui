@@ -12,6 +12,7 @@ import type { SidebarLayout } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 
 import { Button } from "@/components/control-ui/ui/button";
+import { Drawer, DrawerBody, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle } from "@/components/control-ui/ui/drawer";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/control-ui/ui/sheet";
 import {
@@ -46,6 +47,13 @@ export {
   sidebarMenuButtonVariants,
 } from "@/components/control-ui/ui/sidebar-menu";
 export {
+  SidebarMobileNav,
+  SidebarMobileNavItem,
+  type SidebarMobileNavProps,
+  SidebarMobileTrigger,
+  type SidebarMobileTriggerProps,
+} from "@/components/control-ui/ui/sidebar-mobile";
+export {
   type SidebarLayoutMode,
   SidebarProvider,
   type SidebarProviderProps,
@@ -76,6 +84,7 @@ export type SidebarProps = Omit<ComponentProps<"div">, "style"> & {
   side?: "left" | "right";
   variant?: SidebarLayout;
   collapsible?: "offcanvas" | "icon" | "none";
+  mobileVariant?: "sheet" | "drawer";
   label?: string;
   style?: SidebarSurfaceStyle;
 };
@@ -91,6 +100,7 @@ export function Sidebar({ side = "left", collapsible = "offcanvas", ...props }: 
 
 function SidebarSurface({
   variant,
+  mobileVariant = "sheet",
   label = "Navigation",
   ref,
   className,
@@ -100,10 +110,11 @@ function SidebarSurface({
   ...props
 }: SidebarProps & { railContainerRef: Ref<HTMLDivElement> }) {
   const { side, collapsible } = useSidebarSurface();
-  const { offcanvasRef, triggerRef } = useSidebarElements();
+  const { offcanvasRef } = useSidebarElements();
   const skin = useSkin();
-  const { isMobile, state, openMobile, setOpenMobile, layout, sidebarId } = useSidebar();
+  const { isMobile, state, layout, sidebarId } = useSidebar();
   const resolvedVariant = variant ?? skin.sidebarLayout ?? "sidebar";
+  const padded = resolvedVariant === "floating" || resolvedVariant === "inset";
 
   const container = useRender({
     defaultTagName: "div",
@@ -119,7 +130,7 @@ function SidebarSurface({
         layout === "contained" ? "absolute h-full" : "fixed h-svh",
         "inset-y-0 z-10 hidden w-(--sidebar-width) lg:flex",
         side === "left" ? "start-0" : "end-0",
-        resolvedVariant === "floating" || resolvedVariant === "inset"
+        padded
           ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
           : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
         className,
@@ -141,6 +152,22 @@ function SidebarSurface({
     },
   });
 
+  if (isMobile && (collapsible !== "none" || mobileVariant === "drawer")) {
+    return (
+      <SidebarMobileSurface
+        {...props}
+        ref={ref}
+        mobileVariant={mobileVariant}
+        label={label}
+        variant={resolvedVariant}
+        className={className}
+        style={style}
+      >
+        {children}
+      </SidebarMobileSurface>
+    );
+  }
+
   if (collapsible === "none") {
     return (
       <div
@@ -158,41 +185,6 @@ function SidebarSurface({
         {children}
         <div ref={railContainerRef} className="contents" />
       </div>
-    );
-  }
-
-  if (isMobile) {
-    const mobileSheetStyle: SidebarStyle & SidebarSurfaceStyle = {
-      "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
-      ...style,
-    };
-
-    return (
-      <Sheet open={openMobile} onOpenChange={setOpenMobile}>
-        <SheetContent side={side} finalFocus={triggerRef} className="w-(--sidebar-width) gap-0 p-0" style={mobileSheetStyle}>
-          <SheetHeader className="sr-only">
-            <SheetTitle>{label}</SheetTitle>
-          </SheetHeader>
-          <div
-            ref={ref}
-            id={sidebarId}
-            data-control-ui="sidebar"
-            data-control-family="sidebar"
-            data-slot="root"
-            data-surface="panel"
-            data-variant={resolvedVariant}
-            data-mobile=""
-            data-side={side}
-            className={cn("flex min-h-0 flex-1 flex-col", className)}
-            style={style}
-            {...props}
-          >
-            <div data-control-ui="sidebar" data-control-family="sidebar" data-slot="inner" className="flex min-h-0 flex-1 flex-col">
-              {children}
-            </div>
-          </div>
-        </SheetContent>
-      </Sheet>
     );
   }
 
@@ -216,13 +208,73 @@ function SidebarSurface({
         className={cn(
           "relative w-(--sidebar-width)",
           "group-data-[collapsible=offcanvas]:w-0",
-          resolvedVariant === "floating" || resolvedVariant === "inset"
+          padded
             ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]"
             : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
         )}
       />
       {container}
     </div>
+  );
+}
+
+function SidebarMobileSurface({ mobileVariant, label, variant, ref, className, children, style, ...props }: SidebarProps) {
+  const { side } = useSidebarSurface();
+  const { openMobile, setOpenMobile, sidebarId } = useSidebar();
+  const { activeTriggerRef, triggerRef, insetRef } = useSidebarElements();
+
+  function finalFocus() {
+    const trigger = activeTriggerRef.current ?? triggerRef.current;
+    return trigger?.isConnected && trigger.checkVisibility() ? trigger : insetRef.current;
+  }
+
+  const mobileContent = (
+    <div
+      ref={ref}
+      id={sidebarId}
+      data-control-ui="sidebar"
+      data-control-family="sidebar"
+      data-slot="root"
+      data-surface="panel"
+      data-variant={variant}
+      data-mobile=""
+      data-side={side}
+      className={cn("flex min-h-0 flex-1 flex-col", className)}
+      style={style}
+      {...props}
+    >
+      <div data-control-ui="sidebar" data-control-family="sidebar" data-slot="inner" className="flex min-h-0 flex-1 flex-col">
+        {children}
+      </div>
+    </div>
+  );
+
+  if (mobileVariant === "drawer") {
+    return (
+      <Drawer open={openMobile} onOpenChange={setOpenMobile}>
+        <DrawerContent side="bottom" finalFocus={finalFocus} className="max-h-[85dvh]">
+          <DrawerHeader className="sr-only">
+            <DrawerTitle>{label}</DrawerTitle>
+          </DrawerHeader>
+          <DrawerBody padding="none">{mobileContent}</DrawerBody>
+          <DrawerFooter>
+            <DrawerClose render={<Button variant="surface" size="lg" />}>Close menu</DrawerClose>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    );
+  }
+
+  const mobileSheetStyle: SidebarStyle = { "--sidebar-width": SIDEBAR_WIDTH_MOBILE, ...style };
+  return (
+    <Sheet open={openMobile} onOpenChange={setOpenMobile}>
+      <SheetContent side={side} finalFocus={finalFocus} className="w-(--sidebar-width) gap-0 p-0" style={mobileSheetStyle}>
+        <SheetHeader className="sr-only">
+          <SheetTitle>{label}</SheetTitle>
+        </SheetHeader>
+        {mobileContent}
+      </SheetContent>
+    </Sheet>
   );
 }
 
@@ -235,7 +287,7 @@ export function SidebarTrigger({
   ...props
 }: ComponentProps<typeof Button> & { label?: string }) {
   const { toggleSidebar, isMobile, openMobile, open, keyboardShortcut, sidebarId } = useSidebar();
-  const { triggerRef, railRef } = useSidebarElements();
+  const { triggerRef, activeTriggerRef, railRef } = useSidebarElements();
   const shortcutKey = keyboardShortcut?.toUpperCase();
 
   return useRender({
@@ -254,6 +306,7 @@ export function SidebarTrigger({
       onClick: (event: MouseEvent<HTMLButtonElement>) => {
         onClick?.(event);
         if (event.defaultPrevented) return;
+        activeTriggerRef.current = event.currentTarget;
         toggleSidebar();
         if (isMobile || open) return;
         const trigger = event.currentTarget;
@@ -333,7 +386,7 @@ export function SidebarInset({ className, render, ref, ...props }: SidebarInsetP
       "data-control-ui": "sidebar",
       "data-control-family": "sidebar",
       "data-slot": "inset",
-      className: cn("relative flex min-w-0 w-full flex-1 flex-col", className),
+      className: cn("relative flex min-h-0 min-w-0 w-full flex-1 flex-col", className),
     },
   });
 }
@@ -351,12 +404,16 @@ export function SidebarFooter({ className, ...props }: ComponentProps<"div"> & {
 }
 
 export function SidebarContent({ className, children, ...props }: ComponentProps<"div">) {
+  const { state, isMobile } = useSidebar();
+  const { collapsible } = useSidebarSurface();
+  const iconOnly = !isMobile && state === "collapsed" && collapsible === "icon";
   return (
     <ScrollArea
       data-control-ui="sidebar"
       data-slot="content"
       className={cn("min-h-0 flex-1 group-data-[collapsible=icon]:overflow-hidden", className)}
       lockAxis="x"
+      scrollbarGutter={iconOnly ? "auto" : undefined}
       viewportClassName="overscroll-y-contain"
       {...props}
     >
