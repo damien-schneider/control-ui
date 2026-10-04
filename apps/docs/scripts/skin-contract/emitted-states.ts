@@ -32,6 +32,7 @@ import type {
 import type { DropdownMenuTriggerVariant } from "../../src/registry/sources/control-ui/ui/dropdown-menu";
 import type { DropzoneOverlayScope } from "../../src/registry/sources/control-ui/ui/dropzone";
 import type { KbdVariant } from "../../src/registry/sources/control-ui/ui/kbd";
+import type { MorphingPanelAnchor } from "../../src/registry/sources/control-ui/ui/morphing-panel";
 import type { NavigationMenuLinkVariant } from "../../src/registry/sources/control-ui/ui/navigation-menu";
 import type { PageHeaderVariant, PageScrollMode, PageWidth } from "../../src/registry/sources/control-ui/ui/page-layout";
 import type { PopoverContentPadding } from "../../src/registry/sources/control-ui/ui/popover";
@@ -228,6 +229,7 @@ export type EmittedStateContract = {
   "toolbar:link:data-variant": ToolbarLinkVariant;
   "toolbar:root:data-variant": ToolbarVariant;
   "toolbar:root:data-chrome": ToolbarChrome;
+  "morphing-panel:positioner:data-anchor": MorphingPanelAnchor;
   "morphing-panel:content:data-state": "open" | "closed";
   "morphing-panel:root:data-state": "open" | "closed";
   "morphing-panel:trigger:data-state": "open" | "closed";

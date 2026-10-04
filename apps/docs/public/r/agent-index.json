@@ -1335,7 +1335,7 @@
         "id": "morphing-panel",
         "name": "Morphing Panel",
         "kind": "Primitive",
-        "summary": "Accessible disclosure surface that morphs between explicit collapsed and expanded dimensions.",
+        "summary": "A compact control that expands into settings, workspace navigation, or an inline confirmation, with stable alignment and keyboard dismissal.",
         "href": "/primitives/morphing-panel",
         "status": "experimental",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/morphing-panel.json"

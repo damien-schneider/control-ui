@@ -1991,7 +1991,8 @@ export const primitiveEntries = [
     category: "layout",
     kind: "Primitive",
     name: "Morphing Panel",
-    summary: "Accessible disclosure surface that morphs between explicit collapsed and expanded dimensions.",
+    summary:
+      "A compact control that expands into settings, workspace navigation, or an inline confirmation, with stable alignment and keyboard dismissal.",
     status: "experimental",
     paths: {
       registry: {
@@ -2007,7 +2008,39 @@ export const primitiveEntries = [
         default: mod.PrimitiveMorphingPanelExample,
       })),
     ),
-    previewClassName: "min-h-[360px]",
+    previewClassName: "h-[360px]",
+    additionalPreviews: [
+      {
+        id: "anchored-menu",
+        title: "A menu that grows from the corner",
+        previewClassName: "min-h-96",
+        description:
+          "MorphingPanelPositioner keeps the bottom-start edge fixed as the surface expands. Give the positioner a bounded area; start and end follow the reading direction. Use ordinary navigation controls inside the panel.",
+        source: sourceFile("Anchored workspace menu", "src/registry/examples/control-ui/primitives/morphing-panel.tsx", "example"),
+        preview: preview(
+          () =>
+            import("@/src/registry/examples/control-ui/primitives/morphing-panel").then((mod) => ({
+              default: mod.PrimitiveMorphingPanelMenuExample,
+            })),
+          { layout: "full" },
+        ),
+      },
+      {
+        id: "save-confirmation",
+        title: "Save, then confirm in place",
+        previewClassName: "min-h-96",
+        description:
+          "A save control expands into a labelled, non-modal confirmation. autoFocus moves focus into the surface; Cancel, Confirm save, and Escape return it to the trigger. Header, Body, and Footer keep actions visible while long content scrolls. For a blocking modal, use Dialog instead.",
+        source: sourceFile("Inline save confirmation", "src/registry/examples/control-ui/primitives/morphing-panel.tsx", "example"),
+        preview: preview(
+          () =>
+            import("@/src/registry/examples/control-ui/primitives/morphing-panel").then((mod) => ({
+              default: mod.PrimitiveMorphingPanelConfirmationExample,
+            })),
+          { layout: "full" },
+        ),
+      },
+    ],
   },
   {
     id: "color-picker",

@@ -1,23 +1,54 @@
 @layer components {
+  :where([data-control-family="morphing-panel"][data-slot="positioner"]) {
+    place-items: center;
+    pointer-events: none;
+  }
+
+  :where([data-control-family="morphing-panel"][data-slot="positioner"] > [data-slot="root"]) {
+    pointer-events: auto;
+  }
+
+  :where([data-control-family="morphing-panel"][data-slot="positioner"][data-anchor="top-start"]) {
+    place-items: start;
+  }
+
+  :where([data-control-family="morphing-panel"][data-slot="positioner"][data-anchor="top-end"]) {
+    place-items: start end;
+  }
+
+  :where([data-control-family="morphing-panel"][data-slot="positioner"][data-anchor="bottom-start"]) {
+    place-items: end start;
+  }
+
+  :where([data-control-family="morphing-panel"][data-slot="positioner"][data-anchor="bottom-end"]) {
+    place-items: end;
+  }
+
   :where([data-control-family="morphing-panel"][data-slot="root"]) {
     --cui-morphing-panel-radius: var(--radius-control);
     --cui-morphing-panel-background: var(--card);
     --cui-morphing-panel-foreground: var(--card-foreground);
+    --cui-morphing-panel-border-width: var(--control-rim-width);
     --cui-morphing-panel-border-color: oklch(from var(--border) l c h / 0.8);
     --cui-morphing-panel-shadow: var(--shadow-md);
     --cui-morphing-panel-trigger-hover-background: oklch(from var(--foreground) l c h / 0.06);
+    --_morphing-panel-close-size: calc(var(--spacing) * 9);
+    width: min(var(--_morphing-panel-collapsed-width), 100%);
+    height: var(--_morphing-panel-collapsed-height);
     border-radius: var(--cui-morphing-panel-radius);
     background-color: var(--cui-morphing-panel-background);
     color: var(--cui-morphing-panel-foreground);
     box-shadow:
       var(--cui-morphing-panel-shadow),
-      0 0 0 1px var(--cui-morphing-panel-border-color);
+      0 0 0 var(--cui-morphing-panel-border-width) var(--cui-morphing-panel-border-color);
     transition-property: width, height, border-radius, box-shadow;
     transition-duration: var(--duration-slow);
     transition-timing-function: var(--ease-emphasized);
   }
 
   :where([data-control-family="morphing-panel"][data-slot="root"][data-state="open"]) {
+    width: min(var(--_morphing-panel-expanded-width), 100%);
+    height: var(--_morphing-panel-expanded-height);
     --cui-morphing-panel-radius: var(--radius-panel);
     --cui-morphing-panel-shadow: var(--shadow-pop);
   }
@@ -38,16 +69,15 @@
   }
 
   :where([data-control-family="morphing-panel"][data-slot="trigger"][data-state="open"]) {
-    inline-size: calc(var(--spacing) * 9);
-    block-size: calc(var(--spacing) * 9);
+    inline-size: var(--_morphing-panel-close-size);
+    block-size: var(--_morphing-panel-close-size);
     padding: 0;
     border-radius: var(--radius-control);
   }
 
   @media (pointer: coarse) {
-    :where([data-control-family="morphing-panel"][data-slot="trigger"][data-state="open"]) {
-      inline-size: calc(var(--spacing) * 11);
-      block-size: calc(var(--spacing) * 11);
+    :where([data-control-family="morphing-panel"][data-slot="root"]) {
+      --_morphing-panel-close-size: calc(var(--spacing) * 11);
     }
   }
 
@@ -57,14 +87,19 @@
     }
   }
 
-  :where([data-control-family="morphing-panel"][data-slot="trigger"] > svg) {
-    transition-property: rotate;
-    transition-duration: var(--duration-base);
-    transition-timing-function: var(--ease-emphasized);
+  :where([data-control-family="morphing-panel"][data-slot="header"]) {
+    min-height: calc(var(--_morphing-panel-close-size) + var(--spacing) * 4);
+    padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
+    padding-inline-end: calc(var(--_morphing-panel-close-size) + var(--spacing) * 6);
   }
 
-  :where([data-control-family="morphing-panel"][data-slot="trigger"][data-state="open"] > svg) {
-    rotate: 45deg;
+  :where([data-control-family="morphing-panel"][data-slot="body"]) {
+    padding: calc(var(--spacing) * 4);
+  }
+
+  :where([data-control-family="morphing-panel"][data-slot="footer"]) {
+    padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
+    border-top: var(--cui-morphing-panel-border-width) solid var(--cui-morphing-panel-border-color);
   }
 
   :where([data-control-family="morphing-panel"][data-slot="content"]) {
@@ -120,4 +155,10 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-morphing-panel-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }

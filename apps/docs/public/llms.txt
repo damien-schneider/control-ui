@@ -136,7 +136,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Toolbar](http://127.0.0.1:3000/primitives/toolbar): Roving-focus toolbar for editor controls and compact actions.
 - [Dockable Panel](http://127.0.0.1:3000/primitives/dockable-panel): Non-modal workspace panel that moves between two explicit edge slots with a mobile Drawer fallback. Status: experimental.
 - [Infinite Canvas](http://127.0.0.1:3000/primitives/infinite-canvas): Pan-and-zoom spatial workspace for arranging content without fixed bounds. Status: experimental.
-- [Morphing Panel](http://127.0.0.1:3000/primitives/morphing-panel): Accessible disclosure surface that morphs between explicit collapsed and expanded dimensions. Status: experimental.
+- [Morphing Panel](http://127.0.0.1:3000/primitives/morphing-panel): A compact control that expands into settings, workspace navigation, or an inline confirmation, with stable alignment and keyboard dismissal. Status: experimental.
 - [Color Picker](http://127.0.0.1:3000/primitives/color-picker): Color input with picker UI, formats, presets, and contrast helpers. Status: beta.
 - [Emoji Picker](http://127.0.0.1:3000/primitives/emoji-picker): Searchable, virtualized emoji grid with skin-aware cells and an active emoji footer. Status: beta.
 - [Icon Picker](http://127.0.0.1:3000/primitives/icon-picker): Searchable icon grid and color swatches using an app-supplied icon catalog. Status: beta.

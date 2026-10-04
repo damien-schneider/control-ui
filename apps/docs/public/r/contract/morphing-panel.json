@@ -41,6 +41,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "oklch(from var(--foreground) l c h / 0.06)"
+    },
+    {
+      "name": "--cui-morphing-panel-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--control-rim-width)"
     }
   ],
   "parts": {
@@ -62,6 +68,13 @@
           }
         ]
       },
+      "body": {
+        "family": "morphing-panel",
+        "registryItems": [
+          "morphing-panel"
+        ],
+        "states": []
+      },
       "content": {
         "family": "morphing-panel",
         "registryItems": [
@@ -75,6 +88,40 @@
             "values": [
               "closed",
               "open"
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "family": "morphing-panel",
+        "registryItems": [
+          "morphing-panel"
+        ],
+        "states": []
+      },
+      "header": {
+        "family": "morphing-panel",
+        "registryItems": [
+          "morphing-panel"
+        ],
+        "states": []
+      },
+      "positioner": {
+        "family": "morphing-panel",
+        "registryItems": [
+          "morphing-panel"
+        ],
+        "states": [
+          {
+            "attribute": "data-anchor",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "bottom-end",
+              "bottom-start",
+              "center",
+              "top-end",
+              "top-start"
             ]
           }
         ]

@@ -2601,6 +2601,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="morphing-panel"][data-slot="root"])',
       },
       {
+        name: "--cui-morphing-panel-border-width",
+        syntax: "<length>",
+        defaultValue: "var(--control-rim-width)",
+        selector: ':where([data-control-family="morphing-panel"][data-slot="root"])',
+      },
+      {
         name: "--cui-morphing-panel-foreground",
         syntax: "<color>",
         defaultValue: "var(--card-foreground)",

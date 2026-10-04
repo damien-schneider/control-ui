@@ -231,7 +231,22 @@ export const displayCompositions = {
   "morphing-panel": [
     example(
       "Expandable surface",
-      part("MorphingPanel", part("MorphingPanelTrigger"), part("MorphingPanelContent", content("expanded content"))),
+      part(
+        "MorphingPanel",
+        part("MorphingPanelTrigger"),
+        part(
+          "MorphingPanelContent",
+          part("MorphingPanelHeader"),
+          part("MorphingPanelBody", content("expanded content")),
+          part("MorphingPanelFooter", part("MorphingPanelClose")),
+        ),
+      ),
+      "The surface stays in document flow. Content is scrollable; use Header, Body, and Footer to keep controls and actions visible. Escape closes the surface unless the event or onOpenChange is canceled.",
+    ),
+    example(
+      "Anchored surface",
+      part("MorphingPanelPositioner", part("MorphingPanel", part("MorphingPanelTrigger"), part("MorphingPanelContent"))),
+      "Give Positioner a bounded width and height. anchor accepts center, top-start, top-end, bottom-start, and bottom-end. Logical edges respect RTL. Position this container with ordinary relative, absolute, or fixed layout; the panel is clamped to its bounds.",
     ),
   ],
   resizable: [

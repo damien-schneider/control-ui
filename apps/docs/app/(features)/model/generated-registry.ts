@@ -3576,7 +3576,7 @@ export const registryMetadata = {
   },
   "morphing-panel": {
     dependencies: ["@base-ui/react@^1.8.0"],
-    registryDependencies: ["collapsible", "core"],
+    registryDependencies: ["button", "collapsible", "core"],
     sourceManifestPath: "registry/control-ui/morphing-panel.json",
     files: [
       {

@@ -8240,6 +8240,11 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        body: {
+          family: "morphing-panel",
+          registryItems: ["morphing-panel"],
+          states: [],
+        },
         content: {
           family: "morphing-panel",
           registryItems: ["morphing-panel"],
@@ -8249,6 +8254,28 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["closed", "open"],
+            },
+          ],
+        },
+        footer: {
+          family: "morphing-panel",
+          registryItems: ["morphing-panel"],
+          states: [],
+        },
+        header: {
+          family: "morphing-panel",
+          registryItems: ["morphing-panel"],
+          states: [],
+        },
+        positioner: {
+          family: "morphing-panel",
+          registryItems: ["morphing-panel"],
+          states: [
+            {
+              attribute: "data-anchor",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["bottom-end", "bottom-start", "center", "top-end", "top-start"],
             },
           ],
         },
@@ -16088,6 +16115,12 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "oklch(from var(--foreground) l c h / 0.06)",
+      },
+      {
+        name: "--cui-morphing-panel-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "var(--control-rim-width)",
       },
     ],
     "page-layout": [

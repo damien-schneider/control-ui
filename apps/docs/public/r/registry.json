@@ -4450,11 +4450,12 @@
       "name": "morphing-panel",
       "type": "registry:ui",
       "title": "Morphing Panel",
-      "description": "Accessible disclosure surface that morphs between explicit collapsed and expanded dimensions.",
+      "description": "A compact control that expands into settings, workspace navigation, or an inline confirmation, with stable alignment and keyboard dismissal.",
       "dependencies": [
         "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/collapsible.json",
         "http://127.0.0.1:3000/r/core.json"
       ],

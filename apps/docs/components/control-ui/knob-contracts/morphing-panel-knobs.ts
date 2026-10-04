@@ -6,5 +6,6 @@ export const morphingPanelKnobs = [
   "--cui-morphing-panel-border-color",
   "--cui-morphing-panel-shadow",
   "--cui-morphing-panel-trigger-hover-background",
+  "--cui-morphing-panel-border-width",
 ] as const;
 export type MorphingPanelKnobStyle = Partial<Record<(typeof morphingPanelKnobs)[number], string>>;
