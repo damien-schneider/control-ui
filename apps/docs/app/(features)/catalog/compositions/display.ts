@@ -101,7 +101,7 @@ export const displayCompositions = {
     example(
       "Reading page with a rail",
       part("PageLayout", part("PageBody", content("article"), content("aside prop", part("TableOfContents")))),
-      "Pass aside to add a secondary column; it widens the measure and hides below the breakpoint.",
+      "Pass aside to add a secondary column; it widens the measure and hides when the layout is too narrow for both columns.",
     ),
   ],
   "scroll-area": [example("Scrollable content", part("ScrollArea", content("scrollable content")))],

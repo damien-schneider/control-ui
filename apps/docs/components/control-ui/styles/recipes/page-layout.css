@@ -14,6 +14,7 @@
     --cui-page-layout-sticky-header-background: oklch(from var(--cui-page-layout-background) l c h / 0.85);
     --cui-page-layout-sticky-header-backdrop-filter: blur(12px);
     background: var(--cui-page-layout-background);
+    container: page-layout / inline-size;
 
     /* Header and body both read this, so they stop at the same right edge. */
     --cui-page-layout-size: calc(var(--cui-page-layout-article-size) + var(--cui-page-layout-padding-inline) * 2);
@@ -143,7 +144,12 @@
     padding-inline: 0;
   }
 
-  @media (width >= 80rem) {
+  :where([data-control-family="page-layout"][data-slot="aside"]) {
+    display: none;
+  }
+
+  /* 55rem = default prose article + column gap + aside + inline padding; container queries cannot read var(). */
+  @container page-layout (width >= 55rem) {
     :where([data-control-family="page-layout"][data-slot="body"][data-aside]),
     :where(
         [data-control-family="page-layout"][data-slot="header"]:has(+ [data-control-family="page-layout"][data-slot="body"][data-aside])
@@ -159,6 +165,10 @@
 
     :where([data-control-family="page-layout"][data-slot="body"][data-aside]) {
       grid-template-columns: minmax(0, var(--cui-page-layout-article-size)) var(--cui-page-layout-aside-size);
+    }
+
+    :where([data-control-family="page-layout"][data-slot="aside"]) {
+      display: block;
     }
   }
 }
