@@ -95,7 +95,7 @@ export function FilterBarRemoteExample() {
       <Text as="p" size="caption" tone="muted">
         Search assignees from a simulated API. Type “offline” to try its error state.
       </Text>
-      <span className="text-caption" role="status">
+      <Text size="caption" role="status">
         {filters.length === 0
           ? "All assignees"
           : filters
@@ -107,7 +107,7 @@ export function FilterBarRemoteExample() {
                   .join(", "),
               )
               .join(" · ")}
-      </span>
+      </Text>
     </div>
   );
 }

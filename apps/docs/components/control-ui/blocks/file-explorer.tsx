@@ -38,7 +38,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/control-ui/ui/sidebar";
-import { Text } from "@/components/control-ui/ui/typography";
+import { Heading, type HeadingLevel, Text } from "@/components/control-ui/ui/typography";
 import {
   type FileExplorerBreadcrumb,
   type FileExplorerColumn,
@@ -87,8 +87,6 @@ export type FileExplorerBlockProps = Omit<ComponentProps<"div">, "children" | "d
   detailsLabel?: string;
   layout?: "viewport" | "contained";
 };
-
-type HeadingTag = "h1" | "h2" | "h3";
 
 type OptionTarget = { columnIndex: number; entryId: string };
 
@@ -190,7 +188,7 @@ export function FileExplorerBlock({
       <SidebarInset className="@container/explorer h-full min-h-0 min-w-0 overflow-hidden">
         <FileExplorerHeader
           location={activeLocation}
-          headingAs={contained ? "h2" : "h1"}
+          headingLevel={contained ? 2 : 1}
           breadcrumbs={resolution.breadcrumbs}
           query={query}
           searchPlaceholder={searchPlaceholder}
@@ -222,7 +220,7 @@ export function FileExplorerBlock({
               columns={resolution.columns}
               selectedEntry={resolution.selectedEntry}
               selectedPath={resolution.validPath}
-              headingAs={contained ? "h3" : "h2"}
+              headingLevel={contained ? 3 : 2}
               backLabel={backLabel}
               detailsLabel={detailsLabel}
               onNavigate={changePath}
@@ -307,7 +305,7 @@ function FileExplorerSidebar({
 
 function FileExplorerHeader({
   location,
-  headingAs: Heading,
+  headingLevel,
   breadcrumbs,
   query,
   searchPlaceholder,
@@ -323,7 +321,7 @@ function FileExplorerHeader({
   onQueryChange,
 }: {
   location: FileExplorerLocation;
-  headingAs: HeadingTag;
+  headingLevel: HeadingLevel;
   breadcrumbs: readonly FileExplorerBreadcrumb[];
   query: string;
   searchPlaceholder: string | false;
@@ -352,7 +350,7 @@ function FileExplorerHeader({
         >
           <ChevronLeftIcon className="size-4" data-icon-dir="inline" />
         </Button>
-        <Heading className="min-w-0 flex-1 truncate text-label font-semibold" title={location.label}>
+        <Heading level={headingLevel} size="label" weight="semibold" className="min-w-0 flex-1 truncate" title={location.label}>
           {location.label}
         </Heading>
         {headerActions ? (
@@ -403,7 +401,7 @@ function FileExplorerColumns({
   columns,
   selectedEntry,
   selectedPath,
-  headingAs,
+  headingLevel,
   backLabel,
   detailsLabel,
   onNavigate,
@@ -412,7 +410,7 @@ function FileExplorerColumns({
   columns: readonly FileExplorerColumn[];
   selectedEntry?: FileExplorerEntry;
   selectedPath: readonly string[];
-  headingAs: HeadingTag;
+  headingLevel: HeadingLevel;
   backLabel: string;
   detailsLabel: string;
   onNavigate: (path: readonly string[], entry: FileExplorerEntry | undefined) => void;
@@ -589,7 +587,7 @@ function FileExplorerColumns({
               </FileExplorerPanel>
             ))}
             <ResizablePanel defaultSize="32%" minSize="20%">
-              <FileExplorerPreview entry={selectedEntry} headingAs={headingAs} />
+              <FileExplorerPreview entry={selectedEntry} headingLevel={headingLevel} />
             </ResizablePanel>
           </ResizablePanelGroup>
         ) : null}
@@ -709,7 +707,7 @@ function FileExplorerColumnView({
   );
 }
 
-function FileExplorerPreview({ entry, headingAs: Heading }: { entry?: FileExplorerEntry; headingAs: HeadingTag }) {
+function FileExplorerPreview({ entry, headingLevel }: { entry?: FileExplorerEntry; headingLevel: HeadingLevel }) {
   if (!entry) {
     return (
       <Empty className="h-full rounded-none bg-background/45">
@@ -730,7 +728,7 @@ function FileExplorerPreview({ entry, headingAs: Heading }: { entry?: FileExplor
         entry={entry}
         className="px-6 py-10"
         title={
-          <Heading className="mt-4 max-w-full truncate text-heading-4" title={entry.name}>
+          <Heading level={headingLevel} size="heading-4" className="mt-4 max-w-full truncate" title={entry.name}>
             {entry.name}
           </Heading>
         }

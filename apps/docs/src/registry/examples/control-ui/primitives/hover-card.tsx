@@ -29,10 +29,16 @@ export function PrimitiveHoverCardExample() {
               </Text>
               <Text as="div" size="caption" tone="muted" className="mt-3 flex gap-4">
                 <span>
-                  <span className="font-semibold text-foreground">128</span> repos
+                  <Text size="caption" weight="semibold" tone="foreground">
+                    128
+                  </Text>{" "}
+                  repos
                 </span>
                 <span>
-                  <span className="font-semibold text-foreground">4.2k</span> followers
+                  <Text size="caption" weight="semibold" tone="foreground">
+                    4.2k
+                  </Text>{" "}
+                  followers
                 </span>
               </Text>
             </div>

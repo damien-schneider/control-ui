@@ -1,4 +1,5 @@
 import { ButtonLink } from "@/components/control-ui/ui/button";
+import { Text } from "@/components/control-ui/ui/typography";
 import { siteConfig } from "@/lib/site-config";
 
 const starsFormatter = new Intl.NumberFormat("en-US");
@@ -65,10 +66,10 @@ export function DocsGithubLink({ stars }: { stars: number | null }) {
       <GithubMark />
       <span>GitHub</span>
       {formattedStars == null ? null : (
-        <span className="inline-flex items-center gap-1 border-current/30 border-s ps-2 font-mono text-caption tabular-nums">
+        <Text size="caption" className="inline-flex items-center gap-1 border-current/30 border-s ps-2 font-mono tabular-nums">
           {formattedStars}
           <StarMark />
-        </span>
+        </Text>
       )}
     </ButtonLink>
   );

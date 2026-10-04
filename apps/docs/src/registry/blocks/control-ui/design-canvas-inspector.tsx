@@ -28,6 +28,7 @@ import { InputGroup, InputGroupAddon } from "@/components/control-ui/ui/input-gr
 import { NumberField, NumberFieldGroup, NumberFieldInput, NumberFieldScrubArea } from "@/components/control-ui/ui/number-field";
 import { Separator } from "@/components/control-ui/ui/separator";
 import { Toggle } from "@/components/control-ui/ui/toggle";
+import { Heading } from "@/components/control-ui/ui/typography";
 import { type DesignCanvasFill, type DesignCanvasLayer, resizeDesignCanvasLayer } from "./design-canvas-data";
 
 const WHOLE_NUMBER_FORMAT: Intl.NumberFormatOptions = { useGrouping: false, maximumFractionDigits: 0 };
@@ -139,7 +140,9 @@ function InspectorSection({ title, action, children }: { title: string; action?:
   return (
     <section aria-label={title} className="flex flex-col gap-2 border-b px-3 py-3">
       <header className="flex h-6 items-center justify-between">
-        <h3 className="text-caption font-medium">{title}</h3>
+        <Heading level={3} size="caption" weight="medium">
+          {title}
+        </Heading>
         {action}
       </header>
       <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] items-center gap-2 empty:hidden">{children}</div>

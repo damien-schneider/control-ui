@@ -7,7 +7,7 @@ import { StatusBadge } from "@/app/(features)/components/status";
 import type { UseCaseGalleryGroup, UseCaseGalleryItem } from "@/app/(features)/model/catalog-gallery";
 import type { IntegrationId } from "@/app/(features)/model/types";
 import { useDocsIntegration } from "@/app/(features)/page-templates/integration";
-import { Heading } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 import { PageHeader } from "./shared";
 
 export function UseCaseGalleryPage({
@@ -31,7 +31,9 @@ export function UseCaseGalleryPage({
           <section key={group.id} id={group.id} className="min-w-0 scroll-mt-20">
             <div className="mb-5 grid max-w-2xl gap-1.5">
               <Heading level={2}>{group.title}</Heading>
-              <p className="text-body-sm text-pretty text-muted-foreground">{group.summary}</p>
+              <Text as="p" tone="muted" className="text-pretty">
+                {group.summary}
+              </Text>
             </div>
             <div
               className={
@@ -79,9 +81,9 @@ function UseCasePreviewCard({ item, integration }: { item: UseCaseGalleryItem; i
           </Heading>
           {item.status ? <StatusBadge status={item.status} compact className="shrink-0" /> : null}
         </div>
-        <p id={summaryId} className="text-body-sm text-muted-foreground">
+        <Text as="p" id={summaryId} tone="muted">
           {item.summary}
-        </p>
+        </Text>
       </div>
     </article>
   );

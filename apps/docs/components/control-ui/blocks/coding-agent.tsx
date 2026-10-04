@@ -23,7 +23,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/control-ui/ui/sidebar";
-import { Text } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 
 export type CodingAgentNavigationItem = {
   id: string;
@@ -84,8 +84,6 @@ export function CodingAgentBlock({
   style,
   ...props
 }: CodingAgentBlockProps) {
-  const Heading = layout === "contained" ? "h2" : "h1";
-
   const providerStyle: SidebarStyle = { "--sidebar-width": "17.5rem", ...style };
 
   return (
@@ -112,7 +110,13 @@ export function CodingAgentBlock({
         <header className="flex h-12 shrink-0 items-center gap-2 border-b border-border/70 px-3">
           <SidebarTrigger size="xs" className="lg:hidden" />
           <FolderIcon className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
-          <Heading className="min-w-0 flex-1 truncate text-label font-medium" title={activeTaskTitle}>
+          <Heading
+            level={layout === "contained" ? 2 : 1}
+            size="label"
+            weight="medium"
+            className="min-w-0 flex-1 truncate"
+            title={activeTaskTitle}
+          >
             {activeTaskTitle}
           </Heading>
           {headerActions ? <div className="flex shrink-0 items-center gap-1">{headerActions}</div> : null}
@@ -302,7 +306,7 @@ export function CodingAgentEmptyState({
       <div className="mb-5 flex size-11 items-center justify-center rounded-2xl border bg-card text-muted-foreground shadow-sm">
         {icon ?? <BotIcon className="size-5" aria-hidden="true" />}
       </div>
-      <h2 className="text-heading-3 sm:text-heading-2">{title}</h2>
+      <Heading level={2}>{title}</Heading>
       {description ? (
         <Text as="p" tone="muted" className="mt-2 max-w-xl text-pretty">
           {description}

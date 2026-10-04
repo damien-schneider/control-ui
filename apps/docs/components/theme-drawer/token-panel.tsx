@@ -4,7 +4,7 @@ import { ChevronDownIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
-import { Text } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 import type { ThemeContractToken } from "@/src/registry/lib/theme-contract";
 import { MiniColorSwatch, TokenControl } from "./controls";
 import { BADGE_TOKEN_ROWS, type TokenCategory, tokenControlSpec } from "./token-metadata";
@@ -132,9 +132,9 @@ export function TokenPanel({
     <section id="theme-tokens" aria-labelledby="theme-tokens-title" className="flex min-w-0 flex-col gap-4">
       <header className="min-w-0">
         <div className="flex flex-wrap items-center gap-2">
-          <h2 id="theme-tokens-title" className="text-heading-4">
+          <Heading level={2} size="heading-4" id="theme-tokens-title">
             {category.title}
-          </h2>
+          </Heading>
           {touched > 0 ? <Badge size="sm">{touched} edited</Badge> : null}
           <span className="ml-auto">{headerAction}</span>
         </div>

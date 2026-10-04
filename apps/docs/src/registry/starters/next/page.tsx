@@ -1,5 +1,5 @@
 import { ButtonLink } from "@/components/control-ui/ui/button";
-import { Text } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 
 export default function Page() {
   return (
@@ -9,7 +9,9 @@ export default function Page() {
           <Text as="p" size="label" weight="medium" tone="muted">
             Control UI
           </Text>
-          <h1 className="text-display">Project ready.</h1>
+          <Heading level={1} size="display">
+            Project ready.
+          </Heading>
           <Text as="p" size="body-lg" tone="muted" className="max-w-md">
             Every agent component, block, and primitive is installed as editable source in components/control-ui.
           </Text>

@@ -7,6 +7,7 @@ import type { ChatComposerSubmitPayload } from "@/components/control-ui/hooks/us
 import { Button } from "@/components/control-ui/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
 import { Markdown } from "@/components/control-ui/ui/markdown";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 
 type Comment = { id: string; author: string; sentAt: string; timeLabel: string; body: string; edited?: boolean; replies: Comment[] };
 
@@ -144,9 +145,12 @@ export function DiscussionExample() {
 
   return (
     <section aria-labelledby="discussion-heading" className="mx-auto flex w-full max-w-2xl flex-col gap-4">
-      <h2 id="discussion-heading" className="text-label font-semibold">
-        Discussion <span className="font-normal text-muted-foreground">({countComments(comments)})</span>
-      </h2>
+      <Heading level={2} id="discussion-heading" size="label" weight="semibold">
+        Discussion{" "}
+        <Text size="label" weight="normal" tone="muted">
+          ({countComments(comments)})
+        </Text>
+      </Heading>
       <DiscussionComposer
         format="markdown"
         label="Write a comment"

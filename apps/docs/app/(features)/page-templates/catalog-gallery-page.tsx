@@ -7,7 +7,7 @@ import { Preview, PrimitivePreview } from "@/app/(features)/components/previews"
 import { StatusBadge } from "@/app/(features)/components/status";
 import type { CatalogGalleryGroup, CatalogGalleryItem } from "@/app/(features)/model/catalog-gallery";
 import { useDocsIntegration } from "@/app/(features)/page-templates/integration";
-import { Heading } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 import { PageHeader } from "./shared";
 
 export function CatalogGalleryPage({
@@ -31,7 +31,9 @@ export function CatalogGalleryPage({
           <section key={group.id} id={group.id} className="min-w-0 scroll-mt-20">
             <div className="mb-5 grid max-w-2xl gap-1.5">
               <Heading level={2}>{group.title}</Heading>
-              <p className="text-body-sm text-pretty text-muted-foreground">{group.summary}</p>
+              <Text as="p" tone="muted" className="text-pretty">
+                {group.summary}
+              </Text>
             </div>
             <div className="grid min-w-0 gap-x-4 gap-y-8 @2xl/gallery:grid-cols-2 @4xl/gallery:grid-cols-3">
               {group.items.map((item) => (
@@ -84,9 +86,9 @@ function CatalogPreviewCard({
         </Heading>
         {item.status ? <StatusBadge status={item.status} compact className="shrink-0" /> : null}
       </div>
-      <p id={summaryId} className="sr-only">
+      <Text as="p" id={summaryId} className="sr-only">
         {item.summary}
-      </p>
+      </Text>
     </article>
   );
 }

@@ -60,9 +60,13 @@ export function PrimitiveDockablePanelExample() {
 
 function PanelRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-center justify-between gap-4 text-label">
-      <span className="text-muted-foreground">{label}</span>
-      <span className="font-medium tabular-nums">{value}</span>
+    <div className="flex items-center justify-between gap-4">
+      <Text size="label" tone="muted">
+        {label}
+      </Text>
+      <Text size="label" weight="medium" className="tabular-nums">
+        {value}
+      </Text>
     </div>
   );
 }

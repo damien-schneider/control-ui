@@ -43,16 +43,16 @@ const headingSizeByLevel = {
   6: "heading-4",
 } as const satisfies Record<HeadingLevel, TypeSize>;
 
-export type HeadingProps = ComponentProps<"h1"> & { level: HeadingLevel; size?: TypeSize; tone?: TypeTone };
+export type HeadingProps = ComponentProps<"h1"> & { level: HeadingLevel; size?: TypeSize; weight?: TextWeight; tone?: TypeTone };
 
-export function Heading({ level, size = headingSizeByLevel[level], tone = "default", className, ...props }: HeadingProps) {
+export function Heading({ level, size = headingSizeByLevel[level], weight, tone = "default", className, ...props }: HeadingProps) {
   const Tag: `h${HeadingLevel}` = `h${level}`;
   return (
     <Tag
       data-control-ui="typography"
       data-control-family="typography"
       data-slot="heading"
-      className={cn(sizeClassNames[size], toneClassNames[tone], className)}
+      className={cn(sizeClassNames[size], weight ? weightClassNames[weight] : undefined, toneClassNames[tone], className)}
       {...props}
     />
   );

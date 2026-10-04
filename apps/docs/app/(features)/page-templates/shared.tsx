@@ -189,7 +189,7 @@ function DependencyRow({ name, detail, kind, href }: { name: string; detail: str
   const content = (
     <>
       <span className="flex min-w-0 items-baseline gap-2">
-        <span className="font-medium">{name}</span>
+        <Text weight="medium">{name}</Text>
         <Text as="code" size="label" tone="muted" className="min-w-0 truncate">
           {detail}
         </Text>

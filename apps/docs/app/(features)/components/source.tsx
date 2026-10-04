@@ -84,7 +84,11 @@ export function DocsCollapsible({
       <CollapsibleTrigger className="justify-between gap-4 px-4 py-3 text-body" style={{ "--cui-collapsible-trigger-radius": "0px" }}>
         <span>
           {title}
-          {subtitle ? <span className="ml-2 font-normal text-muted-foreground">{subtitle}</span> : null}
+          {subtitle ? (
+            <Text weight="normal" tone="muted" className="ml-2">
+              {subtitle}
+            </Text>
+          ) : null}
         </span>
         <ChevronRightIcon className="size-4 shrink-0 text-muted-foreground" />
       </CollapsibleTrigger>

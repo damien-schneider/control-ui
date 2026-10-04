@@ -4,7 +4,7 @@ import { CheckIcon, CopyIcon } from "lucide-react";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import { Button } from "@/components/control-ui/ui/button";
 import { Code, CodeContent } from "@/components/control-ui/ui/code";
-import { Text } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 import { siteConfig } from "@/lib/site-config";
 import { SKIN_META_BY_ID } from "./presets";
 import { useThemeRuntime } from "./theme-runtime-context";
@@ -33,7 +33,9 @@ Explain the proposed changes before editing, then verify the theme in the applic
     <section aria-label="Use this theme" className="rounded-(--radius-panel) border border-border bg-muted/30 p-4">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-0 max-w-xl">
-          <h2 className="text-heading-4">Use this theme</h2>
+          <Heading level={2} size="heading-4">
+            Use this theme
+          </Heading>
           <Text as="p" size="caption" tone="muted" className="mt-1 text-pretty">
             Copy a prompt with the {skin.label} skin and your current edits to paste into your coding agent, or export just your CSS
             overrides.

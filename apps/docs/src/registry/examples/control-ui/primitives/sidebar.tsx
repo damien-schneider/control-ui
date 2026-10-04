@@ -174,7 +174,7 @@ function Workspace({
             >
               A
             </Text>
-            <span className="font-medium">Acme workspace</span>
+            <Text weight="medium">Acme workspace</Text>
           </SidebarMenuButton>
         </SidebarHeader>
         <WorkspaceNavigation active={active} onNavigate={navigate} indicator={indicator} nested={nested} />

@@ -12,7 +12,7 @@ import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Spinner } from "@/components/control-ui/ui/spinner";
 import { Tabs, TabsList, TabsPanel, TabsSurface, TabsTab } from "@/components/control-ui/ui/tabs";
 import { Toggle } from "@/components/control-ui/ui/toggle";
-import { Text } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
 import { SKIN_META_BY_ID } from "./presets";
 import { SkinPresetControls } from "./skin-preset-controls";
@@ -153,7 +153,9 @@ export function SkinSourcePanel({ skin, source, onRetry }: { skin: SkinId; sourc
     <section id="theme-skin" aria-label={`${meta.label} source`} className="@container/source flex min-w-0 flex-col gap-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <h2 className="text-heading-4">Skin source</h2>
+          <Heading level={2} size="heading-4">
+            Skin source
+          </Heading>
           <Badge variant="outline" size="sm">
             Read only
           </Badge>

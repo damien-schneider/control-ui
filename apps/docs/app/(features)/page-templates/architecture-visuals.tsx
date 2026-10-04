@@ -18,14 +18,18 @@ export function ArchitectureLayers() {
       <div className="grid items-stretch gap-3 md:grid-cols-[minmax(0,0.8fr)_auto_minmax(0,1.2fr)]">
         <div className="flex min-w-0 flex-col justify-center">
           <DiagramNode className="border-dashed bg-muted/35">
-            <div className="font-medium">Host app runtime</div>
+            <Text as="div" size="label" weight="medium">
+              Host app runtime
+            </Text>
             <Text as="div" size="caption" tone="muted" className="mt-0.5">
               streaming · transport · persistence · tools
             </Text>
           </DiagramNode>
           <FlowArrow direction="down" />
           <DiagramNode>
-            <div className="font-medium">Usage composition</div>
+            <Text as="div" size="label" weight="medium">
+              Usage composition
+            </Text>
             <Text as="div" size="caption" tone="muted" className="mt-0.5">
               native provider parts rendered directly
             </Text>
@@ -41,20 +45,26 @@ export function ArchitectureLayers() {
           </Text>
           <div className="grid gap-2">
             <DiagramNode className="border-primary/30">
-              <div className="font-medium">Blocks</div>
+              <Text as="div" size="label" weight="medium">
+                Blocks
+              </Text>
               <Text as="div" size="caption" tone="muted">
                 complete recipes composed from public surfaces
               </Text>
             </DiagramNode>
             <div className="grid gap-2 sm:grid-cols-[1.35fr_0.65fr]">
               <DiagramNode>
-                <div className="font-medium">Components</div>
+                <Text as="div" size="label" weight="medium">
+                  Components
+                </Text>
                 <Text as="div" size="caption" tone="muted">
                   behavior · markup · stable anatomy
                 </Text>
               </DiagramNode>
               <DiagramNode>
-                <div className="font-medium">Hooks</div>
+                <Text as="div" size="label" weight="medium">
+                  Hooks
+                </Text>
                 <Text as="div" size="caption" tone="muted">
                   reusable local UI behavior
                 </Text>
@@ -62,7 +72,9 @@ export function ArchitectureLayers() {
             </div>
             <DiagramNode className="border-primary/30 bg-primary/5">
               <div className="flex flex-wrap items-baseline justify-between gap-1">
-                <span className="font-medium">Skin data</span>
+                <Text size="label" weight="medium">
+                  Skin data
+                </Text>
                 <Text size="micro" tone="primary" className="font-mono">
                   theme.css · skin.css · skin.config.tsx
                 </Text>
@@ -81,19 +93,25 @@ export function SkinFileStack() {
       <div className="grid items-center gap-6 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,0.7fr)]">
         <ol className="relative grid gap-2 pl-4">
           <li className="relative z-30 translate-x-0 rounded-lg border border-primary/35 bg-background px-4 py-3 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:translate-x-1 motion-reduce:transition-none">
-            <div className="font-mono text-label">skin.config.tsx</div>
+            <Text as="div" size="label" className="font-mono">
+              skin.config.tsx
+            </Text>
             <Text as="div" size="caption" tone="muted" className="mt-0.5">
               typed slots · DS choices · adornments
             </Text>
           </li>
           <li className="relative z-20 ml-2 rounded-lg border border-border bg-muted/65 px-4 py-3 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:translate-x-1 motion-reduce:transition-none">
-            <div className="font-mono text-label">skin.css</div>
+            <Text as="div" size="label" className="font-mono">
+              skin.css
+            </Text>
             <Text as="div" size="caption" tone="muted" className="mt-0.5">
               pseudo-elements · keyframes · descendant families
             </Text>
           </li>
           <li className="relative z-10 ml-4 rounded-lg border border-border bg-muted/35 px-4 py-3 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:translate-x-1 motion-reduce:transition-none">
-            <div className="font-mono text-label">theme.css</div>
+            <Text as="div" size="label" className="font-mono">
+              theme.css
+            </Text>
             <Text as="div" size="caption" tone="muted" className="mt-0.5">
               token values scoped by data-skin
             </Text>
@@ -102,9 +120,13 @@ export function SkinFileStack() {
         <FlowArrow className="hidden md:grid" />
         <FlowArrow direction="down" className="md:hidden" />
         <div className="grid place-items-center rounded-lg bg-primary/8 p-5 text-center ring-1 ring-primary/20">
-          <div className="grid size-16 place-items-center rounded-[max(0px,calc(var(--radius-lg)-1.25rem))] bg-background text-heading-3 ring-1 ring-border">
+          <Text
+            as="div"
+            size="heading-3"
+            className="grid size-16 place-items-center rounded-[max(0px,calc(var(--radius-lg)-1.25rem))] bg-background ring-1 ring-border"
+          >
             UI
-          </div>
+          </Text>
           <Text as="div" size="label" weight="medium" className="mt-3">
             One component tree
           </Text>
@@ -129,7 +151,7 @@ export function SkinResolutionMap() {
           <DiagramNode className="border-primary/30 bg-primary/8 font-mono">component render</DiagramNode>
         </div>
         <div className="rounded-lg bg-foreground p-3 text-background">
-          <div className="grid items-center gap-2 font-mono text-caption sm:grid-cols-[1fr_auto_1fr_auto_1fr]">
+          <Text as="div" size="caption" className="grid items-center gap-2 font-mono sm:grid-cols-[1fr_auto_1fr_auto_1fr]">
             <span className="rounded-md bg-background/10 px-2 py-1.5">library recipe</span>
             <span aria-hidden="true" className="text-center opacity-60">
               +
@@ -139,7 +161,7 @@ export function SkinResolutionMap() {
               +
             </span>
             <span className="rounded-md bg-primary px-2 py-1.5 text-primary-foreground">caller className wins</span>
-          </div>
+          </Text>
         </div>
         <Text as="div" size="caption" tone="muted">
           Refined config: <code className="font-mono text-foreground">{`{ id: "refined" }`}</code>. Every installed pack supplies this file;
@@ -163,9 +185,9 @@ export function CustomizationLadder() {
               key={rung.name}
               className="group grid grid-cols-[1.5rem_minmax(0,0.8fr)_minmax(0,1.2fr)] items-center gap-2 rounded-lg px-2 py-2 transition-[background-color,transform] duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:translate-x-1 hover:bg-primary/7 motion-reduce:transition-none"
             >
-              <span className="grid size-6 place-items-center rounded-md bg-foreground font-mono text-background text-micro">
+              <Text size="micro" className="grid size-6 place-items-center rounded-md bg-foreground font-mono text-background">
                 {index + 1}
-              </span>
+              </Text>
               <span className="min-w-0">
                 <Text size="label" weight="medium" className="block">
                   {rung.name}
@@ -200,14 +222,16 @@ export function RegistryPipeline() {
           <Text as="div" size="label" weight="medium">
             Registry model
           </Text>
-          <div className="mt-1 text-caption opacity-80">ownership · deps · install closure</div>
+          <Text as="div" size="caption" className="mt-1 opacity-80">
+            ownership · deps · install closure
+          </Text>
         </div>
         <FlowArrow className="hidden md:grid" />
         <div className="flex flex-wrap gap-1.5">
           {outputs.map((output) => (
-            <span key={output} className="rounded-md border border-border/70 bg-background px-2 py-1.5 text-caption">
+            <Text key={output} size="caption" className="rounded-md border border-border/70 bg-background px-2 py-1.5">
               {output}
-            </span>
+            </Text>
           ))}
         </div>
       </div>

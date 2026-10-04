@@ -93,7 +93,7 @@ function RenderedEmail({
       )}
       {state.status === "error" && (
         <div role="alert" className="min-h-40 space-y-3 rounded-lg border border-border p-6">
-          <p className="text-body">{state.message}</p>
+          <Text as="p">{state.message}</Text>
           <Button size="sm" onClick={onRetry}>
             Retry preview
           </Button>

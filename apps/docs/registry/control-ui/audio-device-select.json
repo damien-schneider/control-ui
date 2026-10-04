@@ -10,7 +10,8 @@
   "registryDependencies": [
     "button",
     "core",
-    "select"
+    "select",
+    "typography"
   ],
   "files": [
     {

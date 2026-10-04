@@ -48,10 +48,10 @@ export function CompatibilityBridge() {
         </div>
         <div className="grid gap-1.5 rounded-lg bg-primary/8 p-3 ring-1 ring-primary/20">
           {["shadcn registry manifests", "shared core token names"].map((item) => (
-            <div key={item} className="flex items-center gap-2 text-caption">
+            <Text as="div" key={item} size="caption" className="flex items-center gap-2">
               <span aria-hidden="true" className="size-1.5 rounded-full bg-primary" />
               {item}
-            </div>
+            </Text>
           ))}
         </div>
         <div className="rounded-lg border border-border/80 p-3">
@@ -85,14 +85,16 @@ export function AgentSurfaceMap() {
           <Text as="div" size="label" weight="medium">
             Registry catalog
           </Text>
-          <div className="mt-1 text-caption opacity-70">format-specific outputs</div>
+          <Text as="div" size="caption" className="mt-1 opacity-70">
+            format-specific outputs
+          </Text>
         </div>
         <FlowArrow className="hidden md:grid" />
         <div className="flex flex-wrap gap-1.5">
           {surfaces.map((surface) => (
-            <span key={surface} className="rounded-md border border-border/70 bg-background px-2 py-1.5 font-mono text-micro">
+            <Text key={surface} size="micro" className="rounded-md border border-border/70 bg-background px-2 py-1.5 font-mono">
               {surface}
-            </span>
+            </Text>
           ))}
         </div>
       </div>

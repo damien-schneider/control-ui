@@ -62,7 +62,7 @@ export function UseCasePage({ block, integration }: { block: DocsBlock; integrat
 function BlockFile({ file }: { file: SourceFile }) {
   return (
     <Card className="min-w-0 flex-row items-center justify-between gap-4 px-4 py-3 text-body">
-      <span className="font-medium">{file.label}</span>
+      <Text weight="medium">{file.label}</Text>
       <Text as="code" size="label" tone="muted" className="min-w-0 truncate">
         {file.path}
       </Text>

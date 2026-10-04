@@ -1491,7 +1491,7 @@ export const registryMetadata = {
   },
   "audio-device-select": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["button", "core", "select"],
+    registryDependencies: ["button", "core", "select", "typography"],
     sourceManifestPath: "registry/control-ui/audio-device-select.json",
     files: [
       {

@@ -132,7 +132,9 @@ function IssueFilters({ input = false }: { input?: boolean }) {
             <Text size="caption" tone="muted">
               {issue.id}
             </Text>
-            <span className="min-w-0 flex-1 text-label">{issue.title}</span>
+            <Text size="label" className="min-w-0 flex-1">
+              {issue.title}
+            </Text>
             <Text size="caption" tone="muted" className="shrink-0">
               {issue.status.replace("-", " ")}
             </Text>

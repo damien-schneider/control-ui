@@ -1693,7 +1693,8 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
-        "http://127.0.0.1:3000/r/select.json"
+        "http://127.0.0.1:3000/r/select.json",
+        "http://127.0.0.1:3000/r/typography.json"
       ],
       "files": [
         {

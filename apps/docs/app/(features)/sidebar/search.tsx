@@ -28,7 +28,9 @@ function DocsSearchResult({ item, onSelect }: { item: SearchItem; onSelect: (ite
   return (
     <CommandItem value={item.id} onSelect={() => onSelect(item)}>
       <div className="min-w-0 flex-1">
-        <div className="truncate font-medium">{item.name}</div>
+        <Text as="div" weight="medium" className="truncate">
+          {item.name}
+        </Text>
         <Text as="div" size="label" tone="muted" className="truncate">
           {item.summary}
         </Text>

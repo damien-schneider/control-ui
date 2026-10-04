@@ -36,7 +36,9 @@ export function SkillPage({ skill, concern }: { skill: DocsSkill; concern?: Docs
               description="Imported as local Control UI skill guidance, with this repo owning the final wording."
             />
             <Text as="div" tone="muted" className="rounded-xl border bg-background p-5 leading-6">
-              <div className="font-medium text-foreground">{skill.source.label}</div>
+              <Text as="div" weight="medium" tone="foreground">
+                {skill.source.label}
+              </Text>
               <code className="mt-2 block overflow-hidden text-ellipsis whitespace-nowrap text-label">{skill.source.path}</code>
             </Text>
           </section>

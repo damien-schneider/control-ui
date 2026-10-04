@@ -8,6 +8,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
 import type { SelectProps, SelectTriggerProps } from "@/components/control-ui/ui/select";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "@/components/control-ui/ui/select";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export type AudioDevice = {
   deviceId: string;
@@ -187,7 +188,9 @@ export function AudioDeviceSelectContent({ children, ...props }: ComponentProps<
               >
                 <span className="min-w-0 flex-1 truncate">{deviceLabel(device, index)}</span>
                 {device.isDefault || device.deviceId === "default" ? (
-                  <span className="ms-3 text-caption text-muted-foreground">Default</span>
+                  <Text size="caption" tone="muted" className="ms-3">
+                    Default
+                  </Text>
                 ) : null}
               </AudioDeviceSelectItem>
             ))}

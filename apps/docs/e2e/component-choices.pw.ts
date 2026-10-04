@@ -50,6 +50,7 @@ test("alternative selection keeps install, usage, source, reload, and history in
     .toContain('from "@/components/control-ui/audio-visualizer-line"');
   await page.reload();
   await expect(line).toBeChecked();
+  await waitForReactHydration(line);
   await choices.getByRole("radio", { name: "Frequency bars", exact: true }).click();
   await expect(page.locator("#usage")).toContainText("getByteFrequencyData");
   await expect(page.locator("#install")).toContainText("/r/audio-visualizer-bar.json");

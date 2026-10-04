@@ -125,7 +125,9 @@ export function ThemePreviewCanvas({ category, actions }: { category: ThemeCateg
       ) : null}
 
       <TabsPanel value="components" keepMounted className="min-w-0">
-        <h2 className="sr-only">Component previews</h2>
+        <Heading level={2} className="sr-only">
+          Component previews
+        </Heading>
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
           <Text role="status" as="p" size="caption" tone="muted">
             {query.trim() ? `${visibleTiles.length} of ${tiles.length}` : tiles.length} component previews

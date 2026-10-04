@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
 import {
   DynamicNotification,
   DynamicNotificationClose,
@@ -15,6 +14,7 @@ import {
   DynamicNotificationReplySubmit,
   DynamicNotificationTitle,
 } from "@/components/control-ui/dynamic-notification";
+import { Text } from "@/components/control-ui/ui/typography";
 import { DynamicNotificationDemoBackdrop, DynamicNotificationDemoButton } from "./dynamic-notification-demo-scene";
 
 const MESSAGES = [
@@ -88,7 +88,9 @@ export function DynamicNotificationSurfaceExample() {
           <DynamicNotificationDemoButton onClick={() => think((messageIndex + 1) % MESSAGES.length)}>
             Send a notification
           </DynamicNotificationDemoButton>
-          <span className="truncate text-caption text-white/75">{statusMessage}</span>
+          <Text size="caption" className="truncate text-white/75">
+            {statusMessage}
+          </Text>
         </div>
       </div>
     </div>

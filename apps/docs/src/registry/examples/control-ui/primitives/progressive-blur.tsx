@@ -6,7 +6,7 @@ import { Button } from "@/components/control-ui/ui/button";
 import { ProgressiveBlur, type ProgressiveBlurSide } from "@/components/control-ui/ui/progressive-blur";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Switch } from "@/components/control-ui/ui/switch";
-import { Text } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 
 const blurSides: { side: ProgressiveBlurSide; label: string }[] = [
   { side: "top", label: "Top" },
@@ -58,7 +58,7 @@ export function PrimitiveProgressiveBlurExample() {
       </div>
       <div className="relative isolate overflow-hidden rounded-(--radius-panel) border border-border bg-background">
         <div className="flex flex-col gap-4 p-6">
-          <p className="text-heading">A little further away.</p>
+          <Heading level={3}>A little further away.</Heading>
           <Text as="p" tone="muted">
             Details soften as they approach the edge. The surface stays transparent.
           </Text>

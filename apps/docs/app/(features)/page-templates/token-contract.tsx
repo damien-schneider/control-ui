@@ -63,8 +63,8 @@ export function TokenContractTable() {
       </div>
 
       <details className="docs-panel group overflow-hidden">
-        <summary className="flex cursor-pointer list-none items-baseline gap-2 px-4 py-2 text-body [&::-webkit-details-marker]:hidden">
-          <span className="font-medium">Derived — optional overrides</span>
+        <summary className="flex cursor-pointer list-none items-baseline gap-2 px-4 py-2 [&::-webkit-details-marker]:hidden">
+          <Text weight="medium">Derived — optional overrides</Text>
           <Text size="caption" tone="muted">
             <span className="tabular-nums">{derivedTokens.length}</span> tokens with a core default; re-value one in theme.css only to
             diverge
@@ -82,8 +82,8 @@ export function TokenContractTable() {
 
       {advancedGroups.map(({ group, tokens }) => (
         <details key={group} className="docs-panel group overflow-hidden">
-          <summary className="flex cursor-pointer list-none items-baseline gap-2 px-4 py-2 text-body [&::-webkit-details-marker]:hidden">
-            <span className="font-medium">Advanced — {GROUP_LABELS[group]}</span>
+          <summary className="flex cursor-pointer list-none items-baseline gap-2 px-4 py-2 [&::-webkit-details-marker]:hidden">
+            <Text weight="medium">Advanced — {GROUP_LABELS[group]}</Text>
             <Text size="caption" tone="muted">
               <span className="tabular-nums">{tokens.length}</span> {tokens.length === 1 ? "token" : "tokens"}
             </Text>

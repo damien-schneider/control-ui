@@ -17,7 +17,7 @@ import { ResizableFloatingPanel } from "@/components/control-ui/ui/resizable";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Toolbar, ToolbarButton, ToolbarGroup, ToolbarSeparator } from "@/components/control-ui/ui/toolbar";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
-import { Text } from "@/components/control-ui/ui/typography";
+import { Heading, Text } from "@/components/control-ui/ui/typography";
 import {
   createDesignCanvasLayer,
   type DesignCanvasLayer,
@@ -359,7 +359,7 @@ type DesignCanvasPanelProps = {
 };
 
 function DesignCanvasPanel({ label, title, inDrawer = false, children }: DesignCanvasPanelProps) {
-  const titleClassName = "flex h-11 shrink-0 items-center border-b px-3 text-caption font-medium";
+  const titleClassName = "flex h-11 shrink-0 items-center border-b px-3";
   const titleText = (
     <span className="truncate" title={title}>
       {title}
@@ -367,7 +367,13 @@ function DesignCanvasPanel({ label, title, inDrawer = false, children }: DesignC
   );
   return (
     <aside aria-label={label} className="flex min-h-0 flex-1 flex-col">
-      {inDrawer ? <DrawerTitle className={titleClassName}>{titleText}</DrawerTitle> : <h2 className={titleClassName}>{titleText}</h2>}
+      {inDrawer ? (
+        <DrawerTitle className={`${titleClassName} text-caption font-medium`}>{titleText}</DrawerTitle>
+      ) : (
+        <Heading level={2} size="caption" weight="medium" className={titleClassName}>
+          {titleText}
+        </Heading>
+      )}
       <ScrollArea className="min-h-0 flex-1">{children}</ScrollArea>
     </aside>
   );
@@ -443,9 +449,12 @@ function DesignCanvasLayerNode({ layer, selected, onSelect, onKeyDown, onLayerCh
         <div className="size-full" style={{ background: fillColor, borderRadius: layer.kind === "ellipse" ? "50%" : layer.cornerRadius }} />
       )}
       {selected ? (
-        <span className="absolute inset-x-0 top-full mx-auto mt-1.5 w-max rounded-sm bg-primary px-1 text-micro whitespace-nowrap text-primary-foreground tabular-nums">
+        <Text
+          size="micro"
+          className="absolute inset-x-0 top-full mx-auto mt-1.5 w-max rounded-sm bg-primary px-1 whitespace-nowrap text-primary-foreground tabular-nums"
+        >
           {layer.width} × {layer.height}
-        </span>
+        </Text>
       ) : null}
     </InfiniteCanvasItem>
   );

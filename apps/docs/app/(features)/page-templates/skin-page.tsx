@@ -274,7 +274,7 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
                 <Link key={skin.id} href={`/skins/${skin.id}`} className="block min-w-0">
                   <Card className="min-w-0 flex-row items-center justify-between gap-4 px-4 py-3 text-body transition-colors hover:bg-muted/30">
                     <span className="flex min-w-0 flex-col">
-                      <span className="font-medium">{skin.label}</span>
+                      <Text weight="medium">{skin.label}</Text>
                       <Text size="label" tone="muted" className="min-w-0 truncate">
                         {skin.description}
                       </Text>

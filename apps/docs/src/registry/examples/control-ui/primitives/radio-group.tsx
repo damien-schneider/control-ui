@@ -20,7 +20,9 @@ export function PrimitiveRadioGroupExample() {
         <RadioGroupItem key={option.value} htmlFor={`plan-${option.value}`}>
           <Radio id={`plan-${option.value}`} value={option.value} aria-label={option.label} />
           <span className="flex flex-col">
-            <span className="font-medium text-foreground">{option.label}</span>
+            <Text weight="medium" tone="foreground">
+              {option.label}
+            </Text>
             <Text size="caption" tone="muted">
               {option.detail}
             </Text>
