@@ -655,7 +655,7 @@
         "id": "audio-visualizer",
         "name": "AudioVisualizer",
         "kind": "Component",
-        "summary": "Levels-driven audio visualizer with live waveform, line envelope, and frequency bar versions, including idle and loading states.",
+        "summary": "Audio visualization with waveform, line envelope, and frequency bar alternatives. Choose the implementation that fits your audio data.",
         "href": "/components/audio-visualizer",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/audio-visualizer.json"

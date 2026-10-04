@@ -6,6 +6,7 @@ import { useChat } from "@mastra/react";
 import {
   DynamicNotification,
   DynamicNotificationContent,
+  DynamicNotificationGlass,
   DynamicNotificationIndicator,
   DynamicNotificationIsland,
   DynamicNotificationMessage,
@@ -25,7 +26,7 @@ export function Example({ agentId }: { agentId: string }) {
 
   return (
     <DynamicNotification
-      variant="surface"
+      variant="glass"
       loading={isRunning}
       onReply={async ({ value, clear }) => {
         await sendMessage({ message: value });
@@ -33,6 +34,7 @@ export function Example({ agentId }: { agentId: string }) {
       }}
     >
       <DynamicNotificationIsland>
+        <DynamicNotificationGlass />
         <DynamicNotificationPill>
           <DynamicNotificationIndicator />
           Assistant

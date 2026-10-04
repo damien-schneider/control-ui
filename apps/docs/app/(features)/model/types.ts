@@ -192,16 +192,22 @@ export type DocsSkill = {
 };
 export type DocsSkillConcern = SkillConcern;
 
-// Not component version — one registry name never has two contents. Either sibling item sharing export name and
-// props contract, so swapping is import-path change, or one composition of single installed item, so it is call-site change.
-export type DocsComponentVersion = {
+export type DocsComponentChoice = {
   id: string;
   label: string;
-  registryKind: RegistryKindId;
+  description: string;
   example: SourceFile;
-  usage?: Record<IntegrationId, SourceFile>;
+  usage: Record<IntegrationId, SourceFile>;
+};
+
+export type DocsComponentVariant = DocsComponentChoice;
+
+export type DocsComponentAlternative = DocsComponentChoice & {
+  registryKind: RegistryKindId;
   source: SourceFile;
   supportFiles: SourceFile[];
+  registryDependencies: DocsRegistryDependency[];
+  knobs: DocsKnobFamily[];
 };
 
 export type DocsComponent = {
@@ -222,7 +228,8 @@ export type DocsComponent = {
   source: SourceFile;
   registryDependencies: DocsRegistryDependency[];
   registryKind: RegistryKindId;
-  versions?: DocsComponentVersion[];
+  alternatives?: DocsComponentAlternative[];
+  variants?: DocsComponentVariant[];
   knobs: DocsKnobFamily[];
 };
 

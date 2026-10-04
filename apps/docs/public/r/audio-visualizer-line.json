@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "audio-visualizer-line",
   "type": "registry:component",
-  "title": "AudioVisualizer — Line",
-  "description": "Line rendering of the shared audio visualizer family.",
+  "title": "AudioVisualizer — Line envelope",
+  "description": "A smooth envelope showing the same amplitude history.",
   "dependencies": [],
   "registryDependencies": [
     "http://127.0.0.1:3000/r/audio-visualizer.json",

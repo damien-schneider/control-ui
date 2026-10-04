@@ -1,7 +1,7 @@
 import { skinMetas } from "@/app/(features)/catalog/skins";
 import type {
   DocsComponent,
-  DocsComponentVersion,
+  DocsComponentAlternative,
   GuideSection,
   RegistryKindId,
   SkinMetaId,
@@ -16,13 +16,13 @@ export type InstallCommand = {
   value: string;
 };
 
-export function supportFilesFor(component: DocsComponent, version?: DocsComponentVersion): SourceFile[] {
-  if (version) return version.supportFiles;
+export function supportFilesFor(component: DocsComponent, alternative?: DocsComponentAlternative): SourceFile[] {
+  if (alternative) return alternative.supportFiles;
   return [...(component.hook ? [component.hook] : []), ...(component.supportFiles ?? [])];
 }
 
-export function filesFor(component: DocsComponent, version?: DocsComponentVersion) {
-  return [version ? version.source : component.source, ...supportFilesFor(component, version)];
+export function filesFor(component: DocsComponent, alternative?: DocsComponentAlternative) {
+  return [alternative ? alternative.source : component.source, ...supportFilesFor(component, alternative)];
 }
 
 export function installedDependencyFiles(files: SourceFile[]): SourceFile[] {

@@ -9,12 +9,9 @@ import {
   AudioRecorderTrigger,
   useAudioRecorderContext,
 } from "@/components/control-ui/audio-recorder";
-// line version of AudioVisualizer usage family — same export, same contract as bars default.
 import { AudioVisualizer } from "@/components/control-ui/audio-visualizer-line";
 
-// Per-instance version swap: compose recorder explicitly and stand a part bound to another AudioVisualizer
-// version where <AudioRecorderVisualizer /> would sit. Prefer line everywhere instead? Repoint one import
-// in your owned audio-recorder.tsx (./audio-visualizer → ./audio-visualizer-line) and keep default part.
+// For a project-wide choice, change the visualizer import in your installed audio-recorder.tsx.
 function LineWaveform() {
   const recorder = useAudioRecorderContext();
   const isVisible = recorder.state === "recording" || recorder.state === "recorded";

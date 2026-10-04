@@ -222,6 +222,7 @@ export const guideEntries = [
       { id: "cascade", title: "The knob cascade" },
       { id: "anatomy", title: "Stable anatomy without runtime metadata" },
       { id: "skin-cost", title: "Keep the active skin sparse" },
+      { id: "component-choices", title: "Alternatives, variants, and versions" },
       { id: "customization-ladder", title: "Choose the smallest customization surface" },
       { id: "registry", title: "Registry source of truth" },
     ],

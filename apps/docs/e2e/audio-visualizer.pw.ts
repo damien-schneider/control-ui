@@ -20,7 +20,7 @@ test("audio visualizer knobs reach computed paint from the family root and from 
   });
   await expect.poll(() => bar.evaluate((element) => getComputedStyle(element).backgroundColor)).toBe("rgb(4, 5, 6)");
 
-  const lineVariant = page.getByRole("button", { name: "Line", exact: true });
+  const lineVariant = page.getByRole("radio", { name: "Line envelope", exact: true });
   await waitForReactHydration(lineVariant);
   await lineVariant.click();
   const line = page.locator('[data-control-ui="audio-visualizer"][data-slot="root"][data-variant="line"]').first();
@@ -75,7 +75,7 @@ test("the waveform stops at its idle line and resumes on demand", async ({ page 
 
 test("frequency bars align, mirror, and respect reduced motion during loading", async ({ page }) => {
   await page.goto("/components/audio-visualizer");
-  const variant = page.getByRole("button", { name: "Bar visualizer", exact: true });
+  const variant = page.getByRole("radio", { name: "Frequency bars", exact: true });
   await waitForReactHydration(variant);
   await variant.click();
   await expect(page.locator("#usage")).toContainText("@/components/control-ui/audio-visualizer-bar");

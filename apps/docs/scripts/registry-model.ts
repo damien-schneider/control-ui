@@ -272,17 +272,17 @@ function componentDefinitions(): Definition[] {
     };
   });
 
-  const audioVisualizer = componentEntries.find((entry) => entry.id === "audio-visualizer");
-  if (audioVisualizer && "versions" in audioVisualizer) {
-    for (const version of audioVisualizer.versions) {
-      if (version.registryKind === audioVisualizer.registryKind) continue;
+  for (const entry of componentEntries) {
+    if (!("alternatives" in entry)) continue;
+    for (const alternative of entry.alternatives) {
+      if (alternative.registryKind === entry.registryKind) continue;
       components.push({
-        id: version.registryKind,
+        id: alternative.registryKind,
         type: "registry:component",
-        title: `AudioVisualizer — ${version.label}`,
-        description: `${version.label} rendering of the shared audio visualizer family.`,
-        seeds: [version.paths.source.path, ...supportFilePaths(version.paths)],
-        primary: [version.paths.source.path],
+        title: `${entry.name} — ${alternative.label}`,
+        description: alternative.description,
+        seeds: [alternative.paths.source.path, ...supportFilePaths(alternative.paths)],
+        primary: [alternative.paths.source.path],
       });
     }
   }

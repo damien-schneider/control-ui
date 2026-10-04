@@ -58,6 +58,7 @@ export function RegistryItemPage({
   summary,
   status,
   preview,
+  beforePreview,
   examples = emptyRegistryItemExamples,
   composition,
   install,
@@ -74,6 +75,7 @@ export function RegistryItemPage({
   summary: string;
   status?: DocsStatus;
   preview: RegistryItemPreview;
+  beforePreview?: ReactNode;
   examples?: RegistryItemExample[];
   composition: Composition;
   install: RegistryItemInstall;
@@ -88,6 +90,7 @@ export function RegistryItemPage({
   return (
     <section className="docs-article">
       <PageHeader label={label} title={title} summary={summary} status={status} />
+      {beforePreview}
       <PreviewTabs
         code={preview.code}
         controls={preview.controls}

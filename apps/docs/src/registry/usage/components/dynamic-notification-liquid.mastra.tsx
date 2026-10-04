@@ -8,6 +8,7 @@ import {
   DynamicNotificationContent,
   DynamicNotificationIndicator,
   DynamicNotificationIsland,
+  DynamicNotificationLiquid,
   DynamicNotificationMessage,
   DynamicNotificationPill,
   DynamicNotificationReply,
@@ -25,7 +26,7 @@ export function Example({ agentId }: { agentId: string }) {
 
   return (
     <DynamicNotification
-      variant="surface"
+      variant="liquid"
       loading={isRunning}
       onReply={async ({ value, clear }) => {
         await sendMessage({ message: value });
@@ -33,6 +34,7 @@ export function Example({ agentId }: { agentId: string }) {
       }}
     >
       <DynamicNotificationIsland>
+        <DynamicNotificationLiquid />
         <DynamicNotificationPill>
           <DynamicNotificationIndicator />
           Assistant

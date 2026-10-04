@@ -156,6 +156,25 @@ export type CatalogNamedPreview = {
   previewClassName?: string;
 };
 
+export type CatalogComponentVariant = {
+  id: string;
+  label: string;
+  description: string;
+  paths: {
+    example: CatalogSourceFile;
+    usage: Record<CatalogIntegrationId, CatalogSourceFile>;
+  };
+  preview: CatalogPreview;
+};
+
+export type CatalogComponentAlternative = Omit<CatalogComponentVariant, "paths"> & {
+  registryKind: CatalogRegistryKind;
+  paths: CatalogComponentVariant["paths"] & {
+    source: CatalogSourceFile;
+    supportFiles?: readonly CatalogSourceFile[];
+  };
+};
+
 export function includesString<T extends string>(values: readonly T[], value: string): value is T {
   return values.some((item) => item === value);
 }

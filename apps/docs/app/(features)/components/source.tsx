@@ -212,13 +212,12 @@ export function PreviewTabs({
           setTab(value);
         }}
       >
-        {/* Base UI tablists consume arrow keys, so controls sit outside the list. */}
-        <div className="relative">
-          <TabsList variant={scrollsPage ? "default" : "browser"} className={scrollsPage ? "mb-3 w-fit" : "w-full shadow-none"}>
+        <div className={cn("flex flex-wrap items-center gap-x-3 gap-y-2", scrollsPage && "mb-3")}>
+          <TabsList variant={scrollsPage ? "default" : "browser"} className={scrollsPage ? "w-fit" : "min-w-0 flex-1 shadow-none"}>
             <TabsTab value="preview">Preview</TabsTab>
             <TabsTab value="code">Code</TabsTab>
           </TabsList>
-          <div className="absolute inset-y-0 right-3 z-[2] flex items-center justify-end gap-1.5">
+          <div className="ml-auto flex max-w-full flex-wrap items-center justify-end gap-1.5">
             {controls}
             {tab === "code" ? <CodeCopy value={code} /> : null}
           </div>

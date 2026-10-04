@@ -15,7 +15,7 @@ describe("AudioVisualizer", () => {
     expect(html).not.toContain("Infinity");
   });
 
-  test("renders the line version as a smooth mirrored envelope path", () => {
+  test("renders the line alternative as a smooth mirrored envelope path", () => {
     const html = renderToString(<LineAudioVisualizer levels={[0.2, 0.8]} points={4} />);
 
     expect(html).toContain('data-variant="line"');

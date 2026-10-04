@@ -3,7 +3,7 @@
   "name": "audio-visualizer",
   "type": "registry:component",
   "title": "AudioVisualizer",
-  "description": "Levels-driven audio visualizer with live waveform, line envelope, and frequency bar versions, including idle and loading states.",
+  "description": "Audio visualization with waveform, line envelope, and frequency bar alternatives. Choose the implementation that fits your audio data.",
   "dependencies": [],
   "registryDependencies": [
     "core"

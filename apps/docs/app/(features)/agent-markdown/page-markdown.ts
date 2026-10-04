@@ -40,6 +40,25 @@ function childPagesBody(page: SearchItem) {
   return `## Pages\n\n${children.map((child) => `- [${child.name}](${absoluteSiteUrl(child.href)}): ${child.summary}`).join("\n")}`;
 }
 
+function componentChoicesBody(page: SearchItem) {
+  if (page.kind !== "Component") return "";
+  const component = getDocsData().components.find((entry) => entry.id === page.id);
+  if (component?.alternatives) {
+    const alternatives = component.alternatives.map(
+      (alternative) =>
+        `- [${alternative.label}](${absoluteSiteUrl(`${page.href}?alternative=${alternative.id}`)}): ${alternative.description} Install: \`${absoluteSiteUrl(`/r/${alternative.registryKind}.json`)}\`.`,
+    );
+    return `## Alternatives\n\nChoose an implementation for your project. Each alternative has its own install and import.\n\n${alternatives.join("\n")}`;
+  }
+  if (component?.variants) {
+    const variants = component.variants.map(
+      (variant) => `- [${variant.label}](${absoluteSiteUrl(`${page.href}?variant=${variant.id}`)}): ${variant.description}`,
+    );
+    return `## Variants\n\nChoose an appearance per instance using the variant prop. All variants share one installation.\n\n${variants.join("\n")}`;
+  }
+  return "";
+}
+
 function pageBody(page: SearchItem) {
   if (page.kind === "Guide") {
     const guide = getDocsData().guides.find((entry) => entry.id === page.id);
@@ -52,7 +71,7 @@ function pageBody(page: SearchItem) {
   const registryId = registryItemIdFor(page);
   if (registryId) {
     const result = getRegistryItem(registryId);
-    if (!isRegistryError(result)) return registryItemBody(result.data);
+    if (!isRegistryError(result)) return [componentChoicesBody(page), registryItemBody(result.data)].filter(Boolean).join("\n\n");
   }
   return childPagesBody(page);
 }

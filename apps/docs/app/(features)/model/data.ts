@@ -15,7 +15,8 @@ import type {
   Composition,
   DocsBlock,
   DocsComponent,
-  DocsComponentVersion,
+  DocsComponentAlternative,
+  DocsComponentVariant,
   DocsExtension,
   DocsHook,
   DocsKnobFamily,
@@ -155,28 +156,43 @@ function getSkillConcerns(): DocsSkillConcern[] {
   return skillConcerns.map((concern) => ({ ...concern }));
 }
 
-function getComponentVersions(
+function getComponentAlternatives(
   entry: (typeof componentEntries)[number],
   declaredSupport: readonly CatalogSourceFile[],
-): DocsComponentVersion[] | undefined {
-  if (!("versions" in entry)) return undefined;
+): DocsComponentAlternative[] | undefined {
+  if (!("alternatives" in entry)) return undefined;
 
-  return entry.versions.map((version) => {
+  return entry.alternatives.map((alternative) => {
     const installed = documentedSourceSet(
-      version.registryKind,
-      version.paths.source,
-      version.registryKind === entry.registryKind ? declaredSupport : [],
+      alternative.registryKind,
+      alternative.paths.source,
+      alternative.registryKind === entry.registryKind ? declaredSupport : [],
     );
     return {
-      id: version.id,
-      label: version.label,
-      registryKind: version.registryKind,
-      example: sourceFrom(version.paths.example),
-      usage: "usage" in version.paths ? sourceRequiredRecord(integrationIds, version.paths.usage) : undefined,
+      id: alternative.id,
+      label: alternative.label,
+      description: alternative.description,
+      registryKind: alternative.registryKind,
+      example: sourceFrom(alternative.paths.example),
+      usage: sourceRequiredRecord(integrationIds, alternative.paths.usage),
       source: installed.source,
       supportFiles: installed.supportFiles,
+      registryDependencies: registryDependencyReferences(alternative.registryKind),
+      knobs: installed.knobs,
     };
   });
+}
+
+function getComponentVariants(entry: (typeof componentEntries)[number]): DocsComponentVariant[] | undefined {
+  if (!("variants" in entry)) return undefined;
+
+  return entry.variants.map((variant) => ({
+    id: variant.id,
+    label: variant.label,
+    description: variant.description,
+    example: sourceFrom(variant.paths.example),
+    usage: sourceRequiredRecord(integrationIds, variant.paths.usage),
+  }));
 }
 
 function getComponents(): DocsComponent[] {
@@ -213,7 +229,8 @@ function getComponents(): DocsComponent[] {
       source: installed.source,
       registryDependencies: registryDependencyReferences(entry.registryKind),
       registryKind: entry.registryKind,
-      versions: getComponentVersions(entry, declaredSupport),
+      alternatives: getComponentAlternatives(entry, declaredSupport),
+      variants: getComponentVariants(entry),
       knobs: installed.knobs,
     };
   });
@@ -383,11 +400,18 @@ export function getDocsShellData(): DocsShellData {
       supportFiles: component.supportFiles?.map(sourceOutline),
       source: sourceOutline(component.source),
       knobs: [],
-      versions: component.versions?.map((version) => ({
-        ...version,
-        example: sourceOutline(version.example),
-        source: sourceOutline(version.source),
-        supportFiles: version.supportFiles.map(sourceOutline),
+      alternatives: component.alternatives?.map((alternative) => ({
+        ...alternative,
+        example: sourceOutline(alternative.example),
+        usage: objectFromEntries(integrationIds.map((id) => [id, sourceOutline(alternative.usage[id])] as const)),
+        source: sourceOutline(alternative.source),
+        supportFiles: alternative.supportFiles.map(sourceOutline),
+        knobs: [],
+      })),
+      variants: component.variants?.map((variant) => ({
+        ...variant,
+        example: sourceOutline(variant.example),
+        usage: objectFromEntries(integrationIds.map((id) => [id, sourceOutline(variant.usage[id])] as const)),
       })),
     })),
     blocks: data.blocks.map((block) => ({

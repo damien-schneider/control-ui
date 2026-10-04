@@ -126,12 +126,31 @@ for (const entry of componentEntries) {
     }
   }
 
-  if ("versions" in entry) {
-    for (const version of entry.versions) {
-      checkRegistryItem(`${entry.id}.${version.id}`, version.registryKind);
-      checkSourceFile(`${entry.id}.${version.id}.example`, version.paths.example);
-      checkSourceFile(`${entry.id}.${version.id}.source`, version.paths.source);
-      checkPreview(`${entry.id}.${version.id}`, version.paths.example, version.preview);
+  if ("alternatives" in entry) {
+    const choiceIds = new Set<string>();
+    const registryKinds = new Set<string>();
+    for (const alternative of entry.alternatives) {
+      const key = `${entry.id}.${alternative.id}`;
+      if (choiceIds.has(alternative.id)) failures.push(`${key}: duplicate alternative id`);
+      if (registryKinds.has(alternative.registryKind)) failures.push(`${key}: alternatives must have distinct registry items`);
+      choiceIds.add(alternative.id);
+      registryKinds.add(alternative.registryKind);
+      checkRegistryItem(key, alternative.registryKind);
+      checkSourceFile(`${key}.example`, alternative.paths.example);
+      checkSourceFile(`${key}.source`, alternative.paths.source);
+      checkRecord(`${key}.usage`, alternative.paths.usage);
+      checkPreview(key, alternative.paths.example, alternative.preview);
+    }
+  }
+  if ("variants" in entry) {
+    const choiceIds = new Set<string>();
+    for (const variant of entry.variants) {
+      const key = `${entry.id}.${variant.id}`;
+      if (choiceIds.has(variant.id)) failures.push(`${key}: duplicate variant id`);
+      choiceIds.add(variant.id);
+      checkSourceFile(`${key}.example`, variant.paths.example);
+      checkRecord(`${key}.usage`, variant.paths.usage);
+      checkPreview(key, variant.paths.example, variant.preview);
     }
   }
 }

@@ -24,7 +24,7 @@ async function expectCentered(container: Locator, content: Locator) {
 }
 
 for (const width of [390, 795, 1440]) {
-  test(`audio visualizer versions stay centered without centering wrappers at ${width}px`, async ({ page }) => {
+  test(`audio visualizer alternatives stay centered without centering wrappers at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/components/audio-visualizer");
     const preview = page.locator("#preview");
@@ -33,12 +33,12 @@ for (const width of [390, 795, 1440]) {
     await waitForReactHydration(preview.getByRole("tab", { name: "Preview", exact: true }));
 
     for (const [label, variant] of [
-      ["Live waveform", "bars"],
-      ["Line", "line"],
-      ["Bar visualizer", "bar"],
-      ["Live waveform", "bars"],
+      ["Waveform", "bars"],
+      ["Line envelope", "line"],
+      ["Frequency bars", "bar"],
+      ["Waveform", "bars"],
     ]) {
-      await preview.getByRole("button", { name: label, exact: true }).click();
+      await page.getByRole("radio", { name: label, exact: true }).check();
       const visualizer = preview.locator(`[data-control-ui="audio-visualizer"][data-slot="root"][data-variant="${variant}"]`).first();
       await expect(visualizer).toBeVisible();
       await expectCentered(panel, content);

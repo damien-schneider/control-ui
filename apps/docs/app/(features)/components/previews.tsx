@@ -22,19 +22,21 @@ export function Preview({ componentId, integration }: { componentId: ComponentId
   ) : null;
 }
 
-// Usage-version preview: resolves picked version's own lazy example inside a component's versions family.
-export function ComponentVersionPreview({
+export function ComponentChoicePreview({
   componentId,
-  versionId,
+  choiceId,
+  kind,
   integration,
 }: {
   componentId: ComponentId;
-  versionId: string;
+  choiceId: string;
+  kind: "alternative" | "variant";
   integration: IntegrationId;
 }) {
   const entry = componentEntries.find((item) => item.id === componentId);
-  const version = entry && "versions" in entry ? entry.versions.find((item) => item.id === versionId) : undefined;
-  const Example = version?.preview.Component;
+  const choices = kind === "alternative" && entry && "alternatives" in entry ? entry.alternatives : undefined;
+  const variants = kind === "variant" && entry && "variants" in entry ? entry.variants : undefined;
+  const Example = (choices ?? variants)?.find((item) => item.id === choiceId)?.preview.Component;
 
   return Example ? (
     <Suspense fallback={previewFallback}>

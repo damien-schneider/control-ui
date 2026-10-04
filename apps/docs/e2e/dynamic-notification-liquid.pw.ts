@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test("liquid notification initializes without a CSS backdrop-filter fallback", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/components/dynamic-notification");
+  await page.goto("/components/dynamic-notification?variant=liquid");
 
   const island = page.locator('[data-control-ui="dynamic-notification"][data-slot="island"][data-variant="liquid"]');
   const canvas = island.locator('[data-control-ui="dynamic-notification"][data-slot="liquid"]');
@@ -34,7 +34,7 @@ test("liquid notification transmits a PNG image beneath the surface", async ({ p
     await route.fulfill({ body: Buffer.from(fixturePng, "base64"), contentType: "image/png" });
   });
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/components/dynamic-notification");
+  await page.goto("/components/dynamic-notification?variant=liquid");
 
   const scene = page.locator("[data-dn-scene]");
   await expect(scene).toHaveCount(1);
@@ -93,7 +93,7 @@ test("liquid notification transmits a PNG image beneath the surface", async ({ p
 
 test("liquid notification keeps a visible lens field beyond the antialiased rim", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/components/dynamic-notification");
+  await page.goto("/components/dynamic-notification?variant=liquid");
 
   const scene = page.locator("[data-dn-scene]");
   const island = page.locator('[data-control-ui="dynamic-notification"][data-slot="island"][data-variant="liquid"]');
@@ -334,15 +334,15 @@ const thinkingMaterials = [
 for (const material of thinkingMaterials) {
   test(`${material.label} thinking ribbon stays on the ink horizon`, async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
-    await page.goto("/components/dynamic-notification");
+    await page.goto("/components/dynamic-notification?variant=liquid");
     if ("picker" in material) {
       const initialCanvas = page.locator(
         '[data-control-ui="dynamic-notification"][data-slot="island"][data-variant="liquid"] [data-control-ui="dynamic-notification"][data-slot="liquid"]',
       );
       await expect(initialCanvas).toHaveAttribute("data-glass-ready", "true");
-      const picker = page.getByRole("button", { name: material.picker, exact: true });
+      const picker = page.getByRole("radio", { name: material.picker, exact: true });
       await picker.click();
-      await expect(picker).toHaveAttribute("aria-pressed", "true");
+      await expect(picker).toBeChecked();
     }
 
     const island = page.locator(`[data-control-ui="dynamic-notification"][data-slot="island"][data-variant="${material.variant}"]`);

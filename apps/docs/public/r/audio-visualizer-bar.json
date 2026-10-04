@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "audio-visualizer-bar",
   "type": "registry:component",
-  "title": "AudioVisualizer — Bar visualizer",
-  "description": "Bar visualizer rendering of the shared audio visualizer family.",
+  "title": "AudioVisualizer — Frequency bars",
+  "description": "A frequency spectrum with alignment, mirroring, idle, and loading options.",
   "dependencies": [],
   "registryDependencies": [
     "http://127.0.0.1:3000/r/audio-visualizer.json",

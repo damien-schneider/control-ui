@@ -40,6 +40,8 @@ function componentPageLinks(component: DocsComponent, extensions: DocsExtension[
   const hasExtensions = extensions.some((extension) => extension.appliesTo?.some((id) => id === component.id));
 
   return [
+    ...(component.alternatives ? [{ href: "#alternatives", label: "Alternatives" }] : []),
+    ...(component.variants ? [{ href: "#variants", label: "Variants" }] : []),
     { href: "#preview", label: "Preview" },
     ...((component.examples?.length ?? 0) > 0 ? [{ href: "#examples", label: "Examples" }] : []),
     { href: "#composition", label: "Composition" },

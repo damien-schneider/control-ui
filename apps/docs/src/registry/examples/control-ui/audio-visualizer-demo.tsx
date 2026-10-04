@@ -55,7 +55,13 @@ export function useDemoAudioLevels(mode: "history" | "bands" = "history", active
   return levels;
 }
 
-export function AudioVisualizerDemo({ Visualizer }: { Visualizer: ComponentType<AudioVisualizerProps> }) {
+export function AudioVisualizerDemo({
+  Visualizer,
+  label = "Live waveform",
+}: {
+  Visualizer: ComponentType<AudioVisualizerProps>;
+  label?: string;
+}) {
   const [active, setActive] = useState(true);
   const levels = useDemoAudioLevels("history", active);
 
@@ -63,7 +69,7 @@ export function AudioVisualizerDemo({ Visualizer }: { Visualizer: ComponentType<
     <div className="flex w-full max-w-md flex-col gap-4 py-4">
       <div className="flex items-center justify-between gap-3">
         <Text size="caption" tone="muted">
-          {active ? "Live waveform" : "Ready to listen"}
+          {active ? label : "Ready to listen"}
         </Text>
         <Button variant="surface" size="sm" onClick={() => setActive((previous) => !previous)}>
           {active ? "Pause" : "Listen"}

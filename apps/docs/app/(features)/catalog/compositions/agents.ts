@@ -174,7 +174,7 @@ export const agentsCompositions = {
     example(
       "Levels-driven visualizer",
       part("AudioVisualizer"),
-      "Live waveform and line versions read a rolling history. The bar visualizer reads frequency bands and adds alignment, mirroring, idle, and loading options.",
+      "Waveform and line envelope alternatives read amplitude history. Frequency bars read spectrum bands and add alignment, mirroring, idle, and loading options. Each alternative has its own install and import.",
     ),
   ],
   "dynamic-notification": [

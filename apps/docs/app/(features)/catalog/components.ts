@@ -1,5 +1,5 @@
 import { emailEntry } from "./email";
-import { preview, sourceFile } from "./shared";
+import { type CatalogComponentAlternative, type CatalogComponentVariant, preview, sourceFile } from "./shared";
 
 const chatMessageRecipeFiles = [
   sourceFile("Chat message recipe — paint + @property knobs", "src/registry/sources/control-ui/recipes/chat-message.css", "recipe-css"),
@@ -280,9 +280,9 @@ export const componentEntries = [
     additionalPreviews: [
       {
         id: "line-waveform",
-        title: "Line waveform version",
+        title: "Line envelope alternative",
         description:
-          "The recorder hosts any AudioVisualizer usage version. App-wide, repoint the one import in your owned audio-recorder.tsx (bars → line); per instance, compose explicit children and stand a part bound to the line version on useAudioRecorderContext, as here.",
+          "Use the line envelope implementation throughout your project by changing the visualizer import in your installed audio-recorder.tsx. This example composes a recorder with the line alternative through useAudioRecorderContext. Install audio-visualizer-line before using it.",
         source: sourceFile("Line waveform recorder", "src/registry/examples/control-ui/audio-recorder-line.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/audio-recorder-line").then((mod) => ({ default: mod.AudioRecorderLineExample })),
@@ -297,7 +297,7 @@ export const componentEntries = [
     kind: "Component",
     name: "AudioVisualizer",
     summary:
-      "Levels-driven audio visualizer with live waveform, line envelope, and frequency bar versions, including idle and loading states.",
+      "Audio visualization with waveform, line envelope, and frequency bar alternatives. Choose the implementation that fits your audio data.",
     registryKind: "audio-visualizer",
     status: "beta",
     paths: {
@@ -312,13 +312,18 @@ export const componentEntries = [
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/audio-visualizer").then((mod) => ({ default: mod.AudioVisualizerExample })),
     ),
-    versions: [
+    alternatives: [
       {
         id: "bars",
-        label: "Live waveform",
+        label: "Waveform",
+        description: "Scrolling bars showing amplitude over time.",
         registryKind: "audio-visualizer",
         paths: {
           example: sourceFile("Example", "src/registry/examples/control-ui/audio-visualizer.tsx", "example"),
+          usage: {
+            mastra: sourceFile("Usage", "src/registry/usage/components/audio-visualizer.tsx", "usage"),
+            "ai-sdk": sourceFile("Usage", "src/registry/usage/components/audio-visualizer.tsx", "usage"),
+          },
           source: sourceFile("Component", "src/registry/sources/control-ui/audio-visualizer.tsx", "component"),
           supportFiles: [audioVisualizerRecipeFile],
         },
@@ -328,10 +333,15 @@ export const componentEntries = [
       },
       {
         id: "line",
-        label: "Line",
+        label: "Line envelope",
+        description: "A smooth envelope showing the same amplitude history.",
         registryKind: "audio-visualizer-line",
         paths: {
           example: sourceFile("Example", "src/registry/examples/control-ui/audio-visualizer-line.tsx", "example"),
+          usage: {
+            mastra: sourceFile("Usage", "src/registry/usage/components/audio-visualizer-line.tsx", "usage"),
+            "ai-sdk": sourceFile("Usage", "src/registry/usage/components/audio-visualizer-line.tsx", "usage"),
+          },
           source: sourceFile("Component", "src/registry/sources/control-ui/audio-visualizer-line.tsx", "component"),
           supportFiles: [audioVisualizerRecipeFile],
         },
@@ -341,7 +351,8 @@ export const componentEntries = [
       },
       {
         id: "bar",
-        label: "Bar visualizer",
+        label: "Frequency bars",
+        description: "A frequency spectrum with alignment, mirroring, idle, and loading options.",
         registryKind: "audio-visualizer-bar",
         paths: {
           example: sourceFile("Example", "src/registry/examples/control-ui/audio-visualizer-bar.tsx", "example"),
@@ -356,7 +367,7 @@ export const componentEntries = [
           import("@/src/registry/examples/control-ui/audio-visualizer-bar").then((mod) => ({ default: mod.AudioVisualizerBarExample })),
         ),
       },
-    ],
+    ] satisfies readonly CatalogComponentAlternative[],
   },
   {
     id: "dynamic-notification",
@@ -368,7 +379,7 @@ export const componentEntries = [
     registryKind: "dynamic-notification",
     status: "experimental",
     paths: {
-      example: sourceFile("Example", "src/registry/examples/control-ui/dynamic-notification.tsx", "example"),
+      example: sourceFile("Example", "src/registry/examples/control-ui/dynamic-notification-surface.tsx", "example"),
       usage: {
         mastra: sourceFile("Mastra usage", "src/registry/usage/components/dynamic-notification.mastra.tsx", "usage"),
         "ai-sdk": sourceFile("AI SDK usage", "src/registry/usage/components/dynamic-notification.ai-sdk.tsx", "usage"),
@@ -396,28 +407,38 @@ export const componentEntries = [
       ],
     },
     preview: preview(() =>
-      import("@/src/registry/examples/control-ui/dynamic-notification").then((mod) => ({ default: mod.DynamicNotificationExample })),
+      import("@/src/registry/examples/control-ui/dynamic-notification-surface").then((mod) => ({
+        default: mod.DynamicNotificationSurfaceExample,
+      })),
     ),
-    versions: [
+    variants: [
       {
-        id: "liquid",
-        label: "Liquid",
-        registryKind: "dynamic-notification",
+        id: "surface",
+        label: "Surface",
+        description: "A token-driven surface that follows your skin.",
         paths: {
-          example: sourceFile("Example", "src/registry/examples/control-ui/dynamic-notification.tsx", "example"),
-          source: sourceFile("Component", "src/registry/sources/control-ui/dynamic-notification.tsx", "component"),
+          example: sourceFile("Example", "src/registry/examples/control-ui/dynamic-notification-surface.tsx", "example"),
+          usage: {
+            mastra: sourceFile("Mastra usage", "src/registry/usage/components/dynamic-notification.mastra.tsx", "usage"),
+            "ai-sdk": sourceFile("AI SDK usage", "src/registry/usage/components/dynamic-notification.ai-sdk.tsx", "usage"),
+          },
         },
         preview: preview(() =>
-          import("@/src/registry/examples/control-ui/dynamic-notification").then((mod) => ({ default: mod.DynamicNotificationExample })),
+          import("@/src/registry/examples/control-ui/dynamic-notification-surface").then((mod) => ({
+            default: mod.DynamicNotificationSurfaceExample,
+          })),
         ),
       },
       {
         id: "glass",
         label: "Backdrop blur",
-        registryKind: "dynamic-notification",
+        description: "A blurred backdrop with optional WebGL enhancement.",
         paths: {
           example: sourceFile("Example", "src/registry/examples/control-ui/dynamic-notification-glass.tsx", "example"),
-          source: sourceFile("Component", "src/registry/sources/control-ui/dynamic-notification.tsx", "component"),
+          usage: {
+            mastra: sourceFile("Mastra usage", "src/registry/usage/components/dynamic-notification-glass.mastra.tsx", "usage"),
+            "ai-sdk": sourceFile("AI SDK usage", "src/registry/usage/components/dynamic-notification-glass.ai-sdk.tsx", "usage"),
+          },
         },
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/dynamic-notification-glass").then((mod) => ({
@@ -426,20 +447,21 @@ export const componentEntries = [
         ),
       },
       {
-        id: "surface",
-        label: "Surface",
-        registryKind: "dynamic-notification",
+        id: "liquid",
+        label: "Liquid glass",
+        description: "A refractive liquid backdrop rendered with WebGL.",
         paths: {
-          example: sourceFile("Example", "src/registry/examples/control-ui/dynamic-notification-surface.tsx", "example"),
-          source: sourceFile("Component", "src/registry/sources/control-ui/dynamic-notification.tsx", "component"),
+          example: sourceFile("Example", "src/registry/examples/control-ui/dynamic-notification.tsx", "example"),
+          usage: {
+            mastra: sourceFile("Mastra usage", "src/registry/usage/components/dynamic-notification-liquid.mastra.tsx", "usage"),
+            "ai-sdk": sourceFile("AI SDK usage", "src/registry/usage/components/dynamic-notification-liquid.ai-sdk.tsx", "usage"),
+          },
         },
         preview: preview(() =>
-          import("@/src/registry/examples/control-ui/dynamic-notification-surface").then((mod) => ({
-            default: mod.DynamicNotificationSurfaceExample,
-          })),
+          import("@/src/registry/examples/control-ui/dynamic-notification").then((mod) => ({ default: mod.DynamicNotificationExample })),
         ),
       },
-    ],
+    ] satisfies readonly CatalogComponentVariant[],
   },
   {
     id: "filter-bar",

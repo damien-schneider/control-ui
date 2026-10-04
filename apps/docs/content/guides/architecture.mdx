@@ -82,6 +82,23 @@
   behavior and adornment config, not once per rendered component.
 </GuideSection>
 
+<GuideSection id="component-choices" title="Alternatives, variants, and versions">
+  **Alternatives** are distinct implementations of a component. Choose the implementation that fits your project,
+  install its registry item, and use its import. They can share a base API while accepting different data or exposing
+  additional options. AudioVisualizer offers waveform bars and a line envelope for amplitude history, plus frequency
+  bars for a spectrum. Centralize the import when your application should use one implementation throughout.
+
+  **Variants** are options of the same installed component, selected by props at each call site. They can coexist in
+  one application. DynamicNotification uses `variant="surface"`, `variant="glass"`, or `variant="liquid"`, with optional
+  parts for its WebGL backdrops. The installation stays the same.
+
+  **Examples** demonstrate compositions, states, or integrations. **Skins** apply a design language across the component
+  tree. **Versions** describe changes over time, such as releases and API migrations.
+
+  On component pages, the selected alternative or variant controls the preview, example code, and usage. Alternatives
+  also select the installation and source. The URL keeps the selection so you can reload or share the same choice.
+</GuideSection>
+
 <GuideSection id="customization-ladder" title="Choose the smallest customization surface">
   Start at the top and stop at the first rung that expresses the change. Each step downward owns more behavior and is harder
   to undo.
@@ -90,7 +107,7 @@
 
   <GuidePoints>
     <GuidePoint>Change a token when the contract already names the value.</GuidePoint>
-    <GuidePoint>Use a prop when alternatives coexist at different call sites; use a skin-level choice when one decision applies across the design system.</GuidePoint>
+    <GuidePoint>Use a variant prop when appearances coexist at different call sites; use a skin-level choice when one decision applies across the design system.</GuidePoint>
     <GuidePoint>Use component knobs, scoped skin CSS, utilities, or an optional extension only when the shallower surfaces cannot express the result.</GuidePoint>
     <GuidePoint>Edit the installed component source when the anatomy itself must change.</GuidePoint>
   </GuidePoints>

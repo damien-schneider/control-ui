@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { ComponentExamplePreview, ComponentVersionPreview, Preview } from "@/app/(features)/components/previews";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+import { ComponentChoicePreview, ComponentExamplePreview, Preview } from "@/app/(features)/components/previews";
 import {
   filesFor,
   installedDependencyFiles,
@@ -11,84 +12,96 @@ import {
 } from "@/app/(features)/model/registry";
 import type {
   DocsComponent,
-  DocsComponentVersion,
+  DocsComponentAlternative,
+  DocsComponentChoice,
+  DocsComponentVariant,
   DocsExtension,
   IntegrationId,
-  RegistryKindId,
   SourceFile,
 } from "@/app/(features)/model/types";
-import { Button } from "@/components/control-ui/ui/button";
-import { Text } from "@/components/control-ui/ui/typography";
 import { AvailableExtensions } from "./available-extensions";
+import { ComponentChoicePicker } from "./component-choice-picker";
 import { IntegrationSelect, integrationChangesCode } from "./integration";
 import { RegistryItemPage } from "./registry-item-page";
 
-function selectedVersion(versions: DocsComponentVersion[] | undefined, pickedVersionId: string | undefined) {
-  if (!versions) return undefined;
-  return versions.find((item) => item.id === pickedVersionId) ?? versions[0];
-}
-
-function versionCopy(version: DocsComponentVersion | undefined, versionsShareItem: boolean, registryKind: RegistryKindId) {
-  if (!version) {
-    return {
-      installDescription: (
-        <>This agent installs from the {registryKind} registry. Install the bundle with the command above, or inspect the source below.</>
-      ),
-      sourceDescription: "This agent’s owned source and private support files",
-    };
-  }
-
-  if (versionsShareItem) {
-    return {
-      installDescription: (
-        <>
-          Every version ships from this one registry item, so the install command is identical — the picker only swaps the documented
-          composition; switching versions later is a call-site change, not a reinstall.
-        </>
-      ),
-      sourceDescription: "Owned source and private support files shared by every version",
-    };
-  }
-
-  return {
-    installDescription: (
-      <>
-        Usage versions are sibling registry items sharing one export and one props contract — install the {version.label} item with the
-        command above; swapping versions later is an import-path change, no call site moves.
-      </>
-    ),
-    sourceDescription: `Owned source and private support files (${version.label} version)`,
-  };
-}
-
-function dependencyDetails(supportFiles: SourceFile[]) {
-  const dependencyFiles = installedDependencyFiles(supportFiles);
-  if (dependencyFiles.length === 0) return undefined;
-  return { files: dependencyFiles };
-}
-
-export function ComponentPage({
-  component,
-  integration,
-  extensions,
-}: {
+type ComponentPageProps = {
   component: DocsComponent;
   integration: IntegrationId;
   extensions: DocsExtension[];
-}) {
-  const [pickedVersionId, setPickedVersionId] = useState<string | undefined>(undefined);
-  const version = selectedVersion(component.versions, pickedVersionId);
-  const versionsShareItem = component.versions?.every((item) => item.registryKind === component.registryKind) ?? false;
+};
 
-  const registryKind = version?.registryKind ?? component.registryKind;
-  const commands = registryInstallCommands(registryKind);
-  const files = filesFor(component, version);
-  const manifestHref = publicRegistryHref(registryKind);
-  const exampleCode = version ? version.example.code : component.example.code;
-  const usage = version?.usage ?? component.usage;
-  const usageCode = usage[integration].code;
+function dependencyDetails(supportFiles: SourceFile[]) {
+  const dependencyFiles = installedDependencyFiles(supportFiles);
+  return dependencyFiles.length > 0 ? { files: dependencyFiles } : undefined;
+}
+
+function selectedChoice<T extends DocsComponentChoice>(choices: T[] | undefined, selectedId?: string | null) {
+  return choices?.find((item) => item.id === selectedId) ?? choices?.[0];
+}
+
+function componentChoiceCopy(alternative?: DocsComponentAlternative, variant?: DocsComponentVariant) {
+  let installDescription = <>Use this command to install the component.</>;
+  let sourceDescription = "Installed component source and support files";
+  if (alternative) {
+    installDescription = (
+      <>
+        Install the <strong>{alternative.label}</strong> alternative. To adopt another implementation, install its registry item and update
+        the import in your project. Check its data requirements and options in Usage.
+      </>
+    );
+    sourceDescription = `Installed source for the ${alternative.label} alternative`;
+  } else if (variant) {
+    installDescription = <>All variants use this installation. Choose the appearance with the variant prop and its optional parts.</>;
+    sourceDescription = "Installed source shared by all variants";
+  }
+
+  return { installDescription, sourceDescription };
+}
+
+export function ComponentPage(props: ComponentPageProps) {
+  if (!props.component.alternatives && !props.component.variants) return <ComponentPageContent {...props} />;
+
+  return (
+    <Suspense fallback={<ComponentPageContent {...props} />}>
+      <SelectedComponentPage {...props} />
+    </Suspense>
+  );
+}
+
+function SelectedComponentPage(props: ComponentPageProps) {
+  const searchParams = useSearchParams();
+  const kind = props.component.alternatives ? "alternative" : "variant";
+
+  function selectChoice(id: string) {
+    const url = new URL(window.location.href);
+    if (url.searchParams.get(kind) === id) return;
+    url.searchParams.set(kind, id);
+    window.history.pushState(null, "", `${url.pathname}${url.search}${url.hash}`);
+  }
+
+  return <ComponentPageContent {...props} selectedId={searchParams.get(kind)} onPick={selectChoice} />;
+}
+
+function ComponentPageContent({
+  component,
+  integration,
+  extensions,
+  selectedId,
+  onPick,
+}: ComponentPageProps & { selectedId?: string | null; onPick?: (id: string) => void }) {
+  const alternatives = component.alternatives;
+  const variants = component.variants;
+  const alternative = selectedChoice(alternatives, selectedId);
+  const variant = selectedChoice(variants, selectedId);
+  const choice = alternative ?? variant;
+  const kind = alternatives ? "alternative" : "variant";
+  const choices = alternatives ?? variants;
+  const registryKind = alternative?.registryKind ?? component.registryKind;
+  const files = filesFor(component, alternative);
+  const usage = choice?.usage ?? component.usage;
   const usageChangesWithIntegration = integrationChangesCode((id) => usage[id].code);
-  const { installDescription, sourceDescription } = versionCopy(version, versionsShareItem, registryKind);
+
+  const { installDescription, sourceDescription } = componentChoiceCopy(alternative, variant);
 
   return (
     <RegistryItemPage
@@ -96,17 +109,16 @@ export function ComponentPage({
       title={component.name}
       summary={component.summary}
       status={component.status}
+      beforePreview={
+        choices && choice ? <ComponentChoicePicker kind={kind} choices={choices} activeId={choice.id} onPick={onPick} /> : undefined
+      }
       preview={{
-        code: exampleCode,
+        code: choice?.example.code ?? component.example.code,
         className: component.previewClassName,
         layout: component.previewLayout ?? "full",
         description: component.previewDescription,
-        controls:
-          component.versions && version ? (
-            <VersionPicker versions={component.versions} activeId={version.id} onPick={setPickedVersionId} />
-          ) : undefined,
-        children: version ? (
-          <ComponentVersionPreview componentId={component.id} versionId={version.id} integration={integration} />
+        children: choice ? (
+          <ComponentChoicePreview componentId={component.id} choiceId={choice.id} kind={kind} integration={integration} />
         ) : (
           <Preview componentId={component.id} integration={integration} />
         ),
@@ -124,57 +136,18 @@ export function ComponentPage({
       }
       composition={component.composition}
       install={{
-        commands,
-        manifestHref,
+        commands: registryInstallCommands(registryKind),
+        manifestHref: publicRegistryHref(registryKind),
         children: installDescription,
       }}
-      usageCode={usageCode}
+      usageCode={usage[integration].code}
       usageControls={usageChangesWithIntegration ? <IntegrationSelect /> : undefined}
-      knobs={component.knobs}
-      dependencies={dependencyDetails(supportFilesFor(component, version))}
-      libraryDependencies={component.registryDependencies}
-      source={{
-        files,
-        title: "Raw code",
-        description: sourceDescription,
-      }}
+      knobs={alternative?.knobs ?? component.knobs}
+      dependencies={dependencyDetails(supportFilesFor(component, alternative))}
+      libraryDependencies={alternative?.registryDependencies ?? component.registryDependencies}
+      source={{ files, title: "Raw code", description: sourceDescription }}
     >
       <AvailableExtensions hostId={component.id} extensions={extensions} />
     </RegistryItemPage>
-  );
-}
-
-function VersionPicker({
-  versions,
-  activeId,
-  onPick,
-}: {
-  versions: DocsComponentVersion[];
-  activeId: string;
-  onPick: (id: string) => void;
-}) {
-  return (
-    <>
-      <Text size="caption" weight="medium" tone="muted" className="hidden sm:inline">
-        Version
-      </Text>
-      {versions.map((version) => {
-        const active = version.id === activeId;
-
-        return (
-          <Button
-            key={version.id}
-            type="button"
-            variant={active ? "surface" : "quiet"}
-            size="xs"
-            active={active}
-            aria-pressed={active}
-            onClick={() => onPick(version.id)}
-          >
-            {version.label}
-          </Button>
-        );
-      })}
-    </>
   );
 }

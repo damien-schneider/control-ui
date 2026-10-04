@@ -1,11 +1,12 @@
 "use client";
 
-import type { MastraDBMessage } from "@mastra/core/agent/message-list";
-import { useChat } from "@mastra/react";
+import { useChat } from "@ai-sdk/react";
+import type { UIMessage } from "ai";
 
 import {
   DynamicNotification,
   DynamicNotificationContent,
+  DynamicNotificationGlass,
   DynamicNotificationIndicator,
   DynamicNotificationIsland,
   DynamicNotificationMessage,
@@ -15,24 +16,26 @@ import {
   DynamicNotificationReplySubmit,
 } from "@/components/control-ui/dynamic-notification";
 
-function latestAssistantText(messages: MastraDBMessage[]) {
+function latestAssistantText(messages: UIMessage[]) {
   const message = messages.findLast((entry) => entry.role === "assistant");
-  return message?.content.parts.flatMap((part) => (part.type === "text" ? [part.text] : [])).join("") ?? "No reply yet";
+  return message?.parts.flatMap((part) => (part.type === "text" ? [part.text] : [])).join("") ?? "No reply yet";
 }
 
-export function Example({ agentId }: { agentId: string }) {
-  const { isRunning, messages, sendMessage } = useChat({ agentId });
+export function Example() {
+  const { messages, sendMessage, status } = useChat();
+  const isRunning = status === "submitted" || status === "streaming";
 
   return (
     <DynamicNotification
-      variant="surface"
+      variant="glass"
       loading={isRunning}
       onReply={async ({ value, clear }) => {
-        await sendMessage({ message: value });
+        await sendMessage({ text: value });
         clear();
       }}
     >
       <DynamicNotificationIsland>
+        <DynamicNotificationGlass />
         <DynamicNotificationPill>
           <DynamicNotificationIndicator />
           Assistant
