@@ -115,6 +115,19 @@ export function AlertDialogHeader({ className, ...props }: ComponentProps<"div">
   );
 }
 
+export function AlertDialogBody({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle }) {
+  return (
+    <div
+      data-control-ui="alert-dialog"
+      data-control-family="popup"
+      data-popup-kind="alert-dialog"
+      data-slot="body"
+      className={cn("grid", className)}
+      {...props}
+    />
+  );
+}
+
 export function AlertDialogFooter({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
     <div

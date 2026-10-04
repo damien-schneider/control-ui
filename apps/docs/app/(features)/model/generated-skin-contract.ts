@@ -432,6 +432,18 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        body: {
+          family: "popup",
+          registryItems: ["alert-dialog"],
+          states: [
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["alert-dialog"],
+            },
+          ],
+        },
         content: {
           family: "popup",
           registryItems: ["alert-dialog"],
@@ -4711,6 +4723,18 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
+            },
+          ],
+        },
+        body: {
+          family: "popup",
+          registryItems: ["dialog"],
+          states: [
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["dialog"],
             },
           ],
         },

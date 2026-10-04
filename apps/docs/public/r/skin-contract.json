@@ -733,6 +733,22 @@
             }
           ]
         },
+        "body": {
+          "family": "popup",
+          "registryItems": [
+            "alert-dialog"
+          ],
+          "states": [
+            {
+              "attribute": "data-popup-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "alert-dialog"
+              ]
+            }
+          ]
+        },
         "content": {
           "family": "popup",
           "registryItems": [
@@ -6240,6 +6256,22 @@
               "source": "external",
               "valueKind": "presence",
               "values": []
+            }
+          ]
+        },
+        "body": {
+          "family": "popup",
+          "registryItems": [
+            "dialog"
+          ],
+          "states": [
+            {
+              "attribute": "data-popup-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "dialog"
+              ]
             }
           ]
         },

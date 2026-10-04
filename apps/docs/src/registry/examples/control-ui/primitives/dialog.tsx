@@ -3,6 +3,7 @@
 import { Button } from "@/components/control-ui/ui/button";
 import {
   Dialog,
+  DialogBody,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -23,9 +24,9 @@ export function PrimitiveDialogExample() {
             <DialogTitle>Edit profile</DialogTitle>
             <DialogDescription>Update your display name. Changes are saved to your workspace.</DialogDescription>
           </DialogHeader>
-          <div className="px-4">
+          <DialogBody>
             <Input aria-label="Display name" defaultValue="Ada Lovelace" />
-          </div>
+          </DialogBody>
           <DialogFooter>
             <DialogClose>Cancel</DialogClose>
             <DialogClose variant="solid" tone="primary">

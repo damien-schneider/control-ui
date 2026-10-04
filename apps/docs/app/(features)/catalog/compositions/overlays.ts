@@ -10,7 +10,7 @@ export const overlaysCompositions = {
         part(
           "DialogContent",
           part("DialogHeader", part("DialogTitle"), part("DialogDescription")),
-          part("Input"),
+          part("DialogBody", part("Input")),
           part("DialogFooter", part("DialogClose")),
         ),
       ),
@@ -89,7 +89,7 @@ export const overlaysCompositions = {
         part(
           "ResponsiveDialogContent",
           part("ResponsiveDialogHeader", part("ResponsiveDialogTitle"), part("ResponsiveDialogDescription")),
-          part("Field"),
+          part("ResponsiveDialogBody", part("Field")),
           part("ResponsiveDialogFooter", part("ResponsiveDialogClose")),
         ),
       ),
@@ -105,6 +105,7 @@ export const overlaysCompositions = {
         part(
           "AlertDialogContent",
           part("AlertDialogHeader", part("AlertDialogTitle"), part("AlertDialogDescription")),
+          part("AlertDialogBody", content("affected resources")),
           part("AlertDialogFooter", part("AlertDialogClose")),
         ),
       ),

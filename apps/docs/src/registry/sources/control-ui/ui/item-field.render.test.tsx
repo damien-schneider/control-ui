@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
 import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel, FieldSeparator } from "./field";
-import { Item, ItemGroup, ItemSeparator } from "./item";
+import { Item, ItemContent, ItemFooter, ItemGroup, ItemHeader, ItemSeparator } from "./item";
 
 describe("grouped item and field anatomy", () => {
   test("ItemGroup exposes list and separator anatomy", () => {
@@ -16,6 +16,20 @@ describe("grouped item and field anatomy", () => {
     expect(html).toContain('role="list"');
     expect(html).toContain('data-slot="group"');
     expect(html).toContain('data-slot="separator"');
+  });
+
+  test("Item wraps so its header and footer take their own rows", () => {
+    const html = renderToStaticMarkup(
+      <Item>
+        <ItemHeader>Header</ItemHeader>
+        <ItemContent>Content</ItemContent>
+        <ItemFooter>Footer</ItemFooter>
+      </Item>,
+    );
+
+    expect(html).toMatch(/data-slot="root"[^>]*class="[^"]*\bflex-wrap\b/);
+    expect(html).toMatch(/data-slot="header"[^>]*class="[^"]*\bbasis-full\b/);
+    expect(html).toMatch(/data-slot="footer"[^>]*class="[^"]*\bbasis-full\b/);
   });
 
   test("Field supports responsive content and separators", () => {

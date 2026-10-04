@@ -114,6 +114,19 @@ export function DialogHeader({ className, ...props }: ComponentProps<"div"> & { 
   );
 }
 
+export function DialogBody({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle }) {
+  return (
+    <div
+      data-control-ui="dialog"
+      data-control-family="popup"
+      data-popup-kind="dialog"
+      data-slot="body"
+      className={cn("grid", className)}
+      {...props}
+    />
+  );
+}
+
 export function DialogFooter({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
     <div

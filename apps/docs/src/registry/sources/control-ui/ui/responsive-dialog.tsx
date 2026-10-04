@@ -9,6 +9,7 @@ import { Button } from "@/components/control-ui/ui/button";
 import type { DialogContentProps, DialogProps } from "@/components/control-ui/ui/dialog";
 import {
   Dialog,
+  DialogBody,
   DialogClose,
   type DialogCloseProps,
   DialogContent,
@@ -160,6 +161,10 @@ export function ResponsiveDialogContent({
 export function ResponsiveDialogHeader(props: ComponentProps<typeof DialogHeader>) {
   const isMobile = useResponsiveDialogContext();
   return isMobile ? <DrawerHeader {...props} /> : <DialogHeader {...props} />;
+}
+
+export function ResponsiveDialogBody(props: ComponentProps<typeof DialogBody>) {
+  return <DialogBody {...props} />;
 }
 
 export function ResponsiveDialogFooter(props: ComponentProps<typeof DialogFooter>) {

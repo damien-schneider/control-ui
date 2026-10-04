@@ -5,6 +5,7 @@ import { Field, FieldControl, FieldLabel } from "@/components/control-ui/ui/fiel
 import { Input } from "@/components/control-ui/ui/input";
 import {
   ResponsiveDialog,
+  ResponsiveDialogBody,
   ResponsiveDialogClose,
   ResponsiveDialogContent,
   ResponsiveDialogDescription,
@@ -23,12 +24,12 @@ export function PrimitiveResponsiveDialogExample() {
           <ResponsiveDialogTitle>Edit profile</ResponsiveDialogTitle>
           <ResponsiveDialogDescription>This opens as a dialog on desktop and a swipeable drawer on mobile.</ResponsiveDialogDescription>
         </ResponsiveDialogHeader>
-        <div className="px-4">
+        <ResponsiveDialogBody>
           <Field>
             <FieldLabel htmlFor="responsive-dialog-name">Display name</FieldLabel>
             <FieldControl render={<Input id="responsive-dialog-name" defaultValue="Ada Lovelace" />} />
           </Field>
-        </div>
+        </ResponsiveDialogBody>
         <ResponsiveDialogFooter>
           <ResponsiveDialogClose>Cancel</ResponsiveDialogClose>
           <ResponsiveDialogClose variant="solid" tone="primary">

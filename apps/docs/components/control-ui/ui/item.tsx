@@ -62,7 +62,7 @@ export function Item({ variant = "default", render, className, children, ...prop
       "data-control-family": "item",
       "data-slot": "root",
       "data-variant": variant,
-      className: cn("flex items-center [&[href]]:cursor-pointer", className),
+      className: cn("flex flex-wrap items-center [&[href]]:cursor-pointer", className),
       children,
     },
   });

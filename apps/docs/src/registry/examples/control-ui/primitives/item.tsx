@@ -2,7 +2,16 @@
 
 import { Bell, ChevronRight } from "lucide-react";
 import { Button } from "@/components/control-ui/ui/button";
-import { Item, ItemActions, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "@/components/control-ui/ui/item";
+import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemFooter,
+  ItemHeader,
+  ItemMedia,
+  ItemTitle,
+} from "@/components/control-ui/ui/item";
 
 export function PrimitiveItemExample() {
   return (
@@ -30,6 +39,26 @@ export function PrimitiveItemExample() {
         <ItemActions>
           <ChevronRight className="size-4 text-muted-foreground" />
         </ItemActions>
+      </Item>
+
+      <Item variant="outline">
+        <ItemHeader>
+          <span className="text-caption text-muted-foreground">Deploy</span>
+          <span className="text-caption text-muted-foreground">2 min ago</span>
+        </ItemHeader>
+        <ItemContent>
+          <ItemTitle>Production build finished</ItemTitle>
+          <ItemDescription>All checks passed on main.</ItemDescription>
+        </ItemContent>
+        <ItemActions>
+          <Button variant="surface" size="sm">
+            Open
+          </Button>
+        </ItemActions>
+        <ItemFooter>
+          <span>Triggered by Ada Lovelace</span>
+          <span>4 files changed</span>
+        </ItemFooter>
       </Item>
     </div>
   );

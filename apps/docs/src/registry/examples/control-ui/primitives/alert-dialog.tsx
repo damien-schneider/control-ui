@@ -2,6 +2,7 @@
 
 import {
   AlertDialog,
+  AlertDialogBody,
   AlertDialogClose,
   AlertDialogContent,
   AlertDialogDescription,
@@ -30,6 +31,12 @@ export function PrimitiveAlertDialogExample() {
               This permanently removes the project and all of its deployments. This action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
+          <AlertDialogBody>
+            <ul className="list-disc ps-5 text-body text-muted-foreground">
+              <li>3 production deployments</li>
+              <li>12 environment variables</li>
+            </ul>
+          </AlertDialogBody>
           <AlertDialogFooter>
             <AlertDialogClose>Cancel</AlertDialogClose>
             <AlertDialogClose variant="solid" tone="danger">
