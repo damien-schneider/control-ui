@@ -6,8 +6,6 @@ import { caretRectInTextarea, detectTrigger } from "../lib/trigger-detect";
 import type { TriggerConfig, TriggerMenuItemData } from "./use-trigger-menu";
 import { isComposingKey, useTriggerMenu } from "./use-trigger-menu";
 
-// Same `triggers` config as ProseMirror path, so primitive works with no editor installed.
-
 function replaceRange(element: HTMLTextAreaElement, start: number, end: number, text: string) {
   element.focus();
   element.setSelectionRange(start, end);
@@ -63,17 +61,21 @@ export function useTextareaTriggerMenu<Item extends TriggerMenuItemData>(
     function onKeyDown(event: KeyboardEvent) {
       handleKeyDown(event);
     }
+    function syncAfterInput() {
+      // React must commit the controlled value before menu updates can render it.
+      window.setTimeout(syncTrigger, 0);
+    }
     function onBlur() {
       window.setTimeout(closeAfterBlur, 120);
     }
 
-    element.addEventListener("input", syncTrigger);
+    element.addEventListener("input", syncAfterInput);
     element.addEventListener("keydown", onKeyDown);
     element.addEventListener("keyup", syncTrigger);
     element.addEventListener("click", syncTrigger);
     element.addEventListener("blur", onBlur);
     return () => {
-      element.removeEventListener("input", syncTrigger);
+      element.removeEventListener("input", syncAfterInput);
       element.removeEventListener("keydown", onKeyDown);
       element.removeEventListener("keyup", syncTrigger);
       element.removeEventListener("click", syncTrigger);
