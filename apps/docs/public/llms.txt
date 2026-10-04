@@ -115,10 +115,10 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Input OTP](http://127.0.0.1:3000/primitives/input-otp): One-time-code field with grouped, focus-aware slots.
 - [Combobox](http://127.0.0.1:3000/primitives/combobox): Searchable single-select with input and floating option list.
 - [Alert](http://127.0.0.1:3000/primitives/alert): Inline status panel for callouts, errors, and notices. Status: beta.
-- [Badge](http://127.0.0.1:3000/primitives/badge): Compact status, label, or count chip. Status: beta.
-- [Card](http://127.0.0.1:3000/primitives/card): Content surface for panels, tiles, and settings groups. Status: beta.
+- [Badge](http://127.0.0.1:3000/primitives/badge): Compact status, label, or count chip.
+- [Card](http://127.0.0.1:3000/primitives/card): Content surface for panels, tiles, and settings groups.
 - [Table](http://127.0.0.1:3000/primitives/table): Responsive data table for lists, comparisons, and structured records.
-- [Aspect ratio](http://127.0.0.1:3000/primitives/aspect-ratio): Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3]. Status: beta.
+- [Aspect ratio](http://127.0.0.1:3000/primitives/aspect-ratio): Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3].
 - [Button group](http://127.0.0.1:3000/primitives/button-group): Joined button group for toolbars, split actions, and segmented controls.
 - [Empty](http://127.0.0.1:3000/primitives/empty): Empty-state layout for blank lists, zero results, and new workspaces. Status: beta.
 - [Item](http://127.0.0.1:3000/primitives/item): List row with media, content, and trailing actions. Status: beta.

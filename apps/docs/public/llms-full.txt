@@ -144,8 +144,8 @@
 - `page-layout` (Page layout) **[beta]** — Page shell that owns the scroll container, the shared measure, and the title and actions row. — `npx shadcn@latest add http://127.0.0.1:3000/r/page-layout.json`
 - `scroll-area` (Scroll area) — Scroll container with overlay or space-reserving scrollbars, edge fades, and optional progressive blur. — `npx shadcn@latest add http://127.0.0.1:3000/r/scroll-area.json`
 - `accordion` (Accordion) — Stacked disclosure rows with measured panel animation. — `npx shadcn@latest add http://127.0.0.1:3000/r/accordion.json`
-- `card` (Card) **[beta]** — Content surface for panels, tiles, and settings groups. — `npx shadcn@latest add http://127.0.0.1:3000/r/card.json`
-- `aspect-ratio` (Aspect ratio) **[beta]** — Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3]. — `npx shadcn@latest add http://127.0.0.1:3000/r/aspect-ratio.json`
+- `card` (Card) — Content surface for panels, tiles, and settings groups. — `npx shadcn@latest add http://127.0.0.1:3000/r/card.json`
+- `aspect-ratio` (Aspect ratio) — Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3]. — `npx shadcn@latest add http://127.0.0.1:3000/r/aspect-ratio.json`
 - `dockable-panel` (Dockable Panel) **[experimental]** — Non-modal workspace panel that moves between two explicit edge slots with a mobile Drawer fallback. — `npx shadcn@latest add http://127.0.0.1:3000/r/dockable-panel.json`
 - `infinite-canvas` (Infinite Canvas) **[experimental]** — Pan-and-zoom spatial workspace for arranging content without fixed bounds. — `npx shadcn@latest add http://127.0.0.1:3000/r/infinite-canvas.json`
 - `morphing-panel` (Morphing Panel) **[experimental]** — Accessible disclosure surface that morphs between explicit collapsed and expanded dimensions. — `npx shadcn@latest add http://127.0.0.1:3000/r/morphing-panel.json`
@@ -155,7 +155,7 @@
 - `timeline` (Timeline) — Static chronological events with independent status, connectors, descriptions, and metadata. — `npx shadcn@latest add http://127.0.0.1:3000/r/timeline.json`
 - `kbd` (Kbd) — Keyboard shortcut chip and chord group. — `npx shadcn@latest add http://127.0.0.1:3000/r/kbd.json`
 - `avatar` (Avatar) — Profile image with initials fallback and composable overlapping groups. — `npx shadcn@latest add http://127.0.0.1:3000/r/avatar.json`
-- `badge` (Badge) **[beta]** — Compact status, label, or count chip. — `npx shadcn@latest add http://127.0.0.1:3000/r/badge.json`
+- `badge` (Badge) — Compact status, label, or count chip. — `npx shadcn@latest add http://127.0.0.1:3000/r/badge.json`
 - `table` (Table) — Responsive data table for lists, comparisons, and structured records. — `npx shadcn@latest add http://127.0.0.1:3000/r/table.json`
 - `item` (Item) **[beta]** — List row with media, content, and trailing actions. — `npx shadcn@latest add http://127.0.0.1:3000/r/item.json`
 - `separator` (Separator) — Horizontal or vertical hairline divider. — `npx shadcn@latest add http://127.0.0.1:3000/r/separator.json`

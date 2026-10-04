@@ -1164,7 +1164,6 @@
         "kind": "Primitive",
         "summary": "Compact status, label, or count chip.",
         "href": "/primitives/badge",
-        "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/badge.json"
       },
       {
@@ -1173,7 +1172,6 @@
         "kind": "Primitive",
         "summary": "Content surface for panels, tiles, and settings groups.",
         "href": "/primitives/card",
-        "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/card.json"
       },
       {
@@ -1190,7 +1188,6 @@
         "kind": "Primitive",
         "summary": "Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3].",
         "href": "/primitives/aspect-ratio",
-        "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/aspect-ratio.json"
       },
       {
