@@ -1,6 +1,6 @@
 {
   "name": "@ctrl-ui/react",
-  "version": "0.8.20",
+  "version": "0.8.21",
   "description": "Control UI components, blocks, and primitives with neutral defaults and consumer-owned themes.",
   "license": "MIT",
   "repository": {
@@ -36,7 +36,6 @@
   "peerDependencies": {
     "@base-ui/react": "^1.8.0",
     "@tanstack/react-virtual": "^3.14.13",
-    "@xyflow/react": "^12.12.0",
     "@tiptap/core": "3.31.4",
     "@tiptap/extension-image": "3.31.4",
     "@tiptap/extension-list": "3.31.4",
@@ -46,6 +45,7 @@
     "@tiptap/pm": "3.31.4",
     "@tiptap/react": "3.31.4",
     "@tiptap/starter-kit": "3.31.4",
+    "@xyflow/react": "^12.12.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -71,9 +71,6 @@
     "zod": "^4.6.5"
   },
   "peerDependenciesMeta": {
-    "@xyflow/react": {
-      "optional": true
-    },
     "@tanstack/react-virtual": {
       "optional": true
     },
@@ -102,6 +99,9 @@
       "optional": true
     },
     "@tiptap/starter-kit": {
+      "optional": true
+    },
+    "@xyflow/react": {
       "optional": true
     },
     "cmdk": {

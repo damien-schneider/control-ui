@@ -188,7 +188,7 @@ export function FlowEdgeLabelChip({ className, ...props }: FlowEdgeLabelChipProp
       data-control-ui="flow"
       data-control-family="flow"
       data-slot="edge-label-chip"
-      className={cn("inline-flex max-w-40 items-center truncate", className)}
+      className={cn("max-w-40 truncate", className)}
     />
   );
 }

@@ -33,6 +33,18 @@ test("flow paints nodes and edges from its knobs and drives the viewport from it
 
   await expect(flow.locator('[data-slot="edge"][data-dashed]')).not.toHaveCSS("stroke-dasharray", "none");
 
+  const chip = flow.locator('[data-slot="edge-label-chip"]').first();
+  await chip.evaluate((element) => {
+    element.textContent = "A branch label long enough to overflow the chip width";
+  });
+  expect(await chip.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
+  await expect(chip).toHaveCSS("display", "block");
+  await expect(chip).toHaveCSS("text-overflow", "ellipsis");
+
+  const selectedStroke = await flow.evaluate((root) => getComputedStyle(root).getPropertyValue("--cui-flow-selected-edge-stroke").trim());
+  await flow.locator(".react-flow__edge").nth(3).click({ force: true });
+  await expect(edges.nth(3)).toHaveCSS("stroke", selectedStroke);
+
   const fittedScale = await viewportScale(viewport);
   await flow.getByRole("button", { name: "Zoom in" }).click();
   await expect.poll(() => viewportScale(viewport)).toBeGreaterThan(fittedScale * 1.1);

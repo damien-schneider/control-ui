@@ -31,6 +31,7 @@
     --cui-flow-controls-border-color: var(--border);
     --cui-flow-controls-shadow: var(--shadow-sm);
     --xy-edge-stroke: var(--cui-flow-edge-stroke);
+    --xy-edge-stroke-selected: var(--cui-flow-selected-edge-stroke);
     --xy-connectionline-stroke: var(--cui-flow-edge-stroke);
     --xy-connectionline-stroke-width: var(--cui-flow-edge-size);
     --xy-selection-background-color: oklch(from var(--primary) l c h / 0.08);
@@ -123,7 +124,8 @@
     stroke-dasharray: 5 5;
   }
 
-  :where(.react-flow__edge.selected [data-control-family="flow"][data-slot="edge"]) {
+  :where(.react-flow__edge.selected [data-control-family="flow"][data-slot="edge"]),
+  :where(.react-flow__edge.selectable:focus-visible [data-control-family="flow"][data-slot="edge"]) {
     stroke: var(--cui-flow-selected-edge-stroke);
   }
 
