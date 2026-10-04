@@ -42,16 +42,6 @@ export const hookEntries = [
     references: [{ label: "AudioRecorder", href: "/components/audio-recorder" }],
   },
   {
-    id: "use-environment-variables",
-    kind: "Hook",
-    name: "useEnvironmentVariables",
-    summary: "Editable environment variable rows with .env parsing, upload, duplicate detection, and submit helpers.",
-    target: "components/control-ui/hooks/use-environment-variables.ts",
-    install: "the EnvironmentVariables component",
-    source: sourceFile("Behavior hook", "src/registry/hooks/use-environment-variables.ts", "hook"),
-    references: [{ label: "EnvironmentVariables", href: "/components/environment-variables" }],
-  },
-  {
     id: "use-copy-to-clipboard",
     kind: "Hook",
     name: "useCopyToClipboard",

@@ -1373,41 +1373,6 @@
       "syntax": "<number>"
     },
     {
-      "name": "--cui-environment-variables-error-foreground",
-      "description": "Control UI environment-variables knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--cui-environment-variables-message-background",
-      "description": "Control UI environment-variables knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--cui-environment-variables-message-border-color",
-      "description": "Control UI environment-variables knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--cui-environment-variables-message-border-width",
-      "description": "Control UI environment-variables knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<length>"
-    },
-    {
-      "name": "--cui-environment-variables-message-foreground",
-      "description": "Control UI environment-variables knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--cui-environment-variables-meta-foreground",
-      "description": "Control UI environment-variables knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--cui-environment-variables-title-foreground",
-      "description": "Control UI environment-variables knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
       "name": "--cui-field-affordance-background",
       "description": "Control UI field knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"

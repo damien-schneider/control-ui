@@ -52,7 +52,6 @@ export const generatedSkinContract: SkinContract = {
     "emoji-icon-picker": ["emoji-icon-picker"],
     "emoji-picker": ["emoji-picker"],
     empty: ["empty"],
-    "environment-variables": ["environment-variables"],
     field: ["field"],
     "filter-bar": ["filter-bar"],
     form: ["form"],
@@ -6080,119 +6079,6 @@ export const generatedSkinContract: SkinContract = {
         },
       },
       registryItems: ["empty"],
-    },
-    "environment-variables": {
-      parts: {
-        root: {
-          family: "environment-variables",
-          registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-disabled",
-              source: "control-ui",
-              valueKind: "presence",
-              values: [],
-            },
-            {
-              attribute: "data-readonly",
-              source: "control-ui",
-              valueKind: "presence",
-              values: [],
-            },
-          ],
-        },
-        actions: {
-          family: "environment-variables",
-          registryItems: ["environment-variables"],
-          states: [],
-        },
-        "column-labels": {
-          family: "environment-variables",
-          registryItems: ["environment-variables"],
-          states: [],
-        },
-        description: {
-          family: "environment-variables",
-          registryItems: ["environment-variables"],
-          states: [],
-        },
-        empty: {
-          family: "environment-variables",
-          registryItems: ["environment-variables"],
-          states: [],
-        },
-        "field-error": {
-          family: "environment-variables",
-          registryItems: ["environment-variables"],
-          states: [],
-        },
-        "field-label": {
-          family: "environment-variables",
-          registryItems: ["environment-variables"],
-          states: [],
-        },
-        header: {
-          family: "environment-variables",
-          registryItems: ["environment-variables"],
-          states: [],
-        },
-        hint: {
-          family: "environment-variables",
-          registryItems: ["environment-variables"],
-          states: [],
-        },
-        "hint-code": {
-          family: "environment-variables",
-          registryItems: ["environment-variables"],
-          states: [],
-        },
-        message: {
-          family: "environment-variables",
-          registryItems: ["environment-variables"],
-          states: [],
-        },
-        "readonly-item": {
-          family: "environment-variables",
-          registryItems: ["environment-variables"],
-          states: [],
-        },
-        "readonly-key": {
-          family: "environment-variables",
-          registryItems: ["environment-variables"],
-          states: [],
-        },
-        "readonly-list": {
-          family: "environment-variables",
-          registryItems: ["environment-variables"],
-          states: [],
-        },
-        "readonly-value": {
-          family: "environment-variables",
-          registryItems: ["environment-variables"],
-          states: [],
-        },
-        row: {
-          family: "environment-variables",
-          registryItems: ["environment-variables"],
-          states: [],
-        },
-        rows: {
-          family: "environment-variables",
-          registryItems: ["environment-variables"],
-          states: [],
-        },
-        title: {
-          family: "environment-variables",
-          registryItems: ["environment-variables"],
-          states: [],
-        },
-        toolbar: {
-          family: "environment-variables",
-          registryItems: ["environment-variables"],
-          states: [],
-        },
-      },
-      registryItems: ["environment-variables"],
     },
     field: {
       parts: {
@@ -15354,50 +15240,6 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--font-weight-medium)",
       },
     ],
-    "environment-variables": [
-      {
-        name: "--cui-environment-variables-title-foreground",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--foreground)",
-      },
-      {
-        name: "--cui-environment-variables-meta-foreground",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--muted-foreground)",
-      },
-      {
-        name: "--cui-environment-variables-error-foreground",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--destructive-text)",
-      },
-      {
-        name: "--cui-environment-variables-message-background",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "oklch(from var(--destructive) l c h / 0.05)",
-      },
-      {
-        name: "--cui-environment-variables-message-foreground",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--destructive-text)",
-      },
-      {
-        name: "--cui-environment-variables-message-border-color",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "oklch(from var(--destructive) l c h / 0.4)",
-      },
-      {
-        name: "--cui-environment-variables-message-border-width",
-        syntax: "<length>",
-        initialValue: "0px",
-        defaultValue: "var(--control-rim-width)",
-      },
-    ],
     field: [
       {
         name: "--cui-field-radius",
@@ -18813,10 +18655,6 @@ export const generatedSkinContract: SkinContract = {
         },
         {
           scope: "dockable-panel",
-          part: "root",
-        },
-        {
-          scope: "environment-variables",
           part: "root",
         },
         {

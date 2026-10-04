@@ -54,11 +54,6 @@ const audioVisualizerRecipeFile = sourceFile(
   "src/registry/sources/control-ui/recipes/audio-visualizer.css",
   "recipe-css",
 );
-const environmentVariablesRecipeFile = sourceFile(
-  "Environment variables recipe — paint + @property knobs",
-  "src/registry/sources/control-ui/recipes/environment-variables.css",
-  "recipe-css",
-);
 const inlineCitationRecipeFile = sourceFile(
   "Inline citation recipe — paint + @property knobs",
   "src/registry/sources/control-ui/recipes/inline-citation.css",
@@ -503,28 +498,6 @@ export const componentEntries = [
         ),
       },
     ],
-  },
-  {
-    id: "environment-variables",
-    category: "forms",
-    kind: "Component",
-    name: "EnvironmentVariables",
-    summary: "Composable environment variable editor with .env upload, bulk paste, reveal controls, and submit helpers.",
-    status: "experimental",
-    registryKind: "environment-variables",
-    paths: {
-      example: sourceFile("Example", "src/registry/examples/control-ui/environment-variables.tsx", "example"),
-      usage: {
-        mastra: sourceFile("Usage", "src/registry/usage/components/environment-variables.tsx", "usage"),
-        "ai-sdk": sourceFile("Usage", "src/registry/usage/components/environment-variables.tsx", "usage"),
-      },
-      hook: sourceFile("Behavior hook", "src/registry/hooks/use-environment-variables.ts", "hook"),
-      source: sourceFile("Component", "src/registry/sources/control-ui/environment-variables.tsx", "component"),
-      supportFiles: [sourceFile(".env parser", "src/registry/lib/env-file.ts", "env-file"), environmentVariablesRecipeFile],
-    },
-    preview: preview(() =>
-      import("@/src/registry/examples/control-ui/environment-variables").then((mod) => ({ default: mod.EnvironmentVariablesExample })),
-    ),
   },
   {
     id: "activity",

@@ -210,28 +210,6 @@ export const agentsCompositions = {
       "Use Glass or Liquid as the backdrop; omit both for the CSS surface.",
     ),
   ],
-  "environment-variables": [
-    example("Ready-made editor", part("EnvironmentVariables"), "The ready-made editor supplies the editable composition below."),
-    example(
-      "Custom editable form",
-      part(
-        "EnvironmentVariablesRoot",
-        part("EnvironmentVariablesHeader"),
-        part("EnvironmentVariablesToolbar", part("EnvironmentVariablesUploadButton")),
-        part("EnvironmentVariablesUploadError"),
-        part("EnvironmentVariablesRows", part("EnvironmentVariablesRow")),
-        part("EnvironmentVariablesDuplicateKeysError"),
-        part("EnvironmentVariablesMessage"),
-        part(
-          "EnvironmentVariablesActions",
-          part("EnvironmentVariablesAddButton"),
-          part("EnvironmentVariablesResetButton"),
-          part("EnvironmentVariablesSubmitButton"),
-        ),
-      ),
-    ),
-    example("Read-only values", part("EnvironmentVariablesReadOnlyList", part("EnvironmentVariablesReadOnlyItem"))),
-  ],
   activity: [
     example("Static activity", part("Activity", part("ActivityRow", part("ActivityIcon"), part("ActivityTitle"), part("ActivityStatus")))),
     example(

@@ -40,7 +40,6 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [AudioVisualizer](http://127.0.0.1:3000/components/audio-visualizer): Audio visualization with waveform, line envelope, and frequency bar alternatives. Choose the implementation that fits your audio data. Status: beta.
 - [DynamicNotification](http://127.0.0.1:3000/components/dynamic-notification): Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass. Status: experimental.
 - [FilterBar](http://127.0.0.1:3000/components/filter-bar): Build editable field, operator, and value filters with a button or inline search.
-- [EnvironmentVariables](http://127.0.0.1:3000/components/environment-variables): Composable environment variable editor with .env upload, bulk paste, reveal controls, and submit helpers. Status: experimental.
 - [Activity](http://127.0.0.1:3000/components/activity): Shared static and collapsible activity anatomy with bounded, scrollable detail content.
 - [TranscriptDivider](http://127.0.0.1:3000/components/transcript-divider): Toned run-boundary separator for transcripts: steering, interruptions, and condensed context.
 - [Context](http://127.0.0.1:3000/components/context): Compact context-window usage with an automatically derived token graph and anchored detail inspector. Status: beta.
@@ -177,7 +176,6 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [useChatComposer](http://127.0.0.1:3000/hooks/use-chat-composer): Controlled composer text and submit state.
 - [useUserAsk](http://127.0.0.1:3000/hooks/use-user-ask): Question/option registration, selection, freeform text, and keyboard flow for UserAsk.
 - [useAudioRecorder](http://127.0.0.1:3000/hooks/use-audio-recorder): Browser microphone recording state, waveform levels, and Blob completion.
-- [useEnvironmentVariables](http://127.0.0.1:3000/hooks/use-environment-variables): Editable environment variable rows with .env parsing, upload, duplicate detection, and submit helpers.
 - [useCopyToClipboard](http://127.0.0.1:3000/hooks/use-copy-to-clipboard): Copy-to-clipboard behavior with success state and fallback support.
 
 ## Utilities

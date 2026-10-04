@@ -41,9 +41,9 @@ for (const route of ["/components/inline-citation", "/primitives/input-otp", "/p
 test("long composition names scroll by keyboard without overflowing a narrow page", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/components/environment-variables");
+  await page.goto("/components/dynamic-notification");
   const composition = page.locator("#composition:visible");
-  const tree = composition.getByRole("region", { name: "Composition tree" }).nth(1);
+  const tree = composition.getByRole("region", { name: "Composition tree" }).first();
   await waitForReactHydration(tree);
   await tree.scrollIntoViewIfNeeded();
   await tree.focus();

@@ -160,12 +160,6 @@ describe("skin contract generation", () => {
       values: [],
     });
 
-    expect(stateAt(contract, "environment-variables", "root", "data-readonly")).toEqual({
-      attribute: "data-readonly",
-      source: "control-ui",
-      valueKind: "presence",
-      values: [],
-    });
     expect(stateAt(contract, "table-of-contents", "item", "data-active")).toEqual(presenceState("data-active"));
     expect(stateAt(contract, "tree", "item", "data-disabled")).toEqual(presenceState("data-disabled"));
     expect(stateAt(contract, "tree", "item", "data-selected")).toEqual(presenceState("data-selected"));

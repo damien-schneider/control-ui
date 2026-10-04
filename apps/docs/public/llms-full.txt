@@ -54,7 +54,6 @@
 
 **Forms** — Capture a value from the user — typed, picked, toggled, or uploaded — plus the scaffolding that labels and validates it.
 - `filter-bar` (FilterBar) — Build editable field, operator, and value filters with a button or inline search. — `npx shadcn@latest add http://127.0.0.1:3000/r/filter-bar.json`
-- `environment-variables` (EnvironmentVariables) **[experimental]** — Composable environment variable editor with .env upload, bulk paste, reveal controls, and submit helpers. — `npx shadcn@latest add http://127.0.0.1:3000/r/environment-variables.json`
 
 **Feedback** — Tell the user what just happened, what is loading, or what is missing.
 - `dynamic-notification` (DynamicNotification) **[experimental]** — Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass. — `npx shadcn@latest add http://127.0.0.1:3000/r/dynamic-notification.json`
@@ -197,7 +196,6 @@
 - `use-chat-composer` (useChatComposer) — Controlled composer text and submit state.
 - `use-user-ask` (useUserAsk) — Question/option registration, selection, freeform text, and keyboard flow for UserAsk.
 - `use-audio-recorder` (useAudioRecorder) — Browser microphone recording state, waveform levels, and Blob completion.
-- `use-environment-variables` (useEnvironmentVariables) — Editable environment variable rows with .env parsing, upload, duplicate detection, and submit helpers.
 - `use-copy-to-clipboard` (useCopyToClipboard) — Copy-to-clipboard behavior with success state and fallback support.
 
 ### Utils

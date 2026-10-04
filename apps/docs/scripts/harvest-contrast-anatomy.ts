@@ -18,6 +18,7 @@ const checkOnly = process.argv.includes("--check");
 const includeMobile = process.argv.includes("--mobile");
 const browserExecutable = process.argv.find((argument) => argument.startsWith("--browser-executable="))?.split("=")[1];
 const requestedKnobPrefix = process.argv.find((argument) => argument.startsWith("--knob-prefix="))?.split("=")[1];
+const removedRoute = process.argv.find((argument) => argument.startsWith("--removed-route="))?.split("=")[1];
 const artifactPath = publicPayloadPath(publicPayloads.contrastAnatomy);
 const modulePath = "app/(features)/theme-accessibility/generated-contrast-anatomy.ts";
 const baseUrl = "http://127.0.0.1:3000";
@@ -64,13 +65,15 @@ const input = {
 };
 const probes = new Map<string, { probe: ContrastProbe; order: number }>();
 const unreproduced = new Set<string>();
-const selected = (probe: Pick<ContrastProbe, "knobs">) =>
-  !requestedKnobPrefix || Object.values(probe.knobs).some((knob) => knob.startsWith(requestedKnobPrefix));
+const selected = (probe: Pick<ContrastProbe, "knobs" | "route">) =>
+  removedRoute
+    ? probe.route === removedRoute
+    : !requestedKnobPrefix || Object.values(probe.knobs).some((knob) => knob.startsWith(requestedKnobPrefix));
 
 const record = (route: string, order: number) => (harvested: RouteHarvest) => {
   for (const selector of harvested.unreproduced) unreproduced.add(selector);
   for (const probe of harvested.probes) {
-    if (!selected(probe)) continue;
+    if (!selected({ ...probe, route })) continue;
     const key = JSON.stringify([probe.knobs, probe.anatomy]);
     const known = probes.get(key);
     const rendersText = probe.rendersText || (known?.probe.rendersText ?? false);
@@ -113,7 +116,9 @@ async function visit(page: Page, route: string, order: number): Promise<number> 
 const WORKERS = 4;
 const requestedRoutes = process.argv.slice(2).filter((argument) => argument.startsWith("/"));
 const documented = await documentedRoutes();
-const routes = requestedRoutes.length > 0 ? requestedRoutes : documented;
+if (removedRoute && documented.includes(removedRoute)) throw new Error(`${removedRoute} is still documented`);
+const harvestRoutes = requestedRoutes.length > 0 ? requestedRoutes : documented;
+const routes = removedRoute ? [] : harvestRoutes;
 
 const browser = await chromium.launch({ headless: true, executablePath: browserExecutable });
 try {
@@ -180,7 +185,7 @@ const committedOrder = new Map(committed.map((probe, index) => [JSON.stringify(p
 const sorted = [...probes.values()]
   .map((entry) => entry.probe)
   .sort((left, right) => {
-    if (requestedKnobPrefix) {
+    if (requestedKnobPrefix || removedRoute) {
       const leftOrder = committedOrder.get(JSON.stringify(left)) ?? committed.length;
       const rightOrder = committedOrder.get(JSON.stringify(right)) ?? committed.length;
       if (leftOrder !== rightOrder) return leftOrder - rightOrder;

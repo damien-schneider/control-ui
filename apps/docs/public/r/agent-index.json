@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 192,
+    "count": 190,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -676,15 +676,6 @@
         "summary": "Build editable field, operator, and value filters with a button or inline search.",
         "href": "/components/filter-bar",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/filter-bar.json"
-      },
-      {
-        "id": "environment-variables",
-        "name": "EnvironmentVariables",
-        "kind": "Component",
-        "summary": "Composable environment variable editor with .env upload, bulk paste, reveal controls, and submit helpers.",
-        "href": "/components/environment-variables",
-        "status": "experimental",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/environment-variables.json"
       },
       {
         "id": "activity",
@@ -1473,13 +1464,6 @@
         "kind": "Hook",
         "summary": "Browser microphone recording state, waveform levels, and Blob completion.",
         "href": "/hooks/use-audio-recorder"
-      },
-      {
-        "id": "use-environment-variables",
-        "name": "useEnvironmentVariables",
-        "kind": "Hook",
-        "summary": "Editable environment variable rows with .env parsing, upload, duplicate detection, and submit helpers.",
-        "href": "/hooks/use-environment-variables"
       },
       {
         "id": "use-copy-to-clipboard",

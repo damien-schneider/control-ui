@@ -1778,53 +1778,6 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     ],
   },
   {
-    id: "environment-variables",
-    knobs: [
-      {
-        name: "--cui-environment-variables-error-foreground",
-        syntax: "<color>",
-        defaultValue: "var(--destructive-text)",
-        selector: ':where([data-control-family="environment-variables"][data-slot="root"])',
-      },
-      {
-        name: "--cui-environment-variables-message-background",
-        syntax: "<color>",
-        defaultValue: "oklch(from var(--destructive) l c h / 0.05)",
-        selector: ':where([data-control-family="environment-variables"][data-slot="root"])',
-      },
-      {
-        name: "--cui-environment-variables-message-border-color",
-        syntax: "<color>",
-        defaultValue: "oklch(from var(--destructive) l c h / 0.4)",
-        selector: ':where([data-control-family="environment-variables"][data-slot="root"])',
-      },
-      {
-        name: "--cui-environment-variables-message-border-width",
-        syntax: "<length>",
-        defaultValue: "var(--control-rim-width)",
-        selector: ':where([data-control-family="environment-variables"][data-slot="root"])',
-      },
-      {
-        name: "--cui-environment-variables-message-foreground",
-        syntax: "<color>",
-        defaultValue: "var(--destructive-text)",
-        selector: ':where([data-control-family="environment-variables"][data-slot="root"])',
-      },
-      {
-        name: "--cui-environment-variables-meta-foreground",
-        syntax: "<color>",
-        defaultValue: "var(--muted-foreground)",
-        selector: ':where([data-control-family="environment-variables"][data-slot="root"])',
-      },
-      {
-        name: "--cui-environment-variables-title-foreground",
-        syntax: "<color>",
-        defaultValue: "var(--foreground)",
-        selector: ':where([data-control-family="environment-variables"][data-slot="root"])',
-      },
-    ],
-  },
-  {
     id: "field",
     knobs: [
       {

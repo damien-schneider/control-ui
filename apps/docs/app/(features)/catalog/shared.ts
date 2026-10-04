@@ -26,7 +26,6 @@ export const registryKindIds = [
   "audio-visualizer-line",
   "audio-visualizer-bar",
   "dynamic-notification",
-  "environment-variables",
   "filter-bar",
   "chat-block",
   "coding-agent-block",

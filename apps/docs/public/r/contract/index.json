@@ -100,7 +100,7 @@
         "toggle"
       ],
       "knobs": 25,
-      "probes": 188
+      "probes": 184
     },
     "button-group": {
       "registryItems": [
@@ -236,13 +236,6 @@
       "knobs": 20,
       "probes": 1
     },
-    "environment-variables": {
-      "registryItems": [
-        "environment-variables"
-      ],
-      "knobs": 7,
-      "probes": 4
-    },
     "field": {
       "registryItems": [
         "autocomplete",
@@ -258,7 +251,7 @@
         "textarea"
       ],
       "knobs": 15,
-      "probes": 87
+      "probes": 85
     },
     "filter-bar": {
       "registryItems": [
