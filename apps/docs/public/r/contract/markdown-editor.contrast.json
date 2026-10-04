@@ -31,59 +31,6 @@
       },
       {
         "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-density": "comfortable",
-          "data-slot": "root",
-          "data-state": "idle"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-slot": "shell",
-          "data-state": "idle",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "markdown-editor",
-          "data-control-ui": "markdown-editor",
-          "data-slot": "root"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
           "data-control-family": "tabs",
           "data-control-ui": "tabs",
           "data-slot": "surface",
@@ -157,18 +104,9 @@
     },
     {
       "knobs": {
-        "text": "--cui-markdown-editor-foreground",
-        "fill": "--cui-markdown-editor-background"
-      },
-      "anatomy": 1,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
         "text": "--cui-markdown-editor-muted-foreground"
       },
-      "anatomy": 2,
+      "anatomy": 1,
       "rendersText": true,
       "state": false
     }

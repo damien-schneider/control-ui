@@ -168,6 +168,7 @@
   --popover: var(--scale-neutral-1);
   --popover-foreground: var(--scale-neutral-12);
   --canvas: var(--scale-neutral-1);
+  --canvas-grid-dot: oklch(from var(--foreground) l c h / 0.16);
 
   --radius: 0px;
   --shadow-size: 0;

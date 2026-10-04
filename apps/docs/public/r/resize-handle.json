@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "resize-handle",
+  "type": "registry:ui",
+  "title": "Resize Handle",
+  "description": "Edge and corner grip for resizing a positioned box; the host owns the drag math.",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/knob-contracts/resize-handle-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/resize-handle-knobs.ts",
+      "type": "registry:component",
+      "content": "// Generated from src/registry/sources/control-ui/recipes/resize-handle.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.\nexport const resizeHandleKnobs = [\n  \"--cui-resize-handle-size\",\n  \"--cui-resize-handle-hit-size\",\n  \"--cui-resize-handle-background\",\n  \"--cui-resize-handle-hover-background\",\n  \"--cui-resize-handle-border-color\",\n  \"--cui-resize-handle-border-width\",\n  \"--cui-resize-handle-radius\",\n] as const;\nexport type ResizeHandleKnobStyle = Partial<Record<(typeof resizeHandleKnobs)[number], string>>;\n"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/resize-handle.css",
+      "target": "@components/control-ui/styles/recipes/resize-handle.css",
+      "type": "registry:file",
+      "content": "@layer components {\n  :where([data-control-family=\"resize-handle\"][data-slot=\"root\"]) {\n    --cui-resize-handle-size: 10px;\n    --cui-resize-handle-hit-size: var(--target-min);\n    --cui-resize-handle-background: var(--background);\n    --cui-resize-handle-hover-background: oklch(from var(--primary) l c h / 0.1);\n    --cui-resize-handle-border-color: var(--primary);\n    --cui-resize-handle-border-width: var(--control-rim-width);\n    --cui-resize-handle-radius: 0px;\n    inline-size: var(--cui-resize-handle-hit-size);\n    block-size: var(--cui-resize-handle-hit-size);\n    translate: -50% -50%;\n    padding: 0;\n    border: 0;\n    background: transparent;\n  }\n\n  :where([data-control-family=\"resize-handle\"][data-slot=\"root\"])::before {\n    content: \"\";\n    position: absolute;\n    inset: 50% auto auto 50%;\n    inline-size: var(--cui-resize-handle-size);\n    block-size: var(--cui-resize-handle-size);\n    translate: -50% -50%;\n    border: var(--cui-resize-handle-border-width) solid var(--cui-resize-handle-border-color);\n    border-radius: var(--cui-resize-handle-radius);\n    background: var(--cui-resize-handle-background);\n    transition: background-color var(--duration-fast) var(--ease-standard);\n  }\n\n  @media (hover: hover) {\n    :where([data-control-family=\"resize-handle\"][data-slot=\"root\"]:hover)::before {\n      background: var(--cui-resize-handle-hover-background);\n    }\n  }\n\n  :where([data-control-family=\"resize-handle\"][data-slot=\"root\"][data-direction=\"n\"]) {\n    top: 0;\n    left: 50%;\n    cursor: ns-resize;\n  }\n\n  :where([data-control-family=\"resize-handle\"][data-slot=\"root\"][data-direction=\"ne\"]) {\n    top: 0;\n    left: 100%;\n    cursor: nesw-resize;\n  }\n\n  :where([data-control-family=\"resize-handle\"][data-slot=\"root\"][data-direction=\"e\"]) {\n    top: 50%;\n    left: 100%;\n    cursor: ew-resize;\n  }\n\n  :where([data-control-family=\"resize-handle\"][data-slot=\"root\"][data-direction=\"se\"]) {\n    top: 100%;\n    left: 100%;\n    cursor: nwse-resize;\n  }\n\n  :where([data-control-family=\"resize-handle\"][data-slot=\"root\"][data-direction=\"s\"]) {\n    top: 100%;\n    left: 50%;\n    cursor: ns-resize;\n  }\n\n  :where([data-control-family=\"resize-handle\"][data-slot=\"root\"][data-direction=\"sw\"]) {\n    top: 100%;\n    left: 0;\n    cursor: nesw-resize;\n  }\n\n  :where([data-control-family=\"resize-handle\"][data-slot=\"root\"][data-direction=\"w\"]) {\n    top: 50%;\n    left: 0;\n    cursor: ew-resize;\n  }\n\n  :where([data-control-family=\"resize-handle\"][data-slot=\"root\"][data-direction=\"nw\"]) {\n    top: 0;\n    left: 0;\n    cursor: nwse-resize;\n  }\n}\n\n@property --cui-resize-handle-size {\n  syntax: \"<length>\";\n  inherits: true;\n  initial-value: 0px;\n}\n\n@property --cui-resize-handle-hit-size {\n  syntax: \"<length>\";\n  inherits: true;\n  initial-value: 0px;\n}\n\n@property --cui-resize-handle-background {\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: transparent;\n}\n\n@property --cui-resize-handle-hover-background {\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: transparent;\n}\n\n@property --cui-resize-handle-border-color {\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: transparent;\n}\n\n@property --cui-resize-handle-border-width {\n  syntax: \"<length>\";\n  inherits: true;\n  initial-value: 0px;\n}\n\n@property --cui-resize-handle-radius {\n  syntax: \"<length-percentage>\";\n  inherits: true;\n  initial-value: 0px;\n}\n"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/resize-handle.tsx",
+      "target": "@components/control-ui/ui/resize-handle.tsx",
+      "type": "registry:ui",
+      "content": "import type { ComponentProps, CSSProperties } from \"react\";\nimport type { ResizeHandleKnobStyle } from \"@/components/control-ui/knob-contracts/resize-handle-knobs\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\n\nexport const resizeHandleDirections = [\"n\", \"ne\", \"e\", \"se\", \"s\", \"sw\", \"w\", \"nw\"] as const;\n\nexport type ResizeHandleDirection = (typeof resizeHandleDirections)[number];\n\nexport type ResizeHandleProps = Omit<ComponentProps<\"button\">, \"style\"> & {\n  direction: ResizeHandleDirection;\n  style?: CSSProperties & ResizeHandleKnobStyle;\n};\n\nexport function ResizeHandle({ direction, className, ...props }: ResizeHandleProps) {\n  return (\n    <button\n      type=\"button\"\n      data-control-ui=\"resize-handle\"\n      data-control-family=\"resize-handle\"\n      data-slot=\"root\"\n      data-direction={direction}\n      className={cn(\"absolute touch-none\", className)}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/resize-handle.css\"": {}
+  }
+}

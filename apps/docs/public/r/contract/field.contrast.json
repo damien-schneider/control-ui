@@ -677,155 +677,6 @@
       },
       {
         "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-density": "comfortable",
-          "data-slot": "root",
-          "data-state": "idle"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-slot": "shell",
-          "data-state": "idle",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "center",
-          "data-control-family": "popup",
-          "data-control-ui": "popover",
-          "data-open": "",
-          "data-padding": "default",
-          "data-popup-kind": "popover",
-          "data-popup-part": "surface",
-          "data-side": "bottom",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "dialog",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "field",
-          "data-control-ui": "input",
-          "data-size": "md",
-          "data-slot": "root"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-density": "comfortable",
-          "data-slot": "root",
-          "data-state": "idle"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-slot": "shell",
-          "data-state": "idle",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "markdown-editor",
-          "data-control-ui": "markdown-editor",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "center",
-          "data-control-family": "popup",
-          "data-control-ui": "popover",
-          "data-open": "",
-          "data-padding": "default",
-          "data-popup-kind": "popover",
-          "data-popup-part": "surface",
-          "data-side": "bottom",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "dialog",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "field",
-          "data-control-ui": "input",
-          "data-size": "md",
-          "data-slot": "root"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
           "data-control-family": "tabs",
           "data-control-ui": "tabs",
           "data-slot": "surface",
@@ -4441,7 +4292,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 12,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -4450,7 +4301,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 13,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -4486,7 +4337,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 17,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -4522,7 +4373,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 21,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -4531,7 +4382,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 22,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -4558,7 +4409,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 25,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -4576,7 +4427,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 27,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -4585,7 +4436,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 28,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -4603,7 +4454,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 30,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -4612,7 +4463,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 31,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -4630,7 +4481,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 33,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -4639,7 +4490,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 34,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -4648,7 +4499,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 35,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -4657,7 +4508,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 36,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -4684,7 +4535,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 39,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -4702,7 +4553,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 41,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -4738,7 +4589,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 45,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -4747,7 +4598,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 46,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -4756,7 +4607,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 47,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -4765,7 +4616,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 48,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -4774,7 +4625,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 49,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -4783,7 +4634,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 50,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -4806,37 +4657,35 @@
     },
     {
       "knobs": {
-        "fill": "--cui-field-background",
-        "text": "--cui-field-foreground"
+        "fill": "--cui-field-background"
+      },
+      "anatomy": 47,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-field-background"
+      },
+      "anatomy": 48,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-field-affordance-foreground"
       },
       "anatomy": 53,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-field-background",
-        "text": "--cui-field-foreground"
+        "text": "--cui-field-affordance-foreground"
       },
       "anatomy": 54,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-field-background"
-      },
-      "anatomy": 49,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-field-background"
-      },
-      "anatomy": 50,
-      "rendersText": false,
-      "state": true
     },
     {
       "knobs": {
@@ -5043,22 +4892,6 @@
         "text": "--cui-field-affordance-foreground"
       },
       "anatomy": 80,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-field-affordance-foreground"
-      },
-      "anatomy": 81,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-field-affordance-foreground"
-      },
-      "anatomy": 82,
       "rendersText": false,
       "state": false
     }

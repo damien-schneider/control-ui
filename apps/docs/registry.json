@@ -270,6 +270,7 @@
         "http://127.0.0.1:3000/r/field.json",
         "http://127.0.0.1:3000/r/file-explorer-block.json",
         "http://127.0.0.1:3000/r/filter-bar.json",
+        "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
@@ -300,6 +301,7 @@
         "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
+        "http://127.0.0.1:3000/r/resize-handle.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
@@ -397,6 +399,7 @@
         "http://127.0.0.1:3000/r/field.json",
         "http://127.0.0.1:3000/r/file-explorer-block.json",
         "http://127.0.0.1:3000/r/filter-bar.json",
+        "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
@@ -427,6 +430,7 @@
         "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
+        "http://127.0.0.1:3000/r/resize-handle.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
@@ -531,6 +535,7 @@
         "http://127.0.0.1:3000/r/field.json",
         "http://127.0.0.1:3000/r/file-explorer-block.json",
         "http://127.0.0.1:3000/r/filter-bar.json",
+        "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
@@ -561,6 +566,7 @@
         "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
+        "http://127.0.0.1:3000/r/resize-handle.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
@@ -665,6 +671,7 @@
         "http://127.0.0.1:3000/r/field.json",
         "http://127.0.0.1:3000/r/file-explorer-block.json",
         "http://127.0.0.1:3000/r/filter-bar.json",
+        "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
@@ -695,6 +702,7 @@
         "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
+        "http://127.0.0.1:3000/r/resize-handle.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
@@ -799,6 +807,7 @@
         "http://127.0.0.1:3000/r/field.json",
         "http://127.0.0.1:3000/r/file-explorer-block.json",
         "http://127.0.0.1:3000/r/filter-bar.json",
+        "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
@@ -829,6 +838,7 @@
         "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
+        "http://127.0.0.1:3000/r/resize-handle.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
@@ -933,6 +943,7 @@
         "http://127.0.0.1:3000/r/field.json",
         "http://127.0.0.1:3000/r/file-explorer-block.json",
         "http://127.0.0.1:3000/r/filter-bar.json",
+        "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
@@ -963,6 +974,7 @@
         "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
+        "http://127.0.0.1:3000/r/resize-handle.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
@@ -1067,6 +1079,7 @@
         "http://127.0.0.1:3000/r/field.json",
         "http://127.0.0.1:3000/r/file-explorer-block.json",
         "http://127.0.0.1:3000/r/filter-bar.json",
+        "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
@@ -1097,6 +1110,7 @@
         "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
+        "http://127.0.0.1:3000/r/resize-handle.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
@@ -1201,6 +1215,7 @@
         "http://127.0.0.1:3000/r/field.json",
         "http://127.0.0.1:3000/r/file-explorer-block.json",
         "http://127.0.0.1:3000/r/filter-bar.json",
+        "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
@@ -1231,6 +1246,7 @@
         "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
+        "http://127.0.0.1:3000/r/resize-handle.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
@@ -1335,6 +1351,7 @@
         "http://127.0.0.1:3000/r/field.json",
         "http://127.0.0.1:3000/r/file-explorer-block.json",
         "http://127.0.0.1:3000/r/filter-bar.json",
+        "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
@@ -1365,6 +1382,7 @@
         "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
+        "http://127.0.0.1:3000/r/resize-handle.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
@@ -1469,6 +1487,7 @@
         "http://127.0.0.1:3000/r/field.json",
         "http://127.0.0.1:3000/r/file-explorer-block.json",
         "http://127.0.0.1:3000/r/filter-bar.json",
+        "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
@@ -1499,6 +1518,7 @@
         "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
+        "http://127.0.0.1:3000/r/resize-handle.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
@@ -1603,6 +1623,7 @@
         "http://127.0.0.1:3000/r/field.json",
         "http://127.0.0.1:3000/r/file-explorer-block.json",
         "http://127.0.0.1:3000/r/filter-bar.json",
+        "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
@@ -1633,6 +1654,7 @@
         "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
+        "http://127.0.0.1:3000/r/resize-handle.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
@@ -3932,6 +3954,46 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "flow",
+      "type": "registry:ui",
+      "title": "Flow",
+      "description": "Node graph editor parts that skin React Flow with Control UI tokens.",
+      "dependencies": [
+        "@xyflow/react@^12.12.0",
+        "lucide-react@^1.47.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/canvas-grid.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/knob-contracts/flow-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/flow-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/flow.css",
+          "target": "@components/control-ui/styles/recipes/flow.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/flow.tsx",
+          "target": "@components/control-ui/ui/flow.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/flow.css\"": {}
+      },
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/flow.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "form",
       "type": "registry:ui",
       "title": "Form",
@@ -4093,6 +4155,7 @@
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/canvas-grid.json",
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
@@ -5234,6 +5297,40 @@
       },
       "meta": {
         "sourceManifestPath": "registry/control-ui/resizable.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "resize-handle",
+      "type": "registry:ui",
+      "title": "Resize Handle",
+      "description": "Edge and corner grip for resizing a positioned box; the host owns the drag math.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/knob-contracts/resize-handle-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/resize-handle-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/resize-handle.css",
+          "target": "@components/control-ui/styles/recipes/resize-handle.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/resize-handle.tsx",
+          "target": "@components/control-ui/ui/resize-handle.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/resize-handle.css\"": {}
+      },
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/resize-handle.json"
       }
     },
     {
@@ -7079,6 +7176,7 @@
         "http://127.0.0.1:3000/r/field.json",
         "http://127.0.0.1:3000/r/file-explorer-block.json",
         "http://127.0.0.1:3000/r/filter-bar.json",
+        "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
         "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
@@ -7109,6 +7207,7 @@
         "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
+        "http://127.0.0.1:3000/r/resize-handle.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
         "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",

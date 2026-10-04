@@ -1,0 +1,304 @@
+@layer components {
+  :where([data-control-family="flow"][data-slot="root"]) {
+    --cui-flow-background: var(--canvas);
+    --cui-flow-grid-dot-color: var(--canvas-grid-dot);
+    --cui-flow-edge-stroke: oklch(from var(--muted-foreground) l c h / 0.6);
+    --cui-flow-selected-edge-stroke: var(--primary);
+    --cui-flow-edge-size: 1.5px;
+    --cui-flow-node-background: var(--card);
+    --cui-flow-node-foreground: var(--card-foreground);
+    --cui-flow-node-border-color: var(--border);
+    --cui-flow-node-hover-border-color: oklch(from var(--foreground) l c h / 0.2);
+    --cui-flow-node-selected-border-color: var(--primary);
+    --cui-flow-node-border-width: var(--control-rim-width);
+    --cui-flow-node-radius: var(--radius-lg);
+    --cui-flow-node-shadow: var(--shadow-sm);
+    --cui-flow-handle-size: calc(var(--spacing) * 2);
+    --cui-flow-handle-background: var(--background);
+    --cui-flow-handle-border-color: var(--muted-foreground);
+    --cui-flow-handle-border-width: var(--control-rim-width);
+    --cui-flow-edge-label-background: var(--background);
+    --cui-flow-edge-label-foreground: var(--muted-foreground);
+    --cui-flow-edge-label-border-color: var(--border);
+    --cui-flow-edge-label-border-width: var(--control-rim-width);
+    --cui-flow-controls-item-radius: min(var(--radius-sm), calc(var(--control-h-sm) / 2));
+    --cui-flow-controls-padding: calc(var(--spacing) * 1);
+    --cui-flow-controls-radius: calc(
+      var(--cui-flow-controls-item-radius) +
+      clamp(0px, calc(var(--cui-flow-controls-item-radius) * 1000), var(--cui-flow-controls-padding))
+    );
+    --cui-flow-controls-background: var(--card);
+    --cui-flow-controls-border-color: var(--border);
+    --cui-flow-controls-shadow: var(--shadow-sm);
+    --xy-edge-stroke: var(--cui-flow-edge-stroke);
+    --xy-connectionline-stroke: var(--cui-flow-edge-stroke);
+    --xy-connectionline-stroke-width: var(--cui-flow-edge-size);
+    --xy-selection-background-color: oklch(from var(--primary) l c h / 0.08);
+    --xy-selection-border: var(--control-rim-width) solid oklch(from var(--primary) l c h / 0.4);
+    --xy-attribution-background-color: oklch(from var(--background) l c h / 0.5);
+    background-color: var(--cui-flow-background);
+    color: var(--foreground);
+  }
+
+  :where([data-control-family="flow"][data-slot="root"] .react-flow__background-pattern) {
+    fill: var(--cui-flow-grid-dot-color);
+  }
+
+  :where([data-control-family="flow"][data-slot="root"] .react-flow__attribution a) {
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="flow"][data-slot="panel"]),
+  :where([data-control-family="flow"][data-slot="controls"]) {
+    margin: calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="flow"][data-slot="controls"]) {
+    --nest-radius: var(--cui-flow-controls-item-radius);
+    gap: calc(var(--spacing) * 0.5);
+    padding: var(--cui-flow-controls-padding);
+    border-radius: var(--cui-flow-controls-radius);
+    background-color: var(--cui-flow-controls-background);
+    box-shadow:
+      var(--cui-flow-controls-shadow),
+      0 0 0 var(--control-rim-width) var(--cui-flow-controls-border-color);
+  }
+
+  :where([data-control-family="flow"][data-slot="node"]) {
+    overflow: hidden;
+    border: var(--cui-flow-node-border-width) solid var(--cui-flow-node-border-color);
+    border-radius: var(--cui-flow-node-radius);
+    background-color: var(--cui-flow-node-background);
+    color: var(--cui-flow-node-foreground);
+    box-shadow: var(--cui-flow-node-shadow);
+    transition-property: border-color, box-shadow;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="flow"][data-slot="node"]:hover) {
+      border-color: var(--cui-flow-node-hover-border-color);
+    }
+  }
+
+  :where([data-control-family="flow"][data-slot="node"][data-selected]) {
+    border-color: var(--cui-flow-node-selected-border-color);
+    box-shadow:
+      var(--cui-flow-node-shadow),
+      0 0 0 calc(var(--control-rim-width) * 3) oklch(from var(--cui-flow-node-selected-border-color) l c h / 0.15);
+  }
+
+  :where([data-control-family="flow"][data-slot="node-header"]) {
+    gap: calc(var(--spacing) * 2);
+    min-block-size: calc(var(--spacing) * 10);
+    padding-block: calc(var(--spacing) * 1.5);
+    padding-inline: calc(var(--spacing) * 3) calc(var(--spacing) * 1.5);
+    font-size: var(--text-body);
+    font-weight: var(--font-weight-medium);
+  }
+
+  :where([data-control-family="flow"][data-slot="node-body"]) {
+    gap: calc(var(--spacing) * 1.5);
+    padding-inline: calc(var(--spacing) * 3);
+    padding-block-end: calc(var(--spacing) * 3);
+    font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="flow"][data-slot="handle"]) {
+    inline-size: var(--cui-flow-handle-size);
+    block-size: var(--cui-flow-handle-size);
+    border: var(--cui-flow-handle-border-width) solid var(--cui-flow-handle-border-color);
+    border-radius: 9999px;
+    background-color: var(--cui-flow-handle-background);
+  }
+
+  :where([data-control-family="flow"][data-slot="edge"]) {
+    stroke: var(--cui-flow-edge-stroke);
+    stroke-width: var(--cui-flow-edge-size);
+    transition: stroke var(--duration-fast) var(--ease-standard);
+  }
+
+  :where([data-control-family="flow"][data-slot="edge"][data-dashed]) {
+    stroke-dasharray: 5 5;
+  }
+
+  :where(.react-flow__edge.selected [data-control-family="flow"][data-slot="edge"]) {
+    stroke: var(--cui-flow-selected-edge-stroke);
+  }
+
+  :where([data-control-family="flow"][data-slot="edge-label"]) {
+    gap: calc(var(--spacing) * 1);
+  }
+
+  :where([data-control-family="flow"][data-slot="edge-label-chip"]) {
+    padding-block: calc(var(--spacing) * 0.5);
+    padding-inline: calc(var(--spacing) * 2);
+    border: var(--cui-flow-edge-label-border-width) solid var(--cui-flow-edge-label-border-color);
+    border-radius: 9999px;
+    background-color: var(--cui-flow-edge-label-background);
+    color: var(--cui-flow-edge-label-foreground);
+    font-size: var(--text-caption);
+    font-weight: var(--font-weight-medium);
+  }
+}
+
+@property --cui-flow-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-flow-grid-dot-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-flow-edge-stroke {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-flow-selected-edge-stroke {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-flow-edge-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-flow-node-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-flow-node-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-flow-node-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-flow-node-hover-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-flow-node-selected-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-flow-node-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-flow-node-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-flow-node-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-flow-handle-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-flow-handle-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-flow-handle-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-flow-handle-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-flow-edge-label-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-flow-edge-label-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-flow-edge-label-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-flow-edge-label-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-flow-controls-item-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-flow-controls-padding {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-flow-controls-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-flow-controls-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-flow-controls-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-flow-controls-shadow {
+  syntax: "*";
+  inherits: true;
+}

@@ -81,7 +81,7 @@
         "badge"
       ],
       "knobs": 5,
-      "probes": 22
+      "probes": 23
     },
     "breadcrumb": {
       "registryItems": [
@@ -100,7 +100,7 @@
         "toggle"
       ],
       "knobs": 25,
-      "probes": 184
+      "probes": 182
     },
     "button-group": {
       "registryItems": [
@@ -128,7 +128,7 @@
         "chat-composer"
       ],
       "knobs": 15,
-      "probes": 23
+      "probes": 21
     },
     "chat-composer-attachment": {
       "registryItems": [
@@ -149,7 +149,7 @@
         "chat-message"
       ],
       "knobs": 21,
-      "probes": 36
+      "probes": 31
     },
     "checkbox-group": {
       "registryItems": [
@@ -251,7 +251,7 @@
         "textarea"
       ],
       "knobs": 15,
-      "probes": 85
+      "probes": 83
     },
     "filter-bar": {
       "registryItems": [
@@ -259,6 +259,13 @@
       ],
       "knobs": 10,
       "probes": 0
+    },
+    "flow": {
+      "registryItems": [
+        "flow"
+      ],
+      "knobs": 27,
+      "probes": 15
     },
     "gradient-editor": {
       "registryItems": [
@@ -299,7 +306,7 @@
       "registryItems": [
         "item"
       ],
-      "knobs": 5,
+      "knobs": 8,
       "probes": 0
     },
     "kbd": {
@@ -307,14 +314,14 @@
         "kbd"
       ],
       "knobs": 5,
-      "probes": 8
+      "probes": 7
     },
     "label": {
       "registryItems": [
         "label"
       ],
       "knobs": 1,
-      "probes": 2
+      "probes": 1
     },
     "live-status": {
       "registryItems": [
@@ -328,7 +335,7 @@
         "markdown"
       ],
       "knobs": 14,
-      "probes": 12
+      "probes": 10
     },
     "markdown-block": {
       "registryItems": [
@@ -342,7 +349,7 @@
         "markdown-editor"
       ],
       "knobs": 12,
-      "probes": 3
+      "probes": 2
     },
     "morphing-panel": {
       "registryItems": [
@@ -424,6 +431,13 @@
       "knobs": 10,
       "probes": 4
     },
+    "resize-handle": {
+      "registryItems": [
+        "resize-handle"
+      ],
+      "knobs": 7,
+      "probes": 0
+    },
     "rich-tooltip": {
       "registryItems": [],
       "knobs": 9,
@@ -448,7 +462,7 @@
         "sidebar"
       ],
       "knobs": 57,
-      "probes": 69
+      "probes": 67
     },
     "sidebar-layout": {
       "registryItems": [
@@ -547,7 +561,7 @@
         "toolbar"
       ],
       "knobs": 16,
-      "probes": 49
+      "probes": 41
     },
     "track-highlight": {
       "registryItems": [

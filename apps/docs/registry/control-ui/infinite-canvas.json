@@ -9,6 +9,7 @@
   ],
   "registryDependencies": [
     "button",
+    "canvas-grid",
     "core"
   ],
   "files": [

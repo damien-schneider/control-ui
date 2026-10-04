@@ -73,8 +73,15 @@ Install a peer only when you import the component that needs it.
 | `ui/calendar` | `react-day-picker` |
 | `ui/code`, `ui/code-diff` | `@tanstack/react-virtual`, `diff`, `shiki` |
 | `ui/command` | `cmdk` |
+| `ui/flow` | `@xyflow/react` |
 | `ui/markdown` | `streamdown` |
 | `ui/phone-input` | `react-phone-number-input`, `libphonenumber-js`, `zod` |
 | `ui/resizable` | `react-resizable-panels` |
 | `chat-composer` | `prosemirror-*` |
 | `email/email`, `email/templates` | `react-email` |
+
+`ui/flow` also needs the React Flow structural stylesheet, loaded under the recipes:
+
+```css
+@import "@xyflow/react/dist/base.css" layer(base);
+```

@@ -5,6 +5,7 @@ import { MinusIcon, PlusIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties, KeyboardEvent as ReactKeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import { createContext, use, useEffect, useEffectEvent, useRef, useState } from "react";
 import type { InfiniteCanvasKnobStyle } from "@/components/control-ui/knob-contracts/infinite-canvas-knobs";
+import { CANVAS_GRID_GAP } from "@/components/control-ui/lib/canvas-grid";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
 
@@ -44,7 +45,6 @@ const DEFAULT_TRANSFORM: InfiniteCanvasTransform = { x: 0, y: 0, scale: 1 };
 const DEFAULT_MIN_SCALE = 0.35;
 const DEFAULT_MAX_SCALE = 2.5;
 const KEYBOARD_PAN_STEP = 32;
-const GRID_SIZE = 24;
 const WHEEL_ZOOM_SPEED = 0.004;
 const MAX_WHEEL_ZOOM_DELTA = 50;
 const CANVAS_KEY_SHORTCUTS = "ArrowLeft ArrowRight ArrowUp ArrowDown + - 0";
@@ -144,7 +144,7 @@ export function InfiniteCanvas({
   "aria-keyshortcuts": ariaKeyShortcuts,
   ...props
 }: InfiniteCanvasProps) {
-  const minScale = Math.max(0.1, minScaleProp);
+  const minScale = minScaleProp > 0 ? minScaleProp : DEFAULT_MIN_SCALE;
   const maxScale = Math.max(minScale, maxScaleProp);
   const [uncontrolledTransform, setUncontrolledTransform] = useState(defaultTransform);
   const [panning, setPanning] = useState(false);
@@ -292,7 +292,7 @@ export function InfiniteCanvas({
   const canvasStyle = {
     ...style,
     backgroundPosition: `${transform.x}px ${transform.y}px`,
-    backgroundSize: `${GRID_SIZE * transform.scale}px ${GRID_SIZE * transform.scale}px`,
+    backgroundSize: `${CANVAS_GRID_GAP * transform.scale}px ${CANVAS_GRID_GAP * transform.scale}px`,
   };
 
   return (

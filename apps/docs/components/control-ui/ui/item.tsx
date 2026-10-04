@@ -34,6 +34,11 @@ export type ItemGroupProps = ComponentProps<"div"> & { style?: CSSProperties & I
 
 export type ItemSeparatorProps = ComponentProps<"div">;
 
+export type ItemActionsProps = Omit<ComponentProps<"div">, "style"> & {
+  showOnHover?: boolean;
+  style?: CSSProperties & ItemKnobStyle;
+};
+
 export function ItemGroup({ className, ...props }: ItemGroupProps) {
   return (
     // biome-ignore lint/a11y/useSemanticElements: Item may render as a link or button, so a ul would require invalid wrappers.
@@ -113,12 +118,13 @@ export function ItemDescription({ className, ...props }: ItemDescriptionProps) {
 }
 
 // never shrinks, so long content column cannot squeeze actions
-export function ItemActions({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & ItemKnobStyle }) {
+export function ItemActions({ showOnHover, className, ...props }: ItemActionsProps) {
   return (
     <div
       data-control-ui="item"
       data-control-family="item"
       data-slot="actions"
+      data-show-on-hover={showOnHover || undefined}
       className={cn("flex shrink-0 items-center", className)}
       {...props}
     />

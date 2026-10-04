@@ -203,6 +203,15 @@ const internalDefinitions: Definition[] = [
     internal: true,
   },
   {
+    id: "canvas-grid",
+    type: "registry:item",
+    title: "Canvas grid",
+    description: "Grid gap and dot radius shared by the infinite canvas and flow backgrounds.",
+    seeds: ["src/registry/lib/canvas-grid.ts"],
+    primary: ["src/registry/lib/canvas-grid.ts"],
+    internal: true,
+  },
+  {
     id: "label",
     type: "registry:ui",
     title: "Label",

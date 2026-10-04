@@ -195,6 +195,16 @@ const infiniteCanvasRecipeFile = sourceFile(
   "src/registry/sources/control-ui/recipes/infinite-canvas.css",
   "recipe-css",
 );
+const flowRecipeFile = sourceFile(
+  "Flow recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/flow.css",
+  "recipe-css",
+);
+const resizeHandleRecipeFile = sourceFile(
+  "Resize handle recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/resize-handle.css",
+  "recipe-css",
+);
 const morphingPanelRecipeFile = sourceFile(
   "Morphing panel recipe — paint + @property knobs",
   "src/registry/sources/control-ui/recipes/morphing-panel.css",
@@ -1985,6 +1995,53 @@ export const primitiveEntries = [
       })),
     ),
     previewClassName: "min-h-[640px]",
+  },
+  {
+    id: "flow",
+    category: "layout",
+    kind: "Primitive",
+    name: "Flow",
+    summary: "Node graph editor parts that skin React Flow with Control UI tokens.",
+    status: "experimental",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/flow.tsx",
+        example: sourceFile("Flow preview", "src/registry/examples/control-ui/primitives/flow.tsx", "example"),
+        source: sourceFile("Flow", "src/registry/sources/control-ui/ui/flow.tsx", "component"),
+        supportFiles: [flowRecipeFile],
+
+        registryKind: "flow",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/flow").then((mod) => ({
+        default: mod.PrimitiveFlowExample,
+      })),
+    ),
+    previewClassName: "min-h-[640px]",
+  },
+  {
+    id: "resize-handle",
+    category: "layout",
+    kind: "Primitive",
+    name: "Resize Handle",
+    summary: "Edge and corner grip for resizing a positioned box; the host owns the drag math.",
+    status: "experimental",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/resize-handle.tsx",
+        example: sourceFile("Resize handle preview", "src/registry/examples/control-ui/primitives/resize-handle.tsx", "example"),
+        source: sourceFile("Resize handle", "src/registry/sources/control-ui/ui/resize-handle.tsx", "component"),
+        supportFiles: [resizeHandleRecipeFile],
+
+        registryKind: "resize-handle",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/resize-handle").then((mod) => ({
+        default: mod.PrimitiveResizeHandleExample,
+      })),
+    ),
   },
   {
     id: "morphing-panel",

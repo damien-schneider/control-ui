@@ -34,6 +34,7 @@ export type ComboboxProps<Value = string, Multiple extends boolean | undefined =
   | "itemToStringLabel"
   | "isItemEqualToValue"
   | "filter"
+  | "limit"
   | "modal"
 > & { items?: readonly Value[] };
 

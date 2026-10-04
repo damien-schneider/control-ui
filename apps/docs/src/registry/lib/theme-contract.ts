@@ -89,6 +89,7 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token("--hover-fill", "color", "derived", "Wash a row or control takes on hover; defaults to a 6% tint of --foreground."),
   token("--active-fill", "color", "derived", "Wash a selected or pressed row keeps; defaults to an 8% tint of --foreground."),
   token("--canvas", "color", "core", "The page paper the scene/panels float on — a level BELOW --background."),
+  token("--canvas-grid-dot", "color", "derived", "Dot color of canvas and flow grid backgrounds."),
 
   token("--ring-opacity", "color", "derived", "Alpha of the --border hairline; 0 = borderless, defaults to 1."),
   ...rampSeedTokens,

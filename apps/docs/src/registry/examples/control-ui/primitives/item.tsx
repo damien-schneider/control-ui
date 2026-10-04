@@ -1,7 +1,8 @@
 "use client";
 
-import { Bell, ChevronRight } from "lucide-react";
+import { Bell, ChevronRight, MoreHorizontal, RotateCcw } from "lucide-react";
 import { Button } from "@/components/control-ui/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
 import {
   Item,
   ItemActions,
@@ -39,6 +40,27 @@ export function PrimitiveItemExample() {
         </ItemContent>
         <ItemActions>
           <ChevronRight className="size-4 text-muted-foreground" />
+        </ItemActions>
+      </Item>
+
+      <Item variant="outline">
+        <ItemContent>
+          <ItemTitle>Nightly evaluation</ItemTitle>
+          <ItemDescription>Last run 6 hours ago.</ItemDescription>
+        </ItemContent>
+        <ItemActions showOnHover>
+          <Button variant="ghost" size="sm" iconOnly aria-label="Rerun nightly evaluation">
+            <RotateCcw />
+          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger variant="ghost" iconOnly aria-label="Nightly evaluation actions">
+              <MoreHorizontal />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem>View logs</DropdownMenuItem>
+              <DropdownMenuItem>Pause schedule</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </ItemActions>
       </Item>
 

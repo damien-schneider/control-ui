@@ -31,43 +31,6 @@
       },
       {
         "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-density": "comfortable",
-          "data-slot": "root",
-          "data-state": "idle"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
           "data-control-family": "tabs",
           "data-control-ui": "tabs",
           "data-slot": "surface",
@@ -339,52 +302,6 @@
           "data-density": "compact",
           "data-slot": "root",
           "data-state": "submitting"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-density": "comfortable",
-          "data-slot": "root",
-          "data-state": "idle"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-slot": "shell",
-          "data-state": "idle",
-          "data-surface": "panel"
         }
       }
     ],
@@ -1336,7 +1253,7 @@
         "fill": "--cui-chat-composer-root-background"
       },
       "anatomy": 0,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -1344,7 +1261,7 @@
         "fill": "--cui-chat-composer-root-background"
       },
       "anatomy": 1,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -1381,10 +1298,10 @@
     },
     {
       "knobs": {
-        "fill": "--cui-chat-composer-root-background"
+        "fill": "--cui-chat-composer-shell-background"
       },
       "anatomy": 6,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -1400,7 +1317,7 @@
         "fill": "--cui-chat-composer-shell-background"
       },
       "anatomy": 8,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -1429,18 +1346,18 @@
     },
     {
       "knobs": {
-        "fill": "--cui-chat-composer-shell-background"
+        "text": "--cui-chat-composer-input-foreground"
       },
       "anatomy": 12,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-chat-composer-shell-background"
+        "text": "--cui-chat-composer-input-foreground"
       },
       "anatomy": 13,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -1480,7 +1397,7 @@
         "text": "--cui-chat-composer-input-foreground"
       },
       "anatomy": 18,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -1496,22 +1413,6 @@
         "text": "--cui-chat-composer-input-foreground"
       },
       "anatomy": 20,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-chat-composer-input-foreground"
-      },
-      "anatomy": 21,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-chat-composer-input-foreground"
-      },
-      "anatomy": 22,
       "rendersText": false,
       "state": false
     }

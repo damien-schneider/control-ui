@@ -82,6 +82,7 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --hover-fill [light+dark] Wash a row or control takes on hover; defaults to a 6% tint of --foreground.
 - --active-fill [light+dark] Wash a selected or pressed row keeps; defaults to an 8% tint of --foreground.
 - --canvas [light+dark] The page paper the scene/panels float on — a level BELOW --background.
+- --canvas-grid-dot [light+dark] Dot color of canvas and flow grid backgrounds.
 - --ring-opacity [shared] Alpha of the --border hairline; 0 = borderless, defaults to 1.
 - --scale-neutral-seed [light+dark] Seed of the neutral ramp; its hue and chroma drive --scale-neutral-1 to --scale-neutral-12.
 - --scale-primary-seed [light+dark] Seed of the primary ramp; its hue and chroma drive --scale-primary-1 to --scale-primary-12.

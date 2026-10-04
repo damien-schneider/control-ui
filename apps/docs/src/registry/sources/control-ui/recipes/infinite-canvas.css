@@ -1,7 +1,7 @@
 @layer components {
   :where([data-control-family="infinite-canvas"][data-slot="root"]) {
     --cui-infinite-canvas-background: var(--canvas);
-    --cui-infinite-canvas-grid-dot-color: oklch(from var(--foreground) l c h / 0.16);
+    --cui-infinite-canvas-grid-dot-color: var(--canvas-grid-dot);
     --cui-infinite-canvas-border-color: var(--border);
     --cui-infinite-canvas-controls-item-radius: min(var(--radius-sm), calc(var(--control-h-sm) / 2));
     --cui-infinite-canvas-controls-padding: calc(var(--spacing) * 1);

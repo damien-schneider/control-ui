@@ -35,6 +35,24 @@
       "syntax": "<number>",
       "initialValue": "1",
       "defaultValue": "0.99"
+    },
+    {
+      "name": "--cui-item-gap",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3)"
+    },
+    {
+      "name": "--cui-item-padding-block",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3)"
+    },
+    {
+      "name": "--cui-item-padding-inline",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3)"
     }
   ],
   "parts": {
@@ -62,7 +80,14 @@
         "registryItems": [
           "item"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-show-on-hover",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
       },
       "content": {
         "family": "item",

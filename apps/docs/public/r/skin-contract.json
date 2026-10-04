@@ -148,6 +148,9 @@
     "filter-bar": [
       "filter-bar"
     ],
+    "flow": [
+      "flow"
+    ],
     "form": [
       "form"
     ],
@@ -244,6 +247,9 @@
     ],
     "resizable": [
       "resizable"
+    ],
+    "resize-handle": [
+      "resize-handle"
     ],
     "rich-tooltip": [
       "rich-tooltip"
@@ -8653,6 +8659,97 @@
         "filter-bar"
       ]
     },
+    "flow": {
+      "parts": {
+        "root": {
+          "family": "flow",
+          "registryItems": [
+            "flow"
+          ],
+          "states": []
+        },
+        "controls": {
+          "family": "flow",
+          "registryItems": [
+            "flow"
+          ],
+          "states": []
+        },
+        "edge": {
+          "family": "flow",
+          "registryItems": [
+            "flow"
+          ],
+          "states": [
+            {
+              "attribute": "data-dashed",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            }
+          ]
+        },
+        "edge-label": {
+          "family": "flow",
+          "registryItems": [
+            "flow"
+          ],
+          "states": []
+        },
+        "edge-label-chip": {
+          "family": "flow",
+          "registryItems": [
+            "flow"
+          ],
+          "states": []
+        },
+        "handle": {
+          "family": "flow",
+          "registryItems": [
+            "flow"
+          ],
+          "states": []
+        },
+        "node": {
+          "family": "flow",
+          "registryItems": [
+            "flow"
+          ],
+          "states": [
+            {
+              "attribute": "data-selected",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            }
+          ]
+        },
+        "node-body": {
+          "family": "flow",
+          "registryItems": [
+            "flow"
+          ],
+          "states": []
+        },
+        "node-header": {
+          "family": "flow",
+          "registryItems": [
+            "flow"
+          ],
+          "states": []
+        },
+        "panel": {
+          "family": "flow",
+          "registryItems": [
+            "flow"
+          ],
+          "states": []
+        }
+      },
+      "registryItems": [
+        "flow"
+      ]
+    },
     "form": {
       "parts": {
         "root": {
@@ -9784,7 +9881,14 @@
           "registryItems": [
             "item"
           ],
-          "states": []
+          "states": [
+            {
+              "attribute": "data-show-on-hover",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            }
+          ]
         },
         "content": {
           "family": "item",
@@ -12732,6 +12836,36 @@
       },
       "registryItems": [
         "resizable"
+      ]
+    },
+    "resize-handle": {
+      "parts": {
+        "root": {
+          "family": "resize-handle",
+          "registryItems": [
+            "resize-handle"
+          ],
+          "states": [
+            {
+              "attribute": "data-direction",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "e",
+                "n",
+                "ne",
+                "nw",
+                "s",
+                "se",
+                "sw",
+                "w"
+              ]
+            }
+          ]
+        }
+      },
+      "registryItems": [
+        "resize-handle"
       ]
     },
     "rich-tooltip": {
@@ -19331,6 +19465,170 @@
         "defaultValue": "var(--hover-fill)"
       }
     ],
+    "flow": [
+      {
+        "name": "--cui-flow-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--canvas)"
+      },
+      {
+        "name": "--cui-flow-grid-dot-color",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--canvas-grid-dot)"
+      },
+      {
+        "name": "--cui-flow-edge-stroke",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "oklch(from var(--muted-foreground) l c h / 0.6)"
+      },
+      {
+        "name": "--cui-flow-selected-edge-stroke",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--primary)"
+      },
+      {
+        "name": "--cui-flow-edge-size",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "1.5px"
+      },
+      {
+        "name": "--cui-flow-node-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--card)"
+      },
+      {
+        "name": "--cui-flow-node-foreground",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--card-foreground)"
+      },
+      {
+        "name": "--cui-flow-node-border-color",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--border)"
+      },
+      {
+        "name": "--cui-flow-node-hover-border-color",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "oklch(from var(--foreground) l c h / 0.2)"
+      },
+      {
+        "name": "--cui-flow-node-selected-border-color",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--primary)"
+      },
+      {
+        "name": "--cui-flow-node-border-width",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "var(--control-rim-width)"
+      },
+      {
+        "name": "--cui-flow-node-radius",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "var(--radius-lg)"
+      },
+      {
+        "name": "--cui-flow-node-shadow",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "var(--shadow-sm)"
+      },
+      {
+        "name": "--cui-flow-handle-size",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 2)"
+      },
+      {
+        "name": "--cui-flow-handle-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--background)"
+      },
+      {
+        "name": "--cui-flow-handle-border-color",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--muted-foreground)"
+      },
+      {
+        "name": "--cui-flow-handle-border-width",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "var(--control-rim-width)"
+      },
+      {
+        "name": "--cui-flow-edge-label-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--background)"
+      },
+      {
+        "name": "--cui-flow-edge-label-foreground",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--muted-foreground)"
+      },
+      {
+        "name": "--cui-flow-edge-label-border-color",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--border)"
+      },
+      {
+        "name": "--cui-flow-edge-label-border-width",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "var(--control-rim-width)"
+      },
+      {
+        "name": "--cui-flow-controls-item-radius",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "min(var(--radius-sm), calc(var(--control-h-sm) / 2))"
+      },
+      {
+        "name": "--cui-flow-controls-padding",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 1)"
+      },
+      {
+        "name": "--cui-flow-controls-radius",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "calc(\n      var(--cui-flow-controls-item-radius) +\n      clamp(0px, calc(var(--cui-flow-controls-item-radius) * 1000), var(--cui-flow-controls-padding))\n    )"
+      },
+      {
+        "name": "--cui-flow-controls-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--card)"
+      },
+      {
+        "name": "--cui-flow-controls-border-color",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--border)"
+      },
+      {
+        "name": "--cui-flow-controls-shadow",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "var(--shadow-sm)"
+      }
+    ],
     "gradient-editor": [
       {
         "name": "--cui-gradient-editor-preview-radius",
@@ -19436,7 +19734,7 @@
         "name": "--cui-infinite-canvas-grid-dot-color",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--foreground) l c h / 0.16)"
+        "defaultValue": "var(--canvas-grid-dot)"
       },
       {
         "name": "--cui-infinite-canvas-border-color",
@@ -19677,6 +19975,24 @@
         "syntax": "<number>",
         "initialValue": "1",
         "defaultValue": "0.99"
+      },
+      {
+        "name": "--cui-item-gap",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 3)"
+      },
+      {
+        "name": "--cui-item-padding-block",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 3)"
+      },
+      {
+        "name": "--cui-item-padding-inline",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 3)"
       }
     ],
     "kbd": [
@@ -20543,6 +20859,50 @@
         "syntax": "<color>",
         "initialValue": "transparent",
         "defaultValue": "var(--muted-foreground)"
+      }
+    ],
+    "resize-handle": [
+      {
+        "name": "--cui-resize-handle-size",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "10px"
+      },
+      {
+        "name": "--cui-resize-handle-hit-size",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "var(--target-min)"
+      },
+      {
+        "name": "--cui-resize-handle-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--background)"
+      },
+      {
+        "name": "--cui-resize-handle-hover-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "oklch(from var(--primary) l c h / 0.1)"
+      },
+      {
+        "name": "--cui-resize-handle-border-color",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--primary)"
+      },
+      {
+        "name": "--cui-resize-handle-border-width",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "var(--control-rim-width)"
+      },
+      {
+        "name": "--cui-resize-handle-radius",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "0px"
       }
     ],
     "rich-tooltip": [

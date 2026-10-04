@@ -103,6 +103,8 @@ export const registryKindIds = [
   "toolbar",
   "dockable-panel",
   "infinite-canvas",
+  "flow",
+  "resize-handle",
   "morphing-panel",
   "color-picker",
   "emoji-picker",

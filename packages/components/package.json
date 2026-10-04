@@ -36,6 +36,7 @@
   "peerDependencies": {
     "@base-ui/react": "^1.8.0",
     "@tanstack/react-virtual": "^3.14.13",
+    "@xyflow/react": "^12.12.0",
     "@tiptap/core": "3.31.4",
     "@tiptap/extension-image": "3.31.4",
     "@tiptap/extension-list": "3.31.4",
@@ -70,6 +71,9 @@
     "zod": "^4.6.5"
   },
   "peerDependenciesMeta": {
+    "@xyflow/react": {
+      "optional": true
+    },
     "@tanstack/react-virtual": {
       "optional": true
     },

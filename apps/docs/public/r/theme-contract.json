@@ -194,6 +194,12 @@
       "description": "The page paper the scene/panels float on — a level BELOW --background."
     },
     {
+      "name": "--canvas-grid-dot",
+      "group": "color",
+      "tier": "derived",
+      "description": "Dot color of canvas and flow grid backgrounds."
+    },
+    {
       "name": "--ring-opacity",
       "group": "color",
       "tier": "derived",

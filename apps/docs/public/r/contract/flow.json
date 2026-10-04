@@ -1,0 +1,265 @@
+{
+  "version": 1,
+  "family": "flow",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "flow"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-flow-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--canvas)"
+    },
+    {
+      "name": "--cui-flow-grid-dot-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--canvas-grid-dot)"
+    },
+    {
+      "name": "--cui-flow-edge-stroke",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--muted-foreground) l c h / 0.6)"
+    },
+    {
+      "name": "--cui-flow-selected-edge-stroke",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary)"
+    },
+    {
+      "name": "--cui-flow-edge-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1.5px"
+    },
+    {
+      "name": "--cui-flow-node-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card)"
+    },
+    {
+      "name": "--cui-flow-node-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card-foreground)"
+    },
+    {
+      "name": "--cui-flow-node-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-flow-node-hover-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.2)"
+    },
+    {
+      "name": "--cui-flow-node-selected-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary)"
+    },
+    {
+      "name": "--cui-flow-node-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--control-rim-width)"
+    },
+    {
+      "name": "--cui-flow-node-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-lg)"
+    },
+    {
+      "name": "--cui-flow-node-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-sm)"
+    },
+    {
+      "name": "--cui-flow-handle-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 2)"
+    },
+    {
+      "name": "--cui-flow-handle-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--background)"
+    },
+    {
+      "name": "--cui-flow-handle-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-flow-handle-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--control-rim-width)"
+    },
+    {
+      "name": "--cui-flow-edge-label-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--background)"
+    },
+    {
+      "name": "--cui-flow-edge-label-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-flow-edge-label-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-flow-edge-label-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--control-rim-width)"
+    },
+    {
+      "name": "--cui-flow-controls-item-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "min(var(--radius-sm), calc(var(--control-h-sm) / 2))"
+    },
+    {
+      "name": "--cui-flow-controls-padding",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 1)"
+    },
+    {
+      "name": "--cui-flow-controls-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(\n      var(--cui-flow-controls-item-radius) +\n      clamp(0px, calc(var(--cui-flow-controls-item-radius) * 1000), var(--cui-flow-controls-padding))\n    )"
+    },
+    {
+      "name": "--cui-flow-controls-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card)"
+    },
+    {
+      "name": "--cui-flow-controls-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-flow-controls-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-sm)"
+    }
+  ],
+  "parts": {
+    "flow": {
+      "root": {
+        "family": "flow",
+        "registryItems": [
+          "flow"
+        ],
+        "states": []
+      },
+      "controls": {
+        "family": "flow",
+        "registryItems": [
+          "flow"
+        ],
+        "states": []
+      },
+      "edge": {
+        "family": "flow",
+        "registryItems": [
+          "flow"
+        ],
+        "states": [
+          {
+            "attribute": "data-dashed",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "edge-label": {
+        "family": "flow",
+        "registryItems": [
+          "flow"
+        ],
+        "states": []
+      },
+      "edge-label-chip": {
+        "family": "flow",
+        "registryItems": [
+          "flow"
+        ],
+        "states": []
+      },
+      "handle": {
+        "family": "flow",
+        "registryItems": [
+          "flow"
+        ],
+        "states": []
+      },
+      "node": {
+        "family": "flow",
+        "registryItems": [
+          "flow"
+        ],
+        "states": [
+          {
+            "attribute": "data-selected",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "node-body": {
+        "family": "flow",
+        "registryItems": [
+          "flow"
+        ],
+        "states": []
+      },
+      "node-header": {
+        "family": "flow",
+        "registryItems": [
+          "flow"
+        ],
+        "states": []
+      },
+      "panel": {
+        "family": "flow",
+        "registryItems": [
+          "flow"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-flow-node-selected-border-color"
+  ],
+  "contrast": "/r/contract/flow.contrast.json"
+}

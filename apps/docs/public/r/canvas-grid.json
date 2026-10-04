@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "canvas-grid",
+  "type": "registry:item",
+  "title": "Canvas grid",
+  "description": "Grid gap and dot radius shared by the infinite canvas and flow backgrounds.",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/canvas-grid.ts",
+      "target": "@components/control-ui/lib/canvas-grid.ts",
+      "type": "registry:lib",
+      "content": "export const CANVAS_GRID_GAP = 24;\nexport const CANVAS_GRID_DOT_RADIUS = 1;\n"
+    }
+  ],
+  "meta": {
+    "internal": true
+  }
+}

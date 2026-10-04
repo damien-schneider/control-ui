@@ -22,7 +22,7 @@
       "name": "--cui-infinite-canvas-grid-dot-color",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "oklch(from var(--foreground) l c h / 0.16)"
+      "defaultValue": "var(--canvas-grid-dot)"
     },
     {
       "name": "--cui-infinite-canvas-border-color",

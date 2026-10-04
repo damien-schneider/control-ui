@@ -1,0 +1,882 @@
+{
+  "version": 1,
+  "family": "flow",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "root",
+          "role": "application"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "node"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "root",
+          "role": "application"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "root",
+          "role": "application"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "controls"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "root",
+          "role": "application"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "edge-label-chip"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "root",
+          "role": "application"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-id": "1-answer-null-source",
+          "data-slot": "handle"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "root",
+          "role": "application"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-id": "1-classify-null-source",
+          "data-slot": "handle"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "root",
+          "role": "application"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-id": "1-refund-null-source",
+          "data-slot": "handle"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "root",
+          "role": "application"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-id": "1-respond-null-source",
+          "data-slot": "handle"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "root",
+          "role": "application"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-id": "1-trigger-null-source",
+          "data-slot": "handle"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "root",
+          "role": "application"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "node"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-id": "1-answer-null-target",
+          "data-slot": "handle"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "root",
+          "role": "application"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "node"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-id": "1-classify-null-target",
+          "data-slot": "handle"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "root",
+          "role": "application"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "node"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-id": "1-refund-null-target",
+          "data-slot": "handle"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "root",
+          "role": "application"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "node"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-id": "1-respond-null-target",
+          "data-slot": "handle"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "root",
+          "role": "application"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "node"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-id": "1-trigger-null-target",
+          "data-slot": "handle"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "boundary": "--cui-flow-node-hover-border-color"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-flow-background"
+      },
+      "anatomy": 1,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-flow-controls-background"
+      },
+      "anatomy": 2,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-flow-edge-label-background",
+        "text": "--cui-flow-edge-label-foreground"
+      },
+      "anatomy": 3,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-flow-handle-background"
+      },
+      "anatomy": 4,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-flow-handle-background"
+      },
+      "anatomy": 5,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-flow-handle-background"
+      },
+      "anatomy": 6,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-flow-handle-background"
+      },
+      "anatomy": 7,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-flow-handle-background"
+      },
+      "anatomy": 8,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-flow-handle-background"
+      },
+      "anatomy": 9,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-flow-handle-background"
+      },
+      "anatomy": 10,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-flow-handle-background"
+      },
+      "anatomy": 11,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-flow-handle-background"
+      },
+      "anatomy": 12,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-flow-handle-background"
+      },
+      "anatomy": 13,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-flow-node-background",
+        "text": "--cui-flow-node-foreground"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": false
+    }
+  ]
+}

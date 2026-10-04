@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 190,
+    "count": 192,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -1330,6 +1330,24 @@
         "href": "/primitives/infinite-canvas",
         "status": "experimental",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/infinite-canvas.json"
+      },
+      {
+        "id": "flow",
+        "name": "Flow",
+        "kind": "Primitive",
+        "summary": "Node graph editor parts that skin React Flow with Control UI tokens.",
+        "href": "/primitives/flow",
+        "status": "experimental",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/flow.json"
+      },
+      {
+        "id": "resize-handle",
+        "name": "Resize Handle",
+        "kind": "Primitive",
+        "summary": "Edge and corner grip for resizing a positioned box; the host owns the drag math.",
+        "href": "/primitives/resize-handle",
+        "status": "experimental",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/resize-handle.json"
       },
       {
         "id": "morphing-panel",

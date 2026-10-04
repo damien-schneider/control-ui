@@ -148,6 +148,8 @@
 - `aspect-ratio` (Aspect ratio) — Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3]. — `npx shadcn@latest add http://127.0.0.1:3000/r/aspect-ratio.json`
 - `dockable-panel` (Dockable Panel) **[experimental]** — Non-modal workspace panel that moves between two explicit edge slots with a mobile Drawer fallback. — `npx shadcn@latest add http://127.0.0.1:3000/r/dockable-panel.json`
 - `infinite-canvas` (Infinite Canvas) **[experimental]** — Pan-and-zoom spatial workspace for arranging content without fixed bounds. — `npx shadcn@latest add http://127.0.0.1:3000/r/infinite-canvas.json`
+- `flow` (Flow) **[experimental]** — Node graph editor parts that skin React Flow with Control UI tokens. — `npx shadcn@latest add http://127.0.0.1:3000/r/flow.json`
+- `resize-handle` (Resize Handle) **[experimental]** — Edge and corner grip for resizing a positioned box; the host owns the drag math. — `npx shadcn@latest add http://127.0.0.1:3000/r/resize-handle.json`
 - `morphing-panel` (Morphing Panel) **[experimental]** — A compact control that expands into settings, workspace navigation, or an inline confirmation, with stable alignment and keyboard dismissal. — `npx shadcn@latest add http://127.0.0.1:3000/r/morphing-panel.json`
 - `resizable` (Resizable) **[beta]** — Accessible resizable panel groups and split layouts with keyboard support. — `npx shadcn@latest add http://127.0.0.1:3000/r/resizable.json`
 

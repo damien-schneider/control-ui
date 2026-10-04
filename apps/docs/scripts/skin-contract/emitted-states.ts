@@ -42,6 +42,7 @@ import type {
   ResizableHandleVariant,
   ResizablePanelGroupVariant,
 } from "../../src/registry/sources/control-ui/ui/resizable";
+import type { ResizeHandleDirection } from "../../src/registry/sources/control-ui/ui/resize-handle";
 import type { RichTooltipProgressVariant, RichTooltipTone } from "../../src/registry/sources/control-ui/ui/rich-tooltip";
 import type {
   ScrollAreaLockAxis,
@@ -166,6 +167,9 @@ export type EmittedStateContract = {
   "infinite-canvas:root:data-easing": true;
   "infinite-canvas:item:data-dragging": true;
   "infinite-canvas:content:data-scale": number;
+  "flow:node:data-selected": true;
+  "flow:edge:data-dashed": true;
+  "resize-handle:root:data-direction": ResizeHandleDirection;
   "calendar:day:data-today": true;
   "calendar:day:data-selected-single": true;
   "calendar:day:data-range-start": true;
@@ -193,6 +197,7 @@ export type EmittedStateContract = {
   "input:root:data-size": ControlSize;
   "input-group:root:data-size": ControlSize;
   "item:root:data-variant": "default" | "outline" | "muted";
+  "item:actions:data-show-on-hover": true;
   "kbd:root:data-variant": KbdVariant;
   "context-menu:item:data-inset": true;
   "context-menu:label:data-inset": true;

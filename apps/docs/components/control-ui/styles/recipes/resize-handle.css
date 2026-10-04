@@ -1,0 +1,126 @@
+@layer components {
+  :where([data-control-family="resize-handle"][data-slot="root"]) {
+    --cui-resize-handle-size: 10px;
+    --cui-resize-handle-hit-size: var(--target-min);
+    --cui-resize-handle-background: var(--background);
+    --cui-resize-handle-hover-background: oklch(from var(--primary) l c h / 0.1);
+    --cui-resize-handle-border-color: var(--primary);
+    --cui-resize-handle-border-width: var(--control-rim-width);
+    --cui-resize-handle-radius: 0px;
+    inline-size: var(--cui-resize-handle-hit-size);
+    block-size: var(--cui-resize-handle-hit-size);
+    translate: -50% -50%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  :where([data-control-family="resize-handle"][data-slot="root"])::before {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    inline-size: var(--cui-resize-handle-size);
+    block-size: var(--cui-resize-handle-size);
+    translate: -50% -50%;
+    border: var(--cui-resize-handle-border-width) solid var(--cui-resize-handle-border-color);
+    border-radius: var(--cui-resize-handle-radius);
+    background: var(--cui-resize-handle-background);
+    transition: background-color var(--duration-fast) var(--ease-standard);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="resize-handle"][data-slot="root"]:hover)::before {
+      background: var(--cui-resize-handle-hover-background);
+    }
+  }
+
+  :where([data-control-family="resize-handle"][data-slot="root"][data-direction="n"]) {
+    top: 0;
+    left: 50%;
+    cursor: ns-resize;
+  }
+
+  :where([data-control-family="resize-handle"][data-slot="root"][data-direction="ne"]) {
+    top: 0;
+    left: 100%;
+    cursor: nesw-resize;
+  }
+
+  :where([data-control-family="resize-handle"][data-slot="root"][data-direction="e"]) {
+    top: 50%;
+    left: 100%;
+    cursor: ew-resize;
+  }
+
+  :where([data-control-family="resize-handle"][data-slot="root"][data-direction="se"]) {
+    top: 100%;
+    left: 100%;
+    cursor: nwse-resize;
+  }
+
+  :where([data-control-family="resize-handle"][data-slot="root"][data-direction="s"]) {
+    top: 100%;
+    left: 50%;
+    cursor: ns-resize;
+  }
+
+  :where([data-control-family="resize-handle"][data-slot="root"][data-direction="sw"]) {
+    top: 100%;
+    left: 0;
+    cursor: nesw-resize;
+  }
+
+  :where([data-control-family="resize-handle"][data-slot="root"][data-direction="w"]) {
+    top: 50%;
+    left: 0;
+    cursor: ew-resize;
+  }
+
+  :where([data-control-family="resize-handle"][data-slot="root"][data-direction="nw"]) {
+    top: 0;
+    left: 0;
+    cursor: nwse-resize;
+  }
+}
+
+@property --cui-resize-handle-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-resize-handle-hit-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-resize-handle-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-resize-handle-hover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-resize-handle-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-resize-handle-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-resize-handle-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}

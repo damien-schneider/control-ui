@@ -22,4 +22,17 @@ describe("InfiniteCanvas", () => {
     expect(html).toContain("125%");
     expect(html).toContain("Spatial node");
   });
+
+  test("zooms below ten percent when minScale allows it", () => {
+    const html = renderToString(
+      <InfiniteCanvas transform={{ x: 0, y: 0, scale: 0.05 }} minScale={0.01}>
+        <InfiniteCanvasControls />
+      </InfiniteCanvas>,
+    );
+    const zoomOutButton = html.match(/<button[^>]*aria-label="Zoom out"[^>]*>/)?.[0];
+
+    expect(html).toContain("5%");
+    expect(zoomOutButton).toBeDefined();
+    expect(zoomOutButton).not.toContain("disabled");
+  });
 });

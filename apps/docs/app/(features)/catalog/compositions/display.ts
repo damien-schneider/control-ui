@@ -228,6 +228,20 @@ export const displayCompositions = {
       ),
     ),
   ],
+  flow: [
+    example(
+      "Node graph",
+      part(
+        "Flow",
+        part("FlowBackground"),
+        part("FlowPanel", content("toolbar")),
+        part("FlowControls"),
+        content("custom node type", part("FlowNode", part("FlowHandle"), part("FlowNodeHeader"), part("FlowNodeBody"))),
+        content("custom edge type", part("FlowEdge"), part("FlowEdgeLabel", part("FlowEdgeLabelChip"))),
+      ),
+    ),
+  ],
+  "resize-handle": [example("Resizable box", content("positioned box", part("ResizeHandle")))],
   "morphing-panel": [
     example(
       "Expandable surface",

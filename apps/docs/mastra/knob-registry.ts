@@ -1938,6 +1938,174 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     ],
   },
   {
+    id: "flow",
+    knobs: [
+      {
+        name: "--cui-flow-background",
+        syntax: "<color>",
+        defaultValue: "var(--canvas)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-controls-background",
+        syntax: "<color>",
+        defaultValue: "var(--card)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-controls-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--border)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-controls-item-radius",
+        syntax: "<length-percentage>",
+        defaultValue: "min(var(--radius-sm), calc(var(--control-h-sm) / 2))",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-controls-padding",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 1)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-controls-radius",
+        syntax: "<length-percentage>",
+        defaultValue:
+          "calc(\n      var(--cui-flow-controls-item-radius) +\n      clamp(0px, calc(var(--cui-flow-controls-item-radius) * 1000), var(--cui-flow-controls-padding))\n    )",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-controls-shadow",
+        syntax: "*",
+        defaultValue: "var(--shadow-sm)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-edge-label-background",
+        syntax: "<color>",
+        defaultValue: "var(--background)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-edge-label-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--border)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-edge-label-border-width",
+        syntax: "<length>",
+        defaultValue: "var(--control-rim-width)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-edge-label-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--muted-foreground)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-edge-size",
+        syntax: "<length>",
+        defaultValue: "1.5px",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-edge-stroke",
+        syntax: "<color>",
+        defaultValue: "oklch(from var(--muted-foreground) l c h / 0.6)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-grid-dot-color",
+        syntax: "<color>",
+        defaultValue: "var(--canvas-grid-dot)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-handle-background",
+        syntax: "<color>",
+        defaultValue: "var(--background)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-handle-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--muted-foreground)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-handle-border-width",
+        syntax: "<length>",
+        defaultValue: "var(--control-rim-width)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-handle-size",
+        syntax: "<length>",
+        defaultValue: "calc(var(--spacing) * 2)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-node-background",
+        syntax: "<color>",
+        defaultValue: "var(--card)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-node-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--border)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-node-border-width",
+        syntax: "<length>",
+        defaultValue: "var(--control-rim-width)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-node-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--card-foreground)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-node-hover-border-color",
+        syntax: "<color>",
+        defaultValue: "oklch(from var(--foreground) l c h / 0.2)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-node-radius",
+        syntax: "<length-percentage>",
+        defaultValue: "var(--radius-lg)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-node-selected-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--primary)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-node-shadow",
+        syntax: "*",
+        defaultValue: "var(--shadow-sm)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-selected-edge-stroke",
+        syntax: "<color>",
+        defaultValue: "var(--primary)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+    ],
+  },
+  {
     id: "gradient-editor",
     knobs: [
       {
@@ -2086,7 +2254,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-infinite-canvas-grid-dot-color",
         syntax: "<color>",
-        defaultValue: "oklch(from var(--foreground) l c h / 0.16)",
+        defaultValue: "var(--canvas-grid-dot)",
         selector: ':where([data-control-family="infinite-canvas"][data-slot="root"])',
       },
       {
@@ -2301,6 +2469,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="item"][data-slot="root"])',
       },
       {
+        name: "--cui-item-gap",
+        syntax: "<length>",
+        defaultValue: "calc(var(--spacing) * 3)",
+        selector: ':where([data-control-family="item"][data-slot="root"])',
+      },
+      {
         name: "--cui-item-hover-background",
         syntax: "*",
         defaultValue: "transparent",
@@ -2310,6 +2484,18 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-item-hover-border-color",
         syntax: "<color>",
         defaultValue: "var(--_item-border-color)",
+        selector: ':where([data-control-family="item"][data-slot="root"])',
+      },
+      {
+        name: "--cui-item-padding-block",
+        syntax: "<length>",
+        defaultValue: "calc(var(--spacing) * 3)",
+        selector: ':where([data-control-family="item"][data-slot="root"])',
+      },
+      {
+        name: "--cui-item-padding-inline",
+        syntax: "<length>",
+        defaultValue: "calc(var(--spacing) * 3)",
         selector: ':where([data-control-family="item"][data-slot="root"])',
       },
       {
@@ -3260,6 +3446,53 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         syntax: "<color>",
         defaultValue: "oklch(from var(--foreground) l c h / 0.25)",
         selector: ':where([data-control-family="resizable"][data-slot="panel-group"])',
+      },
+    ],
+  },
+  {
+    id: "resize-handle",
+    knobs: [
+      {
+        name: "--cui-resize-handle-background",
+        syntax: "<color>",
+        defaultValue: "var(--background)",
+        selector: ':where([data-control-family="resize-handle"][data-slot="root"])',
+      },
+      {
+        name: "--cui-resize-handle-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--primary)",
+        selector: ':where([data-control-family="resize-handle"][data-slot="root"])',
+      },
+      {
+        name: "--cui-resize-handle-border-width",
+        syntax: "<length>",
+        defaultValue: "var(--control-rim-width)",
+        selector: ':where([data-control-family="resize-handle"][data-slot="root"])',
+      },
+      {
+        name: "--cui-resize-handle-hit-size",
+        syntax: "<length>",
+        defaultValue: "var(--target-min)",
+        selector: ':where([data-control-family="resize-handle"][data-slot="root"])',
+      },
+      {
+        name: "--cui-resize-handle-hover-background",
+        syntax: "<color>",
+        defaultValue: "oklch(from var(--primary) l c h / 0.1)",
+        selector: ':where([data-control-family="resize-handle"][data-slot="root"])',
+      },
+      {
+        name: "--cui-resize-handle-radius",
+        syntax: "<length-percentage>",
+        defaultValue: "0px",
+        selector: ':where([data-control-family="resize-handle"][data-slot="root"])',
+      },
+      {
+        name: "--cui-resize-handle-size",
+        syntax: "<length>",
+        defaultValue: "10px",
+        selector: ':where([data-control-family="resize-handle"][data-slot="root"])',
       },
     ],
   },

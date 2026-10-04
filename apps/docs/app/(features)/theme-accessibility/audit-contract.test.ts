@@ -5,6 +5,7 @@ import { THEME_AUDIT_PAIRS } from "./audit-contract";
 const AUDIT_EXEMPTION_BY_TOKEN: Record<string, string> = {
   "--ring-opacity": "Scalar alpha of the --border hairline, audited through --border.",
   "--image-outline": "Decorative edge inside media; the image carries its own content, so no contrast is owed (WCAG 1.4.11).",
+  "--canvas-grid-dot": "Decorative background grid; it carries no information, so no contrast is owed (WCAG 1.4.11).",
   ...Object.fromEntries(COLOR_RAMPS.map((ramp) => [`--scale-${ramp}-seed`, "Ramp seed, audited through the roles its steps feed."])),
 };
 
