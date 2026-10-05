@@ -3417,7 +3417,7 @@ export const registryMetadata = {
   },
   markdown: {
     dependencies: ["streamdown@^2.6.0"],
-    registryDependencies: ["code", "code-diff", "core", "scroll-area", "typography"],
+    registryDependencies: ["checkbox", "code", "code-diff", "core", "scroll-area", "typography"],
     sourceManifestPath: "registry/control-ui/markdown.json",
     files: [
       {

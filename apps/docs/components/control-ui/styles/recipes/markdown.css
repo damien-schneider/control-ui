@@ -154,6 +154,26 @@
     margin-block-start: calc(var(--spacing) * 1);
   }
 
+  :where([data-control-family="markdown"][data-slot="unordered-list"].contains-task-list) {
+    padding-inline-start: 0;
+  }
+
+  :where([data-control-family="markdown"][data-slot="list-item"].task-list-item) {
+    list-style-type: none;
+  }
+
+  :where([data-control-family="markdown"][data-slot="unordered-list"].contains-task-list > li:not(.task-list-item)) {
+    margin-inline-start: calc(var(--spacing) * 6);
+  }
+
+  :where(
+    [data-control-family="markdown"][data-slot="list-item"].task-list-item
+      [data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]
+  ) {
+    vertical-align: middle;
+    margin-inline-end: calc(var(--spacing) * 2);
+  }
+
   :where([data-control-family="markdown"][data-slot="table-scroll"]) {
     margin-block: calc(var(--spacing) * 4);
   }

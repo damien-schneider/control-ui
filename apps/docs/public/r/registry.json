@@ -4252,6 +4252,7 @@
         "streamdown@^2.6.0"
       ],
       "registryDependencies": [
+        "http://127.0.0.1:3000/r/checkbox.json",
         "http://127.0.0.1:3000/r/code.json",
         "http://127.0.0.1:3000/r/code-diff.json",
         "http://127.0.0.1:3000/r/core.json",

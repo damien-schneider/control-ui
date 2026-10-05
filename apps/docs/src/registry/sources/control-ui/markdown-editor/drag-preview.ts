@@ -4,12 +4,25 @@ export function createDragPreview(node: HTMLElement) {
   preview.dataset.markdownDragPreview = "";
   preview.setAttribute("aria-hidden", "true");
   preview.style.inlineSize = `${Math.min(node.getBoundingClientRect().width, 320)}px`;
-  const clone = node.cloneNode(true);
-  if (clone instanceof HTMLElement) {
-    clone.classList.remove("ProseMirror-selectednode");
-    clone.removeAttribute("id");
-    for (const element of clone.querySelectorAll("[id]")) element.removeAttribute("id");
+  let remainingNodes = 80;
+  let remainingText = 2000;
+  function clonePreview(source: Node): Node {
+    remainingNodes--;
+    const clone = source.cloneNode(false);
+    if (clone instanceof HTMLElement) {
+      clone.classList.remove("ProseMirror-selectednode");
+      clone.removeAttribute("id");
+    }
+    if (clone instanceof Text) {
+      clone.data = clone.data.slice(0, remainingText);
+      remainingText -= clone.data.length;
+    }
+    for (const child of source.childNodes) {
+      if (remainingNodes === 0 || remainingText === 0) break;
+      clone.appendChild(clonePreview(child));
+    }
+    return clone;
   }
-  preview.append(clone);
+  preview.append(clonePreview(node));
   return preview;
 }

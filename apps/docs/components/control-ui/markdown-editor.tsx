@@ -95,12 +95,12 @@ export function MarkdownEditor({
   });
 
   useEffect(() => {
-    if (!editor) return;
+    if (!editor || editor.isDestroyed) return;
     editor.setEditable(!disabled, false);
   }, [editor, disabled]);
 
   useEffect(() => {
-    if (!editor) return;
+    if (!editor || editor.isDestroyed) return;
     const externalReset = lastValue.current !== markdown;
     if (externalReset) handlers.current?.cancelAll();
     if (source) {
@@ -173,7 +173,7 @@ export function MarkdownEditorContent({ label, placeholder, autoFocus = false, c
   }, [setContentAttributes, label, disabled, placeholder]);
 
   useEffect(() => {
-    if (editor && autoFocus && !source && !disabled) editor.commands.focus("end");
+    if (editor && !editor.isDestroyed && autoFocus && !source && !disabled) editor.commands.focus("end");
   }, [editor, autoFocus, source, disabled]);
 
   if (source || !editor)

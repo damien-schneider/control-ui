@@ -153,6 +153,7 @@
     max-block-size: calc(var(--spacing) * 24);
     padding: 0;
     overflow: hidden;
+    contain: layout paint;
     background: transparent;
     pointer-events: none;
   }

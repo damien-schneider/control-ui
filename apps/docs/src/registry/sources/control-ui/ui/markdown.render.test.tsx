@@ -59,4 +59,20 @@ describe("Markdown renders", () => {
     expect(unlabeled).toContain(">first</code>");
     expect(unlabeled).toContain(">second</code>");
   });
+
+  for (const mode of ["static", "streaming"] as const) {
+    test(`${mode} task lists use read-only library checkboxes and keep nested lists`, () => {
+      const content = "- [x] Done\n- [ ] Pending\n  - [x] Nested\n\n- Regular";
+      const tasks = renderToString(<Markdown mode={mode} content={content} />);
+      expect(tasks.match(/data-control-ui="checkbox"[^>]*data-slot="root"/g)).toHaveLength(3);
+      expect(tasks).toContain('aria-checked="true"');
+      expect(tasks).toContain('aria-checked="false"');
+      expect(tasks).toContain('aria-readonly="true"');
+      expect(tasks).toContain('aria-labelledby="');
+      expect(tasks).toContain("contains-task-list");
+      expect(tasks).toContain("task-list-item");
+      expect(tasks).toContain("Regular");
+      expect(tasks).not.toContain(' node="[object Object]"');
+    });
+  }
 });

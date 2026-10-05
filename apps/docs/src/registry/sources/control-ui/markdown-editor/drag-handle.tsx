@@ -18,10 +18,14 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
   const button = useRef<HTMLButtonElement>(null);
   const dragging = useRef(false);
   const preview = useRef<HTMLDivElement | null>(null);
+  const preparedDrag = useRef<ReturnType<typeof prepareDrag> | null>(null);
 
   useEffect(() => {
     const surface = container.current;
-    if (!editor || !surface || disabled || source) return;
+    if (!editor || editor.isDestroyed || !surface || disabled || source) return;
+    const view = editor.view;
+    let frame = 0;
+    let latestEvent: MouseEvent | null = null;
     function show(blockPosition: number) {
       if (!editor || !surface) return;
       const node = editor.view.nodeDOM(blockPosition);
@@ -29,7 +33,7 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
       const top = node.getBoundingClientRect().top - surface.getBoundingClientRect().top + surface.scrollTop;
       setBlock((current) => (current?.position === blockPosition && current.top === top ? current : { position: blockPosition, top }));
     }
-    function track(event: MouseEvent) {
+    function updateHandle(event: MouseEvent) {
       if (!editor || dragging.current || button.current?.contains(event.target instanceof Node ? event.target : null)) return;
       const rect = editor.view.dom.getBoundingClientRect();
       const padding = Number.parseFloat(getComputedStyle(editor.view.dom).paddingInlineStart);
@@ -38,24 +42,37 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
       const resolved = editor.state.doc.resolve(hit.pos);
       show(resolved.depth > 0 ? resolved.before(1) : hit.pos);
     }
+    function track(event: MouseEvent) {
+      latestEvent = event;
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        if (latestEvent) updateHandle(latestEvent);
+      });
+    }
     function selectionChanged() {
       if (!editor || dragging.current) return;
       const { $from } = editor.state.selection;
       show($from.depth > 0 ? $from.before(1) : $from.pos);
     }
     function hide() {
+      cancelAnimationFrame(frame);
+      frame = 0;
+      latestEvent = null;
       if (!dragging.current && document.activeElement !== button.current) setBlock(null);
     }
     surface.addEventListener("mousemove", track);
     surface.addEventListener("mouseleave", hide);
     editor.on("transaction", selectionChanged).on("focus", selectionChanged);
     return () => {
+      cancelAnimationFrame(frame);
       surface.removeEventListener("mousemove", track);
       surface.removeEventListener("mouseleave", hide);
       editor.off("transaction", selectionChanged).off("focus", selectionChanged);
-      editor.view.dragging = null;
+      view.dragging = null;
       preview.current?.remove();
       preview.current = null;
+      preparedDrag.current = null;
       dragging.current = false;
     };
   }, [editor, container, disabled, source]);
@@ -63,6 +80,22 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
   if (!editor || disabled || source) return null;
   const selected = editor.state.selection.$from;
   const position = block?.position ?? (selected.depth > 0 ? selected.before(1) : selected.pos);
+
+  function prepareDrag() {
+    if (!editor || editor.isDestroyed) return null;
+    const selection = NodeSelection.create(editor.state.doc, position);
+    const node = editor.view.nodeDOM(position);
+    const { dom, text, slice } = editor.view.serializeForClipboard(selection.content());
+    return {
+      position,
+      document: editor.state.doc,
+      selection,
+      html: dom.innerHTML,
+      text,
+      slice,
+      preview: node instanceof HTMLElement ? createDragPreview(node) : null,
+    };
+  }
 
   function move(direction: -1 | 1) {
     if (!editor) return;
@@ -101,36 +134,47 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
           "--cui-button-hover-shadow": "none",
         }}
         onClick={() => editor.commands.setNodeSelection(position)}
+        onPointerDown={() => {
+          preparedDrag.current = prepareDrag();
+        }}
+        onPointerUp={() => {
+          preparedDrag.current = null;
+        }}
         onKeyDown={(event) => {
           if (!event.altKey || !["ArrowUp", "ArrowDown"].includes(event.key)) return;
           event.preventDefault();
           move(event.key === "ArrowUp" ? -1 : 1);
         }}
         onDragStart={(event) => {
+          const prepared = preparedDrag.current;
+          const payload = prepared?.position === position && prepared.document === editor.state.doc ? prepared : prepareDrag();
+          preparedDrag.current = null;
+          if (!payload) {
+            event.preventDefault();
+            return;
+          }
           const { view } = editor;
-          const selection = NodeSelection.create(view.state.doc, position);
-          const node = view.nodeDOM(position);
+          const { html, text, slice, selection, preview: ghost } = payload;
+          dragging.current = true;
           view.dispatch(view.state.tr.setSelection(selection));
-          const { dom, text, slice } = view.serializeForClipboard(selection.content());
           event.dataTransfer.clearData();
-          event.dataTransfer.setData("text/html", dom.innerHTML);
+          event.dataTransfer.setData("text/html", html);
           event.dataTransfer.setData("text/plain", text);
           event.dataTransfer.effectAllowed = "copyMove";
-          if (node instanceof HTMLElement) {
+          if (ghost) {
             preview.current?.remove();
-            const ghost = createDragPreview(node);
             container.current?.append(ghost);
             preview.current = ghost;
             event.dataTransfer.setDragImage(ghost, 0, 0);
           }
           view.dragging = { slice, move: true };
-          dragging.current = true;
         }}
         onDragEnd={() => {
           editor.view.dragging = null;
           dragging.current = false;
           preview.current?.remove();
           preview.current = null;
+          preparedDrag.current = null;
           setBlock(null);
         }}
       >

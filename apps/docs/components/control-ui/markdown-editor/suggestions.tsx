@@ -121,20 +121,30 @@ export function MarkdownEditorSuggestions({ mentions = [], onMentionSelect }: Ma
     },
   });
   const report = useEffectEvent(() => {
-    if (!editor) return;
+    if (!editor || editor.isDestroyed) return;
     const match = enabled ? readTrigger(editor) : null;
     const coords = match ? editor.view.coordsAtPos(match.end) : null;
     controller.report(match, coords ? new DOMRect(coords.left, coords.top, 1, coords.bottom - coords.top) : null);
   });
   const handleKeyDown = useEffectEvent((event: KeyboardEvent) => {
-    if (!editor || !enabled || isComposingKey(event) || event.metaKey || event.ctrlKey || event.altKey || !readTrigger(editor)) return;
+    if (
+      !editor ||
+      editor.isDestroyed ||
+      !enabled ||
+      isComposingKey(event) ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.altKey ||
+      !readTrigger(editor)
+    )
+      return;
     if (controller.handleKeyDown(event.key)) {
       event.preventDefault();
       event.stopImmediatePropagation();
     }
   });
   useEffect(() => {
-    if (!editor || !enabled) return;
+    if (!editor || editor.isDestroyed || !enabled) return;
     const dom = editor.view.dom;
     editor.on("transaction", report).on("focus", report).on("blur", report);
     dom.addEventListener("keydown", handleKeyDown, true);
@@ -146,7 +156,7 @@ export function MarkdownEditorSuggestions({ mentions = [], onMentionSelect }: Ma
 
   const open = enabled && controller.open;
   useEffect(() => {
-    if (!editor || !open) return;
+    if (!editor || editor.isDestroyed || !open) return;
     const owner = editor.view.dom.ownerDocument;
     owner.addEventListener("scroll", report, { capture: true, passive: true });
     owner.defaultView?.addEventListener("resize", report);
@@ -162,7 +172,7 @@ export function MarkdownEditorSuggestions({ mentions = [], onMentionSelect }: Ma
   }, [open, activeIndex, activeChar, query]);
   const { "aria-controls": controls, "aria-activedescendant": activeDescendant } = controller.inputAria;
   useEffect(() => {
-    if (!editor || !enabled) return;
+    if (!editor || editor.isDestroyed || !enabled) return;
     const dom = editor.view.dom;
     const attributes = {
       "aria-autocomplete": "list",

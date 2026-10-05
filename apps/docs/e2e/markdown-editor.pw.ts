@@ -445,6 +445,38 @@ test("drag previews are compact, transparent and cleaned up after dragging", asy
   await expect(preview).toHaveCount(0);
 });
 
+test("first drag of a long task list stays responsive and transfers every task", async ({ page }) => {
+  await page.getByRole("button", { name: "Load long task list" }).click();
+  const editor = page.getByRole("textbox", { name: "Comment", exact: true });
+  await expect(editor.getByRole("checkbox")).toHaveCount(200);
+  await editor.getByRole("checkbox", { name: "Task 1", exact: true }).hover();
+  const handle = page.getByRole("button", { name: "Drag to reorder block" });
+  await expect(handle).toHaveAttribute("data-visible", "");
+  const sample = await handle.evaluate((element) => {
+    const transfer = new DataTransfer();
+    const started = performance.now();
+    element.dispatchEvent(new PointerEvent("pointerdown", { bubbles: true }));
+    const prepared = performance.now();
+    element.dispatchEvent(new DragEvent("dragstart", { dataTransfer: transfer, bubbles: true, cancelable: true }));
+    const elapsed = performance.now() - prepared;
+    const preview = document.querySelector("[data-markdown-drag-preview]");
+    const previewElements = preview?.querySelectorAll("*").length ?? 0;
+    const html = transfer.getData("text/html");
+    element.dispatchEvent(new DragEvent("dragend", { dataTransfer: transfer, bubbles: true }));
+    return { prepareMs: prepared - started, dragMs: elapsed, previewElements, html };
+  });
+  await test.info().attach("first-drag", {
+    body: JSON.stringify({ prepareMs: sample.prepareMs, dragMs: sample.dragMs, previewElements: sample.previewElements }),
+    contentType: "application/json",
+  });
+  expect(sample.html).toContain("Task 200");
+  expect(sample.previewElements).toBeLessThanOrEqual(80);
+  expect(sample.dragMs).toBeLessThan(100);
+  expect(sample.prepareMs + sample.dragMs).toBeLessThan(150);
+  await expect(page.locator("[data-markdown-drag-preview]")).toHaveCount(0);
+  await expect(editor.getByRole("checkbox")).toHaveCount(200);
+});
+
 for (const skin of ["modern-apple", "refined"]) {
   test(`${skin} keeps editor and source controls embedded`, async ({ page }) => {
     await page.locator("body").evaluate((body, value) => body.setAttribute("data-skin", value), skin);

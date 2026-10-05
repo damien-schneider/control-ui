@@ -67,6 +67,9 @@ function Fixture() {
       <button type="button" onClick={() => setDraft("## First\n\nSecond paragraph\n\n- [ ] Third task")}>
         Load blocks
       </button>
+      <button type="button" onClick={() => setDraft(Array.from({ length: 200 }, (_, index) => `- [ ] Task ${index + 1}`).join("\n"))}>
+        Load long task list
+      </button>
       <DiscussionComment author="Tester" sentAt="2026-10-04T10:00:00Z" timeLabel="Now" markdown={saved} />
     </main>
   );

@@ -8,6 +8,7 @@
     "streamdown@^2.6.0"
   ],
   "registryDependencies": [
+    "checkbox",
     "code",
     "code-diff",
     "core",

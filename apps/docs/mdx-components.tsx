@@ -16,6 +16,7 @@ import {
   MarkdownH6,
   MarkdownHr,
   MarkdownInlineCode,
+  MarkdownInput,
   MarkdownLi,
   MarkdownOl,
   MarkdownP,
@@ -43,6 +44,7 @@ function DocsMdxCode({ className, children, ...props }: ComponentProps<"code">) 
 }
 
 const mdxComponents = {
+  input: MarkdownInput,
   pre: MarkdownPre,
   code: DocsMdxCode,
   inlineCode: MarkdownInlineCode,

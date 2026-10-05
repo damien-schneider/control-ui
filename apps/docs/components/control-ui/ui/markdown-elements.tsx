@@ -1,7 +1,10 @@
-import type { ComponentProps, CSSProperties, JSX, ReactNode } from "react";
+"use client";
+
+import { type ComponentProps, type CSSProperties, createContext, type JSX, type ReactNode, use, useId } from "react";
 import type { MarkdownKnobStyle } from "@/components/control-ui/knob-contracts/markdown-knobs";
 
 import { cn } from "@/components/control-ui/lib/cn";
+import { Checkbox } from "@/components/control-ui/ui/checkbox";
 import { Code, CodeActions, CodeContent, CodeCopy, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
 import { CodeDiff } from "@/components/control-ui/ui/code-diff";
 import { markdownHeadingAttributes } from "@/components/control-ui/ui/markdown-heading";
@@ -15,6 +18,22 @@ type MarkdownCodeProps = ComponentProps<"code"> & {
 type MarkdownElementProps<Tag extends keyof JSX.IntrinsicElements> = ComponentProps<Tag> & {
   node?: unknown;
 } & { style?: CSSProperties & MarkdownKnobStyle };
+
+const MarkdownTaskLabelContext = createContext<string | undefined>(undefined);
+
+export function MarkdownInput({ type, checked, className, node: _node, ...props }: MarkdownElementProps<"input">) {
+  const labelId = use(MarkdownTaskLabelContext);
+  if (type !== "checkbox") return <input type={type} checked={checked} className={className} {...props} />;
+  return (
+    <Checkbox
+      checked={Boolean(checked)}
+      readOnly
+      className={className}
+      aria-label={labelId ? undefined : "Task item"}
+      aria-labelledby={labelId}
+    />
+  );
+}
 
 function textValue(children: ReactNode) {
   return Array.isArray(children) ? children.join("") : String(children ?? "");
@@ -177,8 +196,20 @@ export function MarkdownOl({ className, node: _node, ...props }: MarkdownElement
   );
 }
 
-export function MarkdownLi({ className, node: _node, ...props }: MarkdownElementProps<"li">) {
-  return <li data-control-ui="markdown" data-control-family="markdown" data-slot="list-item" className={className} {...props} />;
+export function MarkdownLi({ id, className, node: _node, ...props }: MarkdownElementProps<"li">) {
+  const labelId = useId();
+  return (
+    <MarkdownTaskLabelContext value={id ?? labelId}>
+      <li
+        id={id ?? labelId}
+        data-control-ui="markdown"
+        data-control-family="markdown"
+        data-slot="list-item"
+        className={className}
+        {...props}
+      />
+    </MarkdownTaskLabelContext>
+  );
 }
 
 export function MarkdownA({ className, node: _node, ...props }: MarkdownElementProps<"a">) {
@@ -223,6 +254,7 @@ export function MarkdownTd({ className, node: _node, ...props }: MarkdownElement
 
 // `pre` overrides break Streamdown's fence detection.
 export const markdownComponents = {
+  input: MarkdownInput,
   code: MarkdownCode,
   inlineCode: MarkdownInlineCode,
   h1: MarkdownH1,
