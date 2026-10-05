@@ -100,7 +100,7 @@
         "toggle"
       ],
       "knobs": 25,
-      "probes": 182
+      "probes": 191
     },
     "button-group": {
       "registryItems": [
@@ -128,7 +128,7 @@
         "chat-composer"
       ],
       "knobs": 15,
-      "probes": 21
+      "probes": 23
     },
     "chat-composer-attachment": {
       "registryItems": [
@@ -149,7 +149,7 @@
         "chat-message"
       ],
       "knobs": 21,
-      "probes": 31
+      "probes": 36
     },
     "checkbox-group": {
       "registryItems": [
@@ -251,7 +251,7 @@
         "textarea"
       ],
       "knobs": 15,
-      "probes": 83
+      "probes": 85
     },
     "filter-bar": {
       "registryItems": [
@@ -314,14 +314,14 @@
         "kbd"
       ],
       "knobs": 5,
-      "probes": 7
+      "probes": 8
     },
     "label": {
       "registryItems": [
         "label"
       ],
       "knobs": 1,
-      "probes": 1
+      "probes": 2
     },
     "live-status": {
       "registryItems": [
@@ -335,7 +335,7 @@
         "markdown"
       ],
       "knobs": 14,
-      "probes": 10
+      "probes": 12
     },
     "markdown-block": {
       "registryItems": [
@@ -349,7 +349,7 @@
         "markdown-editor"
       ],
       "knobs": 12,
-      "probes": 2
+      "probes": 3
     },
     "morphing-panel": {
       "registryItems": [
@@ -406,7 +406,7 @@
         "trigger-menu"
       ],
       "knobs": 44,
-      "probes": 148
+      "probes": 152
     },
     "progressive-blur": {
       "registryItems": [
@@ -448,7 +448,7 @@
         "scroll-area"
       ],
       "knobs": 3,
-      "probes": 48
+      "probes": 49
     },
     "separator": {
       "registryItems": [
@@ -462,7 +462,7 @@
         "sidebar"
       ],
       "knobs": 57,
-      "probes": 67
+      "probes": 69
     },
     "sidebar-layout": {
       "registryItems": [
@@ -561,7 +561,7 @@
         "toolbar"
       ],
       "knobs": 16,
-      "probes": 41
+      "probes": 51
     },
     "track-highlight": {
       "registryItems": [

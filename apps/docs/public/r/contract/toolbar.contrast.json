@@ -31,6 +31,70 @@
       },
       {
         "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "comfortable",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-editor",
+          "data-control-ui": "markdown-editor",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "embedded",
+          "data-control-family": "toolbar",
+          "data-control-ui": "toolbar",
+          "data-orientation": "horizontal",
+          "data-slot": "root",
+          "data-variant": "default",
+          "role": "toolbar"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "tabs",
           "data-control-ui": "tabs",
           "data-slot": "surface",
@@ -46,6 +110,7 @@
       },
       {
         "attributes": {
+          "data-chrome": "embedded",
           "data-control-family": "toolbar",
           "data-control-ui": "toolbar",
           "data-orientation": "horizontal",
@@ -172,6 +237,75 @@
           "data-slot": "root",
           "data-variant": "floating",
           "role": "toolbar"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-editor",
+          "data-control-ui": "markdown-editor",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "embedded",
+          "data-control-family": "toolbar",
+          "data-control-ui": "toolbar",
+          "data-orientation": "horizontal",
+          "data-slot": "root",
+          "data-variant": "default",
+          "role": "toolbar"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "aria-pressed": "true",
+          "data-control": "true",
+          "data-control-family": "toolbar",
+          "data-control-ui": "toolbar",
+          "data-focusable": "",
+          "data-icon-only": "true",
+          "data-orientation": "horizontal",
+          "data-size": "sm",
+          "data-slot": "button",
+          "tabindex": "-1"
         }
       }
     ],
@@ -590,6 +724,242 @@
       },
       {
         "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "comfortable",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-editor",
+          "data-control-ui": "markdown-editor",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "embedded",
+          "data-control-family": "toolbar",
+          "data-control-ui": "toolbar",
+          "data-orientation": "horizontal",
+          "data-slot": "root",
+          "data-variant": "default",
+          "role": "toolbar"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "aria-pressed": "false",
+          "data-control": "true",
+          "data-control-family": "toolbar",
+          "data-control-ui": "toolbar",
+          "data-focusable": "",
+          "data-icon-only": "true",
+          "data-orientation": "horizontal",
+          "data-size": "sm",
+          "data-slot": "button",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "comfortable",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-editor",
+          "data-control-ui": "markdown-editor",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "embedded",
+          "data-control-family": "toolbar",
+          "data-control-ui": "toolbar",
+          "data-orientation": "horizontal",
+          "data-slot": "root",
+          "data-variant": "default",
+          "role": "toolbar"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "aria-pressed": "false",
+          "data-control": "true",
+          "data-control-family": "toolbar",
+          "data-control-ui": "toolbar",
+          "data-focusable": "",
+          "data-icon-only": "true",
+          "data-orientation": "horizontal",
+          "data-size": "sm",
+          "data-slot": "button",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "comfortable",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-editor",
+          "data-control-ui": "markdown-editor",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "embedded",
+          "data-control-family": "toolbar",
+          "data-control-ui": "toolbar",
+          "data-orientation": "horizontal",
+          "data-slot": "root",
+          "data-variant": "default",
+          "role": "toolbar"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "aria-pressed": "false",
+          "data-control": "true",
+          "data-control-family": "toolbar",
+          "data-control-ui": "toolbar",
+          "data-focusable": "",
+          "data-orientation": "horizontal",
+          "data-size": "sm",
+          "data-slot": "button",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "tabs",
           "data-control-ui": "tabs",
           "data-slot": "surface",
@@ -605,6 +975,7 @@
       },
       {
         "attributes": {
+          "data-chrome": "embedded",
           "data-control-family": "toolbar",
           "data-control-ui": "toolbar",
           "data-orientation": "horizontal",
@@ -673,6 +1044,7 @@
       },
       {
         "attributes": {
+          "data-chrome": "embedded",
           "data-control-family": "toolbar",
           "data-control-ui": "toolbar",
           "data-orientation": "horizontal",
@@ -741,6 +1113,7 @@
       },
       {
         "attributes": {
+          "data-chrome": "embedded",
           "data-control-family": "toolbar",
           "data-control-ui": "toolbar",
           "data-orientation": "horizontal",
@@ -1170,6 +1543,79 @@
       },
       {
         "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "comfortable",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-editor",
+          "data-control-ui": "markdown-editor",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "embedded",
+          "data-control-family": "toolbar",
+          "data-control-ui": "toolbar",
+          "data-orientation": "horizontal",
+          "data-slot": "root",
+          "data-variant": "default",
+          "role": "toolbar"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "toolbar",
+          "data-control-ui": "toolbar",
+          "data-orientation": "vertical",
+          "data-slot": "separator",
+          "role": "separator"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "tabs",
           "data-control-ui": "tabs",
           "data-slot": "surface",
@@ -1185,6 +1631,7 @@
       },
       {
         "attributes": {
+          "data-chrome": "embedded",
           "data-control-family": "toolbar",
           "data-control-ui": "toolbar",
           "data-orientation": "horizontal",
@@ -1367,15 +1814,6 @@
         "text": "--cui-toolbar-foreground"
       },
       "anatomy": 1,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-toolbar-background",
-        "text": "--cui-toolbar-foreground"
-      },
-      "anatomy": 2,
       "rendersText": true,
       "state": false
     },
@@ -1384,14 +1822,23 @@
         "fill": "--cui-toolbar-background",
         "text": "--cui-toolbar-foreground"
       },
-      "anatomy": 3,
+      "anatomy": 2,
       "rendersText": false,
       "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-toolbar-item-active-background",
-        "text": "--cui-toolbar-item-active-foreground"
+        "fill": "--cui-toolbar-background",
+        "text": "--cui-toolbar-foreground"
+      },
+      "anatomy": 3,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-toolbar-background",
+        "text": "--cui-toolbar-foreground"
       },
       "anatomy": 4,
       "rendersText": false,
@@ -1453,8 +1900,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-toolbar-item-background",
-        "text": "--cui-toolbar-item-foreground"
+        "fill": "--cui-toolbar-item-active-background",
+        "text": "--cui-toolbar-item-active-foreground"
       },
       "anatomy": 11,
       "rendersText": false,
@@ -1462,8 +1909,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-toolbar-item-background",
-        "text": "--cui-toolbar-item-foreground"
+        "fill": "--cui-toolbar-item-active-background",
+        "text": "--cui-toolbar-item-active-foreground"
       },
       "anatomy": 12,
       "rendersText": false,
@@ -1475,7 +1922,7 @@
         "text": "--cui-toolbar-item-foreground"
       },
       "anatomy": 13,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -1493,7 +1940,7 @@
         "text": "--cui-toolbar-item-foreground"
       },
       "anatomy": 15,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -1534,21 +1981,48 @@
     },
     {
       "knobs": {
-        "fill": "--cui-toolbar-item-hover-background",
-        "text": "--cui-toolbar-item-hover-foreground"
+        "fill": "--cui-toolbar-item-background",
+        "text": "--cui-toolbar-item-foreground"
       },
-      "anatomy": 11,
+      "anatomy": 20,
       "rendersText": false,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-toolbar-item-hover-background",
-        "text": "--cui-toolbar-item-hover-foreground"
+        "fill": "--cui-toolbar-item-background",
+        "text": "--cui-toolbar-item-foreground"
       },
-      "anatomy": 12,
+      "anatomy": 21,
       "rendersText": false,
-      "state": true
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-toolbar-item-background",
+        "text": "--cui-toolbar-item-foreground"
+      },
+      "anatomy": 22,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-toolbar-item-background",
+        "text": "--cui-toolbar-item-foreground"
+      },
+      "anatomy": 23,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-toolbar-item-background",
+        "text": "--cui-toolbar-item-foreground"
+      },
+      "anatomy": 24,
+      "rendersText": false,
+      "state": false
     },
     {
       "knobs": {
@@ -1556,24 +2030,6 @@
         "text": "--cui-toolbar-item-hover-foreground"
       },
       "anatomy": 13,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-toolbar-item-hover-background",
-        "text": "--cui-toolbar-item-hover-foreground"
-      },
-      "anatomy": 4,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-toolbar-item-hover-background",
-        "text": "--cui-toolbar-item-hover-foreground"
-      },
-      "anatomy": 5,
       "rendersText": false,
       "state": true
     },
@@ -1592,25 +2048,7 @@
         "text": "--cui-toolbar-item-hover-foreground"
       },
       "anatomy": 15,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-toolbar-item-hover-background",
-        "text": "--cui-toolbar-item-hover-foreground"
-      },
-      "anatomy": 6,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-toolbar-item-hover-background",
-        "text": "--cui-toolbar-item-hover-foreground"
-      },
-      "anatomy": 7,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -1645,7 +2083,7 @@
         "fill": "--cui-toolbar-item-hover-background",
         "text": "--cui-toolbar-item-hover-foreground"
       },
-      "anatomy": 8,
+      "anatomy": 5,
       "rendersText": false,
       "state": true
     },
@@ -1654,7 +2092,7 @@
         "fill": "--cui-toolbar-item-hover-background",
         "text": "--cui-toolbar-item-hover-foreground"
       },
-      "anatomy": 9,
+      "anatomy": 6,
       "rendersText": false,
       "state": true
     },
@@ -1663,7 +2101,16 @@
         "fill": "--cui-toolbar-item-hover-background",
         "text": "--cui-toolbar-item-hover-foreground"
       },
-      "anatomy": 10,
+      "anatomy": 7,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-toolbar-item-hover-background",
+        "text": "--cui-toolbar-item-hover-foreground"
+      },
+      "anatomy": 19,
       "rendersText": false,
       "state": true
     },
@@ -1681,7 +2128,88 @@
         "fill": "--cui-toolbar-item-hover-background",
         "text": "--cui-toolbar-item-hover-foreground"
       },
-      "anatomy": 19,
+      "anatomy": 8,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-toolbar-item-hover-background",
+        "text": "--cui-toolbar-item-hover-foreground"
+      },
+      "anatomy": 9,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-toolbar-item-hover-background",
+        "text": "--cui-toolbar-item-hover-foreground"
+      },
+      "anatomy": 21,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-toolbar-item-hover-background",
+        "text": "--cui-toolbar-item-hover-foreground"
+      },
+      "anatomy": 22,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-toolbar-item-hover-background",
+        "text": "--cui-toolbar-item-hover-foreground"
+      },
+      "anatomy": 23,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-toolbar-item-hover-background",
+        "text": "--cui-toolbar-item-hover-foreground"
+      },
+      "anatomy": 10,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-toolbar-item-hover-background",
+        "text": "--cui-toolbar-item-hover-foreground"
+      },
+      "anatomy": 11,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-toolbar-item-hover-background",
+        "text": "--cui-toolbar-item-hover-foreground"
+      },
+      "anatomy": 12,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-toolbar-item-hover-background",
+        "text": "--cui-toolbar-item-hover-foreground"
+      },
+      "anatomy": 25,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-toolbar-item-hover-background",
+        "text": "--cui-toolbar-item-hover-foreground"
+      },
+      "anatomy": 24,
       "rendersText": false,
       "state": true
     },
@@ -1689,7 +2217,7 @@
       "knobs": {
         "fill": "--cui-toolbar-separator-background"
       },
-      "anatomy": 21,
+      "anatomy": 26,
       "rendersText": false,
       "state": false
     },
@@ -1697,7 +2225,7 @@
       "knobs": {
         "fill": "--cui-toolbar-separator-background"
       },
-      "anatomy": 22,
+      "anatomy": 27,
       "rendersText": false,
       "state": false
     },
@@ -1705,7 +2233,7 @@
       "knobs": {
         "fill": "--cui-toolbar-separator-background"
       },
-      "anatomy": 23,
+      "anatomy": 28,
       "rendersText": false,
       "state": false
     },
@@ -1713,7 +2241,15 @@
       "knobs": {
         "fill": "--cui-toolbar-separator-background"
       },
-      "anatomy": 24,
+      "anatomy": 29,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-toolbar-separator-background"
+      },
+      "anatomy": 30,
       "rendersText": false,
       "state": false
     }

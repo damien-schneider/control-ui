@@ -226,6 +226,57 @@
           "data-mask": "true",
           "data-overflow-y-end": "",
           "data-scrollbar-gutter": "auto",
+          "data-scrolling": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-scrolling": "",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-scrollbar-gutter": "auto",
           "data-slot": "root",
           "role": "presentation"
         }
@@ -3517,6 +3568,14 @@
         "fill": "--cui-scroll-area-thumb-background"
       },
       "anatomy": 47,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 48,
       "rendersText": false,
       "state": false
     }
