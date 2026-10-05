@@ -1,10 +1,30 @@
-import { type JSONContent, Node } from "@tiptap/core";
+import { Extension, type JSONContent, Node } from "@tiptap/core";
 import Image from "@tiptap/extension-image";
-import { TaskItem, TaskList } from "@tiptap/extension-list";
+import { TaskList } from "@tiptap/extension-list";
 import Paragraph from "@tiptap/extension-paragraph";
 import { TableKit } from "@tiptap/extension-table";
 import { Markdown, MarkdownManager } from "@tiptap/markdown";
 import StarterKit from "@tiptap/starter-kit";
+import { markdownHeadingAttributes } from "@/components/control-ui/ui/markdown-heading";
+import { MarkdownTaskItem } from "./task-item";
+
+const MarkdownHeadings = Extension.create({
+  name: "markdownHeadings",
+  addGlobalAttributes() {
+    return [
+      {
+        types: ["heading"],
+        attributes: {
+          markdownHeading: {
+            default: null,
+            renderHTML: (attributes) =>
+              markdownHeadingAttributes(([1, 2, 3, 4, 5, 6] as const).find((level) => level === attributes.level) ?? 1),
+          },
+        },
+      },
+    ];
+  },
+});
 
 export function isEditorUrl(value: string, image = false): boolean {
   if (!value || /[\s\\]/.test(value) || Array.from(value).some((character) => character.charCodeAt(0) < 32)) return false;
@@ -67,9 +87,10 @@ export function markdownExtensions() {
       link: { openOnClick: false, isAllowedUri: (url) => isEditorUrl(url) },
     }),
     MarkdownParagraph,
+    MarkdownHeadings,
     SafeImage.configure({ allowBase64: false, inline: true }),
     TaskList,
-    TaskItem.configure({ nested: true, HTMLAttributes: { "data-type": "taskItem" } }),
+    MarkdownTaskItem.configure({ nested: true, HTMLAttributes: { "data-type": "taskItem" } }),
     TableKit.configure({ table: { resizable: false } }),
     ImageUpload,
     Markdown,

@@ -2326,7 +2326,10 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/typography.tsx",
         example: sourceFile("Type specimen", "src/registry/examples/control-ui/primitives/typography.tsx", "example"),
         source: sourceFile("Heading and Text", "src/registry/sources/control-ui/ui/typography.tsx", "component"),
-        supportFiles: [sourceFile("Type scale", "src/registry/examples/control-ui/primitives/type-scale.css", "tokens")],
+        supportFiles: [
+          sourceFile("Type scale", "src/registry/examples/control-ui/primitives/type-scale.css", "tokens"),
+          sourceFile("Markdown headings", "src/registry/sources/control-ui/ui/markdown-heading.ts", "component"),
+        ],
         registryKind: "typography",
       },
     },

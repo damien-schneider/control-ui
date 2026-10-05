@@ -15,6 +15,11 @@
       "type": "registry:file"
     },
     {
+      "path": "src/registry/sources/control-ui/ui/markdown-heading.ts",
+      "target": "@components/control-ui/ui/markdown-heading.ts",
+      "type": "registry:ui"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/typography.tsx",
       "target": "@components/control-ui/ui/typography.tsx",
       "type": "registry:ui"

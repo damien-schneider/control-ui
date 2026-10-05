@@ -317,6 +317,7 @@ test("editor has one frame and an embedded shared toolbar at narrow widths", asy
   const editor = page.getByRole("textbox", { name: "Comment", exact: true });
   await editor.click();
   await expect(editor).toHaveCSS("outline-style", "none");
+  await expect(page.locator('[data-control-family="markdown-editor"][data-slot="root"]')).toHaveCSS("outline-style", "none");
   const toolbar = page.getByRole("toolbar", { name: "Markdown formatting" });
   await expect(toolbar).toHaveAttribute("data-chrome", "embedded");
   await expect(toolbar).toHaveCSS("box-shadow", "none");
@@ -328,6 +329,120 @@ test("editor has one frame and an embedded shared toolbar at narrow widths", asy
   await page.getByRole("button", { name: "Markdown source" }).click();
   await expect(editor).toHaveCSS("box-shadow", "none");
   await expect(editor).toHaveCSS("border-width", "0px");
+});
+
+test("toolbar scrolls horizontally and popover triggers retain shared button sizing", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  const toolbar = page.getByRole("toolbar", { name: "Markdown formatting" });
+  const viewport = page.locator('[data-control-family="markdown-editor"][data-slot="toolbar"] [data-scroll-area-viewport]');
+  expect(await viewport.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
+  const bold = toolbar.getByRole("button", { name: "Bold", exact: true });
+  for (const name of ["Edit link", "Insert image"]) {
+    const trigger = toolbar.getByRole("button", { name, exact: true });
+    await expect(trigger).toHaveAttribute("data-slot", "button");
+    await expect(trigger).toHaveAttribute("data-control-family", "toolbar");
+    expect(await trigger.evaluate((element) => element.getBoundingClientRect().width)).toEqual(
+      await bold.evaluate((element) => element.getBoundingClientRect().width),
+    );
+  }
+  await toolbar.getByRole("button", { name: "Text style" }).focus();
+  await page.keyboard.press("ArrowLeft");
+  await expect(toolbar.getByRole("button", { name: "Markdown source" })).toBeFocused();
+  expect(await viewport.evaluate((element) => element.scrollLeft)).toBeGreaterThan(0);
+  const rows = await toolbar
+    .getByRole("button")
+    .evaluateAll((buttons) => new Set(buttons.map((button) => button.getBoundingClientRect().top)).size);
+  expect(rows).toBe(1);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});
+
+test("heading menu preserves selection and shares typography with rendered Markdown", async ({ page }) => {
+  const editor = page.getByRole("textbox", { name: "Comment", exact: true });
+  await editor.fill("Shared heading");
+  for (const level of [1, 2, 3, 4, 5, 6]) {
+    await page.getByRole("button", { name: "Text style" }).click();
+    await page.getByRole("menuitemradio", { name: `Heading ${level}`, exact: true }).click();
+    await expect(editor).toBeFocused();
+    await expect(editor.locator(`h${level}`)).toHaveText("Shared heading");
+    await expect(page.getByLabel("Markdown value")).toHaveText(`${"#".repeat(level)} Shared heading`);
+  }
+  const styles = await editor.locator("h6").evaluate((element) => {
+    const style = getComputedStyle(element);
+    return [style.fontSize, style.fontWeight, style.lineHeight];
+  });
+  await page.getByRole("button", { name: "Post", exact: true }).click();
+  await expect(page.getByRole("heading", { level: 6, name: "Shared heading" })).toBeVisible();
+  expect(
+    await page.getByRole("heading", { level: 6, name: "Shared heading" }).evaluate((element) => {
+      const style = getComputedStyle(element);
+      return [style.fontSize, style.fontWeight, style.lineHeight];
+    }),
+  ).toEqual(styles);
+  await page.getByRole("button", { name: "Edit saved comment" }).click();
+  await page.getByRole("button", { name: "Text style" }).click();
+  await page.getByRole("menuitemradio", { name: "Paragraph", exact: true }).click();
+  await expect(page.getByLabel("Markdown value")).toHaveText("Shared heading");
+});
+
+test("link popover preserves text selection and supports keyboard removal", async ({ page }) => {
+  const editor = page.getByRole("textbox", { name: "Comment", exact: true });
+  await editor.fill("Read the guide");
+  await editor.press("ControlOrMeta+a");
+  await page.getByRole("button", { name: "Edit link", exact: true }).click();
+  await page.getByRole("textbox", { name: "URL", exact: true }).fill("https://example.com/guide");
+  await page.getByRole("textbox", { name: "URL", exact: true }).press("Enter");
+  await expect(editor.getByRole("link", { name: "Read the guide" })).toHaveAttribute("href", "https://example.com/guide");
+  await expect(editor).toBeFocused();
+  await page.getByRole("button", { name: "Edit link", exact: true }).click();
+  await expect(page.getByRole("textbox", { name: "URL", exact: true })).toHaveValue("https://example.com/guide");
+  await page.getByRole("button", { name: "Remove link", exact: true }).press("Enter");
+  await expect(editor.getByRole("link")).toHaveCount(0);
+  await expect(page.getByLabel("Markdown value")).toHaveText("Read the guide");
+  await expect(editor).toBeFocused();
+});
+
+test("shared task checkboxes support keyboard, undo, nested content, save and disabled state", async ({ page }) => {
+  const editor = page.getByRole("textbox", { name: "Comment", exact: true });
+  await page.getByRole("button", { name: "Markdown source" }).click();
+  await editor.fill("- [ ] Parent\n  - [x] Child");
+  await page.getByRole("button", { name: "Markdown source" }).click();
+  const parent = editor.getByRole("checkbox", { name: "Parent", exact: true });
+  const child = editor.getByRole("checkbox", { name: "Child", exact: true });
+  await expect(parent).toHaveAttribute("data-control-ui", "checkbox");
+  await expect(child).toBeChecked();
+  await parent.focus();
+  await parent.press("Space");
+  await expect(parent).toBeChecked();
+  await expect(page.getByLabel("Markdown value")).toContainText("- [x] Parent");
+  await page.getByRole("button", { name: "Undo", exact: true }).click();
+  await expect(parent).not.toBeChecked();
+  await child.click();
+  await expect(child).not.toBeChecked();
+  await page.getByRole("button", { name: "Toggle disabled" }).click();
+  await expect(parent).toBeDisabled();
+  await expect(child).toBeDisabled();
+  await page.getByRole("button", { name: "Toggle disabled" }).click();
+  await page.getByRole("button", { name: "Post", exact: true }).click();
+  await page.getByRole("button", { name: "Edit saved comment" }).click();
+  await expect(parent).not.toBeChecked();
+  await expect(child).not.toBeChecked();
+});
+
+test("drag previews are compact, transparent and cleaned up after dragging", async ({ page }) => {
+  await page.getByRole("button", { name: "Load blocks" }).click();
+  await page.locator('.tiptap ul[data-type="taskList"]').hover();
+  const handle = page.getByRole("button", { name: "Drag to reorder block" });
+  await handle.hover();
+  await expect(handle).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+  await expect(handle).toHaveCSS("box-shadow", "none");
+  await handle.dispatchEvent("dragstart", { dataTransfer: await page.evaluateHandle(() => new DataTransfer()) });
+  const preview = page.locator("[data-markdown-drag-preview]");
+  await expect(preview).toHaveCount(1);
+  await expect(preview).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+  expect(await preview.evaluate((element) => element.getBoundingClientRect().width)).toBeLessThanOrEqual(320);
+  await expect(page.locator(".ProseMirror-selectednode")).toHaveCSS("outline-style", "none");
+  await handle.dispatchEvent("dragend");
+  await expect(preview).toHaveCount(0);
 });
 
 for (const skin of ["modern-apple", "refined"]) {

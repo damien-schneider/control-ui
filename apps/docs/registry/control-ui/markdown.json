@@ -11,7 +11,8 @@
     "code",
     "code-diff",
     "core",
-    "scroll-area"
+    "scroll-area",
+    "typography"
   ],
   "files": [
     {

@@ -33,13 +33,13 @@
     white-space: pre-wrap;
     outline: none;
   }
-  :where([data-control-family="markdown-editor"][data-slot="root"]:has(.tiptap:focus-visible, textarea:focus-visible)) {
-    outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring);
-    outline-offset: var(--focus-ring-offset);
-  }
-  :where([data-control-family="markdown-editor"] > [data-control-family="toolbar"]) {
-    padding-inline: var(--cui-markdown-editor-padding);
+  :where([data-control-family="markdown-editor"][data-slot="toolbar"]) {
+    min-inline-size: 0;
     border-block-end: var(--cui-markdown-editor-border-width) solid var(--cui-markdown-editor-border-color);
+  }
+  :where([data-control-family="markdown-editor"][data-slot="toolbar"] [data-control-family="toolbar"][data-slot="root"]) {
+    padding-inline: var(--cui-markdown-editor-padding);
+    white-space: nowrap;
   }
   :where([data-control-family="markdown-editor"] [data-markdown-drag-handle]) {
     position: absolute;
@@ -77,17 +77,11 @@
     float: inline-start;
     block-size: 0;
   }
-  :where([data-control-family="markdown-editor"] .tiptap h1) {
-    font-size: var(--text-heading-2);
-    font-weight: var(--font-weight-semibold);
+  :where([data-control-family="markdown-editor"] .tiptap :is(h1, h2, h3, h4, h5, h6)) {
+    margin-block: var(--cui-markdown-editor-gap) 0;
   }
-  :where([data-control-family="markdown-editor"] .tiptap h2) {
-    font-size: var(--text-heading-3);
-    font-weight: var(--font-weight-semibold);
-  }
-  :where([data-control-family="markdown-editor"] .tiptap :is(h3, h4, h5, h6)) {
-    font-size: var(--text-heading-4);
-    font-weight: var(--font-weight-semibold);
+  :where([data-control-family="markdown-editor"] .tiptap > :first-child) {
+    margin-block-start: 0;
   }
   :where([data-control-family="markdown-editor"] .tiptap strong) {
     font-weight: var(--font-weight-semibold);
@@ -114,12 +108,18 @@
     list-style: none;
     padding-inline-start: 0;
   }
-  :where([data-control-family="markdown-editor"] .tiptap li[data-type="taskItem"]) {
+  :where([data-control-family="markdown-editor"] .tiptap [data-slot="task-item"]) {
     display: flex;
-    align-items: baseline;
+    align-items: flex-start;
     gap: var(--cui-markdown-editor-gap);
   }
-  :where([data-control-family="markdown-editor"] .tiptap li[data-type="taskItem"] > div) {
+  :where([data-control-family="markdown-editor"] .tiptap [data-slot="task-checkbox"]) {
+    display: inline-flex;
+    align-items: center;
+    block-size: 1lh;
+    flex-shrink: 0;
+  }
+  :where([data-control-family="markdown-editor"] .tiptap [data-slot="task-content"]) {
     flex: 1;
     min-inline-size: 0;
   }
@@ -144,7 +144,17 @@
     border-radius: var(--radius-sm);
   }
   :where([data-control-family="markdown-editor"] .tiptap .ProseMirror-selectednode) {
-    outline: 2px solid var(--ring);
+    outline: none;
+  }
+  :where([data-control-family="markdown-editor"] [data-markdown-drag-preview]) {
+    position: fixed;
+    inset: -10000px auto auto -10000px;
+    min-block-size: 0;
+    max-block-size: calc(var(--spacing) * 24);
+    padding: 0;
+    overflow: hidden;
+    background: transparent;
+    pointer-events: none;
   }
   :where([data-control-family="markdown-editor"] .tiptap [data-image-upload]) {
     padding: var(--cui-markdown-editor-padding);

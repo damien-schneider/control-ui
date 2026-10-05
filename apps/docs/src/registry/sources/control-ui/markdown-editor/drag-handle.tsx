@@ -7,6 +7,7 @@ import { type RefObject, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/control-ui/ui/button";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { useMarkdownEditor } from "./context";
+import { createDragPreview } from "./drag-preview";
 
 type BlockHandle = { position: number; top: number };
 
@@ -16,6 +17,7 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
   const [announcement, setAnnouncement] = useState("");
   const button = useRef<HTMLButtonElement>(null);
   const dragging = useRef(false);
+  const preview = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const surface = container.current;
@@ -52,6 +54,9 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
       surface.removeEventListener("mouseleave", hide);
       editor.off("transaction", selectionChanged).off("focus", selectionChanged);
       editor.view.dragging = null;
+      preview.current?.remove();
+      preview.current = null;
+      dragging.current = false;
     };
   }, [editor, container, disabled, source]);
 
@@ -87,7 +92,14 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
         aria-description="Drag this block, or use Alt+ArrowUp and Alt+ArrowDown to move it."
         title="Drag to reorder · Alt+↑/↓ to move"
         draggable
-        style={{ top: block?.top }}
+        style={{
+          top: block?.top,
+          "--cui-button-background": "transparent",
+          "--cui-button-hover-background": "transparent",
+          "--cui-button-press-background": "transparent",
+          "--cui-button-shadow": "none",
+          "--cui-button-hover-shadow": "none",
+        }}
         onClick={() => editor.commands.setNodeSelection(position)}
         onKeyDown={(event) => {
           if (!event.altKey || !["ArrowUp", "ArrowDown"].includes(event.key)) return;
@@ -104,13 +116,21 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
           event.dataTransfer.setData("text/html", dom.innerHTML);
           event.dataTransfer.setData("text/plain", text);
           event.dataTransfer.effectAllowed = "copyMove";
-          if (node instanceof HTMLElement) event.dataTransfer.setDragImage(node, 0, 0);
+          if (node instanceof HTMLElement) {
+            preview.current?.remove();
+            const ghost = createDragPreview(node);
+            container.current?.append(ghost);
+            preview.current = ghost;
+            event.dataTransfer.setDragImage(ghost, 0, 0);
+          }
           view.dragging = { slice, move: true };
           dragging.current = true;
         }}
         onDragEnd={() => {
           editor.view.dragging = null;
           dragging.current = false;
+          preview.current?.remove();
+          preview.current = null;
           setBlock(null);
         }}
       >

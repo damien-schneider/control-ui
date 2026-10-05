@@ -3417,7 +3417,7 @@ export const registryMetadata = {
   },
   markdown: {
     dependencies: ["streamdown@^2.6.0"],
-    registryDependencies: ["code", "code-diff", "core", "scroll-area"],
+    registryDependencies: ["code", "code-diff", "core", "scroll-area", "typography"],
     sourceManifestPath: "registry/control-ui/markdown.json",
     files: [
       {
@@ -3480,11 +3480,14 @@ export const registryMetadata = {
     registryDependencies: [
       "button",
       "chat-composer-attachment",
+      "checkbox",
       "core",
+      "dropdown-menu",
       "input",
       "label",
       "live-status",
       "popover",
+      "scroll-area",
       "textarea",
       "toolbar",
       "tooltip",
@@ -3514,6 +3517,11 @@ export const registryMetadata = {
         type: "registry:component",
       },
       {
+        path: "src/registry/sources/control-ui/markdown-editor/drag-preview.ts",
+        target: "@components/control-ui/markdown-editor/drag-preview.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/markdown-editor/extensions.ts",
         target: "@components/control-ui/markdown-editor/extensions.ts",
         type: "registry:component",
@@ -3521,6 +3529,11 @@ export const registryMetadata = {
       {
         path: "src/registry/sources/control-ui/markdown-editor/suggestions.tsx",
         target: "@components/control-ui/markdown-editor/suggestions.tsx",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/markdown-editor/task-item.tsx",
+        target: "@components/control-ui/markdown-editor/task-item.tsx",
         type: "registry:component",
       },
       {
@@ -5224,6 +5237,11 @@ export const registryMetadata = {
         path: "src/registry/examples/control-ui/primitives/type-scale.css",
         target: "@components/control-ui/styles/type-scale.css",
         type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/ui/markdown-heading.ts",
+        target: "@components/control-ui/ui/markdown-heading.ts",
+        type: "registry:ui",
       },
       {
         path: "src/registry/sources/control-ui/ui/typography.tsx",

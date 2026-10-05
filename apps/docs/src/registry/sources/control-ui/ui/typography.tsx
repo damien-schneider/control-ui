@@ -45,14 +45,18 @@ const headingSizeByLevel = {
 
 export type HeadingProps = ComponentProps<"h1"> & { level: HeadingLevel; size?: TypeSize; weight?: TextWeight; tone?: TypeTone };
 
-export function Heading({ level, size = headingSizeByLevel[level], weight, tone = "default", className, ...props }: HeadingProps) {
+export function headingClassName({ level, size = headingSizeByLevel[level], weight, tone = "default", className }: HeadingProps) {
+  return cn(sizeClassNames[size], weight ? weightClassNames[weight] : undefined, toneClassNames[tone], className);
+}
+
+export function Heading({ level, size, weight, tone, className, ...props }: HeadingProps) {
   const Tag: `h${HeadingLevel}` = `h${level}`;
   return (
     <Tag
       data-control-ui="typography"
       data-control-family="typography"
       data-slot="heading"
-      className={cn(sizeClassNames[size], weight ? weightClassNames[weight] : undefined, toneClassNames[tone], className)}
+      className={headingClassName({ level, size, weight, tone, className })}
       {...props}
     />
   );

@@ -3,8 +3,8 @@
 import { useEditorState } from "@tiptap/react";
 import {
   BoldIcon,
+  ChevronDownIcon,
   CodeIcon,
-  Heading2Icon,
   ImageIcon,
   ItalicIcon,
   LinkIcon,
@@ -20,9 +20,17 @@ import {
 import { type ReactNode, useId, useRef, useState } from "react";
 import { ChatComposerAttachment, ChatComposerAttachments } from "@/components/control-ui/chat-composer-attachment";
 import { Button } from "@/components/control-ui/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from "@/components/control-ui/ui/dropdown-menu";
 import { Input } from "@/components/control-ui/ui/input";
 import { Label } from "@/components/control-ui/ui/label";
 import { Popover, PopoverContent, PopoverTitle, PopoverTrigger } from "@/components/control-ui/ui/popover";
+import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Toolbar, ToolbarButton, ToolbarSeparator } from "@/components/control-ui/ui/toolbar";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
 import { Text } from "@/components/control-ui/ui/typography";
@@ -39,7 +47,6 @@ export function MarkdownEditorToolbar({ children }: { children?: ReactNode }) {
       italic: current?.isActive("italic"),
       strike: current?.isActive("strike"),
       code: current?.isActive("code"),
-      heading: current?.isActive("heading", { level: 2 }),
       bulletList: current?.isActive("bulletList"),
       orderedList: current?.isActive("orderedList"),
       taskList: current?.isActive("taskList"),
@@ -54,7 +61,6 @@ export function MarkdownEditorToolbar({ children }: { children?: ReactNode }) {
     { label: "Italic", Icon: ItalicIcon, active: state?.italic, run: () => editor?.chain().focus().toggleItalic().run() },
     { label: "Strikethrough", Icon: StrikethroughIcon, active: state?.strike, run: () => editor?.chain().focus().toggleStrike().run() },
     { label: "Inline code", Icon: CodeIcon, active: state?.code, run: () => editor?.chain().focus().toggleCode().run() },
-    { label: "Heading", Icon: Heading2Icon, active: state?.heading, run: () => editor?.chain().focus().toggleHeading({ level: 2 }).run() },
     { label: "Bullet list", Icon: ListIcon, active: state?.bulletList, run: () => editor?.chain().focus().toggleBulletList().run() },
     {
       label: "Numbered list",
@@ -68,59 +74,101 @@ export function MarkdownEditorToolbar({ children }: { children?: ReactNode }) {
   ];
   return (
     <TooltipProvider>
-      <Toolbar aria-label="Markdown formatting" chrome="embedded" className="flex w-full flex-wrap">
-        {actions.map(({ label, Icon, active, run }) => (
-          <Tooltip key={label}>
-            <TooltipTrigger
-              render={
-                <ToolbarButton
-                  type="button"
-                  iconOnly
-                  aria-label={label}
-                  aria-pressed={Boolean(active)}
-                  disabled={disabled || source || !editor}
-                  onMouseDown={(event) => event.preventDefault()}
-                  onClick={run}
-                />
-              }
+      <div data-control-ui="markdown-editor" data-control-family="markdown-editor" data-slot="toolbar">
+        <ScrollArea lockAxis="y" mask={false} blur={false}>
+          <Toolbar aria-label="Markdown formatting" chrome="embedded" className="flex w-max min-w-full">
+            <MarkdownEditorHeading />
+            <ToolbarSeparator />
+            {actions.map(({ label, Icon, active, run }) => (
+              <Tooltip key={label}>
+                <TooltipTrigger
+                  render={
+                    <ToolbarButton
+                      type="button"
+                      iconOnly
+                      aria-label={label}
+                      aria-pressed={Boolean(active)}
+                      disabled={disabled || source || !editor}
+                      onMouseDown={(event) => event.preventDefault()}
+                      onClick={run}
+                    />
+                  }
+                >
+                  <Icon aria-hidden="true" />
+                </TooltipTrigger>
+                <TooltipContent>{label}</TooltipContent>
+              </Tooltip>
+            ))}
+            <MarkdownEditorLink />
+            <MarkdownEditorImage />
+            <ToolbarSeparator />
+            <ToolbarButton
+              type="button"
+              iconOnly
+              aria-label="Undo"
+              disabled={disabled || source || !state?.undo}
+              onClick={() => editor?.chain().focus().undo().run()}
             >
-              <Icon aria-hidden="true" />
-            </TooltipTrigger>
-            <TooltipContent>{label}</TooltipContent>
-          </Tooltip>
-        ))}
-        <MarkdownEditorLink />
-        <MarkdownEditorImage />
-        <ToolbarSeparator />
-        <ToolbarButton
-          type="button"
-          iconOnly
-          aria-label="Undo"
-          disabled={disabled || source || !state?.undo}
-          onClick={() => editor?.chain().focus().undo().run()}
-        >
-          <UndoIcon aria-hidden="true" />
-        </ToolbarButton>
-        <ToolbarButton
-          type="button"
-          iconOnly
-          aria-label="Redo"
-          disabled={disabled || source || !state?.redo}
-          onClick={() => editor?.chain().focus().redo().run()}
-        >
-          <RedoIcon aria-hidden="true" />
-        </ToolbarButton>
-        <ToolbarButton
-          type="button"
-          aria-pressed={source}
-          disabled={disabled || !editor || sourceRequired || uploads.length > 0}
-          onClick={() => setSource(!source)}
-        >
-          Markdown source
-        </ToolbarButton>
-        {children}
-      </Toolbar>
+              <UndoIcon aria-hidden="true" />
+            </ToolbarButton>
+            <ToolbarButton
+              type="button"
+              iconOnly
+              aria-label="Redo"
+              disabled={disabled || source || !state?.redo}
+              onClick={() => editor?.chain().focus().redo().run()}
+            >
+              <RedoIcon aria-hidden="true" />
+            </ToolbarButton>
+            <ToolbarButton
+              type="button"
+              aria-pressed={source}
+              disabled={disabled || !editor || sourceRequired || uploads.length > 0}
+              onClick={() => setSource(!source)}
+            >
+              Markdown source
+            </ToolbarButton>
+            {children}
+          </Toolbar>
+        </ScrollArea>
+      </div>
     </TooltipProvider>
+  );
+}
+
+function MarkdownEditorHeading() {
+  const { editor, disabled, source } = useMarkdownEditor();
+  const level = useEditorState({
+    editor,
+    selector: ({ editor: current }) => (current?.isActive("heading") ? String(current.getAttributes("heading").level) : "paragraph"),
+  });
+  return (
+    <DropdownMenu>
+      <ToolbarButton type="button" aria-label="Text style" disabled={disabled || source || !editor} render={<DropdownMenuTrigger />}>
+        <span>{level && level !== "paragraph" ? `H${level}` : "Text"}</span>
+        <ChevronDownIcon aria-hidden="true" />
+      </ToolbarButton>
+      <DropdownMenuContent finalFocus={() => editor?.view.dom ?? true}>
+        <DropdownMenuRadioGroup
+          value={level ?? "paragraph"}
+          onValueChange={(value) => {
+            if (!editor || disabled || source) return;
+            const heading = ([1, 2, 3, 4, 5, 6] as const).find((item) => String(item) === value);
+            if (heading) editor.chain().focus().setHeading({ level: heading }).run();
+            else editor.chain().focus().setParagraph().run();
+          }}
+        >
+          <DropdownMenuRadioItem value="paragraph" closeOnClick>
+            Paragraph
+          </DropdownMenuRadioItem>
+          {[1, 2, 3, 4, 5, 6].map((item) => (
+            <DropdownMenuRadioItem key={item} value={String(item)} closeOnClick>
+              Heading {item}
+            </DropdownMenuRadioItem>
+          ))}
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
 
@@ -143,13 +191,27 @@ export function MarkdownEditorLink() {
         if (next) setUrl(editor?.getAttributes("link").href ?? "");
       }}
     >
-      <PopoverTrigger disabled={disabled || source || !editor} render={<ToolbarButton type="button" iconOnly aria-label="Edit link" />}>
-        <LinkIcon aria-hidden="true" />
-      </PopoverTrigger>
+      <Tooltip>
+        <TooltipTrigger
+          render={
+            <ToolbarButton
+              type="button"
+              iconOnly
+              aria-label="Edit link"
+              disabled={disabled || source || !editor}
+              render={<PopoverTrigger />}
+            />
+          }
+        >
+          <LinkIcon aria-hidden="true" />
+        </TooltipTrigger>
+        <TooltipContent>Edit link</TooltipContent>
+      </Tooltip>
       <PopoverContent
+        finalFocus={() => editor?.view.dom ?? true}
         className="grid gap-3"
         onKeyDown={(event) => {
-          if (event.key === "Enter") {
+          if (event.key === "Enter" && event.target instanceof HTMLInputElement && !event.nativeEvent.isComposing) {
             event.preventDefault();
             event.stopPropagation();
             apply();
@@ -198,13 +260,27 @@ export function MarkdownEditorImage() {
   }
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger disabled={disabled || source || !editor} render={<ToolbarButton type="button" iconOnly aria-label="Insert image" />}>
-        <ImageIcon aria-hidden="true" />
-      </PopoverTrigger>
+      <Tooltip>
+        <TooltipTrigger
+          render={
+            <ToolbarButton
+              type="button"
+              iconOnly
+              aria-label="Insert image"
+              disabled={disabled || source || !editor}
+              render={<PopoverTrigger />}
+            />
+          }
+        >
+          <ImageIcon aria-hidden="true" />
+        </TooltipTrigger>
+        <TooltipContent>Insert image</TooltipContent>
+      </Tooltip>
       <PopoverContent
+        finalFocus={() => editor?.view.dom ?? true}
         className="grid gap-3"
         onKeyDown={(event) => {
-          if (event.key === "Enter") {
+          if (event.key === "Enter" && event.target instanceof HTMLInputElement && !event.nativeEvent.isComposing) {
             event.preventDefault();
             event.stopPropagation();
             insert();

@@ -7867,6 +7867,26 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["markdown-editor"],
           states: [],
         },
+        "task-checkbox": {
+          family: "markdown-editor",
+          registryItems: ["markdown-editor"],
+          states: [],
+        },
+        "task-content": {
+          family: "markdown-editor",
+          registryItems: ["markdown-editor"],
+          states: [],
+        },
+        "task-item": {
+          family: "markdown-editor",
+          registryItems: ["markdown-editor"],
+          states: [],
+        },
+        toolbar: {
+          family: "markdown-editor",
+          registryItems: ["markdown-editor"],
+          states: [],
+        },
         uploads: {
           family: "markdown-editor",
           registryItems: ["markdown-editor"],

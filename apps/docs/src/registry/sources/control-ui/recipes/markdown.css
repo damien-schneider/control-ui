@@ -118,30 +118,6 @@
     margin-block: calc(var(--spacing) * 5) calc(var(--spacing) * 2);
   }
 
-  :where([data-control-family="markdown"]:is([data-slot="h4"], [data-slot="h5"], [data-slot="h6"])) {
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--text-body);
-    line-height: var(--leading-tight);
-  }
-
-  :where([data-control-family="markdown"][data-slot="h3"]) {
-    font-weight: var(--text-heading-4--font-weight);
-    font-size: var(--text-heading-4);
-    line-height: var(--text-heading-4--line-height);
-  }
-
-  :where([data-control-family="markdown"][data-slot="h2"]) {
-    font-weight: var(--text-heading-3--font-weight);
-    font-size: var(--text-heading-3);
-    line-height: var(--text-heading-3--line-height);
-  }
-
-  :where([data-control-family="markdown"][data-slot="h1"]) {
-    font-weight: var(--text-heading-2--font-weight);
-    font-size: var(--text-heading-2);
-    line-height: var(--text-heading-2--line-height);
-  }
-
   :where([data-control-family="markdown"][data-slot="h1"]),
   :where([data-control-family="markdown"][data-slot="h2"]) {
     margin-block: calc(var(--spacing) * 6) calc(var(--spacing) * 3);

@@ -4,7 +4,9 @@ import type { MarkdownKnobStyle } from "@/components/control-ui/knob-contracts/m
 import { cn } from "@/components/control-ui/lib/cn";
 import { Code, CodeActions, CodeContent, CodeCopy, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
 import { CodeDiff } from "@/components/control-ui/ui/code-diff";
+import { markdownHeadingAttributes } from "@/components/control-ui/ui/markdown-heading";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
+import { Heading } from "@/components/control-ui/ui/typography";
 
 type MarkdownCodeProps = ComponentProps<"code"> & {
   node?: unknown;
@@ -64,27 +66,87 @@ export function MarkdownCode({ className, children, node: _node, ...props }: Mar
 }
 
 export function MarkdownH1({ className, node: _node, ...props }: MarkdownElementProps<"h1">) {
-  return <h1 data-control-ui="markdown" data-control-family="markdown" data-slot="h1" className={className} {...props} />;
+  const { class: headingClass } = markdownHeadingAttributes(1);
+  return (
+    <Heading
+      level={1}
+      data-control-ui="markdown"
+      data-control-family="markdown"
+      data-slot="h1"
+      className={cn(headingClass, className)}
+      {...props}
+    />
+  );
 }
 
 export function MarkdownH2({ className, node: _node, ...props }: MarkdownElementProps<"h2">) {
-  return <h2 data-control-ui="markdown" data-control-family="markdown" data-slot="h2" className={className} {...props} />;
+  const { class: headingClass } = markdownHeadingAttributes(2);
+  return (
+    <Heading
+      level={2}
+      data-control-ui="markdown"
+      data-control-family="markdown"
+      data-slot="h2"
+      className={cn(headingClass, className)}
+      {...props}
+    />
+  );
 }
 
 export function MarkdownH3({ className, node: _node, ...props }: MarkdownElementProps<"h3">) {
-  return <h3 data-control-ui="markdown" data-control-family="markdown" data-slot="h3" className={className} {...props} />;
+  const { class: headingClass } = markdownHeadingAttributes(3);
+  return (
+    <Heading
+      level={3}
+      data-control-ui="markdown"
+      data-control-family="markdown"
+      data-slot="h3"
+      className={cn(headingClass, className)}
+      {...props}
+    />
+  );
 }
 
 export function MarkdownH4({ className, node: _node, ...props }: MarkdownElementProps<"h4">) {
-  return <h4 data-control-ui="markdown" data-control-family="markdown" data-slot="h4" className={className} {...props} />;
+  const { class: headingClass } = markdownHeadingAttributes(4);
+  return (
+    <Heading
+      level={4}
+      data-control-ui="markdown"
+      data-control-family="markdown"
+      data-slot="h4"
+      className={cn(headingClass, className)}
+      {...props}
+    />
+  );
 }
 
 export function MarkdownH5({ className, node: _node, ...props }: MarkdownElementProps<"h5">) {
-  return <h5 data-control-ui="markdown" data-control-family="markdown" data-slot="h5" className={className} {...props} />;
+  const { class: headingClass } = markdownHeadingAttributes(5);
+  return (
+    <Heading
+      level={5}
+      data-control-ui="markdown"
+      data-control-family="markdown"
+      data-slot="h5"
+      className={cn(headingClass, className)}
+      {...props}
+    />
+  );
 }
 
 export function MarkdownH6({ className, node: _node, ...props }: MarkdownElementProps<"h6">) {
-  return <h6 data-control-ui="markdown" data-control-family="markdown" data-slot="h6" className={className} {...props} />;
+  const { class: headingClass } = markdownHeadingAttributes(6);
+  return (
+    <Heading
+      level={6}
+      data-control-ui="markdown"
+      data-control-family="markdown"
+      data-slot="h6"
+      className={cn(headingClass, className)}
+      {...props}
+    />
+  );
 }
 
 export function MarkdownP({ className, node: _node, ...props }: MarkdownElementProps<"p">) {

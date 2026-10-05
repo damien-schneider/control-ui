@@ -19,11 +19,14 @@
   "registryDependencies": [
     "button",
     "chat-composer-attachment",
+    "checkbox",
     "core",
+    "dropdown-menu",
     "input",
     "label",
     "live-status",
     "popover",
+    "scroll-area",
     "textarea",
     "toolbar",
     "tooltip",
@@ -52,6 +55,11 @@
       "type": "registry:component"
     },
     {
+      "path": "src/registry/sources/control-ui/markdown-editor/drag-preview.ts",
+      "target": "@components/control-ui/markdown-editor/drag-preview.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/sources/control-ui/markdown-editor/extensions.ts",
       "target": "@components/control-ui/markdown-editor/extensions.ts",
       "type": "registry:component"
@@ -59,6 +67,11 @@
     {
       "path": "src/registry/sources/control-ui/markdown-editor/suggestions.tsx",
       "target": "@components/control-ui/markdown-editor/suggestions.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/task-item.tsx",
+      "target": "@components/control-ui/markdown-editor/task-item.tsx",
       "type": "registry:component"
     },
     {
