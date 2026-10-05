@@ -26,7 +26,7 @@ for (const skin of ["none", "refined", "cuicui"]) {
       await expect(sweep).toHaveAttribute("aria-hidden", "true");
 
       const initialBounds = await sweep.boundingBox();
-      for (const progress of [0, 0.25, 0.5, 0.75, 0.999999]) {
+      for (const progress of [0, 0.05, 0.25, 0.5, 0.75, 0.95, 0.999999]) {
         await sweep.evaluate((node, progressRatio) => {
           for (const animation of node.getAnimations({ subtree: true })) {
             animation.pause();
@@ -36,18 +36,32 @@ for (const skin of ["none", "refined", "cuicui"]) {
           }
         }, progress);
         expect(await sweep.boundingBox()).toEqual(initialBounds);
-        if (progress === 0 || progress === 0.999999) {
+        const position = await sweep.evaluate((node) => {
+          const transform = new DOMMatrixReadOnly(getComputedStyle(node, "::after").transform);
+          return transform.m41 / node.getBoundingClientRect().width;
+        });
+        if (progress <= 0.05) expect(position).toBeLessThan(-1);
+        if (progress === 0.25) expect(position).toBeLessThan(0);
+        if (progress === 0.5) expect(position).toBeCloseTo(0);
+        if (progress === 0.75) expect(position).toBeGreaterThan(0);
+        if (progress >= 0.95) expect(position).toBeGreaterThan(1);
+        if (progress === 0 || progress === 0.05 || progress === 0.95 || progress === 0.999999) {
           await sweep.screenshot({ path: testInfo.outputPath(`loop-${progress}.png`), animations: "allow" });
         }
       }
-      expect(await readFile(testInfo.outputPath("loop-0.png"))).toEqual(await readFile(testInfo.outputPath("loop-0.999999.png")));
+      const restingSweep = await readFile(testInfo.outputPath("loop-0.png"));
+      for (const progress of [0.05, 0.95, 0.999999]) {
+        expect(await readFile(testInfo.outputPath(`loop-${progress}.png`))).toEqual(restingSweep);
+      }
 
       await sweep.evaluate((node) => {
         node.style.setProperty("--cui-skeleton-animation-duration", "3s");
         node.style.setProperty("--cui-skeleton-highlight-background", "oklch(0.7 0.1 200)");
+        node.style.setProperty("--cui-skeleton-easing", "ease-in-out");
       });
       expect(await sweep.evaluate((node) => getComputedStyle(node, "::after").animationDuration)).toBe("3s");
       expect(await sweep.evaluate((node) => getComputedStyle(node, "::after").backgroundImage)).toContain("oklch(0.7 0.1 200)");
+      expect(await sweep.evaluate((node) => getComputedStyle(node, "::after").animationTimingFunction)).toBe("ease-in-out");
       await pulse.evaluate((node) => {
         node.style.setProperty("--cui-skeleton-pulse-opacity", "0.7");
         const animation = node.getAnimations()[0];

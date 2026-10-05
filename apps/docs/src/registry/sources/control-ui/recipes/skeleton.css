@@ -15,13 +15,17 @@
     background-image: var(--cui-skeleton-background-image);
   }
 
+  :where([data-control-family="skeleton"][data-slot="root"][data-variant="shimmer"]) {
+    --cui-skeleton-easing: linear;
+  }
+
   :where([data-control-family="skeleton"][data-slot="root"][data-variant="shimmer"])::after {
     content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;
     background-image: linear-gradient(90deg, transparent, var(--cui-skeleton-highlight-background), transparent);
-    transform: translateX(-100%);
+    transform: translateX(-125%);
     animation: cui-skeleton-shimmer var(--cui-skeleton-animation-duration) var(--cui-skeleton-easing) infinite;
   }
 
@@ -47,8 +51,11 @@
 }
 
 @keyframes cui-skeleton-shimmer {
+  from {
+    transform: translateX(-125%);
+  }
   to {
-    transform: translateX(100%);
+    transform: translateX(125%);
   }
 }
 
