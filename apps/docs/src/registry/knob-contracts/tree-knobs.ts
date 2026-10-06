@@ -9,5 +9,6 @@ export const treeKnobs = [
   "--cui-tree-item-trigger-font-size",
   "--cui-tree-item-trigger-selected-font-weight",
   "--cui-tree-indent-inset",
+  "--cui-tree-item-trigger-background",
 ] as const;
 export type TreeKnobStyle = Partial<Record<(typeof treeKnobs)[number], string>>;

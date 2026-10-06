@@ -84,7 +84,6 @@
 @property --cui-skeleton-background-image {
   syntax: "*";
   inherits: true;
-  initial-value: none;
 }
 
 @property --cui-skeleton-highlight-background {
@@ -102,11 +101,10 @@
 @property --cui-skeleton-easing {
   syntax: "*";
   inherits: true;
-  initial-value: ease;
 }
 
 @property --cui-skeleton-pulse-opacity {
   syntax: "<number>";
   inherits: true;
-  initial-value: 0.5;
+  initial-value: 1;
 }

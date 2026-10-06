@@ -88,31 +88,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "header"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "kbd",
-          "data-control-ui": "kbd",
-          "data-slot": "root",
-          "data-variant": "ghost"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
+          "data-scroll": "inset",
           "data-slot": "wrapper"
         }
       },
@@ -135,19 +111,9 @@
       },
       {
         "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-density": "comfortable",
-          "data-slot": "root",
-          "data-state": "idle"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-slot": "shell",
-          "data-state": "idle",
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
           "data-surface": "panel"
         }
       },
@@ -166,6 +132,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
+          "data-scroll": "inset",
           "data-slot": "wrapper"
         }
       },
@@ -188,37 +155,10 @@
       },
       {
         "attributes": {
-          "data-control-family": "kbd",
-          "data-control-ui": "kbd",
-          "data-slot": "root",
-          "data-variant": "default"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
         }
       },
       {
@@ -236,6 +176,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
+          "data-scroll": "inset",
           "data-slot": "wrapper"
         }
       },
@@ -258,6 +199,14 @@
       },
       {
         "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "user-ask",
           "data-control-ui": "user-ask",
           "data-slot": "root",
@@ -270,6 +219,7 @@
           "data-control": "true",
           "data-control-family": "button",
           "data-control-ui": "user-ask",
+          "data-layout": "inline",
           "data-shape": "default",
           "data-size": "xs",
           "data-slot": "dismiss",
@@ -294,6 +244,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
+          "data-scroll": "inset",
           "data-slot": "wrapper"
         }
       },
@@ -312,6 +263,83 @@
           "data-scroll": "inset",
           "data-slot": "root",
           "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "user-ask",
+          "data-control-ui": "user-ask",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "user-ask",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "submit",
+          "data-tone": "primary",
+          "data-user-ask-submit": "true",
+          "data-variant": "solid",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "kbd",
+          "data-control-ui": "kbd",
+          "data-slot": "root",
+          "data-user-ask-submit-kbd": "true",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
         }
       },
       {
@@ -394,15 +422,6 @@
         "text": "--cui-kbd-foreground"
       },
       "anatomy": 6,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-kbd-background",
-        "text": "--cui-kbd-foreground"
-      },
-      "anatomy": 7,
       "rendersText": true,
       "state": false
     }

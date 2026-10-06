@@ -112,9 +112,9 @@
 }
 
 @property --cui-sidebar-nav-height {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
-  initial-value: 72px;
+  initial-value: 0px;
 }
 
 @property --cui-sidebar-nav-background {
@@ -165,7 +165,7 @@
 }
 
 @property --cui-sidebar-nav-gap {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
-  initial-value: 12px;
+  initial-value: 0px;
 }

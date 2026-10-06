@@ -7,7 +7,6 @@ import { SIDEBAR_COOKIE_NAME } from "@/components/control-ui/control-props";
 import { useIsMobile } from "@/components/control-ui/hooks/use-mobile";
 import type { SidebarKnobStyle } from "@/components/control-ui/knob-contracts/sidebar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { useSkin } from "@/components/control-ui/skin-provider";
 
 import { TooltipProvider } from "@/components/control-ui/ui/tooltip";
 
@@ -19,8 +18,6 @@ export type SidebarStyle = CSSProperties &
     "--sidebar-width-icon"?: string;
   };
 
-const SIDEBAR_WIDTH = "16rem";
-const SIDEBAR_WIDTH_ICON = "3rem";
 const SIDEBAR_KEYBOARD_SHORTCUT = "b";
 const SIDEBAR_MOBILE_BREAKPOINT = "--breakpoint-lg";
 
@@ -132,7 +129,6 @@ export function SidebarProvider({
   children,
   ...props
 }: SidebarProviderProps) {
-  const skin = useSkin();
   const isMobile = useIsMobile(SIDEBAR_MOBILE_BREAKPOINT);
   const [openMobile, setOpenMobile] = useState(false);
   if (!isMobile && openMobile) setOpenMobile(false);
@@ -220,8 +216,6 @@ export function SidebarProvider({
   };
 
   const wrapperStyle: SidebarStyle = {
-    "--sidebar-width": skin.sidebarWidth ?? SIDEBAR_WIDTH,
-    "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
     ...style,
     ...(width === undefined ? {} : { "--sidebar-width": `${width}px` }),
   };

@@ -8,6 +8,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
+          "data-scroll": "inset",
           "data-slot": "wrapper"
         }
       },
@@ -66,6 +67,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
+          "data-scroll": "inset",
           "data-slot": "wrapper"
         }
       },
@@ -124,6 +126,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
+          "data-scroll": "inset",
           "data-slot": "wrapper"
         }
       },
@@ -182,6 +185,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
+          "data-scroll": "inset",
           "data-slot": "wrapper"
         }
       },
@@ -240,6 +244,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
+          "data-scroll": "inset",
           "data-slot": "wrapper"
         }
       },

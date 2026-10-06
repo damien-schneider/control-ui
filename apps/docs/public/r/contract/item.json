@@ -14,7 +14,7 @@
     },
     {
       "name": "--cui-item-hover-background",
-      "syntax": "*",
+      "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "transparent"
     },
@@ -38,19 +38,19 @@
     },
     {
       "name": "--cui-item-gap",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 3)"
     },
     {
       "name": "--cui-item-padding-block",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 3)"
     },
     {
       "name": "--cui-item-padding-inline",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 3)"
     }

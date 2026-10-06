@@ -183,7 +183,7 @@
 }
 
 @property --cui-popup-title-font-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
@@ -197,7 +197,7 @@
 @property --cui-popup-title-line-height {
   syntax: "<number>";
   inherits: true;
-  initial-value: 1;
+  initial-value: 1.5;
 }
 
 @property --cui-popup-title-letter-spacing {

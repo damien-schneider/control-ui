@@ -8,13 +8,13 @@
   "knobs": [
     {
       "name": "--cui-user-ask-radius",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--radius-popover)"
     },
     {
       "name": "--cui-user-ask-padding",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 3)"
     },
@@ -26,13 +26,13 @@
     },
     {
       "name": "--cui-user-ask-indicator-radius",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "9999px"
     },
     {
       "name": "--cui-user-ask-indicator-multiple-radius",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--radius-sm)"
     },
@@ -68,7 +68,7 @@
     },
     {
       "name": "--cui-user-ask-option-radius",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "max(\n      var(--radius-sm),\n      min(var(--radius-popup-item-fit), calc(var(--cui-user-ask-radius) - var(--cui-user-ask-padding)))\n    )"
     },

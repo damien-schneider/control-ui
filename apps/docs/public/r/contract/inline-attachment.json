@@ -8,7 +8,7 @@
   "knobs": [
     {
       "name": "--cui-inline-attachment-radius",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "min(\n      var(--radius-field),\n      calc(var(--cui-inline-attachment-padding) + var(--_inline-attachment-content-line-height) / 2 + var(--spacing))\n    )"
     },
@@ -26,13 +26,13 @@
     },
     {
       "name": "--cui-inline-attachment-padding",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 3)"
     },
     {
       "name": "--cui-inline-attachment-document-padding",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 5)"
     },
@@ -62,7 +62,7 @@
     },
     {
       "name": "--cui-inline-attachment-content-radius",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "max(\n      var(--radius-sm),\n      calc(var(--cui-inline-attachment-radius) - var(--cui-inline-attachment-padding))\n    )"
     },

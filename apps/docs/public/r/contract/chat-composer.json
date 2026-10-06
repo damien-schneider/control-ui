@@ -14,7 +14,7 @@
     },
     {
       "name": "--cui-chat-composer-shell-radius",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--radius-composer)"
     },
@@ -74,13 +74,13 @@
     },
     {
       "name": "--cui-chat-composer-mention-radius",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--radius-popup-item)"
     },
     {
       "name": "--cui-chat-composer-mention-icon-radius",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "min(var(--radius-sm), calc(var(--spacing) * 1))"
     },

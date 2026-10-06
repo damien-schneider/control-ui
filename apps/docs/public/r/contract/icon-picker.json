@@ -8,7 +8,7 @@
   "knobs": [
     {
       "name": "--cui-icon-picker-cell-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 10)"
     },
@@ -25,7 +25,13 @@
       "defaultValue": "var(--foreground)"
     },
     {
-      "name": "--cui-icon-picker-active-background",
+      "name": "--cui-icon-picker-cell-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--accent)"
+    },
+    {
+      "name": "--cui-icon-picker-cell-pressed-background",
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--accent)"

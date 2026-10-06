@@ -52,13 +52,13 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 
 - --background [light+dark] Base surface color (panels, bubbles read it via bg-background).
 - --foreground [light+dark] Default text color on --background.
-- --card [light+dark] Elevated card surface.
+- --card [light+dark] Card surface; sits on --background in light, one ramp step above it in dark.
 - --card-foreground [light+dark] Text color on --card.
 - --popover [light+dark] Floating surface base (popover / menu / select / dialog).
 - --popover-foreground [light+dark] Text color on --popover.
 - --primary [light+dark] THE brand color; primary action surfaces route through it.
 - --primary-foreground [light+dark] Text color on --primary.
-- --primary-text [light+dark] Readable brand text color on base and card surfaces.
+- --primary-text [light+dark] Readable brand text color on base and card surfaces; --primary at ramp step 11.
 - --muted [light+dark] Subdued fill for quiet surfaces.
 - --muted-foreground [light+dark] Secondary / meta text color.
 - --secondary [light+dark] Secondary action fill (assistant bubble in chat skins).
@@ -67,21 +67,24 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --accent-foreground [light+dark] Text color on --accent.
 - --destructive [light+dark] Destructive action color.
 - --destructive-foreground [light+dark] Text color on --destructive.
-- --destructive-text [light+dark] Readable destructive text color on base and card surfaces.
-- --success-text [light+dark] Readable success text color on base and card surfaces; defaults to --scale-green-11.
+- --destructive-text [light+dark] Readable destructive text color on base and card surfaces; --destructive at ramp step 11.
+- --success [light+dark] Success status color; defaults to --scale-green-9.
+- --warning [light+dark] Warning status color; defaults to --scale-yellow-9.
+- --info [light+dark] Info status color; defaults to --scale-blue-9.
+- --success-text [light+dark] Readable success text color on base and card surfaces; --success at ramp step 11.
 - --warning-text [light+dark] Readable warning text color on base and card surfaces; defaults to --scale-yellow-11.
 - --info-text [light+dark] Readable informational text color on base and card surfaces; defaults to --scale-blue-11.
 - --border [light+dark] Hairline border color (carries --ring-opacity).
-- --input [light+dark] Form field border color.
+- --input [light+dark] Form field border color; defaults to --control-rim.
 - --ring [light+dark] Ring palette color; --focus-ring derives from it at 70% alpha, so a skin whose ring loses 3:1 there (a saturated accent or a softened halo) must set --focus-ring.
 - --focus-ring [light+dark] Color of the keyboard focus indicator; defaults to --ring at 70% alpha. Must clear 3:1 against every surface it lands on (WCAG 1.4.11).
 - --control-rim [light+dark] Boundary color of a control's own edge; defaults to --border.
-- --control-boundary [light+dark] Edge of a control that has no other outline (unchecked checkbox, radio, switch track); defaults to --foreground at 55% and must clear 3:1 on --background and --card (WCAG 1.4.11).
+- --control-boundary [light+dark] Edge of a control that has no other outline (unchecked checkbox, radio, switch track); defaults to --foreground at 60% and must clear 3:1 on --background and --card (WCAG 1.4.11).
 - --image-outline [light+dark] Hairline inside images and media that separates them from any surface; 10% black in light, 10% white in dark.
 - --control-fill [light+dark] Resting fill shared by fields and surface controls; defaults to --card at 72% alpha.
 - --hover-fill [light+dark] Wash a row or control takes on hover; defaults to a 6% tint of --foreground.
 - --active-fill [light+dark] Wash a selected or pressed row keeps; defaults to an 8% tint of --foreground.
-- --canvas [light+dark] The page paper the scene/panels float on — a level BELOW --background.
+- --canvas [light+dark] The page paper the scene/panels float on; same ramp step as --background by default, skins may drop it below.
 - --canvas-grid-dot [light+dark] Dot color of canvas and flow grid backgrounds.
 - --ring-opacity [shared] Alpha of the --border hairline; 0 = borderless, defaults to 1.
 - --scale-neutral-seed [light+dark] Seed of the neutral ramp; its hue and chroma drive --scale-neutral-1 to --scale-neutral-12.
@@ -93,6 +96,9 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --scale-blue-seed [light+dark] Seed of the blue ramp; its hue and chroma drive --scale-blue-1 to --scale-blue-12.
 - --scale-purple-seed [light+dark] Seed of the purple ramp; its hue and chroma drive --scale-purple-1 to --scale-purple-12.
 - --scale-pink-seed [light+dark] Seed of the pink ramp; its hue and chroma drive --scale-pink-1 to --scale-pink-12.
+- --badge-fill-alpha [shared] Alpha of every tinted badge fill; defaults to 0.16.
+- --badge-border-alpha [shared] Alpha of every tinted badge border; defaults to 0.2.
+- --badge-hover-alpha [shared] Alpha a tinted badge fill reaches on hover; defaults to 0.24.
 - --badge-neutral [light+dark] Soft neutral-family badge background; the skin owns the exact hue.
 - --badge-neutral-foreground [light+dark] Text color on the neutral-family badge.
 - --badge-neutral-border [light+dark] Border of the outline neutral-family badge variant.
@@ -125,6 +131,12 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --badge-pink-foreground [light+dark] Text color on the pink-family badge.
 - --badge-pink-border [light+dark] Border of the outline pink-family badge variant.
 - --badge-pink-hover [light+dark] Hover background of filled pink-family badge links and buttons.
+- --sidebar [light+dark] Sidebar surface; defaults to --canvas.
+- --sidebar-foreground [light+dark] Text on the sidebar surface; defaults to --foreground.
+- --sidebar-primary [light+dark] Accent of the active sidebar item; defaults to --primary.
+- --sidebar-accent [light+dark] Hover and active wash of sidebar items; defaults to --hover-fill.
+- --sidebar-accent-foreground [light+dark] Text on a washed sidebar item; defaults to --foreground.
+- --sidebar-border [light+dark] Edge between the sidebar and the page; defaults to --border.
 - --font-sans [shared] Typeface for the whole UI.
 - --font-mono [shared] Monospace face (code, kbd).
 - --font-body [shared] Font ROLE for body/UI text; defaults to --font-sans.
@@ -164,12 +176,11 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --radius-panel [shared] Code / markdown panel corner; --radius × 2.6.
 - --radius-scene [shared] Scene frame / large media corner; --radius × 2.8.
 - --corner-shape [shared] Progressive corner reshape (round | squircle | scoop | …); defaults to round.
-- --corner-radius-fit [shared] Fallback radius shrink where corner-shape: squircle is unsupported.
 - --radius-popup-item [shared] Select/menu row corner; derived from --radius-control.
 - --radius-popover [shared] Popup container corner, concentric with the fitted row corner.
 - --shadow-color [light+dark] Hue every shadow is tinted with.
 - --shadow-highlight [light+dark] Inner top light painted along raised surfaces' top edge (carries its resting alpha).
-- --shadow-size [shared] Global geometry multiplier: 1 = default depth, 0 = flat.
+- --shadow-size [shared] Global geometry multiplier: 0 = flat (the default), 1 = full depth.
 - --shadow-opacity [shared] Global alpha multiplier: 1 = default density, 0 = invisible.
 - --shadow-y [shared] Vertical bias: 0 = centered, 1 = default bottom cast.
 - --shadow-control-multiplier [shared] Elevation tier: controls; defaults to 1.
@@ -195,7 +206,15 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --control-h [shared] THE base control height (md); the ramp derives from it.
 - --control-h-xs [shared] Derived control height: xs (×0.78, px-snapped).
 - --control-h-sm [shared] Derived control height: sm (×0.89, px-snapped).
+- --control-h-md [shared] Derived control height: md (= --control-h).
 - --control-h-lg [shared] Derived control height: lg (×1.11, px-snapped).
+- --sidebar-width [shared] Expanded sidebar width; a dragged width overrides it inline.
+- --sidebar-width-icon [shared] Collapsed icon-rail sidebar width.
+- --z-overlay [shared] Stacking level of modal backdrops.
+- --z-modal [shared] Stacking level of dialogs and sheets.
+- --z-popup [shared] Stacking level of menus, popovers, and selects.
+- --z-tooltip [shared] Stacking level of tooltips.
+- --z-toast [shared] Stacking level of toasts.
 - --focus-ring-width [shared] Thickness of the keyboard focus indicator; 0 removes it and fails WCAG 2.4.7.
 - --focus-ring-style [shared] Line style of the keyboard focus indicator (solid, dotted, dashed); none removes it and fails WCAG 2.4.7.
 - --focus-ring-offset [shared] Gap between a control edge and its focus ring; negative draws it inside. Bordered fields ignore it and paint the indicator over their border.

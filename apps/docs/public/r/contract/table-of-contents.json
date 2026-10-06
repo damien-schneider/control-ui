@@ -33,13 +33,13 @@
     {
       "name": "--cui-table-of-contents-shadow",
       "syntax": "*",
-      "initialValue": "none",
+      "initialValue": "",
       "defaultValue": "var(--shadow-sm)"
     },
     {
       "name": "--cui-table-of-contents-backdrop-filter",
       "syntax": "*",
-      "initialValue": "none",
+      "initialValue": "",
       "defaultValue": "none"
     },
     {
@@ -57,7 +57,7 @@
     {
       "name": "--cui-table-of-contents-label-font-size",
       "syntax": "<length-percentage>",
-      "initialValue": "1rem",
+      "initialValue": "0px",
       "defaultValue": "var(--text-caption)"
     },
     {
@@ -93,7 +93,7 @@
     {
       "name": "--cui-table-of-contents-item-font-size",
       "syntax": "<length-percentage>",
-      "initialValue": "1rem",
+      "initialValue": "0px",
       "defaultValue": "var(--text-body)"
     },
     {
@@ -128,7 +128,7 @@
     },
     {
       "name": "--cui-table-of-contents-item-indent-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 2)"
     },
@@ -140,7 +140,7 @@
     },
     {
       "name": "--cui-table-of-contents-rail-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "1px"
     },
@@ -152,7 +152,7 @@
     },
     {
       "name": "--cui-table-of-contents-trail-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "2px"
     },
@@ -164,7 +164,7 @@
     },
     {
       "name": "--cui-table-of-contents-scroll-inset",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 20)"
     }

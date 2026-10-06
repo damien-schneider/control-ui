@@ -221,7 +221,7 @@
 }
 
 @property --cui-scroll-area-thumb-background {
-  syntax: "*";
+  syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }

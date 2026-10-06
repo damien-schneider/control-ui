@@ -52,6 +52,9 @@ const SLIDER_SPECS: Record<string, SliderSpec> = {
   "--radius-popover": slider(0, 48, 1, "px"),
   "--control-rim-width": slider(0, 4, 0.5, "px"),
   "--ring-opacity": slider(0, 1, 0.01, ""),
+  "--badge-fill-alpha": slider(0, 1, 0.01, ""),
+  "--badge-border-alpha": slider(0, 1, 0.01, ""),
+  "--badge-hover-alpha": slider(0, 1, 0.01, ""),
   "--popover-opacity": slider(0, 1, 0.01, ""),
   "--overlay-opacity": slider(0, 1, 0.01, ""),
   "--popup-item-disabled-opacity": slider(0, 1, 0.01, ""),
@@ -105,7 +108,9 @@ export function tokenControlSpec(token: ThemeContractToken): TokenControlSpec {
 
 const COLOR_VALUED = new Set(
   THEME_CONTRACT.flatMap((token) =>
-    (token.group === "color" && !token.name.endsWith("-opacity")) || token.name === "--shadow-color" || token.name === "--shadow-highlight"
+    (token.group === "color" && !/-(?:opacity|alpha)$/.test(token.name)) ||
+    token.name === "--shadow-color" ||
+    token.name === "--shadow-highlight"
       ? [token.name]
       : [],
   ),
@@ -142,6 +147,9 @@ const FRIENDLY_LABELS: Record<string, string> = {
   "--ring": "Focus ring",
   "--canvas": "Page canvas",
   "--ring-opacity": "Border opacity",
+  "--badge-fill-alpha": "Badge fill opacity",
+  "--badge-border-alpha": "Badge border opacity",
+  "--badge-hover-alpha": "Badge hover opacity",
   "--control-rim-width": "Border width",
   "--control-boundary": "Control edge",
   "--image-outline": "Image edge",
@@ -159,7 +167,6 @@ const FRIENDLY_LABELS: Record<string, string> = {
   "--radius-popover": "Popover radius",
   "--radius-popup-item": "Menu row radius",
   "--corner-shape": "Corner shape",
-  "--corner-radius-fit": "Squircle fallback radius",
   "--shadow-color": "Shadow tint",
   "--shadow-highlight": "Top edge highlight",
   "--shadow-size": "Shadow size",
@@ -222,7 +229,8 @@ const GROUP_DESCRIPTIONS: Record<ThemeContractGroup, string> = {
   layout: "Control sizing, density, spacing, and chrome.",
 };
 
-const isPaletteToken = (token: ThemeContractToken) => token.name.startsWith("--badge-") || token.name.startsWith("--scale-");
+const isPaletteToken = (token: ThemeContractToken) =>
+  token.name.startsWith("--scale-") || (token.name.startsWith("--badge-") && !token.name.endsWith("-alpha"));
 
 export const TOKEN_CATEGORIES: readonly TokenCategory[] = TOKEN_GROUP_ORDER.map((group) => {
   const tokens = THEME_CONTRACT.filter((token) => token.group === group && !isPaletteToken(token));

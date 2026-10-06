@@ -86,7 +86,7 @@
     },
     {
       "name": "--cui-chat-message-pending-dot-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 1.5)"
     },

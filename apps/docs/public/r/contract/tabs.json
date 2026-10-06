@@ -15,7 +15,7 @@
     },
     {
       "name": "--cui-tabs-surface-radius",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--radius-panel)"
     },
@@ -46,12 +46,12 @@
     {
       "name": "--cui-tabs-list-backdrop-filter",
       "syntax": "*",
-      "initialValue": "none",
+      "initialValue": "",
       "defaultValue": "none"
     },
     {
       "name": "--cui-tabs-indicator-background",
-      "syntax": "*",
+      "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--background)"
     },
@@ -76,7 +76,7 @@
     {
       "name": "--cui-tabs-indicator-shadow",
       "syntax": "*",
-      "initialValue": "none",
+      "initialValue": "",
       "defaultValue": "var(--shadow-sm)"
     },
     {
@@ -96,6 +96,12 @@
       "syntax": "<length>",
       "initialValue": "0px",
       "defaultValue": "var(--control-rim-width)"
+    },
+    {
+      "name": "--cui-tabs-indicator-background-image",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
     }
   ],
   "parts": {

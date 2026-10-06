@@ -38,13 +38,13 @@
     },
     {
       "name": "--cui-chat-layout-scroll-button-gap",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 3)"
     },
     {
       "name": "--cui-chat-layout-turn-gap",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 2)"
     }

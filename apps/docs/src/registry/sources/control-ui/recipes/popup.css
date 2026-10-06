@@ -89,9 +89,9 @@
   :where([data-control-family="popup"][data-popup-part="backdrop"]) {
     --cui-popup-backdrop-background: oklch(from var(--foreground) l c h / var(--overlay-opacity));
     background-color: var(--cui-popup-backdrop-background);
-    --cui-popup-backdrop-blur: blur(var(--backdrop-blur-overlay));
-    -webkit-backdrop-filter: var(--cui-popup-backdrop-blur);
-    backdrop-filter: var(--cui-popup-backdrop-blur);
+    --cui-popup-backdrop-blur: var(--backdrop-blur-overlay);
+    -webkit-backdrop-filter: blur(var(--cui-popup-backdrop-blur));
+    backdrop-filter: blur(var(--cui-popup-backdrop-blur));
     transition: opacity var(--duration-base) var(--ease-emphasized);
   }
   :where(.dark [data-control-family="popup"][data-popup-part="backdrop"]) {
@@ -255,8 +255,9 @@
 }
 
 @property --cui-popup-radius {
-  syntax: "*";
+  syntax: "<length-percentage>";
   inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-popup-background {
@@ -300,8 +301,9 @@
 }
 
 @property --cui-popup-backdrop-blur {
-  syntax: "*";
+  syntax: "<length>";
   inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-popup-item-radius {
@@ -311,15 +313,15 @@
 }
 
 @property --cui-popup-item-font-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-popup-item-icon-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
-  initial-value: 16px;
+  initial-value: 0px;
 }
 
 @property --cui-popup-item-padding-block {
@@ -335,7 +337,7 @@
 }
 
 @property --cui-popup-item-min-height {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }

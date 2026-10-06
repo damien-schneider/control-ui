@@ -145,13 +145,11 @@
 @property --cui-table-of-contents-shadow {
   syntax: "*";
   inherits: true;
-  initial-value: none;
 }
 
 @property --cui-table-of-contents-backdrop-filter {
   syntax: "*";
   inherits: true;
-  initial-value: none;
 }
 
 @property --cui-table-of-contents-padding {
@@ -169,7 +167,7 @@
 @property --cui-table-of-contents-label-font-size {
   syntax: "<length-percentage>";
   inherits: true;
-  initial-value: 1rem;
+  initial-value: 0px;
 }
 
 @property --cui-table-of-contents-label-font-weight {
@@ -205,7 +203,7 @@
 @property --cui-table-of-contents-item-font-size {
   syntax: "<length-percentage>";
   inherits: true;
-  initial-value: 1rem;
+  initial-value: 0px;
 }
 
 @property --cui-table-of-contents-item-line-height {
@@ -239,7 +237,7 @@
 }
 
 @property --cui-table-of-contents-item-indent-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
@@ -251,7 +249,7 @@
 }
 
 @property --cui-table-of-contents-rail-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
@@ -263,7 +261,7 @@
 }
 
 @property --cui-table-of-contents-trail-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
@@ -275,7 +273,7 @@
 }
 
 @property --cui-table-of-contents-scroll-inset {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }

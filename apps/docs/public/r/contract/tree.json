@@ -45,7 +45,7 @@
     {
       "name": "--cui-tree-item-trigger-font-size",
       "syntax": "<length-percentage>",
-      "initialValue": "1rem",
+      "initialValue": "0px",
       "defaultValue": "var(--text-body)"
     },
     {
@@ -56,9 +56,15 @@
     },
     {
       "name": "--cui-tree-indent-inset",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "1.25rem"
+    },
+    {
+      "name": "--cui-tree-item-trigger-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
     }
   ],
   "parts": {

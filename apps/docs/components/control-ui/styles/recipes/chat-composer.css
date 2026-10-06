@@ -138,7 +138,7 @@
 }
 
 @property --cui-chat-composer-shell-radius {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
@@ -195,13 +195,13 @@
 }
 
 @property --cui-chat-composer-mention-radius {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-chat-composer-mention-icon-radius {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }

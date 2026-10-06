@@ -91,8 +91,6 @@
     }
   },
   "adornments": {},
-  "uncovered": [
-    "--cui-audio-device-select-status-foreground"
-  ],
+  "uncovered": [],
   "contrast": "/r/contract/audio-device-select.contrast.json"
 }

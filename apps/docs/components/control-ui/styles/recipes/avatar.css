@@ -60,11 +60,11 @@
   }
 
   :where([data-control-family="avatar"][data-slot="badge"][data-status="online"]) {
-    --cui-avatar-badge-background: var(--success-text);
+    --cui-avatar-badge-background: var(--success);
   }
 
   :where([data-control-family="avatar"][data-slot="badge"][data-status="away"]) {
-    --cui-avatar-badge-background: var(--warning-text);
+    --cui-avatar-badge-background: var(--warning);
   }
 
   :where([data-control-family="avatar"][data-slot="badge"][data-status="busy"]) {
@@ -121,7 +121,7 @@
 }
 
 @property --cui-avatar-badge-ring-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }

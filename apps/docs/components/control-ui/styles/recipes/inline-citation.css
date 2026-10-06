@@ -150,7 +150,7 @@
 }
 
 @property --cui-inline-citation-trigger-radius {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
@@ -204,7 +204,7 @@
 }
 
 @property --cui-inline-citation-quote-radius {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }

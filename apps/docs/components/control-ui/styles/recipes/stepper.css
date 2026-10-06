@@ -185,7 +185,7 @@
 }
 
 @property --cui-stepper-indicator-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }

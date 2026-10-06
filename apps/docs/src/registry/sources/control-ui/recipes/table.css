@@ -85,7 +85,7 @@
 }
 
 @property --cui-table-background {
-  syntax: "*";
+  syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
@@ -103,13 +103,13 @@
 }
 
 @property --cui-table-row-hover-background {
-  syntax: "*";
+  syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
 @property --cui-table-row-selected-background {
-  syntax: "*";
+  syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
@@ -121,7 +121,7 @@
 }
 
 @property --cui-table-footer-background {
-  syntax: "*";
+  syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }

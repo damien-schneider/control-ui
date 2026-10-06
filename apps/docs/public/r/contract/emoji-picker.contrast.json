@@ -31,6 +31,14 @@
       },
       {
         "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
           "data-align": "center",
           "data-control-family": "popup",
           "data-control-ui": "popover",
@@ -90,6 +98,14 @@
           "data-scroll": "inset",
           "data-slot": "root",
           "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
         }
       },
       {
@@ -157,6 +173,14 @@
       },
       {
         "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
           "data-align": "start",
           "data-control-family": "popup",
           "data-control-ui": "popover",
@@ -215,6 +239,14 @@
           "data-scroll": "inset",
           "data-slot": "root",
           "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
         }
       },
       {
@@ -358,81 +390,6 @@
         "attributes": {
           "data-control-family": "emoji-picker",
           "data-control-ui": "emoji-picker",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "emoji-picker",
-          "data-control-ui": "emoji-picker",
-          "data-slot": "category-header"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "contained",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-size": "default",
-          "data-slot": "menu-button",
-          "data-variant": "default"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "end",
-          "data-control-family": "popup",
-          "data-control-ui": "popover",
-          "data-open": "",
-          "data-padding": "none",
-          "data-popup-kind": "popover",
-          "data-popup-part": "surface",
-          "data-side": "bottom",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "dialog",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "emoji-picker",
-          "data-control-ui": "emoji-picker",
-          "data-focused": "",
           "data-slot": "root"
         }
       },
@@ -493,15 +450,6 @@
         "text": "--cui-emoji-picker-header-foreground"
       },
       "anatomy": 5,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-emoji-picker-header-background",
-        "text": "--cui-emoji-picker-header-foreground"
-      },
-      "anatomy": 6,
       "rendersText": true,
       "state": false
     }

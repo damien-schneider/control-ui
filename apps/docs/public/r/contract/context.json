@@ -8,13 +8,13 @@
   "knobs": [
     {
       "name": "--cui-context-graph-radius",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "9999px"
     },
     {
       "name": "--cui-context-legend-indicator-radius",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "9999px"
     },

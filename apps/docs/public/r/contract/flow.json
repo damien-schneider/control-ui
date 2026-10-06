@@ -32,7 +32,7 @@
     },
     {
       "name": "--cui-flow-edge-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "1.5px"
     },
@@ -86,7 +86,7 @@
     },
     {
       "name": "--cui-flow-handle-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 2)"
     },

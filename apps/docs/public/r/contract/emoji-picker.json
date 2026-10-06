@@ -8,13 +8,13 @@
   "knobs": [
     {
       "name": "--cui-emoji-picker-cell-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 10)"
     },
     {
       "name": "--cui-emoji-picker-height",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "22rem"
     },

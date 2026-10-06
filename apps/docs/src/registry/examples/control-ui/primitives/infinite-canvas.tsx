@@ -45,7 +45,7 @@ export function PrimitiveInfiniteCanvasExample() {
           as="div"
           size="caption"
           tone="muted"
-          className="pointer-events-none absolute top-(--cui-infinite-canvas-padding) left-(--cui-infinite-canvas-padding) rounded-(--cui-infinite-canvas-controls-radius) bg-card/90 px-2.5 py-1.5 shadow-xs ring-1 ring-border backdrop-blur-sm"
+          className="pointer-events-none absolute top-(--cui-infinite-canvas-padding) left-(--cui-infinite-canvas-padding) rounded-(--cui-infinite-canvas-controls-radius) bg-card/90 px-2.5 py-1.5 shadow-sm ring-1 ring-border backdrop-blur-sm"
         >
           Drag cards to move them · Drag the background or scroll to pan · Pinch or hold ⌘ while scrolling to zoom
         </Text>

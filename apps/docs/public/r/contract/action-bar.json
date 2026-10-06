@@ -9,7 +9,7 @@
     {
       "name": "--cui-action-bar-hidden-opacity",
       "syntax": "<number>",
-      "initialValue": "0",
+      "initialValue": "1",
       "defaultValue": "0"
     },
     {

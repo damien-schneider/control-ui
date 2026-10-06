@@ -183,13 +183,13 @@
 }
 
 @property --cui-context-graph-radius {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-context-legend-indicator-radius {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }

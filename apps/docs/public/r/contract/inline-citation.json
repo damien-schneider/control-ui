@@ -8,7 +8,7 @@
   "knobs": [
     {
       "name": "--cui-inline-citation-trigger-radius",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "9999px"
     },
@@ -62,7 +62,7 @@
     },
     {
       "name": "--cui-inline-citation-quote-radius",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--radius-control)"
     },

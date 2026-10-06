@@ -9,7 +9,8 @@
     --cui-choice-border-width: var(--control-rim-width);
     --cui-choice-checked-background: var(--primary);
     --cui-choice-checked-border-color: var(--primary);
-    --_choice-background: var(--control-fill);
+    --cui-choice-background: var(--control-fill);
+    --_choice-background: var(--cui-choice-background);
     border-radius: var(--cui-choice-radius);
     background: var(--_choice-background);
     box-shadow: var(--cui-choice-shadow);
@@ -109,7 +110,13 @@
 @property --cui-choice-border-width {
   syntax: "<length>";
   inherits: true;
-  initial-value: 1px;
+  initial-value: 0px;
+}
+
+@property --cui-choice-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
 }
 
 @property --cui-choice-checked-background {
@@ -127,5 +134,4 @@
 @property --cui-choice-shadow {
   syntax: "*";
   inherits: true;
-  initial-value: none;
 }

@@ -131,11 +131,12 @@ type SyntaxMatcher = (value: string) => boolean;
 function compileSyntax(syntax: string): SyntaxMatcher | null {
   const trimmed = syntax.trim();
   if (trimmed === "*") return () => true;
-  if (!trimmed.includes("<")) {
-    const keywords = trimmed.split("|").map((keyword) => keyword.trim());
-    if (!keywords.every((keyword) => keywordPattern.test(keyword))) return null;
-    return (value) => keywords.includes(value);
+  const alternatives = trimmed.split("|").map((alternative) => alternative.trim());
+  if (alternatives.length > 1) {
+    const matchers = alternatives.flatMap((alternative) => compileSyntax(alternative) ?? []);
+    return matchers.length === alternatives.length ? (value) => matchers.some((matcher) => matcher(value)) : null;
   }
+  if (!trimmed.includes("<")) return keywordPattern.test(trimmed) ? (value) => value === trimmed : null;
   const typed = /^<([a-z-]+)>([+#])?$/i.exec(trimmed);
   if (!typed) return null;
   const matchesTerm = baseTypeMatchers[typed[1].toLowerCase()];

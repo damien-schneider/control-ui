@@ -39,6 +39,14 @@
     <GuidePoint>The trap: because recipes sit in `@layer components`, any unlayered stylesheet wins against them even at
     zero specificity. That is the deliberate exit for overrides — and it means a broad unlayered reset in your app
     silently repaints Control UI parts too. Keep global resets in a layer.</GuidePoint>
+    <GuidePoint>`theme.css` itself stays unlayered on purpose: its `@theme inline` block aliases every token to itself
+    (`--radius-sm: var(--radius-sm)`) so Tailwind utilities read the live cascade value, and Tailwind compiles those
+    aliases into `@layer theme` on `:root`. The token declarations must outrank that layer, and unlayered beats every
+    layer; inside `@layer theme` the alias would read itself and every utility would resolve to nothing.</GuidePoint>
+    <GuidePoint>Containers hand a radius to nested controls through `--nest-radius`: toolbars, panels, code actions,
+    and popup bars set it, and the button and field radius knobs default to `var(--nest-radius, …)`. A skin that
+    re-values `--cui-button-radius` or `--cui-field-radius` keeps that wrapper, or its buttons stop following the
+    container.</GuidePoint>
   </GuidePoints>
 
   The compiled styles set the browser floor: registered custom properties and relative color syntax — 274

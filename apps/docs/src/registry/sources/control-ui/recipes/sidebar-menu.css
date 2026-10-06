@@ -19,7 +19,8 @@
     padding-inline: var(--cui-sidebar-menu-button-padding-inline);
     font-size: var(--cui-sidebar-menu-button-font-size);
     font-weight: var(--cui-sidebar-menu-button-font-weight);
-    background-color: transparent;
+    background-color: var(--cui-sidebar-menu-button-background);
+    box-shadow: var(--cui-sidebar-menu-button-shadow);
     color: var(--cui-sidebar-menu-button-foreground);
   }
 
@@ -116,20 +117,9 @@
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-button"][data-variant="outline"]) {
-    background-color: var(--background);
-    box-shadow: 0 0 0 1px var(--sidebar-border);
-  }
-
-  @media (hover: hover) {
-    :where(
-        [data-control-family="sidebar"][data-slot="menu-button"][data-variant="outline"]:hover:not(
-          :disabled,
-          [data-disabled],
-          [aria-disabled="true"]
-        )
-      ) {
-      box-shadow: 0 0 0 1px oklch(from var(--foreground) l c h / 0.08);
-    }
+    --cui-sidebar-menu-button-background: var(--background);
+    --cui-sidebar-menu-button-shadow: 0 0 0 1px var(--sidebar-border);
+    --cui-sidebar-menu-button-hover-shadow: 0 0 0 1px oklch(from var(--foreground) l c h / 0.08);
   }
 
   :where(

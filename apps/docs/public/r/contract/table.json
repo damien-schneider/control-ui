@@ -8,7 +8,7 @@
   "knobs": [
     {
       "name": "--cui-table-background",
-      "syntax": "*",
+      "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "transparent"
     },
@@ -26,13 +26,13 @@
     },
     {
       "name": "--cui-table-row-hover-background",
-      "syntax": "*",
+      "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "oklch(from var(--foreground) l c h / 0.03)"
     },
     {
       "name": "--cui-table-row-selected-background",
-      "syntax": "*",
+      "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "oklch(from var(--foreground) l c h / 0.05)"
     },
@@ -44,7 +44,7 @@
     },
     {
       "name": "--cui-table-footer-background",
-      "syntax": "*",
+      "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "oklch(from var(--foreground) l c h / 0.03)"
     }

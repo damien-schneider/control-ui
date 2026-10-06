@@ -11,7 +11,7 @@
     {
       "name": "--cui-range-indeterminate-size",
       "syntax": "<length-percentage>",
-      "initialValue": "40%",
+      "initialValue": "0px",
       "defaultValue": "40%"
     },
     {
@@ -46,7 +46,7 @@
     },
     {
       "name": "--cui-range-thumb-background",
-      "syntax": "*",
+      "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--background)"
     },
@@ -59,7 +59,7 @@
     {
       "name": "--cui-range-thumb-shadow",
       "syntax": "*",
-      "initialValue": "none",
+      "initialValue": "",
       "defaultValue": "var(--shadow-sm)"
     }
   ],

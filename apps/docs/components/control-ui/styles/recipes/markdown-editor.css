@@ -197,31 +197,31 @@
 }
 
 @property --cui-markdown-editor-padding {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-markdown-editor-gutter-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-markdown-editor-min-height {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-markdown-editor-max-height {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-markdown-editor-gap {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }

@@ -3,7 +3,7 @@
     gap: calc(var(--spacing) * 2);
     min-block-size: calc(var(--spacing) * 5);
     font-size: var(--text-caption);
-    color: var(--muted-foreground);
+    --cui-chat-message-foreground: var(--muted-foreground);
   }
 
   :where([data-control-family="chat-message"][data-slot="row"][data-continuation]) {

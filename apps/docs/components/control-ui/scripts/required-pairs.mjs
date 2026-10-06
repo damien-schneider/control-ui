@@ -18,6 +18,15 @@ export const REQUIRED_PAIRS = [
     threshold: 4.5,
   },
   {
+    id: "sidebar-text",
+    category: "Text surfaces",
+    label: "Sidebar text",
+    foreground: "--sidebar-foreground",
+    background: "--sidebar",
+    surface: "--background",
+    threshold: 4.5,
+  },
+  {
     id: "card-text",
     category: "Text surfaces",
     label: "Card text",

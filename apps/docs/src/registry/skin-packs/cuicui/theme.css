@@ -1,4 +1,5 @@
 [data-skin="cuicui"][data-skin] {
+  --sidebar-width: 20rem;
   --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "Geist Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
 
@@ -45,13 +46,8 @@
 
   --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-emphasized: cubic-bezier(0.22, 1, 0.36, 1);
-  --duration-fast: 150ms;
   --duration-base: 240ms;
   --duration-slow: 420ms;
-}
-
-:root:not(.dark)[data-skin="cuicui"][data-skin],
-:where(:not(.dark)) [data-skin="cuicui"][data-skin] {
   --control-fill: oklch(1 0 0 / 0.9);
   --background: oklch(0.985 0 0);
   --foreground: oklch(0.269 0 0);
@@ -73,7 +69,7 @@
 }
 
 .dark[data-skin="cuicui"][data-skin],
-:where(.dark) [data-skin="cuicui"][data-skin] {
+.dark [data-skin="cuicui"][data-skin] {
   --control-fill: oklch(0.173 0 0 / 0.76);
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -95,12 +91,4 @@
   --popover-opacity: 0.82;
   --shadow-color: oklch(0 0 0);
   --shadow-opacity: 1;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  [data-skin="cuicui"][data-skin] {
-    --duration-fast: 0ms;
-    --duration-base: 0ms;
-    --duration-slow: 0ms;
-  }
 }

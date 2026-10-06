@@ -471,6 +471,12 @@ const archetypeFillPairs = (["background", "card"] as const).flatMap((surface): 
 export const THEME_AUDIT_PAIRS: readonly ThemeAuditPair[] = [
   textPair("body-on-background", "Body text on background", "--foreground", "--background"),
   textPair("body-on-canvas", "Body text on canvas", "--foreground", "--canvas"),
+  textPair("sidebar-text", "Sidebar text", "--sidebar-foreground", "--sidebar"),
+  {
+    ...textPair("sidebar-accent-text", "Sidebar item text on hover wash", "--sidebar-accent-foreground", "--sidebar-accent", "--sidebar"),
+    underlays: ["--background"],
+    severity: "warning",
+  },
   textPair("card-text", "Card text", "--card-foreground", "--card"),
   {
     ...textPair("popover-text-on-background", "Popover text on background", "--popover-foreground", "--popover", "--background"),
@@ -539,6 +545,22 @@ export const THEME_AUDIT_PAIRS: readonly ThemeAuditPair[] = [
   ...badgeOutlinePairs,
   boundaryPair("border-on-background", "Border on background", "--border", "--background"),
   boundaryPair("border-on-card", "Border on card", "--border", "--card"),
+  {
+    ...boundaryPair("sidebar-border-on-sidebar", "Sidebar border on sidebar", "--sidebar-border", "--sidebar"),
+    underlays: ["--background"],
+  },
+  {
+    ...boundaryPair("sidebar-primary-on-sidebar", "Sidebar accent (--sidebar-primary) on sidebar", "--sidebar-primary", "--sidebar"),
+    underlays: ["--background"],
+  },
+  ...(["success", "warning", "info"] as const).map((status) =>
+    boundaryPair(
+      `${status}-fill-on-background`,
+      `${status[0].toUpperCase()}${status.slice(1)} status fill on background`,
+      `--${status}`,
+      "--background",
+    ),
+  ),
   boundaryPair("input-on-background", "Input boundary on background", "--input", "--background"),
   boundaryPair("input-on-card", "Input boundary on card", "--input", "--card"),
   boundaryPair("ring-on-background", "Ring accent (--ring) on background", "--ring", "--background"),

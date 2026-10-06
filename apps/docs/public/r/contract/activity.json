@@ -32,7 +32,7 @@
     },
     {
       "name": "--cui-activity-code-radius",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--radius-control)"
     }

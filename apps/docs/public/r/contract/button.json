@@ -26,7 +26,7 @@
     {
       "name": "--cui-button-icon",
       "syntax": "<length>",
-      "initialValue": "16px",
+      "initialValue": "0px",
       "defaultValue": "1rem"
     },
     {
@@ -50,7 +50,7 @@
     {
       "name": "--cui-button-font-size",
       "syntax": "<length-percentage>",
-      "initialValue": "1rem",
+      "initialValue": "0px",
       "defaultValue": "var(--text-body)"
     },
     {
@@ -128,13 +128,13 @@
     {
       "name": "--cui-button-hover-shadow",
       "syntax": "*",
-      "initialValue": "none",
+      "initialValue": "",
       "defaultValue": "var(--cui-button-shadow)"
     },
     {
       "name": "--cui-button-press-shadow",
       "syntax": "*",
-      "initialValue": "none",
+      "initialValue": "",
       "defaultValue": "var(--cui-button-hover-shadow)"
     },
     {
@@ -158,7 +158,7 @@
     {
       "name": "--cui-button-open-shadow",
       "syntax": "*",
-      "initialValue": "none",
+      "initialValue": "",
       "defaultValue": "var(--cui-button-shadow)"
     }
   ],

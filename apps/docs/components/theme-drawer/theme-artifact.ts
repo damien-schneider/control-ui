@@ -44,8 +44,7 @@ function cssPropertyForToken(token: ThemeContractToken): string | null {
   if (token.group === "typography") return typographyCssProperty(name);
   if (token.group === "motion") return name.startsWith("--ease-") ? "transition-timing-function" : "transition-duration";
   if (token.group === "radius") {
-    if (name.startsWith("--corner-shape")) return null;
-    return name === "--corner-radius-fit" ? "opacity" : "border-radius";
+    return name.startsWith("--corner-shape") ? null : "border-radius";
   }
   if (token.group === "layout") return "padding";
   if (token.group === "surface") return name.includes("opacity") ? "opacity" : "padding";

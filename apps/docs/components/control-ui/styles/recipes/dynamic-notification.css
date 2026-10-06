@@ -205,7 +205,6 @@
 @property --cui-dynamic-notification-liquid-text-shadow {
   syntax: "*";
   inherits: true;
-  initial-value: none;
 }
 
 @property --cui-dynamic-notification-surface-background {

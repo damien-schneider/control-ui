@@ -14,7 +14,7 @@
     },
     {
       "name": "--cui-scroll-area-thumb-background",
-      "syntax": "*",
+      "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "oklch(from var(--foreground) l c h / 0.4)"
     },

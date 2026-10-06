@@ -1,10 +1,9 @@
 [data-skin="mastra"][data-skin] {
+  --sidebar-width: 15rem;
   --font-sans: "Mona Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "CommitMono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --text-micro: 0.625rem;
   --text-caption: 0.75rem;
   --text-label: 0.8125rem;
-  --text-body: 0.875rem;
   --text-body-lg: 0.875rem;
   --text-heading-4: 0.875rem;
   --text-heading-4--line-height: 1.43;
@@ -55,7 +54,6 @@
   --ring: var(--control-boundary);
   --focus-ring: var(--ring);
   --focus-ring-width: 1px;
-  --focus-ring-offset: 2px;
   --canvas: oklch(0.9642 0 0);
 
   --radius: 0.25rem;
@@ -64,18 +62,12 @@
   --radius-panel: calc(var(--radius) * 3.5);
   --radius-scene: calc(var(--radius) * 6);
   --radius-popup-item: calc(var(--radius) * 2.5);
-  --popover-padding: 0.25rem;
   --padding-x: 0.73125rem;
   --padding-y: 0.5rem;
   --control-h: 1.875rem;
   --control-h-sm: calc(var(--control-h) - 2px);
   --control-h-lg: calc(var(--control-h) + 2px);
-  --control-rim-width: 1px;
-
-  --popover-opacity: 1;
-  --backdrop-blur-popover: 0px;
   --overlay-opacity: 0.45;
-  --backdrop-blur-overlay: 0px;
   --scroll-fade-size: 1.5rem;
   --shadow-color: oklch(0 0 0);
   --shadow-highlight: oklch(1 0 0 / 0.55);
@@ -83,9 +75,6 @@
   --shadow-opacity: 0.6;
   --ease-standard: cubic-bezier(0.33, 1, 0.68, 1);
   --ease-emphasized: cubic-bezier(0.22, 1, 0.36, 1);
-  --duration-fast: 150ms;
-  --duration-base: 200ms;
-  --duration-slow: 300ms;
 
   --badge-neutral: var(--active-fill);
   --badge-neutral-foreground: var(--muted-foreground);
@@ -115,7 +104,7 @@
 }
 
 .dark[data-skin="mastra"][data-skin],
-:where(.dark) [data-skin="mastra"][data-skin] {
+.dark [data-skin="mastra"][data-skin] {
   --background: oklch(0.1591 0 0);
   --foreground: oklch(0.9851 0 0);
   --card: oklch(0.1913 0 0);
@@ -157,12 +146,4 @@
   --badge-pink: oklch(0.55 0.21 350 / 0.32);
   --badge-pink-foreground: oklch(0.88 0.075 350);
   --badge-pink-border: oklch(0.47 0.18 350);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  [data-skin="mastra"][data-skin] {
-    --duration-fast: 0ms;
-    --duration-base: 0ms;
-    --duration-slow: 0ms;
-  }
 }

@@ -24,14 +24,14 @@
     },
     {
       "name": "--cui-field-background",
-      "syntax": "*",
-      "initialValue": "",
+      "syntax": "<color>",
+      "initialValue": "transparent",
       "defaultValue": "var(--control-fill)"
     },
     {
       "name": "--cui-field-hover-background",
-      "syntax": "*",
-      "initialValue": "",
+      "syntax": "<color>",
+      "initialValue": "transparent",
       "defaultValue": "var(--hover-fill)"
     },
     {
@@ -49,7 +49,7 @@
     {
       "name": "--cui-field-affordance-foreground",
       "syntax": "<color>",
-      "initialValue": "currentcolor",
+      "initialValue": "transparent",
       "defaultValue": "var(--muted-foreground)"
     },
     {
@@ -103,7 +103,7 @@
     {
       "name": "--cui-field-font-size",
       "syntax": "<length-percentage>",
-      "initialValue": "1rem",
+      "initialValue": "0px",
       "defaultValue": "var(--text-body)"
     }
   ],

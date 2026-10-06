@@ -65,6 +65,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-resizable-handle-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
     }
   ],
   "parts": {

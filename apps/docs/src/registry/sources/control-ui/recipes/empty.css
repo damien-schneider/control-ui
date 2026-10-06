@@ -7,6 +7,7 @@
     --cui-empty-border-style: solid;
     --cui-empty-media-radius: var(--radius-lg);
     --cui-empty-media-background: var(--muted);
+    --cui-empty-media-background-image: none;
     --cui-empty-shadow: none;
     --cui-empty-foreground: var(--foreground);
     --cui-empty-description-foreground: var(--muted-foreground);
@@ -36,7 +37,8 @@
     inline-size: var(--cui-empty-media-size);
     block-size: var(--cui-empty-media-size);
     border-radius: var(--cui-empty-media-radius);
-    background: var(--cui-empty-media-background);
+    background-color: var(--cui-empty-media-background);
+    background-image: var(--cui-empty-media-background-image);
     color: var(--cui-empty-media-foreground);
   }
 
@@ -84,7 +86,7 @@
 }
 
 @property --cui-empty-background {
-  syntax: "*";
+  syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
@@ -104,7 +106,6 @@
 @property --cui-empty-border-style {
   syntax: "*";
   inherits: true;
-  initial-value: solid;
 }
 
 @property --cui-empty-media-radius {
@@ -114,7 +115,7 @@
 }
 
 @property --cui-empty-media-background {
-  syntax: "*";
+  syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
@@ -122,7 +123,6 @@
 @property --cui-empty-shadow {
   syntax: "*";
   inherits: true;
-  initial-value: none;
 }
 
 @property --cui-empty-foreground {
@@ -144,49 +144,49 @@
 }
 
 @property --cui-empty-padding {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-empty-gap {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-empty-header-gap {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-empty-content-gap {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-empty-content-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-empty-media-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-empty-media-icon-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-empty-font-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
@@ -194,5 +194,10 @@
 @property --cui-empty-title-font-weight {
   syntax: "<number>";
   inherits: true;
-  initial-value: 500;
+  initial-value: 400;
+}
+
+@property --cui-empty-media-background-image {
+  syntax: "*";
+  inherits: true;
 }

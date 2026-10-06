@@ -155,7 +155,7 @@
 }
 
 @property --cui-inline-attachment-radius {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
@@ -173,13 +173,13 @@
 }
 
 @property --cui-inline-attachment-padding {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-inline-attachment-document-padding {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
@@ -206,7 +206,7 @@
 }
 
 @property --cui-inline-attachment-content-radius {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }

@@ -14,7 +14,7 @@
     },
     {
       "name": "--cui-empty-background",
-      "syntax": "*",
+      "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "transparent"
     },
@@ -33,7 +33,7 @@
     {
       "name": "--cui-empty-border-style",
       "syntax": "*",
-      "initialValue": "solid",
+      "initialValue": "",
       "defaultValue": "solid"
     },
     {
@@ -44,14 +44,14 @@
     },
     {
       "name": "--cui-empty-media-background",
-      "syntax": "*",
+      "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--muted)"
     },
     {
       "name": "--cui-empty-shadow",
       "syntax": "*",
-      "initialValue": "none",
+      "initialValue": "",
       "defaultValue": "none"
     },
     {
@@ -74,57 +74,63 @@
     },
     {
       "name": "--cui-empty-padding",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 6)"
     },
     {
       "name": "--cui-empty-gap",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 6)"
     },
     {
       "name": "--cui-empty-header-gap",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 2)"
     },
     {
       "name": "--cui-empty-content-gap",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 2)"
     },
     {
       "name": "--cui-empty-content-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "24rem"
     },
     {
       "name": "--cui-empty-media-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 10)"
     },
     {
       "name": "--cui-empty-media-icon-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 5)"
     },
     {
       "name": "--cui-empty-font-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--text-body)"
     },
     {
       "name": "--cui-empty-title-font-weight",
       "syntax": "<number>",
-      "initialValue": "500",
+      "initialValue": "400",
       "defaultValue": "var(--font-weight-medium)"
+    },
+    {
+      "name": "--cui-empty-media-background-image",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
     }
   ],
   "parts": {
@@ -174,11 +180,6 @@
     }
   },
   "adornments": {},
-  "uncovered": [
-    "--cui-empty-background",
-    "--cui-empty-description-foreground",
-    "--cui-empty-media-background",
-    "--cui-empty-media-foreground"
-  ],
+  "uncovered": [],
   "contrast": "/r/contract/empty.contrast.json"
 }

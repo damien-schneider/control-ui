@@ -6,7 +6,6 @@ import { contractTokenNames, Specimen, SpecimenGroup, TokenValueList } from "./s
 import { useContractTokens } from "./specimen/theme-readouts";
 
 const ELEVATION_TIERS = [
-  { label: "Hairline", shadowClass: "shadow-xs", knob: "--shadow-control-multiplier" },
   { label: "Control", shadowClass: "shadow-sm", knob: "--shadow-control-multiplier" },
   { label: "Panel", shadowClass: "shadow-md", knob: "--shadow-panel-multiplier" },
   { label: "Popover", shadowClass: "shadow-pop", knob: "--shadow-popover-multiplier" },

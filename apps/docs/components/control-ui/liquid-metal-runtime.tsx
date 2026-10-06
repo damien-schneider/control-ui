@@ -196,7 +196,7 @@ function createChromeNode<K extends keyof HTMLElementTagNameMap>(tagName: K, nod
 
 function styleChromeNodes(canvas: HTMLCanvasElement, inner: HTMLSpanElement) {
   Object.assign(canvas.style, {
-    borderRadius: "var(--aui-liquid-metal-radius, inherit)",
+    borderRadius: "var(--liquid-metal-radius, inherit)",
     display: "block",
     height: "100%",
     inset: "0",
@@ -211,8 +211,8 @@ function styleChromeNodes(canvas: HTMLCanvasElement, inner: HTMLSpanElement) {
 
   Object.assign(inner.style, {
     background:
-      "linear-gradient(180deg, var(--aui-liquid-control-fill-top, oklch(1 0 0 / 0.04)), transparent 48%), var(--aui-liquid-control-fill, oklch(0.2484 0 0 / 0.76))",
-    borderRadius: "max(0px, calc(var(--aui-liquid-metal-radius, var(--radius-control)) - 3px))",
+      "linear-gradient(180deg, var(--liquid-control-fill-top, oklch(1 0 0 / 0.04)), transparent 48%), var(--liquid-control-fill, oklch(0.2484 0 0 / 0.76))",
+    borderRadius: "max(0px, calc(var(--liquid-metal-radius, var(--radius-control)) - 3px))",
     boxShadow: "inset 0 0 0 1px oklch(1 0 0 / 0.03), inset 0 1px 0 oklch(1 0 0 / 0.05)",
     inset: "3px",
     pointerEvents: "none",
@@ -322,7 +322,7 @@ function attachControl(control: HTMLElement, attachments: Map<HTMLElement, Liqui
       attachment.intersectionObserver.observe(control);
     }
 
-    control.style.setProperty("--aui-liquid-metal-radius", `${geometry.cornerRadius}px`);
+    control.style.setProperty("--liquid-metal-radius", `${geometry.cornerRadius}px`);
     attachments.set(control, attachment);
   } catch {
     canvas.remove();
@@ -344,7 +344,7 @@ function syncControlGeometry(control: HTMLElement, instance: MetalFxInstance, ma
     ringCssPx: next.ringCssPx,
     shaderScale: next.shaderScale,
   });
-  control.style.setProperty("--aui-liquid-metal-radius", `${next.cornerRadius}px`);
+  control.style.setProperty("--liquid-metal-radius", `${next.cornerRadius}px`);
   control.dataset.liquidCornerShape = next.cornerShape;
 }
 
@@ -355,7 +355,7 @@ function detachControl(control: HTMLElement, attachment: LiquidMetalAttachment) 
   attachment.canvas.remove();
   attachment.inner.remove();
   restoreControl(control, attachment.previousStyle);
-  control.style.removeProperty("--aui-liquid-metal-radius");
+  control.style.removeProperty("--liquid-metal-radius");
   delete control.dataset.liquidMetal;
   delete control.dataset.liquidMetalReady;
   delete control.dataset.liquidCornerShape;

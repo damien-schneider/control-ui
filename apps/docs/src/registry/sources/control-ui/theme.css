@@ -1,7 +1,41 @@
 :where(:root, [data-skin]) {
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
-
+  --background: var(--scale-neutral-1);
+  --foreground: var(--scale-neutral-12);
+  --card: var(--scale-neutral-1);
+  --card-foreground: var(--scale-neutral-12);
+  --popover: var(--scale-neutral-1);
+  --popover-foreground: var(--scale-neutral-12);
+  --primary: oklch(0.2046 0 0);
+  --primary-foreground: oklch(0.9851 0 0);
+  --primary-text: oklch(from var(--primary) var(--scale-lightness-11) c h);
+  --muted: var(--scale-neutral-3);
+  --muted-foreground: var(--scale-neutral-11);
+  --secondary: var(--scale-neutral-3);
+  --secondary-foreground: var(--scale-neutral-12);
+  --accent: var(--scale-neutral-4);
+  --accent-foreground: var(--scale-neutral-12);
+  --destructive: oklch(0.568 0.1961 32);
+  --destructive-foreground: oklch(0.9852 0.0058 85);
+  --destructive-text: oklch(from var(--destructive) var(--scale-lightness-11) c h);
+  --success: var(--scale-green-9);
+  --warning: var(--scale-yellow-9);
+  --info: var(--scale-blue-9);
+  --success-text: oklch(from var(--success) var(--scale-lightness-11) c h);
+  --warning-text: oklch(from var(--warning) var(--scale-lightness-11) c h);
+  --info-text: oklch(from var(--info) var(--scale-lightness-11) c h);
+  --border: oklch(from var(--scale-neutral-6) l c h / var(--ring-opacity));
+  --input: var(--control-rim);
+  --ring: oklch(0.5 0 0);
+  --focus-ring: oklch(from var(--ring) l c h / calc(alpha * 0.7));
+  --control-rim: var(--border);
+  --control-boundary: oklch(from var(--foreground) l c h / 0.6);
+  --image-outline: oklch(0 0 0 / 0.1);
+  --control-fill: oklch(from var(--card) l c h / 0.72);
+  --hover-fill: oklch(from var(--foreground) l c h / 0.06);
+  --active-fill: oklch(from var(--foreground) l c h / 0.08);
+  --canvas: var(--scale-neutral-1);
+  --canvas-grid-dot: oklch(from var(--foreground) l c h / 0.16);
+  --ring-opacity: 1;
   --scale-neutral-seed: oklch(0.5 0 0);
   --scale-primary-seed: var(--primary);
   --scale-red-seed: var(--color-red-500);
@@ -11,7 +45,6 @@
   --scale-blue-seed: var(--color-blue-500);
   --scale-purple-seed: var(--color-purple-500);
   --scale-pink-seed: var(--color-pink-500);
-
   --scale-neutral-lightness-1: 1;
   --scale-neutral-lightness-2: 0.97;
   --scale-neutral-lightness-3: 0.9425;
@@ -46,7 +79,6 @@
   --scale-chroma-10: 1;
   --scale-chroma-11: 1;
   --scale-chroma-12: 0.7;
-
   --scale-neutral-1: oklch(from var(--scale-neutral-seed) var(--scale-neutral-lightness-1) calc(c * var(--scale-chroma-1)) h);
   --scale-neutral-2: oklch(from var(--scale-neutral-seed) var(--scale-neutral-lightness-2) calc(c * var(--scale-chroma-2)) h);
   --scale-neutral-3: oklch(from var(--scale-neutral-seed) var(--scale-neutral-lightness-3) calc(c * var(--scale-chroma-3)) h);
@@ -155,137 +187,13 @@
   --scale-pink-10: oklch(from var(--scale-pink-seed) calc(l - 0.05) c h);
   --scale-pink-11: oklch(from var(--scale-pink-seed) var(--scale-lightness-11) calc(c * var(--scale-chroma-11)) h);
   --scale-pink-12: oklch(from var(--scale-pink-seed) var(--scale-lightness-12) calc(c * var(--scale-chroma-12)) h);
-
-  --primary: oklch(0.2046 0 0);
-  --primary-foreground: oklch(0.9851 0 0);
-  --foreground: var(--scale-neutral-12);
-  --secondary-foreground: var(--scale-neutral-12);
-  --accent-foreground: var(--scale-neutral-12);
-
-  --background: var(--scale-neutral-1);
-  --card: var(--scale-neutral-1);
-  --card-foreground: var(--scale-neutral-12);
-  --popover: var(--scale-neutral-1);
-  --popover-foreground: var(--scale-neutral-12);
-  --canvas: var(--scale-neutral-1);
-  --canvas-grid-dot: oklch(from var(--foreground) l c h / 0.16);
-
-  --radius: 0px;
-  --shadow-size: 0;
-  --scroll-fade-size: 0px;
-  --backdrop-blur-popover: 0px;
-  --backdrop-blur-overlay: 0px;
-
-  --control-h: 36px;
-  --popover-opacity: 1;
-  --overlay-opacity: 0.2;
-  --padding-x: 16px;
-  --padding-y: 10px;
-
-  --muted: var(--scale-neutral-3);
-  --muted-foreground: var(--scale-neutral-11);
-  --secondary: var(--scale-neutral-3);
-  --accent: var(--scale-neutral-4);
-  --destructive: oklch(0.568 0.1961 32);
-  --destructive-foreground: oklch(0.9852 0.0058 85);
-  --border: oklch(from var(--scale-neutral-6) l c h / var(--ring-opacity));
-  --input: var(--scale-neutral-6);
-  --ring: oklch(0.5 0 0);
-  --text-label: 0.75rem;
-  --radius-control: calc(var(--radius) * 2);
-  --radius-field: calc(var(--radius) * 2.2);
-  --radius-panel: calc(var(--radius) * 2.6);
-  --radius-scene: calc(var(--radius) * 2.8);
-  --radius-popup-item: calc(var(--radius-control) * 0.6);
-  --shadow-color: oklch(0.2986 0 0);
-  --shadow-opacity: 1;
-  --duration-fast: 150ms;
-  --duration-base: 200ms;
-  --duration-slow: 300ms;
-  --duration-loop: 1000ms;
-  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
-  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
-  --z-overlay: 70;
-  --z-modal: 71;
-  --z-popup: 80;
-  --z-tooltip: 90;
-  --z-toast: 95;
-  --popover-padding: 0.25rem;
-  --composer-padding: calc(var(--spacing) * 2.5);
-  --font-body: var(--font-sans);
-  --font-display: var(--font-sans);
-  --primary-text: var(--scale-primary-11);
-  --destructive-text: oklch(from var(--destructive) 0.48 c h);
-  --success-text: var(--scale-green-11);
-  --warning-text: var(--scale-yellow-11);
-  --info-text: var(--scale-blue-11);
-  --ring-opacity: 1;
-  --focus-ring: oklch(from var(--ring) l c h / calc(alpha * 0.7));
-  --focus-ring-width: 2px;
-  --focus-ring-style: solid;
-  --focus-ring-offset: 2px;
-
-  --control-rim: var(--border);
-  --control-rim-width: 1px;
-  --control-boundary: oklch(from var(--foreground) l c h / 0.6);
-  --control-fill: oklch(from var(--card) l c h / 0.72);
-  --hover-fill: oklch(from var(--foreground) l c h / 0.06);
-  --active-fill: oklch(from var(--foreground) l c h / 0.08);
-  --image-outline: oklch(0 0 0 / 0.1);
-  --disabled-opacity: 0.45;
-  --touch-target: 44px;
-  --target-min: 24px;
-
-  --text-micro: 0.625rem;
-  --text-caption: 0.6875rem;
-  --text-body: 0.875rem;
-  --text-body-lg: 1rem;
-  --text-heading-4: 0.9375rem;
-  --text-heading-4--line-height: 1.4;
-  --text-heading-4--font-weight: 600;
-  --text-heading-3: 1.125rem;
-  --text-heading-3--line-height: 1.35;
-  --text-heading-3--font-weight: 600;
-  --text-heading-2: 1.375rem;
-  --text-heading-2--line-height: 1.25;
-  --text-heading-2--font-weight: 600;
-  --text-heading-1: 1.875rem;
-  --text-heading-1--line-height: 1.15;
-  --text-heading-1--font-weight: 700;
-  --text-heading-1--letter-spacing: -0.018em;
-  --text-display: 2.25rem;
-  --text-display--line-height: 1.1;
-  --text-display--font-weight: 600;
-  --text-display--letter-spacing: -0.026em;
-  --text-input-min: 16px;
-
-  --corner-shape: round;
-  --corner-radius-fit: 0.5;
-  --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding)));
-  --radius-composer: calc(
-    min(var(--radius-control), calc(var(--control-h-xs) / 2)) +
-    clamp(0px, min(var(--radius-control), calc(var(--control-h-xs) / 2)) * 1000, var(--composer-padding) + var(--control-rim-width))
-  );
-
-  --shadow-highlight: oklch(1 0 0 / 0.62);
-  --shadow-y: 1;
-  --shadow-control-multiplier: 1;
-  --shadow-panel-multiplier: 2;
-  --shadow-popover-multiplier: 4;
-  --shadow-modal-multiplier: 5;
-  --shadow-ambient-multiplier: 8;
-
-  --control-h-xs: round(var(--control-h) * 0.78, 1px);
-  --control-h-sm: round(var(--control-h) * 0.89, 1px);
-  --control-h-lg: round(var(--control-h) * 1.11, 1px);
-
+  --badge-fill-alpha: 0.16;
+  --badge-border-alpha: 0.2;
+  --badge-hover-alpha: 0.24;
   --badge-neutral: oklch(from var(--foreground) l c h / 0.08);
   --badge-neutral-foreground: var(--foreground);
   --badge-neutral-border: oklch(from var(--foreground) l c h / 0.1);
   --badge-neutral-hover: oklch(from var(--foreground) l c h / 0.12);
-  --badge-fill-alpha: 0.16;
-  --badge-border-alpha: 0.2;
-  --badge-hover-alpha: 0.24;
   --badge-red: oklch(from var(--scale-red-9) l c h / var(--badge-fill-alpha));
   --badge-red-foreground: var(--scale-red-11);
   --badge-red-border: oklch(from var(--scale-red-9) l c h / var(--badge-border-alpha));
@@ -314,21 +222,107 @@
   --badge-pink-foreground: var(--scale-pink-11);
   --badge-pink-border: oklch(from var(--scale-pink-9) l c h / var(--badge-border-alpha));
   --badge-pink-hover: oklch(from var(--scale-pink-9) l c h / var(--badge-hover-alpha));
+  --sidebar: var(--canvas);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-accent: var(--hover-fill);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-body: var(--font-sans);
+  --font-display: var(--font-sans);
+  --text-micro: 0.625rem;
+  --text-caption: 0.6875rem;
+  --text-label: 0.75rem;
+  --text-body: 0.875rem;
+  --text-body-lg: 1rem;
+  --text-heading-4: 0.9375rem;
+  --text-heading-4--line-height: 1.4;
+  --text-heading-4--font-weight: 600;
+  --text-heading-3: 1.125rem;
+  --text-heading-3--line-height: 1.35;
+  --text-heading-3--font-weight: 600;
+  --text-heading-2: 1.375rem;
+  --text-heading-2--line-height: 1.25;
+  --text-heading-2--font-weight: 600;
+  --text-heading-1: 1.875rem;
+  --text-heading-1--line-height: 1.15;
+  --text-heading-1--font-weight: 700;
+  --text-heading-1--letter-spacing: -0.018em;
+  --text-display: 2.25rem;
+  --text-display--line-height: 1.1;
+  --text-display--font-weight: 600;
+  --text-display--letter-spacing: -0.026em;
+
+  --radius: 0px;
+  --radius-control: calc(var(--radius) * 2);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.4);
   --radius-2xl: calc(var(--radius) * 1.6);
   --radius-popup-item-fit: min(var(--radius-popup-item), calc(var(--control-h-xs) / 2));
+  --radius-field: calc(var(--radius) * 2.2);
+  --radius-composer: calc(
+    min(var(--radius-control), calc(var(--control-h-xs) / 2)) +
+    clamp(0px, min(var(--radius-control), calc(var(--control-h-xs) / 2)) * 1000, var(--composer-padding) + var(--control-rim-width))
+  );
+  --radius-panel: calc(var(--radius) * 2.6);
+  --radius-scene: calc(var(--radius) * 2.8);
+  --corner-shape: round;
+  --radius-popup-item: calc(var(--radius-control) * 0.6);
+  --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding)));
+
+  --composer-padding: calc(var(--spacing) * 2.5);
+  --popover-padding: 0.25rem;
+  --padding-x: 16px;
+  --padding-y: 10px;
+  --control-h: 36px;
+  --control-h-xs: round(var(--control-h) * 0.78, 1px);
+  --control-h-sm: round(var(--control-h) * 0.89, 1px);
   --control-h-md: var(--control-h);
-  --sidebar: var(--canvas);
-  --sidebar-foreground: var(--foreground);
-  --sidebar-primary: var(--primary);
-  --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-accent: var(--hover-fill);
-  --sidebar-accent-foreground: var(--foreground);
-  --sidebar-border: var(--border);
-  --sidebar-ring: var(--focus-ring);
+  --control-h-lg: round(var(--control-h) * 1.11, 1px);
+  --sidebar-width: 16rem;
+  --sidebar-width-icon: 3rem;
+  --z-overlay: 70;
+  --z-modal: 71;
+  --z-popup: 80;
+  --z-tooltip: 90;
+  --z-toast: 95;
+  --focus-ring-width: 2px;
+  --focus-ring-style: solid;
+  --focus-ring-offset: 2px;
+  --control-rim-width: 1px;
+  --touch-target: 44px;
+  --target-min: 24px;
+  --text-input-min: 16px;
+
+  --shadow-color: oklch(0.2986 0 0);
+  --shadow-highlight: oklch(1 0 0 / 0.62);
+  --shadow-size: 0;
+  --shadow-opacity: 1;
+  --shadow-y: 1;
+  --shadow-control-multiplier: 1;
+  --shadow-panel-multiplier: 2;
+  --shadow-popover-multiplier: 4;
+  --shadow-modal-multiplier: 5;
+  --shadow-ambient-multiplier: 8;
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+  --duration-loop: 1000ms;
+
+  --popover-opacity: 1;
+  --backdrop-blur-popover: 0px;
+  --overlay-opacity: 0.2;
+  --backdrop-blur-overlay: 0px;
+  --scroll-fade-size: 0px;
+  --disabled-opacity: 0.45;
 }
 
 :where(.dark:root, .dark[data-skin], .dark [data-skin]) {
@@ -364,7 +358,6 @@
   --destructive-foreground: oklch(0.9645 0.008 84);
   --ring: oklch(0.66 0 0);
   --shadow-color: oklch(0 0 0);
-  --destructive-text: oklch(from var(--destructive) 0.78 c h);
   --shadow-highlight: oklch(1 0 0 / 0.055);
   --badge-neutral: oklch(from var(--foreground) l c h / 0.1);
   --badge-neutral-border: oklch(from var(--foreground) l c h / 0.12);
@@ -443,6 +436,9 @@
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-destructive-text: var(--destructive-text);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
   --color-success-text: var(--success-text);
   --color-warning-text: var(--warning-text);
   --color-info-text: var(--info-text);
@@ -452,11 +448,9 @@
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
   --color-sidebar-accent: var(--sidebar-accent);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 
   --radius-sm: var(--radius-sm);
   --radius-md: var(--radius-md);
@@ -500,14 +494,6 @@
   --font-body: var(--font-body);
   --font-display: var(--font-display);
 
-  --shadow-xs:
-    inset 0 1px 0 oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))),
-    0 calc(1px * var(--shadow-size) * var(--shadow-control-multiplier) * var(--shadow-y))
-    calc(1.5px * var(--shadow-size) * var(--shadow-control-multiplier)) calc(-0.5px * var(--shadow-size) * var(--shadow-control-multiplier))
-    oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
-    0 calc(2px * var(--shadow-size) * var(--shadow-control-multiplier) * var(--shadow-y))
-    calc(4px * var(--shadow-size) * var(--shadow-control-multiplier)) calc(-2px * var(--shadow-size) * var(--shadow-control-multiplier))
-    oklch(from var(--shadow-color) l c h / calc(0.04 * var(--shadow-opacity)));
   --shadow-sm:
     inset 0 1px 0
     oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))),
@@ -588,8 +574,11 @@
     oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity)));
 
   --shadow-overlay:
-    0 0 16px -4px oklch(from var(--shadow-color) l c h / calc(0.03 * var(--shadow-opacity))),
-    0 0 56px -8px oklch(from var(--shadow-color) l c h / calc(0.07 * var(--shadow-opacity)));
+    0 0 calc(3.2px * var(--shadow-size) * var(--shadow-modal-multiplier)) calc(-0.8px * var(--shadow-size) * var(--shadow-modal-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.03 * var(--shadow-opacity))),
+    0 0 calc(11.2px * var(--shadow-size) * var(--shadow-modal-multiplier))
+    calc(-1.6px * var(--shadow-size) * var(--shadow-modal-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.07 * var(--shadow-opacity)));
 
   --shadow-inset:
     inset 0 calc(1px * var(--shadow-size) * var(--shadow-control-multiplier) * var(--shadow-y))
@@ -638,30 +627,6 @@
   @supports (corner-shape: squircle) {
     :where([data-control-ui][data-slot]) {
       corner-shape: var(--corner-shape);
-    }
-  }
-
-  @supports not (corner-shape: squircle) {
-    @container style(--corner-shape: squircle) {
-      :where([data-control-ui][data-slot]) {
-        --radius-control: calc(var(--radius) * 2 * var(--corner-radius-fit));
-        --radius-popup-item: calc(var(--radius-control) * 0.6);
-        --radius-popup-item-fit: min(var(--radius-popup-item), calc(var(--control-h-xs) / 2));
-        --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding)));
-        --radius-composer: calc(
-          min(var(--radius-control), calc(var(--control-h-xs) / 2)) +
-          clamp(0px, min(var(--radius-control), calc(var(--control-h-xs) / 2)) * 1000, var(--composer-padding) + var(--control-rim-width))
-        );
-
-        --radius-sm: calc(var(--radius) * 0.6 * var(--corner-radius-fit));
-        --radius-md: calc(var(--radius) * 0.8 * var(--corner-radius-fit));
-        --radius-lg: calc(var(--radius) * var(--corner-radius-fit));
-        --radius-xl: calc(var(--radius) * 1.4 * var(--corner-radius-fit));
-        --radius-2xl: calc(var(--radius) * 1.6 * var(--corner-radius-fit));
-        --radius-field: calc(var(--radius) * 2.2 * var(--corner-radius-fit));
-        --radius-panel: calc(var(--radius) * 2.6 * var(--corner-radius-fit));
-        --radius-scene: calc(var(--radius) * 2.8 * var(--corner-radius-fit));
-      }
     }
   }
 

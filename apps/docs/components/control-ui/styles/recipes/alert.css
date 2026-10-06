@@ -72,7 +72,7 @@
 }
 
 @property --cui-alert-background {
-  syntax: "*";
+  syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
@@ -86,7 +86,6 @@
 @property --cui-alert-shadow {
   syntax: "*";
   inherits: true;
-  initial-value: none;
 }
 
 @property --cui-alert-foreground {
@@ -108,43 +107,43 @@
 }
 
 @property --cui-alert-padding {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-alert-padding-inline {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-alert-gap {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-alert-icon-gap {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-alert-icon-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-alert-font-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-alert-description-gap {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
@@ -152,5 +151,5 @@
 @property --cui-alert-title-font-weight {
   syntax: "<number>";
   inherits: true;
-  initial-value: 500;
+  initial-value: 400;
 }

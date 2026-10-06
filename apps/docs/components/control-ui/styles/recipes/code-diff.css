@@ -195,7 +195,7 @@
 }
 
 @property --cui-code-diff-radius {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }

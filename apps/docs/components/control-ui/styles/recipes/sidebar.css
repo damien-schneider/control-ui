@@ -17,31 +17,6 @@
     background-image: var(--cui-sidebar-wrapper-background-image);
   }
 
-  :where([data-control-family="sidebar"][data-slot="skip-link"]) {
-    position: absolute;
-    inset-block-start: calc(var(--spacing) * 3);
-    inset-inline-start: calc(var(--spacing) * 3);
-    z-index: var(--z-popup);
-    padding-block: calc(var(--spacing) * 1.5);
-    padding-inline: calc(var(--spacing) * 3);
-    border-radius: var(--cui-sidebar-skip-link-radius);
-    background-color: var(--cui-sidebar-skip-link-background);
-    color: var(--cui-sidebar-skip-link-foreground);
-    box-shadow: var(--cui-sidebar-skip-link-shadow);
-    font-size: var(--text-body);
-    font-weight: var(--font-weight-medium);
-    text-decoration: none;
-  }
-
-  :where([data-control-family="sidebar"][data-slot="skip-link"]:not(:focus)) {
-    overflow: hidden;
-    inline-size: 1px;
-    block-size: 1px;
-    padding: 0;
-    white-space: nowrap;
-    clip-path: inset(50%);
-  }
-
   :where([data-control-family="sidebar"][data-slot="wrapper"]:has([data-control-family="sidebar"][data-variant="inset"][data-state])) {
     --cui-sidebar-wrapper-background: var(--sidebar);
   }
@@ -78,6 +53,8 @@
     --cui-sidebar-menu-badge-height: calc(var(--spacing) * 5);
     --cui-sidebar-menu-badge-background: oklch(from var(--sidebar-foreground) l c h / 0.08);
     --cui-sidebar-menu-badge-foreground: var(--sidebar-foreground);
+    --cui-sidebar-menu-button-background: transparent;
+    --cui-sidebar-menu-button-shadow: 0 0 transparent;
     --cui-sidebar-menu-button-hover-background: var(--hover-fill);
     --cui-sidebar-menu-button-hover-foreground: var(--foreground);
     --cui-sidebar-menu-button-hover-shadow: 0 0 transparent;
@@ -181,7 +158,6 @@
 @property --cui-sidebar-inner-backdrop-filter {
   syntax: "*";
   inherits: true;
-  initial-value: none;
 }
 
 @property --cui-sidebar-inner-border-width {
@@ -331,7 +307,7 @@
 @property --cui-sidebar-menu-button-font-size {
   syntax: "<length-percentage>";
   inherits: true;
-  initial-value: 1rem;
+  initial-value: 0px;
 }
 
 @property --cui-sidebar-menu-button-font-weight {
@@ -343,25 +319,25 @@
 @property --cui-sidebar-menu-button-active-font-weight {
   syntax: "<number>";
   inherits: true;
-  initial-value: 500;
+  initial-value: 400;
 }
 
 @property --cui-sidebar-group-label-font-size {
   syntax: "<length-percentage>";
   inherits: true;
-  initial-value: 1rem;
+  initial-value: 0px;
 }
 
 @property --cui-sidebar-group-label-font-weight {
   syntax: "<number>";
   inherits: true;
-  initial-value: 500;
+  initial-value: 400;
 }
 
 @property --cui-sidebar-group-label-letter-spacing {
   syntax: "<length>";
   inherits: true;
-  initial-value: 0em;
+  initial-value: 0px;
 }
 
 @property --cui-sidebar-group-label-text-transform {
@@ -395,6 +371,17 @@
 }
 
 @property --cui-sidebar-skip-link-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-sidebar-menu-button-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-sidebar-menu-button-shadow {
   syntax: "*";
   inherits: true;
 }

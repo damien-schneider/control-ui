@@ -8,6 +8,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
+          "data-scroll": "inset",
           "data-slot": "wrapper"
         }
       },
@@ -30,11 +31,19 @@
       },
       {
         "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "dynamic-notification",
           "data-control-ui": "dynamic-notification",
           "data-slot": "root",
           "data-state": "collapsed",
-          "data-variant": "liquid"
+          "data-variant": "surface"
         }
       },
       {
@@ -43,7 +52,7 @@
           "data-control-ui": "dynamic-notification",
           "data-slot": "island",
           "data-state": "collapsed",
-          "data-variant": "liquid"
+          "data-variant": "surface"
         }
       }
     ]
@@ -51,7 +60,8 @@
   "probes": [
     {
       "knobs": {
-        "text": "--cui-dynamic-notification-liquid-foreground"
+        "fill": "--cui-dynamic-notification-surface-background",
+        "text": "--cui-dynamic-notification-surface-foreground"
       },
       "anatomy": 0,
       "rendersText": true,

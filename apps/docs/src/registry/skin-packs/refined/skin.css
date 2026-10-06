@@ -151,7 +151,7 @@
     --cui-range-indicator-background: oklch(from var(--muted-foreground) l c h / 0.5);
     --cui-range-thumb-background: var(--primary);
     --cui-range-thumb-border-color: var(--primary);
-    --cui-range-thumb-shadow: var(--shadow-xs);
+    --cui-range-thumb-shadow: var(--shadow-sm);
   }
 
   [data-skin="refined"] :where([data-control-family="switch"][data-slot="root"]) {

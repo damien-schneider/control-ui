@@ -33,13 +33,13 @@
     {
       "name": "--cui-card-shadow",
       "syntax": "*",
-      "initialValue": "none",
+      "initialValue": "",
       "defaultValue": "var(--shadow-sm)"
     },
     {
       "name": "--cui-card-backdrop-filter",
       "syntax": "*",
-      "initialValue": "none",
+      "initialValue": "",
       "defaultValue": "none"
     }
   ],

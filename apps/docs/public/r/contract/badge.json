@@ -14,7 +14,7 @@
     },
     {
       "name": "--cui-badge-background",
-      "syntax": "*",
+      "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--_badge-color-background)"
     },
@@ -32,7 +32,7 @@
     },
     {
       "name": "--cui-badge-font-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--text-caption)"
     }

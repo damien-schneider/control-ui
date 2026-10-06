@@ -235,13 +235,15 @@
 }
 
 @property --cui-field-background {
-  syntax: "*";
+  syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --cui-field-hover-background {
-  syntax: "*";
+  syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --cui-field-affordance-background {
@@ -258,7 +260,7 @@
 @property --cui-field-affordance-foreground {
   syntax: "<color>";
   inherits: true;
-  initial-value: currentcolor;
+  initial-value: transparent;
 }
 
 @property --cui-field-affordance-hover-background {
@@ -310,5 +312,5 @@
 @property --cui-field-font-size {
   syntax: "<length-percentage>";
   inherits: true;
-  initial-value: 1rem;
+  initial-value: 0px;
 }

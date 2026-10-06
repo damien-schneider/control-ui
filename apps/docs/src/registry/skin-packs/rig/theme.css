@@ -5,52 +5,30 @@
   --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
 
   /* THE one radius knob: 0 squares every control + surface (the chamfer is added in skin.css). */
-  --radius: 0px;
 
   --padding-x: 18px;
   --padding-y: 11px;
   --control-h: 40px;
 
   /* Flat + matte: brutalist controls carry their weight with fill + chamfer, not elevation. */
-  --shadow-size: 0;
-
-  --popover-opacity: 1;
-  --backdrop-blur-popover: 0px;
   --overlay-opacity: 0.6;
-  --backdrop-blur-overlay: 0px;
 
   --duration-base: 130ms;
   --duration-fast: 85ms;
   --duration-slow: 210ms;
-  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
 
   --muted: oklch(0.9425 0.0104 79);
   --muted-foreground: oklch(0.52 0.0224 72);
   --secondary: oklch(0.9425 0.0104 79);
   --accent: oklch(0.9295 0.0118 77);
-  --destructive: oklch(0.568 0.1961 32);
-  --destructive-foreground: oklch(0.9852 0.0058 85);
   --border: oklch(0.8851 0.0135 76 / var(--ring-opacity));
   --input: oklch(0.8851 0.0135 76);
   --ring: oklch(0.6903 0.0198 74);
   --focus-ring: var(--foreground);
   /* every control is chamfered by clip-path, which eats an outward ring; the indicator draws inside it */
   --focus-ring-offset: -3px;
-  --text-label: 0.75rem;
-  --radius-control: calc(var(--radius) * 2);
-  --radius-field: calc(var(--radius) * 2.2);
-  --radius-panel: calc(var(--radius) * 2.6);
-  --radius-scene: calc(var(--radius) * 2.8);
-  --radius-popup-item: calc(var(--radius-control) * 0.6);
   --shadow-color: oklch(0.2986 0.0421 63);
-  --shadow-opacity: 1;
-  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
   --scroll-fade-size: 2rem;
-  --popover-padding: 0.25rem;
-}
-
-:root:not(.dark)[data-skin="rig"][data-skin],
-:where(:not(.dark)) [data-skin="rig"][data-skin] {
   /* Coral = ACCENT not page bg; surfaces warm off-white (inverse of dark band's near-black stack).
    * canvas = paper; card/background/popover = near-white surfaces above it.
    * The filled primary is dark enough for white ink to clear WCAG AA. */
@@ -59,22 +37,23 @@
   --foreground: oklch(0.2168 0.0113 55.716);
   --secondary-foreground: oklch(0.2168 0.0113 55.716);
   --accent-foreground: oklch(0.2168 0.0113 55.716);
-  /* Clear of --muted (0.9425) — matching lightness makes muted surfaces vanish into the page. */
   --canvas: oklch(0.96 0.0084 63.977);
   --background: oklch(0.9789 0.0041 74.929);
   --card: oklch(0.9933 0.0016 81.514);
   --card-foreground: oklch(0.2168 0.0113 55.716);
   --popover: oklch(0.9933 0.0016 81.514);
   --popover-foreground: oklch(0.2168 0.0113 55.716);
+}
 
+:root:not(.dark)[data-skin="rig"][data-skin],
+:where(:not(.dark)) [data-skin="rig"][data-skin] {
   --control-rim: oklch(from var(--foreground) l c h / 0.5);
   --control-rim-width: 1.5px;
 }
 
 .dark[data-skin="rig"][data-skin],
-:where(.dark) [data-skin="rig"][data-skin] {
+.dark [data-skin="rig"][data-skin] {
   --primary: oklch(0.54 0.1833 32.21);
-  --primary-foreground: oklch(0.9852 0.0058 85);
   --foreground: oklch(0.9313 0.0143 81.504);
   --secondary-foreground: oklch(0.9313 0.0143 81.504);
   --accent-foreground: oklch(0.9313 0.0143 81.504);
@@ -89,11 +68,8 @@
   --muted-foreground: oklch(0.7405 0.0175 76);
   --secondary: oklch(0.2668 0.0132 66);
   --accent: oklch(0.2864 0.0141 67);
-  --destructive: oklch(0.551 0.1799 32);
-  --destructive-foreground: oklch(0.9645 0.008 84);
   --border: oklch(0.3082 0.0147 67 / var(--ring-opacity));
   --input: oklch(0.3082 0.0147 67);
   --ring: oklch(0.5521 0.0181 70);
-  --focus-ring: var(--foreground);
   --shadow-color: oklch(0 0 0);
 }

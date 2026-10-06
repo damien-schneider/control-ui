@@ -53,6 +53,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "oklch(from var(--primary) l c h / 0.55)"
+    },
+    {
+      "name": "--cui-dockable-panel-drop-zone-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--background) l c h / 0.12)"
     }
   ],
   "parts": {
@@ -159,7 +165,8 @@
   },
   "adornments": {},
   "uncovered": [
-    "--cui-dockable-panel-drop-zone-active-background"
+    "--cui-dockable-panel-drop-zone-active-background",
+    "--cui-dockable-panel-drop-zone-background"
   ],
   "contrast": "/r/contract/dockable-panel.contrast.json"
 }

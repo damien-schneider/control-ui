@@ -11,6 +11,7 @@
     --cui-dockable-panel-border-color: oklch(from var(--border) l c h / 0.8);
     --cui-dockable-panel-border-width: var(--control-rim-width);
     --cui-dockable-panel-shadow: var(--shadow-pop);
+    --cui-dockable-panel-drop-zone-background: oklch(from var(--background) l c h / 0.12);
     --cui-dockable-panel-drop-zone-active-background: oklch(from var(--primary) l c h / 0.12);
     --cui-dockable-panel-drop-zone-active-border-color: oklch(from var(--primary) l c h / 0.55);
     border: var(--cui-dockable-panel-border-width) solid var(--cui-dockable-panel-border-color);
@@ -21,7 +22,7 @@
   }
 
   :where([data-control-family="dockable-panel"][data-slot="root"][data-dragging]) {
-    box-shadow: var(--shadow-modal);
+    --cui-dockable-panel-shadow: var(--shadow-modal);
   }
 
   :where([data-control-family="dockable-panel"][data-slot="header"]) {
@@ -61,7 +62,7 @@
 
   :where([data-control-family="dockable-panel"][data-slot="drop-zone"]) {
     border-radius: var(--radius-panel);
-    background-color: oklch(from var(--background) l c h / 0.12);
+    background-color: var(--cui-dockable-panel-drop-zone-background);
     box-shadow: 0 0 0 1px oklch(from var(--foreground) l c h / 0.2);
     transition-property: background-color, box-shadow;
     transition-duration: var(--duration-fast);
@@ -118,6 +119,12 @@
 }
 
 @property --cui-dockable-panel-drop-zone-active-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-dockable-panel-drop-zone-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

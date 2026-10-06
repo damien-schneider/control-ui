@@ -36,8 +36,6 @@ export type ControlUiSkin = {
   scrollAreaScrollbarGutter?: "auto" | "stable";
   indicators?: SkinIndicators;
 
-  sidebarWidth?: string;
-
   effects?: ControlEffect[];
   adornments?: {
     [Scope in SkinAdornmentScope]?: {

@@ -51,7 +51,7 @@
   }
 
   :where([data-control-family="range"][data-range-kind="slider"][data-slot="track"][data-dragging]) {
-    background: oklch(from var(--foreground) l c h / 0.1);
+    --cui-range-track-background: oklch(from var(--foreground) l c h / 0.1);
   }
 
   :where([data-control-family="range"][data-range-kind="slider"][data-slot="indicator"]),
@@ -109,7 +109,7 @@
 
   :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-dragging]) {
     scale: 1.1;
-    box-shadow: var(--shadow-md);
+    --cui-range-thumb-shadow: var(--shadow-md);
   }
 
   :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-variant="plain"]) {
@@ -314,7 +314,7 @@
 @property --cui-range-indeterminate-size {
   syntax: "<length-percentage>";
   inherits: true;
-  initial-value: 40%;
+  initial-value: 0px;
 }
 
 @property --cui-range-track-radius {
@@ -348,7 +348,7 @@
 }
 
 @property --cui-range-thumb-background {
-  syntax: "*";
+  syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
@@ -362,5 +362,4 @@
 @property --cui-range-thumb-shadow {
   syntax: "*";
   inherits: true;
-  initial-value: none;
 }

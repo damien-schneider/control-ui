@@ -13,7 +13,7 @@
 
   :where([data-control-family="field"][data-slot="root"][data-control="true"]:is(button, a)) {
     cursor: pointer;
-    color: var(--muted-foreground);
+    --cui-field-foreground: var(--muted-foreground);
     text-align: start;
   }
 
@@ -25,7 +25,7 @@
           [aria-disabled="true"]
         )
       ) {
-      color: var(--foreground);
+      --cui-field-foreground: var(--foreground);
     }
   }
 

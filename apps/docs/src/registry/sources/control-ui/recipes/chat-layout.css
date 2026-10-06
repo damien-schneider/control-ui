@@ -141,13 +141,13 @@
 }
 
 @property --cui-chat-layout-scroll-button-gap {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-chat-layout-turn-gap {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }

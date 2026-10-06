@@ -220,7 +220,7 @@
 @property --cui-button-icon {
   syntax: "<length>";
   inherits: true;
-  initial-value: 16px;
+  initial-value: 0px;
 }
 
 @property --cui-button-height {
@@ -244,7 +244,7 @@
 @property --cui-button-font-size {
   syntax: "<length-percentage>";
   inherits: true;
-  initial-value: 1rem;
+  initial-value: 0px;
 }
 
 @property --cui-button-background {
@@ -319,13 +319,11 @@
 @property --cui-button-hover-shadow {
   syntax: "*";
   inherits: true;
-  initial-value: none;
 }
 
 @property --cui-button-press-shadow {
   syntax: "*";
   inherits: true;
-  initial-value: none;
 }
 
 @property --cui-button-active-shadow {
@@ -348,5 +346,4 @@
 @property --cui-button-open-shadow {
   syntax: "*";
   inherits: true;
-  initial-value: none;
 }

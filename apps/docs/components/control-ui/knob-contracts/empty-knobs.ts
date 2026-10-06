@@ -20,5 +20,6 @@ export const emptyKnobs = [
   "--cui-empty-media-icon-size",
   "--cui-empty-font-size",
   "--cui-empty-title-font-weight",
+  "--cui-empty-media-background-image",
 ] as const;
 export type EmptyKnobStyle = Partial<Record<(typeof emptyKnobs)[number], string>>;

@@ -4,7 +4,6 @@ import type { ControlUiSkin } from "@/components/control-ui/skin";
 export const skin: ControlUiSkin = {
   id: "cuicui",
   sidebarLayout: "sidebar",
-  sidebarWidth: "20rem",
   adornments: {
     button: {
       layer: (ctx) =>

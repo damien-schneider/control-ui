@@ -155,15 +155,15 @@
 }
 
 @property --cui-audio-visualizer-bar-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
-  initial-value: 4px;
+  initial-value: 0px;
 }
 
 @property --cui-audio-visualizer-bar-gap {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
-  initial-value: 1px;
+  initial-value: 0px;
 }
 
 @property --cui-audio-visualizer-radius {

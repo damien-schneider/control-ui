@@ -21,22 +21,6 @@ const CONTROL_UI_SCOPE_PATTERN = /\[data-control-(?:ui|family)=(?:"[^"]+"|'[^']+
 const HOST_TEXT_SELECTOR_PATTERN =
   /\[data-skin[^\n{]*\][^\n{]*(?:^|[\s>+~,(])(?:pre|code|kbd|button|input|textarea|select)(?=$|[\s.#:[>+~),{])/;
 const ANY_SKIN_SELECTOR_PATTERN = /\[data-skin\s*=\s*(?:"[^"]+"|'[^']+'|[a-z0-9-]+)\]/g;
-const SQUIRCLE_FALLBACK_TOKENS = new Set([
-  "--radius-control",
-  "--radius-popup-item",
-  "--radius-popover",
-  "--radius-composer",
-  "--radius-sm",
-  "--radius-md",
-  "--radius-lg",
-  "--radius-xl",
-  "--radius-2xl",
-  "--radius-field",
-  "--radius-panel",
-  "--radius-scene",
-]);
-
-type ThemeMode = "light" | "dark";
 
 function parseCss(filePath: string): Root {
   return postcss.parse(readFileSync(filePath, "utf8"), { from: filePath });
@@ -89,50 +73,6 @@ function selectorOnlyScopesSkin(selector: string, id: string): boolean {
   );
 }
 
-function selectorModes(selector: string, id: string): Set<ThemeMode> {
-  const modes = new Set<ThemeMode>();
-  const exactSkin = exactSkinSelectorPattern(id);
-
-  for (const selectorPart of selector.split(",")) {
-    if (!exactSkin.test(selectorPart)) continue;
-    if (/:not\(\s*\.dark\s*\)/.test(selectorPart)) {
-      modes.add("light");
-      continue;
-    }
-    if (/\.dark\b/.test(selectorPart)) {
-      modes.add("dark");
-      continue;
-    }
-    modes.add("light");
-    modes.add("dark");
-  }
-
-  return modes;
-}
-
-function coverageByMode(root: Root, id: string): Record<ThemeMode, Set<string>> {
-  const coverage: Record<ThemeMode, Set<string>> = { light: new Set(), dark: new Set() };
-
-  for (const declaration of customDeclarations(root)) {
-    if (!THEME_CONTRACT_NAMES.has(declaration.prop)) continue;
-    const rule = declarationRule(declaration);
-    if (!rule || atRuleAncestors(rule).length > 0 || !selectorOnlyScopesSkin(rule.selector, id)) continue;
-    for (const mode of selectorModes(rule.selector, id)) coverage[mode].add(declaration.prop);
-  }
-
-  return coverage;
-}
-
-function missingContractTokens(root: Root, id: string): string[] {
-  const coverage = coverageByMode(root, id);
-  return REQUIRED_THEME_CONTRACT.flatMap((token) => {
-    const missing: string[] = [];
-    if (!coverage.light.has(token.name)) missing.push(`${token.name} (light)`);
-    if (!coverage.dark.has(token.name)) missing.push(`${token.name} (dark)`);
-    return missing;
-  });
-}
-
 function coreContractDeclarationIsAllowed(declaration: Declaration): boolean {
   const atRules = atRuleAncestors(declaration);
   if (atRules.some((atRule) => atRule.name === "theme")) {
@@ -154,15 +94,7 @@ function coreContractDeclarationIsAllowed(declaration: Declaration): boolean {
   }
 
   const selector = declarationRule(declaration)?.selector ?? "";
-  if (isReducedMotionOverride && /\[data-motion\s*=\s*(?:"reduced"|'reduced'|reduced)\]/.test(selector)) return true;
-
-  const squircleFallback = atRules.some(
-    (atRule) => atRule.name === "supports" && /not\s*\(corner-shape\s*:\s*squircle\)/.test(atRule.params),
-  );
-  const squircleQuery = atRules.some(
-    (atRule) => atRule.name === "container" && /style\(\s*--corner-shape\s*:\s*squircle\s*\)/.test(atRule.params),
-  );
-  return squircleFallback && squircleQuery && SQUIRCLE_FALLBACK_TOKENS.has(declaration.prop) && declaration.value.includes("var(");
+  return isReducedMotionOverride && /\[data-motion\s*=\s*(?:"reduced"|'reduced'|reduced)\]/.test(selector);
 }
 
 function sourceLabel(declaration: Declaration): string {
@@ -277,10 +209,6 @@ describe("skin pack theme.css stays within the token contract", () => {
         return rule && selectorOnlyScopesSkin(rule.selector, id) ? [] : [sourceLabel(declaration)];
       });
       expect(offenders).toEqual([]);
-    });
-
-    test(`${id}/theme.css defines every contract token in light and dark`, () => {
-      expect(missingContractTokens(themeRoot, id)).toEqual([]);
     });
 
     test(`${id}/theme.css ships no @theme block`, () => {

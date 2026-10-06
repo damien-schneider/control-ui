@@ -238,38 +238,39 @@
 }
 
 @property --cui-switch-inline-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
-  initial-value: 36px;
+  initial-value: 0px;
 }
 
 @property --cui-switch-height {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
-  initial-value: 20px;
+  initial-value: 0px;
 }
 
 @property --cui-switch-padding {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
-  initial-value: 2px;
+  initial-value: 0px;
 }
 
 @property --cui-switch-thumb-inline-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
-  initial-value: 16px;
+  initial-value: 0px;
 }
 
 @property --cui-switch-thumb-press-inline-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
-  initial-value: 20px;
+  initial-value: 0px;
 }
 
 @property --cui-switch-thumb-press-scale {
-  syntax: "*";
+  syntax: "<number>";
   inherits: true;
+  initial-value: 1;
 }
 
 @property --cui-switch-thumb-backdrop-filter {

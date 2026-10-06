@@ -68,7 +68,7 @@
     },
     {
       "name": "--cui-markdown-font-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--text-body)"
     },
@@ -80,13 +80,13 @@
     },
     {
       "name": "--cui-markdown-flow-gap",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 4)"
     },
     {
       "name": "--cui-markdown-heading-gap",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 6)"
     }

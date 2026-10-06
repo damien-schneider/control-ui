@@ -188,7 +188,7 @@
     padding: var(--_popup-bar-padding);
     gap: calc(var(--spacing) * 0.5);
     --cui-popup-background: var(--card);
-    --cui-popup-shadow: var(--shadow-xs);
+    --cui-popup-shadow: var(--shadow-sm);
   }
 
   :where([data-control-family="popup"][data-popup-kind="navigation-menu"][data-slot="list"]) {
@@ -277,7 +277,7 @@
 }
 
 @property --cui-popup-label-font-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
@@ -307,7 +307,7 @@
 }
 
 @property --cui-popup-shortcut-font-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }

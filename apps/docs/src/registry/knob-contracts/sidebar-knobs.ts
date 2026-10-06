@@ -57,5 +57,7 @@ export const sidebarKnobs = [
   "--cui-sidebar-skip-link-foreground",
   "--cui-sidebar-skip-link-radius",
   "--cui-sidebar-skip-link-shadow",
+  "--cui-sidebar-menu-button-background",
+  "--cui-sidebar-menu-button-shadow",
 ] as const;
 export type SidebarKnobStyle = Partial<Record<(typeof sidebarKnobs)[number], string>>;

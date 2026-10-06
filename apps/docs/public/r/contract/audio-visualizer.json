@@ -10,14 +10,14 @@
   "knobs": [
     {
       "name": "--cui-audio-visualizer-bar-size",
-      "syntax": "<length>",
-      "initialValue": "4px",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 1)"
     },
     {
       "name": "--cui-audio-visualizer-bar-gap",
-      "syntax": "<length>",
-      "initialValue": "1px",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
       "defaultValue": "1px"
     },
     {

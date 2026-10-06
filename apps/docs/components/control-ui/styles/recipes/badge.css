@@ -96,7 +96,7 @@
 }
 
 @property --cui-badge-background {
-  syntax: "*";
+  syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
@@ -114,7 +114,7 @@
 }
 
 @property --cui-badge-font-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }

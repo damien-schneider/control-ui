@@ -1,6 +1,7 @@
 @layer components {
   :where([data-control-family="tree"][data-slot="root"]) {
     --cui-tree-item-trigger-radius: var(--radius-popup-item);
+    --cui-tree-item-trigger-background: transparent;
     --cui-tree-item-trigger-foreground: var(--foreground);
     --cui-tree-item-trigger-hover-background: var(--hover-fill);
     --cui-tree-item-trigger-hover-foreground: var(--foreground);
@@ -36,7 +37,7 @@
     padding-inline-start: calc(var(--_tree-level, 1) * var(--cui-tree-indent-inset));
     padding-inline-end: calc(var(--spacing) * 2);
     border-radius: var(--cui-tree-item-trigger-radius);
-    background-color: transparent;
+    background-color: var(--cui-tree-item-trigger-background);
     color: var(--cui-tree-item-trigger-foreground);
     font-size: var(--cui-tree-item-trigger-font-size);
     font-weight: var(--font-weight-normal);
@@ -166,7 +167,7 @@
 @property --cui-tree-item-trigger-font-size {
   syntax: "<length-percentage>";
   inherits: true;
-  initial-value: 1rem;
+  initial-value: 0px;
 }
 
 @property --cui-tree-item-trigger-selected-font-weight {
@@ -176,7 +177,13 @@
 }
 
 @property --cui-tree-indent-inset {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
+}
+
+@property --cui-tree-item-trigger-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
 }

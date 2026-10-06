@@ -66,7 +66,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-activity-code-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--radius-control)",
         selector: ':where([data-control-family="activity"][data-slot="root"])',
       },
@@ -95,7 +95,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     knobs: [
       {
         name: "--cui-alert-background",
-        syntax: "*",
+        syntax: "<color>",
         defaultValue: "var(--card)",
         selector: ':where([data-control-family="alert"][data-slot="root"])',
       },
@@ -119,13 +119,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-alert-description-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--spacing)",
         selector: ':where([data-control-family="alert"][data-slot="root"])',
       },
       {
         name: "--cui-alert-font-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--text-body)",
         selector: ':where([data-control-family="alert"][data-slot="root"])',
       },
@@ -137,31 +137,31 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-alert-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 0.5)",
         selector: ':where([data-control-family="alert"][data-slot="root"])',
       },
       {
         name: "--cui-alert-icon-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 3)",
         selector: ':where([data-control-family="alert"][data-slot="root"])',
       },
       {
         name: "--cui-alert-icon-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 4)",
         selector: ':where([data-control-family="alert"][data-slot="root"])',
       },
       {
         name: "--cui-alert-padding",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 3)",
         selector: ':where([data-control-family="alert"][data-slot="root"])',
       },
       {
         name: "--cui-alert-padding-inline",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 4)",
         selector: ':where([data-control-family="alert"][data-slot="root"])',
       },
@@ -208,13 +208,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-app-shell-header-height",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 14)",
         selector: ':where([data-control-family="app-shell-header"][data-slot="root"])',
       },
       {
         name: "--cui-app-shell-header-padding-inline",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 4)",
         selector: ':where([data-control-family="app-shell-header"][data-slot="root"])',
       },
@@ -235,12 +235,6 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     id: "audio-recorder",
     knobs: [
       {
-        name: "--cui-audio-recorder-active-foreground",
-        syntax: "<color>",
-        defaultValue: "var(--foreground)",
-        selector: ':where([data-control-ui="audio-recorder"][data-slot="root"])',
-      },
-      {
         name: "--cui-audio-recorder-error-foreground",
         syntax: "<color>",
         defaultValue: "var(--destructive-text)",
@@ -256,6 +250,18 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-audio-recorder-meta-foreground",
         syntax: "<color>",
         defaultValue: "var(--muted-foreground)",
+        selector: ':where([data-control-ui="audio-recorder"][data-slot="root"])',
+      },
+      {
+        name: "--cui-audio-recorder-recorded-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--foreground)",
+        selector: ':where([data-control-ui="audio-recorder"][data-slot="root"])',
+      },
+      {
+        name: "--cui-audio-recorder-recording-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--foreground)",
         selector: ':where([data-control-ui="audio-recorder"][data-slot="root"])',
       },
       {
@@ -277,7 +283,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-audio-visualizer-bar-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "1px",
         selector: ':where([data-control-family="audio-visualizer"][data-variant])',
       },
@@ -289,7 +295,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-audio-visualizer-bar-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 1)",
         selector: ':where([data-control-family="audio-visualizer"][data-variant])',
       },
@@ -342,7 +348,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-avatar-badge-ring-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "2px",
         selector: ':where([data-control-family="avatar"][data-slot="root"])',
       },
@@ -393,7 +399,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     knobs: [
       {
         name: "--cui-badge-background",
-        syntax: "*",
+        syntax: "<color>",
         defaultValue: "var(--_badge-color-background)",
         selector: ':where([data-control-family="badge"][data-slot="root"])',
       },
@@ -405,7 +411,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-badge-font-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--text-caption)",
         selector: ':where([data-control-family="badge"][data-slot="root"])',
       },
@@ -741,13 +747,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-chat-composer-mention-icon-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "min(var(--radius-sm), calc(var(--spacing) * 1))",
         selector: ':where([data-control-family="chat-composer"][data-slot="root"])',
       },
       {
         name: "--cui-chat-composer-mention-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--radius-popup-item)",
         selector: ':where([data-control-family="chat-composer"][data-slot="root"])',
       },
@@ -789,7 +795,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-chat-composer-shell-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--radius-composer)",
         selector: ':where([data-control-family="chat-composer"][data-slot="root"])',
       },
@@ -824,7 +830,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-chat-composer-attachment-height",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 14)",
         selector: ':where([data-control-family="chat-composer-attachment"][data-slot="root"][data-variant])',
       },
@@ -836,7 +842,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-chat-composer-attachment-list-padding",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 3)",
         selector: ':where([data-control-family="chat-composer-attachment"][data-slot="root"]:not([data-variant]))',
       },
@@ -854,7 +860,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-chat-composer-attachment-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--radius-popover)",
         selector: ':where([data-control-family="chat-composer-attachment"][data-slot="root"][data-variant])',
       },
@@ -895,7 +901,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-chat-layout-scroll-button-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 3)",
         selector: ':where([data-control-family="chat-layout"][data-slot="root"][data-chrome])',
       },
@@ -907,7 +913,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-chat-layout-turn-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 2)",
         selector: ':where([data-control-family="chat-layout"][data-slot="root"][data-chrome])',
       },
@@ -984,7 +990,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-chat-message-pending-dot-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 1.5)",
         selector: ':where([data-control-family="chat-message"][data-slot="root"])',
       },
@@ -1047,6 +1053,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
   {
     id: "choice",
     knobs: [
+      {
+        name: "--cui-choice-background",
+        syntax: "<color>",
+        defaultValue: "var(--control-fill)",
+        selector:
+          ':where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]),\n  :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"])',
+      },
       {
         name: "--cui-choice-border-color",
         syntax: "<color>",
@@ -1126,7 +1139,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-code-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "min(var(--radius-panel), calc(var(--control-h-xs) / 2 + var(--cui-code-border-width) + var(--_code-corner-inset)))",
         selector: ':where([data-control-family="code"][data-slot="root"])',
       },
@@ -1239,7 +1252,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-code-diff-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue:
           "min(\n      var(--radius-panel),\n      calc(var(--control-h-xs) / 2 + var(--cui-code-diff-border-width) + var(--_code-corner-inset))\n    )",
         selector: ':where([data-control-family="code-diff"][data-slot="root"])',
@@ -1328,14 +1341,14 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     knobs: [
       {
         name: "--cui-context-graph-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "9999px",
         selector:
           ':where([data-control-family="context"][data-slot="root"]),\n  :where([data-control-family="context"][data-slot="content"])',
       },
       {
         name: "--cui-context-legend-indicator-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "9999px",
         selector:
           ':where([data-control-family="context"][data-slot="root"]),\n  :where([data-control-family="context"][data-slot="content"])',
@@ -1444,6 +1457,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
           ':where([data-control-family="dockable-panel"][data-slot="root"]),\n  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-dockable-panel-root])',
       },
       {
+        name: "--cui-dockable-panel-drop-zone-background",
+        syntax: "<color>",
+        defaultValue: "oklch(from var(--background) l c h / 0.12)",
+        selector:
+          ':where([data-control-family="dockable-panel"][data-slot="root"]),\n  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-dockable-panel-root])',
+      },
+      {
         name: "--cui-dockable-panel-foreground",
         syntax: "<color>",
         defaultValue: "var(--card-foreground)",
@@ -1526,7 +1546,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-dynamic-notification-expanded-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "1.65rem",
         selector: ':where([data-control-family="dynamic-notification"][data-slot="root"])',
       },
@@ -1628,7 +1648,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-emoji-picker-cell-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 10)",
         selector: ':where([data-control-family="emoji-picker"][data-slot="root"])',
       },
@@ -1646,7 +1666,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-emoji-picker-height",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "22rem",
         selector: ':where([data-control-family="emoji-picker"][data-slot="root"])',
       },
@@ -1657,7 +1677,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     knobs: [
       {
         name: "--cui-empty-background",
-        syntax: "*",
+        syntax: "<color>",
         defaultValue: "transparent",
         selector: ':where([data-control-family="empty"][data-slot="root"])',
       },
@@ -1681,13 +1701,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-empty-content-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 2)",
         selector: ':where([data-control-family="empty"][data-slot="root"])',
       },
       {
         name: "--cui-empty-content-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "24rem",
         selector: ':where([data-control-family="empty"][data-slot="root"])',
       },
@@ -1699,7 +1719,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-empty-font-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--text-body)",
         selector: ':where([data-control-family="empty"][data-slot="root"])',
       },
@@ -1711,20 +1731,26 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-empty-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 6)",
         selector: ':where([data-control-family="empty"][data-slot="root"])',
       },
       {
         name: "--cui-empty-header-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 2)",
         selector: ':where([data-control-family="empty"][data-slot="root"])',
       },
       {
         name: "--cui-empty-media-background",
-        syntax: "*",
+        syntax: "<color>",
         defaultValue: "var(--muted)",
+        selector: ':where([data-control-family="empty"][data-slot="root"])',
+      },
+      {
+        name: "--cui-empty-media-background-image",
+        syntax: "*",
+        defaultValue: "none",
         selector: ':where([data-control-family="empty"][data-slot="root"])',
       },
       {
@@ -1735,7 +1761,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-empty-media-icon-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 5)",
         selector: ':where([data-control-family="empty"][data-slot="root"])',
       },
@@ -1747,13 +1773,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-empty-media-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 10)",
         selector: ':where([data-control-family="empty"][data-slot="root"])',
       },
       {
         name: "--cui-empty-padding",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 6)",
         selector: ':where([data-control-family="empty"][data-slot="root"])',
       },
@@ -1812,7 +1838,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-field-background",
-        syntax: "*",
+        syntax: "<color>",
         defaultValue: "var(--control-fill)",
         selector: ':where([data-control-family="field"][data-control="true"])',
       },
@@ -1848,7 +1874,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-field-hover-background",
-        syntax: "*",
+        syntax: "<color>",
         defaultValue: "var(--hover-fill)",
         selector: ':where([data-control-family="field"][data-control="true"])',
       },
@@ -1895,7 +1921,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-filter-bar-font-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--text-label)",
         selector: ':where([data-control-family="filter-bar"][data-slot="root"])',
       },
@@ -1907,13 +1933,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-filter-bar-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 1.5)",
         selector: ':where([data-control-family="filter-bar"][data-slot="root"])',
       },
       {
         name: "--cui-filter-bar-height",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--control-h-sm)",
         selector: ':where([data-control-family="filter-bar"][data-slot="root"])',
       },
@@ -1925,13 +1951,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-filter-bar-padding-inline",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 2)",
         selector: ':where([data-control-family="filter-bar"][data-slot="root"])',
       },
       {
         name: "--cui-filter-bar-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--radius-control)",
         selector: ':where([data-control-family="filter-bar"][data-slot="root"])',
       },
@@ -2009,7 +2035,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-flow-edge-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "1.5px",
         selector: ':where([data-control-family="flow"][data-slot="root"])',
       },
@@ -2045,7 +2071,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-flow-handle-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 2)",
         selector: ':where([data-control-family="flow"][data-slot="root"])',
       },
@@ -2174,7 +2200,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     id: "icon-picker",
     knobs: [
       {
-        name: "--cui-icon-picker-active-background",
+        name: "--cui-icon-picker-cell-hover-background",
+        syntax: "<color>",
+        defaultValue: "var(--accent)",
+        selector: ':where([data-control-family="icon-picker"][data-slot="root"])',
+      },
+      {
+        name: "--cui-icon-picker-cell-pressed-background",
         syntax: "<color>",
         defaultValue: "var(--accent)",
         selector: ':where([data-control-family="icon-picker"][data-slot="root"])',
@@ -2187,7 +2219,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-icon-picker-cell-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 10)",
         selector: ':where([data-control-family="icon-picker"][data-slot="root"])',
       },
@@ -2296,7 +2328,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-inline-attachment-content-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue:
           "max(\n      var(--radius-sm),\n      calc(var(--cui-inline-attachment-radius) - var(--cui-inline-attachment-padding))\n    )",
         selector: ':where([data-control-family="inline-attachment"][data-slot="root"])',
@@ -2321,7 +2353,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-inline-attachment-document-padding",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 5)",
         selector: ':where([data-control-family="inline-attachment"][data-slot="root"])',
       },
@@ -2339,13 +2371,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-inline-attachment-padding",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 3)",
         selector: ':where([data-control-family="inline-attachment"][data-slot="root"])',
       },
       {
         name: "--cui-inline-attachment-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue:
           "min(\n      var(--radius-field),\n      calc(var(--cui-inline-attachment-padding) + var(--_inline-attachment-content-line-height) / 2 + var(--spacing))\n    )",
         selector: ':where([data-control-family="inline-attachment"][data-slot="root"])',
@@ -2397,7 +2429,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-inline-citation-quote-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--radius-control)",
         selector:
           ':where([data-control-family="inline-citation"][data-slot="root"]),\n  :where([data-control-ui="inline-citation"][data-slot="content"])',
@@ -2446,7 +2478,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-inline-citation-trigger-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "9999px",
         selector:
           ':where([data-control-family="inline-citation"][data-slot="root"]),\n  :where([data-control-ui="inline-citation"][data-slot="content"])',
@@ -2470,13 +2502,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-item-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 3)",
         selector: ':where([data-control-family="item"][data-slot="root"])',
       },
       {
         name: "--cui-item-hover-background",
-        syntax: "*",
+        syntax: "<color>",
         defaultValue: "transparent",
         selector: ':where([data-control-family="item"][data-slot="root"])',
       },
@@ -2488,13 +2520,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-item-padding-block",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 3)",
         selector: ':where([data-control-family="item"][data-slot="root"])',
       },
       {
         name: "--cui-item-padding-inline",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 3)",
         selector: ':where([data-control-family="item"][data-slot="root"])',
       },
@@ -2569,13 +2601,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-markdown-flow-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 4)",
         selector: ':where([data-control-family="markdown"][data-slot="root"])',
       },
       {
         name: "--cui-markdown-font-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--text-body)",
         selector: ':where([data-control-family="markdown"][data-slot="root"])',
       },
@@ -2587,7 +2619,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-markdown-heading-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 6)",
         selector: ':where([data-control-family="markdown"][data-slot="root"])',
       },
@@ -2729,25 +2761,25 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-markdown-editor-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 3)",
         selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
       },
       {
         name: "--cui-markdown-editor-gutter-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--control-h-xs)",
         selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
       },
       {
         name: "--cui-markdown-editor-max-height",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "60dvh",
         selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
       },
       {
         name: "--cui-markdown-editor-min-height",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 32)",
         selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
       },
@@ -2759,7 +2791,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-markdown-editor-padding",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 4)",
         selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
       },
@@ -2823,13 +2855,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     knobs: [
       {
         name: "--cui-page-layout-article-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "40rem",
         selector: ':where([data-control-family="page-layout"][data-slot="root"])',
       },
       {
         name: "--cui-page-layout-aside-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "11.25rem",
         selector: ':where([data-control-family="page-layout"][data-slot="root"])',
       },
@@ -2841,55 +2873,55 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-page-layout-column-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 5)",
         selector: ':where([data-control-family="page-layout"][data-slot="root"])',
       },
       {
         name: "--cui-page-layout-header-column-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 4)",
         selector: ':where([data-control-family="page-layout"][data-slot="root"])',
       },
       {
         name: "--cui-page-layout-header-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 8)",
         selector: ':where([data-control-family="page-layout"][data-slot="root"])',
       },
       {
         name: "--cui-page-layout-header-row-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 2)",
         selector: ':where([data-control-family="page-layout"][data-slot="root"])',
       },
       {
         name: "--cui-page-layout-header-start-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 10)",
         selector: ':where([data-control-family="page-layout"][data-slot="root"])',
       },
       {
         name: "--cui-page-layout-padding-block",
-        syntax: "*",
+        syntax: "<length-percentage>+",
         defaultValue: "calc(var(--spacing) * 10) calc(var(--spacing) * 24)",
         selector: ':where([data-control-family="page-layout"][data-slot="root"])',
       },
       {
         name: "--cui-page-layout-padding-inline",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 5)",
         selector: ':where([data-control-family="page-layout"][data-slot="root"])',
       },
       {
         name: "--cui-page-layout-size",
-        syntax: "*",
+        syntax: "<length-percentage> | none",
         defaultValue: "calc(var(--cui-page-layout-article-size) + var(--cui-page-layout-padding-inline) * 2)",
         selector: ':where([data-control-family="page-layout"][data-slot="root"])',
       },
       {
         name: "--cui-page-layout-sticky-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "0px",
         selector: ':where([data-control-family="page-layout"][data-slot="root"])',
       },
@@ -2994,8 +3026,8 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-popup-backdrop-blur",
-        syntax: "*",
-        defaultValue: "blur(var(--backdrop-blur-overlay))",
+        syntax: "<length>",
+        defaultValue: "var(--backdrop-blur-overlay)",
         selector: ':where([data-control-family="popup"][data-popup-part="backdrop"])',
       },
       {
@@ -3056,7 +3088,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-popup-item-font-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--text-body)",
         selector:
           ':where([data-control-family="popup"][data-popup-part="surface"]),\n  :where([data-control-family="popup"][data-popup-part="list-surface"]),\n  :where([data-control-family="popup"][data-popup-part="bar"])',
@@ -3098,7 +3130,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-popup-item-icon-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "1rem",
         selector:
           ':where([data-control-family="popup"][data-popup-part="surface"]),\n  :where([data-control-family="popup"][data-popup-part="list-surface"]),\n  :where([data-control-family="popup"][data-popup-part="bar"])',
@@ -3112,7 +3144,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-popup-item-min-height",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "max(var(--target-min), var(--control-h-xs))",
         selector:
           ':where([data-control-family="popup"][data-popup-part="surface"]),\n  :where([data-control-family="popup"][data-popup-part="list-surface"]),\n  :where([data-control-family="popup"][data-popup-part="bar"])',
@@ -3140,7 +3172,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-popup-label-font-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--text-micro)",
         selector:
           ':where([data-control-family="popup"][data-popup-part="surface"]),\n  :where([data-control-family="popup"][data-popup-part="list-surface"]),\n  :where([data-control-family="popup"][data-popup-part="bar"])',
@@ -3182,7 +3214,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-popup-radius",
-        syntax: "*",
+        syntax: "<length-percentage>",
         defaultValue: "var(--radius-popover)",
         selector:
           ':where([data-control-family="popup"][data-popup-part="surface"]),\n  :where([data-control-family="popup"][data-popup-part="list-surface"]),\n  :where([data-control-family="popup"][data-popup-part="bar"])',
@@ -3210,7 +3242,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-popup-shortcut-font-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--text-body)",
         selector:
           ':where([data-control-family="popup"][data-popup-part="surface"]),\n  :where([data-control-family="popup"][data-popup-part="list-surface"]),\n  :where([data-control-family="popup"][data-popup-part="bar"])',
@@ -3255,7 +3287,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-popup-title-font-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--text-heading-3)",
         selector:
           ':where([data-control-family="popup"][data-popup-part="surface"]),\n  :where([data-control-family="popup"][data-popup-part="list-surface"]),\n  :where([data-control-family="popup"][data-popup-part="bar"])',
@@ -3348,7 +3380,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-range-thumb-background",
-        syntax: "*",
+        syntax: "<color>",
         defaultValue: "var(--background)",
         selector: ':where([data-control-family="range"][data-slot="root"])',
       },
@@ -3436,6 +3468,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="resizable"][data-slot="panel-group"])',
       },
       {
+        name: "--cui-resizable-handle-background",
+        syntax: "<color>",
+        defaultValue: "transparent",
+        selector: ':where([data-control-family="resizable"][data-slot="panel-group"])',
+      },
+      {
         name: "--cui-resizable-handle-color",
         syntax: "<color>",
         defaultValue: "var(--foreground)",
@@ -3472,7 +3510,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-resize-handle-hit-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--target-min)",
         selector: ':where([data-control-family="resize-handle"][data-slot="root"])',
       },
@@ -3490,7 +3528,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-resize-handle-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "10px",
         selector: ':where([data-control-family="resize-handle"][data-slot="root"])',
       },
@@ -3567,7 +3605,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-scroll-area-thumb-background",
-        syntax: "*",
+        syntax: "<color>",
         defaultValue: "oklch(from var(--foreground) l c h / 0.4)",
         selector: ':where([data-control-family="scroll-area"][data-slot="root"])',
       },
@@ -3739,7 +3777,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-sidebar-menu-badge-height",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 5)",
         selector: ':where([data-control-family="sidebar"][data-slot="root"])',
       },
@@ -3765,6 +3803,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-sidebar-menu-button-active-shadow",
         syntax: "*",
         defaultValue: "0 0 transparent",
+        selector: ':where([data-control-family="sidebar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-sidebar-menu-button-background",
+        syntax: "<color>",
+        defaultValue: "transparent",
         selector: ':where([data-control-family="sidebar"][data-slot="root"])',
       },
       {
@@ -3828,6 +3872,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="sidebar"][data-slot="root"])',
       },
       {
+        name: "--cui-sidebar-menu-button-shadow",
+        syntax: "*",
+        defaultValue: "0 0 transparent",
+        selector: ':where([data-control-family="sidebar"][data-slot="root"])',
+      },
+      {
         name: "--cui-sidebar-menu-button-track-active-foreground",
         syntax: "<color>",
         defaultValue: "var(--foreground)",
@@ -3859,13 +3909,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-sidebar-nav-gap",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 3)",
         selector: ':where([data-control-family="sidebar"][data-slot="wrapper"])',
       },
       {
         name: "--cui-sidebar-nav-height",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "4.5rem",
         selector: ':where([data-control-family="sidebar"][data-slot="wrapper"])',
       },
@@ -4083,7 +4133,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-stepper-indicator-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 8)",
         selector: ':where([data-control-family="stepper"][data-slot="root"])',
       },
@@ -4148,7 +4198,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-switch-height",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 5)",
         selector: ':where([data-control-family="switch"][data-slot="root"])',
       },
@@ -4160,13 +4210,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-switch-inline-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 9)",
         selector: ':where([data-control-family="switch"][data-slot="root"])',
       },
       {
         name: "--cui-switch-padding",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 0.5)",
         selector: ':where([data-control-family="switch"][data-slot="root"])',
       },
@@ -4196,19 +4246,19 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-switch-thumb-inline-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 4)",
         selector: ':where([data-control-family="switch"][data-slot="root"])',
       },
       {
         name: "--cui-switch-thumb-press-inline-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--cui-switch-thumb-inline-size) * 1.25)",
         selector: ':where([data-control-family="switch"][data-slot="root"])',
       },
       {
         name: "--cui-switch-thumb-press-scale",
-        syntax: "*",
+        syntax: "<number>",
         defaultValue: "1",
         selector: ':where([data-control-family="switch"][data-slot="root"])',
       },
@@ -4231,7 +4281,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     knobs: [
       {
         name: "--cui-table-background",
-        syntax: "*",
+        syntax: "<color>",
         defaultValue: "transparent",
         selector: ':where([data-control-family="table"][data-slot="root"])',
       },
@@ -4243,7 +4293,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-table-footer-background",
-        syntax: "*",
+        syntax: "<color>",
         defaultValue: "oklch(from var(--foreground) l c h / 0.03)",
         selector: ':where([data-control-family="table"][data-slot="root"])',
       },
@@ -4261,13 +4311,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-table-row-hover-background",
-        syntax: "*",
+        syntax: "<color>",
         defaultValue: "oklch(from var(--foreground) l c h / 0.03)",
         selector: ':where([data-control-family="table"][data-slot="root"])',
       },
       {
         name: "--cui-table-row-selected-background",
-        syntax: "*",
+        syntax: "<color>",
         defaultValue: "oklch(from var(--foreground) l c h / 0.05)",
         selector: ':where([data-control-family="table"][data-slot="root"])',
       },
@@ -4338,7 +4388,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-table-of-contents-item-indent-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 2)",
         selector: ':where([data-control-family="table-of-contents"][data-slot="root"])',
       },
@@ -4404,7 +4454,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-table-of-contents-rail-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "1px",
         selector: ':where([data-control-family="table-of-contents"][data-slot="root"])',
       },
@@ -4416,7 +4466,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-table-of-contents-scroll-inset",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 20)",
         selector: ':where([data-control-family="table-of-contents"][data-slot="root"])',
       },
@@ -4428,7 +4478,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-table-of-contents-trail-size",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "2px",
         selector: ':where([data-control-family="table-of-contents"][data-slot="root"])',
       },
@@ -4475,8 +4525,14 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-tabs-indicator-background",
-        syntax: "*",
+        syntax: "<color>",
         defaultValue: "var(--background)",
+        selector: ':where([data-control-family="tabs"][data-slot="root"])',
+      },
+      {
+        name: "--cui-tabs-indicator-background-image",
+        syntax: "*",
+        defaultValue: "none",
         selector: ':where([data-control-family="tabs"][data-slot="root"])',
       },
       {
@@ -4524,7 +4580,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-tabs-surface-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--radius-panel)",
         selector: ':where([data-control-family="tabs"][data-slot="root"])',
       },
@@ -4589,20 +4645,20 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-task-list-item-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue:
           "max(\n      var(--radius-sm),\n      min(var(--radius-popup-item-fit), calc(var(--cui-task-list-radius) - var(--cui-task-list-items-padding)))\n    )",
         selector: ':where([data-control-family="task-list"][data-slot="root"])',
       },
       {
         name: "--cui-task-list-items-padding",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 2)",
         selector: ':where([data-control-family="task-list"][data-slot="root"])',
       },
       {
         name: "--cui-task-list-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--radius-field)",
         selector: ':where([data-control-family="task-list"][data-slot="root"])',
       },
@@ -4915,8 +4971,14 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     knobs: [
       {
         name: "--cui-tree-indent-inset",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "1.25rem",
+        selector: ':where([data-control-family="tree"][data-slot="root"])',
+      },
+      {
+        name: "--cui-tree-item-trigger-background",
+        syntax: "<color>",
+        defaultValue: "transparent",
         selector: ':where([data-control-family="tree"][data-slot="root"])',
       },
       {
@@ -5016,13 +5078,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-user-ask-indicator-multiple-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--radius-sm)",
         selector: ':where([data-control-family="user-ask"][data-slot="root"])',
       },
       {
         name: "--cui-user-ask-indicator-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "9999px",
         selector: ':where([data-control-family="user-ask"][data-slot="root"])',
       },
@@ -5046,7 +5108,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-user-ask-option-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue:
           "max(\n      var(--radius-sm),\n      min(var(--radius-popup-item-fit), calc(var(--cui-user-ask-radius) - var(--cui-user-ask-padding)))\n    )",
         selector: ':where([data-control-family="user-ask"][data-slot="root"])',
@@ -5059,13 +5121,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
       {
         name: "--cui-user-ask-padding",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 3)",
         selector: ':where([data-control-family="user-ask"][data-slot="root"])',
       },
       {
         name: "--cui-user-ask-radius",
-        syntax: "<length>",
+        syntax: "<length-percentage>",
         defaultValue: "var(--radius-popover)",
         selector: ':where([data-control-family="user-ask"][data-slot="root"])',
       },

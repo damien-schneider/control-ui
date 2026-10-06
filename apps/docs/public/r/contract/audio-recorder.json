@@ -13,7 +13,13 @@
       "defaultValue": "var(--muted-foreground)"
     },
     {
-      "name": "--cui-audio-recorder-active-foreground",
+      "name": "--cui-audio-recorder-recording-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-audio-recorder-recorded-foreground",
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--foreground)"
@@ -192,8 +198,8 @@
   },
   "adornments": {},
   "uncovered": [
-    "--cui-audio-recorder-active-foreground",
-    "--cui-audio-recorder-meta-foreground"
+    "--cui-audio-recorder-recorded-foreground",
+    "--cui-audio-recorder-recording-foreground"
   ],
   "contrast": "/r/contract/audio-recorder.contrast.json"
 }

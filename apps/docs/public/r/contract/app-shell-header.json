@@ -8,13 +8,13 @@
   "knobs": [
     {
       "name": "--cui-app-shell-header-height",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 14)"
     },
     {
       "name": "--cui-app-shell-header-padding-inline",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 4)"
     },

@@ -17,7 +17,7 @@
       "name": "--card",
       "group": "color",
       "tier": "core",
-      "description": "Elevated card surface."
+      "description": "Card surface; sits on --background in light, one ramp step above it in dark."
     },
     {
       "name": "--card-foreground",
@@ -53,7 +53,7 @@
       "name": "--primary-text",
       "group": "color",
       "tier": "derived",
-      "description": "Readable brand text color on base and card surfaces."
+      "description": "Readable brand text color on base and card surfaces; --primary at ramp step 11."
     },
     {
       "name": "--muted",
@@ -107,13 +107,31 @@
       "name": "--destructive-text",
       "group": "color",
       "tier": "derived",
-      "description": "Readable destructive text color on base and card surfaces."
+      "description": "Readable destructive text color on base and card surfaces; --destructive at ramp step 11."
+    },
+    {
+      "name": "--success",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Success status color; defaults to --scale-green-9."
+    },
+    {
+      "name": "--warning",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Warning status color; defaults to --scale-yellow-9."
+    },
+    {
+      "name": "--info",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Info status color; defaults to --scale-blue-9."
     },
     {
       "name": "--success-text",
       "group": "color",
       "tier": "derived",
-      "description": "Readable success text color on base and card surfaces; defaults to --scale-green-11."
+      "description": "Readable success text color on base and card surfaces; --success at ramp step 11."
     },
     {
       "name": "--warning-text",
@@ -136,8 +154,8 @@
     {
       "name": "--input",
       "group": "color",
-      "tier": "core",
-      "description": "Form field border color."
+      "tier": "derived",
+      "description": "Form field border color; defaults to --control-rim."
     },
     {
       "name": "--ring",
@@ -161,7 +179,7 @@
       "name": "--control-boundary",
       "group": "color",
       "tier": "derived",
-      "description": "Edge of a control that has no other outline (unchecked checkbox, radio, switch track); defaults to --foreground at 55% and must clear 3:1 on --background and --card (WCAG 1.4.11)."
+      "description": "Edge of a control that has no other outline (unchecked checkbox, radio, switch track); defaults to --foreground at 60% and must clear 3:1 on --background and --card (WCAG 1.4.11)."
     },
     {
       "name": "--image-outline",
@@ -191,7 +209,7 @@
       "name": "--canvas",
       "group": "color",
       "tier": "core",
-      "description": "The page paper the scene/panels float on — a level BELOW --background."
+      "description": "The page paper the scene/panels float on; same ramp step as --background by default, skins may drop it below."
     },
     {
       "name": "--canvas-grid-dot",
@@ -258,6 +276,24 @@
       "group": "color",
       "tier": "derived",
       "description": "Seed of the pink ramp; its hue and chroma drive --scale-pink-1 to --scale-pink-12."
+    },
+    {
+      "name": "--badge-fill-alpha",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Alpha of every tinted badge fill; defaults to 0.16."
+    },
+    {
+      "name": "--badge-border-alpha",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Alpha of every tinted badge border; defaults to 0.2."
+    },
+    {
+      "name": "--badge-hover-alpha",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Alpha a tinted badge fill reaches on hover; defaults to 0.24."
     },
     {
       "name": "--badge-neutral",
@@ -452,6 +488,42 @@
       "description": "Hover background of filled pink-family badge links and buttons."
     },
     {
+      "name": "--sidebar",
+      "group": "color",
+      "tier": "derived",
+      "description": "Sidebar surface; defaults to --canvas."
+    },
+    {
+      "name": "--sidebar-foreground",
+      "group": "color",
+      "tier": "derived",
+      "description": "Text on the sidebar surface; defaults to --foreground."
+    },
+    {
+      "name": "--sidebar-primary",
+      "group": "color",
+      "tier": "derived",
+      "description": "Accent of the active sidebar item; defaults to --primary."
+    },
+    {
+      "name": "--sidebar-accent",
+      "group": "color",
+      "tier": "derived",
+      "description": "Hover and active wash of sidebar items; defaults to --hover-fill."
+    },
+    {
+      "name": "--sidebar-accent-foreground",
+      "group": "color",
+      "tier": "derived",
+      "description": "Text on a washed sidebar item; defaults to --foreground."
+    },
+    {
+      "name": "--sidebar-border",
+      "group": "color",
+      "tier": "derived",
+      "description": "Edge between the sidebar and the page; defaults to --border."
+    },
+    {
       "name": "--font-sans",
       "group": "typography",
       "tier": "core",
@@ -490,7 +562,7 @@
     {
       "name": "--text-label",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "12px rung — form labels + small chrome."
     },
     {
@@ -686,12 +758,6 @@
       "description": "Progressive corner reshape (round | squircle | scoop | …); defaults to round."
     },
     {
-      "name": "--corner-radius-fit",
-      "group": "radius",
-      "tier": "derived",
-      "description": "Fallback radius shrink where corner-shape: squircle is unsupported."
-    },
-    {
       "name": "--radius-popup-item",
       "group": "radius",
       "tier": "advanced",
@@ -719,7 +785,7 @@
       "name": "--shadow-size",
       "group": "shadow",
       "tier": "advanced",
-      "description": "Global geometry multiplier: 1 = default depth, 0 = flat."
+      "description": "Global geometry multiplier: 0 = flat (the default), 1 = full depth."
     },
     {
       "name": "--shadow-opacity",
@@ -872,10 +938,58 @@
       "description": "Derived control height: sm (×0.89, px-snapped)."
     },
     {
+      "name": "--control-h-md",
+      "group": "layout",
+      "tier": "derived",
+      "description": "Derived control height: md (= --control-h)."
+    },
+    {
       "name": "--control-h-lg",
       "group": "layout",
       "tier": "derived",
       "description": "Derived control height: lg (×1.11, px-snapped)."
+    },
+    {
+      "name": "--sidebar-width",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "Expanded sidebar width; a dragged width overrides it inline."
+    },
+    {
+      "name": "--sidebar-width-icon",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "Collapsed icon-rail sidebar width."
+    },
+    {
+      "name": "--z-overlay",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "Stacking level of modal backdrops."
+    },
+    {
+      "name": "--z-modal",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "Stacking level of dialogs and sheets."
+    },
+    {
+      "name": "--z-popup",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "Stacking level of menus, popovers, and selects."
+    },
+    {
+      "name": "--z-tooltip",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "Stacking level of tooltips."
+    },
+    {
+      "name": "--z-toast",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "Stacking level of toasts."
     },
     {
       "name": "--focus-ring-width",

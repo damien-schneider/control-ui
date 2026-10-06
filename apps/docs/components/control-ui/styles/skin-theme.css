@@ -2,7 +2,6 @@
   --font-sans: Tahoma, Arial, sans-serif;
   --font-mono: "Lucida Console", Consolas, monospace;
   --text-body: 0.75rem;
-  --text-caption: 0.6875rem;
   --text-body-lg: 0.8125rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.2178 0 0);
@@ -28,18 +27,12 @@
   --focus-ring-width: 1px;
   --focus-ring-offset: -4px;
   --canvas: oklch(0.9318 0.0228 98.65);
-  --popover-opacity: 1;
-  --backdrop-blur-popover: 0px;
   --overlay-opacity: 0.3;
-  --backdrop-blur-overlay: 0px;
   --scroll-fade-size: 0rem;
   --shadow-color: oklch(0 0 0);
   --shadow-size: 0.4;
-  --shadow-opacity: 1;
   --radius: 0rem;
-  --radius-control: calc(var(--radius) * 2);
   --popover-padding: 2px;
-  --radius-popup-item: calc(var(--radius-control) * 0.6);
   --padding-x: 0.625rem;
   --padding-y: 0.375rem;
   --control-h: 1.625rem;
@@ -49,12 +42,9 @@
   --duration-base: 0ms;
   --duration-slow: 0ms;
   --text-label: 0.6875rem;
-  --radius-field: calc(var(--radius) * 2.2);
-  --radius-panel: calc(var(--radius) * 2.6);
-  --radius-scene: calc(var(--radius) * 2.8);
 }
-:where(.dark) [data-skin="xp"][data-skin],
-.dark[data-skin="xp"][data-skin] {
+.dark[data-skin="xp"][data-skin],
+.dark [data-skin="xp"][data-skin] {
   --background: oklch(0.2459 0.0072 248.122);
   --foreground: oklch(0.919 0.0071 88.645);
   --card: oklch(0.2795 0.0085 255.574);
@@ -62,18 +52,14 @@
   --popover: oklch(0.2795 0.0085 255.574);
   --popover-foreground: oklch(0.919 0.0071 88.645);
   --primary: oklch(0.5512 0.1425 260.917);
-  --primary-foreground: oklch(1 0 0);
   --muted: oklch(0.2958 0.0084 255.567);
   --muted-foreground: oklch(0.7028 0.0111 247.986);
   --secondary: oklch(0.2958 0.0084 255.567);
   --secondary-foreground: oklch(0.919 0.0071 88.645);
   --accent: oklch(0.5016 0.1504 261.426);
-  --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.574 0.1623 27.404);
-  --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.3847 0.0136 256.762 / var(--ring-opacity));
   --input: oklch(0.4441 0.0229 248.341);
   --ring: oklch(0.7319 0.1299 74.539);
   --canvas: oklch(0.1763 0.0052 248.125);
-  --shadow-color: oklch(0 0 0);
 }

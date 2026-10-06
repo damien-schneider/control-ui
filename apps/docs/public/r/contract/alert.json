@@ -14,7 +14,7 @@
     },
     {
       "name": "--cui-alert-background",
-      "syntax": "*",
+      "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--card)"
     },
@@ -27,7 +27,7 @@
     {
       "name": "--cui-alert-shadow",
       "syntax": "*",
-      "initialValue": "none",
+      "initialValue": "",
       "defaultValue": "none"
     },
     {
@@ -50,50 +50,50 @@
     },
     {
       "name": "--cui-alert-padding",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 3)"
     },
     {
       "name": "--cui-alert-padding-inline",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 4)"
     },
     {
       "name": "--cui-alert-gap",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 0.5)"
     },
     {
       "name": "--cui-alert-icon-gap",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 3)"
     },
     {
       "name": "--cui-alert-icon-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 4)"
     },
     {
       "name": "--cui-alert-font-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--text-body)"
     },
     {
       "name": "--cui-alert-description-gap",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--spacing)"
     },
     {
       "name": "--cui-alert-title-font-weight",
       "syntax": "<number>",
-      "initialValue": "500",
+      "initialValue": "400",
       "defaultValue": "var(--font-weight-medium)"
     }
   ],

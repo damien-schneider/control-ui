@@ -44,7 +44,7 @@
     },
     {
       "name": "--cui-avatar-badge-ring-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "2px"
     },

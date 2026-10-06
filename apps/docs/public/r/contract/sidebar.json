@@ -8,8 +8,8 @@
   "knobs": [
     {
       "name": "--cui-sidebar-nav-height",
-      "syntax": "<length>",
-      "initialValue": "72px",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
       "defaultValue": "4.5rem"
     },
     {
@@ -62,13 +62,13 @@
     },
     {
       "name": "--cui-sidebar-nav-gap",
-      "syntax": "<length>",
-      "initialValue": "12px",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 3)"
     },
     {
       "name": "--cui-sidebar-menu-badge-height",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 5)"
     },
@@ -123,7 +123,7 @@
     {
       "name": "--cui-sidebar-inner-backdrop-filter",
       "syntax": "*",
-      "initialValue": "none",
+      "initialValue": "",
       "defaultValue": "none"
     },
     {
@@ -279,7 +279,7 @@
     {
       "name": "--cui-sidebar-menu-button-font-size",
       "syntax": "<length-percentage>",
-      "initialValue": "1rem",
+      "initialValue": "0px",
       "defaultValue": "var(--text-body)"
     },
     {
@@ -291,25 +291,25 @@
     {
       "name": "--cui-sidebar-menu-button-active-font-weight",
       "syntax": "<number>",
-      "initialValue": "500",
+      "initialValue": "400",
       "defaultValue": "500"
     },
     {
       "name": "--cui-sidebar-group-label-font-size",
       "syntax": "<length-percentage>",
-      "initialValue": "1rem",
+      "initialValue": "0px",
       "defaultValue": "var(--text-caption)"
     },
     {
       "name": "--cui-sidebar-group-label-font-weight",
       "syntax": "<number>",
-      "initialValue": "500",
+      "initialValue": "400",
       "defaultValue": "500"
     },
     {
       "name": "--cui-sidebar-group-label-letter-spacing",
       "syntax": "<length>",
-      "initialValue": "0em",
+      "initialValue": "0px",
       "defaultValue": "0em"
     },
     {
@@ -347,6 +347,18 @@
       "syntax": "*",
       "initialValue": "",
       "defaultValue": "var(--shadow-md)"
+    },
+    {
+      "name": "--cui-sidebar-menu-button-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-sidebar-menu-button-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "0 0 transparent"
     }
   ],
   "parts": {

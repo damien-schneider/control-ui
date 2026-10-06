@@ -8,19 +8,19 @@
   "knobs": [
     {
       "name": "--cui-chat-composer-attachment-radius",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--radius-popover)"
     },
     {
       "name": "--cui-chat-composer-attachment-height",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 14)"
     },
     {
       "name": "--cui-chat-composer-attachment-list-padding",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 3)"
     },

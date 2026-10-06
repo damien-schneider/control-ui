@@ -31,6 +31,69 @@
       },
       {
         "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "icon-picker",
+          "data-control-ui": "icon-picker",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "aria-pressed": "false",
+          "data-control-family": "icon-picker",
+          "data-control-ui": "icon-picker",
+          "data-focusable": "",
+          "data-orientation": "horizontal",
+          "data-slot": "icon",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "icon-picker",
           "data-control-ui": "icon-picker",
           "data-slot": "root"
@@ -78,6 +141,14 @@
       },
       {
         "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "icon-picker",
           "data-control-ui": "icon-picker",
           "data-slot": "root"
@@ -88,7 +159,7 @@
   "probes": [
     {
       "knobs": {
-        "fill": "--cui-icon-picker-active-background"
+        "fill": "--cui-icon-picker-cell-hover-background"
       },
       "anatomy": 0,
       "rendersText": false,
@@ -96,9 +167,25 @@
     },
     {
       "knobs": {
-        "text": "--cui-icon-picker-foreground"
+        "fill": "--cui-icon-picker-cell-hover-background"
       },
       "anatomy": 1,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-icon-picker-cell-pressed-background"
+      },
+      "anatomy": 1,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-icon-picker-foreground"
+      },
+      "anatomy": 2,
       "rendersText": false,
       "state": false
     }

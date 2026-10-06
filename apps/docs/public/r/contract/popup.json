@@ -36,7 +36,7 @@
     },
     {
       "name": "--cui-popup-title-font-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--text-heading-3)"
     },
@@ -49,7 +49,7 @@
     {
       "name": "--cui-popup-title-line-height",
       "syntax": "<number>",
-      "initialValue": "1",
+      "initialValue": "1.5",
       "defaultValue": "var(--text-heading-3--line-height)"
     },
     {
@@ -90,7 +90,7 @@
     },
     {
       "name": "--cui-popup-label-font-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--text-micro)"
     },
@@ -120,7 +120,7 @@
     },
     {
       "name": "--cui-popup-shortcut-font-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--text-body)"
     },
@@ -156,8 +156,8 @@
     },
     {
       "name": "--cui-popup-radius",
-      "syntax": "*",
-      "initialValue": "",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
       "defaultValue": "var(--radius-popover)"
     },
     {
@@ -204,9 +204,9 @@
     },
     {
       "name": "--cui-popup-backdrop-blur",
-      "syntax": "*",
-      "initialValue": "",
-      "defaultValue": "blur(var(--backdrop-blur-overlay))"
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--backdrop-blur-overlay)"
     },
     {
       "name": "--cui-popup-item-radius",
@@ -216,14 +216,14 @@
     },
     {
       "name": "--cui-popup-item-font-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--text-body)"
     },
     {
       "name": "--cui-popup-item-icon-size",
-      "syntax": "<length>",
-      "initialValue": "16px",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
       "defaultValue": "1rem"
     },
     {
@@ -240,7 +240,7 @@
     },
     {
       "name": "--cui-popup-item-min-height",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "max(var(--target-min), var(--control-h-xs))"
     },

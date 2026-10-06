@@ -21,7 +21,7 @@
     {
       "name": "--cui-skeleton-background-image",
       "syntax": "*",
-      "initialValue": "none",
+      "initialValue": "",
       "defaultValue": "none"
     },
     {
@@ -39,13 +39,13 @@
     {
       "name": "--cui-skeleton-easing",
       "syntax": "*",
-      "initialValue": "ease",
+      "initialValue": "",
       "defaultValue": "var(--ease-standard)"
     },
     {
       "name": "--cui-skeleton-pulse-opacity",
       "syntax": "<number>",
-      "initialValue": "0.5",
+      "initialValue": "1",
       "defaultValue": "0.5"
     }
   ],

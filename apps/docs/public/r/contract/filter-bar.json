@@ -32,31 +32,31 @@
     },
     {
       "name": "--cui-filter-bar-radius",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--radius-control)"
     },
     {
       "name": "--cui-filter-bar-height",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--control-h-sm)"
     },
     {
       "name": "--cui-filter-bar-gap",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 1.5)"
     },
     {
       "name": "--cui-filter-bar-padding-inline",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 2)"
     },
     {
       "name": "--cui-filter-bar-font-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--text-label)"
     },

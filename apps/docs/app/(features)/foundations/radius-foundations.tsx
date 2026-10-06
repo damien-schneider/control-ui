@@ -49,7 +49,7 @@ export function RadiusFoundations() {
         </div>
       </SpecimenGroup>
       <SpecimenGroup title="Knobs">
-        <TokenValueList names={["--radius", "--corner-shape", "--corner-radius-fit"]} />
+        <TokenValueList names={["--radius", "--corner-shape"]} />
       </SpecimenGroup>
     </div>
   );

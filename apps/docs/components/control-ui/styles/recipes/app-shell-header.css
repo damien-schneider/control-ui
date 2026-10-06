@@ -13,13 +13,13 @@
 }
 
 @property --cui-app-shell-header-height {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
 @property --cui-app-shell-header-padding-inline {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }

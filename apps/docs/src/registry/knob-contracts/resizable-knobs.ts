@@ -10,5 +10,6 @@ export const resizableKnobs = [
   "--cui-resizable-grip-radius",
   "--cui-resizable-grip-background",
   "--cui-resizable-grip-foreground",
+  "--cui-resizable-handle-background",
 ] as const;
 export type ResizableKnobStyle = Partial<Record<(typeof resizableKnobs)[number], string>>;

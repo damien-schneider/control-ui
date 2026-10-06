@@ -84,13 +84,13 @@
       [data-control-family="choice"][data-slot="root"][data-choice-kind="checkbox"],
       [data-control-family="choice"][data-slot="item"][data-choice-kind="radio-group"]
     ) {
+    --cui-choice-background: var(--background);
     --cui-choice-checked-background: var(--background);
     --cui-choice-border-color: transparent;
     --cui-choice-checked-border-color: transparent;
     inline-size: 13px;
     block-size: 13px;
     color: var(--foreground);
-    background-color: var(--background);
     --cui-choice-shadow: inset 0 0 0 var(--cui-choice-border-width) var(--cui-choice-border-color), var(--win98-sunken);
   }
   [data-skin="windows-98"] :where([data-control-family="choice"][data-slot="root"][data-choice-kind="checkbox"]) {

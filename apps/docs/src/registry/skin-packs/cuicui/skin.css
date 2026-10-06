@@ -173,7 +173,7 @@
     --cui-tabs-list-padding: 0.25rem;
     --cui-tabs-list-background: var(--cuicui-control-bg);
     --cui-tabs-active-foreground: var(--primary-foreground);
-    --cui-tabs-indicator-background: linear-gradient(to right, var(--cuicui-stops-legible));
+    --cui-tabs-indicator-background-image: linear-gradient(to right, var(--cuicui-stops-legible));
     --cui-tabs-indicator-shadow: 0 0 20px oklch(from var(--primary) l c h / 0.22);
   }
 
@@ -420,7 +420,7 @@
     --cui-empty-border-width: 1px;
     --cui-empty-border-style: dashed;
     --cui-empty-media-radius: var(--radius-control);
-    --cui-empty-media-background: var(--cuicui-gradient-soft);
+    --cui-empty-media-background-image: var(--cuicui-gradient-soft);
   }
 
   [data-skin="cuicui"] :where([data-control-ui="slider"][data-slot="root"][data-control-family="range"]) {
@@ -502,13 +502,13 @@
     --cui-code-background: var(--cuicui-surface-bg);
     --cui-code-border-color: var(--control-rim);
     --cui-code-shadow: var(--shadow-soft);
+    --cui-code-header-background: var(--cuicui-control-bg);
     -webkit-backdrop-filter: blur(var(--backdrop-blur-popover));
     backdrop-filter: blur(var(--backdrop-blur-popover));
   }
 
   [data-skin="cuicui"] :where([data-slot="header"][data-control-family="code"]) {
     border-bottom-color: var(--control-rim);
-    background-color: var(--cuicui-control-bg);
   }
 
   [data-skin="cuicui"] :where([data-slot="title"][data-control-family="code"]) {
@@ -521,13 +521,13 @@
     --cui-code-diff-background: var(--cuicui-surface-bg);
     --cui-code-diff-border-color: var(--control-rim);
     --cui-code-diff-shadow: var(--shadow-soft);
+    --cui-code-diff-header-background: var(--cuicui-control-bg);
     -webkit-backdrop-filter: blur(var(--backdrop-blur-popover));
     backdrop-filter: blur(var(--backdrop-blur-popover));
   }
 
   [data-skin="cuicui"] :where([data-slot="header"][data-control-family="code-diff"]) {
     border-bottom-color: var(--control-rim);
-    background-color: var(--cuicui-control-bg);
   }
 
   [data-skin="cuicui"] :where([data-slot="root"][data-control-family="inline-attachment"]) {

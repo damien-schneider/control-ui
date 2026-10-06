@@ -3,8 +3,6 @@
   --font-sans: var(--font-inter, "Inter"), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: var(--font-jetbrains-mono, "JetBrains Mono"), ui-monospace, SFMono-Regular, Menlo, monospace;
   --text-caption: 0.75rem;
-  --text-label: 0.75rem;
-  --text-body: 0.875rem;
   --text-body-lg: 0.875rem;
   --text-heading-4: 0.875rem;
   --text-heading-4--line-height: 1.5;
@@ -42,19 +40,12 @@
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.922 0 0 / var(--ring-opacity));
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.5 0 0);
   --primary-text: var(--foreground);
   --canvas: var(--background);
-
-  --popover-opacity: 1;
-  --backdrop-blur-popover: 0px;
-  --overlay-opacity: 0.2;
-  --backdrop-blur-overlay: 0px;
   --scroll-fade-size: 2rem;
   --shadow-color: oklch(0 0 0);
   --shadow-highlight: oklch(1 0 0 / 0.6);
   --shadow-size: 1;
-  --shadow-opacity: 1;
 
   --radius: 0.625rem;
   --radius-control: var(--radius);
@@ -62,23 +53,17 @@
   --radius-panel: calc(var(--radius) * 1.6);
   --radius-scene: calc(var(--radius) * 1.8);
   --radius-popup-item: calc(var(--radius) * 0.8);
-  --popover-padding: 0.25rem;
   --padding-x: 0.75rem;
   --padding-y: 0.5rem;
   --control-h: 2rem;
   --control-h-xs: round(var(--control-h) * 0.75, 1px);
   --control-h-sm: round(var(--control-h) * 0.875, 1px);
   --control-h-lg: round(var(--control-h) * 1.125, 1px);
-
-  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --ease-emphasized: cubic-bezier(0.23, 1, 0.32, 1);
-  --duration-fast: 150ms;
-  --duration-base: 200ms;
-  --duration-slow: 300ms;
 }
 
-.dark [data-skin="refined"][data-skin],
-[data-skin="refined"][data-skin].dark {
+.dark[data-skin="refined"][data-skin],
+.dark [data-skin="refined"][data-skin] {
   --background: oklch(0.17 0 0);
   --foreground: oklch(0.945 0 0);
   --card: oklch(0.205 0 0);

@@ -170,7 +170,7 @@
 }
 
 @property --cui-flow-edge-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
@@ -223,7 +223,7 @@
 }
 
 @property --cui-flow-handle-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }

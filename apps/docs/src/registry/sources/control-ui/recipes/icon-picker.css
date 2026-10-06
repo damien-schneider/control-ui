@@ -3,7 +3,8 @@
     --cui-icon-picker-cell-size: calc(var(--spacing) * 10);
     --cui-icon-picker-cell-radius: var(--radius-control);
     --cui-icon-picker-foreground: var(--foreground);
-    --cui-icon-picker-active-background: var(--accent);
+    --cui-icon-picker-cell-hover-background: var(--accent);
+    --cui-icon-picker-cell-pressed-background: var(--accent);
     inline-size: calc(var(--_icon-picker-columns) * var(--cui-icon-picker-cell-size) + var(--spacing) * 4);
     max-inline-size: 100%;
     color: var(--cui-icon-picker-foreground);
@@ -31,8 +32,11 @@
     cursor: pointer;
     transition: background-color var(--duration-fast) var(--ease-standard);
   }
-  :where([data-control-family="icon-picker"][data-slot="icon"]:is(:hover, [aria-pressed="true"])) {
-    background: var(--cui-icon-picker-active-background);
+  :where([data-control-family="icon-picker"][data-slot="icon"]:hover) {
+    background: var(--cui-icon-picker-cell-hover-background);
+  }
+  :where([data-control-family="icon-picker"][data-slot="icon"][aria-pressed="true"]) {
+    background: var(--cui-icon-picker-cell-pressed-background);
   }
   :where([data-control-family="icon-picker"][data-slot="icon"] svg) {
     inline-size: calc(var(--spacing) * 5);
@@ -80,7 +84,7 @@
   }
 }
 @property --cui-icon-picker-cell-size {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
@@ -94,7 +98,13 @@
   inherits: true;
   initial-value: transparent;
 }
-@property --cui-icon-picker-active-background {
+@property --cui-icon-picker-cell-hover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-icon-picker-cell-pressed-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

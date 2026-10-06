@@ -8,13 +8,13 @@
   "knobs": [
     {
       "name": "--cui-resize-handle-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "10px"
     },
     {
       "name": "--cui-resize-handle-hit-size",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--target-min)"
     },

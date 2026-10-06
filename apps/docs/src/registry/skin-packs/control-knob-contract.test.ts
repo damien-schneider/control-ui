@@ -88,7 +88,7 @@ describe("skin interaction paint", () => {
     const focusShadows: string[] = [];
     liquidMetal?.root.walkRules((rule) => {
       if (!rule.selector.includes(":focus-visible")) return;
-      rule.walkDecls("--aui-liquid-control-shadow", (declaration) => {
+      rule.walkDecls("--liquid-control-shadow", (declaration) => {
         focusShadows.push(declaration.value);
       });
     });
@@ -135,7 +135,8 @@ for (const expectation of createRecipeSourceExpectations()) {
   const filePath = path.join(process.cwd(), expectation.recipe);
   const root = postcss.parse(readFileSync(filePath, "utf8"), { from: filePath });
   const renderedFamilies = recipeKnobFamilies(root);
-  const recipeFamilies = renderedFamilies.length > 0 ? renderedFamilies : [recipeFilenameFamily(expectation.recipe)].filter(Boolean);
+  const filenameFamily = recipeFilenameFamily(expectation.recipe);
+  const recipeFamilies = renderedFamilies.length === 1 || !filenameFamily ? renderedFamilies : [filenameFamily];
   if (recipeFamilies.length !== 1) {
     unresolvedRecipeFamilies.push(`${expectation.recipe}: ${recipeFamilies.join(", ") || "none"}`);
     continue;
@@ -550,6 +551,7 @@ const FAMILY_ROOT_MARKERS: Record<string, readonly string[]> = {
 function selectorSubjects(selector: string): string[] {
   return selector
     .replace(/:(?:has|not)\([^)]*\)/g, "")
+    .replace(/:is\((?:\s*[a-z]+\s*,?)+\)/g, "")
     .replace(/:(?:where|is)\(/g, " ")
     .split(",")
     .map(
@@ -828,13 +830,6 @@ for (const family of families) {
     test("every knob inherits and declares its default on the family root", () => {
       expect(knobRootDefaultOffenders(root, family.id, family.knobs)).toEqual([]);
       expect(knobInheritanceOffenders(root, family.knobs)).toEqual([]);
-
-      if (family.id === "range") {
-        const registration = root.nodes.find(
-          (node) => node.type === "atrule" && node.name === "property" && node.params.trim() === "--cui-range-thumb-background",
-        );
-        expect(registration?.toString()).toContain('syntax: "*"');
-      }
     });
 
     test("core and skins reference only contract knobs", () => {
@@ -904,3 +899,45 @@ for (const family of families) {
     });
   });
 }
+
+function knobsReadingNestRadius(root: Root): string[] {
+  const knobs = new Set<string>();
+  root.walkDecls((declaration) => {
+    if (declaration.prop.startsWith("--cui-") && /var\(\s*--nest-radius\s*,/.test(declaration.value)) knobs.add(declaration.prop);
+  });
+  return [...knobs].sort();
+}
+
+function nestRadiusBypassOffenders(root: Root, knobs: readonly string[]): string[] {
+  const contract = new Set(knobs);
+  const offenders: string[] = [];
+  root.walkDecls((declaration) => {
+    if (contract.has(declaration.prop) && !/var\(\s*--nest-radius\s*,/.test(declaration.value)) {
+      offenders.push(`${declaration.source?.start?.line ?? "?"} ${declaration.prop}`);
+    }
+  });
+  return offenders;
+}
+
+describe("nest radius contract", () => {
+  const nestRadiusKnobs = knobsReadingNestRadius(allRecipeRoot);
+
+  test("buttons and fields take their radius from the container", () => {
+    expect(nestRadiusKnobs).toEqual(["--cui-button-radius", "--cui-field-radius"]);
+  });
+
+  test("rejects a skin radius that drops the container fallback", () => {
+    const invalid = postcss.parse('[data-skin="example"] :where([data-control-family="button"]) { --cui-button-radius: 4px; }');
+    expect(nestRadiusBypassOffenders(invalid, nestRadiusKnobs)).toEqual(["1 --cui-button-radius"]);
+    const valid = postcss.parse(
+      '[data-skin="example"] :where([data-control-family="button"]) { --cui-button-radius: var(--nest-radius, 4px); }',
+    );
+    expect(nestRadiusBypassOffenders(valid, nestRadiusKnobs)).toEqual([]);
+  });
+
+  for (const { id, root } of skins) {
+    test(`${id} keeps the container fallback on nested radius knobs`, () => {
+      expect(nestRadiusBypassOffenders(root, nestRadiusKnobs)).toEqual([]);
+    });
+  }
+});

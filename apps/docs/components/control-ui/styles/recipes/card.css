@@ -85,11 +85,9 @@
 @property --cui-card-shadow {
   syntax: "*";
   inherits: true;
-  initial-value: none;
 }
 
 @property --cui-card-backdrop-filter {
   syntax: "*";
   inherits: true;
-  initial-value: none;
 }

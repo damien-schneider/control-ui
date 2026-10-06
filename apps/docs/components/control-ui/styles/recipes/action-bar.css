@@ -29,7 +29,7 @@
 @property --cui-action-bar-hidden-opacity {
   syntax: "<number>";
   inherits: true;
-  initial-value: 0;
+  initial-value: 1;
 }
 
 @property --cui-action-bar-visible-opacity {

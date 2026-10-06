@@ -8,7 +8,7 @@
   "knobs": [
     {
       "name": "--cui-code-radius",
-      "syntax": "<length>",
+      "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "min(var(--radius-panel), calc(var(--control-h-xs) / 2 + var(--cui-code-border-width) + var(--_code-corner-inset)))"
     },

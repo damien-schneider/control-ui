@@ -175,10 +175,35 @@
   :where([data-control-family="sidebar"][data-slot="menu"]:is([data-indicator="hover"], [data-indicator="slide"])) {
     gap: 0;
   }
+
+  :where([data-control-family="sidebar"][data-slot="skip-link"]) {
+    position: absolute;
+    inset-block-start: calc(var(--spacing) * 3);
+    inset-inline-start: calc(var(--spacing) * 3);
+    z-index: var(--z-popup);
+    padding-block: calc(var(--spacing) * 1.5);
+    padding-inline: calc(var(--spacing) * 3);
+    border-radius: var(--cui-sidebar-skip-link-radius);
+    background-color: var(--cui-sidebar-skip-link-background);
+    color: var(--cui-sidebar-skip-link-foreground);
+    box-shadow: var(--cui-sidebar-skip-link-shadow);
+    font-size: var(--text-body);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+  }
+
+  :where([data-control-family="sidebar"][data-slot="skip-link"]:not(:focus)) {
+    overflow: hidden;
+    inline-size: 1px;
+    block-size: 1px;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
 }
 
 @property --cui-sidebar-menu-badge-height {
-  syntax: "<length>";
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
