@@ -249,7 +249,6 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
-        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -257,7 +256,6 @@
         "http://127.0.0.1:3000/r/filter-bar.json",
         "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
-        "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
@@ -375,7 +373,6 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
-        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -383,7 +380,6 @@
         "http://127.0.0.1:3000/r/filter-bar.json",
         "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
-        "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
@@ -508,7 +504,6 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
-        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -516,7 +511,6 @@
         "http://127.0.0.1:3000/r/filter-bar.json",
         "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
-        "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
@@ -641,7 +635,6 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
-        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -649,7 +642,6 @@
         "http://127.0.0.1:3000/r/filter-bar.json",
         "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
-        "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
@@ -774,7 +766,6 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
-        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -782,7 +773,6 @@
         "http://127.0.0.1:3000/r/filter-bar.json",
         "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
-        "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
@@ -907,7 +897,6 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
-        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -915,7 +904,6 @@
         "http://127.0.0.1:3000/r/filter-bar.json",
         "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
-        "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
@@ -1040,7 +1028,6 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
-        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -1048,7 +1035,6 @@
         "http://127.0.0.1:3000/r/filter-bar.json",
         "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
-        "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
@@ -1173,7 +1159,6 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
-        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -1181,7 +1166,6 @@
         "http://127.0.0.1:3000/r/filter-bar.json",
         "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
-        "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
@@ -1306,7 +1290,6 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
-        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -1314,7 +1297,6 @@
         "http://127.0.0.1:3000/r/filter-bar.json",
         "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
-        "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
@@ -1439,7 +1421,6 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
-        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -1447,7 +1428,6 @@
         "http://127.0.0.1:3000/r/filter-bar.json",
         "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
-        "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
@@ -1572,7 +1552,6 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
-        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -1580,7 +1559,6 @@
         "http://127.0.0.1:3000/r/filter-bar.json",
         "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
-        "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
@@ -2674,7 +2652,7 @@
       "name": "color-picker",
       "type": "registry:ui",
       "title": "Color Picker",
-      "description": "Color input with picker UI, formats, presets, and contrast helpers.",
+      "description": "Color input with picker UI, formats, presets, contrast helpers, and a gradient editor with draggable stops.",
       "dependencies": [
         "@base-ui/react@^1.8.0"
       ],
@@ -2703,6 +2681,11 @@
           "type": "registry:component"
         },
         {
+          "path": "src/registry/knob-contracts/gradient-editor-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/gradient-editor-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/knob-contracts/popup-knobs.ts",
           "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
           "type": "registry:component"
@@ -2718,6 +2701,11 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/registry/lib/gradient.ts",
+          "target": "@components/control-ui/lib/gradient.ts",
+          "type": "registry:lib"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/color-picker-details.css",
           "target": "@components/control-ui/styles/recipes/color-picker-details.css",
           "type": "registry:file"
@@ -2730,6 +2718,11 @@
         {
           "path": "src/registry/sources/control-ui/recipes/color-picker.css",
           "target": "@components/control-ui/styles/recipes/color-picker.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/gradient-editor.css",
+          "target": "@components/control-ui/styles/recipes/gradient-editor.css",
           "type": "registry:file"
         },
         {
@@ -2753,8 +2746,48 @@
           "type": "registry:file"
         },
         {
+          "path": "src/registry/sources/control-ui/ui/color-picker-area.tsx",
+          "target": "@components/control-ui/ui/color-picker-area.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/color-picker-context.ts",
+          "target": "@components/control-ui/ui/color-picker-context.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/color-picker-contrast.tsx",
+          "target": "@components/control-ui/ui/color-picker-contrast.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/color-picker-sliders.tsx",
+          "target": "@components/control-ui/ui/color-picker-sliders.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/color-picker-swatches.tsx",
+          "target": "@components/control-ui/ui/color-picker-swatches.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/color-picker-values.tsx",
+          "target": "@components/control-ui/ui/color-picker-values.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/registry/sources/control-ui/ui/color-picker.tsx",
           "target": "@components/control-ui/ui/color-picker.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/gradient-editor-controls.tsx",
+          "target": "@components/control-ui/ui/gradient-editor-controls.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/gradient-editor.tsx",
+          "target": "@components/control-ui/ui/gradient-editor.tsx",
           "type": "registry:ui"
         }
       ],
@@ -2762,6 +2795,7 @@
         "@import \"../components/control-ui/styles/recipes/color-picker.css\"": {},
         "@import \"../components/control-ui/styles/recipes/color-picker-details.css\"": {},
         "@import \"../components/control-ui/styles/recipes/color-picker-values.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/gradient-editor.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
@@ -3510,46 +3544,10 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "emoji-icon-picker",
-      "type": "registry:ui",
-      "title": "Emoji Icon Picker",
-      "description": "Emoji and icon selection in one popover with an animated height between panels.",
-      "dependencies": [],
-      "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json",
-        "http://127.0.0.1:3000/r/emoji-picker.json",
-        "http://127.0.0.1:3000/r/icon-picker.json",
-        "http://127.0.0.1:3000/r/popover.json",
-        "http://127.0.0.1:3000/r/tabs.json"
-      ],
-      "files": [
-        {
-          "path": "src/registry/sources/control-ui/recipes/tabs-motion.css",
-          "target": "@components/control-ui/styles/recipes/tabs-motion.css",
-          "type": "registry:file"
-        },
-        {
-          "path": "src/registry/sources/control-ui/recipes/tabs.css",
-          "target": "@components/control-ui/styles/recipes/tabs.css",
-          "type": "registry:file"
-        },
-        {
-          "path": "src/registry/sources/control-ui/ui/emoji-icon-picker.tsx",
-          "target": "@components/control-ui/ui/emoji-icon-picker.tsx",
-          "type": "registry:ui"
-        }
-      ],
-      "css": {
-        "@import \"../components/control-ui/styles/recipes/tabs.css\"": {},
-        "@import \"../components/control-ui/styles/recipes/tabs-motion.css\"": {}
-      }
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "emoji-picker",
       "type": "registry:ui",
       "title": "Emoji Picker",
-      "description": "Searchable, virtualized emoji grid with skin-aware cells and an active emoji footer.",
+      "description": "Searchable, virtualized emoji grid with skin-aware cells, an active emoji footer, and an emoji-or-icon tabbed variant.",
       "dependencies": [
         "@base-ui/react@^1.8.0",
         "frimousse@^0.4.0",
@@ -3557,7 +3555,10 @@
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
-        "http://127.0.0.1:3000/r/spinner.json"
+        "http://127.0.0.1:3000/r/icon-picker.json",
+        "http://127.0.0.1:3000/r/popover.json",
+        "http://127.0.0.1:3000/r/spinner.json",
+        "http://127.0.0.1:3000/r/tabs.json"
       ],
       "files": [
         {
@@ -3816,40 +3817,6 @@
           "type": "registry:ui"
         }
       ]
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "gradient-editor",
-      "type": "registry:ui",
-      "title": "Gradient Editor",
-      "description": "CSS gradient editor with draggable stops and live preview.",
-      "dependencies": [],
-      "registryDependencies": [
-        "http://127.0.0.1:3000/r/color-picker.json",
-        "http://127.0.0.1:3000/r/core.json",
-        "http://127.0.0.1:3000/r/select.json",
-        "http://127.0.0.1:3000/r/surface-variants.json"
-      ],
-      "files": [
-        {
-          "path": "src/registry/knob-contracts/gradient-editor-knobs.ts",
-          "target": "@components/control-ui/knob-contracts/gradient-editor-knobs.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/registry/sources/control-ui/recipes/gradient-editor.css",
-          "target": "@components/control-ui/styles/recipes/gradient-editor.css",
-          "type": "registry:file"
-        },
-        {
-          "path": "src/registry/sources/control-ui/ui/gradient-editor.tsx",
-          "target": "@components/control-ui/ui/gradient-editor.tsx",
-          "type": "registry:ui"
-        }
-      ],
-      "css": {
-        "@import \"../components/control-ui/styles/recipes/gradient-editor.css\"": {}
-      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -6773,7 +6740,6 @@
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/email.json",
-        "http://127.0.0.1:3000/r/emoji-icon-picker.json",
         "http://127.0.0.1:3000/r/emoji-picker.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -6781,7 +6747,6 @@
         "http://127.0.0.1:3000/r/filter-bar.json",
         "http://127.0.0.1:3000/r/flow.json",
         "http://127.0.0.1:3000/r/form.json",
-        "http://127.0.0.1:3000/r/gradient-editor.json",
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",

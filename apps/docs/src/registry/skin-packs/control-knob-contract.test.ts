@@ -528,7 +528,7 @@ const FAMILY_ROOT_MARKERS: Record<string, readonly string[]> = {
     '[data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]',
     '[data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]',
   ],
-  "color-picker": ["area", "alpha", "hue", "output", "swatch", "trigger", "wheel"].map(
+  "color-picker": ["area", "output", "slider", "swatch", "trigger", "wheel"].map(
     (slot) => `[data-control-family="color-picker"][data-slot="${slot}"]`,
   ),
   "phone-input": ['[data-control-family="field"][data-field-kind="phone-input"][data-slot="root"]'],

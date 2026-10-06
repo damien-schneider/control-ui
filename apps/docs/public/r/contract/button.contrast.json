@@ -3594,7 +3594,7 @@
       },
       {
         "attributes": {
-          "data-align": "start",
+          "data-align": "end",
           "data-control-family": "popup",
           "data-control-ui": "color-picker",
           "data-open": "",

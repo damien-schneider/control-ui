@@ -46,7 +46,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/components/audio-visualizer",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -89,7 +89,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/primitives",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -128,7 +128,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/primitives",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -275,7 +275,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/components/email",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -5282,7 +5282,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/primitives",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -5325,7 +5325,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/primitives",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -8139,7 +8139,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-align": "start",
+            "data-align": "end",
             "data-control-family": "popup",
             "data-control-ui": "color-picker",
             "data-open": "",
@@ -17221,7 +17221,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -19255,7 +19255,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button-states",
       rendersText: true,
       state: false,
-      route: "/primitives/popover",
+      route: "/primitives/emoji-picker",
     },
     {
       knobs: {
@@ -19467,7 +19467,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "card",
       rendersText: true,
       state: false,
-      route: "/primitives",
+      route: "/primitives/color-picker",
     },
     {
       knobs: {
@@ -24457,14 +24457,14 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-focus-ring": "within",
             "data-index": "0",
             "data-orientation": "horizontal",
-            "data-slot": "alpha-thumb",
+            "data-slot": "slider-thumb",
           },
         },
       ],
       recipe: "color-picker",
       rendersText: false,
       state: false,
-      route: "/primitives/gradient-editor",
+      route: "/primitives/color-picker",
     },
     {
       knobs: {
@@ -24517,7 +24517,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "color-picker",
             "data-control-ui": "color-picker",
             "data-orientation": "horizontal",
-            "data-slot": "hue",
+            "data-slot": "slider",
             role: "group",
           },
         },
@@ -24528,14 +24528,14 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-focus-ring": "within",
             "data-index": "0",
             "data-orientation": "horizontal",
-            "data-slot": "hue-thumb",
+            "data-slot": "slider-thumb",
           },
         },
       ],
       recipe: "color-picker",
       rendersText: false,
       state: false,
-      route: "/primitives/gradient-editor",
+      route: "/primitives/color-picker",
     },
     {
       knobs: {
@@ -24579,7 +24579,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-align": "start",
+            "data-align": "end",
             "data-control-family": "popup",
             "data-control-ui": "color-picker",
             "data-open": "",
@@ -24597,7 +24597,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "color-picker",
             "data-control-ui": "color-picker",
             "data-orientation": "horizontal",
-            "data-slot": "hue",
+            "data-slot": "slider",
             role: "group",
           },
         },
@@ -24608,7 +24608,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-focus-ring": "within",
             "data-index": "0",
             "data-orientation": "horizontal",
-            "data-slot": "hue-thumb",
+            "data-slot": "slider-thumb",
           },
         },
       ],
@@ -24676,7 +24676,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "color-picker",
             "data-control-ui": "color-picker",
             "data-orientation": "horizontal",
-            "data-slot": "hue",
+            "data-slot": "slider",
             role: "group",
           },
         },
@@ -24687,7 +24687,71 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-focus-ring": "within",
             "data-index": "0",
             "data-orientation": "horizontal",
-            "data-slot": "hue-thumb",
+            "data-slot": "slider-thumb",
+          },
+        },
+      ],
+      recipe: "color-picker",
+      rendersText: false,
+      state: false,
+      route: "/primitives/color-picker",
+    },
+    {
+      knobs: {
+        fill: "--cui-color-picker-slider-thumb-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "color-picker",
+            "data-control-ui": "color-picker",
+            "data-orientation": "horizontal",
+            "data-slot": "slider",
+            role: "group",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "color-picker",
+            "data-control-ui": "color-picker",
+            "data-focus-ring": "within",
+            "data-index": "0",
+            "data-orientation": "horizontal",
+            "data-slot": "slider-thumb",
           },
         },
       ],
@@ -24768,7 +24832,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-focus-ring": "within",
             "data-index": "0",
             "data-orientation": "horizontal",
-            "data-slot": "alpha-thumb",
+            "data-slot": "slider-thumb",
           },
         },
       ],
@@ -24834,7 +24898,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-focus-ring": "within",
             "data-index": "0",
             "data-orientation": "horizontal",
-            "data-slot": "alpha-thumb",
+            "data-slot": "slider-thumb",
           },
         },
       ],
@@ -24898,7 +24962,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "color-picker",
             "data-control-ui": "color-picker",
             "data-orientation": "horizontal",
-            "data-slot": "hue",
+            "data-slot": "slider",
             role: "group",
           },
         },
@@ -24909,7 +24973,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-focus-ring": "within",
             "data-index": "0",
             "data-orientation": "horizontal",
-            "data-slot": "hue-thumb",
+            "data-slot": "slider-thumb",
           },
         },
       ],
@@ -25410,6 +25474,148 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-slot": "category",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "emoji-picker",
+      rendersText: false,
+      state: true,
+      route: "/primitives/emoji-picker",
+    },
+    {
+      knobs: {
+        fill: "--cui-emoji-picker-active-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-slot": "category",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "emoji-picker",
+      rendersText: false,
+      state: true,
+      route: "/primitives/emoji-picker",
+    },
+    {
+      knobs: {
+        fill: "--cui-emoji-picker-active-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "tabs",
             "data-control-ui": "tabs",
             "data-slot": "surface",
@@ -25536,164 +25742,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: true,
       route: "/primitives/emoji-picker",
-    },
-    {
-      knobs: {
-        fill: "--cui-emoji-picker-active-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "inset",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-slot": "surface",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-slot": "category",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "emoji-picker",
-      rendersText: false,
-      state: true,
-      route: "/primitives/emoji-icon-picker",
-    },
-    {
-      knobs: {
-        fill: "--cui-emoji-picker-active-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "inset",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-slot": "surface",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-slot": "category",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "emoji-picker",
-      rendersText: false,
-      state: true,
-      route: "/primitives/emoji-icon-picker",
     },
     {
       knobs: {
@@ -25830,7 +25878,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "emoji-picker",
       rendersText: true,
       state: false,
-      route: "/primitives/emoji-icon-picker",
+      route: "/primitives/emoji-picker",
     },
     {
       knobs: {
@@ -26932,7 +26980,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: true,
       state: false,
-      route: "/primitives",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -27338,7 +27386,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: false,
       state: false,
-      route: "/primitives/gradient-editor",
+      route: "/primitives/color-picker",
     },
     {
       knobs: {
@@ -29707,7 +29755,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: true,
       state: false,
-      route: "/primitives/number-field",
+      route: "/primitives/color-picker",
     },
     {
       knobs: {
@@ -29824,7 +29872,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: true,
       state: false,
-      route: "/primitives/select",
+      route: "/primitives/color-picker",
     },
     {
       knobs: {
@@ -32257,7 +32305,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "kbd",
       rendersText: true,
       state: false,
-      route: "/primitives",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -33683,7 +33731,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "page-layout",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -34923,7 +34971,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/primitives/gradient-editor",
+      route: "/primitives/color-picker",
     },
     {
       knobs: {
@@ -35188,60 +35236,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/primitives/phone-input",
-    },
-    {
-      knobs: {
-        fill: "--cui-popup-background",
-        text: "--cui-popup-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "inset",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "select",
-            "data-open": "",
-            "data-popup-kind": "select",
-            "data-popup-part": "list-surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "presentation",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/primitives/gradient-editor",
+      route: "/primitives/emoji-picker",
     },
     {
       knobs: {
@@ -35505,7 +35500,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-align": "start",
+            "data-align": "end",
             "data-control-family": "popup",
             "data-control-ui": "color-picker",
             "data-open": "",
@@ -36885,7 +36880,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/components/chat-composer",
+      route: "/primitives/color-picker",
     },
     {
       knobs: {
@@ -38721,7 +38716,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/components/chat-composer",
+      route: "/primitives/color-picker",
     },
     {
       knobs: {
@@ -42992,7 +42987,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/primitives",
+      route: "/primitives/color-picker",
     },
     {
       knobs: {
@@ -43336,7 +43331,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/components/chat-message",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -43648,7 +43643,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/components/chat-message",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -44889,7 +44884,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/create",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -46829,7 +46824,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-parts",
       rendersText: true,
       state: false,
-      route: "/primitives",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -46868,7 +46863,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-parts",
       rendersText: true,
       state: false,
-      route: "/primitives",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -47587,7 +47582,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/use-cases",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -47631,7 +47626,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/primitives",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -47674,7 +47669,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/use-cases",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -48268,7 +48263,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/primitives",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -48311,7 +48306,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/use-cases",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -48523,6 +48518,558 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-nav-background",
+        text: "--cui-sidebar-nav-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "bar",
+          },
+        },
+      ],
+      recipe: "sidebar-mobile",
+      rendersText: true,
+      state: false,
+      route: "/primitives/sidebar",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-nav-background",
+        text: "--cui-sidebar-nav-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "floating",
+          },
+        },
+      ],
+      recipe: "sidebar-mobile",
+      rendersText: true,
+      state: false,
+      route: "/primitives/sidebar",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-nav-background",
+        text: "--cui-sidebar-nav-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "floating",
+          },
+        },
+      ],
+      recipe: "sidebar-mobile",
+      rendersText: true,
+      state: false,
+      route: "/primitives/sidebar",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-nav-item-active-background",
+        text: "--cui-sidebar-nav-item-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "bar",
+          },
+        },
+        {
+          attributes: {
+            "data-active": "true",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "none",
+            "data-mobile-nav-item": "",
+            "data-size": "default",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "sidebar-mobile",
+      rendersText: true,
+      state: false,
+      route: "/primitives/sidebar",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-nav-item-active-background",
+        text: "--cui-sidebar-nav-item-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "bar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "none",
+            "data-mobile-nav-item": "",
+            "data-size": "default",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "sidebar-mobile",
+      rendersText: true,
+      state: true,
+      route: "/primitives/sidebar",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-nav-item-active-background",
+        text: "--cui-sidebar-nav-item-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "bar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-mobile-nav-item": "",
+            "data-sidebar-trigger": "",
+            "data-slot": "mobile-trigger",
+          },
+        },
+      ],
+      recipe: "sidebar-mobile",
+      rendersText: true,
+      state: true,
+      route: "/primitives/sidebar",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-nav-item-active-background",
+        text: "--cui-sidebar-nav-item-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-mobile-nav-item": "",
+            "data-sidebar-trigger": "",
+            "data-slot": "mobile-trigger",
+          },
+        },
+      ],
+      recipe: "sidebar-mobile",
+      rendersText: true,
+      state: true,
+      route: "/primitives/sidebar",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-nav-item-active-background",
+        text: "--cui-sidebar-nav-item-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "bar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-mobile-nav-item": "",
+            "data-sidebar-trigger": "",
+            "data-slot": "mobile-trigger",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-mobile-nav-item": "",
+            "data-sidebar-trigger": "",
+            "data-slot": "mobile-trigger",
+          },
+        },
+      ],
+      recipe: "sidebar-mobile",
+      rendersText: true,
+      state: true,
+      route: "/primitives/sidebar",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-nav-item-active-background",
+        text: "--cui-sidebar-nav-item-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-mobile-nav-item": "",
+            "data-sidebar-trigger": "",
+            "data-slot": "mobile-trigger",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-mobile-nav-item": "",
+            "data-sidebar-trigger": "",
+            "data-slot": "mobile-trigger",
+          },
+        },
+      ],
+      recipe: "sidebar-mobile",
+      rendersText: true,
+      state: true,
+      route: "/primitives/sidebar",
     },
     {
       knobs: {
@@ -50546,7 +51093,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -51122,7 +51669,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: false,
       state: false,
-      route: "/primitives/emoji-icon-picker",
+      route: "/primitives/emoji-picker",
     },
     {
       knobs: {
@@ -51406,7 +51953,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/components/email",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -51730,7 +52277,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/primitives/emoji-icon-picker",
+      route: "/primitives/emoji-picker",
     },
     {
       knobs: {
@@ -52009,7 +52556,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/components/email",
+      route: "/primitives/color-picker",
     },
     {
       knobs: {
@@ -63228,7 +63775,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/primitives",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -65048,7 +65595,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/primitives/select",
+      route: "/primitives/color-picker",
     },
     {
       knobs: {
@@ -65113,7 +65660,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/primitives/select",
+      route: "/primitives/color-picker",
     },
     {
       knobs: {
@@ -68629,7 +69176,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/primitives/gradient-editor",
+      route: "/primitives/color-picker",
     },
     {
       knobs: {
@@ -71344,7 +71891,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/components/chat-composer",
+      route: "/primitives/color-picker",
     },
     {
       knobs: {
@@ -73492,7 +74039,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/primitives",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -74299,7 +74846,420 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/use-cases",
+      route: "/use-cases/design-canvas",
+    },
+    {
+      knobs: {
+        text: "--cui-sidebar-nav-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "bar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "none",
+            "data-mobile-nav-item": "",
+            "data-size": "default",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "sidebar-mobile",
+      rendersText: true,
+      state: false,
+      route: "/primitives/sidebar",
+    },
+    {
+      knobs: {
+        text: "--cui-sidebar-nav-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "bar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-mobile-nav-item": "",
+            "data-sidebar-trigger": "",
+            "data-slot": "mobile-trigger",
+          },
+        },
+      ],
+      recipe: "sidebar-mobile",
+      rendersText: true,
+      state: false,
+      route: "/primitives/sidebar",
+    },
+    {
+      knobs: {
+        text: "--cui-sidebar-nav-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-mobile-nav-item": "",
+            "data-sidebar-trigger": "",
+            "data-slot": "mobile-trigger",
+          },
+        },
+      ],
+      recipe: "sidebar-mobile",
+      rendersText: true,
+      state: false,
+      route: "/primitives/sidebar",
+    },
+    {
+      knobs: {
+        text: "--cui-sidebar-nav-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "bar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "none",
+            "data-mobile-nav-item": "",
+            "data-size": "default",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-mobile-nav-item": "",
+            "data-sidebar-trigger": "",
+            "data-slot": "mobile-trigger",
+          },
+        },
+      ],
+      recipe: "sidebar-mobile",
+      rendersText: true,
+      state: false,
+      route: "/primitives/sidebar",
+    },
+    {
+      knobs: {
+        text: "--cui-sidebar-nav-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "bar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-mobile-nav-item": "",
+            "data-sidebar-trigger": "",
+            "data-slot": "mobile-trigger",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-mobile-nav-item": "",
+            "data-sidebar-trigger": "",
+            "data-slot": "mobile-trigger",
+          },
+        },
+      ],
+      recipe: "sidebar-mobile",
+      rendersText: true,
+      state: false,
+      route: "/primitives/sidebar",
+    },
+    {
+      knobs: {
+        text: "--cui-sidebar-nav-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-mobile-nav-item": "",
+            "data-sidebar-trigger": "",
+            "data-slot": "mobile-trigger",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-mobile-nav-item": "",
+            "data-sidebar-trigger": "",
+            "data-slot": "mobile-trigger",
+          },
+        },
+      ],
+      recipe: "sidebar-mobile",
+      rendersText: true,
+      state: false,
+      route: "/primitives/sidebar",
+    },
+    {
+      knobs: {
+        text: "--cui-sidebar-nav-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "mobile-nav",
+            "data-variant": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-mobile-nav-item": "",
+            "data-sidebar-trigger": "",
+            "data-slot": "mobile-trigger",
+          },
+        },
+      ],
+      recipe: "sidebar-mobile",
+      rendersText: true,
+      state: false,
+      route: "/primitives/sidebar",
     },
     {
       knobs: {
@@ -74661,7 +75621,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -75028,7 +75988,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -75517,7 +76477,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: true,
-      route: "/create",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -75572,7 +76532,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: true,
-      route: "/create",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -76369,7 +77329,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -76800,7 +77760,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/components/email",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -77220,7 +78180,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/primitives/emoji-icon-picker",
+      route: "/primitives/emoji-picker",
     },
     {
       knobs: {
@@ -77640,7 +78600,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/components/email",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -78107,7 +79067,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/primitives/emoji-icon-picker",
+      route: "/primitives/emoji-picker",
     },
     {
       knobs: {
@@ -78681,7 +79641,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: true,
-      route: "/components/email",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -78764,7 +79724,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: true,
-      route: "/components/email",
+      route: "/use-cases/design-canvas",
     },
     {
       knobs: {
@@ -79443,7 +80403,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: true,
-      route: "/primitives/emoji-icon-picker",
+      route: "/primitives/emoji-picker",
     },
     {
       knobs: {
@@ -79560,7 +80520,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: true,
-      route: "/primitives/emoji-icon-picker",
+      route: "/primitives/emoji-picker",
     },
     {
       knobs: {
@@ -80963,971 +81923,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components/transcript-divider",
-    },
-    {
-      knobs: {
-        fill: "--cui-sidebar-nav-background",
-        text: "--cui-sidebar-nav-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "inset",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-slot": "surface",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "bar",
-          },
-        },
-      ],
-      recipe: "sidebar-mobile",
-      rendersText: true,
-      state: false,
-      route: "/primitives/sidebar",
-    },
-    {
-      knobs: {
-        fill: "--cui-sidebar-nav-background",
-        text: "--cui-sidebar-nav-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "inset",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-slot": "surface",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "floating",
-          },
-        },
-      ],
-      recipe: "sidebar-mobile",
-      rendersText: true,
-      state: false,
-      route: "/primitives/sidebar",
-    },
-    {
-      knobs: {
-        fill: "--cui-sidebar-nav-background",
-        text: "--cui-sidebar-nav-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "inset",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "floating",
-          },
-        },
-      ],
-      recipe: "sidebar-mobile",
-      rendersText: true,
-      state: false,
-      route: "/primitives/sidebar",
-    },
-    {
-      knobs: {
-        fill: "--cui-sidebar-nav-item-active-background",
-        text: "--cui-sidebar-nav-item-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "inset",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-slot": "surface",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "bar",
-          },
-        },
-        {
-          attributes: {
-            "data-active": "true",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-indicator": "none",
-            "data-mobile-nav-item": "",
-            "data-size": "default",
-            "data-slot": "menu-button",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "sidebar-mobile",
-      rendersText: true,
-      state: false,
-      route: "/primitives/sidebar",
-    },
-    {
-      knobs: {
-        fill: "--cui-sidebar-nav-item-active-background",
-        text: "--cui-sidebar-nav-item-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "inset",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-slot": "surface",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "bar",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-indicator": "none",
-            "data-mobile-nav-item": "",
-            "data-size": "default",
-            "data-slot": "menu-button",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "sidebar-mobile",
-      rendersText: true,
-      state: true,
-      route: "/primitives/sidebar",
-    },
-    {
-      knobs: {
-        fill: "--cui-sidebar-nav-item-active-background",
-        text: "--cui-sidebar-nav-item-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "inset",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-slot": "surface",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "bar",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-mobile-nav-item": "",
-            "data-sidebar-trigger": "",
-            "data-slot": "mobile-trigger",
-          },
-        },
-      ],
-      recipe: "sidebar-mobile",
-      rendersText: true,
-      state: true,
-      route: "/primitives/sidebar",
-    },
-    {
-      knobs: {
-        fill: "--cui-sidebar-nav-item-active-background",
-        text: "--cui-sidebar-nav-item-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "inset",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-slot": "surface",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "floating",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-mobile-nav-item": "",
-            "data-sidebar-trigger": "",
-            "data-slot": "mobile-trigger",
-          },
-        },
-      ],
-      recipe: "sidebar-mobile",
-      rendersText: true,
-      state: true,
-      route: "/primitives/sidebar",
-    },
-    {
-      knobs: {
-        fill: "--cui-sidebar-nav-item-active-background",
-        text: "--cui-sidebar-nav-item-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "inset",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "bar",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-mobile-nav-item": "",
-            "data-sidebar-trigger": "",
-            "data-slot": "mobile-trigger",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "floating",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-mobile-nav-item": "",
-            "data-sidebar-trigger": "",
-            "data-slot": "mobile-trigger",
-          },
-        },
-      ],
-      recipe: "sidebar-mobile",
-      rendersText: true,
-      state: true,
-      route: "/primitives/sidebar",
-    },
-    {
-      knobs: {
-        fill: "--cui-sidebar-nav-item-active-background",
-        text: "--cui-sidebar-nav-item-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "inset",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "floating",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-mobile-nav-item": "",
-            "data-sidebar-trigger": "",
-            "data-slot": "mobile-trigger",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "floating",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-mobile-nav-item": "",
-            "data-sidebar-trigger": "",
-            "data-slot": "mobile-trigger",
-          },
-        },
-      ],
-      recipe: "sidebar-mobile",
-      rendersText: true,
-      state: true,
-      route: "/primitives/sidebar",
-    },
-    {
-      knobs: {
-        text: "--cui-sidebar-nav-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "inset",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-slot": "surface",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "bar",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-indicator": "none",
-            "data-mobile-nav-item": "",
-            "data-size": "default",
-            "data-slot": "menu-button",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "sidebar-mobile",
-      rendersText: true,
-      state: false,
-      route: "/primitives/sidebar",
-    },
-    {
-      knobs: {
-        text: "--cui-sidebar-nav-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "inset",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-slot": "surface",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "bar",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-mobile-nav-item": "",
-            "data-sidebar-trigger": "",
-            "data-slot": "mobile-trigger",
-          },
-        },
-      ],
-      recipe: "sidebar-mobile",
-      rendersText: true,
-      state: false,
-      route: "/primitives/sidebar",
-    },
-    {
-      knobs: {
-        text: "--cui-sidebar-nav-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "inset",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "inset",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-slot": "surface",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "floating",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-mobile-nav-item": "",
-            "data-sidebar-trigger": "",
-            "data-slot": "mobile-trigger",
-          },
-        },
-      ],
-      recipe: "sidebar-mobile",
-      rendersText: true,
-      state: false,
-      route: "/primitives/sidebar",
-    },
-    {
-      knobs: {
-        text: "--cui-sidebar-nav-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "inset",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "bar",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-indicator": "none",
-            "data-mobile-nav-item": "",
-            "data-size": "default",
-            "data-slot": "menu-button",
-            "data-variant": "default",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "floating",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-mobile-nav-item": "",
-            "data-sidebar-trigger": "",
-            "data-slot": "mobile-trigger",
-          },
-        },
-      ],
-      recipe: "sidebar-mobile",
-      rendersText: true,
-      state: false,
-      route: "/primitives/sidebar",
-    },
-    {
-      knobs: {
-        text: "--cui-sidebar-nav-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "inset",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "bar",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-mobile-nav-item": "",
-            "data-sidebar-trigger": "",
-            "data-slot": "mobile-trigger",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "floating",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-mobile-nav-item": "",
-            "data-sidebar-trigger": "",
-            "data-slot": "mobile-trigger",
-          },
-        },
-      ],
-      recipe: "sidebar-mobile",
-      rendersText: true,
-      state: false,
-      route: "/primitives/sidebar",
-    },
-    {
-      knobs: {
-        text: "--cui-sidebar-nav-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "inset",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "floating",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-mobile-nav-item": "",
-            "data-sidebar-trigger": "",
-            "data-slot": "mobile-trigger",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "floating",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-mobile-nav-item": "",
-            "data-sidebar-trigger": "",
-            "data-slot": "mobile-trigger",
-          },
-        },
-      ],
-      recipe: "sidebar-mobile",
-      rendersText: true,
-      state: false,
-      route: "/primitives/sidebar",
-    },
-    {
-      knobs: {
-        text: "--cui-sidebar-nav-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "inset",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "mobile-nav",
-            "data-variant": "floating",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-mobile-nav-item": "",
-            "data-sidebar-trigger": "",
-            "data-slot": "mobile-trigger",
-          },
-        },
-      ],
-      recipe: "sidebar-mobile",
-      rendersText: true,
-      state: false,
-      route: "/primitives/sidebar",
     },
   ),
   uncovered: [

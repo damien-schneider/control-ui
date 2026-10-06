@@ -1,6 +1,15 @@
 import { describe, expect, test } from "bun:test";
 import { type Hsva, parseColor, type Rgba } from "./color";
-import { AA_RATIO, contrastOf, contrastRatio, fixColorForContrast, formatContrastRatio, nextFixLevel, wcagLevels } from "./contrast";
+import {
+  AA_RATIO,
+  contrastFailBands,
+  contrastOf,
+  contrastRatio,
+  fixColorForContrast,
+  formatContrastRatio,
+  nextFixLevel,
+  wcagLevels,
+} from "./contrast";
 
 function present<T>(value: T | null): T {
   if (value === null) throw new Error("expected a non-null value");
@@ -76,5 +85,22 @@ describe("fixColorForContrast", () => {
     const translucent: Hsva = { h: 250, s: 40, v: 90, a: 0.6 };
     const fixed = present(fixColorForContrast(translucent, white, AA_RATIO));
     expect(fixed.a).toBeCloseTo(0.6, 5);
+  });
+});
+
+describe("contrastFailBands", () => {
+  const grayColumn = (background: Rgba) =>
+    present(contrastFailBands({ h: 265, a: 1 }, background, AA_RATIO).find((band) => band.saturation === 0) ?? null);
+
+  test("on white, grays fail AA from the #767676 brightness up", () => {
+    const gray = grayColumn({ ...WHITE, a: 1 });
+    expect(gray.failsFrom).toBeCloseTo((0x76 / 0xff) * 100, 0);
+    expect(gray.failsTo).toBe(100);
+  });
+
+  test("on black, the failing grays sit at the dark end", () => {
+    const gray = grayColumn({ ...BLACK, a: 1 });
+    expect(gray.failsFrom).toBe(0);
+    expect(gray.failsTo).toBeCloseTo((0x75 / 0xff) * 100, 0);
   });
 });

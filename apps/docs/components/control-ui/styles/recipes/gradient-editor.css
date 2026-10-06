@@ -16,6 +16,14 @@
     --cui-gradient-editor-stop-shadow: 0 0 0 1px oklch(from var(--foreground) l c h / 0.4);
     --cui-gradient-editor-track-radius: 9999px;
   }
+  :where([data-control-family="gradient-editor"][data-slot="preview"]),
+  :where([data-control-family="gradient-editor"][data-slot="track"]) {
+    background-image: var(--_gradient-editor-image), repeating-conic-gradient(var(--border) 0 25%, transparent 0 50%);
+    background-size:
+      auto,
+      calc(var(--spacing) * 2.5) calc(var(--spacing) * 2.5);
+  }
+
   :where([data-control-family="gradient-editor"][data-slot="preview"]) {
     block-size: calc(var(--spacing) * 32);
     border-radius: var(--cui-gradient-editor-preview-radius);

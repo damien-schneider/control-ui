@@ -139,11 +139,9 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Flow](http://127.0.0.1:3000/primitives/flow): Node graph editor parts that skin React Flow with Control UI tokens. Status: experimental.
 - [Resize Handle](http://127.0.0.1:3000/primitives/resize-handle): Edge and corner grip for resizing a positioned box; the host owns the drag math. Status: experimental.
 - [Morphing Panel](http://127.0.0.1:3000/primitives/morphing-panel): A compact control that expands into settings, workspace navigation, or an inline confirmation, with stable alignment and keyboard dismissal. Status: experimental.
-- [Color Picker](http://127.0.0.1:3000/primitives/color-picker): Color input with picker UI, formats, presets, and contrast helpers. Status: beta.
-- [Emoji Picker](http://127.0.0.1:3000/primitives/emoji-picker): Searchable, virtualized emoji grid with skin-aware cells and an active emoji footer. Status: beta.
+- [Color Picker](http://127.0.0.1:3000/primitives/color-picker): Color input with picker UI, formats, presets, contrast helpers, and a gradient editor with draggable stops. Status: beta.
+- [Emoji Picker](http://127.0.0.1:3000/primitives/emoji-picker): Searchable, virtualized emoji grid with skin-aware cells, an active emoji footer, and an emoji-or-icon tabbed variant. Status: beta.
 - [Icon Picker](http://127.0.0.1:3000/primitives/icon-picker): Searchable icon grid and color swatches using an app-supplied icon catalog. Status: beta.
-- [Emoji Icon Picker](http://127.0.0.1:3000/primitives/emoji-icon-picker): Emoji and icon selection in one popover with an animated height between panels. Status: beta.
-- [Gradient Editor](http://127.0.0.1:3000/primitives/gradient-editor): CSS gradient editor with draggable stops and live preview. Status: beta.
 - [Resizable](http://127.0.0.1:3000/primitives/resizable): Accessible resizable panel groups and split layouts with keyboard support. Status: beta.
 - [Calendar](http://127.0.0.1:3000/primitives/calendar): Date selection grid built on react-day-picker and themed through tokens.
 - [Typography](http://127.0.0.1:3000/primitives/typography): Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role. Native tags may still wear one text-* rung directly.

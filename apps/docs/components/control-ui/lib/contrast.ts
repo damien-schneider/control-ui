@@ -71,3 +71,39 @@ export function fixColorForContrast(color: Hsva, background: Rgba, target: numbe
   // Nothing passed: fall back to whichever extreme maximizes ratio.
   return ratioAtL(0) >= ratioAtL(1) ? pick(0) : pick(1);
 }
+
+export type ContrastFailBand = { saturation: number; failsFrom: number; failsTo: number };
+
+const BRIGHTNESS_BISECTION_STEPS = 12;
+
+// `passes` holds at `passing` and flips once on the way to `failing`
+function lastPassingBrightness(passes: (brightness: number) => boolean, passing: number, failing: number): number {
+  if (!passes(passing)) return passing;
+  let pass = passing;
+  let fail = failing;
+  for (let step = 0; step < BRIGHTNESS_BISECTION_STEPS; step++) {
+    const middle = (pass + fail) / 2;
+    if (passes(middle)) pass = middle;
+    else fail = middle;
+  }
+  return pass;
+}
+
+// per saturation column of a saturation/brightness area, the brightness interval that misses `target` against `background`.
+// luminance only rises with brightness, so the ratio bottoms out where the color matches the background and each edge is one bisection
+export function contrastFailBands(color: Pick<Hsva, "h" | "a">, background: Rgba, target: number, columns = 32): ContrastFailBand[] {
+  const backgroundLuminance = luminanceFromRgb(background);
+  return Array.from({ length: columns + 1 }, (_, column) => {
+    const saturation = (column / columns) * 100;
+    const at = (brightness: number): Hsva => ({ h: color.h, s: saturation, v: brightness, a: color.a });
+    const darkerThanBackground = (brightness: number) =>
+      luminanceFromRgb(paintedOver(hsvaToRgba(at(brightness)), background)) <= backgroundLuminance;
+    const meetsTarget = (brightness: number) => contrastOf(at(brightness), background) >= target;
+    const matchingBackground = lastPassingBrightness(darkerThanBackground, 0, 100);
+    return {
+      saturation,
+      failsFrom: lastPassingBrightness(meetsTarget, 0, matchingBackground),
+      failsTo: lastPassingBrightness(meetsTarget, 100, matchingBackground),
+    };
+  });
+}

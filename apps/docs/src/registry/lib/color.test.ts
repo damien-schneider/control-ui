@@ -1,11 +1,11 @@
 import { describe, expect, test } from "bun:test";
 import {
   formatColor,
-  formatGradient,
   getChannels,
   type Hsva,
   hexToRgba,
   hsvaToHsla,
+  hsvaToOklcha,
   hsvaToRgba,
   oklchaToHsva,
   parseColor,
@@ -130,6 +130,28 @@ describe("oklch", () => {
   });
 });
 
+describe("oklch precision", () => {
+  test("a 0.001 lightness step always moves the color", () => {
+    let hsva = present(parseColor("#7038f4"));
+    for (let step = 0; step < 20; step += 1) {
+      const before = hsvaToOklcha(hsva).L;
+      hsva = setChannel(hsva, "okl", before + 0.001);
+      expect(hsvaToOklcha(hsva).L).toBeCloseTo(before + 0.001, 4);
+    }
+  });
+
+  test("an in-gamut oklch string survives a round trip", () => {
+    expect(formatColor(present(parseColor("oklch(0.7 0.15 150)")), "oklch")).toBe("oklch(0.7 0.15 150)");
+  });
+
+  test("out-of-gamut chroma shrinks while lightness and hue hold", () => {
+    const mapped = hsvaToOklcha(oklchaToHsva({ L: 0.7, C: 0.37, H: 150, a: 1 }));
+    expect(mapped.L).toBeCloseTo(0.7, 2);
+    expect(mapped.H).toBeCloseTo(150, 0);
+    expect(mapped.C).toBeLessThan(0.37);
+  });
+});
+
 describe("parseColor per format", () => {
   test("hex", () => {
     expect(hsvaToRgba(present(parseColor("#abc")))).toEqual({ r: 170, g: 187, b: 204, a: 1 });
@@ -214,29 +236,5 @@ describe("pointer mapping", () => {
     expect(pointToHueSat(rect, 50, 50).s).toBe(0); // center
     const south = pointToHueSat(rect, 50, 100);
     expect(south.h).toBeCloseTo(90, 5);
-  });
-});
-
-describe("formatGradient", () => {
-  const stops = [
-    { position: 0, color: "#7c3aed" },
-    { position: 1, color: "#3b82f6" },
-  ];
-  test("linear with angle", () => {
-    expect(formatGradient(stops, "linear", 90)).toBe("linear-gradient(90deg, #7c3aed 0%, #3b82f6 100%)");
-  });
-  test("radial ignores angle", () => {
-    expect(formatGradient(stops, "radial", 45)).toBe("radial-gradient(circle, #7c3aed 0%, #3b82f6 100%)");
-  });
-  test("conic uses from angle", () => {
-    expect(formatGradient(stops, "conic", 30)).toBe("conic-gradient(from 30deg, #7c3aed 0%, #3b82f6 100%)");
-  });
-  test("stops are sorted by position", () => {
-    const shuffled = [
-      { position: 1, color: "#000" },
-      { position: 0.5, color: "#888" },
-      { position: 0, color: "#fff" },
-    ];
-    expect(formatGradient(shuffled, "linear", 0)).toBe("linear-gradient(0deg, #fff 0%, #888 50%, #000 100%)");
   });
 });

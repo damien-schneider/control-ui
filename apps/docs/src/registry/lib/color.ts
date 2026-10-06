@@ -23,7 +23,8 @@ const clamp01 = (n: number) => clamp(n, 0, 1);
 const wrapHue = (h: number) => ((h % 360) + 360) % 360;
 const round = (n: number) => Math.round(n);
 
-export function hsvaToRgba({ h, s, v, a }: Hsva): Rgba {
+// unrounded, so a conversion chain never snaps to the 8-bit grid before the final format
+function hsvaToUnroundedRgba({ h, s, v, a }: Hsva): Rgba {
   const S = clamp01(s / 100);
   const V = clamp01(v / 100);
   const c = V * S;
@@ -39,7 +40,12 @@ export function hsvaToRgba({ h, s, v, a }: Hsva): Rgba {
   else if (hh < 4) [r, g, b] = [0, x, c];
   else if (hh < 5) [r, g, b] = [x, 0, c];
   else [r, g, b] = [c, 0, x];
-  return { r: round((r + m) * 255), g: round((g + m) * 255), b: round((b + m) * 255), a: clamp01(a) };
+  return { r: (r + m) * 255, g: (g + m) * 255, b: (b + m) * 255, a: clamp01(a) };
+}
+
+export function hsvaToRgba(hsva: Hsva): Rgba {
+  const { r, g, b, a } = hsvaToUnroundedRgba(hsva);
+  return { r: round(r), g: round(g), b: round(b), a };
 }
 
 export function rgbaToHsva({ r, g, b, a }: Rgba): Hsva {
@@ -107,26 +113,45 @@ function rgbToOklch(r255: number, g255: number, b255: number): { L: number; C: n
   return { L, C, H };
 }
 
-// oklch → rgb channels 0–255, clamped into sRGB gamut
-function oklchToRgb(L: number, C: number, H: number): { r: number; g: number; b: number } {
+function oklchToLinearRgb(L: number, C: number, H: number): [number, number, number] {
   const hr = (H * Math.PI) / 180;
   const a = C * Math.cos(hr);
   const b = C * Math.sin(hr);
-  const l_ = L + 0.3963377774 * a + 0.2158037573 * b;
-  const m_ = L - 0.1055613458 * a - 0.0638541728 * b;
-  const s_ = L - 0.0894841775 * a - 1.291485548 * b;
-  const l = l_ ** 3;
-  const m = m_ ** 3;
-  const s = s_ ** 3;
-  const r = 4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s;
-  const g = -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s;
-  const bl = -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s;
-  const to = (c: number) => clamp(round(linearToSrgb(c) * 255), 0, 255);
-  return { r: to(r), g: to(g), b: to(bl) };
+  const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3;
+  const m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3;
+  const s = (L - 0.0894841775 * a - 1.291485548 * b) ** 3;
+  return [
+    4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,
+    -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
+    -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s,
+  ];
+}
+
+const SRGB_GAMUT_TOLERANCE = 1e-4;
+const CHROMA_BISECTION_STEPS = 20;
+const fitsSrgb = (linear: number[]) => linear.every((channel) => channel >= -SRGB_GAMUT_TOLERANCE && channel <= 1 + SRGB_GAMUT_TOLERANCE);
+
+// outside sRGB, chroma shrinks until the color fits: lightness and hue survive, where clipping channels shifts both
+function oklchToRgb(L: number, C: number, H: number): { r: number; g: number; b: number } {
+  const lightness = clamp01(L);
+  let linear = oklchToLinearRgb(lightness, C, H);
+  if (!fitsSrgb(linear)) {
+    let fitting = 0;
+    let overflowing = C;
+    for (let step = 0; step < CHROMA_BISECTION_STEPS; step++) {
+      const candidate = (fitting + overflowing) / 2;
+      if (fitsSrgb(oklchToLinearRgb(lightness, candidate, H))) fitting = candidate;
+      else overflowing = candidate;
+    }
+    linear = oklchToLinearRgb(lightness, fitting, H);
+  }
+  const [r, g, b] = linear;
+  const encode = (channel: number) => clamp(linearToSrgb(channel) * 255, 0, 255);
+  return { r: encode(r), g: encode(g), b: encode(b) };
 }
 
 export function hsvaToOklcha(hsva: Hsva): Oklcha {
-  const { r, g, b } = hsvaToRgba(hsva);
+  const { r, g, b } = hsvaToUnroundedRgba(hsva);
   const { L, C, H } = rgbToOklch(r, g, b);
   return { L, C, H, a: clamp01(hsva.a) };
 }
@@ -271,7 +296,7 @@ export function parseColor(input: string): Hsva | null {
 }
 
 // preserves hue (+sat at true black) on achromatic mutation so area/hue thumbs don't jump to red; `prev` = color before edit
-function preserveAchromatic(next: Hsva, prev: Hsva): Hsva {
+export function preserveAchromatic(next: Hsva, prev: Hsva): Hsva {
   const out = { ...next };
   if (out.v === 0) {
     out.h = prev.h;
@@ -360,24 +385,6 @@ export function pointToSaturationValue(
   const s = rect.width <= 0 ? 0 : clamp01(offsetX / rect.width) * 100;
   const v = rect.height <= 0 ? 0 : (1 - clamp01(offsetY / rect.height)) * 100;
   return { s, v };
-}
-
-export type GradientKind = "linear" | "radial" | "conic";
-
-// stops sorted by position; angle drives linear/conic direction, ignored for radial
-export function formatGradient(stops: { position: number; color: string }[], type: GradientKind, angle: number): string {
-  const list = [...stops]
-    .sort((a, b) => a.position - b.position)
-    .map((stop) => `${stop.color} ${round(clamp01(stop.position) * 100)}%`)
-    .join(", ");
-  switch (type) {
-    case "linear":
-      return `linear-gradient(${round(angle)}deg, ${list})`;
-    case "radial":
-      return `radial-gradient(circle, ${list})`;
-    case "conic":
-      return `conic-gradient(from ${round(angle)}deg, ${list})`;
-  }
 }
 
 // angle → hue, radius → saturation (clamped to ring); origin top-left, wheel inscribed in box

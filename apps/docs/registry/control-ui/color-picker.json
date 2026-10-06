@@ -3,7 +3,7 @@
   "name": "color-picker",
   "type": "registry:ui",
   "title": "Color Picker",
-  "description": "Color input with picker UI, formats, presets, and contrast helpers.",
+  "description": "Color input with picker UI, formats, presets, contrast helpers, and a gradient editor with draggable stops.",
   "dependencies": [
     "@base-ui/react@^1.8.0"
   ],
@@ -32,6 +32,11 @@
       "type": "registry:component"
     },
     {
+      "path": "src/registry/knob-contracts/gradient-editor-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/gradient-editor-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/knob-contracts/popup-knobs.ts",
       "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
       "type": "registry:component"
@@ -47,6 +52,11 @@
       "type": "registry:lib"
     },
     {
+      "path": "src/registry/lib/gradient.ts",
+      "target": "@components/control-ui/lib/gradient.ts",
+      "type": "registry:lib"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/color-picker-details.css",
       "target": "@components/control-ui/styles/recipes/color-picker-details.css",
       "type": "registry:file"
@@ -59,6 +69,11 @@
     {
       "path": "src/registry/sources/control-ui/recipes/color-picker.css",
       "target": "@components/control-ui/styles/recipes/color-picker.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/gradient-editor.css",
+      "target": "@components/control-ui/styles/recipes/gradient-editor.css",
       "type": "registry:file"
     },
     {
@@ -82,8 +97,48 @@
       "type": "registry:file"
     },
     {
+      "path": "src/registry/sources/control-ui/ui/color-picker-area.tsx",
+      "target": "@components/control-ui/ui/color-picker-area.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/color-picker-context.ts",
+      "target": "@components/control-ui/ui/color-picker-context.ts",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/color-picker-contrast.tsx",
+      "target": "@components/control-ui/ui/color-picker-contrast.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/color-picker-sliders.tsx",
+      "target": "@components/control-ui/ui/color-picker-sliders.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/color-picker-swatches.tsx",
+      "target": "@components/control-ui/ui/color-picker-swatches.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/color-picker-values.tsx",
+      "target": "@components/control-ui/ui/color-picker-values.tsx",
+      "type": "registry:ui"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/color-picker.tsx",
       "target": "@components/control-ui/ui/color-picker.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/gradient-editor-controls.tsx",
+      "target": "@components/control-ui/ui/gradient-editor-controls.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/gradient-editor.tsx",
+      "target": "@components/control-ui/ui/gradient-editor.tsx",
       "type": "registry:ui"
     }
   ],
@@ -91,6 +146,7 @@
     "@import \"../components/control-ui/styles/recipes/color-picker.css\"": {},
     "@import \"../components/control-ui/styles/recipes/color-picker-details.css\"": {},
     "@import \"../components/control-ui/styles/recipes/color-picker-values.css\"": {},
+    "@import \"../components/control-ui/styles/recipes/gradient-editor.css\"": {},
     "@import \"../components/control-ui/styles/recipes/popup.css\"": {},
     "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
     "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},

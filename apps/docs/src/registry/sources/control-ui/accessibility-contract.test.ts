@@ -1,15 +1,20 @@
 import { describe, expect, test } from "bun:test";
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 
-const colorPickerSource = readFileSync(new URL("./ui/color-picker.tsx", import.meta.url), "utf8");
+const uiDirectory = new URL("./ui/", import.meta.url);
+const colorPickerSource = readdirSync(uiDirectory)
+  .filter((file) => file.startsWith("color-picker") && file.endsWith(".tsx"))
+  .map((file) => readFileSync(new URL(file, uiDirectory), "utf8"))
+  .join("\n");
 const gradientEditorSource = readFileSync(new URL("./ui/gradient-editor.tsx", import.meta.url), "utf8");
 const inputExampleSource = readFileSync(new URL("../../examples/control-ui/primitives/input.tsx", import.meta.url), "utf8");
 
 describe("Control UI accessibility contracts", () => {
   test("color picker controls have default accessible names", () => {
     expect(colorPickerSource).toMatch(/Choose color \(\$\{valueString\}\)/);
-    expect(colorPickerSource).toContain('ariaLabel ?? "Hue"');
-    expect(colorPickerSource).toContain('ariaLabel ?? "Opacity"');
+    expect(colorPickerSource).toContain("ariaLabel ?? label");
+    expect(colorPickerSource).toContain('label: "Hue"');
+    expect(colorPickerSource).toContain('label: "Opacity"');
     expect(colorPickerSource).toContain('aria-label="Wheel hue"');
     expect(colorPickerSource).toContain('aria-label="Wheel saturation"');
     expect(colorPickerSource).toContain('ariaLabel ?? "Color value"');

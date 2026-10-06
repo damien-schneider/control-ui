@@ -51,7 +51,7 @@
           "data-focus-ring": "within",
           "data-index": "0",
           "data-orientation": "horizontal",
-          "data-slot": "alpha-thumb"
+          "data-slot": "slider-thumb"
         }
       }
     ],
@@ -102,7 +102,7 @@
           "data-control-family": "color-picker",
           "data-control-ui": "color-picker",
           "data-orientation": "horizontal",
-          "data-slot": "hue",
+          "data-slot": "slider",
           "role": "group"
         }
       },
@@ -113,7 +113,7 @@
           "data-focus-ring": "within",
           "data-index": "0",
           "data-orientation": "horizontal",
-          "data-slot": "hue-thumb"
+          "data-slot": "slider-thumb"
         }
       }
     ],
@@ -155,7 +155,7 @@
       },
       {
         "attributes": {
-          "data-align": "start",
+          "data-align": "end",
           "data-control-family": "popup",
           "data-control-ui": "color-picker",
           "data-open": "",
@@ -173,7 +173,7 @@
           "data-control-family": "color-picker",
           "data-control-ui": "color-picker",
           "data-orientation": "horizontal",
-          "data-slot": "hue",
+          "data-slot": "slider",
           "role": "group"
         }
       },
@@ -184,7 +184,7 @@
           "data-focus-ring": "within",
           "data-index": "0",
           "data-orientation": "horizontal",
-          "data-slot": "hue-thumb"
+          "data-slot": "slider-thumb"
         }
       }
     ],
@@ -243,7 +243,7 @@
           "data-control-family": "color-picker",
           "data-control-ui": "color-picker",
           "data-orientation": "horizontal",
-          "data-slot": "hue",
+          "data-slot": "slider",
           "role": "group"
         }
       },
@@ -254,7 +254,62 @@
           "data-focus-ring": "within",
           "data-index": "0",
           "data-orientation": "horizontal",
-          "data-slot": "hue-thumb"
+          "data-slot": "slider-thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "color-picker",
+          "data-control-ui": "color-picker",
+          "data-orientation": "horizontal",
+          "data-slot": "slider",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "color-picker",
+          "data-control-ui": "color-picker",
+          "data-focus-ring": "within",
+          "data-index": "0",
+          "data-orientation": "horizontal",
+          "data-slot": "slider-thumb"
         }
       }
     ],
@@ -326,7 +381,7 @@
           "data-focus-ring": "within",
           "data-index": "0",
           "data-orientation": "horizontal",
-          "data-slot": "alpha-thumb"
+          "data-slot": "slider-thumb"
         }
       }
     ],
@@ -383,7 +438,7 @@
           "data-focus-ring": "within",
           "data-index": "0",
           "data-orientation": "horizontal",
-          "data-slot": "alpha-thumb"
+          "data-slot": "slider-thumb"
         }
       }
     ],
@@ -438,7 +493,7 @@
           "data-control-family": "color-picker",
           "data-control-ui": "color-picker",
           "data-orientation": "horizontal",
-          "data-slot": "hue",
+          "data-slot": "slider",
           "role": "group"
         }
       },
@@ -449,7 +504,7 @@
           "data-focus-ring": "within",
           "data-index": "0",
           "data-orientation": "horizontal",
-          "data-slot": "hue-thumb"
+          "data-slot": "slider-thumb"
         }
       }
     ]
@@ -508,6 +563,14 @@
         "fill": "--cui-color-picker-slider-thumb-background"
       },
       "anatomy": 6,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-color-picker-slider-thumb-background"
+      },
+      "anatomy": 7,
       "rendersText": false,
       "state": false
     }

@@ -39,6 +39,16 @@ const nextConfig = {
         destination: "/llms.txt",
         permanent: true,
       },
+      {
+        source: "/primitives/gradient-editor",
+        destination: "/primitives/color-picker#example-gradient-editor",
+        permanent: true,
+      },
+      {
+        source: "/primitives/emoji-icon-picker",
+        destination: "/primitives/emoji-picker#example-emoji-or-icon",
+        permanent: true,
+      },
     ];
   },
   async headers() {

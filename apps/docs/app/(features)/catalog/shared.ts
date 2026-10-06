@@ -109,8 +109,6 @@ export const registryKindIds = [
   "color-picker",
   "emoji-picker",
   "icon-picker",
-  "emoji-icon-picker",
-  "gradient-editor",
   "resizable",
   "calendar",
   "typography",

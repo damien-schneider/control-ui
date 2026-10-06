@@ -8,8 +8,11 @@ import {
   EmojiIconPickerEmoji,
   EmojiIconPickerIcons,
   EmojiIconPickerTabs,
-} from "@/components/control-ui/ui/emoji-icon-picker";
-import { EmojiPickerCategories, EmojiPickerContent, EmojiPickerRecent, EmojiPickerSearch } from "@/components/control-ui/ui/emoji-picker";
+  EmojiPickerCategories,
+  EmojiPickerContent,
+  EmojiPickerRecent,
+  EmojiPickerSearch,
+} from "@/components/control-ui/ui/emoji-picker";
 import { IconPickerColors, IconPickerContent, IconPickerSearch } from "@/components/control-ui/ui/icon-picker";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/control-ui/ui/popover";
 import { Text } from "@/components/control-ui/ui/typography";

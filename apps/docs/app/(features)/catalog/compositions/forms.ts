@@ -169,15 +169,6 @@ export const formsCompositions = {
       part("PopoverViewport", part("EmojiPickerReactions")),
       "EmojiPickerReactions works without an EmojiPicker root. The app supplies emoji labels and handles selection.",
     ),
-  ],
-  "icon-picker": [
-    example(
-      "Icon grid",
-      part("IconPicker", part("IconPickerSearch"), part("IconPickerColors"), part("IconPickerContent")),
-      "The app supplies icons, search keywords, and color choices. IconPickerColors controls a separate color value; apply it through --cui-icon-picker-foreground.",
-    ),
-  ],
-  "emoji-icon-picker": [
     example(
       "Emoji or icon",
       part(
@@ -189,6 +180,13 @@ export const formsCompositions = {
       "Place inside PopoverContent. Each panel owns its selection callback; the host stores the selected symbol and closes the popover.",
     ),
   ],
+  "icon-picker": [
+    example(
+      "Icon grid",
+      part("IconPicker", part("IconPickerSearch"), part("IconPickerColors"), part("IconPickerContent")),
+      "The app supplies icons, search keywords, and color choices. IconPickerColors controls a separate color value; apply it through --cui-icon-picker-foreground.",
+    ),
+  ],
   "color-picker": [
     example(
       "Popup color editor",
@@ -198,7 +196,7 @@ export const formsCompositions = {
         part("ColorPickerOutput"),
         part(
           "ColorPickerContent",
-          part("ColorPickerArea", part("ColorPickerAreaThumb")),
+          part("ColorPickerArea", part("ColorPickerAreaContrast"), part("ColorPickerAreaThumb")),
           part("ColorPickerEyeDropper"),
           part("ColorPickerHue"),
           part("ColorPickerAlpha"),
@@ -209,14 +207,24 @@ export const formsCompositions = {
           part("ColorPickerSwatches", part("ColorPickerSwatch"), part("ColorPickerSwatchAdd")),
         ),
       ),
-      "Area, Channels, and Swatches supply their default children when omitted.",
+      "Area, Channels, and Swatches supply their default children when omitted. AreaContrast draws the WCAG threshold for a background over the area.",
     ),
     example(
       "Inline color wheel",
       part("ColorPicker", part("ColorPickerPanel", part("ColorPickerWheel"), part("ColorPickerAlpha"), part("ColorPickerInput"))),
     ),
-  ],
-  "gradient-editor": [
+    example(
+      "Inline strips",
+      part(
+        "ColorPicker",
+        part("ColorPickerSwatch"),
+        part("ColorPickerHue"),
+        part("ColorPickerSaturation"),
+        part("ColorPickerBrightness"),
+        part("ColorPickerOutput"),
+      ),
+      "Every strip edits one coordinate of the same color, so parts sit in a toolbar or inspector row without a popup.",
+    ),
     example(
       "Gradient stops",
       part(
@@ -225,9 +233,11 @@ export const formsCompositions = {
         part("GradientEditorTrack", part("GradientEditorStop")),
         part("GradientEditorStopColor"),
         part("GradientEditorTypeSelect"),
+        part("GradientEditorInterpolationSelect"),
+        part("GradientEditorAngle"),
         part("GradientEditorStopAdd"),
       ),
-      "Track renders a stop for each entry; supply children to customize those stops.",
+      "Track renders a stop for each entry; supply children to customize those stops. The value is structured; formatGradient turns it into CSS.",
     ),
   ],
   calendar: [example("Date selection", part("Calendar"))],

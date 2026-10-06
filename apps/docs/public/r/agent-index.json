@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 192,
+    "count": 190,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -1362,7 +1362,7 @@
         "id": "color-picker",
         "name": "Color Picker",
         "kind": "Primitive",
-        "summary": "Color input with picker UI, formats, presets, and contrast helpers.",
+        "summary": "Color input with picker UI, formats, presets, contrast helpers, and a gradient editor with draggable stops.",
         "href": "/primitives/color-picker",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/color-picker.json"
@@ -1371,7 +1371,7 @@
         "id": "emoji-picker",
         "name": "Emoji Picker",
         "kind": "Primitive",
-        "summary": "Searchable, virtualized emoji grid with skin-aware cells and an active emoji footer.",
+        "summary": "Searchable, virtualized emoji grid with skin-aware cells, an active emoji footer, and an emoji-or-icon tabbed variant.",
         "href": "/primitives/emoji-picker",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/emoji-picker.json"
@@ -1384,24 +1384,6 @@
         "href": "/primitives/icon-picker",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/icon-picker.json"
-      },
-      {
-        "id": "emoji-icon-picker",
-        "name": "Emoji Icon Picker",
-        "kind": "Primitive",
-        "summary": "Emoji and icon selection in one popover with an animated height between panels.",
-        "href": "/primitives/emoji-icon-picker",
-        "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/emoji-icon-picker.json"
-      },
-      {
-        "id": "gradient-editor",
-        "name": "Gradient Editor",
-        "kind": "Primitive",
-        "summary": "CSS gradient editor with draggable stops and live preview.",
-        "href": "/primitives/gradient-editor",
-        "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/gradient-editor.json"
       },
       {
         "id": "resizable",

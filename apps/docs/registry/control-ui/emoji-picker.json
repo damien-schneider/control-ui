@@ -3,7 +3,7 @@
   "name": "emoji-picker",
   "type": "registry:ui",
   "title": "Emoji Picker",
-  "description": "Searchable, virtualized emoji grid with skin-aware cells and an active emoji footer.",
+  "description": "Searchable, virtualized emoji grid with skin-aware cells, an active emoji footer, and an emoji-or-icon tabbed variant.",
   "dependencies": [
     "@base-ui/react@^1.8.0",
     "frimousse@^0.4.0",
@@ -11,7 +11,10 @@
   ],
   "registryDependencies": [
     "core",
-    "spinner"
+    "icon-picker",
+    "popover",
+    "spinner",
+    "tabs"
   ],
   "files": [
     {

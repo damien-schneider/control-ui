@@ -10,33 +10,24 @@ import type {
   RefObject,
 } from "react";
 import { createContext, useContext, useRef, useState } from "react";
-import type { ControlSize } from "@/components/control-ui/control-variants";
 import { useColorArea } from "@/components/control-ui/hooks/use-color-area";
 import type { GradientEditorKnobStyle } from "@/components/control-ui/knob-contracts/gradient-editor-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { formatGradient } from "@/components/control-ui/lib/color";
 import {
-  ColorPicker,
-  ColorPickerAlpha,
-  ColorPickerArea,
-  ColorPickerContent,
-  ColorPickerFormatSelect,
-  ColorPickerHue,
-  ColorPickerInput,
-  ColorPickerTrigger,
-} from "@/components/control-ui/ui/color-picker";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/control-ui/ui/select";
+  formatGradient,
+  type GradientInterpolation,
+  type GradientStop,
+  type GradientType,
+  type GradientValue,
+  gradientColorAt,
+} from "@/components/control-ui/lib/gradient";
 
-export type GradientType = "linear" | "radial" | "conic";
-
-export type GradientStop = { id: string; position: number; color: string };
+export type { GradientInterpolation, GradientStop, GradientType, GradientValue } from "@/components/control-ui/lib/gradient";
 
 export type GradientEditorProps = Omit<ComponentProps<"div">, "onChange" | "defaultValue"> & {
-  value?: string;
-  defaultStops?: GradientStop[];
-  defaultType?: GradientType;
-  defaultAngle?: number;
-  onValueChange?: (value: string) => void;
+  value?: GradientValue;
+  defaultValue?: GradientValue;
+  onValueChange?: (value: GradientValue) => void;
 } & { style?: CSSProperties & GradientEditorKnobStyle };
 
 export type GradientEditorPreviewProps = Omit<ComponentProps<"div">, "style"> & {
@@ -56,27 +47,33 @@ export type GradientEditorStopAddProps = Omit<ComponentProps<"button">, "onClick
   style?: CSSProperties & GradientEditorKnobStyle;
 };
 
-export type GradientEditorTypeSelectProps = {
-  size?: ControlSize;
-  className?: string;
-  "aria-label"?: string;
-  "aria-labelledby"?: string;
+const DEFAULT_GRADIENT: GradientValue = {
+  type: "linear",
+  angle: 90,
+  interpolation: "oklab",
+  stops: [
+    { id: "stop-1", position: 0, color: "#7c3aed" },
+    { id: "stop-2", position: 1, color: "#3b82f6" },
+  ],
 };
 
-const DEFAULT_STOPS: GradientStop[] = [
-  { id: "stop-1", position: 0, color: "#7c3aed" },
-  { id: "stop-2", position: 1, color: "#3b82f6" },
-];
+const MIN_GRADIENT_STOPS = 2;
 
-const isGradientType = (v: string): v is GradientType => v === "linear" || v === "radial" || v === "conic";
 const clamp01 = (n: number) => Math.min(1, Math.max(0, n));
 
-type GradientEditorContextValue = {
-  stops: GradientStop[];
-  type: GradientType;
-  angle: number;
-  selectedId: string;
+function unusedStopId(stops: GradientStop[]): string {
+  const taken = new Set(stops.map((stop) => stop.id));
+  let ordinal = stops.length + 1;
+  while (taken.has(`stop-${ordinal}`)) ordinal += 1;
+  return `stop-${ordinal}`;
+}
+
+type GradientImageStyle = CSSProperties & Record<"--_gradient-editor-image", string>;
+
+type GradientEditorContextValue = GradientValue & {
   gradient: string;
+  selectedStop: GradientStop | undefined;
+  canRemoveStop: boolean;
   trackRef: RefObject<HTMLFieldSetElement | null>;
   stopNodes: Map<string, HTMLButtonElement>;
   select: (id: string) => void;
@@ -85,76 +82,67 @@ type GradientEditorContextValue = {
   addStop: (position: number) => void;
   removeStop: (id: string) => void;
   setType: (type: GradientType) => void;
+  setAngle: (angle: number) => void;
+  setInterpolation: (interpolation: GradientInterpolation) => void;
 };
 
 const GradientEditorContext = createContext<GradientEditorContextValue | null>(null);
 
-function useGradientEditor(): GradientEditorContextValue {
+export function useGradientEditor(): GradientEditorContextValue {
   const ctx = useContext(GradientEditorContext);
   if (!ctx) throw new Error("GradientEditor parts must be rendered inside <GradientEditor>.");
   return ctx;
 }
 
 export function GradientEditor({
-  defaultStops = DEFAULT_STOPS,
-  defaultType = "linear",
-  defaultAngle = 90,
+  value: controlledValue,
+  defaultValue = DEFAULT_GRADIENT,
   onValueChange,
   className,
   children,
-  value: _value,
   ...props
 }: GradientEditorProps) {
-  const [stops, setStops] = useState<GradientStop[]>(defaultStops);
-  const [type, setTypeState] = useState<GradientType>(defaultType);
-  const [angle] = useState(defaultAngle);
-  const [selectedId, setSelectedId] = useState(defaultStops[0]?.id ?? "stop-1");
-  const idCounter = useRef(defaultStops.length);
+  const [uncontrolledValue, setUncontrolledValue] = useState(defaultValue);
+  const value = controlledValue ?? uncontrolledValue;
+  const { stops } = value;
+  const [selectedId, setSelectedId] = useState(stops[0]?.id);
   const trackRef = useRef<HTMLFieldSetElement | null>(null);
   const [stopNodes] = useState(() => new Map<string, HTMLButtonElement>());
 
-  const gradient = formatGradient(stops, type, angle);
-
-  function updateStops(nextStops: GradientStop[]) {
-    setStops(nextStops);
-    onValueChange?.(formatGradient(nextStops, type, angle));
+  function change(patch: Partial<GradientValue>) {
+    const next = { ...value, ...patch };
+    if (controlledValue === undefined) setUncontrolledValue(next);
+    onValueChange?.(next);
   }
 
-  const setStopColor = (id: string, color: string) => updateStops(stops.map((stop) => (stop.id === id ? { ...stop, color } : stop)));
-  const setStopPosition = (id: string, position: number) =>
-    updateStops(stops.map((stop) => (stop.id === id ? { ...stop, position: clamp01(position) } : stop)));
+  const canRemoveStop = stops.length > MIN_GRADIENT_STOPS;
+  const changeStop = (id: string, patch: Partial<GradientStop>) =>
+    change({ stops: stops.map((stop) => (stop.id === id ? { ...stop, ...patch } : stop)) });
   const addStop = (position: number) => {
-    idCounter.current += 1;
-    const id = `stop-${idCounter.current}`;
-    const near = [...stops].sort((a, b) => Math.abs(a.position - position) - Math.abs(b.position - position))[0];
-    updateStops([...stops, { id, position: clamp01(position), color: near?.color ?? "#ffffff" }]);
+    const id = unusedStopId(stops);
+    const clamped = clamp01(position);
+    change({ stops: [...stops, { id, position: clamped, color: gradientColorAt(value, clamped) }] });
     setSelectedId(id);
   };
   const removeStop = (id: string) => {
-    if (stops.length <= 2) return; // a gradient needs at least two stops
-    const nextStops = stops.filter((stop) => stop.id !== id);
-    updateStops(nextStops);
-    setSelectedId((current) => (current === id ? (nextStops[0]?.id ?? current) : current));
-  };
-  const setType = (nextType: GradientType) => {
-    setTypeState(nextType);
-    onValueChange?.(formatGradient(stops, nextType, angle));
+    if (canRemoveStop) change({ stops: stops.filter((stop) => stop.id !== id) });
   };
 
   const ctx: GradientEditorContextValue = {
-    stops,
-    type,
-    angle,
-    selectedId,
-    gradient,
+    ...value,
+    gradient: formatGradient(value),
+    selectedStop: stops.find((stop) => stop.id === selectedId) ?? stops[0],
+    canRemoveStop,
     trackRef,
     stopNodes,
     select: setSelectedId,
-    setStopColor,
-    setStopPosition,
+    setStopColor: (id, color) => changeStop(id, { color }),
+    setStopPosition: (id, position) => changeStop(id, { position: clamp01(position) }),
     addStop,
     removeStop,
-    setType,
+    setType: (type) => change({ type }),
+    setAngle: (angle) => change({ angle }),
+    setInterpolation: (interpolation) => change({ interpolation }),
   };
 
   return (
@@ -179,6 +167,7 @@ export function GradientEditorPreview({
   ...props
 }: GradientEditorPreviewProps) {
   const { gradient } = useGradientEditor();
+  const imageStyle: GradientImageStyle = { ...style, "--_gradient-editor-image": gradient };
   return (
     <div
       data-control-ui="gradient-editor"
@@ -187,7 +176,7 @@ export function GradientEditorPreview({
       role="img"
       aria-label={ariaLabel}
       className={cn("w-full", className)}
-      style={{ ...style, backgroundImage: gradient }}
+      style={imageStyle}
       {...props}
     />
   );
@@ -201,8 +190,11 @@ export function GradientEditorTrack({
   "aria-labelledby": ariaLabelledBy,
   ...props
 }: GradientEditorTrackProps) {
-  const { stops, trackRef, addStop } = useGradientEditor();
-  const stripe = formatGradient(stops, "linear", 90);
+  const { stops, interpolation, trackRef, addStop } = useGradientEditor();
+  const imageStyle: GradientImageStyle = {
+    ...style,
+    "--_gradient-editor-image": formatGradient({ type: "linear", angle: 90, interpolation, stops }),
+  };
   return (
     <fieldset
       ref={trackRef}
@@ -212,10 +204,10 @@ export function GradientEditorTrack({
       aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? "Gradient stops") : ariaLabel}
       aria-labelledby={ariaLabelledBy}
       className={cn("relative m-0 min-w-0 w-full cursor-copy touch-pan-y p-0", className)}
-      style={{ ...style, backgroundImage: stripe }}
+      style={imageStyle}
       onPointerDown={(event) => {
-        // only bare track adds stop — click on handle is that handle's to deal with
-        if (event.target !== event.currentTarget) return;
+        const pressedBareTrack = event.target === event.currentTarget;
+        if (!pressedBareTrack) return;
         const rect = event.currentTarget.getBoundingClientRect();
         addStop((event.clientX - rect.left) / rect.width);
       }}
@@ -239,9 +231,7 @@ export function GradientEditorStop({
   ref,
   ...props
 }: GradientEditorStopProps) {
-  const { stops, selectedId, select, setStopPosition, removeStop, trackRef, stopNodes } = useGradientEditor();
-  const selected = stop.id === selectedId;
-  const canRemove = stops.length > 2;
+  const { stops, selectedStop, canRemoveStop, select, setStopPosition, removeStop, trackRef, stopNodes } = useGradientEditor();
   const { onPointerDown: startDrag } = useColorArea<HTMLFieldSetElement>(
     (offset, rect) => setStopPosition(stop.id, offset.x / rect.width),
     trackRef,
@@ -268,7 +258,7 @@ export function GradientEditorStop({
   }
 
   function remove() {
-    if (!canRemove) return;
+    if (!canRemoveStop) return;
     const index = stops.findIndex((candidate) => candidate.id === stop.id);
     const neighbour = stops[index + 1] ?? stops[index - 1];
     if (neighbour) stopNodes.get(neighbour.id)?.focus();
@@ -314,7 +304,7 @@ export function GradientEditorStop({
         break;
       case "Backspace":
       case "Delete":
-        if (!canRemove) return;
+        if (!canRemoveStop) return;
         event.preventDefault();
         remove();
         break;
@@ -337,7 +327,7 @@ export function GradientEditorStop({
       data-control-ui="gradient-editor"
       data-control-family="gradient-editor"
       data-slot="stop"
-      data-selected={selected ? "true" : undefined}
+      data-selected={stop.id === selectedStop?.id ? "true" : undefined}
       aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? defaultLabel) : ariaLabel}
       aria-labelledby={ariaLabelledBy}
       aria-orientation="horizontal"
@@ -383,56 +373,5 @@ export function GradientEditorStopAdd({ className, children, ...props }: Gradien
         </svg>
       )}
     </button>
-  );
-}
-
-export function GradientEditorStopColor() {
-  const { stops, selectedId, setStopColor } = useGradientEditor();
-  const selected = stops.find((s) => s.id === selectedId) ?? stops[0];
-  if (!selected) return null;
-  return (
-    <ColorPicker value={selected.color} onValueChange={(color) => setStopColor(selected.id, color)} defaultFormat="hex">
-      <ColorPickerTrigger />
-      <ColorPickerContent>
-        <ColorPickerArea />
-        <ColorPickerHue />
-        <ColorPickerAlpha />
-        <div data-control-ui="gradient-editor" data-control-family="gradient-editor" data-slot="value-row" className="flex">
-          <ColorPickerFormatSelect />
-          <ColorPickerInput className="flex-1" />
-        </div>
-      </ColorPickerContent>
-    </ColorPicker>
-  );
-}
-
-export function GradientEditorTypeSelect({
-  size = "sm",
-  className,
-  "aria-label": ariaLabel,
-  "aria-labelledby": ariaLabelledBy,
-}: GradientEditorTypeSelectProps) {
-  const { type, setType } = useGradientEditor();
-  return (
-    <Select
-      value={type}
-      onValueChange={(value) => {
-        if (isGradientType(value)) setType(value);
-      }}
-    >
-      <SelectTrigger
-        size={size}
-        aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? "Gradient type") : ariaLabel}
-        aria-labelledby={ariaLabelledBy}
-        className={className}
-      >
-        <SelectValue />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="linear">Linear</SelectItem>
-        <SelectItem value="radial">Radial</SelectItem>
-        <SelectItem value="conic">Conic</SelectItem>
-      </SelectContent>
-    </Select>
   );
 }

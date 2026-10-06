@@ -31,15 +31,7 @@
       },
       {
         "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "center",
+          "data-align": "start",
           "data-control-family": "popup",
           "data-control-ui": "popover",
           "data-open": "",
@@ -57,7 +49,6 @@
         "attributes": {
           "data-control-family": "emoji-picker",
           "data-control-ui": "emoji-picker",
-          "data-focused": "",
           "data-slot": "root"
         }
       },
@@ -102,15 +93,7 @@
       },
       {
         "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "center",
+          "data-align": "start",
           "data-control-family": "popup",
           "data-control-ui": "popover",
           "data-open": "",
@@ -128,7 +111,6 @@
         "attributes": {
           "data-control-family": "emoji-picker",
           "data-control-ui": "emoji-picker",
-          "data-focused": "",
           "data-slot": "root"
         }
       },
@@ -181,7 +163,7 @@
       },
       {
         "attributes": {
-          "data-align": "start",
+          "data-align": "center",
           "data-control-family": "popup",
           "data-control-ui": "popover",
           "data-open": "",
@@ -199,6 +181,7 @@
         "attributes": {
           "data-control-family": "emoji-picker",
           "data-control-ui": "emoji-picker",
+          "data-focused": "",
           "data-slot": "root"
         }
       },
@@ -251,7 +234,7 @@
       },
       {
         "attributes": {
-          "data-align": "start",
+          "data-align": "center",
           "data-control-family": "popup",
           "data-control-ui": "popover",
           "data-open": "",
@@ -269,6 +252,7 @@
         "attributes": {
           "data-control-family": "emoji-picker",
           "data-control-ui": "emoji-picker",
+          "data-focused": "",
           "data-slot": "root"
         }
       },

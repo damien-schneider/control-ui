@@ -24,15 +24,15 @@
   }
 
   :where([data-control-family="color-picker"][data-slot="area-saturation"]) {
-    background-image: linear-gradient(to right in srgb, var(--color-white), transparent);
+    background-image: linear-gradient(to right in srgb, oklch(1 0 0), transparent);
   }
 
   :where([data-control-family="color-picker"][data-slot="area-brightness"]) {
-    background-image: linear-gradient(to top in srgb, var(--color-black), transparent);
+    background-image: linear-gradient(to top in srgb, oklch(0 0 0), transparent);
   }
 
   :where([data-control-family="color-picker"][data-slot="contrast-level"][data-passing="true"]) {
-    background-color: color-mix(in oklab, var(--foreground) 6%, transparent);
+    background-color: var(--hover-fill);
     --_color-picker-contrast-level-foreground: var(--foreground);
     color: var(--_color-picker-contrast-level-foreground);
   }
@@ -46,6 +46,17 @@
 
   :where([data-control-family="color-picker"][data-slot="contrast-ratio"]) {
     font-variant-numeric: tabular-nums;
+  }
+
+  :where([data-control-family="color-picker"][data-slot="area-contrast-fail"]) {
+    background-image: radial-gradient(circle, oklch(1 0 0 / 0.6) 0.75px, transparent 1.25px);
+    background-size: calc(var(--spacing) * 1.5) calc(var(--spacing) * 1.5);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="area-contrast-threshold"]) {
+    stroke: oklch(1 0 0);
+    stroke-width: 1.5px;
+    filter: drop-shadow(0 0 1px oklch(0 0 0 / 0.5));
   }
 
   :where(

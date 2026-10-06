@@ -3,7 +3,7 @@
   "family": "gradient-editor",
   "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
   "registryItems": [
-    "gradient-editor"
+    "color-picker"
   ],
   "knobs": [
     {
@@ -72,21 +72,21 @@
       "root": {
         "family": "gradient-editor",
         "registryItems": [
-          "gradient-editor"
+          "color-picker"
         ],
         "states": []
       },
       "preview": {
         "family": "gradient-editor",
         "registryItems": [
-          "gradient-editor"
+          "color-picker"
         ],
         "states": []
       },
       "stop": {
         "family": "gradient-editor",
         "registryItems": [
-          "gradient-editor"
+          "color-picker"
         ],
         "states": [
           {
@@ -100,21 +100,21 @@
       "stop-add": {
         "family": "gradient-editor",
         "registryItems": [
-          "gradient-editor"
+          "color-picker"
         ],
         "states": []
       },
       "track": {
         "family": "gradient-editor",
         "registryItems": [
-          "gradient-editor"
+          "color-picker"
         ],
         "states": []
       },
       "value-row": {
         "family": "gradient-editor",
         "registryItems": [
-          "gradient-editor"
+          "color-picker"
         ],
         "states": []
       }

@@ -2104,7 +2104,7 @@ export const primitiveEntries = [
     category: "forms",
     kind: "Primitive",
     name: "Color Picker",
-    summary: "Color input with picker UI, formats, presets, and contrast helpers.",
+    summary: "Color input with picker UI, formats, presets, contrast helpers, and a gradient editor with draggable stops.",
     status: "beta",
     paths: {
       registry: {
@@ -2116,8 +2116,10 @@ export const primitiveEntries = [
           sourceFile("WCAG contrast", "src/registry/lib/contrast.ts", "contrast"),
           sourceFile("Color area drag hook", "src/registry/hooks/use-color-area.ts", "hook"),
           sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants"),
+          sourceFile("Gradient editor", "src/registry/sources/control-ui/ui/gradient-editor.tsx", "support"),
           surfaceVariantsFile,
           ...colorPickerRecipeFiles,
+          gradientEditorRecipeFile,
           ...popupRecipeFiles,
         ],
         registryKind: "color-picker",
@@ -2126,13 +2128,26 @@ export const primitiveEntries = [
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/primitives/color-picker").then((mod) => ({ default: mod.PrimitiveColorPickerExample })),
     ),
+    additionalPreviews: [
+      {
+        id: "gradient-editor",
+        title: "Gradient editor",
+        description: "Drag stops along the track, pick each stop color with the same picker, and read back a CSS gradient.",
+        source: sourceFile("Gradient editor example", "src/registry/examples/control-ui/primitives/gradient-editor.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/gradient-editor").then((mod) => ({
+            default: mod.PrimitiveGradientEditorExample,
+          })),
+        ),
+      },
+    ],
   },
   {
     id: "emoji-picker",
     category: "forms",
     kind: "Primitive",
     name: "Emoji Picker",
-    summary: "Searchable, virtualized emoji grid with skin-aware cells and an active emoji footer.",
+    summary: "Searchable, virtualized emoji grid with skin-aware cells, an active emoji footer, and an emoji-or-icon tabbed variant.",
     status: "beta",
     paths: {
       registry: {
@@ -2158,6 +2173,18 @@ export const primitiveEntries = [
           import("@/src/registry/examples/control-ui/primitives/emoji-reactions").then((mod) => ({ default: mod.EmojiReactionsExample })),
         ),
       },
+      {
+        id: "emoji-or-icon",
+        previewClassName: "min-h-[200px]",
+        title: "Emoji or icon",
+        description: "Emoji and icon selection in one popover with an animated height between panels.",
+        source: sourceFile("Emoji and icon picker example", "src/registry/examples/control-ui/primitives/emoji-icon-picker.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/emoji-icon-picker").then((mod) => ({
+            default: mod.PrimitiveEmojiIconPickerExample,
+          })),
+        ),
+      },
     ],
   },
   {
@@ -2178,58 +2205,6 @@ export const primitiveEntries = [
     },
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/primitives/icon-picker").then((mod) => ({ default: mod.PrimitiveIconPickerExample })),
-    ),
-  },
-  {
-    id: "emoji-icon-picker",
-    category: "forms",
-    kind: "Primitive",
-    name: "Emoji Icon Picker",
-    summary: "Emoji and icon selection in one popover with an animated height between panels.",
-    status: "beta",
-    paths: {
-      registry: {
-        target: "components/control-ui/ui/emoji-icon-picker.tsx",
-        example: sourceFile(
-          "Emoji and icon picker preview",
-          "src/registry/examples/control-ui/primitives/emoji-icon-picker.tsx",
-          "example",
-        ),
-        source: sourceFile("Emoji and icon picker slots", "src/registry/sources/control-ui/ui/emoji-icon-picker.tsx", "component"),
-        supportFiles: [...tabsRecipeFiles],
-        registryKind: "emoji-icon-picker",
-      },
-    },
-    preview: preview(() =>
-      import("@/src/registry/examples/control-ui/primitives/emoji-icon-picker").then((mod) => ({
-        default: mod.PrimitiveEmojiIconPickerExample,
-      })),
-    ),
-  },
-  {
-    id: "gradient-editor",
-    category: "forms",
-    kind: "Primitive",
-    name: "Gradient Editor",
-    summary: "CSS gradient editor with draggable stops and live preview.",
-    status: "beta",
-    paths: {
-      registry: {
-        target: "components/control-ui/ui/gradient-editor.tsx",
-        example: sourceFile("Gradient editor preview", "src/registry/examples/control-ui/primitives/gradient-editor.tsx", "example"),
-        source: sourceFile("Gradient editor slot", "src/registry/sources/control-ui/ui/gradient-editor.tsx", "component"),
-        supportFiles: [
-          sourceFile("Color engine", "src/registry/lib/color.ts", "color-engine"),
-          surfaceVariantsFile,
-          gradientEditorRecipeFile,
-        ],
-        registryKind: "gradient-editor",
-      },
-    },
-    preview: preview(() =>
-      import("@/src/registry/examples/control-ui/primitives/gradient-editor").then((mod) => ({
-        default: mod.PrimitiveGradientEditorExample,
-      })),
     ),
   },
   {

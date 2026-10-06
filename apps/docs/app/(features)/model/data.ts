@@ -283,7 +283,7 @@ function getPrimitives(): DocsPrimitive[] {
                 title: example.title,
                 description: example.description,
                 source: sourceFrom(example.source),
-                previewClassName: example.previewClassName,
+                previewClassName: "previewClassName" in example ? example.previewClassName : undefined,
                 previewLayout: example.preview.layout,
               }))
             : undefined,

@@ -1,53 +1,98 @@
 "use client";
 
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
-import { Slider as SliderPrimitive } from "@base-ui/react/slider";
-import type { ComponentProps, CSSProperties, KeyboardEvent as ReactKeyboardEvent, ReactNode } from "react";
-import { createContext, useContext, useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
-import type { ControlSize } from "@/components/control-ui/control-variants";
-import { useColorArea } from "@/components/control-ui/hooks/use-color-area";
-import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { ColorPickerKnobStyle } from "@/components/control-ui/knob-contracts/color-picker-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import {
-  type ChannelId,
-  formatColor,
-  getChannels,
-  type Hsva,
-  hsvaToRgba,
-  parseColor,
-  pointToHueSat,
-  pointToSaturationValue,
-  setChannel,
-} from "@/components/control-ui/lib/color";
-import {
-  contrastOf,
-  fixColorForContrast,
-  formatContrastRatio,
-  nextFixLevel,
-  TARGET_RATIO,
-  wcagLevels,
-} from "@/components/control-ui/lib/contrast";
 import { controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
-import { Button } from "@/components/control-ui/ui/button";
-import { Input } from "@/components/control-ui/ui/input";
-import { NumberField, NumberFieldGroup, NumberFieldInput } from "@/components/control-ui/ui/number-field";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/control-ui/ui/select";
+import { ColorPickerArea } from "@/components/control-ui/ui/color-picker-area";
+import {
+  ColorPickerContext,
+  type ColorPickerStateProps,
+  useColorPicker,
+  useColorState,
+} from "@/components/control-ui/ui/color-picker-context";
+import { ColorPickerAlpha, ColorPickerHue } from "@/components/control-ui/ui/color-picker-sliders";
+import { ColorPickerFormatSelect, ColorPickerInput } from "@/components/control-ui/ui/color-picker-values";
+import { useGradientEditor } from "@/components/control-ui/ui/gradient-editor";
 
-export type ColorFormat = "hex" | "rgb" | "hsl" | "oklch";
+export type { ColorFormat } from "@/components/control-ui/lib/color";
+// biome-ignore lint/performance/noBarrelFile: Preserve the color picker install-facing API.
+export {
+  ColorPickerArea,
+  type ColorPickerAreaProps,
+  ColorPickerAreaThumb,
+  type ColorPickerAreaThumbProps,
+  ColorPickerWheel,
+  type ColorPickerWheelProps,
+} from "@/components/control-ui/ui/color-picker-area";
+export {
+  ColorPickerAreaContrast,
+  type ColorPickerAreaContrastProps,
+  ColorPickerContrast,
+  type ColorPickerContrastProps,
+} from "@/components/control-ui/ui/color-picker-contrast";
+export {
+  ColorPickerAlpha,
+  type ColorPickerAlphaProps,
+  ColorPickerBrightness,
+  type ColorPickerBrightnessProps,
+  ColorPickerHue,
+  type ColorPickerHueProps,
+  ColorPickerSaturation,
+  type ColorPickerSaturationProps,
+} from "@/components/control-ui/ui/color-picker-sliders";
+export {
+  ColorPickerSwatch,
+  ColorPickerSwatchAdd,
+  type ColorPickerSwatchAddProps,
+  ColorPickerSwatches,
+  type ColorPickerSwatchesProps,
+  type ColorPickerSwatchProps,
+} from "@/components/control-ui/ui/color-picker-swatches";
+export {
+  ColorPickerChannel,
+  type ColorPickerChannelProps,
+  ColorPickerChannels,
+  type ColorPickerChannelsProps,
+  ColorPickerEyeDropper,
+  type ColorPickerEyeDropperProps,
+  ColorPickerFormatSelect,
+  type ColorPickerFormatSelectProps,
+  ColorPickerInput,
+  type ColorPickerInputProps,
+  ColorPickerOutput,
+  type ColorPickerOutputProps,
+} from "@/components/control-ui/ui/color-picker-values";
+export {
+  GradientEditor,
+  GradientEditorPreview,
+  type GradientEditorPreviewProps,
+  type GradientEditorProps,
+  GradientEditorStop,
+  GradientEditorStopAdd,
+  type GradientEditorStopAddProps,
+  type GradientEditorStopProps,
+  GradientEditorTrack,
+  type GradientEditorTrackProps,
+  type GradientInterpolation,
+  type GradientStop,
+  type GradientType,
+  type GradientValue,
+} from "@/components/control-ui/ui/gradient-editor";
+export {
+  GradientEditorAngle,
+  type GradientEditorAngleProps,
+  GradientEditorInterpolationSelect,
+  type GradientEditorInterpolationSelectProps,
+  GradientEditorTypeSelect,
+  type GradientEditorTypeSelectProps,
+} from "@/components/control-ui/ui/gradient-editor-controls";
 
-export type ColorPickerProps = {
-  value?: string;
-  defaultValue?: string;
-  onValueChange?: (value: string) => void;
-  format?: ColorFormat;
-  defaultFormat?: ColorFormat;
-  onFormatChange?: (format: ColorFormat) => void;
-  alpha?: boolean;
-  disabled?: boolean;
+export type ColorPickerProps = ColorPickerStateProps & {
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
@@ -64,222 +109,10 @@ export type ColorPickerContentProps = Omit<ComponentProps<"div">, "style"> & { s
 
 export type ColorPickerPanelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
-export type ColorPickerAreaProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ColorPickerKnobStyle };
-
-export type ColorPickerAreaThumbProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ColorPickerKnobStyle };
-
-export type ColorPickerHueProps = Omit<Pick<ComponentProps<"div">, "className" | "aria-label" | "aria-labelledby" | "style">, "style"> & {
-  style?: CSSProperties & ColorPickerKnobStyle;
-};
-
-export type ColorPickerAlphaProps = Omit<Pick<ComponentProps<"div">, "className" | "aria-label" | "aria-labelledby" | "style">, "style"> & {
-  style?: CSSProperties & ColorPickerKnobStyle;
-};
-
-export type ColorPickerWheelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ColorPickerKnobStyle };
-
-export type ColorPickerEyeDropperProps = Omit<Omit<ComponentProps<"button">, "onError">, "style"> & {
-  style?: CSSProperties & ButtonKnobStyle;
-};
-
-export type ColorPickerInputProps = Omit<Omit<ComponentProps<"input">, "value" | "defaultValue" | "onChange" | "size">, "style"> & {
-  style?: CSSProperties & ColorPickerKnobStyle;
-} & {
-  size?: ControlSize;
-  invalidLabel?: string;
-};
-
-export type ColorPickerFormatSelectProps = {
-  formats?: ColorFormat[];
-  size?: ControlSize;
-  className?: string;
-  "aria-label"?: string;
-  "aria-labelledby"?: string;
-  style?: CSSProperties & ButtonKnobStyle;
-};
-
-export type ColorPickerChannelsProps = ComponentProps<"div"> & { style?: CSSProperties & ColorPickerKnobStyle };
-
-export type ColorPickerChannelProps = Omit<Omit<ComponentProps<"div">, "children" | "aria-label">, "style"> & {
-  style?: CSSProperties & ColorPickerKnobStyle;
-} & {
-  channel: "r" | "g" | "b" | "h" | "s" | "l" | "okl" | "okc" | "okh" | "a";
-  label?: ReactNode;
-  "aria-label"?: string;
-};
-
-export type ColorPickerSwatchesProps = ComponentProps<"div"> & {
-  colors?: string[];
-  label?: ReactNode;
-} & { style?: CSSProperties & ColorPickerKnobStyle };
-
-export type ColorPickerSwatchProps = Omit<Omit<ComponentProps<"button">, "color">, "style"> & {
-  style?: CSSProperties & ColorPickerKnobStyle;
-} & {
-  color: string;
-};
-
-export type ColorPickerSwatchAddProps = Omit<Omit<ComponentProps<"button">, "onClick">, "style"> & {
-  style?: CSSProperties & ColorPickerKnobStyle;
-} & {
-  onAdd?: (value: string) => void;
-};
-
-export type ColorPickerContrastProps = Omit<Omit<ComponentProps<"div">, "children">, "style"> & {
-  style?: CSSProperties & ColorPickerKnobStyle;
-} & {
-  background?: string;
-  passLabel?: string;
-  failLabel?: string;
-};
-
-export type ColorPickerOutputProps = Omit<Omit<ComponentProps<"div">, "children">, "style"> & {
-  style?: CSSProperties & ColorPickerKnobStyle;
-} & {
-  children?: ReactNode;
-  renderValue?: (state: { value: string }) => ReactNode;
-};
-
-const HUE_GRADIENT =
-  "linear-gradient(to right, hsl(0 100% 50%), hsl(60 100% 50%), hsl(120 100% 50%), hsl(180 100% 50%), hsl(240 100% 50%), hsl(300 100% 50%), hsl(360 100% 50%))";
-
-const CHECKER = "repeating-conic-gradient(oklch(from var(--border) l c h) 0 25%, transparent 0 50%)";
-const CHECKER_SIZE = "10px 10px";
-const RING_THUMB = "block -translate-x-1/2";
-
-const isColorFormat = (v: string): v is ColorFormat => v === "hex" || v === "rgb" || v === "hsl" || v === "oklch";
-const CHANNEL_NAMES: Record<ChannelId, string> = {
-  r: "Red",
-  g: "Green",
-  b: "Blue",
-  h: "Hue",
-  s: "Saturation",
-  l: "Lightness",
-  okl: "OKLCH lightness",
-  okc: "OKLCH chroma",
-  okh: "OKLCH hue",
-  a: "Opacity",
-};
-
-function reconcileAchromatic(prev: Hsva, next: Hsva): Hsva {
-  if (next.v === 0) return { ...next, h: prev.h, s: prev.s };
-  if (next.s === 0) return { ...next, h: prev.h };
-  return next;
-}
-
-function subscribeEyeDropper() {
-  return () => {};
-}
-
-function getEyeDropperSnapshot() {
-  return typeof window !== "undefined" && Boolean(window.EyeDropper);
-}
-
-function getEyeDropperServerSnapshot() {
-  return false;
-}
-
-type ColorPickerContextValue = {
-  hsva: Hsva;
-  format: ColorFormat;
-  alpha: boolean;
-  disabled: boolean;
-  valueString: string;
-  setHsva: (partial: Partial<Hsva>) => void;
-  setChannelValue: (id: ChannelId, value: number) => void;
-  setFromString: (raw: string) => boolean;
-  setFormat: (format: ColorFormat) => void;
-};
-
-const ColorPickerContext = createContext<ColorPickerContextValue | null>(null);
-
-function useColorPicker(): ColorPickerContextValue {
-  const ctx = useContext(ColorPickerContext);
-  if (!ctx) throw new Error("ColorPicker parts must be rendered inside <ColorPicker>.");
-  return ctx;
-}
-
-function useColorState(props: ColorPickerProps): ColorPickerContextValue {
-  const {
-    value,
-    defaultValue = "#000000",
-    onValueChange,
-    format: formatProp,
-    defaultFormat = "hex",
-    onFormatChange,
-    alpha = true,
-    disabled = false,
-  } = props;
-
-  const [hsva, setHsvaState] = useState<Hsva>(() => parseColor(value ?? defaultValue) ?? { h: 0, s: 0, v: 0, a: 1 });
-  const [formatState, setFormatState] = useState<ColorFormat>(defaultFormat);
-  const format = formatProp ?? formatState;
-
-  const hsvaRef = useRef(hsva);
-  const formatRef = useRef(format);
-  const alphaRef = useRef(alpha);
-  const onValueChangeRef = useRef(onValueChange);
-  const lastEmitted = useRef<string | null>(null);
-
-  useEffect(() => {
-    hsvaRef.current = hsva;
-    formatRef.current = format;
-    alphaRef.current = alpha;
-    onValueChangeRef.current = onValueChange;
-  }, [hsva, format, alpha, onValueChange]);
-
-  const emit = (next: Hsva, fmt: ColorFormat) => {
-    const str = formatColor(next, fmt, { alpha: alphaRef.current });
-    lastEmitted.current = str;
-    onValueChangeRef.current?.(str);
-  };
-  const commit = (next: Hsva) => {
-    hsvaRef.current = next;
-    setHsvaState(next);
-    emit(next, formatRef.current);
-  };
-
-  useEffect(() => {
-    if (lastEmitted.current === null) lastEmitted.current = formatColor(hsvaRef.current, formatRef.current, { alpha: alphaRef.current });
-    if (value === undefined || value === lastEmitted.current) return;
-    const parsed = parseColor(value);
-    if (!parsed) return;
-    const reconciled = reconcileAchromatic(hsvaRef.current, parsed);
-    hsvaRef.current = reconciled;
-    lastEmitted.current = value;
-    setHsvaState(reconciled);
-  }, [value]);
-
-  const setHsva = (partial: Partial<Hsva>) => commit({ ...hsvaRef.current, ...partial });
-  const setChannelValue = (id: ChannelId, next: number) => commit(setChannel(hsvaRef.current, id, next));
-  const setFromString = (raw: string) => {
-    const parsed = parseColor(raw);
-    if (!parsed) return false;
-    commit(reconcileAchromatic(hsvaRef.current, parsed));
-    return true;
-  };
-  const setFormat = (next: ColorFormat) => {
-    if (formatProp === undefined) setFormatState(next);
-    formatRef.current = next;
-    onFormatChange?.(next);
-    emit(hsvaRef.current, next);
-  };
-
-  return {
-    hsva,
-    format,
-    alpha,
-    disabled,
-    valueString: formatColor(hsva, format, { alpha }),
-    setHsva,
-    setChannelValue,
-    setFromString,
-    setFormat,
-  };
-}
+export type GradientEditorStopColorProps = { children?: ReactNode };
 
 export function ColorPicker({ open, defaultOpen, onOpenChange, children, ...state }: ColorPickerProps) {
-  const ctx = useColorState({ ...state, children });
+  const ctx = useColorState(state);
   return (
     <ColorPickerContext.Provider value={ctx}>
       <PopoverPrimitive.Root open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange}>
@@ -314,7 +147,6 @@ export function ColorPickerTrigger({
         data-slot="trigger-checker"
         aria-hidden
         className="absolute inset-0"
-        style={{ backgroundImage: CHECKER, backgroundSize: CHECKER_SIZE }}
       />
       <span
         data-control-ui="color-picker"
@@ -386,682 +218,25 @@ export function ColorPickerPanel({ className, children, ...props }: ColorPickerP
   );
 }
 
-export function ColorPickerArea({ className, style, ...props }: ColorPickerAreaProps) {
-  const { hsva, setHsva, disabled } = useColorPicker();
-  const { areaRef, onPointerDown, dragging } = useColorArea((offset, rect) => {
-    if (disabled) return;
-    const { s, v } = pointToSaturationValue(rect, offset.x, offset.y);
-    setHsva({ s, v });
-  });
-
-  function axisKey(axis: "s" | "v", event: ReactKeyboardEvent) {
-    if (!event.shiftKey) return;
-    const cur = axis === "s" ? hsva.s : hsva.v;
-    let delta = 0;
-    if (event.key === "ArrowUp" || event.key === "ArrowRight") delta = 10;
-    else if (event.key === "ArrowDown" || event.key === "ArrowLeft") delta = -10;
-    if (delta === 0) return;
-    event.preventDefault();
-    const next = Math.min(100, Math.max(0, cur + delta));
-    setHsva(axis === "s" ? { s: next } : { v: next });
-  }
-
+export function GradientEditorStopColor({ children }: GradientEditorStopColorProps) {
+  const { selectedStop, setStopColor } = useGradientEditor();
+  if (!selectedStop) return null;
   return (
-    // biome-ignore lint/a11y/useSemanticElements: a 2D color surface is a labelled slider group, not a fieldset form group.
-    <div
-      data-focus-ring="within"
-      ref={areaRef}
-      data-control-ui="color-picker"
-      data-control-family="color-picker"
-      data-slot="area"
-      data-disabled={disabled ? "true" : undefined}
-      data-dragging={dragging ? "true" : undefined}
-      role="group"
-      aria-label="Saturation and brightness"
-      onPointerDown={disabled ? undefined : onPointerDown}
-      className={cn(
-        "group relative w-full touch-none select-none overflow-hidden",
-        disabled ? "cursor-not-allowed" : "cursor-crosshair",
-        className,
+    <ColorPicker value={selectedStop.color} onValueChange={(color) => setStopColor(selectedStop.id, color)} defaultFormat="hex">
+      {children ?? (
+        <>
+          <ColorPickerTrigger />
+          <ColorPickerContent>
+            <ColorPickerArea />
+            <ColorPickerHue />
+            <ColorPickerAlpha />
+            <div data-control-ui="gradient-editor" data-control-family="gradient-editor" data-slot="value-row" className="flex">
+              <ColorPickerFormatSelect />
+              <ColorPickerInput className="flex-1" />
+            </div>
+          </ColorPickerContent>
+        </>
       )}
-      style={{ ...style, backgroundColor: `hsl(${hsva.h} 100% 50%)` }}
-      {...props}
-    >
-      <span
-        aria-hidden
-        data-control-ui="color-picker"
-        data-control-family="color-picker"
-        data-slot="area-saturation"
-        className="absolute inset-0"
-      />
-      <span
-        aria-hidden
-        data-control-ui="color-picker"
-        data-control-family="color-picker"
-        data-slot="area-brightness"
-        className="absolute inset-0"
-      />
-      <input
-        type="range"
-        aria-label="Saturation"
-        className="sr-only"
-        min={0}
-        max={100}
-        step={1}
-        value={Math.round(hsva.s)}
-        disabled={disabled}
-        onChange={(event) => setHsva({ s: Number(event.target.value) })}
-        onKeyDown={(event) => axisKey("s", event)}
-      />
-      <input
-        type="range"
-        aria-label="Brightness"
-        className="sr-only"
-        min={0}
-        max={100}
-        step={1}
-        value={Math.round(hsva.v)}
-        disabled={disabled}
-        onChange={(event) => setHsva({ v: Number(event.target.value) })}
-        onKeyDown={(event) => axisKey("v", event)}
-      />
-      <ColorPickerAreaThumb style={{ left: `${hsva.s}%`, top: `${100 - hsva.v}%` }} />
-    </div>
-  );
-}
-
-export function ColorPickerAreaThumb({ className, ...props }: ColorPickerAreaThumbProps) {
-  return (
-    <div
-      data-control-ui="color-picker"
-      data-control-family="color-picker"
-      data-slot="area-thumb"
-      aria-hidden
-      className={cn("pointer-events-none absolute -translate-x-1/2 -translate-y-1/2", className)}
-      {...props}
-    />
-  );
-}
-
-export function ColorPickerHue({ className, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, ...props }: ColorPickerHueProps) {
-  const { hsva, setHsva, disabled } = useColorPicker();
-  return (
-    <SliderPrimitive.Root
-      data-control-ui="color-picker"
-      data-control-family="color-picker"
-      data-slot="hue"
-      format={{ style: "unit", unit: "degree" }}
-      aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? "Hue") : ariaLabel}
-      aria-labelledby={ariaLabelledBy}
-      value={hsva.h}
-      min={0}
-      max={360}
-      step={1}
-      disabled={disabled}
-      onValueChange={(next) => setHsva({ h: Array.isArray(next) ? next[0] : next })}
-      className={cn("relative flex w-full touch-pan-y select-none items-center", className)}
-      {...props}
-    >
-      <SliderPrimitive.Control className="flex h-full w-full items-center">
-        <SliderPrimitive.Track
-          data-control-ui="color-picker"
-          data-control-family="color-picker"
-          data-slot="hue-track"
-          className="relative w-full"
-          style={{ backgroundImage: HUE_GRADIENT }}
-        >
-          <SliderPrimitive.Thumb
-            data-control-ui="color-picker"
-            data-control-family="color-picker"
-            data-slot="hue-thumb"
-            data-focus-ring="within"
-            className={RING_THUMB}
-          />
-        </SliderPrimitive.Track>
-      </SliderPrimitive.Control>
-    </SliderPrimitive.Root>
-  );
-}
-
-export function ColorPickerAlpha({
-  className,
-  "aria-label": ariaLabel,
-  "aria-labelledby": ariaLabelledBy,
-  ...props
-}: ColorPickerAlphaProps) {
-  const { hsva, setHsva, alpha, disabled } = useColorPicker();
-  if (!alpha) return null;
-  const opaque = formatColor({ ...hsva, a: 1 }, "hex");
-  return (
-    <SliderPrimitive.Root
-      data-control-ui="color-picker"
-      data-control-family="color-picker"
-      data-slot="alpha"
-      aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? "Opacity") : ariaLabel}
-      aria-labelledby={ariaLabelledBy}
-      value={hsva.a}
-      format={{ style: "percent" }}
-      min={0}
-      max={1}
-      step={0.01}
-      disabled={disabled}
-      onValueChange={(next) => setHsva({ a: Array.isArray(next) ? next[0] : next })}
-      className={cn("relative flex w-full touch-pan-y select-none items-center", className)}
-      {...props}
-    >
-      <SliderPrimitive.Control className="flex h-full w-full items-center">
-        <SliderPrimitive.Track
-          data-control-ui="color-picker"
-          data-control-family="color-picker"
-          data-slot="alpha-track"
-          className="relative w-full"
-          style={{
-            backgroundImage: `linear-gradient(to right, transparent, ${opaque}), ${CHECKER}`,
-            backgroundSize: `auto, ${CHECKER_SIZE}`,
-          }}
-        >
-          <SliderPrimitive.Thumb
-            data-control-ui="color-picker"
-            data-control-family="color-picker"
-            data-slot="alpha-thumb"
-            data-focus-ring="within"
-            className={RING_THUMB}
-          />
-        </SliderPrimitive.Track>
-      </SliderPrimitive.Control>
-    </SliderPrimitive.Root>
-  );
-}
-
-const WHEEL_HUE =
-  "conic-gradient(from 90deg, hsl(0 100% 50%), hsl(60 100% 50%), hsl(120 100% 50%), hsl(180 100% 50%), hsl(240 100% 50%), hsl(300 100% 50%), hsl(360 100% 50%))";
-
-export function ColorPickerWheel({ className, style, ...props }: ColorPickerWheelProps) {
-  const { hsva, setHsva, disabled } = useColorPicker();
-  const { areaRef, onPointerDown, dragging } = useColorArea((offset, rect) => {
-    if (disabled) return;
-    const { h, s } = pointToHueSat(rect, offset.x, offset.y);
-    setHsva({ h, s });
-  });
-  const radius = (hsva.s / 100) * 50;
-  const rad = (hsva.h * Math.PI) / 180;
-  const left = 50 + radius * Math.cos(rad);
-  const top = 50 + radius * Math.sin(rad);
-  return (
-    // biome-ignore lint/a11y/useSemanticElements: a 2D color surface is a labelled slider group, not a fieldset form group.
-    <div
-      data-focus-ring="within"
-      ref={areaRef}
-      data-control-ui="color-picker"
-      data-control-family="color-picker"
-      data-slot="wheel"
-      data-disabled={disabled ? "true" : undefined}
-      data-dragging={dragging ? "true" : undefined}
-      role="group"
-      aria-label="Color wheel"
-      onPointerDown={disabled ? undefined : onPointerDown}
-      className={cn(
-        "group relative aspect-square w-full touch-none select-none",
-        disabled ? "cursor-not-allowed" : "cursor-crosshair",
-        className,
-      )}
-      style={{ ...style, backgroundImage: `radial-gradient(circle at center, #fff, transparent 70%), ${WHEEL_HUE}` }}
-      {...props}
-    >
-      <div
-        data-control-ui="color-picker"
-        data-control-family="color-picker"
-        data-slot="wheel-thumb"
-        aria-hidden
-        className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2"
-        style={{ left: `${left}%`, top: `${top}%` }}
-      />
-      <input
-        type="range"
-        aria-label="Wheel hue"
-        className="sr-only"
-        min={0}
-        max={360}
-        step={1}
-        value={Math.round(hsva.h)}
-        disabled={disabled}
-        onChange={(event) => setHsva({ h: Number(event.target.value) })}
-      />
-      <input
-        type="range"
-        aria-label="Wheel saturation"
-        className="sr-only"
-        min={0}
-        max={100}
-        step={1}
-        value={Math.round(hsva.s)}
-        disabled={disabled}
-        onChange={(event) => setHsva({ s: Number(event.target.value) })}
-      />
-    </div>
-  );
-}
-
-export function ColorPickerInput({
-  size = "sm",
-  className,
-  invalidLabel = "Enter a hex, rgb(), hsl() or oklch() color.",
-  "aria-label": ariaLabel,
-  "aria-labelledby": ariaLabelledBy,
-  "aria-describedby": ariaDescribedBy,
-  onFocus,
-  onBlur,
-  onKeyDown,
-  ...props
-}: ColorPickerInputProps) {
-  const { valueString, setFromString, disabled } = useColorPicker();
-  const invalidMessageId = useId();
-  const [draft, setDraft] = useState(valueString);
-  const [editing, setEditing] = useState(false);
-  const [invalid, setInvalid] = useState(false);
-  const describedBy = [ariaDescribedBy, invalid ? invalidMessageId : undefined].filter(Boolean).join(" ") || undefined;
-  const shown = editing ? draft : valueString;
-  const commit = () => {
-    const accepted = setFromString(draft);
-    setInvalid(!accepted);
-    if (accepted) setEditing(false);
-  };
-  const revert = () => {
-    setInvalid(false);
-    setEditing(false);
-  };
-  return (
-    <span data-control-ui="color-picker" data-control-family="color-picker" data-slot="input" className="contents">
-      <Input
-        {...props}
-        size={size}
-        value={shown}
-        disabled={disabled}
-        spellCheck={false}
-        autoComplete="off"
-        aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? "Color value") : ariaLabel}
-        aria-labelledby={ariaLabelledBy}
-        aria-invalid={invalid || undefined}
-        aria-describedby={describedBy}
-        className={className}
-        onFocus={(event) => {
-          onFocus?.(event);
-          if (editing) return;
-          setDraft(valueString);
-          setEditing(true);
-        }}
-        onChange={(event) => setDraft(event.target.value)}
-        onBlur={(event) => {
-          onBlur?.(event);
-          commit();
-        }}
-        onKeyDown={(event) => {
-          onKeyDown?.(event);
-          if (event.defaultPrevented) return;
-          if (event.key === "Enter") commit();
-          else if (event.key === "Escape") revert();
-        }}
-      />
-      {invalid ? (
-        <span id={invalidMessageId} className="sr-only">
-          {invalidLabel}
-        </span>
-      ) : null}
-    </span>
-  );
-}
-
-export function ColorPickerFormatSelect({
-  formats = ["hex", "rgb", "hsl", "oklch"],
-  size = "sm",
-  className,
-  "aria-label": ariaLabel,
-  "aria-labelledby": ariaLabelledBy,
-  style,
-}: ColorPickerFormatSelectProps) {
-  const { format, setFormat, disabled } = useColorPicker();
-  return (
-    <Select
-      value={format}
-      disabled={disabled}
-      onValueChange={(value) => {
-        if (isColorFormat(value)) setFormat(value);
-      }}
-    >
-      <SelectTrigger
-        size={size}
-        data-control-ui="color-picker"
-        data-slot="format"
-        aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? "Color format") : ariaLabel}
-        aria-labelledby={ariaLabelledBy}
-        className={className}
-        style={style}
-      >
-        <SelectValue />
-      </SelectTrigger>
-      <SelectContent>
-        {formats.map((f) => (
-          <SelectItem key={f} value={f}>
-            {f.toUpperCase()}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
-  );
-}
-
-export function ColorPickerChannels({ className, children, ...props }: ColorPickerChannelsProps) {
-  const { hsva, format, alpha } = useColorPicker();
-  const specs = getChannels(hsva, format).filter((spec) => alpha || spec.id !== "a");
-  return (
-    <div
-      data-control-ui="color-picker"
-      data-control-family="color-picker"
-      data-slot="channels"
-      className={cn("grid grid-flow-col auto-cols-fr", className)}
-      {...props}
-    >
-      {children ?? specs.map((spec) => <ColorPickerChannel key={spec.id} channel={spec.id} label={spec.label} />)}
-    </div>
-  );
-}
-
-export function ColorPickerChannel({ channel, label, className, "aria-label": ariaLabel, ...props }: ColorPickerChannelProps) {
-  const { hsva, format, setChannelValue, disabled } = useColorPicker();
-  const spec = getChannels(hsva, format).find((s) => s.id === channel);
-  if (!spec) return null;
-  return (
-    <div data-control-ui="color-picker" data-control-family="color-picker" data-slot="channel" className={cn("grid", className)} {...props}>
-      <NumberField
-        size="sm"
-        value={spec.value}
-        min={spec.min}
-        max={spec.max}
-        step={spec.step}
-        disabled={disabled}
-        onValueChange={(value) => {
-          if (value !== null) setChannelValue(channel, value);
-        }}
-      >
-        <NumberFieldGroup data-control-ui="color-picker" data-control-family="color-picker" data-slot="channel" className="w-full">
-          <NumberFieldInput aria-label={ariaLabel ?? `${CHANNEL_NAMES[channel]} channel`} className="px-1" />
-        </NumberFieldGroup>
-      </NumberField>
-      <span data-control-ui="color-picker" data-control-family="color-picker" data-slot="channel-label">
-        {label ?? spec.label}
-      </span>
-    </div>
-  );
-}
-
-declare global {
-  interface Window {
-    EyeDropper?: { new (): { open: () => Promise<{ sRGBHex: string }> } };
-  }
-}
-
-export function ColorPickerEyeDropper({ className, children, ...props }: ColorPickerEyeDropperProps) {
-  const { setFromString, disabled } = useColorPicker();
-  const supported = useSyncExternalStore(subscribeEyeDropper, getEyeDropperSnapshot, getEyeDropperServerSnapshot);
-  if (!supported) return null;
-  const pick = async () => {
-    const Ctor = window.EyeDropper;
-    if (!Ctor) return;
-    try {
-      const result = await new Ctor().open();
-      setFromString(result.sRGBHex);
-    } catch {}
-  };
-  return (
-    <Button
-      variant="surface"
-      size="sm"
-      disabled={disabled}
-      aria-label="Pick a color from the screen"
-      data-control-ui="color-picker"
-      data-slot="eye-dropper"
-      className={className}
-      onClick={pick}
-      {...props}
-    >
-      {children ?? <EyeDropperIcon />}
-    </Button>
-  );
-}
-
-export function ColorPickerSwatches({ colors, label, className, children, ...props }: ColorPickerSwatchesProps) {
-  return (
-    <div data-control-ui="color-picker" data-control-family="color-picker" data-slot="swatches-group" className="grid">
-      {label ? (
-        <span data-control-ui="color-picker" data-control-family="color-picker" data-slot="swatches-label">
-          {label}
-        </span>
-      ) : null}
-      <div
-        data-control-ui="color-picker"
-        data-control-family="color-picker"
-        data-slot="swatches"
-        className={cn("flex flex-wrap", className)}
-        {...props}
-      >
-        {colors?.map((color) => (
-          <ColorPickerSwatch key={color} color={color} />
-        ))}
-        {children}
-      </div>
-    </div>
-  );
-}
-
-export function ColorPickerSwatch({ color, className, "aria-label": ariaLabel, ...props }: ColorPickerSwatchProps) {
-  const { setFromString, valueString, disabled } = useColorPicker();
-  const selected = sameColor(valueString, color);
-  return (
-    <button
-      type="button"
-      data-control-ui="color-picker"
-      data-control-family="color-picker"
-      data-slot="swatch"
-      data-selected={selected ? "true" : undefined}
-      aria-pressed={selected}
-      aria-label={ariaLabel ?? `Set color ${color}`}
-      title={color}
-      disabled={disabled}
-      onClick={() => setFromString(color)}
-      className={cn("relative shrink-0 cursor-pointer overflow-hidden disabled:cursor-not-allowed", className)}
-      {...props}
-    >
-      <span
-        data-control-ui="color-picker"
-        data-control-family="color-picker"
-        data-slot="swatch-checker"
-        aria-hidden
-        className="absolute inset-0"
-        style={{ backgroundImage: CHECKER, backgroundSize: CHECKER_SIZE }}
-      />
-      <span
-        data-control-ui="color-picker"
-        data-control-family="color-picker"
-        data-slot="swatch-color"
-        aria-hidden
-        className="absolute inset-0"
-        style={{ backgroundColor: color }}
-      />
-    </button>
-  );
-}
-
-export function ColorPickerSwatchAdd({ onAdd, className, children, ...props }: ColorPickerSwatchAddProps) {
-  const { valueString, disabled } = useColorPicker();
-  return (
-    <button
-      type="button"
-      data-control-ui="color-picker"
-      data-control-family="color-picker"
-      data-slot="swatch-add"
-      aria-label="Add current color"
-      disabled={disabled}
-      onClick={() => onAdd?.(valueString)}
-      className={cn("relative flex shrink-0 cursor-pointer items-center justify-center disabled:cursor-not-allowed", className)}
-      {...props}
-    >
-      {children ?? <PlusIcon />}
-    </button>
-  );
-}
-
-export function ColorPickerContrast({
-  background = "#ffffff",
-  passLabel = "Passes",
-  failLabel = "Fails",
-  className,
-  ...props
-}: ColorPickerContrastProps) {
-  const { hsva, setFromString, disabled } = useColorPicker();
-  const bg = parseColor(background);
-  if (!bg) return null;
-  const bgRgba = hsvaToRgba(bg);
-  const ratio = contrastOf(hsva, bgRgba);
-  const levels = wcagLevels(ratio);
-  const target = nextFixLevel(levels);
-
-  const applyFix = () => {
-    if (!target) return;
-    const fixed = fixColorForContrast(hsva, bgRgba, TARGET_RATIO[target]);
-    if (fixed) setFromString(formatColor(fixed, "hex"));
-  };
-
-  return (
-    <div
-      data-control-ui="color-picker"
-      data-control-family="color-picker"
-      data-slot="contrast"
-      className={cn("flex items-center", className)}
-      {...props}
-    >
-      <span data-control-ui="color-picker" data-control-family="color-picker" data-slot="contrast-ratio">
-        {formatContrastRatio(ratio)}:1
-      </span>
-      <WcagPill ok={levels.AA} passLabel={passLabel} failLabel={failLabel}>
-        AA
-      </WcagPill>
-      <WcagPill ok={levels.AAA} passLabel={passLabel} failLabel={failLabel}>
-        AAA
-      </WcagPill>
-      {target ? (
-        <button
-          type="button"
-          data-control-ui="color-picker"
-          data-control-family="color-picker"
-          data-slot="contrast-fix"
-          disabled={disabled}
-          onClick={applyFix}
-          className="ms-auto cursor-pointer disabled:cursor-not-allowed"
-        >
-          Fix for {target}
-        </button>
-      ) : null}
-    </div>
-  );
-}
-
-function WcagPill({ ok, passLabel, failLabel, children }: { ok: boolean; passLabel: string; failLabel: string; children: ReactNode }) {
-  return (
-    <span
-      data-control-ui="color-picker"
-      data-control-family="color-picker"
-      data-slot="contrast-level"
-      data-passing={ok ? "true" : undefined}
-      className="inline-flex items-center"
-    >
-      <span aria-hidden="true">{ok ? "✓" : "✕"}</span>
-      <span className="sr-only">{ok ? passLabel : failLabel}</span> {children}
-    </span>
-  );
-}
-
-export function ColorPickerOutput({ className, children, renderValue, ...props }: ColorPickerOutputProps) {
-  const { valueString } = useColorPicker();
-  return (
-    <div
-      data-control-ui="color-picker"
-      data-control-family="color-picker"
-      data-slot="output"
-      className={cn("flex items-center", className)}
-      {...props}
-    >
-      {renderValue
-        ? renderValue({ value: valueString })
-        : (children ?? (
-            <>
-              <span
-                data-control-ui="color-picker"
-                data-control-family="color-picker"
-                data-slot="output-swatch"
-                className="relative shrink-0 overflow-hidden"
-              >
-                <span
-                  data-control-ui="color-picker"
-                  data-control-family="color-picker"
-                  data-slot="output-checker"
-                  aria-hidden
-                  className="absolute inset-0"
-                  style={{ backgroundImage: CHECKER, backgroundSize: CHECKER_SIZE }}
-                />
-                <span
-                  data-control-ui="color-picker"
-                  data-control-family="color-picker"
-                  data-slot="output-color"
-                  aria-hidden
-                  className="absolute inset-0"
-                  style={{ backgroundColor: valueString }}
-                />
-              </span>
-              <span data-control-ui="color-picker" data-control-family="color-picker" data-slot="output-value">
-                {valueString}
-              </span>
-            </>
-          ))}
-    </div>
-  );
-}
-
-function sameColor(a: string, b: string): boolean {
-  const pa = parseColor(a);
-  const pb = parseColor(b);
-  if (!pa || !pb) return false;
-  return formatColor(pa, "hex", { alpha: true }) === formatColor(pb, "hex", { alpha: true });
-}
-
-function EyeDropperIcon() {
-  return (
-    <svg
-      viewBox="0 0 16 16"
-      className="size-4"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M10.5 2.5a1.8 1.8 0 0 1 2.5 2.5l-1.3 1.3.9.9-1.1 1.1-.9-.9-4.4 4.4-2.2.6.6-2.2 4.4-4.4-.9-.9 1.1-1.1.9.9 1.3-1.3Z" />
-    </svg>
-  );
-}
-
-function PlusIcon() {
-  return (
-    <svg
-      viewBox="0 0 16 16"
-      className="size-3.5"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      aria-hidden="true"
-    >
-      <path d="M8 3v10M3 8h10" />
-    </svg>
+    </ColorPicker>
   );
 }

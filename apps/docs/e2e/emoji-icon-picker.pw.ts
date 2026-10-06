@@ -97,7 +97,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("switches panels with intermediate heights, selects a tinted icon, and restores trigger focus", async ({ page }) => {
-  await page.goto("/primitives/emoji-icon-picker");
+  await page.goto("/primitives/emoji-picker");
   const trigger = page.getByRole("button", { name: "Choose item emoji or icon" });
   await waitForReactHydration(trigger);
   await trigger.click();
@@ -156,7 +156,7 @@ test("icon search recovers from empty results and supports both grid axes", asyn
 });
 
 test("category navigation reaches virtualized emoji and recent selection closes the popup", async ({ page }) => {
-  await page.goto("/primitives/emoji-icon-picker");
+  await page.goto("/primitives/emoji-picker");
   const trigger = page.getByRole("button", { name: "Choose item emoji or icon" });
   await waitForReactHydration(trigger);
   await trigger.click();
@@ -218,7 +218,7 @@ test("chat reactions expand within the same popup and toggle the selected reacti
 test("the mobile picker fits the viewport and reduced motion resizes immediately", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/primitives/emoji-icon-picker");
+  await page.goto("/primitives/emoji-picker");
   const trigger = page.getByRole("button", { name: "Choose item emoji or icon" });
   await waitForReactHydration(trigger);
   await trigger.click();

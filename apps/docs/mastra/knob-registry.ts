@@ -1290,49 +1290,49 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         syntax: "<length-percentage>+",
         defaultValue: "var(--radius-field)",
         selector:
-          ':where([data-control-family="color-picker"][data-slot="trigger"]),\n  :where([data-control-family="color-picker"][data-slot="area"]),\n  :where([data-control-family="color-picker"][data-slot="hue"]),\n  :where([data-control-family="color-picker"][data-slot="alpha"]),\n  :where([data-control-family="color-picker"][data-slot="wheel"]),\n  :where([data-control-family="color-picker"][data-slot="swatch"]),\n  :where([data-control-family="color-picker"][data-slot="output"])',
+          ':where([data-control-family="color-picker"][data-slot="trigger"]),\n  :where([data-control-family="color-picker"][data-slot="area"]),\n  :where([data-control-family="color-picker"][data-slot="slider"]),\n  :where([data-control-family="color-picker"][data-slot="wheel"]),\n  :where([data-control-family="color-picker"][data-slot="swatch"]),\n  :where([data-control-family="color-picker"][data-slot="output"])',
       },
       {
         name: "--cui-color-picker-output-swatch-radius",
         syntax: "<length-percentage>+",
         defaultValue: "var(--radius-md)",
         selector:
-          ':where([data-control-family="color-picker"][data-slot="trigger"]),\n  :where([data-control-family="color-picker"][data-slot="area"]),\n  :where([data-control-family="color-picker"][data-slot="hue"]),\n  :where([data-control-family="color-picker"][data-slot="alpha"]),\n  :where([data-control-family="color-picker"][data-slot="wheel"]),\n  :where([data-control-family="color-picker"][data-slot="swatch"]),\n  :where([data-control-family="color-picker"][data-slot="output"])',
+          ':where([data-control-family="color-picker"][data-slot="trigger"]),\n  :where([data-control-family="color-picker"][data-slot="area"]),\n  :where([data-control-family="color-picker"][data-slot="slider"]),\n  :where([data-control-family="color-picker"][data-slot="wheel"]),\n  :where([data-control-family="color-picker"][data-slot="swatch"]),\n  :where([data-control-family="color-picker"][data-slot="output"])',
       },
       {
         name: "--cui-color-picker-slider-thumb-background",
         syntax: "<color>",
         defaultValue: "transparent",
         selector:
-          ':where([data-control-family="color-picker"][data-slot="trigger"]),\n  :where([data-control-family="color-picker"][data-slot="area"]),\n  :where([data-control-family="color-picker"][data-slot="hue"]),\n  :where([data-control-family="color-picker"][data-slot="alpha"]),\n  :where([data-control-family="color-picker"][data-slot="wheel"]),\n  :where([data-control-family="color-picker"][data-slot="swatch"]),\n  :where([data-control-family="color-picker"][data-slot="output"])',
+          ':where([data-control-family="color-picker"][data-slot="trigger"]),\n  :where([data-control-family="color-picker"][data-slot="area"]),\n  :where([data-control-family="color-picker"][data-slot="slider"]),\n  :where([data-control-family="color-picker"][data-slot="wheel"]),\n  :where([data-control-family="color-picker"][data-slot="swatch"]),\n  :where([data-control-family="color-picker"][data-slot="output"])',
       },
       {
         name: "--cui-color-picker-slider-thumb-radius",
         syntax: "<length-percentage>",
-        defaultValue: "calc(infinity * 1px)",
+        defaultValue: "9999px",
         selector:
-          ':where([data-control-family="color-picker"][data-slot="trigger"]),\n  :where([data-control-family="color-picker"][data-slot="area"]),\n  :where([data-control-family="color-picker"][data-slot="hue"]),\n  :where([data-control-family="color-picker"][data-slot="alpha"]),\n  :where([data-control-family="color-picker"][data-slot="wheel"]),\n  :where([data-control-family="color-picker"][data-slot="swatch"]),\n  :where([data-control-family="color-picker"][data-slot="output"])',
+          ':where([data-control-family="color-picker"][data-slot="trigger"]),\n  :where([data-control-family="color-picker"][data-slot="area"]),\n  :where([data-control-family="color-picker"][data-slot="slider"]),\n  :where([data-control-family="color-picker"][data-slot="wheel"]),\n  :where([data-control-family="color-picker"][data-slot="swatch"]),\n  :where([data-control-family="color-picker"][data-slot="output"])',
       },
       {
         name: "--cui-color-picker-swatch-radius",
         syntax: "<length-percentage>+",
         defaultValue: "var(--radius-md)",
         selector:
-          ':where([data-control-family="color-picker"][data-slot="trigger"]),\n  :where([data-control-family="color-picker"][data-slot="area"]),\n  :where([data-control-family="color-picker"][data-slot="hue"]),\n  :where([data-control-family="color-picker"][data-slot="alpha"]),\n  :where([data-control-family="color-picker"][data-slot="wheel"]),\n  :where([data-control-family="color-picker"][data-slot="swatch"]),\n  :where([data-control-family="color-picker"][data-slot="output"])',
+          ':where([data-control-family="color-picker"][data-slot="trigger"]),\n  :where([data-control-family="color-picker"][data-slot="area"]),\n  :where([data-control-family="color-picker"][data-slot="slider"]),\n  :where([data-control-family="color-picker"][data-slot="wheel"]),\n  :where([data-control-family="color-picker"][data-slot="swatch"]),\n  :where([data-control-family="color-picker"][data-slot="output"])',
       },
       {
         name: "--cui-color-picker-trigger-radius",
         syntax: "<length-percentage>+",
         defaultValue: "var(--radius-control)",
         selector:
-          ':where([data-control-family="color-picker"][data-slot="trigger"]),\n  :where([data-control-family="color-picker"][data-slot="area"]),\n  :where([data-control-family="color-picker"][data-slot="hue"]),\n  :where([data-control-family="color-picker"][data-slot="alpha"]),\n  :where([data-control-family="color-picker"][data-slot="wheel"]),\n  :where([data-control-family="color-picker"][data-slot="swatch"]),\n  :where([data-control-family="color-picker"][data-slot="output"])',
+          ':where([data-control-family="color-picker"][data-slot="trigger"]),\n  :where([data-control-family="color-picker"][data-slot="area"]),\n  :where([data-control-family="color-picker"][data-slot="slider"]),\n  :where([data-control-family="color-picker"][data-slot="wheel"]),\n  :where([data-control-family="color-picker"][data-slot="swatch"]),\n  :where([data-control-family="color-picker"][data-slot="output"])',
       },
       {
         name: "--cui-color-picker-trigger-shadow",
         syntax: "*",
-        defaultValue: "inset 0 0 0 1px var(--border)",
+        defaultValue: "inset 0 0 0 var(--control-rim-width) var(--control-rim)",
         selector:
-          ':where([data-control-family="color-picker"][data-slot="trigger"]),\n  :where([data-control-family="color-picker"][data-slot="area"]),\n  :where([data-control-family="color-picker"][data-slot="hue"]),\n  :where([data-control-family="color-picker"][data-slot="alpha"]),\n  :where([data-control-family="color-picker"][data-slot="wheel"]),\n  :where([data-control-family="color-picker"][data-slot="swatch"]),\n  :where([data-control-family="color-picker"][data-slot="output"])',
+          ':where([data-control-family="color-picker"][data-slot="trigger"]),\n  :where([data-control-family="color-picker"][data-slot="area"]),\n  :where([data-control-family="color-picker"][data-slot="slider"]),\n  :where([data-control-family="color-picker"][data-slot="wheel"]),\n  :where([data-control-family="color-picker"][data-slot="swatch"]),\n  :where([data-control-family="color-picker"][data-slot="output"])',
       },
     ],
   },

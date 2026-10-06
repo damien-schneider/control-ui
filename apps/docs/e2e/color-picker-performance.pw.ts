@@ -86,8 +86,8 @@ for (const skin of ["none", "mastra"]) {
     });
 
     test("gradient stops drag without selecting text and retain keyboard control", async ({ page }) => {
-      await page.goto("/primitives/gradient-editor");
-      const preview = page.locator("#preview");
+      await page.goto("/primitives/color-picker");
+      const preview = page.locator("#example-gradient-editor");
       const stop = preview.getByRole("slider", { name: "Gradient stop 1", exact: true });
       await waitForReactHydration(stop);
       await stop.scrollIntoViewIfNeeded();
