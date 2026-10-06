@@ -46,6 +46,7 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
   const [selections, setSelections] = useState<Record<string, string[]>>({});
   const [freeformTexts, setFreeformTexts] = useState<Record<string, string>>({});
   const [requestedIndex, setRequestedIndex] = useState(0);
+  const [hasNavigated, setHasNavigated] = useState(false);
 
   // useState-once keeps identities stable; register upserts IN PLACE (prop change must not reorder numbering)
   // and unregister runs only at part unmount — combined effect cleanup would move updated entries to end.
@@ -138,7 +139,9 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
   const isLastQuestion = activeIndex === questions.length - 1;
 
   function goTo(index: number) {
-    setRequestedIndex(Math.max(0, Math.min(index, questions.length - 1)));
+    const targetIndex = Math.max(0, Math.min(index, questions.length - 1));
+    if (targetIndex !== activeIndex) setHasNavigated(true);
+    setRequestedIndex(targetIndex);
   }
 
   function resolveAnswers() {
@@ -225,6 +228,7 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
     questions,
     activeIndex,
     activeQuestion,
+    hasNavigated,
     canContinue,
     isLastQuestion,
     registerQuestion,

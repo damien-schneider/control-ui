@@ -2,7 +2,7 @@
 
 import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps, CSSProperties, MouseEvent, RefObject } from "react";
-import { createContext, useContext, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useEffectEvent, useId, useLayoutEffect, useRef, useState } from "react";
 import { SIDEBAR_COOKIE_NAME } from "@/components/control-ui/control-props";
 import { useIsMobile } from "@/components/control-ui/hooks/use-mobile";
 import type { SidebarKnobStyle } from "@/components/control-ui/knob-contracts/sidebar-knobs";
@@ -173,10 +173,7 @@ export function SidebarProvider({
 
   const toggleSidebar = () => (isMobile ? setOpenMobile((prev) => !prev) : setOpen(!open));
 
-  const toggleRef = useRef(toggleSidebar);
-  useEffect(() => {
-    toggleRef.current = toggleSidebar;
-  });
+  const toggleSidebarFromShortcut = useEffectEvent(toggleSidebar);
 
   useEffect(() => {
     if (keyboardShortcut === null) return;
@@ -188,7 +185,7 @@ export function SidebarProvider({
       const target = event.target;
       if (target instanceof HTMLElement && (target.isContentEditable || target.closest("input, textarea, select") !== null)) return;
       event.preventDefault();
-      toggleRef.current();
+      toggleSidebarFromShortcut();
     };
 
     window.addEventListener("keydown", handleKeyDown);

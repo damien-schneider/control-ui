@@ -23,7 +23,6 @@ export type ActionBarContextValue = {
 export type ActionBarProps = Omit<ComponentProps<"div">, "style"> & {
   label?: string;
   align?: "start" | "end";
-  context?: ActionBarContextValue;
   copyValue?: ActionBarCopyValue;
   editValue?: ActionBarCopyValue;
   onCopy?: (value: string) => void;
@@ -44,7 +43,6 @@ export function ActionBar({
   align = "start",
   className,
   children,
-  context,
   copyValue,
   editValue,
   onCopy,
@@ -53,15 +51,7 @@ export function ActionBar({
   onEditError,
   ...props
 }: ActionBarProps) {
-  const actionContext = {
-    ...context,
-    copyValue: copyValue ?? context?.copyValue,
-    editValue: editValue ?? context?.editValue,
-    onCopy: onCopy ?? context?.onCopy,
-    onCopyError: onCopyError ?? context?.onCopyError,
-    onEdit: onEdit ?? context?.onEdit,
-    onEditError: onEditError ?? context?.onEditError,
-  };
+  const actionContext = { copyValue, editValue, onCopy, onCopyError, onEdit, onEditError };
 
   return (
     <ActionBarContext.Provider value={actionContext}>

@@ -233,15 +233,7 @@ function useMessageEditor({ value, onSave, onSaveError }: Pick<ChatMessageEditab
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
   const savingRef = useRef(false);
-  const mountedRef = useRef(false);
   const errorId = useId();
-
-  useEffect(() => {
-    mountedRef.current = true;
-    return () => {
-      mountedRef.current = false;
-    };
-  }, []);
 
   useLayoutEffect(() => {
     if (editing) {
@@ -280,15 +272,13 @@ function useMessageEditor({ value, onSave, onSaveError }: Pick<ChatMessageEditab
     setFailed(false);
     try {
       await onSave(draft);
-      if (mountedRef.current) setEditing(false);
+      setEditing(false);
     } catch (error) {
-      if (mountedRef.current) {
-        setFailed(true);
-        onSaveError?.(error);
-      }
+      setFailed(true);
+      onSaveError?.(error);
     } finally {
       savingRef.current = false;
-      if (mountedRef.current) setSaving(false);
+      setSaving(false);
     }
   }
 

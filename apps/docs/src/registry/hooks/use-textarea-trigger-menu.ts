@@ -1,10 +1,11 @@
 "use client";
 
-import type { RefObject } from "react";
-import { useEffect, useEffectEvent } from "react";
+import type { ComponentProps, RefObject } from "react";
 import { caretRectInTextarea, detectTrigger } from "../lib/trigger-detect";
 import type { TriggerConfig, TriggerMenuItemData } from "./use-trigger-menu";
 import { isComposingKey, useTriggerMenu } from "./use-trigger-menu";
+
+const CLOSE_AFTER_BLUR_MS = 120;
 
 function replaceRange(element: HTMLTextAreaElement, start: number, end: number, text: string) {
   element.focus();
@@ -36,52 +37,42 @@ export function useTextareaTriggerMenu<Item extends TriggerMenuItemData>(
     },
   });
 
-  const syncTrigger = useEffectEvent(() => {
-    const element = ref.current;
-    if (!element) return;
-    const caret = element.selectionStart ?? element.value.length;
+  function reportTriggerAtCaret(textarea: HTMLTextAreaElement) {
+    const caret = textarea.selectionStart ?? textarea.value.length;
     const chars = options.triggers.map((trigger) => trigger.char);
-    const match = detectTrigger(element.value.slice(0, caret), chars);
-    controller.report(match, match === null ? null : caretRectInTextarea(element, match.start));
-  });
+    const match = detectTrigger(textarea.value.slice(0, caret), chars);
+    controller.report(match, match === null ? null : caretRectInTextarea(textarea, match.start));
+  }
 
-  const handleKeyDown = useEffectEvent((event: KeyboardEvent) => {
-    if (isComposingKey(event)) return;
-    if (controller.open && controller.handleKeyDown(event.key)) event.preventDefault();
-  });
+  function getTextareaProps(props: ComponentProps<"textarea"> = {}): ComponentProps<"textarea"> {
+    const { onChange, onKeyDown, onKeyUp, onClick, onBlur, ...textareaProps } = props;
 
-  const closeAfterBlur = useEffectEvent(() => {
-    controller.close();
-  });
-
-  useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
-
-    function onKeyDown(event: KeyboardEvent) {
-      handleKeyDown(event);
-    }
-    function syncAfterInput() {
-      // React must commit the controlled value before menu updates can render it.
-      window.setTimeout(syncTrigger, 0);
-    }
-    function onBlur() {
-      window.setTimeout(closeAfterBlur, 120);
-    }
-
-    element.addEventListener("input", syncAfterInput);
-    element.addEventListener("keydown", onKeyDown);
-    element.addEventListener("keyup", syncTrigger);
-    element.addEventListener("click", syncTrigger);
-    element.addEventListener("blur", onBlur);
-    return () => {
-      element.removeEventListener("input", syncAfterInput);
-      element.removeEventListener("keydown", onKeyDown);
-      element.removeEventListener("keyup", syncTrigger);
-      element.removeEventListener("click", syncTrigger);
-      element.removeEventListener("blur", onBlur);
+    return {
+      ...textareaProps,
+      ...controller.inputAria,
+      onChange: (event) => {
+        onChange?.(event);
+        reportTriggerAtCaret(event.currentTarget);
+      },
+      onKeyDown: (event) => {
+        const menuConsumedKey = !isComposingKey(event.nativeEvent) && controller.open && controller.handleKeyDown(event.key);
+        if (menuConsumedKey) event.preventDefault();
+        onKeyDown?.(event);
+      },
+      onKeyUp: (event) => {
+        onKeyUp?.(event);
+        reportTriggerAtCaret(event.currentTarget);
+      },
+      onClick: (event) => {
+        onClick?.(event);
+        reportTriggerAtCaret(event.currentTarget);
+      },
+      onBlur: (event) => {
+        onBlur?.(event);
+        window.setTimeout(controller.close, CLOSE_AFTER_BLUR_MS);
+      },
     };
-  }, [ref]);
+  }
 
-  return controller;
+  return { ...controller, getTextareaProps };
 }

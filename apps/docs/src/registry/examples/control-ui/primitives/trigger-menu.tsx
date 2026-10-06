@@ -40,10 +40,9 @@ export function PrimitiveTriggerMenuExample() {
       <Textarea
         ref={ref}
         value={value}
-        onChange={(event) => setValue(event.currentTarget.value)}
         rows={4}
         aria-label="Trigger menu demo"
-        {...menu.inputAria}
+        {...menu.getTextareaProps({ onChange: (event) => setValue(event.currentTarget.value) })}
         className="min-h-24 leading-6"
         placeholder="Type / or @"
       />

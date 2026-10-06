@@ -2,7 +2,7 @@
 
 import { Check, ChevronLeft, ChevronRight, PencilLine } from "lucide-react";
 import type { ChangeEvent, ComponentProps, CSSProperties, MouseEvent } from "react";
-import { createContext, useContext, useEffect, useId, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useId, useRef } from "react";
 
 import type { UserAskProps } from "@/components/control-ui/hooks/use-user-ask";
 import { useUserAsk } from "@/components/control-ui/hooks/use-user-ask";
@@ -56,9 +56,8 @@ export function UserAsk({
   const ask = useUserAsk({ onComplete, onDismiss });
   const titleId = useId();
   const panelRef = useRef<HTMLElement>(null);
-  const [hasNavigated, setHasNavigated] = useState(false);
   const questionStatus =
-    hasNavigated && ask.activeQuestion ? questionStatusLabel(ask.activeIndex + 1, ask.questions.length, ask.activeQuestion.title) : "";
+    ask.hasNavigated && ask.activeQuestion ? questionStatusLabel(ask.activeIndex + 1, ask.questions.length, ask.activeQuestion.title) : "";
 
   // native autofocus only fires at document load, and this panel mounts mid-conversation
   useEffect(() => {
@@ -67,16 +66,14 @@ export function UserAsk({
 
   // Hiding question blurs its focused descendants to <body> and kills Enter/Escape flow.
   // browser may not have processed that blur yet at effect time, so test visibility, not containment.
-  const lastActiveIndex = useRef(ask.activeIndex);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: each change of active question is the trigger.
   useEffect(() => {
-    if (lastActiveIndex.current === ask.activeIndex) return;
-    lastActiveIndex.current = ask.activeIndex;
-    setHasNavigated(true);
+    if (!ask.hasNavigated) return;
     const panel = panelRef.current;
     const active = document.activeElement;
     const activeIsUsable = active instanceof HTMLElement && panel?.contains(active) && active.checkVisibility();
     if (panel && !activeIsUsable) panel.focus();
-  }, [ask.activeIndex]);
+  }, [ask.activeIndex, ask.hasNavigated]);
 
   return (
     <UserAskContext.Provider value={{ ...ask, titleId }}>
