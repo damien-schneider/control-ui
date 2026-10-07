@@ -19,7 +19,8 @@ for (const skin of ["none", "mastra"]) {
 
     test("color gestures stay within their CPU budget and preserve selection and keyboard behavior", async ({ page }) => {
       await page.goto("/primitives/color-picker");
-      const area = page.locator('#preview [data-slot="area"]').first();
+      const example = page.locator("#example-inline-panel");
+      const area = example.locator('[data-slot="area"]');
       await waitForReactHydration(area);
       await expect(page.locator("html")).toHaveAttribute("data-skin", skin);
       await page.evaluate(() => document.fonts.ready);
@@ -59,7 +60,7 @@ for (const skin of ["none", "mastra"]) {
         await session.detach();
       }
 
-      const label = page.getByText("Inline panel", { exact: true });
+      const label = example.getByText("Inline panel", { exact: true });
       await label.dblclick();
       expect(await page.evaluate(() => window.getSelection()?.toString())).not.toBe("");
       await page.evaluate(() => window.getSelection()?.removeAllRanges());

@@ -112,9 +112,6 @@ export function ColorPickerAreaThumb({ className, style, ...props }: ColorPicker
   );
 }
 
-const WHEEL_HUE =
-  "conic-gradient(from 90deg, hsl(0 100% 50%), hsl(60 100% 50%), hsl(120 100% 50%), hsl(180 100% 50%), hsl(240 100% 50%), hsl(300 100% 50%), hsl(360 100% 50%))";
-
 export function ColorPickerWheel({ className, style, ...props }: ColorPickerWheelProps) {
   const { hsva, setHsva, disabled } = useColorPicker();
   const { areaRef, onPointerDown, dragging } = useColorArea((offset, rect) => {
@@ -126,6 +123,10 @@ export function ColorPickerWheel({ className, style, ...props }: ColorPickerWhee
   const rad = (hsva.h * Math.PI) / 180;
   const left = 50 + radius * Math.cos(rad);
   const top = 50 + radius * Math.sin(rad);
+  const wheelStyle: CSSProperties & Record<"--_color-picker-wheel-shade", string> = {
+    ...style,
+    "--_color-picker-wheel-shade": String(1 - hsva.v / 100),
+  };
   return (
     // biome-ignore lint/a11y/useSemanticElements: a 2D color surface is a labelled slider group, not a fieldset form group.
     <div
@@ -144,7 +145,7 @@ export function ColorPickerWheel({ className, style, ...props }: ColorPickerWhee
         disabled ? "cursor-not-allowed" : "cursor-crosshair",
         className,
       )}
-      style={{ ...style, backgroundImage: `radial-gradient(circle at center, #fff, transparent 70%), ${WHEEL_HUE}` }}
+      style={wheelStyle}
       {...props}
     >
       <div

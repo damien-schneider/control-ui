@@ -205,7 +205,13 @@ export function ColorPickerChannel({ channel, label, className, "aria-label": ar
   const spec = getChannels(hsva, format).find((s) => s.id === channel);
   if (!spec) return null;
   return (
-    <div data-control-ui="color-picker" data-control-family="color-picker" data-slot="channel" className={cn("grid", className)} {...props}>
+    <div
+      data-control-ui="color-picker"
+      data-control-family="color-picker"
+      data-slot="channel"
+      className={cn("grid grid-cols-1", className)}
+      {...props}
+    >
       <NumberField
         size="sm"
         value={spec.value}
@@ -217,8 +223,8 @@ export function ColorPickerChannel({ channel, label, className, "aria-label": ar
           if (value !== null) setChannelValue(channel, value);
         }}
       >
-        <NumberFieldGroup data-control-ui="color-picker" data-control-family="color-picker" data-slot="channel" className="w-full">
-          <NumberFieldInput aria-label={ariaLabel ?? `${CHANNEL_NAMES[channel]} channel`} className="px-1" />
+        <NumberFieldGroup className="w-full">
+          <NumberFieldInput aria-label={ariaLabel ?? `${CHANNEL_NAMES[channel]} channel`} className="px-1 text-center" />
         </NumberFieldGroup>
       </NumberField>
       <span data-control-ui="color-picker" data-control-family="color-picker" data-slot="channel-label">
@@ -250,6 +256,7 @@ export function ColorPickerEyeDropper({ className, children, ...props }: ColorPi
     <Button
       variant="surface"
       size="sm"
+      iconOnly
       disabled={disabled}
       aria-label="Pick a color from the screen"
       data-control-ui="color-picker"

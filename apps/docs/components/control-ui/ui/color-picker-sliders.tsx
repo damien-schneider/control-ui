@@ -23,39 +23,59 @@ type SliderAxisSpec = {
   max: number;
   step: number;
   format: Intl.NumberFormatOptions;
-  trackImage: (hsva: Hsva) => string;
+  trackStops: (hsva: Hsva) => readonly [string, string, ...string[]];
 };
 
-const HUE_TRACK_IMAGE =
-  "linear-gradient(to right, hsl(0 100% 50%), hsl(60 100% 50%), hsl(120 100% 50%), hsl(180 100% 50%), hsl(240 100% 50%), hsl(300 100% 50%), hsl(360 100% 50%))";
+type SliderTrackStyle = CSSProperties & Record<"--_color-picker-slider-track-image", string>;
+
+const THUMB_HALF_SIZE = "calc(var(--_color-picker-thumb-size) / 2)";
+
+const HUE_TRACK_STOPS = [
+  "hsl(0 100% 50%)",
+  "hsl(60 100% 50%)",
+  "hsl(120 100% 50%)",
+  "hsl(180 100% 50%)",
+  "hsl(240 100% 50%)",
+  "hsl(300 100% 50%)",
+  "hsl(360 100% 50%)",
+] as const;
 
 const opaqueHex = (hsva: Hsva) => formatColor({ ...hsva, a: 1 }, "hex");
 
-// each axis is one coordinate of the HSVA state, so a strip never loses hue or saturation at its ends
 const SLIDER_AXES: Record<SliderAxis, SliderAxisSpec> = {
-  h: { label: "Hue", max: 360, step: 1, format: { style: "unit", unit: "degree" }, trackImage: () => HUE_TRACK_IMAGE },
+  h: { label: "Hue", max: 360, step: 1, format: { style: "unit", unit: "degree" }, trackStops: () => HUE_TRACK_STOPS },
   s: {
     label: "Saturation",
     max: 100,
     step: 1,
     format: { style: "unit", unit: "percent" },
-    trackImage: (hsva) => `linear-gradient(to right, ${opaqueHex({ ...hsva, s: 0 })}, ${opaqueHex({ ...hsva, s: 100 })})`,
+    trackStops: (hsva) => [opaqueHex({ ...hsva, s: 0 }), opaqueHex({ ...hsva, s: 100 })],
   },
   v: {
     label: "Brightness",
     max: 100,
     step: 1,
     format: { style: "unit", unit: "percent" },
-    trackImage: (hsva) => `linear-gradient(to right, ${opaqueHex({ ...hsva, v: 0 })}, ${opaqueHex({ ...hsva, v: 100 })})`,
+    trackStops: (hsva) => [opaqueHex({ ...hsva, v: 0 }), opaqueHex({ ...hsva, v: 100 })],
   },
   a: {
     label: "Opacity",
     max: 1,
     step: 0.01,
     format: { style: "percent" },
-    trackImage: (hsva) => `linear-gradient(to right, transparent, ${opaqueHex(hsva)})`,
+    trackStops: (hsva) => ["transparent", opaqueHex(hsva)],
   },
 };
+
+function edgeAlignedTrackStyle(stops: readonly [string, string, ...string[]]): SliderTrackStyle {
+  const lastIndex = stops.length - 1;
+  const positionedStops = stops.map((stop, index) => {
+    if (index === 0) return `${stop} ${THUMB_HALF_SIZE}`;
+    if (index === lastIndex) return `${stop} calc(100% - ${THUMB_HALF_SIZE})`;
+    return stop;
+  });
+  return { "--_color-picker-slider-track-image": `linear-gradient(to right, ${positionedStops.join(", ")})` };
+}
 
 function ColorPickerSlider({
   axis,
@@ -65,10 +85,7 @@ function ColorPickerSlider({
   ...props
 }: ColorPickerSliderProps & { axis: SliderAxis }) {
   const { hsva, setHsva, disabled } = useColorPicker();
-  const { label, max, step, format, trackImage } = SLIDER_AXES[axis];
-  const trackStyle: CSSProperties & Record<"--_color-picker-slider-track-image", string> = {
-    "--_color-picker-slider-track-image": trackImage(hsva),
-  };
+  const { label, max, step, format, trackStops } = SLIDER_AXES[axis];
   return (
     <SliderPrimitive.Root<number>
       data-control-ui="color-picker"
@@ -82,8 +99,12 @@ function ColorPickerSlider({
       max={max}
       step={step}
       disabled={disabled}
+      thumbAlignment="edge"
       onValueChange={(next) => setHsva({ [axis]: next })}
-      className={cn("relative flex w-full touch-pan-y select-none items-center", className)}
+      className={cn(
+        "relative flex w-full cursor-pointer touch-pan-y select-none items-center data-[disabled]:cursor-not-allowed",
+        className,
+      )}
       {...props}
     >
       <SliderPrimitive.Control className="flex h-full w-full items-center">
@@ -92,14 +113,14 @@ function ColorPickerSlider({
           data-control-family="color-picker"
           data-slot="slider-track"
           className="relative w-full"
-          style={trackStyle}
+          style={edgeAlignedTrackStyle(trackStops(hsva))}
         >
           <SliderPrimitive.Thumb
             data-control-ui="color-picker"
             data-control-family="color-picker"
             data-slot="slider-thumb"
             data-focus-ring="within"
-            className="block -translate-x-1/2"
+            className="block"
           />
         </SliderPrimitive.Track>
       </SliderPrimitive.Control>

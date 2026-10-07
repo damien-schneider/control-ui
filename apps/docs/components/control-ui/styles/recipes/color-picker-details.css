@@ -1,6 +1,8 @@
 @layer components {
   :where([data-control-family="color-picker"][data-slot="trigger-color"]) {
     border-radius: inherit;
+    corner-shape: inherit;
+    box-shadow: var(--cui-color-picker-trigger-shadow);
   }
 
   :where([data-control-family="color-picker"][data-slot="trigger"]) {
@@ -8,7 +10,6 @@
     transition-property: transform, translate, scale, rotate;
     transition-timing-function: var(--ease-standard);
     transition-duration: var(--duration-fast);
-    box-shadow: var(--cui-color-picker-trigger-shadow);
   }
 
   :where([data-control-family="color-picker"][data-slot="trigger"]:disabled) {
@@ -28,7 +29,10 @@
   }
 
   :where([data-control-family="color-picker"][data-slot="area-brightness"]) {
+    border-radius: inherit;
+    corner-shape: inherit;
     background-image: linear-gradient(to top in srgb, oklch(0 0 0), transparent);
+    box-shadow: inset 0 0 0 var(--control-rim-width) oklch(from var(--foreground) l c h / 0.1);
   }
 
   :where([data-control-family="color-picker"][data-slot="contrast-level"][data-passing="true"]) {
@@ -57,14 +61,5 @@
     stroke: oklch(1 0 0);
     stroke-width: 1.5px;
     filter: drop-shadow(0 0 1px oklch(0 0 0 / 0.5));
-  }
-
-  :where(
-    [data-control-family="color-picker"][data-slot="wheel"][data-dragging] [data-control-family="color-picker"][data-slot="wheel-thumb"]
-  ),
-  :where(
-    [data-control-family="color-picker"][data-slot="area"][data-dragging] [data-control-family="color-picker"][data-slot="area-thumb"]
-  ) {
-    scale: 110% 110%;
   }
 }

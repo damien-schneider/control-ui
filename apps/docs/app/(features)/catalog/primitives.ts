@@ -2130,6 +2130,40 @@ export const primitiveEntries = [
     ),
     additionalPreviews: [
       {
+        id: "inline-panel",
+        title: "Inline panel",
+        description:
+          "Render the editor in place with ColorPickerPanel when the color is the main task, like a theme or brand settings page.",
+        source: sourceFile("Inline color panel example", "src/registry/examples/control-ui/primitives/color-picker-inline.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/color-picker-inline").then((mod) => ({
+            default: mod.PrimitiveColorPickerInlineExample,
+          })),
+        ),
+      },
+      {
+        id: "wheel",
+        title: "Color wheel",
+        description: "The wheel sets hue by angle and saturation by distance from the center; the brightness strip completes the color.",
+        source: sourceFile("Color wheel example", "src/registry/examples/control-ui/primitives/color-picker-wheel.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/color-picker-wheel").then((mod) => ({
+            default: mod.PrimitiveColorPickerWheelExample,
+          })),
+        ),
+      },
+      {
+        id: "strips",
+        title: "Inline strips",
+        description: "Each strip edits one coordinate of the same color, so the parts fit a toolbar or inspector row without a popup.",
+        source: sourceFile("Inline color strips example", "src/registry/examples/control-ui/primitives/color-picker-strips.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/color-picker-strips").then((mod) => ({
+            default: mod.PrimitiveColorPickerStripsExample,
+          })),
+        ),
+      },
+      {
         id: "gradient-editor",
         title: "Gradient editor",
         description: "Drag stops along the track, pick each stop color with the same picker, and read back a CSS gradient.",
