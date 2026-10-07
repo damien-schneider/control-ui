@@ -2922,7 +2922,7 @@ export const registryMetadata = {
   },
   "emoji-picker": {
     dependencies: ["@base-ui/react@^1.8.0", "frimousse@^0.4.0", "lucide-react@^1.47.0"],
-    registryDependencies: ["core", "icon-picker", "popover", "spinner", "tabs"],
+    registryDependencies: ["core", "icon-picker", "popover", "scroll-area", "spinner", "tabs"],
     sourceManifestPath: "registry/control-ui/emoji-picker.json",
     files: [
       {
@@ -3147,7 +3147,7 @@ export const registryMetadata = {
   },
   "icon-picker": {
     dependencies: ["@base-ui/react@^1.8.0"],
-    registryDependencies: ["core", "input"],
+    registryDependencies: ["core", "input", "scroll-area"],
     sourceManifestPath: "registry/control-ui/icon-picker.json",
     files: [
       {

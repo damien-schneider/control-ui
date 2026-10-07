@@ -2,6 +2,7 @@
   :where([data-control-family="icon-picker"][data-slot="root"]) {
     --cui-icon-picker-cell-size: calc(var(--spacing) * 10);
     --cui-icon-picker-cell-radius: var(--radius-control);
+    --cui-icon-picker-icon-size: calc(var(--spacing) * 4);
     --cui-icon-picker-foreground: var(--foreground);
     --cui-icon-picker-cell-hover-background: var(--accent);
     --cui-icon-picker-cell-pressed-background: var(--accent);
@@ -12,9 +13,6 @@
   :where([data-control-family="icon-picker"][data-slot="content"]) {
     padding: calc(var(--spacing) * 2);
     max-block-size: 16rem;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    scrollbar-width: thin;
   }
   :where([data-control-family="icon-picker"][data-slot="grid"]) {
     display: grid;
@@ -31,6 +29,21 @@
     color: inherit;
     cursor: pointer;
     transition: background-color var(--duration-fast) var(--ease-standard);
+    animation: icon-picker-icon-enter var(--duration-slow) var(--ease-emphasized) both;
+  }
+  @supports (order: sibling-index()) {
+    :where([data-control-family="icon-picker"][data-slot="icon"]) {
+      --_icon-picker-cell-index: calc(sibling-index() - 1);
+      animation-delay: calc(
+        min(
+          mod(var(--_icon-picker-cell-index), var(--_icon-picker-columns)) +
+          round(down, var(--_icon-picker-cell-index) / var(--_icon-picker-columns)),
+          16
+        ) *
+        var(--duration-fast) /
+        8
+      );
+    }
   }
   :where([data-control-family="icon-picker"][data-slot="icon"]:hover) {
     background: var(--cui-icon-picker-cell-hover-background);
@@ -39,8 +52,8 @@
     background: var(--cui-icon-picker-cell-pressed-background);
   }
   :where([data-control-family="icon-picker"][data-slot="icon"] svg) {
-    inline-size: calc(var(--spacing) * 5);
-    block-size: calc(var(--spacing) * 5);
+    inline-size: var(--cui-icon-picker-icon-size);
+    block-size: var(--cui-icon-picker-icon-size);
   }
   :where([data-control-family="icon-picker"][data-slot="colors"]) {
     display: flex;
@@ -93,6 +106,11 @@
   inherits: true;
   initial-value: 0px;
 }
+@property --cui-icon-picker-icon-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
 @property --cui-icon-picker-foreground {
   syntax: "<color>";
   inherits: true;
@@ -108,4 +126,11 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@keyframes icon-picker-icon-enter {
+  from {
+    opacity: 0;
+    scale: 0.5;
+  }
 }

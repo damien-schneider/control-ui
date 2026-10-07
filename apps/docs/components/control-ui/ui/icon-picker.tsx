@@ -17,6 +17,7 @@ import type { ControlledChoice } from "@/components/control-ui/control-props";
 import type { IconPickerKnobStyle } from "@/components/control-ui/knob-contracts/icon-picker-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Input } from "@/components/control-ui/ui/input";
+import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
 export type IconPickerItem = { value: string; label: string; icon: ReactNode; keywords?: readonly string[] };
 export type IconPickerColor = { value: string; label: string; color: string };
@@ -113,6 +114,7 @@ export type IconPickerContentProps = Omit<ComponentProps<"div">, "style" | "chil
 
 export function IconPickerContent({
   className,
+  ref,
   empty = "No icons found.",
   "aria-label": ariaLabel = "Icons",
   ...props
@@ -135,7 +137,12 @@ export function IconPickerContent({
   };
 
   return (
-    <div data-control-ui="icon-picker" data-control-family="icon-picker" data-slot="content" className={className} {...props}>
+    <ScrollArea
+      lockAxis="x"
+      className={className}
+      viewportRef={ref}
+      viewportProps={{ "data-control-ui": "icon-picker", "data-control-family": "icon-picker", "data-slot": "content", ...props }}
+    >
       {filteredItems.length === 0 ? (
         <div data-control-ui="icon-picker" data-control-family="icon-picker" data-slot="empty" role="status">
           {empty}
@@ -172,7 +179,7 @@ export function IconPickerContent({
           ))}
         </ToolbarPrimitive.Root>
       )}
-    </div>
+    </ScrollArea>
   );
 }
 

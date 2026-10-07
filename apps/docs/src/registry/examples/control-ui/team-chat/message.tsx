@@ -56,8 +56,9 @@ export function EmojiPickerPopover({ trigger, onPick }: { trigger: ReactElement;
             <EmojiPicker onEmojiSelect={selectEmoji}>
               <EmojiPickerSearch autoFocus={focusSearch} />
               <EmojiPickerCategories />
-              <EmojiPickerRecent emojis={recentEmoji} />
-              <EmojiPickerContent />
+              <EmojiPickerContent>
+                <EmojiPickerRecent emojis={recentEmoji} />
+              </EmojiPickerContent>
               <EmojiPickerFooter />
             </EmojiPicker>
           ) : (

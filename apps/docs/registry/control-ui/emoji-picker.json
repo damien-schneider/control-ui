@@ -13,6 +13,7 @@
     "core",
     "icon-picker",
     "popover",
+    "scroll-area",
     "spinner",
     "tabs"
   ],

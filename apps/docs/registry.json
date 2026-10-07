@@ -3731,6 +3731,7 @@
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/icon-picker.json",
         "http://127.0.0.1:3000/r/popover.json",
+        "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/spinner.json",
         "http://127.0.0.1:3000/r/tabs.json"
       ],
@@ -4079,7 +4080,8 @@
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
-        "http://127.0.0.1:3000/r/input.json"
+        "http://127.0.0.1:3000/r/input.json",
+        "http://127.0.0.1:3000/r/scroll-area.json"
       ],
       "files": [
         {

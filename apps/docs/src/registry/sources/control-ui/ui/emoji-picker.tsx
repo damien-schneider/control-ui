@@ -40,6 +40,7 @@ import type { EmojiPickerKnobStyle } from "@/components/control-ui/knob-contract
 import { cn } from "@/components/control-ui/lib/cn";
 import { IconPicker } from "@/components/control-ui/ui/icon-picker";
 import { PopoverViewport } from "@/components/control-ui/ui/popover";
+import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Spinner } from "@/components/control-ui/ui/spinner";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/control-ui/ui/tabs";
 
@@ -48,6 +49,7 @@ type EmojiPickerContextValue = {
   columns: number;
   rootRef: RefObject<HTMLDivElement | null>;
   viewportRef: RefObject<HTMLDivElement | null>;
+  listRef: RefObject<HTMLDivElement | null>;
   loadState: EmojiPickerLoadState;
   retryEmojiData: () => void;
   selectEmoji: (emoji: Emoji) => void;
@@ -75,6 +77,7 @@ export function EmojiPicker({
 }: EmojiPickerProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
   const [loadState, setLoadState] = useState<EmojiPickerLoadState>({ status: "loading" });
   const [retryAttempt, setRetryAttempt] = useState(0);
   useImperativeHandle(ref, () => {
@@ -99,7 +102,7 @@ export function EmojiPicker({
   const selectEmoji = (emoji: Emoji) => onEmojiSelect?.(emoji);
   const pickerStyle = { "--_emoji-picker-columns": columns, ...style } satisfies CSSProperties & { "--_emoji-picker-columns": number };
   return (
-    <EmojiPickerContext.Provider value={{ columns, rootRef, viewportRef, loadState, retryEmojiData, selectEmoji }}>
+    <EmojiPickerContext.Provider value={{ columns, rootRef, viewportRef, listRef, loadState, retryEmojiData, selectEmoji }}>
       <EmojiPickerPrimitive.Root
         key={retryAttempt}
         data-control-ui="emoji-picker"
@@ -145,17 +148,18 @@ function emojiCategoryRows(emojiData: EmojiData, columns: number) {
 }
 
 export function EmojiPickerCategories({ "aria-label": ariaLabel = "Emoji categories", onKeyDown, ...props }: ComponentProps<"div">) {
-  const { columns, loadState, rootRef, viewportRef } = useEmojiPicker();
+  const { columns, loadState, rootRef, viewportRef, listRef } = useEmojiPicker();
   if (loadState.status !== "ready") return null;
   const categories = emojiCategoryRows(loadState.data, columns);
   const scrollToCategory = (startRow: number, categoryIndex: number) => {
     const root = rootRef.current;
     const viewport = viewportRef.current;
-    if (!root || !viewport) return;
+    const list = listRef.current;
+    if (!root || !viewport || !list) return;
     const metrics = getComputedStyle(root);
     const rowHeight = Number.parseFloat(metrics.getPropertyValue("--frimousse-row-height"));
     const headerHeight = Number.parseFloat(metrics.getPropertyValue("--frimousse-category-header-height"));
-    viewport.scrollTo({ top: startRow * rowHeight + categoryIndex * headerHeight });
+    viewport.scrollTo({ top: list.offsetTop + startRow * rowHeight + categoryIndex * headerHeight });
   };
   return (
     <ToolbarPrimitive.Root
@@ -275,13 +279,7 @@ export function EmojiPickerSearch({
 
 function EmojiPickerRow({ children, className, ...props }: EmojiPickerListRowProps) {
   return (
-    <div
-      data-control-ui="emoji-picker"
-      data-control-family="emoji-picker"
-      data-slot="row"
-      className={cn("scroll-my-1", className)}
-      {...props}
-    >
+    <div data-control-ui="emoji-picker" data-control-family="emoji-picker" data-slot="row" className={className} {...props}>
       {children}
     </div>
   );
@@ -313,20 +311,24 @@ function EmojiPickerCategoryHeader({ category, className, ...props }: EmojiPicke
 
 export type EmojiPickerContentProps = Omit<ComponentProps<typeof EmojiPickerPrimitive.Viewport>, "style"> & EmojiPickerStyle;
 
-export function EmojiPickerContent({ className, ref, ...props }: EmojiPickerContentProps) {
-  const { viewportRef, loadState, retryEmojiData } = useEmojiPicker();
+export function EmojiPickerContent({ className, ref, children, ...props }: EmojiPickerContentProps) {
+  const { viewportRef, listRef, loadState, retryEmojiData } = useEmojiPicker();
   useImperativeHandle(ref, () => {
     if (!viewportRef.current) throw new Error("EmojiPicker viewport is not mounted.");
     return viewportRef.current;
   });
   return (
-    <EmojiPickerPrimitive.Viewport
-      data-control-ui="emoji-picker"
-      data-control-family="emoji-picker"
-      data-slot="content"
-      className={cn("relative min-h-0 flex-1 outline-none", className)}
-      {...props}
-      ref={viewportRef}
+    <ScrollArea
+      lockAxis="x"
+      className={cn("min-h-0 flex-1", className)}
+      viewportRef={viewportRef}
+      viewportProps={{
+        "data-control-ui": "emoji-picker",
+        "data-control-family": "emoji-picker",
+        "data-slot": "content",
+        ...props,
+        render: renderEmojiViewport,
+      }}
     >
       {loadState.status === "error" ? (
         <div data-control-ui="emoji-picker" data-control-family="emoji-picker" data-slot="error" role="alert">
@@ -337,6 +339,7 @@ export function EmojiPickerContent({ className, ref, ...props }: EmojiPickerCont
         </div>
       ) : (
         <>
+          {children}
           <EmojiPickerPrimitive.Loading
             data-control-ui="emoji-picker"
             data-control-family="emoji-picker"
@@ -358,12 +361,17 @@ export function EmojiPickerContent({ className, ref, ...props }: EmojiPickerCont
             data-control-family="emoji-picker"
             data-slot="list"
             className="select-none"
+            ref={listRef}
             components={{ Row: EmojiPickerRow, Emoji: EmojiPickerEmoji, CategoryHeader: EmojiPickerCategoryHeader }}
           />
         </>
       )}
-    </EmojiPickerPrimitive.Viewport>
+    </ScrollArea>
   );
+}
+
+function renderEmojiViewport(viewportProps: ComponentProps<"div">) {
+  return <EmojiPickerPrimitive.Viewport {...viewportProps} />;
 }
 
 export type EmojiPickerFooterProps = Omit<ComponentProps<"div">, "style" | "children"> & EmojiPickerStyle & { placeholder?: string };

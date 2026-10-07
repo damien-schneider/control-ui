@@ -54,8 +54,9 @@ export function PrimitiveEmojiIconPickerExample() {
             <EmojiIconPickerEmoji onEmojiSelect={selectEmoji}>
               <EmojiPickerSearch />
               <EmojiPickerCategories />
-              <EmojiPickerRecent emojis={recentEmoji} />
-              <EmojiPickerContent />
+              <EmojiPickerContent>
+                <EmojiPickerRecent emojis={recentEmoji} />
+              </EmojiPickerContent>
             </EmojiIconPickerEmoji>
             <EmojiIconPickerIcons
               items={pickerIcons}

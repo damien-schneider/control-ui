@@ -1653,6 +1653,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="emoji-picker"][data-slot="root"])',
       },
       {
+        name: "--cui-emoji-picker-glyph-size",
+        syntax: "<length-percentage>",
+        defaultValue: "1.25rem",
+        selector: ':where([data-control-family="emoji-picker"][data-slot="root"])',
+      },
+      {
         name: "--cui-emoji-picker-header-background",
         syntax: "<color>",
         defaultValue: "var(--popover)",
@@ -2227,6 +2233,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-icon-picker-foreground",
         syntax: "<color>",
         defaultValue: "var(--foreground)",
+        selector: ':where([data-control-family="icon-picker"][data-slot="root"])',
+      },
+      {
+        name: "--cui-icon-picker-icon-size",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 4)",
         selector: ':where([data-control-family="icon-picker"][data-slot="root"])',
       },
     ],

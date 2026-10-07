@@ -226,7 +226,7 @@
       "registryItems": [
         "emoji-picker"
       ],
-      "knobs": 6,
+      "knobs": 7,
       "probes": 6
     },
     "empty": {
@@ -278,7 +278,7 @@
       "registryItems": [
         "icon-picker"
       ],
-      "knobs": 5,
+      "knobs": 6,
       "probes": 4
     },
     "infinite-canvas": {

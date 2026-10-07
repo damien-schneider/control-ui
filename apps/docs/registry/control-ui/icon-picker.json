@@ -9,7 +9,8 @@
   ],
   "registryDependencies": [
     "core",
-    "input"
+    "input",
+    "scroll-area"
   ],
   "files": [
     {

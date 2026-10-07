@@ -15154,6 +15154,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--radius-control)",
       },
       {
+        name: "--cui-emoji-picker-glyph-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "1.25rem",
+      },
+      {
         name: "--cui-emoji-picker-active-background",
         syntax: "<color>",
         initialValue: "transparent",
@@ -15693,6 +15699,12 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length-percentage>",
         initialValue: "0px",
         defaultValue: "var(--radius-control)",
+      },
+      {
+        name: "--cui-icon-picker-icon-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 4)",
       },
       {
         name: "--cui-icon-picker-foreground",

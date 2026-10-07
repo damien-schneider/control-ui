@@ -2,10 +2,12 @@
   :where([data-control-family="emoji-picker"][data-slot="root"]) {
     --cui-emoji-picker-cell-size: calc(var(--spacing) * 10);
     --cui-emoji-picker-cell-radius: var(--radius-control);
+    --cui-emoji-picker-glyph-size: 1.25rem;
     --cui-emoji-picker-active-background: var(--accent);
     --cui-emoji-picker-header-background: var(--popover);
     --cui-emoji-picker-header-foreground: var(--muted-foreground);
     --cui-emoji-picker-height: 22rem;
+    --_emoji-picker-recent-block-size: 0px;
   }
   :where([data-control-family="emoji-picker"][data-slot="root"]:not([data-variant="reactions"])) {
     inline-size: calc(var(--_emoji-picker-columns) * var(--cui-emoji-picker-cell-size) + var(--spacing) * 4);
@@ -30,6 +32,9 @@
     border-radius: var(--cui-emoji-picker-cell-radius);
     color: var(--muted-foreground);
     cursor: pointer;
+    transition:
+      color var(--duration-fast) var(--ease-standard),
+      background-color var(--duration-fast) var(--ease-standard);
   }
   :where([data-control-family="emoji-picker"][data-slot="category"]:hover) {
     color: var(--foreground);
@@ -39,17 +44,25 @@
     inline-size: calc(var(--spacing) * 4);
     block-size: calc(var(--spacing) * 4);
   }
-  :where([data-control-family="emoji-picker"][data-slot="recent"]) {
-    padding-inline: calc(var(--spacing) * 2);
-    padding-block: calc(var(--spacing) * 1);
-  }
   :where([data-control-family="emoji-picker"][data-slot="recent-label"]) {
-    color: var(--muted-foreground);
-    font-size: var(--text-caption);
-    padding-inline: calc(var(--spacing) * 1);
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 1;
+    box-sizing: border-box;
+    block-size: var(--frimousse-category-header-height, auto);
   }
   :where([data-control-family="emoji-picker"]:is([data-slot="recent-grid"], [data-variant="reactions"])) {
     display: flex;
+  }
+  :where([data-control-family="emoji-picker"][data-slot="recent-grid"]) {
+    block-size: var(--frimousse-row-height, auto);
+    padding-inline: calc(var(--spacing) * 1.5);
+  }
+  :where([data-control-family="emoji-picker"][data-slot="root"]:has([data-slot="recent"])) {
+    --_emoji-picker-recent-block-size: calc(var(--frimousse-category-header-height) + var(--frimousse-row-height));
+  }
+  :where([data-control-family="emoji-picker"][data-slot="root"]:has(input:not(:placeholder-shown))) {
+    --_emoji-picker-recent-block-size: 0px;
   }
   :where(
     [data-control-family="emoji-picker"][data-slot="root"]:has(input:not(:placeholder-shown))
@@ -104,12 +117,6 @@
     color: var(--muted-foreground);
   }
 
-  :where([data-control-family="emoji-picker"][data-slot="content"]) {
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    scrollbar-width: thin;
-  }
-
   :where([data-control-family="emoji-picker"][data-slot="loading"]),
   :where([data-control-family="emoji-picker"][data-slot="empty"]) {
     color: var(--muted-foreground);
@@ -120,7 +127,7 @@
     padding-block-end: calc(var(--spacing) * 1);
   }
 
-  :where([data-control-family="emoji-picker"][data-slot="category-header"]) {
+  :where([data-control-family="emoji-picker"]:is([data-slot="category-header"], [data-slot="recent-label"])) {
     padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2.5) calc(var(--spacing) * 1);
     background: var(--cui-emoji-picker-header-background);
     color: var(--cui-emoji-picker-header-foreground);
@@ -130,6 +137,7 @@
 
   :where([data-control-family="emoji-picker"][data-slot="row"]) {
     padding-inline: calc(var(--spacing) * 1.5);
+    scroll-margin-block: var(--spacing) calc(var(--spacing) + var(--_emoji-picker-recent-block-size));
   }
 
   :where([data-control-family="emoji-picker"][data-slot="emoji"]) {
@@ -137,12 +145,14 @@
     block-size: var(--cui-emoji-picker-cell-size);
     border-radius: var(--cui-emoji-picker-cell-radius);
     background: transparent;
-    font-size: 1.25rem;
+    font-size: var(--cui-emoji-picker-glyph-size);
     line-height: 1;
     cursor: default;
+    transition: background-color var(--duration-fast) var(--ease-standard);
   }
 
-  :where([data-control-family="emoji-picker"][data-slot="emoji"][data-active]) {
+  :where([data-control-family="emoji-picker"][data-slot="emoji"][data-active]),
+  :where([data-control-family="emoji-picker"][data-variant="reactions"] > [data-slot="emoji"]:hover) {
     background: var(--cui-emoji-picker-active-background);
   }
 
@@ -156,7 +166,7 @@
   }
 
   :where([data-control-family="emoji-picker"][data-slot="footer-emoji"]) {
-    font-size: 1.25rem;
+    font-size: var(--cui-emoji-picker-glyph-size);
     line-height: 1;
   }
 
@@ -191,6 +201,12 @@
 }
 
 @property --cui-emoji-picker-cell-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-emoji-picker-glyph-size {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;

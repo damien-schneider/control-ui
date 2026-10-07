@@ -37,8 +37,9 @@ export function PrimitiveEmojiPickerExample() {
           >
             <EmojiPickerSearch />
             <EmojiPickerCategories />
-            <EmojiPickerRecent emojis={recentEmoji} />
-            <EmojiPickerContent />
+            <EmojiPickerContent>
+              <EmojiPickerRecent emojis={recentEmoji} />
+            </EmojiPickerContent>
             <EmojiPickerFooter />
           </EmojiPicker>
         </PopoverContent>

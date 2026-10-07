@@ -19,6 +19,12 @@
       "defaultValue": "var(--radius-control)"
     },
     {
+      "name": "--cui-icon-picker-icon-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 4)"
+    },
+    {
       "name": "--cui-icon-picker-foreground",
       "syntax": "<color>",
       "initialValue": "transparent",

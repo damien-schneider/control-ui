@@ -159,8 +159,7 @@ export const formsCompositions = {
         "EmojiPicker",
         part("EmojiPickerSearch"),
         part("EmojiPickerCategories"),
-        part("EmojiPickerRecent"),
-        part("EmojiPickerContent"),
+        part("EmojiPickerContent", part("EmojiPickerRecent")),
         part("EmojiPickerFooter"),
       ),
     ),
@@ -211,7 +210,7 @@ export const formsCompositions = {
     ),
     example(
       "Inline color wheel",
-      part("ColorPicker", part("ColorPickerPanel", part("ColorPickerWheel"), part("ColorPickerAlpha"), part("ColorPickerInput"))),
+      part("ColorPicker", part("ColorPickerPanel", part("ColorPickerWheel"), part("ColorPickerBrightness"), part("ColorPickerInput"))),
     ),
     example(
       "Inline strips",
