@@ -1,6 +1,7 @@
 "use client";
 
 import { BADGE_COLORS, Badge } from "@/components/control-ui/ui/badge";
+import { CHART_COLORS } from "@/components/control-ui/ui/chart-colors";
 import { Text } from "@/components/control-ui/ui/typography";
 import { COLOR_RAMPS, RAMP_STEP_COUNT } from "@/src/registry/lib/theme-contract";
 import { contractDescription, contractTokensNamed, Specimen, SpecimenGroup, TokenValueList } from "./specimen/specimen";
@@ -170,6 +171,15 @@ export function ColorFoundations() {
                   {color}
                 </Badge>
               </div>
+            </Specimen>
+          ))}
+        </div>
+      </SpecimenGroup>
+      <SpecimenGroup title="Chart colors">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {CHART_COLORS.map((color) => (
+            <Specimen key={color} token={`--chart-${color}`}>
+              <span className="block h-6 rounded-sm" style={{ background: `var(--chart-${color})` }} />
             </Specimen>
           ))}
         </div>

@@ -200,6 +200,11 @@ const flowRecipeFile = sourceFile(
   "src/registry/sources/control-ui/recipes/flow.css",
   "recipe-css",
 );
+const chartRecipeFile = sourceFile(
+  "Chart recipe — paint, motion + @property knobs",
+  "src/registry/sources/control-ui/recipes/chart.css",
+  "recipe-css",
+);
 const resizeHandleRecipeFile = sourceFile(
   "Resize handle recipe — paint + @property knobs",
   "src/registry/sources/control-ui/recipes/resize-handle.css",
@@ -1797,6 +1802,130 @@ export const primitiveEntries = [
     ),
   },
   {
+    id: "chart",
+    category: "display",
+    kind: "Primitive",
+    name: "Chart",
+    summary: "Gradient-first charts on TanStack Charts: themed host, presets that return real definitions, and the full grammar.",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/chart.tsx",
+        example: sourceFile("Chart preview", "src/registry/examples/control-ui/primitives/chart.tsx", "example"),
+        source: sourceFile("Chart host parts", "src/registry/sources/control-ui/ui/chart.tsx", "component"),
+        supportFiles: [
+          sourceFile("Palette", "src/registry/sources/control-ui/ui/chart-colors.ts", "colors"),
+          sourceFile("Curves", "src/registry/sources/control-ui/ui/chart-curves.ts", "curves"),
+          sourceFile("Series model", "src/registry/sources/control-ui/ui/chart-series.ts", "series"),
+          sourceFile("Building blocks", "src/registry/sources/control-ui/ui/chart-marks.ts", "marks"),
+          sourceFile("Cartesian presets", "src/registry/sources/control-ui/ui/chart-cartesian.ts", "cartesian"),
+          sourceFile("Polar presets", "src/registry/sources/control-ui/ui/chart-polar.ts", "polar"),
+          chartRecipeFile,
+        ],
+        registryKind: "chart",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/chart").then((mod) => ({ default: mod.PrimitiveChartExample })),
+    ),
+    previewClassName: "min-h-[480px]",
+    additionalPreviews: [
+      {
+        id: "line",
+        title: "Line",
+        description: "Smooth lines with dots for comparing a few series over time; the crosshair groups every series at the hovered month.",
+        source: sourceFile("Line chart", "src/registry/examples/control-ui/primitives/chart-cartesian.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/chart-cartesian").then((mod) => ({ default: mod.ChartLineExample })),
+        ),
+      },
+      {
+        id: "bar",
+        title: "Bar",
+        description: "Grouped vertical bars compare categories side by side; negative values hang below the zero line.",
+        source: sourceFile("Bar chart", "src/registry/examples/control-ui/primitives/chart-cartesian.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/chart-cartesian").then((mod) => ({ default: mod.ChartBarExample })),
+        ),
+      },
+      {
+        id: "bar-horizontal",
+        title: "Horizontal stacked bar",
+        description: "Horizontal bars fit long category names. Switch between absolute stacks and a percent share of each row.",
+        source: sourceFile("Horizontal bar chart", "src/registry/examples/control-ui/primitives/chart-cartesian.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/chart-cartesian").then((mod) => ({
+            default: mod.ChartBarHorizontalExample,
+          })),
+        ),
+      },
+      {
+        id: "scatter",
+        title: "Scatter",
+        description: "Correlation between two measures, with bubble size for a third and color for the group.",
+        source: sourceFile("Scatter chart", "src/registry/examples/control-ui/primitives/chart-cartesian.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/chart-cartesian").then((mod) => ({ default: mod.ChartScatterExample })),
+        ),
+      },
+      {
+        id: "donut",
+        title: "Donut",
+        description: "Share of a total, with the total itself in ChartCenter. A hatched slice marks the catch-all bucket.",
+        source: sourceFile("Donut chart", "src/registry/examples/control-ui/primitives/chart-polar.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/chart-polar").then((mod) => ({ default: mod.ChartDonutExample })),
+        ),
+      },
+      {
+        id: "radial-bar",
+        title: "Radial bar",
+        description: "Progress rings toward a shared goal; the hatched track shows what remains.",
+        source: sourceFile("Radial bar chart", "src/registry/examples/control-ui/primitives/chart-polar.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/chart-polar").then((mod) => ({ default: mod.ChartRadialBarExample })),
+        ),
+      },
+      {
+        id: "sparkline",
+        title: "Sparkline",
+        description: "Axis-free trend lines sized for KPI cards; they skip focus and tooltips so the card stays one tab stop.",
+        source: sourceFile("Sparkline KPI cards", "src/registry/examples/control-ui/primitives/chart-showcase.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/chart-showcase").then((mod) => ({ default: mod.ChartSparklineExample })),
+        ),
+      },
+      {
+        id: "hatched",
+        title: "Actual vs. forecast",
+        description:
+          "Hatching separates projected from measured values: a dashed hatched forecast area, and a hatched planned series in bars.",
+        source: sourceFile("Hatched forecast", "src/registry/examples/control-ui/primitives/chart-showcase.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/chart-showcase").then((mod) => ({ default: mod.ChartHatchedExample })),
+        ),
+      },
+      {
+        id: "interactive-legend",
+        title: "Interactive legend",
+        description: "Legend toggles hide series. Colors resolve from the full series list, so the remaining series keep their hue.",
+        source: sourceFile("Interactive legend", "src/registry/examples/control-ui/primitives/chart-showcase.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/chart-showcase").then((mod) => ({ default: mod.ChartLegendExample })),
+        ),
+      },
+      {
+        id: "states",
+        title: "Loading and empty",
+        description:
+          "Compose Skeleton while data loads and Empty when it arrives with no rows; presets accept an empty array without throwing.",
+        source: sourceFile("Loading and empty states", "src/registry/examples/control-ui/primitives/chart-showcase.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/chart-showcase").then((mod) => ({ default: mod.ChartStatesExample })),
+        ),
+      },
+    ],
+  },
+  {
     id: "tree",
     category: "display",
     kind: "Primitive",
@@ -2265,7 +2394,7 @@ export const primitiveEntries = [
         id: "hover-handle",
         title: "Hover handle",
         description:
-          'variant="hover" leaves the track transparent until the separator is hovered, focused, or dragged, then fades in a gradient line from --cui-resizable-handle-color to alpha 0.',
+          'variant="hover" leaves the track transparent until the separator is hovered, focused, or dragged, then fades in a gradient line from --cui-resizable-handle-hover-background (--cui-resizable-handle-active-background while dragging) to transparent.',
         previewClassName: "min-h-[320px]",
         source: sourceFile("Hover handle example", "src/registry/examples/control-ui/primitives/resizable-hover-handle.tsx", "example"),
         preview: preview(() =>

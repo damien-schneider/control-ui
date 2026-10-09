@@ -71,6 +71,7 @@ Install a peer only when you import the component that needs it.
 | Component | Peer |
 | --- | --- |
 | `ui/calendar` | `react-day-picker` |
+| `ui/chart` | `@tanstack/charts` |
 | `ui/code`, `ui/code-diff` | `@tanstack/react-virtual`, `diff`, `shiki` |
 | `ui/command` | `cmdk` |
 | `ui/flow` | `@xyflow/react` |

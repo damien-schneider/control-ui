@@ -128,6 +128,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Live status](http://127.0.0.1:3000/primitives/live-status): Always-mounted polite status region that announces changes to assistive technology.
 - [Spinner](http://127.0.0.1:3000/primitives/spinner): Accessible loading indicator for pending buttons, panels, and inline waits.
 - [Meter](http://127.0.0.1:3000/primitives/meter): Static range meter for quota, storage, score, or usage values.
+- [Chart](http://127.0.0.1:3000/primitives/chart): Gradient-first charts on TanStack Charts: themed host, presets that return real definitions, and the full grammar.
 - [Tree](http://127.0.0.1:3000/primitives/tree): Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure.
 - [Checkbox Group](http://127.0.0.1:3000/primitives/checkbox-group): Multi-select checkbox set with shared state and select-all support.
 - [Autocomplete](http://127.0.0.1:3000/primitives/autocomplete): Free-text input with search-as-you-type suggestions.

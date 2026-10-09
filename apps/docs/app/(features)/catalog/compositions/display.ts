@@ -191,6 +191,10 @@ export const displayCompositions = {
   ],
   spinner: [example("Pending indicator", part("Spinner"))],
   meter: [example("Anatomy", part("Meter", part("MeterLabel"), part("MeterValue"), part("MeterTrack", part("MeterIndicator"))))],
+  chart: [
+    example("Card chart", part("Chart", part("ChartPlot", part("ChartTooltipBody")), part("ChartLegend", part("ChartLegendItem")))),
+    example("Donut with total", part("Chart", part("ChartPlot", part("ChartCenter")), part("ChartLegend", part("ChartLegendItem")))),
+  ],
   tree: [
     example(
       "Branching tree",

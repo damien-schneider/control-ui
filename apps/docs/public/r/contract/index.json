@@ -123,6 +123,13 @@
       "knobs": 6,
       "probes": 4
     },
+    "chart": {
+      "registryItems": [
+        "chart"
+      ],
+      "knobs": 19,
+      "probes": 1
+    },
     "chat-composer": {
       "registryItems": [
         "chat-composer"

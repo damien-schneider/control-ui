@@ -488,6 +488,54 @@
       "description": "Hover background of filled pink-family badge links and buttons."
     },
     {
+      "name": "--chart-blue",
+      "group": "color",
+      "tier": "derived",
+      "description": "Chart series color for the blue hue; area, line, bar, arc, and legend paint read it."
+    },
+    {
+      "name": "--chart-purple",
+      "group": "color",
+      "tier": "derived",
+      "description": "Chart series color for the purple hue; area, line, bar, arc, and legend paint read it."
+    },
+    {
+      "name": "--chart-pink",
+      "group": "color",
+      "tier": "derived",
+      "description": "Chart series color for the pink hue; area, line, bar, arc, and legend paint read it."
+    },
+    {
+      "name": "--chart-orange",
+      "group": "color",
+      "tier": "derived",
+      "description": "Chart series color for the orange hue; area, line, bar, arc, and legend paint read it."
+    },
+    {
+      "name": "--chart-green",
+      "group": "color",
+      "tier": "derived",
+      "description": "Chart series color for the green hue; area, line, bar, arc, and legend paint read it."
+    },
+    {
+      "name": "--chart-yellow",
+      "group": "color",
+      "tier": "derived",
+      "description": "Chart series color for the yellow hue; area, line, bar, arc, and legend paint read it."
+    },
+    {
+      "name": "--chart-red",
+      "group": "color",
+      "tier": "derived",
+      "description": "Chart series color for the red hue; area, line, bar, arc, and legend paint read it."
+    },
+    {
+      "name": "--chart-neutral",
+      "group": "color",
+      "tier": "derived",
+      "description": "Chart series color for the neutral hue; area, line, bar, arc, and legend paint read it."
+    },
+    {
       "name": "--sidebar",
       "group": "color",
       "tier": "derived",

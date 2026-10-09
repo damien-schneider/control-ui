@@ -19,6 +19,7 @@ import type { AvatarBadgeStatus } from "../../src/registry/sources/control-ui/ui
 import type { BadgeColor, BadgeSize, BadgeVariant } from "../../src/registry/sources/control-ui/ui/badge";
 import type { ButtonLayout, ButtonShape, ButtonTone, ButtonVariant } from "../../src/registry/sources/control-ui/ui/button";
 import type { CardVariant } from "../../src/registry/sources/control-ui/ui/card";
+import type { ChartFill } from "../../src/registry/sources/control-ui/ui/chart-series";
 import type { CodeChrome, CodeDensity } from "../../src/registry/sources/control-ui/ui/code";
 import type { DiffIndicators, DiffStyle } from "../../src/registry/sources/control-ui/ui/code-diff";
 import type { CommandChrome } from "../../src/registry/sources/control-ui/ui/command";
@@ -169,6 +170,8 @@ export type EmittedStateContract = {
   "infinite-canvas:content:data-scale": number;
   "flow:node:data-selected": true;
   "flow:edge:data-dashed": true;
+  "chart:legend-item:data-fill": ChartFill;
+  "chart:legend-item:data-hidden": true;
   "resize-handle:root:data-direction": ResizeHandleDirection;
   "calendar:day:data-today": true;
   "calendar:day:data-selected-single": true;

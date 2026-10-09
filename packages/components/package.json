@@ -35,6 +35,7 @@
   },
   "peerDependencies": {
     "@base-ui/react": "^1.8.0",
+    "@tanstack/charts": "^1.1.0",
     "@tanstack/react-virtual": "^3.14.13",
     "@tiptap/core": "3.31.4",
     "@tiptap/extension-image": "3.31.4",
@@ -71,6 +72,9 @@
     "zod": "^4.6.5"
   },
   "peerDependenciesMeta": {
+    "@tanstack/charts": {
+      "optional": true
+    },
     "@tanstack/react-virtual": {
       "optional": true
     },

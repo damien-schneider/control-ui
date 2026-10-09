@@ -1,0 +1,258 @@
+{
+  "version": 1,
+  "family": "chart",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "chart"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-chart-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-chart-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card)"
+    },
+    {
+      "name": "--cui-chart-line-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "2px"
+    },
+    {
+      "name": "--cui-chart-area-opacity",
+      "syntax": "<number>",
+      "initialValue": "1",
+      "defaultValue": "1"
+    },
+    {
+      "name": "--cui-chart-hatch-opacity",
+      "syntax": "<number>",
+      "initialValue": "1",
+      "defaultValue": "0.6"
+    },
+    {
+      "name": "--cui-chart-hatch-tint-opacity",
+      "syntax": "<number>",
+      "initialValue": "1",
+      "defaultValue": "0.12"
+    },
+    {
+      "name": "--cui-chart-tooltip-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--popover)"
+    },
+    {
+      "name": "--cui-chart-tooltip-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--popover-foreground)"
+    },
+    {
+      "name": "--cui-chart-tooltip-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-chart-tooltip-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--control-rim-width)"
+    },
+    {
+      "name": "--cui-chart-tooltip-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-md)"
+    },
+    {
+      "name": "--cui-chart-tooltip-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-md)"
+    },
+    {
+      "name": "--cui-chart-tooltip-padding",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 2.5)"
+    },
+    {
+      "name": "--cui-chart-legend-gap",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 4)"
+    },
+    {
+      "name": "--cui-chart-swatch-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 2.5)"
+    },
+    {
+      "name": "--cui-chart-swatch-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--radius-sm) * 0.5)"
+    },
+    {
+      "name": "--cui-chart-animation-duration",
+      "syntax": "<time>",
+      "initialValue": "0s",
+      "defaultValue": "calc(var(--duration-slow) * 2)"
+    },
+    {
+      "name": "--cui-chart-transition-duration",
+      "syntax": "<time>",
+      "initialValue": "0s",
+      "defaultValue": "var(--duration-slow)"
+    },
+    {
+      "name": "--cui-chart-easing",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--ease-emphasized)"
+    }
+  ],
+  "parts": {
+    "chart": {
+      "root": {
+        "family": "chart",
+        "registryItems": [
+          "chart"
+        ],
+        "states": []
+      },
+      "center": {
+        "family": "chart",
+        "registryItems": [
+          "chart"
+        ],
+        "states": []
+      },
+      "hatch-stripe": {
+        "family": "chart",
+        "registryItems": [
+          "chart"
+        ],
+        "states": []
+      },
+      "hatch-tint": {
+        "family": "chart",
+        "registryItems": [
+          "chart"
+        ],
+        "states": []
+      },
+      "legend": {
+        "family": "chart",
+        "registryItems": [
+          "chart"
+        ],
+        "states": []
+      },
+      "legend-item": {
+        "family": "chart",
+        "registryItems": [
+          "chart"
+        ],
+        "states": [
+          {
+            "attribute": "data-fill",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "gradient",
+              "hatched",
+              "solid"
+            ]
+          },
+          {
+            "attribute": "data-hidden",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "legend-toggle": {
+        "family": "chart",
+        "registryItems": [
+          "chart"
+        ],
+        "states": []
+      },
+      "patterns": {
+        "family": "chart",
+        "registryItems": [
+          "chart"
+        ],
+        "states": []
+      },
+      "plot": {
+        "family": "chart",
+        "registryItems": [
+          "chart"
+        ],
+        "states": [
+          {
+            "attribute": "data-focus-ring",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "within"
+            ]
+          }
+        ]
+      },
+      "swatch": {
+        "family": "chart",
+        "registryItems": [
+          "chart"
+        ],
+        "states": []
+      },
+      "tooltip": {
+        "family": "chart",
+        "registryItems": [
+          "chart"
+        ],
+        "states": []
+      },
+      "tooltip-row": {
+        "family": "chart",
+        "registryItems": [
+          "chart"
+        ],
+        "states": [
+          {
+            "attribute": "data-active",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "tooltip-title": {
+        "family": "chart",
+        "registryItems": [
+          "chart"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-chart-tooltip-background",
+    "--cui-chart-tooltip-foreground"
+  ],
+  "contrast": "/r/contract/chart.contrast.json"
+}

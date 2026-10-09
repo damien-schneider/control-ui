@@ -81920,6 +81920,67 @@
       "rendersText": true,
       "state": false,
       "route": "/components/transcript-divider"
+    },
+    {
+      "knobs": {
+        "text": "--cui-chart-foreground"
+      },
+      "anatomy": [
+        {
+          "attributes": {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper"
+          }
+        },
+        {
+          "attributes": {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            "tabindex": "-1"
+          }
+        },
+        {
+          "attributes": {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose"
+          }
+        },
+        {
+          "attributes": {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel"
+          }
+        },
+        {
+          "attributes": {
+            "data-control-family": "card",
+            "data-control-ui": "card",
+            "data-slot": "root",
+            "data-surface": "panel",
+            "data-variant": "default"
+          }
+        },
+        {
+          "attributes": {
+            "data-control-family": "chart",
+            "data-control-ui": "chart",
+            "data-slot": "root"
+          }
+        }
+      ],
+      "recipe": "chart",
+      "rendersText": true,
+      "state": false,
+      "route": "/primitives/chart"
     }
   ],
   "uncovered": [
@@ -81932,6 +81993,8 @@
     "--cui-calendar-range-background",
     "--cui-calendar-selected-background",
     "--cui-calendar-selected-foreground",
+    "--cui-chart-tooltip-background",
+    "--cui-chart-tooltip-foreground",
     "--cui-chat-composer-attachment-progress-background",
     "--cui-chat-composer-attachment-progress-foreground",
     "--cui-chat-composer-input-placeholder-foreground",

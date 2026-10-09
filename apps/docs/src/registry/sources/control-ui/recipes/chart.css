@@ -1,0 +1,378 @@
+@layer components {
+  :where([data-control-family="chart"][data-slot="root"]) {
+    --cui-chart-foreground: var(--muted-foreground);
+    --cui-chart-background: var(--card);
+    --cui-chart-line-size: 2px;
+    --cui-chart-area-opacity: 1;
+    --cui-chart-hatch-opacity: 0.6;
+    --cui-chart-hatch-tint-opacity: 0.12;
+    --cui-chart-tooltip-background: var(--popover);
+    --cui-chart-tooltip-foreground: var(--popover-foreground);
+    --cui-chart-tooltip-border-color: var(--border);
+    --cui-chart-tooltip-border-width: var(--control-rim-width);
+    --cui-chart-tooltip-radius: var(--radius-md);
+    --cui-chart-tooltip-shadow: var(--shadow-md);
+    --cui-chart-tooltip-padding: calc(var(--spacing) * 2.5);
+    --cui-chart-legend-gap: calc(var(--spacing) * 4);
+    --cui-chart-swatch-size: calc(var(--spacing) * 2.5);
+    --cui-chart-swatch-radius: calc(var(--radius-sm) * 0.5);
+    --cui-chart-animation-duration: calc(var(--duration-slow) * 2);
+    --cui-chart-transition-duration: var(--duration-slow);
+    --cui-chart-easing: var(--ease-emphasized);
+    --ts-chart-1: var(--chart-blue);
+    --ts-chart-2: var(--chart-purple);
+    --ts-chart-3: var(--chart-pink);
+    --ts-chart-4: var(--chart-orange);
+    --ts-chart-5: var(--chart-green);
+    --ts-chart-6: var(--chart-yellow);
+    --ts-chart-tooltip-background: transparent;
+    --ts-chart-tooltip-color: var(--cui-chart-tooltip-foreground);
+    --ts-chart-tooltip-border: none;
+    --ts-chart-tooltip-border-radius: var(--cui-chart-tooltip-radius);
+    --ts-chart-tooltip-shadow: none;
+    --ts-chart-tooltip-padding: 0;
+    --ts-chart-tooltip-font: var(--text-label) / 1.4 var(--font-body);
+    --ts-chart-focus-fill: var(--cui-chart-background);
+    --ts-chart-crosshair-label-halo: var(--cui-chart-background);
+    --ts-chart-crosshair-marker-fill: var(--cui-chart-background);
+    display: grid;
+    gap: calc(var(--spacing) * 3);
+    min-inline-size: 0;
+    color: var(--cui-chart-foreground);
+    font-family: var(--font-body);
+    font-variant-numeric: tabular-nums;
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"]) {
+    position: relative;
+    min-inline-size: 0;
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"] .cui-chart-line path) {
+    stroke-width: var(--cui-chart-line-size);
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"] .cui-chart-area path) {
+    fill-opacity: var(--cui-chart-area-opacity);
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"] .cui-chart-area-hatched path) {
+    mask: var(--_cui-chart-fade);
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"] [data-slot="hatch-stripe"]) {
+    fill-opacity: var(--cui-chart-hatch-opacity);
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"] [data-slot="hatch-tint"]) {
+    fill-opacity: var(--cui-chart-hatch-tint-opacity);
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"] :is(path, circle)) {
+    transition:
+      d var(--cui-chart-transition-duration) var(--cui-chart-easing),
+      cx var(--cui-chart-transition-duration) var(--cui-chart-easing),
+      cy var(--cui-chart-transition-duration) var(--cui-chart-easing),
+      r var(--cui-chart-transition-duration) var(--cui-chart-easing),
+      opacity var(--duration-fast) var(--ease-standard),
+      fill-opacity var(--duration-fast) var(--ease-standard);
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"][data-resizing] :is(path, circle)) {
+    transition: none;
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"] :is(.cui-chart-area, .cui-chart-line) path) {
+    animation: cui-chart-reveal var(--cui-chart-animation-duration) var(--cui-chart-easing) backwards;
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"] .cui-chart-bar-y path) {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: cui-chart-grow-y var(--cui-chart-animation-duration) var(--cui-chart-easing) backwards;
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"] .cui-chart-bar-x path) {
+    transform-box: fill-box;
+    transform-origin: 0% 50%;
+    animation: cui-chart-grow-x var(--cui-chart-animation-duration) var(--cui-chart-easing) backwards;
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"] .cui-chart-bar-y .cui-chart-bar-negative) {
+    transform-origin: 50% 0%;
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"] .cui-chart-bar-x .cui-chart-bar-negative) {
+    transform-origin: 100% 50%;
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"] .cui-chart-dot circle) {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: cui-chart-pop var(--cui-chart-animation-duration) var(--cui-chart-easing) backwards;
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"] .cui-chart-arc) {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: cui-chart-sweep var(--cui-chart-animation-duration) var(--cui-chart-easing) backwards;
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"] .cui-chart-radial-bar) {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: cui-chart-pop var(--cui-chart-animation-duration) var(--cui-chart-easing) backwards;
+  }
+
+  @supports (animation-delay: calc(sibling-index() * 1s)) {
+    :where([data-control-family="chart"][data-slot="plot"] :is(.cui-chart-bar-y, .cui-chart-bar-x) path) {
+      animation-delay: calc(min(sibling-index() - 1, 12) * var(--cui-chart-animation-duration) / 24);
+    }
+
+    :where([data-control-family="chart"][data-slot="plot"] .cui-chart-dot circle) {
+      animation-delay: calc(min(sibling-index() - 1, 12) * var(--cui-chart-animation-duration) / 24);
+    }
+  }
+
+  :where([data-control-family="chart"][data-slot="legend"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: calc(var(--spacing) * 1.5) var(--cui-chart-legend-gap);
+  }
+
+  :where([data-control-family="chart"] [data-slot="swatch"]) {
+    flex: none;
+    inline-size: var(--cui-chart-swatch-size);
+    block-size: var(--cui-chart-swatch-size);
+    border-radius: var(--cui-chart-swatch-radius);
+    background: var(--_cui-chart-swatch);
+  }
+
+  :where([data-control-family="chart"][data-slot="legend-item"][data-fill="gradient"] [data-slot="swatch"]) {
+    background: linear-gradient(to bottom, var(--_cui-chart-swatch), oklch(from var(--_cui-chart-swatch) l c h / 0.35));
+  }
+
+  :where([data-control-family="chart"][data-slot="legend-item"][data-fill="hatched"] [data-slot="swatch"]) {
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--_cui-chart-swatch) 0 1.5px,
+      oklch(from var(--_cui-chart-swatch) l c h / 0.15) 1.5px 3.5px
+    );
+    box-shadow: inset 0 0 0 1px var(--_cui-chart-swatch);
+  }
+
+  :where([data-control-family="chart"][data-slot="legend-item"][data-hidden="true"]) {
+    opacity: 0.45;
+  }
+
+  :where([data-control-family="chart"][data-slot="legend-item"][data-hidden="true"] [data-slot="swatch"]) {
+    background: transparent;
+    box-shadow: inset 0 0 0 1px var(--_cui-chart-swatch);
+  }
+
+  :where([data-control-family="chart"][data-slot="legend-toggle"]) {
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 1.5);
+    min-block-size: var(--target-min);
+    border-radius: var(--radius-sm);
+    transition: opacity var(--duration-fast) var(--ease-standard);
+  }
+
+  :where([data-control-family="chart"][data-slot="tooltip"]) {
+    padding: var(--cui-chart-tooltip-padding);
+    border: var(--cui-chart-tooltip-border-width) solid var(--cui-chart-tooltip-border-color);
+    border-radius: var(--cui-chart-tooltip-radius);
+    background: var(--cui-chart-tooltip-background);
+    color: var(--cui-chart-tooltip-foreground);
+    box-shadow: var(--cui-chart-tooltip-shadow);
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"] .ts-chart) {
+    outline: none;
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"] .ts-chart-tooltip) {
+    transition:
+      left var(--duration-base) var(--cui-chart-easing),
+      top var(--duration-base) var(--cui-chart-easing),
+      opacity var(--duration-fast) var(--ease-standard),
+      scale var(--duration-fast) var(--ease-standard),
+      display var(--duration-fast) allow-discrete;
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"][data-tooltip-entering] .ts-chart-tooltip) {
+    transition:
+      opacity var(--duration-fast) var(--ease-standard),
+      scale var(--duration-fast) var(--ease-standard),
+      display var(--duration-fast) allow-discrete;
+  }
+
+  :where([data-control-family="chart"][data-slot="plot"] .ts-chart-tooltip[hidden]) {
+    opacity: 0;
+    scale: 0.96;
+  }
+
+  @starting-style {
+    :where([data-control-family="chart"][data-slot="plot"] .ts-chart-tooltip) {
+      opacity: 0;
+      scale: 0.96;
+    }
+  }
+
+  @keyframes cui-chart-reveal {
+    from {
+      clip-path: inset(-8px 100% -8px -8px);
+    }
+    to {
+      clip-path: inset(-8px);
+    }
+  }
+
+  @keyframes cui-chart-grow-y {
+    from {
+      scale: 1 0;
+    }
+  }
+
+  @keyframes cui-chart-grow-x {
+    from {
+      scale: 0 1;
+    }
+  }
+
+  @keyframes cui-chart-pop {
+    from {
+      scale: 0.6;
+      opacity: 0;
+    }
+  }
+
+  @keyframes cui-chart-sweep {
+    from {
+      scale: 0.85;
+      rotate: -25deg;
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-control-family="chart"] *) {
+      animation: none;
+      transition: none;
+    }
+  }
+}
+
+@property --cui-chart-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-chart-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-chart-line-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-chart-area-opacity {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --cui-chart-hatch-opacity {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --cui-chart-hatch-tint-opacity {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --cui-chart-tooltip-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-chart-tooltip-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-chart-tooltip-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-chart-tooltip-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-chart-tooltip-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-chart-tooltip-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-chart-tooltip-padding {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-chart-legend-gap {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-chart-swatch-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-chart-swatch-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-chart-animation-duration {
+  syntax: "<time>";
+  inherits: true;
+  initial-value: 0s;
+}
+
+@property --cui-chart-transition-duration {
+  syntax: "<time>";
+  inherits: true;
+  initial-value: 0s;
+}
+
+@property --cui-chart-easing {
+  syntax: "*";
+  inherits: true;
+}

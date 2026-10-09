@@ -1,4 +1,5 @@
 import { BADGE_COLORS } from "@/components/control-ui/ui/badge";
+import { CHART_COLORS } from "@/components/control-ui/ui/chart-colors";
 import { anatomyPairs } from "./anatomy-pairs";
 
 export type ThemeAuditSeverity = "error" | "warning";
@@ -545,6 +546,11 @@ export const THEME_AUDIT_PAIRS: readonly ThemeAuditPair[] = [
   ...badgeOutlinePairs,
   boundaryPair("border-on-background", "Border on background", "--border", "--background"),
   boundaryPair("border-on-card", "Border on card", "--border", "--card"),
+  ...CHART_COLORS.flatMap((color) =>
+    ["background", "card"].map((surface) =>
+      boundaryPair(`chart-${color}-on-${surface}`, `Chart ${color} on ${surface}`, `--chart-${color}`, `--${surface}`),
+    ),
+  ),
   {
     ...boundaryPair("sidebar-border-on-sidebar", "Sidebar border on sidebar", "--sidebar-border", "--sidebar"),
     underlays: ["--background"],

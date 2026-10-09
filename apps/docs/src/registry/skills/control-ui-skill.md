@@ -131,6 +131,14 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --badge-pink-foreground [light+dark] Text color on the pink-family badge.
 - --badge-pink-border [light+dark] Border of the outline pink-family badge variant.
 - --badge-pink-hover [light+dark] Hover background of filled pink-family badge links and buttons.
+- --chart-blue [light+dark] Chart series color for the blue hue; area, line, bar, arc, and legend paint read it.
+- --chart-purple [light+dark] Chart series color for the purple hue; area, line, bar, arc, and legend paint read it.
+- --chart-pink [light+dark] Chart series color for the pink hue; area, line, bar, arc, and legend paint read it.
+- --chart-orange [light+dark] Chart series color for the orange hue; area, line, bar, arc, and legend paint read it.
+- --chart-green [light+dark] Chart series color for the green hue; area, line, bar, arc, and legend paint read it.
+- --chart-yellow [light+dark] Chart series color for the yellow hue; area, line, bar, arc, and legend paint read it.
+- --chart-red [light+dark] Chart series color for the red hue; area, line, bar, arc, and legend paint read it.
+- --chart-neutral [light+dark] Chart series color for the neutral hue; area, line, bar, arc, and legend paint read it.
 - --sidebar [light+dark] Sidebar surface; defaults to --canvas.
 - --sidebar-foreground [light+dark] Text on the sidebar surface; defaults to --foreground.
 - --sidebar-primary [light+dark] Accent of the active sidebar item; defaults to --primary.

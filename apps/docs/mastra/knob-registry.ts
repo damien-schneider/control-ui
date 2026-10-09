@@ -713,6 +713,125 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     ],
   },
   {
+    id: "chart",
+    knobs: [
+      {
+        name: "--cui-chart-animation-duration",
+        syntax: "<time>",
+        defaultValue: "calc(var(--duration-slow) * 2)",
+        selector: ':where([data-control-family="chart"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chart-area-opacity",
+        syntax: "<number>",
+        defaultValue: "1",
+        selector: ':where([data-control-family="chart"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chart-background",
+        syntax: "<color>",
+        defaultValue: "var(--card)",
+        selector: ':where([data-control-family="chart"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chart-easing",
+        syntax: "*",
+        defaultValue: "var(--ease-emphasized)",
+        selector: ':where([data-control-family="chart"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chart-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--muted-foreground)",
+        selector: ':where([data-control-family="chart"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chart-hatch-opacity",
+        syntax: "<number>",
+        defaultValue: "0.6",
+        selector: ':where([data-control-family="chart"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chart-hatch-tint-opacity",
+        syntax: "<number>",
+        defaultValue: "0.12",
+        selector: ':where([data-control-family="chart"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chart-legend-gap",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 4)",
+        selector: ':where([data-control-family="chart"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chart-line-size",
+        syntax: "<length-percentage>",
+        defaultValue: "2px",
+        selector: ':where([data-control-family="chart"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chart-swatch-radius",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--radius-sm) * 0.5)",
+        selector: ':where([data-control-family="chart"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chart-swatch-size",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 2.5)",
+        selector: ':where([data-control-family="chart"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chart-tooltip-background",
+        syntax: "<color>",
+        defaultValue: "var(--popover)",
+        selector: ':where([data-control-family="chart"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chart-tooltip-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--border)",
+        selector: ':where([data-control-family="chart"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chart-tooltip-border-width",
+        syntax: "<length>",
+        defaultValue: "var(--control-rim-width)",
+        selector: ':where([data-control-family="chart"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chart-tooltip-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--popover-foreground)",
+        selector: ':where([data-control-family="chart"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chart-tooltip-padding",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 2.5)",
+        selector: ':where([data-control-family="chart"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chart-tooltip-radius",
+        syntax: "<length-percentage>",
+        defaultValue: "var(--radius-md)",
+        selector: ':where([data-control-family="chart"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chart-tooltip-shadow",
+        syntax: "*",
+        defaultValue: "var(--shadow-md)",
+        selector: ':where([data-control-family="chart"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chart-transition-duration",
+        syntax: "<time>",
+        defaultValue: "var(--duration-slow)",
+        selector: ':where([data-control-family="chart"][data-slot="root"])',
+      },
+    ],
+  },
+  {
     id: "chat-composer",
     knobs: [
       {

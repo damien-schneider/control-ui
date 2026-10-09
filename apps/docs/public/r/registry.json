@@ -222,6 +222,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
         "http://127.0.0.1:3000/r/chat-composer-attachment.json",
@@ -346,6 +347,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
         "http://127.0.0.1:3000/r/chat-composer-attachment.json",
@@ -477,6 +479,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
         "http://127.0.0.1:3000/r/chat-composer-attachment.json",
@@ -608,6 +611,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
         "http://127.0.0.1:3000/r/chat-composer-attachment.json",
@@ -739,6 +743,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
         "http://127.0.0.1:3000/r/chat-composer-attachment.json",
@@ -870,6 +875,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
         "http://127.0.0.1:3000/r/chat-composer-attachment.json",
@@ -1001,6 +1007,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
         "http://127.0.0.1:3000/r/chat-composer-attachment.json",
@@ -1132,6 +1139,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
         "http://127.0.0.1:3000/r/chat-composer-attachment.json",
@@ -1263,6 +1271,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
         "http://127.0.0.1:3000/r/chat-composer-attachment.json",
@@ -1394,6 +1403,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
         "http://127.0.0.1:3000/r/chat-composer-attachment.json",
@@ -1525,6 +1535,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
         "http://127.0.0.1:3000/r/chat-composer-attachment.json",
@@ -2169,6 +2180,70 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/card.css\"": {}
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "chart",
+      "type": "registry:ui",
+      "title": "Chart",
+      "description": "Gradient-first charts on TanStack Charts: themed host, presets that return real definitions, and the full grammar.",
+      "dependencies": [
+        "@tanstack/charts@^1.1.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/knob-contracts/chart-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/chart-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/chart.css",
+          "target": "@components/control-ui/styles/recipes/chart.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/chart-cartesian.ts",
+          "target": "@components/control-ui/ui/chart-cartesian.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/chart-colors.ts",
+          "target": "@components/control-ui/ui/chart-colors.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/chart-curves.ts",
+          "target": "@components/control-ui/ui/chart-curves.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/chart-marks.ts",
+          "target": "@components/control-ui/ui/chart-marks.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/chart-polar.ts",
+          "target": "@components/control-ui/ui/chart-polar.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/chart-series.ts",
+          "target": "@components/control-ui/ui/chart-series.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/chart.tsx",
+          "target": "@components/control-ui/ui/chart.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/chart.css\"": {}
       }
     },
     {
@@ -6715,6 +6790,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
         "http://127.0.0.1:3000/r/chat-composer-attachment.json",

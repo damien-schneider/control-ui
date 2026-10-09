@@ -24,6 +24,7 @@
     "http://127.0.0.1:3000/r/button-group.json",
     "http://127.0.0.1:3000/r/calendar.json",
     "http://127.0.0.1:3000/r/card.json",
+    "http://127.0.0.1:3000/r/chart.json",
     "http://127.0.0.1:3000/r/chat-block.json",
     "http://127.0.0.1:3000/r/chat-composer.json",
     "http://127.0.0.1:3000/r/chat-composer-attachment.json",

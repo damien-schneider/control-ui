@@ -1,4 +1,5 @@
 import { BADGE_COLORS } from "../sources/control-ui/ui/badge";
+import { CHART_COLORS } from "../sources/control-ui/ui/chart-colors";
 
 export type ThemeContractGroup = "color" | "typography" | "radius" | "shadow" | "motion" | "surface" | "layout";
 
@@ -22,6 +23,10 @@ const badgeColorTokens: ThemeContractToken[] = BADGE_COLORS.flatMap((color) => [
   token(`--badge-${color}-border`, "color", "derived", `Border of the outline ${color}-family badge variant.`),
   token(`--badge-${color}-hover`, "color", "derived", `Hover background of filled ${color}-family badge links and buttons.`),
 ]);
+
+const chartColorTokens: ThemeContractToken[] = CHART_COLORS.map((color) =>
+  token(`--chart-${color}`, "color", "derived", `Chart series color for the ${color} hue; area, line, bar, arc, and legend paint read it.`),
+);
 
 export const COLOR_RAMPS = ["neutral", "primary", ...BADGE_COLORS.filter((color) => color !== "neutral")] as const;
 
@@ -110,6 +115,7 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token("--badge-border-alpha", "color", "advanced", "Alpha of every tinted badge border; defaults to 0.2."),
   token("--badge-hover-alpha", "color", "advanced", "Alpha a tinted badge fill reaches on hover; defaults to 0.24."),
   ...badgeColorTokens,
+  ...chartColorTokens,
   token("--sidebar", "color", "derived", "Sidebar surface; defaults to --canvas."),
   token("--sidebar-foreground", "color", "derived", "Text on the sidebar surface; defaults to --foreground."),
   token("--sidebar-primary", "color", "derived", "Accent of the active sidebar item; defaults to --primary."),

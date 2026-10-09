@@ -160,6 +160,7 @@
 - `item` (Item) **[beta]** — List row with media, content, and trailing actions. — `npx shadcn@latest add http://127.0.0.1:3000/r/item.json`
 - `separator` (Separator) — Horizontal or vertical hairline divider. — `npx shadcn@latest add http://127.0.0.1:3000/r/separator.json`
 - `meter` (Meter) — Static range meter for quota, storage, score, or usage values. — `npx shadcn@latest add http://127.0.0.1:3000/r/meter.json`
+- `chart` (Chart) — Gradient-first charts on TanStack Charts: themed host, presets that return real definitions, and the full grammar. — `npx shadcn@latest add http://127.0.0.1:3000/r/chart.json`
 - `tree` (Tree) — Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure. — `npx shadcn@latest add http://127.0.0.1:3000/r/tree.json`
 
 **Content** — Render a document you authored or generated, from prose to code to email.

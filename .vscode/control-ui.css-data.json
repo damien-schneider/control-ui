@@ -602,6 +602,99 @@
       "description": "Control UI card knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
+      "name": "--cui-chart-animation-duration",
+      "description": "Control UI chart knob — registered syntax <time>, fallback 0s. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<time>"
+    },
+    {
+      "name": "--cui-chart-area-opacity",
+      "description": "Control UI chart knob — registered syntax <number>, fallback 1. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<number>"
+    },
+    {
+      "name": "--cui-chart-background",
+      "description": "Control UI chart knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-chart-easing",
+      "description": "Control UI chart knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
+      "name": "--cui-chart-foreground",
+      "description": "Control UI chart knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-chart-hatch-opacity",
+      "description": "Control UI chart knob — registered syntax <number>, fallback 1. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<number>"
+    },
+    {
+      "name": "--cui-chart-hatch-tint-opacity",
+      "description": "Control UI chart knob — registered syntax <number>, fallback 1. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<number>"
+    },
+    {
+      "name": "--cui-chart-legend-gap",
+      "description": "Control UI chart knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-chart-line-size",
+      "description": "Control UI chart knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-chart-swatch-radius",
+      "description": "Control UI chart knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-chart-swatch-size",
+      "description": "Control UI chart knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-chart-tooltip-background",
+      "description": "Control UI chart knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-chart-tooltip-border-color",
+      "description": "Control UI chart knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-chart-tooltip-border-width",
+      "description": "Control UI chart knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
+      "name": "--cui-chart-tooltip-foreground",
+      "description": "Control UI chart knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-chart-tooltip-padding",
+      "description": "Control UI chart knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-chart-tooltip-radius",
+      "description": "Control UI chart knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-chart-tooltip-shadow",
+      "description": "Control UI chart knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
+      "name": "--cui-chart-transition-duration",
+      "description": "Control UI chart knob — registered syntax <time>, fallback 0s. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<time>"
+    },
+    {
       "name": "--cui-chat-composer-attachment-backdrop-filter",
       "description": "Control UI chat-composer-attachment knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },

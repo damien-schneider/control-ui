@@ -56,6 +56,7 @@
 @import "../src/registry/sources/control-ui/recipes/dockable-panel.css";
 @import "../src/registry/sources/control-ui/recipes/infinite-canvas.css";
 @import "../src/registry/sources/control-ui/recipes/flow.css";
+@import "../src/registry/sources/control-ui/recipes/chart.css";
 @import "../src/registry/sources/control-ui/recipes/resize-handle.css";
 @import "../src/registry/sources/control-ui/recipes/morphing-panel.css";
 @import "../src/registry/sources/control-ui/recipes/resizable.css";

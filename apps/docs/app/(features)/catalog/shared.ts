@@ -104,6 +104,7 @@ export const registryKindIds = [
   "dockable-panel",
   "infinite-canvas",
   "flow",
+  "chart",
   "resize-handle",
   "morphing-panel",
   "color-picker",
