@@ -435,7 +435,7 @@
       "registryItems": [
         "resizable"
       ],
-      "knobs": 11,
+      "knobs": 10,
       "probes": 8
     },
     "resize-handle": {

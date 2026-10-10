@@ -17052,12 +17052,6 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--control-rim-width)",
       },
       {
-        name: "--cui-resizable-handle-color",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--foreground)",
-      },
-      {
         name: "--cui-resizable-handle-hover-background",
         syntax: "<color>",
         initialValue: "transparent",
@@ -17073,7 +17067,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-resizable-grip-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue: "var(--radius-control)",
+        defaultValue: "var(--radius-sm)",
       },
       {
         name: "--cui-resizable-grip-background",

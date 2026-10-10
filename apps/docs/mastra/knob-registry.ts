@@ -3565,7 +3565,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-resizable-grip-radius",
         syntax: "<length-percentage>",
-        defaultValue: "var(--radius-control)",
+        defaultValue: "var(--radius-sm)",
         selector: ':where([data-control-family="resizable"][data-slot="panel-group"])',
       },
       {
@@ -3602,12 +3602,6 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-resizable-handle-background",
         syntax: "<color>",
         defaultValue: "transparent",
-        selector: ':where([data-control-family="resizable"][data-slot="panel-group"])',
-      },
-      {
-        name: "--cui-resizable-handle-color",
-        syntax: "<color>",
-        defaultValue: "var(--foreground)",
         selector: ':where([data-control-family="resizable"][data-slot="panel-group"])',
       },
       {

@@ -316,10 +316,13 @@ export function ResizableFloatingPanel({
 
 function GripIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 4 16" width="4" height="16" fill="currentColor" aria-hidden="true" className={className}>
-      <circle cx="2" cy="3" r="1" />
-      <circle cx="2" cy="8" r="1" />
-      <circle cx="2" cy="13" r="1" />
+    <svg viewBox="0 0 6 10" width="6" height="10" fill="currentColor" aria-hidden="true" className={className}>
+      <circle cx="1" cy="1" r="1" />
+      <circle cx="5" cy="1" r="1" />
+      <circle cx="1" cy="5" r="1" />
+      <circle cx="5" cy="5" r="1" />
+      <circle cx="1" cy="9" r="1" />
+      <circle cx="5" cy="9" r="1" />
     </svg>
   );
 }

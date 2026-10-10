@@ -4,11 +4,10 @@
     --cui-resizable-group-radius: var(--radius-panel);
     --cui-resizable-group-border-color: var(--border);
     --cui-resizable-group-border-width: var(--control-rim-width);
-    --cui-resizable-handle-color: var(--foreground);
     --cui-resizable-handle-background: transparent;
     --cui-resizable-handle-hover-background: oklch(from var(--foreground) l c h / 0.25);
     --cui-resizable-handle-active-background: oklch(from var(--foreground) l c h / 0.4);
-    --cui-resizable-grip-radius: var(--radius-control);
+    --cui-resizable-grip-radius: var(--radius-sm);
     --cui-resizable-grip-background: var(--card);
     --cui-resizable-grip-foreground: var(--muted-foreground);
     background-color: var(--cui-resizable-group-background);
@@ -27,8 +26,12 @@
   }
 
   :where([data-control-family="resizable"][data-slot="handle"]) {
-    --_resizable-gradient-color: var(--cui-resizable-handle-color);
+    --_resizable-gradient-color: var(--cui-resizable-handle-hover-background);
     background-color: var(--cui-resizable-handle-background);
+  }
+
+  :where([data-control-family="resizable"][data-slot="handle"][data-separator="active"]) {
+    --_resizable-gradient-color: var(--cui-resizable-handle-active-background);
   }
 
   :where([data-control-family="resizable"][data-slot="handle"][data-axis="vertical"]:not([data-cursor="none"])) {
@@ -134,12 +137,6 @@
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;
-}
-
-@property --cui-resizable-handle-color {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
 }
 
 @property --cui-resizable-handle-hover-background {

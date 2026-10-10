@@ -2,8 +2,9 @@
 
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/control-ui/ui/resizable";
 // variant="hover" keeps divider off screen until pointer or keyboard focus reaches it, then fades in a
-// gradient line running from --cui-resizable-handle-color to alpha 0 — calm option when permanent hairline
-// would compete with content it separates. Track thickness matches variant="solid", so nothing shifts.
+// gradient line running from --cui-resizable-handle-hover-background (--cui-resizable-handle-active-background while dragging)
+// to transparent — calm option when permanent hairline would compete with content it separates. Track thickness
+// matches variant="solid", so nothing shifts.
 import { Text } from "@/components/control-ui/ui/typography";
 
 function Pane({ label, hint }: { label: string; hint?: string }) {
