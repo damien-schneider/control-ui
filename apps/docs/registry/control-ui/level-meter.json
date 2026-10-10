@@ -1,0 +1,47 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "level-meter",
+  "type": "registry:ui",
+  "title": "LevelMeter",
+  "description": "Live audio level in dBFS with warning and clip zones and a peak hold, painted without React renders.",
+  "dependencies": [
+    "@base-ui/react@^1.8.0"
+  ],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/knob-contracts/range-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/range-knobs.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/lib/level-meter-ballistics.ts",
+      "target": "@components/control-ui/lib/level-meter-ballistics.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/range-level-meter.css",
+      "target": "@components/control-ui/styles/recipes/range-level-meter.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/range.css",
+      "target": "@components/control-ui/styles/recipes/range.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/level-meter.tsx",
+      "target": "@components/control-ui/ui/level-meter.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/range.css\"": {},
+    "@import \"../components/control-ui/styles/recipes/range-level-meter.css\"": {}
+  },
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/level-meter.json"
+  }
+}

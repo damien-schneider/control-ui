@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 191,
+    "count": 192,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -1263,6 +1263,14 @@
         "summary": "Static range meter for quota, storage, score, or usage values.",
         "href": "/primitives/meter",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/meter.json"
+      },
+      {
+        "id": "level-meter",
+        "name": "LevelMeter",
+        "kind": "Primitive",
+        "summary": "Live audio level in dBFS with warning and clip zones and a peak hold, painted without React renders.",
+        "href": "/primitives/level-meter",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/level-meter.json"
       },
       {
         "id": "chart",

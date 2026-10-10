@@ -15,7 +15,7 @@
       "path": "src/registry/knob-contracts/range-knobs.ts",
       "target": "@components/control-ui/knob-contracts/range-knobs.ts",
       "type": "registry:component",
-      "content": "// Generated from src/registry/sources/control-ui/recipes/range.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.\nexport const rangeKnobs = [\n  \"--cui-range-indeterminate-size\",\n  \"--cui-range-track-radius\",\n  \"--cui-range-track-background\",\n  \"--cui-range-indicator-radius\",\n  \"--cui-range-indicator-background\",\n  \"--cui-range-thumb-radius\",\n  \"--cui-range-thumb-background\",\n  \"--cui-range-thumb-border-color\",\n  \"--cui-range-thumb-shadow\",\n] as const;\nexport type RangeKnobStyle = Partial<Record<(typeof rangeKnobs)[number], string>>;\n"
+      "content": "// Generated from src/registry/sources/control-ui/recipes/range.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.\nexport const rangeKnobs = [\n  \"--cui-range-level-warning-background\",\n  \"--cui-range-level-clip-background\",\n  \"--cui-range-indeterminate-size\",\n  \"--cui-range-track-radius\",\n  \"--cui-range-track-background\",\n  \"--cui-range-indicator-radius\",\n  \"--cui-range-indicator-background\",\n  \"--cui-range-thumb-radius\",\n  \"--cui-range-thumb-background\",\n  \"--cui-range-thumb-border-color\",\n  \"--cui-range-thumb-shadow\",\n] as const;\nexport type RangeKnobStyle = Partial<Record<(typeof rangeKnobs)[number], string>>;\n"
     },
     {
       "path": "src/registry/sources/control-ui/recipes/range.css",

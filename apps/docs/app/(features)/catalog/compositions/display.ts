@@ -191,6 +191,7 @@ export const displayCompositions = {
   ],
   spinner: [example("Pending indicator", part("Spinner"))],
   meter: [example("Anatomy", part("Meter", part("MeterLabel"), part("MeterValue"), part("MeterTrack", part("MeterIndicator"))))],
+  "level-meter": [example("Anatomy", part("LevelMeter", part("LevelMeterTrack", part("LevelMeterBar"), part("LevelMeterPeak"))))],
   chart: [
     example("Card chart", part("Chart", part("ChartPlot", part("ChartTooltipBody")), part("ChartLegend", part("ChartLegendItem")))),
     example("Donut with total", part("Chart", part("ChartPlot", part("ChartCenter")), part("ChartLegend", part("ChartLegendItem")))),

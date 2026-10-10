@@ -69,6 +69,7 @@ export const generatedSkinContract: SkinContract = {
     item: ["item"],
     kbd: ["kbd"],
     label: ["label"],
+    "level-meter": ["level-meter"],
     "live-status": ["live-status"],
     markdown: ["markdown"],
     "markdown-block": ["markdown-block"],
@@ -7627,6 +7628,65 @@ export const generatedSkinContract: SkinContract = {
         },
       },
       registryItems: ["label"],
+    },
+    "level-meter": {
+      parts: {
+        root: {
+          family: "range",
+          registryItems: ["level-meter"],
+          states: [
+            {
+              attribute: "data-orientation",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["horizontal", "vertical"],
+            },
+            {
+              attribute: "data-range-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["level-meter"],
+            },
+          ],
+        },
+        bar: {
+          family: "range",
+          registryItems: ["level-meter"],
+          states: [
+            {
+              attribute: "data-range-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["level-meter"],
+            },
+          ],
+        },
+        peak: {
+          family: "range",
+          registryItems: ["level-meter"],
+          states: [
+            {
+              attribute: "data-range-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["level-meter"],
+            },
+          ],
+        },
+        track: {
+          family: "range",
+          registryItems: ["level-meter"],
+          states: [
+            {
+              attribute: "data-range-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["level-meter"],
+            },
+          ],
+        },
+      },
+      registryItems: ["level-meter"],
     },
     "live-status": {
       parts: {
@@ -16971,6 +17031,18 @@ export const generatedSkinContract: SkinContract = {
       },
     ],
     range: [
+      {
+        name: "--cui-range-level-warning-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--warning)",
+      },
+      {
+        name: "--cui-range-level-clip-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--destructive)",
+      },
       {
         name: "--cui-range-indeterminate-size",
         syntax: "<length-percentage>",

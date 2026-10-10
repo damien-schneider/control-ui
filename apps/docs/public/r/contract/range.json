@@ -3,11 +3,24 @@
   "family": "range",
   "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
   "registryItems": [
+    "level-meter",
     "meter",
     "progress",
     "slider"
   ],
   "knobs": [
+    {
+      "name": "--cui-range-level-warning-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--warning)"
+    },
+    {
+      "name": "--cui-range-level-clip-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--destructive)"
+    },
     {
       "name": "--cui-range-indeterminate-size",
       "syntax": "<length-percentage>",
@@ -64,6 +77,81 @@
     }
   ],
   "parts": {
+    "level-meter": {
+      "root": {
+        "family": "range",
+        "registryItems": [
+          "level-meter"
+        ],
+        "states": [
+          {
+            "attribute": "data-orientation",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "level-meter"
+            ]
+          }
+        ]
+      },
+      "bar": {
+        "family": "range",
+        "registryItems": [
+          "level-meter"
+        ],
+        "states": [
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "level-meter"
+            ]
+          }
+        ]
+      },
+      "peak": {
+        "family": "range",
+        "registryItems": [
+          "level-meter"
+        ],
+        "states": [
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "level-meter"
+            ]
+          }
+        ]
+      },
+      "track": {
+        "family": "range",
+        "registryItems": [
+          "level-meter"
+        ],
+        "states": [
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "level-meter"
+            ]
+          }
+        ]
+      }
+    },
     "meter": {
       "root": {
         "family": "range",

@@ -1,5 +1,7 @@
 // Generated from src/registry/sources/control-ui/recipes/range.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.
 export const rangeKnobs = [
+  "--cui-range-level-warning-background",
+  "--cui-range-level-clip-background",
   "--cui-range-indeterminate-size",
   "--cui-range-track-radius",
   "--cui-range-track-background",

@@ -3510,6 +3510,18 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="range"][data-slot="root"])',
       },
       {
+        name: "--cui-range-level-clip-background",
+        syntax: "<color>",
+        defaultValue: "var(--destructive)",
+        selector: ':where([data-control-family="range"][data-range-kind="level-meter"][data-slot="root"])',
+      },
+      {
+        name: "--cui-range-level-warning-background",
+        syntax: "<color>",
+        defaultValue: "var(--warning)",
+        selector: ':where([data-control-family="range"][data-range-kind="level-meter"][data-slot="root"])',
+      },
+      {
         name: "--cui-range-thumb-background",
         syntax: "<color>",
         defaultValue: "var(--background)",

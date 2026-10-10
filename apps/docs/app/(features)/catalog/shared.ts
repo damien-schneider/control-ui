@@ -97,6 +97,7 @@ export const registryKindIds = [
   "live-status",
   "spinner",
   "meter",
+  "level-meter",
   "checkbox-group",
   "autocomplete",
   "number-field",

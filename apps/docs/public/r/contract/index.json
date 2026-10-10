@@ -424,11 +424,12 @@
     },
     "range": {
       "registryItems": [
+        "level-meter",
         "meter",
         "progress",
         "slider"
       ],
-      "knobs": 9,
+      "knobs": 11,
       "probes": 37
     },
     "resizable": {

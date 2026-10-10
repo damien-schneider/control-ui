@@ -69,6 +69,7 @@
     "http://127.0.0.1:3000/r/input-otp.json",
     "http://127.0.0.1:3000/r/item.json",
     "http://127.0.0.1:3000/r/kbd.json",
+    "http://127.0.0.1:3000/r/level-meter.json",
     "http://127.0.0.1:3000/r/live-status.json",
     "http://127.0.0.1:3000/r/markdown.json",
     "http://127.0.0.1:3000/r/markdown-block.json",

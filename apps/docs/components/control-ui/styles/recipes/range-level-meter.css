@@ -1,0 +1,87 @@
+@layer components {
+  :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="root"]) {
+    --cui-range-level-warning-background: var(--warning);
+    --cui-range-level-clip-background: var(--destructive);
+    --_range-level-peak-size: 2px;
+    --_range-level-zone-angle: 90deg;
+  }
+
+  :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="root"][data-orientation="horizontal"]) {
+    block-size: calc(var(--spacing) * 2);
+  }
+
+  :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="root"][data-orientation="horizontal"]:dir(rtl)) {
+    --_range-level-zone-angle: 270deg;
+  }
+
+  :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="root"][data-orientation="vertical"]) {
+    --_range-level-zone-angle: 0deg;
+    flex-direction: column;
+    inline-size: calc(var(--spacing) * 2);
+    min-block-size: calc(var(--spacing) * 16);
+  }
+
+  :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="track"]) {
+    flex: 1;
+    border-radius: var(--cui-range-track-radius);
+    background: var(--cui-range-track-background);
+  }
+
+  :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="bar"]),
+  :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="peak"]) {
+    background-image: linear-gradient(
+      var(--_range-level-zone-angle),
+      var(--cui-range-indicator-background) calc(var(--_range-level-warning-start, 1) * 100%),
+      var(--cui-range-level-warning-background) 0 calc(var(--_range-level-clip-start, 1) * 100%),
+      var(--cui-range-level-clip-background) 0
+    );
+  }
+
+  :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="bar"]) {
+    clip-path: inset(0 calc((1 - var(--_range-level, 0)) * 100%) 0 0 round var(--cui-range-indicator-radius));
+  }
+
+  :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="peak"]) {
+    clip-path: inset(
+      0 calc((1 - var(--_range-level-peak, 0)) * 100%) 0 calc(var(--_range-level-peak, 0) * 100% - var(--_range-level-peak-size))
+    );
+  }
+
+  :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="bar"]:dir(rtl)) {
+    clip-path: inset(0 0 0 calc((1 - var(--_range-level, 0)) * 100%) round var(--cui-range-indicator-radius));
+  }
+
+  :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="peak"]:dir(rtl)) {
+    clip-path: inset(
+      0 calc(var(--_range-level-peak, 0) * 100% - var(--_range-level-peak-size)) 0 calc((1 - var(--_range-level-peak, 0)) * 100%)
+    );
+  }
+
+  :where(
+    [data-range-kind="level-meter"][data-slot="root"][data-orientation="vertical"]
+      [data-control-family="range"][data-range-kind="level-meter"][data-slot="bar"]
+  ) {
+    clip-path: inset(calc((1 - var(--_range-level, 0)) * 100%) 0 0 0 round var(--cui-range-indicator-radius));
+  }
+
+  :where(
+    [data-range-kind="level-meter"][data-slot="root"][data-orientation="vertical"]
+      [data-control-family="range"][data-range-kind="level-meter"][data-slot="peak"]
+  ) {
+    clip-path: inset(
+      calc((1 - var(--_range-level-peak, 0)) * 100%) 0 calc(var(--_range-level-peak, 0) * 100% - var(--_range-level-peak-size)) 0
+    );
+  }
+}
+
+@property --cui-range-level-warning-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-range-level-clip-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

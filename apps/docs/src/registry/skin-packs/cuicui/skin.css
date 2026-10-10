@@ -551,7 +551,8 @@
   [data-skin="cuicui"]
     :where(
       [data-control-ui="progress"][data-slot="root"][data-control-family="range"],
-      [data-control-ui="meter"][data-slot="root"][data-control-family="range"]
+      [data-control-ui="meter"][data-slot="root"][data-control-family="range"],
+      [data-control-ui="level-meter"][data-slot="root"][data-control-family="range"]
     ) {
     --cui-range-track-background: var(--cuicui-control-bg);
     --cui-range-indicator-background: var(--primary);

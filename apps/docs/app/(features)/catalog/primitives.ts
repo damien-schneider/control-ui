@@ -49,6 +49,11 @@ const rangeRecipeFile = sourceFile(
   "src/registry/sources/control-ui/recipes/range.css",
   "recipe-css",
 );
+const levelMeterRecipeFile = sourceFile(
+  "Level meter recipe — zones, peak hold + @property knobs",
+  "src/registry/sources/control-ui/recipes/range-level-meter.css",
+  "recipe-css",
+);
 const alertRecipeFile = sourceFile(
   "Alert recipe — paint + @property knobs",
   "src/registry/sources/control-ui/recipes/alert.css",
@@ -1799,6 +1804,25 @@ export const primitiveEntries = [
     },
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/primitives/meter").then((mod) => ({ default: mod.PrimitiveMeterExample })),
+    ),
+  },
+  {
+    id: "level-meter",
+    category: "display",
+    kind: "Primitive",
+    name: "LevelMeter",
+    summary: "Live audio level in dBFS with warning and clip zones and a peak hold, painted without React renders.",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/level-meter.tsx",
+        example: sourceFile("Level meter preview", "src/registry/examples/control-ui/primitives/level-meter.tsx", "example"),
+        source: sourceFile("Level meter slot", "src/registry/sources/control-ui/ui/level-meter.tsx", "component"),
+        supportFiles: [rangeRecipeFile, levelMeterRecipeFile],
+        registryKind: "level-meter",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/level-meter").then((mod) => ({ default: mod.PrimitiveLevelMeterExample })),
     ),
   },
   {

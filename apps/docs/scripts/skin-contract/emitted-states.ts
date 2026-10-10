@@ -33,6 +33,7 @@ import type {
 import type { DropdownMenuTriggerVariant } from "../../src/registry/sources/control-ui/ui/dropdown-menu";
 import type { DropzoneOverlayScope } from "../../src/registry/sources/control-ui/ui/dropzone";
 import type { KbdVariant } from "../../src/registry/sources/control-ui/ui/kbd";
+import type { LevelMeterOrientation } from "../../src/registry/sources/control-ui/ui/level-meter";
 import type { MorphingPanelAnchor } from "../../src/registry/sources/control-ui/ui/morphing-panel";
 import type { NavigationMenuLinkVariant } from "../../src/registry/sources/control-ui/ui/navigation-menu";
 import type { PageHeaderVariant, PageScrollMode, PageWidth } from "../../src/registry/sources/control-ui/ui/page-layout";
@@ -202,6 +203,7 @@ export type EmittedStateContract = {
   "item:root:data-variant": "default" | "outline" | "muted";
   "item:actions:data-show-on-hover": true;
   "kbd:root:data-variant": KbdVariant;
+  "level-meter:root:data-orientation": LevelMeterOrientation;
   "context-menu:item:data-inset": true;
   "context-menu:label:data-inset": true;
   "context-menu:sub-trigger:data-inset": true;

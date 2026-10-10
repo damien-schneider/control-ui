@@ -16,6 +16,7 @@
 @import "../src/registry/sources/control-ui/recipes/choice.css";
 @import "../src/registry/sources/control-ui/recipes/switch.css";
 @import "../src/registry/sources/control-ui/recipes/range.css";
+@import "../src/registry/sources/control-ui/recipes/range-level-meter.css";
 @import "../src/registry/sources/control-ui/recipes/alert.css";
 @import "../src/registry/sources/control-ui/recipes/badge.css";
 @import "../src/registry/sources/control-ui/recipes/empty.css";
