@@ -133,7 +133,7 @@ test("composer corners fit the actual inset as radius, padding, and border chang
 
 test("docs preview and skin source keep their connected surfaces when switching tabs", async ({ page }, testInfo) => {
   await page.addInitScript((key) => localStorage.setItem(key, "dark"), THEME_STORAGE_KEY);
-  for (const route of ["/components/chat-layout", "/theme-editor"]) {
+  for (const route of ["/kits/chat-layout", "/theme-editor"]) {
     await page.goto(`${route}?skin=mastra${route === "/theme-editor" ? "&view=source" : ""}`);
     const surfaces = page.locator('[data-control-family="tabs"][data-slot="surface"]');
     await expect(surfaces.first()).toBeVisible();

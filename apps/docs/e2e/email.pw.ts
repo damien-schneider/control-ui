@@ -30,7 +30,7 @@ test.beforeEach(async ({ page }) => {
   await page.addInitScript((key) => {
     localStorage.setItem(key, JSON.stringify({ skin: "refined", overrides: {}, light: {}, dark: {}, reduceMotion: true }));
   }, THEME_EDITOR_STORAGE_KEY);
-  await page.goto("/components/email");
+  await page.goto("/kits/email");
   await waitForReactHydration(page.locator("#preview").getByRole("button", { name: "Desktop", exact: true }));
 });
 

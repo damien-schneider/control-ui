@@ -16,7 +16,7 @@ describe("docs social image metadata", () => {
   });
 
   test("adds the install hint only to installable pages and never past the snippet limit", () => {
-    const button = docsSeoForPath("/primitives/button");
+    const button = docsSeoForPath("/components/button");
     expect(button?.description.startsWith(button.page.summary)).toBe(true);
     expect(button?.description).not.toBe(button?.page.summary);
 
@@ -28,17 +28,17 @@ describe("docs social image metadata", () => {
   });
 
   test("gives catalog overviews canonical page metadata", () => {
-    expect(docsSeoForPath("/primitives")).toMatchObject({
-      pathname: "/primitives",
-      title: "Primitives",
-      description: catalogOverview("primitives").summary,
-      socialImage: { label: "Component catalog", title: "Primitives" },
-    });
     expect(docsSeoForPath("/components")).toMatchObject({
       pathname: "/components",
       title: "Components",
-      description: catalogOverview("components").summary,
+      description: catalogOverview("primitives").summary,
       socialImage: { label: "Component catalog", title: "Components" },
+    });
+    expect(docsSeoForPath("/kits")).toMatchObject({
+      pathname: "/kits",
+      title: "Kits",
+      description: catalogOverview("components").summary,
+      socialImage: { label: "Component catalog", title: "Kits" },
     });
   });
 

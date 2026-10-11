@@ -199,10 +199,10 @@ claude mcp add --transport http control-ui ${base}/api/mcp`;
 
   if (code === "agent-markdown") {
     return `# Any documentation page answers in markdown when you ask for it
-curl -H "Accept: text/markdown" ${base}/primitives/button
+curl -H "Accept: text/markdown" ${base}/components/button
 
 # The HTML page stays the default for browsers
-curl -H "Accept: text/html" ${base}/primitives/button`;
+curl -H "Accept: text/html" ${base}/components/button`;
   }
 
   if (code === "agent-llms") {

@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { waitForReactHydration } from "./browser-test-helpers";
 
 test("command search announces no matches and restores keyboard choices", async ({ page }) => {
-  await page.goto("/primitives/command");
+  await page.goto("/components/command");
   const preview = page.locator("#preview");
   const input = preview.getByRole("combobox");
   await waitForReactHydration(input);

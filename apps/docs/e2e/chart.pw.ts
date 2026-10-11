@@ -34,7 +34,7 @@ function chartAnimations(page: Page) {
 
 async function openSettledChartPage(page: Page) {
   await page.setViewportSize({ width: 1280, height: 900 });
-  await page.goto("/primitives/chart");
+  await page.goto("/components/chart");
   await page.waitForLoadState("networkidle");
   const areaPath = page.locator(AREA_PATH).first();
   await expect(areaPath).toBeAttached();

@@ -70,7 +70,7 @@ for (const { name, width, height, reducedMotion } of [
   test(`theme editor is a navigable page on ${name}`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height });
     await page.emulateMedia({ reducedMotion });
-    await page.goto("/primitives/code-diff", { waitUntil: "networkidle" });
+    await page.goto("/components/code-diff", { waitUntil: "networkidle" });
 
     const toolbar = page.getByRole("group", { name: "Documentation controls" });
     const editTheme = toolbar.getByRole("link", { name: "Edit theme" });
@@ -112,7 +112,7 @@ for (const { name, width, height, reducedMotion } of [
     await page.keyboard.press("Escape");
     await expect(page).toHaveURL(/\/theme-editor$/);
     await page.goBack();
-    await expect(page).toHaveURL(/\/primitives\/code-diff$/);
+    await expect(page).toHaveURL(/\/components\/code-diff$/);
     await expect(page.getByRole("heading", { name: "Code Diff", exact: true })).toBeVisible();
     await page.goForward();
     await expect(page.getByRole("heading", { name: "Theme editor", level: 1 })).toBeVisible();

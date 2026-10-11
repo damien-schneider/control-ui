@@ -6,7 +6,7 @@ for (const { trigger, key, option, insertedText } of [
   { trigger: "/", key: "/", option: "Translate To another language", insertedText: "Translate " },
 ]) {
   test(`typing ${trigger} keeps suggestions open and focus in the textarea until selection`, async ({ page }) => {
-    await page.goto("/primitives/trigger-menu");
+    await page.goto("/components/trigger-menu");
     const input = page.getByRole("textbox", { name: "Trigger menu demo" });
     await waitForReactHydration(input);
     await input.fill("");
@@ -24,7 +24,7 @@ for (const { trigger, key, option, insertedText } of [
 }
 
 test("typing filters mentions, Escape dismisses them, and a changed query allows pointer selection", async ({ page }) => {
-  await page.goto("/primitives/trigger-menu");
+  await page.goto("/components/trigger-menu");
   const input = page.getByRole("textbox", { name: "Trigger menu demo" });
   await waitForReactHydration(input);
   await input.fill("");
@@ -44,7 +44,7 @@ test("typing filters mentions, Escape dismisses them, and a changed query allows
 });
 
 test("an empty result lets Enter insert a newline and Tab leave the textarea", async ({ page }) => {
-  await page.goto("/primitives/trigger-menu");
+  await page.goto("/components/trigger-menu");
   const input = page.getByRole("textbox", { name: "Trigger menu demo" });
   await waitForReactHydration(input);
   const popup = page.locator('[data-control-ui="trigger-menu"][data-slot="root"]');

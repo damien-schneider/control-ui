@@ -10,13 +10,13 @@ export const uiTailwindSkills = [
     id: "tailwind-use-existing-components",
     title: "Use existing components first",
     concern: "ui-tailwind",
-    summary: "Start from the local design system or registry primitive before creating a new styled element.",
+    summary: "Start from the local design system or registry component before creating a new styled element.",
     goal: "Preserve visual consistency and accessibility by reusing the closest existing component contract.",
     source: tailwindV4Source,
     checks: [
-      "Search existing Control UI primitives, hooks, and examples before adding a new surface.",
+      "Search existing Control UI components, kits, hooks, and examples before adding a new surface.",
       "Use variants or composition slots when the existing component already owns the behavior.",
-      "Create a new primitive only when the required behavior or anatomy is genuinely missing.",
+      "Create a new component only when the required behavior or anatomy is genuinely missing.",
     ],
     avoid: [
       "Duplicating a button, menu, select, dialog, sidebar, or scroll behavior with raw divs.",

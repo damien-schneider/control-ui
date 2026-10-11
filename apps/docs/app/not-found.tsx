@@ -23,7 +23,7 @@ export default function NotFound() {
         <ButtonLink render={<Link href="/get-started" />} variant="solid" tone="primary">
           Start with the guides
         </ButtonLink>
-        <ButtonLink render={<Link href="/primitives" />} variant="surface">
+        <ButtonLink render={<Link href="/components" />} variant="surface">
           Browse components
         </ButtonLink>
       </EmptyContent>

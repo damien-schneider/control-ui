@@ -6,7 +6,7 @@ test("selected button keeps shared seams above adjacent focus", async ({ page })
   await page.addInitScript((storageKey) => {
     localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" }));
   }, THEME_EDITOR_STORAGE_KEY);
-  await page.goto("/primitives/button-group");
+  await page.goto("/components/button-group");
 
   const group = page.getByRole("group", { name: "Text alignment" });
   const left = group.getByRole("button", { name: "Left" });

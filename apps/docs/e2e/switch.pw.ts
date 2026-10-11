@@ -19,7 +19,7 @@ for (const skin of ["modern-apple", "refined"]) {
         key: THEME_EDITOR_STORAGE_KEY,
         skin,
       });
-      await page.goto("/primitives/switch");
+      await page.goto("/components/switch");
       await waitForReactHydration(page.getByRole("switch", { name: "Share analytics", exact: true }));
     });
 
@@ -131,7 +131,7 @@ for (const mode of ["light", "dark"] as const) {
       },
       { skinKey: THEME_EDITOR_STORAGE_KEY, modeKey: THEME_STORAGE_KEY, mode },
     );
-    await page.goto("/primitives/switch");
+    await page.goto("/components/switch");
     const control = page.getByRole("switch", { name: "Share analytics", exact: true });
     const thumb = control.locator('[data-slot="thumb"]');
     await waitForReactHydration(control);

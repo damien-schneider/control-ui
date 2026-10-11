@@ -8,39 +8,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -56,133 +24,9 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-scrolling": "",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "standalone",
-          "data-control-family": "code",
-          "data-control-ui": "code",
-          "data-density": "default",
-          "data-slot": "root",
-          "data-surface": "panel"
         }
       },
       {
@@ -191,10 +35,9 @@
           "data-control-ui": "scroll-area",
           "data-has-overflow-x": "",
           "data-has-overflow-y": "",
-          "data-mask": "true",
           "data-overflow-x-end": "",
           "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
+          "data-scrollbar-gutter": "stable",
           "data-slot": "root",
           "role": "presentation"
         }
@@ -203,1645 +46,11 @@
         "attributes": {
           "data-control-family": "scroll-area",
           "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
+          "data-slot": "corner"
         }
       }
     ],
     [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-scrolling": "",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "standalone",
-          "data-control-family": "code",
-          "data-control-ui": "code",
-          "data-density": "default",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-scrolling": "",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-scrolling": "",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-scrolling": "",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "contained",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "standalone",
-          "data-control-family": "code",
-          "data-control-ui": "code",
-          "data-density": "default",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-x": "",
-          "data-has-overflow-y": "",
-          "data-mask": "true",
-          "data-overflow-x-end": "",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "standalone",
-          "data-control-family": "code",
-          "data-control-ui": "code",
-          "data-density": "default",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "contained",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "contained",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-scrolling": "",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-scrolling": "",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "contained",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "panel",
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-overflow-y-end": "",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-scrolling": "",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-message",
-          "data-control-ui": "chat-message",
-          "data-role": "assistant",
-          "data-slot": "content"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "markdown-block",
-          "data-control-ui": "markdown-block",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "panel",
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-overflow-y-end": "",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-scrolling": "",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-scrolling": "",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "panel",
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-overflow-y-end": "",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-message",
-          "data-control-ui": "chat-message",
-          "data-role": "assistant",
-          "data-slot": "content"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "markdown-block",
-          "data-control-ui": "markdown-block",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "panel",
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-overflow-y-end": "",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "panel",
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-message",
-          "data-control-ui": "chat-message",
-          "data-role": "assistant",
-          "data-slot": "content"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "markdown-block",
-          "data-control-ui": "markdown-block",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "panel",
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "standalone",
-          "data-control-family": "code",
-          "data-control-ui": "code",
-          "data-density": "default",
-          "data-header": "true",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-x": "",
-          "data-has-overflow-y": "",
-          "data-mask": "true",
-          "data-overflow-x-end": "",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "standalone",
-          "data-control-family": "code",
-          "data-control-ui": "code",
-          "data-density": "default",
-          "data-header": "true",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "standalone",
-          "data-control-family": "code",
-          "data-control-ui": "code",
-          "data-density": "default",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-x": "",
-          "data-has-overflow-y": "",
-          "data-mask": "true",
-          "data-overflow-x-end": "",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-density": "comfortable",
-          "data-slot": "root",
-          "data-state": "idle"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-slot": "shell",
-          "data-state": "idle",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "markdown-editor",
-          "data-control-ui": "markdown-editor",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-x": "",
-          "data-lock-axis": "y",
-          "data-overflow-x-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "embedded",
-          "data-control-family": "toolbar",
-          "data-control-ui": "toolbar",
-          "data-orientation": "horizontal",
-          "data-slot": "root",
-          "data-variant": "default",
-          "role": "toolbar"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "horizontal",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "contained",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
       {
         "attributes": {
           "data-control-family": "sidebar",
@@ -1885,25 +94,8 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
         }
       },
       {
@@ -1921,10 +113,110 @@
       },
       {
         "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "center",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-slot": "recent-label"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -1970,7 +262,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -1986,9 +278,25 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
         }
       },
       {
@@ -2006,10 +314,232 @@
       },
       {
         "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-slot": "recent-label"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-blur": "true",
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-lock-axis": "y",
+          "data-mask": "true",
+          "data-overflow-x-end": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "horizontal",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-blur": "true",
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
           "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-scrollbar-gutter": "auto",
+          "data-scrolling": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-role": "assistant",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-block",
+          "data-control-ui": "markdown-block",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -2051,7 +581,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -2067,9 +597,18 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
         }
       },
       {
@@ -2078,6 +617,34 @@
           "data-control-ui": "scroll-area",
           "data-has-overflow-y": "",
           "data-lock-axis": "x",
+          "data-overflow-y-end": "",
+          "data-overflow-y-start": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-role": "assistant",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-block",
+          "data-control-ui": "markdown-block",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
           "data-mask": "true",
           "data-overflow-y-end": "",
           "data-scrollbar-gutter": "auto",
@@ -2087,10 +654,38 @@
       },
       {
         "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -2130,7 +725,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -2146,30 +741,9 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
         }
       },
       {
@@ -2217,7 +791,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -2233,9 +807,18 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
         }
       },
       {
@@ -2244,6 +827,33 @@
           "data-control-ui": "scroll-area",
           "data-has-overflow-y": "",
           "data-lock-axis": "x",
+          "data-overflow-y-start": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-role": "assistant",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-block",
+          "data-control-ui": "markdown-block",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
           "data-mask": "true",
           "data-overflow-y-end": "",
           "data-scrollbar-gutter": "auto",
@@ -2253,10 +863,217 @@
       },
       {
         "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
           "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-overflow-y-start": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-header": "true",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-x-end": "",
+          "data-overflow-y-end": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "horizontal",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-header": "true",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-x-end": "",
+          "data-overflow-y-end": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -2297,7 +1114,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -2313,204 +1130,18 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
         }
       },
       {
         "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-density": "comfortable",
-          "data-slot": "root",
-          "data-state": "idle"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-slot": "shell",
-          "data-state": "idle",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-x": "",
-          "data-lock-axis": "y",
-          "data-mask": "true",
-          "data-overflow-x-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "horizontal",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "code-diff",
-          "data-control-ui": "code-diff",
-          "data-diff-style": "split",
-          "data-file-count": "1",
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
           "data-header": "true",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-x": "",
-          "data-mask": "true",
-          "data-overflow-x-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "horizontal",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "markdown-block",
-          "data-control-ui": "markdown-block",
           "data-slot": "root",
           "data-surface": "panel"
         }
@@ -2542,7 +1173,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -2558,9 +1189,197 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-x-end": "",
+          "data-overflow-y-end": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "horizontal",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
+          "data-overflow-x-end": "",
+          "data-overflow-y-end": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-mask": "true",
+          "data-overflow-x-end": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "horizontal",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-slot": "root",
+          "data-surface": "panel"
         }
       },
       {
@@ -2568,7 +1387,6 @@
           "data-control-family": "scroll-area",
           "data-control-ui": "scroll-area",
           "data-has-overflow-y": "",
-          "data-lock-axis": "x",
           "data-mask": "true",
           "data-overflow-y-end": "",
           "data-scrollbar-gutter": "auto",
@@ -2578,9 +1396,122 @@
       },
       {
         "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-mask": "true",
+          "data-overflow-x-end": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "horizontal",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "comfortable",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
           "data-surface": "panel"
         }
       },
@@ -2629,7 +1560,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -2645,9 +1576,143 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "comfortable",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-lock-axis": "y",
+          "data-mask": "true",
+          "data-overflow-x-end": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "horizontal",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "code-diff",
+          "data-control-ui": "code-diff",
+          "data-diff-style": "split",
+          "data-file-count": "1",
+          "data-header": "true",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-mask": "true",
+          "data-overflow-x-end": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "horizontal",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-block",
+          "data-control-ui": "markdown-block",
+          "data-slot": "root",
+          "data-surface": "panel"
         }
       },
       {
@@ -2655,7 +1720,6 @@
           "data-control-family": "scroll-area",
           "data-control-ui": "scroll-area",
           "data-has-overflow-y": "",
-          "data-lock-axis": "x",
           "data-mask": "true",
           "data-overflow-y-end": "",
           "data-scrollbar-gutter": "auto",
@@ -2665,10 +1729,104 @@
       },
       {
         "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-editor",
+          "data-control-ui": "markdown-editor",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-lock-axis": "y",
+          "data-overflow-x-end": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "embedded",
+          "data-control-family": "toolbar",
+          "data-control-ui": "toolbar",
+          "data-orientation": "horizontal",
+          "data-slot": "root",
+          "data-variant": "default",
+          "role": "toolbar"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "horizontal",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -2708,7 +1866,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -2724,7 +1882,7 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
         }
@@ -2733,21 +1891,98 @@
         "attributes": {
           "data-control-family": "scroll-area",
           "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
           "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
+          "data-overflow-x-end": "",
           "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
+          "data-scrollbar-gutter": "stable",
           "data-slot": "root",
           "role": "presentation"
         }
       },
       {
         "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "horizontal",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
+          "data-has-overflow-y": "",
+          "data-overflow-x-end": "",
+          "data-overflow-y-end": "",
+          "data-scrollbar-gutter": "stable",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -2778,7 +2013,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -2794,7 +2029,7 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
         }
@@ -2803,10 +2038,9 @@
         "attributes": {
           "data-control-family": "scroll-area",
           "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
+          "data-has-overflow-x": "",
           "data-mask": "true",
-          "data-overflow-y-end": "",
+          "data-overflow-x-end": "",
           "data-scrollbar-gutter": "auto",
           "data-slot": "root",
           "role": "presentation"
@@ -2814,10 +2048,38 @@
       },
       {
         "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "horizontal",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -2848,7 +2110,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -2864,30 +2126,9 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
         }
       },
       {
@@ -2917,7 +2158,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -2933,22 +2174,388 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-start": "",
+          "data-scrollbar-gutter": "auto",
+          "data-scrolling": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-scrolling": "",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-start": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-overflow-y-start": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-lock-axis": "x",
+          "data-mask": "true",
+          "data-overflow-y-end": "",
+          "data-scrollbar-gutter": "auto",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "vertical",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "wide"
         }
       },
       {
         "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-header": "true",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "scroll-area",
           "data-control-ui": "scroll-area",
+          "data-has-overflow-x": "",
           "data-has-overflow-y": "",
-          "data-lock-axis": "x",
           "data-mask": "true",
+          "data-overflow-x-end": "",
           "data-overflow-y-end": "",
           "data-scrollbar-gutter": "auto",
           "data-slot": "root",
           "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-orientation": "horizontal",
+          "data-slot": "thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
         }
       },
       {
@@ -2991,7 +2598,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -3007,149 +2614,19 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "wide"
         }
       },
       {
         "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-header": "true",
           "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "wide"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-x": "",
-          "data-has-overflow-y": "",
-          "data-mask": "true",
-          "data-overflow-x-end": "",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "wide"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-mask": "true",
-          "data-overflow-y-end": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
           "data-surface": "panel"
         }
       },
@@ -3178,7 +2655,7 @@
   "probes": [
     {
       "knobs": {
-        "fill": "--cui-scroll-area-thumb-background"
+        "fill": "--cui-scroll-area-corner-background"
       },
       "anatomy": 0,
       "rendersText": false,
@@ -3517,6 +2994,14 @@
         "fill": "--cui-scroll-area-thumb-background"
       },
       "anatomy": 42,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-scroll-area-thumb-background"
+      },
+      "anatomy": 43,
       "rendersText": false,
       "state": false
     }

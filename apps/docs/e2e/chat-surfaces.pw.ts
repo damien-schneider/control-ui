@@ -87,7 +87,7 @@ for (const skin of ["refined", "modern-apple", "none", "cuicui", "xp", "windows-
 
     test("attachments stay inside the composer and can be removed by keyboard", async ({ page }, testInfo) => {
       await page.setViewportSize({ width: 390, height: 844 });
-      await page.goto("/components/chat-composer-attachment");
+      await page.goto("/kits/chat-composer-attachment");
       const preview = page.locator("#preview");
       const rail = preview.locator('[data-control-ui="chat-composer-attachments"][data-slot="root"]');
       await expect(rail).toBeVisible();
@@ -127,7 +127,7 @@ for (const skin of ["refined", "modern-apple", "none", "cuicui", "xp", "windows-
 
 test("composer gallery previews fit their grid cells", async ({ page }) => {
   await page.setViewportSize({ width: 1200, height: 1000 });
-  await page.goto("/components");
+  await page.goto("/kits");
   await page.waitForLoadState("networkidle");
   for (const id of ["chat-composer", "chat-composer-attachment"]) {
     const card = page.locator(`[data-gallery-item-id="${id}"]`);

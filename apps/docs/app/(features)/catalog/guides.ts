@@ -60,7 +60,7 @@ export const guideEntries = [
     group: "start",
     name: "Install",
     summary:
-      "One command installs every component, block, and primitive as source you own, with neutral light and dark defaults. The CSS entry is the only wiring you write.",
+      "One command installs every component, kit, and block as source you own, with neutral light and dark defaults. The CSS entry is the only wiring you write.",
     sections: [
       { id: "install", title: "Install the components", code: "all-install" },
       { id: "items", title: "Install one item at a time", code: "component-install" },
@@ -204,7 +204,7 @@ export const guideEntries = [
     kind: "Guide",
     group: "why",
     name: "Why Control UI",
-    summary: "An owned-source registry of primitives, agent surfaces, complete blocks, and swappable skins.",
+    summary: "An owned-source registry of components, kits, complete blocks, and swappable skins.",
     sections: [
       { id: "why", title: "Why it exists" },
       { id: "model", title: "How it works" },
@@ -279,7 +279,7 @@ export const guideEntries = [
       {
         question: "Should I use shadcn/ui instead of Control UI for a dashboard or SaaS console?",
         answer:
-          "Not automatically. Both cover the primitives a dashboard needs, and Control UI adds a skin system and a contrast gate that re-checks every supported skin mode against WCAG AA on every commit. Pick shadcn/ui when you rely on its larger pool of community recipes, or when you need its chart and carousel components today.",
+          "Not automatically. Both cover the components a dashboard needs, and Control UI adds a skin system and a contrast gate that re-checks every supported skin mode against WCAG AA on every commit. Pick shadcn/ui when you rely on its larger pool of community recipes, or when you need its chart and carousel components today.",
       },
       {
         question: "Can I use Control UI and shadcn/ui components in the same project?",
@@ -378,7 +378,7 @@ export const guideEntries = [
       {
         question: "Does shadcn/ui have a tree view or file explorer?",
         answer:
-          "No, not as of October 2026. Control UI has a Tree primitive with roving keyboard navigation and single or multi selection, and a File explorer template with locations, search, resizable columns, breadcrumbs, and a preview.",
+          "No, not as of October 2026. Control UI has a Tree component with roving keyboard navigation and single or multi selection, and a File explorer template with locations, search, resizable columns, breadcrumbs, and a preview.",
       },
       {
         question: "Can I install these with the shadcn CLI?",

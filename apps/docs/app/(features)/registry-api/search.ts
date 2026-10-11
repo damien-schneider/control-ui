@@ -76,7 +76,7 @@ export function buildSearchItems({
       name: item.name,
       kind: "Component",
       summary: item.summary,
-      href: `/components/${item.id}`,
+      href: `/kits/${item.id}`,
       status: item.status,
     })),
     ...primitives.map<SearchItem>((item) => ({
@@ -84,7 +84,7 @@ export function buildSearchItems({
       name: item.name,
       kind: "Primitive",
       summary: item.summary,
-      href: `/primitives/${item.id}`,
+      href: `/components/${item.id}`,
       status: item.status,
     })),
     ...hooks.map<SearchItem>((item) => ({

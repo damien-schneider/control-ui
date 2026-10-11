@@ -13,7 +13,7 @@ const EXPECTED_PLACEMENT = {
 } as const;
 
 test("resize handles sit centred on their edge or corner with the matching cursor", async ({ page }) => {
-  await page.goto("/primitives/resize-handle");
+  await page.goto("/components/resize-handle");
   const handles = page.locator('main [data-control-family="resize-handle"][data-slot="root"]');
   await expect(handles).toHaveCount(8);
   await waitForReactHydration(handles.first());

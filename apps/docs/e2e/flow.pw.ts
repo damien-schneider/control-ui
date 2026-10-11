@@ -9,7 +9,7 @@ test("flow paints nodes and edges from its knobs and drives the viewport from it
     if (message.text().includes("[React Flow]")) reactFlowWarnings.push(message.text());
   });
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto("/primitives/flow");
+  await page.goto("/components/flow");
 
   const flow = page.locator('main [data-control-family="flow"][data-slot="root"]');
   const nodes = flow.locator('[data-slot="node"]');

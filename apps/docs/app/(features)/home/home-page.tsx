@@ -151,7 +151,7 @@ export function HomePage() {
         lead={
           <>
             {chatGroup.summary}{" "}
-            <Link href={`/components#${chatGroup.id}`} className={inlineLinkClassName}>
+            <Link href={`/kits#${chatGroup.id}`} className={inlineLinkClassName}>
               Browse all {chatGroup.items.length}
             </Link>
             .

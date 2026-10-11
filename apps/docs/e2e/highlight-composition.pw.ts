@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("nested tracks preserve their own selection, hover, and press paint", async ({ page }) => {
-  await page.goto("/primitives/track-highlight");
+  await page.goto("/components/track-highlight");
   const group = page.getByRole("group", { name: "Hover and focus", exact: true });
   const track = group.locator('[data-track="hover"]');
   const selected = group.getByRole("button", { name: "Overview", exact: true });
@@ -41,7 +41,7 @@ test("nested tracks preserve their own selection, hover, and press paint", async
 });
 
 test("sidebar highlights inherit the sidebar and menu radius overrides", async ({ page }) => {
-  await page.goto("/primitives/sidebar");
+  await page.goto("/components/sidebar");
   const group = page.getByRole("group", { name: "Sidebar", exact: true });
   const menuHighlight = group.getByRole("combobox", { name: "Menu highlight" });
   await waitForReactHydration(menuHighlight);
@@ -62,7 +62,7 @@ test("sidebar highlights inherit the sidebar and menu radius overrides", async (
 });
 
 test("XP button highlights share the control radius floor and follow larger overrides", async ({ page }) => {
-  await page.goto("/primitives/track-highlight");
+  await page.goto("/components/track-highlight");
   const skinPicker = page.getByRole("combobox", { name: "Skin", exact: true });
   await waitForReactHydration(skinPicker);
   await skinPicker.click();
@@ -80,7 +80,7 @@ test("XP button highlights share the control radius floor and follow larger over
 });
 
 test("sliding trees apply root knobs to both rows and their highlight", async ({ page }) => {
-  await page.goto("/primitives/tree");
+  await page.goto("/components/tree");
   const tree = page.getByRole("tree", { name: "Project files" });
   const surface = tree.locator("..");
   const item = tree.locator('[data-slot="item-trigger"]').filter({ hasText: "app.tsx" });

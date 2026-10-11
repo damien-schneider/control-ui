@@ -13,9 +13,9 @@ import { absoluteSiteUrl, siteConfig } from "@/lib/site-config";
 import { publicPayloads } from "./public-payloads";
 
 const KIND_SECTIONS: { kind: SearchItem["kind"]; heading: string }[] = [
-  { kind: "Component", heading: "Components (installable surfaces)" },
+  { kind: "Primitive", heading: "Components" },
+  { kind: "Component", heading: "Kits (pre-assembled sets of components)" },
   { kind: "Block", heading: "Blocks (pre-composed recipes)" },
-  { kind: "Primitive", heading: "Primitives" },
   { kind: "Extension", heading: "Extensions" },
   { kind: "Skin", heading: "Skins" },
   { kind: "Hook", heading: "Hooks" },
@@ -25,9 +25,9 @@ const KIND_SECTIONS: { kind: SearchItem["kind"]; heading: string }[] = [
 
 const LLMS_SECTIONS: { kind: SearchItem["kind"]; heading: string }[] = [
   { kind: "Guide", heading: "Documentation" },
-  { kind: "Component", heading: "Components" },
+  { kind: "Primitive", heading: "Components" },
+  { kind: "Component", heading: "Kits" },
   { kind: "Block", heading: "Blocks" },
-  { kind: "Primitive", heading: "Primitives" },
   { kind: "Extension", heading: "Extensions" },
   { kind: "Skin", heading: "Skins" },
   { kind: "Hook", heading: "Hooks" },

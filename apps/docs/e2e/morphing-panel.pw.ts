@@ -24,7 +24,7 @@ test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
     Object.assign(window, { __REACT_SCAN_DISABLED__: true, __REACT_GRAB_DISABLED__: true });
   });
-  await page.goto("/primitives/morphing-panel");
+  await page.goto("/components/morphing-panel");
   await waitForReactHydration(page.locator('[data-example="settings"]'));
 });
 

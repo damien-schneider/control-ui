@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { waitForReactHydration } from "./browser-test-helpers";
 
 test("item header and footer take full rows above and below the content", async ({ page }) => {
-  await page.goto("/primitives/item");
+  await page.goto("/components/item");
   const item = page.locator("main [data-control-family='item'][data-slot='root']").filter({ hasText: "Production build finished" });
   await waitForReactHydration(item);
 

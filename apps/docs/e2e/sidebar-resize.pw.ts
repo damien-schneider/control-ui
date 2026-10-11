@@ -11,7 +11,7 @@ async function waitForSidebarHydration(resizeHandle: Locator) {
 
 test("sidebar keyboard resize updates and persists the wrapper width", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
-  await page.goto("/primitives/code-diff");
+  await page.goto("/components/code-diff");
   await page.evaluate(() => localStorage.removeItem("control-ui-docs:sidebar-width"));
   await page.reload();
 
@@ -30,7 +30,7 @@ test("sidebar keyboard resize updates and persists the wrapper width", async ({ 
 
 test("stored widths outside the shared limits are clamped", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
-  await page.goto("/primitives/code-diff");
+  await page.goto("/components/code-diff");
   await page.evaluate(() => localStorage.setItem("control-ui-docs:sidebar-width", "9000"));
   await page.reload();
   const rail = page.getByRole("separator", { name: "Resize sidebar", exact: true });
@@ -40,7 +40,7 @@ test("stored widths outside the shared limits are clamped", async ({ page }) => 
 
 test("collapsed state survives reload", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
-  await page.goto("/primitives/code-diff");
+  await page.goto("/components/code-diff");
 
   const sidebarRoot = page.locator('[data-control-ui="sidebar"][data-slot="root"].peer');
   const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
@@ -63,7 +63,7 @@ test("saved collapse and width reach the first paint, before any hydration", asy
   await context.addInitScript(() => localStorage.setItem("control-ui-docs:sidebar-width", "320"));
   await page.route("**/*", (route) => (route.request().resourceType() === "script" ? route.abort() : route.continue()));
   await page.setViewportSize({ width: 1280, height: 900 });
-  await page.goto("/primitives/code-diff");
+  await page.goto("/components/code-diff");
 
   await expect(page.locator('[data-control-ui="sidebar"][data-slot="root"].peer')).toHaveAttribute("data-state", "collapsed");
   await expect(page.locator('[data-control-ui="sidebar"][data-slot="wrapper"]')).toHaveCSS("--sidebar-width", "320px");
@@ -82,7 +82,7 @@ test("restoring the saved sidebar hydrates without mismatch warnings", async ({ 
   });
   page.on("pageerror", (error) => pageErrors.push(String(error)));
   await page.setViewportSize({ width: 1280, height: 900 });
-  await page.goto("/primitives/sidebar");
+  await page.goto("/components/sidebar");
 
   const shellSidebar = page.locator('[data-control-ui="sidebar"][data-slot="root"].peer').first();
   await waitForSidebarHydration(shellSidebar.getByRole("separator", { name: /Resize sidebar/ }));
@@ -92,7 +92,7 @@ test("restoring the saved sidebar hydrates without mismatch warnings", async ({ 
 
 test("drag collapse restores the committed width and drag expand tracks the pointer", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
-  await page.goto("/primitives/code-diff");
+  await page.goto("/components/code-diff");
 
   const sidebarRoot = page.locator('[data-control-ui="sidebar"][data-slot="root"].peer');
   const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
@@ -137,7 +137,7 @@ test("drag collapse restores the committed width and drag expand tracks the poin
 
 test("drag width is measured from the sidebar's own edge when it sits beside another column", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
-  await page.goto("/primitives/code-diff");
+  await page.goto("/components/code-diff");
   await page.addStyleTag({
     content:
       '[data-control-ui="sidebar"][data-slot="root"].peer { margin-inline-start: 80px; } [data-control-ui="sidebar"][data-slot="container"] { left: 80px !important; }',
@@ -156,7 +156,7 @@ test("drag width is measured from the sidebar's own edge when it sits beside ano
 
 test("switching to the mobile sidebar aborts an active resize gesture", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
-  await page.goto("/primitives/code-diff");
+  await page.goto("/components/code-diff");
 
   const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
   const wrapper = page.locator('[data-control-ui="sidebar"][data-slot="wrapper"]');
@@ -178,7 +178,7 @@ test("switching to the mobile sidebar aborts an active resize gesture", async ({
 
 test("sidebar shortcut moves focus out of collapsed navigation", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
-  await page.goto("/primitives/code-diff");
+  await page.goto("/components/code-diff");
 
   const activeLink = page.locator("[data-docs-sidebar-navigation]").getByRole("link", { name: "Install", exact: true });
   const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
@@ -193,7 +193,7 @@ test("sidebar shortcut moves focus out of collapsed navigation", async ({ page }
 
 test("committed width and collapsed state survive a skin remount", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
-  await page.goto("/primitives/code-diff");
+  await page.goto("/components/code-diff");
 
   const sidebarRoot = page.locator('[data-control-ui="sidebar"][data-slot="root"].peer');
   const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
@@ -224,7 +224,7 @@ test("committed width and collapsed state survive a skin remount", async ({ page
 
 test("persisted desktop collapse leaves the mobile drawer interactive", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
-  await page.goto("/primitives/code-diff");
+  await page.goto("/components/code-diff");
   const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
   await waitForSidebarHydration(resizeHandle);
   await resizeHandle.focus();
@@ -243,7 +243,7 @@ test("persisted desktop collapse leaves the mobile drawer interactive", async ({
 });
 
 test("sidebar inset confines wide content to the remaining panel", async ({ page }) => {
-  await page.goto("/primitives/sidebar");
+  await page.goto("/components/sidebar");
   for (const name of ["Sidebar", "Floating", "Inset"]) {
     const preview = page.getByRole("group", { name, exact: true });
     const panel = preview.locator('[data-slot="inset"]');
@@ -258,7 +258,7 @@ test("sidebar inset confines wide content to the remaining panel", async ({ page
 });
 
 test("sidebar buttons align stretched labels with the start of their content", async ({ page }) => {
-  await page.goto("/primitives/sidebar");
+  await page.goto("/components/sidebar");
   const sidebar = page.getByRole("group", { name: "Sidebar", exact: true });
   const label = sidebar.getByRole("button", { name: "Settings", exact: true }).locator("span");
   await expect(label).toHaveCSS("text-align", "start");

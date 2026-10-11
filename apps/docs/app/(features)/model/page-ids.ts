@@ -77,9 +77,9 @@ export function isSkinPageId(value: string): value is SkinMetaId {
 }
 
 export function docsPathForPageId(value: string) {
-  if (isComponentPageId(value)) return `/components/${value}`;
+  if (isComponentPageId(value)) return `/kits/${value}`;
   if (isBlockPageId(value)) return `/use-cases/${value}`;
-  if (isPrimitivePageId(value)) return `/primitives/${value}`;
+  if (isPrimitivePageId(value)) return `/components/${value}`;
   if (isHookPageId(value)) return `/hooks/${value}`;
   if (isUtilPageId(value)) return `/utils/${value}`;
   if (isExtensionPageId(value)) return `/extensions/${value}`;

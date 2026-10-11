@@ -8,7 +8,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -24,17 +24,76 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
         }
       },
       {
         "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "framed"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "nested"
+        }
+      },
+      {
+        "attributes": {
+          "data-axis": "horizontal",
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-separator": "inactive",
+          "data-slot": "handle",
+          "data-variant": "hover",
+          "role": "separator",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-axis": "horizontal",
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "handle-grip",
+          "data-variant": "hover"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -83,7 +142,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -99,17 +158,9 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
         }
       },
       {
@@ -158,7 +209,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -174,17 +225,9 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
         }
       },
       {
@@ -212,7 +255,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -228,17 +271,9 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
         }
       },
       {
@@ -257,7 +292,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -273,7 +308,47 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-axis": "vertical",
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-separator": "inactive",
+          "data-slot": "handle",
+          "data-variant": "hover",
+          "role": "separator",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
         }
@@ -306,7 +381,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -322,7 +397,239 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "framed"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "nested"
+        }
+      },
+      {
+        "attributes": {
+          "data-axis": "horizontal",
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-separator": "inactive",
+          "data-slot": "handle",
+          "data-variant": "hover",
+          "role": "separator",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "framed"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "nested"
+        }
+      },
+      {
+        "attributes": {
+          "data-axis": "horizontal",
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-separator": "inactive",
+          "data-slot": "handle",
+          "data-variant": "solid",
+          "role": "separator",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "framed"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "nested"
+        }
+      },
+      {
+        "attributes": {
+          "data-axis": "vertical",
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-separator": "inactive",
+          "data-slot": "handle",
+          "data-variant": "hover",
+          "role": "separator",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "framed"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "nested"
+        }
+      },
+      {
+        "attributes": {
+          "data-axis": "vertical",
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-separator": "inactive",
+          "data-slot": "handle",
+          "data-variant": "solid",
+          "role": "separator",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
         }
@@ -364,138 +671,6 @@
           "tabindex": "0"
         }
       }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "resizable",
-          "data-control-ui": "resizable",
-          "data-slot": "panel-group",
-          "data-surface": "panel",
-          "data-variant": "framed"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "resizable",
-          "data-control-ui": "resizable",
-          "data-slot": "panel-group",
-          "data-surface": "panel",
-          "data-variant": "nested"
-        }
-      },
-      {
-        "attributes": {
-          "data-axis": "horizontal",
-          "data-control-family": "resizable",
-          "data-control-ui": "resizable",
-          "data-separator": "inactive",
-          "data-slot": "handle",
-          "data-variant": "solid",
-          "role": "separator",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "resizable",
-          "data-control-ui": "resizable",
-          "data-slot": "panel-group",
-          "data-surface": "panel",
-          "data-variant": "framed"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "resizable",
-          "data-control-ui": "resizable",
-          "data-slot": "panel-group",
-          "data-surface": "panel",
-          "data-variant": "nested"
-        }
-      },
-      {
-        "attributes": {
-          "data-axis": "vertical",
-          "data-control-family": "resizable",
-          "data-control-ui": "resizable",
-          "data-separator": "inactive",
-          "data-slot": "handle",
-          "data-variant": "solid",
-          "role": "separator",
-          "tabindex": "0"
-        }
-      }
     ]
   ],
   "probes": [
@@ -519,10 +694,11 @@
     },
     {
       "knobs": {
-        "fill": "--cui-resizable-group-background"
+        "fill": "--cui-resizable-grip-background",
+        "text": "--cui-resizable-grip-foreground"
       },
       "anatomy": 2,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -535,10 +711,10 @@
     },
     {
       "knobs": {
-        "fill": "--cui-resizable-handle-background"
+        "fill": "--cui-resizable-group-background"
       },
       "anatomy": 4,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -562,6 +738,38 @@
         "fill": "--cui-resizable-handle-background"
       },
       "anatomy": 7,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-resizable-handle-background"
+      },
+      "anatomy": 8,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-resizable-handle-background"
+      },
+      "anatomy": 9,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-resizable-handle-background"
+      },
+      "anatomy": 10,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-resizable-handle-background"
+      },
+      "anatomy": 11,
       "rendersText": false,
       "state": false
     }

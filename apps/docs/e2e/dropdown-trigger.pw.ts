@@ -3,7 +3,7 @@ import { waitForReactHydration } from "./browser-test-helpers";
 
 for (const name of ["Full-width trigger", "Composed trigger"]) {
   test(`${name} preserves label and trailing icon layout`, async ({ page }) => {
-    await page.goto("/primitives/dropdown-menu");
+    await page.goto("/components/dropdown-menu");
     const group = page.getByRole("group", { name, exact: true });
     const trigger = group.getByRole("button");
     await waitForReactHydration(trigger);
@@ -38,7 +38,7 @@ for (const name of ["Full-width trigger", "Composed trigger"]) {
 }
 
 test("open appearance survives hover and respects skin knobs", async ({ page }) => {
-  await page.goto("/primitives/dropdown-menu");
+  await page.goto("/components/dropdown-menu");
   const trigger = page.getByRole("group", { name: "Full-width trigger", exact: true }).getByRole("button");
   await waitForReactHydration(trigger);
   await page.addStyleTag({ content: "* { transition: none !important; }" });

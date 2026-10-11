@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => {
 
 test("page layout scrolls the document while navigation and controls remain reachable", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto("/primitives/button");
+  await page.goto("/components/button");
   const rail = page.getByRole("separator", { name: "Resize sidebar", exact: true });
   await expect(rail).toHaveAttribute("data-resize-ready", "");
   const sidebar = page.locator('[data-docs-shell] > [data-control-family="sidebar"][data-slot="root"]');
@@ -37,7 +37,7 @@ test("page layout scrolls the document while navigation and controls remain reac
 test("the page layout frame reaches the first paint, before any hydration", async ({ page }) => {
   await page.route("**/*", (route) => (route.request().resourceType() === "script" ? route.abort() : route.continue()));
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto("/primitives/button");
+  await page.goto("/components/button");
 
   await expect(page.locator("html")).toHaveAttribute("data-docs-layout", "page");
   const content = page.locator("[data-docs-content]");
@@ -48,7 +48,7 @@ test("the page layout frame reaches the first paint, before any hydration", asyn
 
 test("mobile page scrolling resumes after closing the navigation drawer", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/primitives/button");
+  await page.goto("/components/button");
   const trigger = page.getByRole("button", { name: "Toggle sidebar", exact: true });
   await waitForReactHydration(trigger);
   await page.mouse.move(280, 600);
@@ -70,7 +70,7 @@ test("mobile page scrolling resumes after closing the navigation drawer", async 
 
 test("switching skins changes scroll ownership without leaving the page locked", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto("/primitives/button");
+  await page.goto("/components/button");
   const skinPicker = page.getByRole("combobox", { name: "Skin", exact: true });
   await waitForReactHydration(skinPicker);
   await expect(skinPicker).toHaveText("Refined");

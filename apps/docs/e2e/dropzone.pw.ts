@@ -155,7 +155,7 @@ const rejectedExecutable: BrowserFile = {
 };
 
 test("visible dropzone validates chooser and drag intake", async ({ page }) => {
-  await page.goto("/primitives/dropzone");
+  await page.goto("/components/dropzone");
 
   const roots = page.locator('[data-control-ui="dropzone"][data-slot="root"]');
   const main = roots.filter({ has: page.locator('input[type="file"][accept*=".png"]') }).first();
@@ -223,7 +223,7 @@ test("visible dropzone validates chooser and drag intake", async ({ page }) => {
 });
 
 test("global overlay ignores drags owned by another dropzone", async ({ page }) => {
-  await page.goto("/primitives/dropzone");
+  await page.goto("/components/dropzone");
 
   const roots = page.locator('[data-control-ui="dropzone"][data-slot="root"]');
   const visible = roots.filter({ has: page.locator('input[type="file"][accept*=".png"]') }).first();

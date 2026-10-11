@@ -18,7 +18,7 @@ test.beforeEach(async ({ page }) => {
   await page.addInitScript((storageKey) => {
     localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" }));
   }, THEME_EDITOR_STORAGE_KEY);
-  await page.goto("/primitives/progressive-blur");
+  await page.goto("/components/progressive-blur");
   await waitForReactHydration(page.getByRole("switch", { name: "Progressive blur", exact: true }));
 });
 

@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { waitForReactHydration } from "./browser-test-helpers";
 
 test("audio visualizer knobs reach computed paint from the family root and from the painted slot", async ({ page }) => {
-  await page.goto("/components/audio-visualizer");
+  await page.goto("/kits/audio-visualizer");
 
   const bars = page.locator('[data-control-ui="audio-visualizer"][data-slot="root"][data-variant="bars"]').first();
   const bar = bars.locator('[data-slot="bar"]').first();
@@ -35,7 +35,7 @@ test("audio visualizer knobs reach computed paint from the family root and from 
 });
 
 test("the waveform stops at its idle line and resumes on demand", async ({ page }) => {
-  await page.goto("/components/audio-visualizer");
+  await page.goto("/kits/audio-visualizer");
   const waveform = page.getByRole("img", { name: "Voice waveform", exact: true });
   await expect(waveform).toHaveAttribute("data-active", "true");
   const pause = page.getByRole("button", { name: "Pause", exact: true });
@@ -74,7 +74,7 @@ test("the waveform stops at its idle line and resumes on demand", async ({ page 
 });
 
 test("frequency bars align, mirror, and respect reduced motion during loading", async ({ page }) => {
-  await page.goto("/components/audio-visualizer");
+  await page.goto("/kits/audio-visualizer");
   const variant = page.getByRole("radio", { name: "Frequency bars", exact: true });
   await waitForReactHydration(variant);
   await variant.click();

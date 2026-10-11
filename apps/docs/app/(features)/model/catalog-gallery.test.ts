@@ -26,7 +26,7 @@ describe("catalog galleries", () => {
     for (const group of groups) {
       const expectedIds = primitiveEntries.filter((entry) => entry.category === group.id).map((entry) => entry.id);
       expect(group.items.map((item) => item.id).toSorted()).toEqual(expectedIds.toSorted());
-      expect(group.items.every((item) => item.href === `/primitives/${item.id}`)).toBe(true);
+      expect(group.items.every((item) => item.href === `/components/${item.id}`)).toBe(true);
     }
   });
 
@@ -46,7 +46,7 @@ describe("catalog galleries", () => {
     for (const group of groups) {
       const expectedIds = componentEntries.filter((entry) => entry.category === group.id).map((entry) => entry.id);
       expect(group.items.map((item) => item.id).toSorted()).toEqual(expectedIds.toSorted());
-      expect(group.items.every((item) => item.href === `/components/${item.id}`)).toBe(true);
+      expect(group.items.every((item) => item.href === `/kits/${item.id}`)).toBe(true);
     }
   });
 
@@ -69,8 +69,8 @@ describe("catalog galleries", () => {
   });
 
   test("registers every overview with the correct shell mode and table of contents", () => {
-    expect(docsPageManifest.find((page) => page.id === "primitives")?.href).toBe("/primitives");
-    expect(docsPageManifest.find((page) => page.id === "components")?.href).toBe("/components");
+    expect(docsPageManifest.find((page) => page.id === "primitives")?.href).toBe("/components");
+    expect(docsPageManifest.find((page) => page.id === "components")?.href).toBe("/kits");
     expect(docsPageManifest.find((page) => page.id === "use-cases")?.href).toBe("/use-cases");
     expect(sidebarPaneForActivePage("use-cases", docsPageManifest, [])).toBe("use-cases");
 

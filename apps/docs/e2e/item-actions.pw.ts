@@ -3,7 +3,7 @@ import { waitForReactHydration } from "./browser-test-helpers";
 
 test("hover-revealed item actions show on hover, keyboard focus, and while their menu is open", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/primitives/item");
+  await page.goto("/components/item");
   const row = page.locator("main [data-control-family='item'][data-slot='root']").filter({ hasText: "Nightly evaluation" });
   const actions = row.locator("[data-slot='actions'][data-show-on-hover]");
   await waitForReactHydration(row);

@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 for (const side of ["left", "right"] as const) {
   test(`${side} sidebar resizes and restores its width without docs handlers`, async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
-    await page.goto("/primitives/sidebar");
+    await page.goto("/components/sidebar");
     const preview = page.getByRole("group", { name: side === "left" ? "Resizable" : "Right sidebar", exact: true });
     const rail = preview.getByRole("separator", { name: "Resize sidebar", exact: true });
     const wrapper = preview.locator('[data-control-ui="sidebar"][data-slot="wrapper"]');
@@ -49,7 +49,7 @@ for (const side of ["left", "right"] as const) {
 
 test("Escape cancels a drag collapse and restores document interaction", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto("/primitives/sidebar");
+  await page.goto("/components/sidebar");
   const preview = page.getByRole("group", { name: "Resizable", exact: true });
   const rail = preview.getByRole("separator", { name: "Resize sidebar", exact: true });
   const wrapper = preview.locator('[data-control-ui="sidebar"][data-slot="wrapper"]');
@@ -75,7 +75,7 @@ test("Escape cancels a drag collapse and restores document interaction", async (
 test("collapsed navigation stays outside keyboard navigation and respects reduced motion", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/primitives/sidebar");
+  await page.goto("/components/sidebar");
   const preview = page.getByRole("group", { name: "Resizable", exact: true });
   const rail = preview.getByRole("separator", { name: "Resize sidebar", exact: true });
   const container = preview.locator('[data-slot="container"]');

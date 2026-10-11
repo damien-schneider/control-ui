@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { waitForReactHydration } from "./browser-test-helpers";
 
 test("keeps a disconnected selection, restores it on reconnect, and supports no input", async ({ page }) => {
-  await page.goto("/components/audio-device-select");
+  await page.goto("/kits/audio-device-select");
   const trigger = page.getByRole("combobox", { name: "Microphone", exact: true });
   await waitForReactHydration(trigger);
   await expect(trigger).toContainText("Shure MV7+");
@@ -23,7 +23,7 @@ test("keeps a disconnected selection, restores it on reconnect, and supports no 
 });
 
 test("shows loading and blocked permission states", async ({ page }) => {
-  await page.goto("/components/audio-device-select");
+  await page.goto("/kits/audio-device-select");
   const loading = page.getByRole("combobox", { name: "Loading input", exact: true });
   await expect(loading).toBeDisabled();
   await expect(loading).toContainText("Finding devices…");
@@ -45,7 +45,7 @@ test("requests recorder microphone permission and reports denial", async ({ page
       },
     });
   });
-  await page.goto("/components/audio-recorder");
+  await page.goto("/kits/audio-recorder");
   const permission = page.getByRole("button", { name: "Allow microphone access", exact: true });
   await waitForReactHydration(permission);
   await permission.click();
@@ -71,7 +71,7 @@ test("refreshes microphone names after permission and releases the permission st
       },
     });
   });
-  await page.goto("/components/audio-recorder");
+  await page.goto("/kits/audio-recorder");
   const permission = page.getByRole("button", { name: "Allow microphone access", exact: true });
   await waitForReactHydration(permission);
   await permission.click();

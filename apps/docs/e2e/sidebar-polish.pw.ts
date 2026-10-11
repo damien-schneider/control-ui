@@ -81,7 +81,7 @@ for (const mode of ["light", "dark"]) {
     );
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.emulateMedia({ reducedMotion: "reduce" });
-    await page.goto("/primitives/sidebar", { waitUntil: "domcontentloaded" });
+    await page.goto("/components/sidebar", { waitUntil: "domcontentloaded" });
     const example = page.getByRole("group", { name: "Sidebar", exact: true });
     await waitForExampleNavigation(example);
     const skinPicker = page.getByRole("combobox", { name: "Skin", exact: true });
@@ -120,7 +120,7 @@ for (const mode of ["light", "dark"]) {
 test("automatic label tooltips only open for icon rails", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/primitives/sidebar", { waitUntil: "domcontentloaded" });
+  await page.goto("/components/sidebar", { waitUntil: "domcontentloaded" });
   const example = page.getByRole("group", { name: "Sidebar", exact: true });
   await waitForExampleNavigation(example);
   await page.clock.install();
@@ -138,7 +138,7 @@ test("automatic label tooltips only open for icon rails", async ({ page }) => {
 test("switching from icon navigation to mobile closes hidden tooltips before Escape", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/primitives/sidebar", { waitUntil: "domcontentloaded" });
+  await page.goto("/components/sidebar", { waitUntil: "domcontentloaded" });
   const example = page.getByRole("group", { name: "Sidebar", exact: true });
   const trigger = example.getByRole("button", { name: "Toggle sidebar", exact: true });
   await waitForExampleNavigation(example);
@@ -159,7 +159,7 @@ test("switching from icon navigation to mobile closes hidden tooltips before Esc
 test("icon collapse keeps the navigation column steady throughout its transition", async ({ page }) => {
   await page.addInitScript((storageKey) => localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" })), THEME_EDITOR_STORAGE_KEY);
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto("/primitives/sidebar", { waitUntil: "domcontentloaded" });
+  await page.goto("/components/sidebar", { waitUntil: "domcontentloaded" });
   const example = page.getByRole("group", { name: "Sidebar", exact: true });
   const trigger = example.getByRole("button", { name: "Toggle sidebar", exact: true });
   await waitForExampleNavigation(example);
@@ -182,7 +182,7 @@ test("RTL icon rails keep their alignment for every selection indicator", async 
   await page.addInitScript((storageKey) => localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" })), THEME_EDITOR_STORAGE_KEY);
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/primitives/sidebar", { waitUntil: "domcontentloaded" });
+  await page.goto("/components/sidebar", { waitUntil: "domcontentloaded" });
   const example = page.getByRole("group", { name: "Sidebar", exact: true });
   await waitForExampleNavigation(example);
   await page.locator("html").evaluate((html) => html.setAttribute("dir", "rtl"));
@@ -207,7 +207,7 @@ for (const direction of ["ltr", "rtl"]) {
         THEME_EDITOR_STORAGE_KEY,
       );
       await page.setViewportSize({ width: 1440, height: 1000 });
-      await page.goto("/primitives/sidebar", { waitUntil: "domcontentloaded" });
+      await page.goto("/components/sidebar", { waitUntil: "domcontentloaded" });
       const example = page.getByRole("group", { name: "Sidebar", exact: true });
       await waitForExampleNavigation(example);
       await page.locator("html").evaluate((html, textDirection) => html.setAttribute("dir", textDirection), direction);

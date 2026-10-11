@@ -6,7 +6,7 @@ Open-source, shadcn-compatible React components, templates, and skins: pickers, 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![Documentation](https://img.shields.io/badge/docs-control--ui.dev-black.svg)](https://control-ui.dev)
 
-[Documentation](https://control-ui.dev) · [Get started](https://control-ui.dev/get-started) · [Browse components](https://control-ui.dev/primitives) · [Report an issue](https://github.com/damien-schneider/control-ui/issues)
+[Documentation](https://control-ui.dev) · [Get started](https://control-ui.dev/get-started) · [Browse components](https://control-ui.dev/components) · [Report an issue](https://github.com/damien-schneider/control-ui/issues)
 
 Control UI is an owned-source registry of 100+ React components for Tailwind CSS v4 and shadcn/ui: form controls and pickers, navigation and layout, code and content, canvases, complete app templates, and the chat and coding-agent surfaces AI products need. Install only what you need with the shadcn CLI and adapt the source in your application, or add the same set as the versioned `@ctrl-ui/react` package. Either way there is no provider lock-in.
 
@@ -18,7 +18,7 @@ Control UI is an owned-source registry of 100+ React components for Tailwind CSS
 - **Own the source.** Components are copied into your repository; customization lives in the skin layer, so updating never overwrites your changes.
 - **Bring any runtime.** Plain props and children keep model calls, streaming, persistence, and transport in your application.
 - **Skin the whole system.** One component implementation supports complete token-driven skins without forking behavior or markup.
-- **Install at the right level.** Choose a primitive, an agent surface, a complete block, or a dependency bundle.
+- **Install at the right level.** Choose a component, a kit, a complete block, or a dependency bundle.
 - **Coexist with shadcn/ui.** Control UI installs under `components/control-ui/*` and does not overwrite `components/ui/*`.
 - **Use root or `src/` layouts.** Registry targets resolve through the consumer's configured shadcn aliases.
 
@@ -109,9 +109,9 @@ The package includes neutral defaults and no skin presets. Customize application
 
 ## Explore the catalog
 
-- [Primitives](https://control-ui.dev/primitives) — accessible controls, pickers, navigation, layout, code, and canvas building blocks.
+- [Components](https://control-ui.dev/components) — accessible controls, pickers, navigation, layout, code, and canvas building blocks.
 - [Templates](https://control-ui.dev/use-cases) — complete settings, file-explorer, design-canvas, team-chat, chat, and coding-agent compositions.
-- [Agent surfaces](https://control-ui.dev/components) — messages, composers, activities, attachments, citations, and task UI.
+- [Kits](https://control-ui.dev/kits) — pre-assembled sets of components for messages, composers, activities, attachments, citations, and task UI.
 - [Skins](https://control-ui.dev/skins) — complete visual systems sharing one component contract.
 - [Agent-facing registry](https://control-ui.dev/r/agent-index.json) — machine-readable discovery, dependencies, and install commands.
 
@@ -159,7 +159,7 @@ Run `bun run sync` after changing registry source, catalog metadata, or skin pac
 
 | Path | Responsibility |
 | --- | --- |
-| `apps/docs/src/registry/sources/control-ui` | Canonical component and primitive source |
+| `apps/docs/src/registry/sources/control-ui` | Canonical component and kit source |
 | `apps/docs/src/registry/hooks` and `lib` | Shared component behavior and local utilities |
 | `apps/docs/src/registry/blocks/control-ui` | Composed installable blocks |
 | `apps/docs/src/registry/skin-packs` | Skin tokens, CSS, typed slots, and optional adornments |

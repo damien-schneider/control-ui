@@ -56,7 +56,7 @@ function PreviewSection({ id, title, wide, children }: { id: PrimitiveId; title:
           {title}
         </Heading>
         <ButtonLink
-          render={<Link href={`/primitives/${id}`} />}
+          render={<Link href={`/components/${id}`} />}
           variant="quiet"
           size="xs"
           iconOnly

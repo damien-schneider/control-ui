@@ -6,7 +6,7 @@ test("sidebar header carries the skin picker and the theme editor link", async (
   await page.addInitScript((storageKey) => {
     localStorage.setItem(storageKey, JSON.stringify({ skin: "xp" }));
   }, THEME_EDITOR_STORAGE_KEY);
-  await page.goto("/primitives/button");
+  await page.goto("/components/button");
 
   const header = page.locator('[data-control-ui="sidebar"][data-slot="header"]');
   const skinSelect = header.getByRole("combobox", { name: "Skin" });
@@ -28,7 +28,7 @@ test("sidebar header carries the skin picker and the theme editor link", async (
 });
 
 test("search opens as a dialog from the sidebar and navigates to a result", async ({ page }) => {
-  await page.goto("/primitives/button");
+  await page.goto("/components/button");
   const trigger = page.getByRole("button", { name: "Search documentation" });
   await waitForReactHydration(trigger);
 
@@ -48,7 +48,7 @@ test("search opens as a dialog from the sidebar and navigates to a result", asyn
 });
 
 test("command+k opens search and escape closes it", async ({ page }) => {
-  await page.goto("/primitives/button");
+  await page.goto("/components/button");
   await waitForReactHydration(page.getByRole("button", { name: "Search documentation" }));
 
   await page.keyboard.press("ControlOrMeta+k");
@@ -61,7 +61,7 @@ test("command+k opens search and escape closes it", async ({ page }) => {
 
 test("search shortcut still works when the sidebar collapses into its sheet", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/primitives/button");
+  await page.goto("/components/button");
   await waitForReactHydration(page.getByRole("button", { name: "Toggle Sidebar" }));
 
   await page.keyboard.press("ControlOrMeta+k");
@@ -71,7 +71,7 @@ test("search shortcut still works when the sidebar collapses into its sheet", as
 });
 
 test("the integration selector shows up only where switching rewrites the code", async ({ page }) => {
-  await page.goto("/components/chat-message");
+  await page.goto("/kits/chat-message");
   const integration = page.locator("#usage").getByTestId("integration-select");
   await waitForReactHydration(integration);
   await expect(integration).toHaveText("Mastra");
@@ -83,11 +83,11 @@ test("the integration selector shows up only where switching rewrites the code",
   await expect(integration).toHaveText("AI SDK");
   await expect(usage).toContainText('type UIMessage } from "ai"');
 
-  await page.goto("/components/thread-rail");
+  await page.goto("/kits/thread-rail");
   await expect(page.locator("#usage")).toBeVisible();
   await expect(page.getByTestId("integration-select")).toHaveCount(0);
 
-  await page.goto("/primitives/button");
+  await page.goto("/components/button");
   await expect(page.getByTestId("integration-select")).toHaveCount(0);
 });
 

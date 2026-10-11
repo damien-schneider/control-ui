@@ -15,7 +15,7 @@ for (const skin of ["linear", "xp", "windows-98"]) {
         { skin, mode },
       );
       await page.setViewportSize({ width: 390, height: 844 });
-      await page.goto("/primitives/drawer");
+      await page.goto("/components/drawer");
       const trigger = page.locator("main").getByRole("button", { name: "Open drawer", exact: true });
       await waitForReactHydration(trigger);
       await trigger.press("Enter");

@@ -17,7 +17,7 @@ for (const skinId of ["none", "mastra"]) {
         },
         { skin: skinId, storageKey: THEME_EDITOR_STORAGE_KEY },
       );
-      await page.goto(control === "menu" ? "/primitives/dropdown-menu" : "/primitives/sidebar");
+      await page.goto(control === "menu" ? "/components/dropdown-menu" : "/components/sidebar");
       const triggers = {
         skin: page.getByRole("combobox", { name: "Skin", exact: true }),
         menu: page.getByRole("group", { name: "Dropdown menu", exact: true }).getByRole("button", { name: "Actions", exact: true }),

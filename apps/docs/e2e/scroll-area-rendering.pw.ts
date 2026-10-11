@@ -79,7 +79,7 @@ for (const skinId of ["refined", "modern-apple"] as const) {
     for (const mode of ["light", "dark"]) {
       test(`search results retain text beneath the blur in ${mode} mode`, async ({ page }) => {
         await page.addInitScript(({ key, theme }) => localStorage.setItem(key, theme), { key: THEME_STORAGE_KEY, theme: mode });
-        await visitWithSkin(page, "/primitives/phone-input", skinId);
+        await visitWithSkin(page, "/components/phone-input", skinId);
         const searchTrigger = page.getByRole("button", { name: "Search documentation", exact: true });
         await waitForReactHydration(searchTrigger);
         await searchTrigger.click();
@@ -104,14 +104,14 @@ for (const skinId of ["refined", "modern-apple"] as const) {
     if (skinId !== "modern-apple") return;
 
     test("sidebar blur preserves the underlying surface", async ({ page }) => {
-      await visitWithSkin(page, "/primitives/scroll-area", skinId);
+      await visitWithSkin(page, "/components/scroll-area", skinId);
       await waitForReactHydration(page.getByLabel("Horizontal roadmap", { exact: true }).getByRole("button").first());
       const viewport = page.locator("[data-docs-sidebar-navigation] [data-scroll-area-viewport]");
       await expectUnchangedBackdropAtZeroBlur(page, viewport);
     });
 
     test("code block blur preserves syntax at the clipped edge", async ({ page }) => {
-      await visitWithSkin(page, "/primitives/scroll-area", skinId);
+      await visitWithSkin(page, "/components/scroll-area", skinId);
       await waitForReactHydration(page.getByLabel("Horizontal roadmap", { exact: true }).getByRole("button").first());
       const viewport = page
         .getByRole("tabpanel", { name: "scroll-area.tsx", exact: true })
@@ -130,7 +130,7 @@ for (const skinId of ["refined", "modern-apple"] as const) {
     });
 
     test("country list blur preserves the masked countries", async ({ page }) => {
-      await visitWithSkin(page, "/primitives/phone-input", skinId);
+      await visitWithSkin(page, "/components/phone-input", skinId);
       const countryTrigger = page.getByRole("button", { name: "Phone number country: France (+33)", exact: true }).first();
       await waitForReactHydration(countryTrigger);
       await countryTrigger.click();
@@ -163,7 +163,7 @@ for (const skinId of ["refined", "modern-apple", "linear"] as const) {
         },
         { editorKey: THEME_EDITOR_STORAGE_KEY, themeKey: THEME_STORAGE_KEY, skin: skinId, theme: mode },
       );
-      await visitWithSkin(page, "/primitives/phone-input", skinId);
+      await visitWithSkin(page, "/components/phone-input", skinId);
       const trigger = page.getByRole("button", { name: "Phone number country: France (+33)", exact: true }).first();
       await waitForReactHydration(trigger);
       await trigger.click();

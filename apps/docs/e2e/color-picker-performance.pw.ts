@@ -18,7 +18,7 @@ for (const skin of ["none", "mastra"]) {
     });
 
     test("color gestures stay within their CPU budget and preserve selection and keyboard behavior", async ({ page }) => {
-      await page.goto("/primitives/color-picker");
+      await page.goto("/components/color-picker");
       const example = page.locator("#example-inline-panel");
       const area = example.locator('[data-slot="area"]');
       await waitForReactHydration(area);
@@ -87,7 +87,7 @@ for (const skin of ["none", "mastra"]) {
     });
 
     test("gradient stops drag without selecting text and retain keyboard control", async ({ page }) => {
-      await page.goto("/primitives/color-picker");
+      await page.goto("/components/color-picker");
       const preview = page.locator("#example-gradient-editor");
       const stop = preview.getByRole("slider", { name: "Gradient stop 1", exact: true });
       await waitForReactHydration(stop);

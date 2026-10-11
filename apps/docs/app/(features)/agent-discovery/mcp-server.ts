@@ -18,7 +18,7 @@ const searchRegistryTool: McpToolCard = {
   name: "search_registry",
   title: "Search the Control UI registry",
   description:
-    "Search Control UI components, blocks, primitives, hooks, utils, skins and guides by keyword. Returns matching entries as id, name, kind, summary and href.",
+    "Search Control UI components, kits, blocks, hooks, utils, skins and guides by keyword. Returns matching entries as id, name, kind, summary and href.",
 };
 
 const getRegistryItemTool: McpToolCard = {
@@ -32,7 +32,7 @@ const listRegistryTool: McpToolCard = {
   name: "list_registry",
   title: "List the Control UI registry",
   description:
-    "List every Control UI registry entry — components, blocks, primitives, hooks, utils, skins and guides — plus the skin and theme contract URLs and the full-install bundles.",
+    "List every Control UI registry entry — components, kits, blocks, hooks, utils, skins and guides — plus the skin and theme contract URLs and the full-install bundles.",
 };
 
 export const mcpToolCards: McpToolCard[] = [searchRegistryTool, getRegistryItemTool, listRegistryTool];

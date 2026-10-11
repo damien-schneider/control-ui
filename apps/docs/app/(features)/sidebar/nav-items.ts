@@ -129,8 +129,8 @@ export function catalogNavGroups({ components, primitives, hooks, utils, extensi
       id: category.id,
       title: category.label,
       items: sortNavItemsByName([
-        ...components.filter((component) => component.category === category.id).map(navItem("components")),
-        ...primitives.filter((primitive) => primitive.category === category.id).map(navItem("primitives")),
+        ...components.filter((component) => component.category === category.id).map(navItem("kits")),
+        ...primitives.filter((primitive) => primitive.category === category.id).map(navItem("components")),
       ]),
     })),
     { id: "hooks", title: "Hooks", items: hooks.map(navItem("hooks")) },

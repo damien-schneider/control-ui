@@ -12,7 +12,7 @@ for (const skin of ["refined", "modern-apple", "none", "cuicui", "xp", "windows-
         },
         { skinKey: THEME_EDITOR_STORAGE_KEY, themeKey: THEME_STORAGE_KEY, skinId: skin, appearance },
       );
-      await page.goto("/components/chat-composer");
+      await page.goto("/kits/chat-composer");
       const preview = page.locator("#preview");
       const composer = preview.locator('[data-control-ui="chat-composer"][data-slot="root"]');
       const shell = composer.locator('[data-slot="shell"]');
@@ -68,7 +68,7 @@ for (const skin of ["refined", "modern-apple", "none", "cuicui", "xp", "windows-
 }
 
 test("reasoning reuses Activity and messages edit in place", async ({ page }) => {
-  await page.goto("/components/chat-layout");
+  await page.goto("/kits/chat-layout");
   const preview = page.locator("#preview");
   const reasoning = preview.getByRole("button", { name: "Thought for 2 seconds" });
   await expect(reasoning).toHaveAttribute("data-control-ui", "activity");
@@ -78,7 +78,7 @@ test("reasoning reuses Activity and messages edit in place", async ({ page }) =>
   await expect(preview.getByText("Keep each turn in the conversation", { exact: false })).toBeVisible();
   await reasoning.press("Enter");
   await expect(reasoning).toHaveAttribute("aria-expanded", "false");
-  await page.goto("/components/action-bar");
+  await page.goto("/kits/action-bar");
   const edit = preview.getByRole("button", { name: "Edit", exact: true });
   await edit.focus();
   await edit.press("Enter");
@@ -117,7 +117,7 @@ test("rich composer keeps focus, inherited knobs, and locks read-only while resp
 });
 
 test("citation is stable and its source preview remains keyboard accessible", async ({ page }) => {
-  await page.goto("/components/inline-citation");
+  await page.goto("/kits/inline-citation");
   const preview = page.locator("#preview");
   const citation = preview.getByRole("button", { name: "view 3 sources" });
   await waitForReactHydration(citation);
@@ -150,7 +150,7 @@ test("failed responses preserve the draft and allow retry", async ({ page }) => 
 test("message actions stay visible on touch screens", async ({ browser }) => {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
   const page = await context.newPage();
-  await page.goto("http://127.0.0.1:3000/components/action-bar");
+  await page.goto("http://127.0.0.1:3000/kits/action-bar");
   const preview = page.locator("#preview");
   await expect(preview.getByRole("toolbar", { name: "Message actions" })).toHaveCSS("opacity", "1");
   await preview.getByRole("button", { name: "Edit", exact: true }).click();
@@ -167,7 +167,7 @@ for (const skin of ["refined", "cuicui", "xp", "rig"]) {
       skinId: skin,
     });
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto("/components");
+    await page.goto("/kits");
     await expect(page.locator("html")).toHaveAttribute("data-skin", skin);
     await page.waitForLoadState("networkidle");
     const cards = page.locator("[data-gallery-item-id]");

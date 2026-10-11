@@ -93,7 +93,7 @@ export const controlUiSkills = [
     id: "control-ui-composition",
     title: "Control UI composition",
     concern: "control-ui",
-    summary: "Keep blocks readable by composing public agent components, hooks, and slots explicitly.",
+    summary: "Keep blocks readable by composing public components, kits, hooks, and slots explicitly.",
     goal: "Prefer explicit React composition so advanced blocks remain readable after installation.",
     checks: [
       "Blocks compose documented top-level components.",

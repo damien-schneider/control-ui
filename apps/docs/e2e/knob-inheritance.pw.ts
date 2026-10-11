@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
-  await page.goto("/primitives/button");
+  await page.goto("/components/button");
 });
 
 test("knobs set on a family root paint pseudo-elements", async ({ page }) => {

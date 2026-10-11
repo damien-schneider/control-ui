@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("vertical tabs align the indicator and navigate with arrow keys", async ({ page }) => {
-  await page.goto("/primitives/tabs");
+  await page.goto("/components/tabs");
   await expect(page.locator("html")).toHaveAttribute("data-skin", "refined");
   const list = page.getByRole("tablist", { name: "Settings sections" });
   await expect(list).toHaveAttribute("aria-orientation", "vertical");
@@ -41,7 +41,7 @@ test("vertical tabs align the indicator and navigate with arrow keys", async ({ 
 });
 
 test("browser tabs render connected corners and remain keyboard operable", async ({ page }) => {
-  await page.goto("/primitives/tabs");
+  await page.goto("/components/tabs");
   await expect(page.locator("html")).toHaveAttribute("data-skin", "refined");
 
   const list = page

@@ -5,7 +5,7 @@ type SkinContract = {
 };
 
 test("rendered Control UI anatomy is covered by the generated contract", async ({ page }) => {
-  await page.goto("/primitives/code-diff");
+  await page.goto("/components/code-diff");
 
   const contract = await page.evaluate(async () => {
     const response = await fetch("/r/skin-contract.json");
@@ -31,7 +31,7 @@ test("rendered Control UI anatomy is covered by the generated contract", async (
 });
 
 test("portalled floating and modal surfaces keep scoped anatomy and geometry", async ({ page }) => {
-  await page.goto("/primitives/popover");
+  await page.goto("/components/popover");
   await page.waitForLoadState("networkidle");
   await page.getByRole("button", { name: "Dimensions", exact: true }).click();
 
@@ -40,7 +40,7 @@ test("portalled floating and modal surfaces keep scoped anatomy and geometry", a
   await expect(floating).toBeVisible();
   expect(await floating.boundingBox()).toMatchObject({ width: expect.any(Number), height: expect.any(Number) });
 
-  await page.goto("/primitives/dialog");
+  await page.goto("/components/dialog");
   await page.waitForLoadState("networkidle");
   await page.getByRole("button", { name: "Edit profile", exact: true }).click();
 

@@ -11,7 +11,7 @@ for (const skin of ["none", "refined", "modern-apple", "rig"]) {
         skin,
       },
     );
-    await page.goto("/primitives/input-group");
+    await page.goto("/components/input-group");
     const url = page.getByRole("textbox", { name: "URL", exact: true });
     const group = url.locator("..");
     const search = page.getByRole("textbox", { name: "Search documentation...", exact: true });

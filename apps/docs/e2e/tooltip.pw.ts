@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { waitForReactHydration } from "./browser-test-helpers";
 
 test("tooltips delay exploration, open neighbors immediately, and reset after leaving", async ({ page }) => {
-  await page.goto("/primitives/tooltip");
+  await page.goto("/components/tooltip");
   const details = page.getByRole("button", { name: "Details", exact: true });
   const save = page.getByRole("button", { name: "Save changes", exact: true });
   const metadata = page.getByRole("tooltip", { name: "Agent run metadata", exact: true });

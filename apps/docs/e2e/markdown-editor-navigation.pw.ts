@@ -7,7 +7,7 @@ test("Markdown editor restores its draft after search navigation and browser his
   await page.addInitScript(() => {
     Object.assign(window, { __REACT_GRAB_DISABLED__: true, __REACT_SCAN_DISABLED__: true });
   });
-  await page.goto("/components/markdown-editor");
+  await page.goto("/kits/markdown-editor");
   await waitForReactHydration(page.getByRole("button", { name: "Search documentation", exact: true }));
   const editor = page.getByRole("textbox", { name: "Project description", exact: true });
   const preview = page.getByRole("region", { name: "Saved Markdown preview", exact: true });
@@ -25,10 +25,10 @@ test("Markdown editor restores its draft after search navigation and browser his
       .filter({ hasText: /^Checkbox/ })
       .first()
       .click();
-    await expect(page).toHaveURL(/\/primitives\/checkbox$/);
+    await expect(page).toHaveURL(/\/components\/checkbox$/);
     await expect(page.getByRole("heading", { name: "Checkbox", exact: true }).first()).toBeVisible();
     await page.goBack();
-    await expect(page).toHaveURL(/\/components\/markdown-editor$/);
+    await expect(page).toHaveURL(/\/kits\/markdown-editor$/);
     await expect(editor).toHaveText(draft);
     await expect(page.getByText("This page stopped loading", { exact: true })).toHaveCount(0);
     await editor.press("End");
@@ -37,7 +37,7 @@ test("Markdown editor restores its draft after search navigation and browser his
     await expect(editor).toHaveText(draft);
     await expect(preview.getByText(draft, { exact: true })).toBeVisible();
     await page.goForward();
-    await expect(page).toHaveURL(/\/primitives\/checkbox$/);
+    await expect(page).toHaveURL(/\/components\/checkbox$/);
     await page.goBack();
     await expect(editor).toHaveText(draft);
   }
@@ -48,7 +48,7 @@ test("saved Markdown task lists use library checkboxes without bullets or editab
   await page.addInitScript(() => {
     Object.assign(window, { __REACT_GRAB_DISABLED__: true, __REACT_SCAN_DISABLED__: true });
   });
-  await page.goto("/components/markdown-editor");
+  await page.goto("/kits/markdown-editor");
   const editor = page.getByRole("textbox", { name: "Project description", exact: true });
   await expect(editor).toHaveAttribute("contenteditable", "true");
   const preview = page.getByRole("region", { name: "Saved Markdown preview", exact: true });

@@ -16,7 +16,7 @@ for (const skinId of ["none", "refined", "linear", "mastra"]) {
       },
       { skin: skinId, storageKey: THEME_EDITOR_STORAGE_KEY },
     );
-    await page.goto("/primitives/sidebar");
+    await page.goto("/components/sidebar");
     await waitForReactHydration(page.getByRole("combobox", { name: "Skin", exact: true }));
     await expect(page.locator("html")).toHaveAttribute("data-skin", skinId);
     const navigation = page.locator("[data-docs-sidebar-navigation]");

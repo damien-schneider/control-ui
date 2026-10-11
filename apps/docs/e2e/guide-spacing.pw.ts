@@ -71,7 +71,7 @@ for (const width of [390, 1440]) {
 }
 
 test("rendered Markdown uses the shared flow and preserves heading hierarchy", async ({ page }) => {
-  await page.goto("/primitives/markdown");
+  await page.goto("/components/markdown");
   const markdownRoot = page.locator('main [data-control-family="markdown"][data-slot="root"]').first();
   await waitForReactHydration(markdownRoot);
   const heading = markdownRoot.getByRole("heading", { name: "Before you ship" });

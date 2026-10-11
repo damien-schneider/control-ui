@@ -20,7 +20,7 @@ for (const mode of ["light", "dark"] as const) {
     });
 
     test("danger stays red and ghost buttons remain unfilled", async ({ page }) => {
-      await page.goto("/primitives/button");
+      await page.goto("/components/button");
       await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("macOS");
       const danger = page.getByRole("button", { name: "Danger", exact: true }).first();
       for (const hover of [false, true]) {
@@ -43,7 +43,7 @@ for (const mode of ["light", "dark"] as const) {
     });
 
     test("sidebar stays flush and the content has no inset frame", async ({ page }) => {
-      await page.goto("/primitives/popover");
+      await page.goto("/components/popover");
       await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("macOS");
       const sidebar = page.locator('[data-control-family="sidebar"][data-slot="root"].peer');
       await expect(sidebar).toHaveAttribute("data-variant", "sidebar");
@@ -64,7 +64,7 @@ for (const mode of ["light", "dark"] as const) {
     });
 
     test("menu indicators stay clear of labels and keyboard selection works", async ({ page }) => {
-      await page.goto("/primitives/dropdown-menu");
+      await page.goto("/components/dropdown-menu");
       await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("macOS");
       const trigger = page.getByRole("button", { name: "Options", exact: true });
       await trigger.focus();
@@ -91,7 +91,7 @@ for (const mode of ["light", "dark"] as const) {
     for (const positioning of ["anchors", "fallback"]) {
       test(`sidebar selection and hover keep distinct fills with ${positioning}`, async ({ page }) => {
         if (positioning === "fallback") await disableAnchorSupport(page);
-        await page.goto("/primitives/sidebar");
+        await page.goto("/components/sidebar");
         await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("macOS");
         const indicator = page.getByRole("combobox", { name: "Menu highlight" });
         await waitForReactHydration(indicator);
@@ -136,7 +136,7 @@ for (const mode of ["light", "dark"] as const) {
 
     test.describe("native glass", () => {
       test("popover keeps a frosted surface and editable fields", async ({ page }) => {
-        await page.goto("/primitives/popover");
+        await page.goto("/components/popover");
         await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("macOS");
         const trigger = page.getByRole("button", { name: "Dimensions", exact: true });
         await trigger.click();

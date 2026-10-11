@@ -15,7 +15,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("native input outlines follow resizing, color overrides, and dark mode", async ({ page }) => {
-  await page.goto("/primitives/popover", { waitUntil: "domcontentloaded" });
+  await page.goto("/components/popover", { waitUntil: "domcontentloaded" });
   const trigger = page.getByRole("button", { name: "Dimensions", exact: true });
   await waitForReactHydration(trigger);
   await trigger.click();
@@ -51,7 +51,7 @@ test("native input outlines follow resizing, color overrides, and dark mode", as
 });
 
 test("changing skins removes vector styles and preserves checkbox interaction", async ({ page }) => {
-  await page.goto("/primitives/checkbox", { waitUntil: "domcontentloaded" });
+  await page.goto("/components/checkbox", { waitUntil: "domcontentloaded" });
   const checkbox = page.getByRole("checkbox", { name: "Email me product news", exact: true });
   await waitForReactHydration(checkbox);
   await expect

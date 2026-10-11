@@ -9,7 +9,7 @@ export const hookEntries = [
     target: "components/control-ui/hooks/use-chat-message.ts",
     install: "the ChatMessage component",
     source: sourceFile("Behavior hook", "src/registry/hooks/use-chat-message.ts", "hook"),
-    references: [{ label: "ChatMessage", href: "/components/chat-message" }],
+    references: [{ label: "ChatMessage", href: "/kits/chat-message" }],
   },
   {
     id: "use-chat-composer",
@@ -19,7 +19,7 @@ export const hookEntries = [
     target: "components/control-ui/hooks/use-chat-composer.ts",
     install: "the ChatComposer component",
     source: sourceFile("Behavior hook", "src/registry/hooks/use-chat-composer.ts", "hook"),
-    references: [{ label: "ChatComposer", href: "/components/chat-composer" }],
+    references: [{ label: "ChatComposer", href: "/kits/chat-composer" }],
   },
   {
     id: "use-user-ask",
@@ -29,7 +29,7 @@ export const hookEntries = [
     target: "components/control-ui/hooks/use-user-ask.ts",
     install: "the UserAsk component",
     source: sourceFile("Behavior hook", "src/registry/hooks/use-user-ask.ts", "hook"),
-    references: [{ label: "UserAsk", href: "/components/user-ask" }],
+    references: [{ label: "UserAsk", href: "/kits/user-ask" }],
   },
   {
     id: "use-audio-recorder",
@@ -39,7 +39,7 @@ export const hookEntries = [
     target: "components/control-ui/hooks/use-audio-recorder.ts",
     install: "the AudioRecorder component",
     source: sourceFile("Behavior hook", "src/registry/hooks/use-audio-recorder.ts", "hook"),
-    references: [{ label: "AudioRecorder", href: "/components/audio-recorder" }],
+    references: [{ label: "AudioRecorder", href: "/kits/audio-recorder" }],
   },
   {
     id: "use-copy-to-clipboard",
@@ -50,9 +50,9 @@ export const hookEntries = [
     install: "copy-enabled components",
     source: sourceFile("Behavior hook", "src/registry/hooks/use-copy-to-clipboard.ts", "hook"),
     references: [
-      { label: "ActionBar", href: "/components/action-bar" },
-      { label: "MarkdownBlock", href: "/components/markdown-block" },
-      { label: "Code", href: "/primitives/code" },
+      { label: "ActionBar", href: "/kits/action-bar" },
+      { label: "MarkdownBlock", href: "/kits/markdown-block" },
+      { label: "Code", href: "/components/code" },
     ],
   },
 ] as const;
@@ -85,7 +85,7 @@ export const utilEntries = [
     // Live preview: rich editor doc serializes to { text, mentions } as you type.
     preview: preview(() => import("@/src/registry/examples/control-ui/serialize").then((mod) => ({ default: mod.SerializeExample }))),
     references: [
-      { label: "ChatComposer", href: "/components/chat-composer" },
+      { label: "ChatComposer", href: "/kits/chat-composer" },
       { label: "Chat block", href: "/use-cases/chat" },
     ],
   },

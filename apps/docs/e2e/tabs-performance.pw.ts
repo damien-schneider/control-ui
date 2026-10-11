@@ -9,7 +9,7 @@ test("Preview and Code retain example state and source scroll position after a v
     window.__REACT_GRAB_DISABLED__ = true;
     window.__REACT_SCAN_DISABLED__ = true;
   });
-  await page.goto("/primitives/sidebar");
+  await page.goto("/components/sidebar");
   const tabs = page.locator('#preview > [data-control-family="tabs"][data-slot="root"]');
   await waitForReactHydration(tabs.getByRole("tab", { name: "Code", exact: true }));
   const source = tabs.getByRole("region", { name: "tsx code", includeHidden: true });
@@ -46,7 +46,7 @@ for (const skin of ["none", "mastra"]) {
       },
       { skin, storageKey: THEME_EDITOR_STORAGE_KEY },
     );
-    await page.goto("/primitives/sidebar");
+    await page.goto("/components/sidebar");
     const tabs = page.locator('#preview > [data-control-family="tabs"][data-slot="root"]');
     await waitForReactHydration(tabs.getByRole("tab", { name: "Code", exact: true }));
     await expect(page.locator("html")).toHaveAttribute("data-skin", skin);

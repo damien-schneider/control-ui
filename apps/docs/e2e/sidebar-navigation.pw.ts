@@ -14,7 +14,7 @@ test.beforeEach(async ({ page }) => {
 test("mobile docs sidebar slides, restores focus, and respects reduced motion", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: "no-preference" });
-  await page.goto("/primitives/button");
+  await page.goto("/components/button");
   const trigger = page.getByRole("button", { name: "Toggle sidebar", exact: true, includeHidden: true });
   await waitForReactHydration(trigger);
   await trigger.focus();
@@ -51,13 +51,13 @@ test("mobile docs sidebar slides, restores focus, and respects reduced motion", 
   await expect(popup).toBeVisible();
   await expect(popup).toHaveCSS("transition-duration", "0s");
   await popup.getByRole("link", { name: "Tabs", exact: true }).click();
-  await expect(page).toHaveURL(/\/primitives\/tabs$/);
+  await expect(page).toHaveURL(/\/components\/tabs$/);
   await expect(popup).toHaveCount(0);
 });
 
 test("docs categories collapse from the keyboard and preserve the active page", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto("/primitives/button");
+  await page.goto("/components/button");
   const navigation = page.locator("[data-docs-sidebar-navigation]");
   const activeLink = navigation.getByRole("link", { name: "Button", exact: true });
   const category = navigation.locator('[data-slot="group"]').filter({ has: page.getByRole("link", { name: "Button", exact: true }) });
@@ -77,7 +77,7 @@ test("docs categories collapse from the keyboard and preserve the active page", 
 
 test("nested pages navigate and remain selected after folding their parent", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1100 });
-  await page.goto("/primitives/sidebar");
+  await page.goto("/components/sidebar");
   const example = page.getByRole("group", { name: "Nested navigation", exact: true });
   const projects = example.getByRole("button", { name: "Projects", exact: true });
   const design = example.getByRole("button", { name: "Design system", exact: true });
@@ -114,7 +114,7 @@ test("nested pages navigate and remain selected after folding their parent", asy
 
 test("each sidebar preview is one responsive workspace", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/primitives/sidebar");
+  await page.goto("/components/sidebar");
   const example = page.getByRole("group", { name: "Sidebar", exact: true });
   const trigger = example.getByRole("button", { name: "Toggle sidebar", exact: true });
   await waitForReactHydration(trigger);
@@ -131,7 +131,7 @@ test.describe("touch navigation", () => {
   test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
 
   test("mobile categories and links have usable touch targets", async ({ page }) => {
-    await page.goto("/primitives/button");
+    await page.goto("/components/button");
     const trigger = page.getByRole("button", { name: "Toggle sidebar", exact: true });
     await waitForReactHydration(trigger);
     await trigger.tap();

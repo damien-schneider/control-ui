@@ -4,7 +4,7 @@ import { skinMetas } from "../app/(features)/catalog/skins";
 import { waitForReactHydration } from "./browser-test-helpers";
 
 async function openFilters(page: Page) {
-  await page.goto("/components/filter-bar");
+  await page.goto("/kits/filter-bar");
   const group = page.getByRole("group", { name: "Issue filters", exact: true }).first();
   await waitForReactHydration(group.getByRole("button", { name: "Add filter", exact: true }));
   return group;

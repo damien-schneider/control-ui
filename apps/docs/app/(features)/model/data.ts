@@ -71,8 +71,7 @@ function ownSourceFiles(files: SourceFile[], registryKind: string) {
 
 function docsPageFor(kind: string): DocsRegistryDependency | undefined {
   const component = componentEntries.find((entry) => entry.registryKind === kind);
-  if (component)
-    return { registryKind: component.registryKind, name: component.name, kind: "Component", href: `/components/${component.id}` };
+  if (component) return { registryKind: component.registryKind, name: component.name, kind: "Component", href: `/kits/${component.id}` };
 
   const primitive = primitiveEntries.find((entry) => entry.paths.registry.registryKind === kind);
   if (primitive)
@@ -80,7 +79,7 @@ function docsPageFor(kind: string): DocsRegistryDependency | undefined {
       registryKind: primitive.paths.registry.registryKind,
       name: primitive.name,
       kind: "Primitive",
-      href: `/primitives/${primitive.id}`,
+      href: `/components/${primitive.id}`,
     };
 
   const block = blockEntries.find((entry) => entry.registryKind === kind);

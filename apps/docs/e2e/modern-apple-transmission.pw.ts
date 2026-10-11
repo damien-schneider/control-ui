@@ -34,7 +34,7 @@ for (const mode of ["light", "dark"] as const) {
       },
       { skinKey: THEME_EDITOR_STORAGE_KEY, modeKey: THEME_STORAGE_KEY, appearance: mode },
     );
-    await page.goto("/primitives/dropdown-menu");
+    await page.goto("/components/dropdown-menu");
     await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("macOS");
     const trigger = page.getByRole("button", { name: "Options", exact: true });
     const menu = page.getByRole("menu").filter({ has: page.getByRole("menuitemcheckbox", { name: "Notifications", exact: true }) });
@@ -99,7 +99,7 @@ test("search dialog glass blocks background scrolling with JavaScript paused", a
     },
     { skinKey: THEME_EDITOR_STORAGE_KEY, modeKey: THEME_STORAGE_KEY },
   );
-  await page.goto("/primitives/popover");
+  await page.goto("/components/popover");
   await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("macOS");
   const viewport = page.locator("[data-docs-content] [data-scroll-area-viewport]").first();
   await page.locator('[data-control-family="page-layout"][data-slot="body"]').evaluate((grid) => {

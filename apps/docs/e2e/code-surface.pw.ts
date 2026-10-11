@@ -39,7 +39,7 @@ for (const lineCount of [500, 1500]) {
 
 test("headerless copy stays clear of source and announces success", async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 900 });
-  await page.goto("/primitives/code-diff");
+  await page.goto("/components/code-diff");
   const diff = page.locator('[data-control-ui="code-diff"][data-slot="root"]:not([data-header])').first();
   const copy = diff.getByRole("button", { name: "Copy code" });
   await expect(copy).toBeVisible();
@@ -65,7 +65,7 @@ test("headerless copy stays clear of source and announces success", async ({ pag
 });
 
 test("patch copy preserves the exact input instead of synthesizing partial source", async ({ page }) => {
-  await page.goto("/primitives/code-diff");
+  await page.goto("/components/code-diff");
   const expectedPatch = `diff --git a/src/utils.ts b/src/utils.ts
 --- a/src/utils.ts
 +++ b/src/utils.ts
@@ -85,7 +85,7 @@ test("patch copy preserves the exact input instead of synthesizing partial sourc
 });
 
 test("changed syntax keeps both Shiki color and diff emphasis", async ({ page }) => {
-  await page.goto("/primitives/code-diff");
+  await page.goto("/components/code-diff");
   const patchDiff = page.locator('[data-control-ui="code-diff"][data-slot="root"]').filter({ hasText: "src/utils.ts" }).first();
   const trim = patchDiff.locator('[data-line-type="add"] span').filter({ hasText: /^trim$/ });
   await expect(trim).toBeVisible();

@@ -7,38 +7,31 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-layout": "contained",
           "data-slot": "wrapper"
         }
       },
       {
         "attributes": {
+          "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
+          "data-indicator": "hover",
+          "data-size": "default",
+          "data-slot": "menu-button",
+          "data-variant": "default"
         }
       },
       {
         "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "start",
+          "data-align": "end",
           "data-control-family": "popup",
           "data-control-ui": "popover",
           "data-open": "",
           "data-padding": "none",
           "data-popup-kind": "popover",
           "data-popup-part": "surface",
-          "data-side": "bottom",
+          "data-side": "top",
           "data-slot": "content",
           "data-surface": "floating",
           "role": "dialog",
@@ -49,7 +42,10 @@
         "attributes": {
           "data-control-family": "emoji-picker",
           "data-control-ui": "emoji-picker",
-          "data-slot": "root"
+          "data-orientation": "horizontal",
+          "data-slot": "root",
+          "data-variant": "reactions",
+          "role": "toolbar"
         }
       },
       {
@@ -59,7 +55,7 @@
           "data-control-ui": "emoji-picker",
           "data-focusable": "",
           "data-orientation": "horizontal",
-          "data-slot": "category",
+          "data-slot": "emoji",
           "tabindex": "-1"
         }
       }
@@ -69,8 +65,65 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-active": "true",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-indicator": "hover",
+          "data-size": "default",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "end",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-orientation": "horizontal",
+          "data-slot": "root",
+          "data-variant": "reactions",
+          "role": "toolbar"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-focusable": "",
+          "data-orientation": "horizontal",
+          "data-slot": "emoji",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
           "data-slot": "wrapper"
         }
       },
@@ -84,23 +137,14 @@
       },
       {
         "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "start",
+          "data-align": "end",
           "data-control-family": "popup",
           "data-control-ui": "popover",
           "data-open": "",
           "data-padding": "none",
           "data-popup-kind": "popover",
           "data-popup-part": "surface",
-          "data-side": "bottom",
+          "data-side": "top",
           "data-slot": "content",
           "data-surface": "floating",
           "role": "dialog",
@@ -111,7 +155,10 @@
         "attributes": {
           "data-control-family": "emoji-picker",
           "data-control-ui": "emoji-picker",
-          "data-slot": "root"
+          "data-orientation": "horizontal",
+          "data-slot": "root",
+          "data-variant": "reactions",
+          "role": "toolbar"
         }
       },
       {
@@ -121,7 +168,62 @@
           "data-control-ui": "emoji-picker",
           "data-focusable": "",
           "data-orientation": "horizontal",
-          "data-slot": "category",
+          "data-slot": "emoji",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "end",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-orientation": "horizontal",
+          "data-slot": "root",
+          "data-variant": "reactions",
+          "role": "toolbar"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-focusable": "",
+          "data-orientation": "horizontal",
+          "data-slot": "emoji",
           "tabindex": "0"
         }
       }
@@ -132,7 +234,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -148,17 +250,9 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
         }
       },
       {
@@ -203,7 +297,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -219,17 +313,9 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
         }
       },
       {
@@ -274,7 +360,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -290,7 +376,511 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "center",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-focused": "",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-focusable": "",
+          "data-orientation": "horizontal",
+          "data-slot": "emoji",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "center",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-focused": "",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-focusable": "",
+          "data-orientation": "horizontal",
+          "data-slot": "emoji",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "end",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-orientation": "horizontal",
+          "data-slot": "root",
+          "data-variant": "reactions",
+          "role": "toolbar"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-focusable": "",
+          "data-orientation": "horizontal",
+          "data-slot": "emoji",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "end",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-orientation": "horizontal",
+          "data-slot": "root",
+          "data-variant": "reactions",
+          "role": "toolbar"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-focusable": "",
+          "data-orientation": "horizontal",
+          "data-slot": "emoji",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-focusable": "",
+          "data-orientation": "horizontal",
+          "data-slot": "category",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-focusable": "",
+          "data-orientation": "horizontal",
+          "data-slot": "category",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-focusable": "",
+          "data-orientation": "horizontal",
+          "data-slot": "emoji",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-focusable": "",
+          "data-orientation": "horizontal",
+          "data-slot": "emoji",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
         }
@@ -333,7 +923,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -349,7 +939,66 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "center",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-focused": "",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-slot": "recent-label"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
         }
@@ -363,7 +1012,7 @@
           "data-padding": "none",
           "data-popup-kind": "popover",
           "data-popup-part": "surface",
-          "data-side": "bottom",
+          "data-side": "top",
           "data-slot": "content",
           "data-surface": "floating",
           "role": "dialog",
@@ -382,6 +1031,64 @@
           "data-control-family": "emoji-picker",
           "data-control-ui": "emoji-picker",
           "data-slot": "category-header"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "emoji-picker",
+          "data-control-ui": "emoji-picker",
+          "data-slot": "recent-label"
         }
       }
     ]
@@ -392,7 +1099,7 @@
         "fill": "--cui-emoji-picker-active-background"
       },
       "anatomy": 0,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -400,7 +1107,7 @@
         "fill": "--cui-emoji-picker-active-background"
       },
       "anatomy": 1,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -408,7 +1115,7 @@
         "fill": "--cui-emoji-picker-active-background"
       },
       "anatomy": 2,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -416,7 +1123,87 @@
         "fill": "--cui-emoji-picker-active-background"
       },
       "anatomy": 3,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-emoji-picker-active-background"
+      },
+      "anatomy": 4,
       "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-emoji-picker-active-background"
+      },
+      "anatomy": 5,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-emoji-picker-active-background"
+      },
+      "anatomy": 6,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-emoji-picker-active-background"
+      },
+      "anatomy": 7,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-emoji-picker-active-background"
+      },
+      "anatomy": 8,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-emoji-picker-active-background"
+      },
+      "anatomy": 9,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-emoji-picker-active-background"
+      },
+      "anatomy": 10,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-emoji-picker-active-background"
+      },
+      "anatomy": 11,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-emoji-picker-active-background"
+      },
+      "anatomy": 12,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-emoji-picker-active-background"
+      },
+      "anatomy": 13,
+      "rendersText": true,
       "state": true
     },
     {
@@ -424,7 +1211,7 @@
         "fill": "--cui-emoji-picker-header-background",
         "text": "--cui-emoji-picker-header-foreground"
       },
-      "anatomy": 4,
+      "anatomy": 14,
       "rendersText": true,
       "state": false
     },
@@ -433,7 +1220,25 @@
         "fill": "--cui-emoji-picker-header-background",
         "text": "--cui-emoji-picker-header-foreground"
       },
-      "anatomy": 5,
+      "anatomy": 15,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-emoji-picker-header-background",
+        "text": "--cui-emoji-picker-header-foreground"
+      },
+      "anatomy": 16,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-emoji-picker-header-background",
+        "text": "--cui-emoji-picker-header-foreground"
+      },
+      "anatomy": 17,
       "rendersText": true,
       "state": false
     }

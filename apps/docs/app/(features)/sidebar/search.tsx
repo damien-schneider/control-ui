@@ -17,6 +17,8 @@ import { Kbd } from "@/components/control-ui/ui/kbd";
 import { Text } from "@/components/control-ui/ui/typography";
 import { useCloseMobileSidebar } from "./use-close-mobile-sidebar";
 
+const searchKindLabels: Partial<Record<SearchItem["kind"], string>> = { Block: "Use case", Primitive: "Component", Component: "Kit" };
+
 function isTypingTarget(target: EventTarget | null) {
   if (!(target instanceof HTMLElement)) return false;
   return target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable;
@@ -37,7 +39,7 @@ function DocsSearchResult({ item, onSelect }: { item: SearchItem; onSelect: (ite
       </div>
       {item.status ? <StatusBadge status={item.status} compact /> : null}
       <Badge variant="outline" size="sm">
-        {item.kind === "Block" ? "Use case" : item.kind}
+        {searchKindLabels[item.kind] ?? item.kind}
       </Badge>
     </CommandItem>
   );
@@ -77,7 +79,8 @@ export function DocsSearchProvider({ items, onNavigate, children }: { items: Sea
   const guideItems = items.filter((item) => item.kind === "Guide");
   const skillItems = items.filter((item) => item.kind === "Skill");
   const skinItems = items.filter((item) => item.kind === "Skin");
-  const componentItems = items.filter((item) => item.kind === "Component" || item.kind === "Primitive");
+  const componentItems = items.filter((item) => item.kind === "Primitive");
+  const kitItems = items.filter((item) => item.kind === "Component");
   const supportItems = items.filter((item) => item.kind === "Hook" || item.kind === "Util");
   const blockItems = items.filter((item) => item.kind === "Block");
   const searchResults = query.trim() ? matchSearchItems(items, query) : null;
@@ -142,7 +145,7 @@ export function DocsSearchProvider({ items, onNavigate, children }: { items: Sea
                 <EmptyDescription>Try a shorter term, or browse every component in the catalog.</EmptyDescription>
               </EmptyHeader>
               <EmptyContent>
-                <ButtonLink render={<Link href="/primitives" onClick={leaveForCatalog} />} variant="surface" size="sm">
+                <ButtonLink render={<Link href="/components" onClick={leaveForCatalog} />} variant="surface" size="sm">
                   Browse components
                 </ButtonLink>
               </EmptyContent>
@@ -156,6 +159,7 @@ export function DocsSearchProvider({ items, onNavigate, children }: { items: Sea
               <CommandGroup heading="Skins">{skinItems.map(renderItem)}</CommandGroup>
               <CommandGroup heading="Practices">{skillItems.map(renderItem)}</CommandGroup>
               <CommandGroup heading="Components">{componentItems.map(renderItem)}</CommandGroup>
+              <CommandGroup heading="Kits">{kitItems.map(renderItem)}</CommandGroup>
               <CommandGroup heading="Support files">{supportItems.map(renderItem)}</CommandGroup>
               <CommandGroup heading="Templates & patterns">{blockItems.map(renderItem)}</CommandGroup>
             </>

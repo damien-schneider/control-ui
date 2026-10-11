@@ -35,7 +35,7 @@ for (const skin of ["refined", "windows-98", "none"] as const) {
     });
     const root = page.locator("html");
     try {
-      await page.goto(`/primitives/button?skin=${skin}`, { waitUntil: "commit" });
+      await page.goto(`/components/button?skin=${skin}`, { waitUntil: "commit" });
       await expect(page.getByRole("heading", { name: "Button", exact: true }).first()).toBeVisible();
       await expect(root).toHaveAttribute("data-skin", skin);
       await expect(root).toHaveAttribute("data-docs-layout", skin === "refined" ? "page" : "contained");
@@ -89,7 +89,7 @@ test("unknown skin query preserves saved edits", async ({ page }) => {
     (editorKey) => localStorage.setItem(editorKey, JSON.stringify({ skin: "rig", overrides: { "--radius-control": "13px" } })),
     THEME_EDITOR_STORAGE_KEY,
   );
-  await page.goto("/primitives/button?skin=unknown");
+  await page.goto("/components/button?skin=unknown");
   await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("Rig");
   await expect(page.locator("html")).toHaveAttribute("data-skin", "rig");
   expect(await page.locator("html").evaluate((html) => html.style.getPropertyValue("--radius-control"))).toBe("13px");
@@ -128,7 +128,7 @@ for (const skin of THEME_INIT_SKIN_IDS) {
       await route.continue();
     });
     try {
-      await page.goto("/primitives/button", { waitUntil: "commit" });
+      await page.goto("/components/button", { waitUntil: "commit" });
       await expect(page.getByRole("heading", { name: "Button", exact: true }).first()).toBeVisible();
       await expect(page.locator("html")).toHaveAttribute("data-skin", skin);
       await expect(page.locator("html")).toHaveAttribute("data-motion", "reduced");
@@ -168,7 +168,7 @@ for (const saved of ["not json", "null", '{"skin":"toString"}']) {
       value: saved,
     });
     await page.route("**/_next/**/*.js*", (route) => route.abort());
-    await page.goto("/primitives/button");
+    await page.goto("/components/button");
     await expect(page.locator("html")).toHaveAttribute("data-skin", DEFAULT_SKIN_ID);
     await expect(page.getByRole("heading", { name: "Button", exact: true }).first()).toBeVisible();
   });
@@ -184,7 +184,7 @@ test("blocked storage still honors the system color scheme", async ({ page }) =>
     });
   });
   await page.route("**/_next/**/*.js*", (route) => route.abort());
-  await page.goto("/primitives/button");
+  await page.goto("/components/button");
   await expect(page.locator("html")).toHaveAttribute("data-skin", DEFAULT_SKIN_ID);
   await expect(page.locator("html")).toHaveClass(/\bdark\b/);
   await expect(page.locator("html")).not.toHaveAttribute("data-motion", "reduced");
@@ -192,7 +192,7 @@ test("blocked storage still honors the system color scheme", async ({ page }) =>
 
 test("Liquid Metal effects activate on selection and clean up when leaving", async ({ page }) => {
   await page.addInitScript((editorKey) => localStorage.setItem(editorKey, JSON.stringify({ skin: "refined" })), THEME_EDITOR_STORAGE_KEY);
-  await page.goto("/primitives/button");
+  await page.goto("/components/button");
   const picker = page.getByRole("combobox", { name: "Skin", exact: true });
   await expect(picker).toContainText("Refined");
   await expect(page.locator("[data-liquid-metal]")).toHaveCount(0);

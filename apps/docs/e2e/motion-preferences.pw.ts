@@ -8,7 +8,7 @@ for (const preference of ["system", "manual"]) {
     await page.addInitScript((storageKey) => {
       localStorage.setItem(storageKey, JSON.stringify({ skin: "refined", reduceMotion: false }));
     }, THEME_EDITOR_STORAGE_KEY);
-    await page.goto("/primitives/button");
+    await page.goto("/components/button");
     const button = page.getByRole("tabpanel", { name: "Preview", exact: true }).getByRole("button", { name: "Solid", exact: true });
     await waitForReactHydration(button);
     await button.evaluate((element) => {

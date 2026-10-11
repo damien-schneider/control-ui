@@ -5,7 +5,7 @@ import { waitForReactHydration } from "./browser-test-helpers";
 test("No skin is the default and portals follow preset changes", async ({ page }, testInfo) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.goto("/primitives/popover");
+  await page.goto("/components/popover");
   const picker = page.getByRole("combobox", { name: "Skin", exact: true });
   await waitForReactHydration(picker);
   await expect(picker).toContainText("No skin");
@@ -42,7 +42,7 @@ test("saved Flat themes retain their overrides as No skin", async ({ page, conte
     (key) => localStorage.setItem(key, JSON.stringify({ skin: "flat", overrides: { "--radius-control": "7px" } })),
     THEME_EDITOR_STORAGE_KEY,
   );
-  await page.goto("/primitives/popover");
+  await page.goto("/components/popover");
   await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("No skin");
   await expect(page.getByRole("button", { name: "Dimensions", exact: true })).toHaveCSS("border-radius", "7px");
   await page.goto("/theme-editor?view=source");

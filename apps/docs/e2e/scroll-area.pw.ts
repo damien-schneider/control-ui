@@ -7,7 +7,7 @@ test("keyboard focus reveals the viewport scrollbar without pointer hover", asyn
   await page.addInitScript((storageKey) => {
     localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" }));
   }, THEME_EDITOR_STORAGE_KEY);
-  await page.goto("/primitives/scroll-area");
+  await page.goto("/components/scroll-area");
   const viewport = page.getByLabel("Horizontal roadmap", { exact: true });
   await waitForReactHydration(viewport.getByRole("button").first());
   await viewport.scrollIntoViewIfNeeded();
@@ -28,7 +28,7 @@ test("Windows XP keeps its sidebar scrollbar visible beside the viewport", async
   await page.addInitScript((storageKey) => {
     localStorage.setItem(storageKey, JSON.stringify({ skin: "xp" }));
   }, THEME_EDITOR_STORAGE_KEY);
-  await page.goto("/primitives/scroll-area");
+  await page.goto("/components/scroll-area");
   const navigation = page.locator("[data-docs-sidebar-navigation]");
   const viewport = navigation.locator("[data-scroll-area-viewport]");
   const scrollArea = viewport.locator("..");
@@ -61,7 +61,7 @@ test("Windows XP keeps its sidebar scrollbar visible beside the viewport", async
 for (const direction of ["ltr", "rtl"] as const) {
   test(`stable gutters keep their size when overflow changes in ${direction}`, async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/primitives/scroll-area");
+    await page.goto("/components/scroll-area");
     const viewport = page.getByRole("region", { name: "Stable scrollbar gutter", exact: true });
     const scrollArea = viewport.locator("..");
     const toggle = page.getByRole("button", { name: "Overflow content", exact: true });
@@ -101,7 +101,7 @@ test("macOS preserves its corner shape and fades overflow until keyboard focus",
   await page.addInitScript((storageKey) => {
     localStorage.setItem(storageKey, JSON.stringify({ skin: "modern-apple" }));
   }, THEME_EDITOR_STORAGE_KEY);
-  await page.goto("/primitives/scroll-area");
+  await page.goto("/components/scroll-area");
   const viewport = page.getByLabel("Horizontal roadmap", { exact: true });
   const scrollArea = viewport.locator("..");
   const endBlur = scrollArea.locator('[data-control-family="progressive-blur"][data-side="inline-end"]');
@@ -116,7 +116,7 @@ test("macOS preserves its corner shape and fades overflow until keyboard focus",
   await expect(viewport.getByRole("button", { name: "Planned", exact: true })).toBeFocused();
   await expect(viewport).toHaveCSS("mask-image", "none");
 
-  await page.goto("/primitives/progressive-blur");
+  await page.goto("/components/progressive-blur");
   const blurSwitch = page.getByRole("switch", { name: "Progressive blur", exact: true });
   const places = page.getByLabel("Places to explore", { exact: true }).locator("..");
   await waitForReactHydration(blurSwitch);
@@ -126,7 +126,7 @@ test("macOS preserves its corner shape and fades overflow until keyboard focus",
 
 test("horizontal content stays in one row and scrolls to focused items", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/primitives/scroll-area");
+  await page.goto("/components/scroll-area");
   const columns = page.getByRole("list", { name: "Roadmap columns" });
   const buttons = columns.getByRole("button");
   await waitForReactHydration(buttons.first());

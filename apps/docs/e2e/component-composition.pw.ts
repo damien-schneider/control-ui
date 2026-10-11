@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { waitForReactHydration } from "./browser-test-helpers";
 
 test("menu choices persist, link items compose, and submenus work from the keyboard", async ({ page }) => {
-  await page.goto("/primitives/dropdown-menu");
+  await page.goto("/components/dropdown-menu");
   const example = page.getByRole("group", { name: "Workspace options", exact: true });
   const trigger = example.getByRole("button", { name: "Options" });
   await waitForReactHydration(trigger);
@@ -52,7 +52,7 @@ test.describe("touch sidebar actions", () => {
   test.use({ hasTouch: true, viewport: { width: 1440, height: 1000 } });
 
   test("remain visible with a centered 44px touch target", async ({ page }) => {
-    await page.goto("/primitives/sidebar");
+    await page.goto("/components/sidebar");
     const sidebar = page.getByRole("group", { name: "Sidebar", exact: true });
     const action = sidebar.getByRole("button", { name: "Agents actions" });
     await waitForReactHydration(action);
@@ -69,7 +69,7 @@ test.describe("touch sidebar actions", () => {
 });
 
 test("custom combobox filtering matches repository aliases and recovers from no matches", async ({ page }) => {
-  await page.goto("/primitives/combobox");
+  await page.goto("/components/combobox");
   const input = page.getByRole("combobox", { name: "Repository", exact: true });
   await waitForReactHydration(input);
   await input.fill("no-such-repository");
@@ -83,7 +83,7 @@ test("custom combobox filtering matches repository aliases and recovers from no 
 });
 
 test("sidebar row actions reveal on focus, keep menus open, and hide during icon collapse", async ({ page }) => {
-  await page.goto("/primitives/sidebar");
+  await page.goto("/components/sidebar");
   const sidebar = page.getByRole("group", { name: "Sidebar", exact: true });
   const action = sidebar.getByRole("button", { name: "Agents actions" });
   await waitForReactHydration(action);

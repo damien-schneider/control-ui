@@ -8,7 +8,7 @@ for (const skin of ["refined", "xp"]) {
       storageKey: THEME_EDITOR_STORAGE_KEY,
       activeSkin: skin,
     });
-    await page.goto("/primitives/toast");
+    await page.goto("/components/toast");
     const trigger = page.getByRole("button", { name: "With action", exact: true });
     await waitForReactHydration(trigger);
     await trigger.press("Enter");

@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { waitForReactHydration } from "./browser-test-helpers";
 
 test("checkbox group rows toggle from their full label hit targets", async ({ page }) => {
-  await page.goto("/primitives/checkbox-group");
+  await page.goto("/components/checkbox-group");
 
   const group = page.getByRole("group", { name: "Notification channels" });
   const sms = group.getByRole("checkbox", { name: "SMS" });

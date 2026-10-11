@@ -10,7 +10,7 @@ for (const skin of ["xp", "windows-98"]) {
       );
       localStorage.setItem("control-ui:theme:v1", "light");
     }, skin);
-    await page.goto("/primitives/dialog");
+    await page.goto("/components/dialog");
     const trigger = page.locator("main").getByRole("button", { name: "Edit profile", exact: true });
     await waitForReactHydration(trigger);
     await trigger.press("Enter");
@@ -40,7 +40,7 @@ test("Windows 98 applies its palette before paint and restores the preferred mod
     );
     localStorage.setItem("control-ui:theme:v1", "dark");
   });
-  await page.goto("/primitives/button");
+  await page.goto("/components/button");
   await expect(page.locator("html")).toHaveAttribute("data-skin", "windows-98");
   await expect(page.locator("html")).toHaveAttribute("data-color-scheme-lock", "light");
   await expect(page.locator("html")).not.toHaveClass(/dark/);
@@ -62,7 +62,7 @@ for (const skin of ["xp", "windows-98", "linear"]) {
       );
       localStorage.setItem("control-ui:theme:v1", "light");
     }, skin);
-    await page.goto("/primitives/slider");
+    await page.goto("/components/slider");
     const slider = page.getByRole("slider", { name: "Default slider" }).first();
     await waitForReactHydration(slider);
     const thumb = page.locator('[data-range-kind="slider"][data-slot="thumb"]').first();
@@ -90,7 +90,7 @@ for (const skin of ["xp", "windows-98"]) {
       );
       localStorage.setItem("control-ui:theme:v1", "light");
     }, skin);
-    await page.goto("/components/chat-composer-attachment");
+    await page.goto("/kits/chat-composer-attachment");
     const remove = page
       .locator("main")
       .getByRole("button", { name: /^Remove / })

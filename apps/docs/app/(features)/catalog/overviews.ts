@@ -2,19 +2,19 @@ export const catalogOverviews = [
   {
     id: "primitives",
     label: "Library",
-    name: "Primitives",
-    summary: "Every Control UI primitive, grouped by what the control does, through the same live examples used in its documentation.",
+    name: "Components",
+    summary: "Every Control UI component, grouped by what the control does, through the same live examples used in its documentation.",
     kind: "Primitive",
-    href: "/primitives",
+    href: "/components",
   },
   {
     id: "components",
     label: "Library",
-    name: "Components",
+    name: "Kits",
     summary:
-      "Composed surfaces above the primitives, grouped by the part of the product they build: the chat screen, agent activity, voice capture, and the notification, email, and configuration surfaces around them.",
+      "Pre-assembled sets of components, grouped by the part of the product they build: the chat screen, agent activity, voice capture, and the notification, email, and configuration surfaces around them.",
     kind: "Component",
-    href: "/components",
+    href: "/kits",
   },
   {
     id: "use-cases",

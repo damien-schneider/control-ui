@@ -13,12 +13,12 @@ test("track highlight is discoverable as a primitive with working hover and sele
   await page.addInitScript((storageKey) => {
     localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" }));
   }, THEME_EDITOR_STORAGE_KEY);
-  await page.goto("/primitives/button");
+  await page.goto("/components/button");
   const navigation = page.locator("[data-docs-sidebar-navigation]");
   const link = navigation.getByRole("link", { name: "Track highlight", exact: true });
   await waitForReactHydration(link);
   await link.click();
-  await expect(page).toHaveURL(/\/primitives\/track-highlight$/);
+  await expect(page).toHaveURL(/\/components\/track-highlight$/);
   await expect(page.getByRole("heading", { name: "Track highlight", exact: true, level: 1 })).toBeVisible();
 
   const hover = page.getByRole("group", { name: "Hover and focus", exact: true });
@@ -79,7 +79,7 @@ for (const positioning of ["anchors", "fallback"]) {
     });
 
     test("sidebar hover preserves selection, follows focus, and stays within its group", async ({ page }) => {
-      await page.goto("/primitives/sidebar");
+      await page.goto("/components/sidebar");
       await waitForReactHydration(page.getByRole("combobox", { name: "Menu highlight" }));
       await page.getByRole("combobox", { name: "Menu highlight" }).selectOption("hover");
       const group = page.getByRole("group", { name: "Sidebar", exact: true });
@@ -122,7 +122,7 @@ for (const positioning of ["anchors", "fallback"]) {
     });
 
     test("sidebar sliding indicators preview hover and return to the selected row", async ({ page }) => {
-      await page.goto("/primitives/sidebar");
+      await page.goto("/components/sidebar");
       await waitForReactHydration(page.getByRole("combobox", { name: "Menu highlight" }));
       await page.getByRole("combobox", { name: "Menu highlight" }).selectOption("slide");
       const group = page.getByRole("group", { name: "Sidebar", exact: true });
@@ -142,7 +142,7 @@ for (const positioning of ["anchors", "fallback"]) {
     });
 
     test("checkbox hover keeps all selections and tracks full labels", async ({ page }) => {
-      await page.goto("/primitives/checkbox-group");
+      await page.goto("/components/checkbox-group");
       const group = page.getByRole("group", { name: "Notification channels" });
       const highlight = group.locator('[data-control-family="track-highlight"]').first();
       const sms = group.getByRole("checkbox", { name: "SMS" });
@@ -172,7 +172,7 @@ test("CSS hover highlight snaps to unequal rows with either motion preference", 
     localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" }));
   }, THEME_EDITOR_STORAGE_KEY);
   await page.setViewportSize({ width: 1440, height: 1100 });
-  await page.goto("/primitives/sidebar");
+  await page.goto("/components/sidebar");
   await waitForReactHydration(page.getByRole("combobox", { name: "Menu highlight" }));
   await page.getByRole("combobox", { name: "Menu highlight" }).selectOption("hover");
   const group = page.getByRole("group", { name: "Sidebar", exact: true });
@@ -202,15 +202,15 @@ test("CSS hover highlight snaps to unequal rows with either motion preference", 
 
 test("highlight works in static markup without JavaScript", async ({ page, browser }) => {
   await page.setViewportSize({ width: 1440, height: 1100 });
-  await page.goto("/primitives/sidebar");
+  await page.goto("/components/sidebar");
   await waitForReactHydration(page.getByRole("combobox", { name: "Menu highlight" }));
   await page.getByRole("combobox", { name: "Menu highlight" }).selectOption("hover");
   await expect(page.getByRole("group", { name: "Sidebar", exact: true })).toBeVisible();
   const markup = await page.content();
   const staticPage = await browser.newPage({ javaScriptEnabled: false, viewport: { width: 1440, height: 1100 } });
   try {
-    await staticPage.route("**/primitives/sidebar", (route) => route.fulfill({ contentType: "text/html", body: markup }));
-    await staticPage.goto("http://127.0.0.1:3000/primitives/sidebar");
+    await staticPage.route("**/components/sidebar", (route) => route.fulfill({ contentType: "text/html", body: markup }));
+    await staticPage.goto("http://127.0.0.1:3000/components/sidebar");
     const group = staticPage.getByRole("group", { name: "Sidebar", exact: true });
     const workflows = group.getByRole("button", { name: "Workflows", exact: true });
     await workflows.hover();
@@ -228,7 +228,7 @@ test("anchor syntax support without transitions uses the measured fallback", asy
       return getAnimations.call(this, options);
     };
   });
-  await page.goto("/primitives/sidebar");
+  await page.goto("/components/sidebar");
   await waitForReactHydration(page.getByRole("combobox", { name: "Menu highlight" }));
   await page.getByRole("combobox", { name: "Menu highlight" }).selectOption("slide");
   const group = page.getByRole("group", { name: "Sidebar", exact: true });

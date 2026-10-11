@@ -8,7 +8,7 @@ async function boxOf(locator: Locator) {
 }
 
 test("the dB scale sits beside the meter with 0 dB toward the loud end", async ({ page }) => {
-  await page.goto("/primitives/level-meter");
+  await page.goto("/components/level-meter");
   const vertical = page.getByRole("meter", { name: "Program level" }).first();
   await waitForReactHydration(vertical);
   const verticalTrack = await boxOf(vertical.locator('[data-slot="track"]'));
@@ -29,7 +29,7 @@ test("the dB scale sits beside the meter with 0 dB toward the loud end", async (
 });
 
 test("channel strip rows line up across the mixer even when a strip has no actions", async ({ page }) => {
-  await page.goto("/primitives/channel-strip");
+  await page.goto("/components/channel-strip");
   const mixer = page.locator('main [data-control-family="channel-strip"][data-slot="mixer"]').first();
   await waitForReactHydration(mixer);
   const strips = mixer.locator('[data-control-family="channel-strip"][data-slot="root"]');

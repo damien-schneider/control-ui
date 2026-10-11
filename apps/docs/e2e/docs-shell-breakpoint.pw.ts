@@ -8,7 +8,7 @@ for (const { name, width, docked } of [
   test(`docs shell flips sidebar and trigger together ${name}`, async ({ page }) => {
     const height = 900;
     await page.setViewportSize({ width, height });
-    await page.goto("/primitives/code-diff", { waitUntil: "networkidle" });
+    await page.goto("/components/code-diff", { waitUntil: "networkidle" });
 
     const dockedSidebar = page.locator('[data-control-ui="sidebar"][data-slot="container"]');
     const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
@@ -34,7 +34,7 @@ for (const { name, width, docked } of [
 test("desktop shell keeps equal panel gutters and reopens from the top left", async ({ page }) => {
   const width = 1280;
   await page.setViewportSize({ width, height: 900 });
-  await page.goto("/primitives/code-diff", { waitUntil: "networkidle" });
+  await page.goto("/components/code-diff", { waitUntil: "networkidle" });
 
   const sidebarRoot = page.locator('[data-control-ui="sidebar"][data-slot="root"].peer');
   const sidebarGap = page.locator('[data-control-ui="sidebar"][data-slot="gap"]');

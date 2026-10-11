@@ -105,7 +105,7 @@ function ComponentPageContent({
 
   return (
     <RegistryItemPage
-      label="Components"
+      label="Kits"
       title={component.name}
       summary={component.summary}
       status={component.status}

@@ -15,7 +15,7 @@ async function applyMastraSkin(page: Page, mode: "light" | "dark") {
 for (const mode of ["light", "dark"] as const) {
   test(`Mastra ${mode} restores its fonts, pill controls, and compact size ramp`, async ({ page }, testInfo) => {
     await applyMastraSkin(page, mode);
-    await page.goto("/primitives/button");
+    await page.goto("/components/button");
     const skinPicker = page.getByRole("combobox", { name: "Skin", exact: true });
     await waitForReactHydration(skinPicker);
     await expect(skinPicker).toContainText("Mastra");
@@ -59,7 +59,7 @@ for (const mode of ["light", "dark"] as const) {
   test(`Mastra ${mode} reaches portalled fields and retains keyboard focus`, async ({ page }, testInfo) => {
     await applyMastraSkin(page, mode);
     await page.emulateMedia({ reducedMotion: "reduce" });
-    await page.goto("/primitives/popover");
+    await page.goto("/components/popover");
     const trigger = page.getByRole("button", { name: "Dimensions", exact: true });
     await waitForReactHydration(trigger);
     await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("Mastra");

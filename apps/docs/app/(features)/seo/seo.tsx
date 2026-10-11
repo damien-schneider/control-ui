@@ -24,7 +24,7 @@ const twitterImage = {
 
 const titleQualifierByKind = {
   Skill: "practice",
-  Component: "React component for shadcn/ui",
+  Component: "React component kit for shadcn/ui",
   Block: "React template for shadcn/ui",
   Primitive: "React component for shadcn/ui",
   Hook: "React hook",
@@ -36,7 +36,7 @@ const titleQualifierByKind = {
 const socialLabelByKind = {
   Guide: "Guide",
   Skill: "Practice",
-  Component: "React component",
+  Component: "React component kit",
   Block: "React template",
   Primitive: "React component",
   Hook: "React hook",

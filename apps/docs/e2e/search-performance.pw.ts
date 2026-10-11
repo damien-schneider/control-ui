@@ -23,7 +23,7 @@ for (const skin of ["none", "mastra"]) {
       },
       { selectedSkin: skin, storageKey: THEME_EDITOR_STORAGE_KEY },
     );
-    await page.goto("/primitives/sidebar");
+    await page.goto("/components/sidebar");
     await waitForReactHydration(page.getByRole("button", { name: "Search documentation", exact: true }));
     await expect(page.locator("html")).toHaveAttribute("data-skin", skin);
     await page.evaluate(() => document.fonts.ready);

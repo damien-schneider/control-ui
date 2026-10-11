@@ -7,8 +7,290 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-indicator": "hover",
+          "data-size": "default",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "fallback"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "badge",
+          "data-status": "away"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-indicator": "hover",
+          "data-size": "default",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "fallback"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "badge",
+          "data-status": "busy"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-indicator": "hover",
+          "data-size": "default",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "fallback"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "badge",
+          "data-status": "offline"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-indicator": "hover",
+          "data-size": "default",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "fallback"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "badge",
+          "data-status": "online"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-density": "comfortable",
+          "data-layout": "flat",
+          "data-slot": "row"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-layout": "flat",
+          "data-slot": "avatar"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "fallback"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "badge",
+          "data-status": "busy"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-density": "comfortable",
+          "data-layout": "flat",
+          "data-slot": "row"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-layout": "flat",
+          "data-slot": "avatar"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "fallback"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "badge",
+          "data-status": "online"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -24,7 +306,150 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "badge",
+          "data-status": "online"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "fallback"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "badge",
+          "data-status": "away"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "fallback"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "badge",
+          "data-status": "busy"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
         }
@@ -41,7 +466,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-indicator": "none",
+          "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
           "data-variant": "default"
@@ -76,7 +501,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -92,7 +517,7 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
         }
@@ -109,7 +534,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-indicator": "none",
+          "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
           "data-variant": "default"
@@ -144,7 +569,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -160,7 +585,7 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
         }
@@ -177,7 +602,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-indicator": "none",
+          "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
           "data-variant": "default"
@@ -212,7 +637,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -228,7 +653,7 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
         }
@@ -245,7 +670,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-indicator": "none",
+          "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
           "data-variant": "default"
@@ -280,7 +705,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -296,7 +721,7 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
         }
@@ -363,7 +788,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -379,7 +804,7 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
         }
@@ -445,199 +870,6 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "avatar",
-          "data-control-ui": "avatar",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "avatar",
-          "data-control-ui": "avatar",
-          "data-slot": "badge",
-          "data-status": "online"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "avatar",
-          "data-control-ui": "avatar",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "avatar",
-          "data-control-ui": "avatar",
-          "data-slot": "fallback"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "avatar",
-          "data-control-ui": "avatar",
-          "data-slot": "badge",
-          "data-status": "away"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "avatar",
-          "data-control-ui": "avatar",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "avatar",
-          "data-control-ui": "avatar",
-          "data-slot": "fallback"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "avatar",
-          "data-control-ui": "avatar",
-          "data-slot": "badge",
-          "data-status": "busy"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
           "data-layout": "contained",
           "data-slot": "wrapper"
         }
@@ -646,7 +878,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-indicator": "none",
+          "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
           "data-variant": "default"
@@ -672,32 +904,6 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
           "data-layout": "contained",
           "data-slot": "wrapper"
         }
@@ -743,32 +949,6 @@
       }
     ],
     [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "inset",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "inset",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
       {
         "attributes": {
           "data-control-family": "sidebar",
@@ -822,7 +1002,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -838,17 +1018,9 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
         }
       },
       {
@@ -885,7 +1057,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -901,17 +1073,9 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
         }
       },
       {
@@ -935,7 +1099,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -951,17 +1115,9 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
         }
       },
       {
@@ -997,7 +1153,7 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "wrapper"
         }
       },
@@ -1013,17 +1169,9 @@
         "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
-          "data-scroll": "inset",
+          "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "tabs",
-          "data-control-ui": "tabs",
-          "data-slot": "surface",
-          "data-surface": "panel"
         }
       },
       {
@@ -1041,6 +1189,215 @@
           "data-control-ui": "inline-citation",
           "data-slot": "favicon",
           "data-source-badge-favicon": ""
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "fallback"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-indicator": "hover",
+          "data-size": "default",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "fallback"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-density": "comfortable",
+          "data-layout": "flat",
+          "data-slot": "row"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-layout": "flat",
+          "data-slot": "avatar"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "fallback"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-density": "comfortable",
+          "data-layout": "flat",
+          "data-slot": "row"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-slot": "reply-summary"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "root"
         }
       },
       {
@@ -1136,8 +1493,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-avatar-fallback-background",
-        "text": "--cui-avatar-fallback-foreground"
+        "fill": "--cui-avatar-badge-background",
+        "text": "--cui-avatar-badge-foreground"
       },
       "anatomy": 9,
       "rendersText": true,
@@ -1145,8 +1502,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-avatar-fallback-background",
-        "text": "--cui-avatar-fallback-foreground"
+        "fill": "--cui-avatar-badge-background",
+        "text": "--cui-avatar-badge-foreground"
       },
       "anatomy": 10,
       "rendersText": true,
@@ -1154,8 +1511,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-avatar-fallback-background",
-        "text": "--cui-avatar-fallback-foreground"
+        "fill": "--cui-avatar-badge-background",
+        "text": "--cui-avatar-badge-foreground"
       },
       "anatomy": 11,
       "rendersText": true,
@@ -1163,17 +1520,17 @@
     },
     {
       "knobs": {
-        "fill": "--cui-avatar-fallback-background",
-        "text": "--cui-avatar-fallback-foreground"
+        "fill": "--cui-avatar-badge-background",
+        "text": "--cui-avatar-badge-foreground"
       },
       "anatomy": 12,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-avatar-fallback-background",
-        "text": "--cui-avatar-fallback-foreground"
+        "fill": "--cui-avatar-badge-background",
+        "text": "--cui-avatar-badge-foreground"
       },
       "anatomy": 13,
       "rendersText": true,
@@ -1181,11 +1538,11 @@
     },
     {
       "knobs": {
-        "fill": "--cui-avatar-fallback-background",
-        "text": "--cui-avatar-fallback-foreground"
+        "fill": "--cui-avatar-badge-background",
+        "text": "--cui-avatar-badge-foreground"
       },
       "anatomy": 14,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -1194,7 +1551,88 @@
         "text": "--cui-avatar-fallback-foreground"
       },
       "anatomy": 15,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-avatar-fallback-background",
+        "text": "--cui-avatar-fallback-foreground"
+      },
+      "anatomy": 16,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-avatar-fallback-background",
+        "text": "--cui-avatar-fallback-foreground"
+      },
+      "anatomy": 17,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-avatar-fallback-background",
+        "text": "--cui-avatar-fallback-foreground"
+      },
+      "anatomy": 18,
       "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-avatar-fallback-background",
+        "text": "--cui-avatar-fallback-foreground"
+      },
+      "anatomy": 19,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-avatar-fallback-background",
+        "text": "--cui-avatar-fallback-foreground"
+      },
+      "anatomy": 20,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-avatar-fallback-background",
+        "text": "--cui-avatar-fallback-foreground"
+      },
+      "anatomy": 21,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-avatar-fallback-background",
+        "text": "--cui-avatar-fallback-foreground"
+      },
+      "anatomy": 22,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-avatar-fallback-background",
+        "text": "--cui-avatar-fallback-foreground"
+      },
+      "anatomy": 23,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-avatar-fallback-background",
+        "text": "--cui-avatar-fallback-foreground"
+      },
+      "anatomy": 24,
+      "rendersText": true,
       "state": false
     }
   ]

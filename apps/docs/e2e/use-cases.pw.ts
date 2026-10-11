@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test("Blocks owns block browsing and canonical detail routes", async ({ page }) => {
-  await page.goto("/components");
+  await page.goto("/kits");
   await page.waitForLoadState("networkidle");
 
   const sidebar = page.locator("[data-docs-sidebar-navigation]");

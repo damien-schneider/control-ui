@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => {
 for (const { label, path, axis, startEdge, endEdge, scrollSign } of [
   {
     label: "Places to explore",
-    path: "/primitives/progressive-blur",
+    path: "/components/progressive-blur",
     axis: "y",
     startEdge: "top",
     endEdge: "bottom",
@@ -19,7 +19,7 @@ for (const { label, path, axis, startEdge, endEdge, scrollSign } of [
   },
   {
     label: "Horizontal roadmap",
-    path: "/primitives/scroll-area",
+    path: "/components/scroll-area",
     axis: "x",
     startEdge: "left",
     endEdge: "right",
@@ -27,7 +27,7 @@ for (const { label, path, axis, startEdge, endEdge, scrollSign } of [
   },
   {
     label: "Right-to-left destinations",
-    path: "/primitives/progressive-blur",
+    path: "/components/progressive-blur",
     axis: "x",
     startEdge: "right",
     endEdge: "left",
@@ -71,7 +71,7 @@ for (const { label, path, axis, startEdge, endEdge, scrollSign } of [
 }
 
 test("the painted mask matches scroll distance and adapts when content shrinks", async ({ page }) => {
-  await page.goto("/primitives/progressive-blur");
+  await page.goto("/components/progressive-blur");
   const blurToggle = page.getByRole("switch", { name: "Progressive blur", exact: true });
   await waitForReactHydration(blurToggle);
   await blurToggle.click();

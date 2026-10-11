@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test("vertical slider previews pointer changes and commits once on release", async ({ page }) => {
-  await page.goto("/primitives/slider");
+  await page.goto("/components/slider");
   const slider = page.getByRole("slider", { name: "Volume", exact: true });
   const root = page.locator('[data-control-ui="slider"][data-slot="root"]').filter({ has: slider });
   const track = root.locator('[data-slot="track"]');
@@ -23,7 +23,7 @@ test("vertical slider previews pointer changes and commits once on release", asy
 });
 
 test("vertical slider supports keyboard increments and limits", async ({ page }) => {
-  await page.goto("/primitives/slider");
+  await page.goto("/components/slider");
   const slider = page.getByRole("slider", { name: "Volume", exact: true });
   await slider.focus();
   await page.keyboard.press("ArrowUp");

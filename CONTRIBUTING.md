@@ -15,7 +15,7 @@ Heads-up: the docs app tracks bleeding-edge tooling — Next.js preview releases
 
 ## Source of truth and generated files
 
-Component and primitive source lives in `apps/docs/src/registry/sources/control-ui`; the product catalog lives in `apps/docs/app/(features)/catalog`. Everything else registry-shaped is generated from those (see the Repository layout section of the README).
+Component and kit source lives in `apps/docs/src/registry/sources/control-ui`; the product catalog lives in `apps/docs/app/(features)/catalog`. Everything else registry-shaped is generated from those (see the Repository layout section of the README).
 
 After changing registry source, catalog metadata, or skin packs:
 

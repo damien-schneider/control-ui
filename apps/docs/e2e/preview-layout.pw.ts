@@ -26,7 +26,7 @@ async function expectCentered(container: Locator, content: Locator) {
 for (const width of [390, 795, 1440]) {
   test(`audio visualizer alternatives stay centered without centering wrappers at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
-    await page.goto("/components/audio-visualizer");
+    await page.goto("/kits/audio-visualizer");
     const preview = page.locator("#preview");
     const panel = preview.getByRole("tabpanel", { name: "Preview", exact: true });
     const content = preview.locator("[data-preview-layout] > div");
@@ -54,7 +54,7 @@ for (const width of [390, 795, 1440]) {
 
   test(`bounded component previews stay centered and responsive at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
-    await page.goto("/components/audio-recorder");
+    await page.goto("/kits/audio-recorder");
     const preview = page.locator("#preview");
     const frame = preview.locator("[data-preview-layout]");
     const content = frame.locator(":scope > div");
@@ -74,7 +74,7 @@ for (const width of [390, 795, 1440]) {
 }
 
 test("the preview frame contains the app shell through loading and tab changes", async ({ page }) => {
-  await page.goto("/primitives/app-shell");
+  await page.goto("/components/app-shell");
   const preview = page.locator("#preview");
   const shell = preview.locator("[data-app-shell]");
   await expect(shell).toBeVisible();
@@ -99,7 +99,7 @@ test("the preview frame contains the app shell through loading and tab changes",
 for (const width of [390, 1440]) {
   test(`aspect ratio stays sized and interactive at ${width}px without presentation wrappers in its code`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
-    await page.goto("/primitives/aspect-ratio");
+    await page.goto("/components/aspect-ratio");
     const widescreen = page.locator("#preview").getByText("aspect-video", { exact: true });
     const square = page.locator("#preview").getByText("aspect-square", { exact: true });
     await waitForReactHydration(widescreen);

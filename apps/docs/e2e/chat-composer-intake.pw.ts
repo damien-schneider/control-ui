@@ -31,7 +31,7 @@ function dragFileOver(target: Locator, type: "dragenter" | "dragover" | "drop") 
 }
 
 test("the composer takes attachments from paste and drop, not only the file button", async ({ page }) => {
-  await page.goto("/components/chat-composer-attachment");
+  await page.goto("/kits/chat-composer-attachment");
   const preview = page.locator("#preview");
   const shell = preview.locator('[data-control-family="chat-composer"][data-slot="shell"]');
   const textarea = shell.locator("textarea");
@@ -75,7 +75,7 @@ test("the rich editor releases file transfers instead of swallowing them", async
 });
 
 test("a pasted image preview shows the whole image inside its tile", async ({ page }) => {
-  await page.goto("/components/chat-composer-attachment");
+  await page.goto("/kits/chat-composer-attachment");
   const shell = page.locator("#preview").locator('[data-control-family="chat-composer"][data-slot="shell"]');
   const textarea = shell.locator("textarea");
   await waitForReactHydration(textarea);

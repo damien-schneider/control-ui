@@ -15,7 +15,7 @@ for (const positioning of ["anchors", "fallback"]) {
     });
 
     test("button groups follow hover immediately, preserve selection and joined edges, and allow opting out", async ({ page }) => {
-      await page.goto("/primitives/button-group");
+      await page.goto("/components/button-group");
       await expect(page.locator("html")).toHaveAttribute("data-skin", "refined");
       const group = page.getByRole("group", { name: "Text alignment", exact: true });
       const left = group.getByRole("button", { name: "Left", exact: true });
@@ -53,7 +53,7 @@ for (const positioning of ["anchors", "fallback"]) {
     });
 
     test("vertical groups skip disabled controls and keep the end caps", async ({ page }) => {
-      await page.goto("/primitives/button-group");
+      await page.goto("/components/button-group");
       const group = page.getByRole("group", { name: "Item actions" });
       const first = group.getByRole("button", { name: "Open", exact: true });
       const last = group.getByRole("button", { name: "Open in new window", exact: true });
@@ -78,7 +78,7 @@ for (const positioning of ["anchors", "fallback"]) {
     });
 
     test("toggle groups track hover and arrow-key focus without changing other pressed values", async ({ page }) => {
-      await page.goto("/primitives/toggle");
+      await page.goto("/components/toggle");
       const group = page.getByRole("group", { name: "Text formatting" });
       const bold = group.getByRole("button", { name: "Bold", exact: true });
       const italic = group.getByRole("button", { name: "Italic", exact: true });
@@ -110,7 +110,7 @@ test("switching skins applies the group defaults while explicit indicators keep 
   await page.addInitScript((storageKey) => {
     localStorage.setItem(storageKey, JSON.stringify({ skin: "none" }));
   }, THEME_EDITOR_STORAGE_KEY);
-  await page.goto("/primitives/button-group");
+  await page.goto("/components/button-group");
   const group = page.getByRole("group", { name: "Text alignment" });
   await expect(group).toHaveAttribute("data-track", "none");
   const skinPicker = page.getByRole("combobox", { name: "Skin", exact: true });
@@ -134,7 +134,7 @@ test("Refined enables fluid sidebar and checkbox navigation without per-instance
   await page.addInitScript((storageKey) => {
     localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" }));
   }, THEME_EDITOR_STORAGE_KEY);
-  await page.goto("/primitives/sidebar");
+  await page.goto("/components/sidebar");
   const sidebar = page.getByRole("group", { name: "Sidebar", exact: true });
   const menu = sidebar.locator('[data-slot="menu-track"]').first();
   await expect(menu).toHaveAttribute("data-track", "hover");
@@ -142,7 +142,7 @@ test("Refined enables fluid sidebar and checkbox navigation without per-instance
   await workflows.hover();
   await expectHighlightOn(menu.locator('[data-control-family="track-highlight"]'), workflows);
   await expect(menu.getByRole("button", { name: "Agents", exact: true })).toHaveAttribute("data-active", "true");
-  await page.goto("/primitives/checkbox-group");
+  await page.goto("/components/checkbox-group");
   const checkboxes = page.getByRole("group", { name: "Notification channels" });
   await expect(checkboxes).toHaveAttribute("data-track", "hover");
   await checkboxes.getByText("Critical alerts only", { exact: true }).hover();
@@ -159,7 +159,7 @@ for (const skin of ["refined", "none"]) {
       },
       { storageKey: THEME_EDITOR_STORAGE_KEY, skin },
     );
-    await page.goto("/primitives/button-group");
+    await page.goto("/components/button-group");
     const navigation = page.locator("[data-docs-sidebar-navigation]");
     const current = navigation.getByRole("link", { name: "Button group", exact: true });
     const first = navigation.getByRole("link", { name: "Button", exact: true });
@@ -197,7 +197,7 @@ for (const skin of ["refined", "none"]) {
     await expectHighlightOn(highlight, last);
     await expect(current).toHaveAttribute("data-active", "true");
     await first.click();
-    await expect(page).toHaveURL(/\/primitives\/button$/);
+    await expect(page).toHaveURL(/\/components\/button$/);
     await expect(navigation.getByRole("link", { name: "Button", exact: true })).toHaveAttribute("data-active", "true");
   });
 }

@@ -11,7 +11,7 @@ for (const skin of ["none", "refined", "cuicui"]) {
         key: THEME_EDITOR_STORAGE_KEY,
         skin,
       });
-      await page.goto("/primitives/skeleton");
+      await page.goto("/components/skeleton");
       await waitForReactHydration(page.getByRole("combobox", { name: "Skin", exact: true }));
       await page.evaluate(() => document.fonts.ready);
       const skeletons = page.locator('[data-control-family="skeleton"][data-slot="root"]');
@@ -92,7 +92,7 @@ for (const skin of ["none", "refined", "cuicui"]) {
 
 test("alert knobs reach the icon and text while long messages wrap without clipping", async ({ page }, testInfo) => {
   await page.setViewportSize({ width: 360, height: 900 });
-  await page.goto("/primitives/alert");
+  await page.goto("/components/alert");
   const alert = page.locator('[data-control-family="alert"][data-slot="root"]').first();
   await waitForReactHydration(alert);
   await alert.locator("..").screenshot({ path: testInfo.outputPath("alerts.png") });
@@ -134,7 +134,7 @@ test("alert knobs reach the icon and text while long messages wrap without clipp
 
 test("empty state knobs reach every part and long content stays within a narrow panel", async ({ page }, testInfo) => {
   await page.setViewportSize({ width: 360, height: 900 });
-  await page.goto("/primitives/empty");
+  await page.goto("/components/empty");
   const empty = page.locator('[data-control-family="empty"][data-slot="root"]');
   await waitForReactHydration(empty);
   await empty.screenshot({ path: testInfo.outputPath("empty.png") });

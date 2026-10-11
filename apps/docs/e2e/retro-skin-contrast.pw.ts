@@ -44,11 +44,11 @@ for (const [skin, mode] of [
       },
       { skinId: skin, colorMode: mode },
     );
-    await page.goto("/components/chat-message");
+    await page.goto("/kits/chat-message");
     const userMessage = '[data-control-family="chat-message"][data-slot="content"][data-role="user"]';
     await expect(page.locator(userMessage).first()).toBeVisible();
     expect(await renderedContrast(page, userMessage, userMessage)).toBeGreaterThanOrEqual(4.5);
-    await page.goto("/primitives/tree");
+    await page.goto("/components/tree");
     const selectedRow = '[data-control-family="tree"][data-slot="item-trigger"][data-selected]';
     const selectionIndicator = '[data-control-family="tree"] > [data-control-family="track-highlight"][data-slot="root"]';
     await expect(page.locator(selectedRow).first()).toBeVisible();

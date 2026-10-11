@@ -27,8 +27,8 @@ describe("catalogNavGroups", () => {
 
   test("renders every component and primitive once, in its category, under its own route", () => {
     const items = navGroups.flatMap((group) => group.items);
-    const componentItems = items.filter((item) => item.href.startsWith("/components/"));
-    const primitiveItems = items.filter((item) => item.href.startsWith("/primitives/"));
+    const componentItems = items.filter((item) => item.href.startsWith("/kits/"));
+    const primitiveItems = items.filter((item) => item.href.startsWith("/components/"));
 
     expect(componentItems.map((item) => item.id).toSorted()).toEqual(componentEntries.map((entry) => entry.id).toSorted());
     expect(primitiveItems.map((item) => item.id).toSorted()).toEqual(primitiveEntries.map((entry) => entry.id).toSorted());
@@ -38,8 +38,8 @@ describe("catalogNavGroups", () => {
   test("groups a component with the primitives that share its category", () => {
     const feedback = navGroups.find((group) => group.id === "feedback");
 
-    expect(feedback?.items.map((item) => item.href)).toContain("/components/dynamic-notification");
-    expect(feedback?.items.map((item) => item.href)).toContain("/primitives/toast");
+    expect(feedback?.items.map((item) => item.href)).toContain("/kits/dynamic-notification");
+    expect(feedback?.items.map((item) => item.href)).toContain("/components/toast");
   });
 
   test("keeps items alphabetical inside each catalog group", () => {

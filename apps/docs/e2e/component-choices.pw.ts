@@ -13,7 +13,7 @@ test.beforeEach(async ({ page }) => {
 for (const width of [360, 390, 795, 1440]) {
   test(`alternatives remain clear of preview tabs and viewport edges at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
-    await page.goto("/components/audio-visualizer");
+    await page.goto("/kits/audio-visualizer");
     const choices = page.getByRole("radiogroup", { name: "Alternatives" });
     const line = choices.getByRole("radio", { name: "Line envelope", exact: true });
     await waitForReactHydration(line);
@@ -35,7 +35,7 @@ for (const width of [360, 390, 795, 1440]) {
 
 test("alternative selection keeps install, usage, source, reload, and history in sync", async ({ page, context }) => {
   await context.grantPermissions(["clipboard-read", "clipboard-write"]);
-  await page.goto("/components/audio-visualizer?from=docs#alternatives");
+  await page.goto("/kits/audio-visualizer?from=docs#alternatives");
   const choices = page.getByRole("radiogroup", { name: "Alternatives" });
   const line = choices.getByRole("radio", { name: "Line envelope", exact: true });
   await waitForReactHydration(line);
@@ -62,7 +62,7 @@ test("alternative selection keeps install, usage, source, reload, and history in
 });
 
 test("unknown alternatives fall back to a coherent default and keyboard navigation selects the next implementation", async ({ page }) => {
-  await page.goto("/components/audio-visualizer?alternative=unknown");
+  await page.goto("/kits/audio-visualizer?alternative=unknown");
   const choices = page.getByRole("radiogroup", { name: "Alternatives" });
   const waveform = choices.getByRole("radio", { name: "Waveform", exact: true });
   await expect(waveform).toBeChecked();
@@ -76,7 +76,7 @@ test("unknown alternatives fall back to a coherent default and keyboard navigati
 });
 
 test("notification variants share installation and show matching usage for both integrations", async ({ page }) => {
-  await page.goto("/components/dynamic-notification?variant=liquid");
+  await page.goto("/kits/dynamic-notification?variant=liquid");
   const choices = page.getByRole("radiogroup", { name: "Variants" });
   const liquid = choices.getByRole("radio", { name: "Liquid glass", exact: true });
   await expect(liquid).toBeChecked();

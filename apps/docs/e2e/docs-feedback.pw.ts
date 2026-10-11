@@ -20,7 +20,7 @@ for (const skin of ["refined", "mastra"]) {
 
       test("headerless copy remains clear of scrolled source and copies the complete example", async ({ page }) => {
         await page.setViewportSize({ width: 390, height: 900 });
-        await page.goto("/components/action-bar");
+        await page.goto("/kits/action-bar");
         await expect(page.locator("html")).toHaveAttribute("data-skin", skin);
         const code = page.locator('#usage [data-control-ui="code"][data-slot="root"]').first();
         const copy = code.getByRole("button", { name: "Copy code", exact: true });
@@ -45,7 +45,7 @@ for (const skin of ["refined", "mastra"]) {
 
       test("fields group their labels and hints while documentation keeps readable controls", async ({ page }) => {
         await page.setViewportSize({ width: 1440, height: 1000 });
-        await page.goto("/primitives/input-group");
+        await page.goto("/components/input-group");
         await expect(page.locator("html")).toHaveAttribute("data-skin", skin);
         const field = page.locator('#preview [data-control-ui="field"][data-slot="root"]').first();
         await waitForReactHydration(field);

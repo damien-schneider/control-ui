@@ -6,20 +6,20 @@ import { MODE_LOCKED_SKINS } from "../components/theme";
 const SKINS = skinMetas.map((skin) => skin.id);
 const MODES = ["light", "dark"] as const;
 
-const galleries = ["/primitives", "/components"];
+const galleries = ["/components", "/kits"];
 
 const contentPages = ["/overview", "/get-started", "/create-a-skin", "/architecture", "/lock-in"];
 
 /** Portalled surfaces render outside their trigger's tree, so a gallery card never mounts them. */
 const portalPages = [
-  "/components/context",
-  "/components/inline-citation",
-  "/primitives/popover",
-  "/primitives/dropdown-menu",
-  "/primitives/dialog",
-  "/primitives/tooltip",
-  "/primitives/drawer",
-  "/primitives/toast",
+  "/kits/context",
+  "/kits/inline-citation",
+  "/components/popover",
+  "/components/dropdown-menu",
+  "/components/dialog",
+  "/components/tooltip",
+  "/components/drawer",
+  "/components/toast",
 ];
 
 /** axe reports these instead of a ratio; only glyphless text is safe to skip, the rest is unmeasured paint. */

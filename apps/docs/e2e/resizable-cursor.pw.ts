@@ -7,7 +7,7 @@ for (const [index, cursor] of [
 ] as const) {
   test(`panel separator ${index} keeps the resize cursor during drag and restores it afterwards`, async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
-    await page.goto("/primitives/resizable");
+    await page.goto("/components/resizable");
     const heading = page.getByRole("heading", { name: "Resizable", level: 1, exact: true });
     const handle = page.getByRole("separator", { name: "Resize panel", exact: true }).nth(index);
     await waitForReactHydration(handle);
@@ -34,7 +34,7 @@ for (const [index, cursor] of [
 
 test("floating panel cursor survives pointer capture and clears on cancellation and navigation", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto("/primitives/resizable");
+  await page.goto("/components/resizable");
   const heading = page.getByRole("heading", { name: "Resizable", level: 1, exact: true });
   const handle = page.getByRole("separator", { name: "Resize panel", exact: true }).last();
   await waitForReactHydration(handle);
@@ -66,6 +66,6 @@ test("floating panel cursor survives pointer capture and clears on cancellation 
       if (!(node instanceof HTMLElement)) throw new Error("Navigation link must be an HTML element");
       node.click();
     });
-  await expect(page).toHaveURL(/\/primitives\/button$/);
+  await expect(page).toHaveURL(/\/components\/button$/);
   await expect(page.getByRole("heading", { name: "Button", level: 1, exact: true })).toHaveCSS("cursor", originalCursor);
 });

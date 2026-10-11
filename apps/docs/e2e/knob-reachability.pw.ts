@@ -3,18 +3,18 @@ import { buildKnobReachabilityProbe } from "../scripts/knob-sentinels";
 
 const probe = buildKnobReachabilityProbe();
 
-const galleries = ["/primitives", "/components"];
+const galleries = ["/components", "/kits"];
 
 /** Portalled surfaces render outside their trigger's tree, so a gallery card never mounts them. */
 const portalPages = [
-  "/components/context",
-  "/components/inline-citation",
-  "/primitives/popover",
-  "/primitives/dropdown-menu",
-  "/primitives/dialog",
-  "/primitives/tooltip",
-  "/primitives/drawer",
-  "/primitives/toast",
+  "/kits/context",
+  "/kits/inline-citation",
+  "/components/popover",
+  "/components/dropdown-menu",
+  "/components/dialog",
+  "/components/tooltip",
+  "/components/drawer",
+  "/components/toast",
 ];
 
 async function collectOffenders(page: import("@playwright/test").Page): Promise<string[]> {

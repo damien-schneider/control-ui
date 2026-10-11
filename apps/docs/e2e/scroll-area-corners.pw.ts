@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("attachment corners take priority over blur and retain the edge fade", async ({ page }, testInfo) => {
-  await page.goto("/components/chat-composer-attachment");
+  await page.goto("/kits/chat-composer-attachment");
   const shell = page.locator('#preview [data-control-family="chat-composer"][data-slot="shell"]');
   const viewport = shell.locator("[data-scroll-area-viewport]");
   const scrollArea = viewport.locator("..");
@@ -45,7 +45,7 @@ test("attachment corners take priority over blur and retain the edge fade", asyn
 });
 
 test("code blocks and popup lists preserve the skin corners", async ({ page }) => {
-  await page.goto("/primitives/phone-input");
+  await page.goto("/components/phone-input");
   const code = page.locator('[data-control-family="code"][data-slot="root"]:has([data-scroll-area-viewport])').first();
   await expect(code).toHaveCSS("corner-shape", "superellipse(1.25)");
   const countryTrigger = page.getByRole("button", { name: "Phone number country: France (+33)", exact: true }).first();

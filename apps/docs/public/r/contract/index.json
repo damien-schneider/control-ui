@@ -23,21 +23,21 @@
         "activity"
       ],
       "knobs": 5,
-      "probes": 24
+      "probes": 23
     },
     "alert": {
       "registryItems": [
         "alert"
       ],
       "knobs": 15,
-      "probes": 4
+      "probes": 8
     },
     "app-shell-header": {
       "registryItems": [
         "app-shell"
       ],
       "knobs": 5,
-      "probes": 1
+      "probes": 2
     },
     "aspect-ratio": {
       "registryItems": [
@@ -58,7 +58,7 @@
         "audio-recorder"
       ],
       "knobs": 6,
-      "probes": 5
+      "probes": 3
     },
     "audio-visualizer": {
       "registryItems": [
@@ -74,14 +74,14 @@
         "avatar"
       ],
       "knobs": 10,
-      "probes": 16
+      "probes": 25
     },
     "badge": {
       "registryItems": [
         "badge"
       ],
       "knobs": 5,
-      "probes": 20
+      "probes": 49
     },
     "breadcrumb": {
       "registryItems": [
@@ -100,7 +100,7 @@
         "toggle"
       ],
       "knobs": 25,
-      "probes": 232
+      "probes": 260
     },
     "button-group": {
       "registryItems": [
@@ -142,7 +142,7 @@
         "chat-composer"
       ],
       "knobs": 15,
-      "probes": 23
+      "probes": 24
     },
     "chat-composer-attachment": {
       "registryItems": [
@@ -156,14 +156,14 @@
         "chat-layout"
       ],
       "knobs": 7,
-      "probes": 2
+      "probes": 1
     },
     "chat-message": {
       "registryItems": [
         "chat-message"
       ],
       "knobs": 21,
-      "probes": 34
+      "probes": 47
     },
     "checkbox-group": {
       "registryItems": [
@@ -185,14 +185,14 @@
         "code"
       ],
       "knobs": 9,
-      "probes": 19
+      "probes": 22
     },
     "code-diff": {
       "registryItems": [
         "code-diff"
       ],
       "knobs": 16,
-      "probes": 13
+      "probes": 16
     },
     "collapsible": {
       "registryItems": [
@@ -206,7 +206,7 @@
         "color-picker"
       ],
       "knobs": 7,
-      "probes": 8
+      "probes": 5
     },
     "context": {
       "registryItems": [
@@ -241,7 +241,7 @@
         "emoji-picker"
       ],
       "knobs": 7,
-      "probes": 6
+      "probes": 18
     },
     "empty": {
       "registryItems": [
@@ -265,7 +265,7 @@
         "textarea"
       ],
       "knobs": 15,
-      "probes": 94
+      "probes": 99
     },
     "filter-bar": {
       "registryItems": [
@@ -300,7 +300,7 @@
         "infinite-canvas"
       ],
       "knobs": 11,
-      "probes": 3
+      "probes": 2
     },
     "inline-attachment": {
       "registryItems": [
@@ -328,14 +328,14 @@
         "kbd"
       ],
       "knobs": 5,
-      "probes": 7
+      "probes": 8
     },
     "label": {
       "registryItems": [
         "label"
       ],
       "knobs": 1,
-      "probes": 7
+      "probes": 5
     },
     "live-status": {
       "registryItems": [
@@ -349,7 +349,7 @@
         "markdown"
       ],
       "knobs": 14,
-      "probes": 15
+      "probes": 13
     },
     "markdown-block": {
       "registryItems": [
@@ -420,7 +420,7 @@
         "trigger-menu"
       ],
       "knobs": 44,
-      "probes": 175
+      "probes": 168
     },
     "progressive-blur": {
       "registryItems": [
@@ -437,14 +437,14 @@
         "slider"
       ],
       "knobs": 13,
-      "probes": 39
+      "probes": 46
     },
     "resizable": {
       "registryItems": [
         "resizable"
       ],
       "knobs": 10,
-      "probes": 8
+      "probes": 12
     },
     "resize-handle": {
       "registryItems": [
@@ -456,14 +456,14 @@
     "rich-tooltip": {
       "registryItems": [],
       "knobs": 9,
-      "probes": 3
+      "probes": 9
     },
     "scroll-area": {
       "registryItems": [
         "scroll-area"
       ],
       "knobs": 3,
-      "probes": 43
+      "probes": 44
     },
     "separator": {
       "registryItems": [
@@ -477,7 +477,7 @@
         "sidebar"
       ],
       "knobs": 59,
-      "probes": 56
+      "probes": 80
     },
     "sidebar-layout": {
       "registryItems": [
@@ -519,21 +519,21 @@
         "switch"
       ],
       "knobs": 19,
-      "probes": 17
+      "probes": 22
     },
     "table": {
       "registryItems": [
         "table"
       ],
       "knobs": 7,
-      "probes": 2
+      "probes": 4
     },
     "table-of-contents": {
       "registryItems": [
         "table-of-contents"
       ],
       "knobs": 27,
-      "probes": 36
+      "probes": 30
     },
     "tabs": {
       "registryItems": [
@@ -541,7 +541,7 @@
         "tabs"
       ],
       "knobs": 16,
-      "probes": 55
+      "probes": 86
     },
     "task-list": {
       "registryItems": [
@@ -576,7 +576,7 @@
         "toolbar"
       ],
       "knobs": 16,
-      "probes": 70
+      "probes": 76
     },
     "track-highlight": {
       "registryItems": [
@@ -590,7 +590,7 @@
         "transcript-divider"
       ],
       "knobs": 5,
-      "probes": 5
+      "probes": 6
     },
     "tree": {
       "registryItems": [

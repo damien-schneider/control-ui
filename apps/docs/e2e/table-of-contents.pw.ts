@@ -8,7 +8,7 @@ const railColumns = async (navigation: Locator) => {
 
 test.beforeEach(async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1100 });
-  await page.goto("/primitives/table-of-contents");
+  await page.goto("/components/table-of-contents");
   await waitForReactHydration(page.getByRole("navigation", { name: "Range", exact: true }));
 });
 

@@ -41,16 +41,16 @@ describe("installed dependency rows", () => {
   test("never repeat a file another docs page owns", () => {
     const data = getDocsData();
     const ownerByPath = new Map<string, string>([
-      ...data.primitives.map((primitive) => [primitive.registry.source.path, `/primitives/${primitive.id}`] as const),
-      ...data.components.map((component) => [component.source.path, `/components/${component.id}`] as const),
+      ...data.primitives.map((primitive) => [primitive.registry.source.path, `/components/${primitive.id}`] as const),
+      ...data.components.map((component) => [component.source.path, `/kits/${component.id}`] as const),
     ]);
     const rows = [
       ...data.primitives.map((primitive) => ({
-        page: `/primitives/${primitive.id}`,
+        page: `/components/${primitive.id}`,
         files: installedDependencyFiles(primitive.registry.supportFiles ?? []),
       })),
       ...data.components.map((component) => ({
-        page: `/components/${component.id}`,
+        page: `/kits/${component.id}`,
         files: installedDependencyFiles(supportFilesFor(component)),
       })),
     ];
@@ -85,7 +85,7 @@ describe("knob family ownership", () => {
     if (!menubar) throw new Error("Missing Menubar docs entry");
 
     expect(menubar.registry.knobs.map((family) => [family.id, family.href])).toEqual([
-      ["button", "/primitives/button"],
+      ["button", "/components/button"],
       ["popup", undefined],
     ]);
   });

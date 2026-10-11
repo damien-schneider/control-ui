@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test("tool activity opening motion unfolds instead of snapping open", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
-  await page.goto("/components/chat-message");
+  await page.goto("/kits/chat-message");
 
   const toolActivity = page.locator('[data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"]');
   const triggerLocator = toolActivity.locator('[data-control-ui="activity"][data-slot="trigger"]');
@@ -49,7 +49,7 @@ test("tool activity opening motion unfolds instead of snapping open", async ({ p
 
 test("streaming shimmer paints only the message header, never the body text", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
-  await page.goto("/components/chat-message");
+  await page.goto("/kits/chat-message");
 
   const messageContent = page.locator('[data-control-ui="chat-message"][data-slot="content"][data-streaming]');
   const toolActivity = page.locator('[data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"]');

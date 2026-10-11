@@ -7,7 +7,7 @@ function settled(locator: Locator) {
 }
 
 test("context trigger is named by its visible label and the inspector dismisses accessibly", async ({ page }) => {
-  await page.goto("/components/context");
+  await page.goto("/kits/context");
   await page.waitForLoadState("networkidle");
 
   const root = page.locator('[data-control-ui="context"][data-slot="root"]');
@@ -61,7 +61,7 @@ test("context trigger is named by its visible label and the inspector dismisses 
 
 test("context inspector stays bounded and scrollable on narrow viewports", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 700 });
-  await page.goto("/components/context");
+  await page.goto("/kits/context");
   await page.waitForLoadState("networkidle");
 
   const root = page.locator('[data-control-ui="context"][data-slot="root"]');

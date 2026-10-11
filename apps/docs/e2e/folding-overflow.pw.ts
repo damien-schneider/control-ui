@@ -83,7 +83,7 @@ for (const example of foldingExamples) {
   test(`${example.primitive} clips during folding and releases the open content`, async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.emulateMedia({ reducedMotion: "no-preference" });
-    await page.goto(`/primitives/${example.primitive}`);
+    await page.goto(`/components/${example.primitive}`);
     const preview = page.locator("main");
     const trigger = preview.getByText(example.trigger, { exact: true });
     await waitForReactHydration(trigger);

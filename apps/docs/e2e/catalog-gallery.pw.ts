@@ -4,7 +4,7 @@ import { componentEntries } from "../app/(features)/catalog/components";
 import { primitiveEntries } from "../app/(features)/catalog/primitives";
 
 test("catalog overviews render every live preview as one browse-only card", async ({ page }) => {
-  await page.goto("/primitives");
+  await page.goto("/components");
 
   const primitiveCards = page.locator('[data-gallery-card="primitive"]');
   await expect(primitiveCards).toHaveCount(primitiveEntries.length);
@@ -21,8 +21,8 @@ test("catalog overviews render every live preview as one browse-only card", asyn
   await firstPrimitiveLink.focus();
   await expect(firstPrimitiveLink).toBeFocused();
 
-  await page.goto("/components");
-  await expect(page.getByRole("heading", { name: "Components", level: 1 })).toBeVisible();
+  await page.goto("/kits");
+  await expect(page.getByRole("heading", { name: "Kits", level: 1 })).toBeVisible();
   for (const category of categoriesWithEntries(componentEntries)) {
     await expect(page.getByRole("heading", { name: category.label, exact: true, level: 2 })).toBeVisible();
   }
@@ -31,7 +31,7 @@ test("catalog overviews render every live preview as one browse-only card", asyn
 
 test("gallery columns respond to their available width", async ({ page }) => {
   await page.setViewportSize({ width: 1600, height: 1000 });
-  await page.goto("/primitives");
+  await page.goto("/components");
 
   const cards = page.locator('[data-gallery-card="primitive"]');
   await expect(cards).toHaveCount(primitiveEntries.length);
@@ -77,7 +77,7 @@ test("gallery previews mount near the viewport, stay mounted, and navigate witho
   });
   page.on("pageerror", (error) => consoleErrors.push(error.message));
 
-  await page.goto("/primitives");
+  await page.goto("/components");
   const cards = page.locator('[data-gallery-card="primitive"]');
   const firstCard = cards.first();
   const lastPreview = cards.last().locator("[data-gallery-preview]");
@@ -94,7 +94,7 @@ test("gallery previews mount near the viewport, stay mounted, and navigate witho
   await firstCard.getByRole("link").click();
   await expect(page).toHaveURL(firstHref ?? "");
 
-  await page.goto("/components");
+  await page.goto("/kits");
   const componentCards = page.locator('[data-gallery-card="component"]');
   await expect(componentCards).toHaveCount(componentEntries.length);
   await expect(componentCards.first().locator("[data-gallery-preview]")).toHaveAttribute("data-gallery-preview-state", "mounted");

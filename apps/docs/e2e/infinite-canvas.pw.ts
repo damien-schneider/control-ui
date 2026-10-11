@@ -3,7 +3,7 @@ import { waitForReactHydration } from "./browser-test-helpers";
 
 test("pans and zooms without moving the page viewport", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
-  await page.goto("/primitives/infinite-canvas");
+  await page.goto("/components/infinite-canvas");
 
   const canvas = page.getByRole("application", { name: "Infinite canvas" });
   const content = canvas.locator('[data-control-ui="infinite-canvas"][data-slot="content"]');
@@ -76,7 +76,7 @@ test("pans and zooms without moving the page viewport", async ({ page }) => {
 
 test("uses two-finger wheel movement to pan without scrolling the page", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
-  await page.goto("/primitives/infinite-canvas");
+  await page.goto("/components/infinite-canvas");
 
   const canvas = page.getByRole("application", { name: "Infinite canvas" });
   const content = canvas.locator('[data-control-ui="infinite-canvas"][data-slot="content"]');

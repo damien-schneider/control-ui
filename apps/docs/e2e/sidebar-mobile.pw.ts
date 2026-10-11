@@ -15,7 +15,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("primary destinations and the complete menu share selection and disabled state", async ({ page }) => {
-  await page.goto("/primitives/sidebar");
+  await page.goto("/components/sidebar");
   const workspace = page.getByRole("group", { name: "Bottom navigation", exact: true });
   const nav = workspace.getByRole("navigation", { name: "Workspace mobile navigation" });
   const menu = nav.getByRole("button", { name: "Menu", exact: true });
@@ -40,7 +40,7 @@ test("primary destinations and the complete menu share selection and disabled st
 });
 
 test("the drawer returns focus to its actual opener and resets when switching to desktop", async ({ page }) => {
-  await page.goto("/primitives/sidebar");
+  await page.goto("/components/sidebar");
   const workspace = page.getByRole("group", { name: "Bottom navigation", exact: true });
   const menu = workspace.getByRole("button", { name: "Menu", exact: true });
   const headerTrigger = workspace.getByRole("button", { name: "Toggle sidebar", exact: true });
@@ -67,7 +67,7 @@ test("the drawer returns focus to its actual opener and resets when switching to
 });
 
 test("contained navigation reserves space, keeps touch targets, and follows its own workspace", async ({ page }) => {
-  await page.goto("/primitives/sidebar");
+  await page.goto("/components/sidebar");
   const workspace = page.getByRole("group", { name: "Bottom navigation", exact: true });
   const nav = workspace.getByRole("navigation", { name: "Workspace mobile navigation" });
   await waitForReactHydration(nav.getByRole("button", { name: "Menu", exact: true }));
@@ -95,7 +95,7 @@ test("contained navigation reserves space, keeps touch targets, and follows its 
 });
 
 test("floating menus open from the bottom and close with their visible close button", async ({ page }) => {
-  await page.goto("/primitives/sidebar");
+  await page.goto("/components/sidebar");
   const workspace = page.getByRole("group", { name: "Floating mobile menu", exact: true });
   const menu = workspace.getByRole("button", { name: "Menu", exact: true });
   await waitForReactHydration(menu);
@@ -109,7 +109,7 @@ test("floating menus open from the bottom and close with their visible close but
 });
 
 test("the docs floating menu stays reachable after scrolling and navigates with router links", async ({ page }) => {
-  await page.goto("/primitives/button");
+  await page.goto("/components/button");
   const nav = page.getByRole("navigation", { name: "Documentation mobile navigation" });
   const menu = nav.getByRole("button", { name: "Menu", exact: true });
   await waitForReactHydration(menu);
@@ -119,7 +119,7 @@ test("the docs floating menu stays reachable after scrolling and navigates with 
   await menu.tap();
   const drawer = page.locator(drawerSelector);
   await drawer.getByRole("link", { name: "Tabs", exact: true }).tap();
-  await expect(page).toHaveURL(/\/primitives\/tabs$/);
+  await expect(page).toHaveURL(/\/components\/tabs$/);
   await expect(drawer).toHaveCount(0);
   await expect(menu).toBeInViewport();
 });

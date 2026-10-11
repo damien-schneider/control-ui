@@ -16,7 +16,7 @@ export function PrimitivePage({ primitive, extensions }: { primitive: DocsPrimit
 
   return (
     <RegistryItemPage
-      label="Primitives"
+      label="Components"
       title={primitive.name}
       summary={primitive.summary}
       status={primitive.status}

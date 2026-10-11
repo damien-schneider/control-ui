@@ -728,6 +728,10 @@
     "--cui-sidebar-menu-badge-foreground",
     "--cui-sidebar-menu-button-hover-background",
     "--cui-sidebar-menu-button-hover-foreground",
+    "--cui-sidebar-nav-background",
+    "--cui-sidebar-nav-foreground",
+    "--cui-sidebar-nav-item-active-background",
+    "--cui-sidebar-nav-item-active-foreground",
     "--cui-sidebar-skip-link-background",
     "--cui-sidebar-skip-link-foreground"
   ],
