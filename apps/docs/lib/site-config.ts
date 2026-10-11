@@ -28,6 +28,7 @@ export const siteConfig = {
     componentRoot: "@components/control-ui",
     githubRepo: "damien-schneider/control-ui",
   },
+  author: { name: "Damien Schneider", href: "https://x.com/damien_schneid" },
   npmPackage: "@ctrl-ui/react",
 } as const;
 

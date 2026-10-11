@@ -1,4 +1,4 @@
-import { blockEntries, getUseCaseKind } from "@/app/(features)/catalog/blocks";
+import { blockEntries } from "@/app/(features)/catalog/blocks";
 import { componentEntries } from "@/app/(features)/catalog/components";
 import { guideEntries } from "@/app/(features)/catalog/guides";
 import { catalogOverview } from "@/app/(features)/catalog/overviews";
@@ -20,7 +20,9 @@ const primitivesMissingFromShadcnIds = [
   "timeline",
 ] as const satisfies readonly PrimitiveId[];
 
-const templateIds = ["file-explorer", "design-canvas", "settings"] as const satisfies readonly BlockId[];
+const heroSceneIds = ["team-chat", "file-explorer", "coding-agent", "design-canvas", "settings"] as const satisfies readonly BlockId[];
+
+export const defaultHeroSceneId = heroSceneIds[0];
 
 const chatComponentIds = ["chat-message", "chat-composer", "activity"] as const satisfies readonly ComponentId[];
 
@@ -35,10 +37,10 @@ export const tryoutSkinIds = [
   "rig",
 ] as const satisfies readonly SkinMetaId[];
 
-export const tryoutSkinPageIds = tryoutSkinIds.filter((id) => skinPackIds.includes(id));
-
 export const inlineLinkClassName =
   "font-medium text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground";
+
+export const landingWidthClassName = "mx-auto w-full max-w-6xl px-5 md:px-8";
 
 function pick<T extends { id: string }>(items: readonly T[], id: string): T {
   const item = items.find((candidate) => candidate.id === id);
@@ -55,12 +57,10 @@ export const primitivesMissingFromShadcn = pickInOrder(
   primitivesMissingFromShadcnIds,
 );
 
-export const showcasedTemplates = pickInOrder(
+export const heroScenes = pickInOrder(
   blockGalleryGroups().flatMap((group) => group.items),
-  templateIds,
+  heroSceneIds,
 );
-
-export const templateKind = getUseCaseKind("template");
 
 export const chatGroup = pick(componentGalleryGroups(), "chat");
 
@@ -70,11 +70,11 @@ export const missingFromShadcnGuide = pick(guideEntries, "components-missing-fro
 
 export const shadcnComparisonGuide = pick(guideEntries, "control-ui-vs-shadcn-ui");
 
+export const createASkinGuide = pick(guideEntries, "create-a-skin");
+
 const primitivesOverview = catalogOverview("primitives");
 const componentsOverview = catalogOverview("components");
 const useCasesOverview = catalogOverview("use-cases");
-
-export const templatesHref = `${useCasesOverview.href}#${templateKind.slug}`;
 
 export const catalogIndex = [
   { href: primitivesOverview.href, name: primitivesOverview.name, count: primitiveEntries.length },

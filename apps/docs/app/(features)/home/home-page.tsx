@@ -1,39 +1,52 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { CodeSnippet } from "@/app/(features)/components/source";
+import type { CatalogGalleryItem } from "@/app/(features)/model/catalog-gallery";
 import { fullInstallCommand } from "@/app/(features)/model/registry";
+import { cn } from "@/components/control-ui/lib/cn";
 import { ButtonLink } from "@/components/control-ui/ui/button";
-import { PageBody } from "@/components/control-ui/ui/page-layout";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
-import { siteConfig } from "@/lib/site-config";
+import { HowItWorks } from "./how-it-works";
+import landingType from "./landing-type.module.css";
+import { SceneStage } from "./scene-stage";
 import {
   catalogIndex,
   chatComponents,
   chatGroup,
   inlineLinkClassName,
+  landingWidthClassName,
   missingFromShadcnGuide,
   primitivesMissingFromShadcn,
   shadcnComparisonGuide,
-  showcasedTemplates,
-  templateKind,
-  templatesHref,
 } from "./showcase";
-import { CatalogItemShowcaseCard, TemplateShowcaseCard } from "./showcase-cards";
-import { SkinShowcase } from "./skin-showcase";
+import { CatalogItemShowcaseCard } from "./showcase-cards";
 
-const homeGridClassName = "grid min-w-0 gap-x-4 gap-y-8 @2xl/home:grid-cols-2 @5xl/home:grid-cols-3";
+const cardGridClassName = "grid min-w-0 gap-x-4 gap-y-8 @2xl/home:grid-cols-2 @5xl/home:grid-cols-3";
 
-function HomeSection({ id, title, summary, children }: { id: string; title: string; summary: ReactNode; children: ReactNode }) {
+function StartButtons() {
+  return (
+    <div className="flex flex-wrap justify-center gap-3">
+      <ButtonLink render={<Link href="/get-started" />} variant="solid" tone="primary" size="lg">
+        Get started
+      </ButtonLink>
+      <ButtonLink render={<Link href="/components" />} variant="surface" size="lg">
+        Browse components
+      </ButtonLink>
+    </div>
+  );
+}
+
+function LandingSection({ id, title, lead, children }: { id: string; title: string; lead: ReactNode; children: ReactNode }) {
   const titleId = `${id}-title`;
 
   return (
-    <section id={id} aria-labelledby={titleId} className="grid min-w-0 scroll-mt-20 gap-6">
-      <div className="grid max-w-2xl gap-1.5">
-        <Heading level={2} id={titleId}>
+    <section id={id} aria-labelledby={titleId} className={cn(landingWidthClassName, "grid min-w-0 scroll-mt-32 gap-12")}>
+      <div className="mx-auto grid max-w-2xl justify-items-center gap-4 text-center">
+        <Heading level={2} id={titleId} size="display" tone="foreground" className={landingType.sectionTitle}>
           {title}
         </Heading>
-        <Text as="p" tone="muted" className="text-pretty">
-          {summary}
+        <Text as="p" size="body-lg" tone="muted" className={cn("text-pretty", landingType.lead)}>
+          {lead}
         </Text>
       </div>
       {children}
@@ -45,145 +58,57 @@ function Hero() {
   const installCommand = fullInstallCommand("none");
 
   return (
-    <header className="grid max-w-3xl gap-6">
-      <Heading level={1} size="display" tone="foreground">
-        {siteConfig.tagline}
+    <header className={cn(landingWidthClassName, "grid justify-items-center gap-8 pt-20 text-center @3xl/home:pt-28")}>
+      <Heading level={1} size="display" tone="foreground" className={cn("max-w-4xl", landingType.title)}>
+        App components for shadcn/ui, in any skin
       </Heading>
-      <Text as="p" size="body-lg" tone="muted" className="max-w-2xl text-pretty">
-        {siteConfig.description}
+      <Text as="p" size="body-lg" tone="muted" className={cn("max-w-2xl text-pretty", landingType.lead)}>
+        Pickers, trees, editors, AI chat, and whole app screens, installed with the shadcn CLI as source you own. Switch the skin above and
+        everything below repaints.
       </Text>
+      <StartButtons />
       {installCommand ? (
-        <div className="min-w-0 max-w-2xl">
+        <div className="w-full min-w-0 max-w-xl text-left">
           <CodeSnippet code={installCommand} />
         </div>
       ) : null}
-      <div className="flex flex-wrap gap-2">
-        <ButtonLink render={<Link href="/get-started" />} variant="solid" tone="primary" size="md">
-          Get started
-        </ButtonLink>
-        <ButtonLink render={<Link href="/primitives" />} variant="surface" size="md">
-          Browse primitives
-        </ButtonLink>
-      </div>
     </header>
   );
 }
 
-function SkinsSection() {
+function ShowcaseCardGrid({ items }: { items: CatalogGalleryItem[] }) {
   return (
-    <HomeSection
-      id="skins"
-      title="One component source, many skins"
-      summary={
-        <>
-          A skin restyles the same component source through one <code>data-skin</code> attribute. Pick one to repaint this whole page, or{" "}
-          <Link href="/skins" className={inlineLinkClassName}>
-            compare every skin
-          </Link>
-          .
-        </>
-      }
-    >
-      <SkinShowcase />
-    </HomeSection>
+    <div className={cardGridClassName}>
+      {items.map((item) => (
+        <CatalogItemShowcaseCard key={item.id} item={item} />
+      ))}
+    </div>
   );
 }
 
-function TemplatesSection() {
+function CatalogClosing() {
   return (
-    <HomeSection
-      id="templates"
-      title="Whole screens from the same parts"
-      summary={
-        <>
-          Complete application screens composed from the same primitives and components, installed as source you can take apart.{" "}
-          <Link href={templatesHref} className={inlineLinkClassName}>
-            Browse all {templateKind.label.toLowerCase()}
-          </Link>
-          .
-        </>
-      }
-    >
-      <div className={homeGridClassName}>
-        {showcasedTemplates.map((item) => (
-          <TemplateShowcaseCard key={item.id} item={item} />
-        ))}
-      </div>
-    </HomeSection>
-  );
-}
-
-function MissingFromShadcnSection() {
-  return (
-    <HomeSection
-      id="missing-from-shadcn-ui"
-      title="What shadcn/ui doesn’t ship"
-      summary={
-        <>
-          Installed with the same shadcn CLI, into <code>components/control-ui</code> beside your <code>components/ui</code>.{" "}
-          <Link href={`/${missingFromShadcnGuide.id}`} className={inlineLinkClassName}>
-            See the full list
-          </Link>
-          .
-        </>
-      }
-    >
-      <div className={homeGridClassName}>
-        {primitivesMissingFromShadcn.map((item) => (
-          <CatalogItemShowcaseCard key={item.id} item={item} />
-        ))}
-      </div>
-    </HomeSection>
-  );
-}
-
-function ChatSection() {
-  return (
-    <HomeSection
-      id="chat"
-      title={chatGroup.title}
-      summary={
-        <>
-          {chatGroup.summary}{" "}
-          <Link href={`/components#${chatGroup.id}`} className={inlineLinkClassName}>
-            Browse all {chatGroup.items.length}
-          </Link>
-          .
-        </>
-      }
-    >
-      <div className={homeGridClassName}>
-        {chatComponents.map((item) => (
-          <CatalogItemShowcaseCard key={item.id} item={item} />
-        ))}
-      </div>
-    </HomeSection>
-  );
-}
-
-function CatalogSection() {
-  return (
-    <HomeSection
-      id="catalog"
-      title="The whole catalog"
-      summary={
-        <>
-          Every item installs with the shadcn CLI as source you own. Coming from shadcn/ui? Read{" "}
+    <section aria-labelledby="catalog-title" className={cn(landingWidthClassName, "grid justify-items-center gap-12 text-center")}>
+      <div className="grid max-w-2xl justify-items-center gap-4">
+        <Heading level={2} id="catalog-title" size="display" tone="foreground" className={landingType.sectionTitle}>
+          The whole catalog
+        </Heading>
+        <Text as="p" size="body-lg" tone="muted" className={cn("text-pretty", landingType.lead)}>
+          Coming from shadcn/ui? Read{" "}
           <Link href={`/${shadcnComparisonGuide.id}`} className={inlineLinkClassName}>
             {shadcnComparisonGuide.name}
           </Link>
           .
-        </>
-      }
-    >
-      <ul className="grid min-w-0 grid-cols-2 gap-3 @5xl/home:grid-cols-4">
+        </Text>
+      </div>
+      <ul className="grid w-full min-w-0 grid-cols-2 gap-3 @3xl/home:grid-cols-4">
         {catalogIndex.map((entry) => (
           <li key={entry.href} className="grid">
             <Link
               href={entry.href}
-              className="grid content-start gap-1 rounded-[var(--radius-panel)] border border-border/70 bg-card px-5 py-4 outline-none transition-[border-color,background-color] duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:border-foreground/20 hover:bg-muted/35 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+              className="grid gap-1 rounded-[var(--radius-panel)] border border-border/70 bg-card px-5 py-6 outline-none transition-[border-color,background-color] duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:border-foreground/20 hover:bg-muted/35 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
             >
-              <Text size="heading-2" tone="foreground" className="tabular-nums">
+              <Text size="display" tone="foreground" className="tabular-nums">
                 {entry.count}
               </Text>
               <Text size="label" tone="muted">
@@ -193,19 +118,56 @@ function CatalogSection() {
           </li>
         ))}
       </ul>
-    </HomeSection>
+      <StartButtons />
+    </section>
   );
 }
 
 export function HomePage() {
   return (
-    <PageBody className="@container/home" contentClassName="grid gap-24">
-      <Hero />
-      <SkinsSection />
-      <TemplatesSection />
-      <MissingFromShadcnSection />
-      <ChatSection />
-      <CatalogSection />
-    </PageBody>
+    <div className={cn("grid gap-32 pb-32", landingType.scale)}>
+      <div className="grid gap-16">
+        <Hero />
+        <SceneStage />
+      </div>
+      <LandingSection
+        id="missing-from-shadcn-ui"
+        title="What shadcn/ui doesn’t ship"
+        lead={
+          <>
+            The pickers, trees, and viewers you would otherwise build yourself.{" "}
+            <Link href={`/${missingFromShadcnGuide.id}`} className={inlineLinkClassName}>
+              See the full list
+            </Link>
+            .
+          </>
+        }
+      >
+        <ShowcaseCardGrid items={primitivesMissingFromShadcn} />
+      </LandingSection>
+      <LandingSection
+        id="chat"
+        title={chatGroup.title}
+        lead={
+          <>
+            {chatGroup.summary}{" "}
+            <Link href={`/components#${chatGroup.id}`} className={inlineLinkClassName}>
+              Browse all {chatGroup.items.length}
+            </Link>
+            .
+          </>
+        }
+      >
+        <ShowcaseCardGrid items={chatComponents} />
+      </LandingSection>
+      <LandingSection
+        id="how-it-works"
+        title="From install to your own skin"
+        lead="Every part is a file in your repository, not a dependency you wait on."
+      >
+        <HowItWorks />
+      </LandingSection>
+      <CatalogClosing />
+    </div>
   );
 }

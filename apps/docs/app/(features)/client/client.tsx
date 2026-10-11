@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import type { CatalogOverviewId } from "@/app/(features)/catalog/overviews";
 import { skinsOverviewId } from "@/app/(features)/catalog/skins";
+import { LandingShell } from "@/app/(features)/home/landing-shell";
 import type {
   ActivePageId,
   DocsShellData,
@@ -23,7 +24,7 @@ import {
   storedSidebarCollapsed,
   writeStoredSidebarWidth,
 } from "@/app/(features)/sidebar/persistence";
-import { DocsSearchProvider } from "@/app/(features)/sidebar/search";
+import { DocsSidebarSearchProvider } from "@/app/(features)/sidebar/search";
 import { DocsSidebarContent } from "@/app/(features)/sidebar/sidebar";
 import { ControlEffectsRuntime } from "@/components/control-ui/extensions/control-effects-root";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -219,6 +220,13 @@ function DocsShellContent({
       {children}
     </DocsPageIntegrationProvider>
   );
+  if (normalizePathname(pathname) === "/") {
+    return (
+      <LandingShell githubStars={githubStars} searchItems={searchItems}>
+        {pageContent}
+      </LandingShell>
+    );
+  }
 
   return (
     <AppShell
@@ -231,7 +239,7 @@ function DocsShellContent({
       minWidth={DOCS_SIDEBAR_MIN_WIDTH}
       maxWidth={DOCS_SIDEBAR_MAX_WIDTH}
     >
-      <DocsSearchProvider items={searchItems}>
+      <DocsSidebarSearchProvider items={searchItems}>
         <DocsSidebarContent
           active={activePage}
           guides={guides}
@@ -280,7 +288,7 @@ function DocsShellContent({
         <SidebarMobileNav variant="floating" aria-label="Documentation mobile navigation">
           <SidebarMobileTrigger />
         </SidebarMobileNav>
-      </DocsSearchProvider>
+      </DocsSidebarSearchProvider>
     </AppShell>
   );
 }

@@ -70,8 +70,7 @@ export function DocsSearchTrigger() {
 }
 
 // The mobile sidebar unmounts with its sheet, so the dialog and its shortcut live in the shell instead of the header.
-export function DocsSearchProvider({ items, children }: { items: SearchItem[]; children: ReactNode }) {
-  const closeSidebar = useCloseMobileSidebar();
+export function DocsSearchProvider({ items, onNavigate, children }: { items: SearchItem[]; onNavigate?: () => void; children: ReactNode }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -109,12 +108,12 @@ export function DocsSearchProvider({ items, children }: { items: SearchItem[]; c
   function openItem(item: SearchItem) {
     changeOpen(false);
     router.push(item.href);
-    closeSidebar();
+    onNavigate?.();
   }
 
   function leaveForCatalog() {
     changeOpen(false);
-    closeSidebar();
+    onNavigate?.();
   }
 
   function renderItem(item: SearchItem) {
@@ -164,5 +163,15 @@ export function DocsSearchProvider({ items, children }: { items: SearchItem[]; c
         </CommandList>
       </CommandDialog>
     </DocsSearchContext>
+  );
+}
+
+export function DocsSidebarSearchProvider({ items, children }: { items: SearchItem[]; children: ReactNode }) {
+  const closeMobileSidebar = useCloseMobileSidebar();
+
+  return (
+    <DocsSearchProvider items={items} onNavigate={closeMobileSidebar}>
+      {children}
+    </DocsSearchProvider>
   );
 }

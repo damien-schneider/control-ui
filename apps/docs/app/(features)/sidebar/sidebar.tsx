@@ -14,6 +14,7 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } fr
 import { Text } from "@/components/control-ui/ui/typography";
 import { SkinPresetControls } from "@/components/theme-drawer/skin-preset-controls";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
+import { siteConfig } from "@/lib/site-config";
 import { catalogNavGroupIcons, sidebarDoors, themeEditorDoor, useCaseKindSidebarIcons } from "./icons";
 import { DocsNavGroup, SidebarDoorMenu, SidebarDoorPane, SkillConcernNavGroups } from "./nav-groups";
 import { catalogNavGroups, type GuideNavGroup, getUseCaseNavGroups, guideNavSections, sidebarPaneForActivePage } from "./nav-items";
@@ -179,12 +180,12 @@ export function DocsSidebarContent({
             <Text as="p" size="micro" tone="muted" className="text-right leading-none">
               by{" "}
               <a
-                href="https://x.com/damien_schneid"
+                href={siteConfig.author.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="whitespace-nowrap underline decoration-sidebar-foreground/30 underline-offset-2 hover:text-sidebar-foreground"
               >
-                Damien Schneider
+                {siteConfig.author.name}
               </a>
             </Text>
           </div>

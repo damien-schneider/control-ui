@@ -1,0 +1,17 @@
+.scale {
+  --landing-title-size: clamp(var(--text-display), 10cqi, calc(var(--text-display) * 2.4));
+  --landing-section-title-size: clamp(var(--text-display), 6cqi, calc(var(--text-display) * 1.6));
+  --landing-lead-size: calc(var(--text-body-lg) * 1.15);
+}
+
+.title {
+  --text-display: var(--landing-title-size);
+}
+
+.sectionTitle {
+  --text-display: var(--landing-section-title-size);
+}
+
+.lead {
+  --text-body-lg: var(--landing-lead-size);
+}
