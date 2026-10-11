@@ -230,26 +230,15 @@ export function InstallPanel({
   manifestHref,
   subtitle,
   children,
-  requiresSkin = true,
 }: {
   commands: Array<{ label: string; value: string }>;
   manifestHref: string;
   subtitle?: string;
   children?: ReactNode;
-  requiresSkin?: boolean;
 }) {
   return (
     <section id="install" className="min-w-0 scroll-mt-20">
       <SectionTitle title="Installation" description={subtitle} />
-      {requiresSkin ? (
-        <Text as="p" tone="muted" className="mb-3 leading-6">
-          First install and activate one{" "}
-          <Link href="/skins" className="font-medium text-foreground underline underline-offset-4">
-            skin
-          </Link>
-          . Core deliberately contains no visual token defaults.
-        </Text>
-      ) : null}
       {children ? (
         <Text as="p" tone="muted" className="mb-3 leading-6">
           {children}

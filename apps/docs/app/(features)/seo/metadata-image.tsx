@@ -20,7 +20,7 @@ function titleFontSize(title: string) {
 
 // Satori requires RGB colors.
 export function renderSocialImage({
-  title = "React component library for AI interfaces",
+  title = siteConfig.tagline,
   description = siteConfig.description,
   label = "Open-source UI registry",
   pathname = "",

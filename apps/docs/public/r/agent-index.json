@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 193,
+    "count": 194,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -132,7 +132,7 @@
         "id": "get-started",
         "name": "Install",
         "kind": "Guide",
-        "summary": "One command installs the complete set and its skin as source you own. The CSS entry is the only wiring you write.",
+        "summary": "One command installs every component, block, and primitive as source you own, with neutral light and dark defaults. The CSS entry is the only wiring you write.",
         "href": "/get-started"
       },
       {
@@ -246,6 +246,13 @@
         "kind": "Guide",
         "summary": "Eight production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui and AI Elements to MUI to Control UI.",
         "href": "/best-react-component-libraries-for-ai-interfaces"
+      },
+      {
+        "id": "components-missing-from-shadcn-ui",
+        "name": "Components missing from shadcn/ui",
+        "kind": "Guide",
+        "summary": "Color picker, tree view, file explorer, phone input, code diff: React components shadcn/ui does not ship, installed with the shadcn CLI.",
+        "href": "/components-missing-from-shadcn-ui"
       },
       {
         "id": "reference",

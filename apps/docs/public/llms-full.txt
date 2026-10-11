@@ -1,6 +1,6 @@
 # Control UI — extended agent reference
 
-> Open-source React component library for AI interfaces. Tailwind CSS styling, a shadcn-compatible registry, and complete blocks installed as source you own.
+> 100+ open-source React components for Tailwind and shadcn/ui: pickers, trees, editors, app blocks, and AI chat, with swappable skins. Source you own.
 
 ## How to use this registry
 
@@ -208,7 +208,7 @@
 
 ### Guides
 - `create` (Create app) — Scaffold a Next.js app with every Control UI component installed as source you own, or hand the whole install to the coding agent already open in your project.
-- `get-started` (Install) — One command installs the complete set and its skin as source you own. The CSS entry is the only wiring you write.
+- `get-started` (Install) — One command installs every component, block, and primitive as source you own, with neutral light and dark defaults. The CSS entry is the only wiring you write.
 - `theming` (Theme it) — Pick the pack, re-value the token contract in one artifact, and check the contrast the components actually paint.
 - `build-a-screen` (Build a screen) — Render provider-owned messages with plain props and children. No intermediary message schema, no runtime coupling.
 - `create-a-skin` (Create a skin) — Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.
@@ -225,6 +225,7 @@
 - `shadcn-compatibility` (shadcn compatibility) — shadcn registry, token, and ownership conventions without writing to components/ui.
 - `control-ui-vs-shadcn-ui` (Control UI vs shadcn/ui) — Both ship open-source React source through the shadcn CLI. The difference starts after install: a typed knob contract, skins that re-value it wholesale, and every supported skin mode audited against WCAG AA on every commit.
 - `best-react-component-libraries-for-ai-interfaces` (Best React component libraries for AI interfaces) — Eight production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui and AI Elements to MUI to Control UI.
+- `components-missing-from-shadcn-ui` (Components missing from shadcn/ui) — Color picker, tree view, file explorer, phone input, code diff: React components shadcn/ui does not ship, installed with the shadcn CLI.
 - `reference` (Reference) — Theme guides, the maintenance workflow, and the reasoning behind Control UI — everything beyond the install path.
 
 ## Practice rules (how to build well)

@@ -24,6 +24,7 @@ import AgentSurfaceContent from "@/content/guides/agent-surface.mdx";
 import ArchitectureContent from "@/content/guides/architecture.mdx";
 import BestReactComponentLibrariesContent from "@/content/guides/best-react-component-libraries-for-ai-interfaces.mdx";
 import BuildAScreenContent from "@/content/guides/build-a-screen.mdx";
+import ComponentsMissingFromShadcnUiContent from "@/content/guides/components-missing-from-shadcn-ui.mdx";
 import ControlUiVsShadcnUiContent from "@/content/guides/control-ui-vs-shadcn-ui.mdx";
 import CreateContent from "@/content/guides/create.mdx";
 import CreateASkinContent from "@/content/guides/create-a-skin.mdx";
@@ -62,6 +63,7 @@ const guideContent: Record<ContentGuideId, GuideContent> = {
   "agent-surface": AgentSurfaceContent,
   "control-ui-vs-shadcn-ui": ControlUiVsShadcnUiContent,
   "best-react-component-libraries-for-ai-interfaces": BestReactComponentLibrariesContent,
+  "components-missing-from-shadcn-ui": ComponentsMissingFromShadcnUiContent,
 };
 
 const GuideIntegrationContext = createContext<IntegrationId | undefined>(undefined);

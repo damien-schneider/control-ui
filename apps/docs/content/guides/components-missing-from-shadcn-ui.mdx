@@ -1,0 +1,108 @@
+<GuideSection id="short-answer" title="The short answer">
+  As of October 2026, the [shadcn/ui component list](https://ui.shadcn.com/docs/components) has 64 entries. It has no
+  color picker, tree view, phone input, timeline, stepper, code diff, or file explorer. Control UI ships the items below
+  as shadcn registry items. Each install copies its source into `components/control-ui/*` and never writes to your
+  `components/ui/*`:
+
+  <GuideCode kind="component-install" />
+
+  Each entry links to its docs page with a live preview, props, and the install command. Only items with no shadcn/ui
+  equivalent under any name are listed.
+</GuideSection>
+
+<GuideSection id="pickers-inputs" title="Pickers and inputs">
+  - [Color picker](/primitives/color-picker): color formats, presets, contrast helpers, and a gradient editor with draggable stops.
+  - [Emoji picker](/primitives/emoji-picker): searchable, virtualized emoji grid with an emoji-or-icon tabbed variant.
+  - [Icon picker](/primitives/icon-picker): searchable icon grid and color swatches over an icon catalog your app supplies.
+  - [Phone input](/primitives/phone-input): country search, E.164 values, and Zod validation helpers.
+  - [Number field](/primitives/number-field): numeric input with stepper buttons and optional drag-to-change.
+  - [Autocomplete](/primitives/autocomplete): free-text input with search-as-you-type suggestions, unlike a combobox that forces a pick.
+  - [Checkbox group](/primitives/checkbox-group): multi-select checkbox set with shared state and select-all.
+  - [Dropzone](/primitives/dropzone): file intake with validation, managed selection, and drag-activated overlays.
+  - [Trigger menu](/primitives/trigger-menu): caret-anchored `/` command or `@` mention menu for text editors.
+  - [Filter bar](/components/filter-bar): editable field, operator, and value filters with a button or inline search.
+</GuideSection>
+
+<GuideSection id="structure-navigation" title="Structure and navigation">
+  - [Tree](/primitives/tree): accessible tree view with roving keyboard navigation, single or multi selection, and animated disclosure.
+  - [Timeline](/primitives/timeline): chronological events with per-event status, connectors, and metadata.
+  - [Stepper](/primitives/stepper): static and interactive workflow steps, horizontal or vertical.
+  - [Table of contents](/primitives/table-of-contents): sticky in-page navigation with scroll-spy range highlighting.
+  - [Page layout](/primitives/page-layout): page shell that owns the scroll container, the measure, and the title and actions row.
+  - [Toolbar](/primitives/toolbar): roving-focus toolbar for editor controls and compact actions.
+  - [Dockable panel](/primitives/dockable-panel): non-modal panel that moves between two edge slots, with a drawer fallback on mobile.
+  - [Morphing panel](/primitives/morphing-panel): compact control that expands into settings, navigation, or an inline confirmation.
+</GuideSection>
+
+<GuideSection id="content-code" title="Content and code">
+  - [Code](/primitives/code): Shiki-highlighted lines, gutter, clean copy, editing, and virtualization for large files.
+  - [Code diff](/primitives/code-diff): unified or split diff from a git patch or a before/after pair, with word-level highlights.
+  - [Markdown](/primitives/markdown): GFM rendering whose code fences compose Code and diff fences compose Code diff.
+  - [Markdown editor](/components/markdown-editor): draggable blocks, slash commands, mentions, and app-owned image uploads.
+  - [Email](/components/email): React Email compositions with Control UI colors, typography, markdown, and code.
+</GuideSection>
+
+<GuideSection id="canvas-graphs" title="Canvas and graphs">
+  - [Infinite canvas](/primitives/infinite-canvas): pan-and-zoom workspace for arranging content without fixed bounds.
+  - [Flow](/primitives/flow): node graph editor parts that skin React Flow with Control UI tokens.
+  - [Resize handle](/primitives/resize-handle): edge and corner grips for resizing a positioned box; your app owns the math.
+</GuideSection>
+
+<GuideSection id="effects-feedback" title="Effects and feedback">
+  - [Progressive blur](/primitives/progressive-blur): backdrop blur that grows toward an edge, driven by CSS.
+  - [Track highlight](/primitives/track-highlight): one fluid hover, focus, and selection highlight for custom lists.
+  - [Rich tooltip](/primitives/rich-tooltip): persistent, dismissible tip for onboarding tours, with media and a step counter.
+  - [Dynamic notification](/components/dynamic-notification): Dynamic Island-style pill whose thinking state morphs into a reply.
+  - [Meter](/primitives/meter): static range meter for quota, storage, or score, distinct from task progress.
+  - [Live status](/primitives/live-status): always-mounted polite region that announces changes to screen readers.
+</GuideSection>
+
+<GuideSection id="audio" title="Audio">
+  - [Audio recorder](/components/audio-recorder): voice recording with a realtime waveform, duration, cancel, and submit.
+  - [Audio visualizer](/components/audio-visualizer): waveform, line envelope, and frequency bar renderings.
+  - [Audio device select](/components/audio-device-select): input picker with permission, default-device, and disconnected states.
+  - [Level meter](/primitives/level-meter): live dBFS level with warning and clip zones and a peak hold.
+</GuideSection>
+
+<GuideSection id="templates" title="Templates">
+  Complete screens built from the parts above. Install one and edit it like any other source.
+
+  - [File explorer](/use-cases/file-explorer): Finder-style browser with locations, search, resizable columns, and a preview.
+  - [Settings](/use-cases/settings): searchable multi-page settings with responsive navigation.
+  - [Design canvas](/use-cases/design-canvas): Figma-style editor with layers, an infinite canvas, and scrubbable inputs.
+  - [Team chat](/use-cases/team-chat): Slack-style channels, unread badges, presence, reactions, and side threads.
+  - [Discussion](/use-cases/discussion): comment thread with nested replies, inline editing, and hover actions.
+  - [Coding agent](/use-cases/coding-agent): desktop coding workspace with tasks, a conversation, and a persistent composer.
+</GuideSection>
+
+<GuideSection id="ai-agent" title="AI and agent surfaces">
+  shadcn/ui now covers the basic chat parts: message, bubble, attachment, message-scroller, questionnaire, and marker.
+  Control UI's own versions of those are left off this list. What it adds is the agent layer around a conversation:
+
+  - [Chat composer](/components/chat-composer): controlled text, Enter or ⌘ Enter submit, and trigger-menu mentions.
+  - [Chat layout](/components/chat-layout): scrolling conversation with a pinned header and a floating composer dock.
+  - [Chat](/use-cases/chat): chat shell that composes rendered turns and a composer your provider owns.
+  - [Activity](/components/activity): collapsible agent activity with bounded, scrollable detail.
+  - [Task list](/components/task-list): floating task progress pill that expands into the full list.
+  - [Context](/components/context): context-window usage with a derived token graph and a detail inspector.
+  - [Inline citation](/components/inline-citation): multi-source citation with a keyboard-accessible preview.
+  - [Source badge](/components/source-badge): linked source with favicon, hostname, and a fallback.
+  - [Markdown block](/components/markdown-block): assistant markdown output with a header and a copy-source action.
+  - [Action bar](/components/action-bar): hover actions for messages and responses.
+  - [Transcript divider](/components/transcript-divider): run boundaries for steering, interruptions, and condensed context.
+  - [Thread rail](/components/thread-rail): conversation minimap for jumping between turns.
+
+  None of them call a model. They take plain props and callbacks, so the [runtime boundary](/architecture) stays in your app.
+</GuideSection>
+
+<GuideSection id="not-listed" title="Left off this list">
+  Some Control UI items match a shadcn/ui component under another name, so they are not "missing":
+
+  - Chat message, composer attachment, inline attachment, and user ask: shadcn/ui has message, bubble, attachment, and questionnaire.
+  - Form: shadcn/ui documents forms on top of its field component.
+  - Responsive dialog: shadcn/ui documents the same dialog-on-desktop, drawer-on-mobile pattern.
+  - App shell: shadcn/ui's sidebar ships its own inset layout.
+  - Theme toggle: shadcn/ui documents a mode toggle in its dark mode guide.
+
+  For how the two libraries compare beyond coverage, read [Control UI vs shadcn/ui](/control-ui-vs-shadcn-ui).
+</GuideSection>

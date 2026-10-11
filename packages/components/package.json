@@ -1,7 +1,25 @@
 {
   "name": "@ctrl-ui/react",
   "version": "0.9.2",
-  "description": "Control UI components, blocks, and primitives with neutral defaults and consumer-owned themes.",
+  "description": "100+ React components for Tailwind CSS and shadcn/ui: pickers, trees, editors, canvases, app templates, and AI chat surfaces, with neutral defaults and consumer-owned themes.",
+  "keywords": [
+    "react",
+    "react-components",
+    "component-library",
+    "ui-components",
+    "shadcn",
+    "shadcn-ui",
+    "tailwindcss",
+    "design-system",
+    "base-ui",
+    "nextjs",
+    "color-picker",
+    "emoji-picker",
+    "tree-view",
+    "markdown-editor",
+    "ai-chat",
+    "chat-ui"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",

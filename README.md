@@ -1,14 +1,14 @@
 # Control UI
 
-Production-ready, shadcn-compatible React components, blocks, and skins for agent interfaces, distributed as source you own.
+Open-source, shadcn-compatible React components, templates, and skins: pickers, trees, editors, canvases, and AI chat surfaces, distributed as source you own.
 
 [![CI](https://github.com/damien-schneider/control-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/damien-schneider/control-ui/actions/workflows/ci.yml)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![Documentation](https://img.shields.io/badge/docs-control--ui.dev-black.svg)](https://control-ui.dev)
 
-[Documentation](https://control-ui.dev) · [Get started](https://control-ui.dev/get-started) · [Browse components](https://control-ui.dev/overview) · [Report an issue](https://github.com/damien-schneider/control-ui/issues)
+[Documentation](https://control-ui.dev) · [Get started](https://control-ui.dev/get-started) · [Browse components](https://control-ui.dev/primitives) · [Report an issue](https://github.com/damien-schneider/control-ui/issues)
 
-Control UI is an owned-source registry for building AI chat, coding-agent, and operational interfaces. Install only the surfaces you need with the shadcn CLI and adapt the source in your application, or add the same set as the versioned `@ctrl-ui/react` package. Either way there is no provider lock-in.
+Control UI is an owned-source registry of 100+ React components for Tailwind CSS v4 and shadcn/ui: form controls and pickers, navigation and layout, code and content, canvases, complete app templates, and the chat and coding-agent surfaces AI products need. Install only what you need with the shadcn CLI and adapt the source in your application, or add the same set as the versioned `@ctrl-ui/react` package. Either way there is no provider lock-in.
 
 > [!NOTE]
 > Control UI is currently in alpha. Stable, beta, and experimental items are labeled in the catalog; beta and experimental APIs may change.
@@ -32,7 +32,7 @@ Start with a React application configured for shadcn and Tailwind CSS v4.
 npx shadcn@latest add https://control-ui.dev/r/chat-message.json
 ```
 
-A skin is required because it owns the complete visual token contract. Installing another skin replaces the active skin files without replacing component source.
+Core ships neutral light and dark defaults, so no skin is required. Install a skin when you want a complete visual system; installing another skin replaces the active skin files without replacing component source.
 
 ### 2. Import the generated styles
 
@@ -109,9 +109,9 @@ The package includes neutral defaults and no skin presets. Customize application
 
 ## Explore the catalog
 
-- [Agent surfaces](https://control-ui.dev/overview#agents) — messages, inputs, activities, attachments, code, and task UI.
-- [Blocks](https://control-ui.dev/overview#blocks) — complete chat, coding-agent, settings, and file-explorer compositions.
-- [Primitives](https://control-ui.dev/overview#primitives) — accessible controls and application building blocks.
+- [Primitives](https://control-ui.dev/primitives) — accessible controls, pickers, navigation, layout, code, and canvas building blocks.
+- [Templates](https://control-ui.dev/use-cases) — complete settings, file-explorer, design-canvas, team-chat, chat, and coding-agent compositions.
+- [Agent surfaces](https://control-ui.dev/components) — messages, composers, activities, attachments, citations, and task UI.
 - [Skins](https://control-ui.dev/skins) — complete visual systems sharing one component contract.
 - [Agent-facing registry](https://control-ui.dev/r/agent-index.json) — machine-readable discovery, dependencies, and install commands.
 

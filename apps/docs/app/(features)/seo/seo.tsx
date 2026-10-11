@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { guideEntries } from "@/app/(features)/catalog/guides";
 import { catalogOverviews } from "@/app/(features)/catalog/overviews";
 import { docsPageForPath } from "@/app/(features)/catalog/pages";
+import { skinsOverview } from "@/app/(features)/catalog/skins";
+import type { SearchItem } from "@/app/(features)/model/types";
 import { socialImagePath, socialImageSize } from "@/app/(features)/seo/social-image-config";
 import { absoluteSiteUrl, isProductionDeployment, siteConfig } from "@/lib/site-config";
 
@@ -12,7 +14,7 @@ const llmsAlternates = {
 const openGraphImage = {
   url: "/opengraph-image",
   ...socialImageSize,
-  alt: "Control UI — React component library for AI interfaces",
+  alt: siteConfig.title,
 };
 
 const twitterImage = {
@@ -20,17 +22,45 @@ const twitterImage = {
   alt: openGraphImage.alt,
 };
 
-const kindTitle = {
-  Guide: "guide",
+const titleQualifierByKind = {
   Skill: "practice",
-  Component: "React component",
-  Block: "UI block",
-  Primitive: "React primitive",
+  Component: "React component for shadcn/ui",
+  Block: "React template for shadcn/ui",
+  Primitive: "React component for shadcn/ui",
   Hook: "React hook",
   Util: "utility",
   Extension: "extension",
-  Skin: "skin",
-} as const;
+  Skin: "theme for shadcn/ui",
+} as const satisfies Record<Exclude<SearchItem["kind"], "Guide">, string>;
+
+const socialLabelByKind = {
+  Guide: "Guide",
+  Skill: "Practice",
+  Component: "React component",
+  Block: "React template",
+  Primitive: "React component",
+  Hook: "React hook",
+  Util: "Utility",
+  Extension: "Extension",
+  Skin: "Skin",
+} as const satisfies Record<SearchItem["kind"], string>;
+
+const installableKinds: Partial<Record<SearchItem["kind"], true>> = { Primitive: true, Component: true, Block: true };
+const installHint = "Installs with the shadcn CLI as source you own.";
+const MAX_META_DESCRIPTION_CHARS = 160;
+const skinsOverviewHref = `/${skinsOverview.id}`;
+
+function documentTitle(page: SearchItem, isCatalogOverview: boolean) {
+  if (isCatalogOverview || page.kind === "Guide" || page.href === skinsOverviewHref) return page.name;
+  return `${page.name} — ${titleQualifierByKind[page.kind]}`;
+}
+
+function metaDescription(page: SearchItem, isCatalogOverview: boolean) {
+  const withInstallHint = `${page.summary} ${installHint}`;
+  const installable = !isCatalogOverview && installableKinds[page.kind] === true;
+  const hintFits = installable && withInstallHint.length <= MAX_META_DESCRIPTION_CHARS;
+  return hintFits ? withInstallHint : page.summary;
+}
 
 const googleVerification = process.env.GOOGLE_SITE_VERIFICATION?.trim();
 const bingVerification = process.env.BING_SITE_VERIFICATION?.trim();
@@ -94,20 +124,20 @@ export function docsSeoForPath(pathname: string) {
   if (!page) return undefined;
 
   const isCatalogOverview = catalogOverviews.some((overview) => overview.href === pathname);
-  const title = isCatalogOverview ? page.name : `${page.name} — ${kindTitle[page.kind]}`;
-  const socialTitle = `${title} | ${siteConfig.name}`;
-  const socialImageLabel: string = isCatalogOverview ? "Component catalog" : kindTitle[page.kind];
+  const title = documentTitle(page, isCatalogOverview);
+  const fullTitle = title.includes(siteConfig.name) ? title : `${title} | ${siteConfig.name}`;
+  const socialImageLabel: string = isCatalogOverview ? "Component catalog" : socialLabelByKind[page.kind];
 
   return {
     page,
     pathname,
     url: absoluteSiteUrl(pathname),
     title,
-    description: page.summary,
-    socialTitle,
+    description: metaDescription(page, isCatalogOverview),
+    fullTitle,
     socialImage: {
       url: socialImagePath(pathname),
-      alt: socialTitle,
+      alt: fullTitle,
       title: page.name,
       label: socialImageLabel,
       status: page.status,
@@ -120,7 +150,7 @@ export function metadataForDocsPath(pathname: string): Metadata {
   if (!seo) return {};
 
   return {
-    title: seo.title,
+    title: { absolute: seo.fullTitle },
     description: seo.description,
     alternates: {
       canonical: seo.pathname,
@@ -131,13 +161,13 @@ export function metadataForDocsPath(pathname: string): Metadata {
       locale: siteConfig.locale,
       url: seo.url,
       siteName: siteConfig.name,
-      title: seo.socialTitle,
+      title: seo.fullTitle,
       description: seo.description,
       images: [{ url: seo.socialImage.url, ...socialImageSize, alt: seo.socialImage.alt }],
     },
     twitter: {
       card: "summary_large_image",
-      title: seo.socialTitle,
+      title: seo.fullTitle,
       description: seo.description,
       images: [{ url: seo.socialImage.url, alt: seo.socialImage.alt }],
     },
@@ -160,6 +190,7 @@ export function SiteStructuredData() {
             "@id": `${siteConfig.url.origin}/#organization`,
             name: siteConfig.name,
             url: siteConfig.url.origin,
+            logo: absoluteSiteUrl("/apple-icon"),
           },
           {
             "@type": "WebSite",
@@ -177,6 +208,7 @@ export function SiteStructuredData() {
             name: siteConfig.name,
             url: siteConfig.url.origin,
             description: siteConfig.description,
+            sameAs: [`https://github.com/${siteConfig.registry.githubRepo}`, `https://www.npmjs.com/package/${siteConfig.npmPackage}`],
             applicationCategory: "DeveloperApplication",
             operatingSystem: "Web",
             isAccessibleForFree: true,

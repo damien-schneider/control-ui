@@ -11,11 +11,15 @@ function canonicalSiteUrl() {
   return new URL(configuredUrl || vercelProductionUrl || FALLBACK_DEV_URL);
 }
 
+const name = "Control UI";
+const tagline = "shadcn-compatible React components & skins";
+
 export const siteConfig = {
-  name: "Control UI",
-  title: "Control UI — React component library for AI interfaces",
+  name,
+  tagline,
+  title: `${name} — ${tagline}`,
   description:
-    "Open-source React component library for AI interfaces. Tailwind CSS styling, a shadcn-compatible registry, and complete blocks installed as source you own.",
+    "100+ open-source React components for Tailwind and shadcn/ui: pickers, trees, editors, app blocks, and AI chat, with swappable skins. Source you own.",
   locale: "en_US",
   language: "en",
   url: canonicalSiteUrl(),
@@ -24,6 +28,7 @@ export const siteConfig = {
     componentRoot: "@components/control-ui",
     githubRepo: "damien-schneider/control-ui",
   },
+  npmPackage: "@ctrl-ui/react",
 } as const;
 
 export function absoluteSiteUrl(pathname: string) {

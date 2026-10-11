@@ -30,11 +30,6 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: "/",
-        destination: "/get-started",
-        permanent: false,
-      },
-      {
         source: "/llm.txt",
         destination: "/llms.txt",
         permanent: true,

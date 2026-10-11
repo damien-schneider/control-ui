@@ -74,7 +74,6 @@ export function SkinPage({ skin }: { skin: DocsSkinPage }) {
             ]}
             manifestHref={manifestHref}
             subtitle={`Start complete or add only ${skin.label}`}
-            requiresSkin={false}
           >
             Complete project installs the canonical Control UI component set and this skin in one step. Skin only replaces the active{" "}
             <code>skin.config.tsx</code>, <code>skin-theme.css</code>, and <code>skin.css</code> targets without changing component source

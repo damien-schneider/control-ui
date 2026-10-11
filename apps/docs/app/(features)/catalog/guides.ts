@@ -59,9 +59,10 @@ export const guideEntries = [
     kind: "Guide",
     group: "start",
     name: "Install",
-    summary: "One command installs the complete set and its skin as source you own. The CSS entry is the only wiring you write.",
+    summary:
+      "One command installs every component, block, and primitive as source you own, with neutral light and dark defaults. The CSS entry is the only wiring you write.",
     sections: [
-      { id: "install", title: "Install the set and its skin", code: "all-install" },
+      { id: "install", title: "Install the components", code: "all-install" },
       { id: "items", title: "Install one item at a time", code: "component-install" },
       { id: "wire-css", title: "Wire the CSS" },
       { id: "verify", title: "Verify the install" },
@@ -342,6 +343,57 @@ export const guideEntries = [
         question: "What makes a component library suitable for AI products?",
         answer:
           "Streaming-friendly message and activity surfaces, token-level theming so generated UI matches brand constraints, and runtime independence — the UI must not hard-wire one model provider, transport, or store lifecycle.",
+      },
+    ],
+  },
+  {
+    id: "components-missing-from-shadcn-ui",
+    kind: "Guide",
+    group: "why",
+    name: "Components missing from shadcn/ui",
+    summary:
+      "Color picker, tree view, file explorer, phone input, code diff: React components shadcn/ui does not ship, installed with the shadcn CLI.",
+    sections: [
+      { id: "short-answer", title: "The short answer", code: "component-install" },
+      { id: "pickers-inputs", title: "Pickers and inputs" },
+      { id: "structure-navigation", title: "Structure and navigation" },
+      { id: "content-code", title: "Content and code" },
+      { id: "canvas-graphs", title: "Canvas and graphs" },
+      { id: "effects-feedback", title: "Effects and feedback" },
+      { id: "audio", title: "Audio" },
+      { id: "templates", title: "Templates" },
+      { id: "ai-agent", title: "AI and agent surfaces" },
+      { id: "not-listed", title: "Left off this list" },
+    ],
+    comparedApplications: [
+      { name: "shadcn/ui", url: "https://ui.shadcn.com" },
+      { name: "Control UI", url: "https://control-ui.dev" },
+    ],
+    faqs: [
+      {
+        question: "Does shadcn/ui have a color picker?",
+        answer:
+          "No. As of October 2026 the shadcn/ui component list has no color picker, emoji picker, or icon picker. Control UI ships all three as installable source: the color picker covers formats, presets, contrast helpers, and a gradient editor.",
+      },
+      {
+        question: "Does shadcn/ui have a tree view or file explorer?",
+        answer:
+          "No, not as of October 2026. Control UI has a Tree primitive with roving keyboard navigation and single or multi selection, and a File explorer template with locations, search, resizable columns, breadcrumbs, and a preview.",
+      },
+      {
+        question: "Can I install these with the shadcn CLI?",
+        answer:
+          "Yes. Every item is a shadcn registry item, so npx shadcn@latest add with the Control UI registry URL copies the source into your project like any shadcn component.",
+      },
+      {
+        question: "Do they overwrite components/ui?",
+        answer:
+          "No. Control UI installs into components/control-ui/*. Your existing components/ui/* files stay untouched, and both sets read the same core token names such as --background and --primary.",
+      },
+      {
+        question: "Does shadcn/ui have chat components now?",
+        answer:
+          "Yes, basic ones. As of October 2026 shadcn/ui lists message, bubble, attachment, message-scroller, questionnaire, and marker. Control UI adds the agent parts around them: a composer with mention menus, agent activity, context-window usage, task progress, inline citations, and a conversation minimap.",
       },
     ],
   },

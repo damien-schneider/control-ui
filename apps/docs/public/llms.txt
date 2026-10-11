@@ -1,13 +1,13 @@
 # Control UI
 
-> Open-source React component library for AI interfaces. Tailwind CSS styling, a shadcn-compatible registry, and complete blocks installed as source you own.
+> 100+ open-source React components for Tailwind and shadcn/ui: pickers, trees, editors, app blocks, and AI chat, with swappable skins. Source you own.
 
 Control UI installs editable React source through the shadcn CLI. The catalog below is generated from the same page manifest used by the website, sitemap, search, and registry API.
 
 ## Documentation
 
 - [Create app](http://127.0.0.1:3000/create): Scaffold a Next.js app with every Control UI component installed as source you own, or hand the whole install to the coding agent already open in your project.
-- [Install](http://127.0.0.1:3000/get-started): One command installs the complete set and its skin as source you own. The CSS entry is the only wiring you write.
+- [Install](http://127.0.0.1:3000/get-started): One command installs every component, block, and primitive as source you own, with neutral light and dark defaults. The CSS entry is the only wiring you write.
 - [Theme it](http://127.0.0.1:3000/theming): Pick the pack, re-value the token contract in one artifact, and check the contrast the components actually paint.
 - [Build a screen](http://127.0.0.1:3000/build-a-screen): Render provider-owned messages with plain props and children. No intermediary message schema, no runtime coupling.
 - [Create a skin](http://127.0.0.1:3000/create-a-skin): Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.
@@ -24,6 +24,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [shadcn compatibility](http://127.0.0.1:3000/shadcn-compatibility): shadcn registry, token, and ownership conventions without writing to components/ui.
 - [Control UI vs shadcn/ui](http://127.0.0.1:3000/control-ui-vs-shadcn-ui): Both ship open-source React source through the shadcn CLI. The difference starts after install: a typed knob contract, skins that re-value it wholesale, and every supported skin mode audited against WCAG AA on every commit.
 - [Best React component libraries for AI interfaces](http://127.0.0.1:3000/best-react-component-libraries-for-ai-interfaces): Eight production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui and AI Elements to MUI to Control UI.
+- [Components missing from shadcn/ui](http://127.0.0.1:3000/components-missing-from-shadcn-ui): Color picker, tree view, file explorer, phone input, code diff: React components shadcn/ui does not ship, installed with the shadcn CLI.
 - [Reference](http://127.0.0.1:3000/reference): Theme guides, the maintenance workflow, and the reasoning behind Control UI — everything beyond the install path.
 
 ## Components

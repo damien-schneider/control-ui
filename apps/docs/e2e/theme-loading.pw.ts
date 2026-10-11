@@ -62,10 +62,9 @@ for (const skin of ["refined", "windows-98", "none"] as const) {
   });
 }
 
-test("homepage redirect preserves a shared skin preset and other query parameters", async ({ page }) => {
+test("homepage applies a shared skin preset", async ({ page }) => {
   await page.goto("/?skin=rig&source=shared");
-  await expect(page).toHaveURL("/get-started?skin=rig&source=shared");
-  await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("Rig");
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   await expect(page.locator("html")).toHaveAttribute("data-skin", "rig");
 });
 

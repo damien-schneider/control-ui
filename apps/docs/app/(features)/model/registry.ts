@@ -87,8 +87,8 @@ export function languageForGuideCode(kind: NonNullable<GuideSection["code"]>) {
 export function guideCodeForKind(code: GuideSection["code"], integration: "mastra" | "ai-sdk") {
   if (code === "skin-install") return packInstallCommand("refined");
   if (code === "skin-scaffold-install") return fullInstallCommand("none");
-  if (code === "component-install") return registryInstallCommand("chat-message");
-  if (code === "block-install") return registryInstallCommand("chat-block");
+  if (code === "component-install") return registryInstallCommand("color-picker");
+  if (code === "block-install") return registryInstallCommand("settings-block");
   if (code === "update-install") return updateInstallCode();
   if (code === "all-install") return fullInstallCommand("none");
   if (code === "skill-install") return `npx skills add ${env.NEXT_PUBLIC_REGISTRY_URL}`;

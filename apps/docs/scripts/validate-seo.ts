@@ -59,12 +59,12 @@ if (repeatedTitles.length > 0) failures.push(`duplicate SEO titles: ${repeatedTi
 const repeatedSocialImages = duplicates(socialImageUrls);
 if (repeatedSocialImages.length > 0) failures.push(`duplicate social images: ${repeatedSocialImages.join(", ")}`);
 
-const expectedSitemap = docsPageManifest.map((page) => absoluteSiteUrl(page.href)).sort();
+const expectedSitemap = [absoluteSiteUrl("/"), ...docsPageManifest.map((page) => absoluteSiteUrl(page.href))].sort();
 const actualSitemap = sitemap()
   .map((entry) => entry.url)
   .sort();
 if (JSON.stringify(actualSitemap) !== JSON.stringify(expectedSitemap)) {
-  failures.push("sitemap URLs do not match the public docs page manifest");
+  failures.push("sitemap URLs do not match the homepage plus the public docs page manifest");
 }
 
 const publicRoot = path.join(process.cwd(), "public");
