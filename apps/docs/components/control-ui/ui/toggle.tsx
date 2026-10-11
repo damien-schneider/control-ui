@@ -117,12 +117,7 @@ export function ToggleGroup<TValue extends string = string>({
         data-orientation={orientation}
         data-track={resolvedIndicator}
         orientation={orientation}
-        className={cn(
-          buttonTrackStructureClasses,
-          "inline-flex items-center data-[track=hover]:gap-0",
-          orientation === "vertical" && "flex-col",
-          className,
-        )}
+        className={cn(buttonTrackStructureClasses, "inline-flex items-center", orientation === "vertical" && "flex-col", className)}
         {...props}
       >
         {children}
