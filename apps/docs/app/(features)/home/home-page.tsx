@@ -16,6 +16,7 @@ import {
   shadcnComparisonGuide,
   showcasedTemplates,
   templateKind,
+  templatesHref,
 } from "./showcase";
 import { CatalogItemShowcaseCard, TemplateShowcaseCard } from "./showcase-cards";
 import { SkinShowcase } from "./skin-showcase";
@@ -65,6 +66,74 @@ function Hero() {
         </ButtonLink>
       </div>
     </header>
+  );
+}
+
+function SkinsSection() {
+  return (
+    <HomeSection
+      id="skins"
+      title="One component source, many skins"
+      summary={
+        <>
+          A skin restyles the same component source through one <code>data-skin</code> attribute. Pick one to repaint this whole page, or{" "}
+          <Link href="/skins" className={inlineLinkClassName}>
+            compare every skin
+          </Link>
+          .
+        </>
+      }
+    >
+      <SkinShowcase />
+    </HomeSection>
+  );
+}
+
+function TemplatesSection() {
+  return (
+    <HomeSection
+      id="templates"
+      title="Whole screens from the same parts"
+      summary={
+        <>
+          Complete application screens composed from the same primitives and components, installed as source you can take apart.{" "}
+          <Link href={templatesHref} className={inlineLinkClassName}>
+            Browse all {templateKind.label.toLowerCase()}
+          </Link>
+          .
+        </>
+      }
+    >
+      <div className={homeGridClassName}>
+        {showcasedTemplates.map((item) => (
+          <TemplateShowcaseCard key={item.id} item={item} />
+        ))}
+      </div>
+    </HomeSection>
+  );
+}
+
+function MissingFromShadcnSection() {
+  return (
+    <HomeSection
+      id="missing-from-shadcn-ui"
+      title="What shadcn/ui doesn’t ship"
+      summary={
+        <>
+          Installed with the same shadcn CLI, into <code>components/control-ui</code> beside your <code>components/ui</code>.{" "}
+          <Link href={`/${missingFromShadcnGuide.id}`} className={inlineLinkClassName}>
+            See the full list
+          </Link>
+          .
+        </>
+      }
+    >
+      <div className={homeGridClassName}>
+        {primitivesMissingFromShadcn.map((item) => (
+          <CatalogItemShowcaseCard key={item.id} item={item} />
+        ))}
+      </div>
+    </HomeSection>
   );
 }
 
@@ -132,47 +201,9 @@ export function HomePage() {
   return (
     <PageBody className="@container/home" contentClassName="grid gap-24">
       <Hero />
-      <HomeSection
-        id="missing-from-shadcn-ui"
-        title="What shadcn/ui doesn’t ship"
-        summary={
-          <>
-            Installed with the same shadcn CLI, into <code>components/control-ui</code> beside your <code>components/ui</code>.{" "}
-            <Link href={`/${missingFromShadcnGuide.id}`} className={inlineLinkClassName}>
-              See the full list
-            </Link>
-            .
-          </>
-        }
-      >
-        <div className={homeGridClassName}>
-          {primitivesMissingFromShadcn.map((item) => (
-            <CatalogItemShowcaseCard key={item.id} item={item} />
-          ))}
-        </div>
-      </HomeSection>
-      <HomeSection
-        id="skins"
-        title="One component source, many skins"
-        summary={
-          <>
-            A skin restyles the same component source through one <code>data-skin</code> attribute. Pick one to repaint this whole page, or{" "}
-            <Link href="/skins" className={inlineLinkClassName}>
-              compare every skin
-            </Link>
-            .
-          </>
-        }
-      >
-        <SkinShowcase />
-      </HomeSection>
-      <HomeSection id="templates" title={templateKind.label} summary={templateKind.summary}>
-        <div className={homeGridClassName}>
-          {showcasedTemplates.map((item) => (
-            <TemplateShowcaseCard key={item.id} item={item} />
-          ))}
-        </div>
-      </HomeSection>
+      <SkinsSection />
+      <TemplatesSection />
+      <MissingFromShadcnSection />
       <ChatSection />
       <CatalogSection />
     </PageBody>

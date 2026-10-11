@@ -74,6 +74,8 @@ const primitivesOverview = catalogOverview("primitives");
 const componentsOverview = catalogOverview("components");
 const useCasesOverview = catalogOverview("use-cases");
 
+export const templatesHref = `${useCasesOverview.href}#${templateKind.slug}`;
+
 export const catalogIndex = [
   { href: primitivesOverview.href, name: primitivesOverview.name, count: primitiveEntries.length },
   { href: componentsOverview.href, name: componentsOverview.name, count: componentEntries.length },
