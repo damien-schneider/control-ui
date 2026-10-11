@@ -1,6 +1,12 @@
 # Control UI
 
-Open-source, shadcn-compatible React components, templates, and skins: pickers, trees, editors, canvases, and AI chat surfaces, distributed as source you own.
+Shadcn-compatible React components where one source runs under 11 skins, from Refined to Windows 98.
+
+```bash
+npx shadcn@latest add https://control-ui.dev/r/all.json
+```
+
+[Browse the skins](https://control-ui.dev/skins) · [Windows 98](https://control-ui.dev/skins/windows-98) · [Windows XP](https://control-ui.dev/skins/xp) · [Linear](https://control-ui.dev/skins/linear)
 
 [![CI](https://github.com/damien-schneider/control-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/damien-schneider/control-ui/actions/workflows/ci.yml)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
