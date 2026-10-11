@@ -1,10 +1,4 @@
 export const catalogCategories = [
-  {
-    id: "chat",
-    label: "Chat & agents",
-    summary:
-      "Everything that composes an AI conversation: the transcript, the composer and the surfaces that replace it, and what the agent is doing while you wait.",
-  },
   { id: "actions", label: "Actions", summary: "Trigger a command, directly or from a menu of commands." },
   {
     id: "forms",
@@ -30,6 +24,12 @@ export const catalogCategories = [
     summary: "Render a data model you hand it: records, hierarchies, sequences, and the chips that label them.",
   },
   { id: "content", label: "Content", summary: "Render a document you authored or generated, from prose to code to email." },
+  {
+    id: "chat",
+    label: "Chat & agents",
+    summary:
+      "Everything that composes an AI conversation: the transcript, the composer and the surfaces that replace it, and what the agent is doing while you wait.",
+  },
   {
     id: "effects",
     label: "Effects",

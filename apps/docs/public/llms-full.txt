@@ -31,6 +31,15 @@
 ## Catalog
 
 ### Components (installable surfaces)
+**Forms** — Capture a value from the user — typed, picked, toggled, or uploaded — plus the scaffolding that labels and validates it.
+- `filter-bar` (FilterBar) — Build editable field, operator, and value filters with a button or inline search. — `npx shadcn@latest add http://127.0.0.1:3000/r/filter-bar.json`
+
+**Feedback** — Tell the user what just happened, what is loading, or what is missing.
+- `dynamic-notification` (DynamicNotification) **[experimental]** — Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass. — `npx shadcn@latest add http://127.0.0.1:3000/r/dynamic-notification.json`
+
+**Content** — Render a document you authored or generated, from prose to code to email.
+- `email` (Email) **[beta]** — React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts. — `npx shadcn@latest add http://127.0.0.1:3000/r/email.json`
+
 **Chat & agents** — Everything that composes an AI conversation: the transcript, the composer and the surfaces that replace it, and what the agent is doing while you wait.
 - `chat-message` (ChatMessage) — Composable chat message with stable inline editing, bubble or flat layout, grouped bursts, reactions, and replies. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-message.json`
 - `chat-composer` (ChatComposer) — Message composer with controlled text, Enter or ⌘ Enter submit, caret text insertion, and trigger-menu support. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer.json`
@@ -51,15 +60,6 @@
 - `markdown-block` (MarkdownBlock) — Assistant markdown output rendered to prose, with a header and copy-source action. — `npx shadcn@latest add http://127.0.0.1:3000/r/markdown-block.json`
 - `chat-layout` (ChatLayout) — A scrolling conversation with a pinned header, message turns, and a floating composer dock. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-layout.json`
 - `thread-rail` (ThreadRail) — Conversation minimap for scanning and jumping between chat turns. — `npx shadcn@latest add http://127.0.0.1:3000/r/thread-rail.json`
-
-**Forms** — Capture a value from the user — typed, picked, toggled, or uploaded — plus the scaffolding that labels and validates it.
-- `filter-bar` (FilterBar) — Build editable field, operator, and value filters with a button or inline search. — `npx shadcn@latest add http://127.0.0.1:3000/r/filter-bar.json`
-
-**Feedback** — Tell the user what just happened, what is loading, or what is missing.
-- `dynamic-notification` (DynamicNotification) **[experimental]** — Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass. — `npx shadcn@latest add http://127.0.0.1:3000/r/dynamic-notification.json`
-
-**Content** — Render a document you authored or generated, from prose to code to email.
-- `email` (Email) **[beta]** — React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts. — `npx shadcn@latest add http://127.0.0.1:3000/r/email.json`
 
 ### Blocks (pre-composed recipes)
 - `use-cases` (Templates & patterns) — Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.

@@ -120,7 +120,7 @@ test("legacy Flat artifacts retain their tokens and export root CSS without a sk
   expect(css).toContain(":root {");
   expect(css).toContain(".dark:root {");
   expect(css).not.toContain("[data-skin");
-  const copied = toCss({ ...DEFAULT_THEME, overrides: { "--radius": "4px" } });
+  const copied = toCss({ ...DEFAULT_THEME, skin: "none", overrides: { "--radius": "4px" } });
   expect(copied).toContain(":root {");
   expect(copied).not.toContain("[data-skin");
 });
