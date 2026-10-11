@@ -30,7 +30,14 @@ const ChannelStripTitleIdContext = createContext<string | null>(null);
 export function Mixer({ className, ...props }: MixerProps) {
   return (
     // biome-ignore lint/a11y/useSemanticElements: a mixer is a named group of channel strips, not a fieldset form group.
-    <div role="group" data-control-ui="channel-strip" data-control-family="channel-strip" data-slot="mixer" className={className} {...props} />
+    <div
+      role="group"
+      data-control-ui="channel-strip"
+      data-control-family="channel-strip"
+      data-slot="mixer"
+      className={className}
+      {...props}
+    />
   );
 }
 
