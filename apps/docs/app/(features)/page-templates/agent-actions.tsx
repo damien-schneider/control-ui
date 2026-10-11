@@ -1,19 +1,13 @@
 "use client";
 
-import { ArrowUpRightIcon, CheckCircle2Icon, ChevronDownIcon, FileTextIcon, SparklesIcon, TerminalIcon } from "lucide-react";
+import { CheckCircle2Icon, ChevronDownIcon, FileTextIcon, SparklesIcon, TerminalIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { buildPagePrompt } from "@/app/(features)/create/page-prompt";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import { Button } from "@/components/control-ui/ui/button";
 import { ButtonGroup } from "@/components/control-ui/ui/button-group";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/control-ui/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
 import { Text } from "@/components/control-ui/ui/typography";
 import { siteConfig } from "@/lib/site-config";
 
@@ -23,7 +17,7 @@ const sizingLabels = [idleLabel, ...Object.values(copiedLabels)];
 
 type CopyTarget = keyof typeof copiedLabels;
 
-export function AgentActions({ name, installCommand, manifestUrl }: { name: string; installCommand?: string; manifestUrl?: string }) {
+export function AgentActions({ name, installCommand }: { name: string; installCommand?: string }) {
   const pathname = usePathname();
   const [lastTarget, setLastTarget] = useState<CopyTarget>("prompt");
   const { status, copyToClipboard } = useCopyToClipboard();
@@ -71,23 +65,6 @@ export function AgentActions({ name, installCommand, manifestUrl }: { name: stri
               <FileTextIcon aria-hidden />
               View as Markdown
             </DropdownMenuItem>
-            {manifestUrl ? (
-              <>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  render={
-                    <a
-                      href={`https://v0.dev/chat/api/open?url=${encodeURIComponent(manifestUrl)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    />
-                  }
-                >
-                  <ArrowUpRightIcon aria-hidden />
-                  Open in v0
-                </DropdownMenuItem>
-              </>
-            ) : null}
           </DropdownMenuContent>
         </DropdownMenu>
       </ButtonGroup>

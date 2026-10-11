@@ -58,7 +58,7 @@ export function fullInstallManifestHref(id: SkinMetaId): string | undefined {
   return packManifestPathFor(id) ? publicRegistryHref(`all-${id}`) : undefined;
 }
 
-export function registryManifestUrl(path: string) {
+function registryManifestUrl(path: string) {
   return `${env.NEXT_PUBLIC_REGISTRY_URL}${path}`;
 }
 

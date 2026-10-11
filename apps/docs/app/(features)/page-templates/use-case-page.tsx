@@ -3,7 +3,7 @@
 import { getUseCaseKind } from "@/app/(features)/catalog/blocks";
 import { BlockPreview } from "@/app/(features)/components/previews";
 import { PreviewTabs, SourceTabs } from "@/app/(features)/components/source";
-import { publicRegistryHref, registryInstallCommands, registryManifestUrl } from "@/app/(features)/model/registry";
+import { publicRegistryHref, registryInstallCommands } from "@/app/(features)/model/registry";
 import type { DocsBlock, IntegrationId, SourceFile } from "@/app/(features)/model/types";
 import { Card } from "@/components/control-ui/ui/card";
 import { Text } from "@/components/control-ui/ui/typography";
@@ -36,7 +36,7 @@ export function UseCasePage({ block, integration }: { block: DocsBlock; integrat
         title={block.name}
         summary={block.summary}
         status={block.status}
-        actions={<AgentActions name={block.name} installCommand={commands[0]?.value} manifestUrl={registryManifestUrl(manifestHref)} />}
+        actions={<AgentActions name={block.name} installCommand={commands[0]?.value} />}
       />
       <PreviewTabs code={previewCode} previewClassName="block min-h-0 p-0" previewFramed={false}>
         <BlockPreview blockId={block.id} integration={integration} />

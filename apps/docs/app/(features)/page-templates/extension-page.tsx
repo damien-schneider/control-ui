@@ -1,7 +1,7 @@
 "use client";
 
 import { SourceTabs } from "@/app/(features)/components/source";
-import { publicRegistryHref, registryInstallCommands, registryManifestUrl } from "@/app/(features)/model/registry";
+import { registryInstallCommands } from "@/app/(features)/model/registry";
 import type { DocsExtension } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Text } from "@/components/control-ui/ui/typography";
@@ -24,13 +24,7 @@ export function ExtensionPage({ extension }: { extension: DocsExtension }) {
         title={extension.name}
         summary={extension.summary}
         status={extension.status}
-        actions={
-          <AgentActions
-            name={extension.name}
-            installCommand={commands[0]?.value}
-            manifestUrl={registryManifestUrl(publicRegistryHref(extension.registryKind))}
-          />
-        }
+        actions={<AgentActions name={extension.name} installCommand={commands[0]?.value} />}
       />
       <SectionStack>
         {hasExtensionDemo(extension.id) ? (
