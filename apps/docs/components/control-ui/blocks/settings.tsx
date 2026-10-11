@@ -32,6 +32,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
+  type SidebarProviderProps,
   type SidebarStyle,
   SidebarTrigger,
   useSidebar,
@@ -47,16 +48,17 @@ import {
 
 export type { SettingDefinition, SettingsControlProps, SettingsPageDefinition, SettingsSectionDefinition } from "./settings-data";
 
-export type SettingsBlockProps = Omit<ComponentProps<"div">, "children"> & {
-  pages: readonly SettingsPageDefinition[];
-  activePageId?: string;
-  defaultActivePageId?: string;
-  onActivePageChange?: (pageId: string) => void;
-  backAction?: ReactNode;
-  searchPlaceholder?: string;
-  searchLabel?: string;
-  layout?: "viewport" | "contained";
-};
+export type SettingsBlockProps = Omit<ComponentProps<"div">, "children"> &
+  Pick<SidebarProviderProps, "persistOpen" | "keyboardShortcut"> & {
+    pages: readonly SettingsPageDefinition[];
+    activePageId?: string;
+    defaultActivePageId?: string;
+    onActivePageChange?: (pageId: string) => void;
+    backAction?: ReactNode;
+    searchPlaceholder?: string;
+    searchLabel?: string;
+    layout?: "viewport" | "contained";
+  };
 
 type PendingTarget = {
   pageId: string;

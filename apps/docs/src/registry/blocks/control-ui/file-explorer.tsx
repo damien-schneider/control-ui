@@ -33,6 +33,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
+  type SidebarProviderProps,
   SidebarRail,
   type SidebarStyle,
   SidebarTrigger,
@@ -61,32 +62,33 @@ export type {
   FileExplorerSearchResult,
 } from "./file-explorer-data";
 
-export type FileExplorerBlockProps = Omit<ComponentProps<"div">, "children" | "defaultValue" | "onChange"> & {
-  locations: readonly FileExplorerLocation[];
-  activeLocationId?: string;
-  defaultActiveLocationId?: string;
-  selectedPath?: readonly string[];
-  defaultSelectedPath?: readonly string[];
-  searchValue?: string;
-  defaultSearchValue?: string;
-  onActiveLocationChange?: (location: FileExplorerLocation) => void;
-  onSelectedPathChange?: (path: readonly string[], entry: FileExplorerEntry | undefined) => void;
-  onSearchValueChange?: (value: string) => void;
-  onOpenEntry?: (entry: FileExplorerEntry, path: readonly string[]) => void;
-  sidebarTop?: ReactNode;
-  sidebarFooter?: ReactNode;
-  headerActions?: ReactNode;
-  headerMenuItems?: ReactNode;
-  searchPlaceholder?: string | false;
-  searchLabel?: string;
-  clearSearchLabel?: string;
-  searchResultsLabel?: string;
-  searchStatusLabel?: (count: number, query: string) => string;
-  backLabel?: string;
-  moreActionsLabel?: string;
-  detailsLabel?: string;
-  layout?: "viewport" | "contained";
-};
+export type FileExplorerBlockProps = Omit<ComponentProps<"div">, "children" | "defaultValue" | "onChange"> &
+  Pick<SidebarProviderProps, "persistOpen" | "keyboardShortcut"> & {
+    locations: readonly FileExplorerLocation[];
+    activeLocationId?: string;
+    defaultActiveLocationId?: string;
+    selectedPath?: readonly string[];
+    defaultSelectedPath?: readonly string[];
+    searchValue?: string;
+    defaultSearchValue?: string;
+    onActiveLocationChange?: (location: FileExplorerLocation) => void;
+    onSelectedPathChange?: (path: readonly string[], entry: FileExplorerEntry | undefined) => void;
+    onSearchValueChange?: (value: string) => void;
+    onOpenEntry?: (entry: FileExplorerEntry, path: readonly string[]) => void;
+    sidebarTop?: ReactNode;
+    sidebarFooter?: ReactNode;
+    headerActions?: ReactNode;
+    headerMenuItems?: ReactNode;
+    searchPlaceholder?: string | false;
+    searchLabel?: string;
+    clearSearchLabel?: string;
+    searchResultsLabel?: string;
+    searchStatusLabel?: (count: number, query: string) => string;
+    backLabel?: string;
+    moreActionsLabel?: string;
+    detailsLabel?: string;
+    layout?: "viewport" | "contained";
+  };
 
 type OptionTarget = { columnIndex: number; entryId: string };
 
@@ -120,6 +122,8 @@ export function FileExplorerBlock({
   moreActionsLabel = "More actions",
   detailsLabel = "Details",
   layout = "viewport",
+  persistOpen,
+  keyboardShortcut,
   className,
   style,
   ...props
@@ -173,6 +177,8 @@ export function FileExplorerBlock({
   return (
     <SidebarProvider
       layout={layout}
+      persistOpen={persistOpen}
+      keyboardShortcut={keyboardShortcut}
       className={cn("bg-background text-foreground", !contained && "h-svh overflow-hidden", className)}
       style={providerStyle}
       {...props}

@@ -213,6 +213,8 @@ export function CodingAgentExample() {
     <div className="h-[min(760px,82vh)] min-h-160 w-full overflow-hidden rounded-[var(--radius-panel)] border bg-background shadow-md">
       <CodingAgentBlock
         layout="contained"
+        persistOpen={false}
+        keyboardShortcut={null}
         appName="Workbench"
         navigation={navigation}
         projects={projects}

@@ -177,6 +177,8 @@ export function TeamChatExample() {
     <div className="h-[min(720px,80vh)] min-h-150 w-full overflow-hidden rounded-[var(--radius-panel)] border bg-background">
       <TeamChatBlock
         layout="contained"
+        persistOpen={false}
+        keyboardShortcut={null}
         sidebar={<TeamChatSidebar activeId={activeId} onSelect={openConversation} />}
         thread={thread}
         threadLabel="Thread replies"

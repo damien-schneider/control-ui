@@ -207,6 +207,8 @@ export function FileExplorerExample() {
     <div className="h-[min(720px,80vh)] min-h-150 w-full overflow-hidden rounded-[var(--radius-panel)] border bg-background shadow-md">
       <FileExplorerBlock
         layout="contained"
+        persistOpen={false}
+        keyboardShortcut={null}
         locations={locations}
         defaultActiveLocationId="github"
         defaultSelectedPath={["control-ui", "readme"]}

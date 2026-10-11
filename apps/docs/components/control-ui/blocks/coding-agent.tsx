@@ -18,6 +18,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
+  type SidebarProviderProps,
   SidebarRail,
   type SidebarStyle,
   SidebarTrigger,
@@ -46,23 +47,24 @@ export type CodingAgentProject = {
   open?: boolean;
 };
 
-export type CodingAgentBlockProps = Omit<ComponentProps<"div">, "children"> & {
-  appName?: string;
-  brand?: ReactNode;
-  sidebarTop?: ReactNode;
-  navigation?: readonly CodingAgentNavigationItem[];
-  projects: readonly CodingAgentProject[];
-  activeTaskId?: string;
-  activeTaskTitle?: string;
-  onNavigationSelect?: (item: CodingAgentNavigationItem) => void;
-  onTaskSelect?: (task: CodingAgentTask, project: CodingAgentProject) => void;
-  onNewTask?: () => void;
-  onSearch?: () => void;
-  headerActions?: ReactNode;
-  sidebarFooter?: ReactNode;
-  children: ReactNode;
-  layout?: "viewport" | "contained";
-};
+export type CodingAgentBlockProps = Omit<ComponentProps<"div">, "children"> &
+  Pick<SidebarProviderProps, "persistOpen" | "keyboardShortcut"> & {
+    appName?: string;
+    brand?: ReactNode;
+    sidebarTop?: ReactNode;
+    navigation?: readonly CodingAgentNavigationItem[];
+    projects: readonly CodingAgentProject[];
+    activeTaskId?: string;
+    activeTaskTitle?: string;
+    onNavigationSelect?: (item: CodingAgentNavigationItem) => void;
+    onTaskSelect?: (task: CodingAgentTask, project: CodingAgentProject) => void;
+    onNewTask?: () => void;
+    onSearch?: () => void;
+    headerActions?: ReactNode;
+    sidebarFooter?: ReactNode;
+    children: ReactNode;
+    layout?: "viewport" | "contained";
+  };
 
 export function CodingAgentBlock({
   appName = "Agent",

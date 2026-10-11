@@ -160,7 +160,7 @@ export function SettingsExample() {
 
   return (
     <div className="h-[min(720px,80vh)] min-h-150 w-full overflow-hidden rounded-[var(--radius-panel)] border bg-background">
-      <SettingsBlock pages={pages} layout="contained" backAction={<SettingsBackAction />} />
+      <SettingsBlock pages={pages} layout="contained" persistOpen={false} keyboardShortcut={null} backAction={<SettingsBackAction />} />
     </div>
   );
 }
