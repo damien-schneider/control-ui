@@ -2,6 +2,12 @@
 
 Shadcn-compatible React components where one source runs under 11 skins, from Refined to Windows 98.
 
+<p align="center">
+  <a href="https://control-ui.dev/skins">
+    <img src=".github/assets/control-ui-skins.gif" alt="The same Control UI screen switching from the Refined skin to Windows 98, Windows XP, macOS and Linear" width="100%">
+  </a>
+</p>
+
 ```bash
 npx shadcn@latest add https://control-ui.dev/r/all.json
 ```
