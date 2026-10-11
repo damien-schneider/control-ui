@@ -85,6 +85,7 @@
 
 **Forms** — Capture a value from the user — typed, picked, toggled, or uploaded — plus the scaffolding that labels and validates it.
 - `slider` (Slider) — Single-value range control with branded and plain treatments. — `npx shadcn@latest add http://127.0.0.1:3000/r/slider.json`
+- `channel-strip` (ChannelStrip) — Console mixer strips — title, fader, level meter with dB scale, value, and controls — whose rows line up across a Mixer even when a strip leaves a part out. — `npx shadcn@latest add http://127.0.0.1:3000/r/channel-strip.json`
 - `select` (Select) — Single-choice picker with a token-matched trigger and floating list. — `npx shadcn@latest add http://127.0.0.1:3000/r/select.json`
 - `toggle` (Toggle) — Pressed-state button and toggle group built on the Button surface. — `npx shadcn@latest add http://127.0.0.1:3000/r/toggle.json`
 - `switch` (Switch) — On/off control with token-driven track, thumb, and press motion. — `npx shadcn@latest add http://127.0.0.1:3000/r/switch.json`

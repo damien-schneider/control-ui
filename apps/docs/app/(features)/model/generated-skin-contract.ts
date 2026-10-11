@@ -25,6 +25,7 @@ export const generatedSkinContract: SkinContract = {
     "button-group": ["button-group"],
     calendar: ["calendar"],
     card: ["card"],
+    "channel-strip": ["channel-strip"],
     chart: ["chart"],
     "chat-composer": ["chat-composer"],
     "chat-composer-attachment": ["chat-composer-attachment"],
@@ -1662,6 +1663,58 @@ export const generatedSkinContract: SkinContract = {
         },
       },
       registryItems: ["card"],
+    },
+    "channel-strip": {
+      parts: {
+        root: {
+          family: "channel-strip",
+          registryItems: ["channel-strip"],
+          states: [
+            {
+              attribute: "data-variant",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["default", "master"],
+            },
+          ],
+        },
+        actions: {
+          family: "channel-strip",
+          registryItems: ["channel-strip"],
+          states: [],
+        },
+        body: {
+          family: "channel-strip",
+          registryItems: ["channel-strip"],
+          states: [],
+        },
+        controls: {
+          family: "channel-strip",
+          registryItems: ["channel-strip"],
+          states: [],
+        },
+        header: {
+          family: "channel-strip",
+          registryItems: ["channel-strip"],
+          states: [],
+        },
+        mixer: {
+          family: "channel-strip",
+          registryItems: ["channel-strip"],
+          states: [],
+        },
+        title: {
+          family: "channel-strip",
+          registryItems: ["channel-strip"],
+          states: [],
+        },
+        value: {
+          family: "channel-strip",
+          registryItems: ["channel-strip"],
+          states: [],
+        },
+      },
+      registryItems: ["channel-strip"],
     },
     chart: {
       parts: {
@@ -7662,6 +7715,30 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         peak: {
+          family: "range",
+          registryItems: ["level-meter"],
+          states: [
+            {
+              attribute: "data-range-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["level-meter"],
+            },
+          ],
+        },
+        scale: {
+          family: "range",
+          registryItems: ["level-meter"],
+          states: [
+            {
+              attribute: "data-range-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["level-meter"],
+            },
+          ],
+        },
+        tick: {
           family: "range",
           registryItems: ["level-meter"],
           states: [
@@ -14446,6 +14523,32 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "none",
       },
     ],
+    "channel-strip": [
+      {
+        name: "--cui-channel-strip-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 24)",
+      },
+      {
+        name: "--cui-channel-strip-body-height",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 40)",
+      },
+      {
+        name: "--cui-channel-strip-separator-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--border)",
+      },
+      {
+        name: "--cui-channel-strip-value-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted-foreground)",
+      },
+    ],
     chart: [
       {
         name: "--cui-chart-foreground",
@@ -17042,6 +17145,18 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--destructive)",
+      },
+      {
+        name: "--cui-range-level-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 2)",
+      },
+      {
+        name: "--cui-range-level-scale-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted-foreground)",
       },
       {
         name: "--cui-range-indeterminate-size",

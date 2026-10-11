@@ -602,6 +602,26 @@
       "description": "Control UI card knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
+      "name": "--cui-channel-strip-body-height",
+      "description": "Control UI channel-strip knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-channel-strip-separator-color",
+      "description": "Control UI channel-strip knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-channel-strip-size",
+      "description": "Control UI channel-strip knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-channel-strip-value-foreground",
+      "description": "Control UI channel-strip knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
       "name": "--cui-chart-animation-duration",
       "description": "Control UI chart knob — registered syntax <time>, fallback 0s. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<time>"
@@ -2663,6 +2683,16 @@
       "name": "--cui-range-level-clip-background",
       "description": "Control UI range-level-meter knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-range-level-scale-foreground",
+      "description": "Control UI range-level-meter knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-range-level-size",
+      "description": "Control UI range-level-meter knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
     },
     {
       "name": "--cui-range-level-warning-background",

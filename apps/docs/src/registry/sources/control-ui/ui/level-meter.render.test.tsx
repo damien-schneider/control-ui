@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { renderToString } from "react-dom/server";
-import { LevelMeter, LevelMeterBar, LevelMeterPeak, LevelMeterTrack } from "./level-meter";
+import { LevelMeter, LevelMeterBar, LevelMeterPeak, LevelMeterScale, LevelMeterTrack } from "./level-meter";
 
 describe("LevelMeter", () => {
   test("a labelled meter exposes its decibel range, an unlabelled one stays hidden", () => {
@@ -37,5 +37,17 @@ describe("LevelMeter", () => {
     );
     expect(composed).toContain('data-orientation="vertical"');
     expect(composed).toContain('data-slot="peak"');
+  });
+
+  test("the scale marks only the decibels inside the meter range, at their position on it", () => {
+    const html = renderToString(
+      <LevelMeter minDb={-24} maxDb={6}>
+        <LevelMeterScale />
+      </LevelMeter>,
+    );
+    const labels = [...html.matchAll(/data-slot="tick"[^>]*>([^<]+)</g)].map((match) => match[1]);
+    expect(labels).toEqual(["+6", "0", "\u22126", "\u221212", "\u221218", "\u221224"]);
+    expect(html).toContain("--_range-level-tick:0.8");
+    expect(html).toContain('--_range-level-tick:0"');
   });
 });

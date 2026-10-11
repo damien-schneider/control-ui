@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "family": "channel-strip",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "channel-strip"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-channel-strip-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 24)"
+    },
+    {
+      "name": "--cui-channel-strip-body-height",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 40)"
+    },
+    {
+      "name": "--cui-channel-strip-separator-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-channel-strip-value-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    }
+  ],
+  "parts": {
+    "channel-strip": {
+      "root": {
+        "family": "channel-strip",
+        "registryItems": [
+          "channel-strip"
+        ],
+        "states": [
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "master"
+            ]
+          }
+        ]
+      },
+      "actions": {
+        "family": "channel-strip",
+        "registryItems": [
+          "channel-strip"
+        ],
+        "states": []
+      },
+      "body": {
+        "family": "channel-strip",
+        "registryItems": [
+          "channel-strip"
+        ],
+        "states": []
+      },
+      "controls": {
+        "family": "channel-strip",
+        "registryItems": [
+          "channel-strip"
+        ],
+        "states": []
+      },
+      "header": {
+        "family": "channel-strip",
+        "registryItems": [
+          "channel-strip"
+        ],
+        "states": []
+      },
+      "mixer": {
+        "family": "channel-strip",
+        "registryItems": [
+          "channel-strip"
+        ],
+        "states": []
+      },
+      "title": {
+        "family": "channel-strip",
+        "registryItems": [
+          "channel-strip"
+        ],
+        "states": []
+      },
+      "value": {
+        "family": "channel-strip",
+        "registryItems": [
+          "channel-strip"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/channel-strip.contrast.json"
+}

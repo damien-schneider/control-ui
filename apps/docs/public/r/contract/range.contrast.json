@@ -2327,6 +2327,114 @@
           "data-variant": "plain"
         }
       }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "level-meter",
+          "data-orientation": "horizontal",
+          "data-range-kind": "level-meter",
+          "data-slot": "root",
+          "role": "meter"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "level-meter",
+          "data-range-kind": "level-meter",
+          "data-slot": "scale"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "inset",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-slot": "surface",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "level-meter",
+          "data-orientation": "vertical",
+          "data-range-kind": "level-meter",
+          "data-slot": "root",
+          "role": "meter"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "range",
+          "data-control-ui": "level-meter",
+          "data-range-kind": "level-meter",
+          "data-slot": "scale"
+        }
+      }
     ]
   ],
   "probes": [
@@ -2624,6 +2732,22 @@
       },
       "anatomy": 36,
       "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-range-level-scale-foreground"
+      },
+      "anatomy": 37,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-range-level-scale-foreground"
+      },
+      "anatomy": 38,
+      "rendersText": true,
       "state": false
     }
   ]

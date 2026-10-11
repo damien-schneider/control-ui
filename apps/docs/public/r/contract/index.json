@@ -123,6 +123,13 @@
       "knobs": 6,
       "probes": 4
     },
+    "channel-strip": {
+      "registryItems": [
+        "channel-strip"
+      ],
+      "knobs": 4,
+      "probes": 2
+    },
     "chart": {
       "registryItems": [
         "chart"
@@ -429,8 +436,8 @@
         "progress",
         "slider"
       ],
-      "knobs": 11,
-      "probes": 37
+      "knobs": 13,
+      "probes": 39
     },
     "resizable": {
       "registryItems": [

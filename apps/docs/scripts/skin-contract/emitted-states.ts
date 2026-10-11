@@ -32,6 +32,7 @@ import type {
 } from "../../src/registry/sources/control-ui/ui/drawer";
 import type { DropdownMenuTriggerVariant } from "../../src/registry/sources/control-ui/ui/dropdown-menu";
 import type { DropzoneOverlayScope } from "../../src/registry/sources/control-ui/ui/dropzone";
+import type { ChannelStripVariant } from "../../src/registry/sources/control-ui/ui/channel-strip";
 import type { KbdVariant } from "../../src/registry/sources/control-ui/ui/kbd";
 import type { LevelMeterOrientation } from "../../src/registry/sources/control-ui/ui/level-meter";
 import type { MorphingPanelAnchor } from "../../src/registry/sources/control-ui/ui/morphing-panel";
@@ -204,6 +205,7 @@ export type EmittedStateContract = {
   "item:actions:data-show-on-hover": true;
   "kbd:root:data-variant": KbdVariant;
   "level-meter:root:data-orientation": LevelMeterOrientation;
+  "channel-strip:root:data-variant": ChannelStripVariant;
   "context-menu:item:data-inset": true;
   "context-menu:label:data-inset": true;
   "context-menu:sub-trigger:data-inset": true;

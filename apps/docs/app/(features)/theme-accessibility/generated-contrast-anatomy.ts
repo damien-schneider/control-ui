@@ -81985,6 +81985,254 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       state: false,
       route: "/primitives/chart",
     },
+    {
+      knobs: {
+        text: "--cui-channel-strip-value-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "channel-strip",
+            "data-control-ui": "channel-strip",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "group",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "channel-strip",
+            "data-control-ui": "channel-strip",
+            "data-slot": "value",
+          },
+        },
+      ],
+      recipe: "channel-strip",
+      rendersText: true,
+      state: false,
+      route: "/primitives/channel-strip",
+    },
+    {
+      knobs: {
+        text: "--cui-channel-strip-value-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "channel-strip",
+            "data-control-ui": "channel-strip",
+            "data-slot": "root",
+            "data-variant": "master",
+            role: "group",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "channel-strip",
+            "data-control-ui": "channel-strip",
+            "data-slot": "value",
+          },
+        },
+      ],
+      recipe: "channel-strip",
+      rendersText: true,
+      state: false,
+      route: "/primitives/channel-strip",
+    },
+    {
+      knobs: {
+        text: "--cui-range-level-scale-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "range",
+            "data-control-ui": "level-meter",
+            "data-orientation": "horizontal",
+            "data-range-kind": "level-meter",
+            "data-slot": "root",
+            role: "meter",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "range",
+            "data-control-ui": "level-meter",
+            "data-range-kind": "level-meter",
+            "data-slot": "scale",
+          },
+        },
+      ],
+      recipe: "range-level-meter",
+      rendersText: true,
+      state: false,
+      route: "/primitives/level-meter",
+    },
+    {
+      knobs: {
+        text: "--cui-range-level-scale-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "inset",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "inset",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-slot": "surface",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "range",
+            "data-control-ui": "level-meter",
+            "data-orientation": "vertical",
+            "data-range-kind": "level-meter",
+            "data-slot": "root",
+            role: "meter",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "range",
+            "data-control-ui": "level-meter",
+            "data-range-kind": "level-meter",
+            "data-slot": "scale",
+          },
+        },
+      ],
+      recipe: "range-level-meter",
+      rendersText: true,
+      state: false,
+      route: "/primitives/channel-strip",
+    },
   ),
   uncovered: [
     "--cui-audio-recorder-recorded-foreground",

@@ -81,6 +81,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Stepper](http://127.0.0.1:3000/primitives/stepper): Static and interactive workflow steps with horizontal and vertical layouts.
 - [Skeleton](http://127.0.0.1:3000/primitives/skeleton): Loading placeholders with seamless shimmer, pulse, and static variants. Match their dimensions to the incoming content. Status: beta.
 - [Slider](http://127.0.0.1:3000/primitives/slider): Single-value range control with branded and plain treatments.
+- [ChannelStrip](http://127.0.0.1:3000/primitives/channel-strip): Console mixer strips — title, fader, level meter with dB scale, value, and controls — whose rows line up across a Mixer even when a strip leaves a part out.
 - [Select](http://127.0.0.1:3000/primitives/select): Single-choice picker with a token-matched trigger and floating list.
 - [DropdownMenu](http://127.0.0.1:3000/primitives/dropdown-menu): Dropdown menu for actions, resources, labels, separators, and submenus.
 - [Context Menu](http://127.0.0.1:3000/primitives/context-menu): Pointer-positioned right-click and long-press menu with nested actions and selection controls.

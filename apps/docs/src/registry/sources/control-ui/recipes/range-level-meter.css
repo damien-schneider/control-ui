@@ -2,12 +2,15 @@
   :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="root"]) {
     --cui-range-level-warning-background: var(--warning);
     --cui-range-level-clip-background: var(--destructive);
+    --cui-range-level-size: calc(var(--spacing) * 2);
+    --cui-range-level-scale-foreground: var(--muted-foreground);
     --_range-level-peak-size: 2px;
     --_range-level-zone-angle: 90deg;
+    gap: var(--spacing);
   }
 
   :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="root"][data-orientation="horizontal"]) {
-    block-size: calc(var(--spacing) * 2);
+    grid-template-rows: var(--cui-range-level-size);
   }
 
   :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="root"][data-orientation="horizontal"]:dir(rtl)) {
@@ -16,15 +19,71 @@
 
   :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="root"][data-orientation="vertical"]) {
     --_range-level-zone-angle: 0deg;
-    flex-direction: column;
-    inline-size: calc(var(--spacing) * 2);
+    grid-auto-flow: column;
+    grid-template-columns: var(--cui-range-level-size);
+    grid-template-rows: minmax(0, 1fr);
+    inline-size: max-content;
     min-block-size: calc(var(--spacing) * 16);
   }
 
   :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="track"]) {
-    flex: 1;
     border-radius: var(--cui-range-track-radius);
     background: var(--cui-range-track-background);
+  }
+
+  :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="scale"]) {
+    block-size: calc(1lh + var(--spacing));
+    color: var(--cui-range-level-scale-foreground);
+  }
+
+  :where(
+    [data-range-kind="level-meter"][data-slot="root"][data-orientation="vertical"]
+      [data-control-family="range"][data-range-kind="level-meter"][data-slot="scale"]
+  ) {
+    block-size: auto;
+    inline-size: calc(var(--spacing) * 8);
+  }
+
+  :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="tick"]) {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: calc(var(--_range-level-tick) * 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    translate: -50% 0;
+    white-space: nowrap;
+  }
+
+  :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="tick"]:dir(rtl)) {
+    translate: 50% 0;
+  }
+
+  :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="tick"])::before {
+    content: "";
+    inline-size: 1px;
+    block-size: var(--spacing);
+    background: currentColor;
+    opacity: 0.5;
+  }
+
+  :where(
+    [data-range-kind="level-meter"][data-slot="root"][data-orientation="vertical"]
+      [data-control-family="range"][data-range-kind="level-meter"][data-slot="tick"]
+  ) {
+    inset-block: auto calc(var(--_range-level-tick) * 100%);
+    inset-inline-start: 0;
+    flex-direction: row;
+    gap: calc(var(--spacing) * 1.5);
+    translate: 0 50%;
+  }
+
+  :where(
+    [data-range-kind="level-meter"][data-slot="root"][data-orientation="vertical"]
+      [data-control-family="range"][data-range-kind="level-meter"][data-slot="tick"]
+  )::before {
+    inline-size: var(--spacing);
+    block-size: 1px;
   }
 
   :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="bar"]),
@@ -81,6 +140,18 @@
 }
 
 @property --cui-range-level-clip-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-range-level-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-range-level-scale-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

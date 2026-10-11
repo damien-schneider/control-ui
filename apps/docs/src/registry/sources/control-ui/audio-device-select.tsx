@@ -1,6 +1,6 @@
 "use client";
 
-import { MicIcon } from "lucide-react";
+import { MicIcon, Volume2Icon } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, use, useState } from "react";
 import type { AudioDeviceSelectKnobStyle } from "@/components/control-ui/knob-contracts/audio-device-select-knobs";
@@ -19,8 +19,30 @@ export type AudioDevice = {
 
 export type AudioDevicePermission = "granted" | "prompt" | "denied";
 
+export type AudioDeviceKind = "input" | "output";
+
+const AUDIO_DEVICE_COPY = {
+  input: {
+    label: "Microphone",
+    fallbackName: "Microphone",
+    placeholder: "Select a microphone",
+    noneLabel: "No microphone",
+    empty: "No microphones found",
+    disconnected: "This microphone is disconnected. Reconnect it or choose another device.",
+  },
+  output: {
+    label: "Output",
+    fallbackName: "Speaker",
+    placeholder: "Select an output",
+    noneLabel: "No output",
+    empty: "No outputs found",
+    disconnected: "This output is disconnected. Reconnect it or choose another device.",
+  },
+} as const satisfies Record<AudioDeviceKind, Record<string, string>>;
+
 export type AudioDeviceSelectProps = Omit<SelectProps, "items" | "children"> & {
   devices: readonly AudioDevice[];
+  kind?: AudioDeviceKind;
   loading?: boolean;
   permission?: AudioDevicePermission;
   onRequestPermission?: () => void | Promise<void>;
@@ -33,6 +55,7 @@ export type AudioDeviceSelectProps = Omit<SelectProps, "items" | "children"> & {
 };
 
 type AudioDeviceSelectContextValue = {
+  kind: AudioDeviceKind;
   devices: readonly AudioDevice[];
   selected: AudioDevice | null;
   value: string | null;
@@ -55,12 +78,13 @@ function useAudioDeviceSelect() {
   return context;
 }
 
-function deviceLabel(device: AudioDevice, index = 0) {
-  return device.label.trim() || `Microphone ${index + 1}`;
+function deviceLabel(device: AudioDevice, kind: AudioDeviceKind, index = 0) {
+  return device.label.trim() || `${AUDIO_DEVICE_COPY[kind].fallbackName} ${index + 1}`;
 }
 
 export function AudioDeviceSelect({
   devices,
+  kind = "input",
   value,
   defaultValue,
   onValueChange,
@@ -69,8 +93,8 @@ export function AudioDeviceSelect({
   permission = "granted",
   onRequestPermission,
   allowNone = false,
-  noneLabel = "No microphone",
-  label = "Microphone",
+  noneLabel = AUDIO_DEVICE_COPY[kind].noneLabel,
+  label = AUDIO_DEVICE_COPY[kind].label,
   error = null,
   className,
   children,
@@ -92,6 +116,7 @@ export function AudioDeviceSelect({
   return (
     <AudioDeviceSelectContext.Provider
       value={{
+        kind,
         devices,
         selected,
         value: current,
@@ -143,7 +168,11 @@ export function AudioDeviceSelectTrigger({ children, className, ...props }: Sele
     >
       {children ?? (
         <>
-          <MicIcon aria-hidden="true" className="size-4 shrink-0" />
+          {context.kind === "output" ? (
+            <Volume2Icon aria-hidden="true" className="size-4 shrink-0" />
+          ) : (
+            <MicIcon aria-hidden="true" className="size-4 shrink-0" />
+          )}
           <AudioDeviceSelectValue />
         </>
       )}
@@ -151,12 +180,12 @@ export function AudioDeviceSelectTrigger({ children, className, ...props }: Sele
   );
 }
 
-export function AudioDeviceSelectValue({ placeholder = "Select a microphone" }: { placeholder?: string }) {
+export function AudioDeviceSelectValue({ placeholder }: { placeholder?: string }) {
   const context = useAudioDeviceSelect();
-  let text = placeholder;
-  if (context.selected) text = deviceLabel(context.selected, context.devices.indexOf(context.selected));
+  let text = placeholder ?? AUDIO_DEVICE_COPY[context.kind].placeholder;
+  if (context.selected) text = deviceLabel(context.selected, context.kind, context.devices.indexOf(context.selected));
   if (context.allowNone && context.value === "") text = context.noneLabel;
-  if (context.missing) text = `${context.selected ? deviceLabel(context.selected) : "Unknown device"} (disconnected)`;
+  if (context.missing) text = `${context.selected ? deviceLabel(context.selected, context.kind) : "Unknown device"} (disconnected)`;
   if (context.loading) text = "Finding devices…";
   return (
     <span data-control-ui="audio-device-select" data-slot="value" className="min-w-0 truncate" title={text}>
@@ -183,10 +212,10 @@ export function AudioDeviceSelectContent({ children, ...props }: ComponentProps<
               <AudioDeviceSelectItem
                 key={device.deviceId}
                 value={device.deviceId}
-                label={deviceLabel(device, index)}
+                label={deviceLabel(device, context.kind, index)}
                 disabled={device.status === "unavailable" || device.status === "permission-required"}
               >
-                <span className="min-w-0 flex-1 truncate">{deviceLabel(device, index)}</span>
+                <span className="min-w-0 flex-1 truncate">{deviceLabel(device, context.kind, index)}</span>
                 {device.isDefault || device.deviceId === "default" ? (
                   <Text size="caption" tone="muted" className="ms-3">
                     Default
@@ -196,7 +225,7 @@ export function AudioDeviceSelectContent({ children, ...props }: ComponentProps<
             ))}
           {context.devices.length === 0 && !context.missing && !context.allowNone ? (
             <SelectItem value="__audio-device-empty__" disabled>
-              {context.permission === "granted" ? "No microphones found" : "Allow microphone access to find devices"}
+              {context.permission === "granted" ? AUDIO_DEVICE_COPY[context.kind].empty : "Allow microphone access to find devices"}
             </SelectItem>
           ) : null}
         </>
@@ -221,7 +250,7 @@ export function AudioDeviceSelectStatus({ className, ...props }: AudioDeviceSele
   const context = useAudioDeviceSelect();
   let message = context.error;
   if (!message && context.permission === "denied") message = "Microphone access is blocked. Allow it in your browser’s site settings.";
-  if (!message && context.missing) message = "This microphone is disconnected. Reconnect it or choose another device.";
+  if (!message && context.missing) message = AUDIO_DEVICE_COPY[context.kind].disconnected;
   if (!message) return null;
   return (
     <p

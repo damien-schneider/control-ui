@@ -98,6 +98,7 @@ export const registryKindIds = [
   "spinner",
   "meter",
   "level-meter",
+  "channel-strip",
   "checkbox-group",
   "autocomplete",
   "number-field",

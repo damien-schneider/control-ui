@@ -1,0 +1,75 @@
+@layer components {
+  :where([data-control-family="channel-strip"][data-slot="mixer"]) {
+    display: grid;
+    grid-auto-columns: max-content;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(4, auto);
+    gap: calc(var(--spacing) * 2);
+    overflow-x: auto;
+  }
+
+  :where([data-control-family="channel-strip"][data-slot="root"]) {
+    --cui-channel-strip-size: calc(var(--spacing) * 24);
+    --cui-channel-strip-body-height: calc(var(--spacing) * 40);
+    --cui-channel-strip-separator-color: var(--border);
+    --cui-channel-strip-value-foreground: var(--muted-foreground);
+    inline-size: var(--cui-channel-strip-size);
+    display: grid;
+    grid-row: span 4;
+    grid-template-rows: subgrid;
+    row-gap: calc(var(--spacing) * 2);
+  }
+
+  :where([data-control-family="channel-strip"][data-slot="root"][data-variant="master"]) {
+    border-inline-start: 1px solid var(--cui-channel-strip-separator-color);
+    padding-inline-start: calc(var(--spacing) * 2);
+  }
+
+  :where([data-control-family="channel-strip"][data-slot="header"]) {
+    grid-row: 1;
+    gap: var(--spacing);
+    min-block-size: calc(var(--spacing) * 6);
+  }
+
+  :where([data-control-family="channel-strip"][data-slot="body"]) {
+    grid-row: 2;
+    gap: calc(var(--spacing) * 2);
+    block-size: var(--cui-channel-strip-body-height);
+    padding-block: calc(var(--spacing) * 2);
+  }
+
+  :where([data-control-family="channel-strip"][data-slot="value"]) {
+    grid-row: 3;
+    color: var(--cui-channel-strip-value-foreground);
+    text-align: center;
+  }
+
+  :where([data-control-family="channel-strip"][data-slot="controls"]) {
+    grid-row: 4;
+    gap: var(--spacing);
+  }
+}
+
+@property --cui-channel-strip-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-channel-strip-body-height {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-channel-strip-separator-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-channel-strip-value-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

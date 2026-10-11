@@ -23,6 +23,21 @@ export const formsCompositions = {
     ),
   ],
   slider: [example("Value control", part("Slider"))],
+  "channel-strip": [
+    example(
+      "Console mixer",
+      part(
+        "Mixer",
+        part(
+          "ChannelStrip",
+          part("ChannelStripHeader", part("ChannelStripTitle"), part("ChannelStripActions")),
+          part("ChannelStripBody"),
+          part("ChannelStripValue"),
+          part("ChannelStripControls"),
+        ),
+      ),
+    ),
+  ],
   select: [example("Anatomy", part("Select", part("SelectTrigger", part("SelectValue")), part("SelectContent", part("SelectItem"))))],
   switch: [example("On/off control", part("Switch"))],
   input: [example("Text input", part("Input"))],

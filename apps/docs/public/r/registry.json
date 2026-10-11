@@ -222,6 +222,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/channel-strip.json",
         "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
@@ -348,6 +349,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/channel-strip.json",
         "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
@@ -481,6 +483,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/channel-strip.json",
         "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
@@ -614,6 +617,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/channel-strip.json",
         "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
@@ -747,6 +751,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/channel-strip.json",
         "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
@@ -880,6 +885,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/channel-strip.json",
         "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
@@ -1013,6 +1019,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/channel-strip.json",
         "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
@@ -1146,6 +1153,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/channel-strip.json",
         "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
@@ -1279,6 +1287,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/channel-strip.json",
         "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
@@ -1412,6 +1421,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/channel-strip.json",
         "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
@@ -1545,6 +1555,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/channel-strip.json",
         "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",
@@ -2191,6 +2202,37 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/card.css\"": {}
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "channel-strip",
+      "type": "registry:ui",
+      "title": "ChannelStrip",
+      "description": "Console mixer strips — title, fader, level meter with dB scale, value, and controls — whose rows line up across a Mixer even when a strip leaves a part out.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/knob-contracts/channel-strip-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/channel-strip-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/channel-strip.css",
+          "target": "@components/control-ui/styles/recipes/channel-strip.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/channel-strip.tsx",
+          "target": "@components/control-ui/ui/channel-strip.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/channel-strip.css\"": {}
       }
     },
     {
@@ -6845,6 +6887,7 @@
         "http://127.0.0.1:3000/r/button-group.json",
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/channel-strip.json",
         "http://127.0.0.1:3000/r/chart.json",
         "http://127.0.0.1:3000/r/chat-block.json",
         "http://127.0.0.1:3000/r/chat-composer.json",

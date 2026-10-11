@@ -50,8 +50,13 @@ const rangeRecipeFile = sourceFile(
   "recipe-css",
 );
 const levelMeterRecipeFile = sourceFile(
-  "Level meter recipe — zones, peak hold + @property knobs",
+  "Level meter recipe — zones, peak hold, dB scale + @property knobs",
   "src/registry/sources/control-ui/recipes/range-level-meter.css",
+  "recipe-css",
+);
+const channelStripRecipeFile = sourceFile(
+  "Channel strip recipe — mixer grid + @property knobs",
+  "src/registry/sources/control-ui/recipes/channel-strip.css",
   "recipe-css",
 );
 const alertRecipeFile = sourceFile(
@@ -729,6 +734,26 @@ export const primitiveEntries = [
     },
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/primitives/slider").then((mod) => ({ default: mod.PrimitiveSliderExample })),
+    ),
+  },
+  {
+    id: "channel-strip",
+    category: "forms",
+    kind: "Primitive",
+    name: "ChannelStrip",
+    summary:
+      "Console mixer strips — title, fader, level meter with dB scale, value, and controls — whose rows line up across a Mixer even when a strip leaves a part out.",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/channel-strip.tsx",
+        example: sourceFile("Channel strip preview", "src/registry/examples/control-ui/primitives/channel-strip.tsx", "example"),
+        source: sourceFile("Channel strip layout parts", "src/registry/sources/control-ui/ui/channel-strip.tsx", "component"),
+        supportFiles: [channelStripRecipeFile],
+        registryKind: "channel-strip",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/channel-strip").then((mod) => ({ default: mod.PrimitiveChannelStripExample })),
     ),
   },
   {

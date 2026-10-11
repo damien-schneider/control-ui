@@ -22,6 +22,18 @@
       "defaultValue": "var(--destructive)"
     },
     {
+      "name": "--cui-range-level-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 2)"
+    },
+    {
+      "name": "--cui-range-level-scale-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
       "name": "--cui-range-indeterminate-size",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
@@ -120,6 +132,38 @@
         ]
       },
       "peak": {
+        "family": "range",
+        "registryItems": [
+          "level-meter"
+        ],
+        "states": [
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "level-meter"
+            ]
+          }
+        ]
+      },
+      "scale": {
+        "family": "range",
+        "registryItems": [
+          "level-meter"
+        ],
+        "states": [
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "level-meter"
+            ]
+          }
+        ]
+      },
+      "tick": {
         "family": "range",
         "registryItems": [
           "level-meter"

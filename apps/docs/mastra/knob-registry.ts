@@ -713,6 +713,35 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     ],
   },
   {
+    id: "channel-strip",
+    knobs: [
+      {
+        name: "--cui-channel-strip-body-height",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 40)",
+        selector: ':where([data-control-family="channel-strip"][data-slot="root"])',
+      },
+      {
+        name: "--cui-channel-strip-separator-color",
+        syntax: "<color>",
+        defaultValue: "var(--border)",
+        selector: ':where([data-control-family="channel-strip"][data-slot="root"])',
+      },
+      {
+        name: "--cui-channel-strip-size",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 24)",
+        selector: ':where([data-control-family="channel-strip"][data-slot="root"])',
+      },
+      {
+        name: "--cui-channel-strip-value-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--muted-foreground)",
+        selector: ':where([data-control-family="channel-strip"][data-slot="root"])',
+      },
+    ],
+  },
+  {
     id: "chart",
     knobs: [
       {
@@ -3513,6 +3542,18 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-range-level-clip-background",
         syntax: "<color>",
         defaultValue: "var(--destructive)",
+        selector: ':where([data-control-family="range"][data-range-kind="level-meter"][data-slot="root"])',
+      },
+      {
+        name: "--cui-range-level-scale-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--muted-foreground)",
+        selector: ':where([data-control-family="range"][data-range-kind="level-meter"][data-slot="root"])',
+      },
+      {
+        name: "--cui-range-level-size",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 2)",
         selector: ':where([data-control-family="range"][data-range-kind="level-meter"][data-slot="root"])',
       },
       {
