@@ -114,7 +114,7 @@ export function DocsSidebarContent({
               <Link href="/" onClick={closeSidebar} className="flex min-w-0 items-center gap-1.5">
                 <ControlUiLogo />
                 <Text size="heading-4" className="block truncate leading-none text-sidebar-foreground">
-                  control.ui
+                  Control UI
                 </Text>
               </Link>
               <Badge size="sm" className="absolute -top-1 left-full ml-1">

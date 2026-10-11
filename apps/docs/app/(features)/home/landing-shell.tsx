@@ -37,7 +37,7 @@ function LandingHeader({ githubStars }: { githubStars: number | null }) {
           <Link href="/" className="flex items-center gap-1.5">
             <ControlUiLogo />
             <Text size="heading-4" tone="foreground" className="leading-none">
-              control.ui
+              Control UI
             </Text>
           </Link>
           <Badge size="sm" className="absolute -top-1 left-full ml-1">
