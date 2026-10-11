@@ -135,7 +135,7 @@ export function AudioDeviceSelect({
         data-control-ui="audio-device-select"
         data-control-family="audio-device-select"
         data-slot="root"
-        className={cn("grid min-w-0 gap-2", className)}
+        className={cn("grid min-w-0 grid-cols-[minmax(0,1fr)] gap-2", className)}
       >
         <Select value={current} onValueChange={handleValueChange} disabled={disabled || loading} {...props}>
           {children ?? (
