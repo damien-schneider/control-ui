@@ -6,238 +6,238 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 
 ## Documentation
 
-- [Create app](http://127.0.0.1:3000/create): Scaffold a Next.js app with every Control UI component installed as source you own, or hand the whole install to the coding agent already open in your project.
-- [Install](http://127.0.0.1:3000/get-started): One command installs every component, kit, and template as source you own, with neutral light and dark defaults. The CSS entry is the only wiring you write.
-- [Theme it](http://127.0.0.1:3000/theming): Pick the pack, re-value the token contract in one artifact, and check the contrast the components actually paint.
-- [Build a screen](http://127.0.0.1:3000/build-a-screen): Render provider-owned messages with plain props and children. No intermediary message schema, no runtime coupling.
-- [Create a skin](http://127.0.0.1:3000/create-a-skin): Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.
-- [Foundations](http://127.0.0.1:3000/foundations): Every foundation of the design system, rendered live in the active skin: color, type, surfaces, elevation, radius, sizing, motion, and focus.
-- [Theme editor](http://127.0.0.1:3000/theme-editor): Edit theme tokens category by category and watch real components repaint as you go.
-- [Theme accessibility](http://127.0.0.1:3000/theme-accessibility): Audit canonical theme colors plus rendered popup, badge, and active-tab states, then run the same checks from the CLI.
-- [Update & diff](http://127.0.0.1:3000/update): Updating is a reinstall: the update manifest refreshes every installed source and never touches the three skin-owned files.
-- [Setup prompt](http://127.0.0.1:3000/setup-prompt): One prompt that makes the agent already open in your project read the repository, install from the registry, wire the CSS, run the doctor, and design the theme with you.
-- [Agent skill](http://127.0.0.1:3000/agent-skill): The skill installed with every pack: the token contract and the working rules, refreshed by every update, so later sessions build without the prompt.
-- [Machine docs](http://127.0.0.1:3000/agent-surface): Inspect and install registry items through HTTP, MCP, shadcn manifests, markdown negotiation, and machine-readable docs.
-- [Why Control UI](http://127.0.0.1:3000/overview): An owned-source registry of components, kits, complete templates, and swappable skins.
-- [Architecture](http://127.0.0.1:3000/architecture): Runtime ownership, skin layering, customization paths, and registry derivation.
-- [Lock-in](http://127.0.0.1:3000/lock-in): What you own at each layer, what stays proprietary, and what leaving costs — measured, not promised.
-- [shadcn compatibility](http://127.0.0.1:3000/shadcn-compatibility): shadcn registry, token, and ownership conventions without writing to components/ui.
-- [Control UI vs shadcn/ui](http://127.0.0.1:3000/control-ui-vs-shadcn-ui): Both ship open-source React source through the shadcn CLI. The difference starts after install: a typed knob contract, skins that re-value it wholesale, and every supported skin mode audited against WCAG AA on every commit.
-- [Best React component libraries for AI interfaces](http://127.0.0.1:3000/best-react-component-libraries-for-ai-interfaces): Eight production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui and AI Elements to MUI to Control UI.
-- [Components missing from shadcn/ui](http://127.0.0.1:3000/components-missing-from-shadcn-ui): Color picker, tree view, file explorer, phone input, code diff: React components shadcn/ui does not ship, installed with the shadcn CLI.
-- [Reference](http://127.0.0.1:3000/reference): Theme guides, the maintenance workflow, and the reasoning behind Control UI — everything beyond the install path.
+- [Create app](https://control-ui.dev/create): Scaffold a Next.js app with every Control UI component installed as source you own, or hand the whole install to the coding agent already open in your project.
+- [Install](https://control-ui.dev/get-started): One command installs every component, kit, and template as source you own, with neutral light and dark defaults. The CSS entry is the only wiring you write.
+- [Theme it](https://control-ui.dev/theming): Pick the pack, re-value the token contract in one artifact, and check the contrast the components actually paint.
+- [Build a screen](https://control-ui.dev/build-a-screen): Render provider-owned messages with plain props and children. No intermediary message schema, no runtime coupling.
+- [Create a skin](https://control-ui.dev/create-a-skin): Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.
+- [Foundations](https://control-ui.dev/foundations): Every foundation of the design system, rendered live in the active skin: color, type, surfaces, elevation, radius, sizing, motion, and focus.
+- [Theme editor](https://control-ui.dev/theme-editor): Edit theme tokens category by category and watch real components repaint as you go.
+- [Theme accessibility](https://control-ui.dev/theme-accessibility): Audit canonical theme colors plus rendered popup, badge, and active-tab states, then run the same checks from the CLI.
+- [Update & diff](https://control-ui.dev/update): Updating is a reinstall: the update manifest refreshes every installed source and never touches the three skin-owned files.
+- [Setup prompt](https://control-ui.dev/setup-prompt): One prompt that makes the agent already open in your project read the repository, install from the registry, wire the CSS, run the doctor, and design the theme with you.
+- [Agent skill](https://control-ui.dev/agent-skill): The skill installed with every pack: the token contract and the working rules, refreshed by every update, so later sessions build without the prompt.
+- [Machine docs](https://control-ui.dev/agent-surface): Inspect and install registry items through HTTP, MCP, shadcn manifests, markdown negotiation, and machine-readable docs.
+- [Why Control UI](https://control-ui.dev/overview): An owned-source registry of components, kits, complete templates, and swappable skins.
+- [Architecture](https://control-ui.dev/architecture): Runtime ownership, skin layering, customization paths, and registry derivation.
+- [Lock-in](https://control-ui.dev/lock-in): What you own at each layer, what stays proprietary, and what leaving costs — measured, not promised.
+- [shadcn compatibility](https://control-ui.dev/shadcn-compatibility): shadcn registry, token, and ownership conventions without writing to components/ui.
+- [Control UI vs shadcn/ui](https://control-ui.dev/control-ui-vs-shadcn-ui): Both ship open-source React source through the shadcn CLI. The difference starts after install: a typed knob contract, skins that re-value it wholesale, and every supported skin mode audited against WCAG AA on every commit.
+- [Best React component libraries for AI interfaces](https://control-ui.dev/best-react-component-libraries-for-ai-interfaces): Eight production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui and AI Elements to MUI to Control UI.
+- [Components missing from shadcn/ui](https://control-ui.dev/components-missing-from-shadcn-ui): Color picker, tree view, file explorer, phone input, code diff: React components shadcn/ui does not ship, installed with the shadcn CLI.
+- [Reference](https://control-ui.dev/reference): Theme guides, the maintenance workflow, and the reasoning behind Control UI — everything beyond the install path.
 
 ## Components
 
-- [Components](http://127.0.0.1:3000/components): Every Control UI component, grouped by what the control does, through the same live examples used in its documentation.
-- [Button](http://127.0.0.1:3000/components/button): Accessible action button with size, variant, and semantic tone support.
-- [Collapsible](http://127.0.0.1:3000/components/collapsible): Accessible disclosure primitive with measured open and close motion.
-- [Tabs](http://127.0.0.1:3000/components/tabs): Segmented and browser-style navigation with a stable active indicator.
-- [Track highlight](http://127.0.0.1:3000/components/track-highlight): Shared fluid hover, keyboard-focus, and selection highlight for custom lists and groups, with CSS anchors and a measured fallback.
-- [Sidebar](http://127.0.0.1:3000/components/sidebar): Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus. Status: beta.
-- [App shell](http://127.0.0.1:3000/components/app-shell): The application container: persistent navigation and header around changing page content, with one shared scroll policy. Status: beta.
-- [Page layout](http://127.0.0.1:3000/components/page-layout): Page shell that owns the scroll container, the shared measure, and the title and actions row. Status: beta.
-- [Scroll area](http://127.0.0.1:3000/components/scroll-area): Scroll container with overlay or space-reserving scrollbars, edge fades, and optional progressive blur.
-- [Progressive blur](http://127.0.0.1:3000/components/progressive-blur): CSS-driven backdrop blur that grows toward an edge, with masked layers and interruptible staggered transitions.
-- [Table of contents](http://127.0.0.1:3000/components/table-of-contents): Sticky in-page navigation with scroll-spy range highlighting.
-- [Timeline](http://127.0.0.1:3000/components/timeline): Static chronological events with independent status, connectors, descriptions, and metadata.
-- [Stepper](http://127.0.0.1:3000/components/stepper): Static and interactive workflow steps with horizontal and vertical layouts.
-- [Skeleton](http://127.0.0.1:3000/components/skeleton): Loading placeholders with seamless shimmer, pulse, and static variants. Match their dimensions to the incoming content. Status: beta.
-- [Slider](http://127.0.0.1:3000/components/slider): Single-value range control with branded and plain treatments.
-- [ChannelStrip](http://127.0.0.1:3000/components/channel-strip): Console mixer strips — title, fader, level meter with dB scale, value, and controls — whose rows line up across a Mixer even when a strip leaves a part out.
-- [Select](http://127.0.0.1:3000/components/select): Single-choice picker with a token-matched trigger and floating list.
-- [DropdownMenu](http://127.0.0.1:3000/components/dropdown-menu): Dropdown menu for actions, resources, labels, separators, and submenus.
-- [Context Menu](http://127.0.0.1:3000/components/context-menu): Pointer-positioned right-click and long-press menu with nested actions and selection controls.
-- [Toggle](http://127.0.0.1:3000/components/toggle): Pressed-state button and toggle group built on the Button surface.
-- [Switch](http://127.0.0.1:3000/components/switch): On/off control with token-driven track, thumb, and press motion.
-- [Dialog](http://127.0.0.1:3000/components/dialog): Modal dialog for focused tasks, confirmations, and custom panels.
-- [Popover](http://127.0.0.1:3000/components/popover): Anchored floating panel for inline settings and contextual content.
-- [Tooltip](http://127.0.0.1:3000/components/tooltip): Hover or focus hint popup with Base UI positioning and Control UI tokens.
-- [Rich tooltip](http://127.0.0.1:3000/components/rich-tooltip): Persistent anchored tip for onboarding tours, walkthroughs, and new-feature announcements — dismissible, with optional media and step counter.
-- [Drawer](http://127.0.0.1:3000/components/drawer): Swipeable edge panel for mobile sheets and off-canvas surfaces.
-- [Responsive dialog](http://127.0.0.1:3000/components/responsive-dialog): Modal dialog on desktop that becomes a swipeable bottom drawer on mobile.
-- [Toast](http://127.0.0.1:3000/components/toast): Transient notifications with a callable toast API and single Toaster mount.
-- [Input](http://127.0.0.1:3000/components/input): Text field primitive sized and styled to match other controls.
-- [Input group](http://127.0.0.1:3000/components/input-group): Joined input wrapper for addons, icons, and a shared focus indicator.
-- [Dropzone](http://127.0.0.1:3000/components/dropzone): Composable file intake with validation, managed selection, and drag-activated overlays. Status: beta.
-- [Phone input](http://127.0.0.1:3000/components/phone-input): International phone field with country search, E.164 values, and Zod validation helpers.
-- [Command](http://127.0.0.1:3000/components/command): Command palette with token-matched dialog, input, and result rows.
-- [Kbd](http://127.0.0.1:3000/components/kbd): Keyboard shortcut chip and chord group.
-- [Checkbox](http://127.0.0.1:3000/components/checkbox): Single checkbox control with checked and indeterminate states.
-- [Radio group](http://127.0.0.1:3000/components/radio-group): Single-choice radio set for plans, filters, and option lists.
-- [Accordion](http://127.0.0.1:3000/components/accordion): Stacked disclosure rows with measured panel animation.
-- [Avatar](http://127.0.0.1:3000/components/avatar): Profile image with initials fallback and composable overlapping groups.
-- [Progress](http://127.0.0.1:3000/components/progress): Determinate task progress with optional label and value rows.
-- [Hover card](http://127.0.0.1:3000/components/hover-card): Hover or focus preview panel for profiles, links, and contextual details.
-- [Alert dialog](http://127.0.0.1:3000/components/alert-dialog): Modal confirmation dialog for destructive or blocking decisions.
-- [Menubar](http://127.0.0.1:3000/components/menubar): Desktop command bar with nested menus, shortcuts, and separators.
-- [Navigation menu](http://127.0.0.1:3000/components/navigation-menu): Site navigation menu with a shared animated viewport.
-- [Field](http://127.0.0.1:3000/components/field): Form field wrapper for labels, descriptions, errors, and validity state.
-- [Form](http://127.0.0.1:3000/components/form): Form wrapper that coordinates field validation and returned errors.
-- [Native select](http://127.0.0.1:3000/components/native-select): Native select control styled to match the Control UI control family.
-- [Textarea](http://127.0.0.1:3000/components/textarea): Multiline text field with CSS-first auto-growth.
-- [Input OTP](http://127.0.0.1:3000/components/input-otp): One-time-code field with grouped, focus-aware slots.
-- [Combobox](http://127.0.0.1:3000/components/combobox): Searchable single-select with input and floating option list.
-- [Alert](http://127.0.0.1:3000/components/alert): Inline status panel for callouts, errors, and notices. Status: beta.
-- [Badge](http://127.0.0.1:3000/components/badge): Compact status, label, or count chip.
-- [Card](http://127.0.0.1:3000/components/card): Content surface for panels, tiles, and settings groups.
-- [Table](http://127.0.0.1:3000/components/table): Responsive data table for lists, comparisons, and structured records.
-- [Aspect ratio](http://127.0.0.1:3000/components/aspect-ratio): Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3].
-- [Button group](http://127.0.0.1:3000/components/button-group): Joined button group for toolbars, split actions, and segmented controls.
-- [Empty](http://127.0.0.1:3000/components/empty): Empty-state layout for blank lists, zero results, and new workspaces. Status: beta.
-- [Item](http://127.0.0.1:3000/components/item): List row with media, content, and trailing actions. Status: beta.
-- [Pagination](http://127.0.0.1:3000/components/pagination): Page navigation for long lists and result sets.
-- [Breadcrumb](http://127.0.0.1:3000/components/breadcrumb): Location trail with links, the current page, and collapsed levels.
-- [Separator](http://127.0.0.1:3000/components/separator): Horizontal or vertical hairline divider.
-- [Live status](http://127.0.0.1:3000/components/live-status): Always-mounted polite status region that announces changes to assistive technology.
-- [Spinner](http://127.0.0.1:3000/components/spinner): Accessible loading indicator for pending buttons, panels, and inline waits.
-- [Meter](http://127.0.0.1:3000/components/meter): Static range meter for quota, storage, score, or usage values.
-- [LevelMeter](http://127.0.0.1:3000/components/level-meter): Live audio level in dBFS with warning and clip zones and a peak hold, painted without React renders.
-- [Chart](http://127.0.0.1:3000/components/chart): Gradient-first charts on TanStack Charts: themed host, presets that return real definitions, and the full grammar.
-- [Tree](http://127.0.0.1:3000/components/tree): Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure.
-- [Checkbox Group](http://127.0.0.1:3000/components/checkbox-group): Multi-select checkbox set with shared state and select-all support.
-- [Autocomplete](http://127.0.0.1:3000/components/autocomplete): Free-text input with search-as-you-type suggestions.
-- [Number Field](http://127.0.0.1:3000/components/number-field): Numeric input with stepper buttons and optional drag-to-change behavior.
-- [Trigger Menu](http://127.0.0.1:3000/components/trigger-menu): Caret-anchored command or mention menu for text editors. Status: beta.
-- [Toolbar](http://127.0.0.1:3000/components/toolbar): Roving-focus toolbar for editor controls and compact actions.
-- [Dockable Panel](http://127.0.0.1:3000/components/dockable-panel): Non-modal workspace panel that moves between two explicit edge slots with a mobile Drawer fallback. Status: experimental.
-- [Infinite Canvas](http://127.0.0.1:3000/components/infinite-canvas): Pan-and-zoom spatial workspace for arranging content without fixed bounds. Status: experimental.
-- [Flow](http://127.0.0.1:3000/components/flow): Node graph editor parts that skin React Flow with Control UI tokens. Status: experimental.
-- [Resize Handle](http://127.0.0.1:3000/components/resize-handle): Edge and corner grip for resizing a positioned box; the host owns the drag math. Status: experimental.
-- [Morphing Panel](http://127.0.0.1:3000/components/morphing-panel): A compact control that expands into settings, workspace navigation, or an inline confirmation, with stable alignment and keyboard dismissal. Status: experimental.
-- [Color Picker](http://127.0.0.1:3000/components/color-picker): Color input with picker UI, formats, presets, contrast helpers, and a gradient editor with draggable stops. Status: beta.
-- [Emoji Picker](http://127.0.0.1:3000/components/emoji-picker): Searchable, virtualized emoji grid with skin-aware cells, an active emoji footer, and an emoji-or-icon tabbed variant. Status: beta.
-- [Icon Picker](http://127.0.0.1:3000/components/icon-picker): Searchable icon grid and color swatches using an app-supplied icon catalog. Status: beta.
-- [Resizable](http://127.0.0.1:3000/components/resizable): Accessible resizable panel groups and split layouts with keyboard support. Status: beta.
-- [Calendar](http://127.0.0.1:3000/components/calendar): Date selection grid built on react-day-picker and themed through tokens.
-- [Typography](http://127.0.0.1:3000/components/typography): Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role. Native tags may still wear one text-* rung directly.
-- [Code](http://127.0.0.1:3000/components/code): Shared code surface: Shiki-highlighted lines, gutter, clean copy, editable content, and virtualization for large files.
-- [Code Diff](http://127.0.0.1:3000/components/code-diff): Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting.
-- [Markdown](http://127.0.0.1:3000/components/markdown): Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff.
+- [Components](https://control-ui.dev/components): Every Control UI component, grouped by what the control does, through the same live examples used in its documentation.
+- [Button](https://control-ui.dev/components/button): Accessible action button with size, variant, and semantic tone support.
+- [Collapsible](https://control-ui.dev/components/collapsible): Accessible disclosure primitive with measured open and close motion.
+- [Tabs](https://control-ui.dev/components/tabs): Segmented and browser-style navigation with a stable active indicator.
+- [Track highlight](https://control-ui.dev/components/track-highlight): Shared fluid hover, keyboard-focus, and selection highlight for custom lists and groups, with CSS anchors and a measured fallback.
+- [Sidebar](https://control-ui.dev/components/sidebar): Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus. Status: beta.
+- [App shell](https://control-ui.dev/components/app-shell): The application container: persistent navigation and header around changing page content, with one shared scroll policy. Status: beta.
+- [Page layout](https://control-ui.dev/components/page-layout): Page shell that owns the scroll container, the shared measure, and the title and actions row. Status: beta.
+- [Scroll area](https://control-ui.dev/components/scroll-area): Scroll container with overlay or space-reserving scrollbars, edge fades, and optional progressive blur.
+- [Progressive blur](https://control-ui.dev/components/progressive-blur): CSS-driven backdrop blur that grows toward an edge, with masked layers and interruptible staggered transitions.
+- [Table of contents](https://control-ui.dev/components/table-of-contents): Sticky in-page navigation with scroll-spy range highlighting.
+- [Timeline](https://control-ui.dev/components/timeline): Static chronological events with independent status, connectors, descriptions, and metadata.
+- [Stepper](https://control-ui.dev/components/stepper): Static and interactive workflow steps with horizontal and vertical layouts.
+- [Skeleton](https://control-ui.dev/components/skeleton): Loading placeholders with seamless shimmer, pulse, and static variants. Match their dimensions to the incoming content. Status: beta.
+- [Slider](https://control-ui.dev/components/slider): Single-value range control with branded and plain treatments.
+- [ChannelStrip](https://control-ui.dev/components/channel-strip): Console mixer strips — title, fader, level meter with dB scale, value, and controls — whose rows line up across a Mixer even when a strip leaves a part out.
+- [Select](https://control-ui.dev/components/select): Single-choice picker with a token-matched trigger and floating list.
+- [DropdownMenu](https://control-ui.dev/components/dropdown-menu): Dropdown menu for actions, resources, labels, separators, and submenus.
+- [Context Menu](https://control-ui.dev/components/context-menu): Pointer-positioned right-click and long-press menu with nested actions and selection controls.
+- [Toggle](https://control-ui.dev/components/toggle): Pressed-state button and toggle group built on the Button surface.
+- [Switch](https://control-ui.dev/components/switch): On/off control with token-driven track, thumb, and press motion.
+- [Dialog](https://control-ui.dev/components/dialog): Modal dialog for focused tasks, confirmations, and custom panels.
+- [Popover](https://control-ui.dev/components/popover): Anchored floating panel for inline settings and contextual content.
+- [Tooltip](https://control-ui.dev/components/tooltip): Hover or focus hint popup with Base UI positioning and Control UI tokens.
+- [Rich tooltip](https://control-ui.dev/components/rich-tooltip): Persistent anchored tip for onboarding tours, walkthroughs, and new-feature announcements — dismissible, with optional media and step counter.
+- [Drawer](https://control-ui.dev/components/drawer): Swipeable edge panel for mobile sheets and off-canvas surfaces.
+- [Responsive dialog](https://control-ui.dev/components/responsive-dialog): Modal dialog on desktop that becomes a swipeable bottom drawer on mobile.
+- [Toast](https://control-ui.dev/components/toast): Transient notifications with a callable toast API and single Toaster mount.
+- [Input](https://control-ui.dev/components/input): Text field primitive sized and styled to match other controls.
+- [Input group](https://control-ui.dev/components/input-group): Joined input wrapper for addons, icons, and a shared focus indicator.
+- [Dropzone](https://control-ui.dev/components/dropzone): Composable file intake with validation, managed selection, and drag-activated overlays. Status: beta.
+- [Phone input](https://control-ui.dev/components/phone-input): International phone field with country search, E.164 values, and Zod validation helpers.
+- [Command](https://control-ui.dev/components/command): Command palette with token-matched dialog, input, and result rows.
+- [Kbd](https://control-ui.dev/components/kbd): Keyboard shortcut chip and chord group.
+- [Checkbox](https://control-ui.dev/components/checkbox): Single checkbox control with checked and indeterminate states.
+- [Radio group](https://control-ui.dev/components/radio-group): Single-choice radio set for plans, filters, and option lists.
+- [Accordion](https://control-ui.dev/components/accordion): Stacked disclosure rows with measured panel animation.
+- [Avatar](https://control-ui.dev/components/avatar): Profile image with initials fallback and composable overlapping groups.
+- [Progress](https://control-ui.dev/components/progress): Determinate task progress with optional label and value rows.
+- [Hover card](https://control-ui.dev/components/hover-card): Hover or focus preview panel for profiles, links, and contextual details.
+- [Alert dialog](https://control-ui.dev/components/alert-dialog): Modal confirmation dialog for destructive or blocking decisions.
+- [Menubar](https://control-ui.dev/components/menubar): Desktop command bar with nested menus, shortcuts, and separators.
+- [Navigation menu](https://control-ui.dev/components/navigation-menu): Site navigation menu with a shared animated viewport.
+- [Field](https://control-ui.dev/components/field): Form field wrapper for labels, descriptions, errors, and validity state.
+- [Form](https://control-ui.dev/components/form): Form wrapper that coordinates field validation and returned errors.
+- [Native select](https://control-ui.dev/components/native-select): Native select control styled to match the Control UI control family.
+- [Textarea](https://control-ui.dev/components/textarea): Multiline text field with CSS-first auto-growth.
+- [Input OTP](https://control-ui.dev/components/input-otp): One-time-code field with grouped, focus-aware slots.
+- [Combobox](https://control-ui.dev/components/combobox): Searchable single-select with input and floating option list.
+- [Alert](https://control-ui.dev/components/alert): Inline status panel for callouts, errors, and notices. Status: beta.
+- [Badge](https://control-ui.dev/components/badge): Compact status, label, or count chip.
+- [Card](https://control-ui.dev/components/card): Content surface for panels, tiles, and settings groups.
+- [Table](https://control-ui.dev/components/table): Responsive data table for lists, comparisons, and structured records.
+- [Aspect ratio](https://control-ui.dev/components/aspect-ratio): Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3].
+- [Button group](https://control-ui.dev/components/button-group): Joined button group for toolbars, split actions, and segmented controls.
+- [Empty](https://control-ui.dev/components/empty): Empty-state layout for blank lists, zero results, and new workspaces. Status: beta.
+- [Item](https://control-ui.dev/components/item): List row with media, content, and trailing actions. Status: beta.
+- [Pagination](https://control-ui.dev/components/pagination): Page navigation for long lists and result sets.
+- [Breadcrumb](https://control-ui.dev/components/breadcrumb): Location trail with links, the current page, and collapsed levels.
+- [Separator](https://control-ui.dev/components/separator): Horizontal or vertical hairline divider.
+- [Live status](https://control-ui.dev/components/live-status): Always-mounted polite status region that announces changes to assistive technology.
+- [Spinner](https://control-ui.dev/components/spinner): Accessible loading indicator for pending buttons, panels, and inline waits.
+- [Meter](https://control-ui.dev/components/meter): Static range meter for quota, storage, score, or usage values.
+- [LevelMeter](https://control-ui.dev/components/level-meter): Live audio level in dBFS with warning and clip zones and a peak hold, painted without React renders.
+- [Chart](https://control-ui.dev/components/chart): Gradient-first charts on TanStack Charts: themed host, presets that return real definitions, and the full grammar.
+- [Tree](https://control-ui.dev/components/tree): Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure.
+- [Checkbox Group](https://control-ui.dev/components/checkbox-group): Multi-select checkbox set with shared state and select-all support.
+- [Autocomplete](https://control-ui.dev/components/autocomplete): Free-text input with search-as-you-type suggestions.
+- [Number Field](https://control-ui.dev/components/number-field): Numeric input with stepper buttons and optional drag-to-change behavior.
+- [Trigger Menu](https://control-ui.dev/components/trigger-menu): Caret-anchored command or mention menu for text editors. Status: beta.
+- [Toolbar](https://control-ui.dev/components/toolbar): Roving-focus toolbar for editor controls and compact actions.
+- [Dockable Panel](https://control-ui.dev/components/dockable-panel): Non-modal workspace panel that moves between two explicit edge slots with a mobile Drawer fallback. Status: experimental.
+- [Infinite Canvas](https://control-ui.dev/components/infinite-canvas): Pan-and-zoom spatial workspace for arranging content without fixed bounds. Status: experimental.
+- [Flow](https://control-ui.dev/components/flow): Node graph editor parts that skin React Flow with Control UI tokens. Status: experimental.
+- [Resize Handle](https://control-ui.dev/components/resize-handle): Edge and corner grip for resizing a positioned box; the host owns the drag math. Status: experimental.
+- [Morphing Panel](https://control-ui.dev/components/morphing-panel): A compact control that expands into settings, workspace navigation, or an inline confirmation, with stable alignment and keyboard dismissal. Status: experimental.
+- [Color Picker](https://control-ui.dev/components/color-picker): Color input with picker UI, formats, presets, contrast helpers, and a gradient editor with draggable stops. Status: beta.
+- [Emoji Picker](https://control-ui.dev/components/emoji-picker): Searchable, virtualized emoji grid with skin-aware cells, an active emoji footer, and an emoji-or-icon tabbed variant. Status: beta.
+- [Icon Picker](https://control-ui.dev/components/icon-picker): Searchable icon grid and color swatches using an app-supplied icon catalog. Status: beta.
+- [Resizable](https://control-ui.dev/components/resizable): Accessible resizable panel groups and split layouts with keyboard support. Status: beta.
+- [Calendar](https://control-ui.dev/components/calendar): Date selection grid built on react-day-picker and themed through tokens.
+- [Typography](https://control-ui.dev/components/typography): Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role. Native tags may still wear one text-* rung directly.
+- [Code](https://control-ui.dev/components/code): Shared code surface: Shiki-highlighted lines, gutter, clean copy, editable content, and virtualization for large files.
+- [Code Diff](https://control-ui.dev/components/code-diff): Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting.
+- [Markdown](https://control-ui.dev/components/markdown): Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff.
 
 ## Kits
 
-- [Kits](http://127.0.0.1:3000/kits): Pre-assembled sets of components, grouped by the part of the product they build: the chat screen, agent activity, voice capture, and the notification, email, and configuration surfaces around them.
-- [Email](http://127.0.0.1:3000/kits/email): React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts. Status: beta.
-- [ChatMessage](http://127.0.0.1:3000/kits/chat-message): Composable chat message with stable inline editing, bubble or flat layout, grouped bursts, reactions, and replies.
-- [ChatComposer](http://127.0.0.1:3000/kits/chat-composer): Message composer with controlled text, Enter or ⌘ Enter submit, caret text insertion, and trigger-menu support.
-- [ChatComposerAttachment](http://127.0.0.1:3000/kits/chat-composer-attachment): Composer attachment rail with file previews, upload progress, and removal.
-- [UserAsk](http://127.0.0.1:3000/kits/user-ask): Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.
-- [TaskList](http://127.0.0.1:3000/kits/task-list): Floating agent task progress pill above the composer that expands into the full task list.
-- [AudioDeviceSelect](http://127.0.0.1:3000/kits/audio-device-select): Composable audio input selector with permission, loading, default-device, and disconnected states.
-- [AudioRecorder](http://127.0.0.1:3000/kits/audio-recorder): Voice recorder with realtime waveform, duration, cancel, and submit controls.
-- [AudioVisualizer](http://127.0.0.1:3000/kits/audio-visualizer): Audio visualization with waveform, line envelope, and frequency bar alternatives. Choose the implementation that fits your audio data. Status: beta.
-- [DynamicNotification](http://127.0.0.1:3000/kits/dynamic-notification): Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass. Status: experimental.
-- [FilterBar](http://127.0.0.1:3000/kits/filter-bar): Build editable field, operator, and value filters with a button or inline search.
-- [Activity](http://127.0.0.1:3000/kits/activity): Shared static and collapsible activity anatomy with bounded, scrollable detail content.
-- [TranscriptDivider](http://127.0.0.1:3000/kits/transcript-divider): Toned run-boundary separator for transcripts: steering, interruptions, and condensed context.
-- [Context](http://127.0.0.1:3000/kits/context): Compact context-window usage with an automatically derived token graph and anchored detail inspector. Status: beta.
-- [InlineCitation](http://127.0.0.1:3000/kits/inline-citation): Inline multi-source citation with a keyboard-accessible preview and source navigation.
-- [SourceBadge](http://127.0.0.1:3000/kits/source-badge): Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.
-- [ActionBar](http://127.0.0.1:3000/kits/action-bar): Reusable hover actions for message and response controls.
-- [InlineAttachment](http://127.0.0.1:3000/kits/inline-attachment): Inline file and media previews for chat turns. Status: beta.
-- [MarkdownEditor](http://127.0.0.1:3000/kits/markdown-editor): Compose Markdown with draggable blocks, slash commands, people mentions, formatting, and application-owned image uploads. Status: beta.
-- [MarkdownBlock](http://127.0.0.1:3000/kits/markdown-block): Assistant markdown output rendered to prose, with a header and copy-source action.
-- [ChatLayout](http://127.0.0.1:3000/kits/chat-layout): A scrolling conversation with a pinned header, message turns, and a floating composer dock.
-- [ThreadRail](http://127.0.0.1:3000/kits/thread-rail): Conversation minimap for scanning and jumping between chat turns.
+- [Kits](https://control-ui.dev/kits): Pre-assembled sets of components, grouped by the part of the product they build: the chat screen, agent activity, voice capture, and the notification, email, and configuration surfaces around them.
+- [Email](https://control-ui.dev/kits/email): React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts. Status: beta.
+- [ChatMessage](https://control-ui.dev/kits/chat-message): Composable chat message with stable inline editing, bubble or flat layout, grouped bursts, reactions, and replies.
+- [ChatComposer](https://control-ui.dev/kits/chat-composer): Message composer with controlled text, Enter or ⌘ Enter submit, caret text insertion, and trigger-menu support.
+- [ChatComposerAttachment](https://control-ui.dev/kits/chat-composer-attachment): Composer attachment rail with file previews, upload progress, and removal.
+- [UserAsk](https://control-ui.dev/kits/user-ask): Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.
+- [TaskList](https://control-ui.dev/kits/task-list): Floating agent task progress pill above the composer that expands into the full task list.
+- [AudioDeviceSelect](https://control-ui.dev/kits/audio-device-select): Composable audio input selector with permission, loading, default-device, and disconnected states.
+- [AudioRecorder](https://control-ui.dev/kits/audio-recorder): Voice recorder with realtime waveform, duration, cancel, and submit controls.
+- [AudioVisualizer](https://control-ui.dev/kits/audio-visualizer): Audio visualization with waveform, line envelope, and frequency bar alternatives. Choose the implementation that fits your audio data. Status: beta.
+- [DynamicNotification](https://control-ui.dev/kits/dynamic-notification): Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass. Status: experimental.
+- [FilterBar](https://control-ui.dev/kits/filter-bar): Build editable field, operator, and value filters with a button or inline search.
+- [Activity](https://control-ui.dev/kits/activity): Shared static and collapsible activity anatomy with bounded, scrollable detail content.
+- [TranscriptDivider](https://control-ui.dev/kits/transcript-divider): Toned run-boundary separator for transcripts: steering, interruptions, and condensed context.
+- [Context](https://control-ui.dev/kits/context): Compact context-window usage with an automatically derived token graph and anchored detail inspector. Status: beta.
+- [InlineCitation](https://control-ui.dev/kits/inline-citation): Inline multi-source citation with a keyboard-accessible preview and source navigation.
+- [SourceBadge](https://control-ui.dev/kits/source-badge): Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.
+- [ActionBar](https://control-ui.dev/kits/action-bar): Reusable hover actions for message and response controls.
+- [InlineAttachment](https://control-ui.dev/kits/inline-attachment): Inline file and media previews for chat turns. Status: beta.
+- [MarkdownEditor](https://control-ui.dev/kits/markdown-editor): Compose Markdown with draggable blocks, slash commands, people mentions, formatting, and application-owned image uploads. Status: beta.
+- [MarkdownBlock](https://control-ui.dev/kits/markdown-block): Assistant markdown output rendered to prose, with a header and copy-source action.
+- [ChatLayout](https://control-ui.dev/kits/chat-layout): A scrolling conversation with a pinned header, message turns, and a floating composer dock.
+- [ThreadRail](https://control-ui.dev/kits/thread-rail): Conversation minimap for scanning and jumping between chat turns.
 
 ## Templates
 
-- [Templates](http://127.0.0.1:3000/templates): Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.
-- [Chat](http://127.0.0.1:3000/templates/chat): Controlled chat shell that composes rendered turns and a provider-owned composer.
-- [Theme toggle](http://127.0.0.1:3000/templates/theme-toggle): Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.
-- [Discussion](http://127.0.0.1:3000/templates/discussion): Comment thread with ⌘ Enter posting, nested replies, inline editing, and hover actions. Status: beta.
-- [Coding agent](http://127.0.0.1:3000/templates/coding-agent): Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer. Status: beta.
-- [Settings](http://127.0.0.1:3000/templates/settings): Searchable multi-page settings shell with responsive navigation and accessible control groups.
-- [Team chat](http://127.0.0.1:3000/templates/team-chat): Slack-style workspace with channels, unread badges, presence, reactions, and a side thread for replies. Status: beta.
-- [File explorer](http://127.0.0.1:3000/templates/file-explorer): Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview. Status: beta.
-- [Design canvas](http://127.0.0.1:3000/templates/design-canvas): Figma-style editor with layers, an infinite canvas, a floating tool bar, and scrubbable property inputs. Status: beta.
+- [Templates](https://control-ui.dev/templates): Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.
+- [Chat](https://control-ui.dev/templates/chat): Controlled chat shell that composes rendered turns and a provider-owned composer.
+- [Theme toggle](https://control-ui.dev/templates/theme-toggle): Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.
+- [Discussion](https://control-ui.dev/templates/discussion): Comment thread with ⌘ Enter posting, nested replies, inline editing, and hover actions. Status: beta.
+- [Coding agent](https://control-ui.dev/templates/coding-agent): Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer. Status: beta.
+- [Settings](https://control-ui.dev/templates/settings): Searchable multi-page settings shell with responsive navigation and accessible control groups.
+- [Team chat](https://control-ui.dev/templates/team-chat): Slack-style workspace with channels, unread badges, presence, reactions, and a side thread for replies. Status: beta.
+- [File explorer](https://control-ui.dev/templates/file-explorer): Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview. Status: beta.
+- [Design canvas](https://control-ui.dev/templates/design-canvas): Figma-style editor with layers, an infinite canvas, a floating tool bar, and scrubbable property inputs. Status: beta.
 
 ## Extensions
 
-- [ControlEffects](http://127.0.0.1:3000/extensions/control-effects): CSS-driven control effects (top-shine, ripple, hover-circle) that follow every control app-wide through the emitted anatomy — portalled surfaces included.
-- [viewTransition](http://127.0.0.1:3000/extensions/view-transition): Interrupt-safe driver for the browser View Transitions API: page transitions, shared-element morphs, and a reduced-motion fallback for both.
-- [SendAurora](http://127.0.0.1:3000/extensions/send-aurora): Anchored ChatComposer extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-composer:send-layer anchor.
+- [ControlEffects](https://control-ui.dev/extensions/control-effects): CSS-driven control effects (top-shine, ripple, hover-circle) that follow every control app-wide through the emitted anatomy — portalled surfaces included.
+- [viewTransition](https://control-ui.dev/extensions/view-transition): Interrupt-safe driver for the browser View Transitions API: page transitions, shared-element morphs, and a reduced-motion fallback for both.
+- [SendAurora](https://control-ui.dev/extensions/send-aurora): Anchored ChatComposer extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-composer:send-layer anchor.
 
 ## Skins
 
-- [Skinning Control UI](http://127.0.0.1:3000/skins): Author complete token-driven Control UI skins with slots, adornments, motion controls, and one shared component source.
-- [Mastra](http://127.0.0.1:3000/skins/mastra): Mastra Playground UI: Mona Sans and Commit Mono, compact pill controls, neutral inverse actions, quiet navigation, inset badges, and layered surfaces.
-- [Refined](http://127.0.0.1:3000/skins/refined): Craft-inspired neutral surfaces, Inter typography, pill controls, and quiet layered shadows.
-- [Windows XP](http://127.0.0.1:3000/skins/xp): Windows XP Luna with compact system typography, glossy controls, blue window frames, and Explorer task panes.
-- [Windows 98](http://127.0.0.1:3000/skins/windows-98): Classic Windows 98 with bitmap system typography, raised gray controls, recessed fields, navy title bars, and Explorer tree navigation. Fixed to its original light palette.
-- [Liquid metal](http://127.0.0.1:3000/skins/liquid-metal): Polished metal skin with a WebGL shader control surface.
-- [Rig](http://127.0.0.1:3000/skins/rig): Brutalist skin with coral accents, squared corners, and dense typography.
-- [Sketch](http://127.0.0.1:3000/skins/sketch): Hand-drawn pencil outlines, Excalifont handwriting, and neutral paper surfaces. A clean sketchbook for prototypes and everyday interfaces.
-- [No skin](http://127.0.0.1:3000/skins/none): Control UI defaults: neutral colors, square corners, and no shadows. No skin required.
-- [macOS](http://127.0.0.1:3000/skins/modern-apple): Apple-inspired glass skin with live backdrop blur, SVG edge refraction, paired light and dark rims, and a flush sidebar.
-- [Cuicui](http://127.0.0.1:3000/skins/cuicui): Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor).
-- [Linear](http://127.0.0.1:3000/skins/linear): Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 8px controls on 12px panels, hairline borders instead of elevation, and 8px menu rows inset in a 4px gutter.
+- [Skinning Control UI](https://control-ui.dev/skins): Author complete token-driven Control UI skins with slots, adornments, motion controls, and one shared component source.
+- [Mastra](https://control-ui.dev/skins/mastra): Mastra Playground UI: Mona Sans and Commit Mono, compact pill controls, neutral inverse actions, quiet navigation, inset badges, and layered surfaces.
+- [Refined](https://control-ui.dev/skins/refined): Craft-inspired neutral surfaces, Inter typography, pill controls, and quiet layered shadows.
+- [Windows XP](https://control-ui.dev/skins/xp): Windows XP Luna with compact system typography, glossy controls, blue window frames, and Explorer task panes.
+- [Windows 98](https://control-ui.dev/skins/windows-98): Classic Windows 98 with bitmap system typography, raised gray controls, recessed fields, navy title bars, and Explorer tree navigation. Fixed to its original light palette.
+- [Liquid metal](https://control-ui.dev/skins/liquid-metal): Polished metal skin with a WebGL shader control surface.
+- [Rig](https://control-ui.dev/skins/rig): Brutalist skin with coral accents, squared corners, and dense typography.
+- [Sketch](https://control-ui.dev/skins/sketch): Hand-drawn pencil outlines, Excalifont handwriting, and neutral paper surfaces. A clean sketchbook for prototypes and everyday interfaces.
+- [No skin](https://control-ui.dev/skins/none): Control UI defaults: neutral colors, square corners, and no shadows. No skin required.
+- [macOS](https://control-ui.dev/skins/modern-apple): Apple-inspired glass skin with live backdrop blur, SVG edge refraction, paired light and dark rims, and a flush sidebar.
+- [Cuicui](https://control-ui.dev/skins/cuicui): Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor).
+- [Linear](https://control-ui.dev/skins/linear): Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 8px controls on 12px panels, hairline borders instead of elevation, and 8px menu rows inset in a 4px gutter.
 
 ## Hooks
 
-- [useChatMessage](http://127.0.0.1:3000/hooks/use-chat-message): Typed role, density, and lifecycle state for ChatMessage.
-- [useChatComposer](http://127.0.0.1:3000/hooks/use-chat-composer): Controlled composer text and submit state.
-- [useUserAsk](http://127.0.0.1:3000/hooks/use-user-ask): Question/option registration, selection, freeform text, and keyboard flow for UserAsk.
-- [useAudioRecorder](http://127.0.0.1:3000/hooks/use-audio-recorder): Browser microphone recording state, waveform levels, and Blob completion.
-- [useCopyToClipboard](http://127.0.0.1:3000/hooks/use-copy-to-clipboard): Copy-to-clipboard behavior with success state and fallback support.
+- [useChatMessage](https://control-ui.dev/hooks/use-chat-message): Typed role, density, and lifecycle state for ChatMessage.
+- [useChatComposer](https://control-ui.dev/hooks/use-chat-composer): Controlled composer text and submit state.
+- [useUserAsk](https://control-ui.dev/hooks/use-user-ask): Question/option registration, selection, freeform text, and keyboard flow for UserAsk.
+- [useAudioRecorder](https://control-ui.dev/hooks/use-audio-recorder): Browser microphone recording state, waveform levels, and Blob completion.
+- [useCopyToClipboard](https://control-ui.dev/hooks/use-copy-to-clipboard): Copy-to-clipboard behavior with success state and fallback support.
 
 ## Utilities
 
-- [cn](http://127.0.0.1:3000/utils/cn): Tailwind class-name merge helper.
-- [skin](http://127.0.0.1:3000/utils/skin): Skin slot and adornment resolvers for the Control UI library.
-- [serialize](http://127.0.0.1:3000/utils/serialize): Bridge a rich editor doc to plain text (and structured mentions) and back — independent of any one component.
+- [cn](https://control-ui.dev/utils/cn): Tailwind class-name merge helper.
+- [skin](https://control-ui.dev/utils/skin): Skin slot and adornment resolvers for the Control UI library.
+- [serialize](https://control-ui.dev/utils/serialize): Bridge a rich editor doc to plain text (and structured mentions) and back — independent of any one component.
 
 ## Practice guides
 
-- [CSS-first interactivity](http://127.0.0.1:3000/skills/css-first-interactivity): Model UI reactions with relational selectors, container/style queries, and native platform elements before adding React state, effects, or event handlers.
-- [CSS-first motion & sizing](http://127.0.0.1:3000/skills/css-first-motion-and-sizing): Drive sizing, enter/exit motion, and scroll effects from CSS and native attributes — token-driven and progressively enhanced — instead of measuring and animating values in JavaScript.
-- [Derive, do not duplicate](http://127.0.0.1:3000/skills/react-derive-dont-duplicate): Avoid second sources of truth in component props, hook parameters, and local state.
-- [Remount state boundaries](http://127.0.0.1:3000/skills/react-remount-state-boundaries): Reset state by changing component identity or loading boundaries, not by syncing with effects.
-- [Explicit names instead of comments](http://127.0.0.1:3000/skills/react-explicit-naming): Encode intent in identifiers and extracted units so the code needs no explanatory comments, and keep the rare justified one telegraphic.
-- [One responsibility per file](http://127.0.0.1:3000/skills/react-single-responsibility): Split domain components and hooks before fetching, filtering, selection, and form state become entangled.
-- [Keep input and output APIs narrow](http://127.0.0.1:3000/skills/react-narrow-apis): Split oversized prop, argument, and return-value APIs into cohesive responsibilities.
-- [Keep context necessary, narrow, and stable](http://127.0.0.1:3000/skills/react-context-ownership): Use context only across real composition boundaries, with the smallest stable semantic value consumers need.
-- [Do not query the DOM in React](http://127.0.0.1:3000/skills/react-no-dom-queries): Keep element identity and collections in React instead of searching rendered markup.
-- [Real stack tests](http://127.0.0.1:3000/skills/react-real-stack-tests): Prefer tests that drive production hooks, clients, routing, and cache behavior with only the network mocked.
-- [Test rendered output, not class names](http://127.0.0.1:3000/skills/react-test-rendered-output): Prove visual behavior through computed styles, geometry, or browser output instead of Tailwind class strings.
-- [Cohesive folders](http://127.0.0.1:3000/skills/architecture-cohesive-folders): Keep every folder a short, readable table of contents by grouping loose files into named responsibilities.
-- [Single source of truth](http://127.0.0.1:3000/skills/architecture-single-source-of-truth): Prevent shared facts from drifting by assigning each one a canonical owner.
-- [Use existing components first](http://127.0.0.1:3000/skills/tailwind-use-existing-components): Start from the local design system or registry component before creating a new styled element.
-- [Token discipline](http://127.0.0.1:3000/skills/tailwind-token-discipline): Use established design tokens and local CSS variables before reaching for one-off values.
-- [ClassName boundaries](http://127.0.0.1:3000/skills/tailwind-classname-boundaries): Use component APIs for intended variation instead of overriding design-system internals with className.
-- [Tailwind v4 CSS configuration](http://127.0.0.1:3000/skills/tailwind-v4-css-configuration): Configure Tailwind through CSS directives and tokens instead of adding new JavaScript config.
-- [Tailwind v4 migration syntax](http://127.0.0.1:3000/skills/tailwind-v4-migration-syntax): Use v4 names and modifiers when replacing or reviewing v3-era Tailwind classes.
-- [First-class utilities before custom CSS](http://127.0.0.1:3000/skills/tailwind-generated-utilities): Prefer Tailwind v4's first-class utility families before arbitrary properties or handwritten CSS.
-- [Variant-first styling](http://127.0.0.1:3000/skills/tailwind-variant-first-styling): Check Tailwind variants before adding handwritten selectors, style props, or React state for styling.
-- [Tailwind v4 capabilities](http://127.0.0.1:3000/skills/tailwind-v4-capabilities): Reach for new v4 utilities before layout hacks, user-agent checks, or JavaScript measurement.
-- [Tailwind v4 behavior & motion](http://127.0.0.1:3000/skills/tailwind-v4-behavior-and-motion): Account for v4 behavior changes around transforms, hover, default colors, variant order, spacing, and motion.
-- [State continuity](http://127.0.0.1:3000/skills/ux-state-continuity): Show loading, empty, partial, success, and failure states in the same product language.
-- [Provenance without noise](http://127.0.0.1:3000/skills/ux-provenance-without-noise): Surface source, runtime, and ownership cues only where they help the user trust or act.
-- [Dense but scannable](http://127.0.0.1:3000/skills/ux-dense-but-scannable): Favor compact surfaces that support repeated work without flattening hierarchy.
-- [Say it once](http://127.0.0.1:3000/skills/ux-say-it-once): Cut redundant AI-slop copy so labels, controls, and state carry the obvious meaning.
-- [Skin authoring](http://127.0.0.1:3000/skills/skin-authoring): Author a skin as three files with strict roles — theme.css owns shared tokens, skin.css re-values registered component knobs, and skin.config declares behavior and adornments.
-- [Extension authoring](http://127.0.0.1:3000/skills/extension-authoring): Author an extension as an optional installable layered on the library — root-mounted for cross-cutting anatomy-attached behavior, anchored for component-scoped fx activated from skin.config.
-- [Registry-first DX](http://127.0.0.1:3000/skills/registry-first-dx): Keep the registry manifest and installed source as the contract users can inspect.
-- [Skin completeness](http://127.0.0.1:3000/skills/skin-completeness): Treat a skin as a complete source recipe, not a partial class override layer.
-- [Control UI composition](http://127.0.0.1:3000/skills/control-ui-composition): Keep blocks readable by composing public components, kits, hooks, and slots explicitly.
-- [Runtime-agnostic UI](http://127.0.0.1:3000/skills/runtime-agnostic-ui): Keep core visual surfaces independent from model runners, stores, and transport lifecycles.
-- [Compound components DX](http://127.0.0.1:3000/skills/compound-components-dx): Expose named anatomy parts when users need to customize layout or actions.
-- [Context vs props](http://127.0.0.1:3000/skills/context-vs-props): Reach for a compound-component context only when props cannot reach the part, and store intent in it, not styling.
+- [CSS-first interactivity](https://control-ui.dev/skills/css-first-interactivity): Model UI reactions with relational selectors, container/style queries, and native platform elements before adding React state, effects, or event handlers.
+- [CSS-first motion & sizing](https://control-ui.dev/skills/css-first-motion-and-sizing): Drive sizing, enter/exit motion, and scroll effects from CSS and native attributes — token-driven and progressively enhanced — instead of measuring and animating values in JavaScript.
+- [Derive, do not duplicate](https://control-ui.dev/skills/react-derive-dont-duplicate): Avoid second sources of truth in component props, hook parameters, and local state.
+- [Remount state boundaries](https://control-ui.dev/skills/react-remount-state-boundaries): Reset state by changing component identity or loading boundaries, not by syncing with effects.
+- [Explicit names instead of comments](https://control-ui.dev/skills/react-explicit-naming): Encode intent in identifiers and extracted units so the code needs no explanatory comments, and keep the rare justified one telegraphic.
+- [One responsibility per file](https://control-ui.dev/skills/react-single-responsibility): Split domain components and hooks before fetching, filtering, selection, and form state become entangled.
+- [Keep input and output APIs narrow](https://control-ui.dev/skills/react-narrow-apis): Split oversized prop, argument, and return-value APIs into cohesive responsibilities.
+- [Keep context necessary, narrow, and stable](https://control-ui.dev/skills/react-context-ownership): Use context only across real composition boundaries, with the smallest stable semantic value consumers need.
+- [Do not query the DOM in React](https://control-ui.dev/skills/react-no-dom-queries): Keep element identity and collections in React instead of searching rendered markup.
+- [Real stack tests](https://control-ui.dev/skills/react-real-stack-tests): Prefer tests that drive production hooks, clients, routing, and cache behavior with only the network mocked.
+- [Test rendered output, not class names](https://control-ui.dev/skills/react-test-rendered-output): Prove visual behavior through computed styles, geometry, or browser output instead of Tailwind class strings.
+- [Cohesive folders](https://control-ui.dev/skills/architecture-cohesive-folders): Keep every folder a short, readable table of contents by grouping loose files into named responsibilities.
+- [Single source of truth](https://control-ui.dev/skills/architecture-single-source-of-truth): Prevent shared facts from drifting by assigning each one a canonical owner.
+- [Use existing components first](https://control-ui.dev/skills/tailwind-use-existing-components): Start from the local design system or registry component before creating a new styled element.
+- [Token discipline](https://control-ui.dev/skills/tailwind-token-discipline): Use established design tokens and local CSS variables before reaching for one-off values.
+- [ClassName boundaries](https://control-ui.dev/skills/tailwind-classname-boundaries): Use component APIs for intended variation instead of overriding design-system internals with className.
+- [Tailwind v4 CSS configuration](https://control-ui.dev/skills/tailwind-v4-css-configuration): Configure Tailwind through CSS directives and tokens instead of adding new JavaScript config.
+- [Tailwind v4 migration syntax](https://control-ui.dev/skills/tailwind-v4-migration-syntax): Use v4 names and modifiers when replacing or reviewing v3-era Tailwind classes.
+- [First-class utilities before custom CSS](https://control-ui.dev/skills/tailwind-generated-utilities): Prefer Tailwind v4's first-class utility families before arbitrary properties or handwritten CSS.
+- [Variant-first styling](https://control-ui.dev/skills/tailwind-variant-first-styling): Check Tailwind variants before adding handwritten selectors, style props, or React state for styling.
+- [Tailwind v4 capabilities](https://control-ui.dev/skills/tailwind-v4-capabilities): Reach for new v4 utilities before layout hacks, user-agent checks, or JavaScript measurement.
+- [Tailwind v4 behavior & motion](https://control-ui.dev/skills/tailwind-v4-behavior-and-motion): Account for v4 behavior changes around transforms, hover, default colors, variant order, spacing, and motion.
+- [State continuity](https://control-ui.dev/skills/ux-state-continuity): Show loading, empty, partial, success, and failure states in the same product language.
+- [Provenance without noise](https://control-ui.dev/skills/ux-provenance-without-noise): Surface source, runtime, and ownership cues only where they help the user trust or act.
+- [Dense but scannable](https://control-ui.dev/skills/ux-dense-but-scannable): Favor compact surfaces that support repeated work without flattening hierarchy.
+- [Say it once](https://control-ui.dev/skills/ux-say-it-once): Cut redundant AI-slop copy so labels, controls, and state carry the obvious meaning.
+- [Skin authoring](https://control-ui.dev/skills/skin-authoring): Author a skin as three files with strict roles — theme.css owns shared tokens, skin.css re-values registered component knobs, and skin.config declares behavior and adornments.
+- [Extension authoring](https://control-ui.dev/skills/extension-authoring): Author an extension as an optional installable layered on the library — root-mounted for cross-cutting anatomy-attached behavior, anchored for component-scoped fx activated from skin.config.
+- [Registry-first DX](https://control-ui.dev/skills/registry-first-dx): Keep the registry manifest and installed source as the contract users can inspect.
+- [Skin completeness](https://control-ui.dev/skills/skin-completeness): Treat a skin as a complete source recipe, not a partial class override layer.
+- [Control UI composition](https://control-ui.dev/skills/control-ui-composition): Keep blocks readable by composing public components, kits, hooks, and slots explicitly.
+- [Runtime-agnostic UI](https://control-ui.dev/skills/runtime-agnostic-ui): Keep core visual surfaces independent from model runners, stores, and transport lifecycles.
+- [Compound components DX](https://control-ui.dev/skills/compound-components-dx): Expose named anatomy parts when users need to customize layout or actions.
+- [Context vs props](https://control-ui.dev/skills/context-vs-props): Reach for a compound-component context only when props cannot reach the part, and store intent in it, not styling.
 
 ## Machine-readable indexes
 
-- [MCP server](http://127.0.0.1:3000/api/mcp): Streamable HTTP Model Context Protocol endpoint — `search_registry`, `get_registry_item`, `list_registry`. No authentication. Card at http://127.0.0.1:3000/.well-known/mcp/server-card.json.
-- [OpenAPI description](http://127.0.0.1:3000/openapi.json): The registry HTTP API, linked from http://127.0.0.1:3000/.well-known/api-catalog.
+- [MCP server](https://control-ui.dev/api/mcp): Streamable HTTP Model Context Protocol endpoint — `search_registry`, `get_registry_item`, `list_registry`. No authentication. Card at https://control-ui.dev/.well-known/mcp/server-card.json.
+- [OpenAPI description](https://control-ui.dev/openapi.json): The registry HTTP API, linked from https://control-ui.dev/.well-known/api-catalog.
 - Markdown pages: request any canonical page with `Accept: text/markdown` to read it as markdown instead of HTML.
-- [auth.md](http://127.0.0.1:3000/auth.md): Registration and credential policy. Nothing to register, nothing to send.
-- [Registry API](http://127.0.0.1:3000/api/registry): JSON index of every public catalog item.
-- [Agent index](http://127.0.0.1:3000/r/agent-index.json): Static agent-friendly registry metadata.
-- [shadcn registry](http://127.0.0.1:3000/r/registry.json): Registry schema consumed by shadcn tooling.
-- [Skin anatomy contract](http://127.0.0.1:3000/r/contract/index.json): Index of every paint family. Each family slices its own scopes, parts, states, knobs (the `--cui-*` CSS custom properties every component paints through), and adornments, with a `.contrast.json` sibling carrying the rendered ancestor chain that paints behind each one.
-- [Theme token contract](http://127.0.0.1:3000/r/theme-contract.json): Generated skin token reference.
-- [Setup prompt](http://127.0.0.1:3000/r/setup-prompt.md): Paste-ready instructions for a coding agent: read a repository, install Control UI into it, wire the CSS, then design and contrast-check its skin.
+- [auth.md](https://control-ui.dev/auth.md): Registration and credential policy. Nothing to register, nothing to send.
+- [Registry API](https://control-ui.dev/api/registry): JSON index of every public catalog item.
+- [Agent index](https://control-ui.dev/r/agent-index.json): Static agent-friendly registry metadata.
+- [shadcn registry](https://control-ui.dev/r/registry.json): Registry schema consumed by shadcn tooling.
+- [Skin anatomy contract](https://control-ui.dev/r/contract/index.json): Index of every paint family. Each family slices its own scopes, parts, states, knobs (the `--cui-*` CSS custom properties every component paints through), and adornments, with a `.contrast.json` sibling carrying the rendered ancestor chain that paints behind each one.
+- [Theme token contract](https://control-ui.dev/r/theme-contract.json): Generated skin token reference.
+- [Setup prompt](https://control-ui.dev/r/setup-prompt.md): Paste-ready instructions for a coding agent: read a repository, install Control UI into it, wire the CSS, then design and contrast-check its skin.
 
 ## Optional
 
-- [Extended agent reference](http://127.0.0.1:3000/llms-full.txt): Detailed catalog, install commands, and Control UI practice rules.
+- [Extended agent reference](https://control-ui.dev/llms-full.txt): Detailed catalog, install commands, and Control UI practice rules.

@@ -6,9 +6,9 @@
   "description": "Joined button group for toolbars, split actions, and segmented controls.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/button.json",
-    "http://127.0.0.1:3000/r/core.json",
-    "http://127.0.0.1:3000/r/track-highlight.json"
+    "https://control-ui.dev/r/button.json",
+    "https://control-ui.dev/r/core.json",
+    "https://control-ui.dev/r/track-highlight.json"
   ],
   "files": [
     {

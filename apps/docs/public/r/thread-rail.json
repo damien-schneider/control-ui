@@ -6,8 +6,8 @@
   "description": "Conversation minimap for scanning and jumping between chat turns.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/chat-message.json",
-    "http://127.0.0.1:3000/r/core.json"
+    "https://control-ui.dev/r/chat-message.json",
+    "https://control-ui.dev/r/core.json"
   ],
   "files": [
     {

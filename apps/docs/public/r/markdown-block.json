@@ -6,11 +6,11 @@
   "description": "Assistant markdown output rendered to prose, with a header and copy-source action.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/code.json",
-    "http://127.0.0.1:3000/r/core.json",
-    "http://127.0.0.1:3000/r/markdown.json",
-    "http://127.0.0.1:3000/r/scroll-area.json",
-    "http://127.0.0.1:3000/r/use-copy-to-clipboard.json"
+    "https://control-ui.dev/r/code.json",
+    "https://control-ui.dev/r/core.json",
+    "https://control-ui.dev/r/markdown.json",
+    "https://control-ui.dev/r/scroll-area.json",
+    "https://control-ui.dev/r/use-copy-to-clipboard.json"
   ],
   "files": [
     {

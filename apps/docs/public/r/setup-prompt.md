@@ -2,15 +2,15 @@ You are setting up Control UI in this repository, then designing its skin with m
 
 Read the project first
 - Every command here and in the catalog is written for npm. Read the lockfile and run mine instead — pnpm → pnpm dlx shadcn@latest, yarn → yarn dlx shadcn@latest, bun → bunx --bun shadcn@latest — and the same for npm run: the scripts you add later are written with my runner too.
-- If this directory has no package.json, scaffold a new app instead: `npx shadcn@latest init --template next --defaults --name my-app --no-monorepo --force http://127.0.0.1:3000/r/next-app.json && cd my-app && npm run dev -- --port 3001` — replace my-app with the name I give you.
+- If this directory has no package.json, scaffold a new app instead: `npx shadcn@latest init --template next --defaults --name my-app --no-monorepo --force https://control-ui.dev/r/next-app.json && cd my-app && npm run dev` — replace my-app with the name I give you.
 - Otherwise read package.json, the framework and its version, the Tailwind version, the CSS entry, and components.json if one already exists.
 - In a workspace, one app is the target: run every command from that app's directory and read that app's manifest and CSS entry, not the root's. If more than one app could be the target and I did not name one, ask which before touching anything.
 - A second Control UI install in the same workspace is an architecture decision, so ask me once before making it: per app, where each app owns its source and skin and they drift apart on purpose — the layout everything here is tested against — or one shared workspace package, which locks every consumer to the same skin and needs each consumer's CSS entry to @source the package, since Tailwind never scans past its own app. Recommend per app and wait for my answer: moving later means rewriting every call site.
 - Tell me what you found and what you will install, then continue directly to Install. This is a status update, not an approval checkpoint; pause only if a required choice or destructive conflict blocks safe installation.
 
 Install
-- The catalog is http://127.0.0.1:3000/r/agent-index.json and every item carries its own install command. http://127.0.0.1:3000/llms.txt indexes the documentation.
-- Install the complete set with neutral defaults in one command: `npx shadcn@latest add http://127.0.0.1:3000/r/all.json`. Picking components one by one leaves the skin we write next with almost no surface to be checked against, and forces the update scripts below to track a bespoke list.
+- The catalog is https://control-ui.dev/r/agent-index.json and every item carries its own install command. https://control-ui.dev/llms.txt indexes the documentation.
+- Install the complete set with neutral defaults in one command: `npx shadcn@latest add https://control-ui.dev/r/all.json`. Picking components one by one leaves the skin we write next with almost no surface to be checked against, and forces the update scripts below to track a bespoke list.
 - Core supplies a complete neutral baseline with no skin config or provider. The application owns its theme; use its CSS to customize tokens. Optional named presets are separate installs.
 - Core supplies a neutral baseline with squared corners and hairline borders. App-owned token declarations override the zero-specificity defaults. Between this install and the theme below, the app looks rougher than before — say so when you report the install, and carry the theme through in this same run. The reset is scaffolding, never the state you leave me in.
 - Install item by item only if I ask for a lean install, and say that the update scripts then have to name each item.
@@ -28,12 +28,12 @@ Wire it
 - Stay inside the app you are installing into. In a workspace the install writes the shared lockfile itself — that is the install doing its job, so let it, and report what moved with the rest of the version changes. Hand-editing a shared file is the other thing: a root package.json, a workspace catalog, a pinned override is mine to change, so propose the edit and wait, however small it looks.
 
 Leave an update path
-- Add two package.json scripts against `http://127.0.0.1:3000/r/update.json`, the complete component set with no skin: control-ui:diff adds it with --diff, control-ui:update adds it with --overwrite.
+- Add two package.json scripts against `https://control-ui.dev/r/update.json`, the complete component set with no skin: control-ui:diff adds it with --diff, control-ui:update adds it with --overwrite.
 - Chain `&& node <installed control-ui directory>/scripts/fix-css-imports.mjs` onto control-ui:update, with the real path. The overwrite re-appends the CSS import block under the canonical prefix the registry assumes, and the script folds those lines onto this app's real paths, drops the duplicates, and keeps the theme import last. In the canonical layout it is a no-op; leave it chained anyway.
 - Add a third script, control-ui:doctor, running `node <installed control-ui directory>/scripts/control-ui-doctor.mjs` with the same real path. It is the read-only audit from Wire it, kept runnable so any later session — or I — can check the wiring after an update or a migration without this prompt.
 - After a lean install those scripts must name the items I installed instead, since update.json would pull in the rest of the set.
 - Say that the diff comes first and the overwrite wants a clean tree, because it rewrites source I own. The three skin files are never touched by either.
-- The install already wrote .claude/skills/control-ui/SKILL.md: the Control UI skill rides every all pack and every update, so control-ui:update keeps it current and hand-edits there do not survive. It carries the token contract and the working rules, so later sessions in this repository build with the library without this prompt — tell me it landed. Only a lean install skips it; add http://127.0.0.1:3000/r/control-ui-skill.json to the items those scripts name to bring it along.
+- The install already wrote .claude/skills/control-ui/SKILL.md: the Control UI skill rides every all pack and every update, so control-ui:update keeps it current and hand-edits there do not survive. It carries the token contract and the working rules, so later sessions in this repository build with the library without this prompt — tell me it landed. Only a lean install skips it; add https://control-ui.dev/r/control-ui-skill.json to the items those scripts name to bring it along.
 
 Where shadcn/ui already sits
 - Only when this app imports its own components/ui/*: inventory that directory, look every component up in the catalog index, and show me the mapping — the Control UI counterpart, or none. A tree or a scroll area counts as much as a button or a dialog; the inventory exists so nothing gets skipped for looking unusual. Then ask me once which mapped call sites to move. Never migrate without my answer.
@@ -62,7 +62,7 @@ Discovery
 - Once the direction is clear, create the theme without asking me to restate the brief.
 
 Implementation
-- Read the canonical contract from http://127.0.0.1:3000/r/theme-contract.json. The registry that served the install serves this list too.
+- Read the canonical contract from https://control-ui.dev/r/theme-contract.json. The registry that served the install serves this list too.
 - Write exactly one file named <short-name>.control-ui-theme.json in the current working directory.
 - Application source stays untouched until the artifact is finished; Apply it below names the only writes beyond the artifact itself.
 - Set baseSkin to "none" for the library defaults, or to the id of your optional installed preset.
@@ -82,7 +82,7 @@ Accessibility gate
 - Do not claim the theme passes without checking the ratios.
 
 What the components actually paint
-- Every painted knob with what the browser actually paints behind it, one file per paint family: `http://127.0.0.1:3000/r/contract/<family>.contrast.json`, harvested from rendered components and verified against the browser. `http://127.0.0.1:3000/r/contract/index.json` names the families and how many probes each has.
+- Every painted knob with what the browser actually paints behind it, one file per paint family: `https://control-ui.dev/r/contract/<family>.contrast.json`, harvested from rendered components and verified against the browser. `https://control-ui.dev/r/contract/index.json` names the families and how many probes each has.
 - A probe's `anatomy` indexes into the file's `anatomies`: the paint stack under the part, back to front, its ancestors but also a sibling indicator that slides beneath it. The last node is the part itself.
 - A part's contrast is decided by the knob it paints from **and** by every knob in that stack, never by theme tokens alone: re-valuing a surface knob changes the contrast of text you did not touch.
 - For each probe: rebuild `anatomy` as nested elements, resolve `knobs.text` on the last one, composite the stack's fills behind it, and clear `rendersText ? 4.5 : 3`:1.
@@ -113,4 +113,4 @@ Apply it
 - Every app this run installed into gets the same theme this same way. One app themed while another rests on the raw reset is the bug, not a smaller scope.
 - Reload and confirm a changed token paints — a radius, the primary — before you call it applied.
 
-When finished, tell me the artifact path and where each app imports its CSS. To review the result myself, I check the active theme at http://127.0.0.1:3000/theme-accessibility.
+When finished, tell me the artifact path and where each app imports its CSS. To review the result myself, I check the active theme at https://control-ui.dev/theme-accessibility.

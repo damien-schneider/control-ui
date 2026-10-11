@@ -6,7 +6,7 @@
   "description": "Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role. Native tags may still wear one text-* rung directly.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json"
+    "https://control-ui.dev/r/core.json"
   ],
   "files": [
     {

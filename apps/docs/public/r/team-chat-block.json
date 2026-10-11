@@ -6,8 +6,8 @@
   "description": "Slack-style workspace with channels, unread badges, presence, reactions, and a side thread for replies.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json",
-    "http://127.0.0.1:3000/r/sidebar.json"
+    "https://control-ui.dev/r/core.json",
+    "https://control-ui.dev/r/sidebar.json"
   ],
   "files": [
     {

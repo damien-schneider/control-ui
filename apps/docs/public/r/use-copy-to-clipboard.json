@@ -6,7 +6,7 @@
   "description": "Clipboard write with a self-resetting copied flag.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json"
+    "https://control-ui.dev/r/core.json"
   ],
   "files": [
     {

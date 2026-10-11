@@ -8,11 +8,11 @@
     "lucide-react@^1.47.0"
   ],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/app-shell.json",
-    "http://127.0.0.1:3000/r/core.json",
-    "http://127.0.0.1:3000/r/page-layout.json",
-    "http://127.0.0.1:3000/r/sidebar.json",
-    "http://127.0.0.1:3000/r/typography.json"
+    "https://control-ui.dev/r/app-shell.json",
+    "https://control-ui.dev/r/core.json",
+    "https://control-ui.dev/r/page-layout.json",
+    "https://control-ui.dev/r/sidebar.json",
+    "https://control-ui.dev/r/typography.json"
   ],
   "files": [
     {

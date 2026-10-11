@@ -8,11 +8,11 @@
     "lucide-react@^1.47.0"
   ],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/collapsible.json",
-    "http://127.0.0.1:3000/r/core.json",
-    "http://127.0.0.1:3000/r/effects.json",
-    "http://127.0.0.1:3000/r/live-status.json",
-    "http://127.0.0.1:3000/r/scroll-area.json"
+    "https://control-ui.dev/r/collapsible.json",
+    "https://control-ui.dev/r/core.json",
+    "https://control-ui.dev/r/effects.json",
+    "https://control-ui.dev/r/live-status.json",
+    "https://control-ui.dev/r/scroll-area.json"
   ],
   "files": [
     {

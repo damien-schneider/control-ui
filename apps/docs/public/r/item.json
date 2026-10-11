@@ -8,8 +8,8 @@
     "@base-ui/react@^1.8.0"
   ],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json",
-    "http://127.0.0.1:3000/r/separator.json"
+    "https://control-ui.dev/r/core.json",
+    "https://control-ui.dev/r/separator.json"
   ],
   "files": [
     {

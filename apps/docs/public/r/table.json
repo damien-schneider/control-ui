@@ -6,8 +6,8 @@
   "description": "Responsive data table for lists, comparisons, and structured records.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json",
-    "http://127.0.0.1:3000/r/scroll-area.json"
+    "https://control-ui.dev/r/core.json",
+    "https://control-ui.dev/r/scroll-area.json"
   ],
   "files": [
     {

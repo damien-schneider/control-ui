@@ -6,7 +6,7 @@
   "description": "Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3].",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json"
+    "https://control-ui.dev/r/core.json"
   ],
   "files": [
     {

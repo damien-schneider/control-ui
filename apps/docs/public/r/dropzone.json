@@ -8,10 +8,10 @@
     "lucide-react@^1.47.0"
   ],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/button.json",
-    "http://127.0.0.1:3000/r/core.json",
-    "http://127.0.0.1:3000/r/effects.json",
-    "http://127.0.0.1:3000/r/item.json"
+    "https://control-ui.dev/r/button.json",
+    "https://control-ui.dev/r/core.json",
+    "https://control-ui.dev/r/effects.json",
+    "https://control-ui.dev/r/item.json"
   ],
   "files": [
     {

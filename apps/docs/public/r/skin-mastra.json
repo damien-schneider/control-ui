@@ -6,7 +6,7 @@
   "description": "Mastra Playground UI: Mona Sans and Commit Mono, compact pill controls, neutral inverse actions, quiet navigation, inset badges, and layered surfaces.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json"
+    "https://control-ui.dev/r/core.json"
   ],
   "files": [
     {

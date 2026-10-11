@@ -6,7 +6,7 @@
   "description": "Edge and corner grip for resizing a positioned box; the host owns the drag math.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json"
+    "https://control-ui.dev/r/core.json"
   ],
   "files": [
     {

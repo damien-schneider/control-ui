@@ -8,7 +8,7 @@
     "react-day-picker@^10.0.1"
   ],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json"
+    "https://control-ui.dev/r/core.json"
   ],
   "files": [
     {

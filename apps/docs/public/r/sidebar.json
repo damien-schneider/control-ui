@@ -9,13 +9,13 @@
     "lucide-react@^1.47.0"
   ],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/button.json",
-    "http://127.0.0.1:3000/r/core.json",
-    "http://127.0.0.1:3000/r/drawer.json",
-    "http://127.0.0.1:3000/r/scroll-area.json",
-    "http://127.0.0.1:3000/r/sheet.json",
-    "http://127.0.0.1:3000/r/tooltip.json",
-    "http://127.0.0.1:3000/r/track-highlight.json"
+    "https://control-ui.dev/r/button.json",
+    "https://control-ui.dev/r/core.json",
+    "https://control-ui.dev/r/drawer.json",
+    "https://control-ui.dev/r/scroll-area.json",
+    "https://control-ui.dev/r/sheet.json",
+    "https://control-ui.dev/r/tooltip.json",
+    "https://control-ui.dev/r/track-highlight.json"
   ],
   "files": [
     {

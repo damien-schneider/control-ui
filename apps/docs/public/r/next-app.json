@@ -6,10 +6,10 @@
   "description": "Minimal Next.js starter wiring for the complete Control UI registry.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/all.json",
-    "http://127.0.0.1:3000/r/button.json",
-    "http://127.0.0.1:3000/r/core.json",
-    "http://127.0.0.1:3000/r/typography.json"
+    "https://control-ui.dev/r/all.json",
+    "https://control-ui.dev/r/button.json",
+    "https://control-ui.dev/r/core.json",
+    "https://control-ui.dev/r/typography.json"
   ],
   "files": [
     {

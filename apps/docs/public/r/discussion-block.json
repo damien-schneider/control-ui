@@ -8,14 +8,14 @@
     "lucide-react@^1.47.0"
   ],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/button.json",
-    "http://127.0.0.1:3000/r/chat-composer.json",
-    "http://127.0.0.1:3000/r/chat-message.json",
-    "http://127.0.0.1:3000/r/core.json",
-    "http://127.0.0.1:3000/r/kbd.json",
-    "http://127.0.0.1:3000/r/markdown.json",
-    "http://127.0.0.1:3000/r/markdown-editor.json",
-    "http://127.0.0.1:3000/r/typography.json"
+    "https://control-ui.dev/r/button.json",
+    "https://control-ui.dev/r/chat-composer.json",
+    "https://control-ui.dev/r/chat-message.json",
+    "https://control-ui.dev/r/core.json",
+    "https://control-ui.dev/r/kbd.json",
+    "https://control-ui.dev/r/markdown.json",
+    "https://control-ui.dev/r/markdown-editor.json",
+    "https://control-ui.dev/r/typography.json"
   ],
   "files": [
     {

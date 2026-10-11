@@ -17,15 +17,9 @@ function duplicates(values: string[]) {
   return [...repeated];
 }
 
-// URL strictness only applies when production URL is configured: local runs use dev
-// fallback, and `build` re-runs `sync` so deployed artifacts always carry configured URL.
-const hasConfiguredProductionUrl = Boolean(process.env.NEXT_PUBLIC_SITE_URL?.trim() || process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim());
-
-if (hasConfiguredProductionUrl) {
-  if (siteConfig.url.protocol !== "https:") failures.push(`canonical site URL must use HTTPS: ${siteConfig.url}`);
-  if (siteConfig.url.hostname === "localhost" || siteConfig.url.hostname === "127.0.0.1") {
-    failures.push(`canonical site URL cannot be local: ${siteConfig.url}`);
-  }
+if (siteConfig.url.protocol !== "https:") failures.push(`canonical site URL must use HTTPS: ${siteConfig.url}`);
+if (siteConfig.url.hostname === "localhost" || siteConfig.url.hostname === "127.0.0.1") {
+  failures.push(`canonical site URL cannot be local: ${siteConfig.url}`);
 }
 
 for (const [label, values] of [
@@ -72,14 +66,12 @@ const llms = readFileSync(path.join(publicRoot, "llms.txt"), "utf8");
 const llmsFull = readFileSync(path.join(publicRoot, "llms-full.txt"), "utf8");
 const agentIndex = readFileSync(path.join(publicRoot, "r/agent-index.json"), "utf8");
 
-if (hasConfiguredProductionUrl) {
-  for (const [label, content] of [
-    ["llms.txt", llms],
-    ["llms-full.txt", llmsFull],
-    ["r/agent-index.json", agentIndex],
-  ] as const) {
-    if (/https?:\/\/(?:127\.0\.0\.1|localhost)(?::\d+)?/.test(content)) failures.push(`${label} contains a local URL`);
-  }
+for (const [label, content] of [
+  ["llms.txt", llms],
+  ["llms-full.txt", llmsFull],
+  ["r/agent-index.json", agentIndex],
+] as const) {
+  if (/https?:\/\/(?:127\.0\.0\.1|localhost)(?::\d+)?/.test(content)) failures.push(`${label} contains a local URL`);
 }
 
 if (!llms.startsWith(`# ${siteConfig.name}\n\n> ${siteConfig.description}\n`)) {

@@ -1,9 +1,11 @@
-import { createReadStream, existsSync, statSync } from "node:fs";
+import { existsSync, readFileSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import path from "node:path";
 
 const root = path.resolve(process.argv[2] ?? "public");
 const port = Number(process.argv[3] ?? 3000);
+const localOrigin = `http://127.0.0.1:${port}`;
+const publishedOrigin = new URL(JSON.parse(readFileSync(path.join(root, "r/registry.json"), "utf8")).homepage).origin;
 
 createServer((request, response) => {
   const pathname = decodeURIComponent(new URL(request.url ?? "/", "http://localhost").pathname);
@@ -13,5 +15,5 @@ createServer((request, response) => {
     return;
   }
   response.setHeader("content-type", filePath.endsWith(".json") ? "application/json" : "text/plain");
-  createReadStream(filePath).pipe(response);
+  response.end(readFileSync(filePath, "utf8").replaceAll(publishedOrigin, localOrigin));
 }).listen(port, "127.0.0.1");

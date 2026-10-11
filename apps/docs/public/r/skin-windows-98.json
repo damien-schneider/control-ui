@@ -6,8 +6,8 @@
   "description": "Classic Windows 98 with bitmap system typography, raised gray controls, recessed fields, navy title bars, and Explorer tree navigation. Fixed to its original light palette.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json",
-    "http://127.0.0.1:3000/r/retro-system-font.json"
+    "https://control-ui.dev/r/core.json",
+    "https://control-ui.dev/r/retro-system-font.json"
   ],
   "files": [
     {

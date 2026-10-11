@@ -8,12 +8,12 @@
     "streamdown@^2.6.0"
   ],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/checkbox.json",
-    "http://127.0.0.1:3000/r/code.json",
-    "http://127.0.0.1:3000/r/code-diff.json",
-    "http://127.0.0.1:3000/r/core.json",
-    "http://127.0.0.1:3000/r/scroll-area.json",
-    "http://127.0.0.1:3000/r/typography.json"
+    "https://control-ui.dev/r/checkbox.json",
+    "https://control-ui.dev/r/code.json",
+    "https://control-ui.dev/r/code-diff.json",
+    "https://control-ui.dev/r/core.json",
+    "https://control-ui.dev/r/scroll-area.json",
+    "https://control-ui.dev/r/typography.json"
   ],
   "files": [
     {

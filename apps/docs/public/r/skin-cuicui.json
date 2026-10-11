@@ -6,8 +6,8 @@
   "description": "Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor).",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json",
-    "http://127.0.0.1:3000/r/send-aurora.json"
+    "https://control-ui.dev/r/core.json",
+    "https://control-ui.dev/r/send-aurora.json"
   ],
   "files": [
     {

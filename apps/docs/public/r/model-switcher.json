@@ -6,8 +6,8 @@
   "description": "Model selection composition used by chat surfaces.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json",
-    "http://127.0.0.1:3000/r/select.json"
+    "https://control-ui.dev/r/core.json",
+    "https://control-ui.dev/r/select.json"
   ],
   "files": [
     {

@@ -1,4 +1,4 @@
-const FALLBACK_DEV_URL = "http://127.0.0.1:3000";
+const PRODUCTION_SITE_URL = "https://control-ui.dev";
 
 function urlFromHost(host: string | undefined) {
   if (!host) return undefined;
@@ -8,7 +8,7 @@ function urlFromHost(host: string | undefined) {
 function canonicalSiteUrl() {
   const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
   const vercelProductionUrl = urlFromHost(process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim());
-  return new URL(configuredUrl || vercelProductionUrl || FALLBACK_DEV_URL);
+  return new URL(configuredUrl || vercelProductionUrl || PRODUCTION_SITE_URL);
 }
 
 const name = "Control UI";

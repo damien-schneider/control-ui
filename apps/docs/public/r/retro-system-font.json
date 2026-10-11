@@ -6,7 +6,7 @@
   "description": "Embedded bitmap-style font shared by the Windows XP and Windows 98 skins, with its MIT license.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json"
+    "https://control-ui.dev/r/core.json"
   ],
   "files": [
     {

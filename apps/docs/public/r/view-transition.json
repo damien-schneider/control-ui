@@ -6,8 +6,8 @@
   "description": "Interrupt-safe driver for the browser View Transitions API: page transitions, shared-element morphs, and a reduced-motion fallback for both.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json",
-    "http://127.0.0.1:3000/r/motion.json"
+    "https://control-ui.dev/r/core.json",
+    "https://control-ui.dev/r/motion.json"
   ],
   "files": [
     {

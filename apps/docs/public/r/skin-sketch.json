@@ -7,7 +7,7 @@
   "docs": "Import skin-theme.css and skin.css in your global CSS, then mount <SketchStrokeRuntime /> once in your root layout from \"@/components/control-ui/sketch-stroke-runtime\". Smooth SVG pen strokes follow each control’s dimensions and theme colors, including native inputs. The runtime restores its styles on unmount.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json"
+    "https://control-ui.dev/r/core.json"
   ],
   "files": [
     {

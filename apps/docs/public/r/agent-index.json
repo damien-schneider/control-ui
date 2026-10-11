@@ -3,8 +3,8 @@
   "data": {
     "count": 194,
     "contracts": {
-      "skin": "http://127.0.0.1:3000/r/contract/index.json",
-      "theme": "http://127.0.0.1:3000/r/theme-contract.json"
+      "skin": "https://control-ui.dev/r/contract/index.json",
+      "theme": "https://control-ui.dev/r/theme-contract.json"
     },
     "fullInstalls": [
       {
@@ -12,88 +12,88 @@
         "skin": "mastra",
         "name": "All components — Mastra",
         "summary": "Mastra Playground UI: Mona Sans and Commit Mono, compact pill controls, neutral inverse actions, quiet navigation, inset badges, and layered surfaces.",
-        "manifestUrl": "http://127.0.0.1:3000/r/all-mastra.json",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-mastra.json"
+        "manifestUrl": "https://control-ui.dev/r/all-mastra.json",
+        "install": "npx shadcn@latest add https://control-ui.dev/r/all-mastra.json"
       },
       {
         "id": "all-refined",
         "skin": "refined",
         "name": "All components — Refined",
         "summary": "Craft-inspired neutral surfaces, Inter typography, pill controls, and quiet layered shadows.",
-        "manifestUrl": "http://127.0.0.1:3000/r/all-refined.json",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-refined.json"
+        "manifestUrl": "https://control-ui.dev/r/all-refined.json",
+        "install": "npx shadcn@latest add https://control-ui.dev/r/all-refined.json"
       },
       {
         "id": "all-xp",
         "skin": "xp",
         "name": "All components — Windows XP",
         "summary": "Windows XP Luna with compact system typography, glossy controls, blue window frames, and Explorer task panes.",
-        "manifestUrl": "http://127.0.0.1:3000/r/all-xp.json",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-xp.json"
+        "manifestUrl": "https://control-ui.dev/r/all-xp.json",
+        "install": "npx shadcn@latest add https://control-ui.dev/r/all-xp.json"
       },
       {
         "id": "all-windows-98",
         "skin": "windows-98",
         "name": "All components — Windows 98",
         "summary": "Classic Windows 98 with bitmap system typography, raised gray controls, recessed fields, navy title bars, and Explorer tree navigation. Fixed to its original light palette.",
-        "manifestUrl": "http://127.0.0.1:3000/r/all-windows-98.json",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-windows-98.json"
+        "manifestUrl": "https://control-ui.dev/r/all-windows-98.json",
+        "install": "npx shadcn@latest add https://control-ui.dev/r/all-windows-98.json"
       },
       {
         "id": "all-liquid-metal",
         "skin": "liquid-metal",
         "name": "All components — Liquid metal",
         "summary": "Polished metal skin with a WebGL shader control surface.",
-        "manifestUrl": "http://127.0.0.1:3000/r/all-liquid-metal.json",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-liquid-metal.json"
+        "manifestUrl": "https://control-ui.dev/r/all-liquid-metal.json",
+        "install": "npx shadcn@latest add https://control-ui.dev/r/all-liquid-metal.json"
       },
       {
         "id": "all-rig",
         "skin": "rig",
         "name": "All components — Rig",
         "summary": "Brutalist skin with coral accents, squared corners, and dense typography.",
-        "manifestUrl": "http://127.0.0.1:3000/r/all-rig.json",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-rig.json"
+        "manifestUrl": "https://control-ui.dev/r/all-rig.json",
+        "install": "npx shadcn@latest add https://control-ui.dev/r/all-rig.json"
       },
       {
         "id": "all-sketch",
         "skin": "sketch",
         "name": "All components — Sketch",
         "summary": "Hand-drawn pencil outlines, Excalifont handwriting, and neutral paper surfaces. A clean sketchbook for prototypes and everyday interfaces.",
-        "manifestUrl": "http://127.0.0.1:3000/r/all-sketch.json",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-sketch.json"
+        "manifestUrl": "https://control-ui.dev/r/all-sketch.json",
+        "install": "npx shadcn@latest add https://control-ui.dev/r/all-sketch.json"
       },
       {
         "id": "all",
         "skin": "none",
         "name": "All components — No skin",
         "summary": "Control UI defaults: neutral colors, square corners, and no shadows. No skin required.",
-        "manifestUrl": "http://127.0.0.1:3000/r/all.json",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all.json"
+        "manifestUrl": "https://control-ui.dev/r/all.json",
+        "install": "npx shadcn@latest add https://control-ui.dev/r/all.json"
       },
       {
         "id": "all-modern-apple",
         "skin": "modern-apple",
         "name": "All components — macOS",
         "summary": "Apple-inspired glass skin with live backdrop blur, SVG edge refraction, paired light and dark rims, and a flush sidebar.",
-        "manifestUrl": "http://127.0.0.1:3000/r/all-modern-apple.json",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-modern-apple.json"
+        "manifestUrl": "https://control-ui.dev/r/all-modern-apple.json",
+        "install": "npx shadcn@latest add https://control-ui.dev/r/all-modern-apple.json"
       },
       {
         "id": "all-cuicui",
         "skin": "cuicui",
         "name": "All components — Cuicui",
         "summary": "Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor).",
-        "manifestUrl": "http://127.0.0.1:3000/r/all-cuicui.json",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-cuicui.json"
+        "manifestUrl": "https://control-ui.dev/r/all-cuicui.json",
+        "install": "npx shadcn@latest add https://control-ui.dev/r/all-cuicui.json"
       },
       {
         "id": "all-linear",
         "skin": "linear",
         "name": "All components — Linear",
         "summary": "Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 8px controls on 12px panels, hairline borders instead of elevation, and 8px menu rows inset in a 4px gutter.",
-        "manifestUrl": "http://127.0.0.1:3000/r/all-linear.json",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-linear.json"
+        "manifestUrl": "https://control-ui.dev/r/all-linear.json",
+        "install": "npx shadcn@latest add https://control-ui.dev/r/all-linear.json"
       }
     ],
     "items": [
@@ -274,7 +274,7 @@
         "kind": "Skin",
         "summary": "Mastra Playground UI: Mona Sans and Commit Mono, compact pill controls, neutral inverse actions, quiet navigation, inset badges, and layered surfaces.",
         "href": "/skins/mastra",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-mastra.json --overwrite"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/skin-mastra.json --overwrite"
       },
       {
         "id": "refined",
@@ -282,7 +282,7 @@
         "kind": "Skin",
         "summary": "Craft-inspired neutral surfaces, Inter typography, pill controls, and quiet layered shadows.",
         "href": "/skins/refined",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-refined.json --overwrite"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/skin-refined.json --overwrite"
       },
       {
         "id": "xp",
@@ -290,7 +290,7 @@
         "kind": "Skin",
         "summary": "Windows XP Luna with compact system typography, glossy controls, blue window frames, and Explorer task panes.",
         "href": "/skins/xp",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-xp.json --overwrite"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/skin-xp.json --overwrite"
       },
       {
         "id": "windows-98",
@@ -298,7 +298,7 @@
         "kind": "Skin",
         "summary": "Classic Windows 98 with bitmap system typography, raised gray controls, recessed fields, navy title bars, and Explorer tree navigation. Fixed to its original light palette.",
         "href": "/skins/windows-98",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-windows-98.json --overwrite"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/skin-windows-98.json --overwrite"
       },
       {
         "id": "liquid-metal",
@@ -306,7 +306,7 @@
         "kind": "Skin",
         "summary": "Polished metal skin with a WebGL shader control surface.",
         "href": "/skins/liquid-metal",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-liquid-metal.json --overwrite"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/skin-liquid-metal.json --overwrite"
       },
       {
         "id": "rig",
@@ -314,7 +314,7 @@
         "kind": "Skin",
         "summary": "Brutalist skin with coral accents, squared corners, and dense typography.",
         "href": "/skins/rig",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-rig.json --overwrite"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/skin-rig.json --overwrite"
       },
       {
         "id": "sketch",
@@ -322,7 +322,7 @@
         "kind": "Skin",
         "summary": "Hand-drawn pencil outlines, Excalifont handwriting, and neutral paper surfaces. A clean sketchbook for prototypes and everyday interfaces.",
         "href": "/skins/sketch",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-sketch.json --overwrite"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/skin-sketch.json --overwrite"
       },
       {
         "id": "none",
@@ -337,7 +337,7 @@
         "kind": "Skin",
         "summary": "Apple-inspired glass skin with live backdrop blur, SVG edge refraction, paired light and dark rims, and a flush sidebar.",
         "href": "/skins/modern-apple",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-modern-apple.json --overwrite"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/skin-modern-apple.json --overwrite"
       },
       {
         "id": "cuicui",
@@ -345,7 +345,7 @@
         "kind": "Skin",
         "summary": "Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor).",
         "href": "/skins/cuicui",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-cuicui.json --overwrite"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/skin-cuicui.json --overwrite"
       },
       {
         "id": "linear",
@@ -353,7 +353,7 @@
         "kind": "Skin",
         "summary": "Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 8px controls on 12px panels, hairline borders instead of elevation, and 8px menu rows inset in a 4px gutter.",
         "href": "/skins/linear",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-linear.json --overwrite"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/skin-linear.json --overwrite"
       },
       {
         "id": "css-first-interactivity",
@@ -600,7 +600,7 @@
         "summary": "React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts.",
         "href": "/kits/email",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/email.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/email.json"
       },
       {
         "id": "chat-message",
@@ -608,7 +608,7 @@
         "kind": "Kit",
         "summary": "Composable chat message with stable inline editing, bubble or flat layout, grouped bursts, reactions, and replies.",
         "href": "/kits/chat-message",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-message.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/chat-message.json"
       },
       {
         "id": "chat-composer",
@@ -616,7 +616,7 @@
         "kind": "Kit",
         "summary": "Message composer with controlled text, Enter or ⌘ Enter submit, caret text insertion, and trigger-menu support.",
         "href": "/kits/chat-composer",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/chat-composer.json"
       },
       {
         "id": "chat-composer-attachment",
@@ -624,7 +624,7 @@
         "kind": "Kit",
         "summary": "Composer attachment rail with file previews, upload progress, and removal.",
         "href": "/kits/chat-composer-attachment",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer-attachment.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/chat-composer-attachment.json"
       },
       {
         "id": "user-ask",
@@ -632,7 +632,7 @@
         "kind": "Kit",
         "summary": "Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.",
         "href": "/kits/user-ask",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/user-ask.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/user-ask.json"
       },
       {
         "id": "task-list",
@@ -640,7 +640,7 @@
         "kind": "Kit",
         "summary": "Floating agent task progress pill above the composer that expands into the full task list.",
         "href": "/kits/task-list",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/task-list.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/task-list.json"
       },
       {
         "id": "audio-device-select",
@@ -648,7 +648,7 @@
         "kind": "Kit",
         "summary": "Composable audio input selector with permission, loading, default-device, and disconnected states.",
         "href": "/kits/audio-device-select",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/audio-device-select.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/audio-device-select.json"
       },
       {
         "id": "audio-recorder",
@@ -656,7 +656,7 @@
         "kind": "Kit",
         "summary": "Voice recorder with realtime waveform, duration, cancel, and submit controls.",
         "href": "/kits/audio-recorder",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/audio-recorder.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/audio-recorder.json"
       },
       {
         "id": "audio-visualizer",
@@ -665,7 +665,7 @@
         "summary": "Audio visualization with waveform, line envelope, and frequency bar alternatives. Choose the implementation that fits your audio data.",
         "href": "/kits/audio-visualizer",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/audio-visualizer.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/audio-visualizer.json"
       },
       {
         "id": "dynamic-notification",
@@ -674,7 +674,7 @@
         "summary": "Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass.",
         "href": "/kits/dynamic-notification",
         "status": "experimental",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/dynamic-notification.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/dynamic-notification.json"
       },
       {
         "id": "filter-bar",
@@ -682,7 +682,7 @@
         "kind": "Kit",
         "summary": "Build editable field, operator, and value filters with a button or inline search.",
         "href": "/kits/filter-bar",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/filter-bar.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/filter-bar.json"
       },
       {
         "id": "activity",
@@ -690,7 +690,7 @@
         "kind": "Kit",
         "summary": "Shared static and collapsible activity anatomy with bounded, scrollable detail content.",
         "href": "/kits/activity",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/activity.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/activity.json"
       },
       {
         "id": "transcript-divider",
@@ -698,7 +698,7 @@
         "kind": "Kit",
         "summary": "Toned run-boundary separator for transcripts: steering, interruptions, and condensed context.",
         "href": "/kits/transcript-divider",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/transcript-divider.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/transcript-divider.json"
       },
       {
         "id": "context",
@@ -707,7 +707,7 @@
         "summary": "Compact context-window usage with an automatically derived token graph and anchored detail inspector.",
         "href": "/kits/context",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/context.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/context.json"
       },
       {
         "id": "inline-citation",
@@ -715,7 +715,7 @@
         "kind": "Kit",
         "summary": "Inline multi-source citation with a keyboard-accessible preview and source navigation.",
         "href": "/kits/inline-citation",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/inline-citation.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/inline-citation.json"
       },
       {
         "id": "source-badge",
@@ -723,7 +723,7 @@
         "kind": "Kit",
         "summary": "Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.",
         "href": "/kits/source-badge",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/source-badge.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/source-badge.json"
       },
       {
         "id": "action-bar",
@@ -731,7 +731,7 @@
         "kind": "Kit",
         "summary": "Reusable hover actions for message and response controls.",
         "href": "/kits/action-bar",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/action-bar.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/action-bar.json"
       },
       {
         "id": "inline-attachment",
@@ -740,7 +740,7 @@
         "summary": "Inline file and media previews for chat turns.",
         "href": "/kits/inline-attachment",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/inline-attachment.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/inline-attachment.json"
       },
       {
         "id": "markdown-editor",
@@ -749,7 +749,7 @@
         "summary": "Compose Markdown with draggable blocks, slash commands, people mentions, formatting, and application-owned image uploads.",
         "href": "/kits/markdown-editor",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/markdown-editor.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/markdown-editor.json"
       },
       {
         "id": "markdown-block",
@@ -757,7 +757,7 @@
         "kind": "Kit",
         "summary": "Assistant markdown output rendered to prose, with a header and copy-source action.",
         "href": "/kits/markdown-block",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/markdown-block.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/markdown-block.json"
       },
       {
         "id": "chat-layout",
@@ -765,7 +765,7 @@
         "kind": "Kit",
         "summary": "A scrolling conversation with a pinned header, message turns, and a floating composer dock.",
         "href": "/kits/chat-layout",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-layout.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/chat-layout.json"
       },
       {
         "id": "thread-rail",
@@ -773,7 +773,7 @@
         "kind": "Kit",
         "summary": "Conversation minimap for scanning and jumping between chat turns.",
         "href": "/kits/thread-rail",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/thread-rail.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/thread-rail.json"
       },
       {
         "id": "button",
@@ -781,7 +781,7 @@
         "kind": "Component",
         "summary": "Accessible action button with size, variant, and semantic tone support.",
         "href": "/components/button",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/button.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/button.json"
       },
       {
         "id": "collapsible",
@@ -789,7 +789,7 @@
         "kind": "Component",
         "summary": "Accessible disclosure primitive with measured open and close motion.",
         "href": "/components/collapsible",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/collapsible.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/collapsible.json"
       },
       {
         "id": "tabs",
@@ -797,7 +797,7 @@
         "kind": "Component",
         "summary": "Segmented and browser-style navigation with a stable active indicator.",
         "href": "/components/tabs",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/tabs.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/tabs.json"
       },
       {
         "id": "track-highlight",
@@ -805,7 +805,7 @@
         "kind": "Component",
         "summary": "Shared fluid hover, keyboard-focus, and selection highlight for custom lists and groups, with CSS anchors and a measured fallback.",
         "href": "/components/track-highlight",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/track-highlight.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/track-highlight.json"
       },
       {
         "id": "sidebar",
@@ -814,7 +814,7 @@
         "summary": "Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus.",
         "href": "/components/sidebar",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/sidebar.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/sidebar.json"
       },
       {
         "id": "app-shell",
@@ -823,7 +823,7 @@
         "summary": "The application container: persistent navigation and header around changing page content, with one shared scroll policy.",
         "href": "/components/app-shell",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/app-shell.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/app-shell.json"
       },
       {
         "id": "page-layout",
@@ -832,7 +832,7 @@
         "summary": "Page shell that owns the scroll container, the shared measure, and the title and actions row.",
         "href": "/components/page-layout",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/page-layout.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/page-layout.json"
       },
       {
         "id": "scroll-area",
@@ -840,7 +840,7 @@
         "kind": "Component",
         "summary": "Scroll container with overlay or space-reserving scrollbars, edge fades, and optional progressive blur.",
         "href": "/components/scroll-area",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/scroll-area.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/scroll-area.json"
       },
       {
         "id": "progressive-blur",
@@ -848,7 +848,7 @@
         "kind": "Component",
         "summary": "CSS-driven backdrop blur that grows toward an edge, with masked layers and interruptible staggered transitions.",
         "href": "/components/progressive-blur",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/progressive-blur.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/progressive-blur.json"
       },
       {
         "id": "table-of-contents",
@@ -856,7 +856,7 @@
         "kind": "Component",
         "summary": "Sticky in-page navigation with scroll-spy range highlighting.",
         "href": "/components/table-of-contents",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/table-of-contents.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/table-of-contents.json"
       },
       {
         "id": "timeline",
@@ -864,7 +864,7 @@
         "kind": "Component",
         "summary": "Static chronological events with independent status, connectors, descriptions, and metadata.",
         "href": "/components/timeline",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/timeline.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/timeline.json"
       },
       {
         "id": "stepper",
@@ -872,7 +872,7 @@
         "kind": "Component",
         "summary": "Static and interactive workflow steps with horizontal and vertical layouts.",
         "href": "/components/stepper",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/stepper.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/stepper.json"
       },
       {
         "id": "skeleton",
@@ -881,7 +881,7 @@
         "summary": "Loading placeholders with seamless shimmer, pulse, and static variants. Match their dimensions to the incoming content.",
         "href": "/components/skeleton",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skeleton.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/skeleton.json"
       },
       {
         "id": "slider",
@@ -889,7 +889,7 @@
         "kind": "Component",
         "summary": "Single-value range control with branded and plain treatments.",
         "href": "/components/slider",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/slider.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/slider.json"
       },
       {
         "id": "channel-strip",
@@ -897,7 +897,7 @@
         "kind": "Component",
         "summary": "Console mixer strips — title, fader, level meter with dB scale, value, and controls — whose rows line up across a Mixer even when a strip leaves a part out.",
         "href": "/components/channel-strip",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/channel-strip.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/channel-strip.json"
       },
       {
         "id": "select",
@@ -905,7 +905,7 @@
         "kind": "Component",
         "summary": "Single-choice picker with a token-matched trigger and floating list.",
         "href": "/components/select",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/select.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/select.json"
       },
       {
         "id": "dropdown-menu",
@@ -913,7 +913,7 @@
         "kind": "Component",
         "summary": "Dropdown menu for actions, resources, labels, separators, and submenus.",
         "href": "/components/dropdown-menu",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/dropdown-menu.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/dropdown-menu.json"
       },
       {
         "id": "context-menu",
@@ -921,7 +921,7 @@
         "kind": "Component",
         "summary": "Pointer-positioned right-click and long-press menu with nested actions and selection controls.",
         "href": "/components/context-menu",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/context-menu.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/context-menu.json"
       },
       {
         "id": "toggle",
@@ -929,7 +929,7 @@
         "kind": "Component",
         "summary": "Pressed-state button and toggle group built on the Button surface.",
         "href": "/components/toggle",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/toggle.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/toggle.json"
       },
       {
         "id": "switch",
@@ -937,7 +937,7 @@
         "kind": "Component",
         "summary": "On/off control with token-driven track, thumb, and press motion.",
         "href": "/components/switch",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/switch.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/switch.json"
       },
       {
         "id": "dialog",
@@ -945,7 +945,7 @@
         "kind": "Component",
         "summary": "Modal dialog for focused tasks, confirmations, and custom panels.",
         "href": "/components/dialog",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/dialog.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/dialog.json"
       },
       {
         "id": "popover",
@@ -953,7 +953,7 @@
         "kind": "Component",
         "summary": "Anchored floating panel for inline settings and contextual content.",
         "href": "/components/popover",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/popover.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/popover.json"
       },
       {
         "id": "tooltip",
@@ -961,7 +961,7 @@
         "kind": "Component",
         "summary": "Hover or focus hint popup with Base UI positioning and Control UI tokens.",
         "href": "/components/tooltip",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/tooltip.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/tooltip.json"
       },
       {
         "id": "rich-tooltip",
@@ -969,7 +969,7 @@
         "kind": "Component",
         "summary": "Persistent anchored tip for onboarding tours, walkthroughs, and new-feature announcements — dismissible, with optional media and step counter.",
         "href": "/components/rich-tooltip",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/rich-tooltip.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/rich-tooltip.json"
       },
       {
         "id": "drawer",
@@ -977,7 +977,7 @@
         "kind": "Component",
         "summary": "Swipeable edge panel for mobile sheets and off-canvas surfaces.",
         "href": "/components/drawer",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/drawer.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/drawer.json"
       },
       {
         "id": "responsive-dialog",
@@ -985,7 +985,7 @@
         "kind": "Component",
         "summary": "Modal dialog on desktop that becomes a swipeable bottom drawer on mobile.",
         "href": "/components/responsive-dialog",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/responsive-dialog.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/responsive-dialog.json"
       },
       {
         "id": "toast",
@@ -993,7 +993,7 @@
         "kind": "Component",
         "summary": "Transient notifications with a callable toast API and single Toaster mount.",
         "href": "/components/toast",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/toast.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/toast.json"
       },
       {
         "id": "input",
@@ -1001,7 +1001,7 @@
         "kind": "Component",
         "summary": "Text field primitive sized and styled to match other controls.",
         "href": "/components/input",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/input.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/input.json"
       },
       {
         "id": "input-group",
@@ -1009,7 +1009,7 @@
         "kind": "Component",
         "summary": "Joined input wrapper for addons, icons, and a shared focus indicator.",
         "href": "/components/input-group",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/input-group.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/input-group.json"
       },
       {
         "id": "dropzone",
@@ -1018,7 +1018,7 @@
         "summary": "Composable file intake with validation, managed selection, and drag-activated overlays.",
         "href": "/components/dropzone",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/dropzone.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/dropzone.json"
       },
       {
         "id": "phone-input",
@@ -1026,7 +1026,7 @@
         "kind": "Component",
         "summary": "International phone field with country search, E.164 values, and Zod validation helpers.",
         "href": "/components/phone-input",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/phone-input.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/phone-input.json"
       },
       {
         "id": "command",
@@ -1034,7 +1034,7 @@
         "kind": "Component",
         "summary": "Command palette with token-matched dialog, input, and result rows.",
         "href": "/components/command",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/command.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/command.json"
       },
       {
         "id": "kbd",
@@ -1042,7 +1042,7 @@
         "kind": "Component",
         "summary": "Keyboard shortcut chip and chord group.",
         "href": "/components/kbd",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/kbd.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/kbd.json"
       },
       {
         "id": "checkbox",
@@ -1050,7 +1050,7 @@
         "kind": "Component",
         "summary": "Single checkbox control with checked and indeterminate states.",
         "href": "/components/checkbox",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/checkbox.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/checkbox.json"
       },
       {
         "id": "radio-group",
@@ -1058,7 +1058,7 @@
         "kind": "Component",
         "summary": "Single-choice radio set for plans, filters, and option lists.",
         "href": "/components/radio-group",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/radio-group.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/radio-group.json"
       },
       {
         "id": "accordion",
@@ -1066,7 +1066,7 @@
         "kind": "Component",
         "summary": "Stacked disclosure rows with measured panel animation.",
         "href": "/components/accordion",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/accordion.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/accordion.json"
       },
       {
         "id": "avatar",
@@ -1074,7 +1074,7 @@
         "kind": "Component",
         "summary": "Profile image with initials fallback and composable overlapping groups.",
         "href": "/components/avatar",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/avatar.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/avatar.json"
       },
       {
         "id": "progress",
@@ -1082,7 +1082,7 @@
         "kind": "Component",
         "summary": "Determinate task progress with optional label and value rows.",
         "href": "/components/progress",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/progress.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/progress.json"
       },
       {
         "id": "hover-card",
@@ -1090,7 +1090,7 @@
         "kind": "Component",
         "summary": "Hover or focus preview panel for profiles, links, and contextual details.",
         "href": "/components/hover-card",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/hover-card.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/hover-card.json"
       },
       {
         "id": "alert-dialog",
@@ -1098,7 +1098,7 @@
         "kind": "Component",
         "summary": "Modal confirmation dialog for destructive or blocking decisions.",
         "href": "/components/alert-dialog",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/alert-dialog.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/alert-dialog.json"
       },
       {
         "id": "menubar",
@@ -1106,7 +1106,7 @@
         "kind": "Component",
         "summary": "Desktop command bar with nested menus, shortcuts, and separators.",
         "href": "/components/menubar",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/menubar.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/menubar.json"
       },
       {
         "id": "navigation-menu",
@@ -1114,7 +1114,7 @@
         "kind": "Component",
         "summary": "Site navigation menu with a shared animated viewport.",
         "href": "/components/navigation-menu",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/navigation-menu.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/navigation-menu.json"
       },
       {
         "id": "field",
@@ -1122,7 +1122,7 @@
         "kind": "Component",
         "summary": "Form field wrapper for labels, descriptions, errors, and validity state.",
         "href": "/components/field",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/field.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/field.json"
       },
       {
         "id": "form",
@@ -1130,7 +1130,7 @@
         "kind": "Component",
         "summary": "Form wrapper that coordinates field validation and returned errors.",
         "href": "/components/form",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/form.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/form.json"
       },
       {
         "id": "native-select",
@@ -1138,7 +1138,7 @@
         "kind": "Component",
         "summary": "Native select control styled to match the Control UI control family.",
         "href": "/components/native-select",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/native-select.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/native-select.json"
       },
       {
         "id": "textarea",
@@ -1146,7 +1146,7 @@
         "kind": "Component",
         "summary": "Multiline text field with CSS-first auto-growth.",
         "href": "/components/textarea",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/textarea.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/textarea.json"
       },
       {
         "id": "input-otp",
@@ -1154,7 +1154,7 @@
         "kind": "Component",
         "summary": "One-time-code field with grouped, focus-aware slots.",
         "href": "/components/input-otp",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/input-otp.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/input-otp.json"
       },
       {
         "id": "combobox",
@@ -1162,7 +1162,7 @@
         "kind": "Component",
         "summary": "Searchable single-select with input and floating option list.",
         "href": "/components/combobox",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/combobox.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/combobox.json"
       },
       {
         "id": "alert",
@@ -1171,7 +1171,7 @@
         "summary": "Inline status panel for callouts, errors, and notices.",
         "href": "/components/alert",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/alert.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/alert.json"
       },
       {
         "id": "badge",
@@ -1179,7 +1179,7 @@
         "kind": "Component",
         "summary": "Compact status, label, or count chip.",
         "href": "/components/badge",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/badge.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/badge.json"
       },
       {
         "id": "card",
@@ -1187,7 +1187,7 @@
         "kind": "Component",
         "summary": "Content surface for panels, tiles, and settings groups.",
         "href": "/components/card",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/card.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/card.json"
       },
       {
         "id": "table",
@@ -1195,7 +1195,7 @@
         "kind": "Component",
         "summary": "Responsive data table for lists, comparisons, and structured records.",
         "href": "/components/table",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/table.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/table.json"
       },
       {
         "id": "aspect-ratio",
@@ -1203,7 +1203,7 @@
         "kind": "Component",
         "summary": "Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3].",
         "href": "/components/aspect-ratio",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/aspect-ratio.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/aspect-ratio.json"
       },
       {
         "id": "button-group",
@@ -1211,7 +1211,7 @@
         "kind": "Component",
         "summary": "Joined button group for toolbars, split actions, and segmented controls.",
         "href": "/components/button-group",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/button-group.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/button-group.json"
       },
       {
         "id": "empty",
@@ -1220,7 +1220,7 @@
         "summary": "Empty-state layout for blank lists, zero results, and new workspaces.",
         "href": "/components/empty",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/empty.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/empty.json"
       },
       {
         "id": "item",
@@ -1229,7 +1229,7 @@
         "summary": "List row with media, content, and trailing actions.",
         "href": "/components/item",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/item.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/item.json"
       },
       {
         "id": "pagination",
@@ -1237,7 +1237,7 @@
         "kind": "Component",
         "summary": "Page navigation for long lists and result sets.",
         "href": "/components/pagination",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/pagination.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/pagination.json"
       },
       {
         "id": "breadcrumb",
@@ -1245,7 +1245,7 @@
         "kind": "Component",
         "summary": "Location trail with links, the current page, and collapsed levels.",
         "href": "/components/breadcrumb",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/breadcrumb.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/breadcrumb.json"
       },
       {
         "id": "separator",
@@ -1253,7 +1253,7 @@
         "kind": "Component",
         "summary": "Horizontal or vertical hairline divider.",
         "href": "/components/separator",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/separator.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/separator.json"
       },
       {
         "id": "live-status",
@@ -1261,7 +1261,7 @@
         "kind": "Component",
         "summary": "Always-mounted polite status region that announces changes to assistive technology.",
         "href": "/components/live-status",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/live-status.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/live-status.json"
       },
       {
         "id": "spinner",
@@ -1269,7 +1269,7 @@
         "kind": "Component",
         "summary": "Accessible loading indicator for pending buttons, panels, and inline waits.",
         "href": "/components/spinner",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/spinner.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/spinner.json"
       },
       {
         "id": "meter",
@@ -1277,7 +1277,7 @@
         "kind": "Component",
         "summary": "Static range meter for quota, storage, score, or usage values.",
         "href": "/components/meter",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/meter.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/meter.json"
       },
       {
         "id": "level-meter",
@@ -1285,7 +1285,7 @@
         "kind": "Component",
         "summary": "Live audio level in dBFS with warning and clip zones and a peak hold, painted without React renders.",
         "href": "/components/level-meter",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/level-meter.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/level-meter.json"
       },
       {
         "id": "chart",
@@ -1293,7 +1293,7 @@
         "kind": "Component",
         "summary": "Gradient-first charts on TanStack Charts: themed host, presets that return real definitions, and the full grammar.",
         "href": "/components/chart",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chart.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/chart.json"
       },
       {
         "id": "tree",
@@ -1301,7 +1301,7 @@
         "kind": "Component",
         "summary": "Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure.",
         "href": "/components/tree",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/tree.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/tree.json"
       },
       {
         "id": "checkbox-group",
@@ -1309,7 +1309,7 @@
         "kind": "Component",
         "summary": "Multi-select checkbox set with shared state and select-all support.",
         "href": "/components/checkbox-group",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/checkbox-group.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/checkbox-group.json"
       },
       {
         "id": "autocomplete",
@@ -1317,7 +1317,7 @@
         "kind": "Component",
         "summary": "Free-text input with search-as-you-type suggestions.",
         "href": "/components/autocomplete",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/autocomplete.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/autocomplete.json"
       },
       {
         "id": "number-field",
@@ -1325,7 +1325,7 @@
         "kind": "Component",
         "summary": "Numeric input with stepper buttons and optional drag-to-change behavior.",
         "href": "/components/number-field",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/number-field.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/number-field.json"
       },
       {
         "id": "trigger-menu",
@@ -1334,7 +1334,7 @@
         "summary": "Caret-anchored command or mention menu for text editors.",
         "href": "/components/trigger-menu",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/trigger-menu.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/trigger-menu.json"
       },
       {
         "id": "toolbar",
@@ -1342,7 +1342,7 @@
         "kind": "Component",
         "summary": "Roving-focus toolbar for editor controls and compact actions.",
         "href": "/components/toolbar",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/toolbar.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/toolbar.json"
       },
       {
         "id": "dockable-panel",
@@ -1351,7 +1351,7 @@
         "summary": "Non-modal workspace panel that moves between two explicit edge slots with a mobile Drawer fallback.",
         "href": "/components/dockable-panel",
         "status": "experimental",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/dockable-panel.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/dockable-panel.json"
       },
       {
         "id": "infinite-canvas",
@@ -1360,7 +1360,7 @@
         "summary": "Pan-and-zoom spatial workspace for arranging content without fixed bounds.",
         "href": "/components/infinite-canvas",
         "status": "experimental",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/infinite-canvas.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/infinite-canvas.json"
       },
       {
         "id": "flow",
@@ -1369,7 +1369,7 @@
         "summary": "Node graph editor parts that skin React Flow with Control UI tokens.",
         "href": "/components/flow",
         "status": "experimental",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/flow.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/flow.json"
       },
       {
         "id": "resize-handle",
@@ -1378,7 +1378,7 @@
         "summary": "Edge and corner grip for resizing a positioned box; the host owns the drag math.",
         "href": "/components/resize-handle",
         "status": "experimental",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/resize-handle.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/resize-handle.json"
       },
       {
         "id": "morphing-panel",
@@ -1387,7 +1387,7 @@
         "summary": "A compact control that expands into settings, workspace navigation, or an inline confirmation, with stable alignment and keyboard dismissal.",
         "href": "/components/morphing-panel",
         "status": "experimental",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/morphing-panel.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/morphing-panel.json"
       },
       {
         "id": "color-picker",
@@ -1396,7 +1396,7 @@
         "summary": "Color input with picker UI, formats, presets, contrast helpers, and a gradient editor with draggable stops.",
         "href": "/components/color-picker",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/color-picker.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/color-picker.json"
       },
       {
         "id": "emoji-picker",
@@ -1405,7 +1405,7 @@
         "summary": "Searchable, virtualized emoji grid with skin-aware cells, an active emoji footer, and an emoji-or-icon tabbed variant.",
         "href": "/components/emoji-picker",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/emoji-picker.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/emoji-picker.json"
       },
       {
         "id": "icon-picker",
@@ -1414,7 +1414,7 @@
         "summary": "Searchable icon grid and color swatches using an app-supplied icon catalog.",
         "href": "/components/icon-picker",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/icon-picker.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/icon-picker.json"
       },
       {
         "id": "resizable",
@@ -1423,7 +1423,7 @@
         "summary": "Accessible resizable panel groups and split layouts with keyboard support.",
         "href": "/components/resizable",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/resizable.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/resizable.json"
       },
       {
         "id": "calendar",
@@ -1431,7 +1431,7 @@
         "kind": "Component",
         "summary": "Date selection grid built on react-day-picker and themed through tokens.",
         "href": "/components/calendar",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/calendar.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/calendar.json"
       },
       {
         "id": "typography",
@@ -1439,7 +1439,7 @@
         "kind": "Component",
         "summary": "Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role. Native tags may still wear one text-* rung directly.",
         "href": "/components/typography",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/typography.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/typography.json"
       },
       {
         "id": "code",
@@ -1447,7 +1447,7 @@
         "kind": "Component",
         "summary": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, editable content, and virtualization for large files.",
         "href": "/components/code",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/code.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/code.json"
       },
       {
         "id": "code-diff",
@@ -1455,7 +1455,7 @@
         "kind": "Component",
         "summary": "Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting.",
         "href": "/components/code-diff",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/code-diff.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/code-diff.json"
       },
       {
         "id": "markdown",
@@ -1463,7 +1463,7 @@
         "kind": "Component",
         "summary": "Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff.",
         "href": "/components/markdown",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/markdown.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/markdown.json"
       },
       {
         "id": "use-chat-message",
@@ -1527,7 +1527,7 @@
         "kind": "Extension",
         "summary": "CSS-driven control effects (top-shine, ripple, hover-circle) that follow every control app-wide through the emitted anatomy — portalled surfaces included.",
         "href": "/extensions/control-effects",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/control-effects.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/control-effects.json"
       },
       {
         "id": "view-transition",
@@ -1535,7 +1535,7 @@
         "kind": "Extension",
         "summary": "Interrupt-safe driver for the browser View Transitions API: page transitions, shared-element morphs, and a reduced-motion fallback for both.",
         "href": "/extensions/view-transition",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/view-transition.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/view-transition.json"
       },
       {
         "id": "send-aurora",
@@ -1543,7 +1543,7 @@
         "kind": "Extension",
         "summary": "Anchored ChatComposer extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-composer:send-layer anchor.",
         "href": "/extensions/send-aurora",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/send-aurora.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/send-aurora.json"
       },
       {
         "id": "chat",
@@ -1551,7 +1551,7 @@
         "kind": "Block",
         "summary": "Controlled chat shell that composes rendered turns and a provider-owned composer.",
         "href": "/templates/chat",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-block.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/chat-block.json"
       },
       {
         "id": "theme-toggle",
@@ -1559,7 +1559,7 @@
         "kind": "Block",
         "summary": "Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.",
         "href": "/templates/theme-toggle",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/theme-toggle-block.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/theme-toggle-block.json"
       },
       {
         "id": "discussion",
@@ -1568,7 +1568,7 @@
         "summary": "Comment thread with ⌘ Enter posting, nested replies, inline editing, and hover actions.",
         "href": "/templates/discussion",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/discussion-block.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/discussion-block.json"
       },
       {
         "id": "coding-agent",
@@ -1577,7 +1577,7 @@
         "summary": "Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer.",
         "href": "/templates/coding-agent",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/coding-agent-block.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/coding-agent-block.json"
       },
       {
         "id": "settings",
@@ -1585,7 +1585,7 @@
         "kind": "Block",
         "summary": "Searchable multi-page settings shell with responsive navigation and accessible control groups.",
         "href": "/templates/settings",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/settings-block.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/settings-block.json"
       },
       {
         "id": "team-chat",
@@ -1594,7 +1594,7 @@
         "summary": "Slack-style workspace with channels, unread badges, presence, reactions, and a side thread for replies.",
         "href": "/templates/team-chat",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/team-chat-block.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/team-chat-block.json"
       },
       {
         "id": "file-explorer",
@@ -1603,7 +1603,7 @@
         "summary": "Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview.",
         "href": "/templates/file-explorer",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/file-explorer-block.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/file-explorer-block.json"
       },
       {
         "id": "design-canvas",
@@ -1612,7 +1612,7 @@
         "summary": "Figma-style editor with layers, an infinite canvas, a floating tool bar, and scrubbable property inputs.",
         "href": "/templates/design-canvas",
         "status": "beta",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/design-canvas-block.json"
+        "install": "npx shadcn@latest add https://control-ui.dev/r/design-canvas-block.json"
       }
     ]
   }

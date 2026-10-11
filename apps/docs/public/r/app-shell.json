@@ -6,9 +6,9 @@
   "description": "The application container: persistent navigation and header around changing page content, with one shared scroll policy.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json",
-    "http://127.0.0.1:3000/r/page-layout.json",
-    "http://127.0.0.1:3000/r/sidebar.json"
+    "https://control-ui.dev/r/core.json",
+    "https://control-ui.dev/r/page-layout.json",
+    "https://control-ui.dev/r/sidebar.json"
   ],
   "files": [
     {

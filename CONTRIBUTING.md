@@ -9,7 +9,7 @@ bun install
 bun run dev
 ```
 
-The docs app serves at `http://127.0.0.1:3000`. No environment variables are required for local work; optional ones live in `apps/docs/.env.example` (registry URL override, canonical site URL, search-engine verification tokens). In production the canonical URL resolves from `NEXT_PUBLIC_SITE_URL`, falling back to Vercel's `VERCEL_PROJECT_PRODUCTION_URL`.
+The docs app serves at `http://127.0.0.1:3000`. No environment variables are required for local work; optional ones live in `apps/docs/.env.example` (registry URL override, canonical site URL, search-engine verification tokens). The canonical URL resolves from `NEXT_PUBLIC_SITE_URL`, then Vercel's `VERCEL_PROJECT_PRODUCTION_URL`, then `https://control-ui.dev`, so generated files committed from a local `bun run sync` carry the production origin.
 
 Heads-up: the docs app tracks bleeding-edge tooling — Next.js preview releases and the TypeScript native preview (`typescript@7`). Use the pinned Bun version from `package.json` (`packageManager`) if a check behaves differently on your machine.
 

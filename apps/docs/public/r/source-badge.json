@@ -8,9 +8,9 @@
     "lucide-react@^1.47.0"
   ],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/avatar.json",
-    "http://127.0.0.1:3000/r/badge.json",
-    "http://127.0.0.1:3000/r/core.json"
+    "https://control-ui.dev/r/avatar.json",
+    "https://control-ui.dev/r/badge.json",
+    "https://control-ui.dev/r/core.json"
   ],
   "files": [
     {

@@ -6,8 +6,8 @@
   "description": "A frequency spectrum with alignment, mirroring, idle, and loading options.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/audio-visualizer.json",
-    "http://127.0.0.1:3000/r/core.json"
+    "https://control-ui.dev/r/audio-visualizer.json",
+    "https://control-ui.dev/r/core.json"
   ],
   "files": [
     {

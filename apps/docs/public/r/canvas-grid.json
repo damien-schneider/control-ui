@@ -6,7 +6,7 @@
   "description": "Grid gap and dot radius shared by the infinite canvas and flow backgrounds.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json"
+    "https://control-ui.dev/r/core.json"
   ],
   "files": [
     {

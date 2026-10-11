@@ -6,7 +6,7 @@
   "description": "Anchored ChatComposer extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-composer:send-layer anchor.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json"
+    "https://control-ui.dev/r/core.json"
   ],
   "files": [
     {

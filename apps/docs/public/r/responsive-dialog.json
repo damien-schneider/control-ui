@@ -6,10 +6,10 @@
   "description": "Modal dialog on desktop that becomes a swipeable bottom drawer on mobile.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/button.json",
-    "http://127.0.0.1:3000/r/core.json",
-    "http://127.0.0.1:3000/r/dialog.json",
-    "http://127.0.0.1:3000/r/drawer.json"
+    "https://control-ui.dev/r/button.json",
+    "https://control-ui.dev/r/core.json",
+    "https://control-ui.dev/r/dialog.json",
+    "https://control-ui.dev/r/drawer.json"
   ],
   "files": [
     {

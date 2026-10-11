@@ -10,12 +10,12 @@
     "lucide-react@^1.47.0"
   ],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json",
-    "http://127.0.0.1:3000/r/icon-picker.json",
-    "http://127.0.0.1:3000/r/popover.json",
-    "http://127.0.0.1:3000/r/scroll-area.json",
-    "http://127.0.0.1:3000/r/spinner.json",
-    "http://127.0.0.1:3000/r/tabs.json"
+    "https://control-ui.dev/r/core.json",
+    "https://control-ui.dev/r/icon-picker.json",
+    "https://control-ui.dev/r/popover.json",
+    "https://control-ui.dev/r/scroll-area.json",
+    "https://control-ui.dev/r/spinner.json",
+    "https://control-ui.dev/r/tabs.json"
   ],
   "files": [
     {

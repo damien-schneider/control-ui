@@ -4,22 +4,22 @@
 
 ## How to use this registry
 
-- MCP: `http://127.0.0.1:3000/api/mcp` speaks streamable HTTP Model Context Protocol with `search_registry`, `get_registry_item` and `list_registry`, no authentication; the card is at `http://127.0.0.1:3000/.well-known/mcp/server-card.json`.
+- MCP: `https://control-ui.dev/api/mcp` speaks streamable HTTP Model Context Protocol with `search_registry`, `get_registry_item` and `list_registry`, no authentication; the card is at `https://control-ui.dev/.well-known/mcp/server-card.json`.
 - Markdown: request any canonical documentation page with `Accept: text/markdown` to read it as markdown; browsers still get HTML.
-- Discover: `GET http://127.0.0.1:3000/api/registry` (or the static `http://127.0.0.1:3000/r/agent-index.json`) → the agent-friendly index.
-- shadcn catalog: `http://127.0.0.1:3000/r/registry.json` → the official registry schema used by shadcn tooling.
-- Read one item: `GET http://127.0.0.1:3000/api/registry/<id>` → source files, install command, and deps.
-- Search: `GET http://127.0.0.1:3000/api/registry/search?q=<query>`.
-- Skin anatomy: `http://127.0.0.1:3000/r/contract/index.json` lists every paint family; read `http://127.0.0.1:3000/r/contract/<family>.json` for the family you restyle, its `.contrast.json` sibling for what paints behind it, and `GET http://127.0.0.1:3000/api/registry/<id>` for one item's slice. Do not guess selectors.
+- Discover: `GET https://control-ui.dev/api/registry` (or the static `https://control-ui.dev/r/agent-index.json`) → the agent-friendly index.
+- shadcn catalog: `https://control-ui.dev/r/registry.json` → the official registry schema used by shadcn tooling.
+- Read one item: `GET https://control-ui.dev/api/registry/<id>` → source files, install command, and deps.
+- Search: `GET https://control-ui.dev/api/registry/search?q=<query>`.
+- Skin anatomy: `https://control-ui.dev/r/contract/index.json` lists every paint family; read `https://control-ui.dev/r/contract/<family>.json` for the family you restyle, its `.contrast.json` sibling for what paints behind it, and `GET https://control-ui.dev/api/registry/<id>` for one item's slice. Do not guess selectors.
 - Component knobs: every component paints through registered `--cui-<family>-*` CSS custom properties (e.g. `--cui-button-radius`). A family slice carries its knobs with syntax and recipe defaults; restyle per instance via the typed `style` prop or from a skin, never by overriding Tailwind classes.
 - Install: run the item's `install` command (`npx shadcn@latest add <url>`). Installed files are yours to own and edit.
 - Skinning: core has neutral defaults. Consumer CSS owns the theme; optional SkinProvider configs and registry presets add scoped behavior and adornments.
-- Setting up a repository from scratch: `http://127.0.0.1:3000/r/setup-prompt.md` is the full procedure, including the wiring steps that fail silently when skipped.
-- Working where Control UI is already installed: `http://127.0.0.1:3000/r/control-ui-skill.md` is the installable skill carrying the token contract and the working rules (mirrored at `skills/control-ui/SKILL.md`).
+- Setting up a repository from scratch: `https://control-ui.dev/r/setup-prompt.md` is the full procedure, including the wiring steps that fail silently when skipped.
+- Working where Control UI is already installed: `https://control-ui.dev/r/control-ui-skill.md` is the installable skill carrying the token contract and the working rules (mirrored at `skills/control-ui/SKILL.md`).
 
 ## Contrast (check this before shipping a skin)
 
-- Every painted knob with what the browser actually paints behind it, one file per paint family: `http://127.0.0.1:3000/r/contract/<family>.contrast.json`, harvested from rendered components and verified against the browser. `http://127.0.0.1:3000/r/contract/index.json` names the families and how many probes each has.
+- Every painted knob with what the browser actually paints behind it, one file per paint family: `https://control-ui.dev/r/contract/<family>.contrast.json`, harvested from rendered components and verified against the browser. `https://control-ui.dev/r/contract/index.json` names the families and how many probes each has.
 - A probe's `anatomy` indexes into the file's `anatomies`: the paint stack under the part, back to front, its ancestors but also a sibling indicator that slides beneath it. The last node is the part itself.
 - A part's contrast is decided by the knob it paints from **and** by every knob in that stack, never by theme tokens alone: re-valuing a surface knob changes the contrast of text you did not touch.
 - For each probe: rebuild `anatomy` as nested elements, resolve `knobs.text` on the last one, composite the stack's fills behind it, and clear `rendersText ? 4.5 : 3`:1.
@@ -32,167 +32,167 @@
 
 ### Components
 **Actions** — Trigger a command, directly or from a menu of commands.
-- `button` (Button) — Accessible action button with size, variant, and semantic tone support. — `npx shadcn@latest add http://127.0.0.1:3000/r/button.json`
-- `dropdown-menu` (DropdownMenu) — Dropdown menu for actions, resources, labels, separators, and submenus. — `npx shadcn@latest add http://127.0.0.1:3000/r/dropdown-menu.json`
-- `context-menu` (Context Menu) — Pointer-positioned right-click and long-press menu with nested actions and selection controls. — `npx shadcn@latest add http://127.0.0.1:3000/r/context-menu.json`
-- `command` (Command) — Command palette with token-matched dialog, input, and result rows. — `npx shadcn@latest add http://127.0.0.1:3000/r/command.json`
-- `menubar` (Menubar) — Desktop command bar with nested menus, shortcuts, and separators. — `npx shadcn@latest add http://127.0.0.1:3000/r/menubar.json`
-- `button-group` (Button group) — Joined button group for toolbars, split actions, and segmented controls. — `npx shadcn@latest add http://127.0.0.1:3000/r/button-group.json`
-- `trigger-menu` (Trigger Menu) **[beta]** — Caret-anchored command or mention menu for text editors. — `npx shadcn@latest add http://127.0.0.1:3000/r/trigger-menu.json`
-- `toolbar` (Toolbar) — Roving-focus toolbar for editor controls and compact actions. — `npx shadcn@latest add http://127.0.0.1:3000/r/toolbar.json`
+- `button` (Button) — Accessible action button with size, variant, and semantic tone support. — `npx shadcn@latest add https://control-ui.dev/r/button.json`
+- `dropdown-menu` (DropdownMenu) — Dropdown menu for actions, resources, labels, separators, and submenus. — `npx shadcn@latest add https://control-ui.dev/r/dropdown-menu.json`
+- `context-menu` (Context Menu) — Pointer-positioned right-click and long-press menu with nested actions and selection controls. — `npx shadcn@latest add https://control-ui.dev/r/context-menu.json`
+- `command` (Command) — Command palette with token-matched dialog, input, and result rows. — `npx shadcn@latest add https://control-ui.dev/r/command.json`
+- `menubar` (Menubar) — Desktop command bar with nested menus, shortcuts, and separators. — `npx shadcn@latest add https://control-ui.dev/r/menubar.json`
+- `button-group` (Button group) — Joined button group for toolbars, split actions, and segmented controls. — `npx shadcn@latest add https://control-ui.dev/r/button-group.json`
+- `trigger-menu` (Trigger Menu) **[beta]** — Caret-anchored command or mention menu for text editors. — `npx shadcn@latest add https://control-ui.dev/r/trigger-menu.json`
+- `toolbar` (Toolbar) — Roving-focus toolbar for editor controls and compact actions. — `npx shadcn@latest add https://control-ui.dev/r/toolbar.json`
 
 **Forms** — Capture a value from the user — typed, picked, toggled, or uploaded — plus the scaffolding that labels and validates it.
-- `slider` (Slider) — Single-value range control with branded and plain treatments. — `npx shadcn@latest add http://127.0.0.1:3000/r/slider.json`
-- `channel-strip` (ChannelStrip) — Console mixer strips — title, fader, level meter with dB scale, value, and controls — whose rows line up across a Mixer even when a strip leaves a part out. — `npx shadcn@latest add http://127.0.0.1:3000/r/channel-strip.json`
-- `select` (Select) — Single-choice picker with a token-matched trigger and floating list. — `npx shadcn@latest add http://127.0.0.1:3000/r/select.json`
-- `toggle` (Toggle) — Pressed-state button and toggle group built on the Button surface. — `npx shadcn@latest add http://127.0.0.1:3000/r/toggle.json`
-- `switch` (Switch) — On/off control with token-driven track, thumb, and press motion. — `npx shadcn@latest add http://127.0.0.1:3000/r/switch.json`
-- `input` (Input) — Text field primitive sized and styled to match other controls. — `npx shadcn@latest add http://127.0.0.1:3000/r/input.json`
-- `input-group` (Input group) — Joined input wrapper for addons, icons, and a shared focus indicator. — `npx shadcn@latest add http://127.0.0.1:3000/r/input-group.json`
-- `dropzone` (Dropzone) **[beta]** — Composable file intake with validation, managed selection, and drag-activated overlays. — `npx shadcn@latest add http://127.0.0.1:3000/r/dropzone.json`
-- `phone-input` (Phone input) — International phone field with country search, E.164 values, and Zod validation helpers. — `npx shadcn@latest add http://127.0.0.1:3000/r/phone-input.json`
-- `checkbox` (Checkbox) — Single checkbox control with checked and indeterminate states. — `npx shadcn@latest add http://127.0.0.1:3000/r/checkbox.json`
-- `radio-group` (Radio group) — Single-choice radio set for plans, filters, and option lists. — `npx shadcn@latest add http://127.0.0.1:3000/r/radio-group.json`
-- `field` (Field) — Form field wrapper for labels, descriptions, errors, and validity state. — `npx shadcn@latest add http://127.0.0.1:3000/r/field.json`
-- `form` (Form) — Form wrapper that coordinates field validation and returned errors. — `npx shadcn@latest add http://127.0.0.1:3000/r/form.json`
-- `native-select` (Native select) — Native select control styled to match the Control UI control family. — `npx shadcn@latest add http://127.0.0.1:3000/r/native-select.json`
-- `textarea` (Textarea) — Multiline text field with CSS-first auto-growth. — `npx shadcn@latest add http://127.0.0.1:3000/r/textarea.json`
-- `input-otp` (Input OTP) — One-time-code field with grouped, focus-aware slots. — `npx shadcn@latest add http://127.0.0.1:3000/r/input-otp.json`
-- `combobox` (Combobox) — Searchable single-select with input and floating option list. — `npx shadcn@latest add http://127.0.0.1:3000/r/combobox.json`
-- `checkbox-group` (Checkbox Group) — Multi-select checkbox set with shared state and select-all support. — `npx shadcn@latest add http://127.0.0.1:3000/r/checkbox-group.json`
-- `autocomplete` (Autocomplete) — Free-text input with search-as-you-type suggestions. — `npx shadcn@latest add http://127.0.0.1:3000/r/autocomplete.json`
-- `number-field` (Number Field) — Numeric input with stepper buttons and optional drag-to-change behavior. — `npx shadcn@latest add http://127.0.0.1:3000/r/number-field.json`
-- `color-picker` (Color Picker) **[beta]** — Color input with picker UI, formats, presets, contrast helpers, and a gradient editor with draggable stops. — `npx shadcn@latest add http://127.0.0.1:3000/r/color-picker.json`
-- `emoji-picker` (Emoji Picker) **[beta]** — Searchable, virtualized emoji grid with skin-aware cells, an active emoji footer, and an emoji-or-icon tabbed variant. — `npx shadcn@latest add http://127.0.0.1:3000/r/emoji-picker.json`
-- `icon-picker` (Icon Picker) **[beta]** — Searchable icon grid and color swatches using an app-supplied icon catalog. — `npx shadcn@latest add http://127.0.0.1:3000/r/icon-picker.json`
-- `calendar` (Calendar) — Date selection grid built on react-day-picker and themed through tokens. — `npx shadcn@latest add http://127.0.0.1:3000/r/calendar.json`
+- `slider` (Slider) — Single-value range control with branded and plain treatments. — `npx shadcn@latest add https://control-ui.dev/r/slider.json`
+- `channel-strip` (ChannelStrip) — Console mixer strips — title, fader, level meter with dB scale, value, and controls — whose rows line up across a Mixer even when a strip leaves a part out. — `npx shadcn@latest add https://control-ui.dev/r/channel-strip.json`
+- `select` (Select) — Single-choice picker with a token-matched trigger and floating list. — `npx shadcn@latest add https://control-ui.dev/r/select.json`
+- `toggle` (Toggle) — Pressed-state button and toggle group built on the Button surface. — `npx shadcn@latest add https://control-ui.dev/r/toggle.json`
+- `switch` (Switch) — On/off control with token-driven track, thumb, and press motion. — `npx shadcn@latest add https://control-ui.dev/r/switch.json`
+- `input` (Input) — Text field primitive sized and styled to match other controls. — `npx shadcn@latest add https://control-ui.dev/r/input.json`
+- `input-group` (Input group) — Joined input wrapper for addons, icons, and a shared focus indicator. — `npx shadcn@latest add https://control-ui.dev/r/input-group.json`
+- `dropzone` (Dropzone) **[beta]** — Composable file intake with validation, managed selection, and drag-activated overlays. — `npx shadcn@latest add https://control-ui.dev/r/dropzone.json`
+- `phone-input` (Phone input) — International phone field with country search, E.164 values, and Zod validation helpers. — `npx shadcn@latest add https://control-ui.dev/r/phone-input.json`
+- `checkbox` (Checkbox) — Single checkbox control with checked and indeterminate states. — `npx shadcn@latest add https://control-ui.dev/r/checkbox.json`
+- `radio-group` (Radio group) — Single-choice radio set for plans, filters, and option lists. — `npx shadcn@latest add https://control-ui.dev/r/radio-group.json`
+- `field` (Field) — Form field wrapper for labels, descriptions, errors, and validity state. — `npx shadcn@latest add https://control-ui.dev/r/field.json`
+- `form` (Form) — Form wrapper that coordinates field validation and returned errors. — `npx shadcn@latest add https://control-ui.dev/r/form.json`
+- `native-select` (Native select) — Native select control styled to match the Control UI control family. — `npx shadcn@latest add https://control-ui.dev/r/native-select.json`
+- `textarea` (Textarea) — Multiline text field with CSS-first auto-growth. — `npx shadcn@latest add https://control-ui.dev/r/textarea.json`
+- `input-otp` (Input OTP) — One-time-code field with grouped, focus-aware slots. — `npx shadcn@latest add https://control-ui.dev/r/input-otp.json`
+- `combobox` (Combobox) — Searchable single-select with input and floating option list. — `npx shadcn@latest add https://control-ui.dev/r/combobox.json`
+- `checkbox-group` (Checkbox Group) — Multi-select checkbox set with shared state and select-all support. — `npx shadcn@latest add https://control-ui.dev/r/checkbox-group.json`
+- `autocomplete` (Autocomplete) — Free-text input with search-as-you-type suggestions. — `npx shadcn@latest add https://control-ui.dev/r/autocomplete.json`
+- `number-field` (Number Field) — Numeric input with stepper buttons and optional drag-to-change behavior. — `npx shadcn@latest add https://control-ui.dev/r/number-field.json`
+- `color-picker` (Color Picker) **[beta]** — Color input with picker UI, formats, presets, contrast helpers, and a gradient editor with draggable stops. — `npx shadcn@latest add https://control-ui.dev/r/color-picker.json`
+- `emoji-picker` (Emoji Picker) **[beta]** — Searchable, virtualized emoji grid with skin-aware cells, an active emoji footer, and an emoji-or-icon tabbed variant. — `npx shadcn@latest add https://control-ui.dev/r/emoji-picker.json`
+- `icon-picker` (Icon Picker) **[beta]** — Searchable icon grid and color swatches using an app-supplied icon catalog. — `npx shadcn@latest add https://control-ui.dev/r/icon-picker.json`
+- `calendar` (Calendar) — Date selection grid built on react-day-picker and themed through tokens. — `npx shadcn@latest add https://control-ui.dev/r/calendar.json`
 
 **Overlays** — A container whose only job is to float above the page. Anything floating that runs a command or captures a value is filed by that job instead.
-- `dialog` (Dialog) — Modal dialog for focused tasks, confirmations, and custom panels. — `npx shadcn@latest add http://127.0.0.1:3000/r/dialog.json`
-- `popover` (Popover) — Anchored floating panel for inline settings and contextual content. — `npx shadcn@latest add http://127.0.0.1:3000/r/popover.json`
-- `tooltip` (Tooltip) — Hover or focus hint popup with Base UI positioning and Control UI tokens. — `npx shadcn@latest add http://127.0.0.1:3000/r/tooltip.json`
-- `rich-tooltip` (Rich tooltip) — Persistent anchored tip for onboarding tours, walkthroughs, and new-feature announcements — dismissible, with optional media and step counter. — `npx shadcn@latest add http://127.0.0.1:3000/r/rich-tooltip.json`
-- `drawer` (Drawer) — Swipeable edge panel for mobile sheets and off-canvas surfaces. — `npx shadcn@latest add http://127.0.0.1:3000/r/drawer.json`
-- `responsive-dialog` (Responsive dialog) — Modal dialog on desktop that becomes a swipeable bottom drawer on mobile. — `npx shadcn@latest add http://127.0.0.1:3000/r/responsive-dialog.json`
-- `hover-card` (Hover card) — Hover or focus preview panel for profiles, links, and contextual details. — `npx shadcn@latest add http://127.0.0.1:3000/r/hover-card.json`
-- `alert-dialog` (Alert dialog) — Modal confirmation dialog for destructive or blocking decisions. — `npx shadcn@latest add http://127.0.0.1:3000/r/alert-dialog.json`
+- `dialog` (Dialog) — Modal dialog for focused tasks, confirmations, and custom panels. — `npx shadcn@latest add https://control-ui.dev/r/dialog.json`
+- `popover` (Popover) — Anchored floating panel for inline settings and contextual content. — `npx shadcn@latest add https://control-ui.dev/r/popover.json`
+- `tooltip` (Tooltip) — Hover or focus hint popup with Base UI positioning and Control UI tokens. — `npx shadcn@latest add https://control-ui.dev/r/tooltip.json`
+- `rich-tooltip` (Rich tooltip) — Persistent anchored tip for onboarding tours, walkthroughs, and new-feature announcements — dismissible, with optional media and step counter. — `npx shadcn@latest add https://control-ui.dev/r/rich-tooltip.json`
+- `drawer` (Drawer) — Swipeable edge panel for mobile sheets and off-canvas surfaces. — `npx shadcn@latest add https://control-ui.dev/r/drawer.json`
+- `responsive-dialog` (Responsive dialog) — Modal dialog on desktop that becomes a swipeable bottom drawer on mobile. — `npx shadcn@latest add https://control-ui.dev/r/responsive-dialog.json`
+- `hover-card` (Hover card) — Hover or focus preview panel for profiles, links, and contextual details. — `npx shadcn@latest add https://control-ui.dev/r/hover-card.json`
+- `alert-dialog` (Alert dialog) — Modal confirmation dialog for destructive or blocking decisions. — `npx shadcn@latest add https://control-ui.dev/r/alert-dialog.json`
 
 **Navigation** — Move the user between views, steps, or pages.
-- `tabs` (Tabs) — Segmented and browser-style navigation with a stable active indicator. — `npx shadcn@latest add http://127.0.0.1:3000/r/tabs.json`
-- `table-of-contents` (Table of contents) — Sticky in-page navigation with scroll-spy range highlighting. — `npx shadcn@latest add http://127.0.0.1:3000/r/table-of-contents.json`
-- `stepper` (Stepper) — Static and interactive workflow steps with horizontal and vertical layouts. — `npx shadcn@latest add http://127.0.0.1:3000/r/stepper.json`
-- `navigation-menu` (Navigation menu) — Site navigation menu with a shared animated viewport. — `npx shadcn@latest add http://127.0.0.1:3000/r/navigation-menu.json`
-- `pagination` (Pagination) — Page navigation for long lists and result sets. — `npx shadcn@latest add http://127.0.0.1:3000/r/pagination.json`
-- `breadcrumb` (Breadcrumb) — Location trail with links, the current page, and collapsed levels. — `npx shadcn@latest add http://127.0.0.1:3000/r/breadcrumb.json`
+- `tabs` (Tabs) — Segmented and browser-style navigation with a stable active indicator. — `npx shadcn@latest add https://control-ui.dev/r/tabs.json`
+- `table-of-contents` (Table of contents) — Sticky in-page navigation with scroll-spy range highlighting. — `npx shadcn@latest add https://control-ui.dev/r/table-of-contents.json`
+- `stepper` (Stepper) — Static and interactive workflow steps with horizontal and vertical layouts. — `npx shadcn@latest add https://control-ui.dev/r/stepper.json`
+- `navigation-menu` (Navigation menu) — Site navigation menu with a shared animated viewport. — `npx shadcn@latest add https://control-ui.dev/r/navigation-menu.json`
+- `pagination` (Pagination) — Page navigation for long lists and result sets. — `npx shadcn@latest add https://control-ui.dev/r/pagination.json`
+- `breadcrumb` (Breadcrumb) — Location trail with links, the current page, and collapsed levels. — `npx shadcn@latest add https://control-ui.dev/r/breadcrumb.json`
 
 **Feedback** — Tell the user what just happened, what is loading, or what is missing.
-- `skeleton` (Skeleton) **[beta]** — Loading placeholders with seamless shimmer, pulse, and static variants. Match their dimensions to the incoming content. — `npx shadcn@latest add http://127.0.0.1:3000/r/skeleton.json`
-- `toast` (Toast) — Transient notifications with a callable toast API and single Toaster mount. — `npx shadcn@latest add http://127.0.0.1:3000/r/toast.json`
-- `progress` (Progress) — Determinate task progress with optional label and value rows. — `npx shadcn@latest add http://127.0.0.1:3000/r/progress.json`
-- `alert` (Alert) **[beta]** — Inline status panel for callouts, errors, and notices. — `npx shadcn@latest add http://127.0.0.1:3000/r/alert.json`
-- `empty` (Empty) **[beta]** — Empty-state layout for blank lists, zero results, and new workspaces. — `npx shadcn@latest add http://127.0.0.1:3000/r/empty.json`
-- `live-status` (Live status) — Always-mounted polite status region that announces changes to assistive technology. — `npx shadcn@latest add http://127.0.0.1:3000/r/live-status.json`
-- `spinner` (Spinner) — Accessible loading indicator for pending buttons, panels, and inline waits. — `npx shadcn@latest add http://127.0.0.1:3000/r/spinner.json`
+- `skeleton` (Skeleton) **[beta]** — Loading placeholders with seamless shimmer, pulse, and static variants. Match their dimensions to the incoming content. — `npx shadcn@latest add https://control-ui.dev/r/skeleton.json`
+- `toast` (Toast) — Transient notifications with a callable toast API and single Toaster mount. — `npx shadcn@latest add https://control-ui.dev/r/toast.json`
+- `progress` (Progress) — Determinate task progress with optional label and value rows. — `npx shadcn@latest add https://control-ui.dev/r/progress.json`
+- `alert` (Alert) **[beta]** — Inline status panel for callouts, errors, and notices. — `npx shadcn@latest add https://control-ui.dev/r/alert.json`
+- `empty` (Empty) **[beta]** — Empty-state layout for blank lists, zero results, and new workspaces. — `npx shadcn@latest add https://control-ui.dev/r/empty.json`
+- `live-status` (Live status) — Always-mounted polite status region that announces changes to assistive technology. — `npx shadcn@latest add https://control-ui.dev/r/live-status.json`
+- `spinner` (Spinner) — Accessible loading indicator for pending buttons, panels, and inline waits. — `npx shadcn@latest add https://control-ui.dev/r/spinner.json`
 
 **Layout** — Content-agnostic structure: regions, panels, wrappers, scrolling, resizing, and disclosure. It never knows what is inside.
-- `collapsible` (Collapsible) — Accessible disclosure primitive with measured open and close motion. — `npx shadcn@latest add http://127.0.0.1:3000/r/collapsible.json`
-- `sidebar` (Sidebar) **[beta]** — Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus. — `npx shadcn@latest add http://127.0.0.1:3000/r/sidebar.json`
-- `app-shell` (App shell) **[beta]** — The application container: persistent navigation and header around changing page content, with one shared scroll policy. — `npx shadcn@latest add http://127.0.0.1:3000/r/app-shell.json`
-- `page-layout` (Page layout) **[beta]** — Page shell that owns the scroll container, the shared measure, and the title and actions row. — `npx shadcn@latest add http://127.0.0.1:3000/r/page-layout.json`
-- `scroll-area` (Scroll area) — Scroll container with overlay or space-reserving scrollbars, edge fades, and optional progressive blur. — `npx shadcn@latest add http://127.0.0.1:3000/r/scroll-area.json`
-- `accordion` (Accordion) — Stacked disclosure rows with measured panel animation. — `npx shadcn@latest add http://127.0.0.1:3000/r/accordion.json`
-- `card` (Card) — Content surface for panels, tiles, and settings groups. — `npx shadcn@latest add http://127.0.0.1:3000/r/card.json`
-- `aspect-ratio` (Aspect ratio) — Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3]. — `npx shadcn@latest add http://127.0.0.1:3000/r/aspect-ratio.json`
-- `dockable-panel` (Dockable Panel) **[experimental]** — Non-modal workspace panel that moves between two explicit edge slots with a mobile Drawer fallback. — `npx shadcn@latest add http://127.0.0.1:3000/r/dockable-panel.json`
-- `infinite-canvas` (Infinite Canvas) **[experimental]** — Pan-and-zoom spatial workspace for arranging content without fixed bounds. — `npx shadcn@latest add http://127.0.0.1:3000/r/infinite-canvas.json`
-- `flow` (Flow) **[experimental]** — Node graph editor parts that skin React Flow with Control UI tokens. — `npx shadcn@latest add http://127.0.0.1:3000/r/flow.json`
-- `resize-handle` (Resize Handle) **[experimental]** — Edge and corner grip for resizing a positioned box; the host owns the drag math. — `npx shadcn@latest add http://127.0.0.1:3000/r/resize-handle.json`
-- `morphing-panel` (Morphing Panel) **[experimental]** — A compact control that expands into settings, workspace navigation, or an inline confirmation, with stable alignment and keyboard dismissal. — `npx shadcn@latest add http://127.0.0.1:3000/r/morphing-panel.json`
-- `resizable` (Resizable) **[beta]** — Accessible resizable panel groups and split layouts with keyboard support. — `npx shadcn@latest add http://127.0.0.1:3000/r/resizable.json`
+- `collapsible` (Collapsible) — Accessible disclosure primitive with measured open and close motion. — `npx shadcn@latest add https://control-ui.dev/r/collapsible.json`
+- `sidebar` (Sidebar) **[beta]** — Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus. — `npx shadcn@latest add https://control-ui.dev/r/sidebar.json`
+- `app-shell` (App shell) **[beta]** — The application container: persistent navigation and header around changing page content, with one shared scroll policy. — `npx shadcn@latest add https://control-ui.dev/r/app-shell.json`
+- `page-layout` (Page layout) **[beta]** — Page shell that owns the scroll container, the shared measure, and the title and actions row. — `npx shadcn@latest add https://control-ui.dev/r/page-layout.json`
+- `scroll-area` (Scroll area) — Scroll container with overlay or space-reserving scrollbars, edge fades, and optional progressive blur. — `npx shadcn@latest add https://control-ui.dev/r/scroll-area.json`
+- `accordion` (Accordion) — Stacked disclosure rows with measured panel animation. — `npx shadcn@latest add https://control-ui.dev/r/accordion.json`
+- `card` (Card) — Content surface for panels, tiles, and settings groups. — `npx shadcn@latest add https://control-ui.dev/r/card.json`
+- `aspect-ratio` (Aspect ratio) — Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3]. — `npx shadcn@latest add https://control-ui.dev/r/aspect-ratio.json`
+- `dockable-panel` (Dockable Panel) **[experimental]** — Non-modal workspace panel that moves between two explicit edge slots with a mobile Drawer fallback. — `npx shadcn@latest add https://control-ui.dev/r/dockable-panel.json`
+- `infinite-canvas` (Infinite Canvas) **[experimental]** — Pan-and-zoom spatial workspace for arranging content without fixed bounds. — `npx shadcn@latest add https://control-ui.dev/r/infinite-canvas.json`
+- `flow` (Flow) **[experimental]** — Node graph editor parts that skin React Flow with Control UI tokens. — `npx shadcn@latest add https://control-ui.dev/r/flow.json`
+- `resize-handle` (Resize Handle) **[experimental]** — Edge and corner grip for resizing a positioned box; the host owns the drag math. — `npx shadcn@latest add https://control-ui.dev/r/resize-handle.json`
+- `morphing-panel` (Morphing Panel) **[experimental]** — A compact control that expands into settings, workspace navigation, or an inline confirmation, with stable alignment and keyboard dismissal. — `npx shadcn@latest add https://control-ui.dev/r/morphing-panel.json`
+- `resizable` (Resizable) **[beta]** — Accessible resizable panel groups and split layouts with keyboard support. — `npx shadcn@latest add https://control-ui.dev/r/resizable.json`
 
 **Display** — Render a data model you hand it: records, hierarchies, sequences, and the chips that label them.
-- `timeline` (Timeline) — Static chronological events with independent status, connectors, descriptions, and metadata. — `npx shadcn@latest add http://127.0.0.1:3000/r/timeline.json`
-- `kbd` (Kbd) — Keyboard shortcut chip and chord group. — `npx shadcn@latest add http://127.0.0.1:3000/r/kbd.json`
-- `avatar` (Avatar) — Profile image with initials fallback and composable overlapping groups. — `npx shadcn@latest add http://127.0.0.1:3000/r/avatar.json`
-- `badge` (Badge) — Compact status, label, or count chip. — `npx shadcn@latest add http://127.0.0.1:3000/r/badge.json`
-- `table` (Table) — Responsive data table for lists, comparisons, and structured records. — `npx shadcn@latest add http://127.0.0.1:3000/r/table.json`
-- `item` (Item) **[beta]** — List row with media, content, and trailing actions. — `npx shadcn@latest add http://127.0.0.1:3000/r/item.json`
-- `separator` (Separator) — Horizontal or vertical hairline divider. — `npx shadcn@latest add http://127.0.0.1:3000/r/separator.json`
-- `meter` (Meter) — Static range meter for quota, storage, score, or usage values. — `npx shadcn@latest add http://127.0.0.1:3000/r/meter.json`
-- `level-meter` (LevelMeter) — Live audio level in dBFS with warning and clip zones and a peak hold, painted without React renders. — `npx shadcn@latest add http://127.0.0.1:3000/r/level-meter.json`
-- `chart` (Chart) — Gradient-first charts on TanStack Charts: themed host, presets that return real definitions, and the full grammar. — `npx shadcn@latest add http://127.0.0.1:3000/r/chart.json`
-- `tree` (Tree) — Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure. — `npx shadcn@latest add http://127.0.0.1:3000/r/tree.json`
+- `timeline` (Timeline) — Static chronological events with independent status, connectors, descriptions, and metadata. — `npx shadcn@latest add https://control-ui.dev/r/timeline.json`
+- `kbd` (Kbd) — Keyboard shortcut chip and chord group. — `npx shadcn@latest add https://control-ui.dev/r/kbd.json`
+- `avatar` (Avatar) — Profile image with initials fallback and composable overlapping groups. — `npx shadcn@latest add https://control-ui.dev/r/avatar.json`
+- `badge` (Badge) — Compact status, label, or count chip. — `npx shadcn@latest add https://control-ui.dev/r/badge.json`
+- `table` (Table) — Responsive data table for lists, comparisons, and structured records. — `npx shadcn@latest add https://control-ui.dev/r/table.json`
+- `item` (Item) **[beta]** — List row with media, content, and trailing actions. — `npx shadcn@latest add https://control-ui.dev/r/item.json`
+- `separator` (Separator) — Horizontal or vertical hairline divider. — `npx shadcn@latest add https://control-ui.dev/r/separator.json`
+- `meter` (Meter) — Static range meter for quota, storage, score, or usage values. — `npx shadcn@latest add https://control-ui.dev/r/meter.json`
+- `level-meter` (LevelMeter) — Live audio level in dBFS with warning and clip zones and a peak hold, painted without React renders. — `npx shadcn@latest add https://control-ui.dev/r/level-meter.json`
+- `chart` (Chart) — Gradient-first charts on TanStack Charts: themed host, presets that return real definitions, and the full grammar. — `npx shadcn@latest add https://control-ui.dev/r/chart.json`
+- `tree` (Tree) — Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure. — `npx shadcn@latest add https://control-ui.dev/r/tree.json`
 
 **Content** — Render a document you authored or generated, from prose to code to email.
-- `typography` (Typography) — Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role. Native tags may still wear one text-* rung directly. — `npx shadcn@latest add http://127.0.0.1:3000/r/typography.json`
-- `code` (Code) — Shared code surface: Shiki-highlighted lines, gutter, clean copy, editable content, and virtualization for large files. — `npx shadcn@latest add http://127.0.0.1:3000/r/code.json`
-- `code-diff` (Code Diff) — Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting. — `npx shadcn@latest add http://127.0.0.1:3000/r/code-diff.json`
-- `markdown` (Markdown) — Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff. — `npx shadcn@latest add http://127.0.0.1:3000/r/markdown.json`
+- `typography` (Typography) — Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role. Native tags may still wear one text-* rung directly. — `npx shadcn@latest add https://control-ui.dev/r/typography.json`
+- `code` (Code) — Shared code surface: Shiki-highlighted lines, gutter, clean copy, editable content, and virtualization for large files. — `npx shadcn@latest add https://control-ui.dev/r/code.json`
+- `code-diff` (Code Diff) — Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting. — `npx shadcn@latest add https://control-ui.dev/r/code-diff.json`
+- `markdown` (Markdown) — Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff. — `npx shadcn@latest add https://control-ui.dev/r/markdown.json`
 
 **Effects** — Shared visual behavior other components already use internally, published so you can apply it to your own markup.
-- `track-highlight` (Track highlight) — Shared fluid hover, keyboard-focus, and selection highlight for custom lists and groups, with CSS anchors and a measured fallback. — `npx shadcn@latest add http://127.0.0.1:3000/r/track-highlight.json`
-- `progressive-blur` (Progressive blur) — CSS-driven backdrop blur that grows toward an edge, with masked layers and interruptible staggered transitions. — `npx shadcn@latest add http://127.0.0.1:3000/r/progressive-blur.json`
+- `track-highlight` (Track highlight) — Shared fluid hover, keyboard-focus, and selection highlight for custom lists and groups, with CSS anchors and a measured fallback. — `npx shadcn@latest add https://control-ui.dev/r/track-highlight.json`
+- `progressive-blur` (Progressive blur) — CSS-driven backdrop blur that grows toward an edge, with masked layers and interruptible staggered transitions. — `npx shadcn@latest add https://control-ui.dev/r/progressive-blur.json`
 
 ### Kits (pre-assembled sets of components)
 **Forms** — Capture a value from the user — typed, picked, toggled, or uploaded — plus the scaffolding that labels and validates it.
-- `filter-bar` (FilterBar) — Build editable field, operator, and value filters with a button or inline search. — `npx shadcn@latest add http://127.0.0.1:3000/r/filter-bar.json`
+- `filter-bar` (FilterBar) — Build editable field, operator, and value filters with a button or inline search. — `npx shadcn@latest add https://control-ui.dev/r/filter-bar.json`
 
 **Feedback** — Tell the user what just happened, what is loading, or what is missing.
-- `dynamic-notification` (DynamicNotification) **[experimental]** — Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass. — `npx shadcn@latest add http://127.0.0.1:3000/r/dynamic-notification.json`
+- `dynamic-notification` (DynamicNotification) **[experimental]** — Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass. — `npx shadcn@latest add https://control-ui.dev/r/dynamic-notification.json`
 
 **Content** — Render a document you authored or generated, from prose to code to email.
-- `email` (Email) **[beta]** — React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts. — `npx shadcn@latest add http://127.0.0.1:3000/r/email.json`
+- `email` (Email) **[beta]** — React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts. — `npx shadcn@latest add https://control-ui.dev/r/email.json`
 
 **Chat & agents** — Everything that composes an AI conversation: the transcript, the composer and the surfaces that replace it, and what the agent is doing while you wait.
-- `chat-message` (ChatMessage) — Composable chat message with stable inline editing, bubble or flat layout, grouped bursts, reactions, and replies. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-message.json`
-- `chat-composer` (ChatComposer) — Message composer with controlled text, Enter or ⌘ Enter submit, caret text insertion, and trigger-menu support. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer.json`
-- `chat-composer-attachment` (ChatComposerAttachment) — Composer attachment rail with file previews, upload progress, and removal. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer-attachment.json`
-- `user-ask` (UserAsk) — Keyboard-first agent question panel that temporarily replaces the chat composer inside its container. — `npx shadcn@latest add http://127.0.0.1:3000/r/user-ask.json`
-- `task-list` (TaskList) — Floating agent task progress pill above the composer that expands into the full task list. — `npx shadcn@latest add http://127.0.0.1:3000/r/task-list.json`
-- `audio-device-select` (AudioDeviceSelect) — Composable audio input selector with permission, loading, default-device, and disconnected states. — `npx shadcn@latest add http://127.0.0.1:3000/r/audio-device-select.json`
-- `audio-recorder` (AudioRecorder) — Voice recorder with realtime waveform, duration, cancel, and submit controls. — `npx shadcn@latest add http://127.0.0.1:3000/r/audio-recorder.json`
-- `audio-visualizer` (AudioVisualizer) **[beta]** — Audio visualization with waveform, line envelope, and frequency bar alternatives. Choose the implementation that fits your audio data. — `npx shadcn@latest add http://127.0.0.1:3000/r/audio-visualizer.json`
-- `activity` (Activity) — Shared static and collapsible activity anatomy with bounded, scrollable detail content. — `npx shadcn@latest add http://127.0.0.1:3000/r/activity.json`
-- `transcript-divider` (TranscriptDivider) — Toned run-boundary separator for transcripts: steering, interruptions, and condensed context. — `npx shadcn@latest add http://127.0.0.1:3000/r/transcript-divider.json`
-- `context` (Context) **[beta]** — Compact context-window usage with an automatically derived token graph and anchored detail inspector. — `npx shadcn@latest add http://127.0.0.1:3000/r/context.json`
-- `inline-citation` (InlineCitation) — Inline multi-source citation with a keyboard-accessible preview and source navigation. — `npx shadcn@latest add http://127.0.0.1:3000/r/inline-citation.json`
-- `source-badge` (SourceBadge) — Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback. — `npx shadcn@latest add http://127.0.0.1:3000/r/source-badge.json`
-- `action-bar` (ActionBar) — Reusable hover actions for message and response controls. — `npx shadcn@latest add http://127.0.0.1:3000/r/action-bar.json`
-- `inline-attachment` (InlineAttachment) **[beta]** — Inline file and media previews for chat turns. — `npx shadcn@latest add http://127.0.0.1:3000/r/inline-attachment.json`
-- `markdown-editor` (MarkdownEditor) **[beta]** — Compose Markdown with draggable blocks, slash commands, people mentions, formatting, and application-owned image uploads. — `npx shadcn@latest add http://127.0.0.1:3000/r/markdown-editor.json`
-- `markdown-block` (MarkdownBlock) — Assistant markdown output rendered to prose, with a header and copy-source action. — `npx shadcn@latest add http://127.0.0.1:3000/r/markdown-block.json`
-- `chat-layout` (ChatLayout) — A scrolling conversation with a pinned header, message turns, and a floating composer dock. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-layout.json`
-- `thread-rail` (ThreadRail) — Conversation minimap for scanning and jumping between chat turns. — `npx shadcn@latest add http://127.0.0.1:3000/r/thread-rail.json`
+- `chat-message` (ChatMessage) — Composable chat message with stable inline editing, bubble or flat layout, grouped bursts, reactions, and replies. — `npx shadcn@latest add https://control-ui.dev/r/chat-message.json`
+- `chat-composer` (ChatComposer) — Message composer with controlled text, Enter or ⌘ Enter submit, caret text insertion, and trigger-menu support. — `npx shadcn@latest add https://control-ui.dev/r/chat-composer.json`
+- `chat-composer-attachment` (ChatComposerAttachment) — Composer attachment rail with file previews, upload progress, and removal. — `npx shadcn@latest add https://control-ui.dev/r/chat-composer-attachment.json`
+- `user-ask` (UserAsk) — Keyboard-first agent question panel that temporarily replaces the chat composer inside its container. — `npx shadcn@latest add https://control-ui.dev/r/user-ask.json`
+- `task-list` (TaskList) — Floating agent task progress pill above the composer that expands into the full task list. — `npx shadcn@latest add https://control-ui.dev/r/task-list.json`
+- `audio-device-select` (AudioDeviceSelect) — Composable audio input selector with permission, loading, default-device, and disconnected states. — `npx shadcn@latest add https://control-ui.dev/r/audio-device-select.json`
+- `audio-recorder` (AudioRecorder) — Voice recorder with realtime waveform, duration, cancel, and submit controls. — `npx shadcn@latest add https://control-ui.dev/r/audio-recorder.json`
+- `audio-visualizer` (AudioVisualizer) **[beta]** — Audio visualization with waveform, line envelope, and frequency bar alternatives. Choose the implementation that fits your audio data. — `npx shadcn@latest add https://control-ui.dev/r/audio-visualizer.json`
+- `activity` (Activity) — Shared static and collapsible activity anatomy with bounded, scrollable detail content. — `npx shadcn@latest add https://control-ui.dev/r/activity.json`
+- `transcript-divider` (TranscriptDivider) — Toned run-boundary separator for transcripts: steering, interruptions, and condensed context. — `npx shadcn@latest add https://control-ui.dev/r/transcript-divider.json`
+- `context` (Context) **[beta]** — Compact context-window usage with an automatically derived token graph and anchored detail inspector. — `npx shadcn@latest add https://control-ui.dev/r/context.json`
+- `inline-citation` (InlineCitation) — Inline multi-source citation with a keyboard-accessible preview and source navigation. — `npx shadcn@latest add https://control-ui.dev/r/inline-citation.json`
+- `source-badge` (SourceBadge) — Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback. — `npx shadcn@latest add https://control-ui.dev/r/source-badge.json`
+- `action-bar` (ActionBar) — Reusable hover actions for message and response controls. — `npx shadcn@latest add https://control-ui.dev/r/action-bar.json`
+- `inline-attachment` (InlineAttachment) **[beta]** — Inline file and media previews for chat turns. — `npx shadcn@latest add https://control-ui.dev/r/inline-attachment.json`
+- `markdown-editor` (MarkdownEditor) **[beta]** — Compose Markdown with draggable blocks, slash commands, people mentions, formatting, and application-owned image uploads. — `npx shadcn@latest add https://control-ui.dev/r/markdown-editor.json`
+- `markdown-block` (MarkdownBlock) — Assistant markdown output rendered to prose, with a header and copy-source action. — `npx shadcn@latest add https://control-ui.dev/r/markdown-block.json`
+- `chat-layout` (ChatLayout) — A scrolling conversation with a pinned header, message turns, and a floating composer dock. — `npx shadcn@latest add https://control-ui.dev/r/chat-layout.json`
+- `thread-rail` (ThreadRail) — Conversation minimap for scanning and jumping between chat turns. — `npx shadcn@latest add https://control-ui.dev/r/thread-rail.json`
 
 ### Templates (pre-composed recipes)
 - `templates` (Templates) — Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.
-- `chat` (Chat) — Controlled chat shell that composes rendered turns and a provider-owned composer. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-block.json`
-- `theme-toggle` (Theme toggle) — Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown. — `npx shadcn@latest add http://127.0.0.1:3000/r/theme-toggle-block.json`
-- `discussion` (Discussion) **[beta]** — Comment thread with ⌘ Enter posting, nested replies, inline editing, and hover actions. — `npx shadcn@latest add http://127.0.0.1:3000/r/discussion-block.json`
-- `coding-agent` (Coding agent) **[beta]** — Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer. — `npx shadcn@latest add http://127.0.0.1:3000/r/coding-agent-block.json`
-- `settings` (Settings) — Searchable multi-page settings shell with responsive navigation and accessible control groups. — `npx shadcn@latest add http://127.0.0.1:3000/r/settings-block.json`
-- `team-chat` (Team chat) **[beta]** — Slack-style workspace with channels, unread badges, presence, reactions, and a side thread for replies. — `npx shadcn@latest add http://127.0.0.1:3000/r/team-chat-block.json`
-- `file-explorer` (File explorer) **[beta]** — Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview. — `npx shadcn@latest add http://127.0.0.1:3000/r/file-explorer-block.json`
-- `design-canvas` (Design canvas) **[beta]** — Figma-style editor with layers, an infinite canvas, a floating tool bar, and scrubbable property inputs. — `npx shadcn@latest add http://127.0.0.1:3000/r/design-canvas-block.json`
+- `chat` (Chat) — Controlled chat shell that composes rendered turns and a provider-owned composer. — `npx shadcn@latest add https://control-ui.dev/r/chat-block.json`
+- `theme-toggle` (Theme toggle) — Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown. — `npx shadcn@latest add https://control-ui.dev/r/theme-toggle-block.json`
+- `discussion` (Discussion) **[beta]** — Comment thread with ⌘ Enter posting, nested replies, inline editing, and hover actions. — `npx shadcn@latest add https://control-ui.dev/r/discussion-block.json`
+- `coding-agent` (Coding agent) **[beta]** — Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer. — `npx shadcn@latest add https://control-ui.dev/r/coding-agent-block.json`
+- `settings` (Settings) — Searchable multi-page settings shell with responsive navigation and accessible control groups. — `npx shadcn@latest add https://control-ui.dev/r/settings-block.json`
+- `team-chat` (Team chat) **[beta]** — Slack-style workspace with channels, unread badges, presence, reactions, and a side thread for replies. — `npx shadcn@latest add https://control-ui.dev/r/team-chat-block.json`
+- `file-explorer` (File explorer) **[beta]** — Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview. — `npx shadcn@latest add https://control-ui.dev/r/file-explorer-block.json`
+- `design-canvas` (Design canvas) **[beta]** — Figma-style editor with layers, an infinite canvas, a floating tool bar, and scrubbable property inputs. — `npx shadcn@latest add https://control-ui.dev/r/design-canvas-block.json`
 
 ### Extensions
-- `control-effects` (ControlEffects) — CSS-driven control effects (top-shine, ripple, hover-circle) that follow every control app-wide through the emitted anatomy — portalled surfaces included. — `npx shadcn@latest add http://127.0.0.1:3000/r/control-effects.json`
-- `view-transition` (viewTransition) — Interrupt-safe driver for the browser View Transitions API: page transitions, shared-element morphs, and a reduced-motion fallback for both. — `npx shadcn@latest add http://127.0.0.1:3000/r/view-transition.json`
-- `send-aurora` (SendAurora) — Anchored ChatComposer extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-composer:send-layer anchor. — `npx shadcn@latest add http://127.0.0.1:3000/r/send-aurora.json`
+- `control-effects` (ControlEffects) — CSS-driven control effects (top-shine, ripple, hover-circle) that follow every control app-wide through the emitted anatomy — portalled surfaces included. — `npx shadcn@latest add https://control-ui.dev/r/control-effects.json`
+- `view-transition` (viewTransition) — Interrupt-safe driver for the browser View Transitions API: page transitions, shared-element morphs, and a reduced-motion fallback for both. — `npx shadcn@latest add https://control-ui.dev/r/view-transition.json`
+- `send-aurora` (SendAurora) — Anchored ChatComposer extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-composer:send-layer anchor. — `npx shadcn@latest add https://control-ui.dev/r/send-aurora.json`
 
 ### Skins
 - `skins` (Skinning Control UI) — Author complete token-driven Control UI skins with slots, adornments, motion controls, and one shared component source.
-- `mastra` (Mastra) — Mastra Playground UI: Mona Sans and Commit Mono, compact pill controls, neutral inverse actions, quiet navigation, inset badges, and layered surfaces. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-mastra.json --overwrite`
-- `refined` (Refined) — Craft-inspired neutral surfaces, Inter typography, pill controls, and quiet layered shadows. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-refined.json --overwrite`
-- `xp` (Windows XP) — Windows XP Luna with compact system typography, glossy controls, blue window frames, and Explorer task panes. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-xp.json --overwrite`
-- `windows-98` (Windows 98) — Classic Windows 98 with bitmap system typography, raised gray controls, recessed fields, navy title bars, and Explorer tree navigation. Fixed to its original light palette. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-windows-98.json --overwrite`
-- `liquid-metal` (Liquid metal) — Polished metal skin with a WebGL shader control surface. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-liquid-metal.json --overwrite`
-- `rig` (Rig) — Brutalist skin with coral accents, squared corners, and dense typography. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-rig.json --overwrite`
-- `sketch` (Sketch) — Hand-drawn pencil outlines, Excalifont handwriting, and neutral paper surfaces. A clean sketchbook for prototypes and everyday interfaces. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-sketch.json --overwrite`
+- `mastra` (Mastra) — Mastra Playground UI: Mona Sans and Commit Mono, compact pill controls, neutral inverse actions, quiet navigation, inset badges, and layered surfaces. — `npx shadcn@latest add https://control-ui.dev/r/skin-mastra.json --overwrite`
+- `refined` (Refined) — Craft-inspired neutral surfaces, Inter typography, pill controls, and quiet layered shadows. — `npx shadcn@latest add https://control-ui.dev/r/skin-refined.json --overwrite`
+- `xp` (Windows XP) — Windows XP Luna with compact system typography, glossy controls, blue window frames, and Explorer task panes. — `npx shadcn@latest add https://control-ui.dev/r/skin-xp.json --overwrite`
+- `windows-98` (Windows 98) — Classic Windows 98 with bitmap system typography, raised gray controls, recessed fields, navy title bars, and Explorer tree navigation. Fixed to its original light palette. — `npx shadcn@latest add https://control-ui.dev/r/skin-windows-98.json --overwrite`
+- `liquid-metal` (Liquid metal) — Polished metal skin with a WebGL shader control surface. — `npx shadcn@latest add https://control-ui.dev/r/skin-liquid-metal.json --overwrite`
+- `rig` (Rig) — Brutalist skin with coral accents, squared corners, and dense typography. — `npx shadcn@latest add https://control-ui.dev/r/skin-rig.json --overwrite`
+- `sketch` (Sketch) — Hand-drawn pencil outlines, Excalifont handwriting, and neutral paper surfaces. A clean sketchbook for prototypes and everyday interfaces. — `npx shadcn@latest add https://control-ui.dev/r/skin-sketch.json --overwrite`
 - `none` (No skin) — Control UI defaults: neutral colors, square corners, and no shadows. No skin required.
-- `modern-apple` (macOS) — Apple-inspired glass skin with live backdrop blur, SVG edge refraction, paired light and dark rims, and a flush sidebar. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-modern-apple.json --overwrite`
-- `cuicui` (Cuicui) — Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor). — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-cuicui.json --overwrite`
-- `linear` (Linear) — Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 8px controls on 12px panels, hairline borders instead of elevation, and 8px menu rows inset in a 4px gutter. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-linear.json --overwrite`
+- `modern-apple` (macOS) — Apple-inspired glass skin with live backdrop blur, SVG edge refraction, paired light and dark rims, and a flush sidebar. — `npx shadcn@latest add https://control-ui.dev/r/skin-modern-apple.json --overwrite`
+- `cuicui` (Cuicui) — Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor). — `npx shadcn@latest add https://control-ui.dev/r/skin-cuicui.json --overwrite`
+- `linear` (Linear) — Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 8px controls on 12px panels, hairline borders instead of elevation, and 8px menu rows inset in a 4px gutter. — `npx shadcn@latest add https://control-ui.dev/r/skin-linear.json --overwrite`
 
 ### Hooks
 - `use-chat-message` (useChatMessage) — Typed role, density, and lifecycle state for ChatMessage.

@@ -6,7 +6,7 @@
   "description": "Popup part names and surface variant resolution shared across popup-family components.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json"
+    "https://control-ui.dev/r/core.json"
   ],
   "files": [
     {
