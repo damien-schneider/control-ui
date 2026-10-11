@@ -6,16 +6,16 @@ import { blockEntries } from "../catalog/blocks";
 import { componentEntries } from "../catalog/components";
 import { catalogCompositions } from "../catalog/compositions";
 import type { CompositionNode } from "../catalog/compositions/types";
-import { primitiveEntries } from "../catalog/primitives";
+import { kitEntries } from "../catalog/kits";
 
 const docsRoot = resolve(import.meta.dir, "../../..");
 const composedEntries = [
-  ...componentEntries.map((entry) => ({
+  ...kitEntries.map((entry) => ({
     id: entry.id,
     source: entry.paths.source.path,
     support: (entry.paths.supportFiles ?? []).map((file) => file.path),
   })),
-  ...primitiveEntries.map((entry) => ({
+  ...componentEntries.map((entry) => ({
     id: entry.id,
     source: entry.paths.registry.source.path,
     support: ("supportFiles" in entry.paths.registry ? entry.paths.registry.supportFiles : []).map((file) => file.path),

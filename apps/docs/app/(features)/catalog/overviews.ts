@@ -1,28 +1,28 @@
 export const catalogOverviews = [
   {
-    id: "primitives",
+    id: "components",
     label: "Library",
     name: "Components",
     summary: "Every Control UI component, grouped by what the control does, through the same live examples used in its documentation.",
-    kind: "Primitive",
+    kind: "Component",
     href: "/components",
   },
   {
-    id: "components",
+    id: "kits",
     label: "Library",
     name: "Kits",
     summary:
       "Pre-assembled sets of components, grouped by the part of the product they build: the chat screen, agent activity, voice capture, and the notification, email, and configuration surfaces around them.",
-    kind: "Component",
+    kind: "Kit",
     href: "/kits",
   },
   {
-    id: "use-cases",
+    id: "templates",
     label: "Library",
-    name: "Templates & patterns",
+    name: "Templates",
     summary: "Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.",
     kind: "Block",
-    href: "/use-cases",
+    href: "/templates",
   },
 ] as const;
 

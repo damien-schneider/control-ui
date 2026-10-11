@@ -61,13 +61,12 @@ export const EASE_LABEL = { standard: "Standard", emphasized: "Emphasized", line
 export const CORNER_LABEL = { round: "Round", squircle: "Squircle", scoop: "Scoop" } as const;
 
 export const FONT = {
-  // "mono" is legacy storage key for brand face (kept so option ids stay stable).
-  mono: 'var(--font-geist-sans, "Geist"), ui-sans-serif, system-ui, sans-serif',
+  geist: 'var(--font-geist-sans, "Geist"), ui-sans-serif, system-ui, sans-serif',
   system: 'system-ui, -apple-system, "Segoe UI", sans-serif',
   helvetica: '"Helvetica Neue", Arial, "Segoe UI", sans-serif',
 } as const;
 
-export const FONT_LABEL = { mono: "Geist", system: "System", helvetica: "Helvetica" } as const;
+export const FONT_LABEL = { geist: "Geist", system: "System", helvetica: "Helvetica" } as const;
 
 export const FONT_MONO = {
   system: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace',

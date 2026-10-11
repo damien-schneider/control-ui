@@ -126,11 +126,10 @@ function validateArtifactIdentity(value: Record<string, unknown>, expectedBaseSk
   return name;
 }
 
-export function validateThemeArtifact(input: unknown, expectedBaseSkin?: string): ThemeArtifactResult {
-  if (!isRecord(input)) return { ok: false, errors: ["Theme output must be a JSON object."] };
+export function validateThemeArtifact(value: unknown, expectedBaseSkin?: string): ThemeArtifactResult {
+  if (!isRecord(value)) return { ok: false, errors: ["Theme output must be a JSON object."] };
 
   const errors: string[] = [];
-  const value = input.baseSkin === "flat" ? { ...input, baseSkin: "none" } : input;
   const name = validateArtifactIdentity(value, expectedBaseSkin, errors);
   if (!isRecord(value.tokens)) errors.push("tokens must contain shared, light, and dark objects.");
 

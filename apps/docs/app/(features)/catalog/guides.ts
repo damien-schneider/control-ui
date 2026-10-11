@@ -60,7 +60,7 @@ export const guideEntries = [
     group: "start",
     name: "Install",
     summary:
-      "One command installs every component, kit, and block as source you own, with neutral light and dark defaults. The CSS entry is the only wiring you write.",
+      "One command installs every component, kit, and template as source you own, with neutral light and dark defaults. The CSS entry is the only wiring you write.",
     sections: [
       { id: "install", title: "Install the components", code: "all-install" },
       { id: "items", title: "Install one item at a time", code: "component-install" },
@@ -204,7 +204,7 @@ export const guideEntries = [
     kind: "Guide",
     group: "why",
     name: "Why Control UI",
-    summary: "An owned-source registry of components, kits, complete blocks, and swappable skins.",
+    summary: "An owned-source registry of components, kits, complete templates, and swappable skins.",
     sections: [
       { id: "why", title: "Why it exists" },
       { id: "model", title: "How it works" },

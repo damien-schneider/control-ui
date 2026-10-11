@@ -2532,7 +2532,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message-social",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -4384,7 +4384,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "avatar",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -4462,7 +4462,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "avatar",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -4540,7 +4540,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "avatar",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -4618,7 +4618,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "avatar",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -4711,7 +4711,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "avatar",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -4804,7 +4804,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "avatar",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -5278,7 +5278,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "avatar",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -5363,7 +5363,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "avatar",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -5447,7 +5447,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "avatar",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -5560,7 +5560,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button-states",
       rendersText: true,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -6533,7 +6533,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button-states",
       rendersText: false,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -6667,7 +6667,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button-states",
       rendersText: true,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -6747,7 +6747,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button-states",
       rendersText: true,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -7439,7 +7439,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -7513,7 +7513,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -7682,7 +7682,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -9439,7 +9439,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -9741,7 +9741,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -9902,7 +9902,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -10086,7 +10086,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -10182,7 +10182,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -10259,7 +10259,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -10383,7 +10383,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -12173,7 +12173,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -12258,7 +12258,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -12503,7 +12503,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -12644,7 +12644,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -12715,7 +12715,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -13530,7 +13530,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -13607,7 +13607,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -13806,7 +13806,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -15559,7 +15559,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -15627,7 +15627,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -15694,7 +15694,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -15764,7 +15764,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -15851,7 +15851,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -15939,7 +15939,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -16041,7 +16041,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/templates/coding-agent",
     },
     {
       knobs: {
@@ -16129,7 +16129,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/templates/coding-agent",
     },
     {
       knobs: {
@@ -16208,7 +16208,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -16287,7 +16287,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -16369,7 +16369,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -16437,7 +16437,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -16506,7 +16506,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -16574,7 +16574,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -16643,7 +16643,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -18656,7 +18656,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -20659,7 +20659,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button-states",
       rendersText: true,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/templates/coding-agent",
     },
     {
       knobs: {
@@ -20729,7 +20729,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button-states",
       rendersText: false,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -22110,7 +22110,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: true,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -22264,7 +22264,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -22326,7 +22326,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: true,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/templates/coding-agent",
     },
     {
       knobs: {
@@ -22515,7 +22515,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: true,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -22696,7 +22696,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -22767,7 +22767,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: true,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/templates/coding-agent",
     },
     {
       knobs: {
@@ -22889,7 +22889,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -23010,7 +23010,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -23742,7 +23742,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -24072,7 +24072,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -24156,7 +24156,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -24238,7 +24238,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -24320,7 +24320,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -24393,7 +24393,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: true,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/templates/coding-agent",
     },
     {
       knobs: {
@@ -24497,7 +24497,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: false,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -24745,7 +24745,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message-social",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -24826,7 +24826,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message-social",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -25196,7 +25196,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: true,
       state: true,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -25385,7 +25385,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: true,
       state: true,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -25460,7 +25460,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: true,
       state: true,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -25540,7 +25540,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message-social",
       rendersText: true,
       state: true,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -25613,7 +25613,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: true,
       state: true,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -25686,7 +25686,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: true,
       state: true,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -27192,7 +27192,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "color-picker",
       rendersText: false,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -29345,84 +29345,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "combobox",
             "data-field-kind": "combobox",
             "data-placeholder": "",
-            "data-popup-open": "",
-            "data-popup-side": "top",
-            "data-pressed": "",
-            "data-slot": "input-group",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "field",
-            "data-control-ui": "combobox",
-            "data-field-kind": "combobox",
-            "data-popup-open": "",
-            "data-popup-side": "top",
-            "data-pressed": "",
-            "data-size": "sm",
-            "data-slot": "input",
-            role: "combobox",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "field",
-            "data-control-ui": "combobox",
-            "data-field-kind": "combobox",
-            "data-placeholder": "",
-            "data-popup-open": "",
-            "data-popup-side": "top",
-            "data-pressed": "",
-            "data-slot": "trigger",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "field-parts",
-      rendersText: false,
-      state: false,
-      route: "/kits/filter-bar",
-    },
-    {
-      knobs: {
-        fill: "--cui-field-affordance-background",
-        text: "--cui-field-affordance-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "field",
-            "data-control-ui": "combobox",
-            "data-field-kind": "combobox",
-            "data-placeholder": "",
             "data-slot": "input-group",
             role: "group",
           },
@@ -30758,7 +30680,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: false,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -30846,7 +30768,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: false,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -30902,7 +30824,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: true,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -30960,7 +30882,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: true,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -31360,7 +31282,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: false,
       state: false,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -31428,7 +31350,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: true,
       state: false,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -31496,7 +31418,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: true,
       state: false,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -31563,7 +31485,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: true,
       state: false,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -32069,7 +31991,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "combobox",
             "data-field-kind": "combobox",
             "data-popup-open": "",
-            "data-popup-side": "top",
+            "data-popup-side": "bottom",
             "data-pressed": "",
             "data-size": "sm",
             "data-slot": "input",
@@ -34312,7 +34234,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "inline-attachment",
       rendersText: true,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -34428,7 +34350,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "inline-attachment",
       rendersText: true,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -34551,7 +34473,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "inline-attachment",
       rendersText: false,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -35142,7 +35064,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "kbd",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -35492,7 +35414,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "markdown-block",
       rendersText: true,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -35606,7 +35528,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "markdown-block",
       rendersText: true,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -36645,7 +36567,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -37182,7 +37104,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -37934,59 +37856,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-align": "start",
             "data-control-family": "popup",
-            "data-control-ui": "combobox",
-            "data-open": "",
-            "data-popup-kind": "combobox",
-            "data-popup-part": "list-surface",
-            "data-side": "top",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "presentation",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/kits/filter-bar",
-    },
-    {
-      knobs: {
-        fill: "--cui-popup-background",
-        text: "--cui-popup-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
             "data-control-ui": "dropdown-menu",
             "data-open": "",
             "data-popup-part": "list-surface",
@@ -38569,7 +38438,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -38646,7 +38515,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -38708,7 +38577,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -39417,7 +39286,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -39495,7 +39364,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -39572,7 +39441,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -39649,7 +39518,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -40730,7 +40599,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -41427,7 +41296,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup-lists",
       rendersText: false,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -44786,7 +44655,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "resizable",
       rendersText: false,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -45128,7 +44997,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "resizable",
       rendersText: false,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -45725,53 +45594,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "scroll-area",
-            "data-control-ui": "scroll-area",
-            "data-has-overflow-y": "",
-            "data-lock-axis": "x",
-            "data-overflow-y-start": "",
-            "data-scrollbar-gutter": "auto",
-            "data-slot": "root",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "scroll-area",
-            "data-control-ui": "scroll-area",
-            "data-orientation": "vertical",
-            "data-slot": "thumb",
-          },
-        },
-      ],
-      recipe: "scroll-area",
-      rendersText: false,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-scroll-area-thumb-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
@@ -46251,7 +46073,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -46415,7 +46237,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -46651,7 +46473,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -46717,7 +46539,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -47434,7 +47256,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -48205,7 +48027,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -48281,7 +48103,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -48355,7 +48177,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -48428,7 +48250,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/templates/coding-agent",
     },
     {
       knobs: {
@@ -48812,7 +48634,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "separator",
       rendersText: false,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -48966,7 +48788,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "separator",
       rendersText: false,
       state: false,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -49276,7 +49098,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-parts",
       rendersText: true,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -49340,7 +49162,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-parts",
       rendersText: true,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/templates/coding-agent",
     },
     {
       knobs: {
@@ -50237,7 +50059,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/use-cases",
+      route: "/templates",
     },
     {
       knobs: {
@@ -50324,7 +50146,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/use-cases",
+      route: "/templates",
     },
     {
       knobs: {
@@ -50425,7 +50247,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: false,
       state: true,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -50494,7 +50316,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -50563,7 +50385,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/use-cases/coding-agent",
+      route: "/templates/coding-agent",
     },
     {
       knobs: {
@@ -50663,7 +50485,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: false,
       state: true,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -50731,7 +50553,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -50799,7 +50621,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/use-cases/coding-agent",
+      route: "/templates/coding-agent",
     },
     {
       knobs: {
@@ -50874,7 +50696,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/use-cases/coding-agent",
+      route: "/templates/coding-agent",
     },
     {
       knobs: {
@@ -51003,7 +50825,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/use-cases",
+      route: "/templates",
     },
     {
       knobs: {
@@ -51071,7 +50893,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -51139,7 +50961,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/templates/coding-agent",
     },
     {
       knobs: {
@@ -51214,7 +51036,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/templates/coding-agent",
     },
     {
       knobs: {
@@ -52271,7 +52093,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "switch",
       rendersText: false,
       state: false,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -52812,7 +52634,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "switch",
       rendersText: false,
       state: false,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -53066,7 +52888,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "switch",
       rendersText: false,
       state: true,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -53176,7 +52998,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "switch",
       rendersText: false,
       state: true,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -56112,7 +55934,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -56170,7 +55992,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -56645,7 +56467,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -56737,7 +56559,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -56811,7 +56633,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -56885,7 +56707,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -57574,7 +57396,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -57662,7 +57484,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -57751,7 +57573,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -57840,7 +57662,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -57930,7 +57752,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -58020,7 +57842,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -58093,7 +57915,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -58165,7 +57987,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -58237,7 +58059,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -59463,7 +59285,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: true,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -59551,7 +59373,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: true,
       state: true,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -59642,7 +59464,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: true,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -59731,7 +59553,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: true,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -59820,7 +59642,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: true,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -59912,7 +59734,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: true,
       state: true,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -60002,7 +59824,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: true,
       state: true,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -60092,7 +59914,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: true,
       state: true,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -60165,7 +59987,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: true,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -60239,7 +60061,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: true,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -60313,7 +60135,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: true,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -60385,7 +60207,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: true,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -60457,7 +60279,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: true,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -61298,7 +61120,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -61364,7 +61186,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -63889,7 +63711,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -63960,7 +63782,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/templates/coding-agent",
     },
     {
       knobs: {
@@ -64547,7 +64369,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "breadcrumb",
       rendersText: true,
       state: true,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -64665,7 +64487,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "breadcrumb",
       rendersText: true,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -64783,7 +64605,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "breadcrumb",
       rendersText: true,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -65134,7 +64956,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: false,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -65298,7 +65120,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: false,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -65560,7 +65382,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: false,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -65638,7 +65460,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: false,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/templates/coding-agent",
     },
     {
       knobs: {
@@ -67191,7 +67013,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/templates/coding-agent",
     },
     {
       knobs: {
@@ -67285,7 +67107,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/templates/coding-agent",
     },
     {
       knobs: {
@@ -67364,7 +67186,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -67439,7 +67261,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -67514,7 +67336,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -67588,7 +67410,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -68671,7 +68493,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "label",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -68756,7 +68578,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "label",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -68930,7 +68752,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "markdown-editor",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -69091,7 +68913,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "markdown",
       rendersText: true,
       state: false,
-      route: "/use-cases/chat",
+      route: "/templates/chat",
     },
     {
       knobs: {
@@ -69152,7 +68974,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "markdown",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -69204,7 +69026,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "markdown",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -71007,6 +70829,70 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-open": "",
             "data-popup-kind": "select",
             "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "presentation",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "false",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/kits/audio-device-select",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
             "data-side": "top",
             "data-slot": "content",
             "data-surface": "floating",
@@ -71259,69 +71145,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-align": "start",
             "data-control-family": "popup",
-            "data-control-ui": "combobox",
-            "data-open": "",
-            "data-popup-kind": "combobox",
-            "data-popup-part": "list-surface",
-            "data-side": "top",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "presentation",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "aria-selected": "false",
-            "data-control-family": "popup",
-            "data-control-ui": "combobox",
-            "data-popup-kind": "combobox",
-            "data-popup-part": "item",
-            "data-slot": "item",
-            role: "option",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/kits/filter-bar",
-    },
-    {
-      knobs: {
-        text: "--cui-popup-item-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
             "data-control-ui": "dropdown-menu",
             "data-open": "",
             "data-popup-part": "list-surface",
@@ -71347,7 +71170,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/theme-toggle",
+      route: "/templates/theme-toggle",
     },
     {
       knobs: {
@@ -72979,77 +72802,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "audio-visualizer",
-            "data-control-ui": "audio-visualizer",
-            "data-slot": "bar",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "audio-device-select",
-            "data-open": "",
-            "data-popup-kind": "select",
-            "data-popup-part": "list-surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "presentation",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "aria-selected": "false",
-            "data-control-family": "popup",
-            "data-control-ui": "select",
-            "data-popup-kind": "select",
-            "data-popup-part": "item",
-            "data-slot": "item",
-            role: "option",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/kits/audio-device-select",
-    },
-    {
-      knobs: {
-        text: "--cui-popup-item-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
             "data-control-family": "chat-composer",
             "data-control-ui": "chat-composer",
             "data-density": "comfortable",
@@ -73095,7 +72847,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -73182,7 +72934,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -73269,7 +73021,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -73545,7 +73297,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -73622,7 +73374,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -73702,7 +73454,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/settings",
+      route: "/templates/settings",
     },
     {
       knobs: {
@@ -73789,7 +73541,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -73884,7 +73636,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -73970,7 +73722,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -74063,7 +73815,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -74167,7 +73919,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -74271,7 +74023,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -74360,7 +74112,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/use-cases/file-explorer",
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -75186,7 +74938,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup-controls",
       rendersText: true,
       state: false,
-      route: "/use-cases/design-canvas",
+      route: "/templates/design-canvas",
     },
     {
       knobs: {
@@ -75333,7 +75085,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup-controls",
       rendersText: true,
       state: false,
-      route: "/use-cases/discussion",
+      route: "/templates/discussion",
     },
     {
       knobs: {
@@ -76028,7 +75780,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/templates/coding-agent",
     },
     {
       knobs: {
@@ -76796,7 +76548,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: false,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -77032,7 +76784,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: false,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -77579,7 +77331,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/use-cases",
+      route: "/templates",
     },
     {
       knobs: {
@@ -77799,7 +77551,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: false,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -77867,7 +77619,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {
@@ -77935,7 +77687,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/templates/coding-agent",
     },
     {
       knobs: {
@@ -86387,7 +86139,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "transcript-divider",
       rendersText: true,
       state: false,
-      route: "/use-cases/team-chat",
+      route: "/templates/team-chat",
     },
     {
       knobs: {

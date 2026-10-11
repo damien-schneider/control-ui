@@ -98,28 +98,28 @@
     ],
     "items": [
       {
-        "id": "primitives",
+        "id": "components",
         "label": "Library",
         "name": "Components",
         "summary": "Every Control UI component, grouped by what the control does, through the same live examples used in its documentation.",
-        "kind": "Primitive",
+        "kind": "Component",
         "href": "/components"
       },
       {
-        "id": "components",
+        "id": "kits",
         "label": "Library",
         "name": "Kits",
         "summary": "Pre-assembled sets of components, grouped by the part of the product they build: the chat screen, agent activity, voice capture, and the notification, email, and configuration surfaces around them.",
-        "kind": "Component",
+        "kind": "Kit",
         "href": "/kits"
       },
       {
-        "id": "use-cases",
+        "id": "templates",
         "label": "Library",
-        "name": "Templates & patterns",
+        "name": "Templates",
         "summary": "Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.",
         "kind": "Block",
-        "href": "/use-cases"
+        "href": "/templates"
       },
       {
         "id": "create",
@@ -132,7 +132,7 @@
         "id": "get-started",
         "name": "Install",
         "kind": "Guide",
-        "summary": "One command installs every component, kit, and block as source you own, with neutral light and dark defaults. The CSS entry is the only wiring you write.",
+        "summary": "One command installs every component, kit, and template as source you own, with neutral light and dark defaults. The CSS entry is the only wiring you write.",
         "href": "/get-started"
       },
       {
@@ -209,7 +209,7 @@
         "id": "overview",
         "name": "Why Control UI",
         "kind": "Guide",
-        "summary": "An owned-source registry of components, kits, complete blocks, and swappable skins.",
+        "summary": "An owned-source registry of components, kits, complete templates, and swappable skins.",
         "href": "/overview"
       },
       {
@@ -596,7 +596,7 @@
       {
         "id": "email",
         "name": "Email",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts.",
         "href": "/kits/email",
         "status": "beta",
@@ -605,7 +605,7 @@
       {
         "id": "chat-message",
         "name": "ChatMessage",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Composable chat message with stable inline editing, bubble or flat layout, grouped bursts, reactions, and replies.",
         "href": "/kits/chat-message",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-message.json"
@@ -613,7 +613,7 @@
       {
         "id": "chat-composer",
         "name": "ChatComposer",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Message composer with controlled text, Enter or ⌘ Enter submit, caret text insertion, and trigger-menu support.",
         "href": "/kits/chat-composer",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer.json"
@@ -621,7 +621,7 @@
       {
         "id": "chat-composer-attachment",
         "name": "ChatComposerAttachment",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Composer attachment rail with file previews, upload progress, and removal.",
         "href": "/kits/chat-composer-attachment",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer-attachment.json"
@@ -629,7 +629,7 @@
       {
         "id": "user-ask",
         "name": "UserAsk",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.",
         "href": "/kits/user-ask",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/user-ask.json"
@@ -637,7 +637,7 @@
       {
         "id": "task-list",
         "name": "TaskList",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Floating agent task progress pill above the composer that expands into the full task list.",
         "href": "/kits/task-list",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/task-list.json"
@@ -645,7 +645,7 @@
       {
         "id": "audio-device-select",
         "name": "AudioDeviceSelect",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Composable audio input selector with permission, loading, default-device, and disconnected states.",
         "href": "/kits/audio-device-select",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/audio-device-select.json"
@@ -653,7 +653,7 @@
       {
         "id": "audio-recorder",
         "name": "AudioRecorder",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Voice recorder with realtime waveform, duration, cancel, and submit controls.",
         "href": "/kits/audio-recorder",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/audio-recorder.json"
@@ -661,7 +661,7 @@
       {
         "id": "audio-visualizer",
         "name": "AudioVisualizer",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Audio visualization with waveform, line envelope, and frequency bar alternatives. Choose the implementation that fits your audio data.",
         "href": "/kits/audio-visualizer",
         "status": "beta",
@@ -670,7 +670,7 @@
       {
         "id": "dynamic-notification",
         "name": "DynamicNotification",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass.",
         "href": "/kits/dynamic-notification",
         "status": "experimental",
@@ -679,7 +679,7 @@
       {
         "id": "filter-bar",
         "name": "FilterBar",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Build editable field, operator, and value filters with a button or inline search.",
         "href": "/kits/filter-bar",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/filter-bar.json"
@@ -687,7 +687,7 @@
       {
         "id": "activity",
         "name": "Activity",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Shared static and collapsible activity anatomy with bounded, scrollable detail content.",
         "href": "/kits/activity",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/activity.json"
@@ -695,7 +695,7 @@
       {
         "id": "transcript-divider",
         "name": "TranscriptDivider",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Toned run-boundary separator for transcripts: steering, interruptions, and condensed context.",
         "href": "/kits/transcript-divider",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/transcript-divider.json"
@@ -703,7 +703,7 @@
       {
         "id": "context",
         "name": "Context",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Compact context-window usage with an automatically derived token graph and anchored detail inspector.",
         "href": "/kits/context",
         "status": "beta",
@@ -712,7 +712,7 @@
       {
         "id": "inline-citation",
         "name": "InlineCitation",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Inline multi-source citation with a keyboard-accessible preview and source navigation.",
         "href": "/kits/inline-citation",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/inline-citation.json"
@@ -720,7 +720,7 @@
       {
         "id": "source-badge",
         "name": "SourceBadge",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.",
         "href": "/kits/source-badge",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/source-badge.json"
@@ -728,7 +728,7 @@
       {
         "id": "action-bar",
         "name": "ActionBar",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Reusable hover actions for message and response controls.",
         "href": "/kits/action-bar",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/action-bar.json"
@@ -736,7 +736,7 @@
       {
         "id": "inline-attachment",
         "name": "InlineAttachment",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Inline file and media previews for chat turns.",
         "href": "/kits/inline-attachment",
         "status": "beta",
@@ -745,7 +745,7 @@
       {
         "id": "markdown-editor",
         "name": "MarkdownEditor",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Compose Markdown with draggable blocks, slash commands, people mentions, formatting, and application-owned image uploads.",
         "href": "/kits/markdown-editor",
         "status": "beta",
@@ -754,7 +754,7 @@
       {
         "id": "markdown-block",
         "name": "MarkdownBlock",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Assistant markdown output rendered to prose, with a header and copy-source action.",
         "href": "/kits/markdown-block",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/markdown-block.json"
@@ -762,7 +762,7 @@
       {
         "id": "chat-layout",
         "name": "ChatLayout",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "A scrolling conversation with a pinned header, message turns, and a floating composer dock.",
         "href": "/kits/chat-layout",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-layout.json"
@@ -770,7 +770,7 @@
       {
         "id": "thread-rail",
         "name": "ThreadRail",
-        "kind": "Component",
+        "kind": "Kit",
         "summary": "Conversation minimap for scanning and jumping between chat turns.",
         "href": "/kits/thread-rail",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/thread-rail.json"
@@ -778,7 +778,7 @@
       {
         "id": "button",
         "name": "Button",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Accessible action button with size, variant, and semantic tone support.",
         "href": "/components/button",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/button.json"
@@ -786,7 +786,7 @@
       {
         "id": "collapsible",
         "name": "Collapsible",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Accessible disclosure primitive with measured open and close motion.",
         "href": "/components/collapsible",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/collapsible.json"
@@ -794,7 +794,7 @@
       {
         "id": "tabs",
         "name": "Tabs",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Segmented and browser-style navigation with a stable active indicator.",
         "href": "/components/tabs",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/tabs.json"
@@ -802,7 +802,7 @@
       {
         "id": "track-highlight",
         "name": "Track highlight",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Shared fluid hover, keyboard-focus, and selection highlight for custom lists and groups, with CSS anchors and a measured fallback.",
         "href": "/components/track-highlight",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/track-highlight.json"
@@ -810,7 +810,7 @@
       {
         "id": "sidebar",
         "name": "Sidebar",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus.",
         "href": "/components/sidebar",
         "status": "beta",
@@ -819,7 +819,7 @@
       {
         "id": "app-shell",
         "name": "App shell",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "The application container: persistent navigation and header around changing page content, with one shared scroll policy.",
         "href": "/components/app-shell",
         "status": "beta",
@@ -828,7 +828,7 @@
       {
         "id": "page-layout",
         "name": "Page layout",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Page shell that owns the scroll container, the shared measure, and the title and actions row.",
         "href": "/components/page-layout",
         "status": "beta",
@@ -837,7 +837,7 @@
       {
         "id": "scroll-area",
         "name": "Scroll area",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Scroll container with overlay or space-reserving scrollbars, edge fades, and optional progressive blur.",
         "href": "/components/scroll-area",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/scroll-area.json"
@@ -845,7 +845,7 @@
       {
         "id": "progressive-blur",
         "name": "Progressive blur",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "CSS-driven backdrop blur that grows toward an edge, with masked layers and interruptible staggered transitions.",
         "href": "/components/progressive-blur",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/progressive-blur.json"
@@ -853,7 +853,7 @@
       {
         "id": "table-of-contents",
         "name": "Table of contents",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Sticky in-page navigation with scroll-spy range highlighting.",
         "href": "/components/table-of-contents",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/table-of-contents.json"
@@ -861,7 +861,7 @@
       {
         "id": "timeline",
         "name": "Timeline",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Static chronological events with independent status, connectors, descriptions, and metadata.",
         "href": "/components/timeline",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/timeline.json"
@@ -869,7 +869,7 @@
       {
         "id": "stepper",
         "name": "Stepper",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Static and interactive workflow steps with horizontal and vertical layouts.",
         "href": "/components/stepper",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/stepper.json"
@@ -877,7 +877,7 @@
       {
         "id": "skeleton",
         "name": "Skeleton",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Loading placeholders with seamless shimmer, pulse, and static variants. Match their dimensions to the incoming content.",
         "href": "/components/skeleton",
         "status": "beta",
@@ -886,7 +886,7 @@
       {
         "id": "slider",
         "name": "Slider",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Single-value range control with branded and plain treatments.",
         "href": "/components/slider",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/slider.json"
@@ -894,7 +894,7 @@
       {
         "id": "channel-strip",
         "name": "ChannelStrip",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Console mixer strips — title, fader, level meter with dB scale, value, and controls — whose rows line up across a Mixer even when a strip leaves a part out.",
         "href": "/components/channel-strip",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/channel-strip.json"
@@ -902,7 +902,7 @@
       {
         "id": "select",
         "name": "Select",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Single-choice picker with a token-matched trigger and floating list.",
         "href": "/components/select",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/select.json"
@@ -910,7 +910,7 @@
       {
         "id": "dropdown-menu",
         "name": "DropdownMenu",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Dropdown menu for actions, resources, labels, separators, and submenus.",
         "href": "/components/dropdown-menu",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/dropdown-menu.json"
@@ -918,7 +918,7 @@
       {
         "id": "context-menu",
         "name": "Context Menu",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Pointer-positioned right-click and long-press menu with nested actions and selection controls.",
         "href": "/components/context-menu",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/context-menu.json"
@@ -926,7 +926,7 @@
       {
         "id": "toggle",
         "name": "Toggle",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Pressed-state button and toggle group built on the Button surface.",
         "href": "/components/toggle",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/toggle.json"
@@ -934,7 +934,7 @@
       {
         "id": "switch",
         "name": "Switch",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "On/off control with token-driven track, thumb, and press motion.",
         "href": "/components/switch",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/switch.json"
@@ -942,7 +942,7 @@
       {
         "id": "dialog",
         "name": "Dialog",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Modal dialog for focused tasks, confirmations, and custom panels.",
         "href": "/components/dialog",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/dialog.json"
@@ -950,7 +950,7 @@
       {
         "id": "popover",
         "name": "Popover",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Anchored floating panel for inline settings and contextual content.",
         "href": "/components/popover",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/popover.json"
@@ -958,7 +958,7 @@
       {
         "id": "tooltip",
         "name": "Tooltip",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Hover or focus hint popup with Base UI positioning and Control UI tokens.",
         "href": "/components/tooltip",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/tooltip.json"
@@ -966,7 +966,7 @@
       {
         "id": "rich-tooltip",
         "name": "Rich tooltip",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Persistent anchored tip for onboarding tours, walkthroughs, and new-feature announcements — dismissible, with optional media and step counter.",
         "href": "/components/rich-tooltip",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/rich-tooltip.json"
@@ -974,7 +974,7 @@
       {
         "id": "drawer",
         "name": "Drawer",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Swipeable edge panel for mobile sheets and off-canvas surfaces.",
         "href": "/components/drawer",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/drawer.json"
@@ -982,7 +982,7 @@
       {
         "id": "responsive-dialog",
         "name": "Responsive dialog",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Modal dialog on desktop that becomes a swipeable bottom drawer on mobile.",
         "href": "/components/responsive-dialog",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/responsive-dialog.json"
@@ -990,7 +990,7 @@
       {
         "id": "toast",
         "name": "Toast",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Transient notifications with a callable toast API and single Toaster mount.",
         "href": "/components/toast",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/toast.json"
@@ -998,7 +998,7 @@
       {
         "id": "input",
         "name": "Input",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Text field primitive sized and styled to match other controls.",
         "href": "/components/input",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/input.json"
@@ -1006,7 +1006,7 @@
       {
         "id": "input-group",
         "name": "Input group",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Joined input wrapper for addons, icons, and a shared focus indicator.",
         "href": "/components/input-group",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/input-group.json"
@@ -1014,7 +1014,7 @@
       {
         "id": "dropzone",
         "name": "Dropzone",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Composable file intake with validation, managed selection, and drag-activated overlays.",
         "href": "/components/dropzone",
         "status": "beta",
@@ -1023,7 +1023,7 @@
       {
         "id": "phone-input",
         "name": "Phone input",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "International phone field with country search, E.164 values, and Zod validation helpers.",
         "href": "/components/phone-input",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/phone-input.json"
@@ -1031,7 +1031,7 @@
       {
         "id": "command",
         "name": "Command",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Command palette with token-matched dialog, input, and result rows.",
         "href": "/components/command",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/command.json"
@@ -1039,7 +1039,7 @@
       {
         "id": "kbd",
         "name": "Kbd",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Keyboard shortcut chip and chord group.",
         "href": "/components/kbd",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/kbd.json"
@@ -1047,7 +1047,7 @@
       {
         "id": "checkbox",
         "name": "Checkbox",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Single checkbox control with checked and indeterminate states.",
         "href": "/components/checkbox",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/checkbox.json"
@@ -1055,7 +1055,7 @@
       {
         "id": "radio-group",
         "name": "Radio group",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Single-choice radio set for plans, filters, and option lists.",
         "href": "/components/radio-group",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/radio-group.json"
@@ -1063,7 +1063,7 @@
       {
         "id": "accordion",
         "name": "Accordion",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Stacked disclosure rows with measured panel animation.",
         "href": "/components/accordion",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/accordion.json"
@@ -1071,7 +1071,7 @@
       {
         "id": "avatar",
         "name": "Avatar",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Profile image with initials fallback and composable overlapping groups.",
         "href": "/components/avatar",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/avatar.json"
@@ -1079,7 +1079,7 @@
       {
         "id": "progress",
         "name": "Progress",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Determinate task progress with optional label and value rows.",
         "href": "/components/progress",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/progress.json"
@@ -1087,7 +1087,7 @@
       {
         "id": "hover-card",
         "name": "Hover card",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Hover or focus preview panel for profiles, links, and contextual details.",
         "href": "/components/hover-card",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/hover-card.json"
@@ -1095,7 +1095,7 @@
       {
         "id": "alert-dialog",
         "name": "Alert dialog",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Modal confirmation dialog for destructive or blocking decisions.",
         "href": "/components/alert-dialog",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/alert-dialog.json"
@@ -1103,7 +1103,7 @@
       {
         "id": "menubar",
         "name": "Menubar",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Desktop command bar with nested menus, shortcuts, and separators.",
         "href": "/components/menubar",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/menubar.json"
@@ -1111,7 +1111,7 @@
       {
         "id": "navigation-menu",
         "name": "Navigation menu",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Site navigation menu with a shared animated viewport.",
         "href": "/components/navigation-menu",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/navigation-menu.json"
@@ -1119,7 +1119,7 @@
       {
         "id": "field",
         "name": "Field",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Form field wrapper for labels, descriptions, errors, and validity state.",
         "href": "/components/field",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/field.json"
@@ -1127,7 +1127,7 @@
       {
         "id": "form",
         "name": "Form",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Form wrapper that coordinates field validation and returned errors.",
         "href": "/components/form",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/form.json"
@@ -1135,7 +1135,7 @@
       {
         "id": "native-select",
         "name": "Native select",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Native select control styled to match the Control UI control family.",
         "href": "/components/native-select",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/native-select.json"
@@ -1143,7 +1143,7 @@
       {
         "id": "textarea",
         "name": "Textarea",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Multiline text field with CSS-first auto-growth.",
         "href": "/components/textarea",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/textarea.json"
@@ -1151,7 +1151,7 @@
       {
         "id": "input-otp",
         "name": "Input OTP",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "One-time-code field with grouped, focus-aware slots.",
         "href": "/components/input-otp",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/input-otp.json"
@@ -1159,7 +1159,7 @@
       {
         "id": "combobox",
         "name": "Combobox",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Searchable single-select with input and floating option list.",
         "href": "/components/combobox",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/combobox.json"
@@ -1167,7 +1167,7 @@
       {
         "id": "alert",
         "name": "Alert",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Inline status panel for callouts, errors, and notices.",
         "href": "/components/alert",
         "status": "beta",
@@ -1176,7 +1176,7 @@
       {
         "id": "badge",
         "name": "Badge",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Compact status, label, or count chip.",
         "href": "/components/badge",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/badge.json"
@@ -1184,7 +1184,7 @@
       {
         "id": "card",
         "name": "Card",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Content surface for panels, tiles, and settings groups.",
         "href": "/components/card",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/card.json"
@@ -1192,7 +1192,7 @@
       {
         "id": "table",
         "name": "Table",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Responsive data table for lists, comparisons, and structured records.",
         "href": "/components/table",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/table.json"
@@ -1200,7 +1200,7 @@
       {
         "id": "aspect-ratio",
         "name": "Aspect ratio",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3].",
         "href": "/components/aspect-ratio",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/aspect-ratio.json"
@@ -1208,7 +1208,7 @@
       {
         "id": "button-group",
         "name": "Button group",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Joined button group for toolbars, split actions, and segmented controls.",
         "href": "/components/button-group",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/button-group.json"
@@ -1216,7 +1216,7 @@
       {
         "id": "empty",
         "name": "Empty",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Empty-state layout for blank lists, zero results, and new workspaces.",
         "href": "/components/empty",
         "status": "beta",
@@ -1225,7 +1225,7 @@
       {
         "id": "item",
         "name": "Item",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "List row with media, content, and trailing actions.",
         "href": "/components/item",
         "status": "beta",
@@ -1234,7 +1234,7 @@
       {
         "id": "pagination",
         "name": "Pagination",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Page navigation for long lists and result sets.",
         "href": "/components/pagination",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/pagination.json"
@@ -1242,7 +1242,7 @@
       {
         "id": "breadcrumb",
         "name": "Breadcrumb",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Location trail with links, the current page, and collapsed levels.",
         "href": "/components/breadcrumb",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/breadcrumb.json"
@@ -1250,7 +1250,7 @@
       {
         "id": "separator",
         "name": "Separator",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Horizontal or vertical hairline divider.",
         "href": "/components/separator",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/separator.json"
@@ -1258,7 +1258,7 @@
       {
         "id": "live-status",
         "name": "Live status",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Always-mounted polite status region that announces changes to assistive technology.",
         "href": "/components/live-status",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/live-status.json"
@@ -1266,7 +1266,7 @@
       {
         "id": "spinner",
         "name": "Spinner",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Accessible loading indicator for pending buttons, panels, and inline waits.",
         "href": "/components/spinner",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/spinner.json"
@@ -1274,7 +1274,7 @@
       {
         "id": "meter",
         "name": "Meter",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Static range meter for quota, storage, score, or usage values.",
         "href": "/components/meter",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/meter.json"
@@ -1282,7 +1282,7 @@
       {
         "id": "level-meter",
         "name": "LevelMeter",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Live audio level in dBFS with warning and clip zones and a peak hold, painted without React renders.",
         "href": "/components/level-meter",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/level-meter.json"
@@ -1290,7 +1290,7 @@
       {
         "id": "chart",
         "name": "Chart",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Gradient-first charts on TanStack Charts: themed host, presets that return real definitions, and the full grammar.",
         "href": "/components/chart",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chart.json"
@@ -1298,7 +1298,7 @@
       {
         "id": "tree",
         "name": "Tree",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure.",
         "href": "/components/tree",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/tree.json"
@@ -1306,7 +1306,7 @@
       {
         "id": "checkbox-group",
         "name": "Checkbox Group",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Multi-select checkbox set with shared state and select-all support.",
         "href": "/components/checkbox-group",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/checkbox-group.json"
@@ -1314,7 +1314,7 @@
       {
         "id": "autocomplete",
         "name": "Autocomplete",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Free-text input with search-as-you-type suggestions.",
         "href": "/components/autocomplete",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/autocomplete.json"
@@ -1322,7 +1322,7 @@
       {
         "id": "number-field",
         "name": "Number Field",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Numeric input with stepper buttons and optional drag-to-change behavior.",
         "href": "/components/number-field",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/number-field.json"
@@ -1330,7 +1330,7 @@
       {
         "id": "trigger-menu",
         "name": "Trigger Menu",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Caret-anchored command or mention menu for text editors.",
         "href": "/components/trigger-menu",
         "status": "beta",
@@ -1339,7 +1339,7 @@
       {
         "id": "toolbar",
         "name": "Toolbar",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Roving-focus toolbar for editor controls and compact actions.",
         "href": "/components/toolbar",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/toolbar.json"
@@ -1347,7 +1347,7 @@
       {
         "id": "dockable-panel",
         "name": "Dockable Panel",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Non-modal workspace panel that moves between two explicit edge slots with a mobile Drawer fallback.",
         "href": "/components/dockable-panel",
         "status": "experimental",
@@ -1356,7 +1356,7 @@
       {
         "id": "infinite-canvas",
         "name": "Infinite Canvas",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Pan-and-zoom spatial workspace for arranging content without fixed bounds.",
         "href": "/components/infinite-canvas",
         "status": "experimental",
@@ -1365,7 +1365,7 @@
       {
         "id": "flow",
         "name": "Flow",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Node graph editor parts that skin React Flow with Control UI tokens.",
         "href": "/components/flow",
         "status": "experimental",
@@ -1374,7 +1374,7 @@
       {
         "id": "resize-handle",
         "name": "Resize Handle",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Edge and corner grip for resizing a positioned box; the host owns the drag math.",
         "href": "/components/resize-handle",
         "status": "experimental",
@@ -1383,7 +1383,7 @@
       {
         "id": "morphing-panel",
         "name": "Morphing Panel",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "A compact control that expands into settings, workspace navigation, or an inline confirmation, with stable alignment and keyboard dismissal.",
         "href": "/components/morphing-panel",
         "status": "experimental",
@@ -1392,7 +1392,7 @@
       {
         "id": "color-picker",
         "name": "Color Picker",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Color input with picker UI, formats, presets, contrast helpers, and a gradient editor with draggable stops.",
         "href": "/components/color-picker",
         "status": "beta",
@@ -1401,7 +1401,7 @@
       {
         "id": "emoji-picker",
         "name": "Emoji Picker",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Searchable, virtualized emoji grid with skin-aware cells, an active emoji footer, and an emoji-or-icon tabbed variant.",
         "href": "/components/emoji-picker",
         "status": "beta",
@@ -1410,7 +1410,7 @@
       {
         "id": "icon-picker",
         "name": "Icon Picker",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Searchable icon grid and color swatches using an app-supplied icon catalog.",
         "href": "/components/icon-picker",
         "status": "beta",
@@ -1419,7 +1419,7 @@
       {
         "id": "resizable",
         "name": "Resizable",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Accessible resizable panel groups and split layouts with keyboard support.",
         "href": "/components/resizable",
         "status": "beta",
@@ -1428,7 +1428,7 @@
       {
         "id": "calendar",
         "name": "Calendar",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Date selection grid built on react-day-picker and themed through tokens.",
         "href": "/components/calendar",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/calendar.json"
@@ -1436,7 +1436,7 @@
       {
         "id": "typography",
         "name": "Typography",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role. Native tags may still wear one text-* rung directly.",
         "href": "/components/typography",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/typography.json"
@@ -1444,7 +1444,7 @@
       {
         "id": "code",
         "name": "Code",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, editable content, and virtualization for large files.",
         "href": "/components/code",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/code.json"
@@ -1452,7 +1452,7 @@
       {
         "id": "code-diff",
         "name": "Code Diff",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting.",
         "href": "/components/code-diff",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/code-diff.json"
@@ -1460,7 +1460,7 @@
       {
         "id": "markdown",
         "name": "Markdown",
-        "kind": "Primitive",
+        "kind": "Component",
         "summary": "Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff.",
         "href": "/components/markdown",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/markdown.json"
@@ -1550,7 +1550,7 @@
         "name": "Chat",
         "kind": "Block",
         "summary": "Controlled chat shell that composes rendered turns and a provider-owned composer.",
-        "href": "/use-cases/chat",
+        "href": "/templates/chat",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-block.json"
       },
       {
@@ -1558,7 +1558,7 @@
         "name": "Theme toggle",
         "kind": "Block",
         "summary": "Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.",
-        "href": "/use-cases/theme-toggle",
+        "href": "/templates/theme-toggle",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/theme-toggle-block.json"
       },
       {
@@ -1566,7 +1566,7 @@
         "name": "Discussion",
         "kind": "Block",
         "summary": "Comment thread with ⌘ Enter posting, nested replies, inline editing, and hover actions.",
-        "href": "/use-cases/discussion",
+        "href": "/templates/discussion",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/discussion-block.json"
       },
@@ -1575,7 +1575,7 @@
         "name": "Coding agent",
         "kind": "Block",
         "summary": "Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer.",
-        "href": "/use-cases/coding-agent",
+        "href": "/templates/coding-agent",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/coding-agent-block.json"
       },
@@ -1584,7 +1584,7 @@
         "name": "Settings",
         "kind": "Block",
         "summary": "Searchable multi-page settings shell with responsive navigation and accessible control groups.",
-        "href": "/use-cases/settings",
+        "href": "/templates/settings",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/settings-block.json"
       },
       {
@@ -1592,7 +1592,7 @@
         "name": "Team chat",
         "kind": "Block",
         "summary": "Slack-style workspace with channels, unread badges, presence, reactions, and a side thread for replies.",
-        "href": "/use-cases/team-chat",
+        "href": "/templates/team-chat",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/team-chat-block.json"
       },
@@ -1601,7 +1601,7 @@
         "name": "File explorer",
         "kind": "Block",
         "summary": "Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview.",
-        "href": "/use-cases/file-explorer",
+        "href": "/templates/file-explorer",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/file-explorer-block.json"
       },
@@ -1610,7 +1610,7 @@
         "name": "Design canvas",
         "kind": "Block",
         "summary": "Figma-style editor with layers, an infinite canvas, a floating tool bar, and scrubbable property inputs.",
-        "href": "/use-cases/design-canvas",
+        "href": "/templates/design-canvas",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/design-canvas-block.json"
       }

@@ -24,9 +24,9 @@ const twitterImage = {
 
 const titleQualifierByKind = {
   Skill: "practice",
-  Component: "React component kit for shadcn/ui",
+  Kit: "React component kit for shadcn/ui",
   Block: "React template for shadcn/ui",
-  Primitive: "React component for shadcn/ui",
+  Component: "React component for shadcn/ui",
   Hook: "React hook",
   Util: "utility",
   Extension: "extension",
@@ -36,16 +36,16 @@ const titleQualifierByKind = {
 const socialLabelByKind = {
   Guide: "Guide",
   Skill: "Practice",
-  Component: "React component kit",
+  Kit: "React component kit",
   Block: "React template",
-  Primitive: "React component",
+  Component: "React component",
   Hook: "React hook",
   Util: "Utility",
   Extension: "Extension",
   Skin: "Skin",
 } as const satisfies Record<SearchItem["kind"], string>;
 
-const installableKinds: Partial<Record<SearchItem["kind"], true>> = { Primitive: true, Component: true, Block: true };
+const installableKinds: Partial<Record<SearchItem["kind"], true>> = { Component: true, Kit: true, Block: true };
 const installHint = "Installs with the shadcn CLI as source you own.";
 const MAX_META_DESCRIPTION_CHARS = 160;
 const skinsOverviewHref = `/${skinsOverview.id}`;

@@ -74,16 +74,16 @@ for (const mode of ["light", "dark"] as const) {
 }
 
 const foldingExamples = [
-  { primitive: "collapsible", family: "collapsible", slot: "content", trigger: "Reasoning steps", duration: "--duration-slow" },
-  { primitive: "accordion", family: "accordion", slot: "panel", trigger: "What is Control UI?", duration: "--duration-base" },
-  { primitive: "tree", family: "tree", slot: "item-content", trigger: "src", duration: "--duration-base" },
+  { component: "collapsible", family: "collapsible", slot: "content", trigger: "Reasoning steps", duration: "--duration-slow" },
+  { component: "accordion", family: "accordion", slot: "panel", trigger: "What is Control UI?", duration: "--duration-base" },
+  { component: "tree", family: "tree", slot: "item-content", trigger: "src", duration: "--duration-base" },
 ];
 
 for (const example of foldingExamples) {
-  test(`${example.primitive} clips during folding and releases the open content`, async ({ page }) => {
+  test(`${example.component} clips during folding and releases the open content`, async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.emulateMedia({ reducedMotion: "no-preference" });
-    await page.goto(`/components/${example.primitive}`);
+    await page.goto(`/components/${example.component}`);
     const preview = page.locator("main");
     const trigger = preview.getByText(example.trigger, { exact: true });
     await waitForReactHydration(trigger);

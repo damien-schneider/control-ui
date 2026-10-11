@@ -20,9 +20,9 @@ import { SkinPicker } from "./skin-picker";
 
 const navLinks = [
   { href: "/get-started", label: "Docs" },
-  { href: catalogOverview("primitives").href, label: "Components" },
-  { href: catalogOverview("components").href, label: "Kits" },
-  { href: catalogOverview("use-cases").href, label: "Templates" },
+  { href: catalogOverview("components").href, label: "Components" },
+  { href: catalogOverview("kits").href, label: "Kits" },
+  { href: catalogOverview("templates").href, label: "Templates" },
   { href: `/${skinsOverviewId}`, label: "Skins" },
 ];
 

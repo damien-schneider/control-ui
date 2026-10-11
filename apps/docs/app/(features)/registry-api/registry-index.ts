@@ -1,8 +1,8 @@
 import { blockEntries } from "@/app/(features)/catalog/blocks";
 import { componentEntries } from "@/app/(features)/catalog/components";
 import { extensionEntries } from "@/app/(features)/catalog/extensions";
+import { kitEntries } from "@/app/(features)/catalog/kits";
 import { docsPageManifest } from "@/app/(features)/catalog/pages";
-import { primitiveEntries } from "@/app/(features)/catalog/primitives";
 import { skinMetas } from "@/app/(features)/catalog/skins";
 import { registryMetadata } from "@/app/(features)/model/generated-registry";
 import { isSkinPageId } from "@/app/(features)/model/page-ids";
@@ -36,12 +36,12 @@ function blockRegistryKind(id: string) {
   return blockEntries.find((entry) => entry.id === id)?.registryKind;
 }
 
-function componentRegistryKind(id: string) {
-  return componentEntries.find((component) => component.id === id)?.registryKind;
+function kitRegistryKind(id: string) {
+  return kitEntries.find((kit) => kit.id === id)?.registryKind;
 }
 
-function primitiveRegistryKind(id: string) {
-  return primitiveEntries.find((entry) => entry.id === id)?.paths.registry.registryKind;
+function componentRegistryKind(id: string) {
+  return componentEntries.find((entry) => entry.id === id)?.paths.registry.registryKind;
 }
 
 function utilRegistryKind(_id: string): RegistryKindId | undefined {
@@ -55,8 +55,8 @@ function extensionRegistryKind(id: string) {
 export function registryItemIdFor(item: SearchItem): RegistryItemId | undefined {
   let id: string | undefined;
   switch (item.kind) {
-    case "Component":
-      id = componentRegistryKind(item.id);
+    case "Kit":
+      id = kitRegistryKind(item.id);
       break;
     case "Block":
       id = blockRegistryKind(item.id);
@@ -64,8 +64,8 @@ export function registryItemIdFor(item: SearchItem): RegistryItemId | undefined 
     case "Skin":
       id = skinMetas.some((entry) => entry.id === item.id && "packManifestPath" in entry) ? `skin-${item.id}` : undefined;
       break;
-    case "Primitive":
-      id = primitiveRegistryKind(item.id);
+    case "Component":
+      id = componentRegistryKind(item.id);
       break;
     case "Util":
       id = utilRegistryKind(item.id);
@@ -94,8 +94,8 @@ export function registryDeps(itemId: RegistryItemId | undefined): { dependencies
 
 export function installCommandsFor(item: SearchItem): InstallCommand[] {
   switch (item.kind) {
-    case "Component": {
-      const kind = componentRegistryKind(item.id);
+    case "Kit": {
+      const kind = kitRegistryKind(item.id);
       return kind ? registryInstallCommands(kind) : [];
     }
     case "Block": {
@@ -106,8 +106,8 @@ export function installCommandsFor(item: SearchItem): InstallCommand[] {
       const command = isSkinPageId(item.id) ? packInstallCommand(item.id) : undefined;
       return command ? [{ label: "Skin pack", value: command }] : [];
     }
-    case "Primitive": {
-      const kind = primitiveRegistryKind(item.id);
+    case "Component": {
+      const kind = componentRegistryKind(item.id);
       return kind ? registryInstallCommands(kind) : [];
     }
     case "Util": {

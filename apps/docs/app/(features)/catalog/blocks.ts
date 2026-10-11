@@ -1,11 +1,11 @@
 import { preview, sourceFile } from "./shared";
 
-export const useCaseKinds = [
+export const templateKinds = [
   {
-    id: "template",
-    slug: "templates",
-    label: "Templates",
-    singularLabel: "Template",
+    id: "screen",
+    slug: "screens",
+    label: "Screens",
+    singularLabel: "Screen",
     summary: "Complete screens and workspace shells that establish the primary application layout.",
   },
   {
@@ -17,11 +17,11 @@ export const useCaseKinds = [
   },
 ] as const;
 
-export type UseCaseKindId = (typeof useCaseKinds)[number]["id"];
+export type TemplateKindId = (typeof templateKinds)[number]["id"];
 
-export function getUseCaseKind(id: UseCaseKindId): (typeof useCaseKinds)[number] {
-  const kind = useCaseKinds.find((candidate) => candidate.id === id);
-  if (!kind) throw new Error(`Unknown use-case kind: ${id}`);
+export function getTemplateKind(id: TemplateKindId): (typeof templateKinds)[number] {
+  const kind = templateKinds.find((candidate) => candidate.id === id);
+  if (!kind) throw new Error(`Unknown template kind: ${id}`);
   return kind;
 }
 
@@ -29,7 +29,7 @@ export const blockEntries = [
   {
     id: "chat",
     kind: "Block",
-    useCaseKind: "template",
+    templateKind: "screen",
     name: "Chat",
     summary: "Controlled chat shell that composes rendered turns and a provider-owned composer.",
     registryKind: "chat-block",
@@ -46,7 +46,7 @@ export const blockEntries = [
   {
     id: "theme-toggle",
     kind: "Block",
-    useCaseKind: "pattern",
+    templateKind: "pattern",
     name: "Theme toggle",
     summary: "Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.",
     registryKind: "theme-toggle-block",
@@ -63,7 +63,7 @@ export const blockEntries = [
   {
     id: "discussion",
     kind: "Block",
-    useCaseKind: "pattern",
+    templateKind: "pattern",
     name: "Discussion",
     summary: "Comment thread with ⌘ Enter posting, nested replies, inline editing, and hover actions.",
     status: "beta",
@@ -81,7 +81,7 @@ export const blockEntries = [
   {
     id: "coding-agent",
     kind: "Block",
-    useCaseKind: "template",
+    templateKind: "screen",
     name: "Coding agent",
     summary: "Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer.",
     status: "beta",
@@ -99,7 +99,7 @@ export const blockEntries = [
   {
     id: "settings",
     kind: "Block",
-    useCaseKind: "template",
+    templateKind: "screen",
     name: "Settings",
     summary: "Searchable multi-page settings shell with responsive navigation and accessible control groups.",
     registryKind: "settings-block",
@@ -116,7 +116,7 @@ export const blockEntries = [
   {
     id: "team-chat",
     kind: "Block",
-    useCaseKind: "template",
+    templateKind: "screen",
     name: "Team chat",
     summary: "Slack-style workspace with channels, unread badges, presence, reactions, and a side thread for replies.",
     status: "beta",
@@ -136,7 +136,7 @@ export const blockEntries = [
   {
     id: "file-explorer",
     kind: "Block",
-    useCaseKind: "template",
+    templateKind: "screen",
     name: "File explorer",
     summary: "Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview.",
     status: "beta",
@@ -156,7 +156,7 @@ export const blockEntries = [
   {
     id: "design-canvas",
     kind: "Block",
-    useCaseKind: "template",
+    templateKind: "screen",
     name: "Design canvas",
     summary: "Figma-style editor with layers, an infinite canvas, a floating tool bar, and scrubbable property inputs.",
     status: "beta",

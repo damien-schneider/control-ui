@@ -1,7 +1,7 @@
 "use client";
 
 import { type CatalogSkinMeta, skinMetas } from "@/app/(features)/catalog/skins";
-import { DEFAULT_SKIN_ID, LEGACY_THEME_EDITOR_STORAGE_KEY, THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
+import { DEFAULT_SKIN_ID, THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { objectFromEntries } from "@/lib/typed-object";
 import { isRecord } from "./is-record";
 import type { KnobRule, LabelMode, SkinId, ThemeState, TokenValues } from "./types";
@@ -89,16 +89,14 @@ function readFontUrl(value: unknown): string {
 
 export function readThemeState(stored: unknown): ThemeState | null {
   if (!isRecord(stored)) return null;
-  const storedSkin = stored.skin === "flat" ? "none" : stored.skin;
-  const isLegacy = Array.isArray(stored.overrides) || typeof stored.primary === "string";
   return {
     ...DEFAULT_THEME,
-    skin: isSkinId(storedSkin) ? storedSkin : DEFAULT_THEME.skin,
+    skin: isSkinId(stored.skin) ? stored.skin : DEFAULT_THEME.skin,
     reduceMotion: stored.reduceMotion === true,
     labelMode: readLabelMode(stored.labelMode),
-    overrides: isLegacy ? {} : readTokenMap(stored.overrides),
-    light: isLegacy ? {} : readTokenMap(stored.light),
-    dark: isLegacy ? {} : readTokenMap(stored.dark),
+    overrides: readTokenMap(stored.overrides),
+    light: readTokenMap(stored.light),
+    dark: readTokenMap(stored.dark),
     textFixes: readTokenMap(stored.textFixes),
     knobs: readKnobRules(stored.knobs),
     fontUrl: readFontUrl(stored.fontUrl),
@@ -108,8 +106,7 @@ export function readThemeState(stored: unknown): ThemeState | null {
 
 export function loadStored(storage?: Pick<Storage, "getItem">): ThemeState | null {
   try {
-    const themeStorage = storage ?? localStorage;
-    const raw = themeStorage.getItem(THEME_EDITOR_STORAGE_KEY) ?? themeStorage.getItem(LEGACY_THEME_EDITOR_STORAGE_KEY);
+    const raw = (storage ?? localStorage).getItem(THEME_EDITOR_STORAGE_KEY);
     return raw ? readThemeState(JSON.parse(raw)) : null;
   } catch {
     return null;
@@ -122,11 +119,9 @@ export function loadInitialTheme(search: string, storage?: Pick<Storage, "getIte
   return isSkinId(skin) ? themeForSkin(theme, skin) : theme;
 }
 
-export function store(t: ThemeState, storage?: Pick<Storage, "setItem" | "removeItem">): boolean {
+export function store(t: ThemeState, storage?: Pick<Storage, "setItem">): boolean {
   try {
-    const themeStorage = storage ?? localStorage;
-    themeStorage.setItem(THEME_EDITOR_STORAGE_KEY, JSON.stringify(t));
-    themeStorage.removeItem(LEGACY_THEME_EDITOR_STORAGE_KEY);
+    (storage ?? localStorage).setItem(THEME_EDITOR_STORAGE_KEY, JSON.stringify(t));
     return true;
   } catch {
     return false;

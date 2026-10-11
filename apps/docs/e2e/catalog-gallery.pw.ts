@@ -1,40 +1,40 @@
 import { expect, test } from "@playwright/test";
 import { categoriesWithEntries } from "../app/(features)/catalog/categories";
 import { componentEntries } from "../app/(features)/catalog/components";
-import { primitiveEntries } from "../app/(features)/catalog/primitives";
+import { kitEntries } from "../app/(features)/catalog/kits";
 
 test("catalog overviews render every live preview as one browse-only card", async ({ page }) => {
   await page.goto("/components");
 
-  const primitiveCards = page.locator('[data-gallery-card="primitive"]');
-  await expect(primitiveCards).toHaveCount(primitiveEntries.length);
-  for (const category of categoriesWithEntries(primitiveEntries)) {
-    await expect(page.getByRole("heading", { name: category.label, exact: true, level: 2 })).toBeVisible();
-  }
-
-  const firstPrimitiveCard = primitiveCards.first();
-  const firstPrimitivePreview = firstPrimitiveCard.locator("[data-gallery-preview]");
-  const firstPrimitiveLink = firstPrimitiveCard.getByRole("link");
-  await expect(firstPrimitivePreview).toHaveAttribute("inert", "");
-  await expect(firstPrimitivePreview).toHaveAttribute("aria-hidden", "true");
-  await expect(firstPrimitiveLink).toHaveCount(1);
-  await firstPrimitiveLink.focus();
-  await expect(firstPrimitiveLink).toBeFocused();
-
-  await page.goto("/kits");
-  await expect(page.getByRole("heading", { name: "Kits", level: 1 })).toBeVisible();
+  const componentCards = page.locator('[data-gallery-card="component"]');
+  await expect(componentCards).toHaveCount(componentEntries.length);
   for (const category of categoriesWithEntries(componentEntries)) {
     await expect(page.getByRole("heading", { name: category.label, exact: true, level: 2 })).toBeVisible();
   }
-  await expect(page.locator('[data-gallery-card="component"]')).toHaveCount(componentEntries.length);
+
+  const firstComponentCard = componentCards.first();
+  const firstComponentPreview = firstComponentCard.locator("[data-gallery-preview]");
+  const firstComponentLink = firstComponentCard.getByRole("link");
+  await expect(firstComponentPreview).toHaveAttribute("inert", "");
+  await expect(firstComponentPreview).toHaveAttribute("aria-hidden", "true");
+  await expect(firstComponentLink).toHaveCount(1);
+  await firstComponentLink.focus();
+  await expect(firstComponentLink).toBeFocused();
+
+  await page.goto("/kits");
+  await expect(page.getByRole("heading", { name: "Kits", level: 1 })).toBeVisible();
+  for (const category of categoriesWithEntries(kitEntries)) {
+    await expect(page.getByRole("heading", { name: category.label, exact: true, level: 2 })).toBeVisible();
+  }
+  await expect(page.locator('[data-gallery-card="kit"]')).toHaveCount(kitEntries.length);
 });
 
 test("gallery columns respond to their available width", async ({ page }) => {
   await page.setViewportSize({ width: 1600, height: 1000 });
   await page.goto("/components");
 
-  const cards = page.locator('[data-gallery-card="primitive"]');
-  await expect(cards).toHaveCount(primitiveEntries.length);
+  const cards = page.locator('[data-gallery-card="component"]');
+  await expect(cards).toHaveCount(componentEntries.length);
   await expect(cards.nth(0)).toBeVisible();
   await expect(cards.nth(1)).toBeVisible();
   await expect(cards.nth(2)).toBeVisible();
@@ -52,7 +52,7 @@ test("gallery columns respond to their available width", async ({ page }) => {
     .toBe(true);
 
   await page.setViewportSize({ width: 390, height: 844 });
-  await expect(cards).toHaveCount(primitiveEntries.length);
+  await expect(cards).toHaveCount(componentEntries.length);
   await expect(cards.nth(0)).toBeVisible();
   await expect(cards.nth(1)).toBeVisible();
   await expect
@@ -78,7 +78,7 @@ test("gallery previews mount near the viewport, stay mounted, and navigate witho
   page.on("pageerror", (error) => consoleErrors.push(error.message));
 
   await page.goto("/components");
-  const cards = page.locator('[data-gallery-card="primitive"]');
+  const cards = page.locator('[data-gallery-card="component"]');
   const firstCard = cards.first();
   const lastPreview = cards.last().locator("[data-gallery-preview]");
 
@@ -95,10 +95,10 @@ test("gallery previews mount near the viewport, stay mounted, and navigate witho
   await expect(page).toHaveURL(firstHref ?? "");
 
   await page.goto("/kits");
-  const componentCards = page.locator('[data-gallery-card="component"]');
-  await expect(componentCards).toHaveCount(componentEntries.length);
-  await expect(componentCards.first().locator("[data-gallery-preview]")).toHaveAttribute("data-gallery-preview-state", "mounted");
-  await componentCards.last().scrollIntoViewIfNeeded();
-  await expect(componentCards.last().locator("[data-gallery-preview]")).toHaveAttribute("data-gallery-preview-state", "mounted");
+  const kitCards = page.locator('[data-gallery-card="kit"]');
+  await expect(kitCards).toHaveCount(kitEntries.length);
+  await expect(kitCards.first().locator("[data-gallery-preview]")).toHaveAttribute("data-gallery-preview-state", "mounted");
+  await kitCards.last().scrollIntoViewIfNeeded();
+  await expect(kitCards.last().locator("[data-gallery-preview]")).toHaveAttribute("data-gallery-preview-state", "mounted");
   expect(consoleErrors).toEqual([]);
 });

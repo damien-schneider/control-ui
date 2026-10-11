@@ -1,12 +1,5 @@
 import { skinMetas } from "@/app/(features)/catalog/skins";
-import type {
-  DocsComponent,
-  DocsComponentAlternative,
-  GuideSection,
-  RegistryKindId,
-  SkinMetaId,
-  SourceFile,
-} from "@/app/(features)/model/types";
+import type { DocsKit, DocsKitAlternative, GuideSection, RegistryKindId, SkinMetaId, SourceFile } from "@/app/(features)/model/types";
 import { env } from "@/env";
 
 export type RegistryKind = RegistryKindId;
@@ -16,13 +9,13 @@ export type InstallCommand = {
   value: string;
 };
 
-export function supportFilesFor(component: DocsComponent, alternative?: DocsComponentAlternative): SourceFile[] {
+export function supportFilesFor(kit: DocsKit, alternative?: DocsKitAlternative): SourceFile[] {
   if (alternative) return alternative.supportFiles;
-  return [...(component.hook ? [component.hook] : []), ...(component.supportFiles ?? [])];
+  return [...(kit.hook ? [kit.hook] : []), ...(kit.supportFiles ?? [])];
 }
 
-export function filesFor(component: DocsComponent, alternative?: DocsComponentAlternative) {
-  return [alternative ? alternative.source : component.source, ...supportFilesFor(component, alternative)];
+export function filesFor(kit: DocsKit, alternative?: DocsKitAlternative) {
+  return [alternative ? alternative.source : kit.source, ...supportFilesFor(kit, alternative)];
 }
 
 export function installedDependencyFiles(files: SourceFile[]): SourceFile[] {

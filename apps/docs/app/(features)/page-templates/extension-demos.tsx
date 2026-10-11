@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { PrimitivePreview } from "@/app/(features)/components/previews";
+import { ComponentPreview } from "@/app/(features)/components/previews";
 import type { ExtensionId } from "@/app/(features)/model/types";
 import { ControlEffectsRoot } from "@/components/control-ui/extensions/control-effects-root";
 import type { ControlEffect } from "@/components/control-ui/skin";
@@ -54,7 +54,7 @@ function ControlEffectsDemo() {
       </div>
       <ControlEffectsRoot effects={effects}>
         <div className="flex w-full justify-center rounded-lg border border-border/70 bg-background px-4 py-6">
-          <PrimitivePreview primitiveId="button" />
+          <ComponentPreview componentId="button" />
         </div>
       </ControlEffectsRoot>
     </div>

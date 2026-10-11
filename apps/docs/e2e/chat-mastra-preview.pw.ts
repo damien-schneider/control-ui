@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 import { CHAT_PREVIEW_REPLY } from "../mastra/chat-preview-contract";
 
 test("chat preview sends through Mastra and renders the mock reply", async ({ page }) => {
-  await page.goto("/use-cases/chat");
+  await page.goto("/templates/chat");
 
   const preview = page
     .locator('[data-control-ui="chat-layout"][data-slot="root"]')

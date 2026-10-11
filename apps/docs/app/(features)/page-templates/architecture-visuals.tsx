@@ -46,7 +46,7 @@ export function ArchitectureLayers() {
           <div className="grid gap-2">
             <DiagramNode className="border-primary/30">
               <Text as="div" size="label" weight="medium">
-                Blocks
+                Templates
               </Text>
               <Text as="div" size="caption" tone="muted">
                 complete recipes composed from public surfaces

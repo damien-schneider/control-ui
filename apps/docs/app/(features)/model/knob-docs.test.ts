@@ -5,12 +5,12 @@ const data = getDocsData();
 
 describe("knob docs", () => {
   test("a page lists every family its installed recipes paint with", () => {
-    const select = data.primitives.find((candidate) => candidate.id === "select");
+    const select = data.components.find((candidate) => candidate.id === "select");
     expect(select?.registry.knobs.map((family) => family.id)).toEqual(["field", "popup"]);
   });
 
   test("knobs carry the recipe root default and the registered syntax", () => {
-    const composer = data.components.find((candidate) => candidate.id === "chat-composer");
+    const composer = data.kits.find((candidate) => candidate.id === "chat-composer");
     const radius = composer?.knobs.flatMap((family) => family.knobs).find((knob) => knob.name === "--cui-chat-composer-shell-radius");
     expect(radius).toEqual({
       name: "--cui-chat-composer-shell-radius",
@@ -20,7 +20,7 @@ describe("knob docs", () => {
   });
 
   test("a family without knobs shows no section", () => {
-    const email = data.components.find((candidate) => candidate.id === "email");
+    const email = data.kits.find((candidate) => candidate.id === "email");
     expect(email?.knobs).toEqual([]);
   });
 });

@@ -122,9 +122,6 @@ function selectorAttributes(selector: any): any[] {
 function validateSelectorOwnership(file: string, selectorText: string, attributes: any[]): boolean {
   const hasSkin = attributes.some((attribute) => attribute.attribute === skinScopeAttribute);
   const hasControlUi = attributes.some((attribute) => [identityAttribute, familyAttribute].includes(attribute.attribute));
-  if (attributes.some((attribute) => ["data-ui", "data-component"].includes(attribute.attribute))) {
-    failures.push(`${file}: contains a legacy data-ui or data-component selector`);
-  }
   if (hasControlUi && !hasSkin) {
     failures.push(`${file}: Control UI selector is not scoped by data-skin: ${selectorText}`);
   }

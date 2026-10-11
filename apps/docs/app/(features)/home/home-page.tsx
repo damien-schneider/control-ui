@@ -11,12 +11,12 @@ import landingType from "./landing-type.module.css";
 import { SceneStage } from "./scene-stage";
 import {
   catalogIndex,
-  chatComponents,
   chatGroup,
+  chatKits,
+  componentsMissingFromShadcn,
   inlineLinkClassName,
   landingWidthClassName,
   missingFromShadcnGuide,
-  primitivesMissingFromShadcn,
   shadcnComparisonGuide,
 } from "./showcase";
 import { CatalogItemShowcaseCard } from "./showcase-cards";
@@ -143,7 +143,7 @@ export function HomePage() {
           </>
         }
       >
-        <ShowcaseCardGrid items={primitivesMissingFromShadcn} />
+        <ShowcaseCardGrid items={componentsMissingFromShadcn} />
       </LandingSection>
       <LandingSection
         id="chat"
@@ -158,7 +158,7 @@ export function HomePage() {
           </>
         }
       >
-        <ShowcaseCardGrid items={chatComponents} />
+        <ShowcaseCardGrid items={chatKits} />
       </LandingSection>
       <LandingSection
         id="how-it-works"

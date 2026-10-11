@@ -66,15 +66,13 @@ describe("skin validator", () => {
     expect(result.stderr.toString()).toContain("anatomy part keys data-slot without data-control-family");
   });
 
-  test("rejects legacy, unknown, unscoped, and bare-host selectors", () => {
+  test("rejects unknown, unscoped, and bare-host selectors", () => {
     const result = validate(`
-      [data-ui="agent"] { color: red; }
       [data-control-ui="missing"][data-slot="root"] { color: red; }
       [data-skin="test"] button { color: red; }
     `);
     const error = result.stderr.toString();
     expect(result.exitCode).toBe(1);
-    expect(error).toContain("legacy");
     expect(error).toContain("unknown scope missing");
     expect(error).toContain("not scoped by data-skin");
     expect(error).toContain("bare host selector");

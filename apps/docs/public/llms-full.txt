@@ -164,8 +164,8 @@
 - `chat-layout` (ChatLayout) — A scrolling conversation with a pinned header, message turns, and a floating composer dock. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-layout.json`
 - `thread-rail` (ThreadRail) — Conversation minimap for scanning and jumping between chat turns. — `npx shadcn@latest add http://127.0.0.1:3000/r/thread-rail.json`
 
-### Blocks (pre-composed recipes)
-- `use-cases` (Templates & patterns) — Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.
+### Templates (pre-composed recipes)
+- `templates` (Templates) — Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.
 - `chat` (Chat) — Controlled chat shell that composes rendered turns and a provider-owned composer. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-block.json`
 - `theme-toggle` (Theme toggle) — Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown. — `npx shadcn@latest add http://127.0.0.1:3000/r/theme-toggle-block.json`
 - `discussion` (Discussion) **[beta]** — Comment thread with ⌘ Enter posting, nested replies, inline editing, and hover actions. — `npx shadcn@latest add http://127.0.0.1:3000/r/discussion-block.json`
@@ -208,7 +208,7 @@
 
 ### Guides
 - `create` (Create app) — Scaffold a Next.js app with every Control UI component installed as source you own, or hand the whole install to the coding agent already open in your project.
-- `get-started` (Install) — One command installs every component, kit, and block as source you own, with neutral light and dark defaults. The CSS entry is the only wiring you write.
+- `get-started` (Install) — One command installs every component, kit, and template as source you own, with neutral light and dark defaults. The CSS entry is the only wiring you write.
 - `theming` (Theme it) — Pick the pack, re-value the token contract in one artifact, and check the contrast the components actually paint.
 - `build-a-screen` (Build a screen) — Render provider-owned messages with plain props and children. No intermediary message schema, no runtime coupling.
 - `create-a-skin` (Create a skin) — Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.
@@ -219,7 +219,7 @@
 - `setup-prompt` (Setup prompt) — One prompt that makes the agent already open in your project read the repository, install from the registry, wire the CSS, run the doctor, and design the theme with you.
 - `agent-skill` (Agent skill) — The skill installed with every pack: the token contract and the working rules, refreshed by every update, so later sessions build without the prompt.
 - `agent-surface` (Machine docs) — Inspect and install registry items through HTTP, MCP, shadcn manifests, markdown negotiation, and machine-readable docs.
-- `overview` (Why Control UI) — An owned-source registry of components, kits, complete blocks, and swappable skins.
+- `overview` (Why Control UI) — An owned-source registry of components, kits, complete templates, and swappable skins.
 - `architecture` (Architecture) — Runtime ownership, skin layering, customization paths, and registry derivation.
 - `lock-in` (Lock-in) — What you own at each layer, what stays proprietary, and what leaving costs — measured, not promised.
 - `shadcn-compatibility` (shadcn compatibility) — shadcn registry, token, and ownership conventions without writing to components/ui.

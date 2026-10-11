@@ -158,7 +158,7 @@ export type CatalogNamedPreview = {
   previewClassName?: string;
 };
 
-export type CatalogComponentVariant = {
+export type CatalogKitVariant = {
   id: string;
   label: string;
   description: string;
@@ -169,9 +169,9 @@ export type CatalogComponentVariant = {
   preview: CatalogPreview;
 };
 
-export type CatalogComponentAlternative = Omit<CatalogComponentVariant, "paths"> & {
+export type CatalogKitAlternative = Omit<CatalogKitVariant, "paths"> & {
   registryKind: CatalogRegistryKind;
-  paths: CatalogComponentVariant["paths"] & {
+  paths: CatalogKitVariant["paths"] & {
     source: CatalogSourceFile;
     supportFiles?: readonly CatalogSourceFile[];
   };

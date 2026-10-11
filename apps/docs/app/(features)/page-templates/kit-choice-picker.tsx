@@ -1,18 +1,18 @@
 "use client";
 
 import { useId } from "react";
-import type { DocsComponentChoice } from "@/app/(features)/model/types";
+import type { DocsKitChoice } from "@/app/(features)/model/types";
 import { Radio, RadioGroup, RadioGroupItem } from "@/components/control-ui/ui/radio-group";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
 
-export function ComponentChoicePicker({
+export function KitChoicePicker({
   kind,
   choices,
   activeId,
   onPick,
 }: {
   kind: "alternative" | "variant";
-  choices: DocsComponentChoice[];
+  choices: DocsKitChoice[];
   activeId: string;
   onPick?: (id: string) => void;
 }) {

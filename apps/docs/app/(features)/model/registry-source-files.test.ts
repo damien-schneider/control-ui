@@ -5,12 +5,12 @@ import { documentedRegistryFiles, installedRegistryFiles } from "@/app/(features
 
 describe("registry source closure", () => {
   test("shows DynamicNotification support code without duplicating public dependencies", () => {
-    const component = getDocsData().components.find((candidate) => candidate.id === "dynamic-notification");
-    if (!component) throw new Error("Missing DynamicNotification docs entry");
+    const kit = getDocsData().kits.find((candidate) => candidate.id === "dynamic-notification");
+    if (!kit) throw new Error("Missing DynamicNotification docs entry");
 
-    const displayedPaths = filesFor(component).map((file) => file.path);
-    const documentedPaths = documentedRegistryFiles(component.registryKind).map((file) => file.path);
-    const installedPaths = installedRegistryFiles(component.registryKind).map((file) => file.path);
+    const displayedPaths = filesFor(kit).map((file) => file.path);
+    const documentedPaths = documentedRegistryFiles(kit.registryKind).map((file) => file.path);
+    const installedPaths = installedRegistryFiles(kit.registryKind).map((file) => file.path);
 
     const knobContract = "src/registry/knob-contracts/dynamic-notification-knobs.ts";
     expect(new Set(displayedPaths)).toEqual(new Set(documentedPaths.filter((path) => path !== knobContract)));
@@ -26,14 +26,14 @@ describe("registry source closure", () => {
     expect(installedPaths).toContain("src/registry/sources/control-ui/ui/button.tsx");
     expect(displayedPaths).not.toContain("src/registry/sources/control-ui/ui/button.tsx");
     expect(displayedPaths).not.toContain("src/registry/contracts.ts");
-    expect(component.registryDependencies.map((dependency) => dependency.registryKind)).toEqual(["button", "live-status"]);
+    expect(kit.registryDependencies.map((dependency) => dependency.registryKind)).toEqual(["button", "live-status"]);
   });
 
   test("discovers ChatComposer's transitive serializer from the registry graph", () => {
-    const component = getDocsData().components.find((candidate) => candidate.id === "chat-composer");
-    if (!component) throw new Error("Missing ChatComposer docs entry");
+    const kit = getDocsData().kits.find((candidate) => candidate.id === "chat-composer");
+    if (!kit) throw new Error("Missing ChatComposer docs entry");
 
-    expect(filesFor(component).map((file) => file.path)).toContain("src/registry/sources/control-ui/chat-composer-editor/serialize.ts");
+    expect(filesFor(kit).map((file) => file.path)).toContain("src/registry/sources/control-ui/chat-composer-editor/serialize.ts");
   });
 });
 
@@ -41,17 +41,17 @@ describe("installed dependency rows", () => {
   test("never repeat a file another docs page owns", () => {
     const data = getDocsData();
     const ownerByPath = new Map<string, string>([
-      ...data.primitives.map((primitive) => [primitive.registry.source.path, `/components/${primitive.id}`] as const),
-      ...data.components.map((component) => [component.source.path, `/kits/${component.id}`] as const),
+      ...data.components.map((component) => [component.registry.source.path, `/components/${component.id}`] as const),
+      ...data.kits.map((kit) => [kit.source.path, `/kits/${kit.id}`] as const),
     ]);
     const rows = [
-      ...data.primitives.map((primitive) => ({
-        page: `/components/${primitive.id}`,
-        files: installedDependencyFiles(primitive.registry.supportFiles ?? []),
-      })),
       ...data.components.map((component) => ({
-        page: `/kits/${component.id}`,
-        files: installedDependencyFiles(supportFilesFor(component)),
+        page: `/components/${component.id}`,
+        files: installedDependencyFiles(component.registry.supportFiles ?? []),
+      })),
+      ...data.kits.map((kit) => ({
+        page: `/kits/${kit.id}`,
+        files: installedDependencyFiles(supportFilesFor(kit)),
       })),
     ];
 
@@ -66,10 +66,10 @@ describe("installed dependency rows", () => {
 describe("knob family ownership", () => {
   test("a page browses its own family recipe and none of the families it only consumes", () => {
     const data = getDocsData();
-    const paths = (primitiveId: string) => {
-      const primitive = data.primitives.find((candidate) => candidate.id === primitiveId);
-      if (!primitive) throw new Error(`Missing ${primitiveId} docs entry`);
-      return [primitive.registry.source, ...(primitive.registry.supportFiles ?? [])].map((file) => file.path);
+    const paths = (componentId: string) => {
+      const component = data.components.find((candidate) => candidate.id === componentId);
+      if (!component) throw new Error(`Missing ${componentId} docs entry`);
+      return [component.registry.source, ...(component.registry.supportFiles ?? [])].map((file) => file.path);
     };
 
     expect(paths("button")).toContain("src/registry/sources/control-ui/recipes/button.css");
@@ -81,7 +81,7 @@ describe("knob family ownership", () => {
   });
 
   test("links a consumed family to the page that owns it", () => {
-    const menubar = getDocsData().primitives.find((candidate) => candidate.id === "menubar");
+    const menubar = getDocsData().components.find((candidate) => candidate.id === "menubar");
     if (!menubar) throw new Error("Missing Menubar docs entry");
 
     expect(menubar.registry.knobs.map((family) => [family.id, family.href])).toEqual([
@@ -91,7 +91,7 @@ describe("knob family ownership", () => {
   });
 
   test("keeps the owned recipe out of the installed rows", () => {
-    const button = getDocsData().primitives.find((candidate) => candidate.id === "button");
+    const button = getDocsData().components.find((candidate) => candidate.id === "button");
     if (!button) throw new Error("Missing Button docs entry");
 
     expect(installedDependencyFiles(button.registry.supportFiles ?? []).map((file) => file.path)).toEqual([

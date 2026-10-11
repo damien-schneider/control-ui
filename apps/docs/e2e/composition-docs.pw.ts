@@ -28,7 +28,7 @@ test("Context keeps its hierarchy after loading and navigating between docs", as
   await expect(header.locator(":scope > ul > li")).toHaveCount(3);
 });
 
-for (const route of ["/kits/inline-citation", "/components/input-otp", "/components/dropdown-menu", "/use-cases/theme-toggle"]) {
+for (const route of ["/kits/inline-citation", "/components/input-otp", "/components/dropdown-menu", "/templates/theme-toggle"]) {
   test(`${route} renders authored composition trees`, async ({ page }) => {
     await page.goto(route);
     const composition = page.locator("#composition:visible");

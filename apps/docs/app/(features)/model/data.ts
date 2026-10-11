@@ -5,7 +5,7 @@ import { catalogCompositions } from "@/app/(features)/catalog/compositions";
 import { extensionEntries } from "@/app/(features)/catalog/extensions";
 import { guideEntries } from "@/app/(features)/catalog/guides";
 import { hookEntries, utilEntries } from "@/app/(features)/catalog/hooks-utils";
-import { primitiveEntries } from "@/app/(features)/catalog/primitives";
+import { kitEntries } from "@/app/(features)/catalog/kits";
 import { type CatalogSourceFile, catalogStatus, integrationIds } from "@/app/(features)/catalog/shared";
 import { type CatalogSkinMeta, skinMetas } from "@/app/(features)/catalog/skins";
 import { source } from "@/app/(features)/model/data-source";
@@ -15,12 +15,12 @@ import type {
   Composition,
   DocsBlock,
   DocsComponent,
-  DocsComponentAlternative,
-  DocsComponentVariant,
   DocsExtension,
   DocsHook,
+  DocsKit,
+  DocsKitAlternative,
+  DocsKitVariant,
   DocsKnobFamily,
-  DocsPrimitive,
   DocsRegistryDependency,
   DocsShellData,
   DocsSkill,
@@ -37,8 +37,8 @@ function sourceFrom(file: CatalogSourceFile): SourceFile {
 }
 
 const documentedSourceOwners = new Map<string, string>([
-  ...primitiveEntries.map((entry) => [entry.paths.registry.source.path, entry.paths.registry.registryKind] as const),
-  ...componentEntries.map((entry) => [entry.paths.source.path, entry.registryKind] as const),
+  ...componentEntries.map((entry) => [entry.paths.registry.source.path, entry.paths.registry.registryKind] as const),
+  ...kitEntries.map((entry) => [entry.paths.source.path, entry.registryKind] as const),
 ]);
 
 function documentedSourceSet(registryKind: string, primary: CatalogSourceFile, declaredFiles: readonly CatalogSourceFile[]) {
@@ -70,20 +70,20 @@ function ownSourceFiles(files: SourceFile[], registryKind: string) {
 }
 
 function docsPageFor(kind: string): DocsRegistryDependency | undefined {
-  const component = componentEntries.find((entry) => entry.registryKind === kind);
-  if (component) return { registryKind: component.registryKind, name: component.name, kind: "Component", href: `/kits/${component.id}` };
+  const kit = kitEntries.find((entry) => entry.registryKind === kind);
+  if (kit) return { registryKind: kit.registryKind, name: kit.name, kind: "Kit", href: `/kits/${kit.id}` };
 
-  const primitive = primitiveEntries.find((entry) => entry.paths.registry.registryKind === kind);
-  if (primitive)
+  const component = componentEntries.find((entry) => entry.paths.registry.registryKind === kind);
+  if (component)
     return {
-      registryKind: primitive.paths.registry.registryKind,
-      name: primitive.name,
-      kind: "Primitive",
-      href: `/components/${primitive.id}`,
+      registryKind: component.paths.registry.registryKind,
+      name: component.name,
+      kind: "Component",
+      href: `/components/${component.id}`,
     };
 
   const block = blockEntries.find((entry) => entry.registryKind === kind);
-  if (block) return { registryKind: block.registryKind, name: block.name, kind: "Block", href: `/use-cases/${block.id}` };
+  if (block) return { registryKind: block.registryKind, name: block.name, kind: "Block", href: `/templates/${block.id}` };
 
   const extension = extensionEntries.find((entry) => entry.registryKind === kind);
   if (extension)
@@ -155,10 +155,10 @@ function getSkillConcerns(): DocsSkillConcern[] {
   return skillConcerns.map((concern) => ({ ...concern }));
 }
 
-function getComponentAlternatives(
-  entry: (typeof componentEntries)[number],
+function getKitAlternatives(
+  entry: (typeof kitEntries)[number],
   declaredSupport: readonly CatalogSourceFile[],
-): DocsComponentAlternative[] | undefined {
+): DocsKitAlternative[] | undefined {
   if (!("alternatives" in entry)) return undefined;
 
   return entry.alternatives.map((alternative) => {
@@ -182,7 +182,7 @@ function getComponentAlternatives(
   });
 }
 
-function getComponentVariants(entry: (typeof componentEntries)[number]): DocsComponentVariant[] | undefined {
+function getKitVariants(entry: (typeof kitEntries)[number]): DocsKitVariant[] | undefined {
   if (!("variants" in entry)) return undefined;
 
   return entry.variants.map((variant) => ({
@@ -194,8 +194,8 @@ function getComponentVariants(entry: (typeof componentEntries)[number]): DocsCom
   }));
 }
 
-function getComponents(): DocsComponent[] {
-  return componentEntries.map((entry) => {
+function getKits(): DocsKit[] {
+  return kitEntries.map((entry) => {
     const hook = "hook" in entry.paths ? entry.paths.hook : undefined;
     const declaredSupport = [...(hook ? [hook] : []), ...("supportFiles" in entry.paths ? entry.paths.supportFiles : [])];
     const installed = documentedSourceSet(entry.registryKind, entry.paths.source, declaredSupport);
@@ -228,8 +228,8 @@ function getComponents(): DocsComponent[] {
       source: installed.source,
       registryDependencies: registryDependencyReferences(entry.registryKind),
       registryKind: entry.registryKind,
-      alternatives: getComponentAlternatives(entry, declaredSupport),
-      variants: getComponentVariants(entry),
+      alternatives: getKitAlternatives(entry, declaredSupport),
+      variants: getKitVariants(entry),
       knobs: installed.knobs,
     };
   });
@@ -243,7 +243,7 @@ function getBlocks(): DocsBlock[] {
 
     return {
       id: entry.id,
-      useCaseKind: entry.useCaseKind,
+      templateKind: entry.templateKind,
       name: entry.name,
       summary: entry.summary,
       status: catalogStatus(entry),
@@ -257,8 +257,8 @@ function getBlocks(): DocsBlock[] {
   });
 }
 
-function getPrimitives(): DocsPrimitive[] {
-  return primitiveEntries.map((entry) => {
+function getComponents(): DocsComponent[] {
+  return componentEntries.map((entry) => {
     const declaredFiles = "supportFiles" in entry.paths.registry ? entry.paths.registry.supportFiles : [];
     const installed = documentedSourceSet(entry.paths.registry.registryKind, entry.paths.registry.source, declaredFiles);
 
@@ -368,9 +368,9 @@ export function getDocsData(): DocsShellData {
     guides: getGuides(),
     skills: getSkills(),
     skillConcerns: getSkillConcerns(),
-    components: getComponents(),
+    kits: getKits(),
     blocks: getBlocks(),
-    primitives: getPrimitives(),
+    components: getComponents(),
     hooks: getHooks(),
     utils: getUtils(),
     extensions: getExtensions(),
@@ -390,16 +390,16 @@ export function getDocsShellData(): DocsShellData {
     guides: data.guides,
     skills: data.skills,
     skillConcerns: data.skillConcerns,
-    components: data.components.map((component) => ({
-      ...component,
-      example: sourceOutline(component.example),
-      examples: component.examples?.map((example) => ({ ...example, source: sourceOutline(example.source) })),
-      usage: objectFromEntries(integrationIds.map((id) => [id, sourceOutline(component.usage[id])] as const)),
-      hook: component.hook ? sourceOutline(component.hook) : undefined,
-      supportFiles: component.supportFiles?.map(sourceOutline),
-      source: sourceOutline(component.source),
+    kits: data.kits.map((kit) => ({
+      ...kit,
+      example: sourceOutline(kit.example),
+      examples: kit.examples?.map((example) => ({ ...example, source: sourceOutline(example.source) })),
+      usage: objectFromEntries(integrationIds.map((id) => [id, sourceOutline(kit.usage[id])] as const)),
+      hook: kit.hook ? sourceOutline(kit.hook) : undefined,
+      supportFiles: kit.supportFiles?.map(sourceOutline),
+      source: sourceOutline(kit.source),
       knobs: [],
-      alternatives: component.alternatives?.map((alternative) => ({
+      alternatives: kit.alternatives?.map((alternative) => ({
         ...alternative,
         example: sourceOutline(alternative.example),
         usage: objectFromEntries(integrationIds.map((id) => [id, sourceOutline(alternative.usage[id])] as const)),
@@ -407,7 +407,7 @@ export function getDocsShellData(): DocsShellData {
         supportFiles: alternative.supportFiles.map(sourceOutline),
         knobs: [],
       })),
-      variants: component.variants?.map((variant) => ({
+      variants: kit.variants?.map((variant) => ({
         ...variant,
         example: sourceOutline(variant.example),
         usage: objectFromEntries(integrationIds.map((id) => [id, sourceOutline(variant.usage[id])] as const)),
@@ -419,14 +419,14 @@ export function getDocsShellData(): DocsShellData {
       usage: objectFromEntries(integrationIds.map((id) => [id, sourceOutline(block.usage[id])] as const)),
       files: block.files.map(sourceOutline),
     })),
-    primitives: data.primitives.map((primitive) => ({
-      ...primitive,
+    components: data.components.map((component) => ({
+      ...component,
       registry: {
-        ...primitive.registry,
-        example: sourceOutline(primitive.registry.example),
-        examples: primitive.registry.examples?.map((example) => ({ ...example, source: sourceOutline(example.source) })),
-        source: sourceOutline(primitive.registry.source),
-        supportFiles: primitive.registry.supportFiles?.map(sourceOutline),
+        ...component.registry,
+        example: sourceOutline(component.registry.example),
+        examples: component.registry.examples?.map((example) => ({ ...example, source: sourceOutline(example.source) })),
+        source: sourceOutline(component.registry.source),
+        supportFiles: component.registry.supportFiles?.map(sourceOutline),
         knobs: [],
       },
     })),

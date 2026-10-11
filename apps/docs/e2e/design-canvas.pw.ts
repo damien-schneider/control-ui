@@ -13,7 +13,7 @@ async function dragBy(page: Page, target: Locator, delta: { x: number; y: number
 
 test.beforeEach(async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto("/use-cases/design-canvas");
+  await page.goto("/templates/design-canvas");
   const canvas = page.getByRole("application", { name: "Design canvas" });
   await waitForReactHydration(canvas);
   await canvas.scrollIntoViewIfNeeded();

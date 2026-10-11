@@ -3,7 +3,7 @@
 import { ArrowUpRightIcon, Grid2X2Icon, LayoutDashboardIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
 import { type ReactNode, useRef, useState } from "react";
-import { BlockPreview, PrimitivePreview } from "@/app/(features)/components/previews";
+import { BlockPreview, ComponentPreview } from "@/app/(features)/components/previews";
 import { ColorFoundations } from "@/app/(features)/foundations/color-foundations";
 import { ElevationFoundations } from "@/app/(features)/foundations/elevation-foundations";
 import { FocusFoundations } from "@/app/(features)/foundations/focus-foundations";
@@ -12,7 +12,7 @@ import { RadiusFoundations } from "@/app/(features)/foundations/radius-foundatio
 import { SizingFoundations } from "@/app/(features)/foundations/sizing-foundations";
 import { SurfaceFoundations } from "@/app/(features)/foundations/surface-foundations";
 import { TypographyFoundations } from "@/app/(features)/foundations/typography-foundations";
-import type { PrimitiveId } from "@/app/(features)/model/types";
+import type { ComponentId } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/control-ui/ui/empty";
@@ -23,7 +23,7 @@ import { Heading, Text } from "@/components/control-ui/ui/typography";
 import type { ThemeContractGroup } from "@/src/registry/lib/theme-contract";
 import { SKIN_CATEGORY, type ThemeCategoryId, TOKEN_GROUP_TITLES } from "./theme-categories";
 
-type PreviewTile = { id: PrimitiveId; title: string; wide?: boolean; showcases: readonly ThemeContractGroup[] };
+type PreviewTile = { id: ComponentId; title: string; wide?: boolean; showcases: readonly ThemeContractGroup[] };
 
 const PRIMITIVE_TILES: readonly PreviewTile[] = [
   { id: "button", title: "Buttons", showcases: ["color", "radius", "shadow", "layout", "typography"] },
@@ -45,7 +45,7 @@ function tilesShowcasing(category: ThemeCategoryId) {
   return PRIMITIVE_TILES.filter((tile) => tile.showcases.includes(category));
 }
 
-function PreviewSection({ id, title, wide, children }: { id: PrimitiveId; title: string; wide?: boolean; children: ReactNode }) {
+function PreviewSection({ id, title, wide, children }: { id: ComponentId; title: string; wide?: boolean; children: ReactNode }) {
   return (
     <section
       aria-label={title}
@@ -151,7 +151,7 @@ export function ThemePreviewCanvas({ category, actions }: { category: ThemeCateg
         <div className="grid min-w-0 items-start gap-4 @3xl/canvas:grid-cols-2">
           {visibleTiles.map((tile) => (
             <PreviewSection key={tile.id} id={tile.id} title={tile.title} wide={tile.wide}>
-              <PrimitivePreview primitiveId={tile.id} />
+              <ComponentPreview componentId={tile.id} />
             </PreviewSection>
           ))}
         </div>

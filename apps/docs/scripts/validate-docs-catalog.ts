@@ -2,12 +2,12 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import { practiceSkills, skillConcerns } from "@control-ui/skills";
 import { catalogEntries } from "../app/(features)/catalog";
-import { blockEntries, useCaseKinds } from "../app/(features)/catalog/blocks";
+import { blockEntries, templateKinds } from "../app/(features)/catalog/blocks";
 import { catalogCategories } from "../app/(features)/catalog/categories";
 import { componentEntries } from "../app/(features)/catalog/components";
 import { extensionEntries } from "../app/(features)/catalog/extensions";
 import { hookEntries, utilEntries } from "../app/(features)/catalog/hooks-utils";
-import { primitiveEntries } from "../app/(features)/catalog/primitives";
+import { kitEntries } from "../app/(features)/catalog/kits";
 import type { CatalogSourceFile } from "../app/(features)/catalog/shared";
 import { skinMetas } from "../app/(features)/catalog/skins";
 import { registryMetadata } from "../app/(features)/model/generated-registry";
@@ -86,11 +86,11 @@ if (categoryIds.size !== catalogCategories.length) {
 }
 
 // One nav group now mixes both tiers, so a shared id collapses two links onto one key and one active page.
-const primitiveIds = new Set<string>(primitiveEntries.map((entry) => entry.id));
+const componentIds = new Set<string>(componentEntries.map((entry) => entry.id));
 
-for (const component of componentEntries) {
-  if (primitiveIds.has(component.id)) {
-    failures.push(`Id "${component.id}" is claimed by both a component and a primitive`);
+for (const kit of kitEntries) {
+  if (componentIds.has(kit.id)) {
+    failures.push(`Id "${kit.id}" is claimed by both a kit and a component`);
   }
 }
 
@@ -98,7 +98,7 @@ function checkRegistryItem(owner: string, id: string) {
   if (!registryIds.has(id)) failures.push(`${owner} references missing registry item "${id}"`);
 }
 
-for (const entry of componentEntries) {
+for (const entry of kitEntries) {
   if (!categoryIds.has(entry.category)) {
     failures.push(`${entry.id} references unknown category "${entry.category}"`);
   }
@@ -155,13 +155,13 @@ for (const entry of componentEntries) {
   }
 }
 
-const usedUseCaseKindIds = new Set<string>();
+const usedTemplateKindIds = new Set<string>();
 
 for (const entry of blockEntries) {
-  if (!useCaseKinds.some((kind) => kind.id === entry.useCaseKind)) {
-    failures.push(`${entry.id} references unknown use-case kind "${entry.useCaseKind}"`);
+  if (!templateKinds.some((kind) => kind.id === entry.templateKind)) {
+    failures.push(`${entry.id} references unknown template kind "${entry.templateKind}"`);
   }
-  usedUseCaseKindIds.add(entry.useCaseKind);
+  usedTemplateKindIds.add(entry.templateKind);
   checkRegistryItem(entry.id, entry.registryKind);
   checkSourceFile(`${entry.id}.example`, entry.paths.example);
   checkRecord(`${entry.id}.usage`, entry.paths.usage);
@@ -170,13 +170,13 @@ for (const entry of blockEntries) {
   checkPreview(entry.id, entry.paths.example, entry.preview);
 }
 
-for (const kind of useCaseKinds) {
-  if (!usedUseCaseKindIds.has(kind.id)) {
-    failures.push(`Use-case kind "${kind.id}" has no entries`);
+for (const kind of templateKinds) {
+  if (!usedTemplateKindIds.has(kind.id)) {
+    failures.push(`Template kind "${kind.id}" has no entries`);
   }
 }
 
-for (const entry of primitiveEntries) {
+for (const entry of componentEntries) {
   if (!categoryIds.has(entry.category)) {
     failures.push(`${entry.id} references unknown category "${entry.category}"`);
   }

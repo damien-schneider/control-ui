@@ -14,9 +14,9 @@ type SkinItem = { id: SearchItem["id"]; label: string; description: string };
 export type SearchCorpus = {
   guides: readonly NamedItem[];
   skills: readonly SkillItem[];
-  components: readonly NamedItem[];
+  kits: readonly NamedItem[];
   blocks: readonly NamedItem[];
-  primitives: readonly NamedItem[];
+  components: readonly NamedItem[];
   hooks: readonly NamedItem[];
   utils: readonly NamedItem[];
   extensions: readonly NamedItem[];
@@ -26,9 +26,9 @@ export type SearchCorpus = {
 export function buildSearchItems({
   guides,
   skills,
-  components,
+  kits,
   blocks,
-  primitives,
+  components,
   hooks,
   utils,
   extensions,
@@ -71,18 +71,18 @@ export function buildSearchItems({
       summary: item.summary,
       href: `/skills/${item.id}`,
     })),
-    ...components.map<SearchItem>((item) => ({
+    ...kits.map<SearchItem>((item) => ({
       id: item.id,
       name: item.name,
-      kind: "Component",
+      kind: "Kit",
       summary: item.summary,
       href: `/kits/${item.id}`,
       status: item.status,
     })),
-    ...primitives.map<SearchItem>((item) => ({
+    ...components.map<SearchItem>((item) => ({
       id: item.id,
       name: item.name,
-      kind: "Primitive",
+      kind: "Component",
       summary: item.summary,
       href: `/components/${item.id}`,
       status: item.status,
@@ -114,7 +114,7 @@ export function buildSearchItems({
       name: item.name,
       kind: "Block",
       summary: item.summary,
-      href: `/use-cases/${item.id}`,
+      href: `/templates/${item.id}`,
       status: item.status,
     })),
   ];

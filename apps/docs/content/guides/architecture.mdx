@@ -5,7 +5,7 @@
 
   Interactive previews are host-app integration surfaces, so they can mount a provider's official client and a server-side
   mock runtime. They render the provider's native messages directly; they do not add a Control UI message format or convert
-  one provider's shape into another. Provider code never enters installable components, blocks, hooks, or utilities.
+  one provider's shape into another. Provider code never enters installable components, templates, hooks, or utilities.
 
   <ArchitectureLayers />
 
@@ -146,6 +146,6 @@
   generated contract publishes every registered `--cui-*` knob with its syntax and recipe default. Paint knobs carry the
   `-background` suffix, the surface archetype tokens (`--control-rim`, `--hover-fill`, `--active-fill`) sit beside them, and
   control sizing lives in the recipes as `--cui-button-height` and its padding, font-size and field twins.
-  This pre-release registry has no migration layer: a breaking change reinstalls core, the affected components or blocks,
+  This pre-release registry has no migration layer: a breaking change reinstalls core, the affected components or templates,
   and the selected skin together.
 </GuideSection>

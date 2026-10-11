@@ -3,7 +3,7 @@
   "name": "all-linear",
   "type": "registry:item",
   "title": "All Control UI components — Linear",
-  "description": "Every Control UI agent component, block, and primitive with the Linear skin.",
+  "description": "Every Control UI component, kit, and template with the Linear skin.",
   "dependencies": [],
   "registryDependencies": [
     "accordion",

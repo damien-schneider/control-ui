@@ -3,7 +3,7 @@
 import { useLiveQuery } from "@tanstack/react-db";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { CatalogOverviewId } from "@/app/(features)/catalog/overviews";
 import { skinsOverviewId } from "@/app/(features)/catalog/skins";
 import { LandingShell } from "@/app/(features)/home/landing-shell";
@@ -38,8 +38,6 @@ import { pageLinks } from "./page-links";
 import {
   defaultSetupPreference,
   docsSetupCollection,
-  docsSetupPreferenceVersion,
-  type LegacyDocsSetupPreference,
   normalizeSetupPreference,
   updateDocsSetupPreference,
   useIsHydrated,
@@ -77,7 +75,7 @@ function activePageForPathname(pathname: string, searchItems: SearchItem[]): Act
 
 type ActivePageCatalog = Pick<
   DocsShellData,
-  "guides" | "skills" | "components" | "blocks" | "primitives" | "hooks" | "utils" | "extensions" | "skinPages"
+  "guides" | "skills" | "kits" | "blocks" | "components" | "hooks" | "utils" | "extensions" | "skinPages"
 >;
 
 function guidePageWidth(guideLayout: GuidePage["layout"], catalogOverview: CatalogOverviewId | undefined): PageWidth {
@@ -87,36 +85,34 @@ function guidePageWidth(guideLayout: GuidePage["layout"], catalogOverview: Catal
 }
 
 function resolveActivePage(activePage: ActivePageId | undefined, catalog: ActivePageCatalog) {
-  const { guides, skills, components, blocks, primitives, hooks, utils, extensions, skinPages } = catalog;
+  const { guides, skills, kits, blocks, components, hooks, utils, extensions, skinPages } = catalog;
   const activeGuide = guides.find((item) => item.id === activePage);
   const activeSkill = skills.find((item) => item.id === activePage);
-  const activeUseCase = blocks.find((item) => item.id === activePage);
-  const activePrimitive = primitives.find((item) => item.id === activePage);
+  const activeTemplate = blocks.find((item) => item.id === activePage);
+  const activeComponent = components.find((item) => item.id === activePage);
   const activeReference = hooks.find((item) => item.id === activePage) ?? utils.find((item) => item.id === activePage);
   const activeExtension = extensions.find((item) => item.id === activePage);
-  const activeCatalogOverview =
-    activePage === "components" || activePage === "primitives" || activePage === "use-cases" ? activePage : undefined;
+  const activeCatalogOverview = activePage === "kits" || activePage === "components" || activePage === "templates" ? activePage : undefined;
   const activeSkinsOverview = activePage === skinsOverviewId;
   const activeSkinPage = skinPages.find((item) => item.id === activePage);
   const matchedElsewhere =
-    activeGuide ?? activeSkill ?? activeUseCase ?? activePrimitive ?? activeReference ?? activeExtension ?? activeCatalogOverview;
-  const component =
-    matchedElsewhere || activeSkinsOverview || activeSkinPage ? undefined : components.find((item) => item.id === activePage);
+    activeGuide ?? activeSkill ?? activeTemplate ?? activeComponent ?? activeReference ?? activeExtension ?? activeCatalogOverview;
+  const kit = matchedElsewhere || activeSkinsOverview || activeSkinPage ? undefined : kits.find((item) => item.id === activePage);
 
   return {
     pageWidth: activeSkinPage || !activePage ? "wide" : guidePageWidth(activeGuide?.layout, activeCatalogOverview),
     links: pageLinks({
       activeGuide,
       activeSkill,
-      activeUseCase,
-      activePrimitive,
+      activeTemplate,
+      activeComponent,
       activeReference,
       activeExtension,
       activeSkinPage,
       activeSkinsOverview,
       activeCatalogOverview,
-      component,
-      primitives,
+      kit,
+      components,
       extensions,
     }),
   };
@@ -124,18 +120,7 @@ function resolveActivePage(activePage: ActivePageId | undefined, catalog: Active
 
 function PersistedDocsShell(props: PersistedDocsShellProps) {
   const { data: setupPreferences } = useLiveQuery(docsSetupCollection);
-  const storedSetupPreference = setupPreferences[0];
-  const setupPreference = normalizeSetupPreference(storedSetupPreference);
-
-  useEffect(() => {
-    if (!storedSetupPreference || storedSetupPreference.version === docsSetupPreferenceVersion) return;
-
-    const legacy: LegacyDocsSetupPreference = storedSetupPreference;
-    docsSetupCollection.update(defaultSetupPreference.id, (draft) => {
-      draft.integration = legacy.integration ?? legacy.adapter ?? defaultSetupPreference.integration;
-      draft.version = docsSetupPreferenceVersion;
-    });
-  }, [storedSetupPreference]);
+  const setupPreference = normalizeSetupPreference(setupPreferences[0]);
 
   return <DocsShellContent {...props} integration={setupPreference.integration} updateSetupPreference={updateDocsSetupPreference} />;
 }
@@ -182,9 +167,9 @@ function DocsShellContent({
   guides,
   skills,
   skillConcerns,
-  components,
+  kits,
   blocks,
-  primitives,
+  components,
   hooks,
   utils,
   extensions,
@@ -198,15 +183,15 @@ function DocsShellContent({
 }: DocsShellContentProps) {
   const pathname = usePathname();
   const scrollsPage = usePageScroll() === "page";
-  const searchItems = buildSearchItems({ guides, skills, components, blocks, primitives, hooks, utils, extensions, skinPages });
+  const searchItems = buildSearchItems({ guides, skills, kits, blocks, components, hooks, utils, extensions, skinPages });
   const activePage = activePageForPathname(pathname, searchItems);
 
   const { links, pageWidth } = resolveActivePage(activePage, {
     guides,
     skills,
-    components,
+    kits,
     blocks,
-    primitives,
+    components,
     hooks,
     utils,
     extensions,
@@ -245,9 +230,9 @@ function DocsShellContent({
           guides={guides}
           skills={skills}
           skillConcerns={skillConcerns}
-          components={components}
+          kits={kits}
           blocks={blocks}
-          primitives={primitives}
+          components={components}
           hooks={hooks}
           utils={utils}
           extensions={extensions}

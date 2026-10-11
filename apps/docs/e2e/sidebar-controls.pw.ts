@@ -92,12 +92,12 @@ test("the integration selector shows up only where switching rewrites the code",
 });
 
 test("integration-dependent block usage and guide code carry the selector", async ({ page }) => {
-  await page.goto("/use-cases/chat");
+  await page.goto("/templates/chat");
   const blockIntegration = page.locator("#usage").getByTestId("integration-select");
   await waitForReactHydration(blockIntegration);
   await expect(blockIntegration).toHaveText("Mastra");
 
-  await page.goto("/use-cases/theme-toggle");
+  await page.goto("/templates/theme-toggle");
   await expect(page.locator("#usage")).toBeVisible();
   await expect(page.getByTestId("integration-select")).toHaveCount(0);
 

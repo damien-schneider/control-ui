@@ -3,8 +3,8 @@ import path from "node:path";
 import { practiceSkills, skillConcerns } from "@control-ui/skills";
 import { type CatalogCategoryId, catalogCategories } from "@/app/(features)/catalog/categories";
 import { componentEntries } from "@/app/(features)/catalog/components";
+import { kitEntries } from "@/app/(features)/catalog/kits";
 import { docsPageManifest } from "@/app/(features)/catalog/pages";
-import { primitiveEntries } from "@/app/(features)/catalog/primitives";
 import type { SearchItem } from "@/app/(features)/model/types";
 import { listRegistry } from "@/app/(features)/registry-api/registry-index";
 import { contrastAgentRules } from "@/app/(features)/theme-accessibility/agent-rules";
@@ -13,9 +13,9 @@ import { absoluteSiteUrl, siteConfig } from "@/lib/site-config";
 import { publicPayloads } from "./public-payloads";
 
 const KIND_SECTIONS: { kind: SearchItem["kind"]; heading: string }[] = [
-  { kind: "Primitive", heading: "Components" },
-  { kind: "Component", heading: "Kits (pre-assembled sets of components)" },
-  { kind: "Block", heading: "Blocks (pre-composed recipes)" },
+  { kind: "Component", heading: "Components" },
+  { kind: "Kit", heading: "Kits (pre-assembled sets of components)" },
+  { kind: "Block", heading: "Templates (pre-composed recipes)" },
   { kind: "Extension", heading: "Extensions" },
   { kind: "Skin", heading: "Skins" },
   { kind: "Hook", heading: "Hooks" },
@@ -25,9 +25,9 @@ const KIND_SECTIONS: { kind: SearchItem["kind"]; heading: string }[] = [
 
 const LLMS_SECTIONS: { kind: SearchItem["kind"]; heading: string }[] = [
   { kind: "Guide", heading: "Documentation" },
-  { kind: "Primitive", heading: "Components" },
-  { kind: "Component", heading: "Kits" },
-  { kind: "Block", heading: "Blocks" },
+  { kind: "Component", heading: "Components" },
+  { kind: "Kit", heading: "Kits" },
+  { kind: "Block", heading: "Templates" },
   { kind: "Extension", heading: "Extensions" },
   { kind: "Skin", heading: "Skins" },
   { kind: "Hook", heading: "Hooks" },
@@ -42,8 +42,8 @@ function itemLine(item: { id: string; name: string; summary: string; install?: s
 }
 
 const categoryById = new Map<string, CatalogCategoryId>([
+  ...kitEntries.map((entry) => [entry.id, entry.category] as const),
   ...componentEntries.map((entry) => [entry.id, entry.category] as const),
-  ...primitiveEntries.map((entry) => [entry.id, entry.category] as const),
 ]);
 
 function categorizedBlock(group: { id: string; name: string; summary: string; install?: string; status?: SearchItem["status"] }[]) {
@@ -83,7 +83,7 @@ function buildLlmsFull() {
   const sections = KIND_SECTIONS.map(({ kind, heading }) => {
     const group = items.filter((item) => item.kind === kind);
     if (group.length === 0) return undefined;
-    const body = kind === "Component" || kind === "Primitive" ? categorizedBlock(group) : group.map(itemLine).join("\n");
+    const body = kind === "Kit" || kind === "Component" ? categorizedBlock(group) : group.map(itemLine).join("\n");
     return `### ${heading}\n${body}`;
   }).filter(Boolean);
 

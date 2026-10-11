@@ -27,25 +27,6 @@ const nextConfig = {
     config.resolve.alias["@"] = appRoot;
     return config;
   },
-  async redirects() {
-    return [
-      {
-        source: "/llm.txt",
-        destination: "/llms.txt",
-        permanent: true,
-      },
-      {
-        source: "/primitives/gradient-editor",
-        destination: "/components/color-picker#example-gradient-editor",
-        permanent: true,
-      },
-      {
-        source: "/primitives/emoji-icon-picker",
-        destination: "/components/emoji-picker#example-emoji-or-icon",
-        permanent: true,
-      },
-    ];
-  },
   async headers() {
     const noIndex = [{ key: "X-Robots-Tag", value: "noindex, follow" }];
     const agentDiscovery = [

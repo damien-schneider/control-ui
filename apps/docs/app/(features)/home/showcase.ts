@@ -1,30 +1,30 @@
 import { blockEntries } from "@/app/(features)/catalog/blocks";
 import { componentEntries } from "@/app/(features)/catalog/components";
 import { guideEntries } from "@/app/(features)/catalog/guides";
+import { kitEntries } from "@/app/(features)/catalog/kits";
 import { catalogOverview } from "@/app/(features)/catalog/overviews";
-import { primitiveEntries } from "@/app/(features)/catalog/primitives";
 import { skinPackIds, skinsOverviewId } from "@/app/(features)/catalog/skins";
 import {
-  useCaseGalleryGroups as blockGalleryGroups,
+  templateGalleryGroups as blockGalleryGroups,
   componentGalleryGroups,
-  primitiveGalleryGroups,
+  kitGalleryGroups,
 } from "@/app/(features)/model/catalog-gallery";
-import type { BlockId, ComponentId, PrimitiveId, SkinMetaId } from "@/app/(features)/model/types";
+import type { BlockId, ComponentId, KitId, SkinMetaId } from "@/app/(features)/model/types";
 
-const primitivesMissingFromShadcnIds = [
+const componentsMissingFromShadcnIds = [
   "color-picker",
   "emoji-picker",
   "tree",
   "code-diff",
   "phone-input",
   "timeline",
-] as const satisfies readonly PrimitiveId[];
+] as const satisfies readonly ComponentId[];
 
 const heroSceneIds = ["team-chat", "file-explorer", "coding-agent", "design-canvas", "settings"] as const satisfies readonly BlockId[];
 
 export const defaultHeroSceneId = heroSceneIds[0];
 
-const chatComponentIds = ["chat-message", "chat-composer", "activity"] as const satisfies readonly ComponentId[];
+const chatKitIds = ["chat-message", "chat-composer", "activity"] as const satisfies readonly KitId[];
 
 export const tryoutSkinIds = [
   "refined",
@@ -52,9 +52,9 @@ function pickInOrder<T extends { id: string }>(items: readonly T[], ids: readonl
   return ids.map((id) => pick(items, id));
 }
 
-export const primitivesMissingFromShadcn = pickInOrder(
-  primitiveGalleryGroups().flatMap((group) => group.items),
-  primitivesMissingFromShadcnIds,
+export const componentsMissingFromShadcn = pickInOrder(
+  componentGalleryGroups().flatMap((group) => group.items),
+  componentsMissingFromShadcnIds,
 );
 
 export const heroScenes = pickInOrder(
@@ -62,9 +62,9 @@ export const heroScenes = pickInOrder(
   heroSceneIds,
 );
 
-export const chatGroup = pick(componentGalleryGroups(), "chat");
+export const chatGroup = pick(kitGalleryGroups(), "chat");
 
-export const chatComponents = pickInOrder(chatGroup.items, chatComponentIds);
+export const chatKits = pickInOrder(chatGroup.items, chatKitIds);
 
 export const missingFromShadcnGuide = pick(guideEntries, "components-missing-from-shadcn-ui");
 
@@ -72,13 +72,13 @@ export const shadcnComparisonGuide = pick(guideEntries, "control-ui-vs-shadcn-ui
 
 export const createASkinGuide = pick(guideEntries, "create-a-skin");
 
-const primitivesOverview = catalogOverview("primitives");
 const componentsOverview = catalogOverview("components");
-const useCasesOverview = catalogOverview("use-cases");
+const kitsOverview = catalogOverview("kits");
+const templatesOverview = catalogOverview("templates");
 
 export const catalogIndex = [
-  { href: primitivesOverview.href, name: primitivesOverview.name, count: primitiveEntries.length },
   { href: componentsOverview.href, name: componentsOverview.name, count: componentEntries.length },
-  { href: useCasesOverview.href, name: useCasesOverview.name, count: blockEntries.length },
+  { href: kitsOverview.href, name: kitsOverview.name, count: kitEntries.length },
+  { href: templatesOverview.href, name: templatesOverview.name, count: blockEntries.length },
   { href: `/${skinsOverviewId}`, name: "Skins", count: skinPackIds.length },
 ];

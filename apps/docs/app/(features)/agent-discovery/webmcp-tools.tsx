@@ -67,7 +67,7 @@ async function fetchJson(path: string): Promise<{ ok: boolean; status: number; f
 const searchControlUi: ModelContextTool = {
   name: "search_control_ui",
   description:
-    "Search the Control UI registry and documentation for components, blocks, primitives, hooks, utilities, extensions, skins, and guides. Returns each match with its registry id, name, kind, summary, and documentation URL.",
+    "Search the Control UI registry and documentation for components, kits, templates, hooks, utilities, extensions, skins, and guides. Returns each match with its registry id, name, kind, summary, and documentation URL.",
   inputSchema: {
     type: "object",
     properties: {

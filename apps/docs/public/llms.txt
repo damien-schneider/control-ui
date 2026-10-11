@@ -7,7 +7,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 ## Documentation
 
 - [Create app](http://127.0.0.1:3000/create): Scaffold a Next.js app with every Control UI component installed as source you own, or hand the whole install to the coding agent already open in your project.
-- [Install](http://127.0.0.1:3000/get-started): One command installs every component, kit, and block as source you own, with neutral light and dark defaults. The CSS entry is the only wiring you write.
+- [Install](http://127.0.0.1:3000/get-started): One command installs every component, kit, and template as source you own, with neutral light and dark defaults. The CSS entry is the only wiring you write.
 - [Theme it](http://127.0.0.1:3000/theming): Pick the pack, re-value the token contract in one artifact, and check the contrast the components actually paint.
 - [Build a screen](http://127.0.0.1:3000/build-a-screen): Render provider-owned messages with plain props and children. No intermediary message schema, no runtime coupling.
 - [Create a skin](http://127.0.0.1:3000/create-a-skin): Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.
@@ -18,7 +18,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Setup prompt](http://127.0.0.1:3000/setup-prompt): One prompt that makes the agent already open in your project read the repository, install from the registry, wire the CSS, run the doctor, and design the theme with you.
 - [Agent skill](http://127.0.0.1:3000/agent-skill): The skill installed with every pack: the token contract and the working rules, refreshed by every update, so later sessions build without the prompt.
 - [Machine docs](http://127.0.0.1:3000/agent-surface): Inspect and install registry items through HTTP, MCP, shadcn manifests, markdown negotiation, and machine-readable docs.
-- [Why Control UI](http://127.0.0.1:3000/overview): An owned-source registry of components, kits, complete blocks, and swappable skins.
+- [Why Control UI](http://127.0.0.1:3000/overview): An owned-source registry of components, kits, complete templates, and swappable skins.
 - [Architecture](http://127.0.0.1:3000/architecture): Runtime ownership, skin layering, customization paths, and registry derivation.
 - [Lock-in](http://127.0.0.1:3000/lock-in): What you own at each layer, what stays proprietary, and what leaving costs — measured, not promised.
 - [shadcn compatibility](http://127.0.0.1:3000/shadcn-compatibility): shadcn registry, token, and ownership conventions without writing to components/ui.
@@ -141,17 +141,17 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [ChatLayout](http://127.0.0.1:3000/kits/chat-layout): A scrolling conversation with a pinned header, message turns, and a floating composer dock.
 - [ThreadRail](http://127.0.0.1:3000/kits/thread-rail): Conversation minimap for scanning and jumping between chat turns.
 
-## Blocks
+## Templates
 
-- [Templates & patterns](http://127.0.0.1:3000/use-cases): Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.
-- [Chat](http://127.0.0.1:3000/use-cases/chat): Controlled chat shell that composes rendered turns and a provider-owned composer.
-- [Theme toggle](http://127.0.0.1:3000/use-cases/theme-toggle): Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.
-- [Discussion](http://127.0.0.1:3000/use-cases/discussion): Comment thread with ⌘ Enter posting, nested replies, inline editing, and hover actions. Status: beta.
-- [Coding agent](http://127.0.0.1:3000/use-cases/coding-agent): Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer. Status: beta.
-- [Settings](http://127.0.0.1:3000/use-cases/settings): Searchable multi-page settings shell with responsive navigation and accessible control groups.
-- [Team chat](http://127.0.0.1:3000/use-cases/team-chat): Slack-style workspace with channels, unread badges, presence, reactions, and a side thread for replies. Status: beta.
-- [File explorer](http://127.0.0.1:3000/use-cases/file-explorer): Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview. Status: beta.
-- [Design canvas](http://127.0.0.1:3000/use-cases/design-canvas): Figma-style editor with layers, an infinite canvas, a floating tool bar, and scrubbable property inputs. Status: beta.
+- [Templates](http://127.0.0.1:3000/templates): Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.
+- [Chat](http://127.0.0.1:3000/templates/chat): Controlled chat shell that composes rendered turns and a provider-owned composer.
+- [Theme toggle](http://127.0.0.1:3000/templates/theme-toggle): Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.
+- [Discussion](http://127.0.0.1:3000/templates/discussion): Comment thread with ⌘ Enter posting, nested replies, inline editing, and hover actions. Status: beta.
+- [Coding agent](http://127.0.0.1:3000/templates/coding-agent): Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer. Status: beta.
+- [Settings](http://127.0.0.1:3000/templates/settings): Searchable multi-page settings shell with responsive navigation and accessible control groups.
+- [Team chat](http://127.0.0.1:3000/templates/team-chat): Slack-style workspace with channels, unread badges, presence, reactions, and a side thread for replies. Status: beta.
+- [File explorer](http://127.0.0.1:3000/templates/file-explorer): Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview. Status: beta.
+- [Design canvas](http://127.0.0.1:3000/templates/design-canvas): Figma-style editor with layers, an infinite canvas, a floating tool bar, and scrubbable property inputs. Status: beta.
 
 ## Extensions
 

@@ -5,14 +5,14 @@ import { Suspense } from "react";
 import { blockEntries } from "@/app/(features)/catalog/blocks";
 import { componentEntries } from "@/app/(features)/catalog/components";
 import { utilEntries } from "@/app/(features)/catalog/hooks-utils";
-import { primitiveEntries } from "@/app/(features)/catalog/primitives";
-import type { BlockId, ComponentId, IntegrationId, PrimitiveId, UtilId } from "@/app/(features)/model/types";
+import { kitEntries } from "@/app/(features)/catalog/kits";
+import type { BlockId, ComponentId, IntegrationId, KitId, UtilId } from "@/app/(features)/model/types";
 import { Skeleton } from "@/components/control-ui/ui/skeleton";
 
 const previewFallback = <Skeleton className="min-h-40 w-full self-stretch" />;
 
-export function Preview({ componentId, integration }: { componentId: ComponentId; integration: IntegrationId }) {
-  const entry = componentEntries.find((item) => item.id === componentId);
+export function KitPreview({ kitId, integration }: { kitId: KitId; integration: IntegrationId }) {
+  const entry = kitEntries.find((item) => item.id === kitId);
   const Example = entry?.preview.Component;
 
   return Example ? (
@@ -22,18 +22,18 @@ export function Preview({ componentId, integration }: { componentId: ComponentId
   ) : null;
 }
 
-export function ComponentChoicePreview({
-  componentId,
+export function KitChoicePreview({
+  kitId,
   choiceId,
   kind,
   integration,
 }: {
-  componentId: ComponentId;
+  kitId: KitId;
   choiceId: string;
   kind: "alternative" | "variant";
   integration: IntegrationId;
 }) {
-  const entry = componentEntries.find((item) => item.id === componentId);
+  const entry = kitEntries.find((item) => item.id === kitId);
   const choices = kind === "alternative" && entry && "alternatives" in entry ? entry.alternatives : undefined;
   const variants = kind === "variant" && entry && "variants" in entry ? entry.variants : undefined;
   const Example = (choices ?? variants)?.find((item) => item.id === choiceId)?.preview.Component;
@@ -67,8 +67,8 @@ export function UtilPreview({ utilId }: { utilId: UtilId }) {
   ) : null;
 }
 
-export function PrimitivePreview({ primitiveId }: { primitiveId: PrimitiveId }) {
-  const entry = primitiveEntries.find((item) => item.id === primitiveId);
+export function ComponentPreview({ componentId }: { componentId: ComponentId }) {
+  const entry = componentEntries.find((item) => item.id === componentId);
   const Example = entry?.preview.Component;
 
   return Example ? (
@@ -78,8 +78,8 @@ export function PrimitivePreview({ primitiveId }: { primitiveId: PrimitiveId }) 
   ) : null;
 }
 
-export function ComponentExamplePreview({ componentId, exampleId }: { componentId: ComponentId; exampleId: string }) {
-  const entry = componentEntries.find((item) => item.id === componentId);
+export function KitExamplePreview({ kitId, exampleId }: { kitId: KitId; exampleId: string }) {
+  const entry = kitEntries.find((item) => item.id === kitId);
   const preview = entry && "additionalPreviews" in entry ? entry.additionalPreviews.find((item) => item.id === exampleId) : undefined;
   const Example = preview?.preview.Component;
 
@@ -90,8 +90,8 @@ export function ComponentExamplePreview({ componentId, exampleId }: { componentI
   ) : null;
 }
 
-export function PrimitiveExamplePreview({ primitiveId, exampleId }: { primitiveId: PrimitiveId; exampleId: string }) {
-  const entry = primitiveEntries.find((item) => item.id === primitiveId);
+export function ComponentExamplePreview({ componentId, exampleId }: { componentId: ComponentId; exampleId: string }) {
+  const entry = componentEntries.find((item) => item.id === componentId);
   const preview = entry && "additionalPreviews" in entry ? entry.additionalPreviews.find((item) => item.id === exampleId) : undefined;
   const Example = preview?.preview.Component;
 

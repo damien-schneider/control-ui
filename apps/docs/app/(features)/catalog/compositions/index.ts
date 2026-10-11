@@ -1,4 +1,4 @@
-import type { BlockId, ComponentId, PrimitiveId } from "../../model/types";
+import type { BlockId, ComponentId, KitId } from "../../model/types";
 import { agentsCompositions } from "./agents";
 import { blocksCompositions } from "./blocks";
 import { displayCompositions } from "./display";
@@ -14,4 +14,4 @@ export const catalogCompositions = {
   ...formsCompositions,
   ...navigationCompositions,
   ...overlaysCompositions,
-} satisfies Record<ComponentId | PrimitiveId | BlockId, CatalogComposition>;
+} satisfies Record<KitId | ComponentId | BlockId, CatalogComposition>;

@@ -4,7 +4,7 @@ import type { RegistryItem } from "shadcn/schema";
 import { blockEntries } from "@/app/(features)/catalog/blocks";
 import { componentEntries } from "@/app/(features)/catalog/components";
 import { extensionEntries } from "@/app/(features)/catalog/extensions";
-import { primitiveEntries } from "@/app/(features)/catalog/primitives";
+import { kitEntries } from "@/app/(features)/catalog/kits";
 import { includesString } from "@/app/(features)/catalog/shared";
 import { skinMetas } from "@/app/(features)/catalog/skins";
 import { siteConfig } from "@/lib/site-config";
@@ -266,8 +266,8 @@ function supportFilePaths(entry: { source: { path: string }; supportFiles?: read
   return entry.supportFiles?.map(sourcePath) ?? [];
 }
 
-function componentDefinitions(): Definition[] {
-  const components = componentEntries.map<Definition>((entry) => {
+function kitDefinitions(): Definition[] {
+  const kits = kitEntries.map<Definition>((entry) => {
     const files = [entry.paths.source.path];
     if ("hook" in entry.paths) files.push(entry.paths.hook.path);
     files.push(...supportFilePaths(entry.paths));
@@ -281,11 +281,11 @@ function componentDefinitions(): Definition[] {
     };
   });
 
-  for (const entry of componentEntries) {
+  for (const entry of kitEntries) {
     if (!("alternatives" in entry)) continue;
     for (const alternative of entry.alternatives) {
       if (alternative.registryKind === entry.registryKind) continue;
-      components.push({
+      kits.push({
         id: alternative.registryKind,
         type: "registry:component",
         title: `${entry.name} — ${alternative.label}`,
@@ -296,11 +296,11 @@ function componentDefinitions(): Definition[] {
     }
   }
 
-  return components;
+  return kits;
 }
 
-function primitiveDefinitions(): Definition[] {
-  return primitiveEntries.map<Definition>((entry) => ({
+function componentDefinitions(): Definition[] {
+  return componentEntries.map<Definition>((entry) => ({
     id: entry.id,
     type: "registry:ui",
     title: entry.name,
@@ -352,15 +352,15 @@ function skinDefinitions(): Definition[] {
 
 const completeComponentSet = [
   ...new Set([
-    ...componentEntries.map((entry) => entry.registryKind),
+    ...kitEntries.map((entry) => entry.registryKind),
     ...blockEntries.map((entry) => entry.registryKind),
-    ...primitiveEntries.map((entry) => entry.paths.registry.registryKind),
+    ...componentEntries.map((entry) => entry.paths.registry.registryKind),
     "control-ui-skill",
   ]),
 ].sort();
 
 function definitions(): Definition[] {
-  const components = componentDefinitions();
+  const kits = kitDefinitions();
   const fullInstallDefinitions = skinMetas.flatMap<Definition>((skin) => {
     if (!("packManifestPath" in skin)) return [];
     return [
@@ -368,7 +368,7 @@ function definitions(): Definition[] {
         id: `all-${skin.id}`,
         type: "registry:item",
         title: `All Control UI components — ${skin.label}`,
-        description: `Every Control UI agent component, block, and primitive with the ${skin.label} skin.`,
+        description: `Every Control UI component, kit, and template with the ${skin.label} skin.`,
         seeds: [],
         primary: [],
         dependencies: [...completeComponentSet, `skin-${skin.id}`],
@@ -393,8 +393,8 @@ function definitions(): Definition[] {
       primary: [...coreFiles],
       internal: true,
     },
-    ...components,
-    ...primitiveDefinitions(),
+    ...kits,
+    ...componentDefinitions(),
     ...blockDefinitions(),
     ...extensionDefinitions(),
     ...internalDefinitions,

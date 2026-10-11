@@ -3,7 +3,7 @@
   "name": "all-mastra",
   "type": "registry:item",
   "title": "All Control UI components — Mastra",
-  "description": "Every Control UI agent component, block, and primitive with the Mastra skin.",
+  "description": "Every Control UI component, kit, and template with the Mastra skin.",
   "dependencies": [],
   "registryDependencies": [
     "http://127.0.0.1:3000/r/accordion.json",

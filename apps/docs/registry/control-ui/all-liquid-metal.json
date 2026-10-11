@@ -3,7 +3,7 @@
   "name": "all-liquid-metal",
   "type": "registry:item",
   "title": "All Control UI components — Liquid metal",
-  "description": "Every Control UI agent component, block, and primitive with the Liquid metal skin.",
+  "description": "Every Control UI component, kit, and template with the Liquid metal skin.",
   "dependencies": [],
   "registryDependencies": [
     "accordion",

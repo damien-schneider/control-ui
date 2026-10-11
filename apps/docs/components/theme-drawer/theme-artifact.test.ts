@@ -110,11 +110,10 @@ describe("theme artifact parsing and validation", () => {
   });
 });
 
-test("legacy Flat artifacts retain their tokens and export root CSS without a skin dependency", () => {
-  const result = validateThemeArtifact({ ...ARTIFACT, baseSkin: "flat" });
+test("none-skin artifacts export root CSS without a skin dependency", () => {
+  const result = validateThemeArtifact({ ...ARTIFACT, baseSkin: "none" });
   expect(result.ok).toBe(true);
   if (!result.ok) throw new Error(result.errors.join("; "));
-  expect(result.artifact.baseSkin).toBe("none");
   expect(result.artifact.tokens).toEqual(ARTIFACT.tokens);
   const css = themeArtifactCss(result.artifact);
   expect(css).toContain(":root {");

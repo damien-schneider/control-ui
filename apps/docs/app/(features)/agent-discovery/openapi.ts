@@ -1,6 +1,6 @@
 import { absoluteSiteUrl, siteConfig } from "@/lib/site-config";
 
-const searchItemKinds = ["Guide", "Skill", "Component", "Block", "Primitive", "Hook", "Util", "Extension", "Skin"];
+const searchItemKinds = ["Guide", "Skill", "Component", "Kit", "Block", "Hook", "Util", "Extension", "Skin"];
 const registryItemKinds = [...searchItemKinds, "Bundle"];
 const statusValues = ["beta", "experimental"];
 
@@ -224,7 +224,7 @@ const apiPaths = {
       operationId: "listRegistry",
       summary: "List every registry item",
       description:
-        "Aggregate catalog of components, blocks, primitives, hooks, utils, extensions, skins, skills, and guides, with the skin and theme contract links and the full-install bundles.",
+        "Aggregate catalog of components, kits, templates, hooks, utils, extensions, skins, skills, and guides, with the skin and theme contract links and the full-install bundles.",
       responses: { "200": jsonResponse("Registry index envelope.", "RegistryIndexEnvelope") },
     },
   },

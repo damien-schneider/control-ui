@@ -3,7 +3,7 @@
   "name": "all-xp",
   "type": "registry:item",
   "title": "All Control UI components — Windows XP",
-  "description": "Every Control UI agent component, block, and primitive with the Windows XP skin.",
+  "description": "Every Control UI component, kit, and template with the Windows XP skin.",
   "dependencies": [],
   "registryDependencies": [
     "accordion",

@@ -45,7 +45,7 @@ const installPaths = {
     label: "New app",
     href: "/create",
     description:
-      "Start from nothing: one command scaffolds a Next.js app with every component, block, and primitive already installed as source you own.",
+      "Start from nothing: one command scaffolds a Next.js app with every component, kit, and template already installed as source you own.",
   },
   agent: {
     label: "With an agent",

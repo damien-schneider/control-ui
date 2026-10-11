@@ -17,7 +17,7 @@ const slider = (min: number, max: number, step: number, unit: SliderSpec["unit"]
 });
 
 const FONT_OPTIONS: readonly SelectOption[] = [
-  { label: FONT_LABEL.mono, value: FONT.mono },
+  { label: FONT_LABEL.geist, value: FONT.geist },
   { label: FONT_LABEL.system, value: FONT.system },
   { label: FONT_LABEL.helvetica, value: FONT.helvetica },
 ];

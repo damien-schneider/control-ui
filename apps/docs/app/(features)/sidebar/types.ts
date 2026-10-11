@@ -6,7 +6,7 @@ import type {
   DocsComponent,
   DocsExtension,
   DocsHook,
-  DocsPrimitive,
+  DocsKit,
   DocsSkill,
   DocsSkillConcern,
   DocsSkinPage,
@@ -21,9 +21,9 @@ export type DocsSidebarContentProps = {
   guides: GuidePage[];
   skills: readonly DocsSkill[];
   skillConcerns: readonly DocsSkillConcern[];
-  components: DocsComponent[];
+  kits: DocsKit[];
   blocks: DocsBlock[];
-  primitives: DocsPrimitive[];
+  components: DocsComponent[];
   hooks: DocsHook[];
   utils: DocsUtil[];
   extensions: DocsExtension[];
@@ -32,7 +32,7 @@ export type DocsSidebarContentProps = {
 };
 
 export type CatalogNavGroupId = CatalogCategoryId | "hooks" | "utils" | "extensions";
-export type SidebarDoorId = "use-cases" | "practices" | "reference" | "theme-editor";
+export type SidebarDoorId = "templates" | "practices" | "reference" | "theme-editor";
 export type SidebarPane = "root" | SidebarDoorId;
 export type SidebarDoor = {
   id: SidebarDoorId;

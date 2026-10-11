@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import postcss, { type Root } from "postcss";
 import selectorParser from "postcss-selector-parser";
 import { componentEntries } from "../../../app/(features)/catalog/components";
-import { primitiveEntries } from "../../../app/(features)/catalog/primitives";
+import { kitEntries } from "../../../app/(features)/catalog/kits";
 import { isFamilyPartAttribute, slotAttribute, surfaceAttribute } from "../../../scripts/control-anatomy";
 import { knobPrefix, knobsByFamily } from "../../../scripts/knob-contracts/collect";
 import { readCssWithImports } from "../../../scripts/read-css";
@@ -40,8 +40,8 @@ const recipeOptionalCatalogIds = [
   "typography",
 ] as const;
 const catalogComponentSources = [
-  ...componentEntries.map((entry) => ({ id: entry.id, source: entry.paths.source.path })),
-  ...primitiveEntries.map((entry) => ({ id: entry.id, source: entry.paths.registry.source.path })),
+  ...kitEntries.map((entry) => ({ id: entry.id, source: entry.paths.source.path })),
+  ...componentEntries.map((entry) => ({ id: entry.id, source: entry.paths.registry.source.path })),
 ];
 function knobsWithRepeatedFamilyPrefix(knobs: readonly string[]): string[] {
   return knobs.filter((knob) => {

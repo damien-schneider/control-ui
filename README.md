@@ -18,7 +18,7 @@ Control UI is an owned-source registry of 100+ React components for Tailwind CSS
 - **Own the source.** Components are copied into your repository; customization lives in the skin layer, so updating never overwrites your changes.
 - **Bring any runtime.** Plain props and children keep model calls, streaming, persistence, and transport in your application.
 - **Skin the whole system.** One component implementation supports complete token-driven skins without forking behavior or markup.
-- **Install at the right level.** Choose a component, a kit, a complete block, or a dependency bundle.
+- **Install at the right level.** Choose a component, a kit, a complete template, or a dependency bundle.
 - **Coexist with shadcn/ui.** Control UI installs under `components/control-ui/*` and does not overwrite `components/ui/*`.
 - **Use root or `src/` layouts.** Registry targets resolve through the consumer's configured shadcn aliases.
 
@@ -83,7 +83,7 @@ export function AssistantMessage({ children }: { children: ReactNode }) {
 }
 ```
 
-For a complete chat composition, install the block instead:
+For a complete chat composition, install the template instead:
 
 ```bash
 npx shadcn@latest add https://control-ui.dev/r/chat-block.json
@@ -110,7 +110,7 @@ The package includes neutral defaults and no skin presets. Customize application
 ## Explore the catalog
 
 - [Components](https://control-ui.dev/components) — accessible controls, pickers, navigation, layout, code, and canvas building blocks.
-- [Templates](https://control-ui.dev/use-cases) — complete settings, file-explorer, design-canvas, team-chat, chat, and coding-agent compositions.
+- [Templates](https://control-ui.dev/templates) — complete settings, file-explorer, design-canvas, team-chat, chat, and coding-agent compositions.
 - [Kits](https://control-ui.dev/kits) — pre-assembled sets of components for messages, composers, activities, attachments, citations, and task UI.
 - [Skins](https://control-ui.dev/skins) — complete visual systems sharing one component contract.
 - [Agent-facing registry](https://control-ui.dev/r/agent-index.json) — machine-readable discovery, dependencies, and install commands.

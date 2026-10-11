@@ -1,5 +1,4 @@
 import { expect, test } from "@playwright/test";
-import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { waitForReactHydration } from "./browser-test-helpers";
 
 test("No skin is the default and portals follow preset changes", async ({ page }, testInfo) => {
@@ -34,21 +33,4 @@ test("No skin is the default and portals follow preset changes", async ({ page }
   await page.reload();
   await expect(picker).toContainText("No skin");
   expect(errors).toEqual([]);
-});
-
-test("saved Flat themes retain their overrides as No skin", async ({ page, context }) => {
-  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
-  await page.addInitScript(
-    (key) => localStorage.setItem(key, JSON.stringify({ skin: "flat", overrides: { "--radius-control": "7px" } })),
-    THEME_EDITOR_STORAGE_KEY,
-  );
-  await page.goto("/components/popover");
-  await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("No skin");
-  await expect(page.getByRole("button", { name: "Dimensions", exact: true })).toHaveCSS("border-radius", "7px");
-  await page.goto("/theme-editor?view=source");
-  await page.getByRole("button", { name: "Copy CSS overrides", exact: true }).click();
-  await expect.poll(() => page.evaluate(() => navigator.clipboard.readText())).toContain(":root {");
-  const css = await page.evaluate(() => navigator.clipboard.readText());
-  expect(css).toContain("--radius-control: 7px");
-  expect(css).not.toContain("[data-skin");
 });

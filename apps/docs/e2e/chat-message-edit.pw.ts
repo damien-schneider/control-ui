@@ -138,7 +138,7 @@ test("growing drafts keep the bubble width and cancel back to the original heigh
 });
 
 test("chat preview edits the message without replacing the composer draft", async ({ page }) => {
-  await page.goto("/use-cases/chat");
+  await page.goto("/templates/chat");
   const preview = page.locator("#preview");
   const composer = preview.getByRole("textbox", { name: "Message", exact: true });
   await composer.fill("Keep this unsent draft");

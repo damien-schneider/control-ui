@@ -31,13 +31,13 @@ describe("docs social image metadata", () => {
     expect(docsSeoForPath("/components")).toMatchObject({
       pathname: "/components",
       title: "Components",
-      description: catalogOverview("primitives").summary,
+      description: catalogOverview("components").summary,
       socialImage: { label: "Component catalog", title: "Components" },
     });
     expect(docsSeoForPath("/kits")).toMatchObject({
       pathname: "/kits",
       title: "Kits",
-      description: catalogOverview("components").summary,
+      description: catalogOverview("kits").summary,
       socialImage: { label: "Component catalog", title: "Kits" },
     });
   });

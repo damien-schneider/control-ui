@@ -1,14 +1,15 @@
+import { templateKinds } from "@/app/(features)/catalog/blocks";
 import { categoriesWithEntries } from "@/app/(features)/catalog/categories";
 import { componentEntries } from "@/app/(features)/catalog/components";
+import { kitEntries } from "@/app/(features)/catalog/kits";
 import type { CatalogOverviewId } from "@/app/(features)/catalog/overviews";
-import { primitiveEntries } from "@/app/(features)/catalog/primitives";
 import { installedDependencyFiles, supportFilesFor } from "@/app/(features)/model/registry";
 import type {
   DocsBlock,
   DocsComponent,
   DocsExtension,
   DocsHook,
-  DocsPrimitive,
+  DocsKit,
   DocsSkill,
   DocsSkinPage,
   DocsUtil,
@@ -18,37 +19,37 @@ import { hasExtensionDemo } from "@/app/(features)/page-templates/extension-demo
 
 type PageLink = { href: string; label: string };
 
-function primitivePageLinks(activePrimitive: DocsPrimitive, extensions: DocsExtension[]) {
+function componentPageLinks(activeComponent: DocsComponent, extensions: DocsExtension[]) {
   return [
     { href: "#preview", label: "Preview" },
-    ...((activePrimitive.registry.examples?.length ?? 0) > 0 ? [{ href: "#examples", label: "Examples" }] : []),
+    ...((activeComponent.registry.examples?.length ?? 0) > 0 ? [{ href: "#examples", label: "Examples" }] : []),
     { href: "#composition", label: "Composition" },
     { href: "#install", label: "Installation" },
-    ...(installedDependencyFiles(activePrimitive.registry.supportFiles ?? []).length > 0
+    ...(installedDependencyFiles(activeComponent.registry.supportFiles ?? []).length > 0
       ? [{ href: "#dependencies", label: "Dependencies" }]
       : []),
-    ...(activePrimitive.registry.registryDependencies.length > 0 ? [{ href: "#library-dependencies", label: "Library dependencies" }] : []),
+    ...(activeComponent.registry.registryDependencies.length > 0 ? [{ href: "#library-dependencies", label: "Library dependencies" }] : []),
     { href: "#source", label: "Source" },
-    ...(extensions.some((extension) => extension.appliesTo?.some((id) => id === activePrimitive.id))
+    ...(extensions.some((extension) => extension.appliesTo?.some((id) => id === activeComponent.id))
       ? [{ href: "#extensions", label: "Extensions" }]
       : []),
   ];
 }
 
-function componentPageLinks(component: DocsComponent, extensions: DocsExtension[]) {
-  const hasDependencies = installedDependencyFiles(supportFilesFor(component)).length > 0;
-  const hasExtensions = extensions.some((extension) => extension.appliesTo?.some((id) => id === component.id));
+function kitPageLinks(kit: DocsKit, extensions: DocsExtension[]) {
+  const hasDependencies = installedDependencyFiles(supportFilesFor(kit)).length > 0;
+  const hasExtensions = extensions.some((extension) => extension.appliesTo?.some((id) => id === kit.id));
 
   return [
-    ...(component.alternatives ? [{ href: "#alternatives", label: "Alternatives" }] : []),
-    ...(component.variants ? [{ href: "#variants", label: "Variants" }] : []),
+    ...(kit.alternatives ? [{ href: "#alternatives", label: "Alternatives" }] : []),
+    ...(kit.variants ? [{ href: "#variants", label: "Variants" }] : []),
     { href: "#preview", label: "Preview" },
-    ...((component.examples?.length ?? 0) > 0 ? [{ href: "#examples", label: "Examples" }] : []),
+    ...((kit.examples?.length ?? 0) > 0 ? [{ href: "#examples", label: "Examples" }] : []),
     { href: "#composition", label: "Composition" },
     { href: "#install", label: "Installation" },
     { href: "#usage", label: "Usage" },
     ...(hasDependencies ? [{ href: "#dependencies", label: "Dependencies" }] : []),
-    ...(component.registryDependencies.length > 0 ? [{ href: "#library-dependencies", label: "Library dependencies" }] : []),
+    ...(kit.registryDependencies.length > 0 ? [{ href: "#library-dependencies", label: "Library dependencies" }] : []),
     { href: "#source", label: "Source" },
     ...(hasExtensions ? [{ href: "#extensions", label: "Extensions" }] : []),
   ];
@@ -68,14 +69,9 @@ function skinsOverviewPageLinks(): PageLink[] {
 }
 
 function catalogOverviewPageLinks(overview: CatalogOverviewId): PageLink[] {
-  if (overview === "components")
-    return categoriesWithEntries(componentEntries).map((category) => ({ href: `#${category.id}`, label: category.label }));
-  if (overview === "use-cases")
-    return [
-      { href: "#templates", label: "Templates" },
-      { href: "#patterns", label: "Patterns" },
-    ];
-  return categoriesWithEntries(primitiveEntries).map((category) => ({ href: `#${category.id}`, label: category.label }));
+  if (overview === "kits") return categoriesWithEntries(kitEntries).map((category) => ({ href: `#${category.id}`, label: category.label }));
+  if (overview === "templates") return templateKinds.map((kind) => ({ href: `#${kind.slug}`, label: kind.label }));
+  return categoriesWithEntries(componentEntries).map((category) => ({ href: `#${category.id}`, label: category.label }));
 }
 
 function skinPageLinks(skin: DocsSkinPage): PageLink[] {
@@ -111,13 +107,13 @@ function referencePageLinks(): PageLink[] {
   ];
 }
 
-function useCasePageLinks(useCase: DocsBlock): PageLink[] {
+function templatePageLinks(template: DocsBlock): PageLink[] {
   return [
     { href: "#preview", label: "Preview" },
     { href: "#composition", label: "Composition" },
     { href: "#install", label: "Installation" },
     { href: "#usage", label: "Usage" },
-    ...(useCase.registryDependencies.length > 0 ? [{ href: "#library-dependencies", label: "Library dependencies" }] : []),
+    ...(template.registryDependencies.length > 0 ? [{ href: "#library-dependencies", label: "Library dependencies" }] : []),
     { href: "#included-source", label: "Included source" },
   ];
 }
@@ -125,27 +121,27 @@ function useCasePageLinks(useCase: DocsBlock): PageLink[] {
 export function pageLinks({
   activeGuide,
   activeSkill,
-  activeUseCase,
-  activePrimitive,
+  activeTemplate,
+  activeComponent,
   activeReference,
   activeExtension,
   activeSkinPage,
   activeSkinsOverview,
   activeCatalogOverview,
-  component,
+  kit,
   extensions,
 }: {
   activeGuide?: GuidePageData;
   activeSkill?: DocsSkill;
-  activeUseCase?: DocsBlock;
-  activePrimitive?: DocsPrimitive;
+  activeTemplate?: DocsBlock;
+  activeComponent?: DocsComponent;
   activeReference?: DocsHook | DocsUtil;
   activeExtension?: DocsExtension;
   activeSkinPage?: DocsSkinPage;
   activeSkinsOverview?: boolean;
   activeCatalogOverview?: CatalogOverviewId;
-  component?: DocsComponent;
-  primitives: DocsPrimitive[];
+  kit?: DocsKit;
+  components: DocsComponent[];
   extensions: DocsExtension[];
 }) {
   if (activeGuide) return activeGuide.sections.map((section) => ({ href: `#${section.id}`, label: section.title }));
@@ -156,10 +152,9 @@ export function pageLinks({
   if (activeSkill) return skillPageLinks(activeSkill);
   if (activeExtension) return extensionPageLinks(activeExtension);
   if (activeReference) return referencePageLinks();
-  // biome-ignore lint/correctness/useHookAtTopLevel: This pure projection is named for the use-case domain.
-  if (activeUseCase) return useCasePageLinks(activeUseCase);
+  if (activeTemplate) return templatePageLinks(activeTemplate);
 
-  if (activePrimitive) return primitivePageLinks(activePrimitive, extensions);
+  if (activeComponent) return componentPageLinks(activeComponent, extensions);
 
-  return component ? componentPageLinks(component, extensions) : [];
+  return kit ? kitPageLinks(kit, extensions) : [];
 }

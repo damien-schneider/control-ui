@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { DeferredPreview } from "@/app/(features)/components/deferred-preview";
 import { PreviewFrame } from "@/app/(features)/components/preview-frame";
-import { Preview, PrimitivePreview } from "@/app/(features)/components/previews";
+import { ComponentPreview, KitPreview } from "@/app/(features)/components/previews";
 import { StatusBadge } from "@/app/(features)/components/status";
 import type { CatalogGalleryGroup, CatalogGalleryItem } from "@/app/(features)/model/catalog-gallery";
 import { useDocsIntegration } from "@/app/(features)/page-templates/integration";
@@ -52,7 +52,7 @@ function CatalogPreviewCard({
   integration,
 }: {
   item: CatalogGalleryItem;
-  integration: Parameters<typeof Preview>[0]["integration"];
+  integration: Parameters<typeof KitPreview>[0]["integration"];
 }) {
   const nameId = `gallery-${item.kind}-${item.id}-name`;
   const summaryId = `gallery-${item.kind}-${item.id}-summary`;
@@ -72,11 +72,7 @@ function CatalogPreviewCard({
       <div className="relative grid h-60 min-w-0 place-items-center overflow-hidden rounded-[inherit] border border-border/70 bg-canvas transition-[border-color,background-color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-hover:border-foreground/20 group-hover:bg-muted/35 group-focus-within:border-ring/60">
         <DeferredPreview className={item.previewClassName}>
           <PreviewFrame layout={item.previewLayout}>
-            {item.kind === "component" ? (
-              <Preview componentId={item.id} integration={integration} />
-            ) : (
-              <PrimitivePreview primitiveId={item.id} />
-            )}
+            {item.kind === "kit" ? <KitPreview kitId={item.id} integration={integration} /> : <ComponentPreview componentId={item.id} />}
           </PreviewFrame>
         </DeferredPreview>
       </div>

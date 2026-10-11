@@ -3,7 +3,7 @@
   "name": "all-windows-98",
   "type": "registry:item",
   "title": "All Control UI components — Windows 98",
-  "description": "Every Control UI agent component, block, and primitive with the Windows 98 skin.",
+  "description": "Every Control UI component, kit, and template with the Windows 98 skin.",
   "dependencies": [],
   "registryDependencies": [
     "http://127.0.0.1:3000/r/accordion.json",

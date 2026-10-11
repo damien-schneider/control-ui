@@ -56,14 +56,6 @@ function validatePublicPart(sourcePath: string, node: any, violations: string[])
 describe("Control UI anatomy contract", () => {
   const files = canonicalRoots.flatMap(filesUnder);
 
-  test("contains no legacy anatomy selectors or attributes", () => {
-    const violations = files.flatMap((path) => {
-      const source = readFileSync(path, "utf8");
-      return /data-(?:ui|component)(?:=|\b)/.test(source) ? [relative(registryRoot, path)] : [];
-    });
-    expect(violations).toEqual([]);
-  });
-
   test("Control UI booleans render true or stay omitted", () => {
     const violations = files.flatMap((path) => {
       const source = readFileSync(path, "utf8");

@@ -15,9 +15,9 @@ import { Text } from "@/components/control-ui/ui/typography";
 import { SkinPresetControls } from "@/components/theme-drawer/skin-preset-controls";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/site-config";
-import { catalogNavGroupIcons, sidebarDoors, themeEditorDoor, useCaseKindSidebarIcons } from "./icons";
+import { catalogNavGroupIcons, sidebarDoors, templateKindSidebarIcons, themeEditorDoor } from "./icons";
 import { DocsNavGroup, SidebarDoorMenu, SidebarDoorPane, SkillConcernNavGroups } from "./nav-groups";
-import { catalogNavGroups, type GuideNavGroup, getUseCaseNavGroups, guideNavSections, sidebarPaneForActivePage } from "./nav-items";
+import { catalogNavGroups, type GuideNavGroup, getTemplateNavGroups, guideNavSections, sidebarPaneForActivePage } from "./nav-items";
 import { DOCS_SIDEBAR_COLLAPSIBLE } from "./persistence";
 import { DocsSearchTrigger } from "./search";
 import { StartCard } from "./start-card";
@@ -33,12 +33,12 @@ type DoorNavGroupsProps = Pick<DocsSidebarContentProps, "blocks" | "skills" | "s
 };
 
 function DoorNavGroups({ doorId, referenceGroups, blocks, skills, skillConcerns, active, onNavigate }: DoorNavGroupsProps) {
-  if (doorId === "use-cases")
-    return getUseCaseNavGroups(blocks).map((group) => (
+  if (doorId === "templates")
+    return getTemplateNavGroups(blocks).map((group) => (
       <DocsNavGroup
         key={group.id}
         title={group.title}
-        icon={useCaseKindSidebarIcons[group.kind]}
+        icon={templateKindSidebarIcons[group.kind]}
         items={group.items}
         active={active}
         onNavigate={onNavigate}
@@ -55,7 +55,7 @@ function DoorNavGroups({ doorId, referenceGroups, blocks, skills, skillConcerns,
   ));
 }
 
-type CatalogNavGroupsProps = Pick<DocsSidebarContentProps, "components" | "primitives" | "hooks" | "utils" | "extensions"> & {
+type CatalogNavGroupsProps = Pick<DocsSidebarContentProps, "kits" | "components" | "hooks" | "utils" | "extensions"> & {
   active: ActivePageId | undefined;
   onNavigate: () => void;
 };
@@ -78,9 +78,9 @@ export function DocsSidebarContent({
   guides,
   skills,
   skillConcerns,
-  components,
+  kits,
   blocks,
-  primitives,
+  components,
   hooks,
   utils,
   extensions,
@@ -164,8 +164,8 @@ export function DocsSidebarContent({
               <CatalogNavGroups
                 active={active}
                 onNavigate={closeSidebar}
+                kits={kits}
                 components={components}
-                primitives={primitives}
                 hooks={hooks}
                 utils={utils}
                 extensions={extensions}

@@ -55,18 +55,18 @@ export type RegistryItemData = {
 
 type DocsData = ReturnType<typeof getDocsData>;
 
-function componentFiles(data: DocsData, id: SearchItem["id"]): SourceFile[] {
-  const component = data.components.find((entry) => entry.id === id);
-  return component ? filesFor(component) : [];
+function kitFiles(data: DocsData, id: SearchItem["id"]): SourceFile[] {
+  const kit = data.kits.find((entry) => entry.id === id);
+  return kit ? filesFor(kit) : [];
 }
 
 function blockFiles(data: DocsData, id: SearchItem["id"]): SourceFile[] {
   return data.blocks.find((entry) => entry.id === id)?.files ?? [];
 }
 
-function primitiveFiles(data: DocsData, id: SearchItem["id"]): SourceFile[] {
-  const primitive = data.primitives.find((entry) => entry.id === id);
-  return primitive ? [primitive.registry.source, ...(primitive.registry.supportFiles ?? [])] : [];
+function componentFiles(data: DocsData, id: SearchItem["id"]): SourceFile[] {
+  const component = data.components.find((entry) => entry.id === id);
+  return component ? [component.registry.source, ...(component.registry.supportFiles ?? [])] : [];
 }
 
 function hookFiles(data: DocsData, id: SearchItem["id"]): SourceFile[] {
@@ -149,12 +149,12 @@ function anatomyFor(itemId: string): RegistryAnatomySlice | undefined {
 function filesForItem(item: SearchItem): SourceFile[] {
   const data = getDocsData();
   switch (item.kind) {
-    case "Component":
-      return componentFiles(data, item.id);
+    case "Kit":
+      return kitFiles(data, item.id);
     case "Block":
       return blockFiles(data, item.id);
-    case "Primitive":
-      return primitiveFiles(data, item.id);
+    case "Component":
+      return componentFiles(data, item.id);
     case "Hook":
       return hookFiles(data, item.id);
     case "Util":

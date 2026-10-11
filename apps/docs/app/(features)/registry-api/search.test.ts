@@ -13,35 +13,35 @@ const items = [
   {
     id: "command",
     name: "Command",
-    kind: "Primitive",
+    kind: "Component",
     summary: "Command palette with token-matched dialog, input, and result rows.",
     href: "/components/command",
   },
   {
     id: "combobox",
     name: "Combobox",
-    kind: "Primitive",
+    kind: "Component",
     summary: "Searchable single-select with input and floating option list.",
     href: "/components/combobox",
   },
   {
     id: "code",
     name: "Code Block",
-    kind: "Primitive",
+    kind: "Component",
     summary: "Shared code surface with highlighting and copy actions.",
     href: "/components/code-block",
   },
   {
     id: "checkbox",
     name: "Checkbox",
-    kind: "Primitive",
+    kind: "Component",
     summary: "Single checkbox control with checked and indeterminate states.",
     href: "/components/checkbox",
   },
   {
     id: "table-of-contents",
     name: "Table of contents",
-    kind: "Primitive",
+    kind: "Component",
     summary: "Sticky in-page navigation with scroll-spy range highlighting.",
     href: "/components/table-of-contents",
   },
@@ -55,7 +55,7 @@ const items = [
   {
     id: "chat-message",
     name: "ChatMessage",
-    kind: "Component",
+    kind: "Kit",
     summary: "Composable chat message with typed role and tone state.",
     href: "/kits/chat-message",
   },
@@ -64,7 +64,7 @@ const items = [
     name: "Chat",
     kind: "Block",
     summary: "Complete chat recipe with messages, attachments, and a composer.",
-    href: "/use-cases/chat",
+    href: "/templates/chat",
   },
 ] satisfies SearchItem[];
 

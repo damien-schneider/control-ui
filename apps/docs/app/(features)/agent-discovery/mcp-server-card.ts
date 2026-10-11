@@ -5,7 +5,7 @@ const serverCardSchema = "https://static.modelcontextprotocol.io/schemas/v1/serv
 
 export function buildMcpServerCard() {
   const title = `${siteConfig.name} registry`;
-  const description = `Model Context Protocol server for the ${siteConfig.name} registry. Search, list and read the components, kits, blocks, hooks, utils, skins and guides that ${siteConfig.name} installs as source you own.`;
+  const description = `Model Context Protocol server for the ${siteConfig.name} registry. Search, list and read the components, kits, templates, hooks, utils, skins and guides that ${siteConfig.name} installs as source you own.`;
   return {
     $schema: serverCardSchema,
     name: mcpServerInfo.name,

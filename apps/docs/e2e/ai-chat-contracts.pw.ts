@@ -92,7 +92,7 @@ test("reasoning reuses Activity and messages edit in place", async ({ page }) =>
 });
 
 test("rich composer keeps focus, inherited knobs, and locks read-only while responding", async ({ page }) => {
-  await page.goto("/use-cases/chat");
+  await page.goto("/templates/chat");
   const preview = page.locator("#preview");
   const composer = preview.locator('[data-control-ui="chat-composer"][data-slot="root"]');
   const shell = composer.locator('[data-slot="shell"]');
@@ -133,7 +133,7 @@ test("failed responses preserve the draft and allow retry", async ({ page }) => 
   await page.route("**/api/mastra/agents/chat-preview/stream", (route) =>
     route.fulfill({ status: 503, contentType: "application/json", body: JSON.stringify({ error: "Preview temporarily unavailable" }) }),
   );
-  await page.goto("/use-cases/chat");
+  await page.goto("/templates/chat");
   const preview = page.locator("#preview");
   const input = preview.getByRole("textbox", { name: "Message" });
   await input.fill("Preserve this draft.");

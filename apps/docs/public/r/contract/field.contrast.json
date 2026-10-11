@@ -255,74 +255,6 @@
           "data-control-ui": "combobox",
           "data-field-kind": "combobox",
           "data-placeholder": "",
-          "data-popup-open": "",
-          "data-popup-side": "top",
-          "data-pressed": "",
-          "data-slot": "input-group",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "field",
-          "data-control-ui": "combobox",
-          "data-field-kind": "combobox",
-          "data-popup-open": "",
-          "data-popup-side": "top",
-          "data-pressed": "",
-          "data-size": "sm",
-          "data-slot": "input",
-          "role": "combobox"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "field",
-          "data-control-ui": "combobox",
-          "data-field-kind": "combobox",
-          "data-placeholder": "",
-          "data-popup-open": "",
-          "data-popup-side": "top",
-          "data-pressed": "",
-          "data-slot": "trigger",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "field",
-          "data-control-ui": "combobox",
-          "data-field-kind": "combobox",
-          "data-placeholder": "",
           "data-slot": "input-group",
           "role": "group"
         }
@@ -2539,7 +2471,7 @@
           "data-control-ui": "combobox",
           "data-field-kind": "combobox",
           "data-popup-open": "",
-          "data-popup-side": "top",
+          "data-popup-side": "bottom",
           "data-pressed": "",
           "data-size": "sm",
           "data-slot": "input",
@@ -5085,11 +5017,11 @@
     },
     {
       "knobs": {
-        "fill": "--cui-field-affordance-background",
-        "text": "--cui-field-affordance-foreground"
+        "fill": "--cui-field-background",
+        "text": "--cui-field-foreground"
       },
       "anatomy": 12,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -5098,7 +5030,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 13,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -5116,7 +5048,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 15,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -5143,15 +5075,6 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 18,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-field-background",
-        "text": "--cui-field-foreground"
-      },
-      "anatomy": 19,
       "rendersText": false,
       "state": false
     },
@@ -5160,8 +5083,17 @@
         "fill": "--cui-field-background",
         "text": "--cui-field-foreground"
       },
-      "anatomy": 20,
+      "anatomy": 19,
       "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-field-background",
+        "text": "--cui-field-foreground"
+      },
+      "anatomy": 20,
+      "rendersText": false,
       "state": false
     },
     {
@@ -5215,7 +5147,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 26,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -5233,15 +5165,6 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 28,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-field-background",
-        "text": "--cui-field-foreground"
-      },
-      "anatomy": 29,
       "rendersText": false,
       "state": false
     },
@@ -5250,8 +5173,17 @@
         "fill": "--cui-field-background",
         "text": "--cui-field-foreground"
       },
-      "anatomy": 30,
+      "anatomy": 29,
       "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-field-background",
+        "text": "--cui-field-foreground"
+      },
+      "anatomy": 30,
+      "rendersText": false,
       "state": false
     },
     {
@@ -5287,7 +5219,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 34,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -5377,7 +5309,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 44,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -5431,7 +5363,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 50,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -5449,7 +5381,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 52,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -5503,7 +5435,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 58,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -5521,7 +5453,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 60,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -5539,7 +5471,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 62,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -5575,17 +5507,16 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 66,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-field-background",
-        "text": "--cui-field-foreground"
+        "fill": "--cui-field-background"
       },
-      "anatomy": 67,
+      "anatomy": 60,
       "rendersText": false,
-      "state": false
+      "state": true
     },
     {
       "knobs": {
@@ -5597,11 +5528,11 @@
     },
     {
       "knobs": {
-        "fill": "--cui-field-background"
+        "text": "--cui-field-affordance-foreground"
       },
-      "anatomy": 62,
+      "anatomy": 67,
       "rendersText": false,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
@@ -5824,14 +5755,6 @@
         "text": "--cui-field-affordance-foreground"
       },
       "anatomy": 95,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-field-affordance-foreground"
-      },
-      "anatomy": 96,
       "rendersText": false,
       "state": false
     }

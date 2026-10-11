@@ -67,7 +67,7 @@ const catalogSurfaces: CatalogSurface[] = [
     representativeQueries: [
       "add a Control UI component with the shadcn CLI",
       "list every installable Control UI registry item",
-      "where is the shadcn manifest for a Control UI block",
+      "where is the shadcn manifest for a Control UI template",
     ],
   },
 ];

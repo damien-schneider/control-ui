@@ -23,7 +23,7 @@ import {
   WebDesign01Icon,
 } from "@hugeicons/core-free-icons";
 import type { IconSvgElement } from "@hugeicons/react";
-import type { UseCaseKindId } from "@/app/(features)/catalog/blocks";
+import type { TemplateKindId } from "@/app/(features)/catalog/blocks";
 import { referenceGroupTitle, referenceOverview } from "@/app/(features)/catalog/guides";
 import { catalogOverview } from "@/app/(features)/catalog/overviews";
 import { skillPageIds } from "@/app/(features)/model/page-ids";
@@ -56,10 +56,10 @@ export const catalogNavGroupIcons = {
   extensions: PlusSignSquareIcon,
 } as const satisfies Record<CatalogNavGroupId, IconSvgElement>;
 
-const useCasesOverview = catalogOverview("use-cases");
+const templatesOverview = catalogOverview("templates");
 
 export const sidebarDoors = [
-  { id: "use-cases", title: useCasesOverview.name, icon: BlocksIcon, href: useCasesOverview.href, overviewId: useCasesOverview.id },
+  { id: "templates", title: templatesOverview.name, icon: BlocksIcon, href: templatesOverview.href, overviewId: templatesOverview.id },
   { id: "practices", title: "Practices", icon: Book04Icon, href: `/skills/${skillPageIds[0]}` },
   { id: "reference", title: referenceGroupTitle, icon: HierarchyIcon, href: `/${referenceOverview.id}`, overviewId: referenceOverview.id },
 ] as const satisfies readonly SidebarDoor[];
@@ -71,7 +71,7 @@ export const themeEditorDoor = {
   href: THEME_EDITOR_PATH,
 } as const satisfies SidebarDoor;
 
-export const useCaseKindSidebarIcons = {
-  template: Layout01Icon,
+export const templateKindSidebarIcons = {
+  screen: Layout01Icon,
   pattern: BlocksIcon,
-} as const satisfies Record<UseCaseKindId, IconSvgElement>;
+} as const satisfies Record<TemplateKindId, IconSvgElement>;

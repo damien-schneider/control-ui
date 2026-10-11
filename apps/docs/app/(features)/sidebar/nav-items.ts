@@ -1,4 +1,4 @@
-import { useCaseKinds } from "@/app/(features)/catalog/blocks";
+import { templateKinds } from "@/app/(features)/catalog/blocks";
 import { catalogCategories } from "@/app/(features)/catalog/categories";
 import { type GuideGroupId, guideGroups, referenceOverview } from "@/app/(features)/catalog/guides";
 import { skinsOverview } from "@/app/(features)/catalog/skins";
@@ -8,7 +8,7 @@ import type {
   DocsComponent,
   DocsExtension,
   DocsHook,
-  DocsPrimitive,
+  DocsKit,
   DocsStatus,
   DocsUtil,
   GuidePage,
@@ -30,7 +30,7 @@ export function sidebarPaneForActivePage(
   const kind = searchItems.find((item) => item.id === active)?.kind;
 
   if (active === "theme-editor" || active === "theme-accessibility") return "theme-editor";
-  if (kind === "Block") return "use-cases";
+  if (kind === "Block") return "templates";
   if (kind === "Skill") return "practices";
   if (active === referenceOverview.id || referenceGroups.some((group) => group.items.some((item) => item.id === active)))
     return "reference";
@@ -78,19 +78,19 @@ export function guideNavSections(guides: GuidePage[]): { top: GuideNavGroup[]; r
   };
 }
 
-export function getUseCaseNavGroups(blocks: readonly Pick<DocsBlock, "id" | "useCaseKind" | "name" | "status">[]) {
-  return useCaseKinds.map((kind) => ({
+export function getTemplateNavGroups(blocks: readonly Pick<DocsBlock, "id" | "templateKind" | "name" | "status">[]) {
+  return templateKinds.map((kind) => ({
     id: kind.slug,
     kind: kind.id,
     title: kind.label,
     items: sortNavItemsByName(
       blocks.flatMap((block) =>
-        block.useCaseKind === kind.id
+        block.templateKind === kind.id
           ? [
               {
                 id: block.id,
                 name: block.name,
-                href: `/use-cases/${block.id}`,
+                href: `/templates/${block.id}`,
                 status: block.status,
               },
             ]
@@ -107,8 +107,8 @@ export type CatalogNavGroup = {
 };
 
 type CatalogNavSource = {
+  kits: readonly Pick<DocsKit, "id" | "category" | "name" | "status">[];
   components: readonly Pick<DocsComponent, "id" | "category" | "name" | "status">[];
-  primitives: readonly Pick<DocsPrimitive, "id" | "category" | "name" | "status">[];
   hooks: readonly Pick<DocsHook, "id" | "name">[];
   utils: readonly Pick<DocsUtil, "id" | "name">[];
   extensions: readonly Pick<DocsExtension, "id" | "name" | "status">[];
@@ -123,14 +123,14 @@ function navItem(section: string) {
   });
 }
 
-export function catalogNavGroups({ components, primitives, hooks, utils, extensions }: CatalogNavSource): CatalogNavGroup[] {
+export function catalogNavGroups({ kits, components, hooks, utils, extensions }: CatalogNavSource): CatalogNavGroup[] {
   return [
     ...catalogCategories.map((category) => ({
       id: category.id,
       title: category.label,
       items: sortNavItemsByName([
-        ...components.filter((component) => component.category === category.id).map(navItem("kits")),
-        ...primitives.filter((primitive) => primitive.category === category.id).map(navItem("components")),
+        ...kits.filter((kit) => kit.category === category.id).map(navItem("kits")),
+        ...components.filter((component) => component.category === category.id).map(navItem("components")),
       ]),
     })),
     { id: "hooks", title: "Hooks", items: hooks.map(navItem("hooks")) },

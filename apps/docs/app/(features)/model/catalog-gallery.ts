@@ -1,9 +1,9 @@
-import { blockEntries, type UseCaseKindId, useCaseKinds } from "@/app/(features)/catalog/blocks";
+import { blockEntries, type TemplateKindId, templateKinds } from "@/app/(features)/catalog/blocks";
 import { categoriesWithEntries } from "@/app/(features)/catalog/categories";
 import { componentEntries } from "@/app/(features)/catalog/components";
-import { primitiveEntries } from "@/app/(features)/catalog/primitives";
+import { kitEntries } from "@/app/(features)/catalog/kits";
 import { catalogStatus, type PreviewLayout } from "@/app/(features)/catalog/shared";
-import type { BlockId, ComponentId, DocsStatus, PrimitiveId } from "@/app/(features)/model/types";
+import type { BlockId, ComponentId, DocsStatus, KitId } from "@/app/(features)/model/types";
 
 type CatalogGalleryItemBase = {
   name: string;
@@ -15,8 +15,8 @@ type CatalogGalleryItemBase = {
 };
 
 export type CatalogGalleryItem =
-  | (CatalogGalleryItemBase & { kind: "component"; id: ComponentId })
-  | (CatalogGalleryItemBase & { kind: "primitive"; id: PrimitiveId });
+  | (CatalogGalleryItemBase & { kind: "kit"; id: KitId })
+  | (CatalogGalleryItemBase & { kind: "component"; id: ComponentId });
 
 export type CatalogGalleryGroup = {
   id: string;
@@ -25,23 +25,49 @@ export type CatalogGalleryGroup = {
   items: CatalogGalleryItem[];
 };
 
-export type UseCaseGalleryItem = CatalogGalleryItemBase & {
+export type TemplateGalleryItem = CatalogGalleryItemBase & {
   id: BlockId;
-  kind: UseCaseKindId;
+  kind: TemplateKindId;
 };
 
-export type UseCaseGalleryGroup = {
-  id: (typeof useCaseKinds)[number]["slug"];
-  kind: UseCaseKindId;
+export type TemplateGalleryGroup = {
+  id: (typeof templateKinds)[number]["slug"];
+  kind: TemplateKindId;
   title: string;
   summary: string;
-  items: UseCaseGalleryItem[];
+  items: TemplateGalleryItem[];
 };
 
 const galleryCollator = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
 
 function sortGalleryItems<T extends { id: string; name: string }>(items: T[]) {
   return items.toSorted((a, b) => galleryCollator.compare(a.name, b.name) || a.id.localeCompare(b.id));
+}
+
+export function kitGalleryGroups(): CatalogGalleryGroup[] {
+  return categoriesWithEntries(kitEntries).map((category) => ({
+    id: category.id,
+    title: category.label,
+    summary: category.summary,
+    items: sortGalleryItems(
+      kitEntries.flatMap((entry) =>
+        entry.category === category.id
+          ? [
+              {
+                kind: "kit" as const,
+                id: entry.id,
+                name: entry.name,
+                summary: entry.summary,
+                status: catalogStatus(entry),
+                href: `/kits/${entry.id}`,
+                previewClassName: "previewClassName" in entry ? entry.previewClassName : undefined,
+                previewLayout: entry.preview.layout,
+              },
+            ]
+          : [],
+      ),
+    ),
+  }));
 }
 
 export function componentGalleryGroups(): CatalogGalleryGroup[] {
@@ -59,32 +85,6 @@ export function componentGalleryGroups(): CatalogGalleryGroup[] {
                 name: entry.name,
                 summary: entry.summary,
                 status: catalogStatus(entry),
-                href: `/kits/${entry.id}`,
-                previewClassName: "previewClassName" in entry ? entry.previewClassName : undefined,
-                previewLayout: entry.preview.layout,
-              },
-            ]
-          : [],
-      ),
-    ),
-  }));
-}
-
-export function primitiveGalleryGroups(): CatalogGalleryGroup[] {
-  return categoriesWithEntries(primitiveEntries).map((category) => ({
-    id: category.id,
-    title: category.label,
-    summary: category.summary,
-    items: sortGalleryItems(
-      primitiveEntries.flatMap((entry) =>
-        entry.category === category.id
-          ? [
-              {
-                kind: "primitive" as const,
-                id: entry.id,
-                name: entry.name,
-                summary: entry.summary,
-                status: catalogStatus(entry),
                 href: `/components/${entry.id}`,
                 previewClassName: "previewClassName" in entry ? entry.previewClassName : undefined,
                 previewLayout: entry.preview.layout,
@@ -96,23 +96,23 @@ export function primitiveGalleryGroups(): CatalogGalleryGroup[] {
   }));
 }
 
-export function useCaseGalleryGroups(): UseCaseGalleryGroup[] {
-  return useCaseKinds.map((kind) => ({
+export function templateGalleryGroups(): TemplateGalleryGroup[] {
+  return templateKinds.map((kind) => ({
     id: kind.slug,
     kind: kind.id,
     title: kind.label,
     summary: kind.summary,
     items: sortGalleryItems(
       blockEntries.flatMap((entry) =>
-        entry.useCaseKind === kind.id
+        entry.templateKind === kind.id
           ? [
               {
                 id: entry.id,
-                kind: entry.useCaseKind,
+                kind: entry.templateKind,
                 name: entry.name,
                 summary: entry.summary,
                 status: catalogStatus(entry),
-                href: `/use-cases/${entry.id}`,
+                href: `/templates/${entry.id}`,
               },
             ]
           : [],

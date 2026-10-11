@@ -22,7 +22,7 @@ for (const width of [360, 390, 795, 1440]) {
     await expect(page.locator("#usage")).toContainText("@/components/control-ui/audio-visualizer-line");
     const bounds = await choices.boundingBox();
     const tabs = await page.locator("#preview").getByRole("tablist").boundingBox();
-    if (!bounds || !tabs) throw new Error("Component choices and preview tabs must be measurable");
+    if (!bounds || !tabs) throw new Error("Kit choices and preview tabs must be measurable");
     expect(bounds.x).toBeGreaterThanOrEqual(0);
     expect(bounds.x + bounds.width).toBeLessThanOrEqual(width);
     expect(bounds.y + bounds.height).toBeLessThan(tabs.y);

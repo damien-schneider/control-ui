@@ -86,7 +86,7 @@ export const utilEntries = [
     preview: preview(() => import("@/src/registry/examples/control-ui/serialize").then((mod) => ({ default: mod.SerializeExample }))),
     references: [
       { label: "ChatComposer", href: "/kits/chat-composer" },
-      { label: "Chat block", href: "/use-cases/chat" },
+      { label: "Chat template", href: "/templates/chat" },
     ],
   },
 ] as const;

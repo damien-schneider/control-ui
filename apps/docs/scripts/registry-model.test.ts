@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { blockEntries } from "@/app/(features)/catalog/blocks";
 import { componentEntries } from "@/app/(features)/catalog/components";
 import { extensionEntries } from "@/app/(features)/catalog/extensions";
-import { primitiveEntries } from "@/app/(features)/catalog/primitives";
+import { kitEntries } from "@/app/(features)/catalog/kits";
 import { createRegistryItems } from "./registry-model";
 
 function registryItem(name: string) {
@@ -18,9 +18,9 @@ describe("Control UI starter registry items", () => {
       "core",
       "skin-refined",
       "control-ui-skill",
-      ...componentEntries.map((entry) => entry.registryKind),
+      ...kitEntries.map((entry) => entry.registryKind),
       ...blockEntries.map((entry) => entry.registryKind),
-      ...primitiveEntries.map((entry) => entry.paths.registry.registryKind),
+      ...componentEntries.map((entry) => entry.paths.registry.registryKind),
     ]);
 
     expect(new Set(allRefined.registryDependencies)).toEqual(expectedDependencies);

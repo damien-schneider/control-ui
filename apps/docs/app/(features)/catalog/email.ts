@@ -82,7 +82,7 @@ const additionalPreviews: CatalogNamedPreview[] = [
 export const emailEntry = {
   id: "email",
   category: "content",
-  kind: "Component",
+  kind: "Kit",
   name: "Email",
   status: "beta",
   summary:

@@ -346,7 +346,7 @@
       "name": "all-cuicui",
       "type": "registry:item",
       "title": "All Control UI components — Cuicui",
-      "description": "Every Control UI agent component, block, and primitive with the Cuicui skin.",
+      "description": "Every Control UI component, kit, and template with the Cuicui skin.",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/accordion.json",
@@ -483,7 +483,7 @@
       "name": "all-linear",
       "type": "registry:item",
       "title": "All Control UI components — Linear",
-      "description": "Every Control UI agent component, block, and primitive with the Linear skin.",
+      "description": "Every Control UI component, kit, and template with the Linear skin.",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/accordion.json",
@@ -620,7 +620,7 @@
       "name": "all-liquid-metal",
       "type": "registry:item",
       "title": "All Control UI components — Liquid metal",
-      "description": "Every Control UI agent component, block, and primitive with the Liquid metal skin.",
+      "description": "Every Control UI component, kit, and template with the Liquid metal skin.",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/accordion.json",
@@ -757,7 +757,7 @@
       "name": "all-mastra",
       "type": "registry:item",
       "title": "All Control UI components — Mastra",
-      "description": "Every Control UI agent component, block, and primitive with the Mastra skin.",
+      "description": "Every Control UI component, kit, and template with the Mastra skin.",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/accordion.json",
@@ -894,7 +894,7 @@
       "name": "all-modern-apple",
       "type": "registry:item",
       "title": "All Control UI components — macOS",
-      "description": "Every Control UI agent component, block, and primitive with the macOS skin.",
+      "description": "Every Control UI component, kit, and template with the macOS skin.",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/accordion.json",
@@ -1031,7 +1031,7 @@
       "name": "all-refined",
       "type": "registry:item",
       "title": "All Control UI components — Refined",
-      "description": "Every Control UI agent component, block, and primitive with the Refined skin.",
+      "description": "Every Control UI component, kit, and template with the Refined skin.",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/accordion.json",
@@ -1168,7 +1168,7 @@
       "name": "all-rig",
       "type": "registry:item",
       "title": "All Control UI components — Rig",
-      "description": "Every Control UI agent component, block, and primitive with the Rig skin.",
+      "description": "Every Control UI component, kit, and template with the Rig skin.",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/accordion.json",
@@ -1305,7 +1305,7 @@
       "name": "all-sketch",
       "type": "registry:item",
       "title": "All Control UI components — Sketch",
-      "description": "Every Control UI agent component, block, and primitive with the Sketch skin.",
+      "description": "Every Control UI component, kit, and template with the Sketch skin.",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/accordion.json",
@@ -1442,7 +1442,7 @@
       "name": "all-windows-98",
       "type": "registry:item",
       "title": "All Control UI components — Windows 98",
-      "description": "Every Control UI agent component, block, and primitive with the Windows 98 skin.",
+      "description": "Every Control UI component, kit, and template with the Windows 98 skin.",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/accordion.json",
@@ -1579,7 +1579,7 @@
       "name": "all-xp",
       "type": "registry:item",
       "title": "All Control UI components — Windows XP",
-      "description": "Every Control UI agent component, block, and primitive with the Windows XP skin.",
+      "description": "Every Control UI component, kit, and template with the Windows XP skin.",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/accordion.json",

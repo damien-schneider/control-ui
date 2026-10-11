@@ -2,7 +2,7 @@ import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { type RegistryItem, registryItemSchema, registrySchema } from "shadcn/schema";
 import { componentEntries } from "../app/(features)/catalog/components";
-import { primitiveEntries } from "../app/(features)/catalog/primitives";
+import { kitEntries } from "../app/(features)/catalog/kits";
 import { type CatalogSkinMeta, skinMetas } from "../app/(features)/catalog/skins";
 import { importSpecifiers } from "./module-imports";
 import { contractDir, publicPayloads } from "./public-payloads";
@@ -77,20 +77,20 @@ function usesRuntimeProvider(source: string) {
   return /(@assistant-ui|AssistantRuntimeProvider|RuntimeProvider|useChatRuntime|useAssistantRuntime)/.test(source);
 }
 
+const documentedKits = new Set<string>(kitEntries.map((kit) => kit.id));
 const documentedComponents = new Set<string>(componentEntries.map((component) => component.id));
-const documentedPrimitives = new Set<string>(primitiveEntries.map((primitive) => primitive.id));
 
-for (const component of componentEntries) {
-  const componentPath = path.join(root, component.paths.source.path);
-  if (!existsSync(componentPath)) {
-    failures.push(`${component.id} is missing ${component.paths.source.path}`);
+for (const kit of kitEntries) {
+  const kitPath = path.join(root, kit.paths.source.path);
+  if (!existsSync(kitPath)) {
+    failures.push(`${kit.id} is missing ${kit.paths.source.path}`);
     continue;
   }
 
-  const source = readFileSync(componentPath, "utf8");
-  if (importsRuntime(source)) failures.push(`${component.id} mixes runner imports in ${component.paths.source.path}`);
+  const source = readFileSync(kitPath, "utf8");
+  if (importsRuntime(source)) failures.push(`${kit.id} mixes runner imports in ${kit.paths.source.path}`);
   if (/create(ChatMessage|ChatComposer)Component/.test(source)) {
-    failures.push(`${component.id} uses a component factory; sources must install explicit TSX`);
+    failures.push(`${kit.id} uses a component factory; sources must install explicit TSX`);
   }
 }
 
@@ -137,13 +137,13 @@ for (const blockPath of walk(blocksRoot).filter((file) => file.endsWith(".tsx"))
 
   for (const importPath of imports) {
     if (importPath.startsWith("ui/")) {
-      const primitiveId = importPath.slice("ui/".length);
-      if (!documentedPrimitives.has(primitiveId)) failures.push(`${relativePath} imports undocumented primitive "${primitiveId}"`);
+      const componentId = importPath.slice("ui/".length);
+      if (!documentedComponents.has(componentId)) failures.push(`${relativePath} imports undocumented component "${componentId}"`);
       continue;
     }
     if (importPath.includes("/")) continue;
     if (!existsSync(path.join(sourcesRoot, "control-ui", `${importPath}.tsx`))) continue;
-    if (!documentedComponents.has(importPath)) failures.push(`${relativePath} imports undocumented agent "${importPath}"`);
+    if (!documentedKits.has(importPath)) failures.push(`${relativePath} imports undocumented kit "${importPath}"`);
   }
 }
 
@@ -202,9 +202,6 @@ for (const [id, manifest] of manifests) {
     const isSkillTarget = id === "control-ui-skill" && file.target === "~/.claude/skills/control-ui/SKILL.md";
     if (!file.target.startsWith("@components/control-ui/") && !isNextStarterTarget && !isSkillTarget) {
       failures.push(`${id} writes ${file.target}; all install targets must derive from the consumer's components alias`);
-    }
-    if (file.target.includes("/primitives/") || file.target.includes("/adapters/")) {
-      failures.push(`${id} writes the obsolete target ${file.target}`);
     }
     if (file.target.includes("/hooks/") && !/@components\/control-ui\/hooks\/use-[^/]+\.ts$/.test(file.target)) {
       failures.push(`${id} has a hook target that is not hooks/use-*.ts: ${file.target}`);

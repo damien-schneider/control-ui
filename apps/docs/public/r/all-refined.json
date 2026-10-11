@@ -3,7 +3,7 @@
   "name": "all-refined",
   "type": "registry:item",
   "title": "All Control UI components — Refined",
-  "description": "Every Control UI agent component, block, and primitive with the Refined skin.",
+  "description": "Every Control UI component, kit, and template with the Refined skin.",
   "dependencies": [],
   "registryDependencies": [
     "http://127.0.0.1:3000/r/accordion.json",

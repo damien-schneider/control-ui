@@ -17,7 +17,7 @@ import { Kbd } from "@/components/control-ui/ui/kbd";
 import { Text } from "@/components/control-ui/ui/typography";
 import { useCloseMobileSidebar } from "./use-close-mobile-sidebar";
 
-const searchKindLabels: Partial<Record<SearchItem["kind"], string>> = { Block: "Use case", Primitive: "Component", Component: "Kit" };
+const searchKindLabels: Partial<Record<SearchItem["kind"], string>> = { Block: "Template" };
 
 function isTypingTarget(target: EventTarget | null) {
   if (!(target instanceof HTMLElement)) return false;
@@ -79,8 +79,8 @@ export function DocsSearchProvider({ items, onNavigate, children }: { items: Sea
   const guideItems = items.filter((item) => item.kind === "Guide");
   const skillItems = items.filter((item) => item.kind === "Skill");
   const skinItems = items.filter((item) => item.kind === "Skin");
-  const componentItems = items.filter((item) => item.kind === "Primitive");
-  const kitItems = items.filter((item) => item.kind === "Component");
+  const componentItems = items.filter((item) => item.kind === "Component");
+  const kitItems = items.filter((item) => item.kind === "Kit");
   const supportItems = items.filter((item) => item.kind === "Hook" || item.kind === "Util");
   const blockItems = items.filter((item) => item.kind === "Block");
   const searchResults = query.trim() ? matchSearchItems(items, query) : null;
@@ -130,7 +130,7 @@ export function DocsSearchProvider({ items, onNavigate, children }: { items: Sea
         open={open}
         onOpenChange={changeOpen}
         title="Search documentation"
-        description="Search guides, components, primitives, and patterns."
+        description="Search guides, components, kits, and templates."
         commandProps={{ shouldFilter: false }}
       >
         <CommandInput value={query} onValueChange={setQuery} aria-label="Search documentation" placeholder="Search documentation…" />
@@ -161,7 +161,7 @@ export function DocsSearchProvider({ items, onNavigate, children }: { items: Sea
               <CommandGroup heading="Components">{componentItems.map(renderItem)}</CommandGroup>
               <CommandGroup heading="Kits">{kitItems.map(renderItem)}</CommandGroup>
               <CommandGroup heading="Support files">{supportItems.map(renderItem)}</CommandGroup>
-              <CommandGroup heading="Templates & patterns">{blockItems.map(renderItem)}</CommandGroup>
+              <CommandGroup heading="Templates">{blockItems.map(renderItem)}</CommandGroup>
             </>
           )}
         </CommandList>

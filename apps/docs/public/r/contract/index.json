@@ -265,7 +265,7 @@
         "textarea"
       ],
       "knobs": 15,
-      "probes": 99
+      "probes": 98
     },
     "filter-bar": {
       "registryItems": [
@@ -420,7 +420,7 @@
         "trigger-menu"
       ],
       "knobs": 44,
-      "probes": 168
+      "probes": 166
     },
     "progressive-blur": {
       "registryItems": [
@@ -463,7 +463,7 @@
         "scroll-area"
       ],
       "knobs": 3,
-      "probes": 44
+      "probes": 43
     },
     "separator": {
       "registryItems": [

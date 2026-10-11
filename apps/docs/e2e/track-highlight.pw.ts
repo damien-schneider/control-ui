@@ -8,7 +8,7 @@ async function expectSidebarHoverOn(row: Locator) {
   await expect(row).toHaveCSS("background-color", fill);
 }
 
-test("track highlight is discoverable as a primitive with working hover and selection examples", async ({ page }) => {
+test("track highlight is discoverable as a component with working hover and selection examples", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.addInitScript((storageKey) => {
     localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" }));

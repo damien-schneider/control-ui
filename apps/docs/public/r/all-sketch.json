@@ -3,7 +3,7 @@
   "name": "all-sketch",
   "type": "registry:item",
   "title": "All Control UI components — Sketch",
-  "description": "Every Control UI agent component, block, and primitive with the Sketch skin.",
+  "description": "Every Control UI component, kit, and template with the Sketch skin.",
   "dependencies": [],
   "registryDependencies": [
     "http://127.0.0.1:3000/r/accordion.json",

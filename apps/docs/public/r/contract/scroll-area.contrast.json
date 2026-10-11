@@ -55,44 +55,6 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-layout": "contained",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-has-overflow-y": "",
-          "data-lock-axis": "x",
-          "data-overflow-y-start": "",
-          "data-scrollbar-gutter": "auto",
-          "data-slot": "root",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "scroll-area",
-          "data-control-ui": "scroll-area",
-          "data-orientation": "vertical",
-          "data-slot": "thumb"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
           "data-layout": "viewport",
           "data-scroll": "page",
           "data-slot": "wrapper"
@@ -2994,14 +2956,6 @@
         "fill": "--cui-scroll-area-thumb-background"
       },
       "anatomy": 42,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-scroll-area-thumb-background"
-      },
-      "anatomy": 43,
       "rendersText": false,
       "state": false
     }

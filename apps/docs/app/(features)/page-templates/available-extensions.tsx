@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { CodeBlock, CommandBlock } from "@/app/(features)/components/source";
 import { registryInstallCommand } from "@/app/(features)/model/registry";
-import type { ComponentId, DocsExtension, PrimitiveId } from "@/app/(features)/model/types";
+import type { ComponentId, DocsExtension, KitId } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Card } from "@/components/control-ui/ui/card";
 import { Text } from "@/components/control-ui/ui/typography";
@@ -14,7 +14,7 @@ import { SectionTitle } from "./shared";
 // Extensions are optional items layered on library, never part of host's bundle — this panel only
 // OFFERS ones whose appliesTo names this page; installing host alone ships none of them. Cards with
 // demo render it here so main preview above stays exactly what bare install looks like.
-export function AvailableExtensions({ hostId, extensions }: { hostId: ComponentId | PrimitiveId; extensions: DocsExtension[] }) {
+export function AvailableExtensions({ hostId, extensions }: { hostId: KitId | ComponentId; extensions: DocsExtension[] }) {
   const available = extensions.filter((extension) => extension.appliesTo?.some((id) => id === hostId));
   if (available.length === 0) return null;
 

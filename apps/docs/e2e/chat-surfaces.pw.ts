@@ -15,7 +15,7 @@ for (const skin of ["refined", "modern-apple", "none", "cuicui", "xp", "windows-
 
     test("conversation owns one surface and keeps the composer in its scroller", async ({ page }, testInfo) => {
       await page.setViewportSize({ width: 1440, height: 1000 });
-      await page.goto("/use-cases/coding-agent");
+      await page.goto("/templates/coding-agent");
       const preview = page.locator("#preview");
       const thread = preview.locator('[data-control-ui="chat-thread"][data-slot="root"]');
       const layout = preview.locator('[data-control-ui="chat-layout"][data-slot="root"]');

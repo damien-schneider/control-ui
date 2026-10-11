@@ -5,15 +5,15 @@ import { componentEntries } from "./components";
 import { extensionEntries } from "./extensions";
 import { guideEntries } from "./guides";
 import { hookEntries, utilEntries } from "./hooks-utils";
-import { primitiveEntries } from "./primitives";
+import { kitEntries } from "./kits";
 import { skinMetas } from "./skins";
 
 export const docsPageManifest = buildSearchItems({
   guides: guideEntries,
   skills: practiceSkills,
-  components: componentEntries,
+  kits: kitEntries,
   blocks: blockEntries,
-  primitives: primitiveEntries,
+  components: componentEntries,
   hooks: hookEntries,
   utils: utilEntries,
   extensions: extensionEntries,

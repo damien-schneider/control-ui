@@ -63,7 +63,7 @@ test("the composer takes attachments from paste and drop, not only the file butt
 });
 
 test("the rich editor releases file transfers instead of swallowing them", async ({ page }) => {
-  await page.goto("/use-cases/chat");
+  await page.goto("/templates/chat");
   const editor = page.locator(".ProseMirror").first();
   await expect(editor).toHaveAttribute("contenteditable", "true");
 

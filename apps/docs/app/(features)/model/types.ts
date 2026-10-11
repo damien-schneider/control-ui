@@ -1,25 +1,25 @@
 import type { PracticeSkillId, SkillConcern, SkillConcernId } from "@control-ui/skills";
-import type { blockEntries, UseCaseKindId } from "@/app/(features)/catalog/blocks";
+import type { blockEntries, TemplateKindId } from "@/app/(features)/catalog/blocks";
 import type { CatalogCategoryId } from "@/app/(features)/catalog/categories";
 import type { componentEntries } from "@/app/(features)/catalog/components";
 import type { CatalogCompositionExample } from "@/app/(features)/catalog/compositions/types";
 import type { extensionEntries } from "@/app/(features)/catalog/extensions";
 import type { GuideCodeId, GuideGroupId, guideEntries } from "@/app/(features)/catalog/guides";
 import type { hookEntries, utilEntries } from "@/app/(features)/catalog/hooks-utils";
+import type { kitEntries } from "@/app/(features)/catalog/kits";
 import type { CatalogOverviewId } from "@/app/(features)/catalog/overviews";
-import type { primitiveEntries } from "@/app/(features)/catalog/primitives";
 import type { CatalogStatus, integrationIds, PreviewLayout, registryKindIds } from "@/app/(features)/catalog/shared";
 import type { CatalogSkinKind, skinMetas } from "@/app/(features)/catalog/skins";
 
 export type GuideId = (typeof guideEntries)[number]["id"];
-export type ComponentId = (typeof componentEntries)[number]["id"];
+export type KitId = (typeof kitEntries)[number]["id"];
 export type BlockId = (typeof blockEntries)[number]["id"];
-export type PrimitiveId = (typeof primitiveEntries)[number]["id"];
+export type ComponentId = (typeof componentEntries)[number]["id"];
 export type HookId = (typeof hookEntries)[number]["id"];
 export type UtilId = (typeof utilEntries)[number]["id"];
 export type ExtensionId = (typeof extensionEntries)[number]["id"];
 export type SkillId = PracticeSkillId;
-export type PageId = GuideId | ComponentId | BlockId | PrimitiveId | HookId | UtilId | ExtensionId | SkillId;
+export type PageId = GuideId | KitId | BlockId | ComponentId | HookId | UtilId | ExtensionId | SkillId;
 export type SkinMetaId = (typeof skinMetas)[number]["id"];
 export type ActivePageId = PageId | SkinMetaId | CatalogOverviewId | "skins" | "reference";
 export type IntegrationId = (typeof integrationIds)[number];
@@ -50,7 +50,7 @@ export type DocsSkinPage = {
 export type SearchItem = {
   id: ActivePageId;
   name: string;
-  kind: "Guide" | "Skill" | "Component" | "Block" | "Primitive" | "Hook" | "Util" | "Extension" | "Skin";
+  kind: "Guide" | "Skill" | "Component" | "Kit" | "Block" | "Hook" | "Util" | "Extension" | "Skin";
   summary: string;
   href: string;
   status?: DocsStatus;
@@ -67,11 +67,11 @@ export type SourceFile = {
 export type DocsRegistryDependency = {
   registryKind: RegistryKindId;
   name: string;
-  kind: "Component" | "Block" | "Extension" | "Primitive";
+  kind: "Component" | "Kit" | "Block" | "Extension";
   href: string;
 };
 
-export type DocsPrimitiveExample = {
+export type DocsComponentExample = {
   id: string;
   title: string;
   description?: string;
@@ -89,8 +89,8 @@ export type Composition = readonly [CompositionExample, ...CompositionExample[]]
 export type DocsKnob = { name: string; syntax: string; defaultValue: string };
 export type DocsKnobFamily = { id: string; href?: string; knobs: DocsKnob[] };
 
-export type DocsPrimitive = {
-  id: PrimitiveId;
+export type DocsComponent = {
+  id: ComponentId;
   category: CatalogCategoryId;
   name: string;
   summary: string;
@@ -98,12 +98,12 @@ export type DocsPrimitive = {
   previewClassName?: string;
   previewLayout?: PreviewLayout;
   previewDescription?: string;
-  // library-original primitive has no shadcn equivalent
+  // library-original component has no shadcn equivalent
   shadcnDocsUrl?: string;
   registry: {
     target: string;
     example: SourceFile;
-    examples?: DocsPrimitiveExample[];
+    examples?: DocsComponentExample[];
     source: SourceFile;
     supportFiles?: SourceFile[];
     composition: Composition;
@@ -146,8 +146,8 @@ export type DocsExtension = {
   target: string;
   registryKind: RegistryKindId;
   activation: { description: string; code: string };
-  /** Component or primitive pages whose "Available extensions" panel offers this item. */
-  appliesTo?: (ComponentId | PrimitiveId)[];
+  /** Kit or component pages whose "Available extensions" panel offers this item. */
+  appliesTo?: (KitId | ComponentId)[];
   source: SourceFile;
   supportFiles?: SourceFile[];
   registryDependencies: DocsRegistryDependency[];
@@ -192,7 +192,7 @@ export type DocsSkill = {
 };
 export type DocsSkillConcern = SkillConcern;
 
-export type DocsComponentChoice = {
+export type DocsKitChoice = {
   id: string;
   label: string;
   description: string;
@@ -200,9 +200,9 @@ export type DocsComponentChoice = {
   usage: Record<IntegrationId, SourceFile>;
 };
 
-export type DocsComponentVariant = DocsComponentChoice;
+export type DocsKitVariant = DocsKitChoice;
 
-export type DocsComponentAlternative = DocsComponentChoice & {
+export type DocsKitAlternative = DocsKitChoice & {
   registryKind: RegistryKindId;
   source: SourceFile;
   supportFiles: SourceFile[];
@@ -210,9 +210,9 @@ export type DocsComponentAlternative = DocsComponentChoice & {
   knobs: DocsKnobFamily[];
 };
 
-export type DocsComponent = {
+export type DocsKit = {
   composition: Composition;
-  id: ComponentId;
+  id: KitId;
   category: CatalogCategoryId;
   name: string;
   summary: string;
@@ -221,21 +221,21 @@ export type DocsComponent = {
   previewLayout?: PreviewLayout;
   previewDescription?: string;
   example: SourceFile;
-  examples?: DocsPrimitiveExample[];
+  examples?: DocsComponentExample[];
   usage: Record<IntegrationId, SourceFile>;
   hook?: SourceFile;
   supportFiles?: SourceFile[];
   source: SourceFile;
   registryDependencies: DocsRegistryDependency[];
   registryKind: RegistryKindId;
-  alternatives?: DocsComponentAlternative[];
-  variants?: DocsComponentVariant[];
+  alternatives?: DocsKitAlternative[];
+  variants?: DocsKitVariant[];
   knobs: DocsKnobFamily[];
 };
 
 export type DocsBlock = {
   id: BlockId;
-  useCaseKind: UseCaseKindId;
+  templateKind: TemplateKindId;
   name: string;
   summary: string;
   status?: DocsStatus;
@@ -251,9 +251,9 @@ export type DocsShellData = {
   guides: GuidePage[];
   skills: readonly DocsSkill[];
   skillConcerns: readonly DocsSkillConcern[];
-  components: DocsComponent[];
+  kits: DocsKit[];
   blocks: DocsBlock[];
-  primitives: DocsPrimitive[];
+  components: DocsComponent[];
   hooks: DocsHook[];
   utils: DocsUtil[];
   extensions: DocsExtension[];
