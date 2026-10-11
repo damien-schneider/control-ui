@@ -5,18 +5,18 @@ test("Templates owns template browsing and canonical detail routes", async ({ pa
   await page.waitForLoadState("networkidle");
 
   const sidebar = page.locator("[data-docs-sidebar-navigation]");
-  await expect(sidebar.getByText("Chat", { exact: true })).toBeVisible();
+  await expect(sidebar.getByText("Chat & agents", { exact: true })).toBeVisible();
   await expect(sidebar.getByRole("link", { name: "Chat Message", exact: true })).toBeVisible();
-  await expect(sidebar.getByRole("link", { name: "Coding agent", exact: true })).toHaveCount(0);
+  await expect(sidebar.getByRole("link", { name: /^Coding agent/ })).toHaveCount(0);
 
   await sidebar.getByRole("link", { name: "Templates", exact: true }).click();
   await expect(page).toHaveURL("/templates");
-  await expect(sidebar.getByRole("link", { name: "Coding agent", exact: true })).toBeVisible();
+  await expect(sidebar.getByRole("link", { name: /^Coding agent/ })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Templates", level: 1 })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Screens", level: 2 })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Patterns", level: 2 })).toBeVisible();
-  await expect(page.locator('[data-template-kind="screen"]')).toHaveCount(5);
-  await expect(page.locator('[data-template-kind="pattern"]')).toHaveCount(1);
+  await expect(page.locator('[data-template-kind="screen"]')).toHaveCount(6);
+  await expect(page.locator('[data-template-kind="pattern"]')).toHaveCount(2);
 
   const codingAgentLink = page.locator('[data-template-card="coding-agent"] a');
   await codingAgentLink.focus();
