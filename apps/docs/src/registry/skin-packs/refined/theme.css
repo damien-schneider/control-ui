@@ -17,10 +17,10 @@
   --text-heading-1--line-height: 1.5;
   --text-heading-1--font-weight: 500;
   --text-heading-1--letter-spacing: 0em;
-  --text-display: 1rem;
-  --text-display--line-height: 1.5;
+  --text-display: 1.5rem;
+  --text-display--line-height: 1.25;
   --text-display--font-weight: 500;
-  --text-display--letter-spacing: 0em;
+  --text-display--letter-spacing: -0.02em;
 
   --background: oklch(0.985 0 0);
   --foreground: oklch(0.205 0 0);
