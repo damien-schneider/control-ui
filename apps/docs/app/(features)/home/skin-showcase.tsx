@@ -1,25 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { lazy, Suspense, useId } from "react";
+import { useId } from "react";
+import { skinPackIds } from "@/app/(features)/catalog/skins";
 import type { SkinMetaId } from "@/app/(features)/model/types";
-import { controlEffectsAttribute } from "@/components/control-ui/skin";
-import { SkinProvider } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/control-ui/ui/card";
 import { Field, FieldContent, FieldControl, FieldLabel } from "@/components/control-ui/ui/field";
 import { Input } from "@/components/control-ui/ui/input";
 import { Switch } from "@/components/control-ui/ui/switch";
+import { Toggle, ToggleGroup } from "@/components/control-ui/ui/toggle";
 import { Text } from "@/components/control-ui/ui/typography";
-import { SKIN_CONFIGS } from "@/components/skin-registry";
-import { MODE_LOCKED_SKINS, MOTION_REDUCED_SKINS } from "@/components/theme";
+import { resetConversation } from "@/components/theme-drawer/generation-store";
+import { SKIN_META_BY_ID } from "@/components/theme-drawer/presets";
 import { SkinLogo } from "@/components/theme-drawer/skin-logo";
 import { useThemeRuntime } from "@/components/theme-drawer/theme-runtime-context";
-import { showcasedSkins } from "./showcase";
-
-const SketchStrokeRuntime = lazy(() =>
-  import("@/src/registry/skin-packs/sketch/sketch-stroke-runtime").then((module) => ({ default: module.SketchStrokeRuntime })),
-);
+import { inlineLinkClassName, tryoutSkinIds } from "./showcase";
 
 function ReleaseNotesCard() {
   const switchId = useId();
@@ -52,55 +48,80 @@ function ReleaseNotesCard() {
   );
 }
 
-function SkinTile({ id, label, description }: { id: SkinMetaId; label: string; description: string }) {
-  const skin = SKIN_CONFIGS[id];
-  const nameId = `home-skin-${id}-name`;
+const skinPickerId = "home-skin-picker";
 
-  return (
-    <article className="group relative grid min-w-0 grid-rows-[1fr_auto] rounded-[var(--radius-panel)] focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-canvas">
-      <Link href={`/skins/${id}`} aria-labelledby={nameId} className="absolute inset-0 z-10 rounded-[inherit] outline-none" />
-      <div className="grid min-w-0 overflow-hidden rounded-[inherit] border border-border/70 transition-[border-color] duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-hover:border-foreground/30">
-        <SkinProvider skin={skin}>
-          <div
-            inert
-            aria-hidden="true"
-            data-skin={id}
-            data-effects={controlEffectsAttribute(skin.effects)}
-            data-motion={MOTION_REDUCED_SKINS.includes(id) ? "reduced" : undefined}
-            style={{ colorScheme: MODE_LOCKED_SKINS[id] }}
-            className="hidden min-w-0 select-none place-items-center bg-background p-6 font-sans text-foreground [:root[data-skin=none]_&]:grid"
-          >
-            <ReleaseNotesCard />
-          </div>
-        </SkinProvider>
-        <Text as="p" tone="muted" className="p-6 text-pretty [:root[data-skin=none]_&]:hidden">
-          {description}
-        </Text>
-      </div>
-      <div className="mt-3 flex min-w-0 items-center gap-2 px-0.5">
-        <SkinLogo id={id} size="sm" />
-        <Text id={nameId} weight="medium" tone="foreground" className="min-w-0 truncate">
-          {label}
-        </Text>
-      </div>
-    </article>
-  );
+function scrollContainerOf(element: Element): Element {
+  for (let node = element.parentElement; node; node = node.parentElement) {
+    const { overflowY } = getComputedStyle(node);
+    const scrolls = (overflowY === "auto" || overflowY === "scroll") && node.scrollHeight > node.clientHeight;
+    if (scrolls) return node;
+  }
+  return document.scrollingElement ?? document.documentElement;
 }
 
-export function SkinShowcaseTiles() {
-  const { t } = useThemeRuntime();
-  const sketchStrokesNeedOwnRuntime = t.skin !== "sketch";
+function alignPicker(previousTop: number) {
+  const picker = document.getElementById(skinPickerId);
+  if (!picker) return;
+  const drift = picker.getBoundingClientRect().top - previousTop;
+  scrollContainerOf(picker).scrollBy({ top: drift, behavior: "instant" });
+}
+
+function keepPickerInPlace(previousTop: number, restoreFocus: boolean) {
+  alignPicker(previousTop);
+  if (restoreFocus)
+    document.getElementById(skinPickerId)?.querySelector<HTMLElement>("[aria-pressed='true']")?.focus({ preventScroll: true });
+  document.fonts.ready.then(() => alignPicker(previousTop));
+}
+
+export function SkinShowcase() {
+  const { t, selectSkin } = useThemeRuntime();
+  const activeSkin = SKIN_META_BY_ID[t.skin];
+
+  function applySkin([skin]: SkinMetaId[]) {
+    const picker = document.getElementById(skinPickerId);
+    if (!skin || !picker) return;
+    const previousTop = picker.getBoundingClientRect().top;
+    const hadFocus = picker.contains(document.activeElement);
+    selectSkin(skin);
+    resetConversation();
+    requestAnimationFrame(() => keepPickerInPlace(previousTop, hadFocus));
+  }
 
   return (
-    <>
-      {showcasedSkins.map((skin) => (
-        <SkinTile key={skin.id} id={skin.id} label={skin.label} description={skin.description} />
-      ))}
-      {sketchStrokesNeedOwnRuntime ? (
-        <Suspense fallback={null}>
-          <SketchStrokeRuntime />
-        </Suspense>
-      ) : null}
-    </>
+    <div className="grid min-w-0 gap-6 @4xl/home:grid-cols-2 @4xl/home:items-start">
+      <div className="grid min-h-80 min-w-0 place-items-center rounded-[var(--radius-panel)] border border-border/70 bg-background p-6">
+        <div inert aria-hidden="true" className="w-full max-w-sm select-none">
+          <ReleaseNotesCard />
+        </div>
+      </div>
+      <div className="grid min-w-0 content-start gap-4">
+        <ToggleGroup
+          id={skinPickerId}
+          value={[t.skin]}
+          onValueChange={applySkin}
+          aria-label="Skin for this site"
+          className="flex-wrap justify-start"
+        >
+          {tryoutSkinIds.map((id) => (
+            <Toggle key={id} value={id}>
+              <SkinLogo id={id} size="sm" />
+              {SKIN_META_BY_ID[id].label}
+            </Toggle>
+          ))}
+        </ToggleGroup>
+        <Text as="p" tone="muted" className="text-pretty">
+          <span className="font-medium text-foreground">{activeSkin.label}:</span> {activeSkin.description}
+          {skinPackIds.includes(t.skin) ? (
+            <>
+              {" "}
+              <Link href={`/skins/${t.skin}`} className={inlineLinkClassName}>
+                Install {activeSkin.label}
+              </Link>
+              .
+            </>
+          ) : null}
+        </Text>
+      </div>
+    </div>
   );
 }

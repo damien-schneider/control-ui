@@ -68,6 +68,22 @@ test("homepage applies a shared skin preset", async ({ page }) => {
   await expect(page.locator("html")).toHaveAttribute("data-skin", "rig");
 });
 
+test("homepage skin picker repaints the site without moving the picker", async ({ page }) => {
+  await page.goto("/");
+  const picker = page.getByRole("group", { name: "Skin for this site" });
+  await expect(() => picker.scrollIntoViewIfNeeded()).toPass();
+  const pickerTop = () => picker.evaluate((element) => Math.round(element.getBoundingClientRect().top));
+  const startTop = await pickerTop();
+  for (const skin of ["windows-98", DEFAULT_SKIN_ID] as const) {
+    const option = picker.getByRole("button", { name: SKIN_META_BY_ID[skin].label, exact: true });
+    await option.click();
+    await expect(page.locator("html")).toHaveAttribute("data-skin", skin);
+    await expect(option).toHaveAttribute("aria-pressed", "true");
+    await expect(option).toBeFocused();
+    await expect.poll(pickerTop).toBe(startTop);
+  }
+});
+
 test("unknown skin query preserves saved edits", async ({ page }) => {
   await page.addInitScript(
     (editorKey) => localStorage.setItem(editorKey, JSON.stringify({ skin: "rig", overrides: { "--radius-control": "13px" } })),

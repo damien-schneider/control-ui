@@ -3,7 +3,7 @@ import { componentEntries } from "@/app/(features)/catalog/components";
 import { guideEntries } from "@/app/(features)/catalog/guides";
 import { catalogOverview } from "@/app/(features)/catalog/overviews";
 import { primitiveEntries } from "@/app/(features)/catalog/primitives";
-import { skinMetas, skinPackIds, skinsOverviewId } from "@/app/(features)/catalog/skins";
+import { skinPackIds, skinsOverviewId } from "@/app/(features)/catalog/skins";
 import {
   useCaseGalleryGroups as blockGalleryGroups,
   componentGalleryGroups,
@@ -24,7 +24,19 @@ const templateIds = ["file-explorer", "design-canvas", "settings"] as const sati
 
 const chatComponentIds = ["chat-message", "chat-composer", "activity"] as const satisfies readonly ComponentId[];
 
-const showcasedSkinIds = ["windows-98", "xp", "modern-apple", "linear", "sketch", "rig"] as const satisfies readonly SkinMetaId[];
+export const tryoutSkinIds = [
+  "refined",
+  "none",
+  "windows-98",
+  "xp",
+  "modern-apple",
+  "linear",
+  "sketch",
+  "rig",
+] as const satisfies readonly SkinMetaId[];
+
+export const inlineLinkClassName =
+  "font-medium text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground";
 
 function pick<T extends { id: string }>(items: readonly T[], id: string): T {
   const item = items.find((candidate) => candidate.id === id);
@@ -51,8 +63,6 @@ export const templateKind = getUseCaseKind("template");
 export const chatGroup = pick(componentGalleryGroups(), "chat");
 
 export const chatComponents = pickInOrder(chatGroup.items, chatComponentIds);
-
-export const showcasedSkins = pickInOrder(skinMetas, showcasedSkinIds);
 
 export const missingFromShadcnGuide = pick(guideEntries, "components-missing-from-shadcn-ui");
 

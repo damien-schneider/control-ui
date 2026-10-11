@@ -10,6 +10,7 @@ import {
   catalogIndex,
   chatComponents,
   chatGroup,
+  inlineLinkClassName,
   missingFromShadcnGuide,
   primitivesMissingFromShadcn,
   shadcnComparisonGuide,
@@ -17,9 +18,8 @@ import {
   templateKind,
 } from "./showcase";
 import { CatalogItemShowcaseCard, TemplateShowcaseCard } from "./showcase-cards";
-import { SkinShowcaseTiles } from "./skin-showcase";
+import { SkinShowcase } from "./skin-showcase";
 
-const inlineLinkClassName = "font-medium text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground";
 const homeGridClassName = "grid min-w-0 gap-x-4 gap-y-8 @2xl/home:grid-cols-2 @5xl/home:grid-cols-3";
 
 function HomeSection({ id, title, summary, children }: { id: string; title: string; summary: ReactNode; children: ReactNode }) {
@@ -156,17 +156,15 @@ export function HomePage() {
         title="One component source, many skins"
         summary={
           <>
-            A skin restyles the same component source through one <code>data-skin</code> attribute.{" "}
+            A skin restyles the same component source through one <code>data-skin</code> attribute. Pick one to repaint this whole page, or{" "}
             <Link href="/skins" className={inlineLinkClassName}>
-              Compare every skin
+              compare every skin
             </Link>
             .
           </>
         }
       >
-        <div className={homeGridClassName}>
-          <SkinShowcaseTiles />
-        </div>
+        <SkinShowcase />
       </HomeSection>
       <HomeSection id="templates" title={templateKind.label} summary={templateKind.summary}>
         <div className={homeGridClassName}>
