@@ -6,7 +6,7 @@ test("theme navigation reopens after browsing the catalog and stays in context f
   const sidebar = page.locator("[data-docs-sidebar-navigation]");
   await expect(sidebar.getByRole("button", { name: "Generate a theme", exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Copy CSS overrides", exact: true })).toBeHidden();
-  await expect(page.getByRole("button", { name: "Open in your agent", exact: true })).toHaveCount(0);
+  await expect(page.getByRole("group", { name: "Page actions for agents", exact: true })).toHaveCount(0);
 
   await sidebar.getByRole("button", { name: "Leave Theme editor", exact: true }).click();
   await expect(sidebar.getByRole("link", { name: "Accessibility audit", exact: true })).toBeHidden();

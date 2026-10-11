@@ -5,8 +5,10 @@ import type { ReactNode } from "react";
 import type { PreviewLayout } from "@/app/(features)/catalog/shared";
 
 import { PreviewTabs, SourceTabs } from "@/app/(features)/components/source";
+import { registryManifestUrl } from "@/app/(features)/model/registry";
 import type { Composition, DocsKnobFamily, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
 import { Text } from "@/components/control-ui/ui/typography";
+import { AgentActions } from "./agent-actions";
 import { CompositionSection, DependencySection, InstallPanel, PageHeader, SectionCode, SectionStack, SectionTitle } from "./shared";
 
 type RegistryItemPreview = {
@@ -89,7 +91,15 @@ export function RegistryItemPage({
 }) {
   return (
     <section className="docs-article">
-      <PageHeader label={label} title={title} summary={summary} status={status} />
+      <PageHeader
+        label={label}
+        title={title}
+        summary={summary}
+        status={status}
+        actions={
+          <AgentActions name={title} installCommand={install.commands[0]?.value} manifestUrl={registryManifestUrl(install.manifestHref)} />
+        }
+      />
       {beforePreview}
       <PreviewTabs
         code={preview.code}

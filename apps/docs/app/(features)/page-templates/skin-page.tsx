@@ -9,6 +9,7 @@ import { ButtonLink } from "@/components/control-ui/ui/button";
 import { Card } from "@/components/control-ui/ui/card";
 import { Text } from "@/components/control-ui/ui/typography";
 import { SkinSourceGuide } from "@/components/theme-drawer/skin-source-view";
+import { AgentActions } from "./agent-actions";
 import { InstallPanel, PageHeader, SectionStack, SectionTitle } from "./shared";
 import { TokenContractTable } from "./token-contract";
 
@@ -30,7 +31,12 @@ export function SkinPage({ skin }: { skin: DocsSkinPage }) {
 
   return (
     <section className="docs-article">
-      <PageHeader label={`Skin / ${kindLabel}`} title={skin.label} summary={skin.description} />
+      <PageHeader
+        label={`Skin / ${kindLabel}`}
+        title={skin.label}
+        summary={skin.description}
+        actions={<AgentActions name={skin.label} installCommand={install} />}
+      />
       <div className="mb-8 flex flex-wrap gap-2">
         <ButtonLink render={<Link href={`/theme-editor?skin=${skin.id}`} />} variant="solid" tone="primary" size="sm">
           Preview {skin.label}

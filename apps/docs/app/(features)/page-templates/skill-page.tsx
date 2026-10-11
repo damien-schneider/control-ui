@@ -3,6 +3,7 @@
 import type { DocsSkill, DocsSkillConcern } from "@/app/(features)/model/types";
 import { Card } from "@/components/control-ui/ui/card";
 import { Text } from "@/components/control-ui/ui/typography";
+import { AgentActions } from "./agent-actions";
 import { PageHeader, SectionTitle } from "./shared";
 
 export function SkillPage({ skill, concern }: { skill: DocsSkill; concern?: DocsSkillConcern }) {
@@ -10,7 +11,7 @@ export function SkillPage({ skill, concern }: { skill: DocsSkill; concern?: Docs
 
   return (
     <section className="docs-article">
-      <PageHeader label={label} title={skill.title} summary={skill.summary} />
+      <PageHeader label={label} title={skill.title} summary={skill.summary} actions={<AgentActions name={skill.title} />} />
       <div className="grid min-w-0 gap-8">
         <Card className="min-w-0 gap-0 p-5">
           <Text as="div" size="label" weight="medium" tone="muted" className="uppercase tracking-[0.08em]">

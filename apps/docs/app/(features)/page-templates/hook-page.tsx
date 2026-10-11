@@ -4,12 +4,13 @@ import Link from "next/link";
 import { SourceTabs } from "@/app/(features)/components/source";
 import type { DocsHook } from "@/app/(features)/model/types";
 import { Text } from "@/components/control-ui/ui/typography";
+import { AgentActions } from "./agent-actions";
 import { PageHeader, SectionStack, SectionTitle } from "./shared";
 
 export function HookPage({ hook }: { hook: DocsHook }) {
   return (
     <section className="docs-article">
-      <PageHeader label="Hooks" title={hook.name} summary={hook.summary} />
+      <PageHeader label="Hooks" title={hook.name} summary={hook.summary} actions={<AgentActions name={hook.name} />} />
       <SectionStack>
         <div id="install" className="min-w-0 scroll-mt-20 rounded-xl border bg-background p-5">
           <Text as="p" tone="muted" className="leading-6">

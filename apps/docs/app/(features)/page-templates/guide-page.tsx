@@ -35,10 +35,10 @@ import SetupPromptContent from "@/content/guides/setup-prompt.mdx";
 import ShadcnCompatibilityContent from "@/content/guides/shadcn-compatibility.mdx";
 import ThemingContent from "@/content/guides/theming.mdx";
 import UpdateContent from "@/content/guides/update.mdx";
+import { AgentActions } from "./agent-actions";
 import { ArchitectureLayers, CustomizationLadder, RegistryPipeline, SkinFileStack, SkinResolutionMap } from "./architecture-visuals";
 import { GuideCheck, GuideCode, type GuideCodeMdxProps, GuidePoint, GuidePoints, GuideSection, InstallPaths } from "./guide-code";
 import { AgentSurfaceMap, CompatibilityBridge, CssFirstDecisionMap } from "./guide-maps";
-import { OpenInAgent } from "./open-in-agent";
 import { PageHeader } from "./shared";
 
 type GuideContent = ComponentType<{ components?: MDXComponents }>;
@@ -133,16 +133,14 @@ export function GuidePage({
   if (page.layout === "workspace") {
     return (
       <section className="flex min-w-0 w-full flex-col px-4 pt-[calc(var(--control-h-sm)+1rem)] pb-6 lg:px-6 lg:pt-12">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <PageHeader
-            label="Guide"
-            title={page.name}
-            summary={page.id === "theme-editor" ? undefined : page.summary}
-            focusOnMount
-            compact={page.id === "theme-editor"}
-          />
-          {page.id === "theme-editor" ? null : <OpenInAgent name={page.name} pathname={`/${page.id}`} />}
-        </div>
+        <PageHeader
+          label="Guide"
+          title={page.name}
+          summary={page.id === "theme-editor" ? undefined : page.summary}
+          focusOnMount
+          compact={page.id === "theme-editor"}
+          actions={page.id === "theme-editor" ? undefined : <AgentActions name={page.name} />}
+        />
         <GuidePageContent page={page} integration={integration} themeCategory={themeCategory} />
       </section>
     );
@@ -150,20 +148,7 @@ export function GuidePage({
 
   return (
     <section className="docs-article">
-      <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
-        <div className="w-full max-w-2xl">
-          <Text as="div" size="caption" weight="medium" tone="muted">
-            Guide
-          </Text>
-          <Heading level={1} size="display" className="mt-2">
-            {page.name}
-          </Heading>
-          <Text as="p" size="body-lg" tone="muted" className="mt-3 text-pretty">
-            {page.summary}
-          </Text>
-        </div>
-        <OpenInAgent name={page.name} pathname={`/${page.id}`} />
-      </div>
+      <PageHeader label="Guide" title={page.name} summary={page.summary} actions={<AgentActions name={page.name} />} />
 
       <div className="grid min-w-0 gap-12">
         <GuidePageContent page={page} integration={integration} themeCategory={themeCategory} />

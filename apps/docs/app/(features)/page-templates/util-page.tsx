@@ -4,12 +4,13 @@ import { UtilPreview } from "@/app/(features)/components/previews";
 import { SourceTabs } from "@/app/(features)/components/source";
 import type { DocsUtil } from "@/app/(features)/model/types";
 import { Text } from "@/components/control-ui/ui/typography";
+import { AgentActions } from "./agent-actions";
 import { PageHeader, SectionStack, SectionTitle } from "./shared";
 
 export function UtilPage({ util }: { util: DocsUtil }) {
   return (
     <section className="docs-article">
-      <PageHeader label="Utils" title={util.name} summary={util.summary} />
+      <PageHeader label="Utils" title={util.name} summary={util.summary} actions={<AgentActions name={util.name} />} />
       <SectionStack>
         {util.hasPreview ? (
           <section id="preview" className="min-w-0 scroll-mt-20">

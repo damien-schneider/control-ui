@@ -1,10 +1,11 @@
 "use client";
 
 import { SourceTabs } from "@/app/(features)/components/source";
-import { registryInstallCommands } from "@/app/(features)/model/registry";
+import { publicRegistryHref, registryInstallCommands, registryManifestUrl } from "@/app/(features)/model/registry";
 import type { DocsExtension } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Text } from "@/components/control-ui/ui/typography";
+import { AgentActions } from "./agent-actions";
 import { hasExtensionDemo } from "./extension-demo-ids";
 import { ExtensionDemo } from "./extension-demos";
 import { InstallPanel, PageHeader, RegistryDependencyReferences, SectionCode, SectionStack, SectionTitle } from "./shared";
@@ -18,7 +19,19 @@ export function ExtensionPage({ extension }: { extension: DocsExtension }) {
 
   return (
     <section className="docs-article">
-      <PageHeader label="Extensions" title={extension.name} summary={extension.summary} status={extension.status} />
+      <PageHeader
+        label="Extensions"
+        title={extension.name}
+        summary={extension.summary}
+        status={extension.status}
+        actions={
+          <AgentActions
+            name={extension.name}
+            installCommand={commands[0]?.value}
+            manifestUrl={registryManifestUrl(publicRegistryHref(extension.registryKind))}
+          />
+        }
+      />
       <SectionStack>
         {hasExtensionDemo(extension.id) ? (
           <section id="preview" className="min-w-0 scroll-mt-20">

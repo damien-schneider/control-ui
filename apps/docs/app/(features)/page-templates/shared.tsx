@@ -18,6 +18,7 @@ export function PageHeader({
   status,
   focusOnMount,
   compact = false,
+  actions,
 }: {
   label: string;
   title: string;
@@ -25,31 +26,35 @@ export function PageHeader({
   status?: DocsStatus;
   focusOnMount?: boolean;
   compact?: boolean;
+  actions?: ReactNode;
 }) {
   return (
-    <div className={compact ? "mb-5" : "mb-7"}>
-      {compact ? null : (
-        <Text as="div" size="caption" weight="medium" tone="muted">
-          {label}
-        </Text>
-      )}
-      <div className={cn("flex flex-wrap items-center gap-3", !compact && "mt-2")}>
-        <Heading
-          level={1}
-          size={compact ? "heading-1" : "display"}
-          ref={focusOnMount ? focusHeading : undefined}
-          tabIndex={focusOnMount ? -1 : undefined}
-          className="outline-none"
-        >
-          {title}
-        </Heading>
-        {status ? <StatusBadge status={status} /> : null}
+    <div className={cn("flex flex-wrap items-start justify-between gap-4", compact ? "mb-5" : "mb-7")}>
+      <div className="min-w-0">
+        {compact ? null : (
+          <Text as="div" size="caption" weight="medium" tone="muted">
+            {label}
+          </Text>
+        )}
+        <div className={cn("flex flex-wrap items-center gap-3", !compact && "mt-2")}>
+          <Heading
+            level={1}
+            size={compact ? "heading-1" : "display"}
+            ref={focusOnMount ? focusHeading : undefined}
+            tabIndex={focusOnMount ? -1 : undefined}
+            className="outline-none"
+          >
+            {title}
+          </Heading>
+          {status ? <StatusBadge status={status} /> : null}
+        </div>
+        {summary ? (
+          <Text as="p" size={compact ? "body" : "body-lg"} tone="muted" className={cn("max-w-2xl text-pretty", compact ? "mt-1" : "mt-3")}>
+            {summary}
+          </Text>
+        ) : null}
       </div>
-      {summary ? (
-        <Text as="p" size={compact ? "body" : "body-lg"} tone="muted" className={cn("max-w-2xl text-pretty", compact ? "mt-1" : "mt-3")}>
-          {summary}
-        </Text>
-      ) : null}
+      {actions}
     </div>
   );
 }
