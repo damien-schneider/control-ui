@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useId } from "react";
-import { skinPackIds } from "@/app/(features)/catalog/skins";
+import { Fragment, useId } from "react";
 import type { SkinMetaId } from "@/app/(features)/model/types";
 import { Button } from "@/components/control-ui/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/control-ui/ui/card";
@@ -15,7 +14,7 @@ import { resetConversation } from "@/components/theme-drawer/generation-store";
 import { SKIN_META_BY_ID } from "@/components/theme-drawer/presets";
 import { SkinLogo } from "@/components/theme-drawer/skin-logo";
 import { useThemeRuntime } from "@/components/theme-drawer/theme-runtime-context";
-import { inlineLinkClassName, tryoutSkinIds } from "./showcase";
+import { inlineLinkClassName, tryoutSkinIds, tryoutSkinPageIds } from "./showcase";
 
 function ReleaseNotesCard() {
   const switchId = useId();
@@ -111,15 +110,18 @@ export function SkinShowcase() {
         </ToggleGroup>
         <Text as="p" tone="muted" className="text-pretty">
           <span className="font-medium text-foreground">{activeSkin.label}:</span> {activeSkin.description}
-          {skinPackIds.includes(t.skin) ? (
-            <>
-              {" "}
-              <Link href={`/skins/${t.skin}`} className={inlineLinkClassName}>
-                Install {activeSkin.label}
+        </Text>
+        <Text as="p" tone="muted">
+          Install a skin:{" "}
+          {tryoutSkinPageIds.map((id, index) => (
+            <Fragment key={id}>
+              {index > 0 ? ", " : null}
+              <Link href={`/skins/${id}`} className={inlineLinkClassName}>
+                {SKIN_META_BY_ID[id].label}
               </Link>
-              .
-            </>
-          ) : null}
+            </Fragment>
+          ))}
+          .
         </Text>
       </div>
     </div>

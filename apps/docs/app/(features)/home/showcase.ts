@@ -35,6 +35,8 @@ export const tryoutSkinIds = [
   "rig",
 ] as const satisfies readonly SkinMetaId[];
 
+export const tryoutSkinPageIds = tryoutSkinIds.filter((id) => skinPackIds.includes(id));
+
 export const inlineLinkClassName =
   "font-medium text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground";
 
