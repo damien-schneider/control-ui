@@ -19,6 +19,7 @@ import type { AvatarBadgeStatus } from "../../src/registry/sources/control-ui/ui
 import type { BadgeColor, BadgeSize, BadgeVariant } from "../../src/registry/sources/control-ui/ui/badge";
 import type { ButtonLayout, ButtonShape, ButtonTone, ButtonVariant } from "../../src/registry/sources/control-ui/ui/button";
 import type { CardVariant } from "../../src/registry/sources/control-ui/ui/card";
+import type { ChannelStripVariant } from "../../src/registry/sources/control-ui/ui/channel-strip";
 import type { ChartFill } from "../../src/registry/sources/control-ui/ui/chart-series";
 import type { CodeChrome, CodeDensity } from "../../src/registry/sources/control-ui/ui/code";
 import type { DiffIndicators, DiffStyle } from "../../src/registry/sources/control-ui/ui/code-diff";
@@ -32,7 +33,6 @@ import type {
 } from "../../src/registry/sources/control-ui/ui/drawer";
 import type { DropdownMenuTriggerVariant } from "../../src/registry/sources/control-ui/ui/dropdown-menu";
 import type { DropzoneOverlayScope } from "../../src/registry/sources/control-ui/ui/dropzone";
-import type { ChannelStripVariant } from "../../src/registry/sources/control-ui/ui/channel-strip";
 import type { KbdVariant } from "../../src/registry/sources/control-ui/ui/kbd";
 import type { LevelMeterOrientation } from "../../src/registry/sources/control-ui/ui/level-meter";
 import type { MorphingPanelAnchor } from "../../src/registry/sources/control-ui/ui/morphing-panel";
@@ -205,6 +205,7 @@ export type EmittedStateContract = {
   "item:actions:data-show-on-hover": true;
   "kbd:root:data-variant": KbdVariant;
   "level-meter:root:data-orientation": LevelMeterOrientation;
+  "level-meter:root:data-muted": true;
   "channel-strip:root:data-variant": ChannelStripVariant;
   "context-menu:item:data-inset": true;
   "context-menu:label:data-inset": true;

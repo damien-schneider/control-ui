@@ -2,6 +2,7 @@
   :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="root"]) {
     --cui-range-level-warning-background: var(--warning);
     --cui-range-level-clip-background: var(--destructive);
+    --cui-range-level-muted-background: var(--muted-foreground);
     --cui-range-level-size: calc(var(--spacing) * 2);
     --cui-range-level-scale-foreground: var(--muted-foreground);
     --_range-level-peak-size: 2px;
@@ -96,6 +97,13 @@
     );
   }
 
+  :where(
+    [data-range-kind="level-meter"][data-slot="root"][data-muted]
+      [data-control-family="range"][data-range-kind="level-meter"]:is([data-slot="bar"], [data-slot="peak"])
+  ) {
+    background: var(--cui-range-level-muted-background);
+  }
+
   :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="bar"]) {
     clip-path: inset(0 calc((1 - var(--_range-level, 0)) * 100%) 0 0 round var(--cui-range-indicator-radius));
   }
@@ -140,6 +148,12 @@
 }
 
 @property --cui-range-level-clip-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-range-level-muted-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

@@ -2,6 +2,7 @@
 export const rangeKnobs = [
   "--cui-range-level-warning-background",
   "--cui-range-level-clip-background",
+  "--cui-range-level-muted-background",
   "--cui-range-level-size",
   "--cui-range-level-scale-foreground",
   "--cui-range-indeterminate-size",

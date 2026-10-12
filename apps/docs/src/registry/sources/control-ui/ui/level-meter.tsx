@@ -7,8 +7,8 @@ import type { RangeKnobStyle } from "@/components/control-ui/knob-contracts/rang
 import { cn } from "@/components/control-ui/lib/cn";
 import {
   advanceLevelMeterReading,
-  type LevelMeterReading,
   type LevelMeterRange,
+  type LevelMeterReading,
   levelMeterFraction,
   levelMeterReadingSettled,
 } from "@/components/control-ui/lib/level-meter-ballistics";
@@ -26,6 +26,7 @@ export type LevelMeterProps = Omit<ComponentProps<"div">, "style"> & {
   maxDb?: number;
   warningDb?: number;
   clipDb?: number;
+  muted?: boolean;
   orientation?: LevelMeterOrientation;
   style?: CSSProperties & RangeKnobStyle;
 };
@@ -123,6 +124,7 @@ export function LevelMeter({
   maxDb = 0,
   warningDb = -18,
   clipDb = -6,
+  muted = false,
   orientation = "horizontal",
   className,
   style,
@@ -166,6 +168,7 @@ export function LevelMeter({
       "data-range-kind": "level-meter",
       "data-slot": "root",
       "data-orientation": orientation,
+      "data-muted": muted || undefined,
       className: cn("grid", className),
       style: zoneStyle,
       children: (

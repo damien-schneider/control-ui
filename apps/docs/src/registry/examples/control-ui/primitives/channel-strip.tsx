@@ -78,7 +78,7 @@ function ExampleChannel({ name, variant = "default", onRemove }: ExampleChannelP
           onValueChange={setGainDb}
           formatValue={formatFaderDb}
         />
-        <LevelMeter aria-label={`${name} level`} orientation="vertical" source={muted ? null : source}>
+        <LevelMeter aria-label={`${name} level`} orientation="vertical" source={source} muted={muted}>
           <LevelMeterTrack>
             <LevelMeterBar />
             <LevelMeterPeak />

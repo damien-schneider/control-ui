@@ -7689,6 +7689,12 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["level-meter"],
           states: [
             {
+              attribute: "data-muted",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-orientation",
               source: "control-ui",
               valueKind: "enum",
@@ -17145,6 +17151,12 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--destructive)",
+      },
+      {
+        name: "--cui-range-level-muted-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted-foreground)",
       },
       {
         name: "--cui-range-level-size",
