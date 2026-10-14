@@ -85,6 +85,7 @@
     "react-grab": "^0.2.0",
     "react-phone-number-input": "^3.4.18",
     "react-resizable-panels": "^4.12.4",
+    "reflet-sdk": "^0.7.3",
     "remark-gfm": "^4.0.1",
     "server-only": "^0.0.1",
     "shiki": "^4.4.3",

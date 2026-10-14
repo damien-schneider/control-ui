@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { WebMcpTools } from "@/app/(features)/agent-discovery/webmcp-tools";
 import { DocsShell } from "@/app/(features)/client/client";
 import { getControlUiGitHubStars } from "@/app/(features)/client/github-stars";
+import { DocsFeedback } from "@/app/(features)/feedback/docs-feedback";
 import { getDocsShellData } from "@/app/(features)/model/data";
 import { SiteStructuredData, siteMetadata } from "@/app/(features)/seo/seo";
 import { sidebarFirstPaintScript } from "@/app/(features)/sidebar/persistence";
@@ -52,6 +53,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           </div>
           <SkinRuntimeEffects />
           {process.env.NODE_ENV === "development" ? <SourceDrawer /> : null}
+          <DocsFeedback />
         </ThemeRuntimeProvider>
 
         <ModernAppleGlassFilter />

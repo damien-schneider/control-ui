@@ -13,8 +13,11 @@ const registryUrl =
 export const env = createEnv({
   client: {
     NEXT_PUBLIC_REGISTRY_URL: z.url().transform((value) => value.replace(/\/$/, "")),
+    NEXT_PUBLIC_REFLET_PUBLIC_KEY: z.string().startsWith("fb_pub_").optional(),
   },
   experimental__runtimeEnv: {
     NEXT_PUBLIC_REGISTRY_URL: registryUrl,
+    NEXT_PUBLIC_REFLET_PUBLIC_KEY: process.env.NEXT_PUBLIC_REFLET_PUBLIC_KEY,
   },
+  emptyStringAsUndefined: true,
 });
