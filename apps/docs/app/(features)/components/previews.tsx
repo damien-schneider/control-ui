@@ -6,6 +6,7 @@ import { blockEntries } from "@/app/(features)/catalog/blocks";
 import { componentEntries } from "@/app/(features)/catalog/components";
 import { utilEntries } from "@/app/(features)/catalog/hooks-utils";
 import { kitEntries } from "@/app/(features)/catalog/kits";
+import type { CatalogGalleryItem } from "@/app/(features)/model/catalog-gallery";
 import type { BlockId, ComponentId, IntegrationId, KitId, UtilId } from "@/app/(features)/model/types";
 import { Skeleton } from "@/components/control-ui/ui/skeleton";
 
@@ -100,4 +101,10 @@ export function ComponentExamplePreview({ componentId, exampleId }: { componentI
       <Example />
     </Suspense>
   ) : null;
+}
+
+export function CatalogGalleryItemPreview({ item, integration }: { item: CatalogGalleryItem; integration: IntegrationId }) {
+  if (item.kind === "kit") return <KitPreview kitId={item.id} integration={integration} />;
+  if (item.previewExampleId) return <ComponentExamplePreview componentId={item.id} exampleId={item.previewExampleId} />;
+  return <ComponentPreview componentId={item.id} />;
 }

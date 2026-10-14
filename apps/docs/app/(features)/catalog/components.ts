@@ -551,7 +551,7 @@ export const componentEntries = [
         title: "Stable scrollbar gutter",
         previewClassName: "min-h-80",
         description:
-          'Set scrollbarGutter="stable" to reserve space for each unlocked scrollbar, even when the content fits. Combine it with scrollbarVisibility="always" for persistent tracks. Both props override the skin defaults; Windows XP uses always-visible, space-reserving scrollbars.',
+          'Set scrollbarGutter="stable" to reserve space for each unlocked scrollbar, even when the content fits; the reserved gutter stays empty until that axis overflows. Combine it with scrollbarVisibility="always" for persistent tracks on overflowing content. Both props override the skin defaults; Windows XP uses always-visible, space-reserving scrollbars.',
         source: sourceFile("Stable scrollbar gutter", "src/registry/examples/control-ui/primitives/scroll-area.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/scroll-area").then((mod) => ({ default: mod.ScrollAreaGutterExample })),
@@ -2306,6 +2306,7 @@ export const componentEntries = [
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/primitives/color-picker").then((mod) => ({ default: mod.PrimitiveColorPickerExample })),
     ),
+    galleryPreview: "inline-panel",
     additionalPreviews: [
       {
         id: "inline-panel",

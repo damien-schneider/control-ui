@@ -68,20 +68,24 @@ test("homepage applies a shared skin preset", async ({ page }) => {
   await expect(page.locator("html")).toHaveAttribute("data-skin", "rig");
 });
 
-test("homepage skin picker repaints the site without moving the picker", async ({ page }) => {
+test("homepage skin picker repaints the site and stays put while scrolling", async ({ page }) => {
+  await page.addInitScript(() => Object.assign(window, { __REACT_GRAB_DISABLED__: true, __REACT_SCAN_DISABLED__: true }));
   await page.goto("/");
   const picker = page.getByRole("group", { name: "Skin for this site" });
-  await expect(() => picker.scrollIntoViewIfNeeded()).toPass();
-  const pickerTop = () => picker.evaluate((element) => Math.round(element.getBoundingClientRect().top));
-  const startTop = await pickerTop();
+  await expect(picker).toBeInViewport();
+  const startTop = await picker.evaluate((element) => element.getBoundingClientRect().top);
+  const pickerDrift = async () => Math.abs((await picker.evaluate((element) => element.getBoundingClientRect().top)) - startTop);
   for (const skin of ["windows-98", DEFAULT_SKIN_ID] as const) {
     const option = picker.getByRole("button", { name: SKIN_META_BY_ID[skin].label, exact: true });
     await option.click();
     await expect(page.locator("html")).toHaveAttribute("data-skin", skin);
     await expect(option).toHaveAttribute("aria-pressed", "true");
     await expect(option).toBeFocused();
-    await expect.poll(pickerTop).toBe(startTop);
+    await expect.poll(pickerDrift).toBeLessThanOrEqual(1);
   }
+  await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" }));
+  await expect(picker).toBeInViewport();
+  await expect.poll(pickerDrift).toBeLessThanOrEqual(1);
 });
 
 test("unknown skin query preserves saved edits", async ({ page }) => {

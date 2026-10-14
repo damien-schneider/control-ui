@@ -276,9 +276,7 @@ function FileExplorerSidebar({
 
   return (
     <Sidebar collapsible="offcanvas">
-      {sidebarTop ? (
-        <SidebarHeader className="min-h-11 justify-center border-b border-sidebar-border px-3">{sidebarTop}</SidebarHeader>
-      ) : null}
+      {sidebarTop ? <SidebarHeader className="min-h-11 justify-center px-3">{sidebarTop}</SidebarHeader> : null}
       <SidebarContent>
         {groups.map((group) => (
           <SidebarGroup key={group.label || "locations"}>
@@ -303,7 +301,7 @@ function FileExplorerSidebar({
           </SidebarGroup>
         ))}
       </SidebarContent>
-      {sidebarFooter ? <SidebarFooter className="border-t border-sidebar-border">{sidebarFooter}</SidebarFooter> : null}
+      {sidebarFooter ? <SidebarFooter>{sidebarFooter}</SidebarFooter> : null}
       <SidebarRail />
     </Sidebar>
   );
@@ -343,12 +341,13 @@ function FileExplorerHeader({
   onQueryChange: (value: string) => void;
 }) {
   return (
-    <header className="shrink-0 border-b border-border/70 bg-card/35">
+    <header className="shrink-0 border-b border-border/70">
       <div className="flex h-12 items-center gap-2 px-3">
-        <SidebarTrigger size="xs" />
+        <SidebarTrigger size="sm" />
         <Button
           variant="ghost"
-          size="xs"
+          size="sm"
+          iconOnly
           className="hidden @xl/explorer:inline-flex"
           disabled={!canGoBack}
           aria-label={backLabel}
@@ -366,7 +365,7 @@ function FileExplorerHeader({
           <DropdownMenu>
             <DropdownMenuTrigger
               variant="ghost"
-              size="xs"
+              size="sm"
               iconOnly
               aria-label={moreActionsLabel}
               className={headerActions ? "@2xl/explorer:hidden" : undefined}
@@ -377,7 +376,7 @@ function FileExplorerHeader({
           </DropdownMenu>
         ) : null}
         {searchPlaceholder ? (
-          <InputGroup size="sm" className="flex-[0_1_9rem] bg-background/60 @xl/explorer:flex-[0_0_12rem]">
+          <InputGroup size="sm" className="flex-[0_1_9rem] @xl/explorer:flex-[0_0_12rem]">
             <InputGroupAddon className="ps-2">
               <SearchIcon className="size-3.5" aria-hidden="true" />
             </InputGroupAddon>
@@ -580,13 +579,13 @@ function FileExplorerColumns({
                 </DrawerContent>
               </Drawer>
             </div>
-            <div className="min-h-0 flex-1 bg-card">{activeColumn ? renderColumn(activeColumn, activeIndex, "narrow") : null}</div>
+            <div className="min-h-0 flex-1">{activeColumn ? renderColumn(activeColumn, activeIndex, "narrow") : null}</div>
           </>
         ) : null}
       </div>
       <div ref={wideRef} className="hidden h-full min-h-0 @xl/explorer:block">
         {wideDisplayed ? (
-          <ResizablePanelGroup orientation="horizontal" className="rounded-none border-0 bg-card shadow-none">
+          <ResizablePanelGroup orientation="horizontal" variant="nested">
             {columns.map((column, columnIndex) => (
               <FileExplorerPanel key={column.id} defaultSize={columnSize} minSize="16%">
                 {renderColumn(column, columnIndex, "wide")}
@@ -716,7 +715,7 @@ function FileExplorerColumnView({
 function FileExplorerPreview({ entry, headingLevel }: { entry?: FileExplorerEntry; headingLevel: HeadingLevel }) {
   if (!entry) {
     return (
-      <Empty className="h-full rounded-none bg-background/45">
+      <Empty className="h-full rounded-none">
         <EmptyHeader>
           <EmptyMedia>
             <FileIcon />
@@ -729,7 +728,7 @@ function FileExplorerPreview({ entry, headingLevel }: { entry?: FileExplorerEntr
   }
 
   return (
-    <ScrollArea className="h-full bg-background/45" lockAxis="x">
+    <ScrollArea className="h-full" lockAxis="x">
       <FileExplorerPreviewContent
         entry={entry}
         className="px-6 py-10"
@@ -879,7 +878,7 @@ function FileExplorerStatusBar({
   const itemLabel = itemCount === 1 ? "1 item" : `${itemCount} items`;
 
   return (
-    <footer className="flex h-8 shrink-0 items-center gap-3 border-t border-border/70 bg-card/45 px-3 text-micro text-muted-foreground">
+    <footer className="flex h-8 shrink-0 items-center gap-3 border-t border-border/70 px-3 text-micro text-muted-foreground">
       <span className="min-w-0 flex-1 truncate" title={path}>
         {path}
       </span>
@@ -898,10 +897,7 @@ function FileExplorerAddressBar({
   onSelect: (breadcrumb: FileExplorerBreadcrumb) => void;
 }) {
   return (
-    <Breadcrumb
-      aria-label="Current folder"
-      className="min-w-0 overflow-hidden rounded-[var(--radius-control)] border bg-background/55 px-2 py-1 shadow-inner"
-    >
+    <Breadcrumb aria-label="Current folder" className="min-w-0 overflow-hidden px-1">
       <BreadcrumbList className="min-w-0 flex-nowrap overflow-hidden">
         {breadcrumbs.map((breadcrumb, index) => {
           const isCurrent = index === breadcrumbs.length - 1;

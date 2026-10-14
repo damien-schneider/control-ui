@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { DeferredPreview } from "@/app/(features)/components/deferred-preview";
 import { PreviewFrame } from "@/app/(features)/components/preview-frame";
-import { ComponentPreview, KitPreview } from "@/app/(features)/components/previews";
+import { CatalogGalleryItemPreview } from "@/app/(features)/components/previews";
 import type { CatalogGalleryItem } from "@/app/(features)/model/catalog-gallery";
 import { useDocsIntegration } from "@/app/(features)/page-templates/integration";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
@@ -24,7 +24,7 @@ export function CatalogItemShowcaseCard({ item }: { item: CatalogGalleryItem }) 
       <div className="relative grid h-72 min-w-0 place-items-center overflow-hidden rounded-[inherit] border border-border/70 bg-canvas transition-[border-color,background-color] duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-hover:border-foreground/20 group-hover:bg-muted/35 group-focus-within:border-ring/60">
         <DeferredPreview className={item.previewClassName}>
           <PreviewFrame layout={item.previewLayout}>
-            {item.kind === "kit" ? <KitPreview kitId={item.id} integration={integration} /> : <ComponentPreview componentId={item.id} />}
+            <CatalogGalleryItemPreview item={item} integration={integration} />
           </PreviewFrame>
         </DeferredPreview>
       </div>

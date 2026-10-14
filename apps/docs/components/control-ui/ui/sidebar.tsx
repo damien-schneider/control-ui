@@ -414,7 +414,7 @@ export function SidebarContent({ className, children, ...props }: ComponentProps
       className={cn("min-h-0 flex-1 group-data-[collapsible=icon]:overflow-hidden", className)}
       lockAxis="x"
       scrollbarGutter={iconOnly ? "auto" : undefined}
-      viewportClassName="overscroll-y-contain"
+      viewportClassName="data-has-overflow-y:overscroll-y-contain"
       {...props}
     >
       <div data-control-ui="sidebar" data-control-family="sidebar" data-slot="content-stack" className="flex flex-col">

@@ -28,10 +28,7 @@ const navLinks = [
 
 function LandingHeader({ githubStars }: { githubStars: number | null }) {
   return (
-    <AppShellHeader
-      className="flex-col items-stretch gap-0"
-      style={{ "--cui-app-shell-header-padding-inline": "0px", "--cui-app-shell-header-background": "var(--canvas)" }}
-    >
+    <AppShellHeader style={{ "--cui-app-shell-header-padding-inline": "0px", "--cui-app-shell-header-background": "var(--canvas)" }}>
       <div className={cn(landingWidthClassName, "flex h-14 items-center gap-6")}>
         <div className="relative flex shrink-0 items-center">
           <Link href="/" className="flex items-center gap-1.5">
@@ -56,11 +53,6 @@ function LandingHeader({ githubStars }: { githubStars: number | null }) {
           <DocsGithubLink stars={githubStars} />
         </div>
       </div>
-      <div className="border-border/70 border-t">
-        <div className={cn(landingWidthClassName, "py-2")}>
-          <SkinPicker />
-        </div>
-      </div>
     </AppShellHeader>
   );
 }
@@ -68,7 +60,7 @@ function LandingHeader({ githubStars }: { githubStars: number | null }) {
 function LandingFooter() {
   return (
     <footer className="border-border/70 border-t">
-      <div className={cn(landingWidthClassName, "flex flex-wrap items-center justify-between gap-4 py-8")}>
+      <div className={cn(landingWidthClassName, "flex flex-wrap items-center justify-between gap-4 pt-8 pb-24")}>
         <ThemeModeSwitch />
         <Text as="p" size="label" tone="muted">
           by{" "}
@@ -101,6 +93,7 @@ export function LandingShell({
         <LandingHeader githubStars={githubStars} />
         <main className="@container/home flex-1">{children}</main>
         <LandingFooter />
+        <SkinPicker />
       </DocsSearchProvider>
     </div>
   );

@@ -257,7 +257,7 @@ function CodingAgentSidebar({
         </SidebarGroup>
       </SidebarContent>
 
-      {sidebarFooter ? <SidebarFooter className="border-t border-sidebar-border">{sidebarFooter}</SidebarFooter> : null}
+      {sidebarFooter ? <SidebarFooter>{sidebarFooter}</SidebarFooter> : null}
       <SidebarRail />
     </Sidebar>
   );

@@ -1,7 +1,8 @@
 "use client";
 
 import type { SkinMetaId } from "@/app/(features)/model/types";
-import { Toggle, ToggleGroup } from "@/components/control-ui/ui/toggle";
+import { Toolbar, ToolbarButton, ToolbarGroup } from "@/components/control-ui/ui/toolbar";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
 import { Text } from "@/components/control-ui/ui/typography";
 import { resetConversation } from "@/components/theme-drawer/generation-store";
 import { SKIN_META_BY_ID } from "@/components/theme-drawer/presets";
@@ -12,30 +13,45 @@ import { tryoutSkinIds } from "./showcase";
 export function SkinPicker() {
   const { t, selectSkin } = useThemeRuntime();
 
-  function applySkin([skin]: SkinMetaId[]) {
-    if (!skin) return;
+  function applySkin(skin: SkinMetaId) {
     selectSkin(skin);
     resetConversation();
   }
 
   return (
-    <div className="flex min-w-0 items-center gap-3">
-      <Text size="label" tone="muted" className="shrink-0">
-        Skin
-      </Text>
-      <ToggleGroup
-        value={[t.skin]}
-        onValueChange={applySkin}
-        aria-label="Skin for this site"
-        className="-my-1 min-w-0 flex-nowrap overflow-x-auto py-1"
+    <TooltipProvider>
+      <Toolbar
+        variant="floating"
+        aria-label="Skin"
+        className="fixed top-[calc(100svh-4.25rem-env(safe-area-inset-bottom))] left-[max(1rem,calc(50%-8rem))] z-40 max-w-[calc(100%-2rem)]"
       >
-        {tryoutSkinIds.map((id) => (
-          <Toggle key={id} value={id} className="shrink-0">
-            <SkinLogo id={id} size="sm" />
-            {SKIN_META_BY_ID[id].label}
-          </Toggle>
-        ))}
-      </ToggleGroup>
-    </div>
+        <Text size="label" tone="muted" className="shrink-0 ps-2 pe-1">
+          Skin
+        </Text>
+        <ToolbarGroup aria-label="Skin for this site">
+          {tryoutSkinIds.map((id) => {
+            const pressed = t.skin === id;
+            return (
+              <Tooltip key={id}>
+                <TooltipTrigger
+                  render={
+                    <ToolbarButton
+                      iconOnly
+                      aria-label={SKIN_META_BY_ID[id].label}
+                      aria-pressed={pressed}
+                      data-pressed={pressed ? "" : undefined}
+                      onClick={() => applySkin(id)}
+                    />
+                  }
+                >
+                  <SkinLogo id={id} size="sm" />
+                </TooltipTrigger>
+                <TooltipContent>{SKIN_META_BY_ID[id].label}</TooltipContent>
+              </Tooltip>
+            );
+          })}
+        </ToolbarGroup>
+      </Toolbar>
+    </TooltipProvider>
   );
 }

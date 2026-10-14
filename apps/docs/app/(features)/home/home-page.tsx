@@ -63,8 +63,8 @@ function Hero() {
         App components for shadcn/ui, in any skin
       </Heading>
       <Text as="p" size="body-lg" tone="muted" className={cn("max-w-2xl text-pretty", landingType.lead)}>
-        Pickers, trees, editors, AI chat, and whole app screens, installed with the shadcn CLI as source you own. Switch the skin above and
-        everything below repaints.
+        Pickers, trees, editors, AI chat, and whole app screens, installed with the shadcn CLI as source you own. Switch the skin at the
+        bottom of the screen and the whole page repaints.
       </Text>
       <StartButtons />
       {installCommand ? (

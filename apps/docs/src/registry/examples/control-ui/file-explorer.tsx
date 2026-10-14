@@ -25,14 +25,22 @@ import {
 } from "lucide-react";
 import { FileExplorerBlock, type FileExplorerLocation } from "@/components/control-ui/blocks/file-explorer";
 import { Button } from "@/components/control-ui/ui/button";
-import { ButtonGroup } from "@/components/control-ui/ui/button-group";
+import { Code, CodeContent, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
 import {
   DropdownMenuItem,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
 } from "@/components/control-ui/ui/dropdown-menu";
-import { Heading, Text } from "@/components/control-ui/ui/typography";
+import { Toggle, ToggleGroup } from "@/components/control-ui/ui/toggle";
+
+const readmeSource = `# Control UI
+
+An owned-source component registry for polished agent interfaces, complete blocks, and swappable skins.
+
+\`\`\`sh
+bun run validate
+\`\`\``;
 
 const projectFiles = [
   {
@@ -47,22 +55,12 @@ const projectFiles = [
       { label: "Kind", value: "Markdown" },
     ],
     preview: (
-      <div className="overflow-hidden rounded-[var(--radius-panel)] border bg-card text-start shadow-sm">
-        <Text as="div" size="caption" weight="medium" tone="muted" className="border-b px-4 py-2">
-          README.md
-        </Text>
-        <div className="space-y-3 p-4">
-          <Heading level={3} size="heading-4">
-            Control UI
-          </Heading>
-          <Text as="p" size="caption" tone="muted">
-            An owned-source component registry for polished agent interfaces, complete blocks, and swappable skins.
-          </Text>
-          <Text as="div" size="micro" tone="foreground" className="rounded-[var(--radius-control)] bg-foreground/6 px-3 py-2 font-mono">
-            bun run validate
-          </Text>
-        </div>
-      </div>
+      <Code overflow="wrap">
+        <CodeHeader>
+          <CodeTitle>README.md</CodeTitle>
+        </CodeHeader>
+        <CodeContent code={readmeSource} lang="md" />
+      </Code>
     ),
   },
   {
@@ -228,17 +226,17 @@ export function FileExplorerExample() {
 function FinderActions() {
   return (
     <>
-      <ButtonGroup aria-label="View mode">
-        <Button variant="surface" size="xs" aria-label="Grid view" disabled>
+      <ToggleGroup aria-label="View mode" value={["columns"]}>
+        <Toggle value="grid" variant="quiet" size="sm" iconOnly aria-label="Grid view" disabled>
           <Grid2X2Icon className="size-3.5" />
-        </Button>
-        <Button variant="surface" size="xs" aria-label="List view" disabled>
+        </Toggle>
+        <Toggle value="list" variant="quiet" size="sm" iconOnly aria-label="List view" disabled>
           <ListIcon className="size-3.5" />
-        </Button>
-        <Button variant="surface" size="xs" active aria-label="Column view">
+        </Toggle>
+        <Toggle value="columns" variant="quiet" size="sm" iconOnly aria-label="Column view">
           <Columns3Icon className="size-3.5" />
-        </Button>
-      </ButtonGroup>
+        </Toggle>
+      </ToggleGroup>
       <Button variant="ghost" size="sm" iconOnly aria-label="Share" disabled>
         <Share2Icon className="size-3.5" />
       </Button>

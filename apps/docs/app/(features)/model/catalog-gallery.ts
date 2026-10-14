@@ -2,7 +2,7 @@ import { blockEntries, type TemplateKindId, templateKinds } from "@/app/(feature
 import { categoriesWithEntries } from "@/app/(features)/catalog/categories";
 import { componentEntries } from "@/app/(features)/catalog/components";
 import { kitEntries } from "@/app/(features)/catalog/kits";
-import { catalogStatus, type PreviewLayout } from "@/app/(features)/catalog/shared";
+import { type CatalogNamedPreview, catalogStatus, type PreviewLayout } from "@/app/(features)/catalog/shared";
 import type { BlockId, ComponentId, DocsStatus, KitId } from "@/app/(features)/model/types";
 
 type CatalogGalleryItemBase = {
@@ -16,7 +16,7 @@ type CatalogGalleryItemBase = {
 
 export type CatalogGalleryItem =
   | (CatalogGalleryItemBase & { kind: "kit"; id: KitId })
-  | (CatalogGalleryItemBase & { kind: "component"; id: ComponentId });
+  | (CatalogGalleryItemBase & { kind: "component"; id: ComponentId; previewExampleId?: string });
 
 export type CatalogGalleryGroup = {
   id: string;
@@ -70,6 +70,24 @@ export function kitGalleryGroups(): CatalogGalleryGroup[] {
   }));
 }
 
+type ComponentEntry = (typeof componentEntries)[number];
+
+function componentGalleryPreview(entry: ComponentEntry) {
+  if (!("galleryPreview" in entry)) {
+    return {
+      previewClassName: "previewClassName" in entry ? entry.previewClassName : undefined,
+      previewLayout: entry.preview.layout,
+    };
+  }
+  const example: CatalogNamedPreview | undefined = entry.additionalPreviews.find((candidate) => candidate.id === entry.galleryPreview);
+  if (!example) throw new Error(`${entry.id} galleryPreview references an unknown additional preview: ${entry.galleryPreview}`);
+  return {
+    previewExampleId: example.id,
+    previewClassName: example.previewClassName,
+    previewLayout: example.preview.layout,
+  };
+}
+
 export function componentGalleryGroups(): CatalogGalleryGroup[] {
   return categoriesWithEntries(componentEntries).map((category) => ({
     id: category.id,
@@ -86,8 +104,7 @@ export function componentGalleryGroups(): CatalogGalleryGroup[] {
                 summary: entry.summary,
                 status: catalogStatus(entry),
                 href: `/components/${entry.id}`,
-                previewClassName: "previewClassName" in entry ? entry.previewClassName : undefined,
-                previewLayout: entry.preview.layout,
+                ...componentGalleryPreview(entry),
               },
             ]
           : [],

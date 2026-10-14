@@ -39,14 +39,12 @@
   :where(
     [data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"]
       > [data-slot="scrollbar"][data-orientation="vertical"]:not([data-has-overflow-y])
-      > [data-slot="thumb"]
   ),
   :where(
     [data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"]
       > [data-slot="scrollbar"][data-orientation="horizontal"]:not([data-has-overflow-x])
-      > [data-slot="thumb"]
   ) {
-    display: none;
+    visibility: hidden;
   }
 
   @supports (corner-shape: squircle) {
