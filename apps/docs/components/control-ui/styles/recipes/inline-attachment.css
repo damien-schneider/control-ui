@@ -52,6 +52,13 @@
     }
   }
 
+  @media (forced-colors: active) {
+    :where([data-control-family="inline-attachment"][data-slot="root"]:not(:focus-visible)) {
+      outline: 1px solid CanvasText;
+      outline-offset: -1px;
+    }
+  }
+
   :where([data-control-family="inline-attachment"][data-slot="image"]) {
     border-radius: inherit;
   }

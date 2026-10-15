@@ -28,6 +28,13 @@
     --cui-kbd-shadow: 0 0 transparent;
   }
 
+  @media (forced-colors: active) {
+    :where([data-control-family="kbd"][data-slot="root"]:not([data-variant="ghost"])) {
+      outline: 1px solid CanvasText;
+      outline-offset: -1px;
+    }
+  }
+
   :where([data-control-family="kbd"][data-slot="group"]) {
     gap: calc(var(--spacing) * 1);
   }

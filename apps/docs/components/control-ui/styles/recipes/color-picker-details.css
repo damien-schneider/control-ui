@@ -5,6 +5,13 @@
     box-shadow: var(--cui-color-picker-trigger-shadow);
   }
 
+  @media (forced-colors: active) {
+    :where([data-control-family="color-picker"][data-slot="trigger-color"]) {
+      outline: 1px solid CanvasText;
+      outline-offset: -1px;
+    }
+  }
+
   :where([data-control-family="color-picker"][data-slot="trigger"]) {
     border-radius: var(--cui-color-picker-trigger-radius);
     transition-property: transform, translate, scale, rotate;

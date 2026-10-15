@@ -114,6 +114,18 @@
     opacity: var(--disabled-opacity);
   }
 
+  @media (forced-colors: active) {
+    :where([data-control-family="tabs"][data-slot="list"]:not([data-variant="browser"], [data-single="true"])) {
+      outline: 1px solid CanvasText;
+      outline-offset: -1px;
+    }
+
+    :where([data-control-family="tabs"][data-slot="list"]:not([data-variant="browser"]) [data-slot="indicator"]) {
+      outline: var(--focus-ring-width) solid Highlight;
+      outline-offset: calc(var(--focus-ring-width) * -1);
+    }
+  }
+
   :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"]) {
     --_tabs-browser-corner-double: calc(var(--_tabs-trigger-radius-fit) + var(--_tabs-trigger-radius-fit));
     --_tabs-browser-inset: calc(var(--_tabs-trigger-radius-fit) + var(--cui-tabs-surface-radius));

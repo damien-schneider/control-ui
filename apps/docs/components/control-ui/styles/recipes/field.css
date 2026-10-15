@@ -25,6 +25,13 @@
     backdrop-filter: var(--cui-field-backdrop-filter);
   }
 
+  @media (forced-colors: active) {
+    :where([data-control-family="field"][data-control="true"]:not(:focus-visible, :has(:focus-visible))) {
+      outline: 1px solid CanvasText;
+      outline-offset: -1px;
+    }
+  }
+
   :where(
     [data-control-family="field"][data-control="true"]:not([data-control-family="field"][data-field-kind="autocomplete"]):not(
       [data-control-family="field"][data-field-kind="combobox"]

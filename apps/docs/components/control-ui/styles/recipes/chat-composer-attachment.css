@@ -25,6 +25,13 @@
     transition-timing-function: var(--ease-standard);
   }
 
+  @media (forced-colors: active) {
+    :where([data-control-family="chat-composer-attachment"][data-slot="root"][data-variant]:not(:focus-visible, :has(:focus-visible))) {
+      outline: 1px solid CanvasText;
+      outline-offset: -1px;
+    }
+  }
+
   :where([data-control-family="chat-composer-attachment"][data-slot="list"]) {
     gap: calc(var(--spacing) * 2);
     padding: var(--cui-chat-composer-attachment-list-padding);

@@ -17,7 +17,7 @@
     border-radius: var(--cui-pagination-link-radius);
     background: var(--cui-pagination-link-background);
     box-shadow:
-      inset 0 0 0 1px var(--_pagination-link-border-color),
+      inset 0 0 0 var(--control-rim-width) var(--_pagination-link-border-color),
       var(--cui-pagination-link-shadow);
     color: var(--cui-pagination-link-foreground);
     font-variant-numeric: tabular-nums;
@@ -37,6 +37,13 @@
 
   :where([data-control-family="pagination"][data-slot="link"][aria-disabled="true"]) {
     opacity: var(--disabled-opacity);
+  }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="pagination"][data-slot="link"][data-active="true"]:not(:focus-visible)) {
+      outline: var(--focus-ring-width) solid Highlight;
+      outline-offset: calc(var(--focus-ring-width) * -1);
+    }
   }
 
   :where([data-control-family="pagination"][data-slot="link"]:has(> svg:first-child)) {

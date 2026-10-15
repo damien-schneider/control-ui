@@ -1,11 +1,13 @@
 [data-skin="refined"],
 [data-skin="refined"] :where([data-control-family]) {
+  --refined-edge: 0 0 0 var(--control-rim-width) oklch(from var(--shadow-color) l c h / calc(0.12 * var(--ring-opacity)));
   --refined-surface-shadow:
-    0 0 0 var(--control-rim-width) oklch(from var(--shadow-color) l c h / calc(0.06 * var(--ring-opacity))),
+    var(--refined-edge),
     0 calc(1px * var(--shadow-size)) calc(2px * var(--shadow-size)) calc(-1px * var(--shadow-size))
     oklch(from var(--shadow-color) l c h / calc(0.06 * var(--shadow-opacity))),
     0 calc(2px * var(--shadow-size)) calc(4px * var(--shadow-size))
     oklch(from var(--shadow-color) l c h / calc(0.04 * var(--shadow-opacity)));
+  --refined-control-shadow: var(--refined-surface-shadow);
   --refined-floating-shadow:
     0 0 0 var(--control-rim-width) oklch(from var(--shadow-color) l c h / calc(0.07 * var(--ring-opacity))),
     0 calc(1px * var(--shadow-size)) calc(2px * var(--shadow-size))
@@ -18,18 +20,24 @@
 
 :is(.dark [data-skin="refined"], [data-skin="refined"].dark),
 :is(.dark [data-skin="refined"], [data-skin="refined"].dark) :where([data-control-family]) {
+  --refined-edge:
+    inset 0 calc(1px * min(var(--shadow-size), 1)) oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity))),
+    inset 0 0 0 var(--control-rim-width) oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--ring-opacity))),
+    0 0 0 var(--control-rim-width) oklch(from var(--shadow-color) l c h / calc(0.1 * var(--ring-opacity)));
   --refined-surface-shadow:
-    inset 0 calc(1px * min(var(--shadow-size), 1))
-    oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity))),
-    inset 0 0 0 var(--control-rim-width)
-    oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--ring-opacity))),
-    0 0 0 var(--control-rim-width) oklch(from var(--shadow-color) l c h / calc(0.1 * var(--ring-opacity))),
+    var(--refined-edge),
     0 calc(2px * var(--shadow-size)) calc(2px * var(--shadow-size))
     oklch(from var(--shadow-color) l c h / calc(0.1 * var(--shadow-opacity))),
     0 calc(4px * var(--shadow-size)) calc(4px * var(--shadow-size))
     oklch(from var(--shadow-color) l c h / calc(0.1 * var(--shadow-opacity))),
     0 calc(8px * var(--shadow-size)) calc(8px * var(--shadow-size))
     oklch(from var(--shadow-color) l c h / calc(0.1 * var(--shadow-opacity)));
+  --refined-control-shadow:
+    var(--refined-edge),
+    0 calc(1px * var(--shadow-size)) calc(2px * var(--shadow-size)) calc(-1px * var(--shadow-size))
+    oklch(from var(--shadow-color) l c h / calc(0.14 * var(--shadow-opacity))),
+    0 calc(2px * var(--shadow-size)) calc(4px * var(--shadow-size))
+    oklch(from var(--shadow-color) l c h / calc(0.08 * var(--shadow-opacity)));
   --refined-floating-shadow:
     inset 0 calc(1px * min(var(--shadow-size), 1))
     oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity))),
@@ -86,7 +94,7 @@
 
   [data-skin="refined"] :where([data-control-family="button"][data-variant="surface"]) {
     --cui-button-hover-background: var(--muted);
-    --cui-button-shadow: var(--refined-surface-shadow);
+    --cui-button-shadow: var(--refined-control-shadow);
   }
 
   [data-skin="refined"] :where([data-control-family="button"][data-tone="danger"][data-variant="solid"]) {
@@ -130,7 +138,7 @@
   [data-skin="refined"] :where([data-control-family="field"][data-control="true"]) {
     --cui-field-border-color: var(--input);
     --cui-field-border-width: 0px;
-    --cui-field-shadow: var(--refined-surface-shadow);
+    --cui-field-shadow: var(--refined-control-shadow);
   }
 
   [data-skin="refined"] :where([data-control-family="code"][data-slot="root"]) {
@@ -178,17 +186,6 @@
       oklch(from var(--shadow-color) l c h / calc(0.5 * var(--shadow-opacity)));
   }
 
-  :is(.dark [data-skin="refined"], [data-skin="refined"].dark) :where([data-control-family="button"][data-variant="surface"]) {
-    --cui-button-shadow:
-      inset 0 calc(1px * min(var(--shadow-size), 1)) oklch(1 0 0 / calc(0.05 * var(--shadow-opacity))),
-      inset 0 0 0 var(--control-rim-width) oklch(1 0 0 / calc(0.045 * var(--ring-opacity))),
-      0 0 0 var(--control-rim-width) oklch(from var(--shadow-color) l c h / calc(0.14 * var(--ring-opacity))),
-      0 calc(1px * var(--shadow-size)) calc(2px * var(--shadow-size)) calc(-1px * var(--shadow-size))
-      oklch(from var(--shadow-color) l c h / calc(0.14 * var(--shadow-opacity))),
-      0 calc(2px * var(--shadow-size)) calc(4px * var(--shadow-size))
-      oklch(from var(--shadow-color) l c h / calc(0.08 * var(--shadow-opacity)));
-  }
-
   :is(.dark [data-skin="refined"], [data-skin="refined"].dark)
     :where([data-control-family="button"][data-tone="danger"][data-variant="solid"]) {
     --cui-button-shadow:
@@ -196,13 +193,6 @@
       0 0 0 var(--control-rim-width) oklch(from var(--destructive) l c h / calc(0.18 * var(--ring-opacity))),
       0 calc(1px * var(--shadow-size)) calc(2px * var(--shadow-size))
       oklch(from var(--destructive) l c h / calc(0.1 * var(--shadow-opacity)));
-  }
-
-  .dark [data-skin="refined"] :where([data-control-family="field"][data-control="true"]),
-  [data-skin="refined"].dark :where([data-control-family="field"][data-control="true"]) {
-    --cui-field-border-color: oklch(from var(--border) l c h / calc(alpha * 0.5));
-    --cui-field-border-width: var(--control-rim-width);
-    --cui-field-shadow: none;
   }
 
   .dark [data-skin="refined"] :where([data-control-family="tabs"][data-slot="root"]),

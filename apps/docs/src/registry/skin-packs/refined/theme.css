@@ -80,3 +80,9 @@
   --ring: oklch(0.7 0 0);
   --shadow-highlight: oklch(1 0 0 / 0.03);
 }
+
+@media (min-resolution: 2dppx) {
+  [data-skin="refined"][data-skin] {
+    --control-rim-width: 0.5px;
+  }
+}

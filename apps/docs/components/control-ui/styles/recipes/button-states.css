@@ -63,4 +63,16 @@
     cursor: not-allowed;
     opacity: var(--disabled-opacity);
   }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="button"][data-control="true"]:not(:focus-visible, :has(:focus-visible))) {
+      outline: 1px solid currentColor;
+      outline-offset: -1px;
+    }
+
+    :where([data-control-family="button"][data-control="true"][data-active="true"]:not(:focus-visible, :has(:focus-visible))) {
+      outline: var(--focus-ring-width) solid Highlight;
+      outline-offset: calc(var(--focus-ring-width) * -1);
+    }
+  }
 }
