@@ -164,7 +164,7 @@
     --cui-button-shadow: inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--shadow-sm);
     --cui-button-active-background: oklch(from var(--primary) l c h / 0.08);
     --cui-button-active-foreground: var(--primary-text);
-    --cui-button-active-shadow: inset 0 0 0 1px oklch(from var(--primary) l c h / 0.6), var(--shadow-sm);
+    --cui-button-active-shadow: inset 0 0 0 var(--control-rim-width) oklch(from var(--primary) l c h / 0.6), var(--shadow-sm);
     --cui-button-active-hover-background: oklch(from var(--primary) l c h / 0.1);
   }
 
