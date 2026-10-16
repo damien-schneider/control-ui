@@ -23,7 +23,7 @@ export function SkinPicker() {
       <Toolbar
         variant="floating"
         aria-label="Skin"
-        className="fixed top-[calc(100svh-4.25rem-env(safe-area-inset-bottom))] left-[max(1rem,calc(50%-8rem))] z-40 max-w-[calc(100%-2rem)]"
+        className="sticky bottom-[calc(1rem+env(safe-area-inset-bottom))] z-40 mx-auto mb-4 flex w-fit max-w-[calc(100%-2rem)] max-lg:in-data-[scroll=page]:bottom-[calc(1rem+var(--cui-sidebar-nav-height)+var(--cui-sidebar-nav-gap)+env(safe-area-inset-bottom))]"
       >
         <Text size="label" tone="muted" className="shrink-0 ps-2 pe-1">
           Skin

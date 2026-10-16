@@ -6,7 +6,6 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 import type { CatalogOverviewId } from "@/app/(features)/catalog/overviews";
 import { skinsOverviewId } from "@/app/(features)/catalog/skins";
-import { LandingShell } from "@/app/(features)/home/landing-shell";
 import type {
   ActivePageId,
   DocsShellData,
@@ -182,7 +181,10 @@ function DocsShellContent({
   updateSetupPreference,
 }: DocsShellContentProps) {
   const pathname = usePathname();
-  const scrollsPage = usePageScroll() === "page";
+  const skinScroll = usePageScroll();
+  // Page and inset scroll mount different PageLayout trees; home pins one so a skin switch keeps its place and state.
+  const scroll = normalizePathname(pathname) === "/" ? "page" : skinScroll;
+  const scrollsPage = scroll === "page";
   const searchItems = buildSearchItems({ guides, skills, kits, blocks, components, hooks, utils, extensions, skinPages });
   const activePage = activePageForPathname(pathname, searchItems);
 
@@ -205,16 +207,10 @@ function DocsShellContent({
       {children}
     </DocsPageIntegrationProvider>
   );
-  if (normalizePathname(pathname) === "/") {
-    return (
-      <LandingShell githubStars={githubStars} searchItems={searchItems}>
-        {pageContent}
-      </LandingShell>
-    );
-  }
 
   return (
     <AppShell
+      scroll={scroll}
       data-docs-shell=""
       className="bg-canvas text-foreground"
       open={sidebarOpen}

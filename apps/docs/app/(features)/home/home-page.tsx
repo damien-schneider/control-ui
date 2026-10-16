@@ -20,6 +20,7 @@ import {
   shadcnComparisonGuide,
 } from "./showcase";
 import { CatalogItemShowcaseCard } from "./showcase-cards";
+import { SkinPicker } from "./skin-picker";
 
 const cardGridClassName = "grid min-w-0 gap-x-4 gap-y-8 @2xl/home:grid-cols-2 @5xl/home:grid-cols-3";
 
@@ -125,49 +126,52 @@ function CatalogClosing() {
 
 export function HomePage() {
   return (
-    <div className={cn("grid gap-32 pb-32", landingType.scale)}>
-      <div className="grid gap-16">
-        <Hero />
-        <SceneStage />
+    <div className="@container/home">
+      <div className={cn("grid gap-32 pb-32", landingType.scale)}>
+        <div className="grid gap-16">
+          <Hero />
+          <SceneStage />
+        </div>
+        <LandingSection
+          id="missing-from-shadcn-ui"
+          title="What shadcn/ui doesn’t ship"
+          lead={
+            <>
+              The pickers, trees, and viewers you would otherwise build yourself.{" "}
+              <Link href={`/${missingFromShadcnGuide.id}`} className={inlineLinkClassName}>
+                See the full list
+              </Link>
+              .
+            </>
+          }
+        >
+          <ShowcaseCardGrid items={componentsMissingFromShadcn} />
+        </LandingSection>
+        <LandingSection
+          id="chat"
+          title={chatGroup.title}
+          lead={
+            <>
+              {chatGroup.summary}{" "}
+              <Link href={`/kits#${chatGroup.id}`} className={inlineLinkClassName}>
+                Browse all {chatGroup.items.length}
+              </Link>
+              .
+            </>
+          }
+        >
+          <ShowcaseCardGrid items={chatKits} />
+        </LandingSection>
+        <LandingSection
+          id="how-it-works"
+          title="From install to your own skin"
+          lead="Every part is a file in your repository, not a dependency you wait on."
+        >
+          <HowItWorks />
+        </LandingSection>
+        <CatalogClosing />
       </div>
-      <LandingSection
-        id="missing-from-shadcn-ui"
-        title="What shadcn/ui doesn’t ship"
-        lead={
-          <>
-            The pickers, trees, and viewers you would otherwise build yourself.{" "}
-            <Link href={`/${missingFromShadcnGuide.id}`} className={inlineLinkClassName}>
-              See the full list
-            </Link>
-            .
-          </>
-        }
-      >
-        <ShowcaseCardGrid items={componentsMissingFromShadcn} />
-      </LandingSection>
-      <LandingSection
-        id="chat"
-        title={chatGroup.title}
-        lead={
-          <>
-            {chatGroup.summary}{" "}
-            <Link href={`/kits#${chatGroup.id}`} className={inlineLinkClassName}>
-              Browse all {chatGroup.items.length}
-            </Link>
-            .
-          </>
-        }
-      >
-        <ShowcaseCardGrid items={chatKits} />
-      </LandingSection>
-      <LandingSection
-        id="how-it-works"
-        title="From install to your own skin"
-        lead="Every part is a file in your repository, not a dependency you wait on."
-      >
-        <HowItWorks />
-      </LandingSection>
-      <CatalogClosing />
+      <SkinPicker />
     </div>
   );
 }
