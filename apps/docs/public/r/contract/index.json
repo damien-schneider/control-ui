@@ -514,6 +514,13 @@
       "knobs": 10,
       "probes": 10
     },
+    "swap": {
+      "registryItems": [
+        "swap"
+      ],
+      "knobs": 4,
+      "probes": 0
+    },
     "switch": {
       "registryItems": [
         "switch"

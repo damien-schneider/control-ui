@@ -8,6 +8,7 @@ import type { ActionBarKnobStyle } from "@/components/control-ui/knob-contracts/
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
+import { Swap, SwapItem } from "@/components/control-ui/ui/swap";
 
 export type ActionBarCopyValue = string | (() => string | Promise<string>);
 
@@ -132,23 +133,21 @@ export function ActionBarCopy({
     }
   }
 
+  const copied = status === "copied";
   let copyStatus = "";
-  if (status === "copied") copyStatus = copiedAriaLabel;
+  if (copied) copyStatus = copiedAriaLabel;
   else if (status === "failed") copyStatus = copyFailedLabel;
 
   return (
     <>
       <ActionBarItem disabled={disabled ?? !copyValue} onClick={handleClick} {...props}>
-        {status === "copied" ? (
-          <>
-            <span aria-hidden="true" className="contents">
-              {copiedChildren}
-            </span>
-            <span className="sr-only">{children}</span>
-          </>
-        ) : (
-          children
-        )}
+        <Swap value={copied ? "copied" : "idle"}>
+          <SwapItem value="idle">{children}</SwapItem>
+          <SwapItem value="copied" aria-hidden="true">
+            {copiedChildren}
+          </SwapItem>
+        </Swap>
+        {copied ? <span className="sr-only">{children}</span> : null}
       </ActionBarItem>
       <LiveStatus message={copyStatus} />
     </>

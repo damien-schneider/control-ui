@@ -62,6 +62,7 @@ import type {
 import type { SkeletonVariant } from "../../src/registry/sources/control-ui/ui/skeleton";
 import type { SliderVariant } from "../../src/registry/sources/control-ui/ui/slider";
 import type { StepperContentMode, StepperOrientation, StepperState } from "../../src/registry/sources/control-ui/ui/stepper";
+import type { SwapItemState } from "../../src/registry/sources/control-ui/ui/swap";
 import type { TableOfContentsVariant } from "../../src/registry/sources/control-ui/ui/table-of-contents";
 import type { TabsListVariant } from "../../src/registry/sources/control-ui/ui/tabs";
 import type { TimelineState } from "../../src/registry/sources/control-ui/ui/timeline";
@@ -294,6 +295,8 @@ export type EmittedStateContract = {
   "stepper:list:data-orientation": StepperOrientation;
   "stepper:separator:data-state": StepperState;
   "stepper:trigger:data-state": StepperState;
+  "swap:root:data-swapped": true;
+  "swap:item:data-state": SwapItemState;
   "timeline:item:data-state": TimelineState;
   "tool-approval:root:data-risk": ToolApprovalRiskLevel;
   "tool-approval:root:data-state": ToolApprovalState;

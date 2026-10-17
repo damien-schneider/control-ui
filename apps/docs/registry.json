@@ -53,6 +53,7 @@
         "https://control-ui.dev/r/button.json",
         "https://control-ui.dev/r/core.json",
         "https://control-ui.dev/r/live-status.json",
+        "https://control-ui.dev/r/swap.json",
         "https://control-ui.dev/r/use-copy-to-clipboard.json"
       ],
       "files": [
@@ -361,6 +362,7 @@
         "https://control-ui.dev/r/source-badge.json",
         "https://control-ui.dev/r/spinner.json",
         "https://control-ui.dev/r/stepper.json",
+        "https://control-ui.dev/r/swap.json",
         "https://control-ui.dev/r/switch.json",
         "https://control-ui.dev/r/table.json",
         "https://control-ui.dev/r/table-of-contents.json",
@@ -494,6 +496,7 @@
         "https://control-ui.dev/r/source-badge.json",
         "https://control-ui.dev/r/spinner.json",
         "https://control-ui.dev/r/stepper.json",
+        "https://control-ui.dev/r/swap.json",
         "https://control-ui.dev/r/switch.json",
         "https://control-ui.dev/r/table.json",
         "https://control-ui.dev/r/table-of-contents.json",
@@ -633,6 +636,7 @@
         "https://control-ui.dev/r/source-badge.json",
         "https://control-ui.dev/r/spinner.json",
         "https://control-ui.dev/r/stepper.json",
+        "https://control-ui.dev/r/swap.json",
         "https://control-ui.dev/r/switch.json",
         "https://control-ui.dev/r/table.json",
         "https://control-ui.dev/r/table-of-contents.json",
@@ -772,6 +776,7 @@
         "https://control-ui.dev/r/source-badge.json",
         "https://control-ui.dev/r/spinner.json",
         "https://control-ui.dev/r/stepper.json",
+        "https://control-ui.dev/r/swap.json",
         "https://control-ui.dev/r/switch.json",
         "https://control-ui.dev/r/table.json",
         "https://control-ui.dev/r/table-of-contents.json",
@@ -911,6 +916,7 @@
         "https://control-ui.dev/r/source-badge.json",
         "https://control-ui.dev/r/spinner.json",
         "https://control-ui.dev/r/stepper.json",
+        "https://control-ui.dev/r/swap.json",
         "https://control-ui.dev/r/switch.json",
         "https://control-ui.dev/r/table.json",
         "https://control-ui.dev/r/table-of-contents.json",
@@ -1050,6 +1056,7 @@
         "https://control-ui.dev/r/source-badge.json",
         "https://control-ui.dev/r/spinner.json",
         "https://control-ui.dev/r/stepper.json",
+        "https://control-ui.dev/r/swap.json",
         "https://control-ui.dev/r/switch.json",
         "https://control-ui.dev/r/table.json",
         "https://control-ui.dev/r/table-of-contents.json",
@@ -1189,6 +1196,7 @@
         "https://control-ui.dev/r/source-badge.json",
         "https://control-ui.dev/r/spinner.json",
         "https://control-ui.dev/r/stepper.json",
+        "https://control-ui.dev/r/swap.json",
         "https://control-ui.dev/r/switch.json",
         "https://control-ui.dev/r/table.json",
         "https://control-ui.dev/r/table-of-contents.json",
@@ -1328,6 +1336,7 @@
         "https://control-ui.dev/r/source-badge.json",
         "https://control-ui.dev/r/spinner.json",
         "https://control-ui.dev/r/stepper.json",
+        "https://control-ui.dev/r/swap.json",
         "https://control-ui.dev/r/switch.json",
         "https://control-ui.dev/r/table.json",
         "https://control-ui.dev/r/table-of-contents.json",
@@ -1467,6 +1476,7 @@
         "https://control-ui.dev/r/source-badge.json",
         "https://control-ui.dev/r/spinner.json",
         "https://control-ui.dev/r/stepper.json",
+        "https://control-ui.dev/r/swap.json",
         "https://control-ui.dev/r/switch.json",
         "https://control-ui.dev/r/table.json",
         "https://control-ui.dev/r/table-of-contents.json",
@@ -1606,6 +1616,7 @@
         "https://control-ui.dev/r/source-badge.json",
         "https://control-ui.dev/r/spinner.json",
         "https://control-ui.dev/r/stepper.json",
+        "https://control-ui.dev/r/swap.json",
         "https://control-ui.dev/r/switch.json",
         "https://control-ui.dev/r/table.json",
         "https://control-ui.dev/r/table-of-contents.json",
@@ -1745,6 +1756,7 @@
         "https://control-ui.dev/r/source-badge.json",
         "https://control-ui.dev/r/spinner.json",
         "https://control-ui.dev/r/stepper.json",
+        "https://control-ui.dev/r/swap.json",
         "https://control-ui.dev/r/switch.json",
         "https://control-ui.dev/r/table.json",
         "https://control-ui.dev/r/table-of-contents.json",
@@ -2831,6 +2843,7 @@
         "https://control-ui.dev/r/core.json",
         "https://control-ui.dev/r/live-status.json",
         "https://control-ui.dev/r/scroll-area.json",
+        "https://control-ui.dev/r/swap.json",
         "https://control-ui.dev/r/tooltip.json",
         "https://control-ui.dev/r/use-copy-to-clipboard.json"
       ],
@@ -6565,6 +6578,40 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "swap",
+      "type": "registry:ui",
+      "title": "Swap",
+      "description": "Animated hand-off between the states of a button or label: copied, pending, done.",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://control-ui.dev/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/knob-contracts/swap-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/swap-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/swap.css",
+          "target": "@components/control-ui/styles/recipes/swap.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/swap.tsx",
+          "target": "@components/control-ui/ui/swap.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/swap.css\"": {}
+      },
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/swap.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",
@@ -7499,6 +7546,7 @@
         "https://control-ui.dev/r/source-badge.json",
         "https://control-ui.dev/r/spinner.json",
         "https://control-ui.dev/r/stepper.json",
+        "https://control-ui.dev/r/swap.json",
         "https://control-ui.dev/r/switch.json",
         "https://control-ui.dev/r/table.json",
         "https://control-ui.dev/r/table-of-contents.json",

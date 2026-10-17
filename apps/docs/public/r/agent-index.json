@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 196,
+    "count": 197,
     "contracts": {
       "skin": "https://control-ui.dev/r/contract/index.json",
       "theme": "https://control-ui.dev/r/theme-contract.json"
@@ -1278,6 +1278,14 @@
         "summary": "Accessible loading indicator for pending buttons, panels, and inline waits.",
         "href": "/components/spinner",
         "install": "npx shadcn@latest add https://control-ui.dev/r/spinner.json"
+      },
+      {
+        "id": "swap",
+        "name": "Swap",
+        "kind": "Component",
+        "summary": "Animated hand-off between the states of a button or label: copied, pending, done.",
+        "href": "/components/swap",
+        "install": "npx shadcn@latest add https://control-ui.dev/r/swap.json"
       },
       {
         "id": "meter",

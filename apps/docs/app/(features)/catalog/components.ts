@@ -140,6 +140,11 @@ const spinnerRecipeFile = sourceFile(
   "src/registry/sources/control-ui/recipes/spinner.css",
   "recipe-css",
 );
+const swapRecipeFile = sourceFile(
+  "Swap recipe — enter/exit motion + @property knobs",
+  "src/registry/sources/control-ui/recipes/swap.css",
+  "recipe-css",
+);
 const timelineRecipeFile = sourceFile(
   "Timeline recipe — paint + @property knobs",
   "src/registry/sources/control-ui/recipes/timeline.css",
@@ -1810,6 +1815,25 @@ export const componentEntries = [
     },
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/primitives/spinner").then((mod) => ({ default: mod.PrimitiveSpinnerExample })),
+    ),
+  },
+  {
+    id: "swap",
+    category: "feedback",
+    kind: "Component",
+    name: "Swap",
+    summary: "Animated hand-off between the states of a button or label: copied, pending, done.",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/swap.tsx",
+        example: sourceFile("Swap preview", "src/registry/examples/control-ui/primitives/swap.tsx", "example"),
+        source: sourceFile("Swap slot", "src/registry/sources/control-ui/ui/swap.tsx", "component"),
+        supportFiles: [swapRecipeFile],
+        registryKind: "swap",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/swap").then((mod) => ({ default: mod.PrimitiveSwapExample })),
     ),
   },
   {

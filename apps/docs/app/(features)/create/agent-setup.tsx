@@ -1,11 +1,11 @@
 "use client";
 
-import { CheckCircle2Icon, CopyIcon } from "lucide-react";
 import { useState } from "react";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import { Button } from "@/components/control-ui/ui/button";
 import { Code, CodeActions, CodeContent, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
 import { Text } from "@/components/control-ui/ui/typography";
+import { CopySwap } from "@/components/copy-swap";
 import { siteConfig } from "@/lib/site-config";
 import { buildSetupPrompt } from "./setup-prompt";
 
@@ -30,14 +30,15 @@ function useSetupPromptCopy() {
 
 export function SetupPromptCopyButton({ className, compact }: { className?: string; compact?: boolean }) {
   const { copyError, copied, copy } = useSetupPromptCopy();
-  const idleLabel = compact ? "Copy prompt" : "Copy setup prompt";
-  const copiedLabel = compact ? "Copied" : "Prompt copied";
 
   return (
     <div className={className}>
       <Button size={compact ? "xs" : "sm"} variant="solid" tone="primary" onClick={copy}>
-        {copied ? <CheckCircle2Icon aria-hidden className="size-3.5" /> : <CopyIcon aria-hidden className="size-3.5" />}
-        {copied ? copiedLabel : idleLabel}
+        <CopySwap
+          copied={copied}
+          idleLabel={compact ? "Copy prompt" : "Copy setup prompt"}
+          copiedLabel={compact ? "Copied" : "Prompt copied"}
+        />
       </Button>
       {copyError ? (
         <Text role="alert" as="p" size="caption" tone="destructive" className="mt-2">
@@ -58,8 +59,7 @@ export function AgentSetup() {
           <CodeTitle>Agent setup prompt</CodeTitle>
           <CodeActions>
             <Button size="sm" variant="solid" tone="primary" onClick={copy}>
-              {copied ? <CheckCircle2Icon aria-hidden className="size-3.5" /> : <CopyIcon aria-hidden className="size-3.5" />}
-              {copied ? "Agent prompt copied" : "Copy agent prompt"}
+              <CopySwap copied={copied} idleLabel="Copy agent prompt" copiedLabel="Agent prompt copied" />
             </Button>
           </CodeActions>
         </CodeHeader>

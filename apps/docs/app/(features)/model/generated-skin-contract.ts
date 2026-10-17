@@ -103,6 +103,7 @@ export const generatedSkinContract: SkinContract = {
     "source-badge": ["source-badge"],
     spinner: ["spinner"],
     stepper: ["stepper"],
+    swap: ["swap"],
     switch: ["switch"],
     table: ["table"],
     "table-of-contents": ["table-of-contents"],
@@ -12079,6 +12080,40 @@ export const generatedSkinContract: SkinContract = {
       },
       registryItems: ["stepper"],
     },
+    swap: {
+      parts: {
+        root: {
+          family: "swap",
+          registryItems: ["swap"],
+          states: [
+            {
+              attribute: "data-swapped",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        item: {
+          family: "swap",
+          registryItems: ["swap"],
+          states: [
+            {
+              attribute: "data-state",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["active", "exiting", "inactive"],
+            },
+          ],
+        },
+        label: {
+          family: "swap",
+          registryItems: ["swap"],
+          states: [],
+        },
+      },
+      registryItems: ["swap"],
+    },
     switch: {
       parts: {
         root: {
@@ -18040,6 +18075,32 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<number>",
         initialValue: "400",
         defaultValue: "var(--font-weight-semibold)",
+      },
+    ],
+    swap: [
+      {
+        name: "--cui-swap-animation-duration",
+        syntax: "<time>",
+        initialValue: "0s",
+        defaultValue: "var(--duration-slow)",
+      },
+      {
+        name: "--cui-swap-easing",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "var(--ease-emphasized)",
+      },
+      {
+        name: "--cui-swap-label-inset",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "60%",
+      },
+      {
+        name: "--cui-swap-icon-scale",
+        syntax: "<number>",
+        initialValue: "1",
+        defaultValue: "0.5",
       },
     ],
     switch: [

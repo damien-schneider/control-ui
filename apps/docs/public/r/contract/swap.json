@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "family": "swap",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "swap"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-swap-animation-duration",
+      "syntax": "<time>",
+      "initialValue": "0s",
+      "defaultValue": "var(--duration-slow)"
+    },
+    {
+      "name": "--cui-swap-easing",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--ease-emphasized)"
+    },
+    {
+      "name": "--cui-swap-label-inset",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "60%"
+    },
+    {
+      "name": "--cui-swap-icon-scale",
+      "syntax": "<number>",
+      "initialValue": "1",
+      "defaultValue": "0.5"
+    }
+  ],
+  "parts": {
+    "swap": {
+      "root": {
+        "family": "swap",
+        "registryItems": [
+          "swap"
+        ],
+        "states": [
+          {
+            "attribute": "data-swapped",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "item": {
+        "family": "swap",
+        "registryItems": [
+          "swap"
+        ],
+        "states": [
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "active",
+              "exiting",
+              "inactive"
+            ]
+          }
+        ]
+      },
+      "label": {
+        "family": "swap",
+        "registryItems": [
+          "swap"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/swap.contrast.json"
+}

@@ -4342,6 +4342,35 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     ],
   },
   {
+    id: "swap",
+    knobs: [
+      {
+        name: "--cui-swap-animation-duration",
+        syntax: "<time>",
+        defaultValue: "var(--duration-slow)",
+        selector: ':where([data-control-family="swap"][data-slot="root"])',
+      },
+      {
+        name: "--cui-swap-easing",
+        syntax: "*",
+        defaultValue: "var(--ease-emphasized)",
+        selector: ':where([data-control-family="swap"][data-slot="root"])',
+      },
+      {
+        name: "--cui-swap-icon-scale",
+        syntax: "<number>",
+        defaultValue: "0.5",
+        selector: ':where([data-control-family="swap"][data-slot="root"])',
+      },
+      {
+        name: "--cui-swap-label-inset",
+        syntax: "<length-percentage>",
+        defaultValue: "60%",
+        selector: ':where([data-control-family="swap"][data-slot="root"])',
+      },
+    ],
+  },
+  {
     id: "switch",
     knobs: [
       {

@@ -8,12 +8,11 @@ import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-cl
 import { Button } from "@/components/control-ui/ui/button";
 import { ButtonGroup } from "@/components/control-ui/ui/button-group";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
+import { Swap, SwapItem } from "@/components/control-ui/ui/swap";
 import { Text } from "@/components/control-ui/ui/typography";
 import { siteConfig } from "@/lib/site-config";
 
-const idleLabel = "Copy prompt";
 const copiedLabels = { prompt: "Prompt copied", install: "Command copied" } as const;
-const sizingLabels = [idleLabel, ...Object.values(copiedLabels)];
 
 type CopyTarget = keyof typeof copiedLabels;
 
@@ -27,7 +26,7 @@ export function AgentActions({ name, installCommand }: { name: string; installCo
     void copyToClipboard(value);
   }
 
-  const copied = status === "copied";
+  const copyState = status === "copied" ? lastTarget : "idle";
 
   return (
     <div className="shrink-0">
@@ -38,17 +37,18 @@ export function AgentActions({ name, installCommand }: { name: string; installCo
           variant="surface"
           onClick={() => copy("prompt", buildPagePrompt({ origin: siteConfig.url.origin, name, pathname }))}
         >
-          {copied ? <CheckCircle2Icon aria-hidden className="size-3.5" /> : <SparklesIcon aria-hidden className="size-3.5" />}
-          <span className="grid">
-            {sizingLabels.map((sizingLabel) => (
-              <span key={sizingLabel} aria-hidden className="invisible col-start-1 row-start-1">
-                {sizingLabel}
-              </span>
+          <Swap value={copyState} aria-live="polite">
+            <SwapItem value="idle">
+              <SparklesIcon aria-hidden className="size-3.5" />
+              Copy prompt
+            </SwapItem>
+            {Object.entries(copiedLabels).map(([target, label]) => (
+              <SwapItem key={target} value={target}>
+                <CheckCircle2Icon aria-hidden className="size-3.5" />
+                {label}
+              </SwapItem>
             ))}
-            <span aria-live="polite" className="col-start-1 row-start-1">
-              {copied ? copiedLabels[lastTarget] : idleLabel}
-            </span>
-          </span>
+          </Swap>
         </Button>
         <DropdownMenu>
           <DropdownMenuTrigger size="sm" variant="surface" iconOnly aria-label="More page actions">

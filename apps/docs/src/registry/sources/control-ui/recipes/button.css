@@ -95,7 +95,12 @@
   :where(
     [data-control-family="button"][data-control="true"][data-size]:not([data-icon-only="true"]):has(
       > :is(svg, [data-slot="icon"]):first-child:not(:only-child),
-      > [data-slot="content"] > :is(svg, [data-slot="icon"]):first-child:not(:only-child)
+      > [data-slot="content"] > :is(svg, [data-slot="icon"]):first-child:not(:only-child),
+      > [data-control-family="swap"]:first-child > [data-state="active"] > :is(svg, [data-slot="icon"]):first-child:not(:only-child),
+      > [data-slot="content"]
+        > [data-control-family="swap"]:first-child
+        > [data-state="active"]
+        > :is(svg, [data-slot="icon"]):first-child:not(:only-child)
     )
   ) {
     padding-inline-start: var(--cui-button-icon-padding-inline);
@@ -104,7 +109,12 @@
   :where(
     [data-control-family="button"][data-control="true"][data-size]:not([data-icon-only="true"]):has(
       > :is(svg, [data-slot="icon"]):last-child:not(:only-child),
-      > [data-slot="content"] > :is(svg, [data-slot="icon"]):last-child:not(:only-child)
+      > [data-slot="content"] > :is(svg, [data-slot="icon"]):last-child:not(:only-child),
+      > [data-control-family="swap"]:last-child > [data-state="active"] > :is(svg, [data-slot="icon"]):last-child:not(:only-child),
+      > [data-slot="content"]
+        > [data-control-family="swap"]:last-child
+        > [data-state="active"]
+        > :is(svg, [data-slot="icon"]):last-child:not(:only-child)
     )
   ) {
     padding-inline-end: var(--cui-button-icon-padding-inline);

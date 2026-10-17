@@ -12,6 +12,7 @@ import { type CodeTokenLines, highlightToTokens } from "@/components/control-ui/
 import { Button } from "@/components/control-ui/ui/button";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
+import { Swap, SwapItem } from "@/components/control-ui/ui/swap";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
 
 export type CodeOverflow = "wrap" | "scroll";
@@ -165,7 +166,10 @@ export function CodeCopy({
       {...props}
       onClick={handleCopy}
     >
-      {status === "copied" ? copied : (children ?? <CopyIcon aria-hidden="true" className="size-3.5" />)}
+      <Swap value={status === "copied" ? "copied" : "idle"}>
+        <SwapItem value="idle">{children ?? <CopyIcon aria-hidden="true" className="size-3.5" />}</SwapItem>
+        <SwapItem value="copied">{copied}</SwapItem>
+      </Swap>
     </Button>
   );
 

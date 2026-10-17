@@ -190,6 +190,7 @@ export const displayCompositions = {
     ),
   ],
   spinner: [example("Pending indicator", part("Spinner"))],
+  swap: [example("Copy confirmation", part("Swap", part("SwapItem")), "Render every state once; change only the Swap value.")],
   meter: [example("Anatomy", part("Meter", part("MeterLabel"), part("MeterValue"), part("MeterTrack", part("MeterIndicator"))))],
   "level-meter": [
     example("Anatomy", part("LevelMeter", part("LevelMeterTrack", part("LevelMeterBar"), part("LevelMeterPeak")), part("LevelMeterScale"))),

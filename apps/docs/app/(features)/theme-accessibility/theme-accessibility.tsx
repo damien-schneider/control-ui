@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertTriangleIcon, CheckCircle2Icon, CircleHelpIcon, CopyIcon, PaintbrushIcon, ShieldCheckIcon } from "lucide-react";
+import { AlertTriangleIcon, CheckCircle2Icon, CircleHelpIcon, PaintbrushIcon, ShieldCheckIcon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
@@ -9,6 +9,7 @@ import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/control-ui/ui/empty";
 import { Skeleton } from "@/components/control-ui/ui/skeleton";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
+import { CopySwap } from "@/components/copy-swap";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
 import { THEME_AUDIT_CATEGORIES, type ThemeAuditCategory, type ThemeAuditResult, type ThemeAuditStatus } from "./audit-contract";
 import { useThemeAudit } from "./use-theme-audit";
@@ -270,12 +271,7 @@ export function ThemeAccessibility() {
             {CLI_COMMAND}
           </Text>
           <Button variant="surface" size="sm" onClick={commandCopy.handleCopy}>
-            {commandCopy.status === "copied" ? (
-              <CheckCircle2Icon aria-hidden className="size-3.5" />
-            ) : (
-              <CopyIcon aria-hidden className="size-3.5" />
-            )}
-            {commandCopy.status === "copied" ? "Copied" : "Copy command"}
+            <CopySwap copied={commandCopy.status === "copied"} idleLabel="Copy command" copiedLabel="Copied" />
           </Button>
         </div>
         <Text as="p" size="caption" tone="muted" className="flex max-w-2xl items-start gap-2 leading-5">

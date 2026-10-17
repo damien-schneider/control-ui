@@ -3289,6 +3289,25 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-swap-animation-duration",
+      "description": "Control UI swap knob — registered syntax <time>, fallback 0s. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<time>"
+    },
+    {
+      "name": "--cui-swap-easing",
+      "description": "Control UI swap knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
+      "name": "--cui-swap-icon-scale",
+      "description": "Control UI swap knob — registered syntax <number>, fallback 1. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<number>"
+    },
+    {
+      "name": "--cui-swap-label-inset",
+      "description": "Control UI swap knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
       "name": "--cui-switch-background",
       "description": "Control UI switch knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"

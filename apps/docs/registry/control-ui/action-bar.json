@@ -11,6 +11,7 @@
     "button",
     "core",
     "live-status",
+    "swap",
     "use-copy-to-clipboard"
   ],
   "files": [

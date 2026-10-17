@@ -42,6 +42,7 @@ describe("registry anatomy discovery", () => {
       "popup",
       "progressive-blur",
       "scroll-area",
+      "swap",
     ]);
     expect(result.data.anatomy?.knobs.popup?.[0]?.name).toStartWith("--cui-popup-");
     expect(result.data.anatomy?.contractUrl).toEndWith("/r/contract/index.json");

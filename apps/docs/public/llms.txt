@@ -91,6 +91,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Separator](https://control-ui.dev/components/separator): Horizontal or vertical hairline divider.
 - [Live status](https://control-ui.dev/components/live-status): Always-mounted polite status region that announces changes to assistive technology.
 - [Spinner](https://control-ui.dev/components/spinner): Accessible loading indicator for pending buttons, panels, and inline waits.
+- [Swap](https://control-ui.dev/components/swap): Animated hand-off between the states of a button or label: copied, pending, done.
 - [Meter](https://control-ui.dev/components/meter): Static range meter for quota, storage, score, or usage values.
 - [LevelMeter](https://control-ui.dev/components/level-meter): Live audio level in dBFS with warning and clip zones and a peak hold, painted without React renders.
 - [Chart](https://control-ui.dev/components/chart): Gradient-first charts on TanStack Charts: themed host, presets that return real definitions, and the full grammar.

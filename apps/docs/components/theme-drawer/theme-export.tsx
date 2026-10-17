@@ -1,10 +1,10 @@
 "use client";
 
-import { CheckIcon, CopyIcon } from "lucide-react";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import { Button } from "@/components/control-ui/ui/button";
 import { Code, CodeContent } from "@/components/control-ui/ui/code";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
+import { CopySwap } from "@/components/copy-swap";
 import { siteConfig } from "@/lib/site-config";
 import { SKIN_META_BY_ID } from "./presets";
 import { useThemeRuntime } from "./theme-runtime-context";
@@ -43,12 +43,10 @@ Explain the proposed changes before editing, then verify the theme in the applic
         </div>
         <div className="flex flex-wrap gap-2">
           <Button variant="quiet" size="sm" onClick={cssCopy.handleCopy}>
-            {cssCopy.status === "copied" ? <CheckIcon aria-hidden /> : <CopyIcon aria-hidden />}
-            <span aria-live="polite">{cssCopy.status === "copied" ? "CSS copied" : "Copy CSS overrides"}</span>
+            <CopySwap copied={cssCopy.status === "copied"} idleLabel="Copy CSS overrides" copiedLabel="CSS copied" />
           </Button>
           <Button variant="surface" size="sm" onClick={promptCopy.handleCopy}>
-            {promptCopy.status === "copied" ? <CheckIcon aria-hidden /> : <CopyIcon aria-hidden />}
-            <span aria-live="polite">{promptCopy.status === "copied" ? "Prompt copied" : "Copy theme prompt"}</span>
+            <CopySwap copied={promptCopy.status === "copied"} idleLabel="Copy theme prompt" copiedLabel="Prompt copied" />
           </Button>
         </div>
       </div>

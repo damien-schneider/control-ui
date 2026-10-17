@@ -98,6 +98,7 @@ export const registryKindIds = [
   "separator",
   "live-status",
   "spinner",
+  "swap",
   "meter",
   "level-meter",
   "channel-strip",

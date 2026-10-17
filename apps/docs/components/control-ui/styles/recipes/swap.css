@@ -1,0 +1,143 @@
+@layer components {
+  :where([data-control-family="swap"][data-slot="root"]) {
+    --cui-swap-animation-duration: var(--duration-slow);
+    --cui-swap-easing: var(--ease-emphasized);
+    --cui-swap-label-inset: 60%;
+    --cui-swap-icon-scale: 0.5;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: inherit;
+    inline-size: var(--_swap-inline-size, auto);
+    transition: inline-size var(--cui-swap-animation-duration) var(--cui-swap-easing);
+  }
+
+  :where([data-control-family="swap"][data-slot="item"]) {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    gap: inherit;
+    white-space: nowrap;
+  }
+
+  :where([data-control-family="swap"][data-slot="item"]:not([data-state="active"])) {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  :where([data-control-family="swap"][data-slot="item"][data-state="inactive"]) {
+    visibility: hidden;
+  }
+
+  :where([data-control-family="swap"][data-slot="label"]) {
+    display: inline-block;
+  }
+
+  :where([data-control-family="swap"][data-swapped] > [data-slot="item"][data-state="active"]) {
+    animation: cui-swap-item-enter var(--cui-swap-animation-duration) var(--cui-swap-easing) both;
+  }
+
+  :where([data-control-family="swap"][data-swapped] > [data-slot="item"][data-state="exiting"]) {
+    animation: cui-swap-item-exit var(--cui-swap-animation-duration) var(--cui-swap-easing) both;
+  }
+
+  :where(
+    [data-control-family="swap"][data-swapped]
+      > [data-slot="item"][data-state="active"]
+      > :not(svg, [data-slot="icon"], [data-control-family="spinner"])
+  ) {
+    animation: cui-swap-label-enter var(--cui-swap-animation-duration) var(--cui-swap-easing) both;
+  }
+
+  :where(
+    [data-control-family="swap"][data-swapped]
+      > [data-slot="item"][data-state="exiting"]
+      > :not(svg, [data-slot="icon"], [data-control-family="spinner"])
+  ) {
+    animation: cui-swap-label-exit var(--cui-swap-animation-duration) var(--cui-swap-easing) both;
+  }
+
+  :where(
+    [data-control-family="swap"][data-swapped]
+      > [data-slot="item"][data-state="active"]
+      > :is(svg, [data-slot="icon"], [data-control-family="spinner"])
+  ) {
+    animation: cui-swap-icon-enter var(--cui-swap-animation-duration) var(--cui-swap-easing) both;
+  }
+
+  :where(
+    [data-control-family="swap"][data-swapped]
+      > [data-slot="item"][data-state="exiting"]
+      > :is(svg, [data-slot="icon"], [data-control-family="spinner"])
+  ) {
+    animation: cui-swap-icon-exit var(--cui-swap-animation-duration) var(--cui-swap-easing) both;
+  }
+}
+
+@keyframes cui-swap-item-enter {
+  from {
+    opacity: 0;
+    filter: blur(var(--blur-xs));
+  }
+}
+
+@keyframes cui-swap-item-exit {
+  from {
+    opacity: 1;
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    filter: blur(var(--blur-xs));
+  }
+}
+
+@keyframes cui-swap-label-enter {
+  from {
+    translate: 0 var(--cui-swap-label-inset);
+  }
+}
+
+@keyframes cui-swap-label-exit {
+  to {
+    translate: 0 calc(var(--cui-swap-label-inset) * -1);
+  }
+}
+
+@keyframes cui-swap-icon-enter {
+  from {
+    scale: var(--cui-swap-icon-scale);
+  }
+}
+
+@keyframes cui-swap-icon-exit {
+  to {
+    scale: var(--cui-swap-icon-scale);
+  }
+}
+
+@property --cui-swap-animation-duration {
+  syntax: "<time>";
+  inherits: true;
+  initial-value: 0s;
+}
+
+@property --cui-swap-easing {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-swap-label-inset {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-swap-icon-scale {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
