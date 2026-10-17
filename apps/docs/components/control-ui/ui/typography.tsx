@@ -20,6 +20,8 @@ const toneClassNames = {
   foreground: "text-foreground",
   muted: "text-muted-foreground",
   primary: "text-primary-text",
+  success: "text-success-text",
+  warning: "text-warning-text",
   destructive: "text-destructive-text",
 } as const;
 

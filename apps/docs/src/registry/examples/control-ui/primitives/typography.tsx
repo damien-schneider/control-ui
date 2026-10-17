@@ -32,7 +32,6 @@ export function TypographyTokensExample() {
       <Text as="p" size="micro" tone="muted">
         Micro — keycaps, badge counters, and dense metadata.
       </Text>
-      <p className="text-body">A native tag may still wear one rung directly when no component is wanted.</p>
     </div>
   );
 }

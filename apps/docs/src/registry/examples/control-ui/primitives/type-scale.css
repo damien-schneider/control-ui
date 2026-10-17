@@ -65,7 +65,8 @@
 
 /*
  * History: fixed 3 competing type systems (Tailwind defaults + named rungs + raw text-[Npx]) into one rung/role; 14px = body.
- * Usage: apply the rung directly to the semantic element (no <Text> component), e.g. text-heading-1 on <h1>, text-body on <p>.
+ * Usage: React text goes through <Text>/<Heading> (ui/typography): size, tone and weight are props, className stays layout-only.
+ * A bare rung is for markup React doesn't render as components (MDX, markdown, email HTML), e.g. text-heading-1 on <h1>.
  * Heading LEVEL is the document outline; the RUNG is the look. They are decoupled on purpose: an <h3> may wear text-heading-2.
  * Control chrome text is sized by its recipe (`--cui-button-font-size`, `--cui-field-font-size`), not by these utilities.
  */

@@ -26,6 +26,33 @@ import { Button } from "@ctrl-ui/react/ui/button";
 
 Import paths mirror the registry tree. To ship less CSS, import `styles/theme.css` and only the recipes and effects your components use.
 
+## Text and class names
+
+Render text with `Text` and `Heading`. Size, tone, and weight are props; `className` carries layout only:
+
+```tsx
+import { Text } from "@ctrl-ui/react/ui/typography";
+
+<Text size="caption" tone="muted">Saved</Text>
+```
+
+Merge class names with the package's `cn`. A bare `twMerge` reads `text-micro` as a text color and silently drops it next to `text-muted-foreground`. Add your own type rungs on top of `withControlUiMerge` instead of starting a second merger:
+
+```ts
+import { withControlUiMerge } from "@ctrl-ui/react/lib/cn";
+import { extendTailwindMerge } from "tailwind-merge";
+
+const twMerge = extendTailwindMerge({ extend: { classGroups: { "font-size": [{ text: ["hero"] }] } } }, withControlUiMerge);
+```
+
+Controls size their own text: pick the control's `size`, or set its `--cui-*-font-size` knob in your theme, rather than wrapping the label in a `text-*` span.
+
+With Biome, the shipped GritQL plugin warns on type rungs in `className`:
+
+```json
+{ "plugins": ["./node_modules/@ctrl-ui/react/lint/no-raw-type-classes.grit"] }
+```
+
 ## Customize
 
 Your application owns its theme. Override the library's neutral defaults in your CSS:

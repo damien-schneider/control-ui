@@ -26,6 +26,12 @@ Control UI is installed source, not a dependency: the components, their recipe s
 - Never add overflow-hidden or overflow: clip to a layout container without a concrete clipping requirement. Rounded surfaces do not need clipping; it cuts off child shadows and focus rings. Folding panels clip only while animating and leave settled content visible.
 - A call site migrated from another component keeps its layout classes — width, flex, grid, gap — and sheds its styling ones: the border, radius, background and padding utilities the old component needed now fight the recipe underneath.
 
+## Text
+
+- React text goes through Text and Heading from ui/typography. size picks the rung by role — micro for kbd and counters, caption for overlines and section or group labels, label for form labels and small chrome, body for running text — tone picks the color role, weight the weight. className on them carries layout only.
+- Never pair a text-* rung with a text color utility in className. Merge classes with the installed lib/cn: a bare twMerge, such as the shadcn lib/utils cn, reads text-micro as a color and silently drops it next to text-muted-foreground. App-specific rungs extend lib/cn's withControlUiMerge instead of starting a second merger.
+- Control text — buttons, fields, tabs, menu items — is sized by the control's size prop or by its --cui-*-font-size knob in the skin, never by a text-* span inside the control. Secondary text inside an item uses the part made for it, such as DropdownMenuShortcut, ItemDescription, or FieldDescription, not a styled span.
+
 ## Theming
 
 - The contract tokens below re-theme every screen that reads their names, so a token change is an app-wide decision, never a local styling fix.

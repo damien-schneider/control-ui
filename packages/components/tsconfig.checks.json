@@ -4,5 +4,5 @@
     "jsx": "react-jsx",
     "types": ["bun"]
   },
-  "include": ["consumer.tsx", "dist.test.ts", "registry-closure.ts"]
+  "include": ["consumer.tsx", "dist.test.ts", "lint.test.ts", "registry-closure.ts"]
 }

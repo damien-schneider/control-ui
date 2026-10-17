@@ -32,7 +32,8 @@
     "**/*.css"
   ],
   "files": [
-    "dist"
+    "dist",
+    "lint/*.grit"
   ],
   "publishConfig": {
     "access": "public"

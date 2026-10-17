@@ -2507,7 +2507,7 @@ export const componentEntries = [
     kind: "Component",
     name: "Typography",
     summary:
-      "Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role. Native tags may still wear one text-* rung directly.",
+      "Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role, className stays layout-only. A bare text-* rung is for markup React doesn't render as components, such as MDX or email HTML.",
     shadcnDocsUrl: "https://ui.shadcn.com/docs/components/typography",
     paths: {
       registry: {
