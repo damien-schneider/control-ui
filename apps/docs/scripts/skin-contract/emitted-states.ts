@@ -13,6 +13,7 @@ import type { ControlSize } from "../../src/registry/sources/control-ui/control-
 import type { DynamicNotificationState } from "../../src/registry/sources/control-ui/dynamic-notification";
 import type { InlineAttachmentState } from "../../src/registry/sources/control-ui/inline-attachment";
 import type { TaskStatus } from "../../src/registry/sources/control-ui/task-list";
+import type { ToolApprovalRiskLevel, ToolApprovalState } from "../../src/registry/sources/control-ui/tool-approval";
 import type { ChatTone } from "../../src/registry/sources/control-ui/transcript-divider";
 import type { AlertVariant } from "../../src/registry/sources/control-ui/ui/alert";
 import type { AvatarBadgeStatus } from "../../src/registry/sources/control-ui/ui/avatar";
@@ -294,6 +295,8 @@ export type EmittedStateContract = {
   "stepper:separator:data-state": StepperState;
   "stepper:trigger:data-state": StepperState;
   "timeline:item:data-state": TimelineState;
+  "tool-approval:root:data-risk": ToolApprovalRiskLevel;
+  "tool-approval:root:data-state": ToolApprovalState;
   "table-of-contents:root:data-variant": TableOfContentsVariant;
   "table-of-contents:item:data-active": true;
   "table-of-contents:item:data-depth": number;

@@ -25,6 +25,12 @@
       "defaultValue": "var(--primary-text)"
     },
     {
+      "name": "--cui-timeline-waiting-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--warning-text)"
+    },
+    {
       "name": "--cui-timeline-success-foreground",
       "syntax": "<color>",
       "initialValue": "transparent",
@@ -94,7 +100,8 @@
               "neutral",
               "pending",
               "running",
-              "success"
+              "success",
+              "waiting"
             ]
           }
         ]
@@ -125,7 +132,8 @@
   "adornments": {},
   "uncovered": [
     "--cui-timeline-indicator-background",
-    "--cui-timeline-indicator-foreground"
+    "--cui-timeline-indicator-foreground",
+    "--cui-timeline-waiting-foreground"
   ],
   "contrast": "/r/contract/timeline.contrast.json"
 }

@@ -201,3 +201,19 @@ for (const skin of ["refined", "none"]) {
     await expect(navigation.getByRole("link", { name: "Button", exact: true })).toHaveAttribute("data-active", "true");
   });
 }
+
+test("a split button keeps its end caps while its menu is open", async ({ page }) => {
+  await page.goto("/components/button-group");
+  const group = page.getByRole("group", { name: "Page actions for agents", exact: true });
+  const primary = group.getByRole("button", { name: "Copy prompt" });
+  const trigger = group.getByRole("button", { name: "More page actions", exact: true });
+  await waitForReactHydration(trigger);
+  const endCap = await trigger.evaluate((node) => getComputedStyle(node).borderTopRightRadius);
+  expect(Number.parseFloat(endCap)).toBeGreaterThan(0);
+  await trigger.click();
+  await expect(trigger).toHaveAttribute("data-popup-open");
+  await expect(trigger).toHaveCSS("border-top-right-radius", endCap);
+  await expect(trigger).toHaveCSS("border-bottom-right-radius", endCap);
+  await expect(trigger).toHaveCSS("border-top-left-radius", "0px");
+  await expect(primary).toHaveCSS("border-top-right-radius", "0px");
+});

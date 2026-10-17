@@ -70,7 +70,8 @@
               "error",
               "pending",
               "running",
-              "success"
+              "success",
+              "waiting"
             ]
           }
         ]
@@ -172,7 +173,8 @@
               "error",
               "pending",
               "running",
-              "success"
+              "success",
+              "waiting"
             ]
           }
         ]

@@ -112,6 +112,22 @@
     --cui-card-shadow: var(--refined-surface-shadow);
   }
 
+  [data-skin="refined"] :where([data-control-family="tool-approval"][data-slot="root"]) {
+    --cui-tool-approval-background: var(--muted);
+    --cui-tool-approval-border-width: 0px;
+    --cui-tool-approval-shadow: var(--refined-edge);
+    --cui-tool-approval-radius: calc(var(--radius-panel) + var(--spacing));
+    --cui-tool-approval-padding: var(--spacing);
+    --cui-tool-approval-body-background: var(--card);
+    --cui-tool-approval-body-radius: var(--radius-panel);
+    --cui-tool-approval-body-shadow: var(--refined-surface-shadow);
+    --cui-tool-approval-footer-border-width: 0px;
+    --cui-tool-approval-footer-padding: calc(var(--spacing) * 2);
+    --cui-tool-approval-preview-background: oklch(from var(--muted) l c h / 0.6);
+    --cui-tool-approval-preview-radius: var(--radius-lg);
+    --cui-tool-approval-preview-padding: calc(var(--spacing) * 2.5);
+  }
+
   [data-skin="refined"]
     :where(
       [data-control-family="popup"][data-popup-part="surface"],

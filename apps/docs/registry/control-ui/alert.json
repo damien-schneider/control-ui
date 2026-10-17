@@ -5,7 +5,7 @@
   "title": "Alert",
   "description": "Inline status panel for callouts, errors, and notices.",
   "dependencies": [
-    "@base-ui/react@^1.8.0"
+    "@base-ui/react@^1.9.0"
   ],
   "registryDependencies": [
     "core"

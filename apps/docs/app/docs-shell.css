@@ -55,6 +55,18 @@
     --cui-page-layout-padding-block: 4rem 6rem;
   }
 
+  [data-docs-layout="page"]
+    :where([data-docs-content])
+    :where([data-control-family="page-layout"][data-slot="root"]:not([data-width="full"])) {
+    --cui-page-layout-sticky-gap: calc(var(--cui-sidebar-inset-inset) + var(--spacing) * 2);
+  }
+
+  [data-docs-content] [data-control-family="page-layout"][data-slot="header"][data-variant="floating"] {
+    --cui-page-layout-size: none;
+    --cui-page-layout-padding-inline: var(--cui-page-layout-sticky-gap);
+    --cui-page-layout-header-row-gap: 0px;
+  }
+
   @media (width >= 48rem) {
     :where([data-docs-content]) :where([data-control-family="page-layout"][data-slot="root"]:not([data-width="full"])) {
       --cui-page-layout-padding-inline: 2rem;

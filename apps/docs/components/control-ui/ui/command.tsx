@@ -80,6 +80,7 @@ export function CommandInput({ className, ...props }: CommandInputProps) {
       data-slot="input-wrapper"
       data-control-family="popup"
       data-control="true"
+      data-focus-ring="none"
       data-size="lg"
       className="flex items-center"
     >

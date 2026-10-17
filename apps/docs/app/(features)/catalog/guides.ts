@@ -135,7 +135,6 @@ export const guideEntries = [
     group: "theme",
     name: "Theme editor",
     summary: "Edit theme tokens category by category and watch real components repaint as you go.",
-    layout: "workspace",
     sections: [],
   },
   {
@@ -403,7 +402,7 @@ export const guideEntries = [
   group: GuideGroupId;
   name: string;
   summary: string;
-  layout?: "default" | "wide" | "workspace";
+  layout?: "default" | "wide";
   hiddenFromNav?: true;
   sections: readonly GuideSectionCatalogEntry[];
   comparedApplications?: readonly { name: string; url: string }[];

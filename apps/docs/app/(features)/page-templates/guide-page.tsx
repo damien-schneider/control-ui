@@ -132,25 +132,16 @@ export function GuidePage({
   integration: IntegrationId;
   themeCategory?: ThemeCategoryId;
 }) {
-  if (page.layout === "workspace") {
-    return (
-      <section className="flex min-w-0 w-full flex-col px-4 pt-[calc(var(--control-h-sm)+1rem)] pb-6 lg:px-6 lg:pt-12">
-        <PageHeader
-          label="Guide"
-          title={page.name}
-          summary={page.id === "theme-editor" ? undefined : page.summary}
-          focusOnMount
-          compact={page.id === "theme-editor"}
-          actions={page.id === "theme-editor" ? undefined : <AgentActions name={page.name} />}
-        />
-        <GuidePageContent page={page} integration={integration} themeCategory={themeCategory} />
-      </section>
-    );
-  }
-
+  const isThemeEditor = page.id === "theme-editor";
   return (
     <section className="docs-article">
-      <PageHeader label="Guide" title={page.name} summary={page.summary} actions={<AgentActions name={page.name} />} />
+      <PageHeader
+        label="Guide"
+        title={page.name}
+        summary={page.summary}
+        focusOnMount={isThemeEditor}
+        actions={isThemeEditor ? undefined : <AgentActions name={page.name} />}
+      />
 
       <div className="grid min-w-0 gap-12">
         <GuidePageContent page={page} integration={integration} themeCategory={themeCategory} />

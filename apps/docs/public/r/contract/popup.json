@@ -1385,6 +1385,14 @@
         ],
         "states": [
           {
+            "attribute": "data-focus-ring",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "none"
+            ]
+          },
+          {
             "attribute": "data-popup-kind",
             "source": "control-ui",
             "valueKind": "enum",

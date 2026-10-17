@@ -5,7 +5,7 @@
   "title": "FilterBar",
   "description": "Build editable field, operator, and value filters with a button or inline search.",
   "dependencies": [
-    "@base-ui/react@^1.8.0",
+    "@base-ui/react@^1.9.0",
     "lucide-react@^1.47.0"
   ],
   "registryDependencies": [

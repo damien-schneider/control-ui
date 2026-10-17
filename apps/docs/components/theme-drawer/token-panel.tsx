@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronDownIcon } from "lucide-react";
-import type { ReactNode } from "react";
+import { type ReactNode, useId } from "react";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
@@ -127,12 +127,13 @@ export function TokenPanel({
   const touched = allNames.filter((name) => editor.overridden.has(name)).length;
   const skinTouched = allNames.filter((name) => editor.changedBySkin.has(name)).length;
   const advancedTotal = category.advanced.length + badgeTokens.length;
+  const titleId = useId();
 
   return (
-    <section id="theme-tokens" aria-labelledby="theme-tokens-title" className="flex min-w-0 flex-col gap-4">
+    <section aria-labelledby={titleId} className="flex min-w-0 flex-col gap-4">
       <header className="min-w-0">
         <div className="flex flex-wrap items-center gap-2">
-          <Heading level={2} size="heading-4" id="theme-tokens-title">
+          <Heading level={2} size="heading-4" id={titleId}>
             {category.title}
           </Heading>
           {touched > 0 ? <Badge size="sm">{touched} edited</Badge> : null}

@@ -1,0 +1,267 @@
+@layer components {
+  :where([data-control-family="tool-approval"][data-slot="root"]) {
+    --cui-tool-approval-background: var(--card);
+    --cui-tool-approval-foreground: var(--card-foreground);
+    --cui-tool-approval-border-color: var(--border);
+    --cui-tool-approval-border-width: var(--control-rim-width);
+    --cui-tool-approval-radius: var(--radius-lg);
+    --cui-tool-approval-shadow: var(--shadow-sm);
+    --cui-tool-approval-padding: 0px;
+    --cui-tool-approval-body-background: transparent;
+    --cui-tool-approval-body-border-color: transparent;
+    --cui-tool-approval-body-border-width: 0px;
+    --cui-tool-approval-body-radius: var(--radius-lg);
+    --cui-tool-approval-body-shadow: 0 0 transparent;
+    --cui-tool-approval-body-padding: calc(var(--spacing) * 3);
+    --cui-tool-approval-body-gap: calc(var(--spacing) * 3);
+    --cui-tool-approval-footer-border-color: var(--border);
+    --cui-tool-approval-footer-border-width: var(--control-rim-width);
+    --cui-tool-approval-footer-padding: calc(var(--spacing) * 2.5);
+    --cui-tool-approval-footer-gap: calc(var(--spacing) * 2);
+    --cui-tool-approval-preview-background: transparent;
+    --cui-tool-approval-preview-border-color: transparent;
+    --cui-tool-approval-preview-border-width: 0px;
+    --cui-tool-approval-preview-radius: var(--radius-md);
+    --cui-tool-approval-preview-padding: 0px;
+    --cui-tool-approval-preview-gap: calc(var(--spacing) * 1.5);
+    --cui-tool-approval-label-foreground: var(--muted-foreground);
+    --cui-tool-approval-description-foreground: var(--muted-foreground);
+    --cui-tool-approval-status-foreground: var(--muted-foreground);
+    display: grid;
+    padding: var(--cui-tool-approval-padding);
+    border-radius: var(--cui-tool-approval-radius);
+    background: var(--cui-tool-approval-background);
+    color: var(--cui-tool-approval-foreground);
+    box-shadow:
+      inset 0 0 0 var(--cui-tool-approval-border-width) var(--cui-tool-approval-border-color),
+      var(--cui-tool-approval-shadow);
+    font-size: var(--text-body);
+  }
+
+  :where([data-control-family="tool-approval"][data-slot="body"]) {
+    display: grid;
+    gap: var(--cui-tool-approval-body-gap);
+    padding: var(--cui-tool-approval-body-padding);
+    border-radius: var(--cui-tool-approval-body-radius);
+    background: var(--cui-tool-approval-body-background);
+    box-shadow:
+      inset 0 0 0 var(--cui-tool-approval-body-border-width) var(--cui-tool-approval-body-border-color),
+      var(--cui-tool-approval-body-shadow);
+  }
+
+  :where([data-control-family="tool-approval"][data-slot="footer"]) {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--cui-tool-approval-footer-gap);
+    padding: var(--cui-tool-approval-footer-padding);
+    border-block-start: var(--cui-tool-approval-footer-border-width) solid var(--cui-tool-approval-footer-border-color);
+  }
+
+  :where([data-control-family="tool-approval"][data-slot="preview"]) {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: calc(var(--spacing) * 4);
+    row-gap: var(--cui-tool-approval-preview-gap);
+    padding: var(--cui-tool-approval-preview-padding);
+    border-radius: var(--cui-tool-approval-preview-radius);
+    background: var(--cui-tool-approval-preview-background);
+    box-shadow: inset 0 0 0 var(--cui-tool-approval-preview-border-width) var(--cui-tool-approval-preview-border-color);
+  }
+
+  :where([data-control-family="tool-approval"][data-slot="field"]) {
+    display: contents;
+  }
+
+  :where([data-control-family="tool-approval"][data-slot="field-label"]) {
+    color: var(--cui-tool-approval-label-foreground);
+  }
+
+  :where([data-control-family="tool-approval"][data-slot="description"]) {
+    color: var(--cui-tool-approval-description-foreground);
+  }
+
+  :where([data-control-family="tool-approval"][data-slot="status"]) {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing);
+    color: var(--cui-tool-approval-status-foreground);
+    transition-property: opacity;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-emphasized);
+  }
+
+  @starting-style {
+    :where([data-control-family="tool-approval"][data-slot="status"]) {
+      opacity: 0;
+    }
+  }
+
+  :where([data-control-family="tool-approval"][data-slot="root"][data-state="approved"] [data-slot="status-icon"]) {
+    color: var(--success-text);
+  }
+
+  :where([data-control-family="tool-approval"][data-slot="root"][data-state="denied"] [data-slot="status-icon"]) {
+    color: var(--destructive-text);
+  }
+}
+
+@property --cui-tool-approval-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-tool-approval-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-tool-approval-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-tool-approval-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-tool-approval-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-tool-approval-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-tool-approval-padding {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-tool-approval-body-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-tool-approval-body-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-tool-approval-body-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-tool-approval-body-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-tool-approval-body-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-tool-approval-body-padding {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-tool-approval-body-gap {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-tool-approval-footer-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-tool-approval-footer-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-tool-approval-footer-padding {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-tool-approval-footer-gap {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-tool-approval-preview-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-tool-approval-preview-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-tool-approval-preview-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-tool-approval-preview-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-tool-approval-preview-padding {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-tool-approval-preview-gap {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-tool-approval-label-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-tool-approval-description-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-tool-approval-status-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

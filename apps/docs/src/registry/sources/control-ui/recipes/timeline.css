@@ -3,6 +3,7 @@
     --cui-timeline-indicator-background: var(--background);
     --cui-timeline-indicator-foreground: var(--muted-foreground);
     --cui-timeline-running-foreground: var(--primary-text);
+    --cui-timeline-waiting-foreground: var(--warning-text);
     --cui-timeline-success-foreground: var(--foreground);
     --cui-timeline-error-foreground: var(--destructive-text);
     --cui-timeline-separator-background: var(--border);
@@ -36,6 +37,10 @@
 
   :where([data-control-family="timeline"][data-slot="item"][data-state="running"] [data-control-family="timeline"][data-slot="indicator"]) {
     color: var(--cui-timeline-running-foreground);
+  }
+
+  :where([data-control-family="timeline"][data-slot="item"][data-state="waiting"] [data-control-family="timeline"][data-slot="indicator"]) {
+    color: var(--cui-timeline-waiting-foreground);
   }
 
   :where([data-control-family="timeline"][data-slot="item"][data-state="success"] [data-control-family="timeline"][data-slot="indicator"]) {
@@ -79,6 +84,12 @@
 }
 
 @property --cui-timeline-running-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-timeline-waiting-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

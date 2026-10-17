@@ -5,7 +5,7 @@
   "title": "Timeline",
   "description": "Static chronological events with independent status, connectors, descriptions, and metadata.",
   "dependencies": [
-    "@base-ui/react@^1.8.0"
+    "@base-ui/react@^1.9.0"
   ],
   "registryDependencies": [
     "core"

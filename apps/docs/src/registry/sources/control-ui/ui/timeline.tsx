@@ -6,7 +6,7 @@ import type { RenderProp } from "@/components/control-ui/control-props";
 import type { TimelineKnobStyle } from "@/components/control-ui/knob-contracts/timeline-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
-export type TimelineState = "neutral" | "pending" | "running" | "success" | "error";
+export type TimelineState = "neutral" | "pending" | "running" | "waiting" | "success" | "error";
 
 export type TimelineProps = ComponentProps<"ol"> & { style?: CSSProperties & TimelineKnobStyle };
 
@@ -42,7 +42,7 @@ export function TimelineItem({ state = "neutral", className, ...props }: Timelin
       data-control-family="timeline"
       data-slot="item"
       data-state={state}
-      aria-current={state === "running" ? "step" : undefined}
+      aria-current={state === "running" || state === "waiting" ? "step" : undefined}
       {...props}
       className={cn("group/timeline-item relative grid min-w-0 grid-cols-[1rem_minmax(0,1fr)]", className)}
     />

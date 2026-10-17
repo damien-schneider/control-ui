@@ -51,7 +51,15 @@ describe("catalog galleries", () => {
   test("renders every template once in taxonomy order with canonical links", () => {
     const groups = templateGalleryGroups();
     const items = groups.flatMap((group) => group.items);
-    const expectedTemplateIds = ["chat", "coding-agent", "settings", "team-chat", "file-explorer", "design-canvas"] satisfies BlockId[];
+    const expectedTemplateIds = [
+      "chat",
+      "coding-agent",
+      "agent-run",
+      "settings",
+      "team-chat",
+      "file-explorer",
+      "design-canvas",
+    ] satisfies BlockId[];
 
     expect(groups.map((group) => group.id)).toEqual(templateKinds.map((kind) => kind.slug));
     expect(

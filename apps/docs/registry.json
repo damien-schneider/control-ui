@@ -10,7 +10,7 @@
       "title": "Accordion",
       "description": "Stacked disclosure rows with measured panel animation.",
       "dependencies": [
-        "@base-ui/react@^1.8.0",
+        "@base-ui/react@^1.9.0",
         "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
@@ -47,7 +47,7 @@
       "title": "ActionBar",
       "description": "Reusable hover actions for message and response controls.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -121,12 +121,57 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "agent-run-block",
+      "type": "registry:block",
+      "title": "Agent run",
+      "description": "One autonomous agent run: its plan step by step, the tool calls behind each step, approvals it waits on, and what it produced.",
+      "dependencies": [
+        "lucide-react@^1.47.0"
+      ],
+      "registryDependencies": [
+        "https://control-ui.dev/r/activity.json",
+        "https://control-ui.dev/r/badge.json",
+        "https://control-ui.dev/r/card.json",
+        "https://control-ui.dev/r/core.json",
+        "https://control-ui.dev/r/live-status.json",
+        "https://control-ui.dev/r/sidebar.json",
+        "https://control-ui.dev/r/timeline.json",
+        "https://control-ui.dev/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/blocks/control-ui/agent-run-clock.ts",
+          "target": "@components/control-ui/blocks/agent-run-clock.ts",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/registry/blocks/control-ui/agent-run-sidebar.tsx",
+          "target": "@components/control-ui/blocks/agent-run-sidebar.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/registry/blocks/control-ui/agent-run-status.ts",
+          "target": "@components/control-ui/blocks/agent-run-status.ts",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/registry/blocks/control-ui/agent-run.tsx",
+          "target": "@components/control-ui/blocks/agent-run.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/agent-run-block.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "alert",
       "type": "registry:ui",
       "title": "Alert",
       "description": "Inline status panel for callouts, errors, and notices.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -162,7 +207,7 @@
       "title": "Alert dialog",
       "description": "Modal confirmation dialog for destructive or blocking decisions.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -222,6 +267,7 @@
         "https://control-ui.dev/r/accordion.json",
         "https://control-ui.dev/r/action-bar.json",
         "https://control-ui.dev/r/activity.json",
+        "https://control-ui.dev/r/agent-run-block.json",
         "https://control-ui.dev/r/alert.json",
         "https://control-ui.dev/r/alert-dialog.json",
         "https://control-ui.dev/r/app-shell.json",
@@ -327,6 +373,7 @@
         "https://control-ui.dev/r/timeline.json",
         "https://control-ui.dev/r/toast.json",
         "https://control-ui.dev/r/toggle.json",
+        "https://control-ui.dev/r/tool-approval.json",
         "https://control-ui.dev/r/toolbar.json",
         "https://control-ui.dev/r/tooltip.json",
         "https://control-ui.dev/r/track-highlight.json",
@@ -352,6 +399,7 @@
         "https://control-ui.dev/r/accordion.json",
         "https://control-ui.dev/r/action-bar.json",
         "https://control-ui.dev/r/activity.json",
+        "https://control-ui.dev/r/agent-run-block.json",
         "https://control-ui.dev/r/alert.json",
         "https://control-ui.dev/r/alert-dialog.json",
         "https://control-ui.dev/r/app-shell.json",
@@ -458,6 +506,7 @@
         "https://control-ui.dev/r/timeline.json",
         "https://control-ui.dev/r/toast.json",
         "https://control-ui.dev/r/toggle.json",
+        "https://control-ui.dev/r/tool-approval.json",
         "https://control-ui.dev/r/toolbar.json",
         "https://control-ui.dev/r/tooltip.json",
         "https://control-ui.dev/r/track-highlight.json",
@@ -489,6 +538,7 @@
         "https://control-ui.dev/r/accordion.json",
         "https://control-ui.dev/r/action-bar.json",
         "https://control-ui.dev/r/activity.json",
+        "https://control-ui.dev/r/agent-run-block.json",
         "https://control-ui.dev/r/alert.json",
         "https://control-ui.dev/r/alert-dialog.json",
         "https://control-ui.dev/r/app-shell.json",
@@ -595,6 +645,7 @@
         "https://control-ui.dev/r/timeline.json",
         "https://control-ui.dev/r/toast.json",
         "https://control-ui.dev/r/toggle.json",
+        "https://control-ui.dev/r/tool-approval.json",
         "https://control-ui.dev/r/toolbar.json",
         "https://control-ui.dev/r/tooltip.json",
         "https://control-ui.dev/r/track-highlight.json",
@@ -626,6 +677,7 @@
         "https://control-ui.dev/r/accordion.json",
         "https://control-ui.dev/r/action-bar.json",
         "https://control-ui.dev/r/activity.json",
+        "https://control-ui.dev/r/agent-run-block.json",
         "https://control-ui.dev/r/alert.json",
         "https://control-ui.dev/r/alert-dialog.json",
         "https://control-ui.dev/r/app-shell.json",
@@ -732,6 +784,7 @@
         "https://control-ui.dev/r/timeline.json",
         "https://control-ui.dev/r/toast.json",
         "https://control-ui.dev/r/toggle.json",
+        "https://control-ui.dev/r/tool-approval.json",
         "https://control-ui.dev/r/toolbar.json",
         "https://control-ui.dev/r/tooltip.json",
         "https://control-ui.dev/r/track-highlight.json",
@@ -763,6 +816,7 @@
         "https://control-ui.dev/r/accordion.json",
         "https://control-ui.dev/r/action-bar.json",
         "https://control-ui.dev/r/activity.json",
+        "https://control-ui.dev/r/agent-run-block.json",
         "https://control-ui.dev/r/alert.json",
         "https://control-ui.dev/r/alert-dialog.json",
         "https://control-ui.dev/r/app-shell.json",
@@ -869,6 +923,7 @@
         "https://control-ui.dev/r/timeline.json",
         "https://control-ui.dev/r/toast.json",
         "https://control-ui.dev/r/toggle.json",
+        "https://control-ui.dev/r/tool-approval.json",
         "https://control-ui.dev/r/toolbar.json",
         "https://control-ui.dev/r/tooltip.json",
         "https://control-ui.dev/r/track-highlight.json",
@@ -900,6 +955,7 @@
         "https://control-ui.dev/r/accordion.json",
         "https://control-ui.dev/r/action-bar.json",
         "https://control-ui.dev/r/activity.json",
+        "https://control-ui.dev/r/agent-run-block.json",
         "https://control-ui.dev/r/alert.json",
         "https://control-ui.dev/r/alert-dialog.json",
         "https://control-ui.dev/r/app-shell.json",
@@ -1006,6 +1062,7 @@
         "https://control-ui.dev/r/timeline.json",
         "https://control-ui.dev/r/toast.json",
         "https://control-ui.dev/r/toggle.json",
+        "https://control-ui.dev/r/tool-approval.json",
         "https://control-ui.dev/r/toolbar.json",
         "https://control-ui.dev/r/tooltip.json",
         "https://control-ui.dev/r/track-highlight.json",
@@ -1037,6 +1094,7 @@
         "https://control-ui.dev/r/accordion.json",
         "https://control-ui.dev/r/action-bar.json",
         "https://control-ui.dev/r/activity.json",
+        "https://control-ui.dev/r/agent-run-block.json",
         "https://control-ui.dev/r/alert.json",
         "https://control-ui.dev/r/alert-dialog.json",
         "https://control-ui.dev/r/app-shell.json",
@@ -1143,6 +1201,7 @@
         "https://control-ui.dev/r/timeline.json",
         "https://control-ui.dev/r/toast.json",
         "https://control-ui.dev/r/toggle.json",
+        "https://control-ui.dev/r/tool-approval.json",
         "https://control-ui.dev/r/toolbar.json",
         "https://control-ui.dev/r/tooltip.json",
         "https://control-ui.dev/r/track-highlight.json",
@@ -1174,6 +1233,7 @@
         "https://control-ui.dev/r/accordion.json",
         "https://control-ui.dev/r/action-bar.json",
         "https://control-ui.dev/r/activity.json",
+        "https://control-ui.dev/r/agent-run-block.json",
         "https://control-ui.dev/r/alert.json",
         "https://control-ui.dev/r/alert-dialog.json",
         "https://control-ui.dev/r/app-shell.json",
@@ -1280,6 +1340,7 @@
         "https://control-ui.dev/r/timeline.json",
         "https://control-ui.dev/r/toast.json",
         "https://control-ui.dev/r/toggle.json",
+        "https://control-ui.dev/r/tool-approval.json",
         "https://control-ui.dev/r/toolbar.json",
         "https://control-ui.dev/r/tooltip.json",
         "https://control-ui.dev/r/track-highlight.json",
@@ -1311,6 +1372,7 @@
         "https://control-ui.dev/r/accordion.json",
         "https://control-ui.dev/r/action-bar.json",
         "https://control-ui.dev/r/activity.json",
+        "https://control-ui.dev/r/agent-run-block.json",
         "https://control-ui.dev/r/alert.json",
         "https://control-ui.dev/r/alert-dialog.json",
         "https://control-ui.dev/r/app-shell.json",
@@ -1417,6 +1479,7 @@
         "https://control-ui.dev/r/timeline.json",
         "https://control-ui.dev/r/toast.json",
         "https://control-ui.dev/r/toggle.json",
+        "https://control-ui.dev/r/tool-approval.json",
         "https://control-ui.dev/r/toolbar.json",
         "https://control-ui.dev/r/tooltip.json",
         "https://control-ui.dev/r/track-highlight.json",
@@ -1448,6 +1511,7 @@
         "https://control-ui.dev/r/accordion.json",
         "https://control-ui.dev/r/action-bar.json",
         "https://control-ui.dev/r/activity.json",
+        "https://control-ui.dev/r/agent-run-block.json",
         "https://control-ui.dev/r/alert.json",
         "https://control-ui.dev/r/alert-dialog.json",
         "https://control-ui.dev/r/app-shell.json",
@@ -1554,6 +1618,7 @@
         "https://control-ui.dev/r/timeline.json",
         "https://control-ui.dev/r/toast.json",
         "https://control-ui.dev/r/toggle.json",
+        "https://control-ui.dev/r/tool-approval.json",
         "https://control-ui.dev/r/toolbar.json",
         "https://control-ui.dev/r/tooltip.json",
         "https://control-ui.dev/r/track-highlight.json",
@@ -1585,6 +1650,7 @@
         "https://control-ui.dev/r/accordion.json",
         "https://control-ui.dev/r/action-bar.json",
         "https://control-ui.dev/r/activity.json",
+        "https://control-ui.dev/r/agent-run-block.json",
         "https://control-ui.dev/r/alert.json",
         "https://control-ui.dev/r/alert-dialog.json",
         "https://control-ui.dev/r/app-shell.json",
@@ -1691,6 +1757,7 @@
         "https://control-ui.dev/r/timeline.json",
         "https://control-ui.dev/r/toast.json",
         "https://control-ui.dev/r/toggle.json",
+        "https://control-ui.dev/r/tool-approval.json",
         "https://control-ui.dev/r/toolbar.json",
         "https://control-ui.dev/r/tooltip.json",
         "https://control-ui.dev/r/track-highlight.json",
@@ -1972,7 +2039,7 @@
       "title": "Autocomplete",
       "description": "Free-text input with search-as-you-type suggestions.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -2045,7 +2112,7 @@
       "title": "Avatar",
       "description": "Profile image with initials fallback and composable overlapping groups.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -2081,7 +2148,7 @@
       "title": "Badge",
       "description": "Compact status, label, or count chip.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -2117,7 +2184,7 @@
       "title": "Breadcrumb",
       "description": "Location trail with links, the current page, and collapsed levels.",
       "dependencies": [
-        "@base-ui/react@^1.8.0",
+        "@base-ui/react@^1.9.0",
         "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
@@ -2154,7 +2221,7 @@
       "title": "Button",
       "description": "Accessible action button with size, variant, and semantic tone support.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -2268,7 +2335,7 @@
       "title": "Card",
       "description": "Content surface for panels, tiles, and settings groups.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -2589,7 +2656,7 @@
       "title": "ChatLayout",
       "description": "A scrolling conversation with a pinned header, message turns, and a floating composer dock.",
       "dependencies": [
-        "@base-ui/react@^1.8.0",
+        "@base-ui/react@^1.9.0",
         "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
@@ -2695,7 +2762,7 @@
       "title": "Checkbox",
       "description": "Single checkbox control with checked and indeterminate states.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -2731,7 +2798,7 @@
       "title": "Checkbox Group",
       "description": "Multi-select checkbox set with shared state and select-all support.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -2881,7 +2948,7 @@
       "title": "Collapsible",
       "description": "Accessible disclosure primitive with measured open and close motion.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -2917,7 +2984,7 @@
       "title": "Color Picker",
       "description": "Color input with picker UI, formats, presets, contrast helpers, and a gradient editor with draggable stops.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -3075,7 +3142,7 @@
       "title": "Combobox",
       "description": "Searchable single-select with input and floating option list.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -3266,7 +3333,7 @@
       "title": "Context Menu",
       "description": "Pointer-positioned right-click and long-press menu with nested actions and selection controls.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -3398,7 +3465,7 @@
       "title": "Dialog",
       "description": "Modal dialog for focused tasks, confirmations, and custom panels.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -3542,7 +3609,7 @@
       "title": "Drawer",
       "description": "Swipeable edge panel for mobile sheets and off-canvas surfaces.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -3602,7 +3669,7 @@
       "title": "DropdownMenu",
       "description": "Dropdown menu for actions, resources, labels, separators, and submenus.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -3857,7 +3924,7 @@
       "title": "Emoji Picker",
       "description": "Searchable, virtualized emoji grid with skin-aware cells, an active emoji footer, and an emoji-or-icon tabbed variant.",
       "dependencies": [
-        "@base-ui/react@^1.8.0",
+        "@base-ui/react@^1.9.0",
         "frimousse@^0.4.0",
         "lucide-react@^1.47.0"
       ],
@@ -3900,7 +3967,7 @@
       "title": "Empty",
       "description": "Empty-state layout for blank lists, zero results, and new workspaces.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -3936,7 +4003,7 @@
       "title": "Field",
       "description": "Form field wrapper for labels, descriptions, errors, and validity state.",
       "dependencies": [
-        "@base-ui/react@^1.8.0",
+        "@base-ui/react@^1.9.0",
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
@@ -4020,7 +4087,7 @@
       "title": "FilterBar",
       "description": "Build editable field, operator, and value filters with a button or inline search.",
       "dependencies": [
-        "@base-ui/react@^1.8.0",
+        "@base-ui/react@^1.9.0",
         "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
@@ -4132,7 +4199,7 @@
       "title": "Form",
       "description": "Form wrapper that coordinates field validation and returned errors.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -4155,7 +4222,7 @@
       "title": "Hover card",
       "description": "Hover or focus preview panel for profiles, links, and contextual details.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -4210,7 +4277,7 @@
       "title": "Icon Picker",
       "description": "Searchable icon grid and color swatches using an app-supplied icon catalog.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -4361,7 +4428,7 @@
       "title": "Input",
       "description": "Text field primitive sized and styled to match other controls.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -4404,7 +4471,7 @@
       "title": "Input group",
       "description": "Joined input wrapper for addons, icons, and a shared focus indicator.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -4446,7 +4513,7 @@
       "title": "Input OTP",
       "description": "One-time-code field with grouped, focus-aware slots.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -4488,7 +4555,7 @@
       "title": "Item",
       "description": "List row with media, content, and trailing actions.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -4559,7 +4626,7 @@
       "title": "LevelMeter",
       "description": "Live audio level in dBFS with warning and clip zones and a peak hold, painted without React renders.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -4751,6 +4818,11 @@
           "type": "registry:component"
         },
         {
+          "path": "src/registry/sources/control-ui/markdown-editor/bubble-menu.tsx",
+          "target": "@components/control-ui/markdown-editor/bubble-menu.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/markdown-editor/context.ts",
           "target": "@components/control-ui/markdown-editor/context.ts",
           "type": "registry:component"
@@ -4815,7 +4887,7 @@
       "title": "Menubar",
       "description": "Desktop command bar with nested menus, shortcuts, and separators.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -4887,7 +4959,7 @@
       "title": "Meter",
       "description": "Static range meter for quota, storage, score, or usage values.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -4923,7 +4995,7 @@
       "title": "Morphing Panel",
       "description": "A compact control that expands into settings, workspace navigation, or an inline confirmation, with stable alignment and keyboard dismissal.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -4961,7 +5033,7 @@
       "title": "Native select",
       "description": "Native select control styled to match the Control UI control family.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -5003,7 +5075,7 @@
       "title": "Navigation menu",
       "description": "Site navigation menu with a shared animated viewport.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -5103,7 +5175,7 @@
       "title": "Number Field",
       "description": "Numeric input with stepper buttons and optional drag-to-change behavior.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -5269,7 +5341,7 @@
       "title": "Popover",
       "description": "Anchored floating panel for inline settings and contextual content.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -5323,7 +5395,7 @@
       "title": "Progress",
       "description": "Determinate task progress with optional label and value rows.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -5393,7 +5465,7 @@
       "title": "Radio group",
       "description": "Single-choice radio set for plans, filters, and option lists.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -5523,7 +5595,7 @@
       "title": "Rich tooltip",
       "description": "Persistent anchored tip for onboarding tours, walkthroughs, and new-feature announcements — dismissible, with optional media and step counter.",
       "dependencies": [
-        "@base-ui/react@^1.8.0",
+        "@base-ui/react@^1.9.0",
         "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
@@ -5597,7 +5669,7 @@
       "title": "Scroll area",
       "description": "Scroll container with overlay or space-reserving scrollbars, edge fades, and optional progressive blur.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -5634,7 +5706,7 @@
       "title": "Select",
       "description": "Single-choice picker with a token-matched trigger and floating list.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -5743,7 +5815,7 @@
       "title": "Separator",
       "description": "Horizontal or vertical hairline divider.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -5817,7 +5889,7 @@
       "title": "Sidebar",
       "description": "Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus.",
       "dependencies": [
-        "@base-ui/react@^1.8.0",
+        "@base-ui/react@^1.9.0",
         "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
@@ -6346,7 +6418,7 @@
       "title": "Slider",
       "description": "Single-value range control with branded and plain treatments.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -6498,7 +6570,7 @@
       "title": "Switch",
       "description": "On/off control with token-driven track, thumb, and press motion.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -6608,7 +6680,7 @@
       "title": "Tabs",
       "description": "Segmented and browser-style navigation with a stable active indicator.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -6711,7 +6783,7 @@
       "title": "Textarea",
       "description": "Multiline text field with CSS-first auto-growth.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -6814,7 +6886,7 @@
       "title": "Timeline",
       "description": "Static chronological events with independent status, connectors, descriptions, and metadata.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -6850,7 +6922,7 @@
       "title": "Toast",
       "description": "Transient notifications with a callable toast API and single Toaster mount.",
       "dependencies": [
-        "@base-ui/react@^1.8.0",
+        "@base-ui/react@^1.9.0",
         "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
@@ -6913,7 +6985,7 @@
       "title": "Toggle",
       "description": "Pressed-state button and toggle group built on the Button surface.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -6947,12 +7019,53 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "tool-approval",
+      "type": "registry:component",
+      "title": "ToolApproval",
+      "description": "Inline approve or deny card for an agent action, with risk, a preview of what will run, and keyboard shortcuts.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "lucide-react@^1.47.0"
+      ],
+      "registryDependencies": [
+        "https://control-ui.dev/r/badge.json",
+        "https://control-ui.dev/r/button.json",
+        "https://control-ui.dev/r/core.json",
+        "https://control-ui.dev/r/kbd.json",
+        "https://control-ui.dev/r/live-status.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/knob-contracts/tool-approval-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/tool-approval-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/tool-approval.css",
+          "target": "@components/control-ui/styles/recipes/tool-approval.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/tool-approval.tsx",
+          "target": "@components/control-ui/tool-approval.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/tool-approval.css\"": {}
+      },
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/tool-approval.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "toolbar",
       "type": "registry:ui",
       "title": "Toolbar",
       "description": "Roving-focus toolbar for editor controls and compact actions.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -7012,7 +7125,7 @@
       "title": "Tooltip",
       "description": "Hover or focus hint popup with Base UI positioning and Control UI tokens.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -7145,7 +7258,7 @@
       "title": "Tree",
       "description": "Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure.",
       "dependencies": [
-        "@base-ui/react@^1.8.0",
+        "@base-ui/react@^1.9.0",
         "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
@@ -7183,7 +7296,7 @@
       "title": "Trigger Menu",
       "description": "Caret-anchored command or mention menu for text editors.",
       "dependencies": [
-        "@base-ui/react@^1.8.0"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -7292,6 +7405,7 @@
         "https://control-ui.dev/r/accordion.json",
         "https://control-ui.dev/r/action-bar.json",
         "https://control-ui.dev/r/activity.json",
+        "https://control-ui.dev/r/agent-run-block.json",
         "https://control-ui.dev/r/alert.json",
         "https://control-ui.dev/r/alert-dialog.json",
         "https://control-ui.dev/r/app-shell.json",
@@ -7397,6 +7511,7 @@
         "https://control-ui.dev/r/timeline.json",
         "https://control-ui.dev/r/toast.json",
         "https://control-ui.dev/r/toggle.json",
+        "https://control-ui.dev/r/tool-approval.json",
         "https://control-ui.dev/r/toolbar.json",
         "https://control-ui.dev/r/tooltip.json",
         "https://control-ui.dev/r/track-highlight.json",

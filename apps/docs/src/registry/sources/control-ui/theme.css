@@ -685,8 +685,8 @@
 }
 
 @layer components {
-  :where([data-control-family]):focus-visible,
-  :where([data-control-family][data-control="true"]):has(:focus-visible),
+  :where([data-control-family]:not([data-focus-ring="none"])):focus-visible,
+  :where([data-control-family][data-control="true"]:not([data-focus-ring="none"])):has(:focus-visible),
   :where([data-control-family][data-focus-ring="within"]):has(:focus-visible) {
     outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring);
     outline-offset: var(--focus-ring-offset);
@@ -694,7 +694,8 @@
 
   :where(
     [data-control-family][data-control="true"] [data-control-family],
-    [data-control-family][data-focus-ring="within"] [data-control-family]
+    [data-control-family][data-focus-ring="within"] [data-control-family],
+    [data-control-family][data-focus-ring="none"] [data-control-family]
   ):focus-visible {
     outline-width: 0;
   }
@@ -704,8 +705,8 @@
   }
 
   @media (forced-colors: active) {
-    :where([data-control-family]):focus-visible,
-    :where([data-control-family][data-control="true"]):has(:focus-visible),
+    :where([data-control-family]:not([data-focus-ring="none"])):focus-visible,
+    :where([data-control-family][data-control="true"]:not([data-focus-ring="none"])):has(:focus-visible),
     :where([data-control-family][data-focus-ring="within"]):has(:focus-visible) {
       outline-color: Highlight;
     }

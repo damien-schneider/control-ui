@@ -72,6 +72,10 @@
     color: var(--destructive-text);
   }
 
+  :where([data-control-family="activity"][data-slot="root"][data-activity-state="waiting"] [data-slot="icon"]) {
+    color: var(--warning-text);
+  }
+
   :where([data-control-family="activity"][data-slot="title"]) {
     color: currentColor;
     font-size: var(--text-label);
@@ -85,6 +89,10 @@
 
   :where([data-control-family="activity"][data-slot="status"][data-status="error"]) {
     color: var(--destructive-text);
+  }
+
+  :where([data-control-family="activity"][data-slot="status"][data-status="waiting"]) {
+    color: var(--warning-text);
   }
 
   :where([data-control-family="activity"][data-slot="detail-label"]) {

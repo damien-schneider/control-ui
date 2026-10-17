@@ -44,30 +44,36 @@
 
   :where(
     [data-control-family="button-group"][data-orientation="horizontal"]
-      > :not([data-control-family="track-highlight"])
-      + :not([data-control-family="track-highlight"])
+      > :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])
+      ~ :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])
   ) {
     margin-inline-start: -1px;
     border-start-start-radius: 0;
     border-end-start-radius: 0;
   }
 
-  :where([data-control-family="button-group"][data-orientation="horizontal"] > :has(~ :not([data-control-family="track-highlight"]))) {
+  :where(
+    [data-control-family="button-group"][data-orientation="horizontal"]
+      > :has(~ :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns]))
+  ) {
     border-start-end-radius: 0;
     border-end-end-radius: 0;
   }
 
   :where(
     [data-control-family="button-group"][data-orientation="vertical"]
-      > :not([data-control-family="track-highlight"])
-      + :not([data-control-family="track-highlight"])
+      > :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])
+      ~ :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])
   ) {
     margin-block-start: -1px;
     border-start-start-radius: 0;
     border-start-end-radius: 0;
   }
 
-  :where([data-control-family="button-group"][data-orientation="vertical"] > :has(~ :not([data-control-family="track-highlight"]))) {
+  :where(
+    [data-control-family="button-group"][data-orientation="vertical"]
+      > :has(~ :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns]))
+  ) {
     border-end-start-radius: 0;
     border-end-end-radius: 0;
   }

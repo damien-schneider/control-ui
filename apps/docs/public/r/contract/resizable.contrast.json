@@ -315,6 +315,59 @@
       },
       {
         "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "nested"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
           "data-axis": "vertical",
           "data-control-family": "resizable",
           "data-control-ui": "resizable",
@@ -656,7 +709,7 @@
           "data-control-ui": "resizable",
           "data-slot": "panel-group",
           "data-surface": "panel",
-          "data-variant": "framed"
+          "data-variant": "nested"
         }
       },
       {
@@ -719,10 +772,10 @@
     },
     {
       "knobs": {
-        "fill": "--cui-resizable-handle-background"
+        "fill": "--cui-resizable-group-background"
       },
       "anatomy": 5,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -770,6 +823,14 @@
         "fill": "--cui-resizable-handle-background"
       },
       "anatomy": 11,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-resizable-handle-background"
+      },
+      "anatomy": 12,
       "rendersText": false,
       "state": false
     }

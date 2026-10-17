@@ -156,6 +156,12 @@
             "values": []
           },
           {
+            "attribute": "data-index",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-panel-open",
             "source": "external",
             "valueKind": "presence",

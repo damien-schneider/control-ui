@@ -310,6 +310,13 @@
           }
         ]
       },
+      "edit-actions": {
+        "family": "chat-message",
+        "registryItems": [
+          "chat-message"
+        ],
+        "states": []
+      },
       "edit-error": {
         "family": "chat-message",
         "registryItems": [
@@ -325,27 +332,6 @@
         "states": []
       },
       "edit-sizer": {
-        "family": "chat-message",
-        "registryItems": [
-          "chat-message"
-        ],
-        "states": []
-      },
-      "edit-toolbar": {
-        "family": "chat-message",
-        "registryItems": [
-          "chat-message"
-        ],
-        "states": [
-          {
-            "attribute": "data-active",
-            "source": "control-ui",
-            "valueKind": "presence",
-            "values": []
-          }
-        ]
-      },
-      "edit-toolbars": {
         "family": "chat-message",
         "registryItems": [
           "chat-message"
@@ -509,6 +495,13 @@
             ]
           }
         ]
+      },
+      "read-actions": {
+        "family": "chat-message",
+        "registryItems": [
+          "chat-message"
+        ],
+        "states": []
       },
       "replies": {
         "family": "chat-message",

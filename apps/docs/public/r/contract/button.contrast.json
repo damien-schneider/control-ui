@@ -5,33 +5,6 @@
     [
       {
         "attributes": {
-          "data-control-family": "app-shell-header",
-          "data-control-ui": "app-shell",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "aria-disabled": "false",
-          "aria-pressed": "true",
-          "data-active": "true",
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "toggle",
-          "data-layout": "inline",
-          "data-pressed": "",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-track-item": "",
-          "data-variant": "surface",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
@@ -119,63 +92,23 @@
           "data-control-ui": "page-layout",
           "data-scroll": "page",
           "data-slot": "root",
-          "data-width": "full"
+          "data-width": "prose"
         }
       },
       {
         "attributes": {
+          "aria-disabled": "false",
+          "aria-pressed": "true",
           "data-active": "true",
           "data-control": "true",
           "data-control-family": "button",
-          "data-control-ui": "button",
+          "data-control-ui": "toggle",
           "data-layout": "inline",
-          "data-shape": "default",
+          "data-pressed": "",
           "data-size": "sm",
           "data-slot": "root",
           "data-tone": "neutral",
-          "data-variant": "quiet",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-active": "true",
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "tile",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "neutral",
+          "data-track-item": "",
           "data-variant": "surface",
           "tabindex": "0"
         }
@@ -210,18 +143,20 @@
       },
       {
         "attributes": {
-          "aria-disabled": "false",
-          "aria-pressed": "true",
+          "aria-disabled": "true",
           "data-active": "true",
           "data-control": "true",
           "data-control-family": "button",
-          "data-control-ui": "toggle",
+          "data-control-ui": "audio-recorder",
+          "data-disabled": "",
+          "data-icon-only": "true",
           "data-layout": "inline",
-          "data-pressed": "",
+          "data-recorder-state": "requesting",
+          "data-shape": "circle",
           "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-track-item": "",
+          "data-slot": "trigger",
+          "data-status-only": "true",
+          "data-tone": "primary",
           "data-variant": "surface",
           "tabindex": "0"
         }
@@ -1061,7 +996,7 @@
           "data-control-ui": "resizable",
           "data-slot": "panel-group",
           "data-surface": "panel",
-          "data-variant": "framed"
+          "data-variant": "nested"
         }
       },
       {
@@ -1078,494 +1013,6 @@
           "data-tone": "neutral",
           "data-variant": "quiet",
           "role": "option",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-chrome": "standalone",
-          "data-control-family": "code",
-          "data-control-ui": "code",
-          "data-density": "compact",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "xs",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "quiet",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-chrome": "standalone",
-          "data-control-family": "code",
-          "data-control-ui": "code",
-          "data-density": "default",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "xs",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "surface",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "app-shell-header",
-          "data-control-ui": "app-shell",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "aria-disabled": "false",
-          "aria-pressed": "false",
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "toggle",
-          "data-layout": "inline",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-track-item": "",
-          "data-variant": "surface",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "app-shell-header",
-          "data-control-ui": "app-shell",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-icon-only": "true",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "ghost",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "app-shell-header",
-          "data-control-ui": "app-shell",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "ghost",
-          "href": "#"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "app-shell-header",
-          "data-control-ui": "app-shell",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "primary",
-          "data-variant": "solid",
-          "href": "#"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "contained",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "header"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-icon-only": "true",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "xs",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "ghost",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "contained",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-density": "compact",
-          "data-slot": "root",
-          "data-state": "idle"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-slot": "shell",
-          "data-state": "idle",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "chat-composer",
-          "data-disabled": "",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "xs",
-          "data-slot": "submit",
-          "data-tone": "primary",
-          "data-variant": "solid",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "contained",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-density": "compact",
-          "data-slot": "root",
-          "data-state": "idle"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-slot": "shell",
-          "data-state": "idle",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "popover",
-          "data-icon-only": "true",
-          "data-layout": "inline",
-          "data-popup-kind": "popover",
-          "data-shape": "default",
-          "data-size": "xs",
-          "data-slot": "trigger",
-          "data-tone": "neutral",
-          "data-variant": "ghost",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "contained",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-message",
-          "data-control-ui": "chat-message",
-          "data-density": "comfortable",
-          "data-layout": "flat",
-          "data-slot": "row"
-        }
-      },
-      {
-        "attributes": {
-          "aria-disabled": "false",
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "dropdown-menu",
-          "data-layout": "inline",
-          "data-orientation": "horizontal",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "trigger",
-          "data-tone": "neutral",
-          "data-variant": "surface",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "contained",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-message",
-          "data-control-ui": "chat-message",
-          "data-density": "comfortable",
-          "data-layout": "flat",
-          "data-slot": "row"
-        }
-      },
-      {
-        "attributes": {
-          "aria-disabled": "false",
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "popover",
-          "data-icon-only": "true",
-          "data-layout": "inline",
-          "data-orientation": "horizontal",
-          "data-popup-kind": "popover",
-          "data-shape": "default",
-          "data-size": "xs",
-          "data-slot": "trigger",
-          "data-tone": "neutral",
-          "data-variant": "ghost",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "contained",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-message",
-          "data-control-ui": "chat-message",
-          "data-density": "comfortable",
-          "data-layout": "flat",
-          "data-slot": "row"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-icon-only": "true",
-          "data-layout": "inline",
-          "data-orientation": "horizontal",
-          "data-shape": "default",
-          "data-size": "xs",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "ghost",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "contained",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-message",
-          "data-control-ui": "chat-message",
-          "data-density": "comfortable",
-          "data-layout": "flat",
-          "data-slot": "row"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "popover",
-          "data-icon-only": "true",
-          "data-layout": "inline",
-          "data-popup-kind": "popover",
-          "data-shape": "default",
-          "data-size": "xs",
-          "data-slot": "trigger",
-          "data-tone": "neutral",
-          "data-variant": "ghost",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "contained",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "xs",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "ghost",
           "tabindex": "0"
         }
       }
@@ -1823,894 +1270,6 @@
           "data-slot": "root",
           "data-tone": "neutral",
           "data-variant": "ghost",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-disabled": "",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "solid",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-icon-only": "true",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "lg",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "surface",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-icon-only": "true",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "md",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "surface",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-icon-only": "true",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "surface",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-icon-only": "true",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "xs",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "quiet",
-          "href": "#"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-icon-only": "true",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "xs",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "surface",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "lg",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "surface",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "md",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "surface",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "danger",
-          "data-variant": "ghost",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "danger",
-          "data-variant": "solid",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "ghost",
-          "href": "#"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "ghost",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "quiet",
-          "href": "#"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "quiet",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "solid",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "surface",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "primary",
-          "data-variant": "ghost",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "primary",
-          "data-variant": "solid",
-          "href": "#"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "primary",
-          "data-variant": "solid",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "xs",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "surface",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "tile",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "surface",
           "tabindex": "0"
         }
       }
@@ -8724,6 +7283,83 @@
       },
       {
         "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "code-diff",
+          "data-control-ui": "code-diff",
+          "data-diff-style": "unified",
+          "data-file-count": "1",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "surface",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "compact",
@@ -9122,7 +7758,7 @@
           "data-control-ui": "resizable",
           "data-slot": "panel-group",
           "data-surface": "panel",
-          "data-variant": "framed"
+          "data-variant": "nested"
         }
       },
       {
@@ -9190,6 +7826,65 @@
           "data-control": "true",
           "data-control-family": "button",
           "data-control-ui": "button",
+          "data-icon-only": "true",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "ghost",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
           "data-layout": "inline",
           "data-shape": "default",
           "data-size": "xs",
@@ -9268,6 +7963,64 @@
           "data-slot": "root",
           "data-tone": "neutral",
           "data-variant": "ghost",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "quiet",
           "tabindex": "0"
         }
       }
@@ -9381,7 +8134,7 @@
           "data-control-ui": "dropdown-menu",
           "data-icon-only": "true",
           "data-shape": "default",
-          "data-size": "xs",
+          "data-size": "sm",
           "data-slot": "trigger",
           "data-tone": "neutral",
           "data-variant": "ghost",
@@ -9440,7 +8193,7 @@
           "data-layout": "inline",
           "data-shape": "default",
           "data-sidebar-trigger": "",
-          "data-size": "xs",
+          "data-size": "sm",
           "data-slot": "trigger",
           "data-tone": "neutral",
           "data-variant": "ghost",
@@ -9503,6 +8256,110 @@
           "data-slot": "trigger",
           "data-tone": "neutral",
           "data-variant": "ghost",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tool-approval",
+          "data-control-ui": "tool-approval",
+          "data-risk": "medium",
+          "data-slot": "root",
+          "data-state": "pending",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "tool-approval",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "approve",
+          "data-tone": "primary",
+          "data-variant": "solid",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tool-approval",
+          "data-control-ui": "tool-approval",
+          "data-risk": "medium",
+          "data-slot": "root",
+          "data-state": "pending",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "tool-approval",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "deny",
+          "data-tone": "neutral",
+          "data-variant": "quiet",
           "tabindex": "0"
         }
       }
@@ -9924,6 +8781,49 @@
           "data-size": "sm",
           "data-slot": "root",
           "data-tone": "neutral",
+          "data-variant": "ghost",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
+          "data-disabled": "",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-tone": "neutral",
           "data-variant": "quiet",
           "tabindex": "0"
         }
@@ -10270,6 +9170,49 @@
           "data-tone": "neutral",
           "data-variant": "ghost",
           "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
+          "data-icon-only": "true",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "quiet",
+          "href": "#"
         }
       }
     ],
@@ -10752,6 +9695,48 @@
           "data-tone": "neutral",
           "data-variant": "ghost",
           "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "quiet",
+          "href": "#"
         }
       }
     ],
@@ -11746,6 +10731,58 @@
           "data-chrome": "standalone",
           "data-control-family": "code",
           "data-control-ui": "code",
+          "data-density": "compact",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "quiet",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
           "data-density": "default",
           "data-header": "true",
           "data-slot": "root",
@@ -11803,6 +10840,690 @@
       },
       {
         "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "surface",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "header"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
+          "data-icon-only": "true",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "ghost",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "compact",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "chat-composer",
+          "data-disabled": "",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "submit",
+          "data-tone": "primary",
+          "data-variant": "solid",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "compact",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "popover",
+          "data-icon-only": "true",
+          "data-layout": "inline",
+          "data-popup-kind": "popover",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "trigger",
+          "data-tone": "neutral",
+          "data-variant": "ghost",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-density": "comfortable",
+          "data-layout": "flat",
+          "data-slot": "row"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "dropdown-menu",
+          "data-layout": "inline",
+          "data-orientation": "horizontal",
+          "data-shape": "default",
+          "data-size": "sm",
+          "data-slot": "trigger",
+          "data-tone": "neutral",
+          "data-variant": "surface",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-density": "comfortable",
+          "data-layout": "flat",
+          "data-slot": "row"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "popover",
+          "data-icon-only": "true",
+          "data-layout": "inline",
+          "data-orientation": "horizontal",
+          "data-popup-kind": "popover",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "trigger",
+          "data-tone": "neutral",
+          "data-variant": "ghost",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-density": "comfortable",
+          "data-layout": "flat",
+          "data-slot": "row"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "end",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "ghost",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-density": "comfortable",
+          "data-layout": "flat",
+          "data-slot": "row"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
+          "data-icon-only": "true",
+          "data-layout": "inline",
+          "data-orientation": "horizontal",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "ghost",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-density": "comfortable",
+          "data-layout": "flat",
+          "data-slot": "row"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "popover",
+          "data-icon-only": "true",
+          "data-layout": "inline",
+          "data-popup-kind": "popover",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "trigger",
+          "data-tone": "neutral",
+          "data-variant": "ghost",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "ghost",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
           "data-control": "true",
           "data-control-family": "button",
           "data-control-ui": "button",
@@ -11813,6 +11534,90 @@
           "data-tone": "neutral",
           "data-variant": "quiet",
           "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "lg",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "surface",
+          "href": "#"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "lg",
+          "data-slot": "root",
+          "data-tone": "primary",
+          "data-variant": "solid",
+          "href": "#"
         }
       }
     ],
@@ -12223,130 +12028,6 @@
     [
       {
         "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "lg",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "surface",
-          "href": "#"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-layout": "inline",
-          "data-shape": "default",
-          "data-size": "lg",
-          "data-slot": "root",
-          "data-tone": "primary",
-          "data-variant": "solid",
-          "href": "#"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "contained",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-message",
-          "data-control-ui": "chat-message",
-          "data-density": "comfortable",
-          "data-layout": "flat",
-          "data-slot": "row"
-        }
-      },
-      {
-        "attributes": {
-          "aria-disabled": "false",
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "popover",
-          "data-icon-only": "true",
-          "data-layout": "inline",
-          "data-orientation": "horizontal",
-          "data-popup-kind": "popover",
-          "data-popup-open": "",
-          "data-pressed": "",
-          "data-shape": "default",
-          "data-size": "xs",
-          "data-slot": "trigger",
-          "data-tone": "neutral",
-          "data-variant": "ghost",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "contained",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-message",
-          "data-control-ui": "chat-message",
-          "data-density": "comfortable",
-          "data-layout": "flat",
-          "data-slot": "row"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "popover",
-          "data-icon-only": "true",
-          "data-layout": "inline",
-          "data-popup-kind": "popover",
-          "data-popup-open": "",
-          "data-pressed": "",
-          "data-shape": "default",
-          "data-size": "xs",
-          "data-slot": "trigger",
-          "data-tone": "neutral",
-          "data-variant": "ghost",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
@@ -12680,7 +12361,7 @@
           "data-popup-open": "",
           "data-pressed": "",
           "data-shape": "default",
-          "data-size": "xs",
+          "data-size": "sm",
           "data-slot": "trigger",
           "data-tone": "neutral",
           "data-variant": "ghost",
@@ -13266,6 +12947,77 @@
       },
       {
         "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-density": "comfortable",
+          "data-layout": "flat",
+          "data-slot": "row"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "popover",
+          "data-icon-only": "true",
+          "data-layout": "inline",
+          "data-popup-kind": "popover",
+          "data-popup-open": "",
+          "data-pressed": "",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "trigger",
+          "data-tone": "neutral",
+          "data-variant": "ghost",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
           "data-control": "true",
           "data-control-family": "button",
           "data-control-ui": "dropdown-menu",
@@ -13307,7 +13059,7 @@
         "text": "--cui-button-active-foreground"
       },
       "anatomy": 2,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -13424,7 +13176,7 @@
         "text": "--cui-button-active-foreground"
       },
       "anatomy": 15,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -13433,7 +13185,7 @@
         "text": "--cui-button-active-foreground"
       },
       "anatomy": 16,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -13442,7 +13194,7 @@
         "text": "--cui-button-active-foreground"
       },
       "anatomy": 17,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -13451,7 +13203,7 @@
         "text": "--cui-button-active-foreground"
       },
       "anatomy": 18,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -13465,8 +13217,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-button-active-background",
-        "text": "--cui-button-active-foreground"
+        "fill": "--cui-button-background",
+        "text": "--cui-button-foreground"
       },
       "anatomy": 20,
       "rendersText": true,
@@ -13474,8 +13226,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-button-active-background",
-        "text": "--cui-button-active-foreground"
+        "fill": "--cui-button-background",
+        "text": "--cui-button-foreground"
       },
       "anatomy": 21,
       "rendersText": true,
@@ -13514,7 +13266,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 25,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -13523,7 +13275,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 26,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -13532,7 +13284,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 27,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -13541,7 +13293,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 28,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -13568,7 +13320,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 31,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -13577,7 +13329,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 32,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -13586,7 +13338,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 33,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -13595,7 +13347,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 34,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -13658,7 +13410,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 41,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -13667,7 +13419,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 42,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -13685,7 +13437,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 44,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -13694,7 +13446,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 45,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -13712,7 +13464,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 47,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -13739,7 +13491,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 50,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -13748,7 +13500,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 51,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -13766,7 +13518,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 53,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -13775,7 +13527,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 54,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -13793,7 +13545,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 56,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -13802,7 +13554,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 57,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -13820,7 +13572,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 59,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -13829,7 +13581,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 60,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -13838,7 +13590,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 61,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -13847,7 +13599,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 62,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -13856,7 +13608,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 63,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -13865,7 +13617,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 64,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -13892,7 +13644,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 67,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -13964,7 +13716,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 75,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -13973,7 +13725,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 76,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14000,7 +13752,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 79,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -14018,7 +13770,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 81,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -14036,7 +13788,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 83,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14090,7 +13842,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 89,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -14117,7 +13869,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 92,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -14126,7 +13878,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 93,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14144,7 +13896,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 95,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -14171,7 +13923,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 98,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14189,7 +13941,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 100,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -14216,7 +13968,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 103,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -14324,7 +14076,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 115,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14333,7 +14085,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 116,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14342,7 +14094,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 117,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14351,7 +14103,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 118,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14378,7 +14130,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 121,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14414,7 +14166,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 125,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14423,7 +14175,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 126,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14441,7 +14193,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 128,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14486,7 +14238,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 133,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14513,7 +14265,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 136,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14522,7 +14274,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 137,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14540,7 +14292,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 139,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -14549,7 +14301,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 140,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14585,7 +14337,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 144,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -14594,7 +14346,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 145,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -14639,7 +14391,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 150,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -14702,7 +14454,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 157,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -14711,7 +14463,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 158,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -14720,7 +14472,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 159,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -14729,7 +14481,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 160,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -14747,7 +14499,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 162,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -14756,7 +14508,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 163,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -14774,7 +14526,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 165,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14792,7 +14544,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 167,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14801,7 +14553,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 168,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14846,7 +14598,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 173,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14873,7 +14625,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 176,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14882,7 +14634,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 177,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -14927,7 +14679,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 182,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -15008,7 +14760,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 191,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -15017,7 +14769,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 192,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -15026,7 +14778,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 193,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -15035,7 +14787,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 194,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -15044,7 +14796,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 195,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -15062,7 +14814,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 197,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -15071,7 +14823,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 198,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -15080,7 +14832,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 199,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -15089,7 +14841,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 200,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -15107,7 +14859,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 202,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -15116,7 +14868,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 203,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -15125,7 +14877,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 204,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -15143,7 +14895,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 206,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -15152,7 +14904,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 207,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -15242,7 +14994,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 217,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -15251,7 +15003,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 218,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -15260,7 +15012,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 219,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -15269,7 +15021,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 220,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -15283,8 +15035,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
       },
       "anatomy": 222,
       "rendersText": true,
@@ -15292,26 +15044,26 @@
     },
     {
       "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
       },
       "anatomy": 223,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
       },
       "anatomy": 224,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
       },
       "anatomy": 225,
       "rendersText": true,
@@ -15319,8 +15071,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
       },
       "anatomy": 226,
       "rendersText": false,
@@ -15328,8 +15080,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
       },
       "anatomy": 227,
       "rendersText": true,
@@ -15337,8 +15089,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
       },
       "anatomy": 228,
       "rendersText": true,
@@ -15346,8 +15098,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
       },
       "anatomy": 229,
       "rendersText": true,
@@ -15355,8 +15107,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
       },
       "anatomy": 230,
       "rendersText": true,
@@ -15364,26 +15116,26 @@
     },
     {
       "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
       },
       "anatomy": 231,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
       },
       "anatomy": 232,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
       },
       "anatomy": 233,
       "rendersText": true,
@@ -15391,8 +15143,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
       },
       "anatomy": 234,
       "rendersText": true,
@@ -15400,8 +15152,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
       },
       "anatomy": 235,
       "rendersText": true,
@@ -15409,8 +15161,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
       },
       "anatomy": 236,
       "rendersText": false,
@@ -15418,17 +15170,17 @@
     },
     {
       "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
       },
       "anatomy": 237,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
       },
       "anatomy": 238,
       "rendersText": true,
@@ -15436,11 +15188,11 @@
     },
     {
       "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
       },
       "anatomy": 239,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -15449,177 +15201,6 @@
         "text": "--cui-button-open-foreground"
       },
       "anatomy": 240,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 241,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 242,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 243,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 244,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 245,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 246,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 247,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 248,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 249,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 250,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 251,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 252,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 253,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 254,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 255,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 256,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 257,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 258,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 259,
       "rendersText": false,
       "state": false
     }

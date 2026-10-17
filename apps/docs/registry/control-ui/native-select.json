@@ -5,7 +5,7 @@
   "title": "Native select",
   "description": "Native select control styled to match the Control UI control family.",
   "dependencies": [
-    "@base-ui/react@^1.8.0"
+    "@base-ui/react@^1.9.0"
   ],
   "registryDependencies": [
     "core"

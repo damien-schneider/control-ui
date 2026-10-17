@@ -36,6 +36,8 @@ test("search opens as a dialog from the sidebar and navigates to a result", asyn
   const dialog = page.getByRole("dialog");
   const input = dialog.getByRole("combobox", { name: "Search documentation" });
   await expect(input).toBeFocused();
+  await expect(input.locator("..")).toHaveCSS("outline-style", "none");
+  await expect(input).toHaveCSS("outline-width", "0px");
 
   await input.fill("architecture");
   await dialog

@@ -95,7 +95,7 @@ for (const { name, width, height, reducedMotion } of [
     await expect(page.getByRole("heading", { name: "Theme editor", level: 1 })).toBeFocused();
     await expect(page.getByRole("region", { name: "Skin workspace", exact: true })).toBeVisible();
     await expect(page.getByRole("tablist", { name: "Skin views" })).toBeVisible();
-    await expect(page.getByRole("tab", { name: "Components", exact: true })).toBeVisible();
+    await expect(page.getByRole("region", { name: "Buttons", exact: true })).toBeVisible();
     await openSidebarOnNarrowViewports();
     await expect(editTheme).toHaveAttribute("aria-current", "page");
     await expect(toolbar.getByRole("combobox", { name: "Skin", exact: true })).toBeVisible();
@@ -304,28 +304,37 @@ test("copy failure stays actionable without reporting success", async ({ page })
   await expect(page.getByRole("button", { name: "Copy CSS overrides", exact: true })).toBeEnabled();
 });
 
-test("preview search and form values survive switching to source", async ({ page }) => {
+test("preview form values survive switching to source", async ({ page }) => {
   await page.goto("/theme-editor", { waitUntil: "networkidle" });
   const workspace = page.getByRole("region", { name: "Skin workspace", exact: true });
   const views = workspace.getByRole("tablist", { name: "Skin views" });
-  const search = workspace.getByRole("searchbox", { name: "Search component previews" });
 
-  await search.fill("field");
-  await expect(workspace.getByRole("region", { name: "Fields", exact: true })).toBeVisible();
-  await expect(workspace.getByRole("region", { name: "Buttons", exact: true })).toHaveCount(0);
   await workspace.getByRole("textbox", { name: "Display name" }).fill("Theme preview");
   await views.getByRole("tab", { name: "Source", exact: true }).click();
   await expect(page).toHaveURL(/view=source$/);
   await views.getByRole("tab", { name: "Preview", exact: true }).click();
-  await expect(search).toHaveValue("field");
   await expect(workspace.getByRole("textbox", { name: "Display name" })).toHaveValue("Theme preview");
+});
 
-  await search.fill("no-such-component");
-  await expect(workspace.getByText("No matching components", { exact: true })).toBeVisible();
-  await workspace.getByRole("button", { name: "Clear search", exact: true }).click();
-  await expect(search).toHaveValue("");
-  await expect(search).toBeFocused();
-  await expect(workspace.getByRole("region", { name: "Buttons", exact: true })).toBeVisible();
+test("category pages pair previews with the token panel", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/theme-editor/color", { waitUntil: "networkidle" });
+  const panel = page.getByRole("region", { name: "Theme variables", exact: true });
+  await expect(panel).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "On this page" })).toHaveCount(0);
+  const article = page.locator('[data-control-family="page-layout"][data-slot="content"]');
+  const [articleBox, panelBox] = await Promise.all([article.boundingBox(), panel.boundingBox()]);
+  expect(panelBox?.x).toBeGreaterThan((articleBox?.x ?? 0) + (articleBox?.width ?? 0));
+
+  await page.setViewportSize({ width: 360, height: 900 });
+  await expect(panel).toBeVisible();
+  const [title, narrowPanel, previews] = await Promise.all([
+    page.getByRole("heading", { name: "Theme editor", level: 1 }).boundingBox(),
+    panel.boundingBox(),
+    page.locator("#preview-foundation").boundingBox(),
+  ]);
+  expect(narrowPanel?.y).toBeGreaterThan(title?.y ?? Number.POSITIVE_INFINITY);
+  expect(narrowPanel?.y).toBeLessThan(previews?.y ?? 0);
 });
 
 for (const width of [360, 1280]) {

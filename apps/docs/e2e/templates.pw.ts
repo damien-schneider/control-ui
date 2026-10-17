@@ -15,7 +15,7 @@ test("Templates owns template browsing and canonical detail routes", async ({ pa
   await expect(page.getByRole("heading", { name: "Templates", level: 1 })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Screens", level: 2 })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Patterns", level: 2 })).toBeVisible();
-  await expect(page.locator('[data-template-kind="screen"]')).toHaveCount(6);
+  await expect(page.locator('[data-template-kind="screen"]')).toHaveCount(7);
   await expect(page.locator('[data-template-kind="pattern"]')).toHaveCount(2);
 
   const codingAgentLink = page.locator('[data-template-card="coding-agent"] a');

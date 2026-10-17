@@ -1,0 +1,41 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tool-approval",
+  "type": "registry:component",
+  "title": "ToolApproval",
+  "description": "Inline approve or deny card for an agent action, with risk, a preview of what will run, and keyboard shortcuts.",
+  "dependencies": [
+    "@base-ui/react@^1.9.0",
+    "lucide-react@^1.47.0"
+  ],
+  "registryDependencies": [
+    "badge",
+    "button",
+    "core",
+    "kbd",
+    "live-status"
+  ],
+  "files": [
+    {
+      "path": "src/registry/knob-contracts/tool-approval-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/tool-approval-knobs.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/tool-approval.css",
+      "target": "@components/control-ui/styles/recipes/tool-approval.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/tool-approval.tsx",
+      "target": "@components/control-ui/tool-approval.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/tool-approval.css\"": {}
+  },
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/tool-approval.json"
+  }
+}

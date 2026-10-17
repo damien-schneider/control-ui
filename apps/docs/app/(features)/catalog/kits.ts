@@ -79,6 +79,11 @@ const userAskRecipeFiles = [
   sourceFile("User ask recipe — panel + @property knobs", "src/registry/sources/control-ui/recipes/user-ask.css", "recipe-css"),
   sourceFile("User ask recipe — nested details", "src/registry/sources/control-ui/recipes/user-ask-details.css", "recipe-css"),
 ] as const;
+const toolApprovalRecipeFile = sourceFile(
+  "Tool approval recipe — card + @property knobs",
+  "src/registry/sources/control-ui/recipes/tool-approval.css",
+  "recipe-css",
+);
 const taskListRecipeFile = sourceFile(
   "Task list recipe — paint + @property knobs",
   "src/registry/sources/control-ui/recipes/task-list.css",
@@ -195,6 +200,27 @@ export const kitEntries = [
       supportFiles: [...userAskRecipeFiles],
     },
     preview: preview(() => import("@/src/registry/examples/control-ui/user-ask").then((mod) => ({ default: mod.UserAskExample }))),
+  },
+  {
+    id: "tool-approval",
+    category: "chat",
+    kind: "Kit",
+    name: "ToolApproval",
+    summary: "Inline approve or deny card for an agent action, with risk, a preview of what will run, and keyboard shortcuts.",
+    registryKind: "tool-approval",
+    paths: {
+      example: sourceFile("Example", "src/registry/examples/control-ui/tool-approval.tsx", "example"),
+      usage: {
+        mastra: sourceFile("Mastra usage", "src/registry/usage/components/tool-approval.mastra.tsx", "usage"),
+        "ai-sdk": sourceFile("AI SDK usage", "src/registry/usage/components/tool-approval.ai-sdk.tsx", "usage"),
+      },
+      source: sourceFile("Component", "src/registry/sources/control-ui/tool-approval.tsx", "component"),
+      supportFiles: [toolApprovalRecipeFile],
+    },
+    preview: preview(
+      () => import("@/src/registry/examples/control-ui/tool-approval").then((mod) => ({ default: mod.ToolApprovalExample })),
+      { layout: "centered" },
+    ),
   },
   {
     id: "task-list",

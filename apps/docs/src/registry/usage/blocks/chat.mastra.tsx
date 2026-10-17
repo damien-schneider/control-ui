@@ -33,12 +33,28 @@ import {
 import { ChatTurn } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
 import { SourceBadge } from "@/components/control-ui/source-badge";
+import type { ToolApprovalState } from "@/components/control-ui/tool-approval";
+import {
+  ToolApproval,
+  ToolApprovalApprove,
+  ToolApprovalBody,
+  ToolApprovalDeny,
+  ToolApprovalField,
+  ToolApprovalFooter,
+  ToolApprovalHeader,
+  ToolApprovalIcon,
+  ToolApprovalPreview,
+  ToolApprovalRisk,
+  ToolApprovalStatus,
+  ToolApprovalTitle,
+} from "@/components/control-ui/tool-approval";
 import { Button } from "@/components/control-ui/ui/button";
 
 function activityState(state: string): ActivityState {
   if (state === "result" || state === "output-available") return "success";
   if (state === "output-error" || state === "output-denied") return "error";
-  if (state === "partial-call" || state === "input-streaming") return "running";
+  if (state === "approval-requested") return "waiting";
+  if (state === "partial-call" || state === "input-streaming" || state === "call" || state === "approval-responded") return "running";
   return "pending";
 }
 
@@ -56,32 +72,87 @@ function renderTurn(from: "user" | "assistant", children: ReactNode) {
   );
 }
 
-function renderToolInvocation(part: ToolInvocationPart) {
+type ToolCallApprovals = {
+  decisions: Record<string, { status: "approved" | "declined" }>;
+  pending: ReadonlySet<string>;
+  approve: (toolCallId: string) => Promise<void>;
+  decline: (toolCallId: string) => Promise<void>;
+};
+
+function pendingApprovalIds(metadata: Record<string, unknown> | undefined) {
+  const requests = metadata?.requireApprovalMetadata;
+  if (typeof requests !== "object" || requests === null) return [];
+  return Object.values(requests).flatMap((request: unknown) =>
+    typeof request === "object" && request !== null && "toolCallId" in request && typeof request.toolCallId === "string"
+      ? [request.toolCallId]
+      : [],
+  );
+}
+
+function approvalState(decision: "approved" | "declined" | undefined): ToolApprovalState {
+  if (decision === "approved") return "approved";
+  if (decision === "declined") return "denied";
+  return "pending";
+}
+
+function renderToolInvocation(part: ToolInvocationPart, approvals: ToolCallApprovals) {
   const invocation = part.toolInvocation;
-  const state = activityState(invocation.state);
+  const decision = approvals.decisions[invocation.toolCallId]?.status;
+  const awaitsApproval =
+    decision === undefined && (invocation.state === "approval-requested" || approvals.pending.has(invocation.toolCallId));
+  const state = awaitsApproval ? "waiting" : activityState(invocation.state);
+  const needsApproval = awaitsApproval || decision !== undefined;
+  const args = invocation.rawInput ?? invocation.args;
 
   return (
-    <Activity kind="tool" name={invocation.toolName} state={state}>
-      <ActivityTrigger>
-        <ActivityIcon />
-        <ActivityTitle />
-        <ActivityStatus className="sr-only" />
-      </ActivityTrigger>
-      <ActivityContent>
-        <ActivityDetail>
-          <ActivityDetailLabel>Input</ActivityDetailLabel>
-          <ActivityDetailContent format="code">{JSON.stringify(invocation.rawInput ?? invocation.args, null, 2)}</ActivityDetailContent>
-        </ActivityDetail>
-        {invocation.result !== undefined || invocation.errorText ? (
+    <div className="grid gap-2">
+      <Activity kind="tool" name={invocation.toolName} state={state}>
+        <ActivityTrigger>
+          <ActivityIcon />
+          <ActivityTitle />
+          <ActivityStatus className="sr-only" />
+        </ActivityTrigger>
+        <ActivityContent>
           <ActivityDetail>
-            <ActivityDetailLabel>Output</ActivityDetailLabel>
-            <ActivityDetailContent className={state === "error" ? "text-destructive-text" : undefined}>
-              {invocation.errorText ?? JSON.stringify(invocation.result, null, 2)}
-            </ActivityDetailContent>
+            <ActivityDetailLabel>Input</ActivityDetailLabel>
+            <ActivityDetailContent format="code">{JSON.stringify(args, null, 2)}</ActivityDetailContent>
           </ActivityDetail>
-        ) : null}
-      </ActivityContent>
-    </Activity>
+          {invocation.result !== undefined || invocation.errorText ? (
+            <ActivityDetail>
+              <ActivityDetailLabel>Output</ActivityDetailLabel>
+              <ActivityDetailContent className={state === "error" ? "text-destructive-text" : undefined}>
+                {invocation.errorText ?? JSON.stringify(invocation.result, null, 2)}
+              </ActivityDetailContent>
+            </ActivityDetail>
+          ) : null}
+        </ActivityContent>
+      </Activity>
+      {needsApproval ? (
+        <ToolApproval
+          state={approvalState(decision)}
+          onApprove={() => approvals.approve(invocation.toolCallId)}
+          onDeny={() => approvals.decline(invocation.toolCallId)}
+        >
+          <ToolApprovalBody>
+            <ToolApprovalHeader>
+              <ToolApprovalIcon />
+              <ToolApprovalTitle>{`Run ${invocation.toolName}?`}</ToolApprovalTitle>
+              <ToolApprovalRisk />
+              <ToolApprovalStatus />
+            </ToolApprovalHeader>
+            <ToolApprovalPreview>
+              <ToolApprovalField label="Input">
+                <div className="whitespace-pre-wrap wrap-anywhere">{JSON.stringify(args, null, 2)}</div>
+              </ToolApprovalField>
+            </ToolApprovalPreview>
+          </ToolApprovalBody>
+          <ToolApprovalFooter>
+            <ToolApprovalDeny />
+            <ToolApprovalApprove />
+          </ToolApprovalFooter>
+        </ToolApproval>
+      ) : null}
+    </div>
   );
 }
 
@@ -93,7 +164,13 @@ const messageRoles = {
 } satisfies MessageRoleRenderers;
 
 function MastraChat({ agentId }: { agentId: string }) {
-  const { cancelRun, isRunning, messages, sendMessage } = useChat({ agentId });
+  const { approveToolCall, cancelRun, declineToolCall, isRunning, messages, sendMessage, toolCallApprovals } = useChat({ agentId });
+  const approvals = {
+    decisions: toolCallApprovals,
+    pending: new Set(messages.flatMap((message) => pendingApprovalIds(message.content.metadata))),
+    approve: approveToolCall,
+    decline: declineToolCall,
+  };
 
   const composer = (
     <ChatComposer
@@ -136,7 +213,7 @@ function MastraChat({ agentId }: { agentId: string }) {
               <ActivityContent>{reasoning}</ActivityContent>
             </Activity>
           )}
-          ToolInvocation={renderToolInvocation}
+          ToolInvocation={(part) => renderToolInvocation(part, approvals)}
           SourceUrl={({ title, url }) => <SourceBadge href={url}>{title}</SourceBadge>}
           SourceDocument={({ title }) => <span>{title}</span>}
           fallback={(part) => <span>Unsupported message part: {part.type}</span>}

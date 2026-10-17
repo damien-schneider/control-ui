@@ -5,7 +5,7 @@
   "title": "LevelMeter",
   "description": "Live audio level in dBFS with warning and clip zones and a peak hold, painted without React renders.",
   "dependencies": [
-    "@base-ui/react@^1.8.0"
+    "@base-ui/react@^1.9.0"
   ],
   "registryDependencies": [
     "https://control-ui.dev/r/core.json"

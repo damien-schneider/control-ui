@@ -1158,6 +1158,12 @@
         ],
         "states": [
           {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-field-kind",
             "source": "control-ui",
             "valueKind": "enum",

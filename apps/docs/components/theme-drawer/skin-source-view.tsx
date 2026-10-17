@@ -220,7 +220,7 @@ function SkinWorkspaceContent({ skin, source, onRetry, children }: SkinWorkspace
       </header>
 
       <Tabs value={view} onValueChange={changeView} className="flex min-w-0 flex-col gap-5">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border pb-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
           <TabsList aria-label="Skin views">
             <TabsTab value="preview">
               <EyeIcon aria-hidden className="size-4" />

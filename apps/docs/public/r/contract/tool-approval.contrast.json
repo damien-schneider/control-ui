@@ -1,0 +1,295 @@
+{
+  "version": 1,
+  "family": "tool-approval",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tool-approval",
+          "data-control-ui": "tool-approval",
+          "data-risk": "medium",
+          "data-slot": "root",
+          "data-state": "pending",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tool-approval",
+          "data-control-ui": "tool-approval",
+          "data-risk": "medium",
+          "data-slot": "root",
+          "data-state": "pending",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tool-approval",
+          "data-control-ui": "tool-approval",
+          "data-slot": "body"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tool-approval",
+          "data-control-ui": "tool-approval",
+          "data-risk": "medium",
+          "data-slot": "root",
+          "data-state": "pending",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tool-approval",
+          "data-control-ui": "tool-approval",
+          "data-slot": "body"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tool-approval",
+          "data-control-ui": "tool-approval",
+          "data-slot": "preview"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tool-approval",
+          "data-control-ui": "tool-approval",
+          "data-risk": "medium",
+          "data-slot": "root",
+          "data-state": "pending",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tool-approval",
+          "data-control-ui": "tool-approval",
+          "data-slot": "body"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tool-approval",
+          "data-control-ui": "tool-approval",
+          "data-slot": "description"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tool-approval",
+          "data-control-ui": "tool-approval",
+          "data-risk": "medium",
+          "data-slot": "root",
+          "data-state": "pending",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tool-approval",
+          "data-control-ui": "tool-approval",
+          "data-slot": "body"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tool-approval",
+          "data-control-ui": "tool-approval",
+          "data-slot": "preview"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "tool-approval",
+          "data-control-ui": "tool-approval",
+          "data-slot": "field-label"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "fill": "--cui-tool-approval-background",
+        "text": "--cui-tool-approval-foreground"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-tool-approval-body-background"
+      },
+      "anatomy": 1,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-tool-approval-preview-background"
+      },
+      "anatomy": 2,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-tool-approval-description-foreground"
+      },
+      "anatomy": 3,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-tool-approval-label-foreground"
+      },
+      "anatomy": 4,
+      "rendersText": true,
+      "state": false
+    }
+  ]
+}

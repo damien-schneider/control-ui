@@ -40,6 +40,7 @@
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.922 0 0 / var(--ring-opacity));
   --input: oklch(0.922 0 0);
+  --control-boundary: oklch(from var(--foreground) l c h / 0.5);
   --primary-text: var(--foreground);
   --canvas: var(--background);
   --scroll-fade-size: 2rem;
@@ -77,6 +78,7 @@
   --destructive-foreground: oklch(0.17 0 0);
   --border: oklch(1 0 0 / calc(0.1 * var(--ring-opacity)));
   --input: oklch(1 0 0 / 0.15);
+  --control-boundary: oklch(from var(--foreground) l c h / 0.4);
   --ring: oklch(0.7 0 0);
   --shadow-highlight: oklch(1 0 0 / 0.03);
 }

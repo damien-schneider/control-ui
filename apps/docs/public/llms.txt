@@ -123,6 +123,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [ChatComposer](https://control-ui.dev/kits/chat-composer): Message composer with controlled text, Enter or ⌘ Enter submit, caret text insertion, and trigger-menu support.
 - [ChatComposerAttachment](https://control-ui.dev/kits/chat-composer-attachment): Composer attachment rail with file previews, upload progress, and removal.
 - [UserAsk](https://control-ui.dev/kits/user-ask): Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.
+- [ToolApproval](https://control-ui.dev/kits/tool-approval): Inline approve or deny card for an agent action, with risk, a preview of what will run, and keyboard shortcuts.
 - [TaskList](https://control-ui.dev/kits/task-list): Floating agent task progress pill above the composer that expands into the full task list.
 - [AudioDeviceSelect](https://control-ui.dev/kits/audio-device-select): Composable audio input selector with permission, loading, default-device, and disconnected states.
 - [AudioRecorder](https://control-ui.dev/kits/audio-recorder): Voice recorder with realtime waveform, duration, cancel, and submit controls.
@@ -148,6 +149,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Theme toggle](https://control-ui.dev/templates/theme-toggle): Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.
 - [Discussion](https://control-ui.dev/templates/discussion): Comment thread with ⌘ Enter posting, nested replies, inline editing, and hover actions. Status: beta.
 - [Coding agent](https://control-ui.dev/templates/coding-agent): Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer. Status: beta.
+- [Agent run](https://control-ui.dev/templates/agent-run): One autonomous agent run: its plan step by step, the tool calls behind each step, approvals it waits on, and what it produced. Status: beta.
 - [Settings](https://control-ui.dev/templates/settings): Searchable multi-page settings shell with responsive navigation and accessible control groups.
 - [Team chat](https://control-ui.dev/templates/team-chat): Slack-style workspace with channels, unread badges, presence, reactions, and a side thread for replies. Status: beta.
 - [File explorer](https://control-ui.dev/templates/file-explorer): Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview. Status: beta.

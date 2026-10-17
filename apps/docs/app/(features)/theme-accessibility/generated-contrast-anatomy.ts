@@ -13,36 +13,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       anatomy: [
         {
           attributes: {
-            "data-control-family": "app-shell-header",
-            "data-control-ui": "app-shell",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-color": "neutral",
-            "data-control-family": "badge",
-            "data-control-ui": "badge",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "badge",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        boundary: "--cui-badge-border-color",
-        fill: "--cui-badge-background",
-        text: "--cui-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-layout": "viewport",
@@ -119,7 +89,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/components",
+      route: "/",
     },
     {
       knobs: {
@@ -158,604 +128,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/components",
-    },
-    {
-      knobs: {
-        boundary: "--cui-badge-border-color",
-        fill: "--cui-badge-background",
-        text: "--cui-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-color": "blue",
-            "data-control-family": "badge",
-            "data-control-ui": "badge",
-            "data-size": "md",
-            "data-slot": "root",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "badge",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        boundary: "--cui-badge-border-color",
-        fill: "--cui-badge-background",
-        text: "--cui-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-color": "green",
-            "data-control-family": "badge",
-            "data-control-ui": "badge",
-            "data-size": "md",
-            "data-slot": "root",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "badge",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        boundary: "--cui-badge-border-color",
-        fill: "--cui-badge-background",
-        text: "--cui-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-color": "neutral",
-            "data-control-family": "badge",
-            "data-control-ui": "badge",
-            "data-size": "md",
-            "data-slot": "root",
-            "data-variant": "default",
-            href: "#",
-          },
-        },
-      ],
-      recipe: "badge",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        boundary: "--cui-badge-border-color",
-        fill: "--cui-badge-background",
-        text: "--cui-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-color": "neutral",
-            "data-control-family": "badge",
-            "data-control-ui": "badge",
-            "data-size": "md",
-            "data-slot": "root",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "badge",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        boundary: "--cui-badge-border-color",
-        fill: "--cui-badge-background",
-        text: "--cui-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-color": "neutral",
-            "data-control-family": "badge",
-            "data-control-ui": "badge",
-            "data-size": "md",
-            "data-slot": "root",
-            "data-variant": "outline",
-          },
-        },
-      ],
-      recipe: "badge",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        boundary: "--cui-badge-border-color",
-        fill: "--cui-badge-background",
-        text: "--cui-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-color": "neutral",
-            "data-control-family": "badge",
-            "data-control-ui": "badge",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "badge",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        boundary: "--cui-badge-border-color",
-        fill: "--cui-badge-background",
-        text: "--cui-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-color": "orange",
-            "data-control-family": "badge",
-            "data-control-ui": "badge",
-            "data-size": "md",
-            "data-slot": "root",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "badge",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        boundary: "--cui-badge-border-color",
-        fill: "--cui-badge-background",
-        text: "--cui-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-color": "pink",
-            "data-control-family": "badge",
-            "data-control-ui": "badge",
-            "data-size": "md",
-            "data-slot": "root",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "badge",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        boundary: "--cui-badge-border-color",
-        fill: "--cui-badge-background",
-        text: "--cui-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-color": "purple",
-            "data-control-family": "badge",
-            "data-control-ui": "badge",
-            "data-size": "md",
-            "data-slot": "root",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "badge",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        boundary: "--cui-badge-border-color",
-        fill: "--cui-badge-background",
-        text: "--cui-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-color": "red",
-            "data-control-family": "badge",
-            "data-control-ui": "badge",
-            "data-size": "md",
-            "data-slot": "root",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "badge",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        boundary: "--cui-badge-border-color",
-        fill: "--cui-badge-background",
-        text: "--cui-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-color": "yellow",
-            "data-control-family": "badge",
-            "data-control-ui": "badge",
-            "data-size": "md",
-            "data-slot": "root",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "badge",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        boundary: "--cui-badge-border-color",
-        fill: "--cui-badge-background",
-        text: "--cui-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "card",
-            "data-control-ui": "card",
-            "data-slot": "root",
-            "data-surface": "panel",
-            "data-variant": "default",
-          },
-        },
-        {
-          attributes: {
-            "data-color": "neutral",
-            "data-control-family": "badge",
-            "data-control-ui": "badge",
-            "data-size": "md",
-            "data-slot": "root",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "badge",
-      rendersText: true,
-      state: false,
       route: "/theme-editor",
     },
     {
@@ -805,7 +177,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/components/badge",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -854,7 +226,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/components/badge",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -904,7 +276,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/components/badge",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -953,7 +325,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/components/badge",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -1002,7 +374,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/components/badge",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -1051,7 +423,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/components/badge",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -1149,7 +521,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/components/badge",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -1198,7 +570,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/components/badge",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -1247,7 +619,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/kits/dynamic-notification",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -1296,7 +668,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/components/badge",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -1345,7 +717,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/kits/email",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -1403,7 +775,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "badge",
       rendersText: true,
       state: false,
-      route: "/components/card",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -1462,6 +834,137 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/skins",
+    },
+    {
+      knobs: {
+        boundary: "--cui-badge-border-color",
+        fill: "--cui-badge-background",
+        text: "--cui-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-color": "yellow",
+            "data-control-family": "badge",
+            "data-control-ui": "badge",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "badge",
+      rendersText: true,
+      state: false,
+      route: "/templates/agent-run",
+    },
+    {
+      knobs: {
+        boundary: "--cui-badge-border-color",
+        fill: "--cui-badge-background",
+        text: "--cui-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tool-approval",
+            "data-control-ui": "tool-approval",
+            "data-risk": "medium",
+            "data-slot": "root",
+            "data-state": "pending",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tool-approval",
+            "data-control-ui": "tool-approval",
+            "data-slot": "body",
+          },
+        },
+        {
+          attributes: {
+            "data-color": "yellow",
+            "data-control-family": "badge",
+            "data-control-ui": "badge",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "badge",
+      rendersText: true,
+      state: false,
+      route: "/kits/tool-approval",
     },
     {
       knobs: {
@@ -2404,63 +1907,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-role": "participant",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-        {
-          attributes: {
-            "aria-pressed": "true",
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-pressed": "",
-            "data-slot": "reaction",
-          },
-        },
-      ],
-      recipe: "chat-message-social",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        boundary: "--cui-chat-message-reaction-pressed-border-color",
-        fill: "--cui-chat-message-reaction-pressed-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
@@ -2533,6 +1979,89 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/templates/team-chat",
+    },
+    {
+      knobs: {
+        boundary: "--cui-chat-message-reaction-pressed-border-color",
+        fill: "--cui-chat-message-reaction-pressed-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-role": "participant",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "aria-pressed": "true",
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-pressed": "",
+            "data-slot": "reaction",
+          },
+        },
+      ],
+      recipe: "chat-message-social",
+      rendersText: true,
+      state: false,
+      route: "/",
     },
     {
       knobs: {
@@ -3444,7 +2973,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
+            "data-width": "prose",
           },
         },
         {
@@ -3492,7 +3021,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
+            "data-width": "prose",
           },
         },
         {
@@ -3510,120 +3039,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-alert-background",
-        text: "--cui-alert-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "alert",
-            "data-control-ui": "alert",
-            "data-slot": "root",
-            "data-surface": "panel",
-            "data-variant": "default",
-            role: "status",
-          },
-        },
-      ],
-      recipe: "alert",
-      rendersText: true,
-      state: false,
-      route: "/components/alert",
-    },
-    {
-      knobs: {
-        fill: "--cui-alert-background",
-        text: "--cui-alert-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "alert",
-            "data-control-ui": "alert",
-            "data-slot": "root",
-            "data-surface": "panel",
-            "data-variant": "destructive",
-            role: "alert",
-          },
-        },
-      ],
-      recipe: "alert",
-      rendersText: true,
-      state: false,
-      route: "/components/alert",
-    },
-    {
-      knobs: {
-        fill: "--cui-app-shell-header-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "app-shell-header",
-            "data-control-ui": "app-shell",
-            "data-slot": "root",
-          },
-        },
-      ],
-      recipe: "app-shell-header",
-      rendersText: true,
-      state: false,
-      route: "/",
     },
     {
       knobs: {
@@ -3803,348 +3218,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-indicator": "hover",
-            "data-size": "default",
-            "data-slot": "menu-button",
-            "data-variant": "default",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "fallback",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "badge",
-            "data-status": "away",
-          },
-        },
-      ],
-      recipe: "avatar",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-avatar-badge-background",
-        text: "--cui-avatar-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-indicator": "hover",
-            "data-size": "default",
-            "data-slot": "menu-button",
-            "data-variant": "default",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "fallback",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "badge",
-            "data-status": "busy",
-          },
-        },
-      ],
-      recipe: "avatar",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-avatar-badge-background",
-        text: "--cui-avatar-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-indicator": "hover",
-            "data-size": "default",
-            "data-slot": "menu-button",
-            "data-variant": "default",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "fallback",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "badge",
-            "data-status": "offline",
-          },
-        },
-      ],
-      recipe: "avatar",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-avatar-badge-background",
-        text: "--cui-avatar-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-indicator": "hover",
-            "data-size": "default",
-            "data-slot": "menu-button",
-            "data-variant": "default",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "fallback",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "badge",
-            "data-status": "online",
-          },
-        },
-      ],
-      recipe: "avatar",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-avatar-badge-background",
-        text: "--cui-avatar-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-layout": "flat",
-            "data-slot": "avatar",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "fallback",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "badge",
-            "data-status": "busy",
-          },
-        },
-      ],
-      recipe: "avatar",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-avatar-badge-background",
-        text: "--cui-avatar-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-layout": "flat",
-            "data-slot": "avatar",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "fallback",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "badge",
-            "data-status": "online",
-          },
-        },
-      ],
-      recipe: "avatar",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-avatar-badge-background",
-        text: "--cui-avatar-badge-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
@@ -4808,10 +3881,36 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-avatar-fallback-background",
-        text: "--cui-avatar-fallback-foreground",
+        fill: "--cui-avatar-badge-background",
+        text: "--cui-avatar-badge-foreground",
       },
       anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
         {
           attributes: {
             "data-control-family": "sidebar",
@@ -4844,6 +3943,14 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-slot": "fallback",
           },
         },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
+            "data-slot": "badge",
+            "data-status": "away",
+          },
+        },
       ],
       recipe: "avatar",
       rendersText: true,
@@ -4852,10 +3959,270 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-avatar-fallback-background",
-        text: "--cui-avatar-fallback-foreground",
+        fill: "--cui-avatar-badge-background",
+        text: "--cui-avatar-badge-foreground",
       },
       anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "hover",
+            "data-size": "default",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
+            "data-slot": "fallback",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
+            "data-slot": "badge",
+            "data-status": "busy",
+          },
+        },
+      ],
+      recipe: "avatar",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-avatar-badge-background",
+        text: "--cui-avatar-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "hover",
+            "data-size": "default",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
+            "data-slot": "fallback",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
+            "data-slot": "badge",
+            "data-status": "offline",
+          },
+        },
+      ],
+      recipe: "avatar",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-avatar-badge-background",
+        text: "--cui-avatar-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "hover",
+            "data-size": "default",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
+            "data-slot": "fallback",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
+            "data-slot": "badge",
+            "data-status": "online",
+          },
+        },
+      ],
+      recipe: "avatar",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-avatar-badge-background",
+        text: "--cui-avatar-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
         {
           attributes: {
             "data-control-family": "sidebar",
@@ -4903,6 +4270,14 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-slot": "fallback",
           },
         },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
+            "data-slot": "badge",
+            "data-status": "busy",
+          },
+        },
       ],
       recipe: "avatar",
       rendersText: true,
@@ -4911,10 +4286,36 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-avatar-fallback-background",
-        text: "--cui-avatar-fallback-foreground",
+        fill: "--cui-avatar-badge-background",
+        text: "--cui-avatar-badge-foreground",
       },
       anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
         {
           attributes: {
             "data-control-family": "sidebar",
@@ -4944,7 +4345,8 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "chat-message",
             "data-control-ui": "chat-message",
-            "data-slot": "reply-summary",
+            "data-layout": "flat",
+            "data-slot": "avatar",
           },
         },
         {
@@ -4959,6 +4361,14 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "avatar",
             "data-control-ui": "avatar",
             "data-slot": "fallback",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
+            "data-slot": "badge",
+            "data-status": "online",
           },
         },
       ],
@@ -5451,37 +4861,239 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-background",
-        text: "--cui-button-active-foreground",
+        fill: "--cui-avatar-fallback-background",
+        text: "--cui-avatar-fallback-foreground",
       },
       anatomy: [
         {
           attributes: {
-            "data-control-family": "app-shell-header",
-            "data-control-ui": "app-shell",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "hover",
+            "data-size": "default",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
             "data-slot": "root",
           },
         },
         {
           attributes: {
-            "aria-disabled": "false",
-            "aria-pressed": "true",
-            "data-active": "true",
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "toggle",
-            "data-layout": "inline",
-            "data-pressed": "",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-track-item": "",
-            "data-variant": "surface",
-            tabindex: "0",
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
+            "data-slot": "fallback",
           },
         },
       ],
-      recipe: "button-states",
+      recipe: "avatar",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-avatar-fallback-background",
+        text: "--cui-avatar-fallback-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-layout": "flat",
+            "data-slot": "avatar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
+            "data-slot": "fallback",
+          },
+        },
+      ],
+      recipe: "avatar",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-avatar-fallback-background",
+        text: "--cui-avatar-fallback-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-slot": "reply-summary",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
+            "data-slot": "fallback",
+          },
+        },
+      ],
+      recipe: "avatar",
       rendersText: true,
       state: false,
       route: "/",
@@ -5591,73 +5203,23 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
+            "data-width": "prose",
           },
         },
         {
           attributes: {
+            "aria-disabled": "false",
+            "aria-pressed": "true",
             "data-active": "true",
             "data-control": "true",
             "data-control-family": "button",
-            "data-control-ui": "button",
+            "data-control-ui": "toggle",
             "data-layout": "inline",
-            "data-shape": "default",
+            "data-pressed": "",
             "data-size": "sm",
             "data-slot": "root",
             "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button-states",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-active-background",
-        text: "--cui-button-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-active": "true",
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "tile",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
+            "data-track-item": "",
             "data-variant": "surface",
             tabindex: "0",
           },
@@ -5666,7 +5228,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button-states",
       rendersText: true,
       state: false,
-      route: "/theme-editor",
+      route: "/components/toggle",
     },
     {
       knobs: {
@@ -5702,27 +5264,29 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "aria-disabled": "false",
-            "aria-pressed": "true",
+            "aria-disabled": "true",
             "data-active": "true",
             "data-control": "true",
             "data-control-family": "button",
-            "data-control-ui": "toggle",
+            "data-control-ui": "audio-recorder",
+            "data-disabled": "",
+            "data-icon-only": "true",
             "data-layout": "inline",
-            "data-pressed": "",
+            "data-recorder-state": "requesting",
+            "data-shape": "circle",
             "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-track-item": "",
+            "data-slot": "trigger",
+            "data-status-only": "true",
+            "data-tone": "primary",
             "data-variant": "surface",
             tabindex: "0",
           },
         },
       ],
       recipe: "button-states",
-      rendersText: true,
+      rendersText: false,
       state: false,
-      route: "/components/toggle",
+      route: "/kits/audio-recorder",
     },
     {
       knobs: {
@@ -6047,7 +5611,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button-states",
       rendersText: true,
       state: false,
-      route: "/components/button",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -6153,7 +5717,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button-states",
       rendersText: true,
       state: false,
-      route: "/components/button",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -6723,7 +6287,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "resizable",
             "data-slot": "panel-group",
             "data-surface": "panel",
-            "data-variant": "framed",
+            "data-variant": "nested",
           },
         },
         {
@@ -6748,634 +6312,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/templates/file-explorer",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-chrome": "standalone",
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-chrome": "standalone",
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-density": "default",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "app-shell-header",
-            "data-control-ui": "app-shell",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-pressed": "false",
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "toggle",
-            "data-layout": "inline",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-track-item": "",
-            "data-variant": "surface",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "app-shell-header",
-            "data-control-ui": "app-shell",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "app-shell-header",
-            "data-control-ui": "app-shell",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            href: "#",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "app-shell-header",
-            "data-control-ui": "app-shell",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "primary",
-            "data-variant": "solid",
-            href: "#",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "header",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "idle",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "chat-composer",
-            "data-disabled": "",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "submit",
-            "data-tone": "primary",
-            "data-variant": "solid",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "idle",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "popover",
-            "data-icon-only": "true",
-            "data-layout": "inline",
-            "data-popup-kind": "popover",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "trigger",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "dropdown-menu",
-            "data-layout": "inline",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "trigger",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "popover",
-            "data-icon-only": "true",
-            "data-layout": "inline",
-            "data-orientation": "horizontal",
-            "data-popup-kind": "popover",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "trigger",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-layout": "inline",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "popover",
-            "data-icon-only": "true",
-            "data-layout": "inline",
-            "data-popup-kind": "popover",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "trigger",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/",
     },
     {
       knobs: {
@@ -7556,7 +6492,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/components",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -7599,7 +6535,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/components",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -7683,1104 +6619,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/templates/design-canvas",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-disabled": "",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "solid",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "lg",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "md",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            href: "#",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "lg",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "md",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "danger",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "danger",
-            "data-variant": "solid",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            href: "#",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            href: "#",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "solid",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "primary",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "primary",
-            "data-variant": "solid",
-            href: "#",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "primary",
-            "data-variant": "solid",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "tile",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
     },
     {
       knobs: {
@@ -15694,7 +13532,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/templates/settings",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -15765,6 +13603,93 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/templates/file-explorer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "card",
+            "data-control-ui": "card",
+            "data-slot": "root",
+            "data-surface": "panel",
+            "data-variant": "default",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code-diff",
+            "data-control-ui": "code-diff",
+            "data-diff-style": "unified",
+            "data-file-count": "1",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/templates/agent-run",
     },
     {
       knobs: {
@@ -16264,7 +14189,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "resizable",
             "data-slot": "panel-group",
             "data-surface": "panel",
-            "data-variant": "framed",
+            "data-variant": "nested",
           },
         },
         {
@@ -16286,6 +14211,75 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       ],
       recipe: "button",
       rendersText: true,
+      state: false,
+      route: "/templates/file-explorer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
       state: false,
       route: "/templates/file-explorer",
     },
@@ -16491,6 +14485,74 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control": "true",
             "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/templates/agent-run",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
             "data-control-ui": "drawer",
             "data-layout": "inline",
             "data-popup-kind": "drawer",
@@ -16563,7 +14625,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "dropdown-menu",
             "data-icon-only": "true",
             "data-shape": "default",
-            "data-size": "xs",
+            "data-size": "sm",
             "data-slot": "trigger",
             "data-tone": "neutral",
             "data-variant": "ghost",
@@ -16632,7 +14694,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "inline",
             "data-shape": "default",
             "data-sidebar-trigger": "",
-            "data-size": "xs",
+            "data-size": "sm",
             "data-slot": "trigger",
             "data-tone": "neutral",
             "data-variant": "ghost",
@@ -16713,6 +14775,130 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components/sidebar",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tool-approval",
+            "data-control-ui": "tool-approval",
+            "data-risk": "medium",
+            "data-slot": "root",
+            "data-state": "pending",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "tool-approval",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "approve",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/kits/tool-approval",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tool-approval",
+            "data-control-ui": "tool-approval",
+            "data-risk": "medium",
+            "data-slot": "root",
+            "data-state": "pending",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "tool-approval",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "deny",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/kits/tool-approval",
     },
     {
       knobs: {
@@ -17216,6 +15402,59 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-size": "sm",
             "data-slot": "root",
             "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/kits/email",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-disabled": "",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
             "data-variant": "quiet",
             tabindex: "0",
           },
@@ -17277,7 +15516,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/components/button",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -17330,7 +15569,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/components/stepper",
+      route: "/kits/email",
     },
     {
       knobs: {
@@ -17436,7 +15675,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/components/button",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -17489,7 +15728,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/components/button",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -17595,7 +15834,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/components/button",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -17693,6 +15932,59 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-size": "xs",
             "data-slot": "root",
             "data-tone": "neutral",
+            "data-variant": "quiet",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/theme-editor",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
             "data-variant": "surface",
             tabindex: "0",
           },
@@ -17701,7 +15993,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/components/button",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -17927,7 +16219,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/components/button",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -17979,7 +16271,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/components/button",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -18031,7 +16323,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/components/button",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -18083,7 +16375,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/components/button",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -18188,7 +16480,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/components/button",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -18240,7 +16532,59 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/kits/email",
+      route: "/theme-editor",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -18292,7 +16636,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/kits/task-list",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -18344,7 +16688,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/components/button",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -18448,7 +16792,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/kits/email",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -18500,7 +16844,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/components/button",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -18552,7 +16896,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -18604,7 +16948,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/components/button",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -18760,7 +17104,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/components/button",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -18812,7 +17156,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/components/button",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -19458,6 +17802,68 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-chrome": "standalone",
             "data-control-family": "code",
             "data-control-ui": "code",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
             "data-density": "default",
             "data-header": "true",
             "data-slot": "root",
@@ -19525,6 +17931,790 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "header",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "chat-composer",
+            "data-disabled": "",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "submit",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "popover",
+            "data-icon-only": "true",
+            "data-layout": "inline",
+            "data-popup-kind": "popover",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "dropdown-menu",
+            "data-layout": "inline",
+            "data-orientation": "horizontal",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "popover",
+            "data-icon-only": "true",
+            "data-layout": "inline",
+            "data-orientation": "horizontal",
+            "data-popup-kind": "popover",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "end",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "top",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-layout": "inline",
+            "data-orientation": "horizontal",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "popover",
+            "data-icon-only": "true",
+            "data-layout": "inline",
+            "data-popup-kind": "popover",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "button",
@@ -19542,6 +18732,110 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/foundations",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "lg",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "lg",
+            "data-slot": "root",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/",
     },
     {
       knobs: {
@@ -19906,7 +19200,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/components",
+      route: "/",
     },
     {
       knobs: {
@@ -20049,58 +19343,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "lg",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            href: "#",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "lg",
-            "data-slot": "root",
-            "data-tone": "primary",
-            "data-variant": "solid",
-            href: "#",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
         fill: "--cui-button-group-separator-background",
       },
       anatomy: [
@@ -20224,118 +19466,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components/button-group",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-open-background",
-        text: "--cui-button-open-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "popover",
-            "data-icon-only": "true",
-            "data-layout": "inline",
-            "data-orientation": "horizontal",
-            "data-popup-kind": "popover",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "trigger",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button-states",
-      rendersText: false,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-open-background",
-        text: "--cui-button-open-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "popover",
-            "data-icon-only": "true",
-            "data-layout": "inline",
-            "data-popup-kind": "popover",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "trigger",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button-states",
-      rendersText: false,
-      state: false,
-      route: "/",
     },
     {
       knobs: {
@@ -20718,7 +19848,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-popup-open": "",
             "data-pressed": "",
             "data-shape": "default",
-            "data-size": "xs",
+            "data-size": "sm",
             "data-slot": "trigger",
             "data-tone": "neutral",
             "data-variant": "ghost",
@@ -21434,6 +20564,87 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "popover",
+            "data-icon-only": "true",
+            "data-layout": "inline",
+            "data-popup-kind": "popover",
+            "data-popup-open": "",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button-states",
+      rendersText: false,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-open-background",
+        text: "--cui-button-open-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "dropdown-menu",
@@ -21603,53 +20814,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "card",
       rendersText: true,
       state: false,
-      route: "/components",
-    },
-    {
-      knobs: {
-        fill: "--cui-card-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "card",
-            "data-control-ui": "card",
-            "data-slot": "root",
-            "data-surface": "panel",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "card",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
+      route: "/",
     },
     {
       knobs: {
@@ -21695,7 +20860,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "card",
       rendersText: true,
       state: false,
-      route: "/get-started",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -21751,6 +20916,68 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components/page-layout",
+    },
+    {
+      knobs: {
+        fill: "--cui-card-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "card",
+            "data-control-ui": "card",
+            "data-slot": "root",
+            "data-surface": "panel",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "card",
+      rendersText: true,
+      state: false,
+      route: "/templates/agent-run",
     },
     {
       knobs: {
@@ -21959,42 +21186,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-      ],
-      recipe: "chat-composer",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-composer-root-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
@@ -22330,9 +21521,35 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-chat-composer-shell-background",
+        fill: "--cui-chat-composer-root-background",
       },
       anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
         {
           attributes: {
             "data-control-family": "sidebar",
@@ -22356,15 +21573,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-density": "compact",
             "data-slot": "root",
             "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "idle",
-            "data-surface": "panel",
           },
         },
       ],
@@ -22768,6 +21976,77 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/templates/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-composer-shell-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+      ],
+      recipe: "chat-composer",
+      rendersText: true,
+      state: false,
+      route: "/",
     },
     {
       knobs: {
@@ -23076,234 +22355,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/kits/chat-message",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-message-background",
-        text: "--cui-chat-message-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-continuation": "",
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-role": "participant",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-continuation": "",
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-role": "participant",
-            "data-slot": "content",
-          },
-        },
-      ],
-      recipe: "chat-message",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-message-background",
-        text: "--cui-chat-message-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-continuation": "",
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-role": "user",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-continuation": "",
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-role": "user",
-            "data-slot": "content",
-          },
-        },
-      ],
-      recipe: "chat-message",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-message-background",
-        text: "--cui-chat-message-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-role": "participant",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-role": "participant",
-            "data-slot": "content",
-          },
-        },
-      ],
-      recipe: "chat-message",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-message-background",
-        text: "--cui-chat-message-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-role": "user",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-role": "user",
-            "data-slot": "content",
-          },
-        },
-      ],
-      recipe: "chat-message",
-      rendersText: true,
-      state: false,
-      route: "/",
     },
     {
       knobs: {
@@ -24397,9 +23448,204 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-chat-message-pending-dot-color",
+        fill: "--cui-chat-message-background",
+        text: "--cui-chat-message-foreground",
       },
       anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-continuation": "",
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-role": "participant",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-continuation": "",
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "participant",
+            "data-slot": "content",
+          },
+        },
+      ],
+      recipe: "chat-message",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-message-background",
+        text: "--cui-chat-message-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-continuation": "",
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-role": "user",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-continuation": "",
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "user",
+            "data-slot": "content",
+          },
+        },
+      ],
+      recipe: "chat-message",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-message-background",
+        text: "--cui-chat-message-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
         {
           attributes: {
             "data-control-family": "sidebar",
@@ -24420,17 +23666,115 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "chat-message",
             "data-control-ui": "chat-message",
-            "data-kind": "typing",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-role": "participant",
             "data-slot": "root",
-            role: "status",
+            "data-state": "idle",
           },
         },
         {
-          attributes: {},
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "participant",
+            "data-slot": "content",
+          },
         },
       ],
       recipe: "chat-message",
-      rendersText: false,
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-message-background",
+        text: "--cui-chat-message-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-role": "user",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "user",
+            "data-slot": "content",
+          },
+        },
+      ],
+      recipe: "chat-message",
+      rendersText: true,
       state: false,
       route: "/",
     },
@@ -24501,9 +23845,35 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-chat-message-reaction-background",
+        fill: "--cui-chat-message-pending-dot-color",
       },
       anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
         {
           attributes: {
             "data-control-family": "sidebar",
@@ -24524,88 +23894,17 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "chat-message",
             "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-role": "participant",
+            "data-kind": "typing",
             "data-slot": "root",
-            "data-state": "idle",
+            role: "status",
           },
         },
         {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-        {
-          attributes: {
-            "aria-pressed": "false",
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-slot": "reaction",
-          },
+          attributes: {},
         },
       ],
-      recipe: "chat-message-social",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-message-reaction-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-role": "user",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-        {
-          attributes: {
-            "aria-pressed": "false",
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-slot": "reaction",
-          },
-        },
-      ],
-      recipe: "chat-message-social",
-      rendersText: true,
+      recipe: "chat-message",
+      rendersText: false,
       state: false,
       route: "/",
     },
@@ -24830,14 +24129,15 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-chat-message-row-hover-background",
+        fill: "--cui-chat-message-reaction-background",
       },
       anatomy: [
         {
           attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
-            "data-layout": "contained",
+            "data-layout": "viewport",
+            "data-scroll": "page",
             "data-slot": "wrapper",
           },
         },
@@ -24851,86 +24151,13 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-continuation": "",
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-role": "participant",
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
             "data-slot": "root",
-            "data-state": "idle",
+            "data-width": "wide",
           },
         },
-        {
-          attributes: {
-            "data-continuation": "",
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-      ],
-      recipe: "chat-message",
-      rendersText: true,
-      state: true,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-message-row-hover-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-continuation": "",
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-role": "user",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-continuation": "",
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-      ],
-      recipe: "chat-message",
-      rendersText: true,
-      state: true,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-message-row-hover-background",
-      },
-      anatomy: [
         {
           attributes: {
             "data-control-family": "sidebar",
@@ -24969,27 +24196,29 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "aria-pressed": "false",
             "data-control-family": "chat-message",
             "data-control-ui": "chat-message",
-            "data-slot": "reply-summary",
+            "data-slot": "reaction",
           },
         },
       ],
       recipe: "chat-message-social",
       rendersText: true,
-      state: true,
+      state: false,
       route: "/",
     },
     {
       knobs: {
-        fill: "--cui-chat-message-row-hover-background",
+        fill: "--cui-chat-message-reaction-background",
       },
       anatomy: [
         {
           attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
-            "data-layout": "contained",
+            "data-layout": "viewport",
+            "data-scroll": "page",
             "data-slot": "wrapper",
           },
         },
@@ -25003,35 +24232,13 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-role": "participant",
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
             "data-slot": "root",
-            "data-state": "idle",
+            "data-width": "wide",
           },
         },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-      ],
-      recipe: "chat-message",
-      rendersText: true,
-      state: true,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-message-row-hover-background",
-      },
-      anatomy: [
         {
           attributes: {
             "data-control-family": "sidebar",
@@ -25068,10 +24275,18 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-slot": "row",
           },
         },
+        {
+          attributes: {
+            "aria-pressed": "false",
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-slot": "reaction",
+          },
+        },
       ],
-      recipe: "chat-message",
+      recipe: "chat-message-social",
       rendersText: true,
-      state: true,
+      state: false,
       route: "/",
     },
     {
@@ -25690,44 +24905,378 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-code-background",
+        fill: "--cui-chat-message-row-hover-background",
       },
       anatomy: [
         {
           attributes: {
-            "data-chrome": "standalone",
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-density": "compact",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
             "data-slot": "root",
-            "data-surface": "panel",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-continuation": "",
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-role": "participant",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-continuation": "",
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
           },
         },
       ],
-      recipe: "code",
+      recipe: "chat-message",
       rendersText: true,
-      state: false,
+      state: true,
       route: "/",
     },
     {
       knobs: {
-        fill: "--cui-code-background",
+        fill: "--cui-chat-message-row-hover-background",
       },
       anatomy: [
         {
           attributes: {
-            "data-chrome": "standalone",
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-density": "default",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
             "data-slot": "root",
-            "data-surface": "panel",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-continuation": "",
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-role": "user",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-continuation": "",
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
           },
         },
       ],
-      recipe: "code",
+      recipe: "chat-message",
       rendersText: true,
-      state: false,
+      state: true,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-message-row-hover-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-role": "participant",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-slot": "reply-summary",
+          },
+        },
+      ],
+      recipe: "chat-message-social",
+      rendersText: true,
+      state: true,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-message-row-hover-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-role": "participant",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+      ],
+      recipe: "chat-message",
+      rendersText: true,
+      state: true,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-message-row-hover-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-role": "user",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+      ],
+      recipe: "chat-message",
+      rendersText: true,
+      state: true,
       route: "/",
     },
     {
@@ -26013,6 +25562,126 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "resizable",
+            "data-control-ui": "resizable",
+            "data-slot": "panel-group",
+            "data-surface": "panel",
+            "data-variant": "nested",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/templates/file-explorer",
+    },
+    {
+      knobs: {
+        fill: "--cui-code-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-code-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
             "data-width": "wide",
           },
         },
@@ -26032,6 +25701,53 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/skins/mastra",
+    },
+    {
+      knobs: {
+        fill: "--cui-code-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/",
     },
     {
       knobs: {
@@ -26263,6 +25979,87 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
+        fill: "--cui-code-diff-add-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "card",
+            "data-control-ui": "card",
+            "data-slot": "root",
+            "data-surface": "panel",
+            "data-variant": "default",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code-diff",
+            "data-control-ui": "code-diff",
+            "data-diff-style": "unified",
+            "data-file-count": "1",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code-diff",
+            "data-control-ui": "code-diff",
+            "data-indicators": "bars",
+            "data-line-type": "add",
+            "data-slot": "line",
+          },
+        },
+      ],
+      recipe: "code-diff",
+      rendersText: true,
+      state: false,
+      route: "/templates/agent-run",
+    },
+    {
+      knobs: {
         fill: "--cui-code-diff-background",
       },
       anatomy: [
@@ -26403,6 +26200,78 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components/code-diff",
+    },
+    {
+      knobs: {
+        fill: "--cui-code-diff-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "card",
+            "data-control-ui": "card",
+            "data-slot": "root",
+            "data-surface": "panel",
+            "data-variant": "default",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code-diff",
+            "data-control-ui": "code-diff",
+            "data-diff-style": "unified",
+            "data-file-count": "1",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+      ],
+      recipe: "code-diff",
+      rendersText: true,
+      state: false,
+      route: "/templates/agent-run",
     },
     {
       knobs: {
@@ -26634,6 +26503,87 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
+        fill: "--cui-code-diff-del-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "card",
+            "data-control-ui": "card",
+            "data-slot": "root",
+            "data-surface": "panel",
+            "data-variant": "default",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code-diff",
+            "data-control-ui": "code-diff",
+            "data-diff-style": "unified",
+            "data-file-count": "1",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code-diff",
+            "data-control-ui": "code-diff",
+            "data-indicators": "bars",
+            "data-line-type": "del",
+            "data-slot": "line",
+          },
+        },
+      ],
+      recipe: "code-diff",
+      rendersText: true,
+      state: false,
+      route: "/templates/agent-run",
+    },
+    {
+      knobs: {
         fill: "--cui-code-diff-header-background",
       },
       anatomy: [
@@ -26860,6 +26810,86 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/kits/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-code-header-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "resizable",
+            "data-control-ui": "resizable",
+            "data-slot": "panel-group",
+            "data-surface": "panel",
+            "data-variant": "nested",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-slot": "header",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -27713,6 +27743,752 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "center",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-focused": "",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-slot": "category",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "emoji-picker",
+      rendersText: false,
+      state: true,
+      route: "/components/emoji-picker",
+    },
+    {
+      knobs: {
+        fill: "--cui-emoji-picker-active-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "center",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-focused": "",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-slot": "category",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "emoji-picker",
+      rendersText: false,
+      state: true,
+      route: "/components/emoji-picker",
+    },
+    {
+      knobs: {
+        fill: "--cui-emoji-picker-active-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "center",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-focused": "",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-slot": "emoji",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "emoji-picker",
+      rendersText: true,
+      state: true,
+      route: "/components/emoji-picker",
+    },
+    {
+      knobs: {
+        fill: "--cui-emoji-picker-active-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "center",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-focused": "",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-slot": "emoji",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "emoji-picker",
+      rendersText: true,
+      state: true,
+      route: "/components/emoji-picker",
+    },
+    {
+      knobs: {
+        fill: "--cui-emoji-picker-active-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "end",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "reactions",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-slot": "emoji",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "emoji-picker",
+      rendersText: true,
+      state: true,
+      route: "/components/emoji-picker",
+    },
+    {
+      knobs: {
+        fill: "--cui-emoji-picker-active-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "end",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "reactions",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-slot": "emoji",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "emoji-picker",
+      rendersText: true,
+      state: true,
+      route: "/components/emoji-picker",
+    },
+    {
+      knobs: {
+        fill: "--cui-emoji-picker-active-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "top",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-slot": "category",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "emoji-picker",
+      rendersText: false,
+      state: true,
+      route: "/components/emoji-picker",
+    },
+    {
+      knobs: {
+        fill: "--cui-emoji-picker-active-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "top",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-slot": "category",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "emoji-picker",
+      rendersText: false,
+      state: true,
+      route: "/components/emoji-picker",
+    },
+    {
+      knobs: {
+        fill: "--cui-emoji-picker-active-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "top",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-slot": "emoji",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "emoji-picker",
+      rendersText: true,
+      state: true,
+      route: "/components/emoji-picker",
+    },
+    {
+      knobs: {
+        fill: "--cui-emoji-picker-active-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "top",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control-family": "emoji-picker",
+            "data-control-ui": "emoji-picker",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-slot": "emoji",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "emoji-picker",
+      rendersText: true,
+      state: true,
+      route: "/components/emoji-picker",
+    },
+    {
+      knobs: {
+        fill: "--cui-emoji-picker-active-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
             "data-layout": "contained",
             "data-slot": "wrapper",
           },
@@ -27780,6 +28556,32 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
             "data-layout": "contained",
             "data-slot": "wrapper",
           },
@@ -27847,6 +28649,32 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
             "data-layout": "contained",
             "data-slot": "wrapper",
           },
@@ -27901,790 +28729,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: true,
       route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-emoji-picker-active-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "end",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "top",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "reactions",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-slot": "emoji",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "emoji-picker",
-      rendersText: true,
-      state: true,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-emoji-picker-active-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "center",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-focused": "",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-slot": "category",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "emoji-picker",
-      rendersText: false,
-      state: true,
-      route: "/components/emoji-picker",
-    },
-    {
-      knobs: {
-        fill: "--cui-emoji-picker-active-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "center",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-focused": "",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-slot": "category",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "emoji-picker",
-      rendersText: false,
-      state: true,
-      route: "/components/emoji-picker",
-    },
-    {
-      knobs: {
-        fill: "--cui-emoji-picker-active-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "center",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-focused": "",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-slot": "emoji",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "emoji-picker",
-      rendersText: true,
-      state: true,
-      route: "/components/emoji-picker",
-    },
-    {
-      knobs: {
-        fill: "--cui-emoji-picker-active-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "center",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-focused": "",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-slot": "emoji",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "emoji-picker",
-      rendersText: true,
-      state: true,
-      route: "/components/emoji-picker",
-    },
-    {
-      knobs: {
-        fill: "--cui-emoji-picker-active-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "end",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "reactions",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-slot": "emoji",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "emoji-picker",
-      rendersText: true,
-      state: true,
-      route: "/components/emoji-picker",
-    },
-    {
-      knobs: {
-        fill: "--cui-emoji-picker-active-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "end",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "reactions",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-slot": "emoji",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "emoji-picker",
-      rendersText: true,
-      state: true,
-      route: "/components/emoji-picker",
-    },
-    {
-      knobs: {
-        fill: "--cui-emoji-picker-active-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "top",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-slot": "category",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "emoji-picker",
-      rendersText: false,
-      state: true,
-      route: "/components/emoji-picker",
-    },
-    {
-      knobs: {
-        fill: "--cui-emoji-picker-active-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "top",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-slot": "category",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "emoji-picker",
-      rendersText: false,
-      state: true,
-      route: "/components/emoji-picker",
-    },
-    {
-      knobs: {
-        fill: "--cui-emoji-picker-active-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "top",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-slot": "emoji",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "emoji-picker",
-      rendersText: true,
-      state: true,
-      route: "/components/emoji-picker",
-    },
-    {
-      knobs: {
-        fill: "--cui-emoji-picker-active-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "top",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control-family": "emoji-picker",
-            "data-control-ui": "emoji-picker",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-slot": "emoji",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "emoji-picker",
-      rendersText: true,
-      state: true,
-      route: "/components/emoji-picker",
     },
     {
       knobs: {
@@ -29964,202 +30008,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: true,
       state: false,
-      route: "/components",
-    },
-    {
-      knobs: {
-        fill: "--cui-field-background",
-        text: "--cui-field-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "field",
-            "data-control-ui": "input-group",
-            "data-size": "sm",
-            "data-slot": "root",
-          },
-        },
-      ],
-      recipe: "field",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-field-background",
-        text: "--cui-field-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "field",
-            "data-control-ui": "input",
-            "data-field-kind": "field",
-            "data-size": "sm",
-            "data-slot": "root",
-          },
-        },
-      ],
-      recipe: "field",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-field-background",
-        text: "--cui-field-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "field",
-            "data-control-ui": "select",
-            "data-disabled": "",
-            "data-field-kind": "select",
-            "data-size": "sm",
-            "data-slot": "trigger",
-            role: "combobox",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "field",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-field-background",
-        text: "--cui-field-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "field",
-            "data-control-ui": "select",
-            "data-field-kind": "select",
-            "data-size": "sm",
-            "data-slot": "trigger",
-            role: "combobox",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "field",
-      rendersText: true,
-      state: false,
       route: "/theme-editor",
     },
     {
@@ -31282,7 +31130,70 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: false,
       state: false,
-      route: "/templates/settings",
+      route: "/theme-editor",
+    },
+    {
+      knobs: {
+        fill: "--cui-field-background",
+        text: "--cui-field-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "input-group",
+            "data-size": "sm",
+            "data-slot": "root",
+          },
+        },
+      ],
+      recipe: "field",
+      rendersText: false,
+      state: false,
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -31485,7 +31396,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: true,
       state: false,
-      route: "/templates/settings",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -32434,7 +32345,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: false,
       state: false,
-      route: "/components/input",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -32822,7 +32733,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: true,
       state: false,
-      route: "/components/select",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -32872,7 +32783,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "field",
       rendersText: true,
       state: false,
-      route: "/build-a-screen",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -34947,33 +34858,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       anatomy: [
         {
           attributes: {
-            "data-control-family": "app-shell-header",
-            "data-control-ui": "app-shell",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "kbd",
-            "data-control-ui": "kbd",
-            "data-slot": "root",
-            "data-variant": "ghost",
-          },
-        },
-      ],
-      recipe: "kbd",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-kbd-background",
-        text: "--cui-kbd-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-layout": "viewport",
@@ -35000,7 +34884,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "kbd",
       rendersText: true,
       state: false,
-      route: "/components",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -35157,6 +35041,146 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components/kbd",
+    },
+    {
+      knobs: {
+        fill: "--cui-kbd-background",
+        text: "--cui-kbd-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tool-approval",
+            "data-control-ui": "tool-approval",
+            "data-risk": "medium",
+            "data-slot": "root",
+            "data-state": "pending",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "tool-approval",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "approve",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "kbd",
+            "data-control-ui": "kbd",
+            "data-slot": "root",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "kbd",
+      rendersText: true,
+      state: false,
+      route: "/kits/tool-approval",
+    },
+    {
+      knobs: {
+        fill: "--cui-kbd-background",
+        text: "--cui-kbd-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tool-approval",
+            "data-control-ui": "tool-approval",
+            "data-risk": "medium",
+            "data-slot": "root",
+            "data-state": "pending",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "tool-approval",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "deny",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "kbd",
+            "data-control-ui": "kbd",
+            "data-slot": "root",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "kbd",
+      rendersText: true,
+      state: false,
+      route: "/kits/tool-approval",
     },
     {
       knobs: {
@@ -36050,43 +36074,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-      ],
-      recipe: "page-layout",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-page-layout-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
             "data-width": "prose",
           },
         },
@@ -36203,7 +36190,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "page-layout",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -36240,7 +36227,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "page-layout",
       rendersText: true,
       state: false,
-      route: "/components",
+      route: "/",
     },
     {
       knobs: {
@@ -36866,210 +36853,9 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "end",
-            "data-control-family": "popup",
-            "data-control-ui": "dropdown-menu",
-            "data-open": "",
-            "data-popup-part": "list-surface",
-            "data-side": "right",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "menu",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-popup-background",
-        text: "--cui-popup-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "end",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "top",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-popup-background",
-        text: "--cui-popup-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "end",
-            "data-control-family": "popup",
-            "data-control-ui": "dropdown-menu",
-            "data-open": "",
-            "data-popup-part": "list-surface",
-            "data-side": "right",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "menu",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-popup-background",
-        text: "--cui-popup-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "end",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "top",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-popup-background",
-        text: "--cui-popup-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-indicator": "hover",
-            "data-size": "sm",
-            "data-slot": "menu-button",
-            "data-variant": "default",
-            href: "#",
           },
         },
         {
@@ -37105,72 +36891,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/templates/design-canvas",
-    },
-    {
-      knobs: {
-        fill: "--cui-popup-background",
-        text: "--cui-popup-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "field",
-            "data-control-ui": "select",
-            "data-disabled": "",
-            "data-field-kind": "select",
-            "data-size": "sm",
-            "data-slot": "trigger",
-            role: "combobox",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "select",
-            "data-open": "",
-            "data-popup-kind": "select",
-            "data-popup-part": "list-surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "presentation",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
     },
     {
       knobs: {
@@ -38245,7 +37965,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/kits/chat-composer",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -39497,7 +39217,23 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "resizable",
             "data-slot": "panel-group",
             "data-surface": "panel",
-            "data-variant": "framed",
+            "data-variant": "nested",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "false",
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            role: "option",
+            tabindex: "-1",
           },
         },
         {
@@ -39918,7 +39654,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/components/select",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -39974,8 +39710,8 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-popup-item-highlight-background",
-        text: "--cui-popup-item-highlight-foreground",
+        fill: "--cui-popup-background",
+        text: "--cui-popup-foreground",
       },
       anatomy: [
         {
@@ -40001,43 +39737,217 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
+            "data-width": "wide",
           },
         },
         {
           attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "select",
-            "data-open": "",
-            "data-popup-kind": "select",
-            "data-popup-part": "list-surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "presentation",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
             tabindex: "-1",
           },
         },
         {
           attributes: {
-            "aria-selected": "true",
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "end",
             "data-control-family": "popup",
-            "data-control-ui": "select",
-            "data-highlighted": "",
-            "data-popup-kind": "select",
-            "data-popup-part": "item",
-            "data-selected": "",
-            "data-slot": "item",
-            role: "option",
-            tabindex: "0",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "top",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
           },
         },
       ],
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/theme-editor",
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-background",
+        text: "--cui-popup-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-open": "",
+            "data-popup-part": "list-surface",
+            "data-side": "right",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "menu",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-background",
+        text: "--cui-popup-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "participant",
+            "data-slot": "content",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-open": "",
+            "data-popup-part": "list-surface",
+            "data-side": "right",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "menu",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/",
     },
     {
       knobs: {
@@ -40373,7 +40283,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/kits/chat-composer",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -41249,7 +41159,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "resizable",
             "data-slot": "panel-group",
             "data-surface": "panel",
-            "data-variant": "framed",
+            "data-variant": "nested",
           },
         },
         {
@@ -41326,14 +41236,14 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
+            "data-width": "prose",
           },
         },
         {
           attributes: {
+            "data-complete": "",
             "data-control-family": "range",
             "data-control-ui": "progress",
-            "data-progressing": "",
             "data-range-kind": "progress",
             "data-slot": "root",
             role: "progressbar",
@@ -41341,367 +41251,20 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-complete": "",
             "data-control-family": "range",
             "data-control-ui": "progress",
-            "data-progressing": "",
             "data-range-kind": "progress",
             "data-slot": "track",
           },
         },
         {
           attributes: {
+            "data-complete": "",
             "data-control-family": "range",
             "data-control-ui": "progress",
-            "data-progressing": "",
             "data-range-kind": "progress",
             "data-slot": "indicator",
-          },
-        },
-      ],
-      recipe: "range",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-range-indicator-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-disabled": "",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "root",
-            "data-variant": "plain",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-disabled": "",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "track",
-            "data-variant": "plain",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-disabled": "",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "indicator",
-            "data-variant": "plain",
-          },
-        },
-      ],
-      recipe: "range",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-range-indicator-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-labeled": "true",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "root",
-            "data-variant": "plain",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-labeled": "true",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "track",
-            "data-variant": "plain",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "indicator",
-            "data-variant": "plain",
-          },
-        },
-      ],
-      recipe: "range",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-range-indicator-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-labeled": "true",
-            "data-orientation": "vertical",
-            "data-range-kind": "slider",
-            "data-slot": "root",
-            "data-variant": "plain",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-labeled": "true",
-            "data-orientation": "vertical",
-            "data-range-kind": "slider",
-            "data-slot": "track",
-            "data-variant": "plain",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-orientation": "vertical",
-            "data-range-kind": "slider",
-            "data-slot": "indicator",
-            "data-variant": "plain",
-          },
-        },
-      ],
-      recipe: "range",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-range-indicator-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "track",
-            "data-variant": "default",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "indicator",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "range",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-range-indicator-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "root",
-            "data-variant": "plain",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "track",
-            "data-variant": "plain",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "indicator",
-            "data-variant": "plain",
           },
         },
       ],
@@ -41913,7 +41476,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "range",
       rendersText: false,
       state: false,
-      route: "/components/progress",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -41984,7 +41547,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "range",
       rendersText: false,
       state: false,
-      route: "/components/slider",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -42054,7 +41617,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "range",
       rendersText: false,
       state: false,
-      route: "/components/slider",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -42124,7 +41687,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "range",
       rendersText: false,
       state: false,
-      route: "/components/slider",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -42192,7 +41755,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "range",
       rendersText: false,
       state: false,
-      route: "/components/slider",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -42260,7 +41823,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "range",
       rendersText: false,
       state: false,
-      route: "/components/slider",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -42329,373 +41892,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: false,
       route: "/components/channel-strip",
-    },
-    {
-      knobs: {
-        fill: "--cui-range-thumb-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-disabled": "",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "root",
-            "data-variant": "plain",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-disabled": "",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "track",
-            "data-variant": "plain",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-disabled": "",
-            "data-focus-ring": "within",
-            "data-index": "0",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "thumb",
-            "data-variant": "plain",
-          },
-        },
-      ],
-      recipe: "range",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-range-thumb-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-labeled": "true",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "root",
-            "data-variant": "plain",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-labeled": "true",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "track",
-            "data-variant": "plain",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-focus-ring": "within",
-            "data-index": "0",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "thumb",
-            "data-variant": "plain",
-          },
-        },
-      ],
-      recipe: "range",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-range-thumb-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-labeled": "true",
-            "data-orientation": "vertical",
-            "data-range-kind": "slider",
-            "data-slot": "root",
-            "data-variant": "plain",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-labeled": "true",
-            "data-orientation": "vertical",
-            "data-range-kind": "slider",
-            "data-slot": "track",
-            "data-variant": "plain",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-orientation": "vertical",
-            "data-range-kind": "slider",
-            "data-slot": "indicator",
-            "data-variant": "plain",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-focus-ring": "within",
-            "data-index": "0",
-            "data-orientation": "vertical",
-            "data-range-kind": "slider",
-            "data-slot": "thumb",
-            "data-variant": "plain",
-          },
-        },
-      ],
-      recipe: "range",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-range-thumb-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "track",
-            "data-variant": "default",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-focus-ring": "within",
-            "data-index": "0",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "thumb",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "range",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-range-thumb-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "root",
-            "data-variant": "plain",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "track",
-            "data-variant": "plain",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-focus-ring": "within",
-            "data-index": "0",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "thumb",
-            "data-variant": "plain",
-          },
-        },
-      ],
-      recipe: "range",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
     },
     {
       knobs: {
@@ -42848,7 +42044,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "range",
       rendersText: false,
       state: false,
-      route: "/components/slider",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -42920,7 +42116,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "range",
       rendersText: false,
       state: false,
-      route: "/components/slider",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -43002,7 +42198,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "range",
       rendersText: false,
       state: false,
-      route: "/components/slider",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -43072,7 +42268,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "range",
       rendersText: false,
       state: false,
-      route: "/components/slider",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -43142,7 +42338,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "range",
       rendersText: false,
       state: false,
-      route: "/components/slider",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -43252,14 +42448,14 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
+            "data-width": "prose",
           },
         },
         {
           attributes: {
+            "data-complete": "",
             "data-control-family": "range",
             "data-control-ui": "progress",
-            "data-progressing": "",
             "data-range-kind": "progress",
             "data-slot": "root",
             role: "progressbar",
@@ -43267,307 +42463,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-complete": "",
             "data-control-family": "range",
             "data-control-ui": "progress",
-            "data-progressing": "",
             "data-range-kind": "progress",
             "data-slot": "track",
-          },
-        },
-      ],
-      recipe: "range",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-range-track-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-disabled": "",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "root",
-            "data-variant": "plain",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-disabled": "",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "track",
-            "data-variant": "plain",
-          },
-        },
-      ],
-      recipe: "range",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-range-track-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-labeled": "true",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "root",
-            "data-variant": "plain",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-labeled": "true",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "track",
-            "data-variant": "plain",
-          },
-        },
-      ],
-      recipe: "range",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-range-track-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-labeled": "true",
-            "data-orientation": "vertical",
-            "data-range-kind": "slider",
-            "data-slot": "root",
-            "data-variant": "plain",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-labeled": "true",
-            "data-orientation": "vertical",
-            "data-range-kind": "slider",
-            "data-slot": "track",
-            "data-variant": "plain",
-          },
-        },
-      ],
-      recipe: "range",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-range-track-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "track",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "range",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-range-track-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "root",
-            "data-variant": "plain",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "range",
-            "data-control-ui": "slider",
-            "data-orientation": "horizontal",
-            "data-range-kind": "slider",
-            "data-slot": "track",
-            "data-variant": "plain",
           },
         },
       ],
@@ -43862,7 +42762,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "range",
       rendersText: false,
       state: false,
-      route: "/components/progress",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -43922,7 +42822,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "range",
       rendersText: false,
       state: false,
-      route: "/components/slider",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -43982,7 +42882,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "range",
       rendersText: false,
       state: false,
-      route: "/components/slider",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -44042,7 +42942,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "range",
       rendersText: false,
       state: false,
-      route: "/components/slider",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -44100,7 +43000,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "range",
       rendersText: false,
       state: false,
-      route: "/components/slider",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -44158,7 +43058,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "range",
       rendersText: false,
       state: false,
-      route: "/components/slider",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -44549,6 +43449,68 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components/resizable",
+    },
+    {
+      knobs: {
+        fill: "--cui-resizable-group-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "resizable",
+            "data-control-ui": "resizable",
+            "data-slot": "panel-group",
+            "data-surface": "panel",
+            "data-variant": "nested",
+          },
+        },
+      ],
+      recipe: "resizable",
+      rendersText: true,
+      state: false,
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -44978,7 +43940,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "resizable",
             "data-slot": "panel-group",
             "data-surface": "panel",
-            "data-variant": "framed",
+            "data-variant": "nested",
           },
         },
         {
@@ -45624,7 +44586,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/components",
+      route: "/",
     },
     {
       knobs: {
@@ -48004,6 +46966,15 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-control-family": "resizable",
+            "data-control-ui": "resizable",
+            "data-slot": "panel-group",
+            "data-surface": "panel",
+            "data-variant": "nested",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "scroll-area",
             "data-control-ui": "scroll-area",
             "data-has-overflow-y": "",
@@ -48027,7 +46998,81 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/templates/settings",
+      route: "/templates/file-explorer",
+    },
+    {
+      knobs: {
+        fill: "--cui-scroll-area-thumb-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "scroll-area",
+            "data-control-ui": "scroll-area",
+            "data-has-overflow-y": "",
+            "data-lock-axis": "x",
+            "data-mask": "true",
+            "data-overflow-y-end": "",
+            "data-scrollbar-gutter": "auto",
+            "data-slot": "root",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "scroll-area",
+            "data-control-ui": "scroll-area",
+            "data-orientation": "vertical",
+            "data-slot": "thumb",
+          },
+        },
+      ],
+      recipe: "scroll-area",
+      rendersText: false,
+      state: false,
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -48528,7 +47573,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-separator-root-background",
+        fill: "--cui-scroll-area-thumb-background",
       },
       anatomy: [
         {
@@ -48554,23 +47599,50 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
+            "data-width": "wide",
           },
         },
         {
           attributes: {
-            "data-control-family": "separator",
-            "data-control-ui": "separator",
-            "data-orientation": "horizontal",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "scroll-area",
+            "data-control-ui": "scroll-area",
+            "data-has-overflow-y": "",
+            "data-lock-axis": "x",
+            "data-overflow-y-start": "",
+            "data-scrollbar-gutter": "auto",
             "data-slot": "root",
-            role: "separator",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "scroll-area",
+            "data-control-ui": "scroll-area",
+            "data-orientation": "vertical",
+            "data-slot": "thumb",
           },
         },
       ],
-      recipe: "separator",
+      recipe: "scroll-area",
       rendersText: false,
       state: false,
-      route: "/theme-editor",
+      route: "/",
     },
     {
       knobs: {
@@ -48680,7 +47752,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "separator",
       rendersText: false,
       state: false,
-      route: "/components/field",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -48788,45 +47860,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "separator",
       rendersText: false,
       state: false,
-      route: "/templates/settings",
-    },
-    {
-      knobs: {
-        fill: "--cui-sidebar-header-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-collapsible": "",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-side": "left",
-            "data-slot": "root",
-            "data-state": "expanded",
-            "data-surface": "panel",
-            "data-variant": "page",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "header",
-          },
-        },
-      ],
-      recipe: "sidebar-parts",
-      rendersText: true,
-      state: false,
-      route: "/",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -48865,7 +47899,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-parts",
       rendersText: true,
       state: false,
-      route: "/components",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -48904,7 +47938,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-parts",
       rendersText: true,
       state: false,
-      route: "/components",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -49162,7 +48196,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-parts",
       rendersText: true,
       state: false,
-      route: "/templates/coding-agent",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -49678,6 +48712,70 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
+        fill: "--cui-sidebar-header-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "page",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "header",
+          },
+        },
+      ],
+      recipe: "sidebar-parts",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
         fill: "--cui-sidebar-inset-background",
       },
       anatomy: [
@@ -49792,240 +48890,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-collapsible": "",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-side": "left",
-            "data-slot": "root",
-            "data-state": "expanded",
-            "data-surface": "panel",
-            "data-variant": "page",
-          },
-        },
-        {
-          attributes: {
-            "data-active": "true",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-indicator": "hover",
-            "data-size": "default",
-            "data-slot": "menu-button",
-            "data-variant": "default",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-show-on-hover": "true",
-            "data-size": "sm",
-            "data-slot": "menu-action",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-show-on-hover": "true",
-            "data-size": "sm",
-            "data-slot": "menu-action",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "sidebar-menu",
-      rendersText: false,
-      state: true,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-sidebar-menu-button-active-background",
-        text: "--cui-sidebar-menu-button-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-collapsible": "",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-side": "left",
-            "data-slot": "root",
-            "data-state": "expanded",
-            "data-surface": "panel",
-            "data-variant": "page",
-          },
-        },
-        {
-          attributes: {
-            "data-active": "true",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-indicator": "hover",
-            "data-size": "default",
-            "data-slot": "menu-button",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "sidebar-menu",
-      rendersText: true,
-      state: true,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-sidebar-menu-button-active-background",
-        text: "--cui-sidebar-menu-button-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-collapsible": "",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-side": "left",
-            "data-slot": "root",
-            "data-state": "expanded",
-            "data-surface": "panel",
-            "data-variant": "page",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-indicator": "hover",
-            "data-size": "default",
-            "data-slot": "menu-button",
-            "data-variant": "default",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-show-on-hover": "true",
-            "data-size": "sm",
-            "data-slot": "menu-action",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-show-on-hover": "true",
-            "data-size": "sm",
-            "data-slot": "menu-action",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "sidebar-menu",
-      rendersText: false,
-      state: true,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-sidebar-menu-button-active-background",
-        text: "--cui-sidebar-menu-button-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-collapsible": "",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-side": "left",
-            "data-slot": "root",
-            "data-state": "expanded",
-            "data-surface": "panel",
-            "data-variant": "page",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-indicator": "hover",
-            "data-size": "default",
-            "data-slot": "menu-button",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "sidebar-menu",
-      rendersText: true,
-      state: true,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-sidebar-menu-button-active-background",
-        text: "--cui-sidebar-menu-button-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
@@ -50059,7 +48923,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/templates",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -50103,7 +48967,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/components",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -50146,7 +49010,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/templates",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -50385,7 +49249,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/templates/coding-agent",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -50621,7 +49485,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/templates/coding-agent",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -50708,48 +49572,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-collapsible": "",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-side": "left",
-            "data-slot": "root",
-            "data-state": "expanded",
-            "data-surface": "panel",
-            "data-variant": "page",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-indicator": "hover",
-            "data-size": "default",
-            "data-slot": "menu-button",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "sidebar-menu",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-sidebar-menu-button-background",
-        text: "--cui-sidebar-menu-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
@@ -50782,7 +49604,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/components",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -50825,7 +49647,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/templates",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -50961,7 +49783,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/templates/coding-agent",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -51335,6 +50157,51 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: false,
       route: "/components/skeleton",
+    },
+    {
+      knobs: {
+        fill: "--cui-skeleton-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "skeleton",
+            "data-control-ui": "skeleton",
+            "data-slot": "root",
+            "data-variant": "shimmer",
+          },
+        },
+      ],
+      recipe: "skeleton",
+      rendersText: false,
+      state: false,
+      route: "/kits/email",
     },
     {
       knobs: {
@@ -51965,101 +50832,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "switch",
-            "data-control-ui": "switch",
-            "data-disabled": "",
-            "data-slot": "root",
-            "data-unchecked": "",
-            role: "switch",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "switch",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-switch-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "switch",
-            "data-control-ui": "switch",
-            "data-slot": "root",
-            "data-unchecked": "",
-            role: "switch",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "switch",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-switch-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
             "data-width": "prose",
           },
         },
@@ -52141,7 +50913,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "switch",
       rendersText: false,
       state: false,
-      route: "/components/switch",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -52188,7 +50960,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "switch",
       rendersText: false,
       state: false,
-      route: "/components/switch",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -52218,7 +50990,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
+            "data-width": "prose",
           },
         },
         {
@@ -52266,7 +51038,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
+            "data-width": "prose",
           },
         },
         {
@@ -52314,7 +51086,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
+            "data-width": "prose",
           },
         },
         {
@@ -52362,7 +51134,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
+            "data-width": "prose",
           },
         },
         {
@@ -52380,197 +51152,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: false,
       route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-switch-checked-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-checked": "",
-            "data-control-family": "switch",
-            "data-control-ui": "switch",
-            "data-disabled": "",
-            "data-slot": "root",
-            role: "switch",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "switch",
-      rendersText: false,
-      state: false,
-      route: "/components/switch",
-    },
-    {
-      knobs: {
-        fill: "--cui-switch-checked-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-checked": "",
-            "data-control-family": "switch",
-            "data-control-ui": "switch",
-            "data-filled": "",
-            "data-slot": "root",
-            role: "switch",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "switch",
-      rendersText: false,
-      state: false,
-      route: "/components/field",
-    },
-    {
-      knobs: {
-        fill: "--cui-switch-checked-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-checked": "",
-            "data-control-family": "switch",
-            "data-control-ui": "switch",
-            "data-readonly": "",
-            "data-slot": "root",
-            role: "switch",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "switch",
-      rendersText: false,
-      state: false,
-      route: "/components/switch",
-    },
-    {
-      knobs: {
-        fill: "--cui-switch-checked-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-checked": "",
-            "data-control-family": "switch",
-            "data-control-ui": "switch",
-            "data-slot": "root",
-            role: "switch",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "switch",
-      rendersText: false,
-      state: false,
-      route: "/components/scroll-area",
     },
     {
       knobs: {
@@ -52634,101 +51215,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "switch",
       rendersText: false,
       state: false,
-      route: "/templates/settings",
-    },
-    {
-      knobs: {
-        fill: "--cui-switch-checked-hover-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-checked": "",
-            "data-control-family": "switch",
-            "data-control-ui": "switch",
-            "data-filled": "",
-            "data-slot": "root",
-            role: "switch",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "switch",
-      rendersText: false,
-      state: true,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-switch-checked-hover-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-checked": "",
-            "data-control-family": "switch",
-            "data-control-ui": "switch",
-            "data-slot": "root",
-            role: "switch",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "switch",
-      rendersText: false,
-      state: true,
       route: "/theme-editor",
     },
     {
@@ -52777,7 +51263,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "switch",
       rendersText: false,
       state: true,
-      route: "/components/field",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -52824,7 +51310,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "switch",
       rendersText: false,
       state: true,
-      route: "/components/scroll-area",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -52880,53 +51366,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "switch",
             "data-filled": "",
             "data-slot": "root",
-            role: "switch",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "switch",
-      rendersText: false,
-      state: true,
-      route: "/templates/settings",
-    },
-    {
-      knobs: {
-        fill: "--cui-switch-hover-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "switch",
-            "data-control-ui": "switch",
-            "data-slot": "root",
-            "data-unchecked": "",
             role: "switch",
             tabindex: "0",
           },
@@ -53045,51 +51484,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "switch",
       rendersText: false,
       state: true,
-      route: "/components/switch",
-    },
-    {
-      knobs: {
-        fill: "--cui-table-background",
-        text: "--cui-table-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "table",
-            "data-control-ui": "table",
-            "data-slot": "root",
-          },
-        },
-      ],
-      recipe: "table",
-      rendersText: true,
-      state: false,
       route: "/theme-editor",
     },
     {
@@ -53135,7 +51529,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table",
       rendersText: true,
       state: false,
-      route: "/components/table",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -53225,7 +51619,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -53279,375 +51673,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       anatomy: [
         {
           attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: false,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        fill: "--cui-tabs-indicator-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-tabs-indicator-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-tabs-indicator-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-tabs-indicator-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-tabs-indicator-background",
-      },
-      anatomy: [
-        {
-          attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-layout": "viewport",
@@ -53708,7 +51733,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: false,
       state: false,
-      route: "/kits/email",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -53787,7 +51812,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: false,
       state: false,
-      route: "/components/tabs",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -53963,7 +51988,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: false,
       state: false,
-      route: "/components/tabs",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -54216,39 +52241,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: false,
       state: false,
-      route: "/skins/mastra",
-    },
-    {
-      knobs: {
-        fill: "--cui-tabs-list-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
       route: "/",
     },
     {
@@ -54279,371 +52271,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-tabs-list-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-tabs-list-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-tabs-list-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-tabs-list-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        fill: "--cui-tabs-list-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
             "data-width": "prose",
           },
         },
@@ -54673,7 +52300,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/kits/email",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -54742,7 +52369,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/components/tabs",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -54811,7 +52438,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/components/tabs",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -54967,7 +52594,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/components/tabs",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -55190,87 +52817,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/skins/mastra",
-    },
-    {
-      knobs: {
-        fill: "--cui-tabs-surface-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-index": "0",
-            "data-orientation": "horizontal",
-            "data-slide": "panel",
-            "data-slot": "panel",
-            role: "tabpanel",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
+      route: "/",
     },
     {
       knobs: {
@@ -55340,7 +52887,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/components/tabs",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -55766,6 +53313,169 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
+        fill: "--cui-tool-approval-background",
+        text: "--cui-tool-approval-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tool-approval",
+            "data-control-ui": "tool-approval",
+            "data-risk": "medium",
+            "data-slot": "root",
+            "data-state": "pending",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "tool-approval",
+      rendersText: true,
+      state: false,
+      route: "/kits/tool-approval",
+    },
+    {
+      knobs: {
+        fill: "--cui-tool-approval-body-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tool-approval",
+            "data-control-ui": "tool-approval",
+            "data-risk": "medium",
+            "data-slot": "root",
+            "data-state": "pending",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tool-approval",
+            "data-control-ui": "tool-approval",
+            "data-slot": "body",
+          },
+        },
+      ],
+      recipe: "tool-approval",
+      rendersText: true,
+      state: false,
+      route: "/kits/tool-approval",
+    },
+    {
+      knobs: {
+        fill: "--cui-tool-approval-preview-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tool-approval",
+            "data-control-ui": "tool-approval",
+            "data-risk": "medium",
+            "data-slot": "root",
+            "data-state": "pending",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tool-approval",
+            "data-control-ui": "tool-approval",
+            "data-slot": "body",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tool-approval",
+            "data-control-ui": "tool-approval",
+            "data-slot": "preview",
+          },
+        },
+      ],
+      recipe: "tool-approval",
+      rendersText: true,
+      state: false,
+      route: "/kits/tool-approval",
+    },
+    {
+      knobs: {
         fill: "--cui-toolbar-background",
         text: "--cui-toolbar-foreground",
       },
@@ -56049,6 +53759,80 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/kits/markdown-editor",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-background",
+        text: "--cui-toolbar-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "floating",
+            role: "toolbar",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: false,
+      route: "/",
     },
     {
       knobs: {
@@ -56929,6 +54713,96 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
+        fill: "--cui-toolbar-item-active-background",
+        text: "--cui-toolbar-item-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "floating",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-pressed": "true",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-pressed": "",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
         fill: "--cui-toolbar-item-background",
         text: "--cui-toolbar-item-foreground",
       },
@@ -58490,6 +56364,95 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
+        fill: "--cui-toolbar-item-background",
+        text: "--cui-toolbar-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "floating",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-pressed": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
         fill: "--cui-toolbar-item-hover-background",
         text: "--cui-toolbar-item-hover-foreground",
       },
@@ -60925,6 +58888,185 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: true,
       route: "/kits/markdown-editor",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "floating",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-pressed": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: true,
+      route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "floating",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-pressed": "true",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-pressed": "",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: true,
+      route: "/",
     },
     {
       knobs: {
@@ -63812,7 +61954,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
+            "data-width": "prose",
           },
         },
         {
@@ -63866,7 +62008,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
+            "data-width": "prose",
           },
         },
         {
@@ -63891,114 +62033,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-alert-description-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "alert",
-            "data-control-ui": "alert",
-            "data-slot": "root",
-            "data-surface": "panel",
-            "data-variant": "default",
-            role: "status",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "alert",
-            "data-control-ui": "alert",
-            "data-slot": "description",
-          },
-        },
-      ],
-      recipe: "alert",
-      rendersText: true,
-      state: false,
-      route: "/components/alert",
-    },
-    {
-      knobs: {
-        text: "--cui-alert-description-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "alert",
-            "data-control-ui": "alert",
-            "data-slot": "root",
-            "data-surface": "panel",
-            "data-variant": "destructive",
-            role: "alert",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "alert",
-            "data-control-ui": "alert",
-            "data-slot": "description",
-          },
-        },
-      ],
-      recipe: "alert",
-      rendersText: true,
-      state: false,
-      route: "/components/alert",
     },
     {
       knobs: {
@@ -64193,6 +62227,107 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-slot": "root",
             "data-state": "idle",
             role: "group",
+          },
+        },
+      ],
+      recipe: "audio-recorder",
+      rendersText: true,
+      state: false,
+      route: "/kits/audio-recorder",
+    },
+    {
+      knobs: {
+        text: "--cui-audio-recorder-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "audio-recorder",
+            "data-control-ui": "audio-recorder",
+            "data-slot": "root",
+            "data-state": "requesting",
+            role: "group",
+          },
+        },
+      ],
+      recipe: "audio-recorder",
+      rendersText: true,
+      state: false,
+      route: "/kits/audio-recorder",
+    },
+    {
+      knobs: {
+        text: "--cui-audio-recorder-meta-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "audio-recorder",
+            "data-control-ui": "audio-recorder",
+            "data-slot": "root",
+            "data-state": "requesting",
+            role: "group",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "audio-recorder",
+            "data-control-ui": "audio-recorder",
+            "data-slot": "status",
+            "data-tone": "neutral",
+            "data-visible": "true",
           },
         },
       ],
@@ -64765,58 +62900,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components/chart",
-    },
-    {
-      knobs: {
-        text: "--cui-chat-composer-input-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "idle",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "textarea",
-          },
-        },
-      ],
-      recipe: "chat-composer",
-      rendersText: false,
-      state: false,
-      route: "/",
     },
     {
       knobs: {
@@ -65464,6 +63547,84 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
+        text: "--cui-chat-composer-input-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "textarea",
+          },
+        },
+      ],
+      recipe: "chat-composer",
+      rendersText: false,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
         text: "--cui-code-diff-foreground",
       },
       anatomy: [
@@ -65633,61 +63794,83 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        text: "--cui-code-text-foreground",
+        text: "--cui-code-diff-foreground",
       },
       anatomy: [
         {
           attributes: {
-            "data-chrome": "standalone",
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-density": "compact",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "card",
+            "data-control-ui": "card",
+            "data-slot": "root",
+            "data-surface": "panel",
+            "data-variant": "default",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code-diff",
+            "data-control-ui": "code-diff",
+            "data-diff-style": "unified",
+            "data-file-count": "1",
             "data-slot": "root",
             "data-surface": "panel",
           },
         },
         {
           attributes: {
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-density": "compact",
-            "data-slot": "grid",
+            "data-control-family": "scroll-area",
+            "data-control-ui": "scroll-area",
+            "data-slot": "content",
+            role: "presentation",
           },
         },
       ],
-      recipe: "code",
+      recipe: "code-diff",
       rendersText: true,
       state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        text: "--cui-code-text-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-chrome": "standalone",
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-density": "default",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-density": "default",
-            "data-slot": "grid",
-          },
-        },
-      ],
-      recipe: "code",
-      rendersText: true,
-      state: false,
-      route: "/",
+      route: "/templates/agent-run",
     },
     {
       knobs: {
@@ -66012,6 +64195,142 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "resizable",
+            "data-control-ui": "resizable",
+            "data-slot": "panel-group",
+            "data-surface": "panel",
+            "data-variant": "nested",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "grid",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/templates/file-explorer",
+    },
+    {
+      knobs: {
+        text: "--cui-code-text-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "compact",
+            "data-slot": "grid",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        text: "--cui-code-text-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
             "data-width": "wide",
           },
         },
@@ -66039,6 +64358,61 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/skins/mastra",
+    },
+    {
+      knobs: {
+        text: "--cui-code-text-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "grid",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/",
     },
     {
       knobs: {
@@ -66172,6 +64546,93 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/kits/chat-composer",
+    },
+    {
+      knobs: {
+        text: "--cui-code-title-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "resizable",
+            "data-control-ui": "resizable",
+            "data-slot": "panel-group",
+            "data-surface": "panel",
+            "data-variant": "nested",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-slot": "header",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-slot": "title",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/templates/file-explorer",
     },
     {
       knobs: {
@@ -66409,182 +64870,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "header",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "field",
-            "data-control-ui": "select",
-            "data-field-kind": "select",
-            "data-size": "sm",
-            "data-slot": "trigger",
-            role: "combobox",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "select",
-            "data-popup-kind": "select",
-            "data-slot": "icon",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: false,
-      state: false,
-      route: "/components",
-    },
-    {
-      knobs: {
-        text: "--cui-field-affordance-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "field",
-            "data-control-ui": "select",
-            "data-disabled": "",
-            "data-field-kind": "select",
-            "data-size": "sm",
-            "data-slot": "trigger",
-            role: "combobox",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "select",
-            "data-popup-kind": "select",
-            "data-slot": "icon",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-field-affordance-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "field",
-            "data-control-ui": "select",
-            "data-field-kind": "select",
-            "data-popup-open": "",
-            "data-popup-side": "bottom",
-            "data-pressed": "",
-            "data-size": "sm",
-            "data-slot": "trigger",
-            role: "combobox",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "select",
-            "data-popup-kind": "select",
-            "data-popup-open": "",
-            "data-slot": "icon",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: false,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-field-affordance-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
           },
         },
         {
@@ -67186,7 +65471,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/templates/settings",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -67410,7 +65695,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/templates/settings",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -68193,7 +66478,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/components/select",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -68254,7 +66539,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/build-a-screen",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -68311,7 +66596,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: false,
       state: false,
-      route: "/build-a-screen",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -69779,326 +68064,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "end",
-            "data-control-family": "popup",
-            "data-control-ui": "dropdown-menu",
-            "data-open": "",
-            "data-popup-part": "list-surface",
-            "data-side": "right",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "menu",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "dropdown-menu",
-            "data-popup-part": "item",
-            "data-slot": "item",
-            role: "menuitem",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        text: "--cui-popup-item-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "end",
-            "data-control-family": "popup",
-            "data-control-ui": "dropdown-menu",
-            "data-open": "",
-            "data-popup-part": "list-surface",
-            "data-side": "right",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "menu",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "dropdown-menu",
-            "data-popup-part": "item",
-            "data-slot": "item",
-            role: "menuitem",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        text: "--cui-popup-item-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "comfortable",
-            "data-layout": "flat",
-            "data-slot": "row",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-role": "participant",
-            "data-slot": "content",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "end",
-            "data-control-family": "popup",
-            "data-control-ui": "dropdown-menu",
-            "data-open": "",
-            "data-popup-part": "list-surface",
-            "data-side": "right",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "menu",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "dropdown-menu",
-            "data-popup-part": "item",
-            "data-slot": "item",
-            role: "menuitem",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        text: "--cui-popup-item-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "select",
-            "data-open": "",
-            "data-popup-kind": "select",
-            "data-popup-part": "list-surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "presentation",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "aria-selected": "false",
-            "data-control-family": "popup",
-            "data-control-ui": "select",
-            "data-popup-kind": "select",
-            "data-popup-part": "item",
-            "data-slot": "item",
-            role: "option",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-popup-item-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "field",
-            "data-control-ui": "select",
-            "data-disabled": "",
-            "data-field-kind": "select",
-            "data-size": "sm",
-            "data-slot": "trigger",
-            role: "combobox",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "select",
-            "data-open": "",
-            "data-popup-kind": "select",
-            "data-popup-part": "list-surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "presentation",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "aria-selected": "false",
-            "data-control-family": "popup",
-            "data-control-ui": "select",
-            "data-popup-kind": "select",
-            "data-popup-part": "item",
-            "data-slot": "item",
-            role: "option",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-popup-item-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
@@ -70777,70 +68742,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "aria-selected": "false",
             "data-control-family": "popup",
             "data-control-ui": "audio-device-select",
-            "data-popup-kind": "select",
-            "data-popup-part": "item",
-            "data-slot": "item",
-            role: "option",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/kits/audio-device-select",
-    },
-    {
-      knobs: {
-        text: "--cui-popup-item-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "audio-device-select",
-            "data-open": "",
-            "data-popup-kind": "select",
-            "data-popup-part": "list-surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "presentation",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "aria-selected": "false",
-            "data-control-family": "popup",
-            "data-control-ui": "select",
             "data-popup-kind": "select",
             "data-popup-part": "item",
             "data-slot": "item",
@@ -72296,7 +70197,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/kits/chat-composer",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -72768,6 +70669,77 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/extensions/view-transition",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "audio-visualizer",
+            "data-control-ui": "audio-visualizer",
+            "data-slot": "bar",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "audio-device-select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "presentation",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "false",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/kits/audio-device-select",
     },
     {
       knobs: {
@@ -73870,7 +71842,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "resizable",
             "data-slot": "panel-group",
             "data-surface": "panel",
-            "data-variant": "framed",
+            "data-variant": "nested",
           },
         },
         {
@@ -73974,13 +71946,12 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "resizable",
             "data-slot": "panel-group",
             "data-surface": "panel",
-            "data-variant": "framed",
+            "data-variant": "nested",
           },
         },
         {
           attributes: {
-            "aria-selected": "true",
-            "data-active": "true",
+            "aria-selected": "false",
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "button",
@@ -73991,7 +71962,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-tone": "neutral",
             "data-variant": "quiet",
             role: "option",
-            tabindex: "0",
+            tabindex: "-1",
           },
         },
         {
@@ -74078,7 +72049,24 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "resizable",
             "data-slot": "panel-group",
             "data-surface": "panel",
-            "data-variant": "framed",
+            "data-variant": "nested",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-active": "true",
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            role: "option",
+            tabindex: "0",
           },
         },
         {
@@ -74491,7 +72479,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/components/select",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -74615,6 +72603,450 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/skins/mastra",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-open": "",
+            "data-popup-part": "list-surface",
+            "data-side": "right",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "menu",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-popup-part": "item",
+            "data-slot": "item",
+            role: "menuitem",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "aria-pressed": "false",
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-slot": "reaction",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-open": "",
+            "data-popup-part": "list-surface",
+            "data-side": "right",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "menu",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-popup-part": "item",
+            "data-slot": "item",
+            role: "menuitem",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-open": "",
+            "data-popup-part": "list-surface",
+            "data-side": "right",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "menu",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-popup-part": "item",
+            "data-slot": "item",
+            role: "menuitem",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "participant",
+            "data-slot": "content",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-open": "",
+            "data-popup-part": "list-surface",
+            "data-side": "right",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "menu",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-popup-part": "item",
+            "data-slot": "item",
+            role: "menuitem",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "comfortable",
+            "data-layout": "flat",
+            "data-slot": "row",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-slot": "reply-summary",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-open": "",
+            "data-popup-part": "list-surface",
+            "data-side": "right",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "menu",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-popup-part": "item",
+            "data-slot": "item",
+            role: "menuitem",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/",
     },
     {
       knobs: {
@@ -75645,7 +74077,8 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
-            "data-layout": "contained",
+            "data-layout": "viewport",
+            "data-scroll": "page",
             "data-slot": "wrapper",
           },
         },
@@ -75663,9 +74096,14 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "aria-disabled": "false",
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
+            "data-open": "",
+            "data-panel-open": "",
             "data-slot": "group-label",
+            "data-state": "open",
+            tabindex: "0",
           },
         },
       ],
@@ -75690,50 +74128,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-collapsible": "",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-side": "left",
-            "data-slot": "root",
-            "data-state": "expanded",
-            "data-surface": "panel",
-            "data-variant": "page",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-open": "",
-            "data-panel-open": "",
-            "data-slot": "group-label",
-            "data-state": "open",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "sidebar-menu",
-      rendersText: true,
-      state: false,
-      route: "/components",
-    },
-    {
-      knobs: {
-        text: "--cui-sidebar-group-label-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
@@ -75780,7 +74174,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/templates/coding-agent",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -76378,9 +74772,35 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        text: "--cui-sidebar-menu-button-active-foreground",
+        text: "--cui-sidebar-group-label-foreground",
       },
       anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
         {
           attributes: {
             "data-control-family": "sidebar",
@@ -76403,50 +74823,14 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-active": "true",
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
-            "data-indicator": "hover",
-            "data-size": "default",
-            "data-slot": "menu-button",
-            "data-variant": "default",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-show-on-hover": "true",
-            "data-size": "sm",
-            "data-slot": "menu-action",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-show-on-hover": "true",
-            "data-size": "sm",
-            "data-slot": "menu-action",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
+            "data-slot": "group-label",
           },
         },
       ],
       recipe: "sidebar-menu",
-      rendersText: false,
+      rendersText: true,
       state: false,
       route: "/",
     },
@@ -76652,9 +75036,35 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        text: "--cui-sidebar-menu-button-foreground",
+        text: "--cui-sidebar-menu-button-active-foreground",
       },
       anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
         {
           attributes: {
             "data-control-family": "sidebar",
@@ -76677,6 +75087,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-active": "true",
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-indicator": "hover",
@@ -76690,6 +75101,24 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control": "true",
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
+            "data-popup-open": "",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-show-on-hover": "true",
+            "data-size": "sm",
+            "data-slot": "menu-action",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-popup-open": "",
+            "data-pressed": "",
             "data-shape": "default",
             "data-show-on-hover": "true",
             "data-size": "sm",
@@ -77193,9 +75622,35 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        text: "--cui-sidebar-menu-button-track-active-foreground",
+        text: "--cui-sidebar-menu-button-foreground",
       },
       anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
         {
           attributes: {
             "data-control-family": "sidebar",
@@ -77218,7 +75673,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-active": "true",
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-indicator": "hover",
@@ -77244,48 +75698,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       ],
       recipe: "sidebar-menu",
       rendersText: false,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        text: "--cui-sidebar-menu-button-track-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-collapsible": "",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-side": "left",
-            "data-slot": "root",
-            "data-state": "expanded",
-            "data-surface": "panel",
-            "data-variant": "page",
-          },
-        },
-        {
-          attributes: {
-            "data-active": "true",
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-indicator": "hover",
-            "data-size": "default",
-            "data-slot": "menu-button",
-            "data-variant": "default",
-          },
-        },
-      ],
-      recipe: "sidebar-menu",
-      rendersText: true,
       state: false,
       route: "/",
     },
@@ -77331,7 +75743,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/templates",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -77687,7 +76099,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/templates/coding-agent",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -78425,6 +76837,156 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
+        text: "--cui-sidebar-menu-button-track-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "page",
+          },
+        },
+        {
+          attributes: {
+            "data-active": "true",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "hover",
+            "data-size": "default",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-shape": "default",
+            "data-show-on-hover": "true",
+            "data-size": "sm",
+            "data-slot": "menu-action",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: false,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
+        text: "--cui-sidebar-menu-button-track-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "page",
+          },
+        },
+        {
+          attributes: {
+            "data-active": "true",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "hover",
+            "data-size": "default",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
         text: "--cui-spinner-foreground",
       },
       anatomy: [
@@ -78666,57 +77228,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "table",
-            "data-control-ui": "table",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "table",
-            "data-control-ui": "table",
-            "data-slot": "head",
-          },
-        },
-      ],
-      recipe: "table",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-table-header-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
             "data-width": "prose",
           },
         },
@@ -78738,7 +77249,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table",
       rendersText: true,
       state: false,
-      route: "/components/table",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -78906,7 +77417,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -79238,7 +77749,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -79736,7 +78247,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: true,
-      route: "/create",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -79847,7 +78358,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: true,
-      route: "/create",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -80172,7 +78683,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -80233,63 +78744,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       anatomy: [
         {
           attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-layout": "viewport",
@@ -80311,7 +78765,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
+            "data-width": "prose",
           },
         },
         {
@@ -80394,110 +78848,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
+            "data-width": "prose",
           },
         },
         {
@@ -80590,17 +78941,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
+            "data-width": "prose",
           },
         },
         {
@@ -80664,378 +79005,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/kits/email",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/components/tabs",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/components/tabs",
     },
     {
       knobs: {
@@ -81239,7 +79208,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/components/tabs",
+      route: "/theme-editor",
     },
     {
       knobs: {
@@ -81534,52 +79503,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/skins/mastra",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
       route: "/",
     },
     {
@@ -81610,7 +79533,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
+            "data-width": "prose",
           },
         },
         {
@@ -81682,99 +79605,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
+            "data-width": "prose",
           },
         },
         {
@@ -81856,17 +79687,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
+            "data-width": "prose",
           },
         },
         {
@@ -81948,7 +79769,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
+            "data-width": "prose",
           },
         },
         {
@@ -81959,6 +79780,96 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-orientation": "horizontal",
             "data-slide": "scope",
             "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-slot": "header",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "false",
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/components/code",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
           },
         },
         {
@@ -82040,17 +79951,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "page-layout",
             "data-scroll": "page",
             "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
+            "data-width": "prose",
           },
         },
         {
@@ -82148,507 +80049,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/kits/email",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/components/tabs",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/components/tabs",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-chrome": "standalone",
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-density": "default",
-            "data-header": "true",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-slot": "header",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/components/code",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/components/tabs",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "true",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-disabled": "",
-            "data-orientation": "vertical",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/components/tabs",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
             "data-align": "start",
             "data-control-family": "popup",
             "data-control-ui": "popover",
@@ -82866,13 +80266,1332 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/skins/mastra",
+      route: "/",
     },
     {
       knobs: {
         text: "--cui-tabs-hover-foreground",
       },
       anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "false",
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: true,
+      route: "/theme-editor",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "indicator",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: true,
+      route: "/theme-editor",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "browser",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "false",
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: true,
+      route: "/theme-editor",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "browser",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "indicator",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: true,
+      route: "/theme-editor",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "false",
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: true,
+      route: "/theme-editor",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "indicator",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: true,
+      route: "/theme-editor",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-slot": "header",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "false",
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: true,
+      route: "/components/code",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-slot": "header",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "indicator",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: true,
+      route: "/components/code",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "vertical",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "vertical",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "false",
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "vertical",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: true,
+      route: "/theme-editor",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "vertical",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "vertical",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "vertical",
+            "data-slot": "indicator",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "vertical",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: true,
+      route: "/theme-editor",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "top",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "emoji-icon-picker",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "xs",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "false",
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: true,
+      route: "/components/emoji-picker",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "top",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "emoji-icon-picker",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "xs",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "indicator",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: true,
+      route: "/components/emoji-picker",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-open": "",
+            "data-slot": "root",
+            "data-state": "open",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "xs",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "false",
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: true,
+      route: "/components/morphing-panel",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-open": "",
+            "data-slot": "root",
+            "data-state": "open",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "xs",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "indicator",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: true,
+      route: "/components/morphing-panel",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
         {
           attributes: {
             "data-activation-direction": "none",
@@ -82921,6 +81640,32 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       anatomy: [
         {
           attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
             "data-activation-direction": "none",
             "data-control-family": "tabs",
             "data-control-ui": "tabs",
@@ -82970,2369 +81715,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: true,
       route: "/",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "full",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/kits/email",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/kits/email",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/components/tabs",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/components/tabs",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/components/tabs",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/components/tabs",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-chrome": "standalone",
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-density": "default",
-            "data-header": "true",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-slot": "header",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/components/code",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-chrome": "standalone",
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-density": "default",
-            "data-header": "true",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-slot": "header",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/components/code",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/components/tabs",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "vertical",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/components/tabs",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "top",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "emoji-icon-picker",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "xs",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/components/emoji-picker",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "top",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "emoji-icon-picker",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "xs",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/components/emoji-picker",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-open": "",
-            "data-slot": "root",
-            "data-state": "open",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "xs",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/components/morphing-panel",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-open": "",
-            "data-slot": "root",
-            "data-state": "open",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "xs",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/components/morphing-panel",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "wide",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/skins/mastra",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "wide",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "default",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: true,
-      route: "/skins/mastra",
     },
     {
       knobs: {
@@ -86002,6 +82384,135 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
+        text: "--cui-tool-approval-description-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tool-approval",
+            "data-control-ui": "tool-approval",
+            "data-risk": "medium",
+            "data-slot": "root",
+            "data-state": "pending",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tool-approval",
+            "data-control-ui": "tool-approval",
+            "data-slot": "body",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tool-approval",
+            "data-control-ui": "tool-approval",
+            "data-slot": "description",
+          },
+        },
+      ],
+      recipe: "tool-approval",
+      rendersText: true,
+      state: false,
+      route: "/kits/tool-approval",
+    },
+    {
+      knobs: {
+        text: "--cui-tool-approval-label-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tool-approval",
+            "data-control-ui": "tool-approval",
+            "data-risk": "medium",
+            "data-slot": "root",
+            "data-state": "pending",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tool-approval",
+            "data-control-ui": "tool-approval",
+            "data-slot": "body",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tool-approval",
+            "data-control-ui": "tool-approval",
+            "data-slot": "preview",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "tool-approval",
+            "data-control-ui": "tool-approval",
+            "data-slot": "field-label",
+          },
+        },
+      ],
+      recipe: "tool-approval",
+      rendersText: true,
+      state: false,
+      route: "/kits/tool-approval",
+    },
+    {
+      knobs: {
         text: "--cui-transcript-divider-danger-foreground",
       },
       anatomy: [
@@ -86044,41 +82555,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/kits/transcript-divider",
-    },
-    {
-      knobs: {
-        text: "--cui-transcript-divider-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "transcript-divider",
-            "data-control-ui": "transcript-divider",
-            "data-slot": "root",
-            "data-tone": "neutral",
-          },
-        },
-      ],
-      recipe: "transcript-divider",
-      rendersText: true,
-      state: false,
-      route: "/",
     },
     {
       knobs: {
@@ -86234,6 +82710,67 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
+        text: "--cui-transcript-divider-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "wide",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "transcript-divider",
+            "data-control-ui": "transcript-divider",
+            "data-slot": "root",
+            "data-tone": "neutral",
+          },
+        },
+      ],
+      recipe: "transcript-divider",
+      rendersText: true,
+      state: false,
+      route: "/",
+    },
+    {
+      knobs: {
         text: "--cui-transcript-divider-warning-foreground",
       },
       anatomy: [
@@ -86279,7 +82816,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
   ),
   uncovered: [
-    "--cui-audio-recorder-meta-foreground",
     "--cui-audio-recorder-recorded-foreground",
     "--cui-audio-recorder-recording-foreground",
     "--cui-button-active-hover-background",
@@ -86327,6 +82863,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     "--cui-popup-status-info-foreground",
     "--cui-popup-status-success-foreground",
     "--cui-popup-status-warning-foreground",
+    "--cui-range-level-muted-background",
     "--cui-resizable-handle-active-background",
     "--cui-resizable-handle-hover-background",
     "--cui-resize-handle-background",
@@ -86351,6 +82888,8 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     "--cui-thread-rail-popover-background",
     "--cui-timeline-indicator-background",
     "--cui-timeline-indicator-foreground",
+    "--cui-timeline-waiting-foreground",
+    "--cui-tool-approval-status-foreground",
     "--cui-track-highlight-hover-background",
     "--cui-transcript-divider-line-color",
     "--cui-transcript-divider-success-foreground",

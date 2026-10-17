@@ -148,6 +148,7 @@
 - `chat-composer` (ChatComposer) — Message composer with controlled text, Enter or ⌘ Enter submit, caret text insertion, and trigger-menu support. — `npx shadcn@latest add https://control-ui.dev/r/chat-composer.json`
 - `chat-composer-attachment` (ChatComposerAttachment) — Composer attachment rail with file previews, upload progress, and removal. — `npx shadcn@latest add https://control-ui.dev/r/chat-composer-attachment.json`
 - `user-ask` (UserAsk) — Keyboard-first agent question panel that temporarily replaces the chat composer inside its container. — `npx shadcn@latest add https://control-ui.dev/r/user-ask.json`
+- `tool-approval` (ToolApproval) — Inline approve or deny card for an agent action, with risk, a preview of what will run, and keyboard shortcuts. — `npx shadcn@latest add https://control-ui.dev/r/tool-approval.json`
 - `task-list` (TaskList) — Floating agent task progress pill above the composer that expands into the full task list. — `npx shadcn@latest add https://control-ui.dev/r/task-list.json`
 - `audio-device-select` (AudioDeviceSelect) — Composable audio input selector with permission, loading, default-device, and disconnected states. — `npx shadcn@latest add https://control-ui.dev/r/audio-device-select.json`
 - `audio-recorder` (AudioRecorder) — Voice recorder with realtime waveform, duration, cancel, and submit controls. — `npx shadcn@latest add https://control-ui.dev/r/audio-recorder.json`
@@ -170,6 +171,7 @@
 - `theme-toggle` (Theme toggle) — Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown. — `npx shadcn@latest add https://control-ui.dev/r/theme-toggle-block.json`
 - `discussion` (Discussion) **[beta]** — Comment thread with ⌘ Enter posting, nested replies, inline editing, and hover actions. — `npx shadcn@latest add https://control-ui.dev/r/discussion-block.json`
 - `coding-agent` (Coding agent) **[beta]** — Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer. — `npx shadcn@latest add https://control-ui.dev/r/coding-agent-block.json`
+- `agent-run` (Agent run) **[beta]** — One autonomous agent run: its plan step by step, the tool calls behind each step, approvals it waits on, and what it produced. — `npx shadcn@latest add https://control-ui.dev/r/agent-run-block.json`
 - `settings` (Settings) — Searchable multi-page settings shell with responsive navigation and accessible control groups. — `npx shadcn@latest add https://control-ui.dev/r/settings-block.json`
 - `team-chat` (Team chat) **[beta]** — Slack-style workspace with channels, unread badges, presence, reactions, and a side thread for replies. — `npx shadcn@latest add https://control-ui.dev/r/team-chat-block.json`
 - `file-explorer` (File explorer) **[beta]** — Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview. — `npx shadcn@latest add https://control-ui.dev/r/file-explorer-block.json`

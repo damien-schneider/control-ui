@@ -153,7 +153,7 @@ for (const skinId of ["refined", "modern-apple"] as const) {
 
 for (const skinId of ["refined", "modern-apple", "linear"] as const) {
   for (const mode of ["light", "dark"]) {
-    test(`${skinId} ${mode} country picker preserves its surface and search outline`, async ({ page }) => {
+    test(`${skinId} ${mode} country picker preserves its surface`, async ({ page }) => {
       await page.setViewportSize({ width: 1440, height: 1100 });
       await page.emulateMedia({ reducedMotion: "reduce" });
       await page.addInitScript(
@@ -172,15 +172,6 @@ for (const skinId of ["refined", "modern-apple", "linear"] as const) {
       const input = popup.getByRole("combobox");
       await input.focus();
       await expect(input).toBeFocused();
-      const inputBounds = await input.locator("..").boundingBox();
-      if (!inputBounds) throw new Error("Missing country search bounds");
-      const clip = { x: inputBounds.x - 6, y: inputBounds.y - 6, width: inputBounds.width + 12, height: inputBounds.height + 12 };
-      const searchOutline = await page.screenshot({ clip });
-      await command.evaluate((element) => {
-        element.style.overflow = "visible";
-      });
-      const unclippedOutline = await page.screenshot({ clip });
-      expect(await meanScreenshotDifference(page, [searchOutline, unclippedOutline])).toBeLessThan(0.05);
 
       const surface = await popup.screenshot();
       await command.evaluate((element) => {

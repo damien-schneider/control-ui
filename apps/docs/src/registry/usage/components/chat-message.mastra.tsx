@@ -39,7 +39,8 @@ function renderJson(value: unknown) {
 function activityState(state?: string): ActivityState {
   if (state === "result" || state === "output-available") return "success";
   if (state === "output-error" || state === "output-denied") return "error";
-  if (state === "partial-call" || state === "input-streaming") return "running";
+  if (state === "approval-requested") return "waiting";
+  if (state === "partial-call" || state === "input-streaming" || state === "call" || state === "approval-responded") return "running";
   return "pending";
 }
 
@@ -76,9 +77,20 @@ function renderFile(part: FilePart) {
   );
 }
 
-function renderToolInvocation(part: ToolInvocationPart) {
+function pendingApprovalIds(metadata: Record<string, unknown> | undefined) {
+  const requests = metadata?.requireApprovalMetadata;
+  if (typeof requests !== "object" || requests === null) return [];
+  return Object.values(requests).flatMap((request: unknown) =>
+    typeof request === "object" && request !== null && "toolCallId" in request && typeof request.toolCallId === "string"
+      ? [request.toolCallId]
+      : [],
+  );
+}
+
+function renderToolInvocation(part: ToolInvocationPart, pendingApprovals: readonly string[]) {
   const invocation = part.toolInvocation;
-  const state = activityState(invocation.state);
+  const awaitsApproval = invocation.state === "call" && pendingApprovals.includes(invocation.toolCallId);
+  const state = awaitsApproval ? "waiting" : activityState(invocation.state);
 
   return (
     <Activity kind="tool" name={invocation.toolName} state={state}>
@@ -165,6 +177,7 @@ const messageStatus = {
 } satisfies MessageStatusRenderers;
 
 export function Example({ message }: { message: MastraDBMessage }) {
+  const pendingApprovals = pendingApprovalIds(message.content.metadata);
   return (
     <MessageFactory
       message={message}
@@ -182,7 +195,7 @@ export function Example({ message }: { message: MastraDBMessage }) {
       )}
       File={renderFile}
       StepStart={() => <hr />}
-      ToolInvocation={renderToolInvocation}
+      ToolInvocation={(part) => renderToolInvocation(part, pendingApprovals)}
       DynamicTool={renderDynamicTool}
       SourceUrl={({ title, url }) => <SourceBadge href={url}>{title}</SourceBadge>}
       SourceDocument={({ title }) => <span>{title}</span>}

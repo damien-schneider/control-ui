@@ -26,14 +26,14 @@
           "data-control-ui": "page-layout",
           "data-scroll": "page",
           "data-slot": "root",
-          "data-width": "full"
+          "data-width": "prose"
         }
       },
       {
         "attributes": {
+          "data-complete": "",
           "data-control-family": "range",
           "data-control-ui": "progress",
-          "data-progressing": "",
           "data-range-kind": "progress",
           "data-slot": "root",
           "role": "progressbar"
@@ -41,322 +41,20 @@
       },
       {
         "attributes": {
+          "data-complete": "",
           "data-control-family": "range",
           "data-control-ui": "progress",
-          "data-progressing": "",
           "data-range-kind": "progress",
           "data-slot": "track"
         }
       },
       {
         "attributes": {
+          "data-complete": "",
           "data-control-family": "range",
           "data-control-ui": "progress",
-          "data-progressing": "",
           "data-range-kind": "progress",
           "data-slot": "indicator"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-disabled": "",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "root",
-          "data-variant": "plain",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-disabled": "",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "track",
-          "data-variant": "plain"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-disabled": "",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "indicator",
-          "data-variant": "plain"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-labeled": "true",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "root",
-          "data-variant": "plain",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-labeled": "true",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "track",
-          "data-variant": "plain"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "indicator",
-          "data-variant": "plain"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-labeled": "true",
-          "data-orientation": "vertical",
-          "data-range-kind": "slider",
-          "data-slot": "root",
-          "data-variant": "plain",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-labeled": "true",
-          "data-orientation": "vertical",
-          "data-range-kind": "slider",
-          "data-slot": "track",
-          "data-variant": "plain"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-orientation": "vertical",
-          "data-range-kind": "slider",
-          "data-slot": "indicator",
-          "data-variant": "plain"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "root",
-          "data-variant": "default",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "track",
-          "data-variant": "default"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "indicator",
-          "data-variant": "default"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "root",
-          "data-variant": "plain",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "track",
-          "data-variant": "plain"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "indicator",
-          "data-variant": "plain"
         }
       }
     ],
@@ -923,328 +621,6 @@
           "data-control-ui": "page-layout",
           "data-scroll": "page",
           "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-disabled": "",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "root",
-          "data-variant": "plain",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-disabled": "",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "track",
-          "data-variant": "plain"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-disabled": "",
-          "data-focus-ring": "within",
-          "data-index": "0",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "thumb",
-          "data-variant": "plain"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-labeled": "true",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "root",
-          "data-variant": "plain",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-labeled": "true",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "track",
-          "data-variant": "plain"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-focus-ring": "within",
-          "data-index": "0",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "thumb",
-          "data-variant": "plain"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-labeled": "true",
-          "data-orientation": "vertical",
-          "data-range-kind": "slider",
-          "data-slot": "root",
-          "data-variant": "plain",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-labeled": "true",
-          "data-orientation": "vertical",
-          "data-range-kind": "slider",
-          "data-slot": "track",
-          "data-variant": "plain"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-orientation": "vertical",
-          "data-range-kind": "slider",
-          "data-slot": "indicator",
-          "data-variant": "plain"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-focus-ring": "within",
-          "data-index": "0",
-          "data-orientation": "vertical",
-          "data-range-kind": "slider",
-          "data-slot": "thumb",
-          "data-variant": "plain"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "root",
-          "data-variant": "default",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "track",
-          "data-variant": "default"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-focus-ring": "within",
-          "data-index": "0",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "thumb",
-          "data-variant": "default"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "root",
-          "data-variant": "plain",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "track",
-          "data-variant": "plain"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-focus-ring": "within",
-          "data-index": "0",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "thumb",
-          "data-variant": "plain"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
           "data-width": "prose"
         }
       },
@@ -1709,14 +1085,14 @@
           "data-control-ui": "page-layout",
           "data-scroll": "page",
           "data-slot": "root",
-          "data-width": "full"
+          "data-width": "prose"
         }
       },
       {
         "attributes": {
+          "data-complete": "",
           "data-control-family": "range",
           "data-control-ui": "progress",
-          "data-progressing": "",
           "data-range-kind": "progress",
           "data-slot": "root",
           "role": "progressbar"
@@ -1724,262 +1100,11 @@
       },
       {
         "attributes": {
+          "data-complete": "",
           "data-control-family": "range",
           "data-control-ui": "progress",
-          "data-progressing": "",
           "data-range-kind": "progress",
           "data-slot": "track"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-disabled": "",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "root",
-          "data-variant": "plain",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-disabled": "",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "track",
-          "data-variant": "plain"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-labeled": "true",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "root",
-          "data-variant": "plain",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-labeled": "true",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "track",
-          "data-variant": "plain"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-labeled": "true",
-          "data-orientation": "vertical",
-          "data-range-kind": "slider",
-          "data-slot": "root",
-          "data-variant": "plain",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-labeled": "true",
-          "data-orientation": "vertical",
-          "data-range-kind": "slider",
-          "data-slot": "track",
-          "data-variant": "plain"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "root",
-          "data-variant": "default",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "track",
-          "data-variant": "default"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "full"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "root",
-          "data-variant": "plain",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "range",
-          "data-control-ui": "slider",
-          "data-orientation": "horizontal",
-          "data-range-kind": "slider",
-          "data-slot": "track",
-          "data-variant": "plain"
         }
       }
     ],
@@ -2702,7 +1827,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-indicator-background"
+        "fill": "--cui-range-thumb-background"
       },
       "anatomy": 10,
       "rendersText": false,
@@ -2710,7 +1835,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-indicator-background"
+        "fill": "--cui-range-thumb-background"
       },
       "anatomy": 11,
       "rendersText": false,
@@ -2718,7 +1843,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-indicator-background"
+        "fill": "--cui-range-thumb-background"
       },
       "anatomy": 12,
       "rendersText": false,
@@ -2726,7 +1851,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-indicator-background"
+        "fill": "--cui-range-thumb-background"
       },
       "anatomy": 13,
       "rendersText": false,
@@ -2734,7 +1859,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-indicator-background"
+        "fill": "--cui-range-thumb-background"
       },
       "anatomy": 14,
       "rendersText": false,
@@ -2758,7 +1883,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-thumb-background"
+        "fill": "--cui-range-track-background"
       },
       "anatomy": 17,
       "rendersText": false,
@@ -2766,7 +1891,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-thumb-background"
+        "fill": "--cui-range-track-background"
       },
       "anatomy": 18,
       "rendersText": false,
@@ -2774,7 +1899,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-thumb-background"
+        "fill": "--cui-range-track-background"
       },
       "anatomy": 19,
       "rendersText": false,
@@ -2782,7 +1907,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-thumb-background"
+        "fill": "--cui-range-track-background"
       },
       "anatomy": 20,
       "rendersText": false,
@@ -2790,7 +1915,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-thumb-background"
+        "fill": "--cui-range-track-background"
       },
       "anatomy": 21,
       "rendersText": false,
@@ -2798,7 +1923,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-thumb-background"
+        "fill": "--cui-range-track-background"
       },
       "anatomy": 22,
       "rendersText": false,
@@ -2806,7 +1931,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-thumb-background"
+        "fill": "--cui-range-track-background"
       },
       "anatomy": 23,
       "rendersText": false,
@@ -2814,7 +1939,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-thumb-background"
+        "fill": "--cui-range-track-background"
       },
       "anatomy": 24,
       "rendersText": false,
@@ -2822,7 +1947,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-thumb-background"
+        "fill": "--cui-range-track-background"
       },
       "anatomy": 25,
       "rendersText": false,
@@ -2830,7 +1955,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-thumb-background"
+        "fill": "--cui-range-track-background"
       },
       "anatomy": 26,
       "rendersText": false,
@@ -2854,129 +1979,9 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-track-background"
-      },
-      "anatomy": 29,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-range-track-background"
-      },
-      "anatomy": 30,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-range-track-background"
-      },
-      "anatomy": 31,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-range-track-background"
-      },
-      "anatomy": 32,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-range-track-background"
-      },
-      "anatomy": 33,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-range-track-background"
-      },
-      "anatomy": 34,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-range-track-background"
-      },
-      "anatomy": 35,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-range-track-background"
-      },
-      "anatomy": 36,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-range-track-background"
-      },
-      "anatomy": 37,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-range-track-background"
-      },
-      "anatomy": 38,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-range-track-background"
-      },
-      "anatomy": 39,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-range-track-background"
-      },
-      "anatomy": 40,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-range-track-background"
-      },
-      "anatomy": 41,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-range-track-background"
-      },
-      "anatomy": 42,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-range-track-background"
-      },
-      "anatomy": 43,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
         "text": "--cui-range-level-scale-foreground"
       },
-      "anatomy": 44,
+      "anatomy": 29,
       "rendersText": true,
       "state": false
     },
@@ -2984,7 +1989,7 @@
       "knobs": {
         "text": "--cui-range-level-scale-foreground"
       },
-      "anatomy": 45,
+      "anatomy": 30,
       "rendersText": true,
       "state": false
     }

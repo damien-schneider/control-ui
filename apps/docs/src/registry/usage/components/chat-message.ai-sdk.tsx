@@ -32,7 +32,8 @@ function isImageMediaType(mediaType: string) {
 function activityState(state: ToolUIPart["state"] | DynamicToolUIPart["state"]): ActivityState {
   if (state === "output-available") return "success";
   if (state === "output-error" || state === "output-denied") return "error";
-  if (state === "input-streaming") return "running";
+  if (state === "approval-requested") return "waiting";
+  if (state === "input-streaming" || state === "input-available" || state === "approval-responded") return "running";
   return "pending";
 }
 

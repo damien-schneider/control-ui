@@ -97,6 +97,27 @@ export const blockEntries = [
     preview: preview(() => import("@/src/registry/examples/control-ui/coding-agent").then((mod) => ({ default: mod.CodingAgentExample }))),
   },
   {
+    id: "agent-run",
+    kind: "Block",
+    templateKind: "screen",
+    name: "Agent run",
+    summary:
+      "One autonomous agent run: its plan step by step, the tool calls behind each step, approvals it waits on, and what it produced.",
+    status: "beta",
+    registryKind: "agent-run-block",
+    paths: {
+      example: sourceFile("Example", "src/registry/examples/control-ui/agent-run/agent-run.tsx", "example"),
+      usage: {
+        mastra: sourceFile("Mastra usage", "src/registry/usage/blocks/agent-run.mastra.tsx", "usage"),
+        "ai-sdk": sourceFile("AI SDK usage", "src/registry/usage/blocks/agent-run.ai-sdk.tsx", "usage"),
+      },
+      files: [sourceFile("Block recipe", "src/registry/blocks/control-ui/agent-run.tsx", "block")],
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/agent-run/agent-run").then((mod) => ({ default: mod.AgentRunExample })),
+    ),
+  },
+  {
     id: "settings",
     kind: "Block",
     templateKind: "screen",

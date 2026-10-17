@@ -5,15 +5,6 @@
     [
       {
         "attributes": {
-          "data-control-family": "app-shell-header",
-          "data-control-ui": "app-shell",
-          "data-slot": "root"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
@@ -70,14 +61,6 @@
         "fill": "--cui-app-shell-header-background"
       },
       "anatomy": 0,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-app-shell-header-background"
-      },
-      "anatomy": 1,
       "rendersText": true,
       "state": false
     }

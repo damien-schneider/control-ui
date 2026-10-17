@@ -100,7 +100,7 @@ describe("skin contract generation", () => {
       attribute: "data-status",
       source: "control-ui",
       valueKind: "enum",
-      values: ["error", "pending", "running", "success"],
+      values: ["error", "pending", "running", "success", "waiting"],
     };
     const presenceState = (attribute: string): NonNullable<ReturnType<typeof stateAt>> => ({
       attribute,

@@ -988,6 +988,8 @@
     }
   },
   "adornments": {},
-  "uncovered": [],
+  "uncovered": [
+    "--cui-range-level-muted-background"
+  ],
   "contrast": "/r/contract/range.contrast.json"
 }

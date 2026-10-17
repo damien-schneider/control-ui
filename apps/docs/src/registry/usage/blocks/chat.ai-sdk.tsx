@@ -1,6 +1,6 @@
 "use client";
 
-import { useChat } from "@ai-sdk/react";
+import { type UseChatHelpers, useChat } from "@ai-sdk/react";
 import { type DynamicToolUIPart, getToolName, isDynamicToolUIPart, isToolUIPart, type ToolUIPart, type UIMessage } from "ai";
 import type { ActivityState } from "@/components/control-ui/activity";
 import {
@@ -26,41 +26,97 @@ import {
 import { ChatTurn } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
 import { SourceBadge } from "@/components/control-ui/source-badge";
+import type { ToolApprovalState } from "@/components/control-ui/tool-approval";
+import {
+  ToolApproval,
+  ToolApprovalApprove,
+  ToolApprovalBody,
+  ToolApprovalDeny,
+  ToolApprovalField,
+  ToolApprovalFooter,
+  ToolApprovalHeader,
+  ToolApprovalIcon,
+  ToolApprovalPreview,
+  ToolApprovalRisk,
+  ToolApprovalStatus,
+  ToolApprovalTitle,
+} from "@/components/control-ui/tool-approval";
 import { Button } from "@/components/control-ui/ui/button";
 
 function activityState(state: ToolUIPart["state"] | DynamicToolUIPart["state"]): ActivityState {
   if (state === "output-available") return "success";
   if (state === "output-error" || state === "output-denied") return "error";
-  if (state === "input-streaming") return "running";
+  if (state === "approval-requested") return "waiting";
+  if (state === "input-streaming" || state === "input-available" || state === "approval-responded") return "running";
   return "pending";
 }
 
-function renderToolPart(part: ToolUIPart | DynamicToolUIPart) {
+type ApprovalResponse = UseChatHelpers<UIMessage>["addToolApprovalResponse"];
+
+function renderApproval(part: ToolUIPart | DynamicToolUIPart, onApprovalResponse: ApprovalResponse) {
+  const approval = part.approval;
+  if (approval === undefined) return null;
+
+  let state: ToolApprovalState = "pending";
+  if (approval.approved === true) state = "approved";
+  if (approval.approved === false) state = "denied";
+
+  return (
+    <ToolApproval
+      state={state}
+      onApprove={() => onApprovalResponse({ id: approval.id, approved: true })}
+      onDeny={() => onApprovalResponse({ id: approval.id, approved: false })}
+    >
+      <ToolApprovalBody>
+        <ToolApprovalHeader>
+          <ToolApprovalIcon />
+          <ToolApprovalTitle>{`Run ${getToolName(part)}?`}</ToolApprovalTitle>
+          <ToolApprovalRisk />
+          <ToolApprovalStatus />
+        </ToolApprovalHeader>
+        <ToolApprovalPreview>
+          <ToolApprovalField label="Input">
+            <div className="whitespace-pre-wrap wrap-anywhere">{JSON.stringify(part.input, null, 2)}</div>
+          </ToolApprovalField>
+        </ToolApprovalPreview>
+      </ToolApprovalBody>
+      <ToolApprovalFooter>
+        <ToolApprovalDeny />
+        <ToolApprovalApprove />
+      </ToolApprovalFooter>
+    </ToolApproval>
+  );
+}
+
+function renderToolPart(part: ToolUIPart | DynamicToolUIPart, onApprovalResponse: ApprovalResponse) {
   const state = activityState(part.state);
   return (
-    <Activity kind="tool" name={getToolName(part)} state={state}>
-      <ActivityTrigger>
-        <ActivityIcon />
-        <ActivityTitle />
-        <ActivityStatus className="sr-only" />
-      </ActivityTrigger>
-      <ActivityContent>
-        {part.input !== undefined ? (
-          <ActivityDetail>
-            <ActivityDetailLabel>Input</ActivityDetailLabel>
-            <ActivityDetailContent format="code">{JSON.stringify(part.input, null, 2)}</ActivityDetailContent>
-          </ActivityDetail>
-        ) : null}
-        {part.output !== undefined || part.errorText ? (
-          <ActivityDetail>
-            <ActivityDetailLabel>Output</ActivityDetailLabel>
-            <ActivityDetailContent className={state === "error" ? "text-destructive-text" : undefined}>
-              {part.errorText ?? JSON.stringify(part.output, null, 2)}
-            </ActivityDetailContent>
-          </ActivityDetail>
-        ) : null}
-      </ActivityContent>
-    </Activity>
+    <>
+      <Activity kind="tool" name={getToolName(part)} state={state}>
+        <ActivityTrigger>
+          <ActivityIcon />
+          <ActivityTitle />
+          <ActivityStatus className="sr-only" />
+        </ActivityTrigger>
+        <ActivityContent>
+          {part.input !== undefined ? (
+            <ActivityDetail>
+              <ActivityDetailLabel>Input</ActivityDetailLabel>
+              <ActivityDetailContent format="code">{JSON.stringify(part.input, null, 2)}</ActivityDetailContent>
+            </ActivityDetail>
+          ) : null}
+          {part.output !== undefined || part.errorText ? (
+            <ActivityDetail>
+              <ActivityDetailLabel>Output</ActivityDetailLabel>
+              <ActivityDetailContent className={state === "error" ? "text-destructive-text" : undefined}>
+                {part.errorText ?? JSON.stringify(part.output, null, 2)}
+              </ActivityDetailContent>
+            </ActivityDetail>
+          ) : null}
+        </ActivityContent>
+      </Activity>
+      {renderApproval(part, onApprovalResponse)}
+    </>
   );
 }
 
@@ -73,7 +129,7 @@ function partKey(part: UIMessage["parts"][number]) {
   return `${part.type}-${JSON.stringify(part)}`;
 }
 
-function AiSdkMessage({ message }: { message: UIMessage }) {
+function AiSdkMessage({ message, onApprovalResponse }: { message: UIMessage; onApprovalResponse: ApprovalResponse }) {
   if (message.role === "system") return null;
 
   return (
@@ -86,7 +142,11 @@ function AiSdkMessage({ message }: { message: UIMessage }) {
                 const key = partKey(part);
 
                 if (isToolUIPart(part) || isDynamicToolUIPart(part)) {
-                  return <div key={key}>{renderToolPart(part)}</div>;
+                  return (
+                    <div key={key} className="grid gap-2">
+                      {renderToolPart(part, onApprovalResponse)}
+                    </div>
+                  );
                 }
                 if (part.type === "reasoning") {
                   return (
@@ -119,7 +179,7 @@ function AiSdkMessage({ message }: { message: UIMessage }) {
 }
 
 export function ChatSurface() {
-  const { messages, sendMessage, status, stop } = useChat();
+  const { messages, sendMessage, status, stop, addToolApprovalResponse } = useChat();
   const isRunning = status === "submitted" || status === "streaming";
 
   const composer = (
@@ -149,7 +209,7 @@ export function ChatSurface() {
   return (
     <ChatBlock composer={composer}>
       {messages.map((message) => (
-        <AiSdkMessage key={message.id} message={message} />
+        <AiSdkMessage key={message.id} message={message} onApprovalResponse={addToolApprovalResponse} />
       ))}
     </ChatBlock>
   );

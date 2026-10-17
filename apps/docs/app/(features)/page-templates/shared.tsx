@@ -5,7 +5,6 @@ import type { ReactNode } from "react";
 import { CodeBlock, CommandBlock } from "@/app/(features)/components/source";
 import { StatusBadge } from "@/app/(features)/components/status";
 import type { Composition, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
-import { cn } from "@/components/control-ui/lib/cn";
 import { ButtonLink } from "@/components/control-ui/ui/button";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
 
@@ -17,7 +16,6 @@ export function PageHeader({
   summary,
   status,
   focusOnMount,
-  compact = false,
   actions,
 }: {
   label: string;
@@ -25,21 +23,18 @@ export function PageHeader({
   summary?: string;
   status?: DocsStatus;
   focusOnMount?: boolean;
-  compact?: boolean;
   actions?: ReactNode;
 }) {
   return (
-    <div className={cn("flex flex-wrap items-start justify-between gap-4", compact ? "mb-5" : "mb-7")}>
+    <div className="mb-7 flex flex-wrap items-start justify-between gap-4">
       <div className="min-w-0">
-        {compact ? null : (
-          <Text as="div" size="caption" weight="medium" tone="muted">
-            {label}
-          </Text>
-        )}
-        <div className={cn("flex flex-wrap items-center gap-3", !compact && "mt-2")}>
+        <Text as="div" size="caption" weight="medium" tone="muted">
+          {label}
+        </Text>
+        <div className="mt-2 flex flex-wrap items-center gap-3">
           <Heading
             level={1}
-            size={compact ? "heading-1" : "display"}
+            size="display"
             ref={focusOnMount ? focusHeading : undefined}
             tabIndex={focusOnMount ? -1 : undefined}
             className="outline-none"
@@ -49,7 +44,7 @@ export function PageHeader({
           {status ? <StatusBadge status={status} /> : null}
         </div>
         {summary ? (
-          <Text as="p" size={compact ? "body" : "body-lg"} tone="muted" className={cn("max-w-2xl text-pretty", compact ? "mt-1" : "mt-3")}>
+          <Text as="p" size="body-lg" tone="muted" className="mt-3 max-w-2xl text-pretty">
             {summary}
           </Text>
         ) : null}

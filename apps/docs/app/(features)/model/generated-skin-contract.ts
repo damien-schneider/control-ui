@@ -114,6 +114,7 @@ export const generatedSkinContract: SkinContract = {
     timeline: ["timeline"],
     toast: ["toast"],
     toggle: ["toggle"],
+    "tool-approval": ["tool-approval"],
     toolbar: ["toolbar"],
     tooltip: ["tooltip"],
     "track-highlight": ["track-highlight"],
@@ -231,6 +232,12 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
+              attribute: "data-index",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-panel-open",
               source: "external",
               valueKind: "presence",
@@ -286,7 +293,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-activity-state",
               source: "control-ui",
               valueKind: "enum",
-              values: ["error", "pending", "running", "success"],
+              values: ["error", "pending", "running", "success", "waiting"],
             },
           ],
         },
@@ -357,7 +364,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-status",
               source: "control-ui",
               valueKind: "enum",
-              values: ["error", "pending", "running", "success"],
+              values: ["error", "pending", "running", "success", "waiting"],
             },
           ],
         },
@@ -2226,6 +2233,11 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        "edit-actions": {
+          family: "chat-message",
+          registryItems: ["chat-message"],
+          states: [],
+        },
         "edit-error": {
           family: "chat-message",
           registryItems: ["chat-message"],
@@ -2237,23 +2249,6 @@ export const generatedSkinContract: SkinContract = {
           states: [],
         },
         "edit-sizer": {
-          family: "chat-message",
-          registryItems: ["chat-message"],
-          states: [],
-        },
-        "edit-toolbar": {
-          family: "chat-message",
-          registryItems: ["chat-message"],
-          states: [
-            {
-              attribute: "data-active",
-              source: "control-ui",
-              valueKind: "presence",
-              values: [],
-            },
-          ],
-        },
-        "edit-toolbars": {
           family: "chat-message",
           registryItems: ["chat-message"],
           states: [],
@@ -2362,6 +2357,11 @@ export const generatedSkinContract: SkinContract = {
               values: ["assistant", "participant", "system", "tool", "user"],
             },
           ],
+        },
+        "read-actions": {
+          family: "chat-message",
+          registryItems: ["chat-message"],
+          states: [],
         },
         replies: {
           family: "chat-message",
@@ -4156,6 +4156,12 @@ export const generatedSkinContract: SkinContract = {
           family: "popup",
           registryItems: ["command"],
           states: [
+            {
+              attribute: "data-focus-ring",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["none"],
+            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -6508,6 +6514,12 @@ export const generatedSkinContract: SkinContract = {
           family: "field",
           registryItems: ["field"],
           states: [
+            {
+              attribute: "data-disabled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
@@ -12791,7 +12803,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-state",
               source: "control-ui",
               valueKind: "enum",
-              values: ["error", "neutral", "pending", "running", "success"],
+              values: ["error", "neutral", "pending", "running", "success", "waiting"],
             },
           ],
         },
@@ -13047,6 +13059,101 @@ export const generatedSkinContract: SkinContract = {
         },
       },
       registryItems: ["toggle"],
+    },
+    "tool-approval": {
+      parts: {
+        root: {
+          family: "tool-approval",
+          registryItems: ["tool-approval"],
+          states: [
+            {
+              attribute: "data-risk",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["high", "low", "medium"],
+            },
+            {
+              attribute: "data-state",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["approved", "denied", "pending"],
+            },
+          ],
+        },
+        approve: {
+          registryItems: ["tool-approval"],
+          states: [],
+        },
+        body: {
+          family: "tool-approval",
+          registryItems: ["tool-approval"],
+          states: [],
+        },
+        deny: {
+          registryItems: ["tool-approval"],
+          states: [],
+        },
+        description: {
+          family: "tool-approval",
+          registryItems: ["tool-approval"],
+          states: [],
+        },
+        field: {
+          family: "tool-approval",
+          registryItems: ["tool-approval"],
+          states: [],
+        },
+        "field-label": {
+          family: "tool-approval",
+          registryItems: ["tool-approval"],
+          states: [],
+        },
+        "field-value": {
+          family: "tool-approval",
+          registryItems: ["tool-approval"],
+          states: [],
+        },
+        footer: {
+          family: "tool-approval",
+          registryItems: ["tool-approval"],
+          states: [],
+        },
+        header: {
+          family: "tool-approval",
+          registryItems: ["tool-approval"],
+          states: [],
+        },
+        icon: {
+          family: "tool-approval",
+          registryItems: ["tool-approval"],
+          states: [],
+        },
+        preview: {
+          family: "tool-approval",
+          registryItems: ["tool-approval"],
+          states: [],
+        },
+        risk: {
+          registryItems: ["tool-approval"],
+          states: [],
+        },
+        status: {
+          family: "tool-approval",
+          registryItems: ["tool-approval"],
+          states: [],
+        },
+        "status-icon": {
+          family: "tool-approval",
+          registryItems: ["tool-approval"],
+          states: [],
+        },
+        title: {
+          family: "tool-approval",
+          registryItems: ["tool-approval"],
+          states: [],
+        },
+      },
+      registryItems: ["tool-approval"],
     },
     toolbar: {
       parts: {
@@ -18521,6 +18628,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--primary-text)",
       },
       {
+        name: "--cui-timeline-waiting-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--warning-text)",
+      },
+      {
         name: "--cui-timeline-success-foreground",
         syntax: "<color>",
         initialValue: "transparent",
@@ -18543,6 +18656,170 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--foreground)",
+      },
+    ],
+    "tool-approval": [
+      {
+        name: "--cui-tool-approval-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--card)",
+      },
+      {
+        name: "--cui-tool-approval-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--card-foreground)",
+      },
+      {
+        name: "--cui-tool-approval-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--border)",
+      },
+      {
+        name: "--cui-tool-approval-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "var(--control-rim-width)",
+      },
+      {
+        name: "--cui-tool-approval-radius",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--radius-lg)",
+      },
+      {
+        name: "--cui-tool-approval-shadow",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "var(--shadow-sm)",
+      },
+      {
+        name: "--cui-tool-approval-padding",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "0px",
+      },
+      {
+        name: "--cui-tool-approval-body-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "transparent",
+      },
+      {
+        name: "--cui-tool-approval-body-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "transparent",
+      },
+      {
+        name: "--cui-tool-approval-body-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "0px",
+      },
+      {
+        name: "--cui-tool-approval-body-radius",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--radius-lg)",
+      },
+      {
+        name: "--cui-tool-approval-body-shadow",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "0 0 transparent",
+      },
+      {
+        name: "--cui-tool-approval-body-padding",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 3)",
+      },
+      {
+        name: "--cui-tool-approval-body-gap",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 3)",
+      },
+      {
+        name: "--cui-tool-approval-footer-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--border)",
+      },
+      {
+        name: "--cui-tool-approval-footer-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "var(--control-rim-width)",
+      },
+      {
+        name: "--cui-tool-approval-footer-padding",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 2.5)",
+      },
+      {
+        name: "--cui-tool-approval-footer-gap",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 2)",
+      },
+      {
+        name: "--cui-tool-approval-preview-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "transparent",
+      },
+      {
+        name: "--cui-tool-approval-preview-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "transparent",
+      },
+      {
+        name: "--cui-tool-approval-preview-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "0px",
+      },
+      {
+        name: "--cui-tool-approval-preview-radius",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--radius-md)",
+      },
+      {
+        name: "--cui-tool-approval-preview-padding",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "0px",
+      },
+      {
+        name: "--cui-tool-approval-preview-gap",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 1.5)",
+      },
+      {
+        name: "--cui-tool-approval-label-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted-foreground)",
+      },
+      {
+        name: "--cui-tool-approval-description-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted-foreground)",
+      },
+      {
+        name: "--cui-tool-approval-status-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted-foreground)",
       },
     ],
     toolbar: [

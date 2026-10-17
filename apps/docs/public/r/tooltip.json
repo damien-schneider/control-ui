@@ -5,7 +5,7 @@
   "title": "Tooltip",
   "description": "Hover or focus hint popup with Base UI positioning and Control UI tokens.",
   "dependencies": [
-    "@base-ui/react@^1.8.0"
+    "@base-ui/react@^1.9.0"
   ],
   "registryDependencies": [
     "https://control-ui.dev/r/core.json",

@@ -43,7 +43,7 @@ export const agentsCompositions = {
         "ChatMessage",
         part("ChatMessageRow", part("ChatMessageBody", part("ChatMessageEditable", content("value={text} onSave={saveMessage}")))),
       ),
-      "ChatMessageEditable owns the plain-text draft and defaults to Copy/Edit actions. The host persists onSave; rejection keeps the draft for retry. Escape cancels, Ctrl/Cmd+Enter saves, and Enter inserts a newline. Optional children customize the read-mode ActionBar.",
+      "ChatMessageEditable owns the plain-text draft and defaults to Copy/Edit actions. Edit toggles the message into edit mode in place: the bubble keeps its size and the read-mode actions give their row to Cancel and Save. The host persists onSave; rejection keeps the draft for retry. Escape cancels, Ctrl/Cmd+Enter saves, and Enter inserts a newline. Optional children customize the read-mode ActionBar, for example a ChatMessageTime beside the actions.",
     ),
     example(
       "Message with actions",
@@ -136,6 +136,27 @@ export const agentsCompositions = {
           part("UserAskOptionInput"),
         ),
         part("UserAskFooter", part("UserAskDismiss"), part("UserAskSubmit")),
+      ),
+    ),
+  ],
+  "tool-approval": [
+    example(
+      "Anatomy",
+      part(
+        "ToolApproval",
+        part(
+          "ToolApprovalBody",
+          part(
+            "ToolApprovalHeader",
+            part("ToolApprovalIcon"),
+            part("ToolApprovalTitle"),
+            part("ToolApprovalRisk"),
+            part("ToolApprovalStatus"),
+          ),
+          part("ToolApprovalDescription"),
+          part("ToolApprovalPreview", part("ToolApprovalField")),
+        ),
+        part("ToolApprovalFooter", part("ToolApprovalDeny"), part("ToolApprovalApprove")),
       ),
     ),
   ],

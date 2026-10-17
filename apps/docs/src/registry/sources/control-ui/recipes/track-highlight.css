@@ -73,13 +73,17 @@
   }
 
   @media (hover: hover) {
-    :where([data-control-family="button-group"][data-track="hover"]:has(> :first-child:hover)) {
+    :where(
+        [data-control-family="button-group"][data-track="hover"]:has(
+          > :nth-child(1 of :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])):hover
+        )
+      ) {
       --_button-group-leading-cap: 1;
     }
 
     :where(
         [data-control-family="button-group"][data-track="hover"]:has(
-          > :nth-last-child(1 of :not([data-control-family="track-highlight"])):hover
+          > :nth-last-child(1 of :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])):hover
         )
       ) {
       --_button-group-trailing-cap: 1;
@@ -91,13 +95,23 @@
     --_button-group-trailing-cap: 0;
   }
 
-  :where([data-control-family="button-group"][data-track="hover"]:has(> :first-child:is(:focus-visible, :has(:focus-visible)))) {
+  :where(
+    [data-control-family="button-group"][data-track="hover"]:has(
+      > :nth-child(1 of :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])):is(
+          :focus-visible,
+          :has(:focus-visible)
+        )
+    )
+  ) {
     --_button-group-leading-cap: 1;
   }
 
   :where(
     [data-control-family="button-group"][data-track="hover"]:has(
-      > :nth-last-child(1 of :not([data-control-family="track-highlight"])):is(:focus-visible, :has(:focus-visible))
+      > :nth-last-child(1 of :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])):is(
+          :focus-visible,
+          :has(:focus-visible)
+        )
     )
   ) {
     --_button-group-trailing-cap: 1;

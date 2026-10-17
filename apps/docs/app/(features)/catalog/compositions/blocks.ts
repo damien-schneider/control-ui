@@ -59,6 +59,36 @@ export const blocksCompositions = {
       ),
     ),
   ],
+  "agent-run": [
+    example(
+      "Run waiting on an approval",
+      part(
+        "AgentRunBlock",
+        part(
+          "SidebarProvider",
+          part("Sidebar", content("runs list")),
+          part(
+            "SidebarInset",
+            part("AgentRunHeader", part("AgentRunElapsed")),
+            part(
+              "AgentRunBody",
+              part(
+                "AgentRunPlan",
+                part(
+                  "Timeline",
+                  part(
+                    "AgentRunStep",
+                    part("TimelineItem", content("children", part("AgentRunToolCall", part("Activity")), part("ToolApproval"))),
+                  ),
+                ),
+              ),
+              part("AgentRunAside", part("AgentRunSection", content("draft", part("CodeDiff"))), part("AgentRunDetails")),
+            ),
+          ),
+        ),
+      ),
+    ),
+  ],
   "team-chat": [
     example(
       "Channel with a side thread",

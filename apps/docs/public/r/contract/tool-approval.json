@@ -1,0 +1,311 @@
+{
+  "version": 1,
+  "family": "tool-approval",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "tool-approval"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-tool-approval-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card)"
+    },
+    {
+      "name": "--cui-tool-approval-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card-foreground)"
+    },
+    {
+      "name": "--cui-tool-approval-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-tool-approval-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--control-rim-width)"
+    },
+    {
+      "name": "--cui-tool-approval-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-lg)"
+    },
+    {
+      "name": "--cui-tool-approval-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-sm)"
+    },
+    {
+      "name": "--cui-tool-approval-padding",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    },
+    {
+      "name": "--cui-tool-approval-body-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-tool-approval-body-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-tool-approval-body-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    },
+    {
+      "name": "--cui-tool-approval-body-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-lg)"
+    },
+    {
+      "name": "--cui-tool-approval-body-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "0 0 transparent"
+    },
+    {
+      "name": "--cui-tool-approval-body-padding",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3)"
+    },
+    {
+      "name": "--cui-tool-approval-body-gap",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3)"
+    },
+    {
+      "name": "--cui-tool-approval-footer-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-tool-approval-footer-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--control-rim-width)"
+    },
+    {
+      "name": "--cui-tool-approval-footer-padding",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 2.5)"
+    },
+    {
+      "name": "--cui-tool-approval-footer-gap",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 2)"
+    },
+    {
+      "name": "--cui-tool-approval-preview-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-tool-approval-preview-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-tool-approval-preview-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    },
+    {
+      "name": "--cui-tool-approval-preview-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-md)"
+    },
+    {
+      "name": "--cui-tool-approval-preview-padding",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    },
+    {
+      "name": "--cui-tool-approval-preview-gap",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 1.5)"
+    },
+    {
+      "name": "--cui-tool-approval-label-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-tool-approval-description-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-tool-approval-status-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    }
+  ],
+  "parts": {
+    "tool-approval": {
+      "root": {
+        "family": "tool-approval",
+        "registryItems": [
+          "tool-approval"
+        ],
+        "states": [
+          {
+            "attribute": "data-risk",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "high",
+              "low",
+              "medium"
+            ]
+          },
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "approved",
+              "denied",
+              "pending"
+            ]
+          }
+        ]
+      },
+      "approve": {
+        "registryItems": [
+          "tool-approval"
+        ],
+        "states": []
+      },
+      "body": {
+        "family": "tool-approval",
+        "registryItems": [
+          "tool-approval"
+        ],
+        "states": []
+      },
+      "deny": {
+        "registryItems": [
+          "tool-approval"
+        ],
+        "states": []
+      },
+      "description": {
+        "family": "tool-approval",
+        "registryItems": [
+          "tool-approval"
+        ],
+        "states": []
+      },
+      "field": {
+        "family": "tool-approval",
+        "registryItems": [
+          "tool-approval"
+        ],
+        "states": []
+      },
+      "field-label": {
+        "family": "tool-approval",
+        "registryItems": [
+          "tool-approval"
+        ],
+        "states": []
+      },
+      "field-value": {
+        "family": "tool-approval",
+        "registryItems": [
+          "tool-approval"
+        ],
+        "states": []
+      },
+      "footer": {
+        "family": "tool-approval",
+        "registryItems": [
+          "tool-approval"
+        ],
+        "states": []
+      },
+      "header": {
+        "family": "tool-approval",
+        "registryItems": [
+          "tool-approval"
+        ],
+        "states": []
+      },
+      "icon": {
+        "family": "tool-approval",
+        "registryItems": [
+          "tool-approval"
+        ],
+        "states": []
+      },
+      "preview": {
+        "family": "tool-approval",
+        "registryItems": [
+          "tool-approval"
+        ],
+        "states": []
+      },
+      "risk": {
+        "registryItems": [
+          "tool-approval"
+        ],
+        "states": []
+      },
+      "status": {
+        "family": "tool-approval",
+        "registryItems": [
+          "tool-approval"
+        ],
+        "states": []
+      },
+      "status-icon": {
+        "family": "tool-approval",
+        "registryItems": [
+          "tool-approval"
+        ],
+        "states": []
+      },
+      "title": {
+        "family": "tool-approval",
+        "registryItems": [
+          "tool-approval"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-tool-approval-status-foreground"
+  ],
+  "contrast": "/r/contract/tool-approval.contrast.json"
+}

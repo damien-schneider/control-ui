@@ -1,6 +1,14 @@
 import { useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { ChatMessage, ChatMessageBody, ChatMessageEditable, ChatMessageRow } from "../../src/registry/sources/control-ui/chat-message";
+import { ActionBarCopy, ActionBarEdit } from "@/components/control-ui/action-bar";
+import { ChatTurn } from "@/components/control-ui/chat-layout";
+import {
+  ChatMessage,
+  ChatMessageBody,
+  ChatMessageEditable,
+  ChatMessageRow,
+  ChatMessageTime,
+} from "../../src/registry/sources/control-ui/chat-message";
 
 function Fixture() {
   const params = new URLSearchParams(location.search);
@@ -26,13 +34,23 @@ function Fixture() {
 
   return (
     <main style={{ maxWidth: 640, margin: "40px auto", padding: 16 }}>
-      <ChatMessage from="user" layout={params.has("flat") ? "flat" : "bubble"}>
-        <ChatMessageRow>
-          <ChatMessageBody>
-            <ChatMessageEditable value={value} onSave={save} />
-          </ChatMessageBody>
-        </ChatMessageRow>
-      </ChatMessage>
+      <ChatTurn from="user">
+        <ChatMessage from="user" layout={params.has("flat") ? "flat" : "bubble"}>
+          <ChatMessageRow>
+            <ChatMessageBody>
+              <ChatMessageEditable value={value} onSave={save}>
+                {params.has("time") ? (
+                  <>
+                    <ChatMessageTime dateTime="2026-10-17T17:04:00Z">5:04 PM</ChatMessageTime>
+                    <ActionBarCopy />
+                    <ActionBarEdit />
+                  </>
+                ) : null}
+              </ChatMessageEditable>
+            </ChatMessageBody>
+          </ChatMessageRow>
+        </ChatMessage>
+      </ChatTurn>
       <p data-testid="following-message">The following message stays in place.</p>
       <output aria-label="Saved value">{value}</output>
       <output aria-label="Save count">{saveCount}</output>

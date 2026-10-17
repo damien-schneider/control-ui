@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 194,
+    "count": 196,
     "contracts": {
       "skin": "https://control-ui.dev/r/contract/index.json",
       "theme": "https://control-ui.dev/r/theme-contract.json"
@@ -633,6 +633,14 @@
         "summary": "Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.",
         "href": "/kits/user-ask",
         "install": "npx shadcn@latest add https://control-ui.dev/r/user-ask.json"
+      },
+      {
+        "id": "tool-approval",
+        "name": "ToolApproval",
+        "kind": "Kit",
+        "summary": "Inline approve or deny card for an agent action, with risk, a preview of what will run, and keyboard shortcuts.",
+        "href": "/kits/tool-approval",
+        "install": "npx shadcn@latest add https://control-ui.dev/r/tool-approval.json"
       },
       {
         "id": "task-list",
@@ -1578,6 +1586,15 @@
         "href": "/templates/coding-agent",
         "status": "beta",
         "install": "npx shadcn@latest add https://control-ui.dev/r/coding-agent-block.json"
+      },
+      {
+        "id": "agent-run",
+        "name": "Agent run",
+        "kind": "Block",
+        "summary": "One autonomous agent run: its plan step by step, the tool calls behind each step, approvals it waits on, and what it produced.",
+        "href": "/templates/agent-run",
+        "status": "beta",
+        "install": "npx shadcn@latest add https://control-ui.dev/r/agent-run-block.json"
       },
       {
         "id": "settings",

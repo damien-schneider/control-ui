@@ -1,6 +1,7 @@
 "use client";
 
 import { useLiveQuery } from "@tanstack/react-db";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { useState } from "react";
@@ -31,7 +32,7 @@ import { AppShell, AppShellContent } from "@/components/control-ui/ui/app-shell"
 import { PageActions, PageBody, PageHeader, PageLayout, type PageWidth, usePageScroll } from "@/components/control-ui/ui/page-layout";
 import { SidebarMobileNav, SidebarMobileTrigger, SidebarTrigger } from "@/components/control-ui/ui/sidebar";
 import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
-import { isThemeCategoryPath, THEME_EDITOR_PATH } from "@/components/theme-drawer/theme-categories";
+import { isThemeCategoryPath, SKIN_CATEGORY, THEME_EDITOR_PATH, themeCategoryForPath } from "@/components/theme-drawer/theme-categories";
 import { DocsGithubLink } from "./github-link";
 import { pageLinks } from "./page-links";
 import {
@@ -41,6 +42,8 @@ import {
   updateDocsSetupPreference,
   useIsHydrated,
 } from "./setup-preference";
+
+const ThemeEditorAside = dynamic(() => import("@/components/theme-drawer/theme-editor-aside").then((module) => module.ThemeEditorAside));
 
 type DocsShellViewProps = DocsShellData & {
   children: ReactNode;
@@ -78,7 +81,6 @@ type ActivePageCatalog = Pick<
 >;
 
 function guidePageWidth(guideLayout: GuidePage["layout"], catalogOverview: CatalogOverviewId | undefined): PageWidth {
-  if (guideLayout === "workspace") return "full";
   if (guideLayout === "wide" || catalogOverview) return "wide";
   return "prose";
 }
@@ -187,6 +189,7 @@ function DocsShellContent({
   const scrollsPage = scroll === "page";
   const searchItems = buildSearchItems({ guides, skills, kits, blocks, components, hooks, utils, extensions, skinPages });
   const activePage = activePageForPathname(pathname, searchItems);
+  const themeEditorCategory = activePage === "theme-editor" ? themeCategoryForPath(normalizePathname(pathname)) : null;
 
   const { links, pageWidth } = resolveActivePage(activePage, {
     guides,
@@ -250,14 +253,25 @@ function DocsShellContent({
             >
               <SidebarTrigger className="pointer-events-auto" />
             </div>
-            <PageLayout width={pageWidth}>
+            <PageLayout
+              width={pageWidth}
+              style={themeEditorCategory && themeEditorCategory !== SKIN_CATEGORY ? { "--cui-page-layout-aside-size": "21rem" } : undefined}
+            >
               <PageHeader variant="floating">
                 <PageActions>
                   <DocsGithubLink stars={githubStars} />
                 </PageActions>
               </PageHeader>
               {activePage ? (
-                <PageBody aside={pageWidth === "full" ? undefined : <TableOfContents items={links} className="top-12" />}>
+                <PageBody
+                  aside={
+                    themeEditorCategory ? (
+                      <ThemeEditorAside category={themeEditorCategory} />
+                    ) : (
+                      <TableOfContents items={links} className="top-12" />
+                    )
+                  }
+                >
                   {pageContent}
                 </PageBody>
               ) : (

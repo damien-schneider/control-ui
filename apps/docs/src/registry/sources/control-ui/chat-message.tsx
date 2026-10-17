@@ -325,7 +325,7 @@ export function ChatMessageEditable({
       data-editing={editing ? "" : undefined}
       className={cn("min-w-0", className)}
     >
-      <ChatMessageContent data-editable="">
+      <ChatMessageContent data-editable="" data-focus-ring="within">
         <span data-control-ui="chat-message" data-control-family="chat-message" data-slot="edit-value" aria-hidden={editing}>
           {displayValue || "\u200b"}
         </span>
@@ -360,41 +360,25 @@ export function ChatMessageEditable({
           }}
         />
       </ChatMessageContent>
-      <div data-control-ui="chat-message" data-control-family="chat-message" data-slot="edit-toolbars">
-        <div
-          data-control-ui="chat-message"
-          data-control-family="chat-message"
-          data-slot="edit-toolbar"
-          data-active={!editing ? "" : undefined}
-          inert={editing}
-          aria-hidden={editing}
-        >
-          <ActionBar align={message.isEndAligned ? "end" : "start"} copyValue={value} onEdit={startEditing}>
-            {children ?? (
-              <>
-                <ActionBarCopy />
-                <ActionBarEdit />
-              </>
-            )}
-          </ActionBar>
-        </div>
-        <div
-          data-control-ui="chat-message"
-          data-control-family="chat-message"
-          data-slot="edit-toolbar"
-          data-active={editing ? "" : undefined}
-          inert={!editing}
-          aria-hidden={!editing}
-        >
-          <ActionBar align={message.isEndAligned ? "end" : "start"} label="Edit actions" aria-busy={saving}>
-            <ActionBarItem type="button" disabled={saving || !draft.trim()} onClick={() => void save()}>
-              {saveLabel}
-            </ActionBarItem>
-            <ActionBarItem type="button" disabled={saving} onClick={cancelEditing}>
-              {cancelLabel}
-            </ActionBarItem>
-          </ActionBar>
-        </div>
+      <div data-control-ui="chat-message" data-control-family="chat-message" data-slot="read-actions">
+        <ActionBar align={message.isEndAligned ? "end" : "start"} copyValue={value} onEdit={startEditing}>
+          {children ?? (
+            <>
+              <ActionBarCopy />
+              <ActionBarEdit />
+            </>
+          )}
+        </ActionBar>
+      </div>
+      <div data-control-ui="chat-message" data-control-family="chat-message" data-slot="edit-actions">
+        <ActionBar align={message.isEndAligned ? "end" : "start"} label="Edit actions" aria-busy={saving}>
+          <ActionBarItem type="button" variant="surface" disabled={saving} onClick={cancelEditing}>
+            {cancelLabel}
+          </ActionBarItem>
+          <ActionBarItem type="button" variant="solid" disabled={saving || !draft.trim()} onClick={() => void save()}>
+            {saveLabel}
+          </ActionBarItem>
+        </ActionBar>
       </div>
       <LiveStatus message={saving ? savingLabel : ""} />
       <span

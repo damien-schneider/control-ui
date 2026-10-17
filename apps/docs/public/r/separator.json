@@ -5,7 +5,7 @@
   "title": "Separator",
   "description": "Horizontal or vertical hairline divider.",
   "dependencies": [
-    "@base-ui/react@^1.8.0"
+    "@base-ui/react@^1.9.0"
   ],
   "registryDependencies": [
     "https://control-ui.dev/r/core.json"

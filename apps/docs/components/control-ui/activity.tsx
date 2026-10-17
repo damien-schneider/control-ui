@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, ChevronRight, CircleAlert, CircleDashed, LoaderCircle } from "lucide-react";
+import { Check, ChevronRight, CircleAlert, CircleDashed, CirclePause, LoaderCircle } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, useContext } from "react";
 import type { ActivityKnobStyle } from "@/components/control-ui/knob-contracts/activity-knobs";
@@ -11,7 +11,7 @@ import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import type { ScrollAreaProps } from "@/components/control-ui/ui/scroll-area";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
-export type ActivityState = "pending" | "running" | "success" | "error";
+export type ActivityState = "pending" | "running" | "waiting" | "success" | "error";
 
 export type ActivityKind = "default" | "tool" | "reasoning" | "signal";
 
@@ -33,6 +33,7 @@ type ActivityStyleProps<Props, Style> = Omit<Props, "style"> & {
 const activityStatusLabels = {
   pending: "Pending",
   running: "Running",
+  waiting: "Waiting",
   success: "Complete",
   error: "Failed",
 } satisfies Record<ActivityState, string>;
@@ -40,6 +41,7 @@ const activityStatusLabels = {
 const activityStatusIcons = {
   pending: CircleDashed,
   running: LoaderCircle,
+  waiting: CirclePause,
   success: Check,
   error: CircleAlert,
 } satisfies Record<ActivityState, typeof CircleDashed>;

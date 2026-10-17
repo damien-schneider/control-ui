@@ -69,6 +69,32 @@ for (const skin of ["none", "mastra"]) {
   }
 }
 
+test("edit takes over a short message's action row without resizing it or hiding off hover", async ({ page }) => {
+  await openFixture(page, "time&text=Hi");
+  const surface = page.locator('[data-slot="content"]');
+  const following = page.getByTestId("following-message");
+  const before = await surface.boundingBox();
+  const followingBefore = await following.boundingBox();
+  await surface.hover();
+  await page.getByRole("button", { name: "Edit", exact: true }).click();
+  await expect(page.getByRole("textbox", { name: "Edit message" })).toHaveCSS("outline-width", "0px");
+  await expect(surface).toHaveCSS("outline-style", "solid");
+  await expect(surface).toHaveCSS("outline-offset", "-2px");
+  await following.click();
+  await page.mouse.move(0, 0);
+  await settle(page);
+  await expect(page.getByText("5:04 PM")).toBeHidden();
+  await expect(page.getByRole("button", { name: "Copy", exact: true })).toBeHidden();
+  const editActions = page.getByRole("toolbar", { name: "Edit actions" });
+  await expect(editActions).toHaveCSS("opacity", "1");
+  await expect(editActions.getByRole("button")).toHaveText(["Cancel", "Save"]);
+  expect(await surface.boundingBox()).toEqual(before);
+  expect(await following.boundingBox()).toEqual(followingBefore);
+  await editActions.getByRole("button", { name: "Cancel", exact: true }).click();
+  await expect(page.getByText("5:04 PM")).toBeVisible();
+  await expect(editActions).toBeHidden();
+});
+
 test("drafts stay local, preserve whitespace, cancel and reset from host updates", async ({ page }) => {
   await openFixture(page);
   const edit = page.getByRole("button", { name: "Edit", exact: true });

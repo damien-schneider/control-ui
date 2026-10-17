@@ -5,7 +5,7 @@
   "title": "Morphing Panel",
   "description": "A compact control that expands into settings, workspace navigation, or an inline confirmation, with stable alignment and keyboard dismissal.",
   "dependencies": [
-    "@base-ui/react@^1.8.0"
+    "@base-ui/react@^1.9.0"
   ],
   "registryDependencies": [
     "https://control-ui.dev/r/button.json",

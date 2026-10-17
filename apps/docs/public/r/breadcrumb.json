@@ -5,7 +5,7 @@
   "title": "Breadcrumb",
   "description": "Location trail with links, the current page, and collapsed levels.",
   "dependencies": [
-    "@base-ui/react@^1.8.0",
+    "@base-ui/react@^1.9.0",
     "lucide-react@^1.47.0"
   ],
   "registryDependencies": [

@@ -5,15 +5,9 @@
   }
 
   :where([data-control-family="chat-message"][data-slot="content"][data-editable]) {
+    --focus-ring-offset: calc(var(--focus-ring-width) * -1);
     position: relative;
     display: grid;
-    outline: var(--focus-ring-width) var(--focus-ring-style) transparent;
-    outline-offset: calc(var(--focus-ring-width) * -1);
-    transition: outline-color var(--duration-fast) var(--ease-standard);
-  }
-
-  :where([data-control-family="chat-message"][data-slot="content"][data-editable]:focus-within) {
-    outline-color: var(--focus-ring);
   }
 
   :where([data-control-family="chat-message"][data-slot="editable"] :is([data-slot="edit-value"], [data-slot="edit-sizer"])) {
@@ -63,7 +57,6 @@
     white-space: pre-wrap;
     overflow-wrap: anywhere;
     scrollbar-width: thin;
-    outline: none;
     visibility: hidden;
   }
 
@@ -75,21 +68,17 @@
     visibility: hidden;
   }
 
-  :where([data-control-family="chat-message"][data-slot="editable"] [data-slot="edit-toolbars"]) {
-    display: grid;
+  :where([data-control-family="chat-message"][data-slot="editable"] :is([data-slot="read-actions"], [data-slot="edit-actions"])) {
+    contain: inline-size;
   }
 
-  :where([data-control-family="chat-message"][data-slot="editable"] [data-slot="edit-toolbar"]) {
-    grid-area: 1 / 1;
-    min-inline-size: 0;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity var(--duration-fast) var(--ease-standard);
+  :where([data-control-family="chat-message"][data-slot="edit-actions"]) > [data-control-family="action-bar"] {
+    --cui-action-bar-hidden-opacity: var(--cui-action-bar-visible-opacity);
   }
 
-  :where([data-control-family="chat-message"][data-slot="editable"] [data-slot="edit-toolbar"][data-active]) {
-    visibility: visible;
-    opacity: 1;
+  :where([data-control-family="chat-message"][data-slot="editable"][data-editing] [data-slot="read-actions"]),
+  :where([data-control-family="chat-message"][data-slot="editable"]:not([data-editing]) [data-slot="edit-actions"]) {
+    display: none;
   }
 
   :where([data-control-family="chat-message"][data-slot="editable"] [data-slot="edit-error"]) {

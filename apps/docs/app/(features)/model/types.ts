@@ -170,7 +170,7 @@ export type GuidePage = {
   group: GuideGroupId;
   name: string;
   summary: string;
-  layout?: "default" | "wide" | "workspace";
+  layout?: "default" | "wide";
   hiddenFromNav?: boolean;
   sections: GuideSection[];
   comparedApplications?: readonly ComparedApplication[];
