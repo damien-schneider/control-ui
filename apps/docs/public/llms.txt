@@ -110,7 +110,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Icon Picker](https://control-ui.dev/components/icon-picker): Searchable icon grid and color swatches using an app-supplied icon catalog. Status: beta.
 - [Resizable](https://control-ui.dev/components/resizable): Accessible resizable panel groups and split layouts with keyboard support. Status: beta.
 - [Calendar](https://control-ui.dev/components/calendar): Date selection grid built on react-day-picker and themed through tokens.
-- [Typography](https://control-ui.dev/components/typography): Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role, className stays layout-only. A bare text-* rung is for markup React doesn't render as components, such as MDX or email HTML.
+- [Typography](https://control-ui.dev/components/typography): Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role, className stays layout-only. A bare text-* rung is for HTML React doesn't render as components, such as email HTML; MDX maps its tags to Heading and Text.
 - [Code](https://control-ui.dev/components/code): Shared code surface: Shiki-highlighted lines, gutter, clean copy, editable content, and virtualization for large files.
 - [Code Diff](https://control-ui.dev/components/code-diff): Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting.
 - [Markdown](https://control-ui.dev/components/markdown): Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff.
