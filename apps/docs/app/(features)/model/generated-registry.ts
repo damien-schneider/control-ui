@@ -3635,6 +3635,11 @@ export const registryMetadata = {
         type: "registry:component",
       },
       {
+        path: "src/registry/sources/control-ui/markdown-editor/bubble-menu.tsx",
+        target: "@components/control-ui/markdown-editor/bubble-menu.tsx",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/markdown-editor/context.ts",
         target: "@components/control-ui/markdown-editor/context.ts",
         type: "registry:component",

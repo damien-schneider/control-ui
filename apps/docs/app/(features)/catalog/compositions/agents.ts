@@ -298,6 +298,11 @@ export const agentsCompositions = {
       ),
       "Markdown strings stay application-owned. Content includes block drag handles (Alt+ArrowUp/ArrowDown also moves blocks). Suggestions adds slash commands and accepts people with persistent profile URLs; mentions save as Markdown links. Supply onUploadImage to enable image paste and drop.",
     ),
+    example(
+      "Selection bubble menu",
+      part("MarkdownEditor", part("MarkdownEditorContent"), part("MarkdownEditorBubbleMenu"), part("MarkdownEditorSuggestions")),
+      "Use MarkdownEditorBubbleMenu instead of, or alongside, MarkdownEditorToolbar. It appears above non-empty text selections outside code blocks and reuses the toolbar's text style, mark, and link controls; pass children to append custom controls.",
+    ),
   ],
   "markdown-block": [
     example(

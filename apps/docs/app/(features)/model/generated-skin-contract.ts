@@ -7939,6 +7939,11 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        "bubble-menu": {
+          family: "markdown-editor",
+          registryItems: ["markdown-editor"],
+          states: [],
+        },
         content: {
           family: "markdown-editor",
           registryItems: ["markdown-editor"],

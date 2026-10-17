@@ -41,6 +41,12 @@
     padding-inline: var(--cui-markdown-editor-padding);
     white-space: nowrap;
   }
+  :where([data-control-family="markdown-editor"][data-slot="bubble-menu"]) {
+    z-index: 1;
+    white-space: nowrap;
+    transform-origin: bottom center;
+    animation: cui-markdown-editor-bubble-enter var(--duration-fast) var(--ease-emphasized);
+  }
   :where([data-control-family="markdown-editor"] [data-markdown-drag-handle]) {
     position: absolute;
     inset-inline-start: calc(var(--cui-markdown-editor-padding) / 2);
@@ -169,6 +175,12 @@
   :where([data-control-family="markdown-editor"] .tiptap :is(td, th)) {
     border: var(--cui-markdown-editor-border-width) solid var(--cui-markdown-editor-border-color);
     padding: var(--cui-markdown-editor-padding);
+  }
+  @keyframes cui-markdown-editor-bubble-enter {
+    from {
+      opacity: 0;
+      scale: 0.96;
+    }
   }
 }
 

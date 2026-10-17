@@ -648,12 +648,25 @@ export const kitEntries = [
       source: sourceFile("Component", "src/registry/sources/control-ui/markdown-editor.tsx", "component"),
       supportFiles: [
         sourceFile("Formatting and images", "src/registry/sources/control-ui/markdown-editor/toolbar.tsx", "component"),
+        sourceFile("Selection bubble menu", "src/registry/sources/control-ui/markdown-editor/bubble-menu.tsx", "component"),
         sourceFile("Slash commands and mentions", "src/registry/sources/control-ui/markdown-editor/suggestions.tsx", "component"),
         sourceFile("Block drag handle", "src/registry/sources/control-ui/markdown-editor/drag-handle.tsx", "component"),
         sourceFile("Editor recipe", "src/registry/sources/control-ui/recipes/markdown-editor.css", "recipe-css"),
       ],
     },
     preview: preview(() => import("@/src/registry/examples/markdown-editor").then((mod) => ({ default: mod.MarkdownEditorExample }))),
+    additionalPreviews: [
+      {
+        id: "bubble-menu",
+        title: "Selection bubble menu",
+        description:
+          "Replace the fixed toolbar with formatting that floats above selected text: text style, bold, italic, strikethrough, inline code, and links.",
+        source: sourceFile("Bubble menu example", "src/registry/examples/markdown-editor.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/markdown-editor").then((mod) => ({ default: mod.MarkdownEditorBubbleMenuExample })),
+        ),
+      },
+    ],
   },
   {
     id: "markdown-block",
