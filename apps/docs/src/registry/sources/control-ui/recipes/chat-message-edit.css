@@ -72,10 +72,6 @@
     contain: inline-size;
   }
 
-  :where([data-control-family="chat-message"][data-slot="edit-actions"]) > [data-control-family="action-bar"] {
-    --cui-action-bar-hidden-opacity: var(--cui-action-bar-visible-opacity);
-  }
-
   :where([data-control-family="chat-message"][data-slot="editable"][data-editing] [data-slot="read-actions"]),
   :where([data-control-family="chat-message"][data-slot="editable"]:not([data-editing]) [data-slot="edit-actions"]) {
     display: none;

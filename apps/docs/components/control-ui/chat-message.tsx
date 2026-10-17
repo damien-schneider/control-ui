@@ -371,7 +371,12 @@ export function ChatMessageEditable({
         </ActionBar>
       </div>
       <div data-control-ui="chat-message" data-control-family="chat-message" data-slot="edit-actions">
-        <ActionBar align={message.isEndAligned ? "end" : "start"} label="Edit actions" aria-busy={saving}>
+        <ActionBar
+          align={message.isEndAligned ? "end" : "start"}
+          label="Edit actions"
+          aria-busy={saving}
+          style={{ "--cui-action-bar-hidden-opacity": "1" }}
+        >
           <ActionBarItem type="button" variant="surface" disabled={saving} onClick={cancelEditing}>
             {cancelLabel}
           </ActionBarItem>
