@@ -20,14 +20,17 @@ function flaggedLines(source: string) {
   }
 }
 
-test("flags type rungs in className, including inside a class merger", () => {
+test("flags type rungs and Tailwind font sizes in className, including inside a class merger", () => {
   const source = [
     `export const a = <p className="text-caption text-muted-foreground">x</p>;`,
     `export const b = <span className={cn("font-medium text-micro", "text-muted-foreground")}>x</span>;`,
     `export const c = <h2 className="text-heading-2">x</h2>;`,
     `export const d = <p className="text-body-lg">x</p>;`,
+    `export const e = <p className="text-sm text-muted-foreground">x</p>;`,
+    `export const f = <h3 className="text-2xl">x</h3>;`,
+    `export const g = <span className="text-[13px]">x</span>;`,
   ].join("\n");
-  expect(flaggedLines(source)).toEqual([1, 2, 3, 4]);
+  expect(flaggedLines(source)).toEqual([1, 2, 3, 4, 5, 6, 7]);
 });
 
 test("leaves layout classes, typed props, and look-alike utilities alone", () => {
@@ -35,6 +38,7 @@ test("leaves layout classes, typed props, and look-alike utilities alone", () =>
     `export const a = <div className="flex gap-2 text-center text-balance">x</div>;`,
     `export const b = <Text size="micro" tone="muted" className="w-14 shrink-0">x</Text>;`,
     `export const c = <p className="text-bodyx text-labelled">x</p>;`,
+    `export const d = <p className="text-[#fff] text-[var(--brand)]">x</p>;`,
   ].join("\n");
   expect(flaggedLines(source)).toEqual([]);
 });

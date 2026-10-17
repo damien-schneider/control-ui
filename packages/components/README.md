@@ -47,10 +47,10 @@ const twMerge = extendTailwindMerge({ extend: { classGroups: { "font-size": [{ t
 
 Controls size their own text: pick the control's `size`, or set its `--cui-*-font-size` knob in your theme, rather than wrapping the label in a `text-*` span.
 
-With Biome, the shipped GritQL plugin warns on type rungs in `className`:
+With Biome, the shipped GritQL plugin errors on text sizes in `className`: the type rungs, Tailwind's `text-xs`…`text-9xl`, and arbitrary `text-[13px]`. Adopt it folder by folder through `overrides` while you migrate:
 
 ```json
-{ "plugins": ["./node_modules/@ctrl-ui/react/lint/no-raw-type-classes.grit"] }
+{ "overrides": [{ "includes": ["src/features/**"], "plugins": ["./node_modules/@ctrl-ui/react/lint/no-raw-type-classes.grit"] }] }
 ```
 
 ## Customize
