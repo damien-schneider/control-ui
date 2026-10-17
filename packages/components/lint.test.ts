@@ -29,8 +29,9 @@ test("flags type rungs and Tailwind font sizes in className, including inside a 
     `export const e = <p className="text-sm text-muted-foreground">x</p>;`,
     `export const f = <h3 className="text-2xl">x</h3>;`,
     `export const g = <span className="text-[13px]">x</span>;`,
+    `export const h = <p className="md:text-lg hover:!text-sm">x</p>;`,
   ].join("\n");
-  expect(flaggedLines(source)).toEqual([1, 2, 3, 4, 5, 6, 7]);
+  expect(flaggedLines(source)).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
 });
 
 test("leaves layout classes, typed props, and look-alike utilities alone", () => {
@@ -39,6 +40,7 @@ test("leaves layout classes, typed props, and look-alike utilities alone", () =>
     `export const b = <Text size="micro" tone="muted" className="w-14 shrink-0">x</Text>;`,
     `export const c = <p className="text-bodyx text-labelled">x</p>;`,
     `export const d = <p className="text-[#fff] text-[var(--brand)]">x</p>;`,
+    `export const e = <button className="[--cui-button-font-size:var(--text-micro)]">x</button>;`,
   ].join("\n");
   expect(flaggedLines(source)).toEqual([]);
 });
