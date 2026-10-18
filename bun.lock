@@ -67,7 +67,7 @@
         "react-grab": "^0.2.0",
         "react-phone-number-input": "^3.4.18",
         "react-resizable-panels": "^4.12.4",
-        "reflet-sdk": "^0.7.10",
+        "reflet-sdk": "^0.7.11",
         "remark-gfm": "^4.0.1",
         "server-only": "^0.0.1",
         "shiki": "^4.4.3",
@@ -2086,7 +2086,7 @@
 
     "recma-stringify": ["recma-stringify@1.0.0", "", { "dependencies": { "@types/estree": "^1.0.0", "estree-util-to-js": "^2.0.0", "unified": "^11.0.0", "vfile": "^6.0.0" } }, "sha512-cjwII1MdIIVloKvC9ErQ+OgAtwHBmcZ0Bg4ciz78FtbT8In39aAYbaA7zvxQ61xVMSPE8WxhLwLbhif4Js2C+g=="],
 
-    "reflet-sdk": ["reflet-sdk@0.7.10", "", { "dependencies": { "@base-ui/react": "^1.8.0", "@zumer/snapdom": "^3.0.0", "zod": "^4.6.5" }, "peerDependencies": { "react": "^18.0.0 || ^19.0.0", "react-dom": "^18.0.0 || ^19.0.0", "vite": ">=5.0.0" }, "optionalPeers": ["react", "react-dom", "vite"] }, "sha512-gr6ozCrQt8hKhLN4QXBmaLrhPQ2IPmV2ZIGiyVGltXASBc3tlDveDt2drrm4kcOscVXVDQEIDUHGOgxEK1Em0Q=="],
+    "reflet-sdk": ["reflet-sdk@0.7.11", "", { "dependencies": { "@base-ui/react": "^1.8.0", "@zumer/snapdom": "^3.0.0", "zod": "^4.6.5" }, "peerDependencies": { "react": "^18.0.0 || ^19.0.0", "react-dom": "^18.0.0 || ^19.0.0", "vite": ">=5.0.0" }, "optionalPeers": ["react", "react-dom", "vite"] }, "sha512-fjEAY7fhVrs8J1BySG7NbemMsqNdU+/4Ut3uIMblTGdnLgS09gCBqWGv/un1odGN8Eavf5UckCCVw/wYbstTjg=="],
 
     "regex": ["regex@6.1.0", "", { "dependencies": { "regex-utilities": "^2.3.0" } }, "sha512-6VwtthbV4o/7+OaAF9I5L5V3llLEsoPyq9P1JVXkedTP33c7MfCG0/5NOPcSJn0TzXcG9YUrR0gQSWioew3LDg=="],
 
