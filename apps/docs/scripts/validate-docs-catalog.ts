@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { practiceSkills, skillConcerns } from "@control-ui/skills";
 import { catalogEntries } from "../app/(features)/catalog";
@@ -42,8 +42,12 @@ function checkPreview(owner: string, file: CatalogSourceFile, preview?: PreviewW
     return;
   }
 
+  const modulePath = previewModule ?? file.path;
   if (previewModule && !existsSync(path.join(root, previewModule))) failures.push(`${owner} references missing ${previewModule}`);
-  const expected = expectedImportSpecifier(previewModule ?? file.path);
+  if (existsSync(path.join(root, modulePath)) && !readFileSync(path.join(root, modulePath), "utf8").startsWith('"use client";')) {
+    failures.push(`${owner} preview ${modulePath} must start with "use client" so pages can pass it to the client already loaded`);
+  }
+  const expected = expectedImportSpecifier(modulePath);
   const imports = importSpecifiers(preview);
 
   if (!imports.includes(expected)) {

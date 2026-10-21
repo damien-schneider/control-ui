@@ -125,10 +125,6 @@ try {
   let cursor = 0;
   const worker = async () => {
     let page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
-    await page.addInitScript(() => {
-      window.__REACT_GRAB_DISABLED__ = true;
-      window.__REACT_SCAN_DISABLED__ = true;
-    });
     while (cursor < routes.length) {
       const index = cursor;
       cursor += 1;
@@ -138,10 +134,6 @@ try {
         console.log(`${route} rendered nothing — retrying on a fresh page`);
         await page.close();
         page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
-        await page.addInitScript(() => {
-          window.__REACT_GRAB_DISABLED__ = true;
-          window.__REACT_SCAN_DISABLED__ = true;
-        });
         rendered = await visit(page, route, index);
       }
       if (rendered === 0) unrendered.push(route);

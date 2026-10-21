@@ -1,4 +1,4 @@
-import type { ComponentId } from "@/app/(features)/model/types";
+import type { BlockId, ComponentId } from "@/app/(features)/model/types";
 import type { ThemeContractGroup } from "@/src/registry/lib/theme-contract";
 import { SKIN_CATEGORY, type ThemeCategoryId, TOKEN_GROUP_TITLES } from "./theme-categories";
 
@@ -22,7 +22,7 @@ const COMPONENT_PREVIEWS: readonly ComponentPreview[] = [
 export type ThemePreviewSection =
   | { kind: "foundation"; id: string; title: string; group: ThemeContractGroup }
   | { kind: "component"; id: string; title: string; componentId: ComponentId }
-  | { kind: "application"; id: string; title: string };
+  | { kind: "application"; id: string; title: string; blockId: BlockId };
 
 function componentPreviewsShowcasing(category: ThemeCategoryId) {
   if (category === SKIN_CATEGORY) return COMPONENT_PREVIEWS;
@@ -37,5 +37,5 @@ export function themePreviewSections(category: ThemeCategoryId): ThemePreviewSec
   const components = componentPreviewsShowcasing(category).map(
     (preview): ThemePreviewSection => ({ kind: "component", id: `preview-${preview.id}`, title: preview.title, componentId: preview.id }),
   );
-  return [...foundation, ...components, { kind: "application", id: "preview-application", title: "Application" }];
+  return [...foundation, ...components, { kind: "application", id: "preview-application", title: "Application", blockId: "settings" }];
 }

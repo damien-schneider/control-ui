@@ -1,32 +1,29 @@
 @layer components {
   :where([data-control-family="infinite-canvas"][data-slot="root"]) {
+    --_infinite-canvas-controls-item-radius: min(var(--radius-sm), calc(var(--control-h-sm) / 2));
+    --_infinite-canvas-controls-radius: calc(
+      var(--_infinite-canvas-controls-item-radius) +
+      clamp(0px, calc(var(--_infinite-canvas-controls-item-radius) * 1000), var(--spacing))
+    );
     --cui-infinite-canvas-background: var(--canvas);
     --cui-infinite-canvas-grid-dot-color: var(--canvas-grid-dot);
     --cui-infinite-canvas-border-color: var(--border);
-    --cui-infinite-canvas-controls-item-radius: min(var(--radius-sm), calc(var(--control-h-sm) / 2));
-    --cui-infinite-canvas-controls-padding: calc(var(--spacing) * 1);
-    --cui-infinite-canvas-controls-radius: calc(
-      var(--cui-infinite-canvas-controls-item-radius) +
-      clamp(0px, calc(var(--cui-infinite-canvas-controls-item-radius) * 1000), var(--cui-infinite-canvas-controls-padding))
-    );
     --cui-infinite-canvas-radius: max(
       var(--radius-panel),
-      calc(
-        var(--cui-infinite-canvas-controls-radius) +
-        clamp(0px, calc(var(--cui-infinite-canvas-controls-radius) * 1000), var(--spacing) * 2)
-      )
+      calc(var(--_infinite-canvas-controls-radius) + clamp(0px, calc(var(--_infinite-canvas-controls-radius) * 1000), var(--spacing) * 2))
     );
     --cui-infinite-canvas-padding: max(
       calc(var(--spacing) * 2),
-      calc(var(--cui-infinite-canvas-radius) - var(--cui-infinite-canvas-controls-radius))
+      calc(var(--cui-infinite-canvas-radius) - var(--_infinite-canvas-controls-radius))
     );
-    --cui-infinite-canvas-controls-background: var(--card);
-    --cui-infinite-canvas-controls-border-color: var(--border);
-    --cui-infinite-canvas-controls-shadow: var(--shadow-sm);
     border-radius: var(--cui-infinite-canvas-radius);
     background-color: var(--cui-infinite-canvas-background);
     background-image: radial-gradient(circle at center, var(--cui-infinite-canvas-grid-dot-color) 1px, transparent 1px);
     box-shadow: 0 0 0 1px var(--cui-infinite-canvas-border-color);
+  }
+
+  :where([data-control-family="infinite-canvas"][data-slot="root"]:focus-visible) {
+    --focus-ring-offset: calc(var(--focus-ring-width) * -1);
   }
 
   :where([data-control-family="infinite-canvas"][data-slot="root"][data-easing]) {
@@ -41,17 +38,15 @@
     transition: transform var(--duration-base) var(--ease-standard);
   }
 
+  :where(
+    [data-control-family="infinite-canvas"][data-slot="root"][data-moving] [data-control-family="infinite-canvas"][data-slot="content"]
+  ) {
+    will-change: transform;
+  }
+
   :where([data-control-family="infinite-canvas"][data-slot="controls"]) {
-    --nest-radius: var(--cui-infinite-canvas-controls-item-radius);
     inset-inline-end: var(--cui-infinite-canvas-padding);
     inset-block-end: var(--cui-infinite-canvas-padding);
-    gap: calc(var(--spacing) * 0.5);
-    padding: var(--cui-infinite-canvas-controls-padding);
-    border-radius: var(--cui-infinite-canvas-controls-radius);
-    background-color: var(--cui-infinite-canvas-controls-background);
-    box-shadow:
-      var(--cui-infinite-canvas-controls-shadow),
-      0 0 0 1px var(--cui-infinite-canvas-controls-border-color);
   }
 
   :where([data-control-family="infinite-canvas"][data-slot="content"]) {
@@ -87,39 +82,4 @@
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
-}
-
-@property --cui-infinite-canvas-controls-item-radius {
-  syntax: "<length-percentage>";
-  inherits: true;
-  initial-value: 0px;
-}
-
-@property --cui-infinite-canvas-controls-padding {
-  syntax: "<length-percentage>";
-  inherits: true;
-  initial-value: 0px;
-}
-
-@property --cui-infinite-canvas-controls-radius {
-  syntax: "<length-percentage>";
-  inherits: true;
-  initial-value: 0px;
-}
-
-@property --cui-infinite-canvas-controls-background {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
-@property --cui-infinite-canvas-controls-border-color {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
-@property --cui-infinite-canvas-controls-shadow {
-  syntax: "*";
-  inherits: true;
 }

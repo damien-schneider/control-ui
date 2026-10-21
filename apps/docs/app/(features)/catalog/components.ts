@@ -510,6 +510,23 @@ export const componentEntries = [
           'The outlined area is the AppShell container. Collapse the sidebar or toggle loading: the frame stays in place while page content changes. This embedded preview uses layout="contained"; a full application uses the default viewport layout.',
       },
     ),
+    galleryPreview: "collapsed",
+    additionalPreviews: [
+      {
+        id: "collapsed",
+        title: "Collapsed sidebar",
+        description:
+          "Start the sidebar as icons with defaultOpen={false} when the shell is narrow, so the page keeps its width until someone expands the navigation.",
+        source: sourceFile("App shell collapsed example", "src/registry/examples/control-ui/primitives/app-shell-collapsed.tsx", "example"),
+        preview: preview(
+          () =>
+            import("@/src/registry/examples/control-ui/primitives/app-shell-collapsed").then((mod) => ({
+              default: mod.PrimitiveAppShellCollapsedExample,
+            })),
+          { layout: "contained" },
+        ),
+      },
+    ],
   },
   {
     id: "page-layout",
@@ -955,6 +972,25 @@ export const componentEntries = [
         default: mod.PrimitiveRichTooltipExample,
       })),
     ),
+    galleryPreview: "in-panel",
+    additionalPreviews: [
+      {
+        id: "in-panel",
+        title: "Inside a panel",
+        description:
+          "Portal the tip into its panel with container so it scrolls and clips with the panel, and keep the page still with scrollAnchorIntoView and initialFocus off when the tip announces rather than guides.",
+        source: sourceFile(
+          "Rich tooltip in a panel example",
+          "src/registry/examples/control-ui/primitives/rich-tooltip-in-panel.tsx",
+          "example",
+        ),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/rich-tooltip-in-panel").then((mod) => ({
+            default: mod.PrimitiveRichTooltipInPanelExample,
+          })),
+        ),
+      },
+    ],
   },
   {
     id: "drawer",
@@ -2186,7 +2222,12 @@ export const componentEntries = [
         target: "components/control-ui/ui/infinite-canvas.tsx",
         example: sourceFile("Infinite canvas preview", "src/registry/examples/control-ui/primitives/infinite-canvas.tsx", "example"),
         source: sourceFile("Infinite canvas", "src/registry/sources/control-ui/ui/infinite-canvas.tsx", "component"),
-        supportFiles: [infiniteCanvasRecipeFile],
+        supportFiles: [
+          sourceFile("Infinite canvas camera math", "src/registry/lib/infinite-canvas-camera.ts", "camera"),
+          sourceFile("Infinite canvas camera store", "src/registry/lib/infinite-canvas-camera-store.ts", "camera"),
+          sourceFile("Infinite canvas navigation", "src/registry/lib/infinite-canvas-navigation.ts", "navigation"),
+          infiniteCanvasRecipeFile,
+        ],
 
         registryKind: "infinite-canvas",
       },

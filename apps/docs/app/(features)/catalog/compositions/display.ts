@@ -231,7 +231,10 @@ export const displayCompositions = {
       "Spatial workspace",
       part(
         "InfiniteCanvas",
-        part("InfiniteCanvasContent", part("InfiniteCanvasItem", content("draggable node"))),
+        part(
+          "InfiniteCanvasContent",
+          part("InfiniteCanvasItem", part("InfiniteCanvasItemHandle"), content("item label"), content("live preview")),
+        ),
         part("InfiniteCanvasControls"),
       ),
     ),

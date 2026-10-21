@@ -1,4 +1,6 @@
 import { notFound } from "next/navigation";
+import { ServerLoadedPreviewsProvider } from "@/app/(features)/components/previews";
+import { extensionPagePreviews } from "@/app/(features)/components/server-previews";
 import { getDocsData } from "@/app/(features)/model/data";
 import { extensionPageIds, isExtensionPageId } from "@/app/(features)/model/page-ids";
 import { ExtensionPage } from "@/app/(features)/page-templates/extension-page";
@@ -21,11 +23,12 @@ export default async function ExtensionDocsPage({ params }: PageProps) {
   if (!isExtensionPageId(extensionId)) notFound();
   const extension = getDocsData().extensions.find((entry) => entry.id === extensionId);
   if (!extension) notFound();
+  const previews = extensionPagePreviews(extension.id);
 
   return (
-    <>
+    <ServerLoadedPreviewsProvider previews={previews}>
       <DocsPageStructuredData pathname={`/extensions/${extensionId}`} />
       <ExtensionPage extension={extension} />
-    </>
+    </ServerLoadedPreviewsProvider>
   );
 }

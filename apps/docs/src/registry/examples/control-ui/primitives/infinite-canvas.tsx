@@ -1,43 +1,82 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@/components/control-ui/ui/button";
 import {
   InfiniteCanvas,
   InfiniteCanvasContent,
   InfiniteCanvasControls,
   InfiniteCanvasItem,
+  InfiniteCanvasItemHandle,
+  type InfiniteCanvasPoint,
 } from "@/components/control-ui/ui/infinite-canvas";
-import { Heading, Text } from "@/components/control-ui/ui/typography";
+import { Input } from "@/components/control-ui/ui/input";
+import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
+import { Text } from "@/components/control-ui/ui/typography";
 
-const initialItems = [
-  { id: "brief", title: "Research brief", detail: "Customer signals and open questions", x: 24, y: 24 },
-  { id: "flows", title: "Interaction map", detail: "Primary path and recovery states", x: 296, y: 156 },
-  { id: "handoff", title: "Build handoff", detail: "Contracts, states, and acceptance checks", x: 64, y: 344 },
+type PreviewKind = "sign-in" | "release-notes" | "handoff";
+
+const initialCards: { id: PreviewKind; title: string; x: number; y: number }[] = [
+  { id: "sign-in", title: "Sign-in form", x: 0, y: 0 },
+  { id: "release-notes", title: "Release notes", x: 256, y: 72 },
+  { id: "handoff", title: "Build handoff", x: 32, y: 272 },
 ];
 
+const releaseNotes = Array.from({ length: 12 }, (_, index) => `Release 1.${12 - index} shipped`);
+
+function CardPreview({ kind }: { kind: PreviewKind }) {
+  if (kind === "sign-in") {
+    return (
+      <form className="flex flex-col gap-2" onSubmit={(event) => event.preventDefault()}>
+        <Input aria-label="Email" type="email" placeholder="you@example.com" />
+        <Button type="submit" size="sm" variant="solid" tone="primary">
+          Continue
+        </Button>
+      </form>
+    );
+  }
+  if (kind === "release-notes") {
+    return (
+      <ScrollArea className="h-32">
+        <ul className="flex flex-col gap-1 pe-3">
+          {releaseNotes.map((note) => (
+            <Text as="li" key={note} size="caption">
+              {note}
+            </Text>
+          ))}
+        </ul>
+      </ScrollArea>
+    );
+  }
+  return (
+    <Text as="p" size="caption" tone="muted">
+      Contracts, states, and acceptance checks for the first build.
+    </Text>
+  );
+}
+
 export function PrimitiveInfiniteCanvasExample() {
-  const [items, setItems] = useState(initialItems);
+  const [cards, setCards] = useState(initialCards);
+
+  function moveCard(id: PreviewKind, position: InfiniteCanvasPoint) {
+    setCards((current) => current.map((card) => (card.id === id ? { ...card, ...position } : card)));
+  }
 
   return (
     <div className="w-full sm:p-6">
-      <InfiniteCanvas className="h-140 w-full sm:h-150" defaultTransform={{ x: 96, y: 72, scale: 1 }}>
+      <InfiniteCanvas className="h-140 w-full sm:h-150" defaultTransform={{ x: 24, y: 72, scale: 1 }}>
         <InfiniteCanvasContent>
-          {items.map((item) => (
-            <InfiniteCanvasItem
-              key={item.id}
-              x={item.x}
-              y={item.y}
-              onPositionChange={(position) =>
-                setItems((current) => current.map((candidate) => (candidate.id === item.id ? { ...candidate, ...position } : candidate)))
-              }
-              className="w-52 rounded-[var(--radius-panel)] bg-card p-4 text-card-foreground shadow-sm ring-1 ring-border"
-            >
-              <Heading level={3} size="heading-4">
-                {item.title}
-              </Heading>
-              <Text as="p" size="caption" tone="muted" className="mt-1">
-                {item.detail}
-              </Text>
+          {cards.map((card) => (
+            <InfiniteCanvasItem key={card.id} x={card.x} y={card.y} className="flex w-56 flex-col gap-1.5">
+              <div className="flex items-center gap-1">
+                <InfiniteCanvasItemHandle aria-label={`Move ${card.title}`} onPositionChange={(position) => moveCard(card.id, position)} />
+                <Text as="span" size="caption" tone="muted" className="truncate">
+                  {card.title}
+                </Text>
+              </div>
+              <div className="rounded-[var(--radius-panel)] bg-card p-4 text-card-foreground shadow-sm ring-1 ring-border">
+                <CardPreview kind={card.id} />
+              </div>
             </InfiniteCanvasItem>
           ))}
         </InfiniteCanvasContent>
@@ -45,9 +84,9 @@ export function PrimitiveInfiniteCanvasExample() {
           as="div"
           size="caption"
           tone="muted"
-          className="pointer-events-none absolute top-(--cui-infinite-canvas-padding) left-(--cui-infinite-canvas-padding) rounded-(--cui-infinite-canvas-controls-radius) bg-card/90 px-2.5 py-1.5 shadow-sm ring-1 ring-border backdrop-blur-sm"
+          className="pointer-events-none absolute top-(--cui-infinite-canvas-padding) left-(--cui-infinite-canvas-padding) rounded-[var(--radius-sm)] bg-card/90 px-2.5 py-1.5 shadow-sm ring-1 ring-border backdrop-blur-sm"
         >
-          Drag cards to move them · Drag the background or scroll to pan · Pinch or hold ⌘ while scrolling to zoom
+          Drag the background or hold Space to pan · ⌘-scroll or pinch to zoom · 1 to fit
         </Text>
         <InfiniteCanvasControls />
       </InfiniteCanvas>

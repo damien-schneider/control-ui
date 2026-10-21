@@ -1,4 +1,6 @@
 import { notFound } from "next/navigation";
+import { ServerLoadedPreviewsProvider } from "@/app/(features)/components/previews";
+import { themeEditorPreviews } from "@/app/(features)/components/server-previews";
 import { getDocsData } from "@/app/(features)/model/data";
 import { guidePageIds, isGuidePageId } from "@/app/(features)/model/page-ids";
 import { RoutedGuidePage } from "@/app/(features)/page-templates/routed-page";
@@ -21,11 +23,12 @@ export default async function DocsPage({ params }: PageProps) {
   if (!isGuidePageId(pageId)) notFound();
   const page = getDocsData().guides.find((guide) => guide.id === pageId);
   if (!page) notFound();
+  const previews = page.id === "theme-editor" ? themeEditorPreviews() : {};
 
   return (
-    <>
+    <ServerLoadedPreviewsProvider previews={previews}>
       <DocsPageStructuredData pathname={`/${pageId}`} />
       <RoutedGuidePage page={page} />
-    </>
+    </ServerLoadedPreviewsProvider>
   );
 }

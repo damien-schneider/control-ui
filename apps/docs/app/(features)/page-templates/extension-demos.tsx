@@ -7,6 +7,7 @@ import { ControlEffectsRoot } from "@/components/control-ui/extensions/control-e
 import type { ControlEffect } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 import { Text } from "@/components/control-ui/ui/typography";
+import { controlEffectsDemoComponentId } from "./extension-demo-ids";
 
 export function ExtensionDemo({ extensionId }: { extensionId: ExtensionId }) {
   if (extensionId === "control-effects") return <ControlEffectsDemo />;
@@ -54,7 +55,7 @@ function ControlEffectsDemo() {
       </div>
       <ControlEffectsRoot effects={effects}>
         <div className="flex w-full justify-center rounded-lg border border-border/70 bg-background px-4 py-6">
-          <ComponentPreview componentId="button" />
+          <ComponentPreview componentId={controlEffectsDemoComponentId} />
         </div>
       </ControlEffectsRoot>
     </div>

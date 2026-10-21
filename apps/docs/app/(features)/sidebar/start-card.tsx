@@ -68,10 +68,7 @@ export function StartCard({
   return (
     <SidebarGroup className={className}>
       <Collapsible open={!minimized} onOpenChange={changeOpen}>
-        <SidebarGroupLabel
-          render={<CollapsibleTrigger />}
-          className="w-full cursor-pointer gap-2 px-2 text-label text-muted-foreground transition-colors hover:text-sidebar-foreground"
-        >
+        <SidebarGroupLabel render={<CollapsibleTrigger />} className="w-full cursor-pointer gap-2 px-2 text-label">
           <span className="min-w-0 truncate">Getting started</span>
           <HugeiconsIcon
             aria-hidden

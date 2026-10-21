@@ -130,7 +130,7 @@ export function SkinFileStack() {
           <Text as="div" size="label" weight="medium" className="mt-3">
             One component tree
           </Text>
-          <Text as="div" size="caption" tone="muted" className="mt-1">
+          <Text as="div" size="caption" className="mt-1">
             never a skin-specific fork
           </Text>
         </div>
@@ -222,7 +222,7 @@ export function RegistryPipeline() {
           <Text as="div" size="label" weight="medium">
             Registry model
           </Text>
-          <Text as="div" size="caption" className="mt-1 opacity-80">
+          <Text as="div" size="caption" className="mt-1">
             ownership · deps · install closure
           </Text>
         </div>

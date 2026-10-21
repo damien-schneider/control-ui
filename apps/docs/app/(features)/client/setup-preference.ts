@@ -15,7 +15,7 @@ export const defaultSetupPreference: DocsSetupPreference = {
   integration: "mastra",
 };
 
-export const docsSetupCollection = createCollection(
+const docsSetupCollection = createCollection(
   localStorageCollectionOptions<DocsSetupPreference, DocsSetupPreference["id"]>({
     storageKey: "control-ui-docs-setup",
     getKey: (preference) => preference.id,
@@ -26,9 +26,21 @@ const subscribeToHydration = () => () => {};
 const getHydratedClientSnapshot = () => true;
 const getHydratedServerSnapshot = () => false;
 
-export function normalizeSetupPreference(preference?: DocsSetupPreference): DocsSetupPreference {
+function normalizeSetupPreference(preference?: DocsSetupPreference): DocsSetupPreference {
   if (preference && isCatalogIntegrationId(preference.integration)) return preference;
   return defaultSetupPreference;
+}
+
+function subscribeToSetupPreference(onChange: () => void) {
+  const subscription = docsSetupCollection.subscribeChanges(onChange);
+  return () => subscription.unsubscribe();
+}
+
+const readSetupIntegration = () => normalizeSetupPreference(docsSetupCollection.get(defaultSetupPreference.id)).integration;
+const readDefaultSetupIntegration = () => defaultSetupPreference.integration;
+
+export function useDocsSetupIntegration() {
+  return useSyncExternalStore(subscribeToSetupPreference, readSetupIntegration, readDefaultSetupIntegration);
 }
 
 export function updateDocsSetupPreference(nextPreference: SetupPreferenceUpdate) {

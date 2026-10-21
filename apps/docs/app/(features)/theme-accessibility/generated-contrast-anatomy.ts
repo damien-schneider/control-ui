@@ -33994,59 +33994,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-infinite-canvas-controls-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "infinite-canvas",
-            "data-control-ui": "infinite-canvas",
-            "data-slot": "root",
-            role: "application",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "infinite-canvas",
-            "data-control-ui": "infinite-canvas",
-            "data-slot": "controls",
-          },
-        },
-      ],
-      recipe: "infinite-canvas",
-      rendersText: true,
-      state: false,
-      route: "/components/infinite-canvas",
-    },
-    {
-      knobs: {
         fill: "--cui-inline-attachment-background",
       },
       anatomy: [

@@ -1,3 +1,5 @@
+"use client";
+
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
 import { TranscriptDivider } from "@/components/control-ui/transcript-divider";
 

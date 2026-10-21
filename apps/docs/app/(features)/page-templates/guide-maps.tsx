@@ -13,7 +13,7 @@ export function CssFirstDecisionMap() {
             <Text as="div" size="label" weight="medium">
               Yes → keep it declarative
             </Text>
-            <Text as="div" size="caption" tone="muted" className="mt-2">
+            <Text as="div" size="caption" className="mt-2">
               :has() · container queries · field-sizing · popover · dialog · details
             </Text>
           </div>

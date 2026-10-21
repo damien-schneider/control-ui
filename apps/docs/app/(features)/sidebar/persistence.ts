@@ -43,8 +43,13 @@ const patchSidebar=()=>{
 const root=document.querySelector('[data-control-ui="sidebar"][data-slot="root"]');
 if(!root)return false;
 const wrapper=width===null?null:root.closest('[data-slot="wrapper"]');
-const style=wrapper&&wrapper.getAttribute("style");
-if(style)wrapper.setAttribute("style",style.replace(/--sidebar-width:[^;]*/,"--sidebar-width:"+width+"px"));
+if(wrapper){
+const declaration="--sidebar-width:"+width+"px";
+const style=wrapper.getAttribute("style");
+if(!style)wrapper.setAttribute("style",declaration);
+else if(style.includes("--sidebar-width:"))wrapper.setAttribute("style",style.replace(/--sidebar-width:[^;]*/,declaration));
+else wrapper.setAttribute("style",style+";"+declaration);
+}
 if(!collapsed)return true;
 const inner=root.querySelector('[data-slot="inner"]');
 if(!inner)return false;

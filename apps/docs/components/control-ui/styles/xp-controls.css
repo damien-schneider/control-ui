@@ -16,8 +16,21 @@
     --cui-item-active-scale: 1;
   }
 
-  [data-skin="xp"] :where([data-control-family="button"][data-control="true"]) {
+  [data-skin="xp"]
+    :where(
+      [data-control-family="button"][data-control="true"],
+      [data-track]:has(> [data-control-family="button"][data-track-item]) > [data-control-family="track-highlight"],
+      [data-track]:is(
+          [data-control-family="button-group"],
+          [data-control-family="button"][data-slot="group"],
+          [data-control-family="checkbox-group"]
+        )
+        > [data-control-family="track-highlight"]
+    ) {
     --cui-button-radius: var(--nest-radius, max(3px, var(--radius-control)));
+    --cui-track-highlight-radius: var(--cui-button-radius);
+  }
+  [data-skin="xp"] :where([data-control-family="button"][data-control="true"]) {
     --cui-button-gap: 4px;
     --cui-button-icon: 13px;
     --cui-button-press-scale: 1;

@@ -2407,43 +2407,6 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="infinite-canvas"][data-slot="root"])',
       },
       {
-        name: "--cui-infinite-canvas-controls-background",
-        syntax: "<color>",
-        defaultValue: "var(--card)",
-        selector: ':where([data-control-family="infinite-canvas"][data-slot="root"])',
-      },
-      {
-        name: "--cui-infinite-canvas-controls-border-color",
-        syntax: "<color>",
-        defaultValue: "var(--border)",
-        selector: ':where([data-control-family="infinite-canvas"][data-slot="root"])',
-      },
-      {
-        name: "--cui-infinite-canvas-controls-item-radius",
-        syntax: "<length-percentage>",
-        defaultValue: "min(var(--radius-sm), calc(var(--control-h-sm) / 2))",
-        selector: ':where([data-control-family="infinite-canvas"][data-slot="root"])',
-      },
-      {
-        name: "--cui-infinite-canvas-controls-padding",
-        syntax: "<length-percentage>",
-        defaultValue: "calc(var(--spacing) * 1)",
-        selector: ':where([data-control-family="infinite-canvas"][data-slot="root"])',
-      },
-      {
-        name: "--cui-infinite-canvas-controls-radius",
-        syntax: "<length-percentage>",
-        defaultValue:
-          "calc(\n      var(--cui-infinite-canvas-controls-item-radius) +\n      clamp(0px, calc(var(--cui-infinite-canvas-controls-item-radius) * 1000), var(--cui-infinite-canvas-controls-padding))\n    )",
-        selector: ':where([data-control-family="infinite-canvas"][data-slot="root"])',
-      },
-      {
-        name: "--cui-infinite-canvas-controls-shadow",
-        syntax: "*",
-        defaultValue: "var(--shadow-sm)",
-        selector: ':where([data-control-family="infinite-canvas"][data-slot="root"])',
-      },
-      {
         name: "--cui-infinite-canvas-grid-dot-color",
         syntax: "<color>",
         defaultValue: "var(--canvas-grid-dot)",
@@ -2453,14 +2416,14 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-infinite-canvas-padding",
         syntax: "<length-percentage>",
         defaultValue:
-          "max(\n      calc(var(--spacing) * 2),\n      calc(var(--cui-infinite-canvas-radius) - var(--cui-infinite-canvas-controls-radius))\n    )",
+          "max(\n      calc(var(--spacing) * 2),\n      calc(var(--cui-infinite-canvas-radius) - var(--_infinite-canvas-controls-radius))\n    )",
         selector: ':where([data-control-family="infinite-canvas"][data-slot="root"])',
       },
       {
         name: "--cui-infinite-canvas-radius",
         syntax: "<length-percentage>",
         defaultValue:
-          "max(\n      var(--radius-panel),\n      calc(\n        var(--cui-infinite-canvas-controls-radius) +\n        clamp(0px, calc(var(--cui-infinite-canvas-controls-radius) * 1000), var(--spacing) * 2)\n      )\n    )",
+          "max(\n      var(--radius-panel),\n      calc(var(--_infinite-canvas-controls-radius) + clamp(0px, calc(var(--_infinite-canvas-controls-radius) * 1000), var(--spacing) * 2))\n    )",
         selector: ':where([data-control-family="infinite-canvas"][data-slot="root"])',
       },
     ],

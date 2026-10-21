@@ -170,6 +170,8 @@ export type EmittedStateContract = {
   "dockable-panel:drop-zone:data-side": DockablePanelPlacement;
   "infinite-canvas:root:data-panning": true;
   "infinite-canvas:root:data-easing": true;
+  "infinite-canvas:root:data-moving": true;
+  "infinite-canvas:root:data-pan-ready": true;
   "infinite-canvas:item:data-dragging": true;
   "infinite-canvas:content:data-scale": number;
   "flow:node:data-selected": true;

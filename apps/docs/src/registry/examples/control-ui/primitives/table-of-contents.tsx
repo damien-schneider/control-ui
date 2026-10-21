@@ -85,21 +85,23 @@ const tocKnobs = { "--cui-table-of-contents-padding": "calc(var(--spacing) * 3)"
 
 export function PrimitiveTableOfContentsExample() {
   return (
-    <div className="grid w-full max-w-4xl grid-cols-[minmax(0,1fr)_12rem_12rem] gap-5 max-md:grid-cols-1">
-      <article className="h-96 overflow-y-auto scroll-smooth rounded-xl border bg-background p-5">
-        {sections.map((section) => (
-          <PreviewSection key={section.href} section={section} />
-        ))}
-      </article>
-      <TableOfContents items={sections} label="Range" className="static h-fit max-md:hidden" style={tocKnobs} />
-      <TableOfContents
-        items={sections}
-        label="Progress"
-        variant="progress"
-        indicator={<span className="size-2.5 rounded-full border-2 border-current bg-background" />}
-        className="static h-fit max-md:hidden"
-        style={tocKnobs}
-      />
+    <div className="@container w-full max-w-4xl">
+      <div className="grid grid-cols-2 gap-5 @xl:grid-cols-[minmax(0,1fr)_12rem_12rem]">
+        <article className="h-96 min-w-0 overflow-y-auto scroll-smooth rounded-xl border bg-background p-5">
+          {sections.map((section) => (
+            <PreviewSection key={section.href} section={section} />
+          ))}
+        </article>
+        <TableOfContents items={sections} label="Range" className="static h-fit @max-xl:hidden" style={tocKnobs} />
+        <TableOfContents
+          items={sections}
+          label="Progress"
+          variant="progress"
+          indicator={<span className="size-2.5 rounded-full border-2 border-current bg-background" />}
+          className="static h-fit min-w-0"
+          style={tocKnobs}
+        />
+      </div>
     </div>
   );
 }

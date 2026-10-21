@@ -44,7 +44,7 @@ function SectionContent({ section }: { section: ThemePreviewSection }) {
     return <Foundation />;
   }
   if (section.kind === "component") return <ComponentPreview componentId={section.componentId} />;
-  return <BlockPreview blockId="settings" integration="mastra" />;
+  return <BlockPreview blockId={section.blockId} integration="mastra" />;
 }
 
 export function ThemePreviews({ category }: { category: ThemeCategoryId }) {

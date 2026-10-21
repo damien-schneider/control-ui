@@ -1,26 +1,44 @@
 "use client";
 
-import { Suspense } from "react";
-
-import { blockEntries } from "@/app/(features)/catalog/blocks";
-import { componentEntries } from "@/app/(features)/catalog/components";
-import { utilEntries } from "@/app/(features)/catalog/hooks-utils";
-import { kitEntries } from "@/app/(features)/catalog/kits";
+import { createContext, type ReactNode, Suspense, use } from "react";
 import type { CatalogGalleryItem } from "@/app/(features)/model/catalog-gallery";
 import type { BlockId, ComponentId, IntegrationId, KitId, UtilId } from "@/app/(features)/model/types";
 import { Skeleton } from "@/components/control-ui/ui/skeleton";
+import {
+  blockPreviewTarget,
+  componentExamplePreviewTarget,
+  componentPreviewTarget,
+  type KitChoiceKind,
+  kitChoicePreviewTarget,
+  kitExamplePreviewTarget,
+  kitPreviewTarget,
+  type LoadedPreviews,
+  type PreviewTarget,
+  utilPreviewTarget,
+} from "./preview-targets";
 
-const previewFallback = <Skeleton className="min-h-40 w-full self-stretch" />;
+const previewFallback = <Skeleton data-preview-loading="" className="min-h-40 w-full self-stretch" />;
 
-export function KitPreview({ kitId, integration }: { kitId: KitId; integration: IntegrationId }) {
-  const entry = kitEntries.find((item) => item.id === kitId);
-  const Example = entry?.preview.Component;
+const ServerLoadedPreviews = createContext<LoadedPreviews>({});
 
-  return Example ? (
+export function ServerLoadedPreviewsProvider({ previews, children }: { previews: LoadedPreviews; children: ReactNode }) {
+  return <ServerLoadedPreviews value={previews}>{children}</ServerLoadedPreviews>;
+}
+
+function TargetPreview({ target, integration }: { target: PreviewTarget | undefined; integration?: IntegrationId }) {
+  const serverLoaded = use(ServerLoadedPreviews);
+  if (!target) return null;
+  const Example = serverLoaded[target.key] ?? target.preview.Component;
+
+  return (
     <Suspense fallback={previewFallback}>
       <Example integration={integration} />
     </Suspense>
-  ) : null;
+  );
+}
+
+export function KitPreview({ kitId, integration }: { kitId: KitId; integration: IntegrationId }) {
+  return <TargetPreview target={kitPreviewTarget(kitId)} integration={integration} />;
 }
 
 export function KitChoicePreview({
@@ -31,76 +49,30 @@ export function KitChoicePreview({
 }: {
   kitId: KitId;
   choiceId: string;
-  kind: "alternative" | "variant";
+  kind: KitChoiceKind;
   integration: IntegrationId;
 }) {
-  const entry = kitEntries.find((item) => item.id === kitId);
-  const choices = kind === "alternative" && entry && "alternatives" in entry ? entry.alternatives : undefined;
-  const variants = kind === "variant" && entry && "variants" in entry ? entry.variants : undefined;
-  const Example = (choices ?? variants)?.find((item) => item.id === choiceId)?.preview.Component;
-
-  return Example ? (
-    <Suspense fallback={previewFallback}>
-      <Example integration={integration} />
-    </Suspense>
-  ) : null;
+  return <TargetPreview target={kitChoicePreviewTarget(kitId, kind, choiceId)} integration={integration} />;
 }
 
 export function BlockPreview({ blockId, integration }: { blockId: BlockId; integration: IntegrationId }) {
-  const entry = blockEntries.find((item) => item.id === blockId);
-  const Example = entry?.preview.Component;
-
-  return Example ? (
-    <Suspense fallback={previewFallback}>
-      <Example integration={integration} />
-    </Suspense>
-  ) : null;
+  return <TargetPreview target={blockPreviewTarget(blockId)} integration={integration} />;
 }
 
 export function UtilPreview({ utilId }: { utilId: UtilId }) {
-  const entry = utilEntries.find((item) => item.id === utilId);
-  const Example = entry && "preview" in entry ? entry.preview.Component : undefined;
-
-  return Example ? (
-    <Suspense fallback={previewFallback}>
-      <Example />
-    </Suspense>
-  ) : null;
+  return <TargetPreview target={utilPreviewTarget(utilId)} />;
 }
 
 export function ComponentPreview({ componentId }: { componentId: ComponentId }) {
-  const entry = componentEntries.find((item) => item.id === componentId);
-  const Example = entry?.preview.Component;
-
-  return Example ? (
-    <Suspense fallback={previewFallback}>
-      <Example />
-    </Suspense>
-  ) : null;
+  return <TargetPreview target={componentPreviewTarget(componentId)} />;
 }
 
 export function KitExamplePreview({ kitId, exampleId }: { kitId: KitId; exampleId: string }) {
-  const entry = kitEntries.find((item) => item.id === kitId);
-  const preview = entry && "additionalPreviews" in entry ? entry.additionalPreviews.find((item) => item.id === exampleId) : undefined;
-  const Example = preview?.preview.Component;
-
-  return Example ? (
-    <Suspense fallback={previewFallback}>
-      <Example />
-    </Suspense>
-  ) : null;
+  return <TargetPreview target={kitExamplePreviewTarget(kitId, exampleId)} />;
 }
 
 export function ComponentExamplePreview({ componentId, exampleId }: { componentId: ComponentId; exampleId: string }) {
-  const entry = componentEntries.find((item) => item.id === componentId);
-  const preview = entry && "additionalPreviews" in entry ? entry.additionalPreviews.find((item) => item.id === exampleId) : undefined;
-  const Example = preview?.preview.Component;
-
-  return Example ? (
-    <Suspense fallback={previewFallback}>
-      <Example />
-    </Suspense>
-  ) : null;
+  return <TargetPreview target={componentExamplePreviewTarget(componentId, exampleId)} />;
 }
 
 export function CatalogGalleryItemPreview({ item, integration }: { item: CatalogGalleryItem; integration: IntegrationId }) {

@@ -3335,14 +3335,29 @@ export const registryMetadata = {
     ],
   },
   "infinite-canvas": {
-    dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["button", "canvas-grid", "core"],
+    dependencies: ["@base-ui/react@^1.9.0", "lucide-react@^1.47.0"],
+    registryDependencies: ["button", "canvas-grid", "core", "toolbar"],
     sourceManifestPath: "registry/control-ui/infinite-canvas.json",
     files: [
       {
         path: "src/registry/knob-contracts/infinite-canvas-knobs.ts",
         target: "@components/control-ui/knob-contracts/infinite-canvas-knobs.ts",
         type: "registry:component",
+      },
+      {
+        path: "src/registry/lib/infinite-canvas-camera-store.ts",
+        target: "@components/control-ui/lib/infinite-canvas-camera-store.ts",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/lib/infinite-canvas-camera.ts",
+        target: "@components/control-ui/lib/infinite-canvas-camera.ts",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/lib/infinite-canvas-navigation.ts",
+        target: "@components/control-ui/lib/infinite-canvas-navigation.ts",
+        type: "registry:lib",
       },
       {
         path: "src/registry/sources/control-ui/recipes/infinite-canvas.css",

@@ -1,4 +1,6 @@
 import { notFound } from "next/navigation";
+import { ServerLoadedPreviewsProvider } from "@/app/(features)/components/previews";
+import { utilPagePreviews } from "@/app/(features)/components/server-previews";
 import { getDocsData } from "@/app/(features)/model/data";
 import { isUtilPageId, utilPageIds } from "@/app/(features)/model/page-ids";
 import { UtilPage } from "@/app/(features)/page-templates/util-page";
@@ -21,11 +23,12 @@ export default async function UtilDocsPage({ params }: PageProps) {
   if (!isUtilPageId(utilId)) notFound();
   const util = getDocsData().utils.find((entry) => entry.id === utilId);
   if (!util) notFound();
+  const previews = utilPagePreviews(util.id);
 
   return (
-    <>
+    <ServerLoadedPreviewsProvider previews={previews}>
       <DocsPageStructuredData pathname={`/utils/${utilId}`} />
       <UtilPage util={util} />
-    </>
+    </ServerLoadedPreviewsProvider>
   );
 }

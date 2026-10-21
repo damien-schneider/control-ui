@@ -1,3 +1,5 @@
+"use client";
+
 import { BookOpen, Globe, LoaderCircle, Radio, Search, SquareTerminal } from "lucide-react";
 
 import type { ReactNode } from "react";

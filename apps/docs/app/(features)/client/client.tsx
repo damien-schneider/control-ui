@@ -1,6 +1,5 @@
 "use client";
 
-import { useLiveQuery } from "@tanstack/react-db";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
@@ -35,13 +34,7 @@ import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
 import { isThemeCategoryPath, SKIN_CATEGORY, THEME_EDITOR_PATH, themeCategoryForPath } from "@/components/theme-drawer/theme-categories";
 import { DocsGithubLink } from "./github-link";
 import { pageLinks } from "./page-links";
-import {
-  defaultSetupPreference,
-  docsSetupCollection,
-  normalizeSetupPreference,
-  updateDocsSetupPreference,
-  useIsHydrated,
-} from "./setup-preference";
+import { updateDocsSetupPreference, useDocsSetupIntegration } from "./setup-preference";
 
 const ThemeEditorAside = dynamic(() => import("@/components/theme-drawer/theme-editor-aside").then((module) => module.ThemeEditorAside));
 
@@ -57,12 +50,11 @@ type DocsShellStateProps = {
   onSidebarWidthChange: (width: number) => void;
 };
 
-type PersistedDocsShellProps = DocsShellViewProps & DocsShellStateProps;
-
-type DocsShellContentProps = PersistedDocsShellProps & {
-  integration: IntegrationId;
-  updateSetupPreference: (nextPreference: SetupPreferenceUpdate) => void;
-};
+type DocsShellContentProps = DocsShellViewProps &
+  DocsShellStateProps & {
+    integration: IntegrationId;
+    updateSetupPreference: (nextPreference: SetupPreferenceUpdate) => void;
+  };
 
 function normalizePathname(pathname: string) {
   const withoutTrailingSlash = pathname.replace(/\/+$/, "");
@@ -119,15 +111,8 @@ function resolveActivePage(activePage: ActivePageId | undefined, catalog: Active
   };
 }
 
-function PersistedDocsShell(props: PersistedDocsShellProps) {
-  const { data: setupPreferences } = useLiveQuery(docsSetupCollection);
-  const setupPreference = normalizeSetupPreference(setupPreferences[0]);
-
-  return <DocsShellContent {...props} integration={setupPreference.integration} updateSetupPreference={updateDocsSetupPreference} />;
-}
-
 export function DocsShell(props: DocsShellViewProps) {
-  const isHydrated = useIsHydrated();
+  const integration = useDocsSetupIntegration();
   const [sidebarOpen, setSidebarOpen] = useState(() => !storedSidebarCollapsed());
   const [sidebarWidth, setSidebarWidth] = useState(readStoredSidebarWidth);
 
@@ -138,25 +123,15 @@ export function DocsShell(props: DocsShellViewProps) {
 
   return (
     <>
-      {isHydrated ? (
-        <PersistedDocsShell
-          {...props}
-          onSidebarOpenChange={setSidebarOpen}
-          sidebarOpen={sidebarOpen}
-          sidebarWidth={sidebarWidth}
-          onSidebarWidthChange={updateSidebarWidth}
-        />
-      ) : (
-        <DocsShellContent
-          {...props}
-          integration={defaultSetupPreference.integration}
-          onSidebarOpenChange={setSidebarOpen}
-          sidebarOpen={sidebarOpen}
-          sidebarWidth={sidebarWidth}
-          onSidebarWidthChange={updateSidebarWidth}
-          updateSetupPreference={() => {}}
-        />
-      )}
+      <DocsShellContent
+        {...props}
+        integration={integration}
+        onSidebarOpenChange={setSidebarOpen}
+        sidebarOpen={sidebarOpen}
+        sidebarWidth={sidebarWidth}
+        onSidebarWidthChange={updateSidebarWidth}
+        updateSetupPreference={updateDocsSetupPreference}
+      />
       <ControlEffectsRuntime />
     </>
   );

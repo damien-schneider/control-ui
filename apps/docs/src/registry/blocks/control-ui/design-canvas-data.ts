@@ -1,6 +1,6 @@
 export type DesignCanvasLayerKind = "frame" | "rectangle" | "ellipse" | "text";
 
-export type DesignCanvasTool = "move" | DesignCanvasLayerKind;
+export type DesignCanvasTool = "move" | "hand" | DesignCanvasLayerKind;
 
 export type DesignCanvasFill = { color: string; opacity: number; visible: boolean };
 

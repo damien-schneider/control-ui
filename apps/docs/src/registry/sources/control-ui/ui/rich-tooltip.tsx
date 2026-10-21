@@ -232,6 +232,7 @@ export type RichTooltipContentProps = Omit<ComponentProps<typeof PopoverPrimitiv
   collisionPadding?: ComponentProps<typeof PopoverPrimitive.Positioner>["collisionPadding"];
   arrow?: boolean;
   scrollAnchorIntoView?: boolean;
+  container?: ComponentProps<typeof PopoverPrimitive.Portal>["container"];
 };
 
 export function RichTooltipContent({
@@ -244,6 +245,7 @@ export function RichTooltipContent({
   collisionPadding = 12,
   arrow = true,
   scrollAnchorIntoView = true,
+  container,
   ...props
 }: RichTooltipContentProps) {
   const skin = useSkin();
@@ -261,7 +263,7 @@ export function RichTooltipContent({
   };
 
   return (
-    <PopoverPrimitive.Portal>
+    <PopoverPrimitive.Portal container={container}>
       <PopoverPrimitive.Positioner
         data-control-ui="rich-tooltip"
         data-popup-kind="rich-tooltip"

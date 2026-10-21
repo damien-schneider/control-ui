@@ -1,3 +1,5 @@
+"use client";
+
 import type { SourceReference } from "@/components/control-ui/inline-citation";
 import { InlineCitation } from "@/components/control-ui/inline-citation";
 import { Text } from "@/components/control-ui/ui/typography";

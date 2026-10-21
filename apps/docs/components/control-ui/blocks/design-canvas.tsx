@@ -1,6 +1,6 @@
 "use client";
 
-import { CircleIcon, FrameIcon, LayersIcon, MousePointer2Icon, SlidersHorizontalIcon, SquareIcon, TypeIcon } from "lucide-react";
+import { CircleIcon, FrameIcon, HandIcon, LayersIcon, MousePointer2Icon, SlidersHorizontalIcon, SquareIcon, TypeIcon } from "lucide-react";
 import type { ComponentProps, KeyboardEvent, PointerEvent, ReactNode } from "react";
 import { useRef, useState } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -48,6 +48,7 @@ export type DesignCanvasBlockProps = Omit<ComponentProps<"div">, "children" | "d
 
 const TOOLS: readonly { tool: DesignCanvasTool; label: string; shortcut: string; icon: ReactNode }[] = [
   { tool: "move", label: "Move", shortcut: "V", icon: <MousePointer2Icon /> },
+  { tool: "hand", label: "Hand", shortcut: "H", icon: <HandIcon /> },
   { tool: "frame", label: "Frame", shortcut: "F", icon: <FrameIcon /> },
   { tool: "rectangle", label: "Rectangle", shortcut: "R", icon: <SquareIcon /> },
   { tool: "ellipse", label: "Ellipse", shortcut: "O", icon: <CircleIcon /> },
@@ -120,6 +121,7 @@ export function DesignCanvasBlock({
   const currentLayers = layers ?? internalLayers;
   const currentSelectedLayerId = selectedLayerId === undefined ? internalSelectedLayerId : selectedLayerId;
   const selectedLayer = currentLayers.find((layer) => layer.id === currentSelectedLayerId);
+  const drawingKind = tool === "move" || tool === "hand" ? null : tool;
 
   function changeLayers(next: DesignCanvasLayer[]) {
     if (layers === undefined) setInternalLayers(next);
@@ -159,7 +161,7 @@ export function DesignCanvasBlock({
 
   function beginDrawOrDeselect(event: PointerEvent<HTMLElement>) {
     if (event.defaultPrevented || event.target !== event.currentTarget) return;
-    if (tool === "move") {
+    if (!drawingKind) {
       selectLayer(null);
       return;
     }
@@ -168,7 +170,7 @@ export function DesignCanvasBlock({
     event.currentTarget.setPointerCapture(event.pointerId);
     const point = worldPointAt(event);
     setDraft({
-      kind: tool,
+      kind: drawingKind,
       pointerId: event.pointerId,
       start: point,
       end: point,
@@ -221,8 +223,8 @@ export function DesignCanvasBlock({
       setDraft(null);
       setTool("move");
       selectLayer(null);
-    } else if (event.key === "Enter" && tool !== "move" && event.target === event.currentTarget) {
-      addLayerAtViewportCenter(tool, event.currentTarget);
+    } else if (event.key === "Enter" && drawingKind && event.target === event.currentTarget) {
+      addLayerAtViewportCenter(drawingKind, event.currentTarget);
     } else if (!selectedLayer || !editLayerWithKey(selectedLayer, event)) return;
     event.preventDefault();
   }
@@ -248,7 +250,8 @@ export function DesignCanvasBlock({
           transformRef.current = next;
         }}
         data-tool={tool}
-        className={cn("size-full", tool !== "move" && "cursor-crosshair")}
+        panOnDrag={tool === "hand" ? "anywhere" : "background"}
+        className={cn("size-full", drawingKind && "cursor-crosshair")}
         style={{
           "--cui-infinite-canvas-radius": "0px",
           "--cui-infinite-canvas-border-color": "transparent",
@@ -470,11 +473,7 @@ type DesignCanvasToolbarButtonProps = Omit<ComponentProps<typeof ToolbarButton>,
 function DesignCanvasToolbarButton({ label, hint, pressed, children, ...props }: DesignCanvasToolbarButtonProps) {
   return (
     <Tooltip>
-      <TooltipTrigger
-        render={<ToolbarButton {...props} aria-label={label} iconOnly aria-pressed={pressed} data-pressed={pressed ? "" : undefined} />}
-      >
-        {children}
-      </TooltipTrigger>
+      <TooltipTrigger render={<ToolbarButton {...props} aria-label={label} iconOnly aria-pressed={pressed} />}>{children}</TooltipTrigger>
       <TooltipContent>{hint}</TooltipContent>
     </Tooltip>
   );

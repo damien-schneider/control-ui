@@ -1,4 +1,6 @@
 import { notFound } from "next/navigation";
+import { ServerLoadedPreviewsProvider } from "@/app/(features)/components/previews";
+import { kitPagePreviews } from "@/app/(features)/components/server-previews";
 import { getDocsData } from "@/app/(features)/model/data";
 import { isKitPageId, kitPageIds } from "@/app/(features)/model/page-ids";
 import { RoutedKitPage } from "@/app/(features)/page-templates/routed-page";
@@ -23,11 +25,15 @@ export default async function KitDocsPage({ params }: PageProps) {
   const kit = data.kits.find((entry) => entry.id === kitId);
   if (!kit) notFound();
   const extensions = data.extensions.filter((extension) => extension.appliesTo?.some((id) => id === kit.id));
+  const previews = kitPagePreviews(
+    kit.id,
+    extensions.map((extension) => extension.id),
+  );
 
   return (
-    <>
+    <ServerLoadedPreviewsProvider previews={previews}>
       <DocsPageStructuredData pathname={`/kits/${kitId}`} />
       <RoutedKitPage kit={kit} extensions={extensions} />
-    </>
+    </ServerLoadedPreviewsProvider>
   );
 }

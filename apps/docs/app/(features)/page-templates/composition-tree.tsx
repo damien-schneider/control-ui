@@ -32,11 +32,11 @@ function TreeNode({ node, owned, nested = false }: { node: CompositionNode; owne
   return (
     <li className={nested ? `${NESTED_ROW} ${ROW_PAIR}` : `grid ${ROW_PAIR}`}>
       {node.kind === "part" ? (
-        <Text size="label" data-tag="open" className={`${TAG} leading-7 ${isOwned ? "" : "opacity-55"}`}>
+        <Text size="label" data-tag="open" className={`${TAG} leading-7`}>
           <Text size="label" tone="muted" className="opacity-60">
             &lt;
           </Text>
-          <Text size="label" tone="foreground">
+          <Text size="label" tone={isOwned ? "foreground" : "muted"}>
             {node.name}
           </Text>
           <Text size="label" tone="muted" className="opacity-60">
@@ -56,7 +56,7 @@ function TreeNode({ node, owned, nested = false }: { node: CompositionNode; owne
             ))}
           </ul>
           {node.kind === "part" ? (
-            <Text size="label" tone="muted" data-tag="close" className={`${TAG} leading-7 ${isOwned ? "" : "opacity-55"}`}>
+            <Text size="label" tone="muted" data-tag="close" className={`${TAG} leading-7`}>
               {`</${node.name}>`}
             </Text>
           ) : null}

@@ -1,4 +1,6 @@
 import { notFound } from "next/navigation";
+import { ServerLoadedPreviewsProvider } from "@/app/(features)/components/previews";
+import { themeEditorPreviews } from "@/app/(features)/components/server-previews";
 import { getDocsData } from "@/app/(features)/model/data";
 import { RoutedGuidePage } from "@/app/(features)/page-templates/routed-page";
 import { metadataForDocsPath } from "@/app/(features)/seo/seo";
@@ -26,6 +28,11 @@ export default async function ThemeEditorCategoryPage({ params }: PageProps) {
 
   const page = getDocsData().guides.find((guide) => guide.id === "theme-editor");
   if (!page) notFound();
+  const previews = themeEditorPreviews(themeCategory.id);
 
-  return <RoutedGuidePage page={page} themeCategory={themeCategory.id} />;
+  return (
+    <ServerLoadedPreviewsProvider previews={previews}>
+      <RoutedGuidePage page={page} themeCategory={themeCategory.id} />
+    </ServerLoadedPreviewsProvider>
+  );
 }

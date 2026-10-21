@@ -1,3 +1,5 @@
+"use client";
+
 import { SourceBadge } from "@/components/control-ui/source-badge";
 
 export function SourceBadgeExample() {

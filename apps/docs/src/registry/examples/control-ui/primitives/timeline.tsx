@@ -1,3 +1,5 @@
+"use client";
+
 import { Check, CircleAlert, LoaderCircle, Search } from "lucide-react";
 
 import { SourceBadge } from "@/components/control-ui/source-badge";

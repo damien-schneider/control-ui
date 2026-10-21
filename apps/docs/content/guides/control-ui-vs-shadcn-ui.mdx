@@ -1,7 +1,7 @@
 <GuideSection id="short-answer" title="The short answer">
   Both install through the shadcn CLI, keep the same core token names, and leave MIT source in your repository. The
   difference starts one layer up. Control UI paints through typed CSS custom properties, so a single skin re-values the
-  whole system at once, and CI re-checks all 16 skin modes against WCAG AA on every commit. shadcn/ui leaves
+  whole system at once, and the release gate re-checks all 16 skin modes against WCAG AA. shadcn/ui leaves
   paint and contrast to your team, and hands you a far larger pool of community recipes in return.
 
   Both cover classic app UI. Choose on what you want to stop maintaining by hand, not on product type.
@@ -17,7 +17,7 @@
   | Theming | Typed `--cui-*` knobs registered with `@property`, re-valued wholesale by a skin pack | Theme file with CSS variables consumed by Tailwind utilities |
   | Visual restyling | Swap or layer a whole skin without touching component source | Edit tokens and component classes per component |
   | Component anatomy | Stable `data-control-*` attributes that effects and extensions target | Not a stable public contract |
-  | Contrast | 16 skin modes re-checked against WCAG AA on every commit | No gate shipped |
+  | Contrast | 16 skin modes re-checked against WCAG AA before every release | No gate shipped |
   | Motion | Duration/easing tokens with a reduced-motion kill switch | Per-component transitions |
   | Community | Younger and smaller | The largest in the React ecosystem |
   | Runtime coupling | None — components take plain props and children | None |
@@ -69,9 +69,9 @@
     <GuidePoint>**Knobs are typed.** Every `--cui-*` knob is registered with `@property`: declared syntax, initial
     value, inheritance. A bad value falls back to the declared initial instead of silently killing the paint, and
     animatable knobs interpolate rather than snap.</GuidePoint>
-    <GuidePoint>**16 skin modes, audited on every commit.** `bun run validate` walks all eight skin packs in light and
+    <GuidePoint>**16 skin modes, audited before every release.** `bun run validate` walks all eight skin packs in light and
     dark, resolving canonical theme colors and rendered anatomy alike — popup surfaces, badge borders, active tabs —
-    and fails the build if any of the 91 required checks drops below WCAG AA.</GuidePoint>
+    and fails if any of the 91 required checks drops below WCAG AA.</GuidePoint>
     <GuidePoint>**Focus survives the skin.** Forced-colors focus indicators pass on all 8 skins, and label-wrapped
     controls keep a visible ring in all 16 modes. Both run in the same pass.</GuidePoint>
     <GuidePoint>**The contract is published.** Per paint family, the knob surface ships as `/r/contract/<family>.json`

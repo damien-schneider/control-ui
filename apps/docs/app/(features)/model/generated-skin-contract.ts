@@ -7036,6 +7036,18 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
+              attribute: "data-moving",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-pan-ready",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-panning",
               source: "control-ui",
               valueKind: "presence",
@@ -16261,7 +16273,7 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length-percentage>",
         initialValue: "0px",
         defaultValue:
-          "max(\n      var(--radius-panel),\n      calc(\n        var(--cui-infinite-canvas-controls-radius) +\n        clamp(0px, calc(var(--cui-infinite-canvas-controls-radius) * 1000), var(--spacing) * 2)\n      )\n    )",
+          "max(\n      var(--radius-panel),\n      calc(var(--_infinite-canvas-controls-radius) + clamp(0px, calc(var(--_infinite-canvas-controls-radius) * 1000), var(--spacing) * 2))\n    )",
       },
       {
         name: "--cui-infinite-canvas-background",
@@ -16286,44 +16298,7 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length-percentage>",
         initialValue: "0px",
         defaultValue:
-          "max(\n      calc(var(--spacing) * 2),\n      calc(var(--cui-infinite-canvas-radius) - var(--cui-infinite-canvas-controls-radius))\n    )",
-      },
-      {
-        name: "--cui-infinite-canvas-controls-item-radius",
-        syntax: "<length-percentage>",
-        initialValue: "0px",
-        defaultValue: "min(var(--radius-sm), calc(var(--control-h-sm) / 2))",
-      },
-      {
-        name: "--cui-infinite-canvas-controls-padding",
-        syntax: "<length-percentage>",
-        initialValue: "0px",
-        defaultValue: "calc(var(--spacing) * 1)",
-      },
-      {
-        name: "--cui-infinite-canvas-controls-radius",
-        syntax: "<length-percentage>",
-        initialValue: "0px",
-        defaultValue:
-          "calc(\n      var(--cui-infinite-canvas-controls-item-radius) +\n      clamp(0px, calc(var(--cui-infinite-canvas-controls-item-radius) * 1000), var(--cui-infinite-canvas-controls-padding))\n    )",
-      },
-      {
-        name: "--cui-infinite-canvas-controls-background",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--card)",
-      },
-      {
-        name: "--cui-infinite-canvas-controls-border-color",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--border)",
-      },
-      {
-        name: "--cui-infinite-canvas-controls-shadow",
-        syntax: "*",
-        initialValue: "",
-        defaultValue: "var(--shadow-sm)",
+          "max(\n      calc(var(--spacing) * 2),\n      calc(var(--cui-infinite-canvas-radius) - var(--_infinite-canvas-controls-radius))\n    )",
       },
     ],
     "inline-attachment": [

@@ -138,6 +138,9 @@ const externalStateAdditions: Record<string, ContractState[]> = {
   "resizable:handle": [
     { attribute: "data-separator", source: "external", valueKind: "enum", values: ["active", "disabled", "focus", "hover"] },
   ],
+  "infinite-canvas:root": ["data-easing", "data-moving", "data-pan-ready", "data-panning"].map((attribute) =>
+    contractState(attribute, "control-ui", []),
+  ),
 };
 
 function jsxElementName(name: any): string {
@@ -477,7 +480,10 @@ export function collectSkinContract(): SkinContract {
         const part = literalObjectProperty(node, slotAttribute);
         if (scope && part) {
           recordPart(scope, part, file, {
-            states: node.properties.flatMap((property: any) => [stateFromObjectProperty(property)].filter(Boolean)),
+            states: [
+              ...node.properties.flatMap((property: any) => [stateFromObjectProperty(property)].filter(Boolean)),
+              ...(externalStateAdditions[`${scope}:${part}`] ?? []),
+            ],
             control: Boolean(objectProperty(node, "data-control")),
             family: literalObjectProperty(node, familyAttribute),
             surfaces: surfaceFamilies(objectProperty(node, "data-surface")?.value),

@@ -1,33 +1,73 @@
 // biome-ignore-all lint/a11y/noNoninteractiveTabindex: Infinite Canvas is a composite pan-and-zoom widget with documented keyboard commands.
 "use client";
 
-import { MinusIcon, PlusIcon } from "lucide-react";
-import type { ComponentProps, CSSProperties, KeyboardEvent as ReactKeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
-import { createContext, use, useEffect, useEffectEvent, useRef, useState } from "react";
+import { useRender } from "@base-ui/react/use-render";
+import { GripVerticalIcon, MaximizeIcon, MinusIcon, PlusIcon } from "lucide-react";
+import type {
+  ComponentProps,
+  CSSProperties,
+  KeyboardEventHandler,
+  PointerEventHandler,
+  KeyboardEvent as ReactKeyboardEvent,
+  PointerEvent as ReactPointerEvent,
+} from "react";
+import { createContext, use, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import type { InfiniteCanvasKnobStyle } from "@/components/control-ui/knob-contracts/infinite-canvas-knobs";
-import { CANVAS_GRID_GAP } from "@/components/control-ui/lib/canvas-grid";
 import { cn } from "@/components/control-ui/lib/cn";
+import type { InfiniteCanvasPoint, InfiniteCanvasTransform } from "@/components/control-ui/lib/infinite-canvas-camera";
+import {
+  createInfiniteCanvasCamera,
+  type InfiniteCanvasCamera,
+  type InfiniteCanvasCameraStore,
+  type InfiniteCanvasMoveDetails,
+  infiniteCanvasGridStyle,
+  infiniteCanvasTransformCss,
+} from "@/components/control-ui/lib/infinite-canvas-camera-store";
+import {
+  ARROW_KEY_DIRECTIONS,
+  attachInfiniteCanvasNavigation,
+  INFINITE_CANVAS_KEY_SHORTCUTS,
+  type InfiniteCanvasNavigation,
+  type InfiniteCanvasNavigationOptions,
+  type InfiniteCanvasPanOnDrag,
+  keyboardStep,
+  runInfiniteCanvasKeyCommand,
+} from "@/components/control-ui/lib/infinite-canvas-navigation";
 import { Button } from "@/components/control-ui/ui/button";
+import { Toolbar, ToolbarButton, ToolbarSeparator } from "@/components/control-ui/ui/toolbar";
 
-export type InfiniteCanvasTransform = { x: number; y: number; scale: number };
+export type {
+  InfiniteCanvasBounds,
+  InfiniteCanvasPoint,
+  InfiniteCanvasTransform,
+} from "@/components/control-ui/lib/infinite-canvas-camera";
+export type {
+  InfiniteCanvasCamera,
+  InfiniteCanvasFitOptions,
+  InfiniteCanvasMoveDetails,
+  InfiniteCanvasMoveOptions,
+  InfiniteCanvasMoveReason,
+  InfiniteCanvasRevealOptions,
+  InfiniteCanvasTransformUpdate,
+  InfiniteCanvasZoomOptions,
+} from "@/components/control-ui/lib/infinite-canvas-camera-store";
+export type { InfiniteCanvasPanOnDrag } from "@/components/control-ui/lib/infinite-canvas-navigation";
 
-export type InfiniteCanvasMoveReason = "pointer" | "wheel" | "keyboard" | "control";
-
-export type InfiniteCanvasMoveDetails = { reason: InfiniteCanvasMoveReason };
-
-export type InfiniteCanvasProps = Omit<ComponentProps<"section">, "onChange" | "onWheel" | "ref" | "style"> & {
+export type InfiniteCanvasProps = Omit<ComponentProps<"section">, "onChange" | "onWheel" | "style"> & {
   transform?: InfiniteCanvasTransform;
   defaultTransform?: InfiniteCanvasTransform;
   onTransformChange?: (transform: InfiniteCanvasTransform, details: InfiniteCanvasMoveDetails) => void;
   minScale?: number;
   maxScale?: number;
+  panOnDrag?: InfiniteCanvasPanOnDrag;
+  keyboardNavigation?: boolean;
   onWheel?: (event: WheelEvent) => void;
   style?: CSSProperties & InfiniteCanvasKnobStyle;
 };
 
-export type InfiniteCanvasContentProps = ComponentProps<"div"> & { style?: CSSProperties & InfiniteCanvasKnobStyle };
-
-export type InfiniteCanvasPoint = { x: number; y: number };
+export type InfiniteCanvasContentProps = Omit<ComponentProps<"div">, "ref" | "style"> & {
+  style?: CSSProperties & InfiniteCanvasKnobStyle;
+};
 
 export type InfiniteCanvasItemProps = Omit<ComponentProps<"div">, "style"> & {
   x: number;
@@ -37,86 +77,41 @@ export type InfiniteCanvasItemProps = Omit<ComponentProps<"div">, "style"> & {
   style?: CSSProperties & InfiniteCanvasKnobStyle;
 };
 
+export type InfiniteCanvasItemHandleProps = ComponentProps<typeof Button> & {
+  onPositionChange: (position: InfiniteCanvasPoint) => void;
+};
+
 export type InfiniteCanvasControlsProps = Omit<ComponentProps<"div">, "children" | "style"> & {
   style?: CSSProperties & InfiniteCanvasKnobStyle;
 };
 
+export type InfiniteCanvasContextValue = InfiniteCanvasCamera & { minScale: number; maxScale: number };
+
+type InfiniteCanvasStoreContextValue = { store: InfiniteCanvasCameraStore; initialTransform: InfiniteCanvasTransform };
+
+type InfiniteCanvasDragHandlers<Element extends HTMLElement> = {
+  onPointerDown?: PointerEventHandler<Element>;
+  onPointerMove?: PointerEventHandler<Element>;
+  onPointerUp?: PointerEventHandler<Element>;
+  onPointerCancel?: PointerEventHandler<Element>;
+  onLostPointerCapture?: PointerEventHandler<Element>;
+  onKeyDown?: KeyboardEventHandler<Element>;
+};
+
+type InfiniteCanvasItemDragSession = { pointerId: number; startWorld: InfiniteCanvasPoint; startPosition: InfiniteCanvasPoint };
+
 const DEFAULT_TRANSFORM: InfiniteCanvasTransform = { x: 0, y: 0, scale: 1 };
 const DEFAULT_MIN_SCALE = 0.35;
 const DEFAULT_MAX_SCALE = 2.5;
-const KEYBOARD_PAN_STEP = 32;
-const WHEEL_ZOOM_SPEED = 0.004;
-const MAX_WHEEL_ZOOM_DELTA = 50;
-const CANVAS_KEY_SHORTCUTS = "ArrowLeft ArrowRight ArrowUp ArrowDown + - 0";
-const NOTCHED_WHEEL_DELTA = 40;
-const KEYBOARD_PAN_DIRECTIONS: Partial<Record<string, { x: number; y: number }>> = {
-  ArrowLeft: { x: -1, y: 0 },
-  ArrowRight: { x: 1, y: 0 },
-  ArrowUp: { x: 0, y: -1 },
-  ArrowDown: { x: 0, y: 1 },
-};
-
-const KEYBOARD_ZOOM_FACTORS: Partial<Record<string, number>> = {
-  "+": 1.15,
-  "=": 1.15,
-  "-": 1 / 1.15,
-};
-
-function keyboardPanStep(shiftKey: boolean) {
-  return shiftKey ? KEYBOARD_PAN_STEP * 3 : KEYBOARD_PAN_STEP;
-}
-
-type InfiniteCanvasPanSession = {
-  pointerId: number;
-  startPointer: { x: number; y: number };
-  startTransform: InfiniteCanvasTransform;
-};
-
-type InfiniteCanvasItemDragSession = {
-  pointerId: number;
-  startPointer: InfiniteCanvasPoint;
-  startPosition: InfiniteCanvasPoint;
-};
-
-type InfiniteCanvasContextValue = {
-  transform: InfiniteCanvasTransform;
-  minScale: number;
-  maxScale: number;
-  reset: (reason: InfiniteCanvasMoveReason) => void;
-  zoomBy: (factor: number, reason: InfiniteCanvasMoveReason) => void;
-};
+const CONTROL_ZOOM_FACTOR = 1.2;
+const ITEM_KEY_SHORTCUTS = "ArrowLeft ArrowRight ArrowUp ArrowDown";
 
 const InfiniteCanvasContext = createContext<InfiniteCanvasContextValue | null>(null);
+const InfiniteCanvasStoreContext = createContext<InfiniteCanvasStoreContextValue | null>(null);
+const InfiniteCanvasItemContext = createContext<InfiniteCanvasPoint | null>(null);
 
-function clampScale(scale: number, minScale: number, maxScale: number) {
-  return Math.min(Math.max(scale, minScale), maxScale);
-}
-
-function zoomAroundPoint(transform: InfiniteCanvasTransform, nextScale: number, point: { x: number; y: number }): InfiniteCanvasTransform {
-  const worldX = (point.x - transform.x) / transform.scale;
-  const worldY = (point.y - transform.y) / transform.scale;
-  return {
-    x: point.x - worldX * nextScale,
-    y: point.y - worldY * nextScale,
-    scale: nextScale,
-  };
-}
-
-function wheelDeltaMultiplier(event: WheelEvent, viewportHeight: number) {
-  if (event.deltaMode === WheelEvent.DOM_DELTA_LINE) return 16;
-  if (event.deltaMode === WheelEvent.DOM_DELTA_PAGE) return viewportHeight;
-  return 1;
-}
-
-function panFromWheel(transform: InfiniteCanvasTransform, event: WheelEvent, viewportHeight: number): InfiniteCanvasTransform {
-  const deltaMultiplier = wheelDeltaMultiplier(event, viewportHeight);
-  const horizontalDelta = event.shiftKey && event.deltaX === 0 ? event.deltaY : event.deltaX;
-  const verticalDelta = event.shiftKey && event.deltaX === 0 ? 0 : event.deltaY;
-  return {
-    x: transform.x - horizontalDelta * deltaMultiplier,
-    y: transform.y - verticalDelta * deltaMultiplier,
-    scale: transform.scale,
-  };
+function selectScale(transform: InfiniteCanvasTransform) {
+  return transform.scale;
 }
 
 export function useInfiniteCanvas() {
@@ -125,19 +120,36 @@ export function useInfiniteCanvas() {
   return context;
 }
 
+function useInfiniteCanvasStore() {
+  const context = use(InfiniteCanvasStoreContext);
+  if (!context) throw new Error("InfiniteCanvas parts must be used within InfiniteCanvas");
+  return context;
+}
+
+export function useInfiniteCanvasTransform(): InfiniteCanvasTransform;
+export function useInfiniteCanvasTransform<Selected>(select: (transform: InfiniteCanvasTransform) => Selected): Selected;
+export function useInfiniteCanvasTransform<Selected>(select?: (transform: InfiniteCanvasTransform) => Selected) {
+  const { store, initialTransform } = useInfiniteCanvasStore();
+  return useSyncExternalStore(
+    store.subscribe,
+    () => (select ? select(store.getCommittedTransform()) : store.getCommittedTransform()),
+    () => (select ? select(initialTransform) : initialTransform),
+  );
+}
+
 export function InfiniteCanvas({
-  transform: controlledTransform,
+  transform,
   defaultTransform = DEFAULT_TRANSFORM,
   onTransformChange,
   minScale: minScaleProp = DEFAULT_MIN_SCALE,
   maxScale: maxScaleProp = DEFAULT_MAX_SCALE,
+  panOnDrag = "background",
+  keyboardNavigation = true,
+  ref,
   className,
   children,
   style,
   onPointerDown,
-  onPointerMove,
-  onPointerUp,
-  onPointerCancel,
   onWheel,
   onKeyDown,
   "aria-label": ariaLabel = "Infinite canvas",
@@ -146,202 +158,160 @@ export function InfiniteCanvas({
 }: InfiniteCanvasProps) {
   const minScale = minScaleProp > 0 ? minScaleProp : DEFAULT_MIN_SCALE;
   const maxScale = Math.max(minScale, maxScaleProp);
-  const [uncontrolledTransform, setUncontrolledTransform] = useState(defaultTransform);
-  const [panning, setPanning] = useState(false);
-  const [easing, setEasing] = useState(false);
-  const panRef = useRef<InfiniteCanvasPanSession | null>(null);
+  const cameraOptions = { minScale, maxScale, defaultTransform, controlled: transform !== undefined, onTransformChange };
+  const [initialTransform] = useState(() => transform ?? defaultTransform);
+  const [store] = useState(() => createInfiniteCanvasCamera(initialTransform, cameraOptions));
   const rootRef = useRef<HTMLElement>(null);
-  const transform = controlledTransform ?? uncontrolledTransform;
-  const transformRef = useRef(transform);
+  const navigationRef = useRef<InfiniteCanvasNavigation | null>(null);
+  const navigationOptionsRef = useRef<InfiniteCanvasNavigationOptions>({ panOnDrag, onWheel });
+  const controlledX = transform?.x;
+  const controlledY = transform?.y;
+  const controlledScale = transform?.scale;
 
-  useEffect(() => {
-    transformRef.current = transform;
-  }, [transform]);
-
-  function commitTransform(
-    next: InfiniteCanvasTransform,
-    reason: InfiniteCanvasMoveReason,
-    eased = reason === "control" || reason === "keyboard",
-  ) {
-    setEasing(eased);
-    const bounded = { ...next, scale: clampScale(next.scale, minScale, maxScale) };
-    transformRef.current = bounded;
-    if (controlledTransform === undefined) setUncontrolledTransform(bounded);
-    onTransformChange?.(bounded, { reason });
-  }
-
-  function zoomBy(factor: number, reason: InfiniteCanvasMoveReason) {
-    const currentTransform = transformRef.current;
-    const nextScale = clampScale(currentTransform.scale * factor, minScale, maxScale);
-    const root = rootRef.current;
-    const point = root ? { x: root.clientWidth / 2, y: root.clientHeight / 2 } : { x: 0, y: 0 };
-    commitTransform(zoomAroundPoint(currentTransform, nextScale, point), reason);
-  }
-
-  function reset(reason: InfiniteCanvasMoveReason) {
-    commitTransform(defaultTransform, reason);
-  }
-
-  function beginPan(event: ReactPointerEvent<HTMLElement>) {
-    onPointerDown?.(event);
-    if (event.defaultPrevented || event.target !== event.currentTarget || !event.isPrimary || event.button !== 0) return;
-    event.preventDefault();
-    event.currentTarget.setPointerCapture(event.pointerId);
-    panRef.current = {
-      pointerId: event.pointerId,
-      startPointer: { x: event.clientX, y: event.clientY },
-      startTransform: transformRef.current,
-    };
-    setPanning(true);
-  }
-
-  function updatePan(event: ReactPointerEvent<HTMLElement>) {
-    onPointerMove?.(event);
-    if (event.defaultPrevented) return;
-    const pan = panRef.current;
-    if (!pan || pan.pointerId !== event.pointerId) return;
-    commitTransform(
-      {
-        x: pan.startTransform.x + event.clientX - pan.startPointer.x,
-        y: pan.startTransform.y + event.clientY - pan.startPointer.y,
-        scale: pan.startTransform.scale,
-      },
-      "pointer",
-    );
-  }
-
-  function finishPan(event: ReactPointerEvent<HTMLElement>) {
-    const pan = panRef.current;
-    if (!pan || pan.pointerId !== event.pointerId) return;
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
-    panRef.current = null;
-    setPanning(false);
-  }
-
-  function endPan(event: ReactPointerEvent<HTMLElement>) {
-    onPointerUp?.(event);
-    if (!event.defaultPrevented) finishPan(event);
-  }
-
-  function cancelPan(event: ReactPointerEvent<HTMLElement>) {
-    onPointerCancel?.(event);
-    if (!event.defaultPrevented) finishPan(event);
-  }
-
-  const handleWheel = useEffectEvent((event: WheelEvent) => {
-    onWheel?.(event);
-    if (event.defaultPrevented) return;
-    const root = rootRef.current;
-    if (!root) return;
-    event.preventDefault();
-    const currentTransform = transformRef.current;
-    if (event.ctrlKey || event.metaKey) {
-      const bounds = root.getBoundingClientRect();
-      const point = { x: event.clientX - bounds.left, y: event.clientY - bounds.top };
-      const zoomDelta = event.deltaY * wheelDeltaMultiplier(event, root.clientHeight);
-      const boundedZoomDelta = Math.min(Math.max(zoomDelta, -MAX_WHEEL_ZOOM_DELTA), MAX_WHEEL_ZOOM_DELTA);
-      const nextScale = clampScale(currentTransform.scale * Math.exp(-boundedZoomDelta * WHEEL_ZOOM_SPEED), minScale, maxScale);
-      const notchedWheel = Math.abs(zoomDelta) >= NOTCHED_WHEEL_DELTA;
-      commitTransform(zoomAroundPoint(currentTransform, nextScale, point), "wheel", notchedWheel);
-      return;
-    }
-    commitTransform(panFromWheel(currentTransform, event, root.clientHeight), "wheel");
+  useLayoutEffect(() => {
+    store.configure(cameraOptions);
+    navigationOptionsRef.current = { panOnDrag, onWheel };
+    navigationRef.current?.syncPanReady();
   });
 
+  useLayoutEffect(() => {
+    if (controlledX === undefined || controlledY === undefined || controlledScale === undefined) return;
+    store.adopt({ x: controlledX, y: controlledY, scale: controlledScale });
+  }, [store, controlledX, controlledY, controlledScale]);
+
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
-    const listener = (event: WheelEvent) => handleWheel(event);
-    root.addEventListener("wheel", listener, { passive: false });
-    return () => root.removeEventListener("wheel", listener);
-  }, []);
+    store.attachRoot(root);
+    const navigation = attachInfiniteCanvasNavigation(root, store, () => navigationOptionsRef.current);
+    navigationRef.current = navigation;
+    return () => {
+      navigation.detach();
+      navigationRef.current = null;
+      store.dispose();
+      store.attachRoot(null);
+    };
+  }, [store]);
 
-  function applyKeyboardCommand(key: string, shiftKey: boolean) {
-    const direction = KEYBOARD_PAN_DIRECTIONS[key];
-    if (direction) {
-      const currentTransform = transformRef.current;
-      const panStep = keyboardPanStep(shiftKey);
-      commitTransform(
-        {
-          ...currentTransform,
-          x: currentTransform.x + direction.x * panStep,
-          y: currentTransform.y + direction.y * panStep,
-        },
-        "keyboard",
-      );
-      return true;
-    }
-    const zoomFactor = KEYBOARD_ZOOM_FACTORS[key];
-    if (zoomFactor) {
-      zoomBy(zoomFactor, "keyboard");
-      return true;
-    }
-    if (key !== "0") return false;
-    reset("keyboard");
-    return true;
+  const context = useMemo(() => ({ ...store.camera, minScale, maxScale }), [store, minScale, maxScale]);
+  const storeContext = useMemo(() => ({ store, initialTransform }), [store, initialTransform]);
+
+  function beginBackgroundPan(event: ReactPointerEvent<HTMLElement>) {
+    onPointerDown?.(event);
+    navigationRef.current?.beginBackgroundPan(event.nativeEvent);
   }
 
-  function moveWithKeyboard(event: ReactKeyboardEvent<HTMLElement>) {
+  function navigateWithKeyboard(event: ReactKeyboardEvent<HTMLElement>) {
     onKeyDown?.(event);
-    if (event.defaultPrevented || event.target !== event.currentTarget) return;
+    if (!keyboardNavigation || event.defaultPrevented || event.target !== event.currentTarget) return;
     if (event.ctrlKey || event.metaKey || event.altKey) return;
-    if (applyKeyboardCommand(event.key, event.shiftKey)) event.preventDefault();
+    if (runInfiniteCanvasKeyCommand(store, event.key, event.shiftKey)) event.preventDefault();
   }
 
-  const context: InfiniteCanvasContextValue = { transform, minScale, maxScale, reset, zoomBy };
-  const canvasStyle = {
-    ...style,
-    backgroundPosition: `${transform.x}px ${transform.y}px`,
-    backgroundSize: `${CANVAS_GRID_GAP * transform.scale}px ${CANVAS_GRID_GAP * transform.scale}px`,
-  };
+  const keyShortcuts = [keyboardNavigation ? INFINITE_CANVAS_KEY_SHORTCUTS : "", ariaKeyShortcuts].filter(Boolean).join(" ");
+
+  const root = useRender({
+    defaultTagName: "section",
+    ref: [ref ?? null, rootRef],
+    props: {
+      tabIndex: 0,
+      ...props,
+      "data-control-ui": "infinite-canvas",
+      "data-control-family": "infinite-canvas",
+      "data-slot": "root",
+      "aria-label": ariaLabel,
+      role: "application",
+      "aria-keyshortcuts": keyShortcuts || undefined,
+      className: cn("relative isolate overflow-hidden overscroll-none touch-none data-panning:select-none", className),
+      style: { ...style, ...infiniteCanvasGridStyle(initialTransform) },
+      onPointerDown: beginBackgroundPan,
+      onKeyDown: navigateWithKeyboard,
+      children,
+    },
+  });
 
   return (
-    <InfiniteCanvasContext.Provider value={context}>
-      <section
-        ref={rootRef}
-        {...props}
-        data-control-ui="infinite-canvas"
-        data-control-family="infinite-canvas"
-        data-slot="root"
-        data-panning={panning || undefined}
-        data-easing={easing || undefined}
-        aria-label={ariaLabel}
-        role="application"
-        aria-keyshortcuts={ariaKeyShortcuts ? `${CANVAS_KEY_SHORTCUTS} ${ariaKeyShortcuts}` : CANVAS_KEY_SHORTCUTS}
-        tabIndex={0}
-        className={cn("relative isolate overflow-hidden overscroll-contain touch-none select-none data-panning:cursor-grabbing", className)}
-        style={canvasStyle}
-        onPointerDown={beginPan}
-        onPointerMove={updatePan}
-        onPointerUp={endPan}
-        onPointerCancel={cancelPan}
-        onKeyDown={moveWithKeyboard}
-      >
-        {children}
-      </section>
-    </InfiniteCanvasContext.Provider>
+    <InfiniteCanvasStoreContext.Provider value={storeContext}>
+      <InfiniteCanvasContext.Provider value={context}>{root}</InfiniteCanvasContext.Provider>
+    </InfiniteCanvasStoreContext.Provider>
   );
 }
 
 export function InfiniteCanvasContent({ className, style, ...props }: InfiniteCanvasContentProps) {
-  const { transform } = useInfiniteCanvas();
+  const { store, initialTransform } = useInfiniteCanvasStore();
   return (
     <div
+      ref={store.attachContent}
       {...props}
       data-control-ui="infinite-canvas"
       data-control-family="infinite-canvas"
       data-slot="content"
-      data-scale={transform.scale}
-      className={cn(
-        "pointer-events-none absolute top-0 left-0 h-0 w-0 transform-gpu will-change-transform [&>*]:pointer-events-auto",
-        className,
-      )}
-      style={{
-        ...style,
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0) scale(${transform.scale})`,
-      }}
+      data-scale={initialTransform.scale}
+      className={cn("absolute top-0 left-0 h-0 w-0", className)}
+      style={{ ...style, transform: infiniteCanvasTransformCss(initialTransform) }}
     />
   );
+}
+
+function useInfiniteCanvasItemDrag<Element extends HTMLElement>(
+  position: InfiniteCanvasPoint,
+  onPositionChange: ((position: InfiniteCanvasPoint) => void) | undefined,
+  handlers: InfiniteCanvasDragHandlers<Element>,
+) {
+  const canvas = useInfiniteCanvas();
+  const dragRef = useRef<InfiniteCanvasItemDragSession | null>(null);
+  const [dragging, setDragging] = useState(false);
+
+  function finishDrag(event: ReactPointerEvent<Element>) {
+    if (dragRef.current?.pointerId !== event.pointerId) return;
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+    dragRef.current = null;
+    setDragging(false);
+  }
+
+  const dragHandlers: Required<InfiniteCanvasDragHandlers<Element>> = {
+    onPointerDown(event) {
+      handlers.onPointerDown?.(event);
+      if (event.defaultPrevented || !onPositionChange || !event.isPrimary || event.button !== 0) return;
+      event.currentTarget.setPointerCapture(event.pointerId);
+      dragRef.current = { pointerId: event.pointerId, startWorld: canvas.toWorldPoint(event), startPosition: position };
+      setDragging(true);
+    },
+    onPointerMove(event) {
+      handlers.onPointerMove?.(event);
+      const drag = dragRef.current;
+      if (event.defaultPrevented || drag?.pointerId !== event.pointerId) return;
+      const world = canvas.toWorldPoint(event);
+      onPositionChange?.({
+        x: drag.startPosition.x + world.x - drag.startWorld.x,
+        y: drag.startPosition.y + world.y - drag.startWorld.y,
+      });
+    },
+    onPointerUp(event) {
+      handlers.onPointerUp?.(event);
+      finishDrag(event);
+    },
+    onPointerCancel(event) {
+      handlers.onPointerCancel?.(event);
+      finishDrag(event);
+    },
+    onLostPointerCapture(event) {
+      handlers.onLostPointerCapture?.(event);
+      finishDrag(event);
+    },
+    onKeyDown(event) {
+      handlers.onKeyDown?.(event);
+      if (event.defaultPrevented || !onPositionChange || event.target !== event.currentTarget) return;
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
+      const direction = ARROW_KEY_DIRECTIONS[event.key];
+      if (!direction) return;
+      event.preventDefault();
+      const step = keyboardStep(event.shiftKey) / canvas.getTransform().scale;
+      onPositionChange({ x: position.x + direction.x * step, y: position.y + direction.y * step });
+    },
+  };
+
+  return { dragging, dragHandlers };
 }
 
 export function InfiniteCanvasItem({
@@ -355,134 +325,113 @@ export function InfiniteCanvasItem({
   onPointerMove,
   onPointerUp,
   onPointerCancel,
+  onLostPointerCapture,
   onKeyDown,
   ...props
 }: InfiniteCanvasItemProps) {
-  const { transform } = useInfiniteCanvas();
-  const dragRef = useRef<InfiniteCanvasItemDragSession | null>(null);
-  const [dragging, setDragging] = useState(false);
-
-  function beginDrag(event: ReactPointerEvent<HTMLDivElement>) {
-    onPointerDown?.(event);
-    if (event.defaultPrevented || !onPositionChange || !event.isPrimary || event.button !== 0) return;
-    event.currentTarget.setPointerCapture(event.pointerId);
-    dragRef.current = {
-      pointerId: event.pointerId,
-      startPointer: { x: event.clientX, y: event.clientY },
-      startPosition: { x, y },
-    };
-    setDragging(true);
-  }
-
-  function updateDrag(event: ReactPointerEvent<HTMLDivElement>) {
-    onPointerMove?.(event);
-    const drag = dragRef.current;
-    if (event.defaultPrevented || !drag || drag.pointerId !== event.pointerId) return;
-    onPositionChange?.({
-      x: drag.startPosition.x + (event.clientX - drag.startPointer.x) / transform.scale,
-      y: drag.startPosition.y + (event.clientY - drag.startPointer.y) / transform.scale,
-    });
-  }
-
-  function finishDrag(event: ReactPointerEvent<HTMLDivElement>) {
-    if (dragRef.current?.pointerId !== event.pointerId) return;
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
-    dragRef.current = null;
-    setDragging(false);
-  }
-
-  function endDrag(event: ReactPointerEvent<HTMLDivElement>) {
-    onPointerUp?.(event);
-    finishDrag(event);
-  }
-
-  function cancelDrag(event: ReactPointerEvent<HTMLDivElement>) {
-    onPointerCancel?.(event);
-    finishDrag(event);
-  }
-
-  function moveWithKeyboard(event: ReactKeyboardEvent<HTMLDivElement>) {
-    onKeyDown?.(event);
-    if (event.defaultPrevented || !onPositionChange || event.target !== event.currentTarget) return;
-    if (event.ctrlKey || event.metaKey || event.altKey) return;
-    const direction = KEYBOARD_PAN_DIRECTIONS[event.key];
-    if (!direction) return;
-    event.preventDefault();
-    const step = keyboardPanStep(event.shiftKey) / transform.scale;
-    onPositionChange({ x: x + direction.x * step, y: y + direction.y * step });
-  }
-
-  const interaction = onPositionChange
-    ? {
-        role: "group",
-        "aria-roledescription": movableItemLabel,
-        "aria-keyshortcuts": "ArrowLeft ArrowRight ArrowUp ArrowDown",
-        tabIndex: 0,
-        onPointerDown: beginDrag,
-        onPointerMove: updateDrag,
-        onPointerUp: endDrag,
-        onPointerCancel: cancelDrag,
-        onKeyDown: moveWithKeyboard,
-      }
-    : { onPointerDown, onPointerMove, onPointerUp, onPointerCancel, onKeyDown };
+  const position = useMemo(() => ({ x, y }), [x, y]);
+  const { dragging, dragHandlers } = useInfiniteCanvasItemDrag(position, onPositionChange, {
+    onPointerDown,
+    onPointerMove,
+    onPointerUp,
+    onPointerCancel,
+    onLostPointerCapture,
+    onKeyDown,
+  });
+  const movable = onPositionChange
+    ? { role: "group", "aria-roledescription": movableItemLabel, "aria-keyshortcuts": ITEM_KEY_SHORTCUTS, tabIndex: 0 }
+    : null;
 
   return (
-    <div
-      {...interaction}
+    <InfiniteCanvasItemContext.Provider value={position}>
+      <div
+        {...movable}
+        {...props}
+        {...dragHandlers}
+        data-control-ui="infinite-canvas"
+        data-control-family="infinite-canvas"
+        data-slot="item"
+        data-dragging={dragging || undefined}
+        className={cn("absolute", onPositionChange && "touch-none select-none", className)}
+        style={{ ...style, left: x, top: y }}
+      />
+    </InfiniteCanvasItemContext.Provider>
+  );
+}
+
+export function InfiniteCanvasItemHandle({
+  onPositionChange,
+  className,
+  children,
+  onPointerDown,
+  onPointerMove,
+  onPointerUp,
+  onPointerCancel,
+  onLostPointerCapture,
+  onKeyDown,
+  "aria-label": ariaLabel = "Move item",
+  ...props
+}: InfiniteCanvasItemHandleProps) {
+  const position = use(InfiniteCanvasItemContext);
+  if (!position) throw new Error("InfiniteCanvasItemHandle must be used within InfiniteCanvasItem");
+  const { dragging, dragHandlers } = useInfiniteCanvasItemDrag(position, onPositionChange, {
+    onPointerDown,
+    onPointerMove,
+    onPointerUp,
+    onPointerCancel,
+    onLostPointerCapture,
+    onKeyDown,
+  });
+  return (
+    <Button
+      type="button"
+      variant="ghost"
+      size="xs"
+      iconOnly
+      aria-label={ariaLabel}
+      aria-keyshortcuts={ITEM_KEY_SHORTCUTS}
       {...props}
-      data-control-ui="infinite-canvas"
-      data-control-family="infinite-canvas"
-      data-slot="item"
+      {...dragHandlers}
       data-dragging={dragging || undefined}
-      className={cn("absolute", onPositionChange && "cursor-grab touch-none data-dragging:cursor-grabbing", className)}
-      style={{ ...style, left: x, top: y }}
-    />
+      className={cn("touch-none", className)}
+    >
+      {children ?? <GripVerticalIcon />}
+    </Button>
   );
 }
 
 export function InfiniteCanvasControls({ className, ...props }: InfiniteCanvasControlsProps) {
   const canvas = useInfiniteCanvas();
-  const percentage = Math.round(canvas.transform.scale * 100);
+  const scale = useInfiniteCanvasTransform(selectScale);
+  const percentage = Math.round(scale * 100);
   return (
     <div
       data-control-ui="infinite-canvas"
       data-control-family="infinite-canvas"
       data-slot="controls"
-      className={cn("absolute z-40 flex items-center", className)}
+      className={cn("absolute z-40", className)}
       {...props}
     >
-      <Button
-        type="button"
-        size="sm"
-        variant="ghost"
-        iconOnly
-        disabled={canvas.transform.scale <= canvas.minScale}
-        aria-label="Zoom out"
-        onClick={() => canvas.zoomBy(1 / 1.2, "control")}
-      >
-        <MinusIcon />
-      </Button>
-      <Button
-        type="button"
-        size="sm"
-        variant="ghost"
-        className="tabular-nums"
-        aria-label={`Reset canvas zoom, currently ${percentage}%`}
-        onClick={() => canvas.reset("control")}
-      >
-        {percentage}%
-      </Button>
-      <Button
-        type="button"
-        size="sm"
-        variant="ghost"
-        iconOnly
-        disabled={canvas.transform.scale >= canvas.maxScale}
-        aria-label="Zoom in"
-        onClick={() => canvas.zoomBy(1.2, "control")}
-      >
-        <PlusIcon />
-      </Button>
+      <Toolbar variant="floating" aria-label="Canvas view">
+        <ToolbarButton
+          iconOnly
+          disabled={scale <= canvas.minScale}
+          aria-label="Zoom out"
+          onClick={() => canvas.zoomBy(1 / CONTROL_ZOOM_FACTOR)}
+        >
+          <MinusIcon />
+        </ToolbarButton>
+        <ToolbarButton className="tabular-nums" aria-label={`Reset canvas zoom, currently ${percentage}%`} onClick={() => canvas.reset()}>
+          {percentage}%
+        </ToolbarButton>
+        <ToolbarButton iconOnly disabled={scale >= canvas.maxScale} aria-label="Zoom in" onClick={() => canvas.zoomBy(CONTROL_ZOOM_FACTOR)}>
+          <PlusIcon />
+        </ToolbarButton>
+        <ToolbarSeparator />
+        <ToolbarButton iconOnly aria-label="Fit view" onClick={() => canvas.fit()}>
+          <MaximizeIcon />
+        </ToolbarButton>
+      </Toolbar>
     </div>
   );
 }

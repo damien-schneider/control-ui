@@ -299,8 +299,8 @@
       "registryItems": [
         "infinite-canvas"
       ],
-      "knobs": 11,
-      "probes": 2
+      "knobs": 5,
+      "probes": 1
     },
     "inline-attachment": {
       "registryItems": [

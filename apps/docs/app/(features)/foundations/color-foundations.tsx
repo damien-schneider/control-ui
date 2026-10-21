@@ -17,17 +17,13 @@ const SURFACE_ROLES = [
   "--primary",
   "--destructive",
 ];
-const TEXT_ROLES = [
-  "--foreground",
-  "--muted-foreground",
-  "--primary-text",
-  "--destructive-text",
-  "--success-text",
-  "--warning-text",
-  "--info-text",
-];
+const STATUS_ROLES = ["--success", "--warning", "--info"];
+const TEXT_ROLES = ["--foreground", "--muted-foreground", "--primary-text", "--destructive-text"];
 const LINE_ROLES = ["--border", "--input", "--control-rim", "--control-boundary", "--image-outline", "--ring", "--focus-ring"];
 const CONTROL_FILL_ROLES = ["--control-fill", "--hover-fill", "--active-fill"];
+const SIDEBAR_SURFACE_ROLES = ["--sidebar", "--sidebar-accent"];
+const SIDEBAR_LINE_ROLES = ["--sidebar-primary", "--sidebar-border"];
+const BADGE_ALPHAS = ["--badge-fill-alpha", "--badge-border-alpha", "--badge-hover-alpha"];
 const RAMP_SEEDS = COLOR_RAMPS.map((ramp) => `--scale-${ramp}-seed`);
 
 const RAMP_STEPS = Array.from({ length: RAMP_STEP_COUNT }, (_, index) => index + 1);
@@ -72,10 +68,39 @@ function TextSwatch({ role }: { role: string }) {
   );
 }
 
+function StatusSwatch({ role }: { role: string }) {
+  const textRole = `${role}-text`;
+  return (
+    <Specimen token={role} companionTokens={[textRole]} description={contractDescription(role)}>
+      <div className="grid gap-3 rounded-[var(--radius-panel)] bg-background p-3 ring-1 ring-inset ring-border">
+        <span className="block h-6 rounded-[var(--radius-sm)]" style={{ background: `var(${role})` }} />
+        <Text as="p" size="body-lg" style={{ color: `var(${textRole})` }}>
+          The quick brown fox
+        </Text>
+      </div>
+    </Specimen>
+  );
+}
+
 function LineSwatch({ role }: { role: string }) {
   return (
     <Specimen token={role} description={contractDescription(role)}>
       <div className="h-12 rounded-[var(--radius-control)] border-2 bg-background" style={{ borderColor: `var(${role})` }} />
+    </Specimen>
+  );
+}
+
+function CanvasGridDotSwatch() {
+  return (
+    <Specimen token="--canvas-grid-dot" description={contractDescription("--canvas-grid-dot")}>
+      <div
+        className="h-12 rounded-[var(--radius-control)] ring-1 ring-inset ring-border"
+        style={{
+          backgroundColor: "var(--canvas)",
+          backgroundImage: "radial-gradient(circle at center, var(--canvas-grid-dot) 1px, transparent 1px)",
+          backgroundSize: "12px 12px",
+        }}
+      />
     </Specimen>
   );
 }
@@ -136,6 +161,13 @@ export function ColorFoundations() {
           ))}
         </div>
       </SpecimenGroup>
+      <SpecimenGroup title="Status">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {STATUS_ROLES.map((role) => (
+            <StatusSwatch key={role} role={role} />
+          ))}
+        </div>
+      </SpecimenGroup>
       <SpecimenGroup title="Text">
         <div className="grid gap-4 sm:grid-cols-2">
           {TEXT_ROLES.map((role) => (
@@ -148,12 +180,23 @@ export function ColorFoundations() {
           {LINE_ROLES.map((role) => (
             <LineSwatch key={role} role={role} />
           ))}
+          <CanvasGridDotSwatch />
         </div>
       </SpecimenGroup>
       <SpecimenGroup title="Control fills">
         <div className="grid gap-4 sm:grid-cols-3">
           {CONTROL_FILL_ROLES.map((role) => (
             <SurfaceSwatch key={role} role={role} />
+          ))}
+        </div>
+      </SpecimenGroup>
+      <SpecimenGroup title="Sidebar">
+        <div className="grid gap-4 sm:grid-cols-2">
+          {SIDEBAR_SURFACE_ROLES.map((role) => (
+            <SurfaceSwatch key={role} role={role} />
+          ))}
+          {SIDEBAR_LINE_ROLES.map((role) => (
+            <LineSwatch key={role} role={role} />
           ))}
         </div>
       </SpecimenGroup>
@@ -174,6 +217,7 @@ export function ColorFoundations() {
             </Specimen>
           ))}
         </div>
+        <TokenValueList names={BADGE_ALPHAS} />
       </SpecimenGroup>
       <SpecimenGroup title="Chart colors">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

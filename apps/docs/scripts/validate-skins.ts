@@ -38,16 +38,7 @@ const knobsByPrefix: Record<string, readonly string[]> = Object.fromEntries(
     .sort(([left], [right]) => right.length - left.length)
     .map(([family, knobs]) => [`${knobPrefix}${family}-`, knobs]),
 );
-const supplied = process.argv.find((argument) => argument.startsWith("--skin="))?.slice("--skin=".length);
 const skinRoot = path.join(process.cwd(), "src/registry/skin-packs");
-const files = supplied
-  ? [path.resolve(supplied)]
-  : readdirSync(skinRoot, { withFileTypes: true }).flatMap((entry) => {
-      if (!entry.isDirectory()) return [];
-      return readdirSync(path.join(skinRoot, entry.name))
-        .filter((name) => name.endsWith(".css") || name === "skin.config.tsx")
-        .map((name) => path.join(skinRoot, entry.name, name));
-    });
 const failures: string[] = [];
 
 function attributeValue(attribute: any): string | undefined {
@@ -350,11 +341,14 @@ function filesUnder(directory: string, extensions: string[]): string[] {
 
 const STYLE_KEY_DECLARATION = /["'](--[\w-]+)["']\s*:/g;
 const ARBITRARY_PROPERTY_DECLARATION = /\[(--[\w-]+):/g;
+const CUSTOM_PROPERTY_DECLARATION = /(?:^|[;{\s])--[\w-]+\s*:/;
 
 function declaredCustomProperties(root: string): Set<string> {
   const declared = new Set<string>();
   for (const file of filesUnder(root, [".css"])) {
-    postcss.parse(readFileSync(file, "utf8"), { from: file }).walkDecls((declaration) => {
+    const source = readFileSync(file, "utf8");
+    if (!CUSTOM_PROPERTY_DECLARATION.test(source)) continue;
+    postcss.parse(source, { from: file }).walkDecls((declaration) => {
       if (declaration.prop.startsWith("--")) declared.add(declaration.prop);
     });
   }
@@ -433,14 +427,32 @@ function validateConfig(file: string, source: string): void {
   }
 }
 
-for (const file of files) {
-  const source = readFileSync(file, "utf8");
-  if (file.endsWith(".css")) validateCss(path.relative(process.cwd(), file), source);
-  else validateConfig(path.relative(process.cwd(), file), source);
+export function validateSkinFiles(files: readonly string[]): string[] {
+  failures.length = 0;
+  for (const file of files) {
+    const source = readFileSync(file, "utf8");
+    if (file.endsWith(".css")) validateCss(path.relative(process.cwd(), file), source);
+    else validateConfig(path.relative(process.cwd(), file), source);
+  }
+  return [...failures];
 }
 
-if (failures.length > 0) {
-  console.error(failures.map((failure) => `- ${failure}`).join("\n"));
-  process.exit(1);
+function packSkinFiles(): string[] {
+  return readdirSync(skinRoot, { withFileTypes: true }).flatMap((entry) => {
+    if (!entry.isDirectory()) return [];
+    return readdirSync(path.join(skinRoot, entry.name))
+      .filter((name) => name.endsWith(".css") || name === "skin.config.tsx")
+      .map((name) => path.join(skinRoot, entry.name, name));
+  });
 }
-console.log(`Validated ${files.length} skin files against skin-contract.json.`);
+
+if (import.meta.main) {
+  const supplied = process.argv.find((argument) => argument.startsWith("--skin="))?.slice("--skin=".length);
+  const files = supplied ? [path.resolve(supplied)] : packSkinFiles();
+  const found = validateSkinFiles(files);
+  if (found.length > 0) {
+    console.error(found.map((failure) => `- ${failure}`).join("\n"));
+    process.exit(1);
+  }
+  console.log(`Validated ${files.length} skin files against skin-contract.json.`);
+}

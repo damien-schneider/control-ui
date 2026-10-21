@@ -1,3 +1,5 @@
+"use client";
+
 import { Context } from "@/components/control-ui/context";
 import type { ContextSegment } from "@/components/control-ui/context-model";
 

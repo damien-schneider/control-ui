@@ -1,12 +1,20 @@
 "use client";
 
 import { ChevronDownIcon, HandIcon, MousePointer2Icon, SquareIcon, TypeIcon } from "lucide-react";
+import type { ReactNode } from "react";
 import { useState } from "react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
 import { Toolbar, ToolbarButton, ToolbarGroup, ToolbarSeparator } from "@/components/control-ui/ui/toolbar";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
 
 type Tool = "select" | "hand" | "shape" | "text";
+
+const TOOLS: readonly { tool: Tool; label: string; shortcut: string; icon: ReactNode }[] = [
+  { tool: "select", label: "Select", shortcut: "V", icon: <MousePointer2Icon /> },
+  { tool: "hand", label: "Hand", shortcut: "H", icon: <HandIcon /> },
+  { tool: "shape", label: "Rectangle", shortcut: "R", icon: <SquareIcon /> },
+  { tool: "text", label: "Text", shortcut: "T", icon: <TypeIcon /> },
+];
 
 export function PrimitiveFloatingToolbarExample() {
   const [activeTool, setActiveTool] = useState<Tool>("select");
@@ -21,70 +29,25 @@ export function PrimitiveFloatingToolbarExample() {
       <TooltipProvider>
         <Toolbar variant="floating" aria-label="Canvas tools" className="absolute bottom-4 left-1/2 -translate-x-1/2">
           <ToolbarGroup aria-label="Tools">
-            <Tooltip>
-              <TooltipTrigger
-                render={
-                  <ToolbarButton
-                    aria-label="Select"
-                    iconOnly
-                    aria-pressed={activeTool === "select"}
-                    data-pressed={activeTool === "select" ? "" : undefined}
-                    onClick={() => setActiveTool("select")}
-                  />
-                }
-              >
-                <MousePointer2Icon />
-              </TooltipTrigger>
-              <TooltipContent>Select · V</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger
-                render={
-                  <ToolbarButton
-                    aria-label="Hand"
-                    iconOnly
-                    aria-pressed={activeTool === "hand"}
-                    data-pressed={activeTool === "hand" ? "" : undefined}
-                    onClick={() => setActiveTool("hand")}
-                  />
-                }
-              >
-                <HandIcon />
-              </TooltipTrigger>
-              <TooltipContent>Hand · H</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger
-                render={
-                  <ToolbarButton
-                    aria-label="Rectangle"
-                    iconOnly
-                    aria-pressed={activeTool === "shape"}
-                    data-pressed={activeTool === "shape" ? "" : undefined}
-                    onClick={() => setActiveTool("shape")}
-                  />
-                }
-              >
-                <SquareIcon />
-              </TooltipTrigger>
-              <TooltipContent>Rectangle · R</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger
-                render={
-                  <ToolbarButton
-                    aria-label="Text"
-                    iconOnly
-                    aria-pressed={activeTool === "text"}
-                    data-pressed={activeTool === "text" ? "" : undefined}
-                    onClick={() => setActiveTool("text")}
-                  />
-                }
-              >
-                <TypeIcon />
-              </TooltipTrigger>
-              <TooltipContent>Text · T</TooltipContent>
-            </Tooltip>
+            {TOOLS.map((entry) => (
+              <Tooltip key={entry.tool}>
+                <TooltipTrigger
+                  render={
+                    <ToolbarButton
+                      aria-label={entry.label}
+                      iconOnly
+                      aria-pressed={activeTool === entry.tool}
+                      onClick={() => setActiveTool(entry.tool)}
+                    />
+                  }
+                >
+                  {entry.icon}
+                </TooltipTrigger>
+                <TooltipContent>
+                  {entry.label} · {entry.shortcut}
+                </TooltipContent>
+              </Tooltip>
+            ))}
           </ToolbarGroup>
           <ToolbarSeparator />
           <DropdownMenu>
