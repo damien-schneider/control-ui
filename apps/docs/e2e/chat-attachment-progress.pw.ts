@@ -1,22 +1,24 @@
 import { expect, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY, THEME_STORAGE_KEY } from "@/components/theme";
-import { waitForReactHydration } from "./browser-test-helpers";
+import { waitForSkinLayout } from "./browser-test-helpers";
+
+const skin = "modern-apple";
 
 for (const theme of ["light", "dark"]) {
-  test(`attachment progress covers the remaining content in ${theme} mode`, async ({ page }, testInfo) => {
+  test(`attachment progress covers the remaining content in ${theme} mode`, async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.addInitScript(
-      ({ editorKey, themeKey, appearance }) => {
-        localStorage.setItem(editorKey, JSON.stringify({ skin: "modern-apple" }));
+      ({ editorKey, themeKey, skinId, appearance }) => {
+        localStorage.setItem(editorKey, JSON.stringify({ skin: skinId }));
         localStorage.setItem(themeKey, appearance);
       },
-      { editorKey: THEME_EDITOR_STORAGE_KEY, themeKey: THEME_STORAGE_KEY, appearance: theme },
+      { editorKey: THEME_EDITOR_STORAGE_KEY, themeKey: THEME_STORAGE_KEY, skinId: skin, appearance: theme },
     );
     await page.goto("/kits/chat-composer-attachment");
     const shell = page.locator('#preview [data-control-family="chat-composer"][data-slot="shell"]');
     const image = shell.getByRole("listitem", { name: "vision-reference.png" });
     const remove = image.getByRole("button", { name: "Remove vision-reference.png" });
-    await waitForReactHydration(remove);
+    await waitForSkinLayout(page, skin);
     await page.evaluate(() => document.fonts.ready.then(() => undefined));
     const progress = image.getByRole("progressbar", { name: "Uploading vision-reference.png" });
     await expect(progress).toHaveAttribute("aria-valuenow", "64");
@@ -34,16 +36,18 @@ for (const theme of ["light", "dark"]) {
 
     const file = shell.getByRole("listitem", { name: "Document_de_Synthese_J0025.pdf" });
     const preview = file.locator('[data-slot="preview"]');
-    const fileBounds = await file.boundingBox();
-    const previewBounds = await preview.boundingBox();
-    if (!fileBounds || !previewBounds) throw new Error("The file tile must have visible bounds");
-    expect(previewBounds.x).toBe(fileBounds.x);
-    expect(previewBounds.y).toBe(fileBounds.y);
-    expect(previewBounds.height).toBe(fileBounds.height);
+    const coverage = await preview.evaluate((element) => {
+      const attachment = element.closest("li");
+      if (!attachment) throw new Error("The file preview must belong to an attachment");
+      const tile = attachment.getBoundingClientRect();
+      const content = element.getBoundingClientRect();
+      return { leftInset: content.left - tile.left, topInset: content.top - tile.top, height: content.height / tile.height };
+    });
+    expect(coverage).toEqual({ leftInset: 0, topInset: 0, height: 1 });
     await expect(file).toHaveCSS("border-width", "0px");
-    await expect(preview).toHaveCSS("border-radius", "0px");
-    await shell.screenshot({ path: testInfo.outputPath(`attachment-${theme}.png`) });
-
+    const tileRadius = await file.evaluate((element) => getComputedStyle(element).borderTopLeftRadius);
+    expect(tileRadius).not.toBe("0px");
+    await expect(preview).toHaveCSS("border-radius", `${tileRadius} 0px 0px ${tileRadius}`);
     await image.evaluate((element) => element.style.setProperty("--overlay-opacity", "0.5"));
     await expect(indicator).toHaveCSS("background-color", /\/ 0\.5\)/);
     const transition = await indicator.evaluate(async (element) => {

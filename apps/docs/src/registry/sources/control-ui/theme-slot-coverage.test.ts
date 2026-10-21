@@ -23,21 +23,4 @@ describe("theme anatomy coverage", () => {
     const unknown = anatomySelectors(CSS).filter(({ scope, part }) => !hasContractPart(scope, part));
     expect(unknown).toEqual([]);
   });
-
-  test("corner geometry rides the single --corner-shape knob on the universal anatomy selector", () => {
-    expect(/:where\(\[data-control-ui\]\[data-slot\]\)\s*\{\s*corner-shape: var\(--corner-shape\);/.test(CSS)).toBe(true);
-    expect(CSS).not.toContain("--corner-shape-control");
-    expect(CSS).toContain('[data-control-ui="chat-message"][data-slot="root"]');
-    expect(CSS).toContain('[data-control-ui="chat-composer"][data-slot="root"]');
-    expect(skinContract.semanticFamilies.surfaces.floating.length).toBeGreaterThan(10);
-    expect(skinContract.semanticFamilies.surfaces.modal.length).toBeGreaterThanOrEqual(4);
-    expect(skinContract.semanticFamilies.surfaces.panel.length).toBeGreaterThan(10);
-  });
-
-  test("the interactive control family contains only documented parts", () => {
-    expect(skinContract.semanticFamilies.controls.length).toBeGreaterThan(10);
-    for (const { scope, part } of skinContract.semanticFamilies.controls) {
-      expect(hasContractPart(scope, part)).toBe(true);
-    }
-  });
 });

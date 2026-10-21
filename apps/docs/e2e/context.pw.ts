@@ -1,4 +1,5 @@
 import { expect, type Locator, test } from "@playwright/test";
+import { waitForReactHydration } from "./browser-test-helpers";
 
 function settled(locator: Locator) {
   return locator.evaluate(async (element) => {
@@ -8,12 +9,11 @@ function settled(locator: Locator) {
 
 test("context trigger is named by its visible label and the inspector dismisses accessibly", async ({ page }) => {
   await page.goto("/kits/context");
-  await page.waitForLoadState("networkidle");
-
   const root = page.locator('[data-control-ui="context"][data-slot="root"]');
   const trigger = root.getByRole("button", { name: "50% context", exact: true });
   const label = root.locator('[data-control-ui="context"][data-slot="trigger-label"]');
   const popup = page.locator('[data-control-ui="popover"][data-slot="content"]');
+  await waitForReactHydration(trigger);
 
   await expect(root).toHaveCount(1);
   await expect(root.getByRole("button")).toHaveCount(1);
@@ -62,11 +62,10 @@ test("context trigger is named by its visible label and the inspector dismisses 
 test("context inspector stays bounded and scrollable on narrow viewports", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 700 });
   await page.goto("/kits/context");
-  await page.waitForLoadState("networkidle");
-
   const root = page.locator('[data-control-ui="context"][data-slot="root"]');
   const trigger = root.getByRole("button", { name: "50% context", exact: true });
   const popup = page.locator('[data-control-ui="popover"][data-slot="content"]');
+  await waitForReactHydration(trigger);
 
   await trigger.focus();
   await trigger.press("Enter");

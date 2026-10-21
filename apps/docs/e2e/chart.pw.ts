@@ -1,12 +1,11 @@
 import { expect, type Page, test } from "@playwright/test";
+import { waitForReactHydration } from "./browser-test-helpers";
 
 const CHART_ROOT = '[data-control-family="chart"][data-slot="root"]';
 const AREA_PATH = ".cui-chart-area path";
 
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
-    window.__REACT_SCAN_DISABLED__ = true;
-    window.__REACT_GRAB_DISABLED__ = true;
     const startsByPath = new WeakMap<EventTarget, number>();
     Reflect.set(window, "__chartRevealStarts", startsByPath);
     Reflect.set(window, "__chartRevealCount", 0);
@@ -35,7 +34,7 @@ function chartAnimations(page: Page) {
 async function openSettledChartPage(page: Page) {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto("/components/chart");
-  await page.waitForLoadState("networkidle");
+  await waitForReactHydration(page.getByRole("button", { name: "Next period" }));
   const areaPath = page.locator(AREA_PATH).first();
   await expect(areaPath).toBeAttached();
   await expect.poll(() => chartAnimations(page)).toEqual([]);

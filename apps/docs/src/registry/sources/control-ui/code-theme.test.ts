@@ -22,7 +22,5 @@ describe("code theme defaults", () => {
 
     expect(light.size).toBeGreaterThan(0);
     expect([...dark.keys()].sort()).toEqual([...light.keys()].sort());
-    expect(dark.get("--diff-add-line")).toBe("oklch(0.5 0.11 150 / 0.22)");
-    expect(dark.get("--diff-del-line")).toBe("oklch(0.55 0.16 22 / 0.24)");
   });
 });

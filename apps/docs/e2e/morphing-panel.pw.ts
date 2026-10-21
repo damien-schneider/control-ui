@@ -21,9 +21,6 @@ async function expectSize(locator: Locator, width: number, height: number) {
 }
 
 test.beforeEach(async ({ page }) => {
-  await page.addInitScript(() => {
-    Object.assign(window, { __REACT_SCAN_DISABLED__: true, __REACT_GRAB_DISABLED__: true });
-  });
   await page.goto("/components/morphing-panel");
   await waitForReactHydration(page.locator('[data-example="settings"]'));
 });
@@ -99,7 +96,14 @@ test("narrow screens keep every tab visible and honor reduced motion", async ({ 
   for (const name of ["Size", "Ratio", "Prompt"]) {
     await panel.getByRole("tab", { name, exact: true }).click();
     await expect(panel.getByRole("tabpanel", { name, exact: true })).toBeVisible();
-    await expect(panel.getByRole("button", { name: "Apply" })).toBeInViewport();
+    const apply = panel.getByRole("button", { name: "Apply" });
+    await apply.scrollIntoViewIfNeeded();
+    await expect(apply).toBeInViewport({ ratio: 1 });
+    const panelBounds = await bounds(panel);
+    const applyBounds = await bounds(apply);
+    expect(applyBounds.x).toBeGreaterThanOrEqual(panelBounds.x);
+    expect(applyBounds.right).toBeLessThanOrEqual(panelBounds.right);
+    expect(applyBounds.bottom).toBeLessThanOrEqual(panelBounds.bottom);
   }
 });
 

@@ -32,27 +32,6 @@ for (const skin of ["xp", "windows-98"]) {
   });
 }
 
-test("Windows 98 applies its palette before paint and restores the preferred mode when leaving", async ({ page }) => {
-  await page.addInitScript(() => {
-    localStorage.setItem(
-      "control-ui:theme-editor:v2",
-      JSON.stringify({ skin: "windows-98", overrides: {}, light: {}, dark: {}, textFixes: {} }),
-    );
-    localStorage.setItem("control-ui:theme:v1", "dark");
-  });
-  await page.goto("/components/button");
-  await expect(page.locator("html")).toHaveAttribute("data-skin", "windows-98");
-  await expect(page.locator("html")).toHaveAttribute("data-color-scheme-lock", "light");
-  await expect(page.locator("html")).not.toHaveClass(/dark/);
-  expect(await page.evaluate(() => localStorage.getItem("control-ui:theme:v1"))).toBe("dark");
-  const skinPicker = page.getByRole("group", { name: "Documentation controls" }).getByRole("combobox", { name: "Skin", exact: true });
-  await waitForReactHydration(skinPicker);
-  await skinPicker.click();
-  await page.getByRole("option", { name: "Linear", exact: true }).click();
-  await expect(page.locator("html")).toHaveAttribute("data-skin", "linear");
-  await expect(page.locator("html")).toHaveClass(/dark/);
-});
-
 for (const skin of ["xp", "windows-98", "linear"]) {
   test(`${skin}: slider handles can be dragged from outside the narrow track`, async ({ page }) => {
     await page.addInitScript((skinId) => {

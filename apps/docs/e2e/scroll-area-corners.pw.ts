@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
   await page.addInitScript((key) => localStorage.setItem(key, JSON.stringify({ skin: "modern-apple" })), THEME_EDITOR_STORAGE_KEY);
 });
 
-test("attachment corners take priority over blur and retain the edge fade", async ({ page }, testInfo) => {
+test("attachment corners take priority over blur and retain the edge fade", async ({ page }) => {
   await page.goto("/kits/chat-composer-attachment");
   const shell = page.locator('#preview [data-control-family="chat-composer"][data-slot="shell"]');
   const viewport = shell.locator("[data-scroll-area-viewport]");
@@ -19,10 +19,15 @@ test("attachment corners take priority over blur and retain the edge fade", asyn
   await expect(scrollArea).toHaveAttribute("data-overflow-x-end", "");
   await expect(viewport).not.toHaveCSS("mask-image", "none");
 
-  for (const cornerShape of ["superellipse(1.25)", "squircle", "scoop"]) {
+  const computedCornerShapes = [
+    ["superellipse(1.25)", "superellipse(1.25)"],
+    ["squircle", "superellipse(2)"],
+    ["scoop", "superellipse(-1)"],
+  ] as const;
+  for (const [cornerShape, computedCornerShape] of computedCornerShapes) {
     await shell.evaluate((element, shape) => element.style.setProperty("--corner-shape", shape), cornerShape);
-    await expect(shell).toHaveCSS("corner-shape", cornerShape);
-    await expect(scrollArea).toHaveCSS("corner-shape", cornerShape);
+    await expect(shell).toHaveCSS("corner-shape", computedCornerShape);
+    await expect(scrollArea).toHaveCSS("corner-shape", computedCornerShape);
     const withRequestedBlur = await shell.screenshot({ animations: "disabled" });
     await endBlur.evaluate((element) => {
       element.style.display = "none";
@@ -33,7 +38,6 @@ test("attachment corners take priority over blur and retain the edge fade", asyn
   }
 
   await shell.evaluate((element) => element.style.setProperty("--corner-shape", "superellipse(1.25)"));
-  await shell.screenshot({ path: testInfo.outputPath("attachment-fade.png") });
   await viewport.evaluate((element) => {
     element.scrollLeft = 100;
   });

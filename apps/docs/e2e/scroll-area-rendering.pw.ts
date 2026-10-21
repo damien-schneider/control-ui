@@ -1,5 +1,5 @@
 import { expect, type Locator, type Page, test } from "@playwright/test";
-import { THEME_EDITOR_STORAGE_KEY, THEME_STORAGE_KEY } from "@/components/theme";
+import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { SKIN_META_BY_ID } from "@/components/theme-drawer/presets";
 import type { SkinId } from "@/components/theme-drawer/types";
 import { meanScreenshotDifference, waitForReactHydration } from "./browser-test-helpers";
@@ -76,30 +76,30 @@ for (const skinId of ["refined", "modern-apple"] as const) {
       });
     });
 
-    for (const mode of ["light", "dark"]) {
-      test(`search results retain text beneath the blur in ${mode} mode`, async ({ page }) => {
-        await page.addInitScript(({ key, theme }) => localStorage.setItem(key, theme), { key: THEME_STORAGE_KEY, theme: mode });
-        await visitWithSkin(page, "/components/phone-input", skinId);
-        const searchTrigger = page.getByRole("button", { name: "Search documentation", exact: true });
-        await waitForReactHydration(searchTrigger);
-        await searchTrigger.click();
-        const dialog = page.getByRole("dialog");
-        const search = dialog.getByRole("combobox", { name: "Search documentation", exact: true });
-        await expect(search).toBeFocused();
-        const list = dialog.locator('[data-control-ui="command"][data-slot="list"]');
-        await expect(list).toBeVisible();
-        const viewport = dialog.locator("[data-scroll-area-viewport]");
-        await viewport.evaluate((element) => {
-          const result = element.querySelectorAll("[cmdk-item]")[30];
-          element.scrollTop += result.getBoundingClientRect().top - element.getBoundingClientRect().top - 28;
-        });
-        await expect(viewport.locator("..")).toHaveAttribute("data-overflow-y-start", "");
+    test("search results retain text beneath the blur in both modes", async ({ page }) => {
+      await visitWithSkin(page, "/components/phone-input", skinId);
+      const searchTrigger = page.getByRole("button", { name: "Search documentation", exact: true });
+      await waitForReactHydration(searchTrigger);
+      await searchTrigger.click();
+      const dialog = page.getByRole("dialog");
+      const search = dialog.getByRole("combobox", { name: "Search documentation", exact: true });
+      await expect(search).toBeFocused();
+      const list = dialog.locator('[data-control-ui="command"][data-slot="list"]');
+      await expect(list).toBeVisible();
+      const viewport = dialog.locator("[data-scroll-area-viewport]");
+      await viewport.evaluate((element) => {
+        const result = element.querySelectorAll("[cmdk-item]")[30];
+        element.scrollTop += result.getBoundingClientRect().top - element.getBoundingClientRect().top - 28;
+      });
+      await expect(viewport.locator("..")).toHaveAttribute("data-overflow-y-start", "");
+      for (const dark of [false, true]) {
+        await page.evaluate((isDark) => document.documentElement.classList.toggle("dark", isDark), dark);
         if (skinId === "modern-apple")
           await expect(dialog.locator('[data-side="top"] [data-slot="layer"]').last()).toHaveCSS("opacity", "1");
         expect((await inspectScrollEdge(page, await dialog.screenshot())).detailedPixels).toBeGreaterThan(100);
-        await expect(search).toBeFocused();
-      });
-    }
+      }
+      await expect(search).toBeFocused();
+    });
 
     if (skinId !== "modern-apple") return;
 
@@ -152,27 +152,25 @@ for (const skinId of ["refined", "modern-apple"] as const) {
 }
 
 for (const skinId of ["refined", "modern-apple", "linear"] as const) {
-  for (const mode of ["light", "dark"]) {
-    test(`${skinId} ${mode} country picker preserves its surface`, async ({ page }) => {
-      await page.setViewportSize({ width: 1440, height: 1100 });
-      await page.emulateMedia({ reducedMotion: "reduce" });
-      await page.addInitScript(
-        ({ editorKey, themeKey, skin, theme }) => {
-          localStorage.setItem(editorKey, JSON.stringify({ skin }));
-          localStorage.setItem(themeKey, theme);
-        },
-        { editorKey: THEME_EDITOR_STORAGE_KEY, themeKey: THEME_STORAGE_KEY, skin: skinId, theme: mode },
-      );
-      await visitWithSkin(page, "/components/phone-input", skinId);
-      const trigger = page.getByRole("button", { name: "Phone number country: France (+33)", exact: true }).first();
-      await waitForReactHydration(trigger);
-      await trigger.click();
-      const popup = page.locator('[data-popup-kind="popover"][data-popup-part="surface"]');
-      const command = popup.locator('[data-popup-kind="command"][data-slot="root"]');
-      const input = popup.getByRole("combobox");
-      await input.focus();
-      await expect(input).toBeFocused();
+  test(`${skinId} country picker preserves its surface in both modes`, async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1100 });
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.addInitScript(({ editorKey, skin }) => localStorage.setItem(editorKey, JSON.stringify({ skin })), {
+      editorKey: THEME_EDITOR_STORAGE_KEY,
+      skin: skinId,
+    });
+    await visitWithSkin(page, "/components/phone-input", skinId);
+    const trigger = page.getByRole("button", { name: "Phone number country: France (+33)", exact: true }).first();
+    await waitForReactHydration(trigger);
+    await trigger.click();
+    const popup = page.locator('[data-popup-kind="popover"][data-popup-part="surface"]');
+    const command = popup.locator('[data-popup-kind="command"][data-slot="root"]');
+    const input = popup.getByRole("combobox");
+    await input.focus();
+    await expect(input).toBeFocused();
 
+    for (const dark of [false, true]) {
+      await page.evaluate((isDark) => document.documentElement.classList.toggle("dark", isDark), dark);
       const surface = await popup.screenshot();
       await command.evaluate((element) => {
         element.style.background = "transparent";
@@ -181,12 +179,15 @@ for (const skinId of ["refined", "modern-apple", "linear"] as const) {
       });
       const parentSurface = await popup.screenshot();
       expect(await meanScreenshotDifference(page, [surface, parentSurface])).toBeLessThan(0.05);
+      await command.evaluate((element) => {
+        for (const property of ["background", "box-shadow", "backdrop-filter"]) element.style.removeProperty(property);
+      });
+    }
 
-      await input.fill("Germany");
-      await expect(popup.getByRole("option", { name: /Germany/ })).toBeVisible();
-      await input.press("Enter");
-      await expect(popup).toBeHidden();
-      await expect(page.getByRole("button", { name: "Phone number country: Germany (+49)", exact: true }).first()).toBeVisible();
-    });
-  }
+    await input.fill("Germany");
+    await expect(popup.getByRole("option", { name: /Germany/ })).toBeVisible();
+    await input.press("Enter");
+    await expect(popup).toBeHidden();
+    await expect(page.getByRole("button", { name: "Phone number country: Germany (+49)", exact: true }).first()).toBeVisible();
+  });
 }

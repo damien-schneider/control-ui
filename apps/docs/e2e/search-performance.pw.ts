@@ -17,8 +17,6 @@ for (const skin of ["none", "mastra"]) {
   test(`Cmd+K opens and searches the complete catalog within its CPU budget with ${skin}`, async ({ page }) => {
     await page.addInitScript(
       ({ selectedSkin, storageKey }) => {
-        window.__REACT_GRAB_DISABLED__ = true;
-        window.__REACT_SCAN_DISABLED__ = true;
         localStorage.setItem(storageKey, JSON.stringify({ skin: selectedSkin }));
       },
       { selectedSkin: skin, storageKey: THEME_EDITOR_STORAGE_KEY },

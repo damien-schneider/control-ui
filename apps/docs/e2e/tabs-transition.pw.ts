@@ -1,54 +1,21 @@
-import { execFileSync } from "node:child_process";
-import { mkdtempSync, readFileSync, rmSync } from "node:fs";
-import { tmpdir } from "node:os";
-import path from "node:path";
 import { expect, test } from "@playwright/test";
-import tailwind from "@tailwindcss/postcss";
-import postcss from "postcss";
+import { FIXTURE_ORIGIN, serveFixture } from "./fixtures/serve-fixture";
 
 // Recording DOM snapshots changes animation timing and adds CPU work to the measurements.
 test.use({ trace: "off" });
 
-const buildDirectory = mkdtempSync(path.join(tmpdir(), "control-ui-tabs-"));
-const theme = readFileSync(path.resolve("src/registry/sources/control-ui/theme.css"), "utf8");
-const tabsRecipe = ["tabs", "tabs-motion"]
-  .map((name) => readFileSync(path.resolve(`src/registry/sources/control-ui/recipes/${name}.css`), "utf8"))
-  .join("\n");
-let script: string;
-let stylesheet: string;
-
-test.beforeAll(async () => {
-  execFileSync("bun", ["build", "e2e/fixtures/tabs-transition.tsx", "--outdir", buildDirectory, "--target", "browser"]);
-  script = readFileSync(path.join(buildDirectory, "tabs-transition.js"), "utf8");
-  const result = await postcss([tailwind()]).process(
-    `@import "tailwindcss"; @source "../src/registry/sources/control-ui/ui/tabs.tsx"; @source "./fixtures/tabs-transition.tsx"; ${theme}\n${tabsRecipe}`,
-    { from: path.resolve("e2e/tabs-transition.css") },
-  );
-  stylesheet = result.css;
-});
-
-test.afterAll(() => rmSync(buildDirectory, { recursive: true, force: true }));
-
 test.beforeEach(async ({ page }) => {
-  await page.route("http://tabs.test/**", (route) => {
-    if (new URL(route.request().url()).pathname === "/fixture.js") {
-      return route.fulfill({ contentType: "application/javascript", body: script });
-    }
-    return route.fulfill({
-      contentType: "text/html",
-      body: `<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>
-        ${stylesheet}
-        * { box-sizing: border-box; }
-        :root { --spacing: 4px; --control-h-sm: 36px; }
-        body { margin: 0; font-family: system-ui; background: var(--background); color: var(--foreground); }
-        main { width: min(100% - 48px, 960px); margin: 40px auto; }
-        button { border: 0; background: none; font: inherit; }
-        article, .generate { border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
-        .generate { padding-block: 80px; text-align: center; }
-      </style></head><body><div id="root"></div><script type="module" src="/fixture.js"></script></body></html>`,
-    });
+  await serveFixture(page, "tabs-transition", {
+    style: `
+      * { box-sizing: border-box; }
+      :root { --spacing: 4px; --control-h-sm: 36px; }
+      body { margin: 0; font-family: system-ui; background: var(--background); color: var(--foreground); }
+      main { width: min(100% - 48px, 960px); margin: 40px auto; }
+      button { border: 0; background: none; font: inherit; }
+      article, .generate { border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+      .generate { padding-block: 80px; text-align: center; }
+    `,
   });
-  await page.goto("http://tabs.test/");
   await expect(page.getByRole("tabpanel", { name: "Releases" })).toBeVisible();
 });
 
@@ -180,22 +147,21 @@ function expectAlignedTransition(transition: PanelTransitionCapture, orientation
 
 for (const width of [390, 1440]) {
   for (const orientation of ["horizontal", "vertical"]) {
-    test(`${orientation} tabs at ${width}px slide aligned in both directions and morph their height`, async ({ page }, testInfo) => {
+    test(`${orientation} tabs at ${width}px slide aligned in both directions and morph their height`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
-      await page.goto(`http://tabs.test/?orientation=${orientation}`);
+      await page.goto(`${FIXTURE_ORIGIN}/?orientation=${orientation}`);
       await page.addStyleTag({ content: '[data-slide="scope"] { --duration-slow: 500ms; }' });
       const forward = await page.getByRole("tab", { name: "Settings", exact: true }).evaluate(captureTransition);
       expectAlignedTransition(forward, orientation);
       const backward = await page.getByRole("tab", { name: "Releases", exact: true }).evaluate(captureTransition);
       expectAlignedTransition(backward, orientation);
       expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(width);
-      await page.screenshot({ path: testInfo.outputPath("settled.png") });
     });
   }
 }
 
 test("wrapped panels keep both slide directions synchronized", async ({ page }) => {
-  await page.goto("http://tabs.test/?wrapped");
+  await page.goto(`${FIXTURE_ORIGIN}/?wrapped`);
   await page.addStyleTag({ content: '[data-slide="scope"] { --duration-slow: 500ms; }' });
   for (const name of ["Settings", "Releases"]) {
     const transition = await page.getByRole("tab", { name, exact: true }).evaluate(captureTransition);
@@ -211,7 +177,7 @@ test("external selection and uncontrolled browser tabs keep the slide aligned", 
   });
   const external = await page.getByRole("button", { name: "Open settings" }).evaluate(captureTransition);
   expectAlignedTransition(external, "horizontal");
-  await page.goto("http://tabs.test/?uncontrolled&variant=browser");
+  await page.goto(`${FIXTURE_ORIGIN}/?uncontrolled&variant=browser`);
   await page.addStyleTag({ content: '[data-slide="scope"] { --duration-slow: 500ms; }' });
   const uncontrolled = await page.getByRole("tab", { name: "Settings", exact: true }).evaluate(captureTransition);
   expectAlignedTransition(uncontrolled, "horizontal");
@@ -220,7 +186,7 @@ test("external selection and uncontrolled browser tabs keep the slide aligned", 
 test("switching during entry keeps the latest pair aligned in either direction", async ({ page }) => {
   for (const orientation of ["horizontal", "vertical"]) {
     for (const name of ["Embed", "Releases"]) {
-      await page.goto(`http://tabs.test/?orientation=${orientation}`);
+      await page.goto(`${FIXTURE_ORIGIN}/?orientation=${orientation}`);
       await page.addStyleTag({ content: '[data-slide="scope"] { --duration-slow: 1s; }' });
       await page.getByRole("tab", { name: "Settings", exact: true }).click();
       const interrupted = await page.getByRole("tab", { name, exact: true }).evaluate(captureTransition);
@@ -261,36 +227,9 @@ test("keyboard selection and reduced motion switch immediately without moving co
   await expect(settings).toBeFocused();
 });
 
-test("paints clipped panels during the slide", async ({ page }, testInfo) => {
-  await page.addStyleTag({ content: '[data-slide="scope"] { --duration-slow: 1s; }' });
-  await page.getByRole("tab", { name: "Settings", exact: true }).click();
-  await expect
-    .poll(() =>
-      page
-        .locator('[data-slide="scope"]')
-        .evaluate(
-          (root) =>
-            root
-              .getAnimations({ subtree: true })
-              .filter((animation) => animation instanceof CSSTransition && animation.transitionProperty === "translate").length,
-        ),
-    )
-    .toBe(2);
-  await page.locator('[data-slide="scope"]').evaluate(async (root) => {
-    const animations = root.getAnimations({ subtree: true });
-    for (const animation of animations) {
-      animation.pause();
-      animation.currentTime = Number(animation.effect?.getTiming().duration) * 0.15;
-    }
-    await Promise.all(animations.map((animation) => animation.ready));
-    for (let frame = 0; frame < 2; frame += 1) await new Promise(requestAnimationFrame);
-  });
-  await page.screenshot({ path: testInfo.outputPath("transition.png") });
-});
-
 test.describe("populated panel performance", () => {
   test("switches large mounted panels within the CPU budget", async ({ page }) => {
-    await page.goto("http://tabs.test/?dense");
+    await page.goto(`${FIXTURE_ORIGIN}/?dense`);
     const root = page.locator('[data-slide="scope"]');
     await expect(root.getByRole("article")).toHaveCount(200);
     const session = await page.context().newCDPSession(page);

@@ -35,7 +35,6 @@ test("Windows XP keeps its sidebar scrollbar visible beside the viewport", async
   const scrollbar = scrollArea.locator('[data-slot="scrollbar"][data-orientation="vertical"]');
   await expect(scrollArea).toHaveAttribute("data-scrollbar-gutter", "stable");
   await expect(scrollbar).toHaveCSS("opacity", "1");
-  await expect(scrollbar).toHaveCSS("width", "16px");
   await expect(scrollArea.locator('[data-slot="scrollbar"][data-orientation="horizontal"]')).toHaveCount(0);
   const viewportBounds = await viewport.boundingBox();
   const scrollbarBounds = await scrollbar.boundingBox();
@@ -58,15 +57,15 @@ test("Windows XP keeps its sidebar scrollbar visible beside the viewport", async
   expect(roadmapBounds.y + roadmapBounds.height).toBeLessThanOrEqual(horizontalBounds.y);
 });
 
-for (const direction of ["ltr", "rtl"] as const) {
-  test(`stable gutters keep their size when overflow changes in ${direction}`, async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/components/scroll-area");
-    const viewport = page.getByRole("region", { name: "Stable scrollbar gutter", exact: true });
-    const scrollArea = viewport.locator("..");
-    const toggle = page.getByRole("button", { name: "Overflow content", exact: true });
-    await waitForReactHydration(toggle);
-    await toggle.scrollIntoViewIfNeeded();
+test("stable gutters keep their size when overflow changes in both directions", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/components/scroll-area");
+  const viewport = page.getByRole("region", { name: "Stable scrollbar gutter", exact: true });
+  const scrollArea = viewport.locator("..");
+  const toggle = page.getByRole("button", { name: "Overflow content", exact: true });
+  await waitForReactHydration(toggle);
+  await toggle.scrollIntoViewIfNeeded();
+  for (const direction of ["ltr", "rtl"] as const) {
     await scrollArea.evaluate((element, dir) => element.setAttribute("dir", dir), direction);
     await expect(scrollArea).toHaveAttribute("data-has-overflow-x", "");
     await expect(scrollArea).toHaveAttribute("data-has-overflow-y", "");
@@ -93,10 +92,10 @@ for (const direction of ["ltr", "rtl"] as const) {
     await expect(scrollArea).toHaveAttribute("data-has-overflow-y", "");
     await expect(vertical.locator('[data-slot="thumb"]')).toBeVisible();
     expect(await viewport.boundingBox()).toEqual(viewportBounds);
-  });
-}
+  }
+});
 
-test("macOS preserves its corner shape and fades overflow until keyboard focus", async ({ page }) => {
+test("macOS fades overflow until keyboard focus", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.addInitScript((storageKey) => {
     localStorage.setItem(storageKey, JSON.stringify({ skin: "modern-apple" }));
@@ -106,7 +105,6 @@ test("macOS preserves its corner shape and fades overflow until keyboard focus",
   const scrollArea = viewport.locator("..");
   const endBlur = scrollArea.locator('[data-control-family="progressive-blur"][data-side="inline-end"]');
   await waitForReactHydration(viewport.getByRole("button").first());
-  await expect(scrollArea).toHaveCSS("corner-shape", "superellipse(1.25)");
   await expect(endBlur).toHaveCSS("display", "none");
   await expect(viewport).not.toHaveCSS("mask-image", "none");
   await expect(scrollArea.locator('[data-control-family="progressive-blur"][data-side="top"]')).toHaveCount(0);

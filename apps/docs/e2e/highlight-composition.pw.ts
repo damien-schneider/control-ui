@@ -45,7 +45,7 @@ test("sidebar highlights inherit the sidebar and menu radius overrides", async (
   const group = page.getByRole("group", { name: "Sidebar", exact: true });
   const menuHighlight = group.getByRole("combobox", { name: "Menu highlight" });
   await waitForReactHydration(menuHighlight);
-  await menuHighlight.selectOption("hover");
+  await menuHighlight.selectOption("slide");
   const sidebar = group.locator('[data-control-family="sidebar"][data-slot="root"]');
   const track = group.locator('[data-slot="menu-track"]').first();
   const workflows = group.getByRole("button", { name: "Workflows", exact: true });

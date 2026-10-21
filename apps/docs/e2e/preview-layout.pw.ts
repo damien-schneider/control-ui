@@ -1,13 +1,6 @@
 import { expect, type Locator, test } from "@playwright/test";
 import { waitForReactHydration } from "./browser-test-helpers";
 
-test.beforeEach(async ({ page }) => {
-  await page.addInitScript(() => {
-    window.__REACT_SCAN_DISABLED__ = true;
-    window.__REACT_GRAB_DISABLED__ = true;
-  });
-});
-
 async function expectCentered(container: Locator, content: Locator) {
   await expect(content).toBeVisible();
   await expect

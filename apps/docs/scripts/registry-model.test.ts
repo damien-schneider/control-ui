@@ -5,8 +5,10 @@ import { extensionEntries } from "@/app/(features)/catalog/extensions";
 import { kitEntries } from "@/app/(features)/catalog/kits";
 import { createRegistryItems } from "./registry-model";
 
+const registryItems = createRegistryItems();
+
 function registryItem(name: string) {
-  const item = createRegistryItems().find((candidate) => candidate.name === name);
+  const item = registryItems.find((candidate) => candidate.name === name);
   if (!item) throw new Error(`Missing registry item ${name}`);
   return item;
 }
@@ -57,6 +59,24 @@ describe("Control UI starter registry items", () => {
       ["registry:page", "~/app/layout.tsx"],
       ["registry:page", "~/app/page.tsx"],
     ]);
+  });
+});
+
+describe("optional accessories", () => {
+  test("chat does not pull in the audio recorder, directly or through a dependency", () => {
+    const installed = new Set<string>();
+    const pending = ["chat"];
+    for (let name = pending.pop(); name !== undefined; name = pending.pop()) {
+      if (installed.has(name)) continue;
+      installed.add(name);
+      const item = registryItems.find((candidate) => candidate.name === name);
+      if (item) pending.push(...item.registryDependencies);
+    }
+    const installedFiles = registryItems.filter((item) => installed.has(item.name)).flatMap((item) => item.files.map((file) => file.path));
+
+    expect(installed.has("chat-composer")).toBe(true);
+    expect(installed.has("audio-recorder")).toBe(false);
+    expect(installedFiles.filter((file) => file.includes("audio-recorder"))).toEqual([]);
   });
 });
 

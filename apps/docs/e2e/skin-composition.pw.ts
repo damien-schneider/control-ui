@@ -131,7 +131,7 @@ test("composer corners fit the actual inset as radius, padding, and border chang
   await expect(page.locator("#button")).toHaveCSS("border-radius", "9999px");
 });
 
-test("docs preview and skin source keep their connected surfaces when switching tabs", async ({ page }, testInfo) => {
+test("docs preview and skin source keep their connected surfaces when switching tabs", async ({ page }) => {
   await page.addInitScript((key) => localStorage.setItem(key, "dark"), THEME_STORAGE_KEY);
   for (const route of ["/kits/chat-layout", "/theme-editor"]) {
     await page.goto(`${route}?skin=mastra${route === "/theme-editor" ? "&view=source" : ""}`);
@@ -158,6 +158,5 @@ test("docs preview and skin source keep their connected surfaces when switching 
       await expect(code).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
       await tabs.first().click();
     }
-    await page.screenshot({ path: testInfo.outputPath(`${route.split("/").at(-1)}.png`) });
   }
 });

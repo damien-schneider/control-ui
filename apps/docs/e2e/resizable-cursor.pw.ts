@@ -11,7 +11,6 @@ for (const [index, cursor] of [
     const heading = page.getByRole("heading", { name: "Resizable", level: 1, exact: true });
     const handle = page.getByRole("separator", { name: "Resize panel", exact: true }).nth(index);
     await waitForReactHydration(handle);
-    await page.waitForLoadState("networkidle");
     const originalCursor = await heading.evaluate((node) => getComputedStyle(node).cursor);
     await handle.scrollIntoViewIfNeeded();
     const box = await handle.boundingBox();
@@ -38,7 +37,6 @@ test("floating panel cursor survives pointer capture and clears on cancellation 
   const heading = page.getByRole("heading", { name: "Resizable", level: 1, exact: true });
   const handle = page.getByRole("separator", { name: "Resize panel", exact: true }).last();
   await waitForReactHydration(handle);
-  await page.waitForLoadState("networkidle");
   const originalCursor = await heading.evaluate((node) => getComputedStyle(node).cursor);
   await handle.scrollIntoViewIfNeeded();
   const box = await handle.boundingBox();

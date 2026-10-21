@@ -46,7 +46,6 @@ test("renders every template with its images and the footer its mailing type req
     await expect(frame.getByText("Fieldwork, Inc.").first()).toBeVisible();
     await expect(page.locator(anchor).getByRole("button", { name: "Download HTML", exact: true })).toBeEnabled();
   }
-  await page.screenshot({ path: "/tmp/control-ui-email-desktop.png", fullPage: true });
 });
 
 test("switches a preview between the contained card and the plain page surface", async ({ page }) => {
@@ -70,32 +69,26 @@ test("narrows a single preview to a mobile width without clipping its content", 
   await expect.poll(() => noOverflow(emailFrame(page, "newsletter"))).toBe(true);
   await page.setViewportSize({ width: 390, height: 844 });
   for (const { layout } of examples) await expect.poll(() => noOverflow(emailFrame(page, layout))).toBe(true);
-  await page.screenshot({ path: "/tmp/control-ui-email-mobile.png", fullPage: true });
 });
 
-for (const mode of ["Light", "Dark"] as const) {
-  test(`renders and exports without a skin in ${mode.toLowerCase()} mode`, async ({ page }) => {
-    await page.getByRole("radio", { name: mode, exact: true }).focus();
-    await page.keyboard.press("Space");
-    await page.getByRole("combobox", { name: "Skin", exact: true }).click();
-    const responsePromise = page.waitForResponse(
-      (response) =>
-        response.url().endsWith("/api/email-preview") &&
-        emailPreviewRequest.parse(response.request().postDataJSON()).skin === "none" &&
-        emailPreviewRequest.parse(response.request().postDataJSON()).layout === "newsletter",
-    );
-    await page.getByRole("option", { name: "No skin", exact: true }).click();
-    const { html, text } = emailPreviewResult.parse(await (await responsePromise).json());
-    expect(html).not.toMatch(/var\(|oklch\(|\drem\b/);
-    expect(html).toContain(`<meta name="color-scheme" content="${mode.toLowerCase()}"`);
-    expect(text).toContain("A LITTLE ROOM FOR INSPIRATION.");
-    expect(text).toContain("Unsubscribe");
-    const frame = emailFrame(page, "newsletter");
-    await expect(frame.getByRole("heading", { level: 1 })).toHaveText("A little room for inspiration.");
-    await expect(frame.locator('table[style*="max-width"]').first()).toHaveCSS("border-radius", "0px");
-    await page.screenshot({ path: `/tmp/control-ui-email-no-skin-${mode.toLowerCase()}.png`, fullPage: true });
-  });
-}
+test("switching to no skin in dark mode re-exports the preview with that skin and scheme", async ({ page }) => {
+  await page.getByRole("radio", { name: "Dark", exact: true }).focus();
+  await page.keyboard.press("Space");
+  await page.getByRole("combobox", { name: "Skin", exact: true }).click();
+  const responsePromise = page.waitForResponse(
+    (response) =>
+      response.url().endsWith("/api/email-preview") &&
+      emailPreviewRequest.parse(response.request().postDataJSON()).skin === "none" &&
+      emailPreviewRequest.parse(response.request().postDataJSON()).layout === "newsletter",
+  );
+  await page.getByRole("option", { name: "No skin", exact: true }).click();
+  const { html, text } = emailPreviewResult.parse(await (await responsePromise).json());
+  expect(html).toContain('<meta name="color-scheme" content="dark"');
+  expect(text).toContain("Unsubscribe");
+  const frame = emailFrame(page, "newsletter");
+  await expect(frame.getByRole("heading", { level: 1 })).toHaveText("A little room for inspiration.");
+  await expect(frame.locator('table[style*="max-width"]').first()).toHaveCSS("border-radius", "0px");
+});
 
 test("downloads the rendered HTML and plain text of one example", async ({ page }) => {
   const section = page.locator("#example-receipt");

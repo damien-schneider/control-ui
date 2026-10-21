@@ -1,9 +1,11 @@
 import { expect, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
+import { waitForReactHydration } from "./browser-test-helpers";
 
 test("theme navigation reopens after browsing the catalog and stays in context for the audit", async ({ page }) => {
-  await page.goto("/theme-editor", { waitUntil: "networkidle" });
+  await page.goto("/theme-editor");
   const sidebar = page.locator("[data-docs-sidebar-navigation]");
+  await waitForReactHydration(sidebar.getByRole("button", { name: "Leave Theme editor", exact: true }));
   await expect(sidebar.getByRole("button", { name: "Generate a theme", exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Copy CSS overrides", exact: true })).toBeHidden();
   await expect(page.getByRole("group", { name: "Page actions for agents", exact: true })).toHaveCount(0);
@@ -36,8 +38,10 @@ for (const width of [360, 1280]) {
       (key) => localStorage.setItem(key, JSON.stringify({ skin: "refined", overrides: { "--radius-control": "7px" }, reduceMotion: true })),
       THEME_EDITOR_STORAGE_KEY,
     );
-    await page.goto("/theme-editor?view=source", { waitUntil: "networkidle" });
-    await page.getByRole("button", { name: "Copy theme prompt", exact: true }).click();
+    await page.goto("/theme-editor?view=source");
+    const copyPrompt = page.getByRole("button", { name: "Copy theme prompt", exact: true });
+    await waitForReactHydration(copyPrompt);
+    await copyPrompt.click();
     const prompt = await page.evaluate(() => navigator.clipboard.readText());
     expect(prompt).toContain("/skins/refined");
     expect(prompt).toContain('data-skin="refined"');
@@ -53,8 +57,10 @@ for (const width of [360, 1280]) {
 
 test("theme generation opens from the mobile sidebar", async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 900 });
-  await page.goto("/theme-editor", { waitUntil: "networkidle" });
-  await page.locator("[data-docs-sidebar-trigger]").getByRole("button", { name: "Toggle Sidebar" }).click();
+  await page.goto("/theme-editor");
+  const sidebarTrigger = page.locator("[data-docs-sidebar-trigger]").getByRole("button", { name: "Toggle Sidebar" });
+  await waitForReactHydration(sidebarTrigger);
+  await sidebarTrigger.click();
   await page.getByRole("button", { name: "Generate a theme", exact: true }).click();
   await expect(page.getByRole("dialog", { name: "Generate a theme", exact: true })).toBeVisible();
   await expect(page.getByRole("textbox", { name: "Message", exact: true })).toBeVisible();
@@ -67,10 +73,11 @@ for (const { name, width, height, reducedMotion } of [
   { name: "desktop", width: 1280, height: 900, reducedMotion: "no-preference" },
   { name: "reduced motion", width: 1280, height: 900, reducedMotion: "reduce" },
 ] as const) {
-  test(`theme editor is a navigable page on ${name}`, async ({ page }, testInfo) => {
+  test(`theme editor is a navigable page on ${name}`, async ({ page }) => {
     await page.setViewportSize({ width, height });
     await page.emulateMedia({ reducedMotion });
-    await page.goto("/components/code-diff", { waitUntil: "networkidle" });
+    await page.goto("/components/code-diff");
+    await waitForReactHydration(page.locator("[data-docs-content]"));
 
     const toolbar = page.getByRole("group", { name: "Documentation controls" });
     const editTheme = toolbar.getByRole("link", { name: "Edit theme" });
@@ -107,7 +114,6 @@ for (const { name, width, height, reducedMotion } of [
           .evaluate((element) => element.scrollWidth - element.clientWidth),
       )
       .toBeLessThanOrEqual(1);
-    await page.screenshot({ path: testInfo.outputPath(`theme-editor-${name}.png`) });
 
     await page.keyboard.press("Escape");
     await expect(page).toHaveURL(/\/theme-editor$/);
@@ -121,8 +127,10 @@ for (const { name, width, height, reducedMotion } of [
 
 test("theme edits survive navigation, direct loads, and refresh", async ({ page, context }) => {
   await context.grantPermissions(["clipboard-read", "clipboard-write"]);
-  await page.goto("/theme-editor", { waitUntil: "networkidle" });
-  await page.getByRole("combobox", { name: "Skin", exact: true }).click();
+  await page.goto("/theme-editor");
+  const skinPicker = page.getByRole("combobox", { name: "Skin", exact: true });
+  await waitForReactHydration(skinPicker);
+  await skinPicker.click();
   await page.getByRole("option", { name: "Refined", exact: true }).click();
   await expect(page.locator("html")).toHaveAttribute("data-skin", "refined");
 
@@ -220,18 +228,21 @@ test("skin source tab recovers from a failed request", async ({ page }) => {
 });
 
 for (const width of [360, 1280]) {
-  test(`skin source uses the page width and links to documentation at ${width}px`, async ({ page, context }, testInfo) => {
+  test(`skin source uses the page width and links to documentation at ${width}px`, async ({ page, context }) => {
     await page.setViewportSize({ width, height: 900 });
     await context.grantPermissions(["clipboard-read", "clipboard-write"]);
-    await page.goto("/theme-editor?skin=sketch", { waitUntil: "networkidle" });
+    await page.goto("/theme-editor?skin=sketch");
 
     const workspace = page.getByRole("region", { name: "Skin workspace", exact: true });
     const views = workspace.getByRole("tablist", { name: "Skin views" });
+    const sourceTab = views.getByRole("tab", { name: "Source", exact: true });
+    await waitForReactHydration(sourceTab);
     await expect(views.getByRole("tab", { name: "Preview", exact: true })).toHaveAttribute("aria-selected", "true");
-    await views.getByRole("tab", { name: "Source", exact: true }).click();
+    await sourceTab.click();
     await expect(page).toHaveURL(/skin=sketch&view=source$/);
-    await page.reload({ waitUntil: "networkidle" });
-    await expect(views.getByRole("tab", { name: "Source", exact: true })).toHaveAttribute("aria-selected", "true");
+    await page.reload();
+    await waitForReactHydration(sourceTab);
+    await expect(sourceTab).toHaveAttribute("aria-selected", "true");
 
     const source = page.getByRole("region", { name: "Sketch source", exact: true });
     await source.getByRole("tab", { name: "skin.css", exact: true }).click();
@@ -261,7 +272,6 @@ for (const width of [360, 1280]) {
     await source.getByRole("tab", { name: "skin.config.tsx", exact: true }).focus();
     await page.keyboard.press("Enter");
     await expect(source.getByRole("tabpanel", { name: "skin.config.tsx", exact: true })).toBeVisible();
-    await page.screenshot({ path: testInfo.outputPath(`skin-source-${width}.png`) });
 
     await workspace.getByRole("link", { name: "Skin documentation" }).click();
     await expect(page).toHaveURL(/\/skins\/sketch#source$/);
@@ -287,14 +297,16 @@ for (const width of [360, 1280]) {
 }
 
 test("copy failure stays actionable without reporting success", async ({ page }) => {
-  await page.goto("/theme-editor", { waitUntil: "networkidle" });
+  await page.goto("/theme-editor");
+  const sourceAndExport = page.getByRole("link", { name: "Source & export", exact: true });
+  await waitForReactHydration(sourceAndExport);
   await page.evaluate(() => {
     navigator.clipboard.writeText = async () => {
       throw new DOMException("Clipboard access denied", "NotAllowedError");
     };
     document.execCommand = () => false;
   });
-  await page.getByRole("link", { name: "Source & export", exact: true }).click();
+  await sourceAndExport.click();
   await page.getByRole("button", { name: "Copy CSS overrides", exact: true }).click();
   const copyStatus = page
     .locator('[data-control-family="page-layout"][data-slot="body"]')
@@ -305,22 +317,25 @@ test("copy failure stays actionable without reporting success", async ({ page })
 });
 
 test("preview form values survive switching to source", async ({ page }) => {
-  await page.goto("/theme-editor", { waitUntil: "networkidle" });
+  await page.goto("/theme-editor");
   const workspace = page.getByRole("region", { name: "Skin workspace", exact: true });
   const views = workspace.getByRole("tablist", { name: "Skin views" });
+  const displayName = workspace.getByRole("textbox", { name: "Display name" });
+  await waitForReactHydration(displayName);
 
-  await workspace.getByRole("textbox", { name: "Display name" }).fill("Theme preview");
+  await displayName.fill("Theme preview");
   await views.getByRole("tab", { name: "Source", exact: true }).click();
   await expect(page).toHaveURL(/view=source$/);
   await views.getByRole("tab", { name: "Preview", exact: true }).click();
-  await expect(workspace.getByRole("textbox", { name: "Display name" })).toHaveValue("Theme preview");
+  await expect(displayName).toHaveValue("Theme preview");
 });
 
 test("category pages pair previews with the token panel", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto("/theme-editor/color", { waitUntil: "networkidle" });
+  await page.goto("/theme-editor/color");
   const panel = page.getByRole("region", { name: "Theme variables", exact: true });
   await expect(panel).toBeVisible();
+  await waitForReactHydration(panel);
   await expect(page.getByRole("navigation", { name: "On this page" })).toHaveCount(0);
   const article = page.locator('[data-control-family="page-layout"][data-slot="content"]');
   const [articleBox, panelBox] = await Promise.all([article.boundingBox(), panel.boundingBox()]);
@@ -338,13 +353,15 @@ test("category pages pair previews with the token panel", async ({ page }) => {
 });
 
 for (const width of [360, 1280]) {
-  test(`workspace controls and source tools work at ${width}px`, async ({ page, context }, testInfo) => {
+  test(`workspace controls and source tools work at ${width}px`, async ({ page, context }) => {
     await page.setViewportSize({ width, height: 900 });
     await context.grantPermissions(["clipboard-read", "clipboard-write"]);
-    await page.goto("/theme-editor?view=source", { waitUntil: "networkidle" });
+    await page.goto("/theme-editor?view=source");
     const workspace = page.getByRole("region", { name: "Skin workspace", exact: true });
     const controls = width < 1024 ? workspace : page.locator("[data-docs-sidebar-navigation]");
-    await controls.getByRole("combobox", { name: width < 1024 ? "Skin preset" : "Skin", exact: true }).click();
+    const skinPicker = controls.getByRole("combobox", { name: width < 1024 ? "Skin preset" : "Skin", exact: true });
+    await waitForReactHydration(skinPicker);
+    await skinPicker.click();
     await page.getByRole("option", { name: "Refined", exact: true }).click();
     await expect(page.locator("html")).toHaveAttribute("data-skin", "refined");
     await controls.getByRole("radio", { name: "Dark", exact: true }).press("Space");
@@ -385,6 +402,5 @@ for (const width of [360, 1280]) {
           .evaluate((element) => element.scrollWidth - element.clientWidth),
       )
       .toBeLessThanOrEqual(1);
-    await page.screenshot({ path: testInfo.outputPath(`source-tools-${width}.png`) });
   });
 }

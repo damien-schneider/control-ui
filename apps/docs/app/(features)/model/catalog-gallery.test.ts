@@ -5,7 +5,6 @@ import { componentEntries } from "@/app/(features)/catalog/components";
 import { kitEntries } from "@/app/(features)/catalog/kits";
 import { docsPageManifest } from "@/app/(features)/catalog/pages";
 import { pageLinks } from "@/app/(features)/client/page-links";
-import type { BlockId } from "@/app/(features)/model/types";
 import { sidebarPaneForActivePage } from "@/app/(features)/sidebar/nav-items";
 import { componentGalleryGroups, kitGalleryGroups, templateGalleryGroups } from "./catalog-gallery";
 
@@ -51,24 +50,11 @@ describe("catalog galleries", () => {
   test("renders every template once in taxonomy order with canonical links", () => {
     const groups = templateGalleryGroups();
     const items = groups.flatMap((group) => group.items);
-    const expectedTemplateIds = [
-      "chat",
-      "coding-agent",
-      "agent-run",
-      "settings",
-      "team-chat",
-      "file-explorer",
-      "design-canvas",
-    ] satisfies BlockId[];
-
     expect(groups.map((group) => group.id)).toEqual(templateKinds.map((kind) => kind.slug));
-    expect(
-      groups
-        .find((group) => group.kind === "screen")
-        ?.items.map((item) => item.id)
-        .toSorted(),
-    ).toEqual(expectedTemplateIds.toSorted());
-    expect(groups.find((group) => group.kind === "pattern")?.items.map((item) => item.id)).toEqual(["discussion", "theme-toggle"]);
+    for (const group of groups) {
+      const expectedIds = blockEntries.filter((entry) => entry.templateKind === group.kind).map((entry) => entry.id);
+      expect(group.items.map((item) => item.id).toSorted()).toEqual(expectedIds.toSorted());
+    }
     expect(items.map((item) => item.id).toSorted()).toEqual(blockEntries.map((entry) => entry.id).toSorted());
     expect(new Set(items.map((item) => item.id)).size).toBe(blockEntries.length);
     expect(items.every((item) => item.href === `/templates/${item.id}`)).toBe(true);

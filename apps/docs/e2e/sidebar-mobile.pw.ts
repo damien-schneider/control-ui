@@ -9,7 +9,6 @@ test.setTimeout(60_000);
 
 test.beforeEach(async ({ page }) => {
   await page.addInitScript((key) => {
-    Object.assign(window, { __REACT_GRAB_DISABLED__: true, __REACT_SCAN_DISABLED__: true });
     localStorage.setItem(key, JSON.stringify({ skin: "refined", mode: "light" }));
   }, THEME_EDITOR_STORAGE_KEY);
 });

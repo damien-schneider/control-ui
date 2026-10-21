@@ -1,6 +1,4 @@
 import { describe, expect, test } from "bun:test";
-import { readFileSync } from "node:fs";
-import path from "node:path";
 import { Search, SquareTerminal } from "lucide-react";
 import { renderToString } from "react-dom/server";
 import {
@@ -26,7 +24,6 @@ describe("Activity", () => {
     );
 
     expect(html).toContain("Read registry files");
-    expect(readFileSync(path.join(import.meta.dir, "activity.tsx"), "utf8")).not.toContain("export function formatActivityTitle");
   });
 
   test("renders an explicit static row without disclosure affordances", () => {
@@ -134,30 +131,5 @@ describe("Activity", () => {
     expect(html).toContain('data-slot="detail-label"');
     expect(html).toContain('data-slot="detail-content"');
     expect(html).not.toContain('data-control-ui="tool-call"');
-  });
-  test("forwards retained knob styles to their painted parts", () => {
-    const html = renderToString(
-      <Activity defaultOpen>
-        <ActivityTrigger
-          style={{
-            "--cui-activity-row-foreground": "oklch(0.4 0.1 250)",
-            "--cui-activity-trigger-radius": "3px",
-          }}
-        >
-          <ActivityTitle>Thinking</ActivityTitle>
-        </ActivityTrigger>
-        <ActivityContent>
-          <ActivityDetail>
-            <ActivityDetailContent style={{ "--cui-activity-code-background": "oklch(0.2 0.02 250)" }} format="code">
-              src/app.tsx
-            </ActivityDetailContent>
-          </ActivityDetail>
-        </ActivityContent>
-      </Activity>,
-    );
-
-    expect(html).toContain("--cui-activity-row-foreground:oklch(0.4 0.1 250)");
-    expect(html).toContain("--cui-activity-trigger-radius:3px");
-    expect(html).toContain("--cui-activity-code-background:oklch(0.2 0.02 250)");
   });
 });

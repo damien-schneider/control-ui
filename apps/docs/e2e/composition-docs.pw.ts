@@ -21,22 +21,10 @@ test("Context keeps its hierarchy after loading and navigating between docs", as
     "<ContextDescription />",
     "<ContextClose />",
   ]);
-  await expect(composition).not.toContainText("Exported parts");
-  await composition.screenshot({ path: "/tmp/control-ui-composition-context.png" });
   await page.reload();
   await expect(composition.getByRole("heading", { name: "Context inspector" })).toBeVisible();
   await expect(header.locator(":scope > ul > li")).toHaveCount(3);
 });
-
-for (const route of ["/kits/inline-citation", "/components/input-otp", "/components/dropdown-menu", "/templates/theme-toggle"]) {
-  test(`${route} renders authored composition trees`, async ({ page }) => {
-    await page.goto(route);
-    const composition = page.locator("#composition:visible");
-    await expect(composition).toBeVisible();
-    await expect(composition.locator("li > ul").first()).toBeVisible();
-    await expect(composition).not.toContainText("exported parts");
-  });
-}
 
 test("long composition names scroll by keyboard without overflowing a narrow page", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
@@ -51,5 +39,4 @@ test("long composition names scroll by keyboard without overflowing a narrow pag
   await tree.press("ArrowRight");
   await expect.poll(() => tree.evaluate((element) => element.scrollLeft)).toBeGreaterThan(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
-  await composition.screenshot({ path: "/tmp/control-ui-composition-mobile.png" });
 });

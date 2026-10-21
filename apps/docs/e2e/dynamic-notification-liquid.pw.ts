@@ -101,6 +101,9 @@ test("liquid notification keeps a visible lens field beyond the antialiased rim"
   await expect(canvas).toHaveAttribute("data-glass-ready", "true");
   await island.getByRole("button", { name: "Assistant" }).click();
   await expect(island).toHaveAttribute("data-state", "expanded");
+  await island.locator('[data-control-ui="dynamic-notification"][data-slot="content"]').evaluate((element) => {
+    element.style.visibility = "hidden";
+  });
 
   await scene.evaluate(async (element) => {
     const liquidIsland = element.querySelector<HTMLElement>(
@@ -187,22 +190,24 @@ test("liquid notification keeps a visible lens field beyond the antialiased rim"
     return Array.from({ length: 39 }, (_, index) => displacement(index + 2));
   }, png.toString("base64"));
 
-  const displacements = lens.map((sample) => sample.displacement);
+  const firstUnreadableIndex = lens.findIndex((sample) => sample.chroma < 8);
+  const readableLens = firstUnreadableIndex === -1 ? lens : lens.slice(0, firstUnreadableIndex);
+  const displacements = readableLens.map((sample) => sample.displacement);
   const medianMidBand = [...displacements.slice(8, 11)].sort((left, right) => left - right)[1] ?? 0;
-  const interiorDisplacements = displacements
-    .slice(32)
+  const innerBand = displacements
+    .slice(-8)
     .map(Math.abs)
     .sort((left, right) => left - right);
-  const medianInterior = interiorDisplacements[Math.floor(interiorDisplacements.length / 2)] ?? Number.POSITIVE_INFINITY;
+  const medianInnerBand = innerBand[Math.floor(innerBand.length / 2)] ?? Number.POSITIVE_INFINITY;
   const visibleWidth = displacements.reduce((lastVisible, value, index) => (value >= 1 ? index + 2 : lastVisible), 0);
 
+  expect(readableLens.length, JSON.stringify(lens)).toBeGreaterThanOrEqual(24);
   expect(Math.min(...lens.slice(0, 17).map((sample) => sample.chroma)), JSON.stringify(lens)).toBeGreaterThanOrEqual(10);
   expect(Math.max(...displacements.slice(0, 13)), JSON.stringify(displacements)).toBeGreaterThanOrEqual(6);
   expect(Math.max(...displacements.slice(0, 13)), JSON.stringify(displacements)).toBeLessThanOrEqual(24);
   expect(medianMidBand, JSON.stringify(displacements)).toBeGreaterThanOrEqual(4);
   expect(visibleWidth, JSON.stringify(displacements)).toBeGreaterThanOrEqual(24);
-  expect(medianInterior, JSON.stringify(displacements)).toBeLessThanOrEqual(1.25);
-  expect(Math.max(...interiorDisplacements), JSON.stringify(displacements)).toBeLessThanOrEqual(2.75);
+  expect(medianInnerBand, JSON.stringify(displacements)).toBeLessThanOrEqual(medianMidBand / 3);
 
   const geometry = await scene.evaluate(async (element) => {
     const liquidIsland = element.querySelector<HTMLElement>(

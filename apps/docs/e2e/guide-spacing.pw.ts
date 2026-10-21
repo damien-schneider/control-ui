@@ -23,7 +23,7 @@ async function measureHeadingGaps(flow: Locator) {
 }
 
 for (const width of [390, 1440]) {
-  test(`${width}px: install guide separates adjacent examples and other section blocks`, async ({ page }, testInfo) => {
+  test(`${width}px: install guide separates adjacent examples and other section blocks`, async ({ page }) => {
     await page.addInitScript(
       ({ editorStorageKey, modeStorageKey }) => {
         localStorage.setItem(editorStorageKey, JSON.stringify({ skin: "refined" }));
@@ -47,8 +47,6 @@ for (const width of [390, 1440]) {
       expect(gaps.length).toBeGreaterThan(0);
       for (const gap of gaps) expect(gap, sectionId).toBeCloseTo(16, 0);
     }
-
-    await packageSection.screenshot({ path: testInfo.outputPath("package-block-spacing.png") });
 
     const packageBody = packageSection.locator('[data-control-family="markdown"][data-slot="flow"]');
     const markdownRoot = page.locator('main [data-control-family="markdown"][data-slot="root"]').first();

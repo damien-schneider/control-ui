@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import postcss, { AtRule, type Container, type Document, type Root, type Rule } from "postcss";
 import selectorParser from "postcss-selector-parser";
 import { knobsByFamily } from "../../../scripts/knob-contracts/collect";
-import { readCssWithImports } from "../../../scripts/read-css";
+import { readCssRulesWithImports } from "../../../scripts/read-css";
 
 const RECIPES_DIR = fileURLToPath(new URL("../sources/control-ui/recipes/", import.meta.url));
 const SKIN_PACKS_DIR = fileURLToPath(new URL("./", import.meta.url));
@@ -18,7 +18,7 @@ const recipes = readdirSync(RECIPES_DIR)
 const skins = readdirSync(SKIN_PACKS_DIR)
   .filter((entry) => statSync(path.join(SKIN_PACKS_DIR, entry)).isDirectory())
   .sort()
-  .map((id) => ({ id, root: postcss.parse(readCssWithImports(path.join(SKIN_PACKS_DIR, id, "skin.css"))) }));
+  .map((id) => ({ id, root: postcss.parse(readCssRulesWithImports(path.join(SKIN_PACKS_DIR, id, "skin.css"))) }));
 
 const familyKnobs = knobsByFamily();
 const allKnobs = Object.values(familyKnobs).flat();

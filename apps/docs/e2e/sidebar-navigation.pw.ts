@@ -6,7 +6,6 @@ const sidebarPopup = '[data-popup-part="surface"]:is([data-popup-kind="sheet"], 
 
 test.beforeEach(async ({ page }) => {
   await page.addInitScript((storageKey) => {
-    Object.assign(window, { __REACT_GRAB_DISABLED__: true, __REACT_SCAN_DISABLED__: true });
     localStorage.setItem(storageKey, JSON.stringify({ skin: "refined", mode: "light" }));
   }, THEME_EDITOR_STORAGE_KEY);
 });

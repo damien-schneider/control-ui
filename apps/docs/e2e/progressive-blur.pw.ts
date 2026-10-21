@@ -118,9 +118,15 @@ test("blur feathers into the clipped edge while still softening content", async 
   });
   const withoutBlur = await scrollArea.screenshot();
   const screenshots: [Buffer, Buffer] = [withBlur, withoutBlur];
-  const edgeDifference = await meanScreenshotDifference(page, screenshots, { x: 40, y: 1, width: 80, height: 1 });
+  const fadeRowDifferences: number[] = [];
+  for (let row = 0; row < 8; row += 1) {
+    fadeRowDifferences.push(await meanScreenshotDifference(page, screenshots, { x: 40, y: row, width: 80, height: 1 }));
+  }
   const interiorDifference = await meanScreenshotDifference(page, screenshots, { x: 40, y: 16, width: 80, height: 8 });
-  expect(edgeDifference).toBeLessThan(5);
+  expect(fadeRowDifferences[0]).toBeLessThan(5);
+  for (let row = 1; row < fadeRowDifferences.length; row += 1) {
+    expect(fadeRowDifferences[row], JSON.stringify(fadeRowDifferences)).toBeGreaterThanOrEqual(fadeRowDifferences[row - 1] - 1);
+  }
   expect(interiorDifference).toBeGreaterThan(20);
 });
 
@@ -154,12 +160,7 @@ test("RTL inline edges follow scrolling and keyboard focus stays usable", async 
   await expect(end).toHaveCSS("visibility", "hidden");
   await expect(viewport).toHaveCSS("mask-image", "none");
   expect(await viewport.evaluate((element) => element.scrollLeft)).toBeLessThan(0);
-  const viewportBounds = await viewport.boundingBox();
-  const lastButtonBounds = await buttons.last().boundingBox();
-  expect(viewportBounds).not.toBeNull();
-  expect(lastButtonBounds).not.toBeNull();
-  if (!viewportBounds || !lastButtonBounds) throw new Error("Missing focused control bounds");
-  expect(lastButtonBounds.x).toBeGreaterThanOrEqual(viewportBounds.x);
+  await expect(buttons.last()).toBeInViewport();
   await buttons.last().click();
   await buttons.last().blur();
   await viewport.evaluate((element) => {

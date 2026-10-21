@@ -11,8 +11,6 @@ for (const skinId of ["none", "mastra"]) {
       await page.setViewportSize({ width: 1440, height: 1000 });
       await page.addInitScript(
         ({ skin, storageKey }) => {
-          window.__REACT_GRAB_DISABLED__ = true;
-          window.__REACT_SCAN_DISABLED__ = true;
           localStorage.setItem(storageKey, JSON.stringify({ skin }));
         },
         { skin: skinId, storageKey: THEME_EDITOR_STORAGE_KEY },

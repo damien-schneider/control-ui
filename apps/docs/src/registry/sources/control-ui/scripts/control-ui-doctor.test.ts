@@ -87,17 +87,26 @@ function emitCss(artifact: ControlUiThemeArtifactV1) {
 }
 
 describe("control-ui-doctor --emit-css", () => {
-  for (const artifact of packThemeArtifacts()) {
-    test(`emits the same CSS as the drawer for the ${artifact.baseSkin} pack`, () => {
-      expect(emitCss(artifact).css).toBe(themeArtifactCss(artifact));
-    });
-  }
+  const artifacts = packThemeArtifacts();
+  const coreArtifact = artifacts.find((artifact) => artifact.baseSkin === "none");
+  const reducedMotionPack = artifacts.find((artifact) => artifact.reduceMotion);
+  if (!(coreArtifact && reducedMotionPack)) throw new Error("expected the core artifact and a pack that reduces motion");
 
-  test("reminds the reader to stamp data-motion when the theme reduces motion", () => {
-    const artifact = packThemeArtifacts().find((pack) => pack.reduceMotion);
-    if (!artifact) throw new Error("no shipped pack artifact reduces motion");
-    expect(emitCss(artifact).stdout).toContain('data-motion="reduced"');
-    expect(emitCss({ ...artifact, reduceMotion: false }).stdout).not.toContain('data-motion="reduced"');
+  test("emits the drawer's :root CSS for the core theme", () => {
+    expect(emitCss(coreArtifact).css).toBe(themeArtifactCss(coreArtifact));
+  });
+
+  test("emits the drawer's pack-scoped CSS and reminds the reader to stamp data-motion", () => {
+    const emitted = emitCss(reducedMotionPack);
+    expect(emitted.css).toBe(themeArtifactCss(reducedMotionPack));
+    expect(emitted.stdout).toContain('data-motion="reduced"');
+  });
+
+  test("omits the dark block and the motion reminder when the theme sets neither", () => {
+    const lightOnly = { ...reducedMotionPack, reduceMotion: false, tokens: { ...reducedMotionPack.tokens, dark: {} } };
+    const emitted = emitCss(lightOnly);
+    expect(emitted.css).toBe(themeArtifactCss(lightOnly));
+    expect(emitted.stdout).not.toContain('data-motion="reduced"');
   });
 
   test("refuses a path that is not a theme artifact", () => {

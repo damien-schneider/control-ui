@@ -5,10 +5,6 @@ import { waitForReactHydration } from "./browser-test-helpers";
 test.use({ trace: "off" });
 
 test("Preview and Code retain example state and source scroll position after a visit", async ({ page }) => {
-  await page.addInitScript(() => {
-    window.__REACT_GRAB_DISABLED__ = true;
-    window.__REACT_SCAN_DISABLED__ = true;
-  });
   await page.goto("/components/sidebar");
   const tabs = page.locator('#preview > [data-control-family="tabs"][data-slot="root"]');
   await waitForReactHydration(tabs.getByRole("tab", { name: "Code", exact: true }));
@@ -40,8 +36,6 @@ for (const skin of ["none", "mastra"]) {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.addInitScript(
       ({ skin: selectedSkin, storageKey }) => {
-        window.__REACT_GRAB_DISABLED__ = true;
-        window.__REACT_SCAN_DISABLED__ = true;
         localStorage.setItem(storageKey, JSON.stringify({ skin: selectedSkin }));
       },
       { skin, storageKey: THEME_EDITOR_STORAGE_KEY },

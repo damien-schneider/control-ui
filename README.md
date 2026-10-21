@@ -14,7 +14,6 @@ npx shadcn@latest add https://control-ui.dev/r/all.json
 
 [Browse the skins](https://control-ui.dev/skins) · [Windows 98](https://control-ui.dev/skins/windows-98) · [Windows XP](https://control-ui.dev/skins/xp) · [Linear](https://control-ui.dev/skins/linear)
 
-[![CI](https://github.com/damien-schneider/control-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/damien-schneider/control-ui/actions/workflows/ci.yml)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![Documentation](https://img.shields.io/badge/docs-control--ui.dev-black.svg)](https://control-ui.dev)
 
@@ -162,7 +161,8 @@ The docs app runs at `http://127.0.0.1:3000`. No environment variables are requi
 | `bun run lint` | Run Biome lint |
 | `bun run format:check` | Check formatting |
 | `cd apps/docs && bun test` | Run the docs workspace test suite |
-| `cd apps/docs && bun run test:browser` | Run Playwright browser tests |
+| `cd apps/docs && bun run test:browser` | Run Playwright browser tests in parallel |
+| `cd apps/docs && bun run test:browser:audits` | Run performance benchmarks and full-site sweeps one at a time |
 | `bun run build` | Build the production docs app |
 
 Run `bun run sync` after changing registry source, catalog metadata, or skin packs. Commit generated outputs with the source change.

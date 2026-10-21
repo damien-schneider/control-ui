@@ -3,7 +3,7 @@ import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { waitForReactHydration } from "./browser-test-helpers";
 
 for (const skin of ["refined", "xp"]) {
-  test(`${skin}: toast buttons inherit button styling and preserve keyboard actions`, async ({ page }, testInfo) => {
+  test(`${skin}: toast buttons inherit button styling and preserve keyboard actions`, async ({ page }) => {
     await page.addInitScript(({ storageKey, activeSkin }) => localStorage.setItem(storageKey, JSON.stringify({ skin: activeSkin })), {
       storageKey: THEME_EDITOR_STORAGE_KEY,
       activeSkin: skin,
@@ -16,7 +16,6 @@ for (const skin of ["refined", "xp"]) {
     const archivedToast = page.locator('[data-control-ui="toast"][data-slot="root"]').filter({ hasText: "Message archived" });
     const undo = archivedToast.getByRole("button", { name: "Undo", exact: true });
     await expect(undo).toBeVisible();
-    await archivedToast.screenshot({ path: testInfo.outputPath("toast.png") });
     await page.keyboard.press("F6");
     await page.keyboard.press("Tab");
     await expect(archivedToast).toBeFocused();

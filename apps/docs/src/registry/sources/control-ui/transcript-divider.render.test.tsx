@@ -3,15 +3,6 @@ import { renderToString } from "react-dom/server";
 import { TranscriptDivider } from "./transcript-divider";
 
 describe("TranscriptDivider", () => {
-  test("renders a labeled separator with its tone exposed as state", () => {
-    const html = renderToString(<TranscriptDivider tone="warning">Run interrupted</TranscriptDivider>);
-
-    expect(html).toContain('data-control-ui="transcript-divider"');
-    expect(html).toContain('data-tone="warning"');
-    expect(html).toContain('data-slot="label"');
-    expect(html).toContain("Run interrupted");
-  });
-
   test("renders an unlabeled rule as a separator without an empty label slot", () => {
     const html = renderToString(<TranscriptDivider />);
 

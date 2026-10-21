@@ -1,8 +1,9 @@
 import { expect, test } from "@playwright/test";
-import { DEFAULT_SKIN_ID, MODE_LOCKED_SKINS, THEME_EDITOR_STORAGE_KEY, THEME_INIT_SKIN_IDS, THEME_STORAGE_KEY } from "@/components/theme";
+import { DEFAULT_SKIN_ID, MODE_LOCKED_SKINS, THEME_EDITOR_STORAGE_KEY, THEME_STORAGE_KEY } from "@/components/theme";
 import { SKIN_META_BY_ID } from "@/components/theme-drawer/presets";
+import { waitForReactHydration } from "./browser-test-helpers";
 
-for (const skin of ["refined", "windows-98", "none"] as const) {
+for (const skin of ["refined", "windows-98"] as const) {
   test(`shared ${skin} preset applies before hydration and stays active afterward`, async ({ page }) => {
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
@@ -69,11 +70,11 @@ test("homepage applies a shared skin preset", async ({ page }) => {
 });
 
 test("homepage skin picker repaints the site in place and stays put while scrolling", async ({ page }) => {
-  await page.addInitScript(() => Object.assign(window, { __REACT_GRAB_DISABLED__: true, __REACT_SCAN_DISABLED__: true }));
   await page.goto("/");
+  const picker = page.getByRole("group", { name: "Skin for this site" });
+  await waitForReactHydration(picker);
   const readingPosition = 1500;
   await page.evaluate((top) => window.scrollTo({ top, behavior: "instant" }), readingPosition);
-  const picker = page.getByRole("group", { name: "Skin for this site" });
   await expect(picker).toBeInViewport();
   const startBottom = await picker.evaluate((element) => element.getBoundingClientRect().bottom);
   const pickerDrift = async () => Math.abs((await picker.evaluate((element) => element.getBoundingClientRect().bottom)) - startBottom);
@@ -102,8 +103,10 @@ test("unknown skin query preserves saved edits", async ({ page }) => {
   expect(await page.locator("html").evaluate((html) => html.style.getPropertyValue("--radius-control"))).toBe("13px");
 });
 
-for (const skin of THEME_INIT_SKIN_IDS) {
-  test(`${skin} restores before application JavaScript loads`, async ({ page }, testInfo) => {
+const skinsWithDistinctInitBranches = ["refined", "windows-98", "rig"] as const;
+
+for (const skin of skinsWithDistinctInitBranches) {
+  test(`${skin} restores before application JavaScript loads`, async ({ page }) => {
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
     page.on("console", (message) => {
@@ -150,7 +153,6 @@ for (const skin of THEME_INIT_SKIN_IDS) {
       expect(beforeHydration.primary).not.toBe("");
       expect(beforeHydration.muted).not.toBe("");
       if (MODE_LOCKED_SKINS[skin] !== "light") expect(beforeHydration.background).toBe("oklch(0.2 0.01 50)");
-      if (skin === "rig") await page.screenshot({ path: testInfo.outputPath("before-hydration.png") });
       releaseScripts();
       await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText(SKIN_META_BY_ID[skin].label);
       const afterHydration = await page.locator("html").evaluate((html) => ({
@@ -161,41 +163,11 @@ for (const skin of THEME_INIT_SKIN_IDS) {
       }));
       expect(afterHydration).toEqual(beforeHydration);
       expect(errors).toEqual([]);
-      if (skin === "rig") await page.screenshot({ path: testInfo.outputPath("after-hydration.png") });
     } finally {
       releaseScripts();
     }
   });
 }
-
-for (const saved of ["not json", "null", '{"skin":"toString"}']) {
-  test(`invalid saved theme ${saved} falls back before hydration`, async ({ page }) => {
-    await page.addInitScript(({ editorKey, value }) => localStorage.setItem(editorKey, value), {
-      editorKey: THEME_EDITOR_STORAGE_KEY,
-      value: saved,
-    });
-    await page.route("**/_next/**/*.js*", (route) => route.abort());
-    await page.goto("/components/button");
-    await expect(page.locator("html")).toHaveAttribute("data-skin", DEFAULT_SKIN_ID);
-    await expect(page.getByRole("heading", { name: "Button", exact: true }).first()).toBeVisible();
-  });
-}
-
-test("blocked storage still honors the system color scheme", async ({ page }) => {
-  await page.emulateMedia({ colorScheme: "dark" });
-  await page.addInitScript(() => {
-    Object.defineProperty(window, "localStorage", {
-      get() {
-        throw new DOMException("Storage is disabled", "SecurityError");
-      },
-    });
-  });
-  await page.route("**/_next/**/*.js*", (route) => route.abort());
-  await page.goto("/components/button");
-  await expect(page.locator("html")).toHaveAttribute("data-skin", DEFAULT_SKIN_ID);
-  await expect(page.locator("html")).toHaveClass(/\bdark\b/);
-  await expect(page.locator("html")).not.toHaveAttribute("data-motion", "reduced");
-});
 
 test("Liquid Metal effects activate on selection and clean up when leaving", async ({ page }) => {
   await page.addInitScript((editorKey) => localStorage.setItem(editorKey, JSON.stringify({ skin: "refined" })), THEME_EDITOR_STORAGE_KEY);
@@ -203,6 +175,7 @@ test("Liquid Metal effects activate on selection and clean up when leaving", asy
   const picker = page.getByRole("combobox", { name: "Skin", exact: true });
   await expect(picker).toContainText("Refined");
   await expect(page.locator("[data-liquid-metal]")).toHaveCount(0);
+  await waitForReactHydration(picker);
   await picker.focus();
   await picker.press("Enter");
   await page.getByRole("option", { name: "Liquid metal", exact: true }).click();

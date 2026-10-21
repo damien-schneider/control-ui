@@ -20,57 +20,45 @@ async function sampleFoldingMotion(panel: Locator) {
   });
 }
 
-for (const mode of ["light", "dark"] as const) {
-  for (const width of [390, 1440]) {
-    test(`${mode} ${width}px: getting started paints its full surface outside the open panel`, async ({ page }, testInfo) => {
-      await page.addInitScript(
-        ({ editorStorageKey, modeStorageKey, themeMode }) => {
-          localStorage.setItem(editorStorageKey, JSON.stringify({ skin: "refined" }));
-          localStorage.setItem(modeStorageKey, themeMode);
-        },
-        { editorStorageKey: THEME_EDITOR_STORAGE_KEY, modeStorageKey: THEME_STORAGE_KEY, themeMode: mode },
-      );
-      await page.setViewportSize({ width, height: 1000 });
-      await page.emulateMedia({ reducedMotion: "reduce", colorScheme: mode });
-      await page.goto("/get-started");
-      await expect(page.locator("html")).toHaveAttribute("data-skin", "refined");
-      await expect(page.locator("html")).toHaveCSS("color-scheme", mode);
-      if (width < 768) {
-        const sidebarTrigger = page.getByRole("button", { name: "Toggle sidebar", exact: true });
-        await waitForReactHydration(sidebarTrigger);
-        await sidebarTrigger.press("Enter");
-      }
-      const navigation = page.locator("[data-docs-sidebar-navigation]:visible");
-      const trigger = navigation.getByRole("button", { name: "Getting started", exact: true });
-      await waitForReactHydration(trigger);
-      const card = navigation.locator('[data-control-family="card"][data-slot="root"]');
-      await expect(card).toBeVisible();
-      const bounds = await card.boundingBox();
-      if (!bounds) throw new Error("Getting started card is not rendered");
-      await page.screenshot({
-        path: testInfo.outputPath("getting-started.png"),
-        clip: {
-          x: 0,
-          y: Math.max(0, bounds.y - 35),
-          width: Math.ceil(bounds.x + bounds.width + 8),
-          height: Math.ceil(bounds.height + 59),
-        },
-      });
-      await card.evaluate((element) => element.style.setProperty("--cui-card-shadow", "0 0 0 4px var(--foreground)"));
-      const bottomRim = { x: bounds.x + 16, y: bounds.y + bounds.height, width: bounds.width - 32, height: 4 };
-      const paintedRim = await page.screenshot({ clip: bottomRim });
-      await card.evaluate((element) => element.style.setProperty("--cui-card-shadow", "none"));
-      const withoutRim = await page.screenshot({ clip: bottomRim });
-      expect(await meanScreenshotDifference(page, [paintedRim, withoutRim])).toBeGreaterThan(10);
-      await card.evaluate((element) => element.style.removeProperty("--cui-card-shadow"));
+for (const width of [390, 1440]) {
+  test(`${width}px: getting started paints its full surface outside the open panel`, async ({ page }) => {
+    await page.addInitScript(
+      ({ editorStorageKey, modeStorageKey }) => {
+        localStorage.setItem(editorStorageKey, JSON.stringify({ skin: "refined" }));
+        localStorage.setItem(modeStorageKey, "light");
+      },
+      { editorStorageKey: THEME_EDITOR_STORAGE_KEY, modeStorageKey: THEME_STORAGE_KEY },
+    );
+    await page.setViewportSize({ width, height: 1000 });
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/get-started");
+    await expect(page.locator("html")).toHaveAttribute("data-skin", "refined");
+    if (width < 768) {
+      const sidebarTrigger = page.getByRole("button", { name: "Toggle sidebar", exact: true });
+      await waitForReactHydration(sidebarTrigger);
+      await sidebarTrigger.press("Enter");
+    }
+    const navigation = page.locator("[data-docs-sidebar-navigation]:visible");
+    const trigger = navigation.getByRole("button", { name: "Getting started", exact: true });
+    await waitForReactHydration(trigger);
+    const card = navigation.locator('[data-control-family="card"][data-slot="root"]');
+    await expect(card).toBeVisible();
+    const bounds = await card.boundingBox();
+    if (!bounds) throw new Error("Getting started card is not rendered");
+    await card.evaluate((element) => element.style.setProperty("--cui-card-shadow", "0 0 0 4px var(--foreground)"));
+    const bottomRim = { x: bounds.x + 16, y: bounds.y + bounds.height, width: bounds.width - 32, height: 4 };
+    const paintedRim = await page.screenshot({ clip: bottomRim });
+    await card.evaluate((element) => element.style.setProperty("--cui-card-shadow", "none"));
+    const withoutRim = await page.screenshot({ clip: bottomRim });
+    expect(await meanScreenshotDifference(page, [paintedRim, withoutRim])).toBeGreaterThan(10);
+    await card.evaluate((element) => element.style.removeProperty("--cui-card-shadow"));
 
-      await trigger.press("Enter");
-      await expect(card).toBeHidden();
-      await trigger.press("Space");
-      await expect(card).toBeVisible();
-      await expect(card.locator("..").locator("..")).toHaveCSS("overflow", "visible");
-    });
-  }
+    await trigger.press("Enter");
+    await expect(card).toBeHidden();
+    await trigger.press("Space");
+    await expect(card).toBeVisible();
+    await expect(card.locator("..").locator("..")).toHaveCSS("overflow", "visible");
+  });
 }
 
 const foldingExamples = [

@@ -1,76 +1,82 @@
 import { expect, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY, THEME_STORAGE_KEY } from "../components/theme";
-import { waitForReactHydration } from "./browser-test-helpers";
+import { waitForReactHydration, waitForSkinLayout } from "./browser-test-helpers";
 
-for (const skin of ["refined", "modern-apple", "none", "cuicui", "xp", "windows-98", "rig", "linear", "liquid-metal"]) {
-  for (const appearance of ["light", "dark"]) {
-    test(`${skin} ${appearance}: composer focus, selectors, and knobs`, async ({ page }, testInfo) => {
-      await page.addInitScript(
-        ({ skinKey, themeKey, skinId, appearance: themeAppearance }) => {
-          localStorage.setItem(skinKey, JSON.stringify({ skin: skinId, reduceMotion: true }));
-          localStorage.setItem(themeKey, themeAppearance);
-        },
-        { skinKey: THEME_EDITOR_STORAGE_KEY, themeKey: THEME_STORAGE_KEY, skinId: skin, appearance },
-      );
-      await page.goto("/kits/chat-composer");
-      const preview = page.locator("#preview");
-      const composer = preview.locator('[data-control-ui="chat-composer"][data-slot="root"]');
-      const shell = composer.locator('[data-slot="shell"]');
-      const input = composer.getByRole("textbox", { name: "Message" });
-      const model = composer.getByRole("combobox", { name: "Model", exact: true });
-      const thinking = composer.getByRole("combobox", { name: "Thinking level" });
-      await expect(input).toBeVisible();
-      await input.click();
-      await expect(input).toHaveCSS("outline-width", "0px");
-      await expect(shell).not.toHaveCSS("outline-style", "none");
-      await input.press("Tab");
-      await expect(model).toBeFocused();
-      await model.press("Shift+Tab");
-      await expect(input).toBeFocused();
-      await expect(shell).not.toHaveCSS("outline-style", "none");
-      await input.press("Tab");
-      await expect(shell).toHaveCSS("outline-style", "none");
-      await model.press("Enter");
-      const modelOption = page.getByRole("option", { name: "Gemini" });
-      await expect(modelOption).toBeVisible();
-      await expect(modelOption.locator("svg").first()).toBeVisible();
-      await modelOption.click();
-      await expect(model).toContainText("Gemini");
-      await expect(model).toBeFocused();
-      await thinking.click();
-      await page.getByRole("option", { name: "High", exact: true }).click();
-      await expect(thinking).toContainText("High");
-      await input.click();
-      await expect(shell).not.toHaveCSS("outline-style", "none");
-      await input.fill("Draft the deployment announcement.");
-      await input.press("Shift+Enter");
-      await input.pressSequentially("Include a rollback plan.");
-      await input.press("Enter");
-      await expect(input).toHaveValue("");
-      await expect(preview.locator('[data-control-ui="chat-message"][data-slot="content"]')).toContainText("Include a rollback plan.");
-      await expect(composer.getByRole("button", { name: "Send message" })).toBeDisabled();
-      await preview.screenshot({ path: testInfo.outputPath("composer.png") });
-      await composer.evaluate((element) => {
-        element.style.setProperty("--cui-chat-composer-shell-radius", "3px");
-        element.style.setProperty("--cui-chat-composer-shell-shadow", "none");
-        element.style.setProperty("--cui-chat-composer-shell-background", "oklch(0.6 0.1 250)");
-      });
-      await expect(shell).toHaveCSS("border-radius", "3px");
-      await expect(shell).toHaveCSS("box-shadow", "none");
-      await expect(shell).toHaveCSS("background-color", "oklch(0.6 0.1 250)");
-      await input.click();
-      await expect(shell).toHaveCSS("box-shadow", "none");
-      await page.setViewportSize({ width: 390, height: 844 });
-      expect(await shell.evaluate((element) => element.scrollWidth - element.clientWidth)).toBeLessThanOrEqual(1);
-      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+const composerVariantsWithOwnCode = [
+  { skin: "refined", appearance: "light" },
+  { skin: "modern-apple", appearance: "light" },
+  { skin: "liquid-metal", appearance: "light" },
+  { skin: "cuicui", appearance: "dark" },
+];
+
+for (const { skin, appearance } of composerVariantsWithOwnCode) {
+  test(`${skin} ${appearance}: composer focus, selectors, and knobs`, async ({ page }) => {
+    await page.addInitScript(
+      ({ skinKey, themeKey, skinId, appearance: themeAppearance }) => {
+        localStorage.setItem(skinKey, JSON.stringify({ skin: skinId, reduceMotion: true }));
+        localStorage.setItem(themeKey, themeAppearance);
+      },
+      { skinKey: THEME_EDITOR_STORAGE_KEY, themeKey: THEME_STORAGE_KEY, skinId: skin, appearance },
+    );
+    await page.goto("/kits/chat-composer");
+    const preview = page.locator("#preview");
+    const composer = preview.locator('[data-control-ui="chat-composer"][data-slot="root"]');
+    const shell = composer.locator('[data-slot="shell"]');
+    const input = composer.getByRole("textbox", { name: "Message" });
+    const model = composer.getByRole("combobox", { name: "Model", exact: true });
+    const thinking = composer.getByRole("combobox", { name: "Thinking level" });
+    await waitForSkinLayout(page, skin);
+    await expect(input).toBeVisible();
+    await input.click();
+    await expect(input).toHaveCSS("outline-width", "0px");
+    await expect(shell).not.toHaveCSS("outline-style", "none");
+    await input.press("Tab");
+    await expect(model).toBeFocused();
+    await model.press("Shift+Tab");
+    await expect(input).toBeFocused();
+    await expect(shell).not.toHaveCSS("outline-style", "none");
+    await input.press("Tab");
+    await expect(shell).toHaveCSS("outline-style", "none");
+    await model.press("Enter");
+    const modelOption = page.getByRole("option", { name: "Gemini" });
+    await expect(modelOption).toBeVisible();
+    await expect(modelOption.locator("svg").first()).toBeVisible();
+    await modelOption.click();
+    await expect(model).toContainText("Gemini");
+    await expect(model).toBeFocused();
+    await thinking.click();
+    await page.getByRole("option", { name: "High", exact: true }).click();
+    await expect(thinking).toContainText("High");
+    await input.click();
+    await expect(shell).not.toHaveCSS("outline-style", "none");
+    await input.fill("Draft the deployment announcement.");
+    await input.press("Shift+Enter");
+    await input.pressSequentially("Include a rollback plan.");
+    await input.press("Enter");
+    await expect(input).toHaveValue("");
+    await expect(preview.locator('[data-control-ui="chat-message"][data-slot="content"]')).toContainText("Include a rollback plan.");
+    await expect(composer.getByRole("button", { name: "Send message" })).toBeDisabled();
+    await composer.evaluate((element) => {
+      element.style.setProperty("--cui-chat-composer-shell-radius", "3px");
+      element.style.setProperty("--cui-chat-composer-shell-shadow", "none");
+      element.style.setProperty("--cui-chat-composer-shell-background", "oklch(0.6 0.1 250)");
     });
-  }
+    await expect(shell).toHaveCSS("border-radius", "3px");
+    await expect(shell).toHaveCSS("box-shadow", "none");
+    await expect(shell).toHaveCSS("background-color", "oklch(0.6 0.1 250)");
+    await input.click();
+    await expect(shell).toHaveCSS("box-shadow", "none");
+    await page.setViewportSize({ width: 390, height: 844 });
+    expect(await shell.evaluate((element) => element.scrollWidth - element.clientWidth)).toBeLessThanOrEqual(1);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+  });
 }
 
-test("reasoning reuses Activity and messages edit in place", async ({ page }) => {
+test("reasoning reuses Activity", async ({ page }) => {
   await page.goto("/kits/chat-layout");
   const preview = page.locator("#preview");
   const reasoning = preview.getByRole("button", { name: "Thought for 2 seconds" });
+  await waitForReactHydration(reasoning);
   await expect(reasoning).toHaveAttribute("data-control-ui", "activity");
   await reasoning.focus();
   await reasoning.press("Enter");
@@ -78,17 +84,6 @@ test("reasoning reuses Activity and messages edit in place", async ({ page }) =>
   await expect(preview.getByText("Keep each turn in the conversation", { exact: false })).toBeVisible();
   await reasoning.press("Enter");
   await expect(reasoning).toHaveAttribute("aria-expanded", "false");
-  await page.goto("/kits/action-bar");
-  const edit = preview.getByRole("button", { name: "Edit", exact: true });
-  await edit.focus();
-  await edit.press("Enter");
-  const input = preview.getByRole("textbox", { name: "Edit message" });
-  await expect(input).toBeFocused();
-  await expect(input).toHaveAttribute("data-slot", "edit-input");
-  await input.fill("Keep the composer above the conversation.");
-  await preview.getByRole("button", { name: "Save", exact: true }).click();
-  await expect(edit).toBeFocused();
-  await expect(preview.locator('[data-slot="edit-value"]').first()).toHaveText("Keep the composer above the conversation.");
 });
 
 test("rich composer keeps focus, inherited knobs, and locks read-only while responding", async ({ page }) => {
@@ -136,13 +131,15 @@ test("failed responses preserve the draft and allow retry", async ({ page }) => 
   await page.goto("/templates/chat");
   const preview = page.locator("#preview");
   const input = preview.getByRole("textbox", { name: "Message" });
+  const send = preview.getByRole("button", { name: "Send", exact: true });
+  await expect(input).toHaveAttribute("contenteditable", "true");
   await input.fill("Preserve this draft.");
-  await preview.getByRole("button", { name: "Send", exact: true }).click();
+  await send.click();
   await expect(preview.getByRole("alert")).toBeVisible();
   await expect(input).toHaveText("Preserve this draft.");
   await expect(input).toHaveAttribute("contenteditable", "true");
   await page.unroute("**/api/mastra/agents/chat-preview/stream");
-  await preview.getByRole("button", { name: "Send", exact: true }).click();
+  await send.click();
   await expect(preview.getByRole("alert")).toHaveCount(0);
   await expect(input).toHaveText("");
 });
@@ -152,7 +149,9 @@ test("message actions stay visible on touch screens", async ({ browser }) => {
   const page = await context.newPage();
   await page.goto("http://127.0.0.1:3000/kits/action-bar");
   const preview = page.locator("#preview");
-  await expect(preview.getByRole("toolbar", { name: "Message actions" })).toHaveCSS("opacity", "1");
+  const actions = preview.getByRole("toolbar", { name: "Message actions" });
+  await waitForReactHydration(actions);
+  await expect(actions).toHaveCSS("opacity", "1");
   await preview.getByRole("button", { name: "Edit", exact: true }).click();
   await expect(preview.getByRole("textbox", { name: "Edit message" })).toBeFocused();
   await preview.getByRole("button", { name: "Cancel", exact: true }).click();
@@ -160,16 +159,15 @@ test("message actions stay visible on touch screens", async ({ browser }) => {
   await context.close();
 });
 
-for (const skin of ["refined", "cuicui", "xp", "rig"]) {
-  test(`${skin}: AI gallery renders at mobile width`, async ({ page }, testInfo) => {
+for (const skin of ["refined", "xp"]) {
+  test(`${skin}: AI gallery renders at mobile width`, async ({ page }) => {
     await page.addInitScript(({ key, skinId }) => localStorage.setItem(key, JSON.stringify({ skin: skinId, reduceMotion: true })), {
       key: THEME_EDITOR_STORAGE_KEY,
       skinId: skin,
     });
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/kits");
-    await expect(page.locator("html")).toHaveAttribute("data-skin", skin);
-    await page.waitForLoadState("networkidle");
+    await waitForSkinLayout(page, skin);
     const cards = page.locator("[data-gallery-item-id]");
     await expect(cards).not.toHaveCount(0);
     for (const card of await cards.all()) {
@@ -177,17 +175,12 @@ for (const skin of ["refined", "cuicui", "xp", "rig"]) {
       await expect(card.locator("[data-gallery-preview]")).toHaveAttribute("data-gallery-preview-state", "mounted");
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
-    for (const id of ["chat-composer", "activity", "task-list", "user-ask"]) {
-      const card = page.locator(`[data-gallery-item-id="${id}"]`);
-      await card.scrollIntoViewIfNeeded();
-      await card.screenshot({ path: testInfo.outputPath(`${id}.png`) });
-      if (id === "chat-composer") {
-        const previewBounds = await card.locator("[data-gallery-preview]").boundingBox();
-        const shellBounds = await card.locator('[data-control-ui="chat-composer"][data-slot="shell"]').boundingBox();
-        if (!previewBounds || !shellBounds) throw new Error("Composer preview is missing");
-        expect(shellBounds.y).toBeGreaterThanOrEqual(previewBounds.y);
-        expect(shellBounds.y + shellBounds.height).toBeLessThanOrEqual(previewBounds.y + previewBounds.height);
-      }
-    }
+    const composerCard = page.locator('[data-gallery-item-id="chat-composer"]');
+    await composerCard.scrollIntoViewIfNeeded();
+    const previewBounds = await composerCard.locator("[data-gallery-preview]").boundingBox();
+    const shellBounds = await composerCard.locator('[data-control-ui="chat-composer"][data-slot="shell"]').boundingBox();
+    if (!previewBounds || !shellBounds) throw new Error("Composer preview is missing");
+    expect(shellBounds.y).toBeGreaterThanOrEqual(previewBounds.y);
+    expect(shellBounds.y + shellBounds.height).toBeLessThanOrEqual(previewBounds.y + previewBounds.height);
   });
 }

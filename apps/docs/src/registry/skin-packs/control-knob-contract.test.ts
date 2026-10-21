@@ -8,14 +8,14 @@ import { componentEntries } from "../../../app/(features)/catalog/components";
 import { kitEntries } from "../../../app/(features)/catalog/kits";
 import { isFamilyPartAttribute, slotAttribute, surfaceAttribute } from "../../../scripts/control-anatomy";
 import { knobPrefix, knobsByFamily } from "../../../scripts/knob-contracts/collect";
-import { readCssWithImports } from "../../../scripts/read-css";
+import { readCssRulesWithImports } from "../../../scripts/read-css";
 import { createRecipeSourceExpectations } from "../../../scripts/registry-model";
-import { collectSkinContract } from "../../../scripts/skin-contract/collect";
+import type { SkinContract } from "../../../scripts/skin-contract/model";
 
 import { THEME_CONTRACT_NAMES } from "../lib/theme-contract";
 
 const controlKnobContracts = knobsByFamily();
-const skinContract = collectSkinContract();
+const skinContract: SkinContract = JSON.parse(readFileSync(new URL("../../../public/r/skin-contract.json", import.meta.url), "utf8"));
 
 const SKIN_PACKS_DIR = fileURLToPath(new URL("./", import.meta.url));
 const COMPONENTS_DIR = fileURLToPath(new URL("../sources/control-ui/", import.meta.url));
@@ -28,7 +28,7 @@ const COMPONENT_REFERENCE_ROOTS = [
 const skins = readdirSync(SKIN_PACKS_DIR)
   .filter((entry) => statSync(path.join(SKIN_PACKS_DIR, entry)).isDirectory())
   .sort()
-  .map((id) => ({ id, root: postcss.parse(readCssWithImports(path.join(SKIN_PACKS_DIR, id, "skin.css"))) }));
+  .map((id) => ({ id, root: postcss.parse(readCssRulesWithImports(path.join(SKIN_PACKS_DIR, id, "skin.css"))) }));
 
 const recipeOptionalCatalogIds = [
   "aspect-ratio",
@@ -79,21 +79,6 @@ describe("knob naming", () => {
     expect(knobsWithRepeatedFamilyPrefix(["--chat-composer-chat-composer-editor-font-size"])).toEqual([
       "--chat-composer-chat-composer-editor-font-size",
     ]);
-  });
-});
-
-describe("skin interaction paint", () => {
-  test("Liquid Metal keeps its focus glow in both color modes", () => {
-    const liquidMetal = skins.find(({ id }) => id === "liquid-metal");
-    const focusShadows: string[] = [];
-    liquidMetal?.root.walkRules((rule) => {
-      if (!rule.selector.includes(":focus-visible")) return;
-      rule.walkDecls("--liquid-control-shadow", (declaration) => {
-        focusShadows.push(declaration.value);
-      });
-    });
-    expect(focusShadows).toHaveLength(2);
-    expect(focusShadows.every((shadow) => shadow.includes("0 0 30px"))).toBe(true);
   });
 });
 
@@ -293,6 +278,23 @@ type AppearancePart = {
 };
 
 const appearanceSourceCache = new Map<string, string>();
+const recipeCssCache = new Map<string, string>();
+let componentSources: readonly string[] | undefined;
+
+function readComponentSources(): readonly string[] {
+  componentSources ??= readdirSync(COMPONENTS_DIR, { encoding: "utf8", recursive: true })
+    .filter((name) => /\.(?:ts|tsx)$/.test(name) && !name.includes(".test."))
+    .map((name) => readFileSync(path.join(COMPONENTS_DIR, name), "utf8"));
+  return componentSources;
+}
+
+function recipeCss(family: string): string {
+  const cached = recipeCssCache.get(family);
+  if (cached !== undefined) return cached;
+  const css = recipe(family).toString();
+  recipeCssCache.set(family, css);
+  return css;
+}
 
 function appearanceSource(scope: string, family: string): string {
   const cacheKey = `${scope}:${family}`;
@@ -300,9 +302,7 @@ function appearanceSource(scope: string, family: string): string {
   if (cached !== undefined) return cached;
   const scopeMarkers = [`data-control-ui="${scope}"`, `"data-control-ui": "${scope}"`];
   const familyMarkers = [`data-control-family="${family}"`, `"data-control-family": "${family}"`, `family = "${family}"`];
-  const source = readdirSync(COMPONENTS_DIR, { encoding: "utf8", recursive: true })
-    .filter((name) => /\.(?:ts|tsx)$/.test(name) && !name.includes(".test."))
-    .map((name) => readFileSync(path.join(COMPONENTS_DIR, name), "utf8"))
+  const source = readComponentSources()
     .filter(
       (candidate) =>
         scopeMarkers.some((marker) => candidate.includes(marker)) && familyMarkers.some((marker) => candidate.includes(marker)),
@@ -314,15 +314,13 @@ function appearanceSource(scope: string, family: string): string {
 
 function appearancePartOffenders(scope: string, partName: string, part: AppearancePart, checked: Set<string>): string[] {
   const family = part.family ?? scope;
-  const css = recipe(family).toString();
-  const source = appearanceSource(scope, family);
   const offenders: string[] = [];
   for (const state of part.states) {
     if (!["data-variant", "data-tone"].includes(state.attribute) || state.valueKind !== "enum" || state.values.length < 2) continue;
     const key = `${family}:${partName}:${state.attribute}:${state.values.join(",")}`;
     if (checked.has(key)) continue;
     checked.add(key);
-    const missing = unhandledAppearanceValues(state.attribute, state.values, css, source);
+    const missing = unhandledAppearanceValues(state.attribute, state.values, recipeCss(family), appearanceSource(scope, family));
     if (missing.length > 0) offenders.push(`${family}:${partName}:${state.attribute} leaves ${missing.join(", ")} unimplemented`);
   }
   return offenders;

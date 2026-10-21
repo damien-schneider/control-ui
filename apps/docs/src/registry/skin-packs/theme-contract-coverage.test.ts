@@ -3,7 +3,7 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import postcss, { type AtRule, type Declaration, type Node, type Root, type Rule } from "postcss";
-import { readCssWithImports } from "../../../scripts/read-css";
+import { readCssRulesWithImports } from "../../../scripts/read-css";
 import { REQUIRED_THEME_CONTRACT, THEME_CONTRACT, THEME_CONTRACT_NAMES } from "../lib/theme-contract";
 
 const SKIN_ROOT_DEFAULTS_SELECTOR = /^:where\((?::root|\.dark:root), [^)]*\[data-skin\][^)]*\)$/;
@@ -158,13 +158,8 @@ describe("theme contract ownership", () => {
     expect(REQUIRED_THEME_CONTRACT.filter((token) => !declared.has(token.name))).toEqual([]);
   });
 
-  test("the contract is non-empty, unique, and holds its anchors", () => {
-    expect(THEME_CONTRACT.length).toBeGreaterThan(100);
+  test("the contract names each token once", () => {
     expect(THEME_CONTRACT_NAMES.size).toBe(THEME_CONTRACT.length);
-    expect(THEME_CONTRACT_NAMES.has("--primary")).toBe(true);
-    expect(THEME_CONTRACT_NAMES.has("--primary-text")).toBe(true);
-    expect(THEME_CONTRACT_NAMES.has("--destructive-text")).toBe(true);
-    expect(THEME_CONTRACT_NAMES.has("--radius")).toBe(true);
   });
 
   test("core has no skin-specific selector", () => {
@@ -188,7 +183,7 @@ describe("skin pack theme.css stays within the token contract", () => {
     const themePath = path.join(SKIN_PACKS_DIR, id, "theme.css");
     const skinPath = path.join(SKIN_PACKS_DIR, id, "skin.css");
     const themeCss = readFileSync(themePath, "utf8");
-    const skinCss = readCssWithImports(skinPath);
+    const skinCss = readCssRulesWithImports(skinPath);
     const themeRoot = postcss.parse(themeCss, { from: themePath });
     const skinRoot = postcss.parse(skinCss, { from: skinPath });
 

@@ -1,38 +1,15 @@
-import { execFileSync } from "node:child_process";
-import { mkdtempSync, readFileSync, rmSync } from "node:fs";
-import { tmpdir } from "node:os";
-import path from "node:path";
 import { expect, type Page, test } from "@playwright/test";
-import tailwind from "@tailwindcss/postcss";
-import postcss from "postcss";
+import { FIXTURE_ORIGIN, serveFixture } from "./fixtures/serve-fixture";
 
-const buildDirectory = mkdtempSync(path.join(tmpdir(), "control-ui-markdown-editor-"));
-let stylesheet: string;
-let script: string;
-test.beforeAll(async () => {
-  execFileSync("bun", ["build", "e2e/fixtures/markdown-editor.tsx", "--outdir", buildDirectory, "--target", "browser"]);
-  script = readFileSync(path.join(buildDirectory, "markdown-editor.js"), "utf8");
-  const cssPath = path.resolve("app/globals.css");
-  stylesheet = (await postcss([tailwind()]).process(readFileSync(cssPath, "utf8"), { from: cssPath })).css;
-});
-test.afterAll(() => rmSync(buildDirectory, { recursive: true, force: true }));
 test.beforeEach(async ({ page }) => {
-  await page.route("http://editor.test/**", (route) => {
-    const pathname = new URL(route.request().url()).pathname;
-    if (pathname === "/fixture.js") return route.fulfill({ contentType: "application/javascript", body: script });
-    if (pathname === "/fixture.css") return route.fulfill({ contentType: "text/css", body: stylesheet });
-    if (pathname === "/upload") return route.fulfill({ body: "/media/screenshot.png" });
-    if (pathname === "/media/screenshot.png")
-      return route.fulfill({
-        contentType: "image/png",
-        body: Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=", "base64"),
-      });
-    return route.fulfill({
-      contentType: "text/html",
-      body: '<!doctype html><html lang="en"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/fixture.css"></head><body><div id="root"></div><script type="module" src="/fixture.js"></script></body></html>',
-    });
-  });
-  await page.goto("http://editor.test/");
+  await page.route(`${FIXTURE_ORIGIN}/upload?*`, (route) => route.fulfill({ body: "/media/screenshot.png" }));
+  await page.route(`${FIXTURE_ORIGIN}/media/*`, (route) =>
+    route.fulfill({
+      contentType: "image/png",
+      body: Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=", "base64"),
+    }),
+  );
+  await serveFixture(page, "markdown-editor");
   await expect(page.getByRole("textbox", { name: "Comment", exact: true })).toHaveAttribute("contenteditable", "true");
 });
 
@@ -95,7 +72,7 @@ test("uploads a pasted screenshot and publishes an image-only comment", async ({
 
 test("blocks publication on failed upload and supports retry", async ({ page }) => {
   let attempts = 0;
-  await page.route("http://editor.test/upload?*", (route) => {
+  await page.route(`${FIXTURE_ORIGIN}/upload?*`, (route) => {
     attempts += 1;
     return route.fulfill(attempts === 1 ? { status: 503, body: "Unavailable" } : { body: "/media/screenshot.png" });
   });
@@ -113,7 +90,7 @@ test("removing an upload prevents late completion from inserting an image", asyn
   const pending = new Promise<void>((resolve) => {
     finish = resolve;
   });
-  await page.route("http://editor.test/upload?*", async (route) => {
+  await page.route(`${FIXTURE_ORIGIN}/upload?*`, async (route) => {
     await pending;
     await route.fulfill({ body: "/media/screenshot.png" });
   });
@@ -157,7 +134,7 @@ test("replacing a draft with source content cancels pending uploads", async ({ p
   const pending = new Promise<void>((resolve) => {
     finish = resolve;
   });
-  await page.route("http://editor.test/upload?*", async (route) => {
+  await page.route(`${FIXTURE_ORIGIN}/upload?*`, async (route) => {
     await pending;
     await route.fulfill({ body: "/media/screenshot.png" });
   });
@@ -176,7 +153,7 @@ test("dropped images keep their order when uploads finish out of order", async (
   const first = new Promise<void>((resolve) => {
     finishFirst = resolve;
   });
-  await page.route("http://editor.test/upload?*", async (route) => {
+  await page.route(`${FIXTURE_ORIGIN}/upload?*`, async (route) => {
     const name = new URL(route.request().url()).searchParams.get("name");
     if (name === "first.png") await first;
     await route.fulfill({ body: `/media/${name}` });

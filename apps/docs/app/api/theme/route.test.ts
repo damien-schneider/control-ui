@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, expect, mock, test } from "bun:test";
+import { afterAll, afterEach, beforeEach, expect, mock, test } from "bun:test";
 import type { MastraLanguageModel } from "@mastra/core/agent";
 import { Agent } from "@mastra/core/agent";
 import { simulateReadableStream } from "ai";
@@ -71,6 +71,18 @@ const cannedModel: MastraLanguageModel = {
     return streamCannedPalette();
   },
 };
+
+const realModules = {
+  "@/mastra/theme-generator-agent": { ...(await import("@/mastra/theme-generator-agent")) },
+  "@/mastra/theme-image-brief": { ...(await import("@/mastra/theme-image-brief")) },
+  "@/mastra/theme-repair-agent": { ...(await import("@/mastra/theme-repair-agent")) },
+  "@/mastra/theme-knob-agent": { ...(await import("@/mastra/theme-knob-agent")) },
+};
+
+// mock.module is process-wide, so later test files would otherwise import these stubs.
+afterAll(() => {
+  for (const [specifier, exports] of Object.entries(realModules)) mock.module(specifier, () => exports);
+});
 
 mock.module("@/mastra/theme-generator-agent", () => ({
   themeGeneratorAgent: new Agent({

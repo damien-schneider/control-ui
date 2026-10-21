@@ -10,8 +10,6 @@ for (const skinId of ["none", "refined", "linear", "mastra"]) {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.addInitScript(
       ({ skin, storageKey }) => {
-        window.__REACT_GRAB_DISABLED__ = true;
-        window.__REACT_SCAN_DISABLED__ = true;
         localStorage.setItem(storageKey, JSON.stringify({ skin }));
       },
       { skin: skinId, storageKey: THEME_EDITOR_STORAGE_KEY },
@@ -26,6 +24,7 @@ for (const skinId of ["none", "refined", "linear", "mastra"]) {
     await page.evaluate(() => document.fonts.ready);
     await page.waitForLoadState("networkidle");
     expect(await page.evaluate(() => matchMedia("(hover: hover)").matches)).toBe(true);
+    await rows.first().scrollIntoViewIfNeeded();
     const points = await rows.evaluateAll((nodes) =>
       nodes.map((node) => {
         const box = node.getBoundingClientRect();

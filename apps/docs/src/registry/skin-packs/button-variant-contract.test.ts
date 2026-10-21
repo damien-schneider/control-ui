@@ -4,7 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import postcss, { type Root } from "postcss";
 import selectorParser from "postcss-selector-parser";
-import { readCssWithImports } from "../../../scripts/read-css";
+import { readCssRulesWithImports } from "../../../scripts/read-css";
 import { controlTones, controlVariants } from "../sources/control-ui/control-variants";
 import { buttonShapes } from "../sources/control-ui/ui/button";
 
@@ -26,7 +26,7 @@ const skins = readdirSync(SKIN_PACKS_DIR)
   .sort()
   .map((id) => ({
     id,
-    root: postcss.parse(readCssWithImports(path.join(SKIN_PACKS_DIR, id, "skin.css"))),
+    root: postcss.parse(readCssRulesWithImports(path.join(SKIN_PACKS_DIR, id, "skin.css"))),
   }));
 
 function isButtonAnchor(node: selectorParser.Node): boolean {

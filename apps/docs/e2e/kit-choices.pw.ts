@@ -4,8 +4,6 @@ import { waitForReactHydration } from "./browser-test-helpers";
 
 test.beforeEach(async ({ page }) => {
   await page.addInitScript((key) => {
-    window.__REACT_SCAN_DISABLED__ = true;
-    window.__REACT_GRAB_DISABLED__ = true;
     localStorage.setItem(key, JSON.stringify({ skin: "refined" }));
   }, THEME_EDITOR_STORAGE_KEY);
 });

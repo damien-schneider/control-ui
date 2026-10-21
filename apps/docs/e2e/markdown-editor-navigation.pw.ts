@@ -4,9 +4,6 @@ import { waitForReactHydration } from "./browser-test-helpers";
 test("Markdown editor restores its draft after search navigation and browser history", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.addInitScript(() => {
-    Object.assign(window, { __REACT_GRAB_DISABLED__: true, __REACT_SCAN_DISABLED__: true });
-  });
   await page.goto("/kits/markdown-editor");
   await waitForReactHydration(page.getByRole("button", { name: "Search documentation", exact: true }));
   const editor = page.getByRole("textbox", { name: "Project description", exact: true });
@@ -31,7 +28,10 @@ test("Markdown editor restores its draft after search navigation and browser his
     await expect(page).toHaveURL(/\/kits\/markdown-editor$/);
     await expect(editor).toHaveText(draft);
     await expect(page.getByText("This page stopped loading", { exact: true })).toHaveCount(0);
-    await editor.press("End");
+    const draftBlock = editor.getByText(draft, { exact: true });
+    const draftBounds = await draftBlock.boundingBox();
+    if (!draftBounds) throw new Error("The restored draft must be rendered");
+    await draftBlock.click({ position: { x: draftBounds.width - 1, y: draftBounds.height / 2 } });
     await editor.pressSequentially("!");
     draft += "!";
     await expect(editor).toHaveText(draft);
@@ -45,9 +45,6 @@ test("Markdown editor restores its draft after search navigation and browser his
 });
 
 test("saved Markdown task lists use library checkboxes without bullets or editable state", async ({ page }) => {
-  await page.addInitScript(() => {
-    Object.assign(window, { __REACT_GRAB_DISABLED__: true, __REACT_SCAN_DISABLED__: true });
-  });
   await page.goto("/kits/markdown-editor");
   const editor = page.getByRole("textbox", { name: "Project description", exact: true });
   await expect(editor).toHaveAttribute("contenteditable", "true");

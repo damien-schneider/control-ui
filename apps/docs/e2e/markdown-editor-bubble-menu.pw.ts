@@ -1,12 +1,8 @@
 import { expect, test } from "@playwright/test";
-import { waitForReactHydration } from "./browser-test-helpers";
+import { serveFixture } from "./fixtures/serve-fixture";
 
 test.beforeEach(async ({ page }) => {
-  await page.addInitScript(() => {
-    Object.assign(window, { __REACT_GRAB_DISABLED__: true, __REACT_SCAN_DISABLED__: true });
-  });
-  await page.goto("/kits/markdown-editor");
-  await waitForReactHydration(page.getByRole("button", { name: "Search documentation", exact: true }));
+  await serveFixture(page, "markdown-editor", { search: "?example=bubble-menu" });
   await expect(page.getByRole("textbox", { name: "Project notes", exact: true })).toHaveAttribute("contenteditable", "true");
 });
 
@@ -15,7 +11,7 @@ test("bubble menu formats the selected text and leaves when the selection collap
   const bubble = page.getByRole("toolbar", { name: "Selection formatting", exact: true });
   await editor.scrollIntoViewIfNeeded();
   await expect(bubble).toHaveCount(0);
-  await editor.locator("p", { hasText: "We need" }).dblclick();
+  await editor.getByText("clearer feedback", { exact: true }).dblclick();
   await expect(bubble).toBeVisible();
   await bubble.getByRole("button", { name: "Italic", exact: true }).click();
   await expect(editor.locator("em")).toHaveCount(1);

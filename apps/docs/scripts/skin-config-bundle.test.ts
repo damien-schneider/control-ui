@@ -11,17 +11,22 @@ const controlUiSources = path.join(registryRoot, "sources/control-ui");
 
 afterAll(() => rmSync(temporaryDirectory, { recursive: true, force: true }));
 
-async function bundledSkinConfig(skinId: string): Promise<{ code: string; gzipBytes: number }> {
-  const entrypoint = path.join(temporaryDirectory, `${skinId}.tsx`);
-  const skinConfig = path.join(skinPacks, skinId, "skin.config.tsx");
-  writeFileSync(entrypoint, `import { skin } from ${JSON.stringify(skinConfig)};\nconsole.log(skin);\n`);
+type SkinConfigBundle = { code: string; gzipBytes: number };
+
+async function bundledSkinConfigs(skinIds: readonly string[]): Promise<Record<string, SkinConfigBundle>> {
+  const entrypoints = skinIds.map((skinId) => {
+    const entrypoint = path.join(temporaryDirectory, `${skinId}.tsx`);
+    const skinConfig = path.join(skinPacks, skinId, "skin.config.tsx");
+    writeFileSync(entrypoint, `import { skin } from ${JSON.stringify(skinConfig)};\nconsole.log(skin);\n`);
+    return entrypoint;
+  });
   const result = await Bun.build({
-    entrypoints: [entrypoint],
+    entrypoints,
     minify: true,
     packages: "external",
     plugins: [
       {
-        name: `active-skin-${skinId}`,
+        name: "active-skin-configs",
         setup(build) {
           build.onResolve({ filter: /^@\/components\/control-ui\// }, ({ path: specifier }) => {
             const relativePath = specifier.slice("@/components/control-ui/".length);
@@ -42,8 +47,15 @@ async function bundledSkinConfig(skinId: string): Promise<{ code: string; gzipBy
     target: "browser",
   });
   if (!result.success) throw new Error(result.logs.join("\n"));
-  const bytes = new Uint8Array(await result.outputs[0].arrayBuffer());
-  return { code: new TextDecoder().decode(bytes), gzipBytes: gzipSync(bytes).byteLength };
+  return Object.fromEntries(
+    await Promise.all(
+      result.outputs.map(async (output) => {
+        const bytes = new Uint8Array(await output.arrayBuffer());
+        const bundle: SkinConfigBundle = { code: new TextDecoder().decode(bytes), gzipBytes: gzipSync(bytes).byteLength };
+        return [path.basename(output.path, ".js"), bundle] as const;
+      }),
+    ),
+  );
 }
 
 function skinConfigIds(): string[] {
@@ -56,11 +68,9 @@ function skinConfigIds(): string[] {
 describe("skin config runtime cost", () => {
   test("every active config stays a small, single shared lookup table", async () => {
     const skinIds = skinConfigIds();
-    const bundles: Record<string, Awaited<ReturnType<typeof bundledSkinConfig>>> = Object.fromEntries(
-      await Promise.all(skinIds.map(async (skinId) => [skinId, await bundledSkinConfig(skinId)] as const)),
-    );
+    const bundles = await bundledSkinConfigs(skinIds);
 
-    expect(Object.keys(bundles)).toEqual(skinIds);
+    expect(Object.keys(bundles).sort()).toEqual(skinIds);
     for (const [skinId, { gzipBytes }] of Object.entries(bundles)) {
       expect(gzipBytes, `${skinId} skin config is ${gzipBytes} gzip bytes`).toBeLessThanOrEqual(4096);
     }

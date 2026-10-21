@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
+import { waitForReactHydration } from "./browser-test-helpers";
 
 for (const { name, width, docked } of [
   { name: "below lg", width: 1023, docked: false },
@@ -8,12 +9,13 @@ for (const { name, width, docked } of [
   test(`docs shell flips sidebar and trigger together ${name}`, async ({ page }) => {
     const height = 900;
     await page.setViewportSize({ width, height });
-    await page.goto("/components/code-diff", { waitUntil: "networkidle" });
+    await page.goto("/components/code-diff");
 
     const dockedSidebar = page.locator('[data-control-ui="sidebar"][data-slot="container"]');
     const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
     const sidebarTrigger = page.getByRole("button", { name: "Toggle sidebar", exact: true });
     const contentPanel = page.locator("[data-docs-content]");
+    await waitForReactHydration(contentPanel);
 
     await expect(dockedSidebar).toHaveCount(docked ? 1 : 0);
     await expect(resizeHandle).toHaveCount(docked ? 1 : 0);
@@ -34,7 +36,7 @@ for (const { name, width, docked } of [
 test("desktop shell keeps equal panel gutters and reopens from the top left", async ({ page }) => {
   const width = 1280;
   await page.setViewportSize({ width, height: 900 });
-  await page.goto("/components/code-diff", { waitUntil: "networkidle" });
+  await page.goto("/components/code-diff");
 
   const sidebarRoot = page.locator('[data-control-ui="sidebar"][data-slot="root"].peer');
   const sidebarGap = page.locator('[data-control-ui="sidebar"][data-slot="gap"]');
@@ -42,6 +44,7 @@ test("desktop shell keeps equal panel gutters and reopens from the top left", as
   const contentPanel = page.locator("[data-docs-content]");
   const sidebarTrigger = page.locator("[data-docs-sidebar-trigger]").getByRole("button", { name: "Toggle sidebar", exact: true });
   const sidebarInner = page.locator('[data-control-ui="sidebar"][data-slot="inner"]');
+  await expect(resizeHandle).toHaveAttribute("data-resize-ready", "");
 
   const expandedGapBox = await sidebarGap.boundingBox();
   const expandedPanelBox = await contentPanel.boundingBox();
@@ -78,10 +81,11 @@ test("Cuicui inherits shell spacing and aligns sidebar sections", async ({ page 
     localStorage.setItem(storageKey, JSON.stringify({ skin: "cuicui" }));
   }, THEME_EDITOR_STORAGE_KEY);
   await page.setViewportSize({ width: 1280, height: 900 });
-  await page.goto("/overview", { waitUntil: "networkidle" });
+  await page.goto("/overview");
 
   await expect(page.locator("html")).toHaveAttribute("data-skin", "cuicui");
   const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
+  await expect(resizeHandle).toHaveAttribute("data-resize-ready", "");
   await expect(resizeHandle).toHaveAttribute("aria-valuenow", "320");
   await resizeHandle.focus();
   await resizeHandle.press("ArrowLeft");

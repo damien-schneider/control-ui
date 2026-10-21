@@ -5,10 +5,6 @@ for (const [path, title] of [
   ["/skins/none", "No skin"],
 ]) {
   test(`typography renders on the server at ${path}`, async ({ page }) => {
-    await page.addInitScript(() => {
-      window.__REACT_SCAN_DISABLED__ = true;
-      window.__REACT_GRAB_DISABLED__ = true;
-    });
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
     const response = await page.goto(path);

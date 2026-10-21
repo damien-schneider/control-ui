@@ -78,17 +78,33 @@ test("frequency bars align, mirror, and respect reduced motion during loading", 
   const variant = page.getByRole("radio", { name: "Frequency bars", exact: true });
   await waitForReactHydration(variant);
   await variant.click();
-  await expect(page.locator("#usage")).toContainText("@/components/control-ui/audio-visualizer-bar");
-  const centered = page.getByRole("img", { name: "center aligned frequency bars" });
-  const top = page.getByRole("img", { name: "start aligned frequency bars" });
-  const bottom = page.getByRole("img", { name: "end aligned frequency bars" });
-  await expect(centered.locator('[data-slot="track"]')).toHaveCSS("align-items", "center");
-  await expect(top.locator('[data-slot="track"]')).toHaveCSS("align-items", "flex-start");
-  await expect(bottom.locator('[data-slot="track"]')).toHaveCSS("align-items", "flex-end");
+  const trackAlignment = async (name: string) =>
+    page.getByRole("img", { name }).evaluate((element) => {
+      const track = element.querySelector('[data-slot="track"]');
+      if (!track) throw new Error("Frequency track is missing");
+      const trackBox = track.getBoundingClientRect();
+      const shortestBar = [...track.querySelectorAll('[data-slot="bar"]')]
+        .map((bar) => bar.getBoundingClientRect())
+        .sort((a, b) => a.height - b.height)[0];
+      if (!shortestBar || shortestBar.height >= trackBox.height) throw new Error("Frequency bars need slack to show their alignment");
+      return {
+        top: shortestBar.top - trackBox.top,
+        bottom: trackBox.bottom - shortestBar.bottom,
+        center: Math.abs(shortestBar.top + shortestBar.height / 2 - (trackBox.top + trackBox.height / 2)),
+      };
+    });
+  expect((await trackAlignment("center aligned frequency bars")).center).toBeLessThan(1);
+  expect((await trackAlignment("start aligned frequency bars")).top).toBeLessThan(1);
+  expect((await trackAlignment("end aligned frequency bars")).bottom).toBeLessThan(1);
   await expect(page.getByRole("img", { name: "Mirrored frequency bars" })).toHaveAttribute("data-mirrored", "true");
   const loading = page.getByRole("img", { name: "Connecting audio" });
   await expect(loading).toHaveAttribute("aria-busy", "true");
-  await expect(loading.locator('[data-slot="bar"]').first()).toHaveCSS("animation-name", "cui-audio-bar-pulse");
+  const loadingBarAnimations = () =>
+    loading
+      .locator('[data-slot="bar"]')
+      .first()
+      .evaluate((element) => element.getAnimations().length);
+  await expect.poll(loadingBarAnimations).toBeGreaterThan(0);
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await expect(loading.locator('[data-slot="bar"]').first()).toHaveCSS("animation-name", "none");
+  await expect.poll(loadingBarAnimations).toBe(0);
 });

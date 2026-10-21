@@ -1,101 +1,98 @@
 import { readFile } from "node:fs/promises";
 import { expect, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "../components/theme";
-import { waitForReactHydration } from "./browser-test-helpers";
+import { waitForReactHydration, waitForSkinLayout } from "./browser-test-helpers";
 
-for (const skin of ["none", "refined", "cuicui"]) {
-  for (const colorScheme of ["light", "dark"] as const) {
-    test(`skeleton variants keep their geometry and loop seamlessly in ${skin} ${colorScheme}`, async ({ page }, testInfo) => {
-      await page.emulateMedia({ colorScheme, reducedMotion: "no-preference" });
-      await page.addInitScript(({ key, skin: initialSkin }) => localStorage.setItem(key, JSON.stringify({ skin: initialSkin })), {
-        key: THEME_EDITOR_STORAGE_KEY,
-        skin,
-      });
-      await page.goto("/components/skeleton");
-      await waitForReactHydration(page.getByRole("combobox", { name: "Skin", exact: true }));
-      await page.evaluate(() => document.fonts.ready);
-      const skeletons = page.locator('[data-control-family="skeleton"][data-slot="root"]');
-      await expect(skeletons).toHaveCount(9);
-      const sweep = page.locator('[data-control-family="skeleton"][data-variant="shimmer"]').last();
-      const pulse = page.locator('[data-control-family="skeleton"][data-variant="pulse"]').last();
-      const resting = page.locator('[data-control-family="skeleton"][data-variant="none"]').last();
-      await expect(resting).toHaveCSS("animation-name", "none");
-      expect(await resting.evaluate((node) => getComputedStyle(node, "::after").content)).toBe("none");
-      expect(await sweep.evaluate((node) => node.getAnimations({ subtree: true }).length)).toBe(1);
-      expect(await pulse.evaluate((node) => node.getAnimations({ subtree: true }).length)).toBe(1);
-      await expect(sweep).toHaveAttribute("aria-hidden", "true");
+const skeletonVariantsWithOwnCode = [
+  { skin: "refined", colorScheme: "light" },
+  { skin: "cuicui", colorScheme: "dark" },
+] as const;
 
-      const initialBounds = await sweep.boundingBox();
-      for (const progress of [0, 0.05, 0.25, 0.5, 0.75, 0.95, 0.999999]) {
-        await sweep.evaluate((node, progressRatio) => {
-          for (const animation of node.getAnimations({ subtree: true })) {
-            animation.pause();
-            const duration = animation.effect?.getComputedTiming().duration;
-            if (typeof duration !== "number") throw new Error("Missing skeleton animation duration");
-            animation.currentTime = duration * progressRatio;
-          }
-        }, progress);
-        expect(await sweep.boundingBox()).toEqual(initialBounds);
-        const position = await sweep.evaluate((node) => {
-          const transform = new DOMMatrixReadOnly(getComputedStyle(node, "::after").transform);
-          return transform.m41 / node.getBoundingClientRect().width;
-        });
-        if (progress <= 0.05) expect(position).toBeLessThan(-1);
-        if (progress === 0.25) expect(position).toBeLessThan(0);
-        if (progress === 0.5) expect(position).toBeCloseTo(0);
-        if (progress === 0.75) expect(position).toBeGreaterThan(0);
-        if (progress >= 0.95) expect(position).toBeGreaterThan(1);
-        if (progress === 0 || progress === 0.05 || progress === 0.95 || progress === 0.999999) {
-          await sweep.screenshot({ path: testInfo.outputPath(`loop-${progress}.png`), animations: "allow" });
-        }
-      }
-      const restingSweep = await readFile(testInfo.outputPath("loop-0.png"));
-      for (const progress of [0.05, 0.95, 0.999999]) {
-        expect(await readFile(testInfo.outputPath(`loop-${progress}.png`))).toEqual(restingSweep);
-      }
-
-      await sweep.evaluate((node) => {
-        node.style.setProperty("--cui-skeleton-animation-duration", "3s");
-        node.style.setProperty("--cui-skeleton-highlight-background", "oklch(0.7 0.1 200)");
-        node.style.setProperty("--cui-skeleton-easing", "ease-in-out");
-      });
-      expect(await sweep.evaluate((node) => getComputedStyle(node, "::after").animationDuration)).toBe("3s");
-      expect(await sweep.evaluate((node) => getComputedStyle(node, "::after").backgroundImage)).toContain("oklch(0.7 0.1 200)");
-      expect(await sweep.evaluate((node) => getComputedStyle(node, "::after").animationTimingFunction)).toBe("ease-in-out");
-      await pulse.evaluate((node) => {
-        node.style.setProperty("--cui-skeleton-pulse-opacity", "0.7");
-        const animation = node.getAnimations()[0];
-        animation.pause();
-        const duration = animation.effect?.getComputedTiming().duration;
-        if (typeof duration !== "number") throw new Error("Missing pulse duration");
-        animation.currentTime = duration / 2;
-      });
-      await expect(pulse).toHaveCSS("opacity", "0.7");
-
-      await page.emulateMedia({ reducedMotion: "reduce" });
-      expect(await skeletons.evaluateAll((nodes) => nodes.flatMap((node) => node.getAnimations({ subtree: true })).length)).toBe(0);
-      await expect(pulse).toHaveCSS("opacity", "1");
-      await page.emulateMedia({ reducedMotion: "no-preference" });
-      await page.evaluate(() => {
-        document.documentElement.dataset.motion = "reduced";
-      });
-      expect(await skeletons.evaluateAll((nodes) => nodes.flatMap((node) => node.getAnimations({ subtree: true })).length)).toBe(0);
-      await expect(pulse).toHaveCSS("opacity", "1");
-      await page.setViewportSize({ width: 360, height: 900 });
-      await page
-        .locator('[data-control-family="card"][data-slot="root"]')
-        .first()
-        .screenshot({ path: testInfo.outputPath("variants.png") });
+for (const { skin, colorScheme } of skeletonVariantsWithOwnCode) {
+  test(`skeleton variants keep their geometry and loop seamlessly in ${skin} ${colorScheme}`, async ({ page }, testInfo) => {
+    await page.emulateMedia({ colorScheme, reducedMotion: "no-preference" });
+    await page.addInitScript(({ key, skin: initialSkin }) => localStorage.setItem(key, JSON.stringify({ skin: initialSkin })), {
+      key: THEME_EDITOR_STORAGE_KEY,
+      skin,
     });
-  }
+    await page.goto("/components/skeleton");
+    await waitForSkinLayout(page, skin);
+    await page.evaluate(() => document.fonts.ready);
+    const skeletons = page.locator('[data-control-family="skeleton"][data-slot="root"]');
+    await expect(skeletons).toHaveCount(9);
+    const sweep = page.locator('[data-control-family="skeleton"][data-variant="shimmer"]').last();
+    const pulse = page.locator('[data-control-family="skeleton"][data-variant="pulse"]').last();
+    const resting = page.locator('[data-control-family="skeleton"][data-variant="none"]').last();
+    await expect(resting).toHaveCSS("animation-name", "none");
+    expect(await resting.evaluate((node) => getComputedStyle(node, "::after").content)).toBe("none");
+    expect(await sweep.evaluate((node) => node.getAnimations({ subtree: true }).length)).toBe(1);
+    expect(await pulse.evaluate((node) => node.getAnimations({ subtree: true }).length)).toBe(1);
+    await expect(sweep).toHaveAttribute("aria-hidden", "true");
+
+    const initialBounds = await sweep.boundingBox();
+    for (const progress of [0, 0.05, 0.25, 0.5, 0.75, 0.95, 0.999999]) {
+      await sweep.evaluate((node, progressRatio) => {
+        for (const animation of node.getAnimations({ subtree: true })) {
+          animation.pause();
+          const duration = animation.effect?.getComputedTiming().duration;
+          if (typeof duration !== "number") throw new Error("Missing skeleton animation duration");
+          animation.currentTime = duration * progressRatio;
+        }
+      }, progress);
+      expect(await sweep.boundingBox()).toEqual(initialBounds);
+      const position = await sweep.evaluate((node) => {
+        const transform = new DOMMatrixReadOnly(getComputedStyle(node, "::after").transform);
+        return transform.m41 / node.getBoundingClientRect().width;
+      });
+      if (progress <= 0.05) expect(position).toBeLessThan(-1);
+      if (progress === 0.25) expect(position).toBeLessThan(0);
+      if (progress === 0.5) expect(position).toBeCloseTo(0);
+      if (progress === 0.75) expect(position).toBeGreaterThan(0);
+      if (progress >= 0.95) expect(position).toBeGreaterThan(1);
+      if (progress === 0 || progress === 0.05 || progress === 0.95 || progress === 0.999999) {
+        await sweep.screenshot({ path: testInfo.outputPath(`loop-${progress}.png`), animations: "allow" });
+      }
+    }
+    const restingSweep = await readFile(testInfo.outputPath("loop-0.png"));
+    for (const progress of [0.05, 0.95, 0.999999]) {
+      expect(await readFile(testInfo.outputPath(`loop-${progress}.png`))).toEqual(restingSweep);
+    }
+
+    await sweep.evaluate((node) => {
+      node.style.setProperty("--cui-skeleton-animation-duration", "3s");
+      node.style.setProperty("--cui-skeleton-highlight-background", "oklch(0.7 0.1 200)");
+      node.style.setProperty("--cui-skeleton-easing", "ease-in-out");
+    });
+    expect(await sweep.evaluate((node) => getComputedStyle(node, "::after").animationDuration)).toBe("3s");
+    expect(await sweep.evaluate((node) => getComputedStyle(node, "::after").backgroundImage)).toContain("oklch(0.7 0.1 200)");
+    expect(await sweep.evaluate((node) => getComputedStyle(node, "::after").animationTimingFunction)).toBe("ease-in-out");
+    await pulse.evaluate((node) => {
+      node.style.setProperty("--cui-skeleton-pulse-opacity", "0.7");
+      const animation = node.getAnimations()[0];
+      animation.pause();
+      const duration = animation.effect?.getComputedTiming().duration;
+      if (typeof duration !== "number") throw new Error("Missing pulse duration");
+      animation.currentTime = duration / 2;
+    });
+    await expect(pulse).toHaveCSS("opacity", "0.7");
+
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    expect(await skeletons.evaluateAll((nodes) => nodes.flatMap((node) => node.getAnimations({ subtree: true })).length)).toBe(0);
+    await expect(pulse).toHaveCSS("opacity", "1");
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.evaluate(() => {
+      document.documentElement.dataset.motion = "reduced";
+    });
+    expect(await skeletons.evaluateAll((nodes) => nodes.flatMap((node) => node.getAnimations({ subtree: true })).length)).toBe(0);
+    await expect(pulse).toHaveCSS("opacity", "1");
+  });
 }
 
-test("alert knobs reach the icon and text while long messages wrap without clipping", async ({ page }, testInfo) => {
+test("alert knobs reach the icon and text while long messages wrap without clipping", async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 900 });
   await page.goto("/components/alert");
   const alert = page.locator('[data-control-family="alert"][data-slot="root"]').first();
   await waitForReactHydration(alert);
-  await alert.locator("..").screenshot({ path: testInfo.outputPath("alerts.png") });
   await alert.evaluate((node) => {
     node.style.width = "260px";
     node.style.setProperty("--cui-alert-padding", "20px");
@@ -132,12 +129,11 @@ test("alert knobs reach the icon and text while long messages wrap without clipp
   ).toBe(25);
 });
 
-test("empty state knobs reach every part and long content stays within a narrow panel", async ({ page }, testInfo) => {
+test("empty state knobs reach every part and long content stays within a narrow panel", async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 900 });
   await page.goto("/components/empty");
   const empty = page.locator('[data-control-family="empty"][data-slot="root"]');
   await waitForReactHydration(empty);
-  await empty.screenshot({ path: testInfo.outputPath("empty.png") });
   await empty.evaluate((node) => {
     node.style.width = "260px";
     node.style.setProperty("--cui-empty-padding", "20px");

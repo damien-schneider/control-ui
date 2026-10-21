@@ -1,24 +1,7 @@
-import { execFileSync } from "node:child_process";
-import { mkdtempSync, readFileSync, rmSync } from "node:fs";
-import { tmpdir } from "node:os";
-import path from "node:path";
 import { expect, type Page, test } from "@playwright/test";
-import tailwind from "@tailwindcss/postcss";
-import postcss from "postcss";
+import { serveFixture } from "./fixtures/serve-fixture";
 
 test.use({ trace: "off", viewport: { width: 1440, height: 1000 } });
-const buildDirectory = mkdtempSync(path.join(tmpdir(), "control-ui-components-perf-"));
-let script: string;
-let stylesheet: string;
-test.beforeAll(async () => {
-  execFileSync("bun", ["build", "e2e/fixtures/component-performance.tsx", "--outdir", buildDirectory, "--target", "browser"]);
-  script = readFileSync(path.join(buildDirectory, "component-performance.js"), "utf8");
-  const result = await postcss([tailwind()]).process('@import "../app/globals.css"; @source "./fixtures/component-performance.tsx";', {
-    from: path.resolve("e2e/component-performance.css"),
-  });
-  stylesheet = result.css;
-});
-test.afterAll(() => rmSync(buildDirectory, { recursive: true, force: true }));
 
 async function expectPanelState(page: Page, kind: string, expanding: boolean) {
   if (kind === "viewport" || expanding) await expect(page.getByRole("article")).toHaveCount(400);
@@ -43,15 +26,11 @@ async function expectPanelState(page: Page, kind: string, expanding: boolean) {
 for (const skin of ["none", "mastra"]) {
   for (const kind of ["accordion", "collapsible", "viewport"]) {
     test(`${kind} changes size without restyling its large contents with ${skin}`, async ({ page }) => {
-      await page.route("http://components.test/**", (route) => {
-        if (new URL(route.request().url()).pathname === "/fixture.js")
-          return route.fulfill({ contentType: "text/javascript", body: script });
-        return route.fulfill({
-          contentType: "text/html",
-          body: `<!doctype html><html data-skin="${skin}"><head><style>${stylesheet}\nbody{font-family:system-ui} article{height:48px;border-bottom:1px solid var(--border)}</style></head><body><div id="root"></div><script type="module" src="/fixture.js"></script></body></html>`,
-        });
+      await serveFixture(page, "component-performance", {
+        search: `?kind=${kind}`,
+        skin,
+        style: "body{font-family:system-ui} article{height:48px;border-bottom:1px solid var(--border)}",
       });
-      await page.goto(`http://components.test/?kind=${kind}`);
       const trigger = page.getByRole("button", { name: kind === "viewport" ? "Resize content" : "Show entries", exact: true });
       await expect(trigger).toBeVisible();
       const session = await page.context().newCDPSession(page);

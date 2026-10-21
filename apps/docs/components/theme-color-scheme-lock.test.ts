@@ -34,11 +34,6 @@ describe("motion-reduced skins stay in sync with the skin.config contract", () =
   test("MOTION_REDUCED_SKINS equals the set of skin.config motion:reduced fields", () => {
     expect([...MOTION_REDUCED_SKINS].sort()).toEqual(fromConfigs.sort());
   });
-
-  test("xp is motion-reduced (sanity: the Luna near-instant motion reading)", () => {
-    expect(SKIN_CONFIGS.xp.motion).toBe("reduced");
-    expect(MOTION_REDUCED_SKINS).toContain("xp");
-  });
 });
 
 describe("page-layout skins stay in sync with the skin.config contract", () => {

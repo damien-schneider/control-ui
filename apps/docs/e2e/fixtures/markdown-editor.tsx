@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createRoot } from "react-dom/client";
 import { DiscussionComment, DiscussionComposer } from "@/components/control-ui/blocks/discussion";
 import type { MarkdownImageUploader } from "@/components/control-ui/markdown-editor/uploads";
+import { MarkdownEditorBubbleMenuExample } from "@/src/registry/examples/markdown-editor";
 
 function Fixture() {
   const [draft, setDraft] = useState("");
@@ -75,4 +76,5 @@ function Fixture() {
   );
 }
 const root = document.getElementById("root");
-if (root) createRoot(root).render(<Fixture />);
+const showsBubbleMenuExample = new URLSearchParams(location.search).get("example") === "bubble-menu";
+if (root) createRoot(root).render(showsBubbleMenuExample ? <MarkdownEditorBubbleMenuExample /> : <Fixture />);

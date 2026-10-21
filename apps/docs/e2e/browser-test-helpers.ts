@@ -1,7 +1,24 @@
 import { expect, type Locator, type Page } from "@playwright/test";
+import { PAGE_LAYOUT_SKINS } from "../components/theme";
 
 export async function waitForReactHydration(locator: Locator) {
   await expect.poll(() => locator.evaluate((element) => Object.keys(element).some((key) => key.startsWith("__reactProps$")))).toBe(true);
+}
+
+export async function waitForSkinLayout(page: Page, skin: string) {
+  await expect(page.locator("html")).toHaveAttribute("data-skin", skin);
+  await expect(page.locator('[data-control-ui="page-layout"][data-slot="root"]').first()).toHaveAttribute(
+    "data-scroll",
+    PAGE_LAYOUT_SKINS.includes(skin) ? "page" : "inset",
+  );
+  await expect.poll(() => page.evaluate(sidebarMatchesViewport)).toBe(true);
+}
+
+function sidebarMatchesViewport() {
+  const sidebarBreakpoint = getComputedStyle(document.documentElement).getPropertyValue("--breakpoint-lg").trim();
+  const sidebarIsMobile = matchMedia(`(width < ${sidebarBreakpoint})`).matches;
+  const desktopSidebar = document.querySelector('[data-docs-shell] [data-control-ui="sidebar"][data-slot="root"]:not([data-mobile])');
+  return !(sidebarIsMobile && desktopSidebar);
 }
 
 export async function meanScreenshotDifference(

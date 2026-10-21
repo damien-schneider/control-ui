@@ -197,6 +197,16 @@ describe("email rendering", () => {
     }
   });
 
+  test("the no-skin newsletter exports inline values and a complete plain-text alternative in both modes", async () => {
+    for (const mode of ["light", "dark"] as const) {
+      const { html, text } = await renderEmailExample("newsletter", emailThemeFromCss([coreCss, codeCss], mode));
+      expect(html).not.toMatch(/var\(|oklch\(|\drem\b/);
+      expect(html).toContain(`<meta name="color-scheme" content="${mode}"`);
+      expect(text).toContain("A LITTLE ROOM FOR INSPIRATION.");
+      expect(text).toContain("Unsubscribe");
+    }
+  });
+
   test("release notes keep every changelog bullet in the plain-text alternative", async () => {
     const { html, text } = await renderEmailExample("release", emailThemeFromCss([coreCss, refinedCss]));
     expect(html).toContain("<ul");

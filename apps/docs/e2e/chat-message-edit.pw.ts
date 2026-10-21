@@ -1,34 +1,8 @@
-import { execFileSync } from "node:child_process";
-import { mkdtempSync, readFileSync, rmSync } from "node:fs";
-import { tmpdir } from "node:os";
-import path from "node:path";
 import { expect, type Page, test } from "@playwright/test";
-import tailwind from "@tailwindcss/postcss";
-import postcss from "postcss";
-
-const buildDirectory = mkdtempSync(path.join(tmpdir(), "control-ui-message-edit-"));
-let script: string;
-let stylesheet: string;
-
-test.beforeAll(async () => {
-  execFileSync("bun", ["build", "e2e/fixtures/chat-message-edit.tsx", "--outdir", buildDirectory, "--target", "browser"]);
-  script = readFileSync(path.join(buildDirectory, "chat-message-edit.js"), "utf8");
-  const result = await postcss([tailwind()]).process('@import "../app/globals.css"; @source "./fixtures/chat-message-edit.tsx";', {
-    from: path.resolve("e2e/chat-message-edit.css"),
-  });
-  stylesheet = result.css;
-});
-test.afterAll(() => rmSync(buildDirectory, { recursive: true, force: true }));
+import { serveFixture } from "./fixtures/serve-fixture";
 
 async function openFixture(page: Page, query = "", skin = "none") {
-  await page.route("http://message.test/**", (route) => {
-    if (new URL(route.request().url()).pathname === "/fixture.js") return route.fulfill({ contentType: "text/javascript", body: script });
-    return route.fulfill({
-      contentType: "text/html",
-      body: `<!doctype html><html data-skin="${skin}"><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>${stylesheet}</style></head><body><div id="root"></div><script type="module" src="/fixture.js"></script></body></html>`,
-    });
-  });
-  await page.goto(`http://message.test/?${query}`);
+  await serveFixture(page, "chat-message-edit", { search: `?${query}`, skin });
   await expect(page.getByRole("button", { name: "Edit", exact: true })).toBeVisible();
   await settle(page);
 }

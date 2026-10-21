@@ -1,6 +1,5 @@
 import { expect, type Locator, type Page, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
-import { skinMetas } from "../app/(features)/catalog/skins";
 import { waitForReactHydration } from "./browser-test-helpers";
 
 async function openFilters(page: Page) {
@@ -133,8 +132,8 @@ test("remote search shows loading, errors and fresh results with stable selected
   await expect(group.getByRole("button", { name: "Edit value: Maya Chen" })).toBeVisible();
 });
 
-for (const { id: skin } of skinMetas) {
-  test(`filters wrap, finish rapid removal, and respect reduced motion with ${skin}`, async ({ page }, testInfo) => {
+for (const skin of ["refined", "windows-98"]) {
+  test(`filters wrap, finish rapid removal, and respect reduced motion with ${skin}`, async ({ page }) => {
     await page.addInitScript(
       ({ storageKey, skin: activeSkin }) => localStorage.setItem(storageKey, JSON.stringify({ skin: activeSkin, reduceMotion: true })),
       { storageKey: THEME_EDITOR_STORAGE_KEY, skin },
@@ -154,14 +153,13 @@ for (const { id: skin } of skinMetas) {
       .getByRole("button", { name: "Edit field: Status" })
       .evaluate((element) => Number.parseFloat(getComputedStyle(element).paddingInlineStart));
     expect(segmentPadding).toBeGreaterThan(0);
-    await group.screenshot({ path: testInfo.outputPath(`${skin}-mobile.png`) });
     await group.getByRole("button", { name: "Clear filters" }).click();
     await expect(group.locator('[data-slot="exit"]')).toHaveCount(0);
     await expect(group.locator('[data-slot="chip"]')).toHaveCount(0);
   });
 }
 
-test("draft segments retain their elements through commit and removal settles during motion", async ({ page }, testInfo) => {
+test("draft segments retain their elements through commit and removal settles during motion", async ({ page }) => {
   await page.addInitScript(
     (storageKey) => localStorage.setItem(storageKey, JSON.stringify({ skin: "refined", reduceMotion: false })),
     THEME_EDITOR_STORAGE_KEY,
@@ -178,7 +176,6 @@ test("draft segments retain their elements through commit and removal settles du
   await number.fill("-.5");
   await number.press("Enter");
   await expect(group.getByRole("button", { name: "Edit value: -0.5" })).toBeVisible();
-  await group.screenshot({ path: testInfo.outputPath("refined-desktop.png") });
   await group.getByRole("button", { name: /^Remove filter: Status / }).click();
   await group.getByRole("button", { name: "Clear filters" }).click();
   await expect(group.locator('[data-slot="exit"]')).toHaveCount(0);
@@ -193,5 +190,4 @@ test("draft segments retain their elements through commit and removal settles du
   expect(bounds.x + bounds.width).toBeLessThanOrEqual(320);
   expect(bounds.y).toBeGreaterThanOrEqual(0);
   expect(bounds.y + bounds.height).toBeLessThanOrEqual(700);
-  await popup.screenshot({ path: testInfo.outputPath("refined-mobile-popup.png") });
 });

@@ -1,4 +1,5 @@
 import { expect, type Locator, test } from "@playwright/test";
+import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { waitForReactHydration } from "./browser-test-helpers";
 
 const railColumns = async (navigation: Locator) => {
@@ -108,7 +109,12 @@ test("the progress indicator rides the rail to the section being read", async ({
 });
 
 test("shared tokens and link-state knobs preserve keyboard navigation and reduced motion", async ({ page }) => {
+  await page.addInitScript((storageKey) => {
+    localStorage.setItem(storageKey, JSON.stringify({ skin: "none" }));
+  }, THEME_EDITOR_STORAGE_KEY);
+  await page.reload();
   const navigation = page.getByRole("navigation", { name: "Range", exact: true });
+  await waitForReactHydration(navigation);
   await navigation.evaluate((node) => {
     node.style.setProperty("--text-body", "17px");
     node.style.setProperty("--cui-table-of-contents-item-foreground", "oklch(0.45 0 0)");

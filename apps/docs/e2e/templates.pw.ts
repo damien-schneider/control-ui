@@ -1,8 +1,8 @@
 import { expect, test } from "@playwright/test";
+import { templateGalleryGroups } from "../app/(features)/model/catalog-gallery";
 
 test("Templates owns template browsing and canonical detail routes", async ({ page }) => {
   await page.goto("/kits");
-  await page.waitForLoadState("networkidle");
 
   const sidebar = page.locator("[data-docs-sidebar-navigation]");
   await expect(sidebar.getByText("Chat & agents", { exact: true })).toBeVisible();
@@ -13,10 +13,10 @@ test("Templates owns template browsing and canonical detail routes", async ({ pa
   await expect(page).toHaveURL("/templates");
   await expect(sidebar.getByRole("link", { name: /^Coding agent/ })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Templates", level: 1 })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Screens", level: 2 })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Patterns", level: 2 })).toBeVisible();
-  await expect(page.locator('[data-template-kind="screen"]')).toHaveCount(7);
-  await expect(page.locator('[data-template-kind="pattern"]')).toHaveCount(2);
+  for (const group of templateGalleryGroups()) {
+    await expect(page.getByRole("heading", { name: group.title, level: 2 })).toBeVisible();
+    await expect(page.locator(`[data-template-kind="${group.kind}"]`)).toHaveCount(group.items.length);
+  }
 
   const codingAgentLink = page.locator('[data-template-card="coding-agent"] a');
   await codingAgentLink.focus();

@@ -78,49 +78,6 @@ for (const positioning of ["anchors", "fallback"]) {
       if (positioning === "fallback") await disableAnchorSupport(page);
     });
 
-    test("sidebar hover preserves selection, follows focus, and stays within its group", async ({ page }) => {
-      await page.goto("/components/sidebar");
-      await waitForReactHydration(page.getByRole("combobox", { name: "Menu highlight" }));
-      await page.getByRole("combobox", { name: "Menu highlight" }).selectOption("hover");
-      const group = page.getByRole("group", { name: "Sidebar", exact: true });
-      const agents = group.getByRole("button", { name: "Agents", exact: true });
-      const workflows = group.getByRole("button", { name: "Workflows", exact: true });
-      const settings = group.getByRole("button", { name: "Settings", exact: true });
-      await waitForReactHydration(agents);
-      const selectedFill = await agents.evaluate((node) => getComputedStyle(node).backgroundColor);
-      const idleFill = await workflows.evaluate((node) => getComputedStyle(node).backgroundColor);
-      await workflows.hover();
-      await expectSidebarHoverOn(workflows);
-      await expect(agents).toHaveCSS("background-color", selectedFill);
-      await expect(agents).toHaveAttribute("data-active", "true");
-      await expect(workflows).not.toHaveAttribute("data-active");
-      const disabled = group.getByRole("button", { name: "Tools", exact: true });
-      await disabled.hover({ force: true });
-      await expect(disabled).toHaveCSS("background-color", idleFill);
-      await expect(workflows).toHaveCSS("background-color", idleFill);
-      await settings.hover();
-      await expectSidebarHoverOn(settings);
-      await settings.click();
-      await expect(settings).toHaveAttribute("data-active", "true");
-      await expect(settings).toHaveCSS("background-color", selectedFill);
-      const documentation = group.getByRole("link", { name: "Documentation", exact: true });
-      await documentation.hover();
-      await expectSidebarHoverOn(documentation);
-      await expect(workflows).toHaveCSS("background-color", idleFill);
-      await page.keyboard.press("Tab");
-      await workflows.focus();
-      await expectSidebarHoverOn(workflows);
-      await agents.hover();
-      await expect(agents).toHaveCSS("background-color", idleFill);
-      await expectSidebarHoverOn(workflows);
-      await page.keyboard.press("Tab");
-      await expect(group.getByRole("button", { name: "Workflows actions", exact: true })).toBeFocused();
-      await page.keyboard.press("Tab");
-      await expect(settings).toBeFocused();
-      await expect(settings).toHaveCSS("background-color", selectedFill);
-      await expect(disabled).toBeDisabled();
-    });
-
     test("sidebar sliding indicators preview hover and return to the selected row", async ({ page }) => {
       await page.goto("/components/sidebar");
       await waitForReactHydration(page.getByRole("combobox", { name: "Menu highlight" }));
@@ -165,6 +122,53 @@ for (const positioning of ["anchors", "fallback"]) {
     });
   });
 }
+
+test("sidebar hover preserves selection, follows focus, and stays within its group", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1100 });
+  await page.addInitScript((storageKey) => {
+    localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" }));
+  }, THEME_EDITOR_STORAGE_KEY);
+  await page.goto("/components/sidebar");
+  await waitForReactHydration(page.getByRole("combobox", { name: "Menu highlight" }));
+  await page.getByRole("combobox", { name: "Menu highlight" }).selectOption("hover");
+  const group = page.getByRole("group", { name: "Sidebar", exact: true });
+  const agents = group.getByRole("button", { name: "Agents", exact: true });
+  const workflows = group.getByRole("button", { name: "Workflows", exact: true });
+  const settings = group.getByRole("button", { name: "Settings", exact: true });
+  await waitForReactHydration(agents);
+  const selectedFill = await agents.evaluate((node) => getComputedStyle(node).backgroundColor);
+  const idleFill = await workflows.evaluate((node) => getComputedStyle(node).backgroundColor);
+  await workflows.hover();
+  await expectSidebarHoverOn(workflows);
+  await expect(agents).toHaveCSS("background-color", selectedFill);
+  await expect(agents).toHaveAttribute("data-active", "true");
+  await expect(workflows).not.toHaveAttribute("data-active");
+  const disabled = group.getByRole("button", { name: "Tools", exact: true });
+  await disabled.hover({ force: true });
+  await expect(disabled).toHaveCSS("background-color", idleFill);
+  await expect(workflows).toHaveCSS("background-color", idleFill);
+  await settings.hover();
+  await expectSidebarHoverOn(settings);
+  await settings.click();
+  await expect(settings).toHaveAttribute("data-active", "true");
+  await expect(settings).toHaveCSS("background-color", selectedFill);
+  const documentation = group.getByRole("link", { name: "Documentation", exact: true });
+  await documentation.hover();
+  await expectSidebarHoverOn(documentation);
+  await expect(workflows).toHaveCSS("background-color", idleFill);
+  await page.keyboard.press("Tab");
+  await workflows.focus();
+  await expectSidebarHoverOn(workflows);
+  await agents.hover();
+  await expect(agents).toHaveCSS("background-color", idleFill);
+  await expectSidebarHoverOn(workflows);
+  await page.keyboard.press("Tab");
+  await expect(group.getByRole("button", { name: "Workflows actions", exact: true })).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(settings).toBeFocused();
+  await expect(settings).toHaveCSS("background-color", selectedFill);
+  await expect(disabled).toBeDisabled();
+});
 
 test("CSS hover highlight snaps to unequal rows with either motion preference", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });

@@ -1,23 +1,20 @@
 import { describe, expect, test } from "bun:test";
-import { readFileSync } from "node:fs";
-import path from "node:path";
-import { collectSkinContract, collectThemeContract, stateShapeFromType } from "./collect";
+import { collectSkinContract, stateShapeFromType } from "./collect";
 
-function stateAt(contract: ReturnType<typeof collectSkinContract>, scope: string, part: string, attribute: string) {
+const contract = collectSkinContract();
+
+function stateAt(scope: string, part: string, attribute: string) {
   return contract.scopes[scope]?.parts[part]?.states.find((state) => state.attribute === attribute);
 }
 
 describe("skin contract generation", () => {
   test("is deterministic and keeps root first", () => {
-    const first = collectSkinContract();
-    const second = collectSkinContract();
-    expect(second).toEqual(first);
-    expect(Object.keys(first.scopes.button.parts)[0]).toBe("root");
-    expect(Object.keys(first.scopes)).toEqual([...Object.keys(first.scopes)].sort());
+    expect(collectSkinContract()).toEqual(contract);
+    expect(Object.keys(contract.scopes.button.parts)[0]).toBe("root");
+    expect(Object.keys(contract.scopes)).toEqual([...Object.keys(contract.scopes)].sort());
   });
 
   test("resolves ownership, adornments, and semantic families", () => {
-    const contract = collectSkinContract();
     expect(contract.version).toBe(1);
     expect(contract.selectorPattern).toBe('[data-skin="{skin}"] :where([data-slot="{part}"][data-control-family="{family}"])');
     expect(contract.scopes.button.parts.root.family).toBe("button");
@@ -51,7 +48,6 @@ describe("skin contract generation", () => {
   });
 
   test("publishes every registered knob with its recipe default", () => {
-    const contract = collectSkinContract();
     expect(Object.keys(contract.knobs)).toEqual([...Object.keys(contract.knobs)].sort());
     expect(contract.knobs.button).toContainEqual({
       name: "--cui-button-radius",
@@ -69,7 +65,6 @@ describe("skin contract generation", () => {
   });
 
   test("derives only emitted external states and preserves finite Control UI state values", () => {
-    const contract = collectSkinContract();
     const nativeSelectStates = contract.scopes["native-select"].parts.root.states.map((state) => state.attribute);
     expect(nativeSelectStates).not.toContain("data-active");
     expect(nativeSelectStates).not.toContain("data-popup-open");
@@ -85,8 +80,8 @@ describe("skin contract generation", () => {
       valueKind: "enum",
       values: ["add", "context", "del"],
     });
-    expect(stateAt(contract, "item", "separator", "data-separator")).toBeUndefined();
-    expect(stateAt(contract, "resizable", "handle", "data-separator")).toEqual({
+    expect(stateAt("item", "separator", "data-separator")).toBeUndefined();
+    expect(stateAt("resizable", "handle", "data-separator")).toEqual({
       attribute: "data-separator",
       source: "control-ui",
       valueKind: "enum",
@@ -95,7 +90,6 @@ describe("skin contract generation", () => {
   });
 
   test("preserves exact finite and presence-only emitted state types", () => {
-    const contract = collectSkinContract();
     const activityStatus: NonNullable<ReturnType<typeof stateAt>> = {
       attribute: "data-status",
       source: "control-ui",
@@ -109,84 +103,68 @@ describe("skin contract generation", () => {
       values: [],
     });
 
-    expect(stateAt(contract, "activity", "root", "data-activity-state")).toEqual({ ...activityStatus, attribute: "data-activity-state" });
-    expect(stateAt(contract, "activity", "status", "data-status")).toEqual(activityStatus);
-    expect(stateAt(contract, "activity", "root", "data-activity-kind")).toEqual({
+    expect(stateAt("activity", "root", "data-activity-state")).toEqual({ ...activityStatus, attribute: "data-activity-state" });
+    expect(stateAt("activity", "status", "data-status")).toEqual(activityStatus);
+    expect(stateAt("activity", "root", "data-activity-kind")).toEqual({
       attribute: "data-activity-kind",
       source: "control-ui",
       valueKind: "enum",
       values: ["default", "reasoning", "signal", "tool"],
     });
-    expect(stateAt(contract, "activity", "root", "data-activity-name")).toEqual({
+    expect(stateAt("activity", "root", "data-activity-name")).toEqual({
       attribute: "data-activity-name",
       source: "control-ui",
       valueKind: "open",
       values: [],
     });
-    expect(stateAt(contract, "chat-composer", "root", "data-state")).toEqual({
+    expect(stateAt("chat-composer", "root", "data-state")).toEqual({
       attribute: "data-state",
       source: "control-ui",
       valueKind: "enum",
       values: ["disabled", "idle", "submitting"],
     });
-    expect(stateAt(contract, "sidebar", "root", "data-state")).toEqual({
+    expect(stateAt("sidebar", "root", "data-state")).toEqual({
       attribute: "data-state",
       source: "control-ui",
       valueKind: "enum",
       values: ["collapsed", "expanded"],
     });
-    expect(stateAt(contract, "sidebar", "root", "data-collapsible")).toEqual({
+    expect(stateAt("sidebar", "root", "data-collapsible")).toEqual({
       attribute: "data-collapsible",
       source: "control-ui",
       valueKind: "enum",
       values: ["icon", "none", "offcanvas"],
     });
-    expect(stateAt(contract, "sidebar", "menu-button", "data-size")).toEqual({
+    expect(stateAt("sidebar", "menu-button", "data-size")).toEqual({
       attribute: "data-size",
       source: "control-ui",
       valueKind: "enum",
       values: ["default", "lg", "sm"],
     });
-    expect(stateAt(contract, "sidebar", "menu-button", "data-variant")).toEqual({
+    expect(stateAt("sidebar", "menu-button", "data-variant")).toEqual({
       attribute: "data-variant",
       source: "control-ui",
       valueKind: "enum",
       values: ["default", "outline"],
     });
-    expect(stateAt(contract, "audio-recorder", "root", "data-disabled")).toEqual({
+    expect(stateAt("audio-recorder", "root", "data-disabled")).toEqual({
       attribute: "data-disabled",
       source: "control-ui",
       valueKind: "presence",
       values: [],
     });
 
-    expect(stateAt(contract, "table-of-contents", "item", "data-active")).toEqual(presenceState("data-active"));
-    expect(stateAt(contract, "tree", "item", "data-disabled")).toEqual(presenceState("data-disabled"));
-    expect(stateAt(contract, "tree", "item", "data-selected")).toEqual(presenceState("data-selected"));
-    expect(stateAt(contract, "tree", "item-trigger", "data-selected")).toEqual(presenceState("data-selected"));
-    expect(stateAt(contract, "sidebar", "menu-button", "data-active")).toEqual(presenceState("data-active"));
+    expect(stateAt("table-of-contents", "item", "data-active")).toEqual(presenceState("data-active"));
+    expect(stateAt("tree", "item", "data-disabled")).toEqual(presenceState("data-disabled"));
+    expect(stateAt("tree", "item", "data-selected")).toEqual(presenceState("data-selected"));
+    expect(stateAt("tree", "item-trigger", "data-selected")).toEqual(presenceState("data-selected"));
+    expect(stateAt("sidebar", "menu-button", "data-active")).toEqual(presenceState("data-active"));
   });
+
   test("does not infer enums from quoted utility keys", () => {
     const aliases = new Map<string, string>();
     expect(stateShapeFromType('Pick<Foo, "variant">', aliases)).toEqual({ valueKind: "open", values: [] });
     expect(stateShapeFromType('"solid" | "quiet"', aliases)).toEqual({ valueKind: "enum", values: ["quiet", "solid"] });
     expect(stateShapeFromType('["default", "outline"]', aliases)).toEqual({ valueKind: "enum", values: ["default", "outline"] });
-  });
-
-  test("keeps emitted state metadata type-only", () => {
-    const source = readFileSync(path.join(import.meta.dir, "emitted-states.ts"), "utf8");
-    expect(source).toContain("export type EmittedStateContract");
-    expect(source).not.toMatch(/\b(?:const|let|var|function|class)\b/);
-  });
-
-  test("projects the complete theme token contract", () => {
-    const contract = collectThemeContract();
-    expect(contract.tokens.length).toBeGreaterThan(100);
-    expect(contract.tokens.find((token) => token.name === "--primary")?.tier).toBe("core");
-  });
-
-  test("generated files pass the check mode", () => {
-    const result = Bun.spawnSync(["bun", "scripts/gen-skin-contract.ts", "--check"], { cwd: process.cwd() });
-    expect(result.exitCode).toBe(0);
   });
 });

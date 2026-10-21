@@ -10,14 +10,9 @@ const generatedTypeScript = [
 ];
 
 describe("generated TypeScript", () => {
-  test("is formatter-owned and already canonical", () => {
+  test("stays formatter-owned, so format:check covers it", () => {
     const biomeConfig = JSON.parse(readFileSync(path.join(repositoryRoot, "biome.json"), "utf8"));
     for (const file of generatedTypeScript) expect(biomeConfig.files.includes).not.toContain(`!${file}`);
-
-    const biome = path.join(repositoryRoot, "node_modules/.bin/biome");
-    const result = Bun.spawnSync([biome, "format", ...generatedTypeScript], { cwd: repositoryRoot });
-    expect(result.stderr.toString()).toBe("");
-    expect(result.exitCode).toBe(0);
   });
 
   test("keeps the generated skin contract out of Client Component bundles", () => {

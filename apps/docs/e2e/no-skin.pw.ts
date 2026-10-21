@@ -1,18 +1,15 @@
 import { expect, test } from "@playwright/test";
 import { waitForReactHydration } from "./browser-test-helpers";
 
-test("No skin is the default and portals follow preset changes", async ({ page }, testInfo) => {
+test("Refined is the default, No skin persists, and portals follow preset changes", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/components/popover");
   const picker = page.getByRole("combobox", { name: "Skin", exact: true });
   await waitForReactHydration(picker);
-  await expect(picker).toContainText("No skin");
+  await expect(picker).toContainText("Refined");
   const trigger = page.getByRole("button", { name: "Dimensions", exact: true });
-  await expect(trigger).toHaveCSS("border-radius", "0px");
-  await picker.click();
-  await expect(page.getByRole("option", { name: "Flat", exact: true })).toHaveCount(0);
-  await page.getByRole("option", { name: "Refined", exact: true }).click();
+  await waitForReactHydration(trigger);
   await trigger.click();
   const popup = page.locator('[data-control-ui="popover"][data-slot="content"]');
   await expect(popup).toBeVisible();
@@ -21,15 +18,14 @@ test("No skin is the default and portals follow preset changes", async ({ page }
   await expect(trigger).toBeFocused();
   await picker.focus();
   await picker.press("Enter");
-  await page.keyboard.press("Home");
-  await page.keyboard.press("Enter");
+  await page.getByRole("option", { name: "No skin", exact: true }).press("Enter");
   await expect(picker).toContainText("No skin");
   await expect(picker).toBeFocused();
+  await expect(trigger).toHaveCSS("border-radius", "0px");
   await trigger.click();
   await expect(popup).toBeVisible();
   await expect(popup.locator("..")).toHaveAttribute("data-skin", "none");
   await expect(popup).toHaveCSS("border-radius", "0px");
-  await page.screenshot({ path: testInfo.outputPath("no-skin-popover.png") });
   await page.reload();
   await expect(picker).toContainText("No skin");
   expect(errors).toEqual([]);

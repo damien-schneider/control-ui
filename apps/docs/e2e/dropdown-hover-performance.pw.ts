@@ -1,38 +1,12 @@
-import { execFileSync } from "node:child_process";
-import { mkdtempSync, readFileSync, rmSync } from "node:fs";
-import { tmpdir } from "node:os";
-import path from "node:path";
 import { expect, test } from "@playwright/test";
-import tailwind from "@tailwindcss/postcss";
-import postcss from "postcss";
+import { serveFixture } from "./fixtures/serve-fixture";
 
 test.use({ trace: "off", viewport: { width: 1440, height: 1000 } });
-const buildDirectory = mkdtempSync(path.join(tmpdir(), "control-ui-hover-perf-"));
-let script: string;
-let stylesheet: string;
-test.beforeAll(async () => {
-  execFileSync("bun", ["build", "e2e/fixtures/dropdown-hover.tsx", "--outdir", buildDirectory, "--target", "browser"]);
-  script = readFileSync(path.join(buildDirectory, "dropdown-hover.js"), "utf8");
-  stylesheet = (
-    await postcss([tailwind()]).process('@import "../app/globals.css"; @source "./fixtures/dropdown-hover.tsx";', {
-      from: path.resolve("e2e/dropdown-hover.css"),
-    })
-  ).css;
-});
-test.afterAll(() => rmSync(buildDirectory, { recursive: true, force: true }));
 
 for (const skin of ["none", "mastra"]) {
   for (const kind of ["select", "menu", "context-menu"] as const) {
     test(`${kind} hover moves directly between populated items within a frame with ${skin}`, async ({ page }) => {
-      await page.route("http://hover.test/**", (route) => {
-        if (new URL(route.request().url()).pathname === "/fixture.js")
-          return route.fulfill({ contentType: "text/javascript", body: script });
-        return route.fulfill({
-          contentType: "text/html",
-          body: `<!doctype html><html data-skin="${skin}"><head><style>${stylesheet}\nbody{font-family:system-ui}</style></head><body><div id="root"></div><script type="module" src="/fixture.js"></script></body></html>`,
-        });
-      });
-      await page.goto(`http://hover.test/?kind=${kind}`);
+      await serveFixture(page, "dropdown-hover", { search: `?kind=${kind}`, skin, style: "body{font-family:system-ui}" });
       const trigger = page.getByRole(kind === "select" ? "combobox" : "button", { name: "Entries", exact: true });
       await trigger.click({ button: kind === "context-menu" ? "right" : "left" });
       const list = page.getByRole(kind === "select" ? "listbox" : "menu");

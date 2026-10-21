@@ -1,10 +1,22 @@
 import { readFileSync } from "node:fs";
 
-import { expect, test } from "@playwright/test";
+import { expect, type Page, test } from "@playwright/test";
 import { waitForReactHydration } from "./browser-test-helpers";
 
 const CANVAS = "oklch(0.16 0.012 60)";
 const PRIMARY = "oklch(0.78 0.17 62)";
+
+// The docs mount the Reflet feedback launcher only when a public key is configured, and it sits over the
+// composer's submit. Hiding it keeps these checks about the generator, not about the deployment's env.
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => {
+    document.addEventListener("DOMContentLoaded", () => {
+      const hideFeedbackLauncher = document.createElement("style");
+      hideFeedbackLauncher.textContent = "[data-reflet-widget] { display: none; }";
+      document.head.append(hideFeedbackLauncher);
+    });
+  });
+});
 
 // The route is stubbed so the check stays offline and deterministic; what it exercises is the half no
 // server test can reach — streamed lines landing on the document as custom properties.
@@ -35,7 +47,7 @@ const streamedLines = [
   },
 ];
 
-async function openGenerator(page: import("@playwright/test").Page) {
+async function openGenerator(page: Page) {
   await page.goto("/theme-editor");
   const trigger = page.getByRole("button", { name: "Generate a theme" });
   await waitForReactHydration(trigger);
@@ -43,7 +55,7 @@ async function openGenerator(page: import("@playwright/test").Page) {
   return page.locator('[data-control-ui="chat-composer"][data-slot="root"]');
 }
 
-async function mockGeneration(page: import("@playwright/test").Page, lines: unknown[]) {
+async function mockGeneration(page: Page, lines: unknown[]) {
   await page.route("**/api/theme", async (route) => {
     await route.fulfill({
       status: 200,
@@ -110,10 +122,9 @@ test("stays open while the editor behind it is used", async ({ page }) => {
   const composer = await openGenerator(page);
   await expect(composer).toBeVisible();
 
-  // A preview tab, not a toolbar control: the drawer covers the right edge of the toolbar.
-  const applicationTab = page.getByRole("tab", { name: "Application" });
-  await applicationTab.click();
-  await expect(applicationTab).toHaveAttribute("aria-selected", "true");
+  const sourceTab = page.getByRole("tab", { name: "Source", exact: true });
+  await sourceTab.click();
+  await expect(sourceTab).toHaveAttribute("aria-selected", "true");
 
   // Base UI dismisses on the press that follows, not during it, so a bare assertion would pass either way.
   await page.waitForTimeout(500);
@@ -274,8 +285,8 @@ test("a generated theme selects the skin that carries its depth", async ({ page 
   await expect(page.locator("[data-skin]").first()).toHaveAttribute("data-skin", "modern-apple");
 
   // The skin only earns its place if it paints something tokens cannot: a gradient canvas.
-  const gradient = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--canvas-gradient").trim());
-  expect(gradient).toContain("gradient");
+  const sidebarWrapper = page.locator('[data-slot="wrapper"][data-control-family="sidebar"]').first();
+  await expect(sidebarWrapper).toHaveCSS("background-image", /gradient/);
 });
 
 // A skin that scrolls the page instead of an inset viewport rebuilds the tree under PageLayout, which

@@ -2,9 +2,7 @@ import { expect, type Locator, type Page, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { skinMetas } from "../app/(features)/catalog/skins";
 
-test.beforeEach(async ({ page }) => {
-  await page.addInitScript(() => Object.assign(window, { __REACT_GRAB_DISABLED__: true, __REACT_SCAN_DISABLED__: true }));
-});
+const skinsSharingTheBaseSidebar: Record<string, true> = { "liquid-metal": true, sketch: true };
 
 async function waitForExampleNavigation(example: Locator) {
   await expect
@@ -34,23 +32,12 @@ async function leadingCenters(menuButtons: Locator) {
   );
 }
 
-async function verifySidebarAlignment({
-  page,
-  example,
-  capturePaths,
-}: {
-  page: Page;
-  example: Locator;
-  capturePaths?: { expanded: string; collapsed: string };
-}) {
+async function verifySidebarAlignment({ page, example, checkUserMenu }: { page: Page; example: Locator; checkUserMenu: boolean }) {
   const root = example.locator('[data-slot="root"].peer');
   const buttons = example.locator('[data-slot="menu-button"]');
   const navigation = example.locator('[data-slot="group"] [data-slot="menu-button"]');
   const expanded = await leadingCenters(navigation);
   expect(Math.max(...expanded.map((item) => item.icon)) - Math.min(...expanded.map((item) => item.icon))).toBeLessThan(0.6);
-  if (capturePaths) {
-    await example.screenshot({ path: capturePaths.expanded, animations: "disabled" });
-  }
   await example.getByRole("button", { name: "Toggle sidebar", exact: true }).click();
   await expect(root).toHaveAttribute("data-state", "collapsed");
   const collapsed = await leadingCenters(buttons);
@@ -61,61 +48,45 @@ async function verifySidebarAlignment({
   expect(Math.max(...collapsed.map((item) => item.icon)) - Math.min(...collapsed.map((item) => item.icon))).toBeLessThan(1.1);
   await expect(example.getByRole("button", { name: "Workflows", exact: true })).toBeVisible();
   await expect(example.getByRole("button", { name: "Tools", exact: true })).toBeDisabled();
-  if (capturePaths) {
+  if (checkUserMenu) {
     await example.getByRole("button", { name: "Jamie Davis", exact: true }).click();
     await expect(page.getByRole("menuitem", { name: "Profile", exact: true })).toBeVisible();
     await page.keyboard.press("Escape");
     await expect(example.getByRole("button", { name: "Jamie Davis", exact: true })).toBeFocused();
     await page.mouse.move(0, 0);
-    await example.screenshot({ path: capturePaths.collapsed, animations: "disabled" });
   }
   await example.getByRole("button", { name: "Toggle sidebar", exact: true }).click();
   await expect(root).toHaveAttribute("data-state", "expanded");
 }
 
-for (const mode of ["light", "dark"]) {
-  test(`${mode}: all skins and layouts align open and collapsed rows`, async ({ page }, testInfo) => {
-    await page.addInitScript(
-      ({ storageKey, themeMode }) => localStorage.setItem(storageKey, JSON.stringify({ skin: "refined", mode: themeMode })),
-      { storageKey: THEME_EDITOR_STORAGE_KEY, themeMode: mode },
-    );
-    await page.setViewportSize({ width: 1440, height: 1000 });
-    await page.emulateMedia({ reducedMotion: "reduce" });
-    await page.goto("/components/sidebar", { waitUntil: "domcontentloaded" });
-    const example = page.getByRole("group", { name: "Sidebar", exact: true });
-    await waitForExampleNavigation(example);
-    const skinPicker = page.getByRole("combobox", { name: "Skin", exact: true });
-    for (const skin of skinMetas) {
-      await test.step(skin.label, async () => {
-        await skinPicker.click();
-        await page.getByRole("option", { name: skin.label, exact: true }).click();
-        await expect(page.locator("html")).toHaveAttribute("data-skin", skin.id);
-        await waitForExampleNavigation(example);
-        await example.getByLabel("Collapse", { exact: true }).selectOption("icon");
-        for (const variant of ["sidebar", "floating", "inset", "page"]) {
-          await example.getByLabel("Layout", { exact: true }).selectOption(variant);
-          for (const side of ["left", "right"]) {
-            await example.getByLabel("Side", { exact: true }).selectOption(side);
-            await verifySidebarAlignment({
-              page,
-              example,
-              capturePaths:
-                side === "left" && variant === "sidebar"
-                  ? {
-                      expanded: testInfo.outputPath(`${skin.id}-${mode}-expanded.png`),
-                      collapsed: testInfo.outputPath(`${skin.id}-${mode}-collapsed.png`),
-                    }
-                  : undefined,
-            });
-          }
+test("every skin with its own sidebar code aligns open and collapsed rows in all layouts", async ({ page }) => {
+  await page.addInitScript((storageKey) => localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" })), THEME_EDITOR_STORAGE_KEY);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/components/sidebar", { waitUntil: "domcontentloaded" });
+  const example = page.getByRole("group", { name: "Sidebar", exact: true });
+  await waitForExampleNavigation(example);
+  const skinPicker = page.getByRole("combobox", { name: "Skin", exact: true });
+  for (const skin of skinMetas.filter(({ id }) => !skinsSharingTheBaseSidebar[id])) {
+    await test.step(skin.label, async () => {
+      await skinPicker.click();
+      await page.getByRole("option", { name: skin.label, exact: true }).click();
+      await expect(page.locator("html")).toHaveAttribute("data-skin", skin.id);
+      await waitForExampleNavigation(example);
+      await example.getByLabel("Collapse", { exact: true }).selectOption("icon");
+      for (const variant of ["sidebar", "floating", "inset", "page"]) {
+        await example.getByLabel("Layout", { exact: true }).selectOption(variant);
+        for (const side of ["left", "right"]) {
+          await example.getByLabel("Side", { exact: true }).selectOption(side);
+          await verifySidebarAlignment({ page, example, checkUserMenu: side === "left" && variant === "sidebar" });
         }
-        await example.getByLabel("Collapse", { exact: true }).selectOption("none");
-        await expect(example.getByRole("button", { name: "Toggle sidebar", exact: true })).toHaveCount(0);
-        await expect(example.getByRole("button", { name: "Agents", exact: true })).toBeVisible();
-      });
-    }
-  });
-}
+      }
+      await example.getByLabel("Collapse", { exact: true }).selectOption("none");
+      await expect(example.getByRole("button", { name: "Toggle sidebar", exact: true })).toHaveCount(0);
+      await expect(example.getByRole("button", { name: "Agents", exact: true })).toBeVisible();
+    });
+  }
+});
 
 test("automatic label tooltips only open for icon rails", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
@@ -144,6 +115,7 @@ test("switching from icon navigation to mobile closes hidden tooltips before Esc
   await waitForExampleNavigation(example);
   await trigger.click();
   await example.getByRole("button", { name: "Jamie Davis", exact: true }).click();
+  await expect(page.getByRole("menu")).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(example.getByRole("button", { name: "Jamie Davis", exact: true })).toBeFocused();
   await trigger.click();

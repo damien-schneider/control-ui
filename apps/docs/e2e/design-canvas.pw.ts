@@ -32,6 +32,22 @@ test("dragging a layer moves it in world space and updates the position fields",
   await expect(heroCard).toHaveCSS("left", "82px");
 });
 
+test("the hand tool pans the canvas from over a layer without moving it", async ({ page }) => {
+  const canvas = page.getByRole("application", { name: "Design canvas" });
+  const heroCard = page.locator('[data-slot="item"][aria-label="Hero card"]');
+  const content = canvas.locator('[data-control-ui="infinite-canvas"][data-slot="content"]');
+  const panBefore = await content.evaluate((element) => new DOMMatrixReadOnly(element.style.transform).e);
+
+  await canvas.focus();
+  await page.keyboard.press("h");
+  await expect(page.getByRole("button", { name: "Hand", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(canvas).toHaveAttribute("data-pan-ready", "");
+  await dragBy(page, heroCard, { x: 50, y: 30 });
+
+  await expect(page.getByRole("textbox", { name: "X position" })).toHaveValue("32");
+  await expect.poll(() => content.evaluate((element) => new DOMMatrixReadOnly(element.style.transform).e)).toBe(panBefore + 50);
+});
+
 test("scrubbing a prefix label or a suffix unit changes the value without typing", async ({ page }) => {
   const xPosition = page.getByRole("textbox", { name: "X position" });
   const xLabel = page.locator('[data-slot="scrub-area"]', { hasText: /^X$/ });

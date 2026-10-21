@@ -1,5 +1,6 @@
 import { expect, type Locator, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY, THEME_STORAGE_KEY } from "../components/theme";
+import { waitForSkinLayout } from "./browser-test-helpers";
 
 async function approvalLook(preview: Locator) {
   const root = preview.locator('[data-control-ui="tool-approval"][data-slot="root"]');
@@ -10,7 +11,7 @@ async function approvalLook(preview: Locator) {
   };
 }
 
-for (const skin of ["refined", "linear", "windows-98"]) {
+for (const skin of ["refined", "linear"]) {
   test.describe(skin, () => {
     test.beforeEach(async ({ page }) => {
       await page.addInitScript(
@@ -22,9 +23,10 @@ for (const skin of ["refined", "linear", "windows-98"]) {
       );
     });
 
-    test("the run waits on its approval, then finishes or cancels", async ({ page }, testInfo) => {
+    test("the run waits on its approval, then finishes or cancels", async ({ page }) => {
       await page.setViewportSize({ width: 1440, height: 1000 });
       await page.goto("/templates/agent-run");
+      await waitForSkinLayout(page, skin);
       const preview = page.locator("#preview");
       const header = preview.locator("header").filter({ hasText: "Weekly churn report" });
       const postStep = preview
@@ -48,8 +50,6 @@ for (const skin of ["refined", "linear", "windows-98"]) {
       await expect(header.getByText("Done", { exact: true })).toBeVisible({ timeout: 5_000 });
       await expect(preview.getByText("Approved", { exact: true })).toBeVisible();
       await expect(preview.getByRole("button", { name: "Run again" })).toBeVisible();
-      await page.screenshot({ path: testInfo.outputPath(`agent-run-${skin}.png`) });
-
       await preview.getByRole("button", { name: "Run again" }).click();
       await preview.getByRole("button", { name: "Deny", exact: true }).click();
       await expect(header.getByText("Cancelled", { exact: true })).toBeVisible();

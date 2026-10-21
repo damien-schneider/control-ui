@@ -16,7 +16,7 @@ describe("InfiniteCanvas", () => {
     expect(html).toContain('aria-label="Planning space"');
     expect(html).toContain('data-slot="content"');
     expect(html).toContain('data-scale="1.25"');
-    expect(html).toContain("translate3d(120px, 72px, 0) scale(1.25)");
+    expect(html).toContain("translate(120px, 72px) scale(1.25)");
     expect(html).toContain('aria-label="Zoom out"');
     expect(html).toContain('aria-label="Zoom in"');
     expect(html).toContain("125%");
@@ -32,7 +32,7 @@ describe("InfiniteCanvas", () => {
     const zoomOutButton = html.match(/<button[^>]*aria-label="Zoom out"[^>]*>/)?.[0];
 
     expect(html).toContain("5%");
-    expect(zoomOutButton).toBeDefined();
-    expect(zoomOutButton).not.toContain("disabled");
+    expect(zoomOutButton).toContain('aria-disabled="false"');
+    expect(zoomOutButton).not.toContain("data-disabled");
   });
 });

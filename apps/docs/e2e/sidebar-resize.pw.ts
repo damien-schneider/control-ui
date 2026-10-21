@@ -1,10 +1,6 @@
 import { expect, type Locator, test } from "@playwright/test";
 import { waitForReactHydration } from "./browser-test-helpers";
 
-test.beforeEach(async ({ page }) => {
-  await page.addInitScript(() => Object.assign(window, { __REACT_GRAB_DISABLED__: true, __REACT_SCAN_DISABLED__: true }));
-});
-
 async function waitForSidebarHydration(resizeHandle: Locator) {
   await expect(resizeHandle).toHaveAttribute("data-resize-ready", "");
 }
@@ -195,9 +191,9 @@ test("committed width and collapsed state survive a skin remount", async ({ page
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto("/components/code-diff");
 
-  const sidebarRoot = page.locator('[data-control-ui="sidebar"][data-slot="root"].peer');
-  const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
-  const wrapper = page.locator('[data-control-ui="sidebar"][data-slot="wrapper"]');
+  const sidebarRoot = page.locator('[data-control-ui="sidebar"][data-slot="root"].peer:has([data-docs-sidebar-navigation])');
+  const resizeHandle = sidebarRoot.getByRole("separator", { name: /Resize sidebar/ });
+  const wrapper = page.locator('[data-docs-shell][data-control-ui="sidebar"][data-slot="wrapper"]');
   await waitForSidebarHydration(resizeHandle);
   await resizeHandle.focus();
   await resizeHandle.press("End");

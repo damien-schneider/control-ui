@@ -1,4 +1,5 @@
 import { expect, type Locator, test } from "@playwright/test";
+import { waitForReactHydration } from "./browser-test-helpers";
 
 const SKINS = [
   { id: "refined", label: "Refined" },
@@ -169,12 +170,12 @@ async function minimumContrasts(controls: Locator, regions: GlyphRegion[]): Prom
 }
 
 test("sidebar header controls keep rendered contrast across every skin and mode", async ({ page }) => {
-  test.setTimeout(600_000);
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto("/theme-editor");
-  await page.waitForLoadState("networkidle");
+  await waitForReactHydration(page.getByRole("combobox", { name: "Skin", exact: true }));
+  await page.evaluate(() => document.fonts.ready);
 
-  const controls = page.locator('[data-control-ui="sidebar"][data-slot="header"]');
+  const controls = page.locator('[data-docs-sidebar-navigation] [data-control-ui="sidebar"][data-slot="header"]');
   const violations: string[] = [];
 
   for (const skin of SKINS) {

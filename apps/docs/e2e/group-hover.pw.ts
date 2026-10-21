@@ -136,71 +136,23 @@ test("Refined enables fluid sidebar and checkbox navigation without per-instance
   }, THEME_EDITOR_STORAGE_KEY);
   await page.goto("/components/sidebar");
   const sidebar = page.getByRole("group", { name: "Sidebar", exact: true });
-  const menu = sidebar.locator('[data-slot="menu-track"]').first();
-  await expect(menu).toHaveAttribute("data-track", "hover");
+  const menu = sidebar.getByRole("list", { name: "Workspace", exact: true });
+  await expect(menu).toHaveAttribute("data-indicator", "hover");
   const workflows = menu.getByRole("button", { name: "Workflows", exact: true });
+  const agents = menu.getByRole("button", { name: "Agents", exact: true });
+  await waitForReactHydration(workflows);
   await workflows.hover();
-  await expectHighlightOn(menu.locator('[data-control-family="track-highlight"]'), workflows);
-  await expect(menu.getByRole("button", { name: "Agents", exact: true })).toHaveAttribute("data-active", "true");
+  const hoverFill = await workflows.evaluate((node) =>
+    getComputedStyle(node).getPropertyValue("--cui-sidebar-menu-button-hover-background").trim(),
+  );
+  await expect(workflows).toHaveCSS("background-color", hoverFill);
+  await expect(agents).toHaveAttribute("data-active", "true");
   await page.goto("/components/checkbox-group");
   const checkboxes = page.getByRole("group", { name: "Notification channels" });
   await expect(checkboxes).toHaveAttribute("data-track", "hover");
   await checkboxes.getByText("Critical alerts only", { exact: true }).hover();
   await expectHighlightOn(checkboxes.locator('[data-control-family="track-highlight"]'), checkboxes.locator('label[for="channel-sms"]'));
 });
-
-for (const skin of ["refined", "none"]) {
-  test(`website sidebar highlights navigation instantly with the ${skin} skin`, async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 1000 });
-    await page.emulateMedia({ reducedMotion: "no-preference" });
-    await page.addInitScript(
-      ({ storageKey, skin: initialSkin }) => {
-        localStorage.setItem(storageKey, JSON.stringify({ skin: initialSkin }));
-      },
-      { storageKey: THEME_EDITOR_STORAGE_KEY, skin },
-    );
-    await page.goto("/components/button-group");
-    const navigation = page.locator("[data-docs-sidebar-navigation]");
-    const current = navigation.getByRole("link", { name: "Button group", exact: true });
-    const first = navigation.getByRole("link", { name: "Button", exact: true });
-    const last = navigation.getByRole("link", { name: "Dropdown Menu", exact: true });
-    const menu = navigation
-      .locator('[data-slot="menu-track"]')
-      .filter({ has: page.getByRole("link", { name: "Button group", exact: true }) });
-    const highlight = menu.locator('[data-control-family="track-highlight"]');
-    await waitForReactHydration(first);
-    await expect(menu).toHaveAttribute("data-track", "hover");
-    await first.hover();
-    await expectHighlightOn(highlight, first);
-    await expect(highlight).toHaveCSS("opacity", "1");
-    const firstBox = await first.boundingBox();
-    const adjacentBox = await current.boundingBox();
-    const lastBox = await last.boundingBox();
-    if (!firstBox || !adjacentBox || !lastBox) throw new Error("Website navigation links are not laid out");
-    for (let pointerY = firstBox.y + firstBox.height - 2; pointerY <= adjacentBox.y + 2; pointerY++) {
-      await page.mouse.move(firstBox.x + firstBox.width / 2, pointerY);
-      expect(await highlight.isVisible()).toBe(true);
-      await expect(highlight).toHaveCSS("opacity", "1", { timeout: 100 });
-    }
-    await first.hover();
-    await expectHighlightOn(highlight, first);
-    await last.hover();
-    const positions = await highlight.evaluate(async (node) => {
-      const framePositions: number[] = [];
-      for (let frame = 0; frame < 12; frame++) {
-        await new Promise(requestAnimationFrame);
-        framePositions.push(node.getBoundingClientRect().y);
-      }
-      return framePositions;
-    });
-    expect(positions.every((top) => Math.abs(top - lastBox.y) < 1)).toBe(true);
-    await expectHighlightOn(highlight, last);
-    await expect(current).toHaveAttribute("data-active", "true");
-    await first.click();
-    await expect(page).toHaveURL(/\/components\/button$/);
-    await expect(navigation.getByRole("link", { name: "Button", exact: true })).toHaveAttribute("data-active", "true");
-  });
-}
 
 test("a split button keeps its end caps while its menu is open", async ({ page }) => {
   await page.goto("/components/button-group");

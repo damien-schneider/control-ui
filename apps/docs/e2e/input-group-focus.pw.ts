@@ -2,8 +2,8 @@ import { expect, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { waitForReactHydration } from "./browser-test-helpers";
 
-for (const skin of ["none", "refined", "modern-apple", "rig"]) {
-  test(`input groups keep one focus indicator and coherent corners with ${skin}`, async ({ page }, testInfo) => {
+for (const skin of ["refined", "rig"]) {
+  test(`input groups keep one focus indicator and coherent corners with ${skin}`, async ({ page }) => {
     await page.addInitScript(
       ({ storageKey, skin: initialSkin }) => localStorage.setItem(storageKey, JSON.stringify({ skin: initialSkin, reduceMotion: true })),
       {
@@ -14,10 +14,9 @@ for (const skin of ["none", "refined", "modern-apple", "rig"]) {
     await page.goto("/components/input-group");
     const url = page.getByRole("textbox", { name: "URL", exact: true });
     const group = url.locator("..");
-    const search = page.getByRole("textbox", { name: "Search documentation...", exact: true });
-    const searchButton = page
-      .getByRole("tabpanel", { name: "Preview", exact: true })
-      .getByRole("button", { name: "Search documentation", exact: true });
+    const preview = page.getByRole("tabpanel", { name: "Preview", exact: true });
+    const search = preview.getByRole("searchbox", { name: "Search documentation", exact: true });
+    const searchButton = preview.getByRole("button", { name: "Search documentation", exact: true });
     await waitForReactHydration(url);
 
     await searchButton.click();
@@ -59,7 +58,6 @@ for (const skin of ["none", "refined", "modern-apple", "rig"]) {
       await group.evaluate((element, value) => element.style.setProperty("--cui-field-radius", value), radius);
       await expect(group).toHaveCSS("border-radius", radius);
       await expect(url).toHaveCSS("border-radius", "0px");
-      await group.locator("..").screenshot({ path: testInfo.outputPath(`url-${radius}.png`) });
     }
 
     await page.setViewportSize({ width: 390, height: 844 });
@@ -70,6 +68,5 @@ for (const skin of ["none", "refined", "modern-apple", "rig"]) {
     if (!bounds) throw new Error("URL input group is not laid out");
     expect(bounds.x).toBeGreaterThanOrEqual(0);
     expect(bounds.x + bounds.width).toBeLessThanOrEqual(390);
-    await group.locator("..").screenshot({ path: testInfo.outputPath("url-mobile.png") });
   });
 }

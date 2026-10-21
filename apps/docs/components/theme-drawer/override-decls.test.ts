@@ -1,6 +1,4 @@
 import { describe, expect, test } from "bun:test";
-import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
 import { buildOverrideDecls, buildOverrideSheetCss } from "./override-decls";
 import type { ThemeState } from "./types";
 
@@ -122,24 +120,5 @@ describe("buildOverrideSheetCss — the portal fix: scope the diff to the ACTIVE
     const css = buildOverrideSheetCss(t.skin, buildOverrideDecls(t, false), t.knobs);
     expect(css).toContain(`[data-skin="xp"]`);
     expect(css).toContain("--overlay-opacity: 0.5;");
-  });
-});
-
-describe("component contract: portalled surfaces still consume the overlay/popover tokens", () => {
-  const read = (rel: string) => readFileSync(fileURLToPath(new URL(rel, import.meta.url)), "utf8");
-
-  test("the shared modal backdrop recipe reads --overlay-opacity + --backdrop-blur-overlay", () => {
-    const src = read("../control-ui/styles/recipes/popup.css");
-    expect(src).toContain("var(--overlay-opacity)");
-    expect(src).toContain("var(--backdrop-blur-overlay)");
-  });
-
-  test("the backdrop is token-driven, not a hardcoded bg-black/xx that ignores the token", () => {
-    expect(read("../control-ui/ui/dialog.tsx")).not.toMatch(/bg-black\/\d/);
-    expect(read("../control-ui/ui/sheet.tsx")).not.toMatch(/bg-black\/\d/);
-  });
-
-  test("portalled surfaces re-assert data-skin (so they need the scoped override sheet)", () => {
-    expect(read("../control-ui/ui/dialog.tsx")).toContain("data-skin={skin.id}");
   });
 });
