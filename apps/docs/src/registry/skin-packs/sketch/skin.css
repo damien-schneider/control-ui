@@ -16,7 +16,7 @@
 
   [data-skin="sketch"] [data-control-family="button"][data-control="true"] {
     --cui-button-press-scale: 0.99;
-    font-weight: 400;
+    --cui-button-font-weight: 400;
   }
 
   [data-skin="sketch"] [data-control-family="button"][data-control="true"]:is([data-variant="solid"], [data-variant="surface"]) {
@@ -32,7 +32,7 @@
 
   [data-skin="sketch"] [data-control-family="field"][data-control="true"] {
     --cui-field-shadow: none;
-    font-weight: 400;
+    --cui-field-font-weight: 400;
   }
 
   [data-skin="sketch"] [data-control-family="field"][data-control="true"]:is(:focus-visible, :has(:focus-visible)) {
@@ -44,11 +44,11 @@
   [data-skin="sketch"] [data-control-family="card"][data-slot="root"] {
     --cui-card-radius: var(--radius-panel);
     --cui-card-shadow: none;
+    --cui-card-title-font-size: var(--text-heading-3);
   }
 
   [data-skin="sketch"] [data-control-family="card"][data-slot="title"] {
     font-weight: 400;
-    font-size: var(--text-heading-3);
   }
 
   [data-skin="sketch"] [data-control-family="popup"][data-popup-part="surface"],
@@ -114,7 +114,7 @@
 
   [data-skin="sketch"] [data-control-family="badge"][data-slot="root"] {
     --cui-badge-radius: 4px;
-    font-weight: 400;
+    --cui-badge-font-weight: 400;
   }
 
   [data-skin="sketch"] [data-control-family="chat-composer"][data-slot="root"] {

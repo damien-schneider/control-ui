@@ -8,10 +8,12 @@
     --cui-timeline-error-foreground: var(--destructive-text);
     --cui-timeline-separator-background: var(--border);
     --cui-timeline-title-foreground: var(--foreground);
+    --cui-timeline-title-font-weight: var(--font-weight-medium);
+    --cui-timeline-item-padding-block: calc(var(--spacing) * 5);
   }
   :where([data-control-family="timeline"][data-slot="item"]) {
     column-gap: calc(var(--spacing) * 3);
-    padding-block-end: calc(var(--spacing) * 5);
+    padding-block-end: var(--cui-timeline-item-padding-block);
   }
 
   :where([data-control-family="timeline"][data-slot="item"]:last-child) {
@@ -58,7 +60,7 @@
   :where([data-control-family="timeline"][data-slot="title"]) {
     color: var(--cui-timeline-title-foreground);
     font-size: var(--text-label);
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--cui-timeline-title-font-weight);
     line-height: calc(var(--spacing) * 5);
     text-wrap: balance;
   }
@@ -117,4 +119,16 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-timeline-title-font-weight {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 400;
+}
+
+@property --cui-timeline-item-padding-block {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }

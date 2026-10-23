@@ -1,5 +1,7 @@
 // Generated from src/registry/sources/control-ui/recipes/field.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.
 export const fieldKnobs = [
+  "--cui-field-legend-font-size",
+  "--cui-field-legend-font-weight",
   "--cui-field-radius",
   "--cui-field-background",
   "--cui-field-hover-background",
@@ -15,5 +17,13 @@ export const fieldKnobs = [
   "--cui-field-height",
   "--cui-field-padding-inline",
   "--cui-field-font-size",
+  "--cui-field-font-weight",
+  "--cui-field-group-radius",
+  "--cui-field-group-background",
+  "--cui-field-group-border-color",
+  "--cui-field-group-border-width",
+  "--cui-field-group-shadow",
+  "--cui-field-label-font-size",
+  "--cui-field-description-font-size",
 ] as const;
 export type FieldKnobStyle = Partial<Record<(typeof fieldKnobs)[number], string>>;

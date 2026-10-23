@@ -223,7 +223,7 @@ const popupPairs = ["background", "card"].flatMap((surface): ThemeAuditPair[] =>
 // The indicator is a sibling painted BEHIND the tab; nesting the glyph inside it reproduces the stack.
 const tabsList: ThemeAuditAnatomy = [
   { attributes: { "data-control-family": "tabs", "data-slot": "root" } },
-  { attributes: { "data-control-family": "tabs", "data-slot": "list", "data-size": "sm" }, style: "--_tabs-trigger-h:32px" },
+  { attributes: { "data-control-family": "tabs", "data-slot": "list", "data-size": "sm" } },
 ];
 const tabsIndicator: ThemeAuditAnatomy = [
   { attributes: { "data-control-family": "tabs", "data-slot": "indicator" }, style: "position:static;width:96px;transform:none" },

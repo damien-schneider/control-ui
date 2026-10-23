@@ -5,6 +5,7 @@
     --cui-pagination-link-hover-background: var(--hover-fill);
     --cui-pagination-link-foreground: var(--foreground);
     --cui-pagination-link-shadow: none;
+    --cui-pagination-link-font-size: 1em;
   }
   :where([data-control-family="pagination"][data-slot="content"]) {
     gap: calc(var(--spacing) * 1);
@@ -20,6 +21,7 @@
       inset 0 0 0 var(--control-rim-width) var(--_pagination-link-border-color),
       var(--cui-pagination-link-shadow);
     color: var(--cui-pagination-link-foreground);
+    font-size: var(--cui-pagination-link-font-size);
     font-variant-numeric: tabular-nums;
   }
 
@@ -101,4 +103,10 @@
 @property --cui-pagination-link-shadow {
   syntax: "*";
   inherits: true;
+}
+
+@property --cui-pagination-link-font-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }

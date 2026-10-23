@@ -132,7 +132,7 @@ export function SelectValue({ children, ...props }: SelectValueProps) {
   );
 }
 
-export function SelectContent({ className, children, alignItemWithTrigger = false, ...props }: SelectContentProps) {
+export function SelectContent({ className, children, alignItemWithTrigger, ...props }: SelectContentProps) {
   const skin = useSkin();
   return (
     <SelectPrimitive.Portal>
@@ -142,7 +142,7 @@ export function SelectContent({ className, children, alignItemWithTrigger = fals
         side="bottom"
         align="start"
         sideOffset={6}
-        alignItemWithTrigger={alignItemWithTrigger}
+        alignItemWithTrigger={alignItemWithTrigger ?? skin.selectAlignItemWithTrigger ?? false}
         className="z-(--z-popup)"
       >
         <SelectPrimitive.Popup

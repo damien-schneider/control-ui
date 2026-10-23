@@ -173,9 +173,9 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Rig](https://control-ui.dev/skins/rig): Brutalist skin with coral accents, squared corners, and dense typography.
 - [Sketch](https://control-ui.dev/skins/sketch): Hand-drawn pencil outlines, Excalifont handwriting, and neutral paper surfaces. A clean sketchbook for prototypes and everyday interfaces.
 - [No skin](https://control-ui.dev/skins/none): Control UI defaults: neutral colors, square corners, and no shadows. No skin required.
-- [macOS](https://control-ui.dev/skins/modern-apple): Apple-inspired glass skin with live backdrop blur, SVG edge refraction, paired light and dark rims, and a flush sidebar.
+- [macOS](https://control-ui.dev/skins/modern-apple): macOS 27 Liquid Glass: SF Pro at 13px, 24px regular controls, accent-filled selection, frosted glass menus and popovers, and an edge-attached sidebar.
 - [Cuicui](https://control-ui.dev/skins/cuicui): Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor).
-- [Linear](https://control-ui.dev/skins/linear): Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 8px controls on 12px panels, hairline borders instead of elevation, and 8px menu rows inset in a 4px gutter.
+- [Linear](https://control-ui.dev/skins/linear): Linear's measured design language: indigo on a cool neutral ramp, a 12/13px chrome band at weight 450/500, pill buttons with half-pixel rims, 8px fields on 12px panels, and 32px menu rows inset in a 6px gutter.
 
 ## Hooks
 

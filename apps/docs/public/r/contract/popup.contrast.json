@@ -9476,6 +9476,110 @@
           "data-slot": "title"
         }
       }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "end",
+          "data-control-family": "popup",
+          "data-control-ui": "dropdown-menu",
+          "data-open": "",
+          "data-popup-part": "list-surface",
+          "data-side": "right",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "menu",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "dropdown-menu",
+          "data-icon-dir": "inline",
+          "data-slot": "sub-trigger-indicator"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "menubar",
+          "data-open": "",
+          "data-popup-kind": "menubar",
+          "data-popup-part": "list-surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "menu",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "menubar",
+          "data-icon-dir": "inline",
+          "data-popup-kind": "menubar",
+          "data-slot": "sub-trigger-indicator"
+        }
+      }
     ]
   ],
   "probes": [
@@ -10842,6 +10946,22 @@
         "text": "--cui-popup-title-foreground"
       },
       "anatomy": 161,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-submenu-indicator-foreground"
+      },
+      "anatomy": 162,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-submenu-indicator-foreground"
+      },
+      "anatomy": 163,
       "rendersText": true,
       "state": false
     }

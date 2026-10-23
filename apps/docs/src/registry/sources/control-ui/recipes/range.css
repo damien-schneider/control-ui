@@ -5,6 +5,8 @@
     --cui-range-indicator-radius: 9999px;
     --cui-range-indicator-background: var(--primary);
     --cui-range-thumb-radius: 9999px;
+    --cui-range-thumb-inline-size: calc(var(--spacing) * 3.5);
+    --cui-range-thumb-block-size: calc(var(--spacing) * 3.5);
     --cui-range-thumb-background: var(--background);
     --cui-range-thumb-border-color: var(--control-rim);
     --cui-range-thumb-shadow: var(--shadow-sm);
@@ -85,8 +87,8 @@
   }
 
   :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-variant="default"]) {
-    inline-size: calc(var(--spacing) * 3.5);
-    block-size: calc(var(--spacing) * 3.5);
+    inline-size: var(--cui-range-thumb-inline-size);
+    block-size: var(--cui-range-thumb-block-size);
   }
 
   :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"]) {
@@ -342,6 +344,18 @@
 }
 
 @property --cui-range-thumb-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-range-thumb-inline-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-range-thumb-block-size {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;

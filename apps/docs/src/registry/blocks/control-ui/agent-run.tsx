@@ -92,7 +92,8 @@ export function AgentRunBlock({
   return (
     <SidebarProvider
       layout={layout}
-      className={cn("bg-background text-foreground", layout === "viewport" && "h-svh overflow-hidden", className)}
+      surface="background"
+      className={cn("text-foreground", layout === "viewport" && "h-svh overflow-hidden", className)}
       style={providerStyle}
       {...props}
     >

@@ -54,6 +54,12 @@
       "defaultValue": "var(--text-body)"
     },
     {
+      "name": "--cui-button-font-weight",
+      "syntax": "<number>",
+      "initialValue": "400",
+      "defaultValue": "var(--font-weight-medium)"
+    },
+    {
       "name": "--cui-button-background",
       "syntax": "<color>",
       "initialValue": "transparent",

@@ -12,6 +12,7 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/control-ui/ui/command";
+import { Kbd, KbdGroup } from "@/components/control-ui/ui/kbd";
 
 export function PrimitiveCommandExample() {
   return (
@@ -23,7 +24,12 @@ export function PrimitiveCommandExample() {
           <CommandGroup heading="Suggestions">
             <CommandItem value="new-thread">
               New thread
-              <CommandShortcut>⌘N</CommandShortcut>
+              <CommandShortcut>
+                <KbdGroup>
+                  <Kbd>⌘</Kbd>
+                  <Kbd>N</Kbd>
+                </KbdGroup>
+              </CommandShortcut>
             </CommandItem>
             <CommandItem value="search-docs">Search docs</CommandItem>
             <CommandItem value="invite">Invite teammate</CommandItem>
@@ -34,7 +40,12 @@ export function PrimitiveCommandExample() {
               <span className="text-muted-foreground">Settings</span>
               <ChevronRightIcon aria-hidden="true" className="size-3.5 shrink-0 text-muted-foreground/60" />
               <span>Profile</span>
-              <CommandShortcut>⌘,</CommandShortcut>
+              <CommandShortcut>
+                <KbdGroup>
+                  <Kbd>⌘</Kbd>
+                  <Kbd>,</Kbd>
+                </KbdGroup>
+              </CommandShortcut>
             </CommandItem>
             <CommandItem value="settings workspace members">
               <span className="text-muted-foreground">Settings</span>

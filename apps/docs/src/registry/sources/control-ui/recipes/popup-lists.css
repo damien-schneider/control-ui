@@ -64,12 +64,12 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="command"][data-slot="group"] [cmdk-group-heading]) {
-    padding-inline: calc(var(--spacing) * 2);
-    padding-block: calc(var(--spacing) * 1.5);
-    text-transform: uppercase;
-    font-size: var(--text-caption);
+    padding-inline: var(--cui-popup-command-heading-padding-inline);
+    padding-block: var(--cui-popup-command-heading-padding-block);
+    text-transform: var(--cui-popup-command-heading-text-transform);
+    font-size: var(--cui-popup-command-heading-font-size);
     font-weight: var(--font-weight-medium);
-    letter-spacing: 0.08em;
+    letter-spacing: var(--cui-popup-command-heading-letter-spacing);
   }
 
   :where([data-control-family="popup"][data-popup-kind="command"][data-slot="empty"]),
@@ -153,7 +153,7 @@
   }
 
   :where([data-control-family="popup"][data-popup-part="separator"]) {
-    margin-block: calc(var(--spacing) * 1);
+    margin-block: var(--cui-popup-separator-gap);
     margin-inline: var(--cui-popup-separator-inset);
     block-size: 1px;
     background-color: var(--cui-popup-separator-color);
@@ -175,6 +175,7 @@
     margin-inline-start: auto;
     padding-inline-start: calc(var(--spacing) * 4);
     line-height: 1;
+    color: var(--cui-popup-submenu-indicator-foreground);
   }
 
   :where([data-control-family="popup"][data-popup-part="bar"]) {
@@ -314,6 +315,54 @@
 
 @property --cui-popup-shortcut-letter-spacing {
   syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-popup-separator-gap {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-popup-submenu-indicator-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-popup-command-heading-padding-block {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-popup-command-heading-padding-inline {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-popup-command-heading-font-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-popup-command-heading-letter-spacing {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-popup-command-heading-text-transform {
+  syntax: "none | uppercase | lowercase | capitalize";
+  inherits: true;
+  initial-value: none;
+}
+
+@property --cui-popup-dialog-max-inline-size {
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }

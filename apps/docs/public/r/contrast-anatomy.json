@@ -82757,6 +82757,200 @@
       "rendersText": true,
       "state": false,
       "route": "/kits/transcript-divider"
+    },
+    {
+      "knobs": {
+        "fill": "--cui-field-group-background"
+      },
+      "anatomy": [
+        {
+          "attributes": {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent"
+          }
+        },
+        {
+          "attributes": {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            "tabindex": "-1"
+          }
+        },
+        {
+          "attributes": {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose"
+          }
+        },
+        {
+          "attributes": {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+            "data-surface": "background"
+          }
+        },
+        {
+          "attributes": {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            "tabindex": "-1"
+          }
+        },
+        {
+          "attributes": {
+            "data-control-family": "field",
+            "data-control-ui": "field",
+            "data-field-kind": "field",
+            "data-slot": "set"
+          }
+        },
+        {
+          "attributes": {
+            "data-control-family": "field",
+            "data-control-ui": "field",
+            "data-field-kind": "field",
+            "data-slot": "group",
+            "data-variant": "card"
+          }
+        }
+      ],
+      "recipe": "field",
+      "rendersText": true,
+      "state": false,
+      "route": "/templates/settings"
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-submenu-indicator-foreground"
+      },
+      "anatomy": [
+        {
+          "attributes": {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent"
+          }
+        },
+        {
+          "attributes": {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            "tabindex": "-1"
+          }
+        },
+        {
+          "attributes": {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose"
+          }
+        },
+        {
+          "attributes": {
+            "data-align": "end",
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-open": "",
+            "data-popup-part": "list-surface",
+            "data-side": "right",
+            "data-slot": "content",
+            "data-surface": "floating",
+            "role": "menu",
+            "tabindex": "-1"
+          }
+        },
+        {
+          "attributes": {
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-icon-dir": "inline",
+            "data-slot": "sub-trigger-indicator"
+          }
+        }
+      ],
+      "recipe": "popup-lists",
+      "rendersText": true,
+      "state": false,
+      "route": "/components/dropdown-menu"
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-submenu-indicator-foreground"
+      },
+      "anatomy": [
+        {
+          "attributes": {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent"
+          }
+        },
+        {
+          "attributes": {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            "tabindex": "-1"
+          }
+        },
+        {
+          "attributes": {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose"
+          }
+        },
+        {
+          "attributes": {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "menubar",
+            "data-open": "",
+            "data-popup-kind": "menubar",
+            "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            "role": "menu",
+            "tabindex": "-1"
+          }
+        },
+        {
+          "attributes": {
+            "data-control-family": "popup",
+            "data-control-ui": "menubar",
+            "data-icon-dir": "inline",
+            "data-popup-kind": "menubar",
+            "data-slot": "sub-trigger-indicator"
+          }
+        }
+      ],
+      "recipe": "popup-lists",
+      "rendersText": true,
+      "state": false,
+      "route": "/components/menubar"
     }
   ],
   "uncovered": [

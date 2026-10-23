@@ -37,6 +37,15 @@
     --cui-popup-label-text-transform: uppercase;
     --cui-popup-separator-color: var(--border);
     --cui-popup-separator-inset: calc(var(--popover-padding) * -1);
+    --cui-popup-separator-gap: calc(var(--spacing) * 1);
+    --cui-popup-submenu-indicator-foreground: var(--cui-popup-item-foreground);
+    --cui-popup-tooltip-arrow-radius: 3px;
+    --cui-popup-command-heading-padding-block: calc(var(--spacing) * 1.5);
+    --cui-popup-command-heading-padding-inline: calc(var(--spacing) * 2);
+    --cui-popup-command-heading-font-size: var(--text-caption);
+    --cui-popup-command-heading-letter-spacing: calc(var(--cui-popup-command-heading-font-size) * 0.08);
+    --cui-popup-command-heading-text-transform: uppercase;
+    --cui-popup-dialog-max-inline-size: 32rem;
     --cui-popup-shortcut-foreground: var(--muted-foreground);
     --cui-popup-shortcut-font-size: var(--text-body);
     --cui-popup-shortcut-letter-spacing: 0.02em;
@@ -197,6 +206,7 @@
     )
   ) {
     --cui-popup-shortcut-foreground: var(--cui-popup-item-highlight-foreground);
+    --cui-popup-submenu-indicator-foreground: var(--cui-popup-item-highlight-foreground);
     --muted-foreground: var(--cui-popup-item-highlight-muted-foreground);
     background-color: var(--cui-popup-item-highlight-background);
     color: var(--cui-popup-item-highlight-foreground);

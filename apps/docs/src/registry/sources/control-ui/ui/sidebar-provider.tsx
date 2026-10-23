@@ -23,6 +23,8 @@ const SIDEBAR_MOBILE_BREAKPOINT = "--breakpoint-lg";
 
 export type SidebarLayoutMode = "viewport" | "contained";
 
+export type SidebarWrapperSurface = "transparent" | "background";
+
 type SidebarContextProps = {
   state: "expanded" | "collapsed";
   open: boolean;
@@ -104,6 +106,7 @@ export type SidebarProviderProps = Omit<ComponentProps<"div">, "style"> & {
   persistOpen?: boolean;
   keyboardShortcut?: string | null;
   layout?: SidebarLayoutMode;
+  surface?: SidebarWrapperSurface;
   skipLinkLabel?: string;
   contentId?: string;
   style?: SidebarStyle;
@@ -121,6 +124,7 @@ export function SidebarProvider({
   persistOpen = true,
   keyboardShortcut = SIDEBAR_KEYBOARD_SHORTCUT,
   layout = "viewport",
+  surface = "transparent",
   skipLinkLabel = "Skip to content",
   contentId: contentIdProp,
   ref,
@@ -233,6 +237,7 @@ export function SidebarProvider({
       "data-control-family": "sidebar",
       "data-slot": "wrapper",
       "data-layout": layout,
+      "data-surface": surface,
       style: wrapperStyle,
       className: cn(
         "group/sidebar-wrapper relative flex w-full",

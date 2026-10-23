@@ -5,5 +5,8 @@ export const kbdKnobs = [
   "--cui-kbd-foreground",
   "--cui-kbd-border-color",
   "--cui-kbd-shadow",
+  "--cui-kbd-padding-inline",
+  "--cui-kbd-font-size",
+  "--cui-kbd-font-weight",
 ] as const;
 export type KbdKnobStyle = Partial<Record<(typeof kbdKnobs)[number], string>>;

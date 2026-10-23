@@ -173,7 +173,7 @@
 
   :where([data-control-family="field"][data-field-kind="field"][data-slot="label"]) {
     color: var(--foreground);
-    font-size: var(--text-label);
+    font-size: var(--cui-field-label-font-size);
     font-weight: var(--font-weight-medium);
   }
 
@@ -183,7 +183,7 @@
 
   :where([data-control-family="field"][data-field-kind="field"][data-slot="description"]) {
     color: var(--muted-foreground);
-    font-size: var(--text-caption);
+    font-size: var(--cui-field-description-font-size);
     text-wrap: pretty;
   }
 
@@ -205,9 +205,30 @@
     border-width: 0px;
   }
 
+  :where([data-control-family="field"][data-field-kind="field"]) {
+    --cui-field-legend-font-size: var(--text-label);
+    --cui-field-legend-font-weight: var(--font-weight-semibold);
+  }
+
   :where([data-control-family="field"][data-field-kind="field"][data-slot="legend"]) {
     color: var(--foreground);
-    font-size: var(--text-label);
-    font-weight: var(--font-weight-semibold);
+    font-size: var(--cui-field-legend-font-size);
+    font-weight: var(--cui-field-legend-font-weight);
   }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="legend"][data-variant="section"]) {
+    --cui-field-legend-font-size: var(--text-body);
+  }
+}
+
+@property --cui-field-legend-font-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-field-legend-font-weight {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 400;
 }

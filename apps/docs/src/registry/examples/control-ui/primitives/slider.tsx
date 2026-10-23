@@ -61,9 +61,11 @@ export function PrimitiveSliderExample() {
           formatValue={(currentVolume) => `${currentVolume}%`}
           className="h-48"
         />
-        <output aria-label="Saved volume">
-          {savedVolume.value}% ({savedVolume.changes} changes)
-        </output>
+        <Text size="caption" tone="muted">
+          <output aria-label="Saved volume">
+            {savedVolume.value}% ({savedVolume.changes} changes)
+          </output>
+        </Text>
       </Row>
     </div>
   );

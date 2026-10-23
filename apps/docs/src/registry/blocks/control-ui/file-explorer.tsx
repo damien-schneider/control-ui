@@ -179,7 +179,8 @@ export function FileExplorerBlock({
       layout={layout}
       persistOpen={persistOpen}
       keyboardShortcut={keyboardShortcut}
-      className={cn("bg-background text-foreground", !contained && "h-svh overflow-hidden", className)}
+      surface="background"
+      className={cn("text-foreground", !contained && "h-svh overflow-hidden", className)}
       style={providerStyle}
       {...props}
     >

@@ -1,0 +1,303 @@
+@layer components {
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="card"]) {
+    --cui-card-radius: 0.625rem;
+    --cui-card-background: var(--card);
+    --cui-card-border-width: 0px;
+    --cui-card-shadow: 0 0 0 var(--control-rim-width) var(--linear-rim), var(--linear-shadow-control);
+    --cui-card-padding-block: 1rem;
+    --cui-card-padding-inline: 1rem;
+    --cui-card-gap: 0.75rem;
+    --cui-card-title-font-size: 0.9375rem;
+  }
+
+  .dark[data-skin="linear"] :where([data-slot="root"][data-control-family="card"]),
+  .dark [data-skin="linear"] :where([data-slot="root"][data-control-family="card"]) {
+    --cui-card-shadow: 0 0 0 var(--control-rim-width) oklch(1 0 0 / 0.083), var(--linear-shadow-control);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="page-layout"]) {
+    --cui-page-layout-background: var(--background);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="app-shell-header"]) {
+    --cui-app-shell-header-height: 2.75rem;
+    --cui-app-shell-header-border-width: var(--control-rim-width);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="sidebar"]) {
+    --cui-sidebar-inner-background: transparent;
+    --cui-sidebar-header-border-width: 0px;
+    --cui-sidebar-inner-border-width: 0px;
+    --cui-sidebar-menu-button-height: 1.75rem;
+    --cui-sidebar-menu-button-radius: var(--radius-control);
+    --cui-sidebar-menu-button-padding-inline: 0.625rem;
+    --cui-sidebar-menu-button-font-size: var(--text-body);
+    --cui-sidebar-menu-button-font-weight: var(--font-weight-medium);
+    --cui-sidebar-menu-button-active-font-weight: var(--font-weight-medium);
+    --cui-sidebar-menu-button-foreground: var(--linear-nav-foreground);
+    --cui-sidebar-menu-button-hover-background: var(--sidebar-accent);
+    --cui-sidebar-menu-button-hover-foreground: var(--foreground);
+    --cui-sidebar-menu-button-active-background: var(--linear-nav-active);
+    --cui-sidebar-menu-button-active-foreground: var(--foreground);
+    --cui-sidebar-menu-button-active-shadow: 0 0 transparent;
+    --cui-sidebar-group-label-foreground: var(--linear-nav-foreground);
+    --cui-sidebar-group-label-font-size: var(--text-label);
+    --cui-sidebar-group-label-font-weight: var(--font-weight-medium);
+    --cui-sidebar-group-label-letter-spacing: 0px;
+    --cui-sidebar-group-label-text-transform: none;
+    --cui-sidebar-menu-badge-background: transparent;
+    --cui-sidebar-menu-badge-foreground: var(--linear-nav-foreground);
+  }
+
+  [data-skin="linear"] :where([data-slot="menu-button"][data-control-family="sidebar"][data-size="sm"]) {
+    --cui-sidebar-menu-button-font-size: var(--text-body);
+  }
+
+  [data-skin="linear"] :where([data-slot="wrapper"][data-control-family="sidebar"]) {
+    --cui-sidebar-wrapper-background: var(--canvas);
+    --cui-sidebar-inset-background: var(--background);
+    --cui-sidebar-inset-border-color: var(--linear-panel-border);
+    --cui-sidebar-inset-border-width: var(--control-rim-width);
+    --cui-sidebar-inset-radius: var(--radius-panel);
+    --cui-sidebar-inset-shadow: var(--linear-shadow-control);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="tree"]) {
+    --cui-tree-item-trigger-radius: var(--radius-control);
+    --cui-tree-item-trigger-foreground: var(--linear-nav-foreground);
+    --cui-tree-item-trigger-hover-background: var(--sidebar-accent);
+    --cui-tree-item-trigger-hover-foreground: var(--foreground);
+    --cui-tree-item-trigger-selected-background: var(--linear-nav-active);
+    --cui-tree-item-trigger-selected-foreground: var(--foreground);
+    --cui-tree-item-trigger-font-size: var(--text-body);
+    --cui-tree-item-trigger-selected-font-weight: 500;
+    --cui-tree-indent-inset: 1.1875rem;
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="alert"]) {
+    --cui-alert-radius: 0.625rem;
+    --cui-alert-background: var(--card);
+    --cui-alert-border-width: 0px;
+    --cui-alert-shadow: 0 0 0 var(--control-rim-width) var(--linear-rim), var(--linear-shadow-control);
+    --cui-alert-description-foreground: var(--muted-foreground);
+    --cui-alert-title-font-weight: 500;
+  }
+
+  .dark[data-skin="linear"] :where([data-slot="root"][data-control-family="alert"]),
+  .dark [data-skin="linear"] :where([data-slot="root"][data-control-family="alert"]) {
+    --cui-alert-shadow: 0 0 0 var(--control-rim-width) oklch(1 0 0 / 0.083), var(--linear-shadow-control);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="item"]) {
+    --cui-item-radius: 0.625rem;
+    --cui-item-hover-background: var(--muted);
+    --cui-item-active-scale: 1;
+    --cui-item-padding-block: 0.875rem;
+    --cui-item-padding-inline: 1rem;
+    --cui-item-description-font-size: var(--text-label);
+    --cui-item-description-line-height: 1.4;
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="empty"]) {
+    --cui-empty-radius: var(--radius-panel);
+    --cui-empty-background: transparent;
+    --cui-empty-border-color: var(--border);
+    --cui-empty-border-width: var(--control-rim-width);
+    --cui-empty-border-style: dashed;
+    --cui-empty-description-foreground: var(--muted-foreground);
+    --cui-empty-title-font-weight: 500;
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="scroll-area"]) {
+    --cui-scroll-area-thumb-radius: 9999px;
+    --cui-scroll-area-thumb-background: var(--linear-text-quaternary);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="avatar"]) {
+    --cui-avatar-radius: 9999px;
+    --cui-avatar-fallback-background: var(--linear-control-selected);
+    --cui-avatar-fallback-foreground: var(--secondary-foreground);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="table"]) {
+    --cui-table-border-color: var(--border);
+    --cui-table-row-hover-background: var(--muted);
+    --cui-table-row-selected-background: var(--linear-nav-active);
+    --cui-table-header-foreground: var(--muted-foreground);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="breadcrumb"]) {
+    --cui-breadcrumb-list-foreground: var(--secondary-foreground);
+    --cui-breadcrumb-page-foreground: var(--secondary-foreground);
+    --cui-breadcrumb-link-hover-foreground: var(--foreground);
+  }
+
+  [data-skin="linear"] :where([data-slot="list"][data-control-family="breadcrumb"]),
+  [data-skin="linear"] :where([data-slot="page"][data-control-family="breadcrumb"]) {
+    font-weight: var(--font-weight-medium);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="pagination"]) {
+    --cui-pagination-link-radius: 9999px;
+    --cui-pagination-link-foreground: var(--secondary-foreground);
+    --cui-pagination-link-hover-background: var(--linear-control-hover);
+    --cui-pagination-link-font-size: var(--text-body);
+  }
+
+  [data-skin="linear"] :where([data-slot="link"][data-control-family="pagination"][data-active="true"]) {
+    --cui-pagination-link-background: var(--linear-control-selected);
+    --cui-pagination-link-foreground: var(--foreground);
+    --cui-pagination-link-shadow: none;
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="calendar"]) {
+    --cui-calendar-day-radius: var(--radius-control);
+    --cui-calendar-today-background: var(--muted);
+    --cui-calendar-selected-background: var(--primary);
+    --cui-calendar-selected-foreground: var(--primary-foreground);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="skeleton"]) {
+    --cui-skeleton-radius: var(--radius-control);
+    --cui-skeleton-background: var(--linear-control-selected);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="kbd"]) {
+    --cui-kbd-radius: 4px;
+    --cui-kbd-background: transparent;
+    --cui-kbd-foreground: var(--muted-foreground);
+    --cui-kbd-border-color: var(--linear-popup-border);
+    --cui-kbd-shadow: 0 0 transparent;
+    --cui-kbd-padding-inline: 4px;
+    --cui-kbd-font-size: var(--text-caption);
+    --cui-kbd-font-weight: 450;
+  }
+
+  .dark[data-skin="linear"] :where([data-slot="root"][data-control-family="kbd"]),
+  .dark [data-skin="linear"] :where([data-slot="root"][data-control-family="kbd"]) {
+    --cui-kbd-border-color: oklch(0.313 0.0051 270.75);
+  }
+
+  [data-skin="linear"]
+    :where([data-control-family="button"][data-slot="root"][data-variant="solid"] [data-slot="root"][data-control-family="kbd"]),
+  .dark[data-skin="linear"]
+    :where([data-control-family="button"][data-slot="root"][data-variant="solid"] [data-slot="root"][data-control-family="kbd"]),
+  .dark
+    [data-skin="linear"]
+    :where([data-control-family="button"][data-slot="root"][data-variant="solid"] [data-slot="root"][data-control-family="kbd"]) {
+    --cui-kbd-foreground: oklch(from var(--primary-foreground) l c h / 0.8);
+    --cui-kbd-border-color: oklch(from var(--primary-foreground) l c h / 0.3);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="badge"]) {
+    --cui-badge-radius: 9999px;
+    --cui-badge-font-weight: 450;
+    --cui-badge-border-width: var(--control-rim-width);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="badge"][data-size="md"]) {
+    --cui-badge-font-size: var(--text-label);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="badge"][data-variant="default"]) {
+    --cui-badge-background: var(--background);
+    --cui-badge-border-color: var(--linear-chip-border);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="badge"][data-color="neutral"][data-variant="default"]) {
+    --cui-badge-foreground: var(--muted-foreground);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="timeline"]) {
+    --cui-timeline-indicator-background: transparent;
+    --cui-timeline-separator-background: transparent;
+    --cui-timeline-title-foreground: var(--muted-foreground);
+    --cui-timeline-title-font-weight: 450;
+    --cui-timeline-item-padding-block: 0.875rem;
+    --cui-timeline-success-foreground: var(--muted-foreground);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="stepper"]) {
+    --cui-stepper-indicator-size: 1.5rem;
+    --cui-stepper-indicator-background: var(--card);
+    --cui-stepper-indicator-border-color: var(--linear-chip-border);
+    --cui-stepper-indicator-current-border-width: 1px;
+    --cui-stepper-separator-background: var(--border);
+    --cui-stepper-title-current-font-weight: 500;
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="accordion"]) {
+    --cui-accordion-trigger-hover-foreground: var(--foreground);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="collapsible"]) {
+    --cui-collapsible-trigger-radius: var(--radius-control);
+    --cui-collapsible-trigger-hover-background: var(--muted);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="table-of-contents"]) {
+    --cui-table-of-contents-radius: 0.625rem;
+    --cui-table-of-contents-border-width: 0px;
+    --cui-table-of-contents-shadow: 0 0 0 var(--control-rim-width) var(--linear-rim), var(--linear-shadow-control);
+    --cui-table-of-contents-padding: 0.75rem;
+    --cui-table-of-contents-label-font-size: var(--text-label);
+    --cui-table-of-contents-item-foreground: var(--linear-nav-foreground);
+    --cui-table-of-contents-item-active-foreground: var(--foreground);
+    --cui-table-of-contents-item-root-font-weight: 500;
+    --cui-table-of-contents-trail-stroke: var(--foreground);
+    --cui-table-of-contents-trail-size: 1px;
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="chart"]) {
+    --cui-chart-line-size: 1.5px;
+    --cui-chart-tooltip-background: var(--linear-tooltip-bg);
+    --cui-chart-tooltip-foreground: var(--linear-tooltip-foreground);
+    --cui-chart-tooltip-border-color: var(--linear-tooltip-border);
+    --cui-chart-tooltip-radius: var(--radius-control);
+    --cui-chart-tooltip-shadow: var(--linear-shadow-control);
+    --cui-chart-tooltip-padding: 0.5rem;
+    --cui-chart-swatch-radius: 2px;
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="dockable-panel"]) {
+    --cui-dockable-panel-radius: var(--radius-panel);
+    --cui-dockable-panel-background: var(--popover);
+    --cui-dockable-panel-border-color: var(--linear-popup-border);
+    --cui-dockable-panel-shadow: var(--linear-shadow-menu);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="morphing-panel"]) {
+    --cui-morphing-panel-background: var(--popover);
+    --cui-morphing-panel-border-color: var(--linear-popup-border);
+    --cui-morphing-panel-shadow: var(--linear-shadow-menu);
+    --cui-morphing-panel-trigger-hover-background: var(--linear-menu-highlight);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="infinite-canvas"]) {
+    --cui-infinite-canvas-background: var(--background);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="flow"]) {
+    --cui-flow-background: var(--background);
+    --cui-flow-edge-stroke: var(--linear-text-quaternary);
+    --cui-flow-node-border-color: transparent;
+    --cui-flow-node-hover-border-color: var(--linear-rim-hover);
+    --cui-flow-node-radius: 0.625rem;
+    --cui-flow-node-shadow: 0 0 0 var(--control-rim-width) var(--linear-rim), var(--linear-shadow-control);
+    --cui-flow-edge-label-border-color: var(--linear-chip-border);
+    --cui-flow-controls-border-color: transparent;
+    --cui-flow-controls-background: var(--linear-control-bg);
+    --cui-flow-controls-shadow: 0 0 0 var(--control-rim-width) var(--linear-rim), var(--linear-shadow-control);
+  }
+
+  [data-skin="linear"] :where([data-slot="panel-group"][data-control-family="resizable"]) {
+    --cui-resizable-group-background: var(--background);
+    --cui-resizable-handle-hover-background: var(--linear-rim-hover);
+    --cui-resizable-handle-active-background: var(--linear-input-focus-border);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="resize-handle"]) {
+    --cui-resize-handle-hover-background: var(--muted);
+    --cui-resize-handle-border-color: var(--linear-rim-hover);
+  }
+}

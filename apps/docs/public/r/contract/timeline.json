@@ -53,6 +53,18 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-timeline-title-font-weight",
+      "syntax": "<number>",
+      "initialValue": "400",
+      "defaultValue": "var(--font-weight-medium)"
+    },
+    {
+      "name": "--cui-timeline-item-padding-block",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 5)"
     }
   ],
   "parts": {

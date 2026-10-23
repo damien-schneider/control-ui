@@ -75,7 +75,7 @@
         "id": "all-modern-apple",
         "skin": "modern-apple",
         "name": "All components — macOS",
-        "summary": "Apple-inspired glass skin with live backdrop blur, SVG edge refraction, paired light and dark rims, and a flush sidebar.",
+        "summary": "macOS 27 Liquid Glass: SF Pro at 13px, 24px regular controls, accent-filled selection, frosted glass menus and popovers, and an edge-attached sidebar.",
         "manifestUrl": "https://control-ui.dev/r/all-modern-apple.json",
         "install": "npx shadcn@latest add https://control-ui.dev/r/all-modern-apple.json"
       },
@@ -91,7 +91,7 @@
         "id": "all-linear",
         "skin": "linear",
         "name": "All components — Linear",
-        "summary": "Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 8px controls on 12px panels, hairline borders instead of elevation, and 8px menu rows inset in a 4px gutter.",
+        "summary": "Linear's measured design language: indigo on a cool neutral ramp, a 12/13px chrome band at weight 450/500, pill buttons with half-pixel rims, 8px fields on 12px panels, and 32px menu rows inset in a 6px gutter.",
         "manifestUrl": "https://control-ui.dev/r/all-linear.json",
         "install": "npx shadcn@latest add https://control-ui.dev/r/all-linear.json"
       }
@@ -335,7 +335,7 @@
         "id": "modern-apple",
         "name": "macOS",
         "kind": "Skin",
-        "summary": "Apple-inspired glass skin with live backdrop blur, SVG edge refraction, paired light and dark rims, and a flush sidebar.",
+        "summary": "macOS 27 Liquid Glass: SF Pro at 13px, 24px regular controls, accent-filled selection, frosted glass menus and popovers, and an edge-attached sidebar.",
         "href": "/skins/modern-apple",
         "install": "npx shadcn@latest add https://control-ui.dev/r/skin-modern-apple.json --overwrite"
       },
@@ -351,7 +351,7 @@
         "id": "linear",
         "name": "Linear",
         "kind": "Skin",
-        "summary": "Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 8px controls on 12px panels, hairline borders instead of elevation, and 8px menu rows inset in a 4px gutter.",
+        "summary": "Linear's measured design language: indigo on a cool neutral ramp, a 12/13px chrome band at weight 450/500, pill buttons with half-pixel rims, 8px fields on 12px panels, and 32px menu rows inset in a 6px gutter.",
         "href": "/skins/linear",
         "install": "npx shadcn@latest add https://control-ui.dev/r/skin-linear.json --overwrite"
       },

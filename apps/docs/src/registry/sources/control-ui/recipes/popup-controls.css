@@ -75,6 +75,15 @@
     gap: calc(var(--spacing) * 4);
   }
 
+  :where([data-control-family="popup"][data-popup-kind="dialog"][data-popup-part="surface"]) {
+    max-inline-size: var(--cui-popup-dialog-max-inline-size);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="alert-dialog"][data-popup-part="surface"]) {
+    --cui-popup-dialog-max-inline-size: 28rem;
+    max-inline-size: var(--cui-popup-dialog-max-inline-size);
+  }
+
   :where([data-control-family="popup"][data-popup-kind="dialog"][data-slot="header"]),
   :where([data-control-family="popup"][data-popup-kind="alert-dialog"][data-slot="header"]) {
     gap: calc(var(--spacing) * 1.5);

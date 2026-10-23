@@ -146,17 +146,6 @@ export function Tabs<TValue extends string = string>({ className, onValueChange,
   );
 }
 
-const controlHeights: Record<ControlSize, string> = {
-  xs: "var(--control-h-xs)",
-  sm: "var(--control-h-sm)",
-  md: "var(--control-h-md)",
-  lg: "var(--control-h-lg)",
-};
-
-type TabsListStyle = CSSProperties & {
-  "--_tabs-trigger-h"?: string;
-};
-
 function countTabs(children: ReactNode): number {
   return Children.toArray(children).reduce<number>((count, child) => {
     if (!isValidElement<{ children?: ReactNode }>(child)) return count;
@@ -166,12 +155,8 @@ function countTabs(children: ReactNode): number {
   }, 0);
 }
 
-export function TabsList({ size = "sm", variant = "default", className, children, style, ...props }: TabsListProps) {
+export function TabsList({ size = "sm", variant = "default", className, children, ...props }: TabsListProps) {
   const isSingle = countTabs(children) === 1;
-  const controlStyle = {
-    "--_tabs-trigger-h": controlHeights[size],
-    ...style,
-  } satisfies TabsListStyle;
 
   return (
     <TabsPrimitive.List
@@ -182,7 +167,6 @@ export function TabsList({ size = "sm", variant = "default", className, children
       data-variant={variant}
       data-single={isSingle ? "true" : undefined}
       className={cn(variant === "browser" && "gap-0 p-0 px-(--_tabs-browser-inset) pt-(--cui-tabs-list-padding)", className)}
-      style={controlStyle}
       {...props}
     >
       {children}
@@ -193,7 +177,7 @@ export function TabsList({ size = "sm", variant = "default", className, children
           data-slot="indicator"
           className={
             variant === "browser"
-              ? "top-auto bottom-0 left-(--_tabs-browser-indicator-x) z-0 h-(--_tabs-trigger-h) w-(--_tabs-browser-indicator-width) transform-none"
+              ? "top-auto bottom-0 left-(--_tabs-browser-indicator-x) z-0 h-(--cui-tabs-trigger-height) w-(--_tabs-browser-indicator-width) transform-none"
               : undefined
           }
         />

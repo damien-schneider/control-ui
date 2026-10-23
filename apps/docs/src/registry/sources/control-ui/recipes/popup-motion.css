@@ -63,7 +63,13 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="tooltip"][data-slot="content"][data-popup-part="surface"][data-arrow="true"]) {
-    --_popup-tooltip-content-radius: clamp(0px, var(--cui-popup-radius), 3px);
+    --_popup-tooltip-content-radius: clamp(0px, var(--cui-popup-radius), var(--cui-popup-tooltip-arrow-radius));
     border-radius: var(--_popup-tooltip-content-radius);
   }
+}
+
+@property --cui-popup-tooltip-arrow-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }

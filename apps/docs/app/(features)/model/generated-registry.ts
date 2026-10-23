@@ -4608,6 +4608,31 @@ export const registryMetadata = {
     sourceManifestPath: "registry/linear/skin.json",
     files: [
       {
+        path: "src/registry/skin-packs/linear/linear-chat.css",
+        target: "@components/control-ui/styles/linear-chat.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/skin-packs/linear/linear-controls.css",
+        target: "@components/control-ui/styles/linear-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/skin-packs/linear/linear-forms.css",
+        target: "@components/control-ui/styles/linear-forms.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/skin-packs/linear/linear-popups.css",
+        target: "@components/control-ui/styles/linear-popups.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/skin-packs/linear/linear-surfaces.css",
+        target: "@components/control-ui/styles/linear-surfaces.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/skin-packs/linear/skin.config.tsx",
         target: "@components/control-ui/skin.config.tsx",
         type: "registry:lib",
@@ -4689,9 +4714,19 @@ export const registryMetadata = {
     sourceManifestPath: "registry/modern-apple/skin.json",
     files: [
       {
+        path: "src/registry/skin-packs/modern-apple/modern-apple-controls.css",
+        target: "@components/control-ui/styles/modern-apple-controls.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/skin-packs/modern-apple/modern-apple-glass-filter.tsx",
         target: "@components/control-ui/modern-apple-glass-filter.tsx",
         type: "registry:component",
+      },
+      {
+        path: "src/registry/skin-packs/modern-apple/modern-apple-surfaces.css",
+        target: "@components/control-ui/styles/modern-apple-surfaces.css",
+        type: "registry:file",
       },
       {
         path: "src/registry/skin-packs/modern-apple/skin.config.tsx",

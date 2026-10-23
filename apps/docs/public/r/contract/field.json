@@ -17,6 +17,18 @@
   ],
   "knobs": [
     {
+      "name": "--cui-field-legend-font-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--text-label)"
+    },
+    {
+      "name": "--cui-field-legend-font-weight",
+      "syntax": "<number>",
+      "initialValue": "400",
+      "defaultValue": "var(--font-weight-semibold)"
+    },
+    {
       "name": "--cui-field-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
@@ -105,6 +117,54 @@
       "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--text-body)"
+    },
+    {
+      "name": "--cui-field-font-weight",
+      "syntax": "<number>",
+      "initialValue": "400",
+      "defaultValue": "400"
+    },
+    {
+      "name": "--cui-field-group-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-lg)"
+    },
+    {
+      "name": "--cui-field-group-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card)"
+    },
+    {
+      "name": "--cui-field-group-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-field-group-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
+      "name": "--cui-field-group-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "0 0 transparent"
+    },
+    {
+      "name": "--cui-field-label-font-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--text-label)"
+    },
+    {
+      "name": "--cui-field-description-font-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--text-caption)"
     }
   ],
   "parts": {
@@ -1032,6 +1092,15 @@
             "values": [
               "field"
             ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "card",
+              "default"
+            ]
           }
         ]
       },
@@ -1169,6 +1238,15 @@
             "valueKind": "enum",
             "values": [
               "field"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "section"
             ]
           }
         ]

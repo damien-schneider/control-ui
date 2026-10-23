@@ -48,7 +48,7 @@ export function AgentRunSidebar({
 
   return (
     <Sidebar collapsible="offcanvas">
-      <SidebarHeader className="gap-1.5 border-b border-sidebar-border px-2 pb-2 pt-3">
+      <SidebarHeader divider className="gap-1.5 px-2 pb-2 pt-3">
         <div className="flex min-w-0 items-center gap-2 px-1 py-1">
           {brand ?? (
             <span className="flex size-6 shrink-0 items-center justify-center rounded-md bg-foreground text-background">

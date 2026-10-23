@@ -95,7 +95,7 @@
       var(--mastra-lip), inset 0 0 0 var(--control-rim-width) var(--mastra-field-rim), inset 0 0 0 9999px var(--mastra-field-tint),
       var(--mastra-raised-shadow);
     --focus-ring-offset: -1px;
-    font-weight: 500;
+    --cui-field-font-weight: 500;
     line-height: 1.5;
   }
 

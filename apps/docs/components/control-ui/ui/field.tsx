@@ -33,7 +33,9 @@ export type FieldErrorProps = Omit<ComponentProps<"div">, "style"> & {
   style?: CSSProperties & FieldKnobStyle;
 };
 
-export type FieldGroupProps = ComponentProps<"div"> & { style?: CSSProperties & FieldKnobStyle };
+export type FieldGroupVariant = "default" | "card";
+
+export type FieldGroupProps = ComponentProps<"div"> & { variant?: FieldGroupVariant; style?: CSSProperties & FieldKnobStyle };
 
 export type FieldSeparatorProps = Omit<ComponentProps<"div">, "style"> & {
   children?: ReactNode;
@@ -44,7 +46,12 @@ export type FieldItemProps = ComponentProps<"div"> & { style?: CSSProperties & F
 
 export type FieldSetProps = Omit<ComponentProps<"fieldset">, "style"> & { style?: CSSProperties & FieldKnobStyle };
 
-export type FieldLegendProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+export type FieldLegendVariant = "default" | "section";
+
+export type FieldLegendProps = Omit<ComponentProps<"div">, "style"> & {
+  variant?: FieldLegendVariant;
+  style?: CSSProperties & FieldKnobStyle;
+};
 
 const fieldVariants = cva("group/field flex w-full", {
   variants: {
@@ -174,13 +181,14 @@ export function FieldError({ className, ...props }: FieldErrorProps) {
   );
 }
 
-export function FieldGroup({ className, ...props }: FieldGroupProps) {
+export function FieldGroup({ className, variant = "default", ...props }: FieldGroupProps) {
   return (
     <div
       data-control-ui="field"
       data-control-family="field"
       data-field-kind="field"
       data-slot="group"
+      data-variant={variant}
       className={cn("group/field-group @container/field-group flex flex-col", className)}
       {...props}
     />
@@ -240,13 +248,14 @@ export function FieldSet({ className, ...props }: FieldSetProps) {
   );
 }
 
-export function FieldLegend({ className, ...props }: FieldLegendProps) {
+export function FieldLegend({ className, variant = "default", ...props }: FieldLegendProps) {
   return (
     <FieldsetPrimitive.Legend
       data-control-ui="field"
       data-control-family="field"
       data-field-kind="field"
       data-slot="legend"
+      data-variant={variant}
       className={className}
       {...props}
     />

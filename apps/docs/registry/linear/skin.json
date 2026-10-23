@@ -3,12 +3,37 @@
   "name": "skin-linear",
   "type": "registry:style",
   "title": "Linear skin",
-  "description": "Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 8px controls on 12px panels, hairline borders instead of elevation, and 8px menu rows inset in a 4px gutter.",
+  "description": "Linear's measured design language: indigo on a cool neutral ramp, a 12/13px chrome band at weight 450/500, pill buttons with half-pixel rims, 8px fields on 12px panels, and 32px menu rows inset in a 6px gutter.",
   "dependencies": [],
   "registryDependencies": [
     "core"
   ],
   "files": [
+    {
+      "path": "src/registry/skin-packs/linear/linear-chat.css",
+      "target": "@components/control-ui/styles/linear-chat.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/skin-packs/linear/linear-controls.css",
+      "target": "@components/control-ui/styles/linear-controls.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/skin-packs/linear/linear-forms.css",
+      "target": "@components/control-ui/styles/linear-forms.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/skin-packs/linear/linear-popups.css",
+      "target": "@components/control-ui/styles/linear-popups.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/skin-packs/linear/linear-surfaces.css",
+      "target": "@components/control-ui/styles/linear-surfaces.css",
+      "type": "registry:file"
+    },
     {
       "path": "src/registry/skin-packs/linear/skin.config.tsx",
       "target": "@components/control-ui/skin.config.tsx",
@@ -27,7 +52,12 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/skin-theme.css\"": {},
-    "@import \"../components/control-ui/styles/skin.css\"": {}
+    "@import \"../components/control-ui/styles/skin.css\"": {},
+    "@import \"../components/control-ui/styles/linear-chat.css\"": {},
+    "@import \"../components/control-ui/styles/linear-controls.css\"": {},
+    "@import \"../components/control-ui/styles/linear-forms.css\"": {},
+    "@import \"../components/control-ui/styles/linear-popups.css\"": {},
+    "@import \"../components/control-ui/styles/linear-surfaces.css\"": {}
   },
   "meta": {
     "sourceManifestPath": "registry/linear/skin.json"

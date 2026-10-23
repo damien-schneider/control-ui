@@ -5,5 +5,6 @@ export const paginationKnobs = [
   "--cui-pagination-link-hover-background",
   "--cui-pagination-link-foreground",
   "--cui-pagination-link-shadow",
+  "--cui-pagination-link-font-size",
 ] as const;
 export type PaginationKnobStyle = Partial<Record<(typeof paginationKnobs)[number], string>>;

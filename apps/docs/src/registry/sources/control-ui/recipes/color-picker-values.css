@@ -1,4 +1,8 @@
 @layer components {
+  :where([data-control-family="color-picker"][data-slot="output"]) {
+    gap: calc(var(--spacing) * 2);
+  }
+
   :where([data-control-family="color-picker"][data-slot="output-value"]) {
     font-family: var(--font-mono);
     font-size: var(--text-caption);

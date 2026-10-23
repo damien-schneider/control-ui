@@ -7,6 +7,7 @@ export const buttonKnobs = [
   "--cui-button-padding-inline",
   "--cui-button-icon-padding-inline",
   "--cui-button-font-size",
+  "--cui-button-font-weight",
   "--cui-button-background",
   "--cui-button-background-image",
   "--cui-button-hover-background-image",

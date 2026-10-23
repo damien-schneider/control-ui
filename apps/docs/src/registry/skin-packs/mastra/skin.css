@@ -41,24 +41,25 @@
     --cui-card-radius: var(--radius-panel);
     --cui-card-border-width: 0px;
     --cui-card-shadow: var(--mastra-lip), inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--mastra-raised-shadow);
-    gap: 0;
-    padding-block: 0;
+    --cui-card-gap: 0px;
+    --cui-card-padding-block: 0px;
+    --cui-card-padding-inline: 0.75rem;
+    --cui-card-title-font-size: var(--text-heading-4);
   }
 
   [data-skin="mastra"] :where([data-control-family="card"][data-slot="header"]) {
-    padding: 0.25rem 0.75rem;
+    padding-block: 0.25rem;
   }
 
   [data-skin="mastra"] :where([data-control-family="card"][data-slot="content"]) {
-    padding: 0.75rem;
+    padding-block: 0.75rem;
   }
 
   [data-skin="mastra"] :where([data-control-family="card"][data-slot="footer"]) {
-    padding: 0 0.75rem 0.75rem;
+    padding-block: 0 0.75rem;
   }
 
   [data-skin="mastra"] :where([data-control-family="card"][data-slot="title"]) {
-    font-size: var(--text-heading-4);
     font-weight: 500;
     line-height: 1.43;
   }

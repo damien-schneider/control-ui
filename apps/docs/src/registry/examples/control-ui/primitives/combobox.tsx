@@ -79,7 +79,9 @@ function RepositorySearchExample() {
           </ComboboxList>
         </ComboboxContent>
       </Combobox>
-      <span role="status">{repository ? `Selected repository: ${repository.name}` : "No repository selected"}</span>
+      <Text size="caption" tone="muted" role="status">
+        {repository ? `Selected repository: ${repository.name}` : "No repository selected"}
+      </Text>
     </fieldset>
   );
 }

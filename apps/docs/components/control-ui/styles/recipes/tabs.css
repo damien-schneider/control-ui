@@ -22,6 +22,8 @@
     --cui-tabs-indicator-shadow: var(--shadow-sm);
     --cui-tabs-border-color: var(--border);
     --cui-tabs-border-width: var(--control-rim-width);
+    --cui-tabs-font-size: var(--text-label);
+    --cui-tabs-font-weight: var(--font-weight-medium);
   }
 
   :where([data-control-family="tabs"][data-slot="root"][data-orientation="vertical"]) {
@@ -30,14 +32,15 @@
   }
 
   :where([data-control-family="tabs"][data-slot="list"]) {
-    --_tabs-trigger-radius-fit: min(var(--cui-tabs-trigger-radius), calc(var(--_tabs-trigger-h) / 2));
+    --cui-tabs-trigger-height: var(--control-h-sm);
+    --_tabs-trigger-radius-fit: min(var(--cui-tabs-trigger-radius), calc(var(--cui-tabs-trigger-height) / 2));
     position: relative;
     display: flex;
-    min-height: calc(var(--_tabs-trigger-h) + var(--cui-tabs-list-padding) + var(--cui-tabs-list-padding));
+    min-height: calc(var(--cui-tabs-trigger-height) + var(--cui-tabs-list-padding) + var(--cui-tabs-list-padding));
     width: fit-content;
     align-items: center;
     gap: calc(var(--spacing) * 1);
-    border-radius: min(var(--cui-tabs-list-radius), calc(var(--_tabs-trigger-h) / 2 + var(--cui-tabs-list-padding)));
+    border-radius: min(var(--cui-tabs-list-radius), calc(var(--cui-tabs-trigger-height) / 2 + var(--cui-tabs-list-padding)));
     background: var(--cui-tabs-list-background);
     box-shadow: var(--cui-tabs-list-shadow);
     padding: var(--cui-tabs-list-padding);
@@ -45,12 +48,24 @@
     backdrop-filter: var(--cui-tabs-list-backdrop-filter);
   }
 
+  :where([data-control-family="tabs"][data-slot="list"][data-size="xs"]) {
+    --cui-tabs-trigger-height: var(--control-h-xs);
+  }
+
+  :where([data-control-family="tabs"][data-slot="list"][data-size="md"]) {
+    --cui-tabs-trigger-height: var(--control-h-md);
+  }
+
+  :where([data-control-family="tabs"][data-slot="list"][data-size="lg"]) {
+    --cui-tabs-trigger-height: var(--control-h-lg);
+  }
+
   :where([data-control-family="tabs"][data-slot="indicator"]) {
     position: absolute;
     top: 50%;
     left: 0;
     z-index: 0;
-    height: var(--_tabs-trigger-h);
+    height: var(--cui-tabs-trigger-height);
     width: var(--active-tab-width);
     transform: translateX(var(--active-tab-left)) translateY(-50%);
     border-radius: var(--_tabs-trigger-radius-fit);
@@ -81,7 +96,7 @@
     position: relative;
     z-index: 1;
     display: inline-flex;
-    height: var(--_tabs-trigger-h);
+    height: var(--cui-tabs-trigger-height);
     flex-shrink: 0;
     cursor: pointer;
     align-items: center;
@@ -91,8 +106,8 @@
     border-radius: var(--_tabs-trigger-radius-fit);
     padding-inline: calc(var(--spacing) * 3.5);
     color: var(--cui-tabs-foreground);
-    font-size: var(--text-label);
-    font-weight: var(--font-weight-medium);
+    font-size: var(--cui-tabs-font-size);
+    font-weight: var(--cui-tabs-font-weight);
   }
 
   :where([data-control-family="tabs"][data-slot="list"]:not([data-orientation="vertical"], [data-variant="browser"]) [data-slot="tab"]) {
@@ -129,7 +144,7 @@
   :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"]) {
     --_tabs-browser-corner-double: calc(var(--_tabs-trigger-radius-fit) + var(--_tabs-trigger-radius-fit));
     --_tabs-browser-inset: calc(var(--_tabs-trigger-radius-fit) + var(--cui-tabs-surface-radius));
-    min-height: calc(var(--_tabs-trigger-h) + var(--cui-tabs-list-padding));
+    min-height: calc(var(--cui-tabs-trigger-height) + var(--cui-tabs-list-padding));
     width: auto;
     align-items: flex-end;
     isolation: isolate;
@@ -269,6 +284,12 @@
   initial-value: 0px;
 }
 
+@property --cui-tabs-trigger-height {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
 @property --cui-tabs-list-padding {
   syntax: "<length-percentage>";
   inherits: true;
@@ -302,6 +323,18 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-tabs-font-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-tabs-font-weight {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 400;
 }
 
 @property --cui-tabs-active-foreground {

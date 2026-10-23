@@ -26,6 +26,12 @@
       "defaultValue": "var(--radius-control)"
     },
     {
+      "name": "--cui-tabs-trigger-height",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--control-h-sm)"
+    },
+    {
       "name": "--cui-tabs-list-padding",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
@@ -60,6 +66,18 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-tabs-font-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--text-label)"
+    },
+    {
+      "name": "--cui-tabs-font-weight",
+      "syntax": "<number>",
+      "initialValue": "400",
+      "defaultValue": "var(--font-weight-medium)"
     },
     {
       "name": "--cui-tabs-active-foreground",

@@ -34,6 +34,7 @@ export type ControlUiSkin = {
   scrollAreaBlur?: boolean;
   scrollAreaScrollbarVisibility?: "scroll" | "hover" | "always";
   scrollAreaScrollbarGutter?: "auto" | "stable";
+  selectAlignItemWithTrigger?: boolean;
   indicators?: SkinIndicators;
 
   effects?: ControlEffect[];

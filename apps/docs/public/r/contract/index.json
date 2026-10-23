@@ -80,7 +80,7 @@
       "registryItems": [
         "badge"
       ],
-      "knobs": 5,
+      "knobs": 7,
       "probes": 38
     },
     "breadcrumb": {
@@ -99,7 +99,7 @@
         "navigation-menu",
         "toggle"
       ],
-      "knobs": 25,
+      "knobs": 26,
       "probes": 241
     },
     "button-group": {
@@ -120,7 +120,7 @@
       "registryItems": [
         "card"
       ],
-      "knobs": 6,
+      "knobs": 10,
       "probes": 4
     },
     "channel-strip": {
@@ -177,7 +177,7 @@
         "checkbox",
         "radio-group"
       ],
-      "knobs": 7,
+      "knobs": 8,
       "probes": 0
     },
     "code": {
@@ -264,8 +264,8 @@
         "select",
         "textarea"
       ],
-      "knobs": 15,
-      "probes": 92
+      "knobs": 25,
+      "probes": 93
     },
     "filter-bar": {
       "registryItems": [
@@ -320,14 +320,14 @@
       "registryItems": [
         "item"
       ],
-      "knobs": 8,
+      "knobs": 10,
       "probes": 0
     },
     "kbd": {
       "registryItems": [
         "kbd"
       ],
-      "knobs": 5,
+      "knobs": 8,
       "probes": 9
     },
     "label": {
@@ -383,7 +383,7 @@
       "registryItems": [
         "pagination"
       ],
-      "knobs": 5,
+      "knobs": 6,
       "probes": 4
     },
     "phone-input": {
@@ -419,8 +419,8 @@
         "tooltip",
         "trigger-menu"
       ],
-      "knobs": 44,
-      "probes": 163
+      "knobs": 53,
+      "probes": 165
     },
     "progressive-blur": {
       "registryItems": [
@@ -436,7 +436,7 @@
         "progress",
         "slider"
       ],
-      "knobs": 14,
+      "knobs": 16,
       "probes": 31
     },
     "resizable": {
@@ -476,7 +476,7 @@
       "registryItems": [
         "sidebar"
       ],
-      "knobs": 59,
+      "knobs": 61,
       "probes": 75
     },
     "sidebar-layout": {
@@ -547,7 +547,7 @@
         "emoji-picker",
         "tabs"
       ],
-      "knobs": 16,
+      "knobs": 19,
       "probes": 49
     },
     "task-list": {
@@ -575,7 +575,7 @@
       "registryItems": [
         "timeline"
       ],
-      "knobs": 8,
+      "knobs": 10,
       "probes": 5
     },
     "tool-approval": {

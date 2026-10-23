@@ -3,7 +3,10 @@
     block-size: calc(var(--spacing) * 5);
     min-inline-size: calc(var(--spacing) * 5);
     gap: calc(var(--spacing) * 1);
-    padding-inline: calc(var(--spacing) * 1.5);
+    padding-inline: var(--cui-kbd-padding-inline);
+    --cui-kbd-padding-inline: calc(var(--spacing) * 1.5);
+    --cui-kbd-font-size: var(--text-micro);
+    --cui-kbd-font-weight: var(--font-weight-medium);
     --cui-kbd-radius: var(--radius-control);
     --cui-kbd-background: oklch(from var(--card) l c h / 0.6);
     --cui-kbd-foreground: var(--muted-foreground);
@@ -15,9 +18,9 @@
       inset 0 0 0 var(--control-rim-width) var(--cui-kbd-border-color),
       var(--cui-kbd-shadow);
     color: var(--cui-kbd-foreground);
-    font-size: var(--text-micro);
+    font-size: var(--cui-kbd-font-size);
     font-family: var(--font-sans);
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--cui-kbd-font-weight);
   }
 
   :where([data-control-family="kbd"][data-slot="root"][data-variant="ghost"]) {
@@ -67,4 +70,22 @@
 @property --cui-kbd-shadow {
   syntax: "*";
   inherits: true;
+}
+
+@property --cui-kbd-padding-inline {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-kbd-font-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-kbd-font-weight {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 400;
 }

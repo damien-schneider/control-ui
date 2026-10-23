@@ -35,6 +35,12 @@
       "syntax": "*",
       "initialValue": "",
       "defaultValue": "none"
+    },
+    {
+      "name": "--cui-pagination-link-font-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "1em"
     }
   ],
   "parts": {

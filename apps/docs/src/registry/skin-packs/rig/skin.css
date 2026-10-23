@@ -29,7 +29,7 @@
     --cui-button-shadow: none;
     --cui-button-hover-shadow: none;
     --cui-button-press-shadow: none;
-    font-weight: 600;
+    --cui-button-font-weight: 600;
   }
 
   [data-skin="rig"] [data-control-family="field"][data-control="true"] {

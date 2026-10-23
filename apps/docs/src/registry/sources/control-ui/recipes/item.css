@@ -8,6 +8,8 @@
     --cui-item-gap: calc(var(--spacing) * 3);
     --cui-item-padding-block: calc(var(--spacing) * 3);
     --cui-item-padding-inline: calc(var(--spacing) * 3);
+    --cui-item-description-font-size: var(--text-body);
+    --cui-item-description-line-height: var(--leading-relaxed);
     --_item-background: transparent;
     --_item-border-color: transparent;
     outline: var(--cui-item-border-width) solid var(--_item-border-color);
@@ -91,8 +93,8 @@
   }
 
   :where([data-control-family="item"][data-slot="description"]) {
-    font-size: var(--text-body);
-    line-height: var(--leading-relaxed);
+    font-size: var(--cui-item-description-font-size);
+    line-height: var(--cui-item-description-line-height);
     color: var(--muted-foreground);
     text-wrap: pretty;
   }
@@ -157,4 +159,16 @@
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
+}
+
+@property --cui-item-description-font-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-item-description-line-height {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1.5;
 }

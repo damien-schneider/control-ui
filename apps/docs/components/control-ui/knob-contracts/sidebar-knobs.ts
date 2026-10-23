@@ -13,6 +13,8 @@ export const sidebarKnobs = [
   "--cui-sidebar-menu-badge-height",
   "--cui-sidebar-menu-badge-background",
   "--cui-sidebar-menu-badge-foreground",
+  "--cui-sidebar-header-border-width",
+  "--cui-sidebar-header-border-color",
   "--cui-sidebar-rail-divider-background",
   "--cui-sidebar-wrapper-background",
   "--cui-sidebar-wrapper-background-image",

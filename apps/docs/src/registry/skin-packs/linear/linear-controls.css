@@ -1,0 +1,112 @@
+@layer components {
+  [data-skin="linear"] :where([data-control-family="button"][data-control="true"]) {
+    --cui-button-radius: var(--nest-radius, 9999px);
+    --cui-button-gap: 0.375rem;
+    --cui-button-icon: 1rem;
+    --cui-button-padding-inline: 0.75rem;
+    --cui-button-icon-padding-inline: 0.625rem;
+    --cui-button-press-scale: 1;
+    --cui-button-foreground: var(--muted-foreground);
+    --cui-button-hover-background: var(--linear-control-hover);
+    --cui-button-hover-foreground: var(--secondary-foreground);
+    --cui-button-active-background: var(--linear-control-selected);
+    --cui-button-active-foreground: var(--foreground);
+    --cui-button-active-hover-background: var(--linear-control-selected);
+    --cui-button-open-background: var(--linear-control-hover);
+    transition-property: scale, translate, background-color, color, box-shadow;
+  }
+
+  [data-skin="linear"] :where([data-control-family="button"][data-control="true"][data-size="xs"]) {
+    --cui-button-gap: 0.25rem;
+    --cui-button-icon: 0.875rem;
+    --cui-button-padding-inline: 0.5rem;
+    --cui-button-icon-padding-inline: 0.375rem;
+    --cui-button-font-size: var(--text-label);
+  }
+
+  [data-skin="linear"] :where([data-control-family="button"][data-control="true"][data-size="sm"]) {
+    --cui-button-icon: 0.875rem;
+    --cui-button-padding-inline: 0.625rem;
+    --cui-button-icon-padding-inline: 0.5rem;
+    --cui-button-font-size: var(--text-body);
+  }
+
+  [data-skin="linear"] :where([data-control-family="button"][data-control="true"][data-size="lg"]) {
+    --cui-button-padding-inline: 0.875rem;
+    --cui-button-icon-padding-inline: 0.75rem;
+  }
+
+  [data-skin="linear"] :where([data-control-family="button"][data-control="true"][data-layout="tile"]) {
+    --cui-button-radius: var(--nest-radius, var(--radius-panel));
+  }
+
+  [data-skin="linear"] :where([data-control-family="button"][data-control="true"][data-variant="solid"]) {
+    --cui-button-foreground: var(--primary-foreground);
+    --cui-button-hover-background: var(--linear-primary-hover);
+    --cui-button-hover-foreground: var(--primary-foreground);
+    --cui-button-press-background: var(--linear-primary-hover);
+    --cui-button-active-background: var(--primary);
+    --cui-button-active-foreground: var(--primary-foreground);
+    --cui-button-active-hover-background: var(--linear-primary-hover);
+    --cui-button-shadow: var(--linear-shadow-control);
+  }
+
+  [data-skin="linear"] :where([data-control-family="button"][data-control="true"][data-tone="danger"][data-variant="solid"]) {
+    --cui-button-foreground: var(--destructive-foreground);
+    --cui-button-hover-background: oklch(from var(--destructive) calc(l - 0.05) c h);
+    --cui-button-hover-foreground: var(--destructive-foreground);
+    --cui-button-press-background: oklch(from var(--destructive) calc(l - 0.05) c h);
+    --cui-button-active-background: var(--destructive);
+    --cui-button-active-hover-background: oklch(from var(--destructive) calc(l - 0.05) c h);
+  }
+
+  [data-skin="linear"] :where([data-control-family="button"][data-control="true"][data-variant="surface"]) {
+    --cui-button-background: var(--linear-control-bg);
+    --cui-button-foreground: var(--secondary-foreground);
+    --cui-button-hover-background: var(--linear-control-hover);
+    --cui-button-shadow: 0 0 0 var(--control-rim-width) var(--linear-rim), var(--linear-shadow-control);
+    --cui-button-hover-shadow: 0 0 0 var(--control-rim-width) var(--linear-rim-hover), var(--linear-shadow-control);
+    --cui-button-active-background: var(--linear-control-selected);
+    --cui-button-active-foreground: var(--foreground);
+    --cui-button-active-hover-background: var(--linear-control-selected);
+    --cui-button-active-shadow: 0 0 0 var(--control-rim-width) var(--linear-rim);
+  }
+
+  [data-skin="linear"] :where([data-control-family="button"][data-control="true"][data-tone="danger"]:not([data-variant="solid"])) {
+    --cui-button-foreground: var(--destructive-text);
+    --cui-button-hover-foreground: var(--destructive-text);
+  }
+
+  [data-skin="linear"]
+    :where([data-slot="root"][data-variant="inverse"][data-control-family="toolbar"] [data-control-family="button"][data-control="true"]) {
+    --cui-button-background: transparent;
+    --cui-button-foreground: oklch(from var(--background) l c h / 0.7);
+    --cui-button-hover-background: oklch(from var(--background) l c h / 0.1);
+    --cui-button-hover-foreground: var(--background);
+    --cui-button-press-background: oklch(from var(--background) l c h / 0.12);
+    --cui-button-active-background: var(--background);
+    --cui-button-active-foreground: var(--foreground);
+    --cui-button-active-hover-background: var(--background);
+    --cui-button-shadow: 0 0 transparent;
+    --cui-button-hover-shadow: 0 0 transparent;
+    --cui-button-active-shadow: 0 0 transparent;
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="track-highlight"]) {
+    --cui-track-highlight-background: var(--linear-menu-highlight);
+    --cui-track-highlight-ring-color: transparent;
+    --cui-track-highlight-shadow: none;
+  }
+
+  [data-skin="linear"] :where([data-control-family="button-group"][data-slot="root"][data-orientation="horizontal"]) {
+    --cui-button-group-text-radius: 9999px;
+  }
+
+  [data-skin="linear"]
+    :where(
+      [data-control-family="button-group"][data-slot="root"][data-orientation="vertical"]
+        [data-control-family="button"][data-control="true"]
+    ) {
+    --cui-button-radius: var(--nest-radius, var(--radius-control));
+  }
+}

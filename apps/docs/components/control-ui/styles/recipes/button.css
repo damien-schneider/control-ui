@@ -31,6 +31,7 @@
     --cui-button-padding-inline: var(--padding-x);
     --cui-button-icon-padding-inline: max(0px, calc(var(--cui-button-padding-inline) - var(--spacing) * 0.5));
     --cui-button-font-size: var(--text-body);
+    --cui-button-font-weight: var(--font-weight-medium);
     --cui-button-background: transparent;
     --cui-button-background-image: none;
     --cui-button-foreground: var(--muted-foreground);
@@ -55,7 +56,7 @@
     box-shadow: var(--cui-button-shadow);
     color: var(--cui-button-foreground);
     cursor: pointer;
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--cui-button-font-weight);
     transition-property: scale, translate;
     transition-timing-function: var(--ease-standard);
     transition-duration: var(--duration-fast);
@@ -255,6 +256,12 @@
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
+}
+
+@property --cui-button-font-weight {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 400;
 }
 
 @property --cui-button-background {

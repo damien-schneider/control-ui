@@ -85,6 +85,18 @@
       "defaultValue": "var(--sidebar-foreground)"
     },
     {
+      "name": "--cui-sidebar-header-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
+      "name": "--cui-sidebar-header-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--sidebar-border)"
+    },
+    {
       "name": "--cui-sidebar-rail-divider-background",
       "syntax": "<color>",
       "initialValue": "transparent",
@@ -476,7 +488,14 @@
         "registryItems": [
           "sidebar"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-divider",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
       },
       "inner": {
         "family": "sidebar",

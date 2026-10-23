@@ -33,7 +33,7 @@
     --cui-button-press-shadow: var(--win98-pressed);
     --cui-button-active-shadow: var(--win98-pressed);
     line-height: 1;
-    font-weight: 400;
+    --cui-button-font-weight: 400;
   }
   [data-skin="windows-98"]
     :where([data-control-family="button"][data-control="true"]:is([data-variant="surface"], [data-variant="solid"])) {
@@ -88,8 +88,7 @@
     --cui-choice-checked-background: var(--background);
     --cui-choice-border-color: transparent;
     --cui-choice-checked-border-color: transparent;
-    inline-size: 13px;
-    block-size: 13px;
+    --cui-choice-size: 13px;
     color: var(--foreground);
     --cui-choice-shadow: inset 0 0 0 var(--cui-choice-border-width) var(--cui-choice-border-color), var(--win98-sunken);
   }
@@ -125,6 +124,7 @@
     gap: 0;
     align-items: end;
     border-bottom: 1px solid var(--win98-white);
+    --cui-tabs-font-weight: 400;
   }
   [data-skin="windows-98"] :where([data-control-family="tabs"][data-slot="tab"]) {
     border-end-start-radius: 0;
@@ -135,7 +135,6 @@
       inset 2px 2px var(--win98-light),
       inset -1px 0 var(--win98-dark),
       inset -2px 0 var(--win98-shadow);
-    font-weight: 400;
   }
   [data-skin="windows-98"] :where([data-control-family="tabs"][data-slot="tab"][aria-selected="true"]) {
     margin-bottom: -1px;
@@ -168,8 +167,8 @@
     box-shadow: var(--win98-sunken);
   }
   [data-skin="windows-98"] :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-variant="default"]) {
-    inline-size: 11px;
-    block-size: 21px;
+    --cui-range-thumb-inline-size: 11px;
+    --cui-range-thumb-block-size: 21px;
     scale: 1;
   }
 

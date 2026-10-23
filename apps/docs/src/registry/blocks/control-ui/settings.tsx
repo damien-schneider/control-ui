@@ -97,7 +97,8 @@ export function SettingsBlock({
   return (
     <SidebarProvider
       layout={layout}
-      className={cn("bg-background text-foreground", layout === "viewport" && "h-svh overflow-hidden", className)}
+      surface="background"
+      className={cn("text-foreground", layout === "viewport" && "h-svh overflow-hidden", className)}
       style={providerStyle}
       {...props}
     >
@@ -181,7 +182,7 @@ function SettingsShell({
     <>
       <LiveStatus message={trimmedQuery ? searchStatus : ""} />
       <Sidebar collapsible="offcanvas">
-        <SidebarHeader className="gap-3 border-b border-sidebar-border p-3">
+        <SidebarHeader divider className="gap-3 p-3">
           {backAction ? <div className="min-w-0">{backAction}</div> : null}
           <SettingsSearch value={query} label={searchLabel} placeholder={searchPlaceholder} onValueChange={onQueryChange} />
         </SidebarHeader>
@@ -333,8 +334,8 @@ function SettingsPage({ page, instanceId }: { page: SettingsPageDefinition; inst
       </Heading>
       {page.sections.map((section) => (
         <FieldSet key={section.id} className="gap-3">
-          <FieldLegend className="text-body font-semibold">{section.title}</FieldLegend>
-          <FieldGroup className="gap-0 overflow-hidden rounded-[var(--radius-lg)] border bg-card">
+          <FieldLegend variant="section">{section.title}</FieldLegend>
+          <FieldGroup variant="card">
             {section.settings.map((setting, index) => (
               <SettingsRow
                 key={setting.id}

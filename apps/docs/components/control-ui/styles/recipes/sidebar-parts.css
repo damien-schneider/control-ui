@@ -122,6 +122,10 @@
     box-shadow: var(--cui-sidebar-header-shadow);
   }
 
+  :where([data-control-family="sidebar"][data-slot="header"][data-divider]) {
+    border-block-end: var(--cui-sidebar-header-border-width) solid var(--cui-sidebar-header-border-color);
+  }
+
   :where([data-control-family="sidebar"][data-slot="content-stack"]) {
     gap: calc(var(--spacing) * 2);
   }
@@ -215,6 +219,18 @@
 }
 
 @property --cui-sidebar-menu-badge-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-sidebar-header-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-sidebar-header-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

@@ -34,6 +34,7 @@ import type {
 } from "../../src/registry/sources/control-ui/ui/drawer";
 import type { DropdownMenuTriggerVariant } from "../../src/registry/sources/control-ui/ui/dropdown-menu";
 import type { DropzoneOverlayScope } from "../../src/registry/sources/control-ui/ui/dropzone";
+import type { FieldGroupVariant, FieldLegendVariant } from "../../src/registry/sources/control-ui/ui/field";
 import type { KbdVariant } from "../../src/registry/sources/control-ui/ui/kbd";
 import type { LevelMeterOrientation } from "../../src/registry/sources/control-ui/ui/level-meter";
 import type { MorphingPanelAnchor } from "../../src/registry/sources/control-ui/ui/morphing-panel";
@@ -200,6 +201,8 @@ export type EmittedStateContract = {
   "dynamic-notification:root:data-variant": DynamicNotificationVariant;
   "dynamic-notification:island:data-state": DynamicNotificationState;
   "dynamic-notification:island:data-variant": DynamicNotificationVariant;
+  "field:group:data-variant": FieldGroupVariant;
+  "field:legend:data-variant": FieldLegendVariant;
   "field:root:data-orientation": "horizontal" | "vertical" | "responsive";
   "inline-attachment:root:data-state": InlineAttachmentState;
   "inline-citation:source:data-activation-direction": "left" | "right";

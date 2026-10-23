@@ -53,6 +53,18 @@
       "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 3)"
+    },
+    {
+      "name": "--cui-item-description-font-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--text-body)"
+    },
+    {
+      "name": "--cui-item-description-line-height",
+      "syntax": "<number>",
+      "initialValue": "1.5",
+      "defaultValue": "var(--leading-relaxed)"
     }
   ],
   "parts": {

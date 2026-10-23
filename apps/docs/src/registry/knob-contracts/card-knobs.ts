@@ -6,5 +6,9 @@ export const cardKnobs = [
   "--cui-card-border-width",
   "--cui-card-shadow",
   "--cui-card-backdrop-filter",
+  "--cui-card-padding-block",
+  "--cui-card-padding-inline",
+  "--cui-card-gap",
+  "--cui-card-title-font-size",
 ] as const;
 export type CardKnobStyle = Partial<Record<(typeof cardKnobs)[number], string>>;

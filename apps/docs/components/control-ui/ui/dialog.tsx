@@ -90,7 +90,7 @@ export function DialogContent({ className, children, showCloseButton = true, clo
         data-control-family="popup"
         data-popup-part="surface"
         data-surface="modal"
-        className={cn("fixed left-1/2 top-[12vh] z-(--z-modal) grid w-[calc(100%-2rem)] max-w-lg -translate-x-1/2", className)}
+        className={cn("fixed left-1/2 top-[12vh] z-(--z-modal) grid w-[calc(100%-2rem)] -translate-x-1/2", className)}
         {...props}
       >
         {skinAdornment(skin, "dialog", "titlebar", {})}

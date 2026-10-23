@@ -66,6 +66,10 @@ export function AppTheme({ children }: { children: ReactNode }) {
   `scrollbarGutter` props override these defaults for individual instances. The neutral defaults are `"hover"` and
   `"auto"`, which use overlay scrollbars.
 
+  Set `selectAlignItemWithTrigger: true` to open Select menus over the trigger with the selected item aligned to it,
+  as macOS pop-up buttons do. SelectContent's `alignItemWithTrigger` prop overrides it per instance; the neutral
+  default opens the menu below the trigger.
+
   The example packs resolve the required token contract explicitly so each has a complete, independent appearance.
   A consumer theme may inherit defaults and override only the values it needs.
 </GuideSection>

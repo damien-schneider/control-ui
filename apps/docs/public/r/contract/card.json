@@ -41,6 +41,30 @@
       "syntax": "*",
       "initialValue": "",
       "defaultValue": "none"
+    },
+    {
+      "name": "--cui-card-padding-block",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 6)"
+    },
+    {
+      "name": "--cui-card-padding-inline",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 6)"
+    },
+    {
+      "name": "--cui-card-gap",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 6)"
+    },
+    {
+      "name": "--cui-card-title-font-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "1em"
     }
   ],
   "parts": {

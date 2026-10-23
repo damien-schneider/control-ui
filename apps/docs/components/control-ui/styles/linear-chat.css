@@ -1,0 +1,218 @@
+@layer components {
+  [data-skin="linear"] :where([data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"][data-chrome="panel"]) {
+    --cui-chat-layout-radius: var(--radius-panel);
+    --cui-chat-layout-background: var(--background);
+    --cui-chat-layout-border-color: var(--border);
+    --cui-chat-layout-shadow: var(--linear-shadow-control);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="chat-message"]) {
+    --cui-chat-message-avatar-radius: 9999px;
+    --cui-chat-message-avatar-background: var(--linear-control-bg);
+    --cui-chat-message-avatar-border-color: var(--linear-rim);
+    --cui-chat-message-avatar-border-width: var(--control-rim-width);
+    --cui-chat-message-foreground: var(--secondary-foreground);
+    --cui-chat-message-row-hover-background: var(--muted);
+    --cui-chat-message-reaction-radius: 9999px;
+    --cui-chat-message-reaction-background: var(--background);
+    --cui-chat-message-reaction-border-color: var(--linear-chip-border);
+    --cui-chat-message-reaction-border-width: var(--control-rim-width);
+    --cui-chat-message-reaction-pressed-background: oklch(from var(--primary) l c h / 0.1);
+    --cui-chat-message-reaction-pressed-border-color: oklch(from var(--primary) l c h / 0.5);
+  }
+
+  [data-skin="linear"] :where([data-slot="content"][data-control-family="chat-message"]) {
+    font-size: var(--text-body-lg);
+    line-height: 1.5rem;
+    letter-spacing: -0.1px;
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-role="user"][data-layout="bubble"][data-control-family="chat-message"]) {
+    --cui-chat-message-radius: 0.625rem;
+    --cui-chat-message-corner-radius: 0.625rem;
+    --cui-chat-message-background: var(--card);
+    --cui-chat-message-border-color: oklch(from var(--foreground) l c h / 0.08);
+    --cui-chat-message-border-width: var(--control-rim-width);
+    --cui-chat-message-shadow: var(--linear-shadow-control);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-role="assistant"][data-layout="bubble"][data-control-family="chat-message"]) {
+    --cui-chat-message-background: transparent;
+  }
+
+  [data-skin="linear"] :where([data-control-ui="chat-composer"][data-slot="root"][data-control-family="chat-composer"]) {
+    --composer-padding: 0.75rem;
+    --cui-chat-composer-shell-radius: 0.625rem;
+    --cui-chat-composer-shell-background: var(--card);
+    --cui-chat-composer-shell-border-color: oklch(from var(--foreground) l c h / 0.08);
+    --cui-chat-composer-shell-border-width: var(--control-rim-width);
+    --cui-chat-composer-shell-shadow: var(--linear-shadow-control);
+    --cui-chat-composer-input-foreground: var(--secondary-foreground);
+    --cui-chat-composer-input-placeholder-foreground: var(--linear-placeholder);
+    --cui-chat-composer-mention-radius: 9999px;
+    --cui-chat-composer-mention-border-color: var(--linear-chip-border);
+    --cui-chat-composer-mention-border-width: var(--control-rim-width);
+    --cui-chat-composer-mention-background: var(--background);
+  }
+
+  [data-skin="linear"] :where([data-control-family="chat-composer"][data-slot="textarea"]),
+  [data-skin="linear"] :where([data-control-family="chat-composer"][data-slot="fallback"]),
+  [data-skin="linear"] :where([data-control-family="chat-composer"][data-slot="placeholder"]) {
+    --padding-x: 1.125rem;
+    --padding-y: 0.75rem;
+    font-size: var(--text-body-lg);
+    letter-spacing: -0.1px;
+  }
+
+  [data-skin="linear"] :where([data-control-family="chat-composer"][data-slot="toolbar"]) {
+    --nest-radius: 9999px;
+  }
+
+  [data-skin="linear"]
+    :where([data-control-family="chat-composer"][data-slot="toolbar"] [data-control-family="button"][data-icon-only="true"]) {
+    --cui-button-height: 1.5rem;
+    --cui-button-icon: 0.875rem;
+  }
+
+  [data-skin="linear"] :where([data-control-family="chat-composer-attachment"][data-slot="root"][data-variant]) {
+    --cui-chat-composer-attachment-background: var(--card);
+    --cui-chat-composer-attachment-backdrop-filter: none;
+    --cui-chat-composer-attachment-shadow:
+      inset 0 0 0 var(--control-rim-width) var(--cui-chat-composer-attachment-border-color), var(--linear-shadow-control);
+  }
+
+  [data-skin="linear"] :where([data-control-family="button"][data-chat-composer-attachment-remove="true"]) {
+    --cui-button-foreground: var(--background);
+    --cui-button-hover-foreground: var(--background);
+    --cui-button-hover-background: oklch(from var(--foreground) l c h / 0.85);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="markdown"]) {
+    --cui-markdown-foreground: var(--secondary-foreground);
+    --cui-markdown-font-size: var(--text-body-lg);
+    --cui-markdown-line-height: 1.6;
+    --cui-markdown-inline-code-background: var(--muted);
+    --cui-markdown-inline-code-foreground: var(--secondary-foreground);
+    --cui-markdown-inline-code-radius: 0.25rem;
+    --cui-markdown-blockquote-border-color: var(--linear-chip-border);
+    --cui-markdown-table-cell-border-color: var(--border);
+    --cui-markdown-table-header-background: transparent;
+    letter-spacing: -0.1px;
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="markdown-block"]) {
+    --cui-markdown-block-radius: 0.625rem;
+    --cui-markdown-block-background: var(--card);
+    --cui-markdown-block-border-color: transparent;
+    --cui-markdown-block-shadow: 0 0 0 var(--control-rim-width) var(--linear-rim), var(--linear-shadow-control);
+    --cui-markdown-block-header-border-color: var(--border);
+    --cui-markdown-block-icon-background: var(--muted);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="code"]) {
+    --cui-code-radius: var(--radius-control);
+    --cui-code-background: var(--muted);
+    --cui-code-border-color: var(--border);
+    --cui-code-shadow: none;
+    --cui-code-header-background: transparent;
+    --cui-code-text-foreground: var(--secondary-foreground);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="code-diff"]) {
+    --cui-code-diff-radius: var(--radius-control);
+    --cui-code-diff-background: var(--card);
+    --cui-code-diff-border-color: var(--border);
+    --cui-code-diff-shadow: none;
+    --cui-code-diff-header-background: var(--muted);
+    --cui-code-diff-header-border-color: var(--border);
+    --cui-code-diff-foreground: var(--secondary-foreground);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="inline-attachment"]) {
+    --cui-inline-attachment-radius: var(--radius-control);
+    --cui-inline-attachment-background: var(--card);
+    --cui-inline-attachment-ring-color: var(--linear-rim);
+    --cui-inline-attachment-shadow: var(--linear-shadow-control);
+    --cui-inline-attachment-hover-shadow: var(--linear-shadow-menu);
+    --cui-inline-attachment-content-background: var(--card);
+    --cui-inline-attachment-content-shadow: 0 0 0 var(--control-rim-width) var(--linear-rim);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="markdown-editor"]) {
+    --cui-markdown-editor-background: var(--card);
+    --cui-markdown-editor-border-color: oklch(from var(--foreground) l c h / 0.08);
+    --cui-markdown-editor-radius: var(--radius-field);
+    --cui-markdown-editor-code-background: var(--muted);
+  }
+
+  [data-skin="linear"]
+    :where([data-control-family="chat-composer"][data-slot="shell"] [data-slot="root"][data-control-family="markdown-editor"]) {
+    --cui-markdown-editor-border-width: 0px;
+    --cui-markdown-editor-background: transparent;
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="user-ask"]) {
+    --cui-user-ask-background: var(--popover);
+    --cui-user-ask-backdrop-filter: none;
+    --cui-user-ask-border-color: var(--linear-popup-border);
+    --cui-user-ask-shadow: var(--linear-shadow-menu);
+    --cui-user-ask-option-hover-background: var(--linear-menu-highlight);
+    --cui-user-ask-option-selected-background: var(--linear-menu-highlight);
+    --cui-user-ask-indicator-background: var(--muted);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="tool-approval"]) {
+    --cui-tool-approval-radius: 0.625rem;
+    --cui-tool-approval-border-color: transparent;
+    --cui-tool-approval-shadow: 0 0 0 var(--control-rim-width) var(--linear-rim), var(--linear-shadow-control);
+    --cui-tool-approval-body-padding: 1rem;
+    --cui-tool-approval-footer-padding: 0.75rem;
+    --cui-tool-approval-footer-border-color: var(--border);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="task-list"]) {
+    --cui-task-list-radius: 0.625rem;
+    --cui-task-list-background: var(--card);
+    --cui-task-list-border-color: transparent;
+    --cui-task-list-ring-color: var(--linear-rim);
+    --cui-task-list-shadow: var(--linear-shadow-control);
+    --cui-task-list-item-foreground: var(--secondary-foreground);
+    --cui-task-list-indicator-active-foreground: var(--primary);
+    --cui-task-list-trigger-hover-background: var(--muted);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="activity"]) {
+    --cui-activity-trigger-hover-background: var(--muted);
+    --cui-activity-code-background: var(--muted);
+  }
+
+  [data-skin="linear"] :where([data-slot="title"][data-control-family="activity"]) {
+    font-weight: 450;
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="filter-bar"]) {
+    --cui-filter-bar-background: var(--background);
+    --cui-filter-bar-foreground: var(--secondary-foreground);
+    --cui-filter-bar-border-color: var(--linear-chip-border);
+    --cui-filter-bar-radius: 9999px;
+    --cui-filter-bar-height: 1.5rem;
+    --cui-filter-bar-hover-background: var(--linear-control-hover);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="inline-citation"]) {
+    --cui-inline-citation-trigger-background: var(--background);
+    --cui-inline-citation-trigger-border-color: var(--linear-chip-border);
+    --cui-inline-citation-trigger-hover-background: var(--linear-control-hover);
+    --cui-inline-citation-quote-background: var(--muted);
+    --cui-inline-citation-navigation-background: var(--muted);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="source-badge"]) {
+    --cui-source-badge-hover-background: var(--linear-control-hover);
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="context"]) {
+    --cui-context-track-fill: var(--linear-switch-off);
+    --cui-context-segment-tool-fill: var(--primary);
+  }
+}

@@ -6,6 +6,10 @@
     --cui-card-border-width: var(--control-rim-width);
     --cui-card-shadow: var(--shadow-sm);
     --cui-card-backdrop-filter: none;
+    --cui-card-padding-block: calc(var(--spacing) * 6);
+    --cui-card-padding-inline: calc(var(--spacing) * 6);
+    --cui-card-gap: calc(var(--spacing) * 6);
+    --cui-card-title-font-size: 1em;
     border: var(--cui-card-border-width) solid var(--cui-card-border-color);
     border-radius: var(--cui-card-radius);
     background: var(--cui-card-background);
@@ -13,21 +17,21 @@
     box-shadow: var(--cui-card-shadow);
     -webkit-backdrop-filter: var(--cui-card-backdrop-filter);
     backdrop-filter: var(--cui-card-backdrop-filter);
-    gap: calc(var(--spacing) * 6);
-    padding-block: calc(var(--spacing) * 6);
+    gap: var(--cui-card-gap);
+    padding-block: var(--cui-card-padding-block);
   }
 
   :where([data-control-family="card"][data-slot="header"]) {
     gap: calc(var(--spacing) * 1.5);
-    padding-inline: calc(var(--spacing) * 6);
+    padding-inline: var(--cui-card-padding-inline);
   }
 
   :where([data-control-family="card"][data-slot="content"]) {
-    padding-inline: calc(var(--spacing) * 6);
+    padding-inline: var(--cui-card-padding-inline);
   }
 
   :where([data-control-family="card"][data-slot="footer"]) {
-    padding-inline: calc(var(--spacing) * 6);
+    padding-inline: var(--cui-card-padding-inline);
   }
 
   :where([data-control-family="card"][data-slot="root"][data-variant="sectioned"]) {
@@ -46,6 +50,7 @@
   }
 
   :where([data-control-family="card"][data-slot="title"]) {
+    font-size: var(--cui-card-title-font-size);
     font-weight: var(--font-weight-semibold);
     line-height: var(--leading-tight);
     text-wrap: balance;
@@ -90,4 +95,28 @@
 @property --cui-card-backdrop-filter {
   syntax: "*";
   inherits: true;
+}
+
+@property --cui-card-padding-block {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-card-padding-inline {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-card-gap {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-card-title-font-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }

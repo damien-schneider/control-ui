@@ -4,6 +4,8 @@ export const badgeKnobs = [
   "--cui-badge-background",
   "--cui-badge-foreground",
   "--cui-badge-border-color",
+  "--cui-badge-border-width",
   "--cui-badge-font-size",
+  "--cui-badge-font-weight",
 ] as const;
 export type BadgeKnobStyle = Partial<Record<(typeof badgeKnobs)[number], string>>;

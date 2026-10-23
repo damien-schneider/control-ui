@@ -144,10 +144,21 @@ export const skinMetas = [
     id: "modern-apple",
     label: "macOS",
     kind: "advanced",
-    description: "Apple-inspired glass skin with live backdrop blur, SVG edge refraction, paired light and dark rims, and a flush sidebar.",
+    description:
+      "macOS 27 Liquid Glass: SF Pro at 13px, 24px regular controls, accent-filled selection, frosted glass menus and popovers, and an edge-attached sidebar.",
     docs: 'Import skin-theme.css and skin.css in your global CSS, then mount <ModernAppleGlassFilter /> once in your root layout from "@/components/control-ui/modern-apple-glass-filter". This static SVG adds edge refraction in Chromium without client effects or backdrop capture. Other browsers retain native blur and glass rims.',
     packManifestPath: "registry/modern-apple/skin.json",
     paths: skinPackFiles("modern-apple", [
+      sourceFile(
+        "modern-apple-controls.css — buttons, fields, choices, switches, sliders, and tabs",
+        "src/registry/skin-packs/modern-apple/modern-apple-controls.css",
+        "controls",
+      ),
+      sourceFile(
+        "modern-apple-surfaces.css — menus, popovers, alerts, sheets, tooltips, cards, tables, and trees",
+        "src/registry/skin-packs/modern-apple/modern-apple-surfaces.css",
+        "surfaces",
+      ),
       sourceFile(
         "modern-apple-glass-filter.tsx — a static SVG definition for native backdrop edge refraction; mount once in the root layout",
         "src/registry/skin-packs/modern-apple/modern-apple-glass-filter.tsx",
@@ -169,9 +180,35 @@ export const skinMetas = [
     label: "Linear",
     kind: "advanced",
     description:
-      "Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 8px controls on 12px panels, hairline borders instead of elevation, and 8px menu rows inset in a 4px gutter.",
+      "Linear's measured design language: indigo on a cool neutral ramp, a 12/13px chrome band at weight 450/500, pill buttons with half-pixel rims, 8px fields on 12px panels, and 32px menu rows inset in a 6px gutter.",
     packManifestPath: "registry/linear/skin.json",
-    paths: skinPackFiles("linear"),
+    paths: skinPackFiles("linear", [
+      sourceFile(
+        "linear-controls.css — buttons, toolbar buttons, and the track highlight",
+        "src/registry/skin-packs/linear/linear-controls.css",
+        "controls",
+      ),
+      sourceFile(
+        "linear-forms.css — tabs, fields, choices, switches, and ranges",
+        "src/registry/skin-packs/linear/linear-forms.css",
+        "forms",
+      ),
+      sourceFile(
+        "linear-popups.css — menus, selects, tooltips, dialogs, sheets, and the command palette",
+        "src/registry/skin-packs/linear/linear-popups.css",
+        "popups",
+      ),
+      sourceFile(
+        "linear-surfaces.css — cards, sidebar, tree, alerts, items, tables, navigation, kbd, and badges",
+        "src/registry/skin-packs/linear/linear-surfaces.css",
+        "surfaces",
+      ),
+      sourceFile(
+        "linear-chat.css — chat layout, messages, composer, markdown, code, and attachments",
+        "src/registry/skin-packs/linear/linear-chat.css",
+        "chat",
+      ),
+    ]),
   },
 ] as const satisfies readonly CatalogSkinMeta[];
 

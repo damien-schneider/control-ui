@@ -6401,6 +6401,12 @@ export const generatedSkinContract: SkinContract = {
               valueKind: "enum",
               values: ["field"],
             },
+            {
+              attribute: "data-variant",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["card", "default"],
+            },
           ],
         },
         item: {
@@ -6526,6 +6532,12 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["field"],
+            },
+            {
+              attribute: "data-variant",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["default", "section"],
             },
           ],
         },
@@ -11211,7 +11223,14 @@ export const generatedSkinContract: SkinContract = {
         header: {
           family: "sidebar",
           registryItems: ["sidebar"],
-          states: [],
+          states: [
+            {
+              attribute: "data-divider",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
         },
         inner: {
           family: "sidebar",
@@ -14414,10 +14433,22 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "transparent",
       },
       {
+        name: "--cui-badge-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "1px",
+      },
+      {
         name: "--cui-badge-font-size",
         syntax: "<length-percentage>",
         initialValue: "0px",
         defaultValue: "var(--text-caption)",
+      },
+      {
+        name: "--cui-badge-font-weight",
+        syntax: "<number>",
+        initialValue: "400",
+        defaultValue: "var(--font-weight-medium)",
       },
     ],
     breadcrumb: [
@@ -14482,6 +14513,12 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length-percentage>",
         initialValue: "0px",
         defaultValue: "var(--text-body)",
+      },
+      {
+        name: "--cui-button-font-weight",
+        syntax: "<number>",
+        initialValue: "400",
+        defaultValue: "var(--font-weight-medium)",
       },
       {
         name: "--cui-button-background",
@@ -14686,6 +14723,30 @@ export const generatedSkinContract: SkinContract = {
         syntax: "*",
         initialValue: "",
         defaultValue: "none",
+      },
+      {
+        name: "--cui-card-padding-block",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 6)",
+      },
+      {
+        name: "--cui-card-padding-inline",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 6)",
+      },
+      {
+        name: "--cui-card-gap",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 6)",
+      },
+      {
+        name: "--cui-card-title-font-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "1em",
       },
     ],
     "channel-strip": [
@@ -15157,6 +15218,12 @@ export const generatedSkinContract: SkinContract = {
       },
     ],
     choice: [
+      {
+        name: "--cui-choice-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 4)",
+      },
       {
         name: "--cui-choice-radius",
         syntax: "<length-percentage>",
@@ -15850,6 +15917,18 @@ export const generatedSkinContract: SkinContract = {
     ],
     field: [
       {
+        name: "--cui-field-legend-font-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--text-label)",
+      },
+      {
+        name: "--cui-field-legend-font-weight",
+        syntax: "<number>",
+        initialValue: "400",
+        defaultValue: "var(--font-weight-semibold)",
+      },
+      {
         name: "--cui-field-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
@@ -15938,6 +16017,54 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length-percentage>",
         initialValue: "0px",
         defaultValue: "var(--text-body)",
+      },
+      {
+        name: "--cui-field-font-weight",
+        syntax: "<number>",
+        initialValue: "400",
+        defaultValue: "400",
+      },
+      {
+        name: "--cui-field-group-radius",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--radius-lg)",
+      },
+      {
+        name: "--cui-field-group-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--card)",
+      },
+      {
+        name: "--cui-field-group-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--border)",
+      },
+      {
+        name: "--cui-field-group-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "1px",
+      },
+      {
+        name: "--cui-field-group-shadow",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "0 0 transparent",
+      },
+      {
+        name: "--cui-field-label-font-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--text-label)",
+      },
+      {
+        name: "--cui-field-description-font-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--text-caption)",
       },
     ],
     "filter-bar": [
@@ -16512,6 +16639,18 @@ export const generatedSkinContract: SkinContract = {
         initialValue: "0px",
         defaultValue: "calc(var(--spacing) * 3)",
       },
+      {
+        name: "--cui-item-description-font-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--text-body)",
+      },
+      {
+        name: "--cui-item-description-line-height",
+        syntax: "<number>",
+        initialValue: "1.5",
+        defaultValue: "var(--leading-relaxed)",
+      },
     ],
     kbd: [
       {
@@ -16543,6 +16682,24 @@ export const generatedSkinContract: SkinContract = {
         syntax: "*",
         initialValue: "",
         defaultValue: "var(--shadow-sm)",
+      },
+      {
+        name: "--cui-kbd-padding-inline",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 1.5)",
+      },
+      {
+        name: "--cui-kbd-font-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--text-micro)",
+      },
+      {
+        name: "--cui-kbd-font-weight",
+        syntax: "<number>",
+        initialValue: "400",
+        defaultValue: "var(--font-weight-medium)",
       },
     ],
     label: [
@@ -16924,6 +17081,12 @@ export const generatedSkinContract: SkinContract = {
         initialValue: "",
         defaultValue: "none",
       },
+      {
+        name: "--cui-pagination-link-font-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "1em",
+      },
     ],
     "phone-input": [
       {
@@ -17065,6 +17228,60 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length>",
         initialValue: "0px",
         defaultValue: "0.02em",
+      },
+      {
+        name: "--cui-popup-separator-gap",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 1)",
+      },
+      {
+        name: "--cui-popup-submenu-indicator-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--cui-popup-item-foreground)",
+      },
+      {
+        name: "--cui-popup-command-heading-padding-block",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 1.5)",
+      },
+      {
+        name: "--cui-popup-command-heading-padding-inline",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 2)",
+      },
+      {
+        name: "--cui-popup-command-heading-font-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--text-caption)",
+      },
+      {
+        name: "--cui-popup-command-heading-letter-spacing",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--cui-popup-command-heading-font-size) * 0.08)",
+      },
+      {
+        name: "--cui-popup-command-heading-text-transform",
+        syntax: "none | uppercase | lowercase | capitalize",
+        initialValue: "none",
+        defaultValue: "uppercase",
+      },
+      {
+        name: "--cui-popup-dialog-max-inline-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "32rem",
+      },
+      {
+        name: "--cui-popup-tooltip-arrow-radius",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "3px",
       },
       {
         name: "--cui-popup-status-success-foreground",
@@ -17327,6 +17544,18 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length-percentage>",
         initialValue: "0px",
         defaultValue: "9999px",
+      },
+      {
+        name: "--cui-range-thumb-inline-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 3.5)",
+      },
+      {
+        name: "--cui-range-thumb-block-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 3.5)",
       },
       {
         name: "--cui-range-thumb-background",
@@ -17616,6 +17845,18 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--sidebar-foreground)",
+      },
+      {
+        name: "--cui-sidebar-header-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "1px",
+      },
+      {
+        name: "--cui-sidebar-header-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--sidebar-border)",
       },
       {
         name: "--cui-sidebar-rail-divider-background",
@@ -18422,6 +18663,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--radius-control)",
       },
       {
+        name: "--cui-tabs-trigger-height",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--control-h-sm)",
+      },
+      {
         name: "--cui-tabs-list-padding",
         syntax: "<length-percentage>",
         initialValue: "0px",
@@ -18457,6 +18704,18 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--muted-foreground)",
+      },
+      {
+        name: "--cui-tabs-font-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--text-label)",
+      },
+      {
+        name: "--cui-tabs-font-weight",
+        syntax: "<number>",
+        initialValue: "400",
+        defaultValue: "var(--font-weight-medium)",
       },
       {
         name: "--cui-tabs-active-foreground",
@@ -18692,6 +18951,18 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--foreground)",
+      },
+      {
+        name: "--cui-timeline-title-font-weight",
+        syntax: "<number>",
+        initialValue: "400",
+        defaultValue: "var(--font-weight-medium)",
+      },
+      {
+        name: "--cui-timeline-item-padding-block",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 5)",
       },
     ],
     "tool-approval": [

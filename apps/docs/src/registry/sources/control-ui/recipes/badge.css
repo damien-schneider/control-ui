@@ -6,17 +6,22 @@
     --cui-badge-background: var(--_badge-color-background);
     --cui-badge-foreground: var(--_badge-color-foreground);
     --cui-badge-border-color: transparent;
+    --cui-badge-border-width: 1px;
     --cui-badge-font-size: var(--text-caption);
+    --cui-badge-font-weight: var(--font-weight-medium);
     --_badge-color-background: var(--badge-neutral);
     --_badge-color-foreground: var(--badge-neutral-foreground);
     --_badge-color-border: var(--badge-neutral-border);
     --_badge-color-background-hover: var(--badge-neutral-hover);
     --_badge-hover-background: var(--_badge-color-background-hover);
+    border-style: solid;
+    border-width: var(--cui-badge-border-width);
     border-color: var(--cui-badge-border-color);
     border-radius: var(--cui-badge-radius);
     background: var(--cui-badge-background);
     color: var(--cui-badge-foreground);
     font-size: var(--cui-badge-font-size);
+    font-weight: var(--cui-badge-font-weight);
     font-variant-numeric: tabular-nums;
   }
 
@@ -113,8 +118,20 @@
   initial-value: transparent;
 }
 
+@property --cui-badge-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
 @property --cui-badge-font-size {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
+}
+
+@property --cui-badge-font-weight {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 400;
 }

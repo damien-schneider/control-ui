@@ -31,10 +31,22 @@
       "defaultValue": "transparent"
     },
     {
+      "name": "--cui-badge-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
       "name": "--cui-badge-font-size",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--text-caption)"
+    },
+    {
+      "name": "--cui-badge-font-weight",
+      "syntax": "<number>",
+      "initialValue": "400",
+      "defaultValue": "var(--font-weight-medium)"
     }
   ],
   "parts": {

@@ -1,0 +1,132 @@
+@layer components {
+  [data-skin="modern-apple"]
+    :where(
+      [data-control-family="popup"][data-popup-part="surface"],
+      [data-control-family="popup"][data-popup-part="list-surface"],
+      [data-control-family="popup"][data-popup-part="bar"]
+    ) {
+    --cui-popup-border-width: 0px;
+    --cui-popup-title-font-size: var(--text-heading-4);
+    --cui-popup-title-font-weight: 700;
+    --cui-popup-title-line-height: var(--text-heading-4--line-height);
+    --cui-popup-title-letter-spacing: 0em;
+    --cui-popup-item-font-size: var(--text-body);
+    --cui-popup-item-icon-size: 0.9375rem;
+    --cui-popup-item-min-height: 1.5rem;
+    --cui-popup-item-padding-block: 0.125rem;
+    --cui-popup-item-padding-inline: 0.5625rem;
+    --cui-popup-item-inset: 1.5625rem;
+    --cui-popup-item-highlight-background: var(--primary);
+    --cui-popup-item-highlight-foreground: var(--primary-foreground);
+    --cui-popup-item-highlight-muted-foreground: var(--primary-foreground);
+    --cui-popup-item-highlight-shadow: 0 0 transparent;
+    --cui-popup-item-disabled-opacity: 0.3;
+    --cui-popup-label-padding-block: 0.25rem 0.125rem;
+    --cui-popup-label-font-size: var(--text-caption);
+    --cui-popup-label-font-weight: 700;
+    --cui-popup-label-letter-spacing: 0em;
+    --cui-popup-label-text-transform: none;
+    --cui-popup-command-heading-font-size: var(--text-caption);
+    --cui-popup-command-heading-letter-spacing: 0em;
+    --cui-popup-command-heading-text-transform: none;
+    --cui-popup-separator-color: var(--apple-separator);
+    --cui-popup-separator-inset: 0.5625rem;
+    --cui-popup-separator-gap: 0.3125rem;
+    --cui-popup-shortcut-font-size: var(--text-body);
+    --cui-popup-shortcut-letter-spacing: 0.04em;
+  }
+
+  [data-skin="modern-apple"]
+    :where(
+      [data-control-family="popup"][data-slot][data-popup-part="surface"][data-surface="floating"]:not([data-popup-kind="tooltip"]),
+      [data-control-family="popup"][data-slot][data-popup-part="list-surface"][data-surface="floating"],
+      [data-control-family="popup"][data-slot][data-popup-part="surface"][data-surface="modal"]
+    ) {
+    --cui-popup-radius: var(--radius-popover);
+    --cui-popup-background: var(--apple-glass-fill);
+    --cui-popup-shadow: var(--apple-menu-shadow);
+    --cui-popup-backdrop-filter: var(--apple-glass-filter);
+  }
+
+  [data-skin="modern-apple"]
+    :where(
+      [data-control-family="popup"][data-slot][data-popup-part="surface"][data-surface="floating"]:is(
+        [data-popup-kind="popover"],
+        [data-popup-kind="hover-card"],
+        [data-popup-kind="rich-tooltip"],
+        [data-popup-kind="color-picker"]
+      )
+    ) {
+    --cui-popup-radius: 1.25rem;
+    --cui-popup-shadow: var(--apple-popover-shadow);
+  }
+
+  [data-skin="modern-apple"] :where([data-control-family="popup"][data-slot][data-popup-part="surface"][data-surface="modal"]) {
+    --cui-popup-radius: var(--radius-scene);
+    --cui-popup-background: var(--background);
+    --cui-popup-backdrop-filter: none;
+    --cui-popup-shadow: var(--apple-window-shadow);
+    --cui-popup-description-foreground: var(--foreground);
+  }
+
+  [data-skin="modern-apple"]
+    :where([data-control-family="popup"][data-slot][data-popup-part="surface"][data-surface="modal"][data-popup-kind="alert-dialog"]) {
+    --cui-popup-radius: 1.625rem;
+    --cui-popup-background: var(--apple-glass-fill);
+    --cui-popup-backdrop-filter: var(--apple-glass-filter);
+    --cui-popup-dialog-max-inline-size: 16.25rem;
+  }
+
+  [data-skin="modern-apple"]
+    :where(
+      [data-control-family="popup"][data-popup-kind="alert-dialog"][data-slot="footer"]
+        > [data-control-family="button"][data-control="true"]
+    ) {
+    --cui-button-height: var(--control-h-lg);
+    --cui-button-radius: var(--nest-radius, 9999px);
+    flex: 1 1 0;
+  }
+
+  [data-skin="modern-apple"] :where([data-control-family="popup"][data-popup-kind="tooltip"][data-popup-part="surface"]) {
+    --cui-popup-radius: 0.3125rem;
+    --cui-popup-background: var(--apple-tooltip);
+    --cui-popup-foreground: var(--apple-tooltip-foreground);
+    --cui-popup-shadow: var(--apple-tooltip-shadow);
+    --cui-popup-backdrop-filter: none;
+    font-size: var(--text-caption);
+  }
+
+  [data-skin="modern-apple"] :where([data-control-family="popup"][data-popup-kind="toast"][data-popup-part="surface"]) {
+    --cui-popup-radius: 1.125rem;
+  }
+
+  [data-skin="modern-apple"] :where([data-control-family="popup"][data-popup-part="backdrop"]) {
+    --cui-popup-backdrop-blur: 0px;
+  }
+
+  [data-skin="modern-apple"] :where([data-slot="root"][data-control-family="card"]) {
+    --cui-card-background: var(--apple-box-fill);
+    --cui-card-border-color: var(--apple-box-edge);
+    --cui-card-shadow: none;
+  }
+
+  [data-skin="modern-apple"] :where([data-slot="root"][data-control-family="table"]) {
+    --cui-table-border-color: var(--apple-separator);
+    --cui-table-row-hover-background: transparent;
+    --cui-table-row-selected-background: var(--apple-selection-unemphasized);
+    --cui-table-header-foreground: var(--muted-foreground);
+  }
+
+  [data-skin="modern-apple"] :where([data-slot="root"][data-control-family="tree"]) {
+    --cui-tree-item-trigger-radius: 0.375rem;
+    --cui-tree-item-trigger-font-size: var(--text-body);
+    --cui-tree-item-trigger-hover-background: transparent;
+    --cui-tree-item-trigger-selected-background: var(--apple-selection-unemphasized);
+    --cui-tree-item-trigger-selected-foreground: var(--foreground);
+  }
+
+  [data-skin="modern-apple"] :where([data-slot="root"][data-control-family="tree"]:focus-within) {
+    --cui-tree-item-trigger-selected-background: var(--apple-selection);
+    --cui-tree-item-trigger-selected-foreground: var(--primary-foreground);
+  }
+}

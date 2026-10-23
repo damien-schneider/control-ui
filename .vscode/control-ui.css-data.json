@@ -381,9 +381,19 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-badge-border-width",
+      "description": "Control UI badge knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
       "name": "--cui-badge-font-size",
       "description": "Control UI badge knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-badge-font-weight",
+      "description": "Control UI badge knob — registered syntax <number>, fallback 400. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<number>"
     },
     {
       "name": "--cui-badge-foreground",
@@ -442,6 +452,11 @@
       "name": "--cui-button-font-size",
       "description": "Control UI button knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-button-font-weight",
+      "description": "Control UI button knob — registered syntax <number>, fallback 400. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<number>"
     },
     {
       "name": "--cui-button-foreground",
@@ -593,6 +608,21 @@
       "syntax": "<length>"
     },
     {
+      "name": "--cui-card-gap",
+      "description": "Control UI card knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-card-padding-block",
+      "description": "Control UI card knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-card-padding-inline",
+      "description": "Control UI card knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
       "name": "--cui-card-radius",
       "description": "Control UI card knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
@@ -600,6 +630,11 @@
     {
       "name": "--cui-card-shadow",
       "description": "Control UI card knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
+      "name": "--cui-card-title-font-size",
+      "description": "Control UI card knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
     },
     {
       "name": "--cui-channel-strip-body-height",
@@ -1004,6 +1039,11 @@
     {
       "name": "--cui-choice-shadow",
       "description": "Control UI choice knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
+      "name": "--cui-choice-size",
+      "description": "Control UI choice knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
     },
     {
       "name": "--cui-code-background",
@@ -1552,14 +1592,48 @@
       "syntax": "<length>"
     },
     {
+      "name": "--cui-field-description-font-size",
+      "description": "Control UI field knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
       "name": "--cui-field-font-size",
       "description": "Control UI field knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
+      "name": "--cui-field-font-weight",
+      "description": "Control UI field knob — registered syntax <number>, fallback 400. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<number>"
+    },
+    {
       "name": "--cui-field-foreground",
       "description": "Control UI field knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-field-group-background",
+      "description": "Control UI field knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-field-group-border-color",
+      "description": "Control UI field knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-field-group-border-width",
+      "description": "Control UI field knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
+      "name": "--cui-field-group-radius",
+      "description": "Control UI field knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-field-group-shadow",
+      "description": "Control UI field knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
       "name": "--cui-field-height",
@@ -1570,6 +1644,21 @@
       "name": "--cui-field-hover-background",
       "description": "Control UI field knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-field-label-font-size",
+      "description": "Control UI field knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-field-legend-font-size",
+      "description": "Control UI field-parts knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-field-legend-font-weight",
+      "description": "Control UI field-parts knob — registered syntax <number>, fallback 400. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<number>"
     },
     {
       "name": "--cui-field-padding-inline",
@@ -2009,6 +2098,16 @@
       "syntax": "<length>"
     },
     {
+      "name": "--cui-item-description-font-size",
+      "description": "Control UI item knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-item-description-line-height",
+      "description": "Control UI item knob — registered syntax <number>, fallback 1.5. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<number>"
+    },
+    {
       "name": "--cui-item-gap",
       "description": "Control UI item knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
@@ -2049,9 +2148,24 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-kbd-font-size",
+      "description": "Control UI kbd knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-kbd-font-weight",
+      "description": "Control UI kbd knob — registered syntax <number>, fallback 400. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<number>"
+    },
+    {
       "name": "--cui-kbd-foreground",
       "description": "Control UI kbd knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-kbd-padding-inline",
+      "description": "Control UI kbd knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
     },
     {
       "name": "--cui-kbd-radius",
@@ -2345,6 +2459,11 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-pagination-link-font-size",
+      "description": "Control UI pagination knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
       "name": "--cui-pagination-link-foreground",
       "description": "Control UI pagination knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
@@ -2428,9 +2547,39 @@
       "syntax": "<length-percentage>"
     },
     {
+      "name": "--cui-popup-command-heading-font-size",
+      "description": "Control UI popup-lists knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-popup-command-heading-letter-spacing",
+      "description": "Control UI popup-lists knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
+      "name": "--cui-popup-command-heading-padding-block",
+      "description": "Control UI popup-lists knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-popup-command-heading-padding-inline",
+      "description": "Control UI popup-lists knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-popup-command-heading-text-transform",
+      "description": "Control UI popup-lists knob — registered syntax none | uppercase | lowercase | capitalize, fallback none. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "none | uppercase | lowercase | capitalize"
+    },
+    {
       "name": "--cui-popup-description-foreground",
       "description": "Control UI popup-controls knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-popup-dialog-max-inline-size",
+      "description": "Control UI popup-lists knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
     },
     {
       "name": "--cui-popup-foreground",
@@ -2542,6 +2691,11 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-popup-separator-gap",
+      "description": "Control UI popup-lists knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
       "name": "--cui-popup-separator-inset",
       "description": "Control UI popup-lists knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
@@ -2586,6 +2740,11 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-popup-submenu-indicator-foreground",
+      "description": "Control UI popup-lists knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
       "name": "--cui-popup-title-font-size",
       "description": "Control UI popup-controls knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
@@ -2609,6 +2768,11 @@
       "name": "--cui-popup-title-line-height",
       "description": "Control UI popup-controls knob — registered syntax <number>, fallback 1.5. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<number>"
+    },
+    {
+      "name": "--cui-popup-tooltip-arrow-radius",
+      "description": "Control UI popup-motion knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
     },
     {
       "name": "--cui-progressive-blur-backdrop-blur",
@@ -2681,9 +2845,19 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-range-thumb-block-size",
+      "description": "Control UI range knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
       "name": "--cui-range-thumb-border-color",
       "description": "Control UI range knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-range-thumb-inline-size",
+      "description": "Control UI range knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
     },
     {
       "name": "--cui-range-thumb-radius",
@@ -2887,6 +3061,16 @@
       "name": "--cui-sidebar-header-background",
       "description": "Control UI sidebar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-sidebar-header-border-color",
+      "description": "Control UI sidebar-parts knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-sidebar-header-border-width",
+      "description": "Control UI sidebar-parts knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
     },
     {
       "name": "--cui-sidebar-header-shadow",
@@ -3554,6 +3738,16 @@
       "syntax": "<length>"
     },
     {
+      "name": "--cui-tabs-font-size",
+      "description": "Control UI tabs knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-tabs-font-weight",
+      "description": "Control UI tabs knob — registered syntax <number>, fallback 400. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<number>"
+    },
+    {
       "name": "--cui-tabs-foreground",
       "description": "Control UI tabs knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
@@ -3606,6 +3800,11 @@
     },
     {
       "name": "--cui-tabs-surface-radius",
+      "description": "Control UI tabs knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-tabs-trigger-height",
       "description": "Control UI tabs knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
@@ -3743,6 +3942,11 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-timeline-item-padding-block",
+      "description": "Control UI timeline knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
       "name": "--cui-timeline-running-foreground",
       "description": "Control UI timeline knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
@@ -3756,6 +3960,11 @@
       "name": "--cui-timeline-success-foreground",
       "description": "Control UI timeline knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-timeline-title-font-weight",
+      "description": "Control UI timeline knob — registered syntax <number>, fallback 400. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<number>"
     },
     {
       "name": "--cui-timeline-title-foreground",

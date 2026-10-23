@@ -8,6 +8,7 @@
     --cui-avatar-badge-foreground: var(--primary-foreground);
     inline-size: calc(var(--spacing) * 9);
     block-size: calc(var(--spacing) * 9);
+    font-size: var(--text-caption);
   }
 
   :where([data-control-family="avatar"][data-slot="root"]),
@@ -79,7 +80,6 @@
     border-radius: inherit;
     background: var(--cui-avatar-fallback-background);
     color: var(--cui-avatar-fallback-foreground);
-    font-size: var(--text-caption);
     font-weight: var(--font-weight-medium);
   }
 }

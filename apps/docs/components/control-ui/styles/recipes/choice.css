@@ -1,8 +1,9 @@
 @layer components {
   :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]),
   :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]) {
-    inline-size: calc(var(--spacing) * 4);
-    block-size: calc(var(--spacing) * 4);
+    --cui-choice-size: calc(var(--spacing) * 4);
+    inline-size: var(--cui-choice-size);
+    block-size: var(--cui-choice-size);
     --cui-choice-radius: var(--radius-sm);
     --cui-choice-shadow: inset 0 0 0 var(--cui-choice-border-width) var(--cui-choice-border-color), var(--shadow-sm);
     --cui-choice-border-color: var(--control-boundary);
@@ -93,6 +94,12 @@
       block-size: max(100%, var(--touch-target));
     }
   }
+}
+
+@property --cui-choice-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-choice-radius {

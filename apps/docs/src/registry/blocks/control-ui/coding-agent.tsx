@@ -91,7 +91,8 @@ export function CodingAgentBlock({
   return (
     <SidebarProvider
       layout={layout}
-      className={cn("bg-background text-foreground", layout === "viewport" && "h-svh overflow-hidden", className)}
+      surface="background"
+      className={cn("text-foreground", layout === "viewport" && "h-svh overflow-hidden", className)}
       style={providerStyle}
       {...props}
     >
@@ -167,7 +168,7 @@ function CodingAgentSidebar({
 
   return (
     <Sidebar collapsible="offcanvas">
-      <SidebarHeader className="gap-1.5 border-b border-sidebar-border px-2 pb-2 pt-3">
+      <SidebarHeader divider className="gap-1.5 px-2 pb-2 pt-3">
         {sidebarTop}
         <div className="flex min-w-0 items-center gap-2 px-1 py-1">
           <div className="flex min-w-0 flex-1 items-center gap-2">

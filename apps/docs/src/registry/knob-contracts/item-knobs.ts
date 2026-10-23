@@ -8,5 +8,7 @@ export const itemKnobs = [
   "--cui-item-gap",
   "--cui-item-padding-block",
   "--cui-item-padding-inline",
+  "--cui-item-description-font-size",
+  "--cui-item-description-line-height",
 ] as const;
 export type ItemKnobStyle = Partial<Record<(typeof itemKnobs)[number], string>>;

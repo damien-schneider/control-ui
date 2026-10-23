@@ -47,7 +47,7 @@
     --cui-button-active-shadow: var(--cui-button-press-shadow);
     border: 1px solid transparent;
     line-height: 1;
-    font-weight: 400;
+    --cui-button-font-weight: 400;
   }
   [data-skin="xp"] :where([data-control-family="button"][data-control="true"]:is([data-variant="surface"], [data-variant="solid"])) {
     --cui-button-background: var(--secondary);
@@ -104,8 +104,7 @@
     --cui-choice-border-color: var(--xp-field);
     --cui-choice-checked-border-color: var(--xp-field);
     --cui-choice-checked-background: var(--background);
-    inline-size: 13px;
-    block-size: 13px;
+    --cui-choice-size: 13px;
     color: var(--xp-check);
     background-image: linear-gradient(135deg, oklch(from var(--xp-field) l c h / 0.3), transparent 70%);
   }
@@ -140,6 +139,7 @@
     gap: 0;
     align-items: end;
     border-bottom: 1px solid var(--xp-tab-border);
+    --cui-tabs-font-weight: 400;
   }
   [data-skin="xp"] :where([data-control-family="tabs"][data-slot="tab"]) {
     border: 1px solid var(--xp-tab-border);
@@ -148,7 +148,6 @@
     border-end-end-radius: 0;
     background: var(--xp-button);
     margin-bottom: -1px;
-    font-weight: 400;
   }
   [data-skin="xp"] :where([data-control-family="tabs"][data-slot="tab"][aria-selected="true"]) {
     background: var(--xp-tab);
@@ -182,8 +181,8 @@
     border: 1px solid var(--xp-field);
   }
   [data-skin="xp"] :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-variant="default"]) {
-    inline-size: 11px;
-    block-size: 21px;
+    --cui-range-thumb-inline-size: 11px;
+    --cui-range-thumb-block-size: 21px;
     background-image: var(--xp-button);
     scale: 1;
   }

@@ -41,7 +41,7 @@ export function Badge({ variant = "default", size = "md", color, render, classNa
       "data-size": size,
       "data-color": resolvedColor,
       className: cn(
-        "inline-flex w-fit shrink-0 items-center justify-center overflow-hidden whitespace-nowrap border font-medium [&>svg]:pointer-events-none [&>svg]:size-3",
+        "inline-flex w-fit shrink-0 items-center justify-center overflow-hidden whitespace-nowrap [&>svg]:pointer-events-none [&>svg]:size-3",
         className,
       ),
       children,

@@ -391,9 +391,20 @@ export function SidebarInset({ className, render, ref, ...props }: SidebarInsetP
   });
 }
 
-export function SidebarHeader({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & SidebarKnobStyle }) {
+export function SidebarHeader({
+  className,
+  divider = false,
+  ...props
+}: ComponentProps<"div"> & { divider?: boolean; style?: CSSProperties & SidebarKnobStyle }) {
   return (
-    <div data-control-ui="sidebar" data-control-family="sidebar" data-slot="header" className={cn("flex flex-col", className)} {...props} />
+    <div
+      data-control-ui="sidebar"
+      data-control-family="sidebar"
+      data-slot="header"
+      data-divider={divider ? "" : undefined}
+      className={cn("flex flex-col", className)}
+      {...props}
+    />
   );
 }
 

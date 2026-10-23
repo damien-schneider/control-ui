@@ -11,6 +11,8 @@ export const rangeKnobs = [
   "--cui-range-indicator-radius",
   "--cui-range-indicator-background",
   "--cui-range-thumb-radius",
+  "--cui-range-thumb-inline-size",
+  "--cui-range-thumb-block-size",
   "--cui-range-thumb-background",
   "--cui-range-thumb-border-color",
   "--cui-range-thumb-shadow",

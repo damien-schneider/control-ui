@@ -15,7 +15,7 @@ export function TeamChatBlock({ sidebar, children, thread, threadLabel = "Thread
   const threadIsOpen = thread !== undefined && thread !== null;
 
   return (
-    <SidebarProvider className={cn("bg-background text-foreground", className)} {...props}>
+    <SidebarProvider surface="background" className={cn("text-foreground", className)} {...props}>
       {sidebar}
       <SidebarInset className="@container/team-chat flex h-full min-h-0 min-w-0 flex-row">
         <div className={cn("flex min-h-0 min-w-0 flex-1 flex-col", threadIsOpen && "@max-3xl/team-chat:hidden")}>{children}</div>

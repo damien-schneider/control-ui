@@ -26,7 +26,7 @@ function unreadLabel(count: number) {
 export function TeamChatSidebar({ activeId, onSelect }: { activeId: string; onSelect: (id: string) => void }) {
   return (
     <Sidebar collapsible="offcanvas">
-      <SidebarHeader className="flex-row items-center justify-between gap-2 border-b border-sidebar-border p-3">
+      <SidebarHeader divider className="flex-row items-center justify-between gap-2 p-3">
         <Text size="label" weight="semibold" className="truncate">
           Northwind
         </Text>

@@ -119,9 +119,9 @@ function DropdownMenuChoicesExample() {
           </DropdownMenuSub>
         </DropdownMenuContent>
       </DropdownMenu>
-      <span role="status">
+      <Text role="status" size="label" tone="muted">
         {shared ? "Last action: Copy workspace link" : `${notifications ? "Notifications on" : "Notifications off"}, ${visibility}`}
-      </span>
+      </Text>
     </Row>
   );
 }
