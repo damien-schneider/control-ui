@@ -43,7 +43,7 @@
       "path": "src/registry/skin-packs/linear/skin.config.tsx",
       "target": "@components/control-ui/skin.config.tsx",
       "type": "registry:lib",
-      "content": "import type { ControlUiSkin } from \"@/components/control-ui/skin\";\n\nexport const skin: ControlUiSkin = {\n  id: \"linear\",\n  sidebarLayout: \"inset\",\n};\n"
+      "content": "import type { ControlUiSkin } from \"@/components/control-ui/skin\";\n\nexport const skin: ControlUiSkin = {\n  id: \"linear\",\n  sidebarLayout: \"inset\",\n  calendarShowOutsideDays: false,\n};\n"
     },
     {
       "path": "src/registry/skin-packs/linear/skin.css",

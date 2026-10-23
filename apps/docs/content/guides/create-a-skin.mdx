@@ -70,6 +70,9 @@ export function AppTheme({ children }: { children: ReactNode }) {
   as macOS pop-up buttons do. SelectContent's `alignItemWithTrigger` prop overrides it per instance; the neutral
   default opens the menu below the trigger.
 
+  Set `calendarShowOutsideDays: false` to leave days from neighboring months blank, as Linear's date picker does.
+  Calendar's `showOutsideDays` prop overrides it per instance; the neutral default shows them.
+
   The example packs resolve the required token contract explicitly so each has a complete, independent appearance.
   A consumer theme may inherit defaults and override only the values it needs.
 </GuideSection>

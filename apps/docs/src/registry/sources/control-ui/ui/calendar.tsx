@@ -16,6 +16,7 @@ import {
 } from "react-day-picker";
 import type { CalendarKnobStyle } from "@/components/control-ui/knob-contracts/calendar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkin } from "@/components/control-ui/skin-provider";
 
 // react-day-picker v10 — Base UI ships no calendar, so this is one primitive reaching outside it.
 // CalendarProps stays here rather than contracts.ts, which every component installs, so plain Button install never pulls this import.
@@ -34,11 +35,12 @@ const chevronPathByOrientation = {
   down: "M3 6 8 10.5 13 6",
 } satisfies Record<NonNullable<ChevronProps["orientation"]>, string>;
 
-export function Calendar({ className, showOutsideDays = true, style, ...props }: CalendarProps) {
+export function Calendar({ className, showOutsideDays, style, ...props }: CalendarProps) {
+  const skin = useSkin();
   return (
     <div data-control-ui="calendar" data-control-family="calendar" data-slot="root" className={cn("w-fit", className)} style={style}>
       <DayPicker
-        showOutsideDays={showOutsideDays}
+        showOutsideDays={showOutsideDays ?? skin.calendarShowOutsideDays ?? true}
         components={{
           Chevron: CalendarChevron,
           Months: CalendarMonths,

@@ -10,9 +10,15 @@
     --cui-emoji-picker-search-font-size: var(--text-label);
     --cui-emoji-picker-height: 22rem;
     --_emoji-picker-recent-block-size: 0px;
+    --_emoji-picker-touch-min: 0px;
   }
   :where([data-control-family="emoji-picker"][data-slot="root"]:not([data-variant="reactions"])) {
-    inline-size: calc(var(--_emoji-picker-columns) * var(--cui-emoji-picker-cell-size) + var(--spacing) * 4);
+    inline-size: calc(
+      var(--_emoji-picker-columns) *
+      max(var(--cui-emoji-picker-cell-size), var(--_emoji-picker-touch-min)) +
+      var(--spacing) *
+      4
+    );
     max-inline-size: 100%;
     block-size: var(--cui-emoji-picker-height);
     color: var(--foreground);
@@ -144,8 +150,8 @@
   }
 
   :where([data-control-family="emoji-picker"][data-slot="emoji"]) {
-    inline-size: var(--cui-emoji-picker-cell-size);
-    block-size: var(--cui-emoji-picker-cell-size);
+    inline-size: max(var(--cui-emoji-picker-cell-size), var(--_emoji-picker-touch-min));
+    block-size: max(var(--cui-emoji-picker-cell-size), var(--_emoji-picker-touch-min));
     border-radius: var(--cui-emoji-picker-cell-radius);
     background: transparent;
     font-size: var(--cui-emoji-picker-glyph-size);
@@ -179,7 +185,7 @@
 
   @media (pointer: coarse) {
     :where([data-control-family="emoji-picker"][data-slot="root"]) {
-      --cui-emoji-picker-cell-size: 44px;
+      --_emoji-picker-touch-min: 44px;
     }
     :where([data-control-family="emoji-picker"][data-slot="category"]) {
       flex: 0 0 44px;
