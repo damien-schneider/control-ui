@@ -65,6 +65,12 @@
       "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 5)"
+    },
+    {
+      "name": "--cui-timeline-separator-inline-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
     }
   ],
   "parts": {

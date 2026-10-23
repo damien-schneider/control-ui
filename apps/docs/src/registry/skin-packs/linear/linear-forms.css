@@ -255,8 +255,16 @@
   }
 
   [data-skin="linear"] :where([data-slot="root"][data-control-family="calendar"]) {
-    --cui-calendar-day-radius: var(--radius-control);
-    --cui-calendar-today-background: var(--linear-control-selected);
+    --cui-calendar-day-radius: 9999px;
+    --cui-calendar-day-size: 1.625rem;
+    --cui-calendar-cell-padding: 0.25rem;
+    --cui-calendar-today-background: var(--linear-calendar-today);
+    --cui-calendar-today-shadow: inset 0 0 0 1px var(--linear-calendar-today-ring);
+    --cui-calendar-weekend-foreground: var(--muted-foreground);
+    --cui-calendar-weekend-background: var(--linear-calendar-weekend);
+    --cui-calendar-caption-font-size: var(--text-label);
+    --cui-calendar-caption-font-weight: 400;
+    --cui-calendar-weekday-font-size: var(--text-body);
     --cui-calendar-range-background: oklch(from var(--primary) l c h / 0.14);
   }
 

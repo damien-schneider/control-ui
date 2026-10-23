@@ -10,6 +10,8 @@
     --cui-tree-item-trigger-font-size: var(--text-body);
     --cui-tree-item-trigger-selected-font-weight: var(--font-weight-normal);
     --cui-tree-indent-inset: 1.25rem;
+    --cui-tree-guide-background: transparent;
+    --cui-tree-guide-inline-size: 1px;
   }
 
   :where([data-control-family="tree"][data-slot="list"]) {
@@ -119,8 +121,27 @@
   }
 
   :where([data-control-family="tree"][data-slot="item-group"]) {
+    position: relative;
     translate: 0 0;
     transition: translate var(--duration-base) var(--ease-emphasized);
+  }
+
+  :where([data-control-family="tree"][data-slot="item-group"])::before {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: calc(
+      var(--_tree-level, 1) *
+      var(--cui-tree-indent-inset) +
+      var(--spacing) *
+      2 -
+      var(--cui-tree-guide-inline-size) /
+      2
+    );
+    inline-size: var(--cui-tree-guide-inline-size);
+    border-radius: var(--cui-tree-guide-inline-size);
+    background-color: var(--cui-tree-guide-background);
+    pointer-events: none;
   }
 
   :where([data-control-family="tree"][data-slot="item-content"]:is([data-starting-style], [data-ending-style]) > [data-slot="item-group"]) {
@@ -186,4 +207,16 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-tree-guide-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-tree-guide-inline-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }

@@ -6,12 +6,20 @@
     --cui-calendar-selected-background: var(--primary);
     --cui-calendar-selected-foreground: var(--primary-foreground);
     --cui-calendar-range-background: var(--accent);
+    --cui-calendar-day-size: calc(var(--spacing) * 9);
+    --cui-calendar-cell-padding: 0px;
+    --cui-calendar-today-shadow: none;
+    --cui-calendar-weekend-foreground: var(--foreground);
+    --cui-calendar-weekend-background: transparent;
+    --cui-calendar-caption-font-size: var(--text-body);
+    --cui-calendar-caption-font-weight: var(--font-weight-medium);
+    --cui-calendar-weekday-font-size: var(--text-caption);
   }
 
   :where([data-control-family="calendar"][data-slot="caption-label"]) {
     color: var(--foreground);
-    font-size: var(--text-body);
-    font-weight: var(--font-weight-medium);
+    font-size: var(--cui-calendar-caption-font-size);
+    font-weight: var(--cui-calendar-caption-font-weight);
     line-height: 1.4;
   }
 
@@ -31,7 +39,7 @@
   :where([data-control-family="calendar"][data-slot="weekday"]) {
     padding-block-end: calc(var(--spacing) * 1.5);
     color: var(--muted-foreground);
-    font-size: var(--text-caption);
+    font-size: var(--cui-calendar-weekday-font-size);
     font-weight: var(--font-weight-normal);
   }
 
@@ -54,14 +62,18 @@
   }
 
   :where([data-control-family="calendar"][data-slot="day"]) {
-    block-size: calc(var(--spacing) * 9);
-    min-inline-size: calc(var(--spacing) * 9);
+    block-size: var(--cui-calendar-day-size);
+    min-inline-size: var(--cui-calendar-day-size);
     border-radius: var(--cui-calendar-day-radius);
     color: var(--foreground);
     font-size: var(--text-body);
     font-weight: var(--font-weight-normal);
     line-height: 1;
     font-variant-numeric: tabular-nums;
+  }
+
+  :where([data-control-family="calendar"][data-slot="day-cell"][data-weekend] > [data-slot="day"]) {
+    color: var(--cui-calendar-weekend-foreground);
   }
 
   @media (hover: hover) {
@@ -74,6 +86,7 @@
   :where([data-control-family="calendar"][data-slot="day"][data-today]) {
     background-color: var(--cui-calendar-today-background);
     color: var(--accent-foreground);
+    box-shadow: var(--cui-calendar-today-shadow);
     font-weight: var(--font-weight-medium);
   }
 
@@ -101,12 +114,28 @@
   }
 
   :where([data-control-family="calendar"][data-slot="day-cell"]) {
+    padding: var(--cui-calendar-cell-padding);
     text-align: center;
+  }
+
+  :where([data-control-family="calendar"][data-slot="day-cell"][data-weekend]) {
+    background-color: var(--cui-calendar-weekend-background);
+  }
+
+  :where([data-control-family="calendar"][data-slot="month-grid"] > tbody > tr:first-child > [data-slot="day-cell"][data-weekend]) {
+    border-start-start-radius: calc(var(--cui-calendar-cell-padding) * 2);
+    border-start-end-radius: calc(var(--cui-calendar-cell-padding) * 2);
+  }
+
+  :where([data-control-family="calendar"][data-slot="month-grid"] > tbody > tr:last-child > [data-slot="day-cell"][data-weekend]) {
+    border-end-start-radius: calc(var(--cui-calendar-cell-padding) * 2);
+    border-end-end-radius: calc(var(--cui-calendar-cell-padding) * 2);
   }
 
   :where([data-control-family="calendar"][data-slot="month-grid"]) {
     margin-block-start: calc(var(--spacing) * 1);
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
   }
 
   @media (pointer: coarse) {
@@ -158,4 +187,51 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-calendar-day-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-calendar-cell-padding {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-calendar-today-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-calendar-weekend-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-calendar-weekend-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-calendar-caption-font-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-calendar-caption-font-weight {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 400;
+}
+
+@property --cui-calendar-weekday-font-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }

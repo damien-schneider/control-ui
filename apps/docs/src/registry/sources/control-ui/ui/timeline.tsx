@@ -71,7 +71,7 @@ export function TimelineSeparator({ className, ...props }: TimelineSeparatorProp
       data-control-family="timeline"
       data-slot="separator"
       {...props}
-      className={cn("absolute top-5 bottom-0 start-[calc(0.5rem-0.5px)] col-start-1 w-px group-last/timeline-item:hidden", className)}
+      className={cn("absolute top-5 bottom-0 col-start-1 group-last/timeline-item:hidden", className)}
     />
   );
 }

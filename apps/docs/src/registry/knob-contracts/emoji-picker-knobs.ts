@@ -7,5 +7,7 @@ export const emojiPickerKnobs = [
   "--cui-emoji-picker-active-background",
   "--cui-emoji-picker-header-background",
   "--cui-emoji-picker-header-foreground",
+  "--cui-emoji-picker-header-font-size",
+  "--cui-emoji-picker-search-font-size",
 ] as const;
 export type EmojiPickerKnobStyle = Partial<Record<(typeof emojiPickerKnobs)[number], string>>;

@@ -72,6 +72,7 @@
     --cui-tree-item-trigger-font-size: var(--text-body);
     --cui-tree-item-trigger-selected-font-weight: 500;
     --cui-tree-indent-inset: 1.1875rem;
+    --cui-tree-guide-background: var(--linear-tree-guide);
   }
 
   [data-skin="linear"] :where([data-slot="root"][data-control-family="alert"]) {
@@ -150,13 +151,6 @@
     --cui-pagination-link-shadow: none;
   }
 
-  [data-skin="linear"] :where([data-slot="root"][data-control-family="calendar"]) {
-    --cui-calendar-day-radius: var(--radius-control);
-    --cui-calendar-today-background: var(--muted);
-    --cui-calendar-selected-background: var(--primary);
-    --cui-calendar-selected-foreground: var(--primary-foreground);
-  }
-
   [data-skin="linear"] :where([data-slot="root"][data-control-family="skeleton"]) {
     --cui-skeleton-radius: var(--radius-control);
     --cui-skeleton-background: var(--linear-control-selected);
@@ -210,10 +204,11 @@
 
   [data-skin="linear"] :where([data-slot="root"][data-control-family="timeline"]) {
     --cui-timeline-indicator-background: transparent;
-    --cui-timeline-separator-background: transparent;
+    --cui-timeline-separator-background: var(--linear-chip-border);
+    --cui-timeline-separator-inline-size: var(--control-rim-width);
     --cui-timeline-title-foreground: var(--muted-foreground);
     --cui-timeline-title-font-weight: 450;
-    --cui-timeline-item-padding-block: 0.875rem;
+    --cui-timeline-item-padding-block: 0.5625rem;
     --cui-timeline-success-foreground: var(--muted-foreground);
   }
 

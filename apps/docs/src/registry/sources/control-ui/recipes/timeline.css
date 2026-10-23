@@ -7,6 +7,7 @@
     --cui-timeline-success-foreground: var(--foreground);
     --cui-timeline-error-foreground: var(--destructive-text);
     --cui-timeline-separator-background: var(--border);
+    --cui-timeline-separator-inline-size: 1px;
     --cui-timeline-title-foreground: var(--foreground);
     --cui-timeline-title-font-weight: var(--font-weight-medium);
     --cui-timeline-item-padding-block: calc(var(--spacing) * 5);
@@ -54,6 +55,8 @@
   }
 
   :where([data-control-family="timeline"][data-slot="separator"]) {
+    inset-inline-start: calc(var(--spacing) * 2 - var(--cui-timeline-separator-inline-size) / 2);
+    inline-size: var(--cui-timeline-separator-inline-size);
     background: var(--cui-timeline-separator-background);
   }
 
@@ -128,6 +131,12 @@
 }
 
 @property --cui-timeline-item-padding-block {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-timeline-separator-inline-size {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;

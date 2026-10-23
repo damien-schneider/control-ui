@@ -658,9 +658,33 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     id: "calendar",
     knobs: [
       {
+        name: "--cui-calendar-caption-font-size",
+        syntax: "<length-percentage>",
+        defaultValue: "var(--text-body)",
+        selector: ':where([data-control-family="calendar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-calendar-caption-font-weight",
+        syntax: "<number>",
+        defaultValue: "var(--font-weight-medium)",
+        selector: ':where([data-control-family="calendar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-calendar-cell-padding",
+        syntax: "<length-percentage>",
+        defaultValue: "0px",
+        selector: ':where([data-control-family="calendar"][data-slot="root"])',
+      },
+      {
         name: "--cui-calendar-day-radius",
         syntax: "<length-percentage>",
         defaultValue: "var(--radius-control)",
+        selector: ':where([data-control-family="calendar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-calendar-day-size",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 9)",
         selector: ':where([data-control-family="calendar"][data-slot="root"])',
       },
       {
@@ -685,6 +709,30 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-calendar-today-background",
         syntax: "<color>",
         defaultValue: "var(--accent)",
+        selector: ':where([data-control-family="calendar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-calendar-today-shadow",
+        syntax: "*",
+        defaultValue: "none",
+        selector: ':where([data-control-family="calendar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-calendar-weekday-font-size",
+        syntax: "<length-percentage>",
+        defaultValue: "var(--text-caption)",
+        selector: ':where([data-control-family="calendar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-calendar-weekend-background",
+        syntax: "<color>",
+        defaultValue: "transparent",
+        selector: ':where([data-control-family="calendar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-calendar-weekend-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--foreground)",
         selector: ':where([data-control-family="calendar"][data-slot="root"])',
       },
     ],
@@ -1862,6 +1910,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="emoji-picker"][data-slot="root"])',
       },
       {
+        name: "--cui-emoji-picker-header-font-size",
+        syntax: "<length-percentage>",
+        defaultValue: "var(--text-caption)",
+        selector: ':where([data-control-family="emoji-picker"][data-slot="root"])',
+      },
+      {
         name: "--cui-emoji-picker-header-foreground",
         syntax: "<color>",
         defaultValue: "var(--muted-foreground)",
@@ -1871,6 +1925,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-emoji-picker-height",
         syntax: "<length-percentage>",
         defaultValue: "22rem",
+        selector: ':where([data-control-family="emoji-picker"][data-slot="root"])',
+      },
+      {
+        name: "--cui-emoji-picker-search-font-size",
+        syntax: "<length-percentage>",
+        defaultValue: "var(--text-label)",
         selector: ':where([data-control-family="emoji-picker"][data-slot="root"])',
       },
     ],
@@ -5207,6 +5267,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="timeline"][data-slot="root"])',
       },
       {
+        name: "--cui-timeline-separator-inline-size",
+        syntax: "<length-percentage>",
+        defaultValue: "1px",
+        selector: ':where([data-control-family="timeline"][data-slot="root"])',
+      },
+      {
         name: "--cui-timeline-success-foreground",
         syntax: "<color>",
         defaultValue: "var(--foreground)",
@@ -5580,6 +5646,18 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
   {
     id: "tree",
     knobs: [
+      {
+        name: "--cui-tree-guide-background",
+        syntax: "<color>",
+        defaultValue: "transparent",
+        selector: ':where([data-control-family="tree"][data-slot="root"])',
+      },
+      {
+        name: "--cui-tree-guide-inline-size",
+        syntax: "<length-percentage>",
+        defaultValue: "1px",
+        selector: ':where([data-control-family="tree"][data-slot="root"])',
+      },
       {
         name: "--cui-tree-indent-inset",
         syntax: "<length-percentage>",

@@ -82955,6 +82955,270 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       state: false,
       route: "/components/menubar",
     },
+    {
+      knobs: {
+        fill: "--cui-calendar-weekend-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "day-cell",
+            "data-weekend": "true",
+            role: "gridcell",
+          },
+        },
+      ],
+      recipe: "calendar",
+      rendersText: true,
+      state: false,
+      route: "/components/calendar",
+    },
+    {
+      knobs: {
+        fill: "--cui-calendar-weekend-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "day-cell",
+            "data-weekend": "true",
+            role: "gridcell",
+          },
+        },
+      ],
+      recipe: "calendar",
+      rendersText: true,
+      state: false,
+      route: "/components/calendar",
+    },
+    {
+      knobs: {
+        text: "--cui-calendar-weekend-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "day-cell",
+            "data-weekend": "true",
+            role: "gridcell",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "day",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "calendar",
+      rendersText: true,
+      state: false,
+      route: "/components/calendar",
+    },
+    {
+      knobs: {
+        text: "--cui-calendar-weekend-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "day-cell",
+            "data-weekend": "true",
+            role: "gridcell",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "day",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "calendar",
+      rendersText: true,
+      state: false,
+      route: "/components/calendar",
+    },
   ),
   uncovered: [
     "--cui-audio-recorder-recorded-foreground",
@@ -83034,6 +83298,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     "--cui-track-highlight-hover-background",
     "--cui-transcript-divider-line-color",
     "--cui-transcript-divider-success-foreground",
+    "--cui-tree-guide-background",
     "--cui-tree-item-trigger-selected-background",
     "--cui-tree-item-trigger-selected-foreground",
     "--cui-user-ask-input-background",

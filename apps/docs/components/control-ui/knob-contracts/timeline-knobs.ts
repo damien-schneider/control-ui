@@ -10,5 +10,6 @@ export const timelineKnobs = [
   "--cui-timeline-title-foreground",
   "--cui-timeline-title-font-weight",
   "--cui-timeline-item-padding-block",
+  "--cui-timeline-separator-inline-size",
 ] as const;
 export type TimelineKnobStyle = Partial<Record<(typeof timelineKnobs)[number], string>>;

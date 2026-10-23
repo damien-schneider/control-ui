@@ -1585,7 +1585,14 @@ export const generatedSkinContract: SkinContract = {
         "day-cell": {
           family: "calendar",
           registryItems: ["calendar"],
-          states: [],
+          states: [
+            {
+              attribute: "data-weekend",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
         },
         month: {
           family: "calendar",
@@ -14686,6 +14693,54 @@ export const generatedSkinContract: SkinContract = {
         initialValue: "transparent",
         defaultValue: "var(--accent)",
       },
+      {
+        name: "--cui-calendar-day-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 9)",
+      },
+      {
+        name: "--cui-calendar-cell-padding",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "0px",
+      },
+      {
+        name: "--cui-calendar-today-shadow",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "none",
+      },
+      {
+        name: "--cui-calendar-weekend-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--foreground)",
+      },
+      {
+        name: "--cui-calendar-weekend-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "transparent",
+      },
+      {
+        name: "--cui-calendar-caption-font-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--text-body)",
+      },
+      {
+        name: "--cui-calendar-caption-font-weight",
+        syntax: "<number>",
+        initialValue: "400",
+        defaultValue: "var(--font-weight-medium)",
+      },
+      {
+        name: "--cui-calendar-weekday-font-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--text-caption)",
+      },
     ],
     card: [
       {
@@ -15785,6 +15840,18 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--muted-foreground)",
+      },
+      {
+        name: "--cui-emoji-picker-header-font-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--text-caption)",
+      },
+      {
+        name: "--cui-emoji-picker-search-font-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--text-label)",
       },
     ],
     empty: [
@@ -18964,6 +19031,12 @@ export const generatedSkinContract: SkinContract = {
         initialValue: "0px",
         defaultValue: "calc(var(--spacing) * 5)",
       },
+      {
+        name: "--cui-timeline-separator-inline-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "1px",
+      },
     ],
     "tool-approval": [
       {
@@ -19358,6 +19431,18 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "transparent",
+      },
+      {
+        name: "--cui-tree-guide-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "transparent",
+      },
+      {
+        name: "--cui-tree-guide-inline-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "1px",
       },
     ],
     "user-ask": [

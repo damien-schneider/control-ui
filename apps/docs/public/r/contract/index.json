@@ -113,8 +113,8 @@
       "registryItems": [
         "calendar"
       ],
-      "knobs": 5,
-      "probes": 2
+      "knobs": 13,
+      "probes": 6
     },
     "card": {
       "registryItems": [
@@ -240,7 +240,7 @@
       "registryItems": [
         "emoji-picker"
       ],
-      "knobs": 7,
+      "knobs": 9,
       "probes": 17
     },
     "empty": {
@@ -575,7 +575,7 @@
       "registryItems": [
         "timeline"
       ],
-      "knobs": 10,
+      "knobs": 11,
       "probes": 5
     },
     "tool-approval": {
@@ -610,7 +610,7 @@
       "registryItems": [
         "tree"
       ],
-      "knobs": 10,
+      "knobs": 12,
       "probes": 5
     },
     "typography": {

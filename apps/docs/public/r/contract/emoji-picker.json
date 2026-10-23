@@ -47,6 +47,18 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-emoji-picker-header-font-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--text-caption)"
+    },
+    {
+      "name": "--cui-emoji-picker-search-font-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--text-label)"
     }
   ],
   "parts": {

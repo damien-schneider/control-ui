@@ -564,7 +564,27 @@
       "description": "Control UI button knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
+      "name": "--cui-calendar-caption-font-size",
+      "description": "Control UI calendar knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-calendar-caption-font-weight",
+      "description": "Control UI calendar knob — registered syntax <number>, fallback 400. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<number>"
+    },
+    {
+      "name": "--cui-calendar-cell-padding",
+      "description": "Control UI calendar knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
       "name": "--cui-calendar-day-radius",
+      "description": "Control UI calendar knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-calendar-day-size",
       "description": "Control UI calendar knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
@@ -585,6 +605,25 @@
     },
     {
       "name": "--cui-calendar-today-background",
+      "description": "Control UI calendar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-calendar-today-shadow",
+      "description": "Control UI calendar knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
+      "name": "--cui-calendar-weekday-font-size",
+      "description": "Control UI calendar knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-calendar-weekend-background",
+      "description": "Control UI calendar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-calendar-weekend-foreground",
       "description": "Control UI calendar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
@@ -1442,12 +1481,22 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-emoji-picker-header-font-size",
+      "description": "Control UI emoji-picker knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
       "name": "--cui-emoji-picker-header-foreground",
       "description": "Control UI emoji-picker knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
       "name": "--cui-emoji-picker-height",
+      "description": "Control UI emoji-picker knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-emoji-picker-search-font-size",
       "description": "Control UI emoji-picker knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
@@ -3957,6 +4006,11 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-timeline-separator-inline-size",
+      "description": "Control UI timeline knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
       "name": "--cui-timeline-success-foreground",
       "description": "Control UI timeline knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
@@ -4240,6 +4294,16 @@
       "name": "--cui-transcript-divider-warning-foreground",
       "description": "Control UI transcript-divider knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-tree-guide-background",
+      "description": "Control UI tree knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-tree-guide-inline-size",
+      "description": "Control UI tree knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
     },
     {
       "name": "--cui-tree-indent-inset",

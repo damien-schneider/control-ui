@@ -29,6 +29,10 @@
   --linear-panel-border: var(--border);
   --linear-rim: oklch(0 0 0 / 0.088);
   --linear-rim-hover: oklch(0 0 0 / 0.147);
+  --linear-calendar-today: oklch(0.9185 0 0);
+  --linear-calendar-today-ring: oklch(0.7069 0.0033 282.6);
+  --linear-calendar-weekend: oklch(0.9767 0 0);
+  --linear-tree-guide: oklch(0.8357 0 0);
   --linear-shadow-control: 0 3px 6px -2px oklch(0 0 0 / 0.02), 0 1px 1px 0 oklch(0 0 0 / 0.04);
   --linear-shadow-menu: 0 6px 18px 0 oklch(0 0 0 / 0.02), 0 3px 9px 0 oklch(0 0 0 / 0.04), 0 1px 1px 0 oklch(0 0 0 / 0.04);
   --linear-shadow-modal: 0 9px 48px 0 oklch(0 0 0 / 0.08), 0 6px 24px 0 oklch(0 0 0 / 0.1), 0 1px 1px 0 oklch(0 0 0 / 0.04);
@@ -60,6 +64,10 @@
   --linear-panel-border: oklch(0.2509 0.0039 270.82 / var(--ring-opacity));
   --linear-rim: oklch(1 0 0 / 0.137);
   --linear-rim-hover: oklch(1 0 0 / 0.229);
+  --linear-calendar-today: oklch(0.2975 0.004 270.92);
+  --linear-calendar-today-ring: oklch(0.51 0.0033 271.3);
+  --linear-calendar-weekend: oklch(0.2406 0.0022 271.09);
+  --linear-tree-guide: oklch(0.31 0.0039 270.9);
   --linear-shadow-control: 0 0.5px 1px 1px oklch(0 0 0 / 0.3);
   --linear-shadow-menu: 0 3px 8px 0 oklch(0 0 0 / 0.125), 0 2px 5px 0 oklch(0 0 0 / 0.125), 0 1px 1px 0 oklch(0 0 0 / 0.125);
   --linear-shadow-modal:

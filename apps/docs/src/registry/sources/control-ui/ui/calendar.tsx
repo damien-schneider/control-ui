@@ -149,13 +149,16 @@ function CalendarWeekday({ className, ...props }: ComponentProps<typeof WeekdayB
   return <WeekdayBase data-control-ui="calendar" data-control-family="calendar" data-slot="weekday" className={cn(className)} {...props} />;
 }
 
-function CalendarDay({ className, ...props }: ComponentProps<typeof DayBase>) {
+function CalendarDay({ className, day, ...props }: ComponentProps<typeof DayBase>) {
+  const dayOfWeek = day.date.getDay();
   return (
     <DayBase
       data-control-ui="calendar"
       data-control-family="calendar"
       data-slot="day-cell"
-      className={cn("p-0 align-middle", className)}
+      data-weekend={dayOfWeek === 0 || dayOfWeek === 6 ? true : undefined}
+      className={cn("align-middle", className)}
+      day={day}
       {...props}
     />
   );

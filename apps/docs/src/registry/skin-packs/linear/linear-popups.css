@@ -280,4 +280,17 @@
     --cui-thread-rail-item-radius: 9999px;
     --cui-thread-rail-item-background: var(--linear-menu-highlight);
   }
+
+  [data-skin="linear"] :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="root"]) {
+    --cui-popup-title-foreground: var(--muted-foreground);
+    --cui-popup-title-font-weight: 500;
+  }
+
+  [data-skin="linear"] :where([data-slot="root"][data-control-family="emoji-picker"]) {
+    --cui-emoji-picker-cell-size: 1.75rem;
+    --cui-emoji-picker-cell-radius: var(--radius-control);
+    --cui-emoji-picker-active-background: var(--linear-menu-highlight);
+    --cui-emoji-picker-header-font-size: var(--text-label);
+    --cui-emoji-picker-search-font-size: var(--text-body);
+  }
 }

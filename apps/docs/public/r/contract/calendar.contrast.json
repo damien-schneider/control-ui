@@ -105,6 +105,234 @@
           "tabindex": "0"
         }
       }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "calendar",
+          "data-control-ui": "calendar",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "calendar",
+          "data-control-ui": "calendar",
+          "data-slot": "day-cell",
+          "data-weekend": "true",
+          "role": "gridcell"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "calendar",
+          "data-control-ui": "calendar",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "calendar",
+          "data-control-ui": "calendar",
+          "data-slot": "day-cell",
+          "data-weekend": "true",
+          "role": "gridcell"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "calendar",
+          "data-control-ui": "calendar",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "calendar",
+          "data-control-ui": "calendar",
+          "data-slot": "day-cell",
+          "data-weekend": "true",
+          "role": "gridcell"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "calendar",
+          "data-control-ui": "calendar",
+          "data-slot": "day",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "calendar",
+          "data-control-ui": "calendar",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "calendar",
+          "data-control-ui": "calendar",
+          "data-slot": "day-cell",
+          "data-weekend": "true",
+          "role": "gridcell"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "calendar",
+          "data-control-ui": "calendar",
+          "data-slot": "day",
+          "tabindex": "-1"
+        }
+      }
     ]
   ],
   "probes": [
@@ -121,6 +349,38 @@
         "fill": "--cui-calendar-today-background"
       },
       "anatomy": 1,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-calendar-weekend-background"
+      },
+      "anatomy": 2,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-calendar-weekend-background"
+      },
+      "anatomy": 3,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-calendar-weekend-foreground"
+      },
+      "anatomy": 4,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-calendar-weekend-foreground"
+      },
+      "anatomy": 5,
       "rendersText": true,
       "state": false
     }

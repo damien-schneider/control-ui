@@ -6,6 +6,8 @@
     --cui-emoji-picker-active-background: var(--accent);
     --cui-emoji-picker-header-background: var(--popover);
     --cui-emoji-picker-header-foreground: var(--muted-foreground);
+    --cui-emoji-picker-header-font-size: var(--text-caption);
+    --cui-emoji-picker-search-font-size: var(--text-label);
     --cui-emoji-picker-height: 22rem;
     --_emoji-picker-recent-block-size: 0px;
   }
@@ -27,7 +29,8 @@
   :where([data-control-family="emoji-picker"][data-slot="category"]) {
     display: grid;
     place-items: center;
-    flex: 0 0 calc(var(--spacing) * 9);
+    flex: 0 1 calc(var(--spacing) * 9);
+    min-inline-size: 0;
     block-size: calc(var(--spacing) * 9);
     border-radius: var(--cui-emoji-picker-cell-radius);
     color: var(--muted-foreground);
@@ -109,7 +112,7 @@
     background: var(--control-fill);
     box-shadow: var(--shadow-inset);
     color: var(--foreground);
-    font-size: var(--text-label);
+    font-size: var(--cui-emoji-picker-search-font-size);
     --focus-ring-offset: calc(var(--focus-ring-width) * -1);
   }
 
@@ -131,7 +134,7 @@
     padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2.5) calc(var(--spacing) * 1);
     background: var(--cui-emoji-picker-header-background);
     color: var(--cui-emoji-picker-header-foreground);
-    font-size: var(--text-caption);
+    font-size: var(--cui-emoji-picker-header-font-size);
     font-weight: var(--font-weight-medium);
   }
 
@@ -179,7 +182,7 @@
       --cui-emoji-picker-cell-size: 44px;
     }
     :where([data-control-family="emoji-picker"][data-slot="category"]) {
-      flex-basis: 44px;
+      flex: 0 0 44px;
       block-size: 44px;
     }
     :where([data-control-family="emoji-picker"][data-slot="search-input"]) {
@@ -228,4 +231,16 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-emoji-picker-header-font-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-emoji-picker-search-font-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }

@@ -65,6 +65,18 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-tree-guide-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-tree-guide-inline-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
     }
   ],
   "parts": {
@@ -200,6 +212,7 @@
   },
   "adornments": {},
   "uncovered": [
+    "--cui-tree-guide-background",
     "--cui-tree-item-trigger-selected-background",
     "--cui-tree-item-trigger-selected-foreground"
   ],
