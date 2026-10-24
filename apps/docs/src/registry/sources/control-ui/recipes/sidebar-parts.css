@@ -94,7 +94,7 @@
     --focus-ring-offset: calc(var(--focus-ring-width) * -1);
   }
 
-  @media (width >= 64rem) {
+  @variant sidebar {
     :where(
         [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state]
           ~ [data-control-family="sidebar"][data-slot="inset"]

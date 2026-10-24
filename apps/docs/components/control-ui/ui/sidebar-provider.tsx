@@ -19,7 +19,7 @@ export type SidebarStyle = CSSProperties &
   };
 
 const SIDEBAR_KEYBOARD_SHORTCUT = "b";
-const SIDEBAR_MOBILE_BREAKPOINT = "--breakpoint-lg";
+const SIDEBAR_MOBILE_BREAKPOINT = "--breakpoint-sidebar";
 
 export type SidebarLayoutMode = "viewport" | "contained";
 

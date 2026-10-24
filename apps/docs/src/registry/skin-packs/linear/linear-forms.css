@@ -158,24 +158,7 @@
     --cui-field-group-background: var(--card);
     --cui-field-group-border-width: 0px;
     --cui-field-group-shadow: 0 0 0 var(--control-rim-width) var(--linear-rim), var(--linear-shadow-control);
-  }
-
-  [data-skin="linear"]
-    :where(
-      [data-control-family="field"][data-field-kind="field"][data-slot="group"][data-variant="card"]
-        > [data-control-family="field"][data-field-kind="field"][data-slot="separator"]
-    ) {
-    margin-inline: 1rem;
-  }
-
-  [data-skin="linear"]
-    :where(
-      [data-control-family="field"][data-field-kind="field"][data-slot="group"][data-variant="card"]
-        > [data-control-family="field"][data-field-kind="field"][data-slot="separator"]
-        > [data-control-family="separator"][data-slot="root"]
-    ) {
-    --cui-separator-root-background: transparent;
-    box-shadow: inset 0 var(--control-rim-width) 0 0 var(--border);
+    --cui-field-group-separator-inset: 1rem;
   }
 
   [data-skin="linear"]

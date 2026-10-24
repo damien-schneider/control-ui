@@ -426,7 +426,7 @@
 /* biome-ignore-end lint/complexity/noImportantStyles: Reduced motion must override skin and inline motion. */
 
 @theme static {
-  --breakpoint-lg: 64rem;
+  --breakpoint-sidebar: 64rem;
 }
 
 @theme inline {

@@ -2172,9 +2172,33 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="field"][data-field-kind="field"])',
       },
       {
+        name: "--cui-field-group-padding-block",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 3)",
+        selector: ':where([data-control-family="field"][data-field-kind="field"])',
+      },
+      {
+        name: "--cui-field-group-padding-inline",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 4)",
+        selector: ':where([data-control-family="field"][data-field-kind="field"])',
+      },
+      {
         name: "--cui-field-group-radius",
         syntax: "<length-percentage>",
         defaultValue: "var(--radius-lg)",
+        selector: ':where([data-control-family="field"][data-field-kind="field"])',
+      },
+      {
+        name: "--cui-field-group-separator-color",
+        syntax: "<color>",
+        defaultValue: "var(--border)",
+        selector: ':where([data-control-family="field"][data-field-kind="field"])',
+      },
+      {
+        name: "--cui-field-group-separator-inset",
+        syntax: "<length-percentage>",
+        defaultValue: "0px",
         selector: ':where([data-control-family="field"][data-field-kind="field"])',
       },
       {
@@ -2199,6 +2223,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-field-label-font-size",
         syntax: "<length-percentage>",
         defaultValue: "var(--text-label)",
+        selector: ':where([data-control-family="field"][data-field-kind="field"])',
+      },
+      {
+        name: "--cui-field-label-font-weight",
+        syntax: "<number>",
+        defaultValue: "var(--font-weight-medium)",
         selector: ':where([data-control-family="field"][data-field-kind="field"])',
       },
       {

@@ -264,7 +264,7 @@
         "select",
         "textarea"
       ],
-      "knobs": 26,
+      "knobs": 31,
       "probes": 93
     },
     "filter-bar": {

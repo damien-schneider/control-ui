@@ -128,7 +128,7 @@ function SidebarSurface({
       tabIndex: -1,
       className: cn(
         layout === "contained" ? "absolute h-full" : "fixed h-svh",
-        "inset-y-0 z-10 hidden w-(--sidebar-width) lg:flex",
+        "inset-y-0 z-10 hidden w-(--sidebar-width) sidebar:flex",
         side === "left" ? "start-0" : "end-0",
         padded
           ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
@@ -190,7 +190,7 @@ function SidebarSurface({
 
   return (
     <div
-      className={cn("group peer hidden lg:block", side === "right" && "order-last")}
+      className={cn("group peer hidden sidebar:block", side === "right" && "order-last")}
       data-control-ui="sidebar"
       data-control-family="sidebar"
       data-slot="root"
@@ -362,7 +362,7 @@ function SidebarToggleRail({
       },
       title: props.title ?? "Toggle sidebar",
       className: cn(
-        "absolute inset-y-0 z-20 hidden -translate-x-1/2 rtl:translate-x-1/2 group-data-[side=left]:-end-4 group-data-[side=right]:start-0 lg:flex",
+        "absolute inset-y-0 z-20 hidden -translate-x-1/2 rtl:translate-x-1/2 group-data-[side=left]:-end-4 group-data-[side=right]:start-0 sidebar:flex",
         "in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize",
         "[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize",
         "group-data-[collapsible=offcanvas]:translate-x-0",

@@ -212,7 +212,7 @@ export function SidebarResizeRail({ className, ref, onPointerDown, onClick, onKe
       onClick: handleClick,
       onKeyDown: handleKeyDown,
       className: cn(
-        "absolute inset-y-0 z-20 hidden cursor-col-resize touch-pan-y group-data-[side=left]:-end-1 group-data-[side=right]:-start-1 group-data-[side=left]:group-data-[collapsible=offcanvas]:-end-2 group-data-[side=right]:group-data-[collapsible=offcanvas]:-start-2 lg:block",
+        "absolute inset-y-0 z-20 hidden cursor-col-resize touch-pan-y group-data-[side=left]:-end-1 group-data-[side=right]:-start-1 group-data-[side=left]:group-data-[collapsible=offcanvas]:-end-2 group-data-[side=right]:group-data-[collapsible=offcanvas]:-start-2 sidebar:block",
         className,
       ),
       children: (

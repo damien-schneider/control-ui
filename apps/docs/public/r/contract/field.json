@@ -161,10 +161,40 @@
       "defaultValue": "0 0 transparent"
     },
     {
+      "name": "--cui-field-group-padding-block",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3)"
+    },
+    {
+      "name": "--cui-field-group-padding-inline",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 4)"
+    },
+    {
+      "name": "--cui-field-group-separator-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-field-group-separator-inset",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    },
+    {
       "name": "--cui-field-label-font-size",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--text-label)"
+    },
+    {
+      "name": "--cui-field-label-font-weight",
+      "syntax": "<number>",
+      "initialValue": "400",
+      "defaultValue": "var(--font-weight-medium)"
     },
     {
       "name": "--cui-field-description-font-size",

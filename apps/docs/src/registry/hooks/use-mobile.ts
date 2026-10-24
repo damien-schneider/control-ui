@@ -35,7 +35,7 @@ function getServerViewportSnapshot() {
   return false;
 }
 
-/** True below `breakpoint`: px (Tailwind `md` by default) or a theme breakpoint token such as `--breakpoint-lg`, so JS and the matching Tailwind variant share one value. */
+/** True below `breakpoint`: px (Tailwind `md` by default) or a theme breakpoint token such as `--breakpoint-sidebar`, so JS and the matching Tailwind variant share one value. */
 export function useIsMobile(breakpoint: Breakpoint = MOBILE_BREAKPOINT) {
   const store = viewportStore(breakpoint);
   return useSyncExternalStore(store.subscribe, store.getSnapshot, getServerViewportSnapshot);

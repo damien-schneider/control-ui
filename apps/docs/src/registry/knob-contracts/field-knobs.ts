@@ -24,7 +24,12 @@ export const fieldKnobs = [
   "--cui-field-group-border-color",
   "--cui-field-group-border-width",
   "--cui-field-group-shadow",
+  "--cui-field-group-padding-block",
+  "--cui-field-group-padding-inline",
+  "--cui-field-group-separator-color",
+  "--cui-field-group-separator-inset",
   "--cui-field-label-font-size",
+  "--cui-field-label-font-weight",
   "--cui-field-description-font-size",
 ] as const;
 export type FieldKnobStyle = Partial<Record<(typeof fieldKnobs)[number], string>>;

@@ -206,12 +206,17 @@
 
   :where([data-control-family="field"][data-field-kind="field"]) {
     --cui-field-label-font-size: var(--text-label);
+    --cui-field-label-font-weight: var(--font-weight-medium);
     --cui-field-description-font-size: var(--text-caption);
     --cui-field-group-radius: var(--radius-lg);
     --cui-field-group-background: var(--card);
     --cui-field-group-border-color: var(--border);
     --cui-field-group-border-width: 1px;
     --cui-field-group-shadow: 0 0 transparent;
+    --cui-field-group-padding-block: calc(var(--spacing) * 3);
+    --cui-field-group-padding-inline: calc(var(--spacing) * 4);
+    --cui-field-group-separator-color: var(--border);
+    --cui-field-group-separator-inset: 0px;
   }
 
   @media (pointer: coarse) {
@@ -348,10 +353,40 @@
   inherits: true;
 }
 
+@property --cui-field-group-padding-block {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-field-group-padding-inline {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-field-group-separator-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-field-group-separator-inset {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
 @property --cui-field-label-font-size {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
+}
+
+@property --cui-field-label-font-weight {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 400;
 }
 
 @property --cui-field-description-font-size {

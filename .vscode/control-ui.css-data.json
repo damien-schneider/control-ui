@@ -1685,7 +1685,27 @@
       "syntax": "<length>"
     },
     {
+      "name": "--cui-field-group-padding-block",
+      "description": "Control UI field knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-field-group-padding-inline",
+      "description": "Control UI field knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
       "name": "--cui-field-group-radius",
+      "description": "Control UI field knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-field-group-separator-color",
+      "description": "Control UI field knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-field-group-separator-inset",
       "description": "Control UI field knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
@@ -1707,6 +1727,11 @@
       "name": "--cui-field-label-font-size",
       "description": "Control UI field knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-field-label-font-weight",
+      "description": "Control UI field knob — registered syntax <number>, fallback 400. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<number>"
     },
     {
       "name": "--cui-field-legend-font-size",

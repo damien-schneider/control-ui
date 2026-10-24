@@ -7,16 +7,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { prefersReducedMotion } from "@/components/control-ui/lib/motion";
 import { Button } from "@/components/control-ui/ui/button";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/control-ui/ui/empty";
-import {
-  Field,
-  FieldContent,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-  FieldLegend,
-  FieldSeparator,
-  FieldSet,
-} from "@/components/control-ui/ui/field";
+import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel, FieldLegend, FieldSet } from "@/components/control-ui/ui/field";
 import { Input } from "@/components/control-ui/ui/input";
 import { InputGroup, InputGroupAddon } from "@/components/control-ui/ui/input-group";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
@@ -336,15 +327,8 @@ function SettingsPage({ page, instanceId }: { page: SettingsPageDefinition; inst
         <FieldSet key={section.id} className="gap-3">
           <FieldLegend variant="section">{section.title}</FieldLegend>
           <FieldGroup variant="card">
-            {section.settings.map((setting, index) => (
-              <SettingsRow
-                key={setting.id}
-                pageId={page.id}
-                sectionId={section.id}
-                setting={setting}
-                instanceId={instanceId}
-                separated={index > 0}
-              />
+            {section.settings.map((setting) => (
+              <SettingsRow key={setting.id} pageId={page.id} sectionId={section.id} setting={setting} instanceId={instanceId} />
             ))}
           </FieldGroup>
         </FieldSet>
@@ -358,13 +342,11 @@ function SettingsRow({
   sectionId,
   setting,
   instanceId,
-  separated,
 }: {
   pageId: string;
   sectionId: string;
   setting: SettingDefinition;
   instanceId: string;
-  separated: boolean;
 }) {
   const ids = settingDomIds(instanceId, pageId, sectionId, setting.id);
   const controlProps: SettingsControlProps = {
@@ -374,24 +356,21 @@ function SettingsRow({
   };
 
   return (
-    <>
-      {separated ? <FieldSeparator /> : null}
-      <div
-        id={ids.row}
-        tabIndex={-1}
-        className="scroll-m-8 p-4 outline-none transition-colors duration-[var(--duration-fast)] focus:bg-foreground/4 focus-within:bg-foreground/4"
-      >
-        <Field orientation="responsive" className="gap-3">
-          <FieldContent>
-            <FieldLabel id={ids.label} htmlFor={ids.control}>
-              {setting.title}
-            </FieldLabel>
-            {setting.description ? <FieldDescription id={ids.description}>{setting.description}</FieldDescription> : null}
-          </FieldContent>
-          <div className="flex shrink-0 items-center">{setting.renderControl(controlProps)}</div>
-        </Field>
-      </div>
-    </>
+    <div
+      id={ids.row}
+      tabIndex={-1}
+      className="scroll-m-8 outline-none transition-colors duration-[var(--duration-fast)] focus:bg-foreground/4 focus-within:bg-foreground/4"
+    >
+      <Field orientation="responsive" className="gap-3">
+        <FieldContent>
+          <FieldLabel id={ids.label} htmlFor={ids.control}>
+            {setting.title}
+          </FieldLabel>
+          {setting.description ? <FieldDescription id={ids.description}>{setting.description}</FieldDescription> : null}
+        </FieldContent>
+        <div className="flex shrink-0 items-center">{setting.renderControl(controlProps)}</div>
+      </Field>
+    </div>
   );
 }
 

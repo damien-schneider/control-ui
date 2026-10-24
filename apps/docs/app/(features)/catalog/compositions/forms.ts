@@ -96,6 +96,15 @@ export const formsCompositions = {
         part("FieldLabel", part("FieldItem", part("Checkbox"), part("FieldContent", part("FieldTitle"), part("FieldDescription")))),
       ),
     ),
+    example(
+      "Settings list",
+      part(
+        "FieldSet",
+        part("FieldLegend"),
+        part("FieldGroup", part("Field", part("FieldContent", part("FieldLabel"), part("FieldDescription")), content("control"))),
+      ),
+      'FieldLegend variant="section" titles the list. FieldGroup variant="card" pads every row and draws the dividers between rows, so rows need no classes. Field orientation="responsive" moves the control beside its text once the group is wide enough. Skins tune rows through the --cui-field-group-* knobs and label weight through --cui-field-label-font-weight.',
+    ),
   ],
   form: [
     example(

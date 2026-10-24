@@ -29,7 +29,7 @@ export function SidebarMobileNav({
       data-slot="mobile-nav-container"
       data-layout={layout}
       data-variant={variant}
-      className="shrink-0 lg:hidden"
+      className="shrink-0 sidebar:hidden"
       style={style}
     >
       <nav

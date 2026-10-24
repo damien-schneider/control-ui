@@ -93,7 +93,7 @@
     box-shadow: var(--cui-sidebar-nav-shadow);
   }
 
-  @media (width < 64rem) {
+  @variant max-sidebar {
     :where([data-control-family="sidebar"][data-slot="wrapper"]:has(> [data-slot="mobile-nav-container"])) {
       flex-direction: column;
     }

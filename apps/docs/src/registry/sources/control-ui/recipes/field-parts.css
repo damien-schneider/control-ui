@@ -174,7 +174,7 @@
   :where([data-control-family="field"][data-field-kind="field"][data-slot="label"]) {
     color: var(--foreground);
     font-size: var(--cui-field-label-font-size);
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--cui-field-label-font-weight);
   }
 
   :where([data-control-family="field"][data-field-kind="field"][data-slot="label"][data-disabled]) {
@@ -244,6 +244,25 @@
     border-radius: var(--cui-field-group-radius);
     background: var(--cui-field-group-background);
     box-shadow: var(--cui-field-group-shadow);
+    --_field-group-padding-block: var(--cui-field-group-padding-block);
+    --_field-group-padding-inline: var(--cui-field-group-padding-inline);
+    --_field-group-separator-color: var(--cui-field-group-separator-color);
+    --_field-group-separator-inset: var(--cui-field-group-separator-inset);
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="group"][data-variant="card"] > *) {
+    position: relative;
+    padding-block: var(--_field-group-padding-block);
+    padding-inline: var(--_field-group-padding-inline);
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="group"][data-variant="card"] > * + *)::before {
+    content: "";
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: var(--_field-group-separator-inset);
+    block-size: 1px;
+    background: var(--_field-group-separator-color);
   }
 
   :where([data-control-family="field"][data-field-kind="field"][data-slot="item"]) {
