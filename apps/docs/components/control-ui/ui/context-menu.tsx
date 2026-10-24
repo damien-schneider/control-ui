@@ -9,7 +9,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { popupItemFocusProps } from "@/components/control-ui/lib/popup-item-focus";
 import { controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
-import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
+import { type PopupItemTone, popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 
 export type ContextMenuProps = {
   children?: ReactNode;
@@ -27,6 +27,7 @@ export type ContextMenuContentProps = Omit<ComponentProps<"div">, "style"> & { s
 export type ContextMenuItemProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
   disabled?: boolean;
   inset?: boolean;
+  tone?: PopupItemTone;
   onClick?: (event: MouseEvent) => void;
 };
 
@@ -133,7 +134,7 @@ export function ContextMenuContent({ className, children, ...props }: ContextMen
   );
 }
 
-export function ContextMenuItem({ className, inset = false, ...props }: ContextMenuItemProps) {
+export function ContextMenuItem({ className, inset = false, tone = "neutral", ...props }: ContextMenuItemProps) {
   return (
     <ContextMenuPrimitive.Item
       data-control-ui="context-menu"
@@ -141,6 +142,7 @@ export function ContextMenuItem({ className, inset = false, ...props }: ContextM
       data-slot="item"
       data-control-family="popup"
       data-popup-part="item"
+      data-tone={tone}
       data-inset={inset || undefined}
       className={cn(itemClasses, className)}
       {...mergeProps(popupItemFocusProps, props)}

@@ -6183,6 +6183,15 @@
               "values": [
                 "context-menu"
               ]
+            },
+            {
+              "attribute": "data-tone",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "danger",
+                "neutral"
+              ]
             }
           ]
         },
@@ -7285,6 +7294,15 @@
               "source": "external",
               "valueKind": "presence",
               "values": []
+            },
+            {
+              "attribute": "data-tone",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "danger",
+                "neutral"
+              ]
             }
           ]
         },
@@ -8127,7 +8145,17 @@
           "registryItems": [
             "empty"
           ],
-          "states": []
+          "states": [
+            {
+              "attribute": "data-variant",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "default",
+                "outline"
+              ]
+            }
+          ]
         },
         "content": {
           "family": "empty",
@@ -10678,6 +10706,15 @@
               "valueKind": "enum",
               "values": [
                 "menubar"
+              ]
+            },
+            {
+              "attribute": "data-tone",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "danger",
+                "neutral"
               ]
             }
           ]
@@ -14260,6 +14297,31 @@
             }
           ]
         },
+        "body": {
+          "family": "popup",
+          "registryItems": [
+            "sheet"
+          ],
+          "states": [
+            {
+              "attribute": "data-padding",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "default",
+                "none"
+              ]
+            },
+            {
+              "attribute": "data-popup-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "sheet"
+              ]
+            }
+          ]
+        },
         "close": {
           "family": "popup",
           "registryItems": [
@@ -14344,6 +14406,22 @@
           ]
         },
         "description": {
+          "family": "popup",
+          "registryItems": [
+            "sheet"
+          ],
+          "states": [
+            {
+              "attribute": "data-popup-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "sheet"
+              ]
+            }
+          ]
+        },
+        "footer": {
           "family": "popup",
           "registryItems": [
             "sheet"
@@ -14788,6 +14866,16 @@
             "skeleton"
           ],
           "states": [
+            {
+              "attribute": "data-shape",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "circle",
+                "default",
+                "panel"
+              ]
+            },
             {
               "attribute": "data-variant",
               "source": "control-ui",
@@ -20788,6 +20876,12 @@
         "syntax": "<color>",
         "initialValue": "transparent",
         "defaultValue": "var(--hover-fill)"
+      },
+      {
+        "name": "--cui-item-current-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--active-fill)"
       },
       {
         "name": "--cui-item-hover-border-color",

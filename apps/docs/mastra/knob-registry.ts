@@ -2835,6 +2835,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="item"][data-slot="root"])',
       },
       {
+        name: "--cui-item-current-background",
+        syntax: "<color>",
+        defaultValue: "var(--active-fill)",
+        selector: ':where([data-control-family="item"][data-slot="root"])',
+      },
+      {
         name: "--cui-item-description-font-size",
         syntax: "<length-percentage>",
         defaultValue: "var(--text-body)",

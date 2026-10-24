@@ -196,7 +196,11 @@ export function TeamChatMessage({ message, continuation, onToggleReaction, onOpe
               <DropdownMenuTrigger render={<ActionBarItem variant="ghost" icon={<MoreHorizontalIcon />} aria-label="More actions" />} />
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => navigator.clipboard?.writeText(message.text)}>Copy text</DropdownMenuItem>
-                {isOwn && onDelete ? <DropdownMenuItem onClick={onDelete}>Delete message</DropdownMenuItem> : null}
+                {isOwn && onDelete ? (
+                  <DropdownMenuItem tone="danger" onClick={onDelete}>
+                    Delete message
+                  </DropdownMenuItem>
+                ) : null}
               </DropdownMenuContent>
             </DropdownMenu>
           </ActionBar>

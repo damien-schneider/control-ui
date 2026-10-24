@@ -164,7 +164,7 @@ function AuditResults({ loading, results }: { loading: boolean; results: ThemeAu
   if (loading) return <AuditResultsSkeleton />;
   if (results.length === 0) {
     return (
-      <Empty style={{ "--cui-empty-border-color": "var(--border)" }}>
+      <Empty variant="outline">
         <EmptyHeader>
           <EmptyMedia>
             <CheckCircle2Icon aria-hidden className="text-emerald-600 dark:text-emerald-400" />

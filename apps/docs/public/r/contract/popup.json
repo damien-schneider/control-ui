@@ -1722,6 +1722,15 @@
             "values": [
               "context-menu"
             ]
+          },
+          {
+            "attribute": "data-tone",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "danger",
+              "neutral"
+            ]
           }
         ]
       },
@@ -2704,6 +2713,15 @@
             "source": "external",
             "valueKind": "presence",
             "values": []
+          },
+          {
+            "attribute": "data-tone",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "danger",
+              "neutral"
+            ]
           }
         ]
       },
@@ -3122,6 +3140,15 @@
             "valueKind": "enum",
             "values": [
               "menubar"
+            ]
+          },
+          {
+            "attribute": "data-tone",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "danger",
+              "neutral"
             ]
           }
         ]
@@ -4534,6 +4561,31 @@
           }
         ]
       },
+      "body": {
+        "family": "popup",
+        "registryItems": [
+          "sheet"
+        ],
+        "states": [
+          {
+            "attribute": "data-padding",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "none"
+            ]
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "sheet"
+            ]
+          }
+        ]
+      },
       "close": {
         "family": "popup",
         "registryItems": [
@@ -4618,6 +4670,22 @@
         ]
       },
       "description": {
+        "family": "popup",
+        "registryItems": [
+          "sheet"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "sheet"
+            ]
+          }
+        ]
+      },
+      "footer": {
         "family": "popup",
         "registryItems": [
           "sheet"

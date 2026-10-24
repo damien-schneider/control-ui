@@ -2,6 +2,7 @@
   :where([data-control-family="item"][data-slot="root"]) {
     --cui-item-radius: var(--radius-lg);
     --cui-item-hover-background: var(--hover-fill);
+    --cui-item-current-background: var(--active-fill);
     --cui-item-hover-border-color: var(--_item-border-color);
     --cui-item-border-width: 0px;
     --cui-item-active-scale: 0.99;
@@ -65,6 +66,10 @@
     --_item-background: oklch(from var(--muted) l c h / 0.5);
   }
 
+  :where([data-control-family="item"][data-slot="root"][aria-current]:not([aria-current="false"])) {
+    --_item-background: var(--cui-item-current-background);
+  }
+
   @media (hover: hover) {
     :where(
         [data-control-family="item"][data-slot="root"]:is(a, button, [href], [role="button"]):not(
@@ -122,6 +127,12 @@
 }
 
 @property --cui-item-hover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-item-current-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

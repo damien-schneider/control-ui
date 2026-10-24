@@ -11,7 +11,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { popupItemFocusProps } from "@/components/control-ui/lib/popup-item-focus";
 import { controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
-import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
+import { type PopupItemTone, popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 
 type DropdownMenuStyledProps<PrimitiveProps> = Omit<PrimitiveProps, "className" | "style"> & {
   className?: string;
@@ -37,7 +37,7 @@ export type DropdownMenuContentProps = DropdownMenuStyledProps<MenuPrimitive.Pop
     "side" | "sideOffset" | "align" | "alignOffset" | "collisionBoundary" | "collisionPadding" | "collisionAvoidance"
   >;
 
-export type DropdownMenuItemProps = DropdownMenuStyledProps<MenuPrimitive.Item.Props>;
+export type DropdownMenuItemProps = DropdownMenuStyledProps<MenuPrimitive.Item.Props> & { tone?: PopupItemTone };
 export type DropdownMenuGroupProps = DropdownMenuStyledProps<MenuPrimitive.Group.Props>;
 export type DropdownMenuCheckboxItemProps = DropdownMenuStyledProps<MenuPrimitive.CheckboxItem.Props>;
 export type DropdownMenuRadioGroupProps = DropdownMenuStyledProps<MenuPrimitive.RadioGroup.Props>;
@@ -136,13 +136,14 @@ export function DropdownMenuContent({
   );
 }
 
-export function DropdownMenuItem({ className, ...props }: DropdownMenuItemProps) {
+export function DropdownMenuItem({ tone = "neutral", className, ...props }: DropdownMenuItemProps) {
   return (
     <MenuPrimitive.Item
       data-control-ui="dropdown-menu"
       data-slot="item"
       data-control-family="popup"
       data-popup-part="item"
+      data-tone={tone}
       className={cn(popupItemStructureClasses, className)}
       {...mergeProps(popupItemFocusProps, props)}
     />

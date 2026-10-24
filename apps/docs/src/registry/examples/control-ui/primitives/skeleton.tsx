@@ -16,7 +16,7 @@ export function PrimitiveSkeletonExample() {
               {variantLabels[variant]}
             </Text>
             <div className="flex items-start gap-3">
-              <Skeleton variant={variant} className="size-10 shrink-0" style={{ "--cui-skeleton-radius": "50%" }} />
+              <Skeleton variant={variant} shape="circle" className="size-10 shrink-0" />
               <div className="flex min-w-0 flex-1 flex-col gap-2 py-1">
                 <Skeleton variant={variant} className="h-3 w-2/3" />
                 <Skeleton variant={variant} className="h-3 w-full" />

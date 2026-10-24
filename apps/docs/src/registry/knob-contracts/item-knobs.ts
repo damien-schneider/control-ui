@@ -2,6 +2,7 @@
 export const itemKnobs = [
   "--cui-item-radius",
   "--cui-item-hover-background",
+  "--cui-item-current-background",
   "--cui-item-hover-border-color",
   "--cui-item-border-width",
   "--cui-item-active-scale",

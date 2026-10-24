@@ -1,5 +1,9 @@
 export const popupItemStructureClasses = "flex select-none items-center";
 
+export const popupItemTones = ["neutral", "danger"] as const;
+
+export type PopupItemTone = (typeof popupItemTones)[number];
+
 export const popupParts = [
   "backdrop",
   "surface",

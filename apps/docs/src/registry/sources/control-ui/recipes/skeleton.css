@@ -15,6 +15,14 @@
     background-image: var(--cui-skeleton-background-image);
   }
 
+  :where([data-control-family="skeleton"][data-slot="root"][data-shape="circle"]) {
+    --cui-skeleton-radius: 9999px;
+  }
+
+  :where([data-control-family="skeleton"][data-slot="root"][data-shape="panel"]) {
+    --cui-skeleton-radius: var(--radius-panel);
+  }
+
   :where([data-control-family="skeleton"][data-slot="root"][data-variant="shimmer"]) {
     --cui-skeleton-easing: linear;
   }

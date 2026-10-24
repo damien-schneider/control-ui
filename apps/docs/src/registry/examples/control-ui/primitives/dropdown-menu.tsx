@@ -48,7 +48,9 @@ export function PrimitiveDropdownMenuExample() {
               <DropdownMenuItem onClick={() => setLast("Duplicate")}>Duplicate</DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => setLast("Delete")}>Delete</DropdownMenuItem>
+            <DropdownMenuItem tone="danger" onClick={() => setLast("Delete")}>
+              Delete
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </Row>

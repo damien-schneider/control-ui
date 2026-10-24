@@ -33,6 +33,11 @@
     overflow-wrap: anywhere;
   }
 
+  :where([data-control-family="empty"][data-slot="root"][data-variant="outline"]) {
+    --cui-empty-border-color: var(--border);
+    --cui-empty-border-style: dashed;
+  }
+
   :where([data-control-family="empty"][data-slot="media"]) {
     inline-size: var(--cui-empty-media-size);
     block-size: var(--cui-empty-media-size);

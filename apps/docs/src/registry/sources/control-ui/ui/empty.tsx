@@ -6,7 +6,11 @@ import type { RenderProp } from "@/components/control-ui/control-props";
 import type { EmptyKnobStyle } from "@/components/control-ui/knob-contracts/empty-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
-export type EmptyProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & EmptyKnobStyle };
+export const emptyVariants = ["default", "outline"] as const;
+
+export type EmptyVariant = (typeof emptyVariants)[number];
+
+export type EmptyProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & EmptyKnobStyle; variant?: EmptyVariant };
 
 export type EmptyHeaderProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & EmptyKnobStyle };
 
@@ -21,12 +25,13 @@ export type EmptyTitleProps = Omit<ComponentProps<"div">, "style"> & {
   style?: CSSProperties & EmptyKnobStyle;
 };
 
-export function Empty({ className, ...props }: EmptyProps) {
+export function Empty({ variant = "default", className, ...props }: EmptyProps) {
   return (
     <div
       data-control-ui="empty"
       data-control-family="empty"
       data-slot="root"
+      data-variant={variant}
       className={cn("flex min-w-0 flex-1 flex-col items-center justify-center", className)}
       {...props}
     />

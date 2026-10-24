@@ -9,7 +9,7 @@ import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popu
 import { cn } from "@/components/control-ui/lib/cn";
 import { controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
-import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
+import { type PopupItemTone, popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 
 export type MenubarProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
   modal?: boolean;
@@ -33,6 +33,7 @@ export type MenubarGroupProps = ComponentProps<"div"> & { style?: CSSProperties 
 
 export type MenubarItemProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
   disabled?: boolean;
+  tone?: PopupItemTone;
   onClick?: (event: MouseEvent) => void;
 };
 
@@ -139,7 +140,7 @@ export function MenubarGroup({ className, ...props }: MenubarGroupProps) {
   );
 }
 
-export function MenubarItem({ className, ...props }: MenubarItemProps) {
+export function MenubarItem({ tone = "neutral", className, ...props }: MenubarItemProps) {
   return (
     <MenuPrimitive.Item
       data-control-ui="menubar"
@@ -147,6 +148,7 @@ export function MenubarItem({ className, ...props }: MenubarItemProps) {
       data-slot="item"
       data-control-family="popup"
       data-popup-part="item"
+      data-tone={tone}
       className={cn(itemClasses, className)}
       {...props}
     />

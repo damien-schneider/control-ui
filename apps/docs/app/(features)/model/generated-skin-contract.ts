@@ -4604,6 +4604,12 @@ export const generatedSkinContract: SkinContract = {
               valueKind: "enum",
               values: ["context-menu"],
             },
+            {
+              attribute: "data-tone",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["danger", "neutral"],
+            },
           ],
         },
         label: {
@@ -5485,6 +5491,12 @@ export const generatedSkinContract: SkinContract = {
               valueKind: "presence",
               values: [],
             },
+            {
+              attribute: "data-tone",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["danger", "neutral"],
+            },
           ],
         },
         label: {
@@ -6120,7 +6132,14 @@ export const generatedSkinContract: SkinContract = {
         root: {
           family: "empty",
           registryItems: ["empty"],
-          states: [],
+          states: [
+            {
+              attribute: "data-variant",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["default", "outline"],
+            },
+          ],
         },
         content: {
           family: "empty",
@@ -8157,6 +8176,12 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["menubar"],
+            },
+            {
+              attribute: "data-tone",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["danger", "neutral"],
             },
           ],
         },
@@ -11058,6 +11083,24 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        body: {
+          family: "popup",
+          registryItems: ["sheet"],
+          states: [
+            {
+              attribute: "data-padding",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["default", "none"],
+            },
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["sheet"],
+            },
+          ],
+        },
         close: {
           family: "popup",
           registryItems: ["sheet"],
@@ -11131,6 +11174,18 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         description: {
+          family: "popup",
+          registryItems: ["sheet"],
+          states: [
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["sheet"],
+            },
+          ],
+        },
+        footer: {
           family: "popup",
           registryItems: ["sheet"],
           states: [
@@ -11469,6 +11524,12 @@ export const generatedSkinContract: SkinContract = {
           family: "skeleton",
           registryItems: ["skeleton"],
           states: [
+            {
+              attribute: "data-shape",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["circle", "default", "panel"],
+            },
             {
               attribute: "data-variant",
               source: "control-ui",
@@ -16730,6 +16791,12 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--hover-fill)",
+      },
+      {
+        name: "--cui-item-current-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--active-fill)",
       },
       {
         name: "--cui-item-hover-border-color",

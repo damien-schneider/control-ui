@@ -12,6 +12,7 @@ import type { HoverIndicator } from "../../src/registry/sources/control-ui/contr
 import type { ControlSize } from "../../src/registry/sources/control-ui/control-variants";
 import type { DynamicNotificationState } from "../../src/registry/sources/control-ui/dynamic-notification";
 import type { InlineAttachmentState } from "../../src/registry/sources/control-ui/inline-attachment";
+import type { PopupItemTone } from "../../src/registry/sources/control-ui/surface-variants";
 import type { TaskStatus } from "../../src/registry/sources/control-ui/task-list";
 import type { ToolApprovalRiskLevel, ToolApprovalState } from "../../src/registry/sources/control-ui/tool-approval";
 import type { ChatTone } from "../../src/registry/sources/control-ui/transcript-divider";
@@ -34,6 +35,7 @@ import type {
 } from "../../src/registry/sources/control-ui/ui/drawer";
 import type { DropdownMenuTriggerVariant } from "../../src/registry/sources/control-ui/ui/dropdown-menu";
 import type { DropzoneOverlayScope } from "../../src/registry/sources/control-ui/ui/dropzone";
+import type { EmptyVariant } from "../../src/registry/sources/control-ui/ui/empty";
 import type { FieldGroupVariant, FieldLegendVariant } from "../../src/registry/sources/control-ui/ui/field";
 import type { KbdVariant } from "../../src/registry/sources/control-ui/ui/kbd";
 import type { LevelMeterOrientation } from "../../src/registry/sources/control-ui/ui/level-meter";
@@ -54,13 +56,14 @@ import type {
   ScrollAreaScrollbarGutter,
   ScrollAreaScrollbarVisibility,
 } from "../../src/registry/sources/control-ui/ui/scroll-area";
+import type { SheetBodyPadding } from "../../src/registry/sources/control-ui/ui/sheet";
 import type {
   SidebarLayoutMode,
   SidebarMenuButtonSize,
   SidebarMenuButtonVariant,
   SidebarSelectionIndicator,
 } from "../../src/registry/sources/control-ui/ui/sidebar";
-import type { SkeletonVariant } from "../../src/registry/sources/control-ui/ui/skeleton";
+import type { SkeletonShape, SkeletonVariant } from "../../src/registry/sources/control-ui/ui/skeleton";
 import type { SliderVariant } from "../../src/registry/sources/control-ui/ui/slider";
 import type { StepperContentMode, StepperOrientation, StepperState } from "../../src/registry/sources/control-ui/ui/stepper";
 import type { SwapItemState } from "../../src/registry/sources/control-ui/ui/swap";
@@ -210,6 +213,7 @@ export type EmittedStateContract = {
   "inline-citation:source:data-activation-direction": "left" | "right";
   "input:root:data-size": ControlSize;
   "input-group:root:data-size": ControlSize;
+  "empty:root:data-variant": EmptyVariant;
   "item:root:data-variant": "default" | "outline" | "muted";
   "item:actions:data-show-on-hover": true;
   "kbd:root:data-variant": KbdVariant;
@@ -217,10 +221,13 @@ export type EmittedStateContract = {
   "level-meter:root:data-muted": true;
   "channel-strip:root:data-variant": ChannelStripVariant;
   "context-menu:item:data-inset": true;
+  "context-menu:item:data-tone": PopupItemTone;
   "context-menu:label:data-inset": true;
   "context-menu:sub-trigger:data-inset": true;
+  "menubar:item:data-tone": PopupItemTone;
   "menubar:label:data-inset": true;
   "menubar:sub-trigger:data-inset": true;
+  "dropdown-menu:item:data-tone": PopupItemTone;
   "dropdown-menu:trigger:data-size": ControlSize;
   "dropdown-menu:trigger:data-icon-only": true;
   "dropdown-menu:trigger:data-variant": DropdownMenuTriggerVariant;
@@ -233,6 +240,7 @@ export type EmittedStateContract = {
   "drawer:viewport:data-variant": DrawerContentVariant;
   "drawer:viewport:data-side": DrawerSide;
   "sheet:content:data-side": "left" | "right";
+  "sheet:body:data-padding": SheetBodyPadding;
   "popover:content:data-padding": PopoverContentPadding;
   "resizable:floating:data-side": ResizableFloatingPanelSide;
   "resizable:handle:data-variant": ResizableHandleVariant;
@@ -289,6 +297,7 @@ export type EmittedStateContract = {
   "page-layout:header:data-variant": PageHeaderVariant;
   "page-layout:body:data-aside": true;
   "skeleton:root:data-variant": SkeletonVariant;
+  "skeleton:root:data-shape": SkeletonShape;
   "slider:root:data-variant": SliderVariant;
   "slider:control:data-labeled": "true";
   "slider:track:data-labeled": "true";

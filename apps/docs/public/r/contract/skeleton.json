@@ -58,6 +58,16 @@
         ],
         "states": [
           {
+            "attribute": "data-shape",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "circle",
+              "default",
+              "panel"
+            ]
+          },
+          {
             "attribute": "data-variant",
             "source": "control-ui",
             "valueKind": "enum",

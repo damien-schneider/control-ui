@@ -140,7 +140,17 @@
         "registryItems": [
           "empty"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "outline"
+            ]
+          }
+        ]
       },
       "content": {
         "family": "empty",

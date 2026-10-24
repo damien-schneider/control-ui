@@ -7,6 +7,10 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 
+export const sheetBodyPaddings = ["default", "none"] as const;
+
+export type SheetBodyPadding = (typeof sheetBodyPaddings)[number];
+
 export function Sheet(props: ComponentProps<typeof SheetPrimitive.Root>) {
   return <SheetPrimitive.Root {...props} />;
 }
@@ -76,6 +80,37 @@ export function SheetHeader({ className, ...props }: ComponentProps<"div"> & { s
       data-popup-kind="sheet"
       data-slot="header"
       className={cn("flex flex-col", className)}
+      {...props}
+    />
+  );
+}
+
+export function SheetBody({
+  padding = "default",
+  className,
+  ...props
+}: ComponentProps<"div"> & { padding?: SheetBodyPadding; style?: CSSProperties & PopupKnobStyle }) {
+  return (
+    <div
+      data-control-ui="sheet"
+      data-control-family="popup"
+      data-popup-kind="sheet"
+      data-slot="body"
+      data-padding={padding}
+      className={cn("flex min-h-0 flex-1 flex-col overflow-y-auto", className)}
+      {...props}
+    />
+  );
+}
+
+export function SheetFooter({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle }) {
+  return (
+    <div
+      data-control-ui="sheet"
+      data-control-family="popup"
+      data-popup-kind="sheet"
+      data-slot="footer"
+      className={cn("mt-auto flex shrink-0 flex-col sm:flex-row sm:justify-end", className)}
       {...props}
     />
   );

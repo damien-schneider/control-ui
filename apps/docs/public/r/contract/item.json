@@ -19,6 +19,12 @@
       "defaultValue": "var(--hover-fill)"
     },
     {
+      "name": "--cui-item-current-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--active-fill)"
+    },
+    {
       "name": "--cui-item-hover-border-color",
       "syntax": "<color>",
       "initialValue": "transparent",
