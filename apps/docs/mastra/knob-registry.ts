@@ -1526,6 +1526,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     id: "collapsible",
     knobs: [
       {
+        name: "--cui-collapsible-trigger-font-size",
+        syntax: "<length-percentage>",
+        defaultValue: "var(--text-label)",
+        selector: ':where([data-control-family="collapsible"][data-slot="root"])',
+      },
+      {
         name: "--cui-collapsible-trigger-foreground",
         syntax: "<color>",
         defaultValue: "var(--foreground)",

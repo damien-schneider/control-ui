@@ -4,6 +4,7 @@ export const collapsibleKnobs = [
   "--cui-collapsible-trigger-hover-background",
   "--cui-collapsible-trigger-padding-inline",
   "--cui-collapsible-trigger-padding-block",
+  "--cui-collapsible-trigger-font-size",
   "--cui-collapsible-trigger-foreground",
   "--cui-collapsible-trigger-hover-foreground",
 ] as const;

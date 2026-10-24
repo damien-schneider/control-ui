@@ -15648,6 +15648,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "0px",
       },
       {
+        name: "--cui-collapsible-trigger-font-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--text-label)",
+      },
+      {
         name: "--cui-collapsible-trigger-foreground",
         syntax: "<color>",
         initialValue: "transparent",

@@ -6,6 +6,7 @@
     --cui-collapsible-trigger-padding-block: 0px;
     --cui-collapsible-trigger-foreground: var(--foreground);
     --cui-collapsible-trigger-hover-foreground: var(--foreground);
+    --cui-collapsible-trigger-font-size: var(--text-label);
   }
 
   :where([data-control-family="collapsible"][data-slot="trigger"]) {
@@ -18,7 +19,7 @@
     padding-block: var(--cui-collapsible-trigger-padding-block);
     padding-inline: var(--cui-collapsible-trigger-padding-inline);
     color: var(--cui-collapsible-trigger-foreground);
-    font-size: var(--text-label);
+    font-size: var(--cui-collapsible-trigger-font-size);
     font-weight: var(--font-weight-medium);
     text-align: start;
     transition: background-color var(--duration-fast) var(--ease-standard);
@@ -94,6 +95,12 @@
 }
 
 @property --cui-collapsible-trigger-padding-block {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-collapsible-trigger-font-size {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
