@@ -38,12 +38,14 @@ export function PrimitiveScrollableDrawerExample() {
         </DrawerHeader>
 
         <DrawerBody>
-          <ol className="grid gap-1 px-4">
+          <ol className="grid gap-1">
             {activity.map((event, index) => (
               <li key={event} className="flex items-start gap-3 rounded-[var(--radius-control)] px-3 py-2.5">
-                <Text weight="medium" className="mt-0.5 tabular-nums text-foreground/40">
-                  {String(index + 1).padStart(2, "0")}
-                </Text>
+                <span className="mt-0.5 text-foreground/40">
+                  <Text weight="medium" numeric>
+                    {String(index + 1).padStart(2, "0")}
+                  </Text>
+                </span>
                 <Text tone="foreground">{event}</Text>
               </li>
             ))}

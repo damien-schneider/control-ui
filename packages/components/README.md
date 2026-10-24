@@ -47,10 +47,34 @@ const twMerge = extendTailwindMerge({ extend: { classGroups: { "font-size": [{ t
 
 Controls size their own text: pick the control's `size`, or set its `--cui-*-font-size` knob in your theme, rather than wrapping the label in a `text-*` span.
 
-With Biome, the shipped GritQL plugin errors on text sizes in `className`: the type rungs, Tailwind's `text-xs`…`text-9xl`, and arbitrary `text-[13px]`. Adopt it folder by folder through `overrides` while you migrate:
+## Lint rules
+
+Two rules keep call sites honest, shipped for Biome, ESLint, and oxlint from one policy (`lint/class-policy.mjs`):
+
+- `no-component-style-classes` errors when `className` on a component imported from `@ctrl-ui/react` (or a `components/control-ui` directory) sets what the component owns: colors, type, padding, borders, radius, shadows, state styles such as `hover:` and `data-[…]:`, or `!important`. Layout classes (`flex`, `gap-*`, widths, heights, margins, placement) stay allowed. Restyle through the component's props or its `--cui-*` knobs instead.
+- `no-raw-type-classes` errors on text sizes in any `className`: the type rungs, Tailwind's `text-xs`…`text-9xl`, and arbitrary `text-[13px]`. It reaches beyond Control UI, so adopt it folder by folder while you migrate.
+
+Biome, extending the shipped preset so rules added later arrive with the package update:
 
 ```json
-{ "overrides": [{ "includes": ["src/features/**"], "plugins": ["./node_modules/@ctrl-ui/react/lint/no-raw-type-classes.grit"] }] }
+{
+  "extends": ["@ctrl-ui/react/biome"],
+  "overrides": [{ "includes": ["src/features/**"], "plugins": ["./node_modules/@ctrl-ui/react/lint/no-raw-type-classes.grit"] }]
+}
+```
+
+ESLint flat config:
+
+```js
+import controlUi from "@ctrl-ui/react/eslint-plugin";
+
+export default [{ plugins: { "control-ui": controlUi }, rules: { "control-ui/no-component-style-classes": "error" } }];
+```
+
+oxlint, through its JS plugin support:
+
+```json
+{ "jsPlugins": ["@ctrl-ui/react/eslint-plugin"], "rules": { "control-ui/no-component-style-classes": "error" } }
 ```
 
 ## Customize

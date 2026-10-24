@@ -13,7 +13,7 @@ import { skillConcernSidebarIcons } from "./icons";
 import { humanizeNavName } from "./nav-items";
 import type { DocsNavItem, SidebarDoor } from "./types";
 
-function NavMenu({ items, active, onNavigate }: { items: DocsNavItem[]; active: ActivePageId | undefined; onNavigate: () => void }) {
+export function NavMenu({ items, active, onNavigate }: { items: DocsNavItem[]; active: ActivePageId | undefined; onNavigate: () => void }) {
   return (
     <SidebarMenu indicator="hover">
       {items.map((item) => {

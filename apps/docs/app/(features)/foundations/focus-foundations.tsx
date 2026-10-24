@@ -13,17 +13,15 @@ export function FocusFoundations() {
     <div className="grid min-w-0">
       <SpecimenGroup title="Indicator">
         <div className="docs-panel grid gap-6 p-6 sm:grid-cols-[auto_1fr] sm:items-center">
-          <Text
-            as="div"
-            size="label"
+          <div
             className="grid h-12 w-40 place-items-center rounded-[var(--radius-control)] bg-card text-card-foreground ring-1 ring-inset ring-border"
             style={{
               outline: "var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring)",
               outlineOffset: "var(--focus-ring-offset)",
             }}
           >
-            Focused
-          </Text>
+            <Text size="label">Focused</Text>
+          </div>
           <div className="flex flex-wrap items-center gap-3">
             <div className="w-56">
               <Input aria-label="Tab into this field" placeholder="Tab into me" />

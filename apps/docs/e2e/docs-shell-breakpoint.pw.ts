@@ -76,7 +76,7 @@ test("desktop shell keeps equal panel gutters and reopens from the top left", as
   await expect(resizeHandle).toBeFocused();
 });
 
-test("Cuicui inherits shell spacing and aligns sidebar sections", async ({ page }) => {
+test("Cuicui content follows its sidebar layout and aligns sidebar sections", async ({ page }) => {
   await page.addInitScript((storageKey) => {
     localStorage.setItem(storageKey, JSON.stringify({ skin: "cuicui" }));
   }, THEME_EDITOR_STORAGE_KEY);
@@ -91,10 +91,8 @@ test("Cuicui inherits shell spacing and aligns sidebar sections", async ({ page 
   await resizeHandle.press("ArrowLeft");
   await expect(resizeHandle).toHaveAttribute("aria-valuenow", "310");
   const contentPanel = page.locator("[data-docs-content]");
-  await expect(contentPanel).toHaveCSS("margin-top", "8px");
-  await expect(contentPanel).toHaveCSS("margin-right", "8px");
-  await expect(contentPanel).toHaveCSS("margin-bottom", "8px");
-  await expect(contentPanel).toHaveCSS("margin-left", "8px");
+  await expect(contentPanel).toHaveCSS("margin", "0px");
+  await expect(contentPanel).toHaveCSS("border-width", "0px");
 
   const sidebar = page.locator('[data-control-ui="sidebar"][data-slot="container"]');
   await expect(sidebar).toHaveCSS("width", "310px");

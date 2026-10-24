@@ -145,13 +145,6 @@
   box-shadow: var(--docs-panel-shadow, none);
 }
 
-[data-control-ui="button"][data-flavor="neon"] {
-  --cui-button-background: oklch(0.55 0.24 330);
-  --cui-button-hover-background: oklch(0.5 0.26 330);
-  --cui-button-foreground: oklch(0.98 0.02 330);
-  --cui-button-shadow: 0 0 14px oklch(0.62 0.24 330 / 0.55);
-}
-
 @layer base {
   :root {
     color-scheme: light;
@@ -166,7 +159,6 @@
     background: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
-    letter-spacing: -0.01em;
   }
 
   button,

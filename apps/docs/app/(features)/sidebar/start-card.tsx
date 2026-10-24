@@ -2,15 +2,14 @@
 
 import { MinusSignIcon, PlusSignIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { ActivePageId } from "@/app/(features)/model/types";
-import { Card } from "@/components/control-ui/ui/card";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
 import { SidebarGroup, SidebarGroupLabel } from "@/components/control-ui/ui/sidebar";
+import { Text } from "@/components/control-ui/ui/typography";
+import { NavMenu } from "./nav-groups";
 import type { GuideNavGroup } from "./nav-items";
-import { humanizeNavName } from "./nav-items";
-import type { DocsNavItem } from "./types";
 
 const MINIMIZED_STORAGE_KEY = "control-ui-docs:start-card";
 
@@ -31,18 +30,10 @@ function writeStoredMinimized(minimized: boolean) {
   }
 }
 
-function StartRow({ item, active, onNavigate }: { item: DocsNavItem; active: ActivePageId | undefined; onNavigate: () => void }) {
-  return (
-    <Link
-      href={item.href}
-      onClick={onNavigate}
-      aria-current={active === item.id ? "page" : undefined}
-      className="flex min-w-0 items-center rounded-[calc(var(--radius-panel)-0.25rem)] px-2 py-1.5 text-label text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground aria-[current=page]:text-sidebar-foreground"
-    >
-      <span className="min-w-0 truncate">{humanizeNavName(item.name)}</span>
-    </Link>
-  );
-}
+const startCardInset = {
+  "--cui-card-padding-block": "var(--spacing)",
+  "--cui-card-padding-inline": "var(--spacing)",
+};
 
 export function StartCard({
   steps,
@@ -68,8 +59,10 @@ export function StartCard({
   return (
     <SidebarGroup className={className}>
       <Collapsible open={!minimized} onOpenChange={changeOpen}>
-        <SidebarGroupLabel render={<CollapsibleTrigger />} className="w-full cursor-pointer gap-2 px-2 text-label">
-          <span className="min-w-0 truncate">Getting started</span>
+        <SidebarGroupLabel render={<CollapsibleTrigger />} className="w-full cursor-pointer gap-2">
+          <Text size="label" className="min-w-0 truncate">
+            Getting started
+          </Text>
           <HugeiconsIcon
             aria-hidden
             icon={minimized ? PlusSignIcon : MinusSignIcon}
@@ -79,10 +72,10 @@ export function StartCard({
           />
         </SidebarGroupLabel>
         <CollapsibleContent>
-          <Card className="grid gap-0.5 p-1">
-            {steps.items.map((item) => (
-              <StartRow key={item.id} item={item} active={active} onNavigate={onNavigate} />
-            ))}
+          <Card style={startCardInset}>
+            <CardContent>
+              <NavMenu items={steps.items} active={active} onNavigate={onNavigate} />
+            </CardContent>
           </Card>
         </CollapsibleContent>
       </Collapsible>

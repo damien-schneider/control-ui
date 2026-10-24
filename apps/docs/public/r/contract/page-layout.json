@@ -73,6 +73,12 @@
       "defaultValue": "0px"
     },
     {
+      "name": "--cui-page-layout-floating-inset",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 2)"
+    },
+    {
       "name": "--cui-page-layout-background",
       "syntax": "<color>",
       "initialValue": "transparent",

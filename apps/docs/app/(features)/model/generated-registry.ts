@@ -2298,7 +2298,7 @@ export const registryMetadata = {
   },
   "coding-agent-block": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["button", "chat-layout", "collapsible", "core", "sidebar", "typography"],
+    registryDependencies: ["button", "chat-layout", "collapsible", "core", "item", "sidebar", "typography"],
     sourceManifestPath: "registry/control-ui/coding-agent-block.json",
     files: [
       {
@@ -5168,7 +5168,7 @@ export const registryMetadata = {
   },
   "theme-toggle-block": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["button", "core", "dropdown-menu", "switch"],
+    registryDependencies: ["button", "core", "dropdown-menu", "switch", "typography"],
     sourceManifestPath: "registry/control-ui/theme-toggle-block.json",
     files: [
       {
@@ -5520,11 +5520,6 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/typography.json",
     files: [
-      {
-        path: "src/registry/examples/control-ui/primitives/type-scale.css",
-        target: "@components/control-ui/styles/type-scale.css",
-        type: "registry:file",
-      },
       {
         path: "src/registry/sources/control-ui/ui/markdown-heading.ts",
         target: "@components/control-ui/ui/markdown-heading.ts",

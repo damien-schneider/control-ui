@@ -3,6 +3,7 @@
 import { ChevronRightIcon, FolderIcon, HashIcon, LayersIcon, MoreHorizontalIcon, SettingsIcon, SparklesIcon } from "lucide-react";
 import { useId, useState } from "react";
 import type { SidebarLayout } from "@/components/control-ui/skin";
+import { Avatar, AvatarFallback } from "@/components/control-ui/ui/avatar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
 import { NativeSelect } from "@/components/control-ui/ui/native-select";
@@ -93,7 +94,7 @@ function WorkspaceNavigation({
                     <span>Projects</span>
                     <ChevronRightIcon data-control-ui="sidebar" data-slot="chevron" />
                   </SidebarMenuButton>
-                  <CollapsibleContent className="group-data-[collapsible=icon]:hidden">
+                  <CollapsibleContent>
                     <SidebarMenuSub indicator={indicator} aria-label="Projects">
                       {projectPages.map((title) => (
                         <SidebarMenuItem key={title}>
@@ -122,7 +123,7 @@ function WorkspaceNavigation({
             <span>Resources</span>
             <ChevronRightIcon data-control-ui="sidebar" data-slot="chevron" />
           </SidebarGroupLabel>
-          <CollapsibleContent className="group-data-[collapsible=icon]:hidden">
+          <CollapsibleContent>
             <SidebarMenu indicator={indicator} aria-label="Resources">
               <SidebarMenuItem>
                 <SidebarMenuButton render={<a href="/get-started" />} tooltip="Documentation">
@@ -166,14 +167,14 @@ function Workspace({
       <Sidebar variant={variant} side={side} collapsible={resizable ? "offcanvas" : collapsible} className="h-full">
         <SidebarHeader>
           <SidebarMenuButton size="lg" tooltip="Acme workspace" onClick={() => navigate("Overview")}>
-            <Text
+            <span
               aria-hidden="true"
-              size="label"
-              weight="semibold"
               className="flex size-7 shrink-0 items-center justify-center rounded-(--radius-control) bg-primary text-primary-foreground"
             >
-              A
-            </Text>
+              <Text size="label" weight="semibold">
+                A
+              </Text>
+            </span>
             <Text weight="medium">Acme workspace</Text>
           </SidebarMenuButton>
         </SidebarHeader>
@@ -181,14 +182,9 @@ function Workspace({
         <SidebarFooter>
           <DropdownMenu>
             <DropdownMenuTrigger render={<SidebarMenuButton size="lg" tooltip="Jamie Davis" />}>
-              <Text
-                aria-hidden="true"
-                size="caption"
-                weight="medium"
-                className="flex size-7 shrink-0 items-center justify-center rounded-full bg-muted"
-              >
-                JD
-              </Text>
+              <Avatar aria-hidden="true" className="size-7">
+                <AvatarFallback>JD</AvatarFallback>
+              </Avatar>
               <span>Jamie Davis</span>
             </DropdownMenuTrigger>
             <DropdownMenuContent side="inline-end" align="end">
@@ -352,7 +348,7 @@ function SidebarExample({
           keyboardShortcut={null}
           width={resizable && side === "right" ? width : undefined}
           onWidthChange={resizable && side === "right" ? setWidth : undefined}
-          className="min-h-0! h-full"
+          layout="contained"
           style={{ "--sidebar-width": "14rem" }}
         >
           <Workspace

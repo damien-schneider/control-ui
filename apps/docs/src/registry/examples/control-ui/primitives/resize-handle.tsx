@@ -81,7 +81,7 @@ export function PrimitiveResizeHandleExample() {
         className="absolute flex items-center justify-center rounded-sm bg-card ring-1 ring-primary"
         style={{ left: frame.x, top: frame.y, width: frame.width, height: frame.height }}
       >
-        <Text size="caption" tone="muted" className="tabular-nums">
+        <Text size="caption" tone="muted" numeric>
           {Math.round(frame.width)} × {Math.round(frame.height)}
         </Text>
         {resizeHandleDirections.map((direction) => (

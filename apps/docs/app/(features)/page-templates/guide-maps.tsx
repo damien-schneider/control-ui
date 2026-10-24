@@ -5,9 +5,11 @@ export function CssFirstDecisionMap() {
   return (
     <GuideVisual title="Interaction decision" description="The platform is the first runtime">
       <div className="grid gap-3">
-        <Text as="div" size="label" weight="medium" className="rounded-lg bg-foreground px-4 py-3 text-center text-background">
-          Can CSS or a native element express the behavior?
-        </Text>
+        <div className="rounded-lg bg-foreground px-4 py-3 text-center text-background">
+          <Text as="div" size="label" weight="medium">
+            Can CSS or a native element express the behavior?
+          </Text>
+        </div>
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="rounded-lg bg-primary/8 p-3 ring-1 ring-primary/20">
             <Text as="div" size="label" weight="medium">
@@ -26,7 +28,7 @@ export function CssFirstDecisionMap() {
             </Text>
           </div>
         </div>
-        <Text as="div" size="micro" tone="primary" className="text-center font-mono">
+        <Text as="div" size="micro" tone="primary" mono className="text-center">
           token-driven transitions + expressive motion → reduced-motion kill switch
         </Text>
       </div>
@@ -63,7 +65,7 @@ export function CompatibilityBridge() {
           </Text>
         </div>
       </div>
-      <Text as="div" size="micro" tone="primary" className="mt-3 text-center font-mono">
+      <Text as="div" size="micro" tone="primary" mono className="mt-3 text-center">
         Control UI never writes to components/ui/*
       </Text>
     </GuideVisual>
@@ -77,24 +79,28 @@ export function AgentSurfaceMap() {
     <GuideVisual title="One registry, multiple interfaces" description="Choose the surface that fits the agent">
       <div className="grid items-center gap-3 md:grid-cols-[0.8fr_auto_1fr_auto_1.2fr]">
         <div className="grid gap-2">
-          <DiagramNode className="font-mono">catalog</DiagramNode>
-          <DiagramNode className="font-mono">on-disk source</DiagramNode>
+          <DiagramNode mono>catalog</DiagramNode>
+          <DiagramNode mono>on-disk source</DiagramNode>
         </div>
         <FlowArrow className="hidden md:grid" />
         <div className="rounded-lg bg-foreground p-4 text-center text-background">
           <Text as="div" size="label" weight="medium">
             Registry catalog
           </Text>
-          <Text as="div" size="caption" className="mt-1 opacity-70">
-            format-specific outputs
-          </Text>
+          <div className="mt-1 opacity-70">
+            <Text as="div" size="caption">
+              format-specific outputs
+            </Text>
+          </div>
         </div>
         <FlowArrow className="hidden md:grid" />
         <div className="flex flex-wrap gap-1.5">
           {surfaces.map((surface) => (
-            <Text key={surface} size="micro" className="rounded-md border border-border/70 bg-background px-2 py-1.5 font-mono">
-              {surface}
-            </Text>
+            <span key={surface} className="rounded-md border border-border/70 bg-background px-2 py-1.5">
+              <Text size="micro" mono>
+                {surface}
+              </Text>
+            </span>
           ))}
         </div>
       </div>

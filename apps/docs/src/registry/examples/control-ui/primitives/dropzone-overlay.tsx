@@ -1,6 +1,6 @@
 "use client";
 
-import { Braces, FileCode2 } from "lucide-react";
+import { BracesIcon, FileCode2Icon } from "lucide-react";
 import { useState } from "react";
 import {
   Dropzone,
@@ -55,12 +55,14 @@ export function PrimitiveDropzoneOverlayExample() {
       <DropzoneInput />
       <DropzoneArea>
         <div className="relative min-h-64 overflow-hidden rounded-[var(--radius-panel)] border border-border bg-card p-5">
-          <Text as="div" weight="medium" tone="foreground" className="flex items-center gap-2 border-b border-border pb-3">
-            <Braces className="size-4 text-muted-foreground" aria-hidden="true" />
-            Configuration workspace
-          </Text>
+          <div className="flex items-center gap-2 border-b border-border pb-3">
+            <BracesIcon className="size-4 text-muted-foreground" aria-hidden="true" />
+            <Text weight="medium" tone="foreground">
+              Configuration workspace
+            </Text>
+          </div>
           <Text as="div" tone="muted" className="mt-4 flex items-center gap-2">
-            <FileCode2 className="size-4" aria-hidden="true" />
+            <FileCode2Icon className="size-4" aria-hidden="true" />
             Drop JSON or CSS anywhere on this workspace.
           </Text>
           <DropzoneOverlay scope="global" />

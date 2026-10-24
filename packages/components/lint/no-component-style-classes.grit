@@ -1,0 +1,16 @@
+language js(typescript, jsx)
+
+or {
+  JsxSelfClosingElement(name=$name, attributes=$attributes),
+  JsxOpeningElement(name=$name, attributes=$attributes)
+} as $element where {
+  $name <: r"([A-Z]\w*)(?:\.[\w.]+)?"($component),
+  $attributes <: some JsxAttribute(name=`className`) as $attr,
+  $attr <: contains or { JsxString(), JsStringLiteralExpression(), JsTemplateChunkElement() } as $text where { $text <: r"(?s).*(?:[^\s\"'\x60]!(?:[\s\"'\x60]|$)|(?:^|[\s\"'\x60])![\w\[-]|(?:^|[^\w-])(?:p[xytrblse]?-|bg-[\w\[]|text-(?:foreground|muted|primary|secondary|accent|destructive|success|warning|info|card|popover|sidebar|background|canvas|current|inherit|transparent|white|black|[a-z]+-\d{2,3}|\[(?:#|oklch|rgb|hsl|lab|lch|color|var))|font-|leading-|tracking-|border|divide-|rounded|shadow|ring\b|ring-|outline|opacity-|backdrop-|fill-|stroke-|decoration-|underline|line-through|italic|uppercase|lowercase|capitalize|tabular-nums|(?:hover|focus|focus-visible|focus-within|active|disabled|open|checked|dark|placeholder|aria-[^:\s]*|data-[^:\s]*|group-[^:\s]*|peer-[^:\s]*|has-[^:\s]*|\*|\[&[^\s]*?\]):)).*" },
+  $element <: within JsModule() as $module,
+  $module <: contains JsImport() as $import where {
+    $import <: r"(?s).*(?:from\s+['\"](?:@ctrl-ui/react|[^'\"]*components/control-ui)/).*",
+    $import <: contains JsIdentifierBinding() as $binding where { $binding <: $component }
+  },
+  register_diagnostic(span=$attr, message="Control UI component styled through className: color, type, padding, borders, radius, shadows, state styles and !important belong to the component. Use its props or a --cui-* knob; keep className for layout (flex, gap, width, margin, placement).", severity="error")
+}

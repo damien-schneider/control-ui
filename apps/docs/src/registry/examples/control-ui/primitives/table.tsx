@@ -1,6 +1,7 @@
 "use client";
 
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/control-ui/ui/table";
+import { Text } from "@/components/control-ui/ui/typography";
 
 const invoices = [
   { id: "INV-001", status: "Paid", method: "Credit Card", amount: "$250.00" },
@@ -24,17 +25,23 @@ export function PrimitiveTableExample() {
         <TableBody>
           {invoices.map((invoice) => (
             <TableRow key={invoice.id}>
-              <TableCell className="font-medium">{invoice.id}</TableCell>
+              <TableCell>
+                <Text weight="medium">{invoice.id}</Text>
+              </TableCell>
               <TableCell>{invoice.status}</TableCell>
               <TableCell>{invoice.method}</TableCell>
-              <TableCell className="text-right tabular-nums">{invoice.amount}</TableCell>
+              <TableCell className="text-right">
+                <Text numeric>{invoice.amount}</Text>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
         <TableFooter>
           <TableRow>
             <TableCell colSpan={3}>Total</TableCell>
-            <TableCell className="text-right tabular-nums">$750.00</TableCell>
+            <TableCell className="text-right">
+              <Text numeric>$750.00</Text>
+            </TableCell>
           </TableRow>
         </TableFooter>
       </Table>

@@ -6,6 +6,7 @@ import { ChatLayout, ChatThread } from "@/components/control-ui/chat-layout";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
+import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "@/components/control-ui/ui/item";
 import {
   Sidebar,
   SidebarContent,
@@ -17,6 +18,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
   SidebarProvider,
   type SidebarProviderProps,
   SidebarRail,
@@ -92,7 +94,7 @@ export function CodingAgentBlock({
     <SidebarProvider
       layout={layout}
       surface="background"
-      className={cn("text-foreground", layout === "viewport" && "h-svh overflow-hidden", className)}
+      className={cn(layout === "viewport" && "h-svh overflow-hidden", className)}
       style={providerStyle}
       {...props}
     >
@@ -168,7 +170,7 @@ function CodingAgentSidebar({
 
   return (
     <Sidebar collapsible="offcanvas">
-      <SidebarHeader divider className="gap-1.5 px-2 pb-2 pt-3">
+      <SidebarHeader divider className="gap-1.5">
         {sidebarTop}
         <div className="flex min-w-0 items-center gap-2 px-1 py-1">
           <div className="flex min-w-0 flex-1 items-center gap-2">
@@ -199,7 +201,7 @@ function CodingAgentSidebar({
 
       <SidebarContent>
         {navigation.length > 0 ? (
-          <SidebarGroup className="pb-0">
+          <SidebarGroup>
             <SidebarMenu>
               {navigation.map((item) => (
                 <SidebarMenuItem key={item.id}>
@@ -220,7 +222,7 @@ function CodingAgentSidebar({
           </SidebarGroup>
         ) : null}
 
-        <SidebarGroup className="gap-1 pt-1">
+        <SidebarGroup className="gap-1">
           <SidebarGroupLabel>Projects</SidebarGroupLabel>
           <div className="grid gap-1">
             {projects.map((project) => (
@@ -233,7 +235,7 @@ function CodingAgentSidebar({
                   <span className="truncate">{project.name}</span>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
-                  <SidebarMenu className="mt-1 ps-5">
+                  <SidebarMenuSub>
                     {project.tasks.map((task) => (
                       <SidebarMenuItem key={task.id}>
                         <SidebarMenuButton
@@ -250,7 +252,7 @@ function CodingAgentSidebar({
                         </SidebarMenuButton>
                       </SidebarMenuItem>
                     ))}
-                  </SidebarMenu>
+                  </SidebarMenuSub>
                 </CollapsibleContent>
               </Collapsible>
             ))}
@@ -318,25 +320,19 @@ export function CodingAgentEmptyState({
       {suggestions.length > 0 ? (
         <div className="mt-8 grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {suggestions.map((suggestion) => (
-            <Button
+            <Item
               key={suggestion.id}
-              variant="surface"
-              size="lg"
-              className="h-auto min-h-28 w-full items-start justify-start whitespace-normal rounded-[var(--radius-panel)] px-4 py-4 text-start"
-              onClick={() => onSuggestionSelect?.(suggestion.prompt ?? suggestion.title, suggestion)}
+              variant="outline"
+              render={<button type="button" onClick={() => onSuggestionSelect?.(suggestion.prompt ?? suggestion.title, suggestion)} />}
+              className="min-h-28 w-full flex-col items-start text-start"
+              style={{ "--cui-item-media-foreground": "var(--primary-text)" }}
             >
-              <span className="flex min-w-0 flex-col items-start gap-3">
-                <span className="text-primary-text">{suggestion.icon}</span>
-                <Text weight="medium" tone="foreground">
-                  {suggestion.title}
-                </Text>
-                {suggestion.description ? (
-                  <Text size="caption" tone="muted" className="leading-5">
-                    {suggestion.description}
-                  </Text>
-                ) : null}
-              </span>
-            </Button>
+              <ItemMedia>{suggestion.icon}</ItemMedia>
+              <ItemContent>
+                <ItemTitle>{suggestion.title}</ItemTitle>
+                {suggestion.description ? <ItemDescription>{suggestion.description}</ItemDescription> : null}
+              </ItemContent>
+            </Item>
           ))}
         </div>
       ) : null}

@@ -56,7 +56,7 @@ function renderTool(part: ToolUIPart | DynamicToolUIPart, key: string) {
         {part.output !== undefined || part.errorText ? (
           <ActivityDetail>
             <ActivityDetailLabel>Output</ActivityDetailLabel>
-            <ActivityDetailContent className={state === "error" ? "text-destructive-text" : undefined}>
+            <ActivityDetailContent tone={state === "error" ? "destructive" : "default"}>
               {part.errorText ?? renderJson(part.output)}
             </ActivityDetailContent>
           </ActivityDetail>

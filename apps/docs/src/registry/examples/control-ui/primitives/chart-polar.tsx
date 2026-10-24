@@ -32,7 +32,7 @@ export function ChartDonutExample() {
         <Chart>
           <ChartPlot ariaLabel="Share of visitors by browser" definition={definition} height={260}>
             <ChartCenter>
-              <Text size="heading-2" weight="semibold" tone="foreground" className="tabular-nums">
+              <Text size="heading-2" weight="semibold" tone="foreground" numeric>
                 {formats.value(totalVisitors)}
               </Text>
               <Text size="caption" tone="muted">
@@ -70,7 +70,7 @@ export function ChartRadialBarExample() {
         <Chart>
           <ChartPlot ariaLabel="Progress toward quarterly goals" definition={definition} height={260}>
             <ChartCenter>
-              <Text size="heading-3" weight="semibold" tone="foreground" className="tabular-nums">
+              <Text size="heading-3" weight="semibold" tone="foreground" numeric>
                 {formats.percent(averageProgress)}
               </Text>
               <Text size="caption" tone="muted">

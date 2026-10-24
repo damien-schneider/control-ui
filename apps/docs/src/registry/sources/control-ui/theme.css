@@ -242,10 +242,15 @@
   --font-body: var(--font-sans);
   --font-display: var(--font-sans);
   --text-micro: 0.625rem;
+  --text-micro--line-height: 1.5;
   --text-caption: 0.6875rem;
+  --text-caption--line-height: 1.5;
   --text-label: 0.75rem;
+  --text-label--line-height: 1.5;
   --text-body: 0.875rem;
+  --text-body--line-height: 1.5;
   --text-body-lg: 1rem;
+  --text-body-lg--line-height: 1.5;
   --text-heading-4: 0.9375rem;
   --text-heading-4--line-height: 1.4;
   --text-heading-4--font-weight: 600;
@@ -485,10 +490,15 @@
   --spacing-control-lg: var(--control-h-lg);
 
   --text-micro: var(--text-micro);
+  --text-micro--line-height: var(--text-micro--line-height);
   --text-caption: var(--text-caption);
+  --text-caption--line-height: var(--text-caption--line-height);
   --text-label: var(--text-label);
+  --text-label--line-height: var(--text-label--line-height);
   --text-body: var(--text-body);
+  --text-body--line-height: var(--text-body--line-height);
   --text-body-lg: var(--text-body-lg);
+  --text-body-lg--line-height: var(--text-body-lg--line-height);
   --text-heading-4: var(--text-heading-4);
   --text-heading-4--line-height: var(--text-heading-4--line-height);
   --text-heading-4--font-weight: var(--text-heading-4--font-weight);

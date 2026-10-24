@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/control-ui/ui/dropdown-menu";
 import { Switch } from "@/components/control-ui/ui/switch";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export type ThemeMode = "light" | "dark" | "system";
 
@@ -46,6 +47,7 @@ export type ThemeSegmentedSwitchProps = Omit<ComponentProps<"div">, "onChange"> 
   ThemeControlProps & {
     name?: string;
     showLabels?: boolean;
+    disabled?: boolean;
   };
 
 export type ThemeDropdownProps = Omit<ComponentProps<typeof DropdownMenuTrigger>, "children" | "value" | "onChange"> &
@@ -122,6 +124,7 @@ export function ThemeSegmentedSwitch({
   onValueChange,
   options = defaultThemeOptions,
   showLabels = false,
+  disabled = false,
   name,
   className,
   style,
@@ -129,7 +132,7 @@ export function ThemeSegmentedSwitch({
   ...props
 }: ThemeSegmentedSwitchProps) {
   const generatedName = useId();
-  const choices = controlOptions(options);
+  const choices = controlOptions(options).map((option) => (disabled ? { ...option, disabled: true } : option));
   const currentValue = effectiveThemeValue(value, choices);
   const activeIndex = Math.max(
     0,
@@ -144,6 +147,7 @@ export function ThemeSegmentedSwitch({
     <div
       role="radiogroup"
       aria-label={ariaLabel}
+      aria-disabled={disabled || undefined}
       data-control-ui="theme-toggle"
       data-control-family="theme-toggle"
       data-slot="root"
@@ -176,7 +180,7 @@ export function ThemeSegmentedSwitch({
             data-selected={selected ? "true" : undefined}
             data-disabled={option.disabled ? "true" : undefined}
             className={classes(
-              "relative z-[1] inline-flex h-(--control-h-xs) cursor-pointer items-center justify-center gap-1.5 rounded-(--_theme-switch-radius) px-1.5 text-label font-medium transition-colors duration-(--duration-fast) ease-(--ease-standard) not-data-[disabled=true]:hover:text-foreground data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-(--disabled-opacity) data-[selected=true]:text-foreground",
+              "relative z-[1] inline-flex h-(--control-h-xs) cursor-pointer items-center justify-center gap-1.5 rounded-(--_theme-switch-radius) px-1.5 transition-colors duration-(--duration-fast) ease-(--ease-standard) not-data-[disabled=true]:hover:text-foreground data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-(--disabled-opacity) data-[selected=true]:text-foreground",
               showLabels ? "min-w-20" : "w-(--control-h-xs)",
             )}
           >
@@ -193,7 +197,11 @@ export function ThemeSegmentedSwitch({
               }}
             />
             <Icon className="size-3.5" aria-hidden />
-            {showLabels ? <span>{option.label}</span> : null}
+            {showLabels ? (
+              <Text size="label" weight="medium">
+                {option.label}
+              </Text>
+            ) : null}
           </label>
         );
       })}

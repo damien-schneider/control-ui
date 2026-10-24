@@ -24,12 +24,12 @@ export function PrimitiveScrollAreaExample() {
   return (
     <div className="flex w-full max-w-sm flex-col gap-6">
       <ScrollArea maxHeight="200px">
-        <ol className="flex flex-col gap-2 p-4 text-body text-muted-foreground">
+        <ol className="flex flex-col gap-2 p-4">
           {changelog.map((line, index) => (
-            <li key={line} className="flex gap-2">
+            <Text as="li" key={line} tone="muted" className="flex gap-2">
               <span className="shrink-0 tabular-nums text-foreground/40">{String(index + 1).padStart(2, "0")}</span>
               {line}
-            </li>
+            </Text>
           ))}
         </ol>
       </ScrollArea>

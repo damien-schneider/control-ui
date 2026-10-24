@@ -48,7 +48,7 @@ export function PrimitiveDockablePanelExample() {
           <PanelRow label="Layer" value="Launch card" />
           <PanelRow label="Position" value="240, 128" />
           <PanelRow label="Size" value="320 × 180" />
-          <Text as="p" size="caption" tone="muted" className="leading-relaxed">
+          <Text as="p" size="caption" tone="muted">
             Drag the title to reveal both side slots, then release over either half. From the keyboard, focus the title and press the arrow
             keys, or use the placement buttons.
           </Text>
@@ -64,7 +64,7 @@ function PanelRow({ label, value }: { label: string; value: string }) {
       <Text size="label" tone="muted">
         {label}
       </Text>
-      <Text size="label" weight="medium" className="tabular-nums">
+      <Text size="label" weight="medium" numeric>
         {value}
       </Text>
     </div>

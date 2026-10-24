@@ -463,7 +463,6 @@ const directSourceTargets = new Map([
   ["src/registry/skin-packs/retro-system-font.css", `${componentRoot}/retro-system-font.css`],
   ["src/registry/skin.ts", `${componentRoot}/skin.ts`],
   ["src/registry/skin-provider.tsx", `${componentRoot}/skin-provider.tsx`],
-  ["src/registry/examples/control-ui/primitives/type-scale.css", `${componentRoot}/styles/type-scale.css`],
   ["src/registry/skills/control-ui-skill.md", "~/.claude/skills/control-ui/SKILL.md"],
   ["src/registry/starters/next/layout.tsx", "~/app/layout.tsx"],
   ["src/registry/starters/next/page.tsx", "~/app/page.tsx"],
@@ -699,12 +698,6 @@ function assertUniqueDefinitionIds(items: Definition[]) {
   if (ids.size !== items.length) throw new Error("Registry item ids must be unique");
 }
 
-function registryBuildSources() {
-  const allSources = new Set(registrySources());
-  allSources.add("src/registry/examples/control-ui/primitives/type-scale.css");
-  return allSources;
-}
-
 function createSourceTargetLookup(allSources: Set<string>) {
   const sourceByTarget = new Map<string, string>();
   for (const source of allSources) {
@@ -879,7 +872,7 @@ export function createRegistryItems(): RegistrySourceItem[] {
   const items = definitions();
   assertUniqueDefinitionIds(items);
 
-  const allSources = registryBuildSources();
+  const allSources = new Set(registrySources());
   const context = {
     allSources,
     sourceByTarget: createSourceTargetLookup(allSources),

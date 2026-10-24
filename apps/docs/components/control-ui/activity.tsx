@@ -263,17 +263,21 @@ export function ActivityDetailLabel({ className, ...props }: ActivityDetailLabel
   );
 }
 
+export type ActivityDetailTone = "default" | "destructive";
+
 export type ActivityDetailContentProps = ActivityStyleProps<ComponentProps<"div">, ActivityKnobStyle> & {
   format?: ActivityDetailFormat;
+  tone?: ActivityDetailTone;
 };
 
-export function ActivityDetailContent({ format = "text", className, ...props }: ActivityDetailContentProps) {
+export function ActivityDetailContent({ format = "text", tone = "default", className, ...props }: ActivityDetailContentProps) {
   return (
     <div
       data-control-ui="activity"
       data-control-family="activity"
       data-slot="detail-content"
       data-format={format}
+      data-tone={tone}
       {...props}
       className={cn("min-w-0 whitespace-pre-wrap wrap-anywhere", format === "code" && "w-fit max-w-full", className)}
     />

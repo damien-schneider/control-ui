@@ -8,7 +8,12 @@ import { cn } from "@/components/control-ui/lib/cn";
 
 export type CardVariant = "default" | "sectioned";
 
-export type CardProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & CardKnobStyle } & { variant?: CardVariant };
+export type CardSize = "default" | "sm";
+
+export type CardProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & CardKnobStyle } & {
+  variant?: CardVariant;
+  size?: CardSize;
+};
 
 export type CardHeaderProps = ComponentProps<"div"> & { style?: CSSProperties & CardKnobStyle };
 
@@ -25,7 +30,7 @@ export type CardContentProps = ComponentProps<"div"> & { style?: CSSProperties &
 
 export type CardFooterProps = ComponentProps<"div"> & { style?: CSSProperties & CardKnobStyle };
 
-export function Card({ variant = "default", className, ...props }: CardProps) {
+export function Card({ variant = "default", size = "default", className, ...props }: CardProps) {
   return (
     <div
       data-control-ui="card"
@@ -33,6 +38,7 @@ export function Card({ variant = "default", className, ...props }: CardProps) {
       data-slot="root"
       data-surface="panel"
       data-variant={variant}
+      data-size={size}
       className={cn("flex flex-col", className)}
       {...props}
     />

@@ -35,13 +35,13 @@ const derivedTokens = GROUP_ORDER.flatMap((group) => THEME_CONTRACT.filter((toke
 function TokenRow({ token }: { token: ThemeContractToken }) {
   return (
     <div className="flex min-w-0 flex-col gap-0.5 px-4 py-2 sm:flex-row sm:items-baseline sm:gap-3">
-      <Text as="code" size="label" tone="foreground" className="shrink-0 font-mono sm:w-56">
+      <Text as="code" size="label" tone="foreground" mono className="shrink-0 sm:w-56">
         {token.name}
       </Text>
       <Text size="caption" tone="muted" className="hidden shrink-0 sm:inline sm:w-20">
         {GROUP_LABELS[token.group]}
       </Text>
-      <Text size="label" tone="muted" className="min-w-0 leading-5">
+      <Text size="label" tone="muted" className="min-w-0">
         {token.description}
       </Text>
     </div>
@@ -52,9 +52,11 @@ export function TokenContractTable() {
   return (
     <div className="grid min-w-0 gap-4">
       <div className="docs-panel overflow-hidden">
-        <Text as="div" size="caption" weight="medium" tone="muted" className="border-b border-border bg-muted/30 px-4 py-2">
-          Core — the <span className="tabular-nums">{coreTokens.length}</span> tokens a skin typically re-values first
-        </Text>
+        <div className="border-b border-border bg-muted/30 px-4 py-2">
+          <Text as="div" size="caption" weight="medium" tone="muted">
+            Core — the <span className="tabular-nums">{coreTokens.length}</span> tokens a skin typically re-values first
+          </Text>
+        </div>
         <div className="divide-y divide-border">
           {coreTokens.map((token) => (
             <TokenRow key={token.name} token={token} />
@@ -69,9 +71,11 @@ export function TokenContractTable() {
             <span className="tabular-nums">{derivedTokens.length}</span> tokens with a core default; re-value one in theme.css only to
             diverge
           </Text>
-          <Text aria-hidden size="caption" tone="muted" className="ml-auto transition-transform group-open:rotate-90">
-            ›
-          </Text>
+          <span aria-hidden className="ml-auto transition-transform group-open:rotate-90">
+            <Text size="caption" tone="muted">
+              ›
+            </Text>
+          </span>
         </summary>
         <div className="divide-y divide-border border-t border-border">
           {derivedTokens.map((token) => (
@@ -87,9 +91,11 @@ export function TokenContractTable() {
             <Text size="caption" tone="muted">
               <span className="tabular-nums">{tokens.length}</span> {tokens.length === 1 ? "token" : "tokens"}
             </Text>
-            <Text aria-hidden size="caption" tone="muted" className="ml-auto transition-transform group-open:rotate-90">
-              ›
-            </Text>
+            <span aria-hidden className="ml-auto transition-transform group-open:rotate-90">
+              <Text size="caption" tone="muted">
+                ›
+              </Text>
+            </span>
           </summary>
           <div className="divide-y divide-border border-t border-border">
             {tokens.map((token) => (

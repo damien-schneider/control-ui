@@ -1,6 +1,5 @@
 "use client";
 
-import { ChevronRightIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { useState } from "react";
 import type { PreviewLayout } from "@/app/(features)/catalog/shared";
@@ -17,7 +16,6 @@ import {
   type CodeOverflow,
   CodeTitle,
 } from "@/components/control-ui/ui/code";
-import { CollapsibleContent, CollapsibleTrigger, Collapsible as UICollapsible } from "@/components/control-ui/ui/collapsible";
 import { usePageScroll } from "@/components/control-ui/ui/page-layout";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Tabs, TabsList, TabsPanel, TabsSurface, TabsTab } from "@/components/control-ui/ui/tabs";
@@ -45,7 +43,7 @@ export function CodeSnippet({
   children?: ReactNode;
 }) {
   return (
-    <Code copy={false} density="compact" overflow="wrap" className="flex items-center gap-1 py-1 pr-1">
+    <Code copy={false} density="compact" overflow="wrap" className="flex items-center gap-1">
       <CodeContent code={code} lang={lang} highlight={highlight} className="min-w-0 flex-1" />
       {children ?? <CodeCopy value={code} />}
     </Code>
@@ -63,37 +61,6 @@ export function CommandBlock({ label, command }: { label: string; command: strin
       </CodeHeader>
       <CodeContent code={command} lang="bash" />
     </Code>
-  );
-}
-
-export function DocsCollapsible({
-  id,
-  title,
-  subtitle,
-  children,
-  defaultOpen = false,
-}: {
-  id?: string;
-  title: string;
-  subtitle?: string;
-  children: ReactNode;
-  defaultOpen?: boolean;
-}) {
-  return (
-    <UICollapsible id={id} defaultOpen={defaultOpen} className="docs-panel scroll-mt-20 overflow-hidden">
-      <CollapsibleTrigger className="justify-between gap-4 px-4 py-3 text-body" style={{ "--cui-collapsible-trigger-radius": "0px" }}>
-        <span>
-          {title}
-          {subtitle ? (
-            <Text weight="normal" tone="muted" className="ml-2">
-              {subtitle}
-            </Text>
-          ) : null}
-        </span>
-        <ChevronRightIcon className="size-4 shrink-0 text-muted-foreground" />
-      </CollapsibleTrigger>
-      <CollapsibleContent className="border-t">{children}</CollapsibleContent>
-    </UICollapsible>
   );
 }
 
@@ -157,13 +124,14 @@ export function SourceTabs({ files, overflow }: { files: SourceFile[]; overflow?
           <TabsList
             aria-label="Source files"
             variant={scrollsPage ? "default" : "browser"}
-            className={scrollsPage ? "mb-3 w-fit" : "w-full shadow-none"}
+            className={scrollsPage ? "mb-3 w-fit" : "w-full"}
+            style={scrollsPage ? undefined : { "--cui-tabs-list-shadow": "none" }}
           >
             {files.map((file) => (
               <TabsTab key={file.path} value={file.path}>
                 {sourceFileName(file.path)}
                 {file.shared ? (
-                  <Text size="micro" weight="normal" tone="muted" className="ml-1.5 uppercase tracking-wide">
+                  <Text size="micro" weight="normal" tone="muted" className="ml-1.5">
                     shared
                   </Text>
                 ) : null}
@@ -217,7 +185,11 @@ export function PreviewTabs({
         }}
       >
         <div className={cn("flex flex-wrap items-center gap-x-3 gap-y-2", scrollsPage && "mb-3")}>
-          <TabsList variant={scrollsPage ? "default" : "browser"} className={scrollsPage ? "w-fit" : "min-w-0 flex-1 shadow-none"}>
+          <TabsList
+            variant={scrollsPage ? "default" : "browser"}
+            className={scrollsPage ? "w-fit" : "min-w-0 flex-1"}
+            style={scrollsPage ? undefined : { "--cui-tabs-list-shadow": "none" }}
+          >
             <TabsTab value="preview">Preview</TabsTab>
             <TabsTab value="code">Code</TabsTab>
           </TabsList>
@@ -227,8 +199,10 @@ export function PreviewTabs({
           </div>
         </div>
         <Surface className={cn(!scrollsPage && "-mt-px", showPanelFrame && "overflow-hidden")}>
-          <TabsPanel value="preview" keepMounted className={cn("flex min-h-[280px] items-center justify-center p-6", previewClassName)}>
-            <PreviewFrame layout={previewLayout}>{children}</PreviewFrame>
+          <TabsPanel value="preview" keepMounted>
+            <div className={cn("flex min-h-[280px] items-center justify-center p-6", previewClassName)}>
+              <PreviewFrame layout={previewLayout}>{children}</PreviewFrame>
+            </div>
           </TabsPanel>
           <TabsPanel value="code" keepMounted={codeVisited}>
             <Code copy={false} chrome={showPanelFrame ? "embedded" : "standalone"}>

@@ -1212,6 +1212,11 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-collapsible-trigger-padding-inline",
+      "description": "Control UI collapsible knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
       "name": "--cui-collapsible-trigger-radius",
       "description": "Control UI collapsible knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
@@ -1644,6 +1649,10 @@
       "name": "--cui-field-description-font-size",
       "description": "Control UI field knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-field-font-family",
+      "description": "Control UI field knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
       "name": "--cui-field-font-size",
@@ -2152,6 +2161,11 @@
       "syntax": "<length-percentage>"
     },
     {
+      "name": "--cui-item-description-foreground",
+      "description": "Control UI item knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
       "name": "--cui-item-description-line-height",
       "description": "Control UI item knob — registered syntax <number>, fallback 1.5. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<number>"
@@ -2168,6 +2182,11 @@
     },
     {
       "name": "--cui-item-hover-border-color",
+      "description": "Control UI item knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-item-media-foreground",
       "description": "Control UI item knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
@@ -2450,6 +2469,11 @@
     },
     {
       "name": "--cui-page-layout-column-gap",
+      "description": "Control UI page-layout knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-page-layout-floating-inset",
       "description": "Control UI page-layout knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },

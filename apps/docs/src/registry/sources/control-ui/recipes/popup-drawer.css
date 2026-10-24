@@ -85,6 +85,7 @@
   /* Block padding lives inside the scroller, never on the popup: the scroll edge would clip a focus ring on the first or last row. */
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="body"][data-padding="default"]) {
     padding-block: calc(var(--spacing) * 4);
+    padding-inline: calc(var(--spacing) * 4);
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="body"][data-padding="default"]:last-child) {

@@ -25,7 +25,7 @@ export function SkinPicker() {
         aria-label="Skin"
         className="sticky bottom-[calc(1rem+env(safe-area-inset-bottom))] z-40 mx-auto mb-4 flex w-fit max-w-[calc(100%-2rem)] max-lg:in-data-[scroll=page]:bottom-[calc(1rem+var(--cui-sidebar-nav-height)+var(--cui-sidebar-nav-gap)+env(safe-area-inset-bottom))]"
       >
-        <Text size="label" tone="muted" className="shrink-0 ps-2 pe-1">
+        <Text size="label" tone="muted" className="ms-2 me-1 shrink-0">
           Skin
         </Text>
         <ToolbarGroup aria-label="Skin for this site">

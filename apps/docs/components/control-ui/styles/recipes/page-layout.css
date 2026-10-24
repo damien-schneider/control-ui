@@ -10,6 +10,7 @@
     --cui-page-layout-header-column-gap: calc(var(--spacing) * 4);
     --cui-page-layout-header-row-gap: calc(var(--spacing) * 2);
     --cui-page-layout-sticky-gap: 0px;
+    --cui-page-layout-floating-inset: calc(var(--spacing) * 2);
     --cui-page-layout-background: var(--canvas);
     --cui-page-layout-sticky-header-background: oklch(from var(--cui-page-layout-background) l c h / 0.85);
     --cui-page-layout-sticky-header-backdrop-filter: blur(12px);
@@ -26,6 +27,12 @@
 
   :where([data-control-family="page-layout"][data-slot="root"][data-width="wide"]) {
     --cui-page-layout-article-size: 80rem;
+  }
+
+  @media (width >= 48rem) {
+    :where([data-control-family="page-layout"][data-slot="root"]) {
+      --cui-page-layout-padding-inline: calc(var(--spacing) * 8);
+    }
   }
 
   :where([data-control-family="page-layout"][data-slot="root"][data-width="full"]) {
@@ -117,14 +124,17 @@
     }
   }
 
-  /* Zero height: the band hangs over the body instead of displacing it. */
+  /* Zero height: the band hangs over the body instead of displacing it, pinned to the container corner. */
   :where([data-control-family="page-layout"][data-slot="header"][data-variant="floating"]) {
     position: sticky;
-    inset-block-start: var(--cui-page-layout-sticky-gap);
+    inset-block-start: var(--cui-page-layout-floating-inset);
     z-index: 20;
     align-items: start;
+    max-width: none;
     height: 0;
+    row-gap: 0;
     padding-block: 0;
+    padding-inline: var(--cui-page-layout-floating-inset);
     pointer-events: none;
   }
 
@@ -234,6 +244,12 @@
 }
 
 @property --cui-page-layout-sticky-gap {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-page-layout-floating-inset {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;

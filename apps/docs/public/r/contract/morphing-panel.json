@@ -73,7 +73,17 @@
         "registryItems": [
           "morphing-panel"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-padding",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "none"
+            ]
+          }
+        ]
       },
       "content": {
         "family": "morphing-panel",

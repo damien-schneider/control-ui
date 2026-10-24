@@ -1,6 +1,15 @@
 "use client";
 
-import { BotIcon, Check, CircleAlert, CircleDashed, CirclePause, CircleSlash, LoaderCircle, PlusIcon } from "lucide-react";
+import {
+  BotIcon,
+  CheckIcon,
+  CircleAlertIcon,
+  CircleDashedIcon,
+  CirclePauseIcon,
+  CircleSlashIcon,
+  LoaderCircleIcon,
+  PlusIcon,
+} from "lucide-react";
 import type { ReactNode } from "react";
 import {
   Sidebar,
@@ -19,12 +28,12 @@ import { Text } from "@/components/control-ui/ui/typography";
 import { type AgentRunStatus, type AgentRunSummary, agentRunStatusLabels } from "./agent-run-status";
 
 const runStatusIcons = {
-  running: <LoaderCircle className="size-3.5 shrink-0 motion-safe:animate-spin" aria-hidden="true" />,
-  waiting: <CirclePause className="size-3.5 shrink-0 text-warning-text" aria-hidden="true" />,
-  success: <Check className="size-3.5 shrink-0 text-success-text" aria-hidden="true" />,
-  error: <CircleAlert className="size-3.5 shrink-0 text-destructive-text" aria-hidden="true" />,
-  cancelled: <CircleSlash className="size-3.5 shrink-0 text-muted-foreground" aria-hidden="true" />,
-  pending: <CircleDashed className="size-3.5 shrink-0 text-muted-foreground" aria-hidden="true" />,
+  running: <LoaderCircleIcon className="size-3.5 shrink-0 motion-safe:animate-spin" aria-hidden="true" />,
+  waiting: <CirclePauseIcon className="size-3.5 shrink-0 text-warning-text" aria-hidden="true" />,
+  success: <CheckIcon className="size-3.5 shrink-0 text-success-text" aria-hidden="true" />,
+  error: <CircleAlertIcon className="size-3.5 shrink-0 text-destructive-text" aria-hidden="true" />,
+  cancelled: <CircleSlashIcon className="size-3.5 shrink-0 text-muted-foreground" aria-hidden="true" />,
+  pending: <CircleDashedIcon className="size-3.5 shrink-0 text-muted-foreground" aria-hidden="true" />,
 } satisfies Record<AgentRunStatus, ReactNode>;
 
 export function AgentRunSidebar({
@@ -48,7 +57,7 @@ export function AgentRunSidebar({
 
   return (
     <Sidebar collapsible="offcanvas">
-      <SidebarHeader divider className="gap-1.5 px-2 pb-2 pt-3">
+      <SidebarHeader divider className="gap-1.5">
         <div className="flex min-w-0 items-center gap-2 px-1 py-1">
           {brand ?? (
             <span className="flex size-6 shrink-0 items-center justify-center rounded-md bg-foreground text-background">
@@ -78,10 +87,10 @@ export function AgentRunSidebar({
       </SidebarHeader>
 
       <SidebarContent>
-        <SidebarGroup className="gap-1 pt-1">
+        <SidebarGroup className="gap-1">
           <SidebarGroupLabel>Runs</SidebarGroupLabel>
           {runs.length === 0 ? (
-            <Text size="caption" tone="muted" className="px-2">
+            <Text size="caption" tone="muted" className="mx-2">
               No runs yet
             </Text>
           ) : (

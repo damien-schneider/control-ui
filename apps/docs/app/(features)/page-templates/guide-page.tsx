@@ -14,7 +14,7 @@ import { SurfaceFoundations } from "@/app/(features)/foundations/surface-foundat
 import { TypographyFoundations } from "@/app/(features)/foundations/typography-foundations";
 import type { GuideId, GuidePage as GuidePageData, IntegrationId } from "@/app/(features)/model/types";
 import { ThemeAccessibility } from "@/app/(features)/theme-accessibility/theme-accessibility";
-import { Card } from "@/components/control-ui/ui/card";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
 import { MarkdownRoot } from "@/components/control-ui/ui/markdown";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
 import { SKIN_CATEGORY, type ThemeCategoryId } from "@/components/theme-drawer/theme-categories";
@@ -116,7 +116,7 @@ function GuidePageContent({
 
   return (
     <GuideIntegrationContext value={integration}>
-      <MarkdownRoot className="grid min-w-0 gap-12 text-body">
+      <MarkdownRoot className="grid min-w-0 gap-12">
         <Content components={guideComponents} />
       </MarkdownRoot>
     </GuideIntegrationContext>
@@ -150,13 +150,15 @@ export function GuidePage({
             <Heading level={2}>Frequently asked questions</Heading>
             <dl className="mt-4 grid gap-3">
               {page.faqs.map((faq) => (
-                <Card key={faq.question} className="gap-1.5 px-4 py-3">
-                  <Text as="dt" size="label" weight="medium">
-                    {faq.question}
-                  </Text>
-                  <Text as="dd" tone="muted" className="leading-6">
-                    {faq.answer}
-                  </Text>
+                <Card key={faq.question} size="sm">
+                  <CardContent className="grid gap-1.5">
+                    <Text as="dt" size="label" weight="medium">
+                      {faq.question}
+                    </Text>
+                    <Text as="dd" tone="muted">
+                      {faq.answer}
+                    </Text>
+                  </CardContent>
                 </Card>
               ))}
             </dl>

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.5.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.14/schema.json",
   "files": {
     "includes": [
       "**",
@@ -17,7 +17,8 @@
       "!registry.json",
       "!apps/docs/registry.json",
       "!apps/docs/registry/**/*.json",
-      "!packages/components/src"
+      "!packages/components/src",
+      "!packages/components/lint/*.grit"
     ]
   },
   "formatter": {
@@ -179,6 +180,33 @@
       "plugins": [
         {
           "path": "./lint/no-react-dom-query.grit"
+        }
+      ]
+    },
+    {
+      "includes": [
+        "apps/docs/app/**/*.tsx",
+        "apps/docs/components/**/*.tsx",
+        "apps/docs/src/registry/blocks/**/*.tsx",
+        "apps/docs/src/registry/examples/**/*.tsx",
+        "apps/docs/src/registry/usage/**/*.tsx",
+        "!apps/docs/components/control-ui/**",
+        "!**/*.test.tsx"
+      ],
+      "plugins": [
+        {
+          "path": "./packages/components/lint/no-raw-type-classes.grit"
+        },
+        {
+          "path": "./packages/components/lint/no-component-style-classes.grit"
+        }
+      ]
+    },
+    {
+      "includes": ["apps/docs/app/**/*.css", "apps/docs/src/registry/examples/**/*.css"],
+      "plugins": [
+        {
+          "path": "./lint/no-docs-component-css.grit"
         }
       ]
     }

@@ -5,7 +5,7 @@ import { CodeBlock, CommandBlock } from "@/app/(features)/components/source";
 import { registryInstallCommand } from "@/app/(features)/model/registry";
 import type { ComponentId, DocsExtension, KitId } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
-import { Card } from "@/components/control-ui/ui/card";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
 import { Text } from "@/components/control-ui/ui/typography";
 import { hasExtensionDemo } from "./extension-demo-ids";
 import { ExtensionDemo } from "./extension-demos";
@@ -26,27 +26,29 @@ export function AvailableExtensions({ hostId, extensions }: { hostId: KitId | Co
       />
       <div className="grid gap-4">
         {available.map((extension) => (
-          <Card key={extension.id} className="min-w-0 gap-0 p-4">
-            <div className="mb-1 flex items-center gap-2">
-              <Link href={`/extensions/${extension.id}`} className="font-medium hover:underline">
-                {extension.name}
-              </Link>
-              <Badge variant="outline" size="sm">
-                {extension.attach === "anchored" ? "Anchored" : "Root-mounted"}
-              </Badge>
-            </div>
-            <Text as="p" tone="muted" className="mb-3 leading-6">
-              {extension.summary}
-            </Text>
-            {hasExtensionDemo(extension.id) ? (
-              <div className="mb-3 min-w-0">
-                <ExtensionDemo extensionId={extension.id} />
+          <Card key={extension.id} size="sm" className="min-w-0">
+            <CardContent>
+              <div className="mb-1 flex items-center gap-2">
+                <Link href={`/extensions/${extension.id}`} className="font-medium hover:underline">
+                  {extension.name}
+                </Link>
+                <Badge variant="outline" size="sm">
+                  {extension.attach === "anchored" ? "Anchored" : "Root-mounted"}
+                </Badge>
               </div>
-            ) : null}
-            <div className="grid gap-3">
-              <CommandBlock label="Install" command={registryInstallCommand(extension.registryKind)} />
-              <CodeBlock code={extension.activation.code} />
-            </div>
+              <Text as="p" tone="muted" className="mb-3">
+                {extension.summary}
+              </Text>
+              {hasExtensionDemo(extension.id) ? (
+                <div className="mb-3 min-w-0">
+                  <ExtensionDemo extensionId={extension.id} />
+                </div>
+              ) : null}
+              <div className="grid gap-3">
+                <CommandBlock label="Install" command={registryInstallCommand(extension.registryKind)} />
+                <CodeBlock code={extension.activation.code} />
+              </div>
+            </CardContent>
           </Card>
         ))}
       </div>

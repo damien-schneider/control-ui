@@ -32,14 +32,12 @@ export function PrimitiveDrawerSidesExample() {
               <DrawerTitle>{label} drawer</DrawerTitle>
               <DrawerDescription>Swipe toward the {side} edge or use the close action to dismiss.</DrawerDescription>
             </DrawerHeader>
-            <DrawerBody className="min-h-24 items-center justify-center px-4">
-              <Text
-                as="div"
-                tone="muted"
-                className="w-full rounded-[var(--radius-panel)] bg-foreground/4 p-4 text-center ring-1 ring-inset ring-border"
-              >
-                Edge-aligned content
-              </Text>
+            <DrawerBody className="min-h-24 items-center justify-center">
+              <div className="w-full rounded-[var(--radius-panel)] bg-foreground/4 p-4 text-center ring-1 ring-inset ring-border">
+                <Text as="p" tone="muted">
+                  Edge-aligned content
+                </Text>
+              </div>
             </DrawerBody>
             <DrawerFooter>
               <DrawerClose render={<Button variant="surface" />}>Close</DrawerClose>

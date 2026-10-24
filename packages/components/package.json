@@ -33,7 +33,9 @@
   ],
   "files": [
     "dist",
-    "lint/*.grit"
+    "lint/*.grit",
+    "lint/*.mjs",
+    "lint/biome-preset.json"
   ],
   "publishConfig": {
     "access": "public"
@@ -41,6 +43,8 @@
   "exports": {
     "./package.json": "./package.json",
     "./styles/*": "./dist/styles/*",
+    "./eslint-plugin": "./lint/eslint-plugin.mjs",
+    "./biome": "./lint/biome-preset.json",
     "./*": {
       "types": "./dist/*.d.ts",
       "default": "./dist/*.js"
@@ -182,6 +186,8 @@
   "devDependencies": {
     "@types/bun": "^1.4.2",
     "@types/react": "^19.3.0",
+    "eslint": "10.10.0",
+    "oxlint": "1.81.0",
     "tsdown": "0.23.0"
   }
 }

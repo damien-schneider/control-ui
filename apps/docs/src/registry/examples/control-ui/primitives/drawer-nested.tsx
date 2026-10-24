@@ -37,7 +37,7 @@ export function PrimitiveNestedDrawerExample() {
         </DrawerHeader>
 
         <DrawerBody>
-          <dl className="grid gap-1 px-4">
+          <dl className="grid gap-1">
             {summaryRows.map(([label, value]) => (
               <div key={label} className="flex items-center justify-between rounded-[var(--radius-control)] px-3 py-2">
                 <Text as="dt" tone="muted">
@@ -62,7 +62,7 @@ export function PrimitiveNestedDrawerExample() {
               </DrawerHeader>
 
               <DrawerBody>
-                <dl className="grid gap-1 px-4">
+                <dl className="grid gap-1">
                   {accessRows.map(([label, value]) => (
                     <div
                       key={label}
@@ -90,13 +90,11 @@ export function PrimitiveNestedDrawerExample() {
                     </DrawerHeader>
 
                     <DrawerBody>
-                      <Text
-                        as="div"
-                        tone="foreground"
-                        className="mx-4 rounded-[var(--radius-panel)] bg-primary/8 p-4 ring-1 ring-inset ring-primary/20"
-                      >
-                        Production will receive the latest commit from main. Existing deployments stay available during the rollout.
-                      </Text>
+                      <div className="rounded-[var(--radius-panel)] bg-primary/8 p-4 ring-1 ring-inset ring-primary/20">
+                        <Text as="p" tone="foreground">
+                          Production will receive the latest commit from main. Existing deployments stay available during the rollout.
+                        </Text>
+                      </div>
                     </DrawerBody>
 
                     <DrawerFooter>

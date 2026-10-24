@@ -25,14 +25,13 @@ export function ElevationFoundations() {
         <div className="grid gap-6 rounded-[var(--radius-scene)] bg-canvas p-6 ring-1 ring-inset ring-border sm:grid-cols-2 lg:grid-cols-4">
           {ELEVATION_TIERS.map((tier) => (
             <Specimen key={tier.label} token={tier.knob} readout={tokens[tier.knob]}>
-              <Text
-                as="div"
-                size="label"
-                weight="medium"
+              <div
                 className={cn("grid h-20 place-items-center rounded-[var(--radius-panel)] bg-card text-card-foreground", tier.shadowClass)}
               >
-                {tier.label}
-              </Text>
+                <Text size="label" weight="medium">
+                  {tier.label}
+                </Text>
+              </div>
             </Specimen>
           ))}
         </div>

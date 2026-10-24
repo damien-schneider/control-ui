@@ -3,7 +3,6 @@
 import { MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
 import { useEffect, useSyncExternalStore } from "react";
 import { type ThemeMode, ThemeSegmentedSwitch, ThemeToggle, type ThemeToggleOption } from "@/components/control-ui/blocks/theme-toggle";
-import { cn } from "@/components/control-ui/lib/cn";
 import { applyColorScheme, COLOR_SCHEME_LOCK_ATTR, THEME_STORAGE_KEY, type Theme } from "@/components/theme";
 
 const THEME_CHANGE_EVENT = "control-ui:theme-change";
@@ -117,12 +116,11 @@ export function ThemeModeSwitch({ className }: { className?: string }) {
     <ThemeSegmentedSwitch
       value={value}
       onValueChange={setValue}
-      options={locked ? disabledThemeOptions : themeOptions}
+      options={themeOptions}
+      disabled={Boolean(locked)}
       aria-label="Theme mode"
-      aria-disabled={locked ? true : undefined}
       title={locked ? `This skin is ${locked}-only` : undefined}
-      data-locked={locked ? "true" : undefined}
-      className={cn(locked && "cursor-not-allowed opacity-60", className)}
+      className={className}
     />
   );
 }
@@ -138,7 +136,7 @@ export function ThemeModeToggle({ className }: { className?: string }) {
       iconOnly
       disabled={locked ? true : undefined}
       title={locked ? `This skin is ${locked}-only` : undefined}
-      className={cn(locked && "cursor-not-allowed opacity-60", className)}
+      className={className}
     />
   );
 }

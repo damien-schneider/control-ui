@@ -83219,6 +83219,166 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       state: false,
       route: "/components/calendar",
     },
+    {
+      knobs: {
+        text: "--cui-item-description-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "item",
+            "data-control-ui": "item",
+            "data-slot": "root",
+            "data-variant": "muted",
+            href: "#",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "item",
+            "data-control-ui": "item",
+            "data-slot": "description",
+          },
+        },
+      ],
+      recipe: "item",
+      rendersText: true,
+      state: false,
+      route: "/components/item",
+    },
+    {
+      knobs: {
+        text: "--cui-item-description-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "item",
+            "data-control-ui": "item",
+            "data-slot": "root",
+            "data-variant": "outline",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "item",
+            "data-control-ui": "item",
+            "data-slot": "description",
+          },
+        },
+      ],
+      recipe: "item",
+      rendersText: true,
+      state: false,
+      route: "/components/item",
+    },
+    {
+      knobs: {
+        text: "--cui-item-media-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "item",
+            "data-control-ui": "item",
+            "data-slot": "root",
+            "data-variant": "outline",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "item",
+            "data-control-ui": "item",
+            "data-slot": "media",
+          },
+        },
+      ],
+      recipe: "item",
+      rendersText: false,
+      state: false,
+      route: "/components/item",
+    },
   ),
   uncovered: [
     "--cui-audio-recorder-recorded-foreground",

@@ -17,6 +17,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--hover-fill)"
+    },
+    {
+      "name": "--cui-collapsible-trigger-padding-inline",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 2)"
     }
   ],
   "parts": {

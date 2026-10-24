@@ -38,7 +38,7 @@ import {
   TimelineSeparator,
   TimelineTitle,
 } from "@/components/control-ui/ui/timeline";
-import { Heading, Text } from "@/components/control-ui/ui/typography";
+import { Heading, Text, type TypeSize } from "@/components/control-ui/ui/typography";
 import { elapsedIsoDuration, formatElapsed, useRunClock } from "./agent-run-clock";
 import { AgentRunSidebar } from "./agent-run-sidebar";
 import {
@@ -93,7 +93,7 @@ export function AgentRunBlock({
     <SidebarProvider
       layout={layout}
       surface="background"
-      className={cn("text-foreground", layout === "viewport" && "h-svh overflow-hidden", className)}
+      className={cn(layout === "viewport" && "h-svh overflow-hidden", className)}
       style={providerStyle}
       {...props}
     >
@@ -116,21 +116,20 @@ export function AgentRunBlock({
 export type AgentRunElapsedProps = Omit<ComponentProps<"time">, "dateTime" | "children"> & {
   startedAt: number;
   endedAt?: number;
+  size?: TypeSize;
 };
 
-export function AgentRunElapsed({ startedAt, endedAt, className, ...props }: AgentRunElapsedProps) {
+export function AgentRunElapsed({ startedAt, endedAt, size = "label", className, ...props }: AgentRunElapsedProps) {
   const now = useRunClock(endedAt === undefined);
   const end = endedAt ?? now;
   const ms = end === null ? null : Math.max(0, end - startedAt);
 
   return (
-    <time
-      dateTime={ms === null ? undefined : elapsedIsoDuration(ms)}
-      className={cn("text-label tabular-nums text-muted-foreground", className)}
-      {...props}
-    >
-      {ms === null ? "" : formatElapsed(ms)}
-    </time>
+    <Text size={size} tone="muted" numeric className={className}>
+      <time dateTime={ms === null ? undefined : elapsedIsoDuration(ms)} {...props}>
+        {ms === null ? "" : formatElapsed(ms)}
+      </time>
+    </Text>
   );
 }
 
@@ -154,7 +153,7 @@ export function AgentRunHeader({ title, status, startedAt, endedAt, actions, cla
       <Badge size="sm" color={agentRunStatusColors[status]}>
         {agentRunStatusLabels[status]}
       </Badge>
-      {startedAt === undefined ? null : <AgentRunElapsed startedAt={startedAt} endedAt={endedAt} className="text-body" />}
+      {startedAt === undefined ? null : <AgentRunElapsed startedAt={startedAt} endedAt={endedAt} size="body" />}
       <div className="ms-auto flex shrink-0 items-center gap-1">{actions}</div>
       <LiveStatus message={`${title}: ${agentRunStatusLabels[status]}`} />
     </header>
@@ -285,7 +284,7 @@ export function AgentRunToolCall({ name, summary, icon, input, output, errorText
           {errorText === undefined ? null : (
             <ActivityDetail>
               <ActivityDetailLabel>Error</ActivityDetailLabel>
-              <ActivityDetailContent className="text-destructive-text">{errorText}</ActivityDetailContent>
+              <ActivityDetailContent tone="destructive">{errorText}</ActivityDetailContent>
             </ActivityDetail>
           )}
         </ActivityContent>
@@ -339,11 +338,15 @@ export function AgentRunDetails({ title = "Details", items, ...props }: AgentRun
 
   return (
     <AgentRunSection title={title} {...props}>
-      <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-2 text-body">
+      <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-2">
         {items.map((item) => (
           <div key={item.label} className="contents">
-            <dt className="text-muted-foreground">{item.label}</dt>
-            <dd className="min-w-0 break-words">{item.value}</dd>
+            <Text as="dt" tone="muted">
+              {item.label}
+            </Text>
+            <Text as="dd" className="min-w-0 break-words">
+              {item.value}
+            </Text>
           </div>
         ))}
       </dl>

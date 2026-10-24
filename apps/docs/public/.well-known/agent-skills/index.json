@@ -3,10 +3,10 @@
   "skills": [
     {
       "name": "control-ui",
-      "description": "Build, theme, and update UI with the Control UI components installed in this repository. Use when adding or migrating screens, writing or applying a theme, or updating Control UI.",
+      "description": "Build, theme, lint, and update UI with Control UI in this repository, whether installed as source or as the @ctrl-ui/react package. Use when adding or migrating screens, styling a Control UI component, writing or applying a theme, setting up lint rules, or updating Control UI.",
       "type": "skill-md",
       "url": "https://control-ui.dev/r/control-ui-skill.md",
-      "digest": "sha256:c7e300f4be852135b62885103efe59802353be15585b544741ccd5f91cd320b6"
+      "digest": "sha256:86ab99d6ca999e6297d71ed45e9c133718ec895d7cc8d2aea9afb716cac4eeb5"
     }
   ]
 }

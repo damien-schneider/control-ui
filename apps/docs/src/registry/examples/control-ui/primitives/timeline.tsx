@@ -16,7 +16,7 @@ import {
 
 export function PrimitiveTimelineExample() {
   return (
-    <Timeline className="mx-auto w-full max-w-lg p-6">
+    <Timeline className="mx-auto my-6 w-full max-w-lg">
       <TimelineItem state="success">
         <TimelineIndicator>
           <Check />

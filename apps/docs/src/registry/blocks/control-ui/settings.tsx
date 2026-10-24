@@ -98,7 +98,7 @@ export function SettingsBlock({
     <SidebarProvider
       layout={layout}
       surface="background"
-      className={cn("text-foreground", layout === "viewport" && "h-svh overflow-hidden", className)}
+      className={cn(layout === "viewport" && "h-svh overflow-hidden", className)}
       style={providerStyle}
       {...props}
     >
@@ -182,7 +182,7 @@ function SettingsShell({
     <>
       <LiveStatus message={trimmedQuery ? searchStatus : ""} />
       <Sidebar collapsible="offcanvas">
-        <SidebarHeader divider className="gap-3 p-3">
+        <SidebarHeader divider className="gap-3">
           {backAction ? <div className="min-w-0">{backAction}</div> : null}
           <SettingsSearch value={query} label={searchLabel} placeholder={searchPlaceholder} onValueChange={onQueryChange} />
         </SidebarHeader>
@@ -227,7 +227,7 @@ function SettingsSearch({
 }) {
   return (
     <InputGroup size="sm">
-      <InputGroupAddon className="ps-2.5">
+      <InputGroupAddon>
         <SearchIcon className="size-3.5" aria-hidden="true" />
       </InputGroupAddon>
       <Input
@@ -313,7 +313,7 @@ function SettingsSearchNavigation({
           <SidebarMenu>
             {group.results.map((result) => (
               <SidebarMenuItem key={`${result.section.id}/${result.setting.id}`}>
-                <SidebarMenuButton size="sm" className="h-auto min-h-(--control-h-sm) py-1.5" onClick={() => onSelect(result)}>
+                <SidebarMenuButton size="sm" onClick={() => onSelect(result)}>
                   <span title={result.setting.title}>{result.setting.title}</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -376,29 +376,30 @@ function SettingsRow({
   return (
     <>
       {separated ? <FieldSeparator /> : null}
-      <Field
+      <div
         id={ids.row}
-        orientation="responsive"
         tabIndex={-1}
-        className="scroll-m-8 gap-3 p-4 outline-none transition-colors duration-[var(--duration-fast)] focus:bg-foreground/4 focus-within:bg-foreground/4"
+        className="scroll-m-8 p-4 outline-none transition-colors duration-[var(--duration-fast)] focus:bg-foreground/4 focus-within:bg-foreground/4"
       >
-        <FieldContent>
-          <FieldLabel id={ids.label} htmlFor={ids.control} className="leading-snug">
-            {setting.title}
-          </FieldLabel>
-          {setting.description ? <FieldDescription id={ids.description}>{setting.description}</FieldDescription> : null}
-        </FieldContent>
-        <div className="flex shrink-0 items-center">{setting.renderControl(controlProps)}</div>
-      </Field>
+        <Field orientation="responsive" className="gap-3">
+          <FieldContent>
+            <FieldLabel id={ids.label} htmlFor={ids.control}>
+              {setting.title}
+            </FieldLabel>
+            {setting.description ? <FieldDescription id={ids.description}>{setting.description}</FieldDescription> : null}
+          </FieldContent>
+          <div className="flex shrink-0 items-center">{setting.renderControl(controlProps)}</div>
+        </Field>
+      </div>
     </>
   );
 }
 
 function SettingsEmpty({ title, description, action }: { title: string; description: string; action?: ReactNode }) {
   return (
-    <Empty className="min-h-40 gap-3 p-4">
+    <Empty className="min-h-40">
       <EmptyHeader>
-        <EmptyMedia className="mb-0 size-8">
+        <EmptyMedia>
           <SearchIcon className="size-4" aria-hidden="true" />
         </EmptyMedia>
         <EmptyTitle>{title}</EmptyTitle>

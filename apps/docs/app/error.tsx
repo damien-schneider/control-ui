@@ -30,7 +30,7 @@ export default function DocsError({ error, reset }: { error: Error & { digest?: 
         </ButtonLink>
       </EmptyContent>
       {error.digest ? (
-        <Text as="p" size="caption" tone="muted" className="font-mono">
+        <Text as="p" size="caption" tone="muted" mono>
           Reference {error.digest}
         </Text>
       ) : null}

@@ -2,6 +2,7 @@
   :where([data-control-family="collapsible"][data-slot="root"]) {
     --cui-collapsible-trigger-radius: var(--radius-control);
     --cui-collapsible-trigger-hover-background: var(--hover-fill);
+    --cui-collapsible-trigger-padding-inline: calc(var(--spacing) * 2);
   }
 
   :where([data-control-family="collapsible"][data-slot="trigger"]) {
@@ -11,7 +12,7 @@
     align-items: center;
     gap: calc(var(--spacing) * 2);
     border-radius: var(--cui-collapsible-trigger-radius);
-    padding-inline: calc(var(--spacing) * 2);
+    padding-inline: var(--cui-collapsible-trigger-padding-inline);
     color: var(--foreground);
     font-size: var(--text-label);
     font-weight: var(--font-weight-medium);
@@ -78,4 +79,10 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-collapsible-trigger-padding-inline {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }

@@ -49,14 +49,20 @@ export function SerializeExample() {
           <Text as="figcaption" size="micro" tone="muted">
             Live serialized text (editor value)
           </Text>
-          <pre className="min-h-16 overflow-x-auto rounded-lg border bg-muted/40 p-3 text-label leading-5">{value || "…"}</pre>
+          <pre className="min-h-16 overflow-x-auto rounded-lg border bg-muted/40 p-3">
+            <Text as="code" size="label" className="block">
+              {value || "…"}
+            </Text>
+          </pre>
         </figure>
         <figure className="grid gap-1">
           <Text as="figcaption" size="micro" tone="muted">
             Last submitted payload
           </Text>
-          <pre className="min-h-16 overflow-x-auto rounded-lg border bg-muted/40 p-3 text-label leading-5">
-            {submitted ? JSON.stringify(submitted, null, 2) : "Press Serialize to capture { text, mentions }"}
+          <pre className="min-h-16 overflow-x-auto rounded-lg border bg-muted/40 p-3">
+            <Text as="code" size="label" className="block">
+              {submitted ? JSON.stringify(submitted, null, 2) : "Press Serialize to capture { text, mentions }"}
+            </Text>
           </pre>
         </figure>
       </div>

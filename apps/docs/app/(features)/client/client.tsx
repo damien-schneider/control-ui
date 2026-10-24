@@ -28,7 +28,16 @@ import { DocsSidebarContent } from "@/app/(features)/sidebar/sidebar";
 import { ControlEffectsRuntime } from "@/components/control-ui/extensions/control-effects-root";
 import { cn } from "@/components/control-ui/lib/cn";
 import { AppShell, AppShellContent } from "@/components/control-ui/ui/app-shell";
-import { PageActions, PageBody, PageHeader, PageLayout, type PageWidth, usePageScroll } from "@/components/control-ui/ui/page-layout";
+import {
+  PageActions,
+  PageBody,
+  PageHeader,
+  PageLayout,
+  type PageLayoutProps,
+  type PageScrollMode,
+  type PageWidth,
+  usePageScroll,
+} from "@/components/control-ui/ui/page-layout";
 import { SidebarMobileNav, SidebarMobileTrigger, SidebarTrigger } from "@/components/control-ui/ui/sidebar";
 import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
 import { isThemeCategoryPath, SKIN_CATEGORY, THEME_EDITOR_PATH, themeCategoryForPath } from "@/components/theme-drawer/theme-categories";
@@ -59,6 +68,15 @@ type DocsShellContentProps = DocsShellViewProps &
 function normalizePathname(pathname: string) {
   const withoutTrailingSlash = pathname.replace(/\/+$/, "");
   return withoutTrailingSlash || "/";
+}
+
+const contentLeadBelowShellButtons = "calc(var(--control-h-sm) + 1rem)";
+
+function docsPageStyle(skinScroll: PageScrollMode, widensAside: boolean): PageLayoutProps["style"] {
+  return {
+    "--cui-page-layout-padding-block": `${skinScroll === "page" ? "4rem" : contentLeadBelowShellButtons} 6rem`,
+    ...(widensAside ? { "--cui-page-layout-aside-size": "21rem" } : {}),
+  };
 }
 
 function activePageForPathname(pathname: string, searchItems: SearchItem[]): ActivePageId | undefined {
@@ -190,7 +208,6 @@ function DocsShellContent({
     <AppShell
       scroll={scroll}
       data-docs-shell=""
-      className="bg-canvas text-foreground"
       open={sidebarOpen}
       onOpenChange={onSidebarOpenChange}
       width={sidebarWidth}
@@ -213,7 +230,7 @@ function DocsShellContent({
           skinPages={skinPages}
           searchItems={searchItems}
         />
-        <AppShellContent data-docs-inset="" className="min-h-0 lg:peer-data-[state=collapsed]:[&_[data-docs-sidebar-trigger]]:flex">
+        <AppShellContent data-docs-inset="" className="min-h-0">
           <div
             data-docs-content=""
             data-surface="panel"
@@ -222,7 +239,7 @@ function DocsShellContent({
             <div
               data-docs-sidebar-trigger=""
               className={cn(
-                "pointer-events-none inset-x-0 top-0 z-20 mx-auto flex w-full max-w-7xl justify-start px-2 pt-3 lg:hidden lg:peer-data-[state=collapsed]:flex",
+                "pointer-events-none inset-x-0 top-0 z-20 mx-auto w-full max-w-7xl justify-start px-2 pt-3",
                 scrollsPage ? "fixed" : "absolute",
               )}
             >
@@ -230,7 +247,7 @@ function DocsShellContent({
             </div>
             <PageLayout
               width={pageWidth}
-              style={themeEditorCategory && themeEditorCategory !== SKIN_CATEGORY ? { "--cui-page-layout-aside-size": "21rem" } : undefined}
+              style={docsPageStyle(skinScroll, Boolean(themeEditorCategory && themeEditorCategory !== SKIN_CATEGORY))}
             >
               <PageHeader variant="floating">
                 <PageActions>
@@ -240,11 +257,13 @@ function DocsShellContent({
               {activePage ? (
                 <PageBody
                   aside={
-                    themeEditorCategory ? (
-                      <ThemeEditorAside category={themeEditorCategory} />
-                    ) : (
-                      <TableOfContents items={links} className="top-12" />
-                    )
+                    <div className="h-full py-12">
+                      {themeEditorCategory ? (
+                        <ThemeEditorAside category={themeEditorCategory} />
+                      ) : (
+                        <TableOfContents items={links} className="top-12" />
+                      )}
+                    </div>
                   }
                 >
                   {pageContent}

@@ -11,6 +11,7 @@ export const pageLayoutKnobs = [
   "--cui-page-layout-header-row-gap",
   "--cui-page-layout-size",
   "--cui-page-layout-sticky-gap",
+  "--cui-page-layout-floating-inset",
   "--cui-page-layout-background",
   "--cui-page-layout-sticky-header-background",
   "--cui-page-layout-sticky-header-backdrop-filter",

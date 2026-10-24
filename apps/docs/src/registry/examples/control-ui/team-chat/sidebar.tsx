@@ -27,7 +27,7 @@ function unreadLabel(count: number) {
 export function TeamChatSidebar({ activeId, onSelect }: { activeId: string; onSelect: (id: string) => void }) {
   return (
     <Sidebar collapsible="offcanvas">
-      <SidebarHeader divider className="flex-row items-center justify-between gap-2 p-3">
+      <SidebarHeader divider className="flex-row items-center justify-between gap-2">
         <Text size="label" weight="semibold" className="truncate">
           Northwind
         </Text>
@@ -81,7 +81,7 @@ export function TeamChatSidebar({ activeId, onSelect }: { activeId: string; onSe
               return (
                 <SidebarMenuItem key={personId}>
                   <SidebarMenuButton isActive={personId === activeId} onClick={() => onSelect(personId)}>
-                    <PersonAvatar person={person} className="size-5 text-micro" />
+                    <PersonAvatar person={person} size="sm" />
                     <span className={unread > 0 ? "font-semibold text-sidebar-foreground" : undefined}>{person.name}</span>
                   </SidebarMenuButton>
                   {unread > 0 ? (

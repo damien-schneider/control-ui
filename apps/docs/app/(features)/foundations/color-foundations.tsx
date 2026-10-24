@@ -41,14 +41,12 @@ function SurfaceSwatch({ role }: { role: string }) {
   const foreground = pairedForegrounds[0] ?? "--foreground";
   return (
     <Specimen token={role} companionTokens={pairedForegrounds} description={contractDescription(role)}>
-      <Text
-        as="div"
-        size="heading-3"
+      <div
         className="grid h-20 place-items-center rounded-[var(--radius-panel)] ring-1 ring-inset ring-border"
         style={{ background: `var(${role})`, color: `var(${foreground})` }}
       >
-        Aa
-      </Text>
+        <Text size="heading-3">Aa</Text>
+      </div>
     </Specimen>
   );
 }
@@ -56,14 +54,11 @@ function SurfaceSwatch({ role }: { role: string }) {
 function TextSwatch({ role }: { role: string }) {
   return (
     <Specimen token={role} description={contractDescription(role)}>
-      <Text
-        as="p"
-        size="body-lg"
-        className="rounded-[var(--radius-panel)] bg-background px-4 py-3 ring-1 ring-inset ring-border"
-        style={{ color: `var(${role})` }}
-      >
-        The quick brown fox
-      </Text>
+      <div className="rounded-[var(--radius-panel)] bg-background px-4 py-3 ring-1 ring-inset ring-border">
+        <Text as="p" size="body-lg" style={{ color: `var(${role})` }}>
+          The quick brown fox
+        </Text>
+      </div>
     </Specimen>
   );
 }
@@ -111,26 +106,22 @@ function RampTable() {
       <div className={RAMP_GRID_COLUMNS}>
         <span />
         {STEP_PURPOSES.map(({ span, purpose }) => (
-          <Text
-            key={purpose}
-            size="micro"
-            tone="muted"
-            className="truncate border-b border-border pb-1 text-center"
-            style={{ gridColumn: `span ${span}` }}
-          >
-            {purpose}
-          </Text>
+          <div key={purpose} className="border-b border-border pb-1" style={{ gridColumn: `span ${span}` }}>
+            <Text size="micro" tone="muted" className="block truncate text-center">
+              {purpose}
+            </Text>
+          </div>
         ))}
         <span />
         {RAMP_STEPS.map((step) => (
-          <Text key={step} size="micro" tone="muted" className="text-center font-mono tabular-nums">
+          <Text key={step} size="micro" tone="muted" mono numeric className="text-center">
             {step}
           </Text>
         ))}
       </div>
       {COLOR_RAMPS.map((ramp) => (
         <div key={ramp} className={RAMP_GRID_COLUMNS}>
-          <Text size="micro" tone="foreground" className="self-center truncate font-mono">
+          <Text size="micro" tone="foreground" mono className="self-center truncate">
             {ramp}
           </Text>
           {RAMP_STEPS.map((step) => (

@@ -3,7 +3,7 @@ import type { DropzoneVisualState } from "../../src/registry/hooks/use-dropzone"
 import type { DynamicNotificationVariant } from "../../src/registry/hooks/use-dynamic-notification";
 import type { CodeDiffLineType } from "../../src/registry/lib/diff";
 import type { SidebarLayout } from "../../src/registry/skin";
-import type { ActivityDetailFormat, ActivityKind, ActivityState } from "../../src/registry/sources/control-ui/activity";
+import type { ActivityDetailFormat, ActivityDetailTone, ActivityKind, ActivityState } from "../../src/registry/sources/control-ui/activity";
 import type { AudioDevicePermission } from "../../src/registry/sources/control-ui/audio-device-select";
 import type { BarAudioVisualizerProps } from "../../src/registry/sources/control-ui/audio-visualizer-bar";
 import type { ChatLayoutChrome } from "../../src/registry/sources/control-ui/chat-layout";
@@ -19,7 +19,7 @@ import type { AlertVariant } from "../../src/registry/sources/control-ui/ui/aler
 import type { AvatarBadgeStatus } from "../../src/registry/sources/control-ui/ui/avatar";
 import type { BadgeColor, BadgeSize, BadgeVariant } from "../../src/registry/sources/control-ui/ui/badge";
 import type { ButtonLayout, ButtonShape, ButtonTone, ButtonVariant } from "../../src/registry/sources/control-ui/ui/button";
-import type { CardVariant } from "../../src/registry/sources/control-ui/ui/card";
+import type { CardSize, CardVariant } from "../../src/registry/sources/control-ui/ui/card";
 import type { ChannelStripVariant } from "../../src/registry/sources/control-ui/ui/channel-strip";
 import type { ChartFill } from "../../src/registry/sources/control-ui/ui/chart-series";
 import type { CodeChrome, CodeDensity } from "../../src/registry/sources/control-ui/ui/code";
@@ -37,7 +37,7 @@ import type { DropzoneOverlayScope } from "../../src/registry/sources/control-ui
 import type { FieldGroupVariant, FieldLegendVariant } from "../../src/registry/sources/control-ui/ui/field";
 import type { KbdVariant } from "../../src/registry/sources/control-ui/ui/kbd";
 import type { LevelMeterOrientation } from "../../src/registry/sources/control-ui/ui/level-meter";
-import type { MorphingPanelAnchor } from "../../src/registry/sources/control-ui/ui/morphing-panel";
+import type { MorphingPanelAnchor, MorphingPanelBodyPadding } from "../../src/registry/sources/control-ui/ui/morphing-panel";
 import type { NavigationMenuLinkVariant } from "../../src/registry/sources/control-ui/ui/navigation-menu";
 import type { PageHeaderVariant, PageScrollMode, PageWidth } from "../../src/registry/sources/control-ui/ui/page-layout";
 import type { PopoverContentPadding } from "../../src/registry/sources/control-ui/ui/popover";
@@ -79,6 +79,7 @@ export type EmittedStateContract = {
   "activity:root:data-activity-name": string;
   "activity:root:data-activity-state": ActivityState;
   "activity:detail-content:data-format": ActivityDetailFormat;
+  "activity:detail-content:data-tone": ActivityDetailTone;
   "activity:status:data-status": ActivityState;
   "activity:status:data-kind": ActivityKind;
   "avatar:badge:data-status": AvatarBadgeStatus;
@@ -112,6 +113,7 @@ export type EmittedStateContract = {
   "button:root:data-shape": ButtonShape;
   "button:root:data-tone": ButtonTone;
   "button:root:data-variant": ButtonVariant;
+  "card:root:data-size": CardSize;
   "card:root:data-variant": CardVariant;
   "button-group:root:data-orientation": "horizontal" | "vertical";
   "button-group:root:data-track": HoverIndicator;
@@ -249,6 +251,7 @@ export type EmittedStateContract = {
   "toolbar:link:data-variant": ToolbarLinkVariant;
   "toolbar:root:data-variant": ToolbarVariant;
   "toolbar:root:data-chrome": ToolbarChrome;
+  "morphing-panel:body:data-padding": MorphingPanelBodyPadding;
   "morphing-panel:positioner:data-anchor": MorphingPanelAnchor;
   "morphing-panel:content:data-state": "open" | "closed";
   "morphing-panel:root:data-state": "open" | "closed";

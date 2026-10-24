@@ -40,7 +40,7 @@ export function CreateCommand() {
         />
         <Text id="project-name-hint" as="p" size="caption" tone="muted">
           Creates the folder{" "}
-          <Text as="code" size="caption" tone="foreground" className="font-mono">
+          <Text as="code" size="caption" tone="foreground" mono>
             {normalizedProjectName}
           </Text>
           .
@@ -76,7 +76,7 @@ export function CreateCommand() {
         <CodeSnippet code={command} highlight="none">
           <CodeCopy value={command} variant="solid" tone="primary" aria-label="Copy command" />
         </CodeSnippet>
-        <Text as="p" size="caption" tone="muted" className="leading-relaxed">
+        <Text as="p" size="caption" tone="muted">
           Dependencies install automatically. When Next.js is ready, open the Local URL printed in your terminal.
         </Text>
       </div>

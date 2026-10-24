@@ -42,9 +42,11 @@ export function PrimitiveGradientEditorExample() {
           <GradientEditorStopAdd />
         </div>
       </GradientEditor>
-      <Text as="code" size="micro" tone="muted" className="truncate rounded-[var(--radius-sm)] bg-foreground/4 px-2 py-1 font-mono">
-        {formatGradient(gradient)}
-      </Text>
+      <div className="rounded-[var(--radius-sm)] bg-foreground/4 px-2 py-1">
+        <Text as="code" size="micro" tone="muted" mono className="block truncate">
+          {formatGradient(gradient)}
+        </Text>
+      </div>
     </div>
   );
 }

@@ -116,7 +116,7 @@ export function DiscussionComposer({
           />
         )}
         {error ? (
-          <Text as="p" role="alert" className="px-3">
+          <Text as="p" role="alert" className="mx-3">
             {error}
           </Text>
         ) : null}

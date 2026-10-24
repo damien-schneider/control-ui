@@ -102,22 +102,18 @@ export function DocsSidebarContent({
   }
 
   return (
-    <Sidebar
-      mobileVariant="drawer"
-      collapsible={DOCS_SIDEBAR_COLLAPSIBLE}
-      className="group-data-[side=left]:border-r-0 group-data-[side=right]:border-l-0"
-    >
+    <Sidebar mobileVariant="drawer" collapsible={DOCS_SIDEBAR_COLLAPSIBLE}>
       <div data-docs-sidebar-navigation="" className="flex min-h-0 flex-1 flex-col p-2">
         <SidebarHeader className="gap-2">
           <div className="flex items-center justify-between gap-2">
             <div className="relative flex min-w-0 items-center">
               <Link href="/" onClick={closeSidebar} className="flex min-w-0 items-center gap-1.5">
                 <ControlUiLogo />
-                <Text size="heading-4" className="block truncate leading-none text-sidebar-foreground">
+                <Text size="heading-4" className="block truncate">
                   {siteConfig.name}
                 </Text>
               </Link>
-              <Badge size="sm" className="absolute -top-1 left-full ml-1">
+              <Badge size="sm" className="absolute -top-0.5 left-full ml-1">
                 alpha
               </Badge>
             </div>
@@ -177,7 +173,7 @@ export function DocsSidebarContent({
         <SidebarFooter>
           <div className="flex items-center justify-between gap-2">
             <ThemeModeSwitch />
-            <Text as="p" size="micro" tone="muted" className="text-right leading-none">
+            <Text as="p" size="micro" tone="muted" className="text-right">
               by{" "}
               <a
                 href={siteConfig.author.href}

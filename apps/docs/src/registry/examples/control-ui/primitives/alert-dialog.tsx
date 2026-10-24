@@ -12,6 +12,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/control-ui/ui/alert-dialog";
 import { Button } from "@/components/control-ui/ui/button";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function PrimitiveAlertDialogExample() {
   return (
@@ -32,9 +33,13 @@ export function PrimitiveAlertDialogExample() {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogBody>
-            <ul className="list-disc ps-5 text-body text-muted-foreground">
-              <li>3 production deployments</li>
-              <li>12 environment variables</li>
+            <ul className="list-disc ps-5">
+              <Text as="li" tone="muted">
+                3 production deployments
+              </Text>
+              <Text as="li" tone="muted">
+                12 environment variables
+              </Text>
             </ul>
           </AlertDialogBody>
           <AlertDialogFooter>

@@ -152,7 +152,7 @@ export function ThemeGeneration({ generation }: { generation: Generation }) {
             {generation.error ? (
               <ActivityDetail>
                 <ActivityDetailLabel>Error</ActivityDetailLabel>
-                <ActivityDetailContent className="text-destructive-text">{generation.error}</ActivityDetailContent>
+                <ActivityDetailContent tone="destructive">{generation.error}</ActivityDetailContent>
               </ActivityDetail>
             ) : null}
           </ActivityContent>

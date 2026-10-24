@@ -56,7 +56,9 @@ Explain the proposed changes before editing, then verify the theme in the applic
         </Text>
       ) : null}
       <details className="mt-3">
-        <summary className="cursor-pointer text-caption text-muted-foreground">Preview agent prompt</summary>
+        <summary className="cursor-pointer text-muted-foreground">
+          <Text size="caption">Preview agent prompt</Text>
+        </summary>
         <Code className="mt-3" overflow="wrap">
           <CodeContent code={prompt} lang="markdown" />
         </Code>

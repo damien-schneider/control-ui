@@ -12,6 +12,7 @@
     "chat-layout",
     "collapsible",
     "core",
+    "item",
     "sidebar",
     "typography"
   ],

@@ -105,7 +105,7 @@ export function ActivityExample() {
               MDN
             </SourceBadge>
           </div>
-          <Text as="p" size="label" tone="muted" className="leading-5">
+          <Text as="p" size="label" tone="muted">
             The shared activity anatomy owns disclosure and overflow. Source links stay inside the expanded content, never inside its
             button.
           </Text>

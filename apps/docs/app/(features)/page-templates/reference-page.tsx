@@ -3,7 +3,7 @@ import { referenceOverview } from "@/app/(features)/catalog/guides";
 import { docsPageForPath } from "@/app/(features)/catalog/pages";
 import { getDocsData } from "@/app/(features)/model/data";
 import { guideNavSections } from "@/app/(features)/sidebar/nav-items";
-import { Card } from "@/components/control-ui/ui/card";
+import { Item, ItemContent, ItemDescription, ItemTitle } from "@/components/control-ui/ui/item";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
 
 export function ReferencePage() {
@@ -34,16 +34,12 @@ export function ReferencePage() {
             <Heading level={2}>{section.title}</Heading>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
               {section.entries.map((entry) => (
-                <Link key={entry.id} href={entry.href} className="group block min-w-0">
-                  <Card className="h-full gap-1.5 px-4 py-3 transition-colors group-hover:bg-sidebar-accent">
-                    <Text size="label" weight="medium" className="group-hover:underline group-hover:underline-offset-4">
-                      {entry.name}
-                    </Text>
-                    <Text as="p" tone="muted" className="leading-6">
-                      {entry.summary}
-                    </Text>
-                  </Card>
-                </Link>
+                <Item key={entry.id} variant="outline" render={<Link href={entry.href} />} className="min-w-0">
+                  <ItemContent>
+                    <ItemTitle>{entry.name}</ItemTitle>
+                    <ItemDescription>{entry.summary}</ItemDescription>
+                  </ItemContent>
+                </Item>
               ))}
             </div>
           </section>

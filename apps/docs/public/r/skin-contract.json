@@ -608,6 +608,15 @@
                 "code",
                 "text"
               ]
+            },
+            {
+              "attribute": "data-tone",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "default",
+                "destructive"
+              ]
             }
           ]
         },
@@ -2297,6 +2306,15 @@
             "card"
           ],
           "states": [
+            {
+              "attribute": "data-size",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "default",
+                "sm"
+              ]
+            },
             {
               "attribute": "data-variant",
               "source": "control-ui",
@@ -11086,7 +11104,17 @@
           "registryItems": [
             "morphing-panel"
           ],
-          "states": []
+          "states": [
+            {
+              "attribute": "data-padding",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "default",
+                "none"
+              ]
+            }
+          ]
         },
         "content": {
           "family": "morphing-panel",
@@ -19546,6 +19574,12 @@
         "syntax": "<color>",
         "initialValue": "transparent",
         "defaultValue": "var(--hover-fill)"
+      },
+      {
+        "name": "--cui-collapsible-trigger-padding-inline",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 2)"
       }
     ],
     "color-picker": [
@@ -20146,6 +20180,12 @@
         "defaultValue": "400"
       },
       {
+        "name": "--cui-field-font-family",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "var(--font-body)"
+      },
+      {
         "name": "--cui-field-group-radius",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
@@ -20717,7 +20757,7 @@
         "name": "--cui-item-hover-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "transparent"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-item-hover-border-color",
@@ -20766,6 +20806,18 @@
         "syntax": "<number>",
         "initialValue": "1.5",
         "defaultValue": "var(--leading-relaxed)"
+      },
+      {
+        "name": "--cui-item-description-foreground",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--muted-foreground)"
+      },
+      {
+        "name": "--cui-item-media-foreground",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--muted-foreground)"
       }
     ],
     "kbd": [
@@ -21146,6 +21198,12 @@
         "syntax": "<length-percentage>",
         "initialValue": "0px",
         "defaultValue": "0px"
+      },
+      {
+        "name": "--cui-page-layout-floating-inset",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 2)"
       },
       {
         "name": "--cui-page-layout-background",

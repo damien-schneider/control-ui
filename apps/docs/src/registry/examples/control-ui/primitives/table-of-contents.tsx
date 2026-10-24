@@ -110,7 +110,7 @@ function PreviewSection({ section }: { section: ExampleSection }) {
   return (
     <section id={section.href.slice(1)} className="scroll-mt-4 pb-8 last:pb-24">
       <Heading level={section.level}>{section.label}</Heading>
-      <Text as="p" tone="muted" className="mt-2 leading-6">
+      <Text as="p" tone="muted" className="mt-2">
         {section.body}
       </Text>
       {section.children ? (

@@ -6,7 +6,7 @@ import { CodeBlock } from "@/app/(features)/components/source";
 import { guideCodeForKind, languageForGuideCode } from "@/app/(features)/model/registry";
 import type { GuideSection as GuideSectionData, IntegrationId } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
-import { Card } from "@/components/control-ui/ui/card";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
 import { MarkdownFlow } from "@/components/control-ui/ui/markdown";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
 import { IntegrationSelect, integrationChangesCode } from "./integration";
@@ -35,7 +35,9 @@ export function GuideSection({ id, title, children }: { id: string; title: strin
   return (
     <section id={id} className="min-w-0 scroll-mt-20">
       <Heading level={2}>{title}</Heading>
-      <MarkdownFlow className="mt-2 text-body leading-6 text-muted-foreground">{children}</MarkdownFlow>
+      <Text as="div" tone="muted" className="mt-2">
+        <MarkdownFlow>{children}</MarkdownFlow>
+      </Text>
     </section>
   );
 }
@@ -78,7 +80,7 @@ export function InstallPaths({ current }: { current: InstallPathId }) {
           </li>
         ))}
       </ul>
-      <Text as="p" tone="muted" className="mt-3 leading-6">
+      <Text as="p" tone="muted" className="mt-3">
         {installPaths[current].description}
       </Text>
     </nav>
@@ -87,13 +89,15 @@ export function InstallPaths({ current }: { current: InstallPathId }) {
 
 export function GuideCheck({ children }: { children: ReactNode }) {
   return (
-    <Card className="gap-1 px-4 py-3">
-      <Text size="caption" weight="medium" tone="primary">
-        What you should see now
-      </Text>
-      <Text as="div" tone="foreground" className="leading-6 [&>p]:text-pretty">
-        {children}
-      </Text>
+    <Card size="sm">
+      <CardContent className="grid gap-1">
+        <Text size="caption" weight="medium" tone="primary">
+          What you should see now
+        </Text>
+        <Text as="div" tone="foreground" className="text-pretty">
+          {children}
+        </Text>
+      </CardContent>
     </Card>
   );
 }
@@ -102,15 +106,16 @@ export function GuidePoints({ children }: { children: ReactNode }) {
   return <div className="grid divide-y divide-border/60 border-border/70 border-y">{children}</div>;
 }
 
-export function GuidePoint({ className, ...props }: ComponentProps<"div">) {
+export function GuidePoint({ className, children, ...props }: ComponentProps<"div">) {
   return (
-    <Text
-      as="div"
+    <div
       className={cn(
-        "relative py-3 pr-2 pl-5 leading-6 before:absolute before:top-[1.35rem] before:left-0 before:size-1.5 before:rounded-full before:bg-primary/70",
+        "relative py-3 pr-2 pl-5 before:absolute before:top-5 before:left-0 before:size-1.5 before:rounded-full before:bg-primary/70",
         className,
       )}
       {...props}
-    />
+    >
+      <Text as="div">{children}</Text>
+    </div>
   );
 }

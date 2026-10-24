@@ -40,7 +40,7 @@ export function PrimitiveLevelMeterExample() {
           <LevelMeterScale ticks={[0, -6, -12, -18, -24, -36, -48, -60]} />
         </LevelMeter>
       </div>
-      <LevelMeter aria-label="Program level" orientation="vertical" source={speechLikeVoice} className="h-40 py-1">
+      <LevelMeter aria-label="Program level" orientation="vertical" source={speechLikeVoice} className="h-40">
         <LevelMeterTrack>
           <LevelMeterBar />
           <LevelMeterPeak />

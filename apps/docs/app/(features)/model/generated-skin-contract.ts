@@ -327,6 +327,12 @@ export const generatedSkinContract: SkinContract = {
               valueKind: "enum",
               values: ["code", "text"],
             },
+            {
+              attribute: "data-tone",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["default", "destructive"],
+            },
           ],
         },
         "detail-label": {
@@ -1638,6 +1644,12 @@ export const generatedSkinContract: SkinContract = {
           family: "card",
           registryItems: ["card"],
           states: [
+            {
+              attribute: "data-size",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["default", "sm"],
+            },
             {
               attribute: "data-variant",
               source: "control-ui",
@@ -8472,7 +8484,14 @@ export const generatedSkinContract: SkinContract = {
         body: {
           family: "morphing-panel",
           registryItems: ["morphing-panel"],
-          states: [],
+          states: [
+            {
+              attribute: "data-padding",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["default", "none"],
+            },
+          ],
         },
         content: {
           family: "morphing-panel",
@@ -15490,6 +15509,12 @@ export const generatedSkinContract: SkinContract = {
         initialValue: "transparent",
         defaultValue: "var(--hover-fill)",
       },
+      {
+        name: "--cui-collapsible-trigger-padding-inline",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 2)",
+      },
     ],
     "color-picker": [
       {
@@ -16092,6 +16117,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "400",
       },
       {
+        name: "--cui-field-font-family",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "var(--font-body)",
+      },
+      {
         name: "--cui-field-group-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
@@ -16668,7 +16699,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-item-hover-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "transparent",
+        defaultValue: "var(--hover-fill)",
       },
       {
         name: "--cui-item-hover-border-color",
@@ -16717,6 +16748,18 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<number>",
         initialValue: "1.5",
         defaultValue: "var(--leading-relaxed)",
+      },
+      {
+        name: "--cui-item-description-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted-foreground)",
+      },
+      {
+        name: "--cui-item-media-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted-foreground)",
       },
     ],
     kbd: [
@@ -17097,6 +17140,12 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length-percentage>",
         initialValue: "0px",
         defaultValue: "0px",
+      },
+      {
+        name: "--cui-page-layout-floating-inset",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 2)",
       },
       {
         name: "--cui-page-layout-background",

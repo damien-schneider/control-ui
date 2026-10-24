@@ -22,6 +22,7 @@ import {
   FlowNodeBody,
   FlowNodeHeader,
 } from "@/components/control-ui/ui/flow";
+import { Text } from "@/components/control-ui/ui/typography";
 
 type StepNode = Node<{ title: string; detail: string }, "step">;
 
@@ -32,7 +33,11 @@ function StepNodeCard({ data, selected }: NodeProps<StepNode>) {
     <FlowNode selected={selected} className="w-52">
       <FlowHandle type="target" position={Position.Top} />
       <FlowNodeHeader>{data.title}</FlowNodeHeader>
-      <FlowNodeBody className="text-muted-foreground">{data.detail}</FlowNodeBody>
+      <FlowNodeBody>
+        <Text size="caption" tone="muted">
+          {data.detail}
+        </Text>
+      </FlowNodeBody>
       <FlowHandle type="source" position={Position.Bottom} />
     </FlowNode>
   );

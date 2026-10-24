@@ -1,6 +1,6 @@
 "use client";
 
-import { FileWarning } from "lucide-react";
+import { FileWarningIcon } from "lucide-react";
 import { useState } from "react";
 
 import {
@@ -35,6 +35,11 @@ const rejectionMessages: Partial<Record<string, string>> = {
   [DropzoneErrorCode.FileAlreadySelected]: "This file is already selected.",
 };
 
+const rejectedItemStyle = {
+  "--cui-item-media-foreground": "var(--destructive-text)",
+  "--cui-item-description-foreground": "var(--destructive-text)",
+};
+
 export function PrimitiveDropzoneExample() {
   const [files, setFiles] = useState<readonly File[]>([]);
 
@@ -47,16 +52,14 @@ export function PrimitiveDropzoneExample() {
       <DropzoneFileList />
       <DropzoneRejectionList>
         {(rejection) => (
-          <Item variant="muted">
-            <ItemMedia className="text-destructive-text">
-              <FileWarning aria-hidden="true" />
+          <Item variant="muted" style={rejectedItemStyle}>
+            <ItemMedia>
+              <FileWarningIcon aria-hidden="true" />
             </ItemMedia>
             <ItemContent>
-              <ItemTitle className="wrap-anywhere leading-normal">{rejection.file.name}</ItemTitle>
+              <ItemTitle className="wrap-anywhere">{rejection.file.name}</ItemTitle>
               {rejection.errors.map((error) => (
-                <ItemDescription key={`${error.code}-${error.message}`} className="text-destructive-text">
-                  {rejectionMessages[error.code] ?? error.message}
-                </ItemDescription>
+                <ItemDescription key={`${error.code}-${error.message}`}>{rejectionMessages[error.code] ?? error.message}</ItemDescription>
               ))}
             </ItemContent>
           </Item>

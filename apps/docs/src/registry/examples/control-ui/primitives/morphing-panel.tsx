@@ -78,98 +78,104 @@ export function PrimitiveMorphingPanelExample() {
             Canvas settings
           </Heading>
         </MorphingPanelHeader>
-        <MorphingPanelBody className="p-0">
+        <MorphingPanelBody padding="none">
           <Tabs value={section} onValueChange={setSection} className="h-full min-h-0">
             <TabsList size="xs" aria-label="Canvas settings" className="mx-4 grid w-auto shrink-0 grid-cols-3 gap-0">
-              <TabsTab value="dimensions" className="min-w-0 px-1">
+              <TabsTab value="dimensions" className="min-w-0">
                 Size
               </TabsTab>
-              <TabsTab value="aspect-ratio" className="min-w-0 px-1">
+              <TabsTab value="aspect-ratio" className="min-w-0">
                 Ratio
               </TabsTab>
-              <TabsTab value="prompt" className="min-w-0 px-1">
+              <TabsTab value="prompt" className="min-w-0">
                 Prompt
               </TabsTab>
             </TabsList>
-            <TabsPanel value="dimensions" className="min-h-0 flex-1 overflow-y-auto p-4">
-              <div className="grid gap-5">
-                <div className="grid gap-3">
-                  <div className="flex items-center justify-between gap-3">
-                    <Text size="caption">Width</Text>
-                    <Text size="caption" tone="muted">
-                      {width}px
-                    </Text>
-                  </div>
-                  <Slider
-                    label="Width"
-                    value={width}
-                    onValueChange={(value) => {
-                      setWidth(value);
-                      setSaved(false);
-                    }}
-                    min={640}
-                    max={1920}
-                    step={160}
-                    formatValue={(value) => `${value}px`}
-                  />
-                </div>
-                <div className="grid gap-3">
-                  <div className="flex items-center justify-between gap-3">
-                    <Text size="caption">Height</Text>
-                    <Text size="caption" tone="muted">
-                      {height}px
-                    </Text>
-                  </div>
-                  <Slider
-                    label="Height"
-                    value={height}
-                    onValueChange={(value) => {
-                      setHeight(value);
-                      setSaved(false);
-                    }}
-                    min={480}
-                    max={1080}
-                    step={120}
-                    formatValue={(value) => `${value}px`}
-                  />
-                </div>
-              </div>
-            </TabsPanel>
-            <TabsPanel value="aspect-ratio" className="min-h-0 flex-1 overflow-y-auto p-4">
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(5rem,1fr))] gap-1">
-                {ratios.map((item) => (
-                  <Button
-                    key={item.label}
-                    variant="quiet"
-                    size="sm"
-                    active={ratio === item.label}
-                    aria-pressed={ratio === item.label}
-                    onClick={() => {
-                      setRatio(item.label);
-                      setSaved(false);
-                    }}
-                    className="justify-start gap-2"
-                  >
-                    <span
-                      aria-hidden="true"
-                      style={{ aspectRatio: item.value }}
-                      className="w-3.5 rounded-[var(--radius-sm)] border border-current bg-current/8"
+            <TabsPanel value="dimensions" className="min-h-0 flex-1 overflow-y-auto">
+              <div className="p-4">
+                <div className="grid gap-5">
+                  <div className="grid gap-3">
+                    <div className="flex items-center justify-between gap-3">
+                      <Text size="caption">Width</Text>
+                      <Text size="caption" tone="muted">
+                        {width}px
+                      </Text>
+                    </div>
+                    <Slider
+                      label="Width"
+                      value={width}
+                      onValueChange={(value) => {
+                        setWidth(value);
+                        setSaved(false);
+                      }}
+                      min={640}
+                      max={1920}
+                      step={160}
+                      formatValue={(value) => `${value}px`}
                     />
-                    {item.label}
-                  </Button>
-                ))}
+                  </div>
+                  <div className="grid gap-3">
+                    <div className="flex items-center justify-between gap-3">
+                      <Text size="caption">Height</Text>
+                      <Text size="caption" tone="muted">
+                        {height}px
+                      </Text>
+                    </div>
+                    <Slider
+                      label="Height"
+                      value={height}
+                      onValueChange={(value) => {
+                        setHeight(value);
+                        setSaved(false);
+                      }}
+                      min={480}
+                      max={1080}
+                      step={120}
+                      formatValue={(value) => `${value}px`}
+                    />
+                  </div>
+                </div>
               </div>
             </TabsPanel>
-            <TabsPanel value="prompt" className="min-h-0 flex-1 overflow-y-auto p-4">
-              <Textarea
-                value={prompt}
-                onChange={(event) => {
-                  setPrompt(event.currentTarget.value);
-                  setSaved(false);
-                }}
-                aria-label="Style prompt"
-                className="h-full min-h-20 resize-none"
-              />
+            <TabsPanel value="aspect-ratio" className="min-h-0 flex-1 overflow-y-auto">
+              <div className="p-4">
+                <div className="grid grid-cols-[repeat(auto-fit,minmax(5rem,1fr))] gap-1">
+                  {ratios.map((item) => (
+                    <Button
+                      key={item.label}
+                      variant="quiet"
+                      size="sm"
+                      active={ratio === item.label}
+                      aria-pressed={ratio === item.label}
+                      onClick={() => {
+                        setRatio(item.label);
+                        setSaved(false);
+                      }}
+                      className="justify-start gap-2"
+                    >
+                      <span
+                        aria-hidden="true"
+                        style={{ aspectRatio: item.value }}
+                        className="w-3.5 rounded-[var(--radius-sm)] border border-current bg-current/8"
+                      />
+                      {item.label}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            </TabsPanel>
+            <TabsPanel value="prompt" className="min-h-0 flex-1 overflow-y-auto">
+              <div className="p-4">
+                <Textarea
+                  value={prompt}
+                  onChange={(event) => {
+                    setPrompt(event.currentTarget.value);
+                    setSaved(false);
+                  }}
+                  aria-label="Style prompt"
+                  className="h-full min-h-20 resize-none"
+                />
+              </div>
             </TabsPanel>
           </Tabs>
         </MorphingPanelBody>
@@ -233,8 +239,8 @@ export function PrimitiveMorphingPanelMenuExample() {
                 Your workspace
               </Heading>
             </MorphingPanelHeader>
-            <MorphingPanelBody className="grid content-start gap-1 px-2 pt-0">
-              <nav aria-label="Workspace" className="grid gap-1">
+            <MorphingPanelBody padding="none">
+              <nav aria-label="Workspace" className="grid gap-1 px-2 pb-4">
                 {workspaceItems.map(({ label, icon: Icon }) => (
                   <MorphingPanelClose
                     key={label}
@@ -315,7 +321,7 @@ export function PrimitiveMorphingPanelConfirmationExample() {
                 Save changes?
               </Heading>
             </MorphingPanelHeader>
-            <MorphingPanelBody className="pt-1">
+            <MorphingPanelBody>
               <Text as="p" tone="muted" id={descriptionId}>
                 Update the shared project with your latest settings. Everyone in your workspace will see the changes.
               </Text>

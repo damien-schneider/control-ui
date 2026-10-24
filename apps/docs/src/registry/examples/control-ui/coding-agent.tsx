@@ -173,20 +173,22 @@ export function CodingAgentExample() {
       onSubmit={submitPrompt}
     >
       <ChatComposerShell>
-        <Text as="div" size="caption" tone="muted" className="flex min-w-0 items-center gap-3 border-b border-border/60 px-3 py-2">
-          <span className="flex min-w-0 items-center gap-1.5">
-            <FolderIcon className="size-3.5 shrink-0" aria-hidden="true" />
-            <span className="truncate">control-ui</span>
-          </span>
-          <span className="flex items-center gap-1.5">
-            <CodeXmlIcon className="size-3.5" aria-hidden="true" />
-            Local
-          </span>
-          <span className="flex min-w-0 items-center gap-1.5">
-            <GitBranchIcon className="size-3.5 shrink-0" aria-hidden="true" />
-            <span className="truncate">feat/coding-agent-block</span>
-          </span>
-        </Text>
+        <div className="border-b border-border/60 px-3 py-2">
+          <Text as="div" size="caption" tone="muted" className="flex min-w-0 items-center gap-3">
+            <span className="flex min-w-0 items-center gap-1.5">
+              <FolderIcon className="size-3.5 shrink-0" aria-hidden="true" />
+              <span className="truncate">control-ui</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <CodeXmlIcon className="size-3.5" aria-hidden="true" />
+              Local
+            </span>
+            <span className="flex min-w-0 items-center gap-1.5">
+              <GitBranchIcon className="size-3.5 shrink-0" aria-hidden="true" />
+              <span className="truncate">feat/coding-agent-block</span>
+            </span>
+          </Text>
+        </div>
         <ChatComposerTextarea className="min-h-18" placeholder="Do anything" />
         <ChatComposerToolbar>
           <ChatComposerTools>
@@ -245,7 +247,7 @@ function ActiveTask({ prompt, isRunning }: { prompt: string; isRunning: boolean 
     <>
       <ChatTurn from="user">
         <ChatMessage from="user" density="compact">
-          <ChatMessageRow className="py-0">
+          <ChatMessageRow>
             <ChatMessageBody className="max-w-[min(85%,38rem)]">
               <ChatMessageContent>{prompt}</ChatMessageContent>
             </ChatMessageBody>
@@ -254,7 +256,7 @@ function ActiveTask({ prompt, isRunning }: { prompt: string; isRunning: boolean 
       </ChatTurn>
       <ChatTurn from="assistant">
         <Activity state={isRunning ? "running" : "success"} className="my-0">
-          <ActivityRow className="px-0">
+          <ActivityRow>
             <ActivityIcon />
             <ActivityTitle>{isRunning ? "Thinking" : "Ready"}</ActivityTitle>
             <ActivityStatus className="sr-only" />
@@ -262,7 +264,7 @@ function ActiveTask({ prompt, isRunning }: { prompt: string; isRunning: boolean 
         </Activity>
         {!isRunning ? (
           <ChatMessage from="assistant" density="compact">
-            <ChatMessageRow className="py-0">
+            <ChatMessageRow>
               <ChatMessageBody className="max-w-full flex-1">
                 <ChatMessageContent>The workspace shell is ready. Choose another task or send a follow-up to continue.</ChatMessageContent>
               </ChatMessageBody>

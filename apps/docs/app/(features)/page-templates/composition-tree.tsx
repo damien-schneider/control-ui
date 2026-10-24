@@ -4,7 +4,7 @@ import { Text } from "@/components/control-ui/ui/typography";
 const TREE_HOVER =
   "[&:has(span[data-tag]:hover)_li:not(:has(>span[data-tag]:hover))>span[data-tag]]:opacity-30 [&_span[data-tag]]:transition-[opacity,background-color] [&_span[data-tag]]:duration-[var(--duration-fast)]";
 const ROW_PAIR = "has-[>span[data-tag]:hover]:[&>span[data-tag]]:bg-foreground/10";
-const TAG = "-mx-1 w-fit rounded px-1";
+const TAG = "-mx-1 w-fit rounded px-1 leading-7";
 const NESTED_ROW =
   "relative grid pl-3 before:absolute before:top-0 before:bottom-0 before:left-0 before:w-px before:bg-border last:before:bottom-auto last:before:h-[0.95rem] after:absolute after:top-[0.95rem] after:left-0 after:w-3 after:border-border after:border-t";
 
@@ -32,21 +32,21 @@ function TreeNode({ node, owned, nested = false }: { node: CompositionNode; owne
   return (
     <li className={nested ? `${NESTED_ROW} ${ROW_PAIR}` : `grid ${ROW_PAIR}`}>
       {node.kind === "part" ? (
-        <Text size="label" data-tag="open" className={`${TAG} leading-7`}>
-          <Text size="label" tone="muted" className="opacity-60">
-            &lt;
+        <span data-tag="open" className={TAG}>
+          <Text size="label" tone="muted">
+            <span className="opacity-60">&lt;</span>
+            <Text size="label" tone={isOwned ? "foreground" : "muted"}>
+              {node.name}
+            </Text>
+            <span className="opacity-60">{hasChildren ? ">" : " />"}</span>
           </Text>
-          <Text size="label" tone={isOwned ? "foreground" : "muted"}>
+        </span>
+      ) : (
+        <span className={TAG}>
+          <Text size="label" tone="muted">
             {node.name}
           </Text>
-          <Text size="label" tone="muted" className="opacity-60">
-            {hasChildren ? ">" : " />"}
-          </Text>
-        </Text>
-      ) : (
-        <Text size="label" tone="muted" className={`${TAG} leading-7`}>
-          {node.name}
-        </Text>
+        </span>
       )}
       {hasChildren ? (
         <>
@@ -56,9 +56,9 @@ function TreeNode({ node, owned, nested = false }: { node: CompositionNode; owne
             ))}
           </ul>
           {node.kind === "part" ? (
-            <Text size="label" tone="muted" data-tag="close" className={`${TAG} leading-7`}>
-              {`</${node.name}>`}
-            </Text>
+            <span data-tag="close" className={TAG}>
+              <Text size="label" tone="muted">{`</${node.name}>`}</Text>
+            </span>
           ) : null}
         </>
       ) : null}

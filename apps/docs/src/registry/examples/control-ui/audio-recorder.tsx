@@ -54,14 +54,11 @@ export function AudioRecorderExample() {
       </AudioRecorder>
 
       {recording ? (
-        <Text
-          as="div"
-          size="caption"
-          tone="muted"
-          className="translate-x-0 rounded-field border border-border/70 bg-card px-3 py-2 opacity-100 blur-none shadow-sm transition-[opacity,filter,translate] duration-[var(--duration-base)] ease-[var(--ease-emphasized)] starting:translate-x-1 starting:opacity-0 starting:blur-xs"
-        >
-          Voice attachment / {formatAudioRecorderDuration(recording.durationMs)} / {recording.mimeType}
-        </Text>
+        <div className="translate-x-0 rounded-field border border-border/70 bg-card px-3 py-2 opacity-100 blur-none shadow-sm transition-[opacity,filter,translate] duration-[var(--duration-base)] ease-[var(--ease-emphasized)] starting:translate-x-1 starting:opacity-0 starting:blur-xs">
+          <Text as="p" size="caption" tone="muted">
+            Voice attachment / {formatAudioRecorderDuration(recording.durationMs)} / {recording.mimeType}
+          </Text>
+        </div>
       ) : null}
     </div>
   );

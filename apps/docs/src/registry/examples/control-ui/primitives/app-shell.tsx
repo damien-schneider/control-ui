@@ -24,9 +24,9 @@ export function PrimitiveAppShellExample() {
     <AppShell layout="contained" scroll="inset" persistOpen={false} keyboardShortcut={null}>
       <Sidebar collapsible="icon">
         <SidebarHeader>
-          <Text weight="medium" className="truncate p-2 group-data-[collapsible=icon]:hidden">
-            Sidebar
-          </Text>
+          <div className="truncate p-2 group-data-[collapsible=icon]:hidden">
+            <Text weight="medium">Sidebar</Text>
+          </div>
         </SidebarHeader>
         <SidebarContent>
           <SidebarMenu>
@@ -49,7 +49,7 @@ export function PrimitiveAppShellExample() {
       <AppShellContent>
         <AppShellHeader>
           <SidebarTrigger />
-          <Text size="label" className="min-w-0 flex-1 truncate font-mono">
+          <Text size="label" mono className="min-w-0 flex-1 truncate">
             AppShellHeader
           </Text>
           <Button size="sm" onClick={() => setLoading(!loading)}>

@@ -180,7 +180,7 @@ export function FileExplorerBlock({
       persistOpen={persistOpen}
       keyboardShortcut={keyboardShortcut}
       surface="background"
-      className={cn("text-foreground", !contained && "h-svh overflow-hidden", className)}
+      className={cn(!contained && "h-svh overflow-hidden", className)}
       style={providerStyle}
       {...props}
     >
@@ -277,7 +277,7 @@ function FileExplorerSidebar({
 
   return (
     <Sidebar collapsible="offcanvas">
-      {sidebarTop ? <SidebarHeader className="min-h-11 justify-center px-3">{sidebarTop}</SidebarHeader> : null}
+      {sidebarTop ? <SidebarHeader className="min-h-11 justify-center">{sidebarTop}</SidebarHeader> : null}
       <SidebarContent>
         {groups.map((group) => (
           <SidebarGroup key={group.label || "locations"}>
@@ -378,7 +378,7 @@ function FileExplorerHeader({
         ) : null}
         {searchPlaceholder ? (
           <InputGroup size="sm" className="flex-[0_1_9rem] @xl/explorer:flex-[0_0_12rem]">
-            <InputGroupAddon className="ps-2">
+            <InputGroupAddon>
               <SearchIcon className="size-3.5" aria-hidden="true" />
             </InputGroupAddon>
             <Input
@@ -560,7 +560,7 @@ function FileExplorerColumns({
                   <span className="truncate">{parentColumn.label}</span>
                 </Button>
               ) : (
-                <Text size="label" weight="medium" className="min-w-0 truncate px-1">
+                <Text size="label" weight="medium" className="mx-1 min-w-0 truncate">
                   {activeColumn?.label}
                 </Text>
               )}
@@ -573,7 +573,17 @@ function FileExplorerColumns({
                     <DrawerBody>
                       <FileExplorerPreviewContent
                         entry={selectedEntry}
-                        title={<DrawerTitle className="mt-4 max-w-full truncate text-heading-4">{selectedEntry.name}</DrawerTitle>}
+                        title={
+                          <DrawerTitle
+                            className="mt-4 max-w-full truncate"
+                            style={{
+                              "--cui-popup-title-font-size": "var(--text-heading-4)",
+                              "--cui-popup-title-line-height": "var(--text-heading-4--line-height)",
+                            }}
+                          >
+                            {selectedEntry.name}
+                          </DrawerTitle>
+                        }
                       />
                     </DrawerBody>
                   ) : null}
@@ -649,7 +659,7 @@ function FileExplorerColumnView({
 
   if (column.entries.length === 0) {
     return (
-      <Empty className="h-full rounded-none">
+      <Empty className="h-full" style={{ "--cui-empty-radius": "0px" }}>
         <EmptyHeader>
           <EmptyMedia>
             <FolderIcon />
@@ -678,7 +688,7 @@ function FileExplorerColumnView({
                 variant="quiet"
                 size="sm"
                 active={isSelected}
-                className="w-full justify-start gap-2 px-2 text-start"
+                className="w-full justify-start gap-2 text-start"
                 title={entry.name}
                 onClick={() => onSelect(entry)}
                 onDoubleClick={() => onOpen(entry)}
@@ -697,7 +707,7 @@ function FileExplorerColumnView({
           return group.label ? (
             // biome-ignore lint/a11y/useSemanticElements: WAI-ARIA listbox groups options with role="group"; a fieldset is not a valid listbox child.
             <div key={group.label} role="group" aria-labelledby={labelId} className="grid min-w-0 gap-0.5">
-              <Text role="presentation" id={labelId} as="div" size="caption" weight="semibold" tone="muted" className="mb-1 px-2">
+              <Text role="presentation" id={labelId} as="div" size="caption" weight="semibold" tone="muted" className="mx-2 mb-1">
                 {group.label}
               </Text>
               {options}
@@ -716,7 +726,7 @@ function FileExplorerColumnView({
 function FileExplorerPreview({ entry, headingLevel }: { entry?: FileExplorerEntry; headingLevel: HeadingLevel }) {
   if (!entry) {
     return (
-      <Empty className="h-full rounded-none">
+      <Empty className="h-full" style={{ "--cui-empty-radius": "0px" }}>
         <EmptyHeader>
           <EmptyMedia>
             <FileIcon />
@@ -756,11 +766,15 @@ function FileExplorerPreviewContent({ entry, title, className }: { entry: FileEx
         </Text>
       ) : null}
       {entry.details && entry.details.length > 0 ? (
-        <dl className="mt-6 grid w-full grid-cols-[auto_1fr] gap-x-4 gap-y-2 border-t border-border/70 pt-4 text-start text-caption">
+        <dl className="mt-6 grid w-full grid-cols-[auto_1fr] gap-x-4 gap-y-2 border-t border-border/70 pt-4 text-start">
           {entry.details.map((detail) => (
             <div key={detail.label} className="contents">
-              <dt className="text-muted-foreground">{detail.label}</dt>
-              <dd className="min-w-0 truncate text-end text-foreground">{detail.value}</dd>
+              <Text as="dt" size="caption" tone="muted">
+                {detail.label}
+              </Text>
+              <Text as="dd" size="caption" tone="foreground" className="min-w-0 truncate text-end">
+                {detail.value}
+              </Text>
             </div>
           ))}
         </dl>
@@ -793,7 +807,7 @@ function FileExplorerSearchResults({
 
   if (results.length === 0) {
     return (
-      <Empty className="h-full rounded-none">
+      <Empty className="h-full" style={{ "--cui-empty-radius": "0px" }}>
         <EmptyHeader>
           <EmptyMedia>
             <SearchIcon />
@@ -827,7 +841,7 @@ function FileExplorerSearchResults({
   return (
     <ScrollArea className="h-full" lockAxis="x">
       <div className="mx-auto grid w-full max-w-3xl gap-1 p-4">
-        <Text as="div" size="caption" tone="muted" className="mb-2 px-2 tabular-nums">
+        <Text as="div" size="caption" tone="muted" numeric className="mx-2 mb-2">
           {status}
         </Text>
         <div role="listbox" aria-label={label} className="grid gap-1">
@@ -842,7 +856,7 @@ function FileExplorerSearchResults({
               tabIndex={index === tabStop ? 0 : -1}
               variant="quiet"
               size="lg"
-              className="h-auto w-full justify-start gap-3 px-3 py-2 text-start"
+              className="h-auto min-h-12 w-full justify-start gap-3 text-start"
               onClick={() => onSelect(result)}
               onDoubleClick={() => onOpen(result.entry, result.path)}
               onFocus={() => setActiveIndex(index)}
@@ -879,13 +893,13 @@ function FileExplorerStatusBar({
   const itemLabel = itemCount === 1 ? "1 item" : `${itemCount} items`;
 
   return (
-    <footer className="flex h-8 shrink-0 items-center gap-3 border-t border-border/70 px-3 text-micro text-muted-foreground">
-      <span className="min-w-0 flex-1 truncate" title={path}>
+    <footer className="flex h-8 shrink-0 items-center gap-3 border-t border-border/70 px-3">
+      <Text size="micro" tone="muted" className="min-w-0 flex-1 truncate" title={path}>
         {path}
-      </span>
-      <span className="shrink-0 tabular-nums">
+      </Text>
+      <Text size="micro" tone="muted" numeric className="shrink-0">
         {selectedEntry?.kind === "folder" ? itemLabel : (selectedEntry?.name ?? "No selection")}
-      </span>
+      </Text>
     </footer>
   );
 }
@@ -898,33 +912,35 @@ function FileExplorerAddressBar({
   onSelect: (breadcrumb: FileExplorerBreadcrumb) => void;
 }) {
   return (
-    <Breadcrumb aria-label="Current folder" className="min-w-0 overflow-hidden px-1">
-      <BreadcrumbList className="min-w-0 flex-nowrap overflow-hidden">
-        {breadcrumbs.map((breadcrumb, index) => {
-          const isCurrent = index === breadcrumbs.length - 1;
-          return (
-            <Fragment key={`${breadcrumb.id}:${breadcrumb.path.join("/")}`}>
-              {index > 0 ? <BreadcrumbSeparator /> : null}
-              <BreadcrumbItem className="min-w-0">
-                {isCurrent ? (
-                  <BreadcrumbPage className="min-w-0 truncate" title={breadcrumb.label}>
-                    {breadcrumb.label}
-                  </BreadcrumbPage>
-                ) : (
-                  <BreadcrumbLink
-                    render={<button type="button" />}
-                    className="min-w-0 truncate"
-                    title={breadcrumb.label}
-                    onClick={() => onSelect(breadcrumb)}
-                  >
-                    {breadcrumb.label}
-                  </BreadcrumbLink>
-                )}
-              </BreadcrumbItem>
-            </Fragment>
-          );
-        })}
-      </BreadcrumbList>
-    </Breadcrumb>
+    <div className="min-w-0 overflow-hidden px-1">
+      <Breadcrumb aria-label="Current folder" className="min-w-0">
+        <BreadcrumbList className="min-w-0 flex-nowrap overflow-hidden">
+          {breadcrumbs.map((breadcrumb, index) => {
+            const isCurrent = index === breadcrumbs.length - 1;
+            return (
+              <Fragment key={`${breadcrumb.id}:${breadcrumb.path.join("/")}`}>
+                {index > 0 ? <BreadcrumbSeparator /> : null}
+                <BreadcrumbItem className="min-w-0">
+                  {isCurrent ? (
+                    <BreadcrumbPage className="min-w-0 truncate" title={breadcrumb.label}>
+                      {breadcrumb.label}
+                    </BreadcrumbPage>
+                  ) : (
+                    <BreadcrumbLink
+                      render={<button type="button" />}
+                      className="min-w-0 truncate"
+                      title={breadcrumb.label}
+                      onClick={() => onSelect(breadcrumb)}
+                    >
+                      {breadcrumb.label}
+                    </BreadcrumbLink>
+                  )}
+                </BreadcrumbItem>
+              </Fragment>
+            );
+          })}
+        </BreadcrumbList>
+      </Breadcrumb>
+    </div>
   );
 }

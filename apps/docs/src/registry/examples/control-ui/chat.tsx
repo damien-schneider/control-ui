@@ -75,7 +75,7 @@ function renderMastraTurn(from: "user" | "assistant", children: ReactNode, state
   return (
     <ChatTurn from={from}>
       <ChatMessage from={from} density="compact" state={state}>
-        <ChatMessageRow className="py-0">
+        <ChatMessageRow>
           <ChatMessageBody className={from === "assistant" ? "max-w-full flex-1" : undefined}>
             <ChatMessageContent className={from === "assistant" ? "overflow-visible" : undefined}>{children}</ChatMessageContent>
           </ChatMessageBody>
@@ -108,7 +108,7 @@ function PreviewConversation() {
             </InlineAttachmentContent>
           </InlineAttachment>
           <ChatMessage from="user" density="compact">
-            <ChatMessageRow className="py-0">
+            <ChatMessageRow>
               <ChatMessageBody className="max-w-full">
                 <ChatMessageEditable value={prompt} onSave={setPrompt} />
               </ChatMessageBody>
@@ -128,7 +128,7 @@ function PreviewConversation() {
           </ActivityContent>
         </Activity>
         <ChatMessage from="assistant" density="compact">
-          <ChatMessageRow className="py-0">
+          <ChatMessageRow>
             <ChatMessageBody className="max-w-full flex-1">
               <ChatMessageContent className="overflow-visible">
                 <p>{assistantLead}</p>

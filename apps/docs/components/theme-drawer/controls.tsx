@@ -5,6 +5,7 @@ import { type ReactNode, useRef, useState } from "react";
 
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
+import { Input } from "@/components/control-ui/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/control-ui/ui/select";
 import { Slider as RangeSlider } from "@/components/control-ui/ui/slider";
 import { Text } from "@/components/control-ui/ui/typography";
@@ -16,14 +17,11 @@ import type { LabelMode } from "./types";
 
 export function VarTag({ children }: { children: ReactNode }) {
   return (
-    <Text
-      as="code"
-      size="micro"
-      tone="muted"
-      className="inline-flex max-w-full items-center rounded-[var(--radius-sm)] bg-foreground/5 px-1.5 py-0.5 font-mono leading-none ring-1 ring-inset ring-border/70"
-    >
-      <span className="min-w-0 break-all">{children}</span>
-    </Text>
+    <code className="inline-flex max-w-full items-center rounded-[var(--radius-sm)] bg-foreground/5 px-1.5 py-0.5 leading-none ring-1 ring-inset ring-border/70">
+      <Text size="micro" tone="muted" mono className="min-w-0 break-all">
+        {children}
+      </Text>
+    </code>
   );
 }
 
@@ -60,20 +58,23 @@ function TokenHead({ token, labelMode, overridden, changedBySkin, onReset }: Omi
         size={labelMode === "css" ? "micro" : "caption"}
         weight={labelMode === "css" ? undefined : "medium"}
         tone="muted"
-        className={cn("min-w-0 truncate", labelMode === "css" && "font-mono")}
+        mono={labelMode === "css"}
+        className="min-w-0 truncate"
       >
         {label}
       </Text>
       {overridden ? (
-        <button
-          type="button"
+        <Button
+          variant="ghost"
+          size="xs"
+          iconOnly
           onClick={onReset}
           aria-label={`Reset ${label}`}
           title={`Reset ${label} to the skin's value`}
-          className="ml-auto inline-flex shrink-0 cursor-pointer items-center rounded-full p-0.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 motion-reduce:transition-none"
+          className="ml-auto shrink-0"
         >
-          <RotateCcwIcon aria-hidden className="size-2.5" />
-        </button>
+          <RotateCcwIcon aria-hidden />
+        </Button>
       ) : null}
     </span>
   );
@@ -86,7 +87,8 @@ function TextTokenField(props: TokenFieldProps) {
   return (
     <div className="flex flex-col gap-1.5">
       <TokenHead {...props} />
-      <input
+      <Input
+        size="xs"
         type="text"
         aria-label={displayLabel(token, labelMode)}
         value={draft ?? value ?? ""}
@@ -108,7 +110,7 @@ function TextTokenField(props: TokenFieldProps) {
             e.currentTarget.blur();
           }
         }}
-        className="h-7 w-full rounded-[var(--radius-control)] border border-border bg-card/70 px-2 font-mono text-micro text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus-visible:ring-2 focus-visible:ring-ring/60 motion-reduce:transition-none [@media(pointer:coarse)]:text-(length:--text-input-min)"
+        style={{ "--cui-field-font-family": "var(--font-mono)" }}
       />
     </div>
   );
@@ -135,7 +137,7 @@ function ColorTokenField(props: TokenFieldProps) {
           className="size-5 shrink-0 rounded-[var(--radius-sm)] shadow-[inset_0_0_0_1px_oklch(from_var(--foreground)_l_c_h_/_0.16)]"
           style={{ backgroundColor: hex ?? "transparent" }}
         />
-        <Text size="micro" tone="muted" className="min-w-0 truncate font-mono">
+        <Text size="micro" tone="muted" mono className="min-w-0 truncate">
           {hex ?? "unset"}
         </Text>
       </Button>

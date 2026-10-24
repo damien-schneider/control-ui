@@ -2808,6 +2808,7 @@
         "https://control-ui.dev/r/chat-layout.json",
         "https://control-ui.dev/r/collapsible.json",
         "https://control-ui.dev/r/core.json",
+        "https://control-ui.dev/r/item.json",
         "https://control-ui.dev/r/sidebar.json",
         "https://control-ui.dev/r/typography.json"
       ],
@@ -6547,7 +6548,8 @@
         "https://control-ui.dev/r/button.json",
         "https://control-ui.dev/r/core.json",
         "https://control-ui.dev/r/dropdown-menu.json",
-        "https://control-ui.dev/r/switch.json"
+        "https://control-ui.dev/r/switch.json",
+        "https://control-ui.dev/r/typography.json"
       ],
       "files": [
         {
@@ -7052,11 +7054,6 @@
       ],
       "files": [
         {
-          "path": "src/registry/examples/control-ui/primitives/type-scale.css",
-          "target": "@components/control-ui/styles/type-scale.css",
-          "type": "registry:file"
-        },
-        {
           "path": "src/registry/sources/control-ui/ui/markdown-heading.ts",
           "target": "@components/control-ui/ui/markdown-heading.ts",
           "type": "registry:ui"
@@ -7066,10 +7063,7 @@
           "target": "@components/control-ui/ui/typography.tsx",
           "type": "registry:ui"
         }
-      ],
-      "css": {
-        "@import \"../components/control-ui/styles/type-scale.css\"": {}
-      }
+      ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",

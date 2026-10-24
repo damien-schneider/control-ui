@@ -109,7 +109,7 @@ function CatalogClosing() {
               href={entry.href}
               className="grid gap-1 rounded-[var(--radius-panel)] border border-border/70 bg-card px-5 py-6 outline-none transition-[border-color,background-color] duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:border-foreground/20 hover:bg-muted/35 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
             >
-              <Text size="display" tone="foreground" className="tabular-nums">
+              <Text size="display" tone="foreground" numeric>
                 {entry.count}
               </Text>
               <Text size="label" tone="muted">

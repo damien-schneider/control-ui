@@ -21,9 +21,7 @@ export function ThemeAuditStatus({ root, className }: { root: HTMLElement | null
 
   return (
     <div className={cn("grid gap-2", className)} aria-live="polite">
-      <Text
-        as="p"
-        size="caption"
+      <p
         className={cn(
           "flex items-start gap-2",
           errors.length > 0 ? "text-red-700 dark:text-red-400" : "text-emerald-700 dark:text-emerald-400",
@@ -34,15 +32,15 @@ export function ThemeAuditStatus({ root, className }: { root: HTMLElement | null
         ) : (
           <CheckCircle2Icon aria-hidden className="mt-0.5 size-3.5 shrink-0" />
         )}
-        <span className="tabular-nums">
+        <Text size="caption" numeric>
           {errors.length > 0
             ? `${errors.length} required contrast ${errors.length === 1 ? "check fails" : "checks fail"} WCAG AA in this preview.`
             : `${requiredCount} required contrast checks clear WCAG AA in this preview.`}
           {warnings.length > 0
             ? ` ${warnings.length} focus or boundary ${warnings.length === 1 ? "warning remains" : "warnings remain"}.`
             : ""}
-        </span>
-      </Text>
+        </Text>
+      </p>
       {errors.length > 0 ? (
         <details>
           <summary className="cursor-pointer">

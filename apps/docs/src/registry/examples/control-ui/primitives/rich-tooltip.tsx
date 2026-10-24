@@ -2,6 +2,7 @@
 
 import { BellIcon, GitPullRequestIcon, LayoutGridIcon } from "lucide-react";
 import { useRef, useState } from "react";
+import { Button } from "@/components/control-ui/ui/button";
 import {
   RichTooltip,
   RichTooltipClose,
@@ -40,13 +41,9 @@ export function PrimitiveRichTooltipExample() {
         </ToolbarButton>
       </Toolbar>
 
-      <button
-        type="button"
-        onClick={() => setStep(steps[0])}
-        className="h-8 cursor-pointer rounded-[var(--radius-control)] px-3 text-body text-muted-foreground ring-1 ring-inset ring-border transition hover:bg-foreground/5"
-      >
+      <Button variant="surface" size="sm" onClick={() => setStep(steps[0])}>
         Replay the tour
-      </button>
+      </Button>
 
       <RichTooltipTour steps={steps} step={step} onStepChange={setStep}>
         <RichTooltip step="activity">

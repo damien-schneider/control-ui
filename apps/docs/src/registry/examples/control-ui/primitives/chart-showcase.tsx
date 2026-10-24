@@ -42,7 +42,9 @@ function KpiCard({ kpi }: { kpi: Kpi }) {
     <Card>
       <CardHeader>
         <CardDescription>{kpi.label}</CardDescription>
-        <CardTitle className="tabular-nums">{kpi.format(last)}</CardTitle>
+        <CardTitle>
+          <span className="tabular-nums">{kpi.format(last)}</span>
+        </CardTitle>
         <CardAction>
           <Text size="caption" weight="medium" className={change >= 0 ? "text-chart-green" : "text-chart-red"}>
             {change >= 0 ? "+" : ""}

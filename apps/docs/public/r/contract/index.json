@@ -198,7 +198,7 @@
       "registryItems": [
         "collapsible"
       ],
-      "knobs": 2,
+      "knobs": 3,
       "probes": 0
     },
     "color-picker": {
@@ -264,7 +264,7 @@
         "select",
         "textarea"
       ],
-      "knobs": 25,
+      "knobs": 26,
       "probes": 93
     },
     "filter-bar": {
@@ -320,8 +320,8 @@
       "registryItems": [
         "item"
       ],
-      "knobs": 10,
-      "probes": 0
+      "knobs": 12,
+      "probes": 3
     },
     "kbd": {
       "registryItems": [
@@ -376,7 +376,7 @@
       "registryItems": [
         "page-layout"
       ],
-      "knobs": 14,
+      "knobs": 15,
       "probes": 5
     },
     "pagination": {

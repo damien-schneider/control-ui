@@ -120,7 +120,7 @@ function renderToolInvocation(part: ToolInvocationPart, approvals: ToolCallAppro
           {invocation.result !== undefined || invocation.errorText ? (
             <ActivityDetail>
               <ActivityDetailLabel>Output</ActivityDetailLabel>
-              <ActivityDetailContent className={state === "error" ? "text-destructive-text" : undefined}>
+              <ActivityDetailContent tone={state === "error" ? "destructive" : "default"}>
                 {invocation.errorText ?? JSON.stringify(invocation.result, null, 2)}
               </ActivityDetailContent>
             </ActivityDetail>

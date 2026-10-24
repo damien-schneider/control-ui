@@ -21,10 +21,10 @@ function LineWaveform() {
       data-control-ui="audio-recorder"
       data-slot="visualizer"
       data-visible={isVisible ? "true" : undefined}
-      data-active={recorder.state === "recording" ? "true" : undefined}
+      active={recorder.state === "recording"}
       levels={recorder.levels}
       aria-hidden={!isVisible}
-      className="invisible col-start-1 row-start-1 w-full translate-x-1 opacity-0 blur-xs transition-[opacity,filter,translate,visibility] transition-discrete duration-[var(--duration-base)] ease-[var(--ease-emphasized)] data-[visible=true]:visible data-[visible=true]:translate-x-0 data-[visible=true]:opacity-100 data-[visible=true]:blur-none"
+      className="col-start-1 row-start-1 w-full"
     />
   );
 }

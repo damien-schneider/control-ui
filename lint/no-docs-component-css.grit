@@ -1,0 +1,14 @@
+language css
+
+CssGenericProperty(name=$name, value=$value) as $declaration where {
+  or {
+    $name <: r"--cui-.*",
+    $value <: r"(?s).*var\(\s*--cui-.*",
+    and {
+      not $name <: r"--.*",
+      $declaration <: within CssQualifiedRule(prelude=$selector) ,
+      $selector <: r"(?s).*\[data-(?:control-family|control-ui|slot)\b[^\s>+~]*\s*"
+    }
+  },
+  register_diagnostic(span=$declaration, message="Docs CSS restyles a component: setting or reading --cui-* knobs and styling component parts belongs to the component recipe or the skin, so the docs show what installs. Move it there, or suppress with a reason when the docs deliberately demo a customization.", severity="error")
+}

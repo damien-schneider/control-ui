@@ -72,7 +72,7 @@ function SkinSourceBrowser({ files }: { files: SourceFile[] }) {
           </TabsPanel>
         </Code>
       </TabsSurface>
-      <Text as="div" size="micro" tone="muted" className="flex min-w-0 flex-wrap items-center justify-between gap-x-4 gap-y-1 px-1 pt-2">
+      <Text as="div" size="micro" tone="muted" className="flex min-w-0 flex-wrap items-center justify-between gap-x-4 gap-y-1 mx-1 mt-2">
         <span className="min-w-0 truncate font-mono" title={file.path}>
           {file.path}
         </span>
@@ -105,16 +105,12 @@ function SkinSourceFiles({ label, source, onRetry }: { label: string; source: Sk
   }
 
   return (
-    <Text
-      role="status"
-      as="div"
-      size="label"
-      tone="muted"
-      className="flex min-h-80 items-center justify-center gap-2 rounded-(--radius-panel) border border-border bg-card"
-    >
+    <div role="status" className="flex min-h-80 items-center justify-center gap-2 rounded-(--radius-panel) border border-border bg-card">
       <Spinner />
-      Loading {label} source
-    </Text>
+      <Text size="label" tone="muted">
+        Loading {label} source
+      </Text>
+    </div>
   );
 }
 
@@ -123,13 +119,17 @@ export function SkinSourceGuide({ files }: { files: readonly Pick<SourceFile, "l
 
   return (
     <details className="rounded-(--radius-panel) border border-border bg-muted/30 px-4 py-3">
-      <summary className="cursor-pointer text-caption font-medium text-foreground">About the skin files</summary>
+      <summary className="cursor-pointer">
+        <Text size="caption" weight="medium" tone="foreground">
+          About the skin files
+        </Text>
+      </summary>
       <dl className="mt-4 grid gap-4 @2xl/source:grid-cols-3">
         {packFiles.map((file) => {
           const [name, role] = file.label.split(" — ");
           return (
             <div key={file.path} className="min-w-0">
-              <Text as="dt" size="caption" weight="medium" tone="foreground" className="font-mono">
+              <Text as="dt" size="caption" weight="medium" tone="foreground" mono>
                 {name}
               </Text>
               <Text as="dd" size="caption" tone="muted" className="mt-1 text-pretty">
@@ -139,8 +139,10 @@ export function SkinSourceGuide({ files }: { files: readonly Pick<SourceFile, "l
           );
         })}
       </dl>
-      <Link href="/architecture" className="mt-4 inline-block text-caption text-primary-text underline underline-offset-4">
-        How skin layers resolve
+      <Link href="/architecture" className="mt-4 inline-block text-primary-text underline underline-offset-4">
+        <Text size="caption" className="block">
+          How skin layers resolve
+        </Text>
       </Link>
     </details>
   );

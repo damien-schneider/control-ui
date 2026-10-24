@@ -45,20 +45,47 @@ const headingSizeByLevel = {
   6: "heading-4",
 } as const satisfies Record<HeadingLevel, TypeSize>;
 
-export type HeadingProps = ComponentProps<"h1"> & { level: HeadingLevel; size?: TypeSize; weight?: TextWeight; tone?: TypeTone };
+type TypeFace = {
+  /** Sets the text in the monospace face, for code, paths, and identifiers. */
+  mono?: boolean;
+  /** Uses tabular figures so changing numbers keep their width. */
+  numeric?: boolean;
+};
 
-export function headingClassName({ level, size = headingSizeByLevel[level], weight, tone = "default", className }: HeadingProps) {
-  return cn(sizeClassNames[size], weight ? weightClassNames[weight] : undefined, toneClassNames[tone], className);
+function faceClassNames({ mono, numeric }: TypeFace) {
+  return cn(mono && "font-mono", numeric && "tabular-nums");
 }
 
-export function Heading({ level, size, weight, tone, className, ...props }: HeadingProps) {
+export type HeadingProps = ComponentProps<"h1"> & TypeFace & { level: HeadingLevel; size?: TypeSize; weight?: TextWeight; tone?: TypeTone };
+
+export function headingClassName({
+  level,
+  size = headingSizeByLevel[level],
+  weight,
+  tone = "default",
+  mono,
+  numeric,
+  className,
+}: HeadingProps) {
+  return cn(
+    sizeClassNames[size],
+    weight ? weightClassNames[weight] : undefined,
+    toneClassNames[tone],
+    faceClassNames({ mono, numeric }),
+    className,
+  );
+}
+
+const programmaticFocusTarget = "[&[tabindex='-1']]:outline-none";
+
+export function Heading({ level, size, weight, tone, mono, numeric, className, ...props }: HeadingProps) {
   const Tag: `h${HeadingLevel}` = `h${level}`;
   return (
     <Tag
       data-control-ui="typography"
       data-control-family="typography"
       data-slot="heading"
-      className={headingClassName({ level, size, weight, tone, className })}
+      className={headingClassName({ level, size, weight, tone, mono, numeric, className: cn(programmaticFocusTarget, className) })}
       {...props}
     />
   );
@@ -79,13 +106,14 @@ export type TextTag =
   | "legend"
   | "blockquote";
 
-export type TextProps = HTMLAttributes<HTMLElement> & {
-  ref?: Ref<HTMLElement>;
-  as?: TextTag;
-  size?: TypeSize;
-  weight?: TextWeight;
-  tone?: TypeTone;
-};
+export type TextProps = HTMLAttributes<HTMLElement> &
+  TypeFace & {
+    ref?: Ref<HTMLElement>;
+    as?: TextTag;
+    size?: TypeSize;
+    weight?: TextWeight;
+    tone?: TypeTone;
+  };
 
 // Each tag's element type narrows the ref type; a callback ref is contravariant so it fits every tag in the union.
 function attachRef(ref: Ref<HTMLElement> | undefined, node: HTMLElement | null) {
@@ -93,14 +121,20 @@ function attachRef(ref: Ref<HTMLElement> | undefined, node: HTMLElement | null) 
   if (ref) ref.current = node;
 }
 
-export function Text({ as: Tag = "span", size = "body", weight, tone = "default", className, ref, ...props }: TextProps) {
+export function Text({ as: Tag = "span", size = "body", weight, tone = "default", mono, numeric, className, ref, ...props }: TextProps) {
   return (
     <Tag
       ref={ref ? (node: HTMLElement | null) => attachRef(ref, node) : undefined}
       data-control-ui="typography"
       data-control-family="typography"
       data-slot="text"
-      className={cn(sizeClassNames[size], weight ? weightClassNames[weight] : undefined, toneClassNames[tone], className)}
+      className={cn(
+        sizeClassNames[size],
+        weight ? weightClassNames[weight] : undefined,
+        toneClassNames[tone],
+        faceClassNames({ mono, numeric }),
+        className,
+      )}
       {...props}
     />
   );

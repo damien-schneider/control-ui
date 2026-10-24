@@ -10,6 +10,7 @@
 ## Architecture and design
 
 - Reuse Control UI primitives, hooks, and blocks in the docs app and examples. Extend the shared source when behavior belongs to the component.
+- The docs app, examples, blocks, and usage snippets show components exactly as installed: `className` only lays them out, and docs CSS never sets `--cui-*` knobs or styles component parts. A needed override means a missing prop, variant, default, or skin value. The Grit plugins wired in `biome.json` enforce this.
 - Keep installable components runtime-neutral: plain props, children, and callbacks. The host application owns model calls, streaming, transport, and persistence; provider integrations belong in examples.
 - Compose meaningful component parts instead of adding large prop bags or duplicating behavior in blocks.
 - Share color, spacing, typography, radius, shadow, and motion tokens. Component recipes own visual defaults through registered `--cui-*` knobs; customize those knobs instead of competing paint declarations or `!important`.

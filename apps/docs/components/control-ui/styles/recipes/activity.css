@@ -109,6 +109,10 @@
     font-family: var(--font-mono);
   }
 
+  :where([data-control-family="activity"][data-slot="detail-content"][data-tone="destructive"]) {
+    color: var(--destructive-text);
+  }
+
   :where([data-control-family="activity"][data-slot="detail-content"][data-format="code"]) {
     padding-inline: calc(var(--spacing) * 2);
     padding-block: calc(var(--spacing) * 1.5);

@@ -56,14 +56,14 @@ export function AppSidebar({ active = "Playground" }: { active?: string }) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" render={<a href="/" />}>
-              <Text
+              <span
                 aria-hidden="true"
-                size="label"
-                weight="semibold"
                 className="flex size-6 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground"
               >
-                A
-              </Text>
+                <Text size="label" weight="semibold">
+                  A
+                </Text>
+              </span>
               <Text weight="semibold">Acme Studio</Text>
             </SidebarMenuButton>
           </SidebarMenuItem>

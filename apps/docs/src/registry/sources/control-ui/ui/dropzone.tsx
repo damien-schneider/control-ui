@@ -1,6 +1,6 @@
 "use client";
 
-import { CircleAlert, CloudUpload, FileIcon, LoaderCircle, Search, XIcon } from "lucide-react";
+import { CircleAlertIcon, CloudUpload, FileIcon, LoaderCircle, Search, XIcon } from "lucide-react";
 import {
   type ComponentProps,
   type CSSProperties,
@@ -446,7 +446,7 @@ function DropzoneFeedback({ state }: { state: DropzoneVisualState }) {
     icon = <CloudUpload aria-hidden="true" />;
     message = "Release to add files.";
   } else if (state === "reject") {
-    icon = <CircleAlert aria-hidden="true" />;
+    icon = <CircleAlertIcon aria-hidden="true" />;
     message = "Some files are not accepted.";
   } else if (state === "unknown") {
     icon = <Search aria-hidden="true" />;
@@ -482,18 +482,21 @@ function DefaultFile({ file }: { file: File }) {
   );
 }
 
+const rejectedItemStyle = {
+  "--cui-item-media-foreground": "var(--destructive-text)",
+  "--cui-item-description-foreground": "var(--destructive-text)",
+};
+
 function DefaultRejection({ rejection }: { rejection: DropzoneFileRejection }) {
   return (
-    <Item variant="muted">
-      <ItemMedia data-dropzone-invalid="">
-        <CircleAlert aria-hidden="true" />
+    <Item variant="muted" style={rejectedItemStyle}>
+      <ItemMedia>
+        <CircleAlertIcon aria-hidden="true" />
       </ItemMedia>
       <ItemContent>
         <ItemTitle className="wrap-anywhere">{rejection.file.name}</ItemTitle>
         {rejection.errors.map((error) => (
-          <ItemDescription key={`${error.code}-${error.message}`} data-dropzone-invalid="">
-            {error.message}
-          </ItemDescription>
+          <ItemDescription key={`${error.code}-${error.message}`}>{error.message}</ItemDescription>
         ))}
       </ItemContent>
     </Item>

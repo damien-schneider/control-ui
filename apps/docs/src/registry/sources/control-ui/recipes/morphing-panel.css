@@ -93,7 +93,7 @@
     padding-inline-end: calc(var(--_morphing-panel-close-size) + var(--spacing) * 6);
   }
 
-  :where([data-control-family="morphing-panel"][data-slot="body"]) {
+  :where([data-control-family="morphing-panel"][data-slot="body"][data-padding="default"]) {
     padding: calc(var(--spacing) * 4);
   }
 

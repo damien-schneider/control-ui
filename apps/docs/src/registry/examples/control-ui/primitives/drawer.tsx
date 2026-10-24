@@ -23,7 +23,7 @@ export function PrimitiveDrawerExample() {
             <DrawerTitle>Move to project</DrawerTitle>
             <DrawerDescription>Swipe down or use the button to dismiss. Snap points and gestures are native Base UI.</DrawerDescription>
           </DrawerHeader>
-          <DrawerBody className="gap-1 px-4">
+          <DrawerBody className="gap-1">
             {["Inbox", "Roadmap", "Archive"].map((name) => (
               <Button key={name} variant="ghost" className="justify-start">
                 {name}

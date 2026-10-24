@@ -76,6 +76,15 @@
         ],
         "states": [
           {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "sm"
+            ]
+          },
+          {
             "attribute": "data-variant",
             "source": "control-ui",
             "valueKind": "enum",

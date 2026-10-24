@@ -56,10 +56,10 @@ const TOOLS: readonly { tool: DesignCanvasTool; label: string; shortcut: string;
 ];
 
 const LAYER_ICONS: Record<DesignCanvasLayerKind, ReactNode> = {
-  frame: <FrameIcon />,
-  rectangle: <SquareIcon />,
-  ellipse: <CircleIcon />,
-  text: <TypeIcon />,
+  frame: <FrameIcon className="text-muted-foreground" />,
+  rectangle: <SquareIcon className="text-muted-foreground" />,
+  ellipse: <CircleIcon className="text-muted-foreground" />,
+  text: <TypeIcon className="text-muted-foreground" />,
 };
 
 const NUDGE_DIRECTIONS: Partial<Record<string, { x: number; y: number }>> = {
@@ -263,7 +263,7 @@ export function DesignCanvasBlock({
         onPointerCancel={cancelDraft}
         onKeyDown={handleShortcut}
       >
-        <InfiniteCanvasContent className={cn(tool !== "move" && "[&>*]:pointer-events-none")}>
+        <InfiniteCanvasContent className={cn(tool !== "move" && "pointer-events-none")}>
           {currentLayers.map((layer) => (
             <DesignCanvasLayerNode
               key={layer.id}
@@ -292,7 +292,7 @@ export function DesignCanvasBlock({
       </ResizableFloatingPanel>
 
       <Drawer side="left" open={layersOpen} onOpenChange={setLayersOpen}>
-        <DrawerContent side="left" className="gap-0 p-0">
+        <DrawerContent side="left">
           <DesignCanvasPanel label={layersLabel} title={layersLabel} inDrawer>
             {layerList}
           </DesignCanvasPanel>
@@ -300,7 +300,7 @@ export function DesignCanvasBlock({
       </Drawer>
 
       <Drawer side="right" open={propertiesOpen} onOpenChange={setPropertiesOpen}>
-        <DrawerContent side="right" className="gap-0 p-0">
+        <DrawerContent side="right">
           <DesignCanvasPanel label={propertiesLabel} title={propertiesTitle} inDrawer>
             {inspector}
           </DesignCanvasPanel>
@@ -362,21 +362,23 @@ type DesignCanvasPanelProps = {
 };
 
 function DesignCanvasPanel({ label, title, inDrawer = false, children }: DesignCanvasPanelProps) {
-  const titleClassName = "flex h-11 shrink-0 items-center border-b px-3";
-  const titleText = (
-    <span className="truncate" title={title}>
-      {title}
-    </span>
-  );
   return (
     <aside aria-label={label} className="flex min-h-0 flex-1 flex-col">
-      {inDrawer ? (
-        <DrawerTitle className={`${titleClassName} text-caption font-medium`}>{titleText}</DrawerTitle>
-      ) : (
-        <Heading level={2} size="caption" weight="medium" className={titleClassName}>
-          {titleText}
-        </Heading>
-      )}
+      <div className="flex h-11 shrink-0 items-center border-b px-3">
+        {inDrawer ? (
+          <DrawerTitle
+            className="truncate"
+            title={title}
+            style={{ "--cui-popup-title-font-size": "var(--text-caption)", "--cui-popup-title-font-weight": "var(--font-weight-medium)" }}
+          >
+            {title}
+          </DrawerTitle>
+        ) : (
+          <Heading level={2} size="caption" weight="medium" className="truncate" title={title}>
+            {title}
+          </Heading>
+        )}
+      </div>
       <ScrollArea className="min-h-0 flex-1">{children}</ScrollArea>
     </aside>
   );
@@ -398,7 +400,8 @@ function DesignCanvasLayerList({ layers, selectedLayerId, onSelect }: DesignCanv
             size="sm"
             active={layer.id === selectedLayerId}
             aria-pressed={layer.id === selectedLayerId}
-            className="w-full justify-start [&_svg]:size-3.5 [&_svg]:text-muted-foreground"
+            className="w-full justify-start"
+            style={{ "--cui-button-icon": "calc(var(--spacing) * 3.5)" }}
             onClick={() => onSelect(layer.id)}
           >
             {LAYER_ICONS[layer.kind]}
@@ -433,7 +436,6 @@ function DesignCanvasLayerNode({ layer, selected, onSelect, onKeyDown, onLayerCh
       aria-pressed={interactive ? selected : undefined}
       aria-keyshortcuts={interactive ? LAYER_KEY_SHORTCUTS : undefined}
       data-selected={selected || undefined}
-      className="outline-primary data-selected:outline-2"
       style={{ width: layer.width, height: layer.height, rotate: `${layer.rotation}deg`, opacity: layer.opacity / 100 }}
       onPointerDown={onSelect}
       onKeyDown={onKeyDown}
@@ -452,12 +454,14 @@ function DesignCanvasLayerNode({ layer, selected, onSelect, onKeyDown, onLayerCh
         <div className="size-full" style={{ background: fillColor, borderRadius: layer.kind === "ellipse" ? "50%" : layer.cornerRadius }} />
       )}
       {selected ? (
-        <Text
-          size="micro"
-          className="absolute inset-x-0 top-full mx-auto mt-1.5 w-max rounded-sm bg-primary px-1 whitespace-nowrap text-primary-foreground tabular-nums"
-        >
-          {layer.width} × {layer.height}
-        </Text>
+        <>
+          <span aria-hidden="true" className="absolute inset-0 outline-2 outline-primary" />
+          <span className="absolute inset-x-0 top-full mx-auto mt-1.5 flex w-max rounded-sm bg-primary px-1 whitespace-nowrap text-primary-foreground">
+            <Text size="micro" numeric>
+              {layer.width} × {layer.height}
+            </Text>
+          </span>
+        </>
       ) : null}
     </InfiniteCanvasItem>
   );

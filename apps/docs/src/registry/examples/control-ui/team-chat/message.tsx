@@ -20,6 +20,7 @@ import {
   ChatMessageRow,
   ChatMessageTime,
 } from "@/components/control-ui/chat-message";
+import { cn } from "@/components/control-ui/lib/cn";
 import { Avatar, AvatarBadge, AvatarFallback, AvatarGroup } from "@/components/control-ui/ui/avatar";
 import { Button } from "@/components/control-ui/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
@@ -76,10 +77,10 @@ export function EmojiPickerPopover({ trigger, onPick }: { trigger: ReactElement;
   );
 }
 
-export function PersonAvatar({ person, className }: { person: TeamPerson; className?: string }) {
+export function PersonAvatar({ person, size, className }: { person: TeamPerson; size?: "sm"; className?: string }) {
   return (
-    <Avatar className={className}>
-      <AvatarFallback>{person.initials}</AvatarFallback>
+    <Avatar className={cn(size === "sm" && "size-5", className)}>
+      <AvatarFallback>{size === "sm" ? <Text size="micro">{person.initials}</Text> : person.initials}</AvatarFallback>
       <AvatarBadge status={person.status} label={person.status} />
     </Avatar>
   );
@@ -152,7 +153,7 @@ export function TeamChatMessage({ message, continuation, onToggleReaction, onOpe
               <EmojiPickerPopover
                 onPick={onToggleReaction}
                 trigger={
-                  <Button variant="ghost" size="xs" iconOnly className="rounded-full" aria-label="Add reaction">
+                  <Button variant="ghost" size="xs" iconOnly shape="circle" aria-label="Add reaction">
                     <SmilePlusIcon aria-hidden="true" />
                   </Button>
                 }
@@ -163,8 +164,10 @@ export function TeamChatMessage({ message, continuation, onToggleReaction, onOpe
             <ChatMessageReplySummary onClick={(event) => onOpenThread(event.currentTarget)}>
               <AvatarGroup aria-hidden="true" className="-space-x-1.5">
                 {repliers.map((person) => (
-                  <Avatar key={person.id} className="size-5 text-micro">
-                    <AvatarFallback>{person.initials}</AvatarFallback>
+                  <Avatar key={person.id} className="size-5">
+                    <AvatarFallback>
+                      <Text size="micro">{person.initials}</Text>
+                    </AvatarFallback>
                   </Avatar>
                 ))}
               </AvatarGroup>

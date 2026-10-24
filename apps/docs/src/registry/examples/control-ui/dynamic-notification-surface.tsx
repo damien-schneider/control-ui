@@ -54,7 +54,7 @@ export function DynamicNotificationSurfaceExample() {
         <DynamicNotificationDemoBackdrop />
 
         <DynamicNotification
-          className="absolute inset-x-0 top-4 z-10 px-5"
+          className="absolute inset-x-5 top-4 z-10"
           variant="surface"
           open={open}
           loading={loading}
@@ -88,9 +88,11 @@ export function DynamicNotificationSurfaceExample() {
           <DynamicNotificationDemoButton onClick={() => think((messageIndex + 1) % MESSAGES.length)}>
             Send a notification
           </DynamicNotificationDemoButton>
-          <Text size="caption" className="truncate text-white/75">
-            {statusMessage}
-          </Text>
+          <div className="min-w-0 text-white/75">
+            <Text as="p" size="caption" className="truncate">
+              {statusMessage}
+            </Text>
+          </div>
         </div>
       </div>
     </div>

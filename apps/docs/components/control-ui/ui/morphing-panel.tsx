@@ -279,13 +279,22 @@ export function MorphingPanelHeader({ className, ...props }: MorphingPanelPartPr
   );
 }
 
-export function MorphingPanelBody({ className, ...props }: MorphingPanelPartProps) {
+export const morphingPanelBodyPaddings = ["default", "none"] as const;
+
+export type MorphingPanelBodyPadding = (typeof morphingPanelBodyPaddings)[number];
+
+export function MorphingPanelBody({
+  className,
+  padding = "default",
+  ...props
+}: MorphingPanelPartProps & { padding?: MorphingPanelBodyPadding }) {
   return (
     <div
       {...props}
       data-control-ui="morphing-panel"
       data-control-family="morphing-panel"
       data-slot="body"
+      data-padding={padding}
       className={cn("min-h-0 min-w-0 flex-1 overflow-y-auto overscroll-contain", className)}
     />
   );

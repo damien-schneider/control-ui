@@ -10,11 +10,6 @@
   ],
   "files": [
     {
-      "path": "src/registry/examples/control-ui/primitives/type-scale.css",
-      "target": "@components/control-ui/styles/type-scale.css",
-      "type": "registry:file"
-    },
-    {
       "path": "src/registry/sources/control-ui/ui/markdown-heading.ts",
       "target": "@components/control-ui/ui/markdown-heading.ts",
       "type": "registry:ui"
@@ -25,9 +20,6 @@
       "type": "registry:ui"
     }
   ],
-  "css": {
-    "@import \"../components/control-ui/styles/type-scale.css\"": {}
-  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/typography.json"
   }

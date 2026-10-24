@@ -66,7 +66,7 @@ function TokenList({
 function BadgePaletteRows({ values, overridden, changedBySkin, onChange, onReset }: Omit<TokenEditorProps, "labelMode">) {
   return (
     <div className="flex flex-col gap-1.5">
-      <Text as="div" size="micro" weight="medium" tone="muted" className="flex items-center gap-2 px-0.5">
+      <Text as="div" size="micro" weight="medium" tone="muted" className="mx-0.5 flex items-center gap-2">
         <span className="flex-1" />
         <span className="w-6 text-center">Fill</span>
         <span className="w-6 text-center">Text</span>
@@ -85,9 +85,9 @@ function BadgePaletteRows({ values, overridden, changedBySkin, onChange, onReset
                   onClick={() => {
                     for (const token of row.tokens) onReset(token.name);
                   }}
-                  className="ml-1.5 cursor-pointer text-micro text-primary underline-offset-2 hover:underline"
+                  className="ml-1.5 cursor-pointer text-primary underline-offset-2 hover:underline"
                 >
-                  reset
+                  <Text size="micro">reset</Text>
                 </button>
               ) : null}
             </Text>
@@ -139,10 +139,10 @@ export function TokenPanel({
           {touched > 0 ? <Badge size="sm">{touched} edited</Badge> : null}
           <span className="ml-auto">{headerAction}</span>
         </div>
-        <Text as="p" size="micro" tone="muted" className="mt-1 leading-4">
+        <Text as="p" size="micro" tone="muted" className="mt-1">
           {category.description}
         </Text>
-        <Text as="p" size="micro" tone="muted" className="mt-1 tabular-nums">
+        <Text as="p" size="micro" tone="muted" numeric className="mt-1">
           {allNames.length} tokens
           {skinTouched > 0 ? ` · ${skinTouched} set by the skin` : ""}
         </Text>
@@ -153,42 +153,44 @@ export function TokenPanel({
       {afterCore}
 
       {advancedTotal > 0 ? (
-        <Collapsible className="border-border/70 border-t pt-3">
-          <CollapsibleTrigger>
-            <ChevronDownIcon
-              aria-hidden
-              className="size-3 text-muted-foreground transition-transform in-data-[state=open]:rotate-180 motion-reduce:transition-none"
-            />
-            <Text size="caption" weight="semibold" tone="foreground">
-              Advanced
-            </Text>
-            <Text size="micro" tone="muted" className="ml-auto tabular-nums">
-              {advancedTotal}
-            </Text>
-          </CollapsibleTrigger>
-          <CollapsibleContent>
-            <div className="flex flex-col gap-4 pt-3">
-              <Text as="p" size="micro" tone="muted">
-                Derived and fine-grained values
+        <div className="border-border/70 border-t pt-3">
+          <Collapsible>
+            <CollapsibleTrigger>
+              <ChevronDownIcon
+                aria-hidden
+                className="size-3 text-muted-foreground transition-transform in-data-[state=open]:rotate-180 motion-reduce:transition-none"
+              />
+              <Text size="caption" weight="semibold" tone="foreground">
+                Advanced
               </Text>
-              <TokenList tokens={category.advanced} {...editor} />
-              {isColor ? (
-                <div className="flex flex-col gap-2">
-                  <Text size="caption" weight="medium" tone="muted">
-                    Badge palette
-                  </Text>
-                  <BadgePaletteRows
-                    values={editor.values}
-                    overridden={editor.overridden}
-                    changedBySkin={editor.changedBySkin}
-                    onChange={editor.onChange}
-                    onReset={editor.onReset}
-                  />
-                </div>
-              ) : null}
-            </div>
-          </CollapsibleContent>
-        </Collapsible>
+              <Text size="micro" tone="muted" numeric className="ml-auto">
+                {advancedTotal}
+              </Text>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <div className="flex flex-col gap-4 pt-3">
+                <Text as="p" size="micro" tone="muted">
+                  Derived and fine-grained values
+                </Text>
+                <TokenList tokens={category.advanced} {...editor} />
+                {isColor ? (
+                  <div className="flex flex-col gap-2">
+                    <Text size="caption" weight="medium" tone="muted">
+                      Badge palette
+                    </Text>
+                    <BadgePaletteRows
+                      values={editor.values}
+                      overridden={editor.overridden}
+                      changedBySkin={editor.changedBySkin}
+                      onChange={editor.onChange}
+                      onReset={editor.onReset}
+                    />
+                  </div>
+                ) : null}
+              </div>
+            </CollapsibleContent>
+          </Collapsible>
+        </div>
       ) : null}
     </section>
   );

@@ -31,7 +31,7 @@ const BOX_LENGTH: Registration = { syntaxes: ["<length-percentage>", "<length-pe
 const LENGTH: Registration = { syntaxes: ["<length>"], initial: "0px" };
 
 const REGISTRATION_BY_SUFFIX: readonly [RegExp, Registration][] = [
-  [/-(?:background-image|shadow|backdrop-filter|easing|border-style)$/, FREE_FORM],
+  [/-(?:background-image|shadow|backdrop-filter|easing|border-style|font-family)$/, FREE_FORM],
   [
     /-(?:background|foreground|border-color|(?:ring|line|dot|marker|separator|handle|outline)-color|fill|stroke|indicator-(?:start|middle|end))$/,
     COLOR,

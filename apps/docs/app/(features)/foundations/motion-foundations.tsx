@@ -13,7 +13,7 @@ const EASINGS = MOTION_TOKENS.filter((name) => name.startsWith("--ease-"));
 function MotionTrack({ duration, easing, arrived }: { duration: string; easing: string; arrived: boolean }) {
   return (
     <div className="grid gap-1.5">
-      <Text size="micro" tone="muted" className="font-mono">
+      <Text size="micro" tone="muted" mono>
         {duration} · {easing}
       </Text>
       <div className="relative h-6 rounded-full bg-muted">

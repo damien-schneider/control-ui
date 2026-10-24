@@ -13,7 +13,7 @@ export function HookPage({ hook }: { hook: DocsHook }) {
       <PageHeader label="Hooks" title={hook.name} summary={hook.summary} actions={<AgentActions name={hook.name} />} />
       <SectionStack>
         <div id="install" className="min-w-0 scroll-mt-20 rounded-xl border bg-background p-5">
-          <Text as="p" tone="muted" className="leading-6">
+          <Text as="p" tone="muted">
             Installed to <code>{hook.target}</code> with {hook.install}. It is local UI behavior — yours to own and edit.
           </Text>
           {hook.references && hook.references.length > 0 ? (
@@ -22,9 +22,11 @@ export function HookPage({ hook }: { hook: DocsHook }) {
                 <Link
                   key={reference.href}
                   href={reference.href}
-                  className="inline-flex h-8 items-center rounded-md border bg-background px-3 text-label font-medium transition hover:bg-muted"
+                  className="inline-flex h-8 items-center rounded-md border bg-background px-3 transition hover:bg-muted"
                 >
-                  Used by {reference.label}
+                  <Text size="label" weight="medium">
+                    Used by {reference.label}
+                  </Text>
                 </Link>
               ))}
             </div>

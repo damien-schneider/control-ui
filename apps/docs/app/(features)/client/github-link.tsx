@@ -66,10 +66,12 @@ export function DocsGithubLink({ stars }: { stars: number | null }) {
       <GithubMark />
       <span>GitHub</span>
       {formattedStars == null ? null : (
-        <Text size="caption" className="inline-flex items-center gap-1 border-current/30 border-s ps-2 font-mono tabular-nums">
-          {formattedStars}
+        <span className="inline-flex items-center gap-1 border-current/30 border-s ps-2">
+          <Text size="caption" mono numeric>
+            {formattedStars}
+          </Text>
           <StarMark />
-        </Text>
+        </span>
       )}
     </ButtonLink>
   );

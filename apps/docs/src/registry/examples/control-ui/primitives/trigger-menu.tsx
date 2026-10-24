@@ -43,7 +43,7 @@ export function PrimitiveTriggerMenuExample() {
         rows={4}
         aria-label="Trigger menu demo"
         {...menu.getTextareaProps({ onChange: (event) => setValue(event.currentTarget.value) })}
-        className="min-h-24 leading-6"
+        className="min-h-24"
         placeholder="Type / or @"
       />
       <LiveStatus message={status} />

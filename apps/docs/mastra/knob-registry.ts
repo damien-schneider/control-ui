@@ -1520,6 +1520,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="collapsible"][data-slot="root"])',
       },
       {
+        name: "--cui-collapsible-trigger-padding-inline",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 2)",
+        selector: ':where([data-control-family="collapsible"][data-slot="root"])',
+      },
+      {
         name: "--cui-collapsible-trigger-radius",
         syntax: "<length-percentage>",
         defaultValue: "var(--radius-control)",
@@ -2122,6 +2128,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         syntax: "<length-percentage>",
         defaultValue: "var(--text-caption)",
         selector: ':where([data-control-family="field"][data-field-kind="field"])',
+      },
+      {
+        name: "--cui-field-font-family",
+        syntax: "*",
+        defaultValue: "var(--font-body)",
+        selector: ':where([data-control-family="field"][data-control="true"])',
       },
       {
         name: "--cui-field-font-size",
@@ -2799,6 +2811,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="item"][data-slot="root"])',
       },
       {
+        name: "--cui-item-description-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--muted-foreground)",
+        selector: ':where([data-control-family="item"][data-slot="root"])',
+      },
+      {
         name: "--cui-item-description-line-height",
         syntax: "<number>",
         defaultValue: "var(--leading-relaxed)",
@@ -2813,13 +2831,19 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-item-hover-background",
         syntax: "<color>",
-        defaultValue: "transparent",
+        defaultValue: "var(--hover-fill)",
         selector: ':where([data-control-family="item"][data-slot="root"])',
       },
       {
         name: "--cui-item-hover-border-color",
         syntax: "<color>",
         defaultValue: "var(--_item-border-color)",
+        selector: ':where([data-control-family="item"][data-slot="root"])',
+      },
+      {
+        name: "--cui-item-media-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--muted-foreground)",
         selector: ':where([data-control-family="item"][data-slot="root"])',
       },
       {
@@ -3197,6 +3221,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-page-layout-column-gap",
         syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 5)",
+        selector: ':where([data-control-family="page-layout"][data-slot="root"])',
+      },
+      {
+        name: "--cui-page-layout-floating-inset",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 2)",
         selector: ':where([data-control-family="page-layout"][data-slot="root"])',
       },
       {

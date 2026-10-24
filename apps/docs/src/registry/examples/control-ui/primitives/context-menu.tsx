@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Card } from "@/components/control-ui/ui/card";
 import {
   ContextMenu,
   ContextMenuContent,
@@ -22,13 +23,15 @@ export function PrimitiveContextMenuExample() {
   return (
     <div className="grid w-full gap-3">
       <ContextMenu>
-        <ContextMenuTrigger className="grid min-h-56 place-items-center rounded-[var(--radius-panel)] bg-canvas text-center ring-1 ring-border/70">
-          <div className="grid gap-1">
-            <Text weight="medium">Canvas surface</Text>
-            <Text size="caption" tone="muted">
-              Right-click or long-press anywhere here
-            </Text>
-          </div>
+        <ContextMenuTrigger className="grid min-h-56">
+          <Card className="items-center justify-center text-center">
+            <div className="grid gap-1">
+              <Text weight="medium">Canvas surface</Text>
+              <Text size="caption" tone="muted">
+                Right-click or long-press anywhere here
+              </Text>
+            </div>
+          </Card>
         </ContextMenuTrigger>
         <ContextMenuContent>
           <ContextMenuGroup>

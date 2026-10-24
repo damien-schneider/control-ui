@@ -602,10 +602,22 @@
       "description": "10px rung — kbd, badge counters, dense numeric meta."
     },
     {
+      "name": "--text-micro--line-height",
+      "group": "typography",
+      "tier": "derived",
+      "description": "Line-height paired onto text-micro."
+    },
+    {
       "name": "--text-caption",
       "group": "typography",
       "tier": "derived",
       "description": "11px rung — overlines, timestamps, group labels."
+    },
+    {
+      "name": "--text-caption--line-height",
+      "group": "typography",
+      "tier": "derived",
+      "description": "Line-height paired onto text-caption."
     },
     {
       "name": "--text-label",
@@ -614,16 +626,34 @@
       "description": "12px rung — form labels + small chrome."
     },
     {
+      "name": "--text-label--line-height",
+      "group": "typography",
+      "tier": "derived",
+      "description": "Line-height paired onto text-label."
+    },
+    {
       "name": "--text-body",
       "group": "typography",
       "tier": "derived",
       "description": "14px rung — DEFAULT body & control text."
     },
     {
+      "name": "--text-body--line-height",
+      "group": "typography",
+      "tier": "derived",
+      "description": "Line-height paired onto text-body."
+    },
+    {
       "name": "--text-body-lg",
       "group": "typography",
       "tier": "derived",
       "description": "16px rung — emphasized / larger body."
+    },
+    {
+      "name": "--text-body-lg--line-height",
+      "group": "typography",
+      "tier": "derived",
+      "description": "Line-height paired onto text-body-lg."
     },
     {
       "name": "--text-heading-4",

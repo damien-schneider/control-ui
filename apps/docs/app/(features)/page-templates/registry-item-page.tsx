@@ -188,29 +188,26 @@ function KnobsSection({ families }: { families: DocsKnobFamily[] }) {
       <div className="grid min-w-0 gap-4">
         {families.map((family) => (
           <div key={family.id} className="docs-panel overflow-hidden">
-            <Text
-              as="div"
-              size="caption"
-              tone="muted"
-              className="flex items-baseline justify-between gap-3 border-b border-border bg-muted/30 px-4 py-2"
-            >
-              <span>
-                <KnobFamilyName id={family.id} href={family.href} /> · <span className="tabular-nums">{family.knobs.length}</span> knobs
-              </span>
-              <Link href="/skins#component-knobs" className="shrink-0 underline underline-offset-4 hover:text-foreground">
-                How the cascade resolves
-              </Link>
-            </Text>
+            <div className="border-b border-border bg-muted/30 px-4 py-2">
+              <Text as="div" size="caption" tone="muted" className="flex items-baseline justify-between gap-3">
+                <span>
+                  <KnobFamilyName id={family.id} href={family.href} /> · <span className="tabular-nums">{family.knobs.length}</span> knobs
+                </span>
+                <Link href="/skins#component-knobs" className="shrink-0 underline underline-offset-4 hover:text-foreground">
+                  How the cascade resolves
+                </Link>
+              </Text>
+            </div>
             <div className="divide-y divide-border">
               {family.knobs.map((knob) => (
                 <div key={knob.name} className="flex min-w-0 flex-col gap-0.5 px-4 py-2 sm:flex-row sm:items-baseline sm:gap-3">
-                  <Text as="code" size="label" tone="foreground" className="min-w-0 break-all font-mono sm:w-72 sm:shrink-0">
+                  <Text as="code" size="label" tone="foreground" mono className="min-w-0 break-all sm:w-72 sm:shrink-0">
                     {knob.name}
                   </Text>
-                  <Text as="code" size="caption" tone="muted" className="shrink-0 font-mono sm:w-40">
+                  <Text as="code" size="caption" tone="muted" mono className="shrink-0 sm:w-40">
                     {knob.syntax}
                   </Text>
-                  <Text as="code" size="caption" tone="muted" className="min-w-0 break-all font-mono">
+                  <Text as="code" size="caption" tone="muted" mono className="min-w-0 break-all">
                     {knob.defaultValue}
                   </Text>
                 </div>

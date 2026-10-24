@@ -117,6 +117,15 @@
               "code",
               "text"
             ]
+          },
+          {
+            "attribute": "data-tone",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "destructive"
+            ]
           }
         ]
       },

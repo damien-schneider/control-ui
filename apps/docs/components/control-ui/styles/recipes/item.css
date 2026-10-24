@@ -1,7 +1,7 @@
 @layer components {
   :where([data-control-family="item"][data-slot="root"]) {
     --cui-item-radius: var(--radius-lg);
-    --cui-item-hover-background: transparent;
+    --cui-item-hover-background: var(--hover-fill);
     --cui-item-hover-border-color: var(--_item-border-color);
     --cui-item-border-width: 0px;
     --cui-item-active-scale: 0.99;
@@ -10,6 +10,8 @@
     --cui-item-padding-inline: calc(var(--spacing) * 3);
     --cui-item-description-font-size: var(--text-body);
     --cui-item-description-line-height: var(--leading-relaxed);
+    --cui-item-description-foreground: var(--muted-foreground);
+    --cui-item-media-foreground: var(--muted-foreground);
     --_item-background: transparent;
     --_item-border-color: transparent;
     outline: var(--cui-item-border-width) solid var(--_item-border-color);
@@ -95,7 +97,7 @@
   :where([data-control-family="item"][data-slot="description"]) {
     font-size: var(--cui-item-description-font-size);
     line-height: var(--cui-item-description-line-height);
-    color: var(--muted-foreground);
+    color: var(--cui-item-description-foreground);
     text-wrap: pretty;
   }
 
@@ -109,7 +111,7 @@
   }
 
   :where([data-control-family="item"][data-slot="media"]) {
-    color: var(--muted-foreground);
+    color: var(--cui-item-media-foreground);
   }
 }
 
@@ -171,4 +173,16 @@
   syntax: "<number>";
   inherits: true;
   initial-value: 1.5;
+}
+
+@property --cui-item-description-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-item-media-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
 }

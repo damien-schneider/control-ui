@@ -52,13 +52,13 @@ export function Specimen({
             <VarTag key={companion}>{companion}</VarTag>
           ))}
           {readout ? (
-            <Text size="micro" tone="muted" className="font-mono tabular-nums">
+            <Text size="micro" tone="muted" mono numeric>
               {readout}
             </Text>
           ) : null}
         </span>
         {description ? (
-          <Text size="caption" tone="muted" className="leading-4">
+          <Text size="caption" tone="muted">
             {description}
           </Text>
         ) : null}
@@ -76,7 +76,7 @@ export function TokenValueList({ names }: { names: readonly string[] }) {
           <dt className="shrink-0">
             <VarTag>{name}</VarTag>
           </dt>
-          <Text as="dd" size="micro" tone="muted" className="min-w-0 truncate font-mono" title={tokens[name]}>
+          <Text as="dd" size="micro" tone="muted" mono className="min-w-0 truncate" title={tokens[name]}>
             {tokens[name] ?? "—"}
           </Text>
         </div>

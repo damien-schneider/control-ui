@@ -108,7 +108,7 @@ function renderToolPart(part: ToolUIPart | DynamicToolUIPart, onApprovalResponse
           {part.output !== undefined || part.errorText ? (
             <ActivityDetail>
               <ActivityDetailLabel>Output</ActivityDetailLabel>
-              <ActivityDetailContent className={state === "error" ? "text-destructive-text" : undefined}>
+              <ActivityDetailContent tone={state === "error" ? "destructive" : "default"}>
                 {part.errorText ?? JSON.stringify(part.output, null, 2)}
               </ActivityDetailContent>
             </ActivityDetail>

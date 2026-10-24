@@ -21,7 +21,7 @@ export function UtilPage({ util }: { util: DocsUtil }) {
           </section>
         ) : null}
         <div id="install" className="min-w-0 scroll-mt-20 rounded-xl border bg-background p-5">
-          <Text as="p" tone="muted" className="leading-6">
+          <Text as="p" tone="muted">
             Installed to <code>{util.target}</code> with {util.install ?? "every Control UI component"}, so the shared helper stays in one
             place.
           </Text>

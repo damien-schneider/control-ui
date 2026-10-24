@@ -141,9 +141,11 @@ function IssueFilters({ input = false }: { input?: boolean }) {
           </li>
         ))}
         {matching.length === 0 && (
-          <Text as="li" size="caption" tone="muted" className="px-4 py-6 text-center">
-            No issues match these filters.
-          </Text>
+          <li className="px-4 py-6 text-center">
+            <Text size="caption" tone="muted">
+              No issues match these filters.
+            </Text>
+          </li>
         )}
       </ul>
     </div>

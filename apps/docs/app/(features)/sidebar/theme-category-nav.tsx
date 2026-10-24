@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { Button } from "@/components/control-ui/ui/button";
+import { Separator } from "@/components/control-ui/ui/separator";
 import { SidebarGroup, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/control-ui/ui/sidebar";
 import { Text } from "@/components/control-ui/ui/typography";
 import { setDrawerOpen } from "@/components/theme-drawer/generation-store";
@@ -78,7 +79,8 @@ function ThemeCategoryNavContent({ onNavigate }: { onNavigate: () => void }) {
           })}
         </SidebarMenu>
       </SidebarGroup>
-      <SidebarGroup className="border-t border-sidebar-border pt-3">
+      <Separator />
+      <SidebarGroup>
         <SidebarMenu indicator="hover">
           <SidebarMenuItem>
             <SidebarMenuButton

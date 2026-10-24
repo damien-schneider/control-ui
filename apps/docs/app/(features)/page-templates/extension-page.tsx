@@ -39,7 +39,7 @@ export function ExtensionPage({ extension }: { extension: DocsExtension }) {
           </section>
         ) : null}
         <div id="attach" className="min-w-0 scroll-mt-20 rounded-xl border bg-background p-5">
-          <Text as="p" tone="muted" className="leading-6">
+          <Text as="p" tone="muted">
             <Badge variant="outline" size="sm" className="mr-2">
               {extension.attach === "anchored" ? "Anchored" : "Root-mounted"}
             </Badge>

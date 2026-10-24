@@ -125,6 +125,12 @@
       "defaultValue": "400"
     },
     {
+      "name": "--cui-field-font-family",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--font-body)"
+    },
+    {
       "name": "--cui-field-group-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",

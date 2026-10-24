@@ -46,16 +46,32 @@ export function FlowArrow({ direction = "right", className }: { direction?: "dow
   );
 }
 
-export function DiagramNode({ className, ...props }: ComponentProps<"div">) {
+const diagramNodeTones = {
+  default: "border-border/80 bg-background/80",
+  dashed: "border-dashed border-border/80 bg-muted/35",
+  primary: "border-primary/30 bg-background/80",
+  "primary-fill": "border-primary/30 bg-primary/8",
+} as const;
+
+export function DiagramNode({
+  tone = "default",
+  mono,
+  className,
+  children,
+  ...props
+}: ComponentProps<"div"> & { tone?: keyof typeof diagramNodeTones; mono?: boolean }) {
   return (
-    <Text
-      as="div"
-      size="label"
+    <div
       className={cn(
-        "rounded-lg border border-border/80 bg-background/80 px-3 py-2.5 leading-5 transition-[border-color,background-color,transform] duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:-translate-y-0.5 hover:border-primary/40 hover:bg-background motion-reduce:transition-none",
+        "rounded-lg border px-3 py-2.5 transition-[border-color,background-color,transform] duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:-translate-y-0.5 hover:border-primary/40 hover:bg-background motion-reduce:transition-none",
+        diagramNodeTones[tone],
         className,
       )}
       {...props}
-    />
+    >
+      <Text as="div" size="label" mono={mono}>
+        {children}
+      </Text>
+    </div>
   );
 }

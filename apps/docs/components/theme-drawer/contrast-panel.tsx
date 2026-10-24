@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { cn } from "@/components/control-ui/lib/cn";
+import { Button } from "@/components/control-ui/ui/button";
 import { Text } from "@/components/control-ui/ui/typography";
 import { TARGET_RATIO, type WcagLevel, type WcagLevels } from "./color-math";
 import { rgbToHex } from "./color-utils";
@@ -13,39 +14,33 @@ import type { ThemeState } from "./types";
 // fixed hues on purpose: pass/fail is status, not theme
 function LevelBadge({ level, state }: { level: WcagLevel; state: "pass" | "fail" | "unknown" }) {
   return (
-    <Text
-      size="micro"
-      weight="semibold"
-      tone={state === "unknown" ? "muted" : "default"}
+    <span
       title={level === "AA" ? "WCAG AA · 4.5:1" : "WCAG AAA · 7:1"}
       className={cn(
-        "shrink-0 rounded-full px-1.5 py-0.5 uppercase tracking-wide tabular-nums",
+        "inline-flex shrink-0 rounded-full px-1.5 py-0.5 uppercase tracking-wide",
         state === "pass" && "bg-emerald-500/15 text-emerald-700 dark:text-emerald-400",
         state === "fail" && "bg-red-500/15 text-red-700 dark:text-red-400",
         state === "unknown" && "bg-muted",
       )}
     >
-      {level}
-    </Text>
+      <Text size="micro" weight="semibold" tone={state === "unknown" ? "muted" : "default"} numeric>
+        {level}
+      </Text>
+    </span>
   );
 }
 
 function FixChip({ level, onClick }: { level: WcagLevel; onClick: () => void }) {
   return (
-    <button
-      type="button"
+    <Button
+      variant={level === "AA" ? "solid" : "ghost"}
+      size="xs"
       onClick={onClick}
       title={level === "AA" ? "Fix this pairing to WCAG AA (4.5:1)" : "Upgrade this pairing to WCAG AAA (7:1)"}
-      className={cn(
-        "shrink-0 rounded-full px-1.5 py-0.5 text-micro font-semibold uppercase tracking-wide transition-colors motion-reduce:transition-none",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60",
-        level === "AA"
-          ? "bg-foreground text-background hover:opacity-90"
-          : "border border-border text-muted-foreground hover:bg-muted hover:text-foreground",
-      )}
+      className="shrink-0"
     >
       →&nbsp;{level}
-    </button>
+    </Button>
   );
 }
 
@@ -116,19 +111,19 @@ export function ContrastPanel({ t, onFix }: { t: ThemeState; onFix: (textFixes: 
           const fixLevel = rowFixLevel(r);
           return (
             <div key={r.label} className="flex items-center gap-2.5 rounded-[6px] px-2 py-1.5">
-              <Text
+              <span
                 aria-hidden
-                size="caption"
-                weight="semibold"
                 className="grid size-8 shrink-0 place-items-center rounded-[5px] border border-border"
                 style={{ color: `var(${r.fg})`, background: `var(${r.bg})` }}
               >
-                Aa
-              </Text>
+                <Text size="caption" weight="semibold">
+                  Aa
+                </Text>
+              </span>
               <Text size="label" tone="foreground" className="min-w-0 flex-1 truncate">
                 {r.label}
               </Text>
-              <Text size="caption" tone="muted" className="font-mono tabular-nums">
+              <Text size="caption" tone="muted" mono numeric>
                 {r.ratio === null ? "—" : `${r.ratio.toFixed(2)}:1`}
               </Text>
               <span className="flex shrink-0 items-center gap-1.5">

@@ -15,12 +15,10 @@ export function PrimitiveDatePickerExample() {
         Date
       </Text>
       <Popover>
-        <PopoverTrigger
-          render={<Button variant="surface" tone="neutral" />}
-          className="w-56 justify-start font-normal data-[placeholder]:text-muted-foreground"
-          data-placeholder={date ? undefined : ""}
-        >
-          {date ? new Intl.DateTimeFormat(undefined, { dateStyle: "long" }).format(date) : "Pick a date"}
+        <PopoverTrigger render={<Button variant="surface" tone="neutral" />} className="w-56 justify-start">
+          <Text weight="normal" tone={date ? "default" : "muted"}>
+            {date ? new Intl.DateTimeFormat(undefined, { dateStyle: "long" }).format(date) : "Pick a date"}
+          </Text>
         </PopoverTrigger>
         <PopoverContent align="start" padding="none" className="w-auto">
           <Calendar mode="single" selected={date} onSelect={setDate} />

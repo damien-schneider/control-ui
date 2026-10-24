@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, ChevronRight, MoreHorizontal, RotateCcw } from "lucide-react";
+import { BellIcon, ChevronRightIcon, MoreHorizontalIcon, RotateCcwIcon } from "lucide-react";
 import { Button } from "@/components/control-ui/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
 import {
@@ -20,7 +20,7 @@ export function PrimitiveItemExample() {
     <div className="flex w-full max-w-md flex-col gap-3">
       <Item variant="outline">
         <ItemMedia>
-          <Bell />
+          <BellIcon />
         </ItemMedia>
         <ItemContent>
           <ItemTitle>Notifications</ItemTitle>
@@ -39,7 +39,7 @@ export function PrimitiveItemExample() {
           <ItemDescription>Members, billing and API keys.</ItemDescription>
         </ItemContent>
         <ItemActions>
-          <ChevronRight className="size-4 text-muted-foreground" />
+          <ChevronRightIcon className="size-4 text-muted-foreground" />
         </ItemActions>
       </Item>
 
@@ -50,11 +50,11 @@ export function PrimitiveItemExample() {
         </ItemContent>
         <ItemActions showOnHover>
           <Button variant="ghost" size="sm" iconOnly aria-label="Rerun nightly evaluation">
-            <RotateCcw />
+            <RotateCcwIcon />
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger variant="ghost" iconOnly aria-label="Nightly evaluation actions">
-              <MoreHorizontal />
+              <MoreHorizontalIcon />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuItem>View logs</DropdownMenuItem>

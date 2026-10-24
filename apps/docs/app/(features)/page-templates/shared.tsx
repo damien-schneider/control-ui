@@ -32,13 +32,7 @@ export function PageHeader({
           {label}
         </Text>
         <div className="mt-2 flex flex-wrap items-center gap-3">
-          <Heading
-            level={1}
-            size="display"
-            ref={focusOnMount ? focusHeading : undefined}
-            tabIndex={focusOnMount ? -1 : undefined}
-            className="outline-none"
-          >
+          <Heading level={1} size="display" ref={focusOnMount ? focusHeading : undefined} tabIndex={focusOnMount ? -1 : undefined}>
             {title}
           </Heading>
           {status ? <StatusBadge status={status} /> : null}
@@ -171,7 +165,7 @@ export function DependencySection({
       ) : null}
       {usage ? (
         <div className="mt-4 min-w-0">
-          <Text as="p" tone="muted" className="mb-3 leading-6">
+          <Text as="p" tone="muted" className="mb-3">
             {usage.description}
           </Text>
           <CodeBlock code={usage.code} />
@@ -199,7 +193,7 @@ function DependencyRow({ name, detail, kind, href }: { name: string; detail: str
       </Text>
     </>
   );
-  const className = "flex min-w-0 items-baseline justify-between gap-4 px-4 py-2.5 text-body";
+  const className = "flex min-w-0 items-baseline justify-between gap-4 px-4 py-2.5";
 
   if (!href) return <div className={className}>{content}</div>;
 
@@ -235,7 +229,7 @@ export function InstallPanel({
     <section id="install" className="min-w-0 scroll-mt-20">
       <SectionTitle title="Installation" description={subtitle} />
       {children ? (
-        <Text as="p" tone="muted" className="mb-3 leading-6">
+        <Text as="p" tone="muted" className="mb-3">
           {children}
         </Text>
       ) : null}

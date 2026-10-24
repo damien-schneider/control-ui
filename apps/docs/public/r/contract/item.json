@@ -16,7 +16,7 @@
       "name": "--cui-item-hover-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "transparent"
+      "defaultValue": "var(--hover-fill)"
     },
     {
       "name": "--cui-item-hover-border-color",
@@ -65,6 +65,18 @@
       "syntax": "<number>",
       "initialValue": "1.5",
       "defaultValue": "var(--leading-relaxed)"
+    },
+    {
+      "name": "--cui-item-description-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-item-media-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
     }
   ],
   "parts": {

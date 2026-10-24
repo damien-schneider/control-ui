@@ -12,9 +12,11 @@ function TrackHighlightDemo({ indicator }: { indicator: "hover" | "slide" }) {
 
   return (
     <fieldset className="min-w-0 max-w-full rounded-(--radius-panel) border border-border p-3">
-      <Text as="legend" size="caption" tone="muted" className="px-1">
-        {indicator === "hover" ? "Hover and focus" : "Selection and preview"}
-      </Text>
+      <legend className="px-1">
+        <Text size="caption" tone="muted">
+          {indicator === "hover" ? "Hover and focus" : "Selection and preview"}
+        </Text>
+      </legend>
       <div data-track={indicator} className={`relative isolate flex ${indicator === "slide" ? "w-56 max-w-full flex-col" : "flex-wrap"}`}>
         {views.map((view) => (
           <Button
