@@ -1,6 +1,6 @@
 {
   "name": "@ctrl-ui/react",
-  "version": "0.9.8",
+  "version": "0.9.9",
   "description": "100+ React components for Tailwind CSS and shadcn/ui: pickers, trees, editors, canvases, app templates, and AI chat surfaces, with neutral defaults and consumer-owned themes.",
   "keywords": [
     "react",
