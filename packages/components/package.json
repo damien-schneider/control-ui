@@ -28,6 +28,9 @@
   },
   "homepage": "https://control-ui.dev",
   "type": "module",
+  "bin": {
+    "control-ui-grit": "./lint/write-grit-rules.mjs"
+  },
   "sideEffects": [
     "**/*.css"
   ],

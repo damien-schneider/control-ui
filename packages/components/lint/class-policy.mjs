@@ -1,4 +1,10 @@
-export const controlUiImportPath = `(?:@ctrl-ui/react|[^'"]*components/control-ui)/`;
+const controlUiImportPath = `(?:@ctrl-ui/react|[^'"]*components/control-ui)/`;
+
+const escapeRegExp = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+export function controlUiImportPattern(importSources = []) {
+  return `(?:${[controlUiImportPath, ...importSources.map(escapeRegExp)].join("|")})`;
+}
 
 export const componentStyleClass = String.raw`[^\s"'\x60]!(?:[\s"'\x60]|$)|(?:^|[\s"'\x60])![\w\[-]|(?:^|[^\w-])(?:p[xytrblse]?-|bg-[\w\[]|text-(?:foreground|muted|primary|secondary|accent|destructive|success|warning|info|card|popover|sidebar|background|canvas|current|inherit|transparent|white|black|[a-z]+-\d{2,3}|\[(?:#|oklch|rgb|hsl|lab|lch|color|var))|font-|leading-|tracking-|border|divide-|rounded|shadow|ring\b|ring-|outline|opacity-|backdrop-|fill-|stroke-|decoration-|underline|line-through|italic|uppercase|lowercase|capitalize|tabular-nums|(?:hover|focus|focus-visible|focus-within|active|disabled|open|checked|dark|placeholder|aria-[^:\s]*|data-[^:\s]*|group-[^:\s]*|peer-[^:\s]*|has-[^:\s]*|\*|\[&[^\s]*?\]):)`;
 

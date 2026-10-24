@@ -1,6 +1,5 @@
-import { componentStyleClass, componentStyleMessage, controlUiImportPath, rawTypeClass, rawTypeMessage } from "./class-policy.mjs";
+import { componentStyleClass, componentStyleMessage, controlUiImportPattern, rawTypeClass, rawTypeMessage } from "./class-policy.mjs";
 
-const controlUiImport = new RegExp(`^${controlUiImportPath}`);
 const componentStyle = new RegExp(componentStyleClass);
 const rawType = new RegExp(rawTypeClass);
 
@@ -23,7 +22,7 @@ function elementRootName(name) {
   return undefined;
 }
 
-function controlUiLocalNames(program) {
+function controlUiLocalNames(program, controlUiImport) {
   const names = new Set();
   for (const statement of program.body) {
     if (statement.type !== "ImportDeclaration" || statement.importKind === "type") continue;
@@ -38,13 +37,20 @@ const noComponentStyleClasses = {
     type: "problem",
     docs: { description: "Keep className on Control UI components to layout; the component owns its look." },
     messages: { componentStyle: componentStyleMessage },
-    schema: [],
+    schema: [
+      {
+        type: "object",
+        properties: { importSources: { type: "array", items: { type: "string" } } },
+        additionalProperties: false,
+      },
+    ],
   },
   create(context) {
+    const controlUiImport = new RegExp(`^${controlUiImportPattern(context.options[0]?.importSources)}`);
     let controlUiNames = new Set();
     return {
       Program(program) {
-        controlUiNames = controlUiLocalNames(program);
+        controlUiNames = controlUiLocalNames(program, controlUiImport);
       },
       JSXAttribute(attribute) {
         if (!controlUiNames.has(elementRootName(attribute.parent.name))) return;

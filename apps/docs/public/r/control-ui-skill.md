@@ -37,7 +37,10 @@ Control UI reaches a repository one of two ways. Installed source: the component
   - oxlint: `"jsPlugins": ["@ctrl-ui/react/eslint-plugin"]` in .oxlintrc.json, then the same rule name.
   - Installed source has no package to load rules from: add `@ctrl-ui/react` as a devDependency for the rules alone, or port them.
   - Any other linter: port the rule from `@ctrl-ui/react/lint/class-policy.mjs`, which holds the patterns and messages. Keep it scoped to JSX elements imported from `@ctrl-ui/react` or the control-ui directory, and test the string literals inside className.
-- The rule only sees components imported directly from Control UI; a local wrapper that re-exports one hides it, so keep wrappers layout-only too.
+- The rule only follows imports from Control UI. When the app imports components through its own package or folder that re-exports or wraps them (`@acme/ui/components/button`), declare that path as an import source, or every call site stays invisible:
+  - ESLint and oxlint: `"control-ui/no-component-style-classes": ["error", { "importSources": ["@acme/ui/components/"] }]`.
+  - Biome: Grit rules take no options, so generate them with the path. Add `"postinstall": "control-ui-grit --import-source=@acme/ui/components/ --out=.control-ui"` to the root package.json, list `./.control-ui/no-component-style-classes.grit` under plugins instead of the preset, and gitignore `.control-ui`. Every install, including a Control UI update, regenerates the rules.
+  - Keep the wrappers themselves layout-only: a wrapper that paints the component is the same override.
 - When the rule surfaces existing violations, fix them through props and knobs. A large backlog is enabled folder by folder through the linter's overrides, never silenced with suppressions.
 - `no-raw-type-classes` is the stricter companion for text sizes on every element, components or not. Adopt it folder by folder: it flags all hand-sized text, not only Control UI.
 

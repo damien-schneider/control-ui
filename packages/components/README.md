@@ -77,6 +77,18 @@ oxlint, through its JS plugin support:
 { "jsPlugins": ["@ctrl-ui/react/eslint-plugin"], "rules": { "control-ui/no-component-style-classes": "error" } }
 ```
 
+When your app imports components through its own wrapper package or folder, declare that path so the rule follows those imports too:
+
+```js
+rules: { "control-ui/no-component-style-classes": ["error", { importSources: ["@acme/ui/components/"] }] }
+```
+
+Biome's Grit plugins take no options, so the package ships `control-ui-grit` to write the rules with your paths. Run it on install so a package update regenerates them, gitignore `.control-ui`, and list `./.control-ui/no-component-style-classes.grit` under `plugins` in place of the preset:
+
+```json
+{ "scripts": { "postinstall": "control-ui-grit --import-source=@acme/ui/components/ --out=.control-ui" } }
+```
+
 ## Customize
 
 Your application owns its theme. Override the library's neutral defaults in your CSS:

@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { gritRules } from "./lint/grit-rules";
+import { gritRules } from "./lint/grit-rules.mjs";
 
 type Rule = "no-component-style-classes" | "no-raw-type-classes";
 
@@ -16,42 +16,54 @@ mkdirSync(path.join(consumer, "node_modules/@ctrl-ui"), { recursive: true });
 symlinkSync(packageRoot, path.join(consumer, "node_modules/@ctrl-ui/react"));
 afterAll(() => rmSync(consumer, { recursive: true }));
 
-const biomeConfig: Record<Rule, object> = {
-  "no-component-style-classes": { extends: ["@ctrl-ui/react/biome"] },
-  "no-raw-type-classes": { plugins: ["./node_modules/@ctrl-ui/react/lint/no-raw-type-classes.grit"] },
-};
+type Setup = { rule: Rule; importSources?: string[] };
+
+function ruleSetting({ importSources }: Setup) {
+  return importSources ? ["error", { importSources }] : "error";
+}
+
+function biomeConfig({ rule, importSources }: Setup) {
+  if (!importSources) {
+    return rule === "no-component-style-classes"
+      ? { extends: ["@ctrl-ui/react/biome"] }
+      : { plugins: [`./node_modules/@ctrl-ui/react/lint/${rule}.grit`] };
+  }
+  const sourceArguments = importSources.map((source) => `--import-source=${source}`);
+  spawnSync("node", ["node_modules/@ctrl-ui/react/lint/write-grit-rules.mjs", ...sourceArguments, "--out=.control-ui"], { cwd: consumer });
+  return { plugins: [`./.control-ui/${rule}.grit`] };
+}
 
 const linters = {
-  biome(rule: Rule) {
-    writeFileSync(path.join(consumer, "biome.json"), JSON.stringify({ ...biomeConfig[rule], linter: { rules: { recommended: false } } }));
+  biome(setup: Setup) {
+    writeFileSync(path.join(consumer, "biome.json"), JSON.stringify({ ...biomeConfig(setup), linter: { rules: { recommended: false } } }));
     const result = spawnSync(biome, ["lint", "--max-diagnostics=100", "sample.jsx"], { cwd: consumer, encoding: "utf8" });
     return [...`${result.stdout}${result.stderr}`.matchAll(/sample\.jsx:(\d+):\d+ plugin/g)].map((match) => Number(match[1]));
   },
-  eslint(rule: Rule) {
+  eslint(setup: Setup) {
     writeFileSync(
       path.join(consumer, "eslint.config.mjs"),
       `import controlUi from "@ctrl-ui/react/eslint-plugin";
-export default [{ files: ["**/*.jsx"], languageOptions: { parserOptions: { ecmaFeatures: { jsx: true } } }, plugins: { "control-ui": controlUi }, rules: { "control-ui/${rule}": "error" } }];`,
+export default [{ files: ["**/*.jsx"], languageOptions: { parserOptions: { ecmaFeatures: { jsx: true } } }, plugins: { "control-ui": controlUi }, rules: { "control-ui/${setup.rule}": ${JSON.stringify(ruleSetting(setup))} } }];`,
     );
     const result = spawnSync(binary("eslint"), ["--format", "json", "sample.jsx"], { cwd: consumer, encoding: "utf8" });
     const [report] = JSON.parse(result.stdout) as [{ messages: { line: number; ruleId: string | null }[] }];
-    return report.messages.map((message) => (message.ruleId === `control-ui/${rule}` ? message.line : -1));
+    return report.messages.map((message) => (message.ruleId === `control-ui/${setup.rule}` ? message.line : -1));
   },
-  oxlint(rule: Rule) {
+  oxlint(setup: Setup) {
     writeFileSync(
       path.join(consumer, ".oxlintrc.json"),
-      JSON.stringify({ jsPlugins: ["@ctrl-ui/react/eslint-plugin"], rules: { [`control-ui/${rule}`]: "error" } }),
+      JSON.stringify({ jsPlugins: ["@ctrl-ui/react/eslint-plugin"], rules: { [`control-ui/${setup.rule}`]: ruleSetting(setup) } }),
     );
     const result = spawnSync(binary("oxlint"), ["--format", "unix", "sample.jsx"], { cwd: consumer, encoding: "utf8" });
     return [...result.stdout.matchAll(/sample\.jsx:(\d+):\d+: .*control-ui\((.+?)\)/g)].map((match) =>
-      match[2] === rule ? Number(match[1]) : -1,
+      match[2] === setup.rule ? Number(match[1]) : -1,
     );
   },
 };
 
-function flaggedLinesPerLinter(rule: Rule, lines: string[]) {
+function flaggedLinesPerLinter(setup: Setup, lines: string[]) {
   writeFileSync(path.join(consumer, "sample.jsx"), lines.join("\n"));
-  return Object.fromEntries(Object.entries(linters).map(([name, lint]) => [name, lint(rule)]));
+  return Object.fromEntries(Object.entries(linters).map(([name, lint]) => [name, lint(setup)]));
 }
 
 function everyLinter(lines: number[]) {
@@ -79,7 +91,7 @@ test("flags paint, type, padding, state and !important classes on Control UI com
     `export const g = <Item.Root className="rounded-md ring-1" />;`,
     `export const h = <Sidebar className="min-h-0! h-full" />;`,
   ];
-  expect(flaggedLinesPerLinter("no-component-style-classes", lines)).toEqual(everyLinter([7, 8, 9, 10, 11, 12, 13, 14]));
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-classes" }, lines)).toEqual(everyLinter([7, 8, 9, 10, 11, 12, 13, 14]));
 });
 
 test("leaves layout classes, components from elsewhere, and non-literal classes alone in every linter", () => {
@@ -94,7 +106,20 @@ test("leaves layout classes, components from elsewhere, and non-literal classes 
     `export const g = <Panel className="grid-cols-2 items-center order-1 sticky top-0 overflow-hidden gap-x-4 space-y-2" />;`,
     `export const h = <Card className="bg-red-500" />;`,
   ];
-  expect(flaggedLinesPerLinter("no-component-style-classes", lines)).toEqual(everyLinter([]));
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-classes" }, lines)).toEqual(everyLinter([]));
+});
+
+test("follows a local wrapper package once its import path is declared, in every linter", () => {
+  const lines = [
+    `import { Button } from "@acme/ui/components/button";`,
+    `import { Logo } from "@acme/brand/logo";`,
+    `export const a = <Button className="bg-primary px-4">x</Button>;`,
+    `export const b = <Logo className="bg-primary px-4" />;`,
+    `export const c = <Button className="w-full">x</Button>;`,
+  ];
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-classes", importSources: ["@acme/ui/components/"] }, lines)).toEqual(
+    everyLinter([3]),
+  );
 });
 
 test("flags type rungs and Tailwind font sizes in className on any element in every linter", () => {
@@ -108,7 +133,7 @@ test("flags type rungs and Tailwind font sizes in className on any element in ev
     `export const g = <span className="text-[13px]">x</span>;`,
     `export const h = <p className="md:text-lg hover:!text-sm">x</p>;`,
   ];
-  expect(flaggedLinesPerLinter("no-raw-type-classes", lines)).toEqual(everyLinter([1, 2, 3, 4, 5, 6, 7, 8]));
+  expect(flaggedLinesPerLinter({ rule: "no-raw-type-classes" }, lines)).toEqual(everyLinter([1, 2, 3, 4, 5, 6, 7, 8]));
 });
 
 test("leaves alignment, wrapping, colors and look-alike utilities alone in every linter", () => {
@@ -119,11 +144,14 @@ test("leaves alignment, wrapping, colors and look-alike utilities alone in every
     `export const d = <p className="text-[#fff] text-[var(--brand)]">x</p>;`,
     `export const e = <button className="[--cui-button-font-size:var(--text-micro)]">x</button>;`,
   ];
-  expect(flaggedLinesPerLinter("no-raw-type-classes", lines)).toEqual(everyLinter([]));
+  expect(flaggedLinesPerLinter({ rule: "no-raw-type-classes" }, lines)).toEqual(everyLinter([]));
 });
 
 test("shipped Grit rules are generated from the class policy", () => {
-  for (const [file, source] of Object.entries(gritRules)) {
-    expect(readFileSync(path.join(packageRoot, "lint", file), "utf8"), `${file} is stale: run bun lint/grit-rules.ts`).toBe(source);
+  for (const [file, source] of Object.entries(gritRules())) {
+    expect(
+      readFileSync(path.join(packageRoot, "lint", file), "utf8"),
+      `${file} is stale: run node lint/write-grit-rules.mjs --out lint`,
+    ).toBe(source);
   }
 });
