@@ -68,7 +68,7 @@ It measures CPU, style work, React commits, and focus changes, and verifies disa
 
 React Compiler is enabled in the docs app. Start `NEXT_PUBLIC_REACT_SCAN=1 bun run dev` to enable React Scan;
 use its toolbar to inspect which components rerender and how much render time they take. It is excluded from production.
-React Scan and React Grab never load in browsers driven by automation (`navigator.webdriver`), so Playwright runs measure the app alone.
+React Scan never loads in browsers driven by automation (`navigator.webdriver`), so Playwright runs measure the app alone.
 
 ## Conventions
 

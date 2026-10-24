@@ -11,7 +11,6 @@ import { sidebarFirstPaintScript } from "@/app/(features)/sidebar/persistence";
 import { ThemeFavicon } from "@/app/(features)/theme/favicon-client";
 import themeInitScript from "@/app/(features)/theme/generated-theme-init.json";
 import { cn } from "@/components/control-ui/lib/cn";
-import { SourceDrawer } from "@/components/source-drawer";
 import { DEFAULT_SKIN_ID } from "@/components/theme";
 import { SkinRuntimeEffects } from "@/components/theme-drawer/skin-runtime-effects";
 import { ThemeRuntimeProvider } from "@/components/theme-drawer/theme-runtime-context";
@@ -52,7 +51,6 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
             </DocsShell>
           </div>
           <SkinRuntimeEffects />
-          {process.env.NODE_ENV === "development" ? <SourceDrawer /> : null}
           <DocsFeedback />
         </ThemeRuntimeProvider>
 

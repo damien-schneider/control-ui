@@ -64,7 +64,6 @@
         "react-day-picker": "^10.0.1",
         "react-dom": "^19.3.0",
         "react-email": "^6.9.5",
-        "react-grab": "^0.2.0",
         "react-phone-number-input": "^3.4.18",
         "react-resizable-panels": "^4.12.4",
         "reflet-sdk": "^0.7.11",
@@ -96,7 +95,7 @@
     },
     "packages/components": {
       "name": "@ctrl-ui/react",
-      "version": "0.9.5",
+      "version": "0.9.6",
       "devDependencies": {
         "@types/bun": "^1.4.2",
         "@types/react": "^19.3.0",
