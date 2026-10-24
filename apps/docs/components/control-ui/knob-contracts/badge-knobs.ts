@@ -5,6 +5,7 @@ export const badgeKnobs = [
   "--cui-badge-foreground",
   "--cui-badge-border-color",
   "--cui-badge-border-width",
+  "--cui-badge-font-family",
   "--cui-badge-font-size",
   "--cui-badge-font-weight",
 ] as const;

@@ -23,6 +23,24 @@
       "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 2)"
+    },
+    {
+      "name": "--cui-collapsible-trigger-padding-block",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    },
+    {
+      "name": "--cui-collapsible-trigger-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-collapsible-trigger-hover-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
     }
   ],
   "parts": {
@@ -79,7 +97,8 @@
   },
   "adornments": {},
   "uncovered": [
-    "--cui-collapsible-trigger-hover-background"
+    "--cui-collapsible-trigger-hover-background",
+    "--cui-collapsible-trigger-hover-foreground"
   ],
   "contrast": "/r/contract/collapsible.contrast.json"
 }

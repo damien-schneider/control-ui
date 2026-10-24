@@ -22,7 +22,7 @@
 
   [data-skin="linear"]
     :where([data-control-family="tabs"][data-slot="list"][data-variant="default"] [data-control-family="tabs"][data-slot="tab"]) {
-    padding-inline: 0.625rem;
+    --cui-tabs-trigger-padding-inline: 0.625rem;
     background-color: var(--linear-control-bg);
     box-shadow:
       0 0 0 var(--control-rim-width) var(--linear-rim),

@@ -30,6 +30,11 @@ export type CardContentProps = ComponentProps<"div"> & { style?: CSSProperties &
 
 export type CardFooterProps = ComponentProps<"div"> & { style?: CSSProperties & CardKnobStyle };
 
+export type CardLinkProps = Omit<ComponentProps<"button">, "style"> & {
+  render?: RenderProp<ComponentProps<"button">>;
+  style?: CSSProperties & CardKnobStyle;
+};
+
 export function Card({ variant = "default", size = "default", className, ...props }: CardProps) {
   return (
     <div
@@ -95,4 +100,19 @@ export function CardFooter({ className, ...props }: CardFooterProps) {
       {...props}
     />
   );
+}
+
+export function CardLink({ render, ...props }: CardLinkProps) {
+  return useRender({
+    defaultTagName: "button",
+    render,
+    props: {
+      type: render ? undefined : "button",
+      ...props,
+      "data-control-ui": "card",
+      "data-control-family": "card",
+      "data-slot": "link",
+      "data-focus-ring": "none",
+    },
+  });
 }

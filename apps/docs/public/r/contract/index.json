@@ -80,8 +80,8 @@
       "registryItems": [
         "badge"
       ],
-      "knobs": 7,
-      "probes": 38
+      "knobs": 8,
+      "probes": 52
     },
     "breadcrumb": {
       "registryItems": [
@@ -100,7 +100,7 @@
         "toggle"
       ],
       "knobs": 26,
-      "probes": 241
+      "probes": 249
     },
     "button-group": {
       "registryItems": [
@@ -120,8 +120,8 @@
       "registryItems": [
         "card"
       ],
-      "knobs": 10,
-      "probes": 4
+      "knobs": 11,
+      "probes": 6
     },
     "channel-strip": {
       "registryItems": [
@@ -185,7 +185,7 @@
         "code"
       ],
       "knobs": 9,
-      "probes": 26
+      "probes": 30
     },
     "code-diff": {
       "registryItems": [
@@ -198,8 +198,8 @@
       "registryItems": [
         "collapsible"
       ],
-      "knobs": 3,
-      "probes": 0
+      "knobs": 6,
+      "probes": 2
     },
     "color-picker": {
       "registryItems": [
@@ -265,7 +265,7 @@
         "textarea"
       ],
       "knobs": 31,
-      "probes": 93
+      "probes": 95
     },
     "filter-bar": {
       "registryItems": [
@@ -278,8 +278,8 @@
       "registryItems": [
         "flow"
       ],
-      "knobs": 27,
-      "probes": 15
+      "knobs": 31,
+      "probes": 16
     },
     "gradient-editor": {
       "registryItems": [
@@ -377,7 +377,7 @@
         "page-layout"
       ],
       "knobs": 15,
-      "probes": 5
+      "probes": 6
     },
     "pagination": {
       "registryItems": [
@@ -420,7 +420,7 @@
         "trigger-menu"
       ],
       "knobs": 53,
-      "probes": 165
+      "probes": 168
     },
     "progressive-blur": {
       "registryItems": [
@@ -463,7 +463,7 @@
         "scroll-area"
       ],
       "knobs": 3,
-      "probes": 45
+      "probes": 48
     },
     "separator": {
       "registryItems": [
@@ -477,7 +477,7 @@
         "sidebar"
       ],
       "knobs": 61,
-      "probes": 75
+      "probes": 83
     },
     "sidebar-layout": {
       "registryItems": [
@@ -540,15 +540,15 @@
         "table-of-contents"
       ],
       "knobs": 27,
-      "probes": 30
+      "probes": 36
     },
     "tabs": {
       "registryItems": [
         "emoji-picker",
         "tabs"
       ],
-      "knobs": 19,
-      "probes": 49
+      "knobs": 20,
+      "probes": 55
     },
     "task-list": {
       "registryItems": [

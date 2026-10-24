@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     --cui-tabs-trigger-radius: var(--radius-control);
+    --cui-tabs-trigger-padding-inline: calc(var(--spacing) * 3.5);
     --cui-tabs-list-padding: calc(var(--spacing) * 1);
     --cui-tabs-list-radius: calc(
       var(--cui-tabs-trigger-radius) +
@@ -104,7 +105,7 @@
     gap: calc(var(--spacing) * 1.5);
     white-space: nowrap;
     border-radius: var(--_tabs-trigger-radius-fit);
-    padding-inline: calc(var(--spacing) * 3.5);
+    padding-inline: var(--cui-tabs-trigger-padding-inline);
     color: var(--cui-tabs-foreground);
     font-size: var(--cui-tabs-font-size);
     font-weight: var(--cui-tabs-font-weight);
@@ -273,6 +274,12 @@
 }
 
 @property --cui-tabs-surface-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-tabs-trigger-padding-inline {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;

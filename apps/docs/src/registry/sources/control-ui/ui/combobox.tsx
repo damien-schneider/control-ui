@@ -10,6 +10,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
+import { InputGroup, InputGroupAddon, type InputGroupProps, useIsInsideInputGroup } from "@/components/control-ui/ui/input-group";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { shouldAcceptComboboxValueChange } from "./combobox-disabled-selection";
 
@@ -41,6 +42,8 @@ export type ComboboxProps<Value = string, Multiple extends boolean | undefined =
 export type ComboboxInputProps = Omit<Omit<ComponentProps<"input">, "size">, "style"> & { style?: CSSProperties & FieldKnobStyle } & {
   size?: ControlSize;
 };
+
+export type ComboboxInputGroupProps = Omit<InputGroupProps, "render">;
 
 export type ComboboxTriggerProps = ComponentProps<"button"> & { style?: CSSProperties & FieldKnobStyle };
 
@@ -135,7 +138,28 @@ export function ComboboxTrigger({ className, children, ...props }: ComboboxTrigg
   );
 }
 
+export function ComboboxInputGroup(props: ComboboxInputGroupProps) {
+  return <InputGroup {...props} render={<ComboboxPrimitive.InputGroup />} />;
+}
+
 export function ComboboxInput({ size = "md", className, ...props }: ComboboxInputProps) {
+  if (useIsInsideInputGroup()) {
+    return (
+      <>
+        <ComboboxPrimitive.Input
+          {...props}
+          data-control-ui="input-group"
+          data-control-family="field"
+          data-field-kind="input-group"
+          data-slot="input"
+          className={cn("h-full min-w-0 flex-1", className)}
+        />
+        <InputGroupAddon>
+          <ComboboxTrigger />
+        </InputGroupAddon>
+      </>
+    );
+  }
   return (
     <ComboboxPrimitive.InputGroup
       data-control-ui="combobox"

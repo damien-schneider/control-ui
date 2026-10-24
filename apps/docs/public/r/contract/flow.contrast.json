@@ -9,7 +9,8 @@
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
           "data-scroll": "page",
-          "data-slot": "wrapper"
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
         }
       },
       {
@@ -52,7 +53,8 @@
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
           "data-scroll": "page",
-          "data-slot": "wrapper"
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
         }
       },
       {
@@ -88,7 +90,8 @@
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
           "data-scroll": "page",
-          "data-slot": "wrapper"
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
         }
       },
       {
@@ -131,7 +134,8 @@
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
           "data-scroll": "page",
-          "data-slot": "wrapper"
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
         }
       },
       {
@@ -174,7 +178,8 @@
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
           "data-scroll": "page",
-          "data-slot": "wrapper"
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
         }
       },
       {
@@ -225,7 +230,8 @@
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
           "data-scroll": "page",
-          "data-slot": "wrapper"
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
         }
       },
       {
@@ -276,7 +282,8 @@
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
           "data-scroll": "page",
-          "data-slot": "wrapper"
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
         }
       },
       {
@@ -327,7 +334,8 @@
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
           "data-scroll": "page",
-          "data-slot": "wrapper"
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
         }
       },
       {
@@ -378,7 +386,8 @@
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
           "data-scroll": "page",
-          "data-slot": "wrapper"
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
         }
       },
       {
@@ -429,7 +438,8 @@
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
           "data-scroll": "page",
-          "data-slot": "wrapper"
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
         }
       },
       {
@@ -480,7 +490,8 @@
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
           "data-scroll": "page",
-          "data-slot": "wrapper"
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
         }
       },
       {
@@ -531,7 +542,8 @@
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
           "data-scroll": "page",
-          "data-slot": "wrapper"
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
         }
       },
       {
@@ -582,7 +594,8 @@
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
           "data-scroll": "page",
-          "data-slot": "wrapper"
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
         }
       },
       {
@@ -633,7 +646,8 @@
           "data-control-ui": "sidebar",
           "data-layout": "viewport",
           "data-scroll": "page",
-          "data-slot": "wrapper"
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
         }
       },
       {
@@ -674,6 +688,57 @@
           "data-control-ui": "flow",
           "data-id": "1-trigger-null-target",
           "data-slot": "handle"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "root",
+          "role": "application"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "node"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "flow",
+          "data-control-ui": "flow",
+          "data-slot": "node-body"
         }
       }
     ]
@@ -798,6 +863,14 @@
         "text": "--cui-flow-node-foreground"
       },
       "anatomy": 0,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-flow-node-body-background"
+      },
+      "anatomy": 14,
       "rendersText": true,
       "state": false
     }

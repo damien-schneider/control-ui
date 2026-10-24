@@ -386,6 +386,10 @@
       "syntax": "<length>"
     },
     {
+      "name": "--cui-badge-font-family",
+      "description": "Control UI badge knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
       "name": "--cui-badge-font-size",
       "description": "Control UI badge knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
@@ -650,6 +654,11 @@
       "name": "--cui-card-gap",
       "description": "Control UI card knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-card-hover-background",
+      "description": "Control UI card knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
     },
     {
       "name": "--cui-card-padding-block",
@@ -1207,9 +1216,24 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-collapsible-trigger-foreground",
+      "description": "Control UI collapsible knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
       "name": "--cui-collapsible-trigger-hover-background",
       "description": "Control UI collapsible knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-collapsible-trigger-hover-foreground",
+      "description": "Control UI collapsible knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-collapsible-trigger-padding-block",
+      "description": "Control UI collapsible knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
     },
     {
       "name": "--cui-collapsible-trigger-padding-inline",
@@ -1900,6 +1924,26 @@
       "name": "--cui-flow-node-background",
       "description": "Control UI flow knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-flow-node-body-background",
+      "description": "Control UI flow knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-flow-node-body-padding-block",
+      "description": "Control UI flow knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-flow-node-body-padding-inline",
+      "description": "Control UI flow knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-flow-node-body-radius",
+      "description": "Control UI flow knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
     },
     {
       "name": "--cui-flow-node-border-color",
@@ -3908,6 +3952,11 @@
     },
     {
       "name": "--cui-tabs-trigger-height",
+      "description": "Control UI tabs knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-tabs-trigger-padding-inline",
       "description": "Control UI tabs knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },

@@ -3,6 +3,9 @@
     --cui-collapsible-trigger-radius: var(--radius-control);
     --cui-collapsible-trigger-hover-background: var(--hover-fill);
     --cui-collapsible-trigger-padding-inline: calc(var(--spacing) * 2);
+    --cui-collapsible-trigger-padding-block: 0px;
+    --cui-collapsible-trigger-foreground: var(--foreground);
+    --cui-collapsible-trigger-hover-foreground: var(--foreground);
   }
 
   :where([data-control-family="collapsible"][data-slot="trigger"]) {
@@ -12,8 +15,9 @@
     align-items: center;
     gap: calc(var(--spacing) * 2);
     border-radius: var(--cui-collapsible-trigger-radius);
+    padding-block: var(--cui-collapsible-trigger-padding-block);
     padding-inline: var(--cui-collapsible-trigger-padding-inline);
-    color: var(--foreground);
+    color: var(--cui-collapsible-trigger-foreground);
     font-size: var(--text-label);
     font-weight: var(--font-weight-medium);
     text-align: start;
@@ -22,11 +26,13 @@
 
   :where([data-control-family="collapsible"][data-slot="trigger"]:focus-visible) {
     background: var(--cui-collapsible-trigger-hover-background);
+    color: var(--cui-collapsible-trigger-hover-foreground);
   }
 
   @media (hover: hover) {
     :where([data-control-family="collapsible"][data-slot="trigger"]:not(:disabled, [data-disabled]):hover) {
       background: var(--cui-collapsible-trigger-hover-background);
+      color: var(--cui-collapsible-trigger-hover-foreground);
     }
   }
 
@@ -85,4 +91,22 @@
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
+}
+
+@property --cui-collapsible-trigger-padding-block {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-collapsible-trigger-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-collapsible-trigger-hover-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
 }

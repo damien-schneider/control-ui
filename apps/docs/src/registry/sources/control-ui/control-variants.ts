@@ -1,8 +1,8 @@
 export type ControlSize = "xs" | "sm" | "md" | "lg";
 
-export const controlVariants = ["solid", "surface", "ghost", "quiet"] as const;
+export const buttonVariants = ["solid", "surface", "ghost", "quiet", "link"] as const;
 
-export type ControlVariant = (typeof controlVariants)[number];
+export type ButtonVariant = (typeof buttonVariants)[number];
 
 export const controlTones = ["neutral", "primary", "danger"] as const;
 

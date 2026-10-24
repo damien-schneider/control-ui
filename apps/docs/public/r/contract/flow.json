@@ -73,6 +73,30 @@
       "defaultValue": "var(--control-rim-width)"
     },
     {
+      "name": "--cui-flow-node-body-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-flow-node-body-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    },
+    {
+      "name": "--cui-flow-node-body-padding-inline",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3)"
+    },
+    {
+      "name": "--cui-flow-node-body-padding-block",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    },
+    {
       "name": "--cui-flow-node-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",

@@ -3743,7 +3743,8 @@
             "valueKind": "enum",
             "values": [
               "default",
-              "none"
+              "none",
+              "sm"
             ]
           },
           {

@@ -245,6 +245,7 @@
             "valueKind": "enum",
             "values": [
               "ghost",
+              "link",
               "quiet",
               "solid",
               "surface"
@@ -545,6 +546,7 @@
             "valueKind": "enum",
             "values": [
               "ghost",
+              "link",
               "quiet",
               "solid",
               "surface"

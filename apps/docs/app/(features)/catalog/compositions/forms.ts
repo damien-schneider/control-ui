@@ -145,6 +145,15 @@ export const formsCompositions = {
       "ComboboxInput includes its trigger by default.",
     ),
     example(
+      "Leading addon",
+      part(
+        "Combobox",
+        part("ComboboxInputGroup", part("InputGroupAddon"), part("ComboboxInput")),
+        part("ComboboxContent", part("ComboboxList", part("ComboboxItem"))),
+      ),
+      "Inside ComboboxInputGroup, ComboboxInput drops its own field surface and moves its trigger to a trailing addon; the popup still aligns to the whole group.",
+    ),
+    example(
       "Standalone trigger",
       part("Combobox", part("ComboboxTrigger"), part("ComboboxContent", part("ComboboxList", part("ComboboxItem")))),
     ),

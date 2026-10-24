@@ -416,6 +416,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="badge"][data-slot="root"])',
       },
       {
+        name: "--cui-badge-font-family",
+        syntax: "*",
+        defaultValue: "var(--font-body)",
+        selector: ':where([data-control-family="badge"][data-slot="root"])',
+      },
+      {
         name: "--cui-badge-font-size",
         syntax: "<length-percentage>",
         defaultValue: "var(--text-caption)",
@@ -768,6 +774,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-card-gap",
         syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 6)",
+        selector: ':where([data-control-family="card"][data-slot="root"])',
+      },
+      {
+        name: "--cui-card-hover-background",
+        syntax: "<color>",
+        defaultValue: "var(--accent)",
         selector: ':where([data-control-family="card"][data-slot="root"])',
       },
       {
@@ -1514,9 +1526,27 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     id: "collapsible",
     knobs: [
       {
+        name: "--cui-collapsible-trigger-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--foreground)",
+        selector: ':where([data-control-family="collapsible"][data-slot="root"])',
+      },
+      {
         name: "--cui-collapsible-trigger-hover-background",
         syntax: "<color>",
         defaultValue: "var(--hover-fill)",
+        selector: ':where([data-control-family="collapsible"][data-slot="root"])',
+      },
+      {
+        name: "--cui-collapsible-trigger-hover-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--foreground)",
+        selector: ':where([data-control-family="collapsible"][data-slot="root"])',
+      },
+      {
+        name: "--cui-collapsible-trigger-padding-block",
+        syntax: "<length-percentage>",
+        defaultValue: "0px",
         selector: ':where([data-control-family="collapsible"][data-slot="root"])',
       },
       {
@@ -2444,6 +2474,30 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-flow-node-background",
         syntax: "<color>",
         defaultValue: "var(--card)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-node-body-background",
+        syntax: "<color>",
+        defaultValue: "transparent",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-node-body-padding-block",
+        syntax: "<length-percentage>",
+        defaultValue: "0px",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-node-body-padding-inline",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 3)",
+        selector: ':where([data-control-family="flow"][data-slot="root"])',
+      },
+      {
+        name: "--cui-flow-node-body-radius",
+        syntax: "<length-percentage>",
+        defaultValue: "0px",
         selector: ':where([data-control-family="flow"][data-slot="root"])',
       },
       {
@@ -5135,6 +5189,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         syntax: "<length-percentage>",
         defaultValue: "var(--control-h-sm)",
         selector: ':where([data-control-family="tabs"][data-slot="list"])',
+      },
+      {
+        name: "--cui-tabs-trigger-padding-inline",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 3.5)",
+        selector: ':where([data-control-family="tabs"][data-slot="root"])',
       },
       {
         name: "--cui-tabs-trigger-radius",

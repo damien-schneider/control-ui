@@ -1478,6 +1478,7 @@
       "input": {
         "family": "field",
         "registryItems": [
+          "combobox",
           "input"
         ],
         "states": [
@@ -1515,6 +1516,49 @@
           },
           {
             "attribute": "data-invalid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-list-empty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-pressed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-readonly",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-required",
             "source": "external",
             "valueKind": "presence",
             "values": []

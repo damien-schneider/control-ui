@@ -19,6 +19,8 @@ export type AlertTitleProps = Omit<ComponentProps<"div">, "style"> & {
 
 export type AlertDescriptionProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AlertKnobStyle };
 
+export type AlertActionProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AlertKnobStyle };
+
 export function Alert({ variant = "default", className, ...props }: AlertProps) {
   return (
     <div
@@ -55,6 +57,18 @@ export function AlertDescription({ className, ...props }: AlertDescriptionProps)
       data-control-family="alert"
       data-slot="description"
       className={cn("col-start-2 grid min-w-0 justify-items-start", className)}
+      {...props}
+    />
+  );
+}
+
+export function AlertAction({ className, ...props }: AlertActionProps) {
+  return (
+    <div
+      data-control-ui="alert"
+      data-control-family="alert"
+      data-slot="action"
+      className={cn("col-start-3 row-span-2 row-start-1 flex items-center gap-1 self-start", className)}
       {...props}
     />
   );

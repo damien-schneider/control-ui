@@ -2,6 +2,7 @@
 export const tabsKnobs = [
   "--cui-tabs-surface-background",
   "--cui-tabs-surface-radius",
+  "--cui-tabs-trigger-padding-inline",
   "--cui-tabs-trigger-radius",
   "--cui-tabs-trigger-height",
   "--cui-tabs-list-padding",

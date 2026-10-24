@@ -39,6 +39,18 @@
     column-gap: var(--cui-alert-icon-gap);
   }
 
+  :where([data-control-family="alert"][data-slot="root"]:has(> [data-slot="action"])) {
+    grid-template-columns: 0 minmax(0, 1fr) auto;
+  }
+
+  :where([data-control-family="alert"][data-slot="root"]:has(> svg):has(> [data-slot="action"])) {
+    grid-template-columns: var(--cui-alert-icon-size) minmax(0, 1fr) auto;
+  }
+
+  :where([data-control-family="alert"][data-slot="root"]:not(:has(> svg)) > [data-slot="action"]) {
+    margin-inline-start: var(--cui-alert-icon-gap);
+  }
+
   :where([data-control-family="alert"][data-slot="description"]) {
     gap: var(--cui-alert-description-gap);
     color: var(--cui-alert-description-foreground);

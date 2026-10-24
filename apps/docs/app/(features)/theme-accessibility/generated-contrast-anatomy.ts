@@ -18,6 +18,701 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "hover",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+        {
+          attributes: {
+            "data-color": "yellow",
+            "data-control-family": "badge",
+            "data-control-ui": "badge",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "badge",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        boundary: "--cui-badge-border-color",
+        fill: "--cui-badge-background",
+        text: "--cui-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "header",
+          },
+        },
+        {
+          attributes: {
+            "data-color": "neutral",
+            "data-control-family": "badge",
+            "data-control-ui": "badge",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "badge",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        boundary: "--cui-badge-border-color",
+        fill: "--cui-badge-background",
+        text: "--cui-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-color": "blue",
+            "data-control-family": "badge",
+            "data-control-ui": "badge",
+            "data-size": "md",
+            "data-slot": "root",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "badge",
+      rendersText: true,
+      state: false,
+      route: "/components/badge",
+    },
+    {
+      knobs: {
+        boundary: "--cui-badge-border-color",
+        fill: "--cui-badge-background",
+        text: "--cui-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-color": "green",
+            "data-control-family": "badge",
+            "data-control-ui": "badge",
+            "data-size": "md",
+            "data-slot": "root",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "badge",
+      rendersText: true,
+      state: false,
+      route: "/components/badge",
+    },
+    {
+      knobs: {
+        boundary: "--cui-badge-border-color",
+        fill: "--cui-badge-background",
+        text: "--cui-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-color": "neutral",
+            "data-control-family": "badge",
+            "data-control-ui": "badge",
+            "data-size": "md",
+            "data-slot": "root",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "badge",
+      rendersText: true,
+      state: false,
+      route: "/components/badge",
+    },
+    {
+      knobs: {
+        boundary: "--cui-badge-border-color",
+        fill: "--cui-badge-background",
+        text: "--cui-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-color": "neutral",
+            "data-control-family": "badge",
+            "data-control-ui": "badge",
+            "data-size": "md",
+            "data-slot": "root",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "badge",
+      rendersText: true,
+      state: false,
+      route: "/components/badge",
+    },
+    {
+      knobs: {
+        boundary: "--cui-badge-border-color",
+        fill: "--cui-badge-background",
+        text: "--cui-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-color": "neutral",
+            "data-control-family": "badge",
+            "data-control-ui": "badge",
+            "data-size": "md",
+            "data-slot": "root",
+            "data-variant": "outline",
+          },
+        },
+      ],
+      recipe: "badge",
+      rendersText: true,
+      state: false,
+      route: "/components/badge",
+    },
+    {
+      knobs: {
+        boundary: "--cui-badge-border-color",
+        fill: "--cui-badge-background",
+        text: "--cui-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-color": "neutral",
+            "data-control-family": "badge",
+            "data-control-ui": "badge",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "badge",
+      rendersText: true,
+      state: false,
+      route: "/components/badge",
+    },
+    {
+      knobs: {
+        boundary: "--cui-badge-border-color",
+        fill: "--cui-badge-background",
+        text: "--cui-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-color": "orange",
+            "data-control-family": "badge",
+            "data-control-ui": "badge",
+            "data-size": "md",
+            "data-slot": "root",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "badge",
+      rendersText: true,
+      state: false,
+      route: "/components/badge",
+    },
+    {
+      knobs: {
+        boundary: "--cui-badge-border-color",
+        fill: "--cui-badge-background",
+        text: "--cui-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-color": "pink",
+            "data-control-family": "badge",
+            "data-control-ui": "badge",
+            "data-size": "md",
+            "data-slot": "root",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "badge",
+      rendersText: true,
+      state: false,
+      route: "/components/badge",
+    },
+    {
+      knobs: {
+        boundary: "--cui-badge-border-color",
+        fill: "--cui-badge-background",
+        text: "--cui-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-color": "purple",
+            "data-control-family": "badge",
+            "data-control-ui": "badge",
+            "data-size": "md",
+            "data-slot": "root",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "badge",
+      rendersText: true,
+      state: false,
+      route: "/components/flow",
+    },
+    {
+      knobs: {
+        boundary: "--cui-badge-border-color",
+        fill: "--cui-badge-background",
+        text: "--cui-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-color": "red",
+            "data-control-family": "badge",
+            "data-control-ui": "badge",
+            "data-size": "md",
+            "data-slot": "root",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "badge",
+      rendersText: true,
+      state: false,
+      route: "/components/badge",
+    },
+    {
+      knobs: {
+        boundary: "--cui-badge-border-color",
+        fill: "--cui-badge-background",
+        text: "--cui-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-color": "yellow",
+            "data-control-family": "badge",
+            "data-control-ui": "badge",
+            "data-size": "md",
+            "data-slot": "root",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "badge",
+      rendersText: true,
+      state: false,
+      route: "/components/badge",
+    },
+    {
+      knobs: {
+        boundary: "--cui-badge-border-color",
+        fill: "--cui-badge-background",
+        text: "--cui-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "card",
+            "data-control-ui": "card",
+            "data-size": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+            "data-variant": "default",
+          },
+        },
+        {
+          attributes: {
+            "data-color": "neutral",
+            "data-control-family": "badge",
+            "data-control-ui": "badge",
+            "data-size": "md",
+            "data-slot": "root",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "badge",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        boundary: "--cui-badge-border-color",
+        fill: "--cui-badge-background",
+        text: "--cui-badge-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
           },
         },
         {
@@ -2075,6 +2770,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
           },
         },
         {
@@ -6312,6 +7008,461 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/templates/file-explorer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "header",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "header",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-slot": "header",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "flow",
+            "data-control-ui": "flow",
+            "data-slot": "root",
+            role: "application",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "flow",
+            "data-control-ui": "flow",
+            "data-slot": "controls",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/components/flow",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-track-item": "",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-layout": "inline",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "dropdown-menu",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/components/card",
     },
     {
       knobs: {
@@ -11239,74 +12390,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components/empty",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "flow",
-            "data-control-ui": "flow",
-            "data-slot": "root",
-            role: "application",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "flow",
-            "data-control-ui": "flow",
-            "data-slot": "controls",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/components/flow",
     },
     {
       knobs: {
@@ -19480,6 +20563,61 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "dropdown-menu",
+            "data-icon-only": "true",
+            "data-popup-open": "",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button-states",
+      rendersText: false,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-open-background",
+        text: "--cui-button-open-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
           },
         },
         {
@@ -20786,6 +21924,209 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components/calendar",
+    },
+    {
+      knobs: {
+        fill: "--cui-calendar-weekend-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "day-cell",
+            "data-weekend": "true",
+            role: "gridcell",
+          },
+        },
+      ],
+      recipe: "calendar",
+      rendersText: true,
+      state: false,
+      route: "/components/calendar",
+    },
+    {
+      knobs: {
+        fill: "--cui-calendar-weekend-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "day-cell",
+            "data-weekend": "true",
+            role: "gridcell",
+          },
+        },
+      ],
+      recipe: "calendar",
+      rendersText: true,
+      state: false,
+      route: "/components/calendar",
+    },
+    {
+      knobs: {
+        fill: "--cui-card-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "card",
+            "data-control-ui": "card",
+            "data-size": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "card",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-card-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "card",
+            "data-control-ui": "card",
+            "data-size": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "card",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
     },
     {
       knobs: {
@@ -25291,6 +26632,55 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-code-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
           },
         },
         {
@@ -26691,6 +28081,62 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components/code-diff",
+    },
+    {
+      knobs: {
+        fill: "--cui-code-header-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-slot": "header",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
     },
     {
       knobs: {
@@ -29983,6 +31429,47 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "header",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "select",
+            "data-field-kind": "select",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "field",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-field-background",
+        text: "--cui-field-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
           },
         },
         {
@@ -32977,6 +34464,78 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
+        fill: "--cui-field-group-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+            "data-surface": "background",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "field",
+            "data-control-ui": "field",
+            "data-field-kind": "field",
+            "data-slot": "set",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "field",
+            "data-control-ui": "field",
+            "data-field-kind": "field",
+            "data-slot": "group",
+            "data-variant": "card",
+          },
+        },
+      ],
+      recipe: "field",
+      rendersText: true,
+      state: false,
+      route: "/templates/settings",
+    },
+    {
+      knobs: {
         fill: "--cui-flow-background",
       },
       anatomy: [
@@ -32987,6 +34546,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
           },
         },
         {
@@ -33032,6 +34592,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
           },
         },
         {
@@ -33085,6 +34646,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
           },
         },
         {
@@ -33137,6 +34699,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
           },
         },
         {
@@ -33197,6 +34760,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
           },
         },
         {
@@ -33257,6 +34821,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
           },
         },
         {
@@ -33317,6 +34882,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
           },
         },
         {
@@ -33377,6 +34943,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
           },
         },
         {
@@ -33437,6 +35004,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
           },
         },
         {
@@ -33497,6 +35065,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
           },
         },
         {
@@ -33557,6 +35126,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
           },
         },
         {
@@ -33617,6 +35187,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
           },
         },
         {
@@ -33677,6 +35248,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
           },
         },
         {
@@ -33738,6 +35310,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
           },
         },
         {
@@ -33770,6 +35343,66 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "flow",
             "data-control-ui": "flow",
             "data-slot": "node",
+          },
+        },
+      ],
+      recipe: "flow",
+      rendersText: true,
+      state: false,
+      route: "/components/flow",
+    },
+    {
+      knobs: {
+        fill: "--cui-flow-node-body-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "flow",
+            "data-control-ui": "flow",
+            "data-slot": "root",
+            role: "application",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "flow",
+            "data-control-ui": "flow",
+            "data-slot": "node",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "flow",
+            "data-control-ui": "flow",
+            "data-slot": "node-body",
           },
         },
       ],
@@ -36005,6 +37638,44 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+      ],
+      recipe: "page-layout",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-page-layout-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
           },
         },
         {
@@ -36789,6 +38460,59 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: false,
       route: "/components/drawer",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-background",
+        text: "--cui-popup-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "end",
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-open": "",
+            "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "menu",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
     },
     {
       knobs: {
@@ -44506,6 +46230,190 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "scroll-area",
+            "data-control-ui": "scroll-area",
+            "data-has-overflow-y": "",
+            "data-lock-axis": "x",
+            "data-mask": "true",
+            "data-overflow-y-end": "",
+            "data-scrollbar-gutter": "auto",
+            "data-slot": "root",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "scroll-area",
+            "data-control-ui": "scroll-area",
+            "data-orientation": "vertical",
+            "data-slot": "thumb",
+          },
+        },
+      ],
+      recipe: "scroll-area",
+      rendersText: false,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-scroll-area-thumb-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "scroll-area",
+            "data-control-ui": "scroll-area",
+            "data-has-overflow-x": "",
+            "data-has-overflow-y": "",
+            "data-mask": "true",
+            "data-overflow-x-end": "",
+            "data-overflow-y-end": "",
+            "data-scrollbar-gutter": "auto",
+            "data-slot": "root",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "scroll-area",
+            "data-control-ui": "scroll-area",
+            "data-orientation": "horizontal",
+            "data-slot": "thumb",
+          },
+        },
+      ],
+      recipe: "scroll-area",
+      rendersText: false,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-scroll-area-thumb-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "scroll-area",
+            "data-control-ui": "scroll-area",
+            "data-has-overflow-x": "",
+            "data-has-overflow-y": "",
+            "data-mask": "true",
+            "data-overflow-x-end": "",
+            "data-overflow-y-end": "",
+            "data-scrollbar-gutter": "auto",
+            "data-slot": "root",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "scroll-area",
+            "data-control-ui": "scroll-area",
+            "data-orientation": "vertical",
+            "data-slot": "thumb",
+          },
+        },
+      ],
+      recipe: "scroll-area",
+      rendersText: false,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-scroll-area-thumb-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
           },
         },
         {
@@ -47821,6 +49729,86 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "page",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "footer",
+          },
+        },
+      ],
+      recipe: "sidebar-parts",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-header-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "page",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "header",
+          },
+        },
+      ],
+      recipe: "sidebar-parts",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-header-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
           },
         },
         {
@@ -48840,6 +50828,106 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "page",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "card",
+            "data-control-ui": "card",
+            "data-size": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+            "data-variant": "default",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "hover",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: true,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-menu-button-active-background",
+        text: "--cui-sidebar-menu-button-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "page",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "hover",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: true,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-menu-button-active-background",
+        text: "--cui-sidebar-menu-button-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
           },
         },
         {
@@ -49522,6 +51610,106 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "page",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "card",
+            "data-control-ui": "card",
+            "data-size": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+            "data-variant": "default",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "hover",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-menu-button-background",
+        text: "--cui-sidebar-menu-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "page",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-indicator": "hover",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-menu-button-background",
+        text: "--cui-sidebar-menu-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
           },
         },
         {
@@ -49806,6 +51994,27 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/templates/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-wrapper-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+      ],
+      recipe: "sidebar",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
     },
     {
       knobs: {
@@ -51490,6 +53699,52 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-slot": "root",
+            "data-variant": "range",
+          },
+        },
+      ],
+      recipe: "table-of-contents",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        fill: "--cui-table-of-contents-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
           },
         },
         {
@@ -51612,6 +53867,76 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components",
+    },
+    {
+      knobs: {
+        fill: "--cui-tabs-indicator-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "indicator",
+            role: "presentation",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: false,
+      state: false,
+      route: "/components/card",
     },
     {
       knobs: {
@@ -52189,6 +54514,66 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: false,
       route: "/",
+    },
+    {
+      knobs: {
+        fill: "--cui-tabs-list-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
     },
     {
       knobs: {
@@ -62691,6 +65076,146 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
+        text: "--cui-calendar-weekend-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "day-cell",
+            "data-weekend": "true",
+            role: "gridcell",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "day",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "calendar",
+      rendersText: true,
+      state: false,
+      route: "/components/calendar",
+    },
+    {
+      knobs: {
+        text: "--cui-calendar-weekend-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "day-cell",
+            "data-weekend": "true",
+            role: "gridcell",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "calendar",
+            "data-control-ui": "calendar",
+            "data-slot": "day",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "calendar",
+      rendersText: true,
+      state: false,
+      route: "/components/calendar",
+    },
+    {
+      knobs: {
         text: "--cui-channel-strip-value-foreground",
       },
       anatomy: [
@@ -63831,6 +66356,63 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "grid",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        text: "--cui-code-text-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
           },
         },
         {
@@ -64373,6 +66955,69 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-slot": "header",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-slot": "title",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        text: "--cui-code-title-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
           },
         },
         {
@@ -64645,6 +67290,120 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
+        text: "--cui-collapsible-trigger-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-closed": "",
+            "data-control-family": "collapsible",
+            "data-control-ui": "collapsible",
+            "data-slot": "root",
+            "data-state": "closed",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "collapsible",
+            "data-control-ui": "collapsible",
+            "data-slot": "trigger",
+            "data-state": "closed",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "collapsible",
+      rendersText: true,
+      state: false,
+      route: "/components/collapsible",
+    },
+    {
+      knobs: {
+        text: "--cui-collapsible-trigger-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "collapsible",
+            "data-control-ui": "collapsible",
+            "data-open": "",
+            "data-slot": "root",
+            "data-state": "open",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "collapsible",
+            "data-control-ui": "collapsible",
+            "data-open": "",
+            "data-panel-open": "",
+            "data-slot": "trigger",
+            "data-state": "open",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "collapsible",
+      rendersText: true,
+      state: false,
+      route: "/components/collapsible",
+    },
+    {
+      knobs: {
         text: "--cui-dropzone-surface-foreground",
       },
       anatomy: [
@@ -64797,6 +67556,54 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components/empty",
+    },
+    {
+      knobs: {
+        text: "--cui-field-affordance-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "header",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "field",
+            "data-control-ui": "select",
+            "data-field-kind": "select",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-slot": "icon",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: false,
+      state: false,
+      route: "/components/card",
     },
     {
       knobs: {
@@ -66591,6 +69398,166 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
+        text: "--cui-item-description-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "item",
+            "data-control-ui": "item",
+            "data-slot": "root",
+            "data-variant": "muted",
+            href: "#",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "item",
+            "data-control-ui": "item",
+            "data-slot": "description",
+          },
+        },
+      ],
+      recipe: "item",
+      rendersText: true,
+      state: false,
+      route: "/components/item",
+    },
+    {
+      knobs: {
+        text: "--cui-item-description-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "item",
+            "data-control-ui": "item",
+            "data-slot": "root",
+            "data-variant": "outline",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "item",
+            "data-control-ui": "item",
+            "data-slot": "description",
+          },
+        },
+      ],
+      recipe: "item",
+      rendersText: true,
+      state: false,
+      route: "/components/item",
+    },
+    {
+      knobs: {
+        text: "--cui-item-media-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "item",
+            "data-control-ui": "item",
+            "data-slot": "root",
+            "data-variant": "outline",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "item",
+            "data-control-ui": "item",
+            "data-slot": "media",
+          },
+        },
+      ],
+      recipe: "item",
+      rendersText: false,
+      state: false,
+      route: "/components/item",
+    },
+    {
+      knobs: {
         text: "--cui-label-root-foreground",
       },
       anatomy: [
@@ -68001,6 +70968,133 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components/drawer",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "end",
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-open": "",
+            "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "menu",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-popup-part": "item",
+            "data-slot": "item",
+            "data-tone": "neutral",
+            href: "#",
+            role: "menuitem",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "end",
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-open": "",
+            "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "menu",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-popup-part": "item",
+            "data-slot": "item",
+            "data-tone": "neutral",
+            role: "menuitem",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
     },
     {
       knobs: {
@@ -73250,6 +76344,128 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
+        text: "--cui-popup-submenu-indicator-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "end",
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-open": "",
+            "data-popup-part": "list-surface",
+            "data-side": "right",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "menu",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "dropdown-menu",
+            "data-icon-dir": "inline",
+            "data-slot": "sub-trigger-indicator",
+          },
+        },
+      ],
+      recipe: "popup-lists",
+      rendersText: true,
+      state: false,
+      route: "/components/dropdown-menu",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-submenu-indicator-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "menubar",
+            "data-open": "",
+            "data-popup-kind": "menubar",
+            "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "menu",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "menubar",
+            "data-icon-dir": "inline",
+            "data-popup-kind": "menubar",
+            "data-slot": "sub-trigger-indicator",
+          },
+        },
+      ],
+      recipe: "popup-lists",
+      rendersText: true,
+      state: false,
+      route: "/components/menubar",
+    },
+    {
+      knobs: {
         text: "--cui-popup-title-foreground",
       },
       anatomy: [
@@ -74014,6 +77230,50 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components/channel-strip",
+    },
+    {
+      knobs: {
+        text: "--cui-sidebar-group-label-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "page",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-open": "",
+            "data-panel-open": "",
+            "data-slot": "group-label",
+            "data-state": "open",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
     },
     {
       knobs: {
@@ -77210,6 +80470,63 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-slot": "root",
+            "data-variant": "range",
+          },
+        },
+        {
+          attributes: {
+            "data-active": "true",
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-depth": "0",
+            "data-level": "2",
+            "data-slot": "item",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "table-of-contents",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        text: "--cui-table-of-contents-item-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
           },
         },
         {
@@ -77477,6 +80794,62 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components",
+    },
+    {
+      knobs: {
+        text: "--cui-table-of-contents-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-slot": "root",
+            "data-variant": "range",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-depth": "0",
+            "data-level": "2",
+            "data-slot": "item",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "table-of-contents",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
     },
     {
       knobs: {
@@ -77862,6 +81235,119 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components",
+    },
+    {
+      knobs: {
+        text: "--cui-table-of-contents-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-slot": "root",
+            "data-variant": "range",
+          },
+        },
+        {
+          attributes: {
+            "data-active": "true",
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-depth": "0",
+            "data-level": "2",
+            "data-slot": "item",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "table-of-contents",
+      rendersText: true,
+      state: true,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        text: "--cui-table-of-contents-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-slot": "root",
+            "data-variant": "range",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-depth": "0",
+            "data-level": "2",
+            "data-slot": "item",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "table-of-contents",
+      rendersText: true,
+      state: true,
+      route: "/components/card",
     },
     {
       knobs: {
@@ -78540,6 +82026,59 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-layout": "viewport",
             "data-scroll": "page",
             "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-slot": "root",
+            "data-variant": "range",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-slot": "label",
+          },
+        },
+      ],
+      recipe: "table-of-contents",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        text: "--cui-table-of-contents-label-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
           },
         },
         {
@@ -78683,6 +82222,90 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/components",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "indicator",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
     },
     {
       knobs: {
@@ -79451,6 +83074,79 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "false",
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/components/card",
     },
     {
       knobs: {
@@ -80214,6 +83910,163 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "false",
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: true,
+      route: "/components/card",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "indicator",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: true,
+      route: "/components/card",
     },
     {
       knobs: {
@@ -82761,624 +86614,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       state: false,
       route: "/kits/transcript-divider",
     },
-    {
-      knobs: {
-        fill: "--cui-field-group-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-            "data-surface": "transparent",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "contained",
-            "data-slot": "wrapper",
-            "data-surface": "background",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "field",
-            "data-control-ui": "field",
-            "data-field-kind": "field",
-            "data-slot": "set",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "field",
-            "data-control-ui": "field",
-            "data-field-kind": "field",
-            "data-slot": "group",
-            "data-variant": "card",
-          },
-        },
-      ],
-      recipe: "field",
-      rendersText: true,
-      state: false,
-      route: "/templates/settings",
-    },
-    {
-      knobs: {
-        text: "--cui-popup-submenu-indicator-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-            "data-surface": "transparent",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "end",
-            "data-control-family": "popup",
-            "data-control-ui": "dropdown-menu",
-            "data-open": "",
-            "data-popup-part": "list-surface",
-            "data-side": "right",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "menu",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "dropdown-menu",
-            "data-icon-dir": "inline",
-            "data-slot": "sub-trigger-indicator",
-          },
-        },
-      ],
-      recipe: "popup-lists",
-      rendersText: true,
-      state: false,
-      route: "/components/dropdown-menu",
-    },
-    {
-      knobs: {
-        text: "--cui-popup-submenu-indicator-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-            "data-surface": "transparent",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "menubar",
-            "data-open": "",
-            "data-popup-kind": "menubar",
-            "data-popup-part": "list-surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "menu",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "menubar",
-            "data-icon-dir": "inline",
-            "data-popup-kind": "menubar",
-            "data-slot": "sub-trigger-indicator",
-          },
-        },
-      ],
-      recipe: "popup-lists",
-      rendersText: true,
-      state: false,
-      route: "/components/menubar",
-    },
-    {
-      knobs: {
-        fill: "--cui-calendar-weekend-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-            "data-surface": "transparent",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "calendar",
-            "data-control-ui": "calendar",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "calendar",
-            "data-control-ui": "calendar",
-            "data-slot": "day-cell",
-            "data-weekend": "true",
-            role: "gridcell",
-          },
-        },
-      ],
-      recipe: "calendar",
-      rendersText: true,
-      state: false,
-      route: "/components/calendar",
-    },
-    {
-      knobs: {
-        fill: "--cui-calendar-weekend-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-            "data-surface": "transparent",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "calendar",
-            "data-control-ui": "calendar",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "calendar",
-            "data-control-ui": "calendar",
-            "data-slot": "day-cell",
-            "data-weekend": "true",
-            role: "gridcell",
-          },
-        },
-      ],
-      recipe: "calendar",
-      rendersText: true,
-      state: false,
-      route: "/components/calendar",
-    },
-    {
-      knobs: {
-        text: "--cui-calendar-weekend-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-            "data-surface": "transparent",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "bottom",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "calendar",
-            "data-control-ui": "calendar",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "calendar",
-            "data-control-ui": "calendar",
-            "data-slot": "day-cell",
-            "data-weekend": "true",
-            role: "gridcell",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "calendar",
-            "data-control-ui": "calendar",
-            "data-slot": "day",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "calendar",
-      rendersText: true,
-      state: false,
-      route: "/components/calendar",
-    },
-    {
-      knobs: {
-        text: "--cui-calendar-weekend-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-            "data-surface": "transparent",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "calendar",
-            "data-control-ui": "calendar",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "calendar",
-            "data-control-ui": "calendar",
-            "data-slot": "day-cell",
-            "data-weekend": "true",
-            role: "gridcell",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "calendar",
-            "data-control-ui": "calendar",
-            "data-slot": "day",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "calendar",
-      rendersText: true,
-      state: false,
-      route: "/components/calendar",
-    },
-    {
-      knobs: {
-        text: "--cui-item-description-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-            "data-surface": "transparent",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "item",
-            "data-control-ui": "item",
-            "data-slot": "root",
-            "data-variant": "muted",
-            href: "#",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "item",
-            "data-control-ui": "item",
-            "data-slot": "description",
-          },
-        },
-      ],
-      recipe: "item",
-      rendersText: true,
-      state: false,
-      route: "/components/item",
-    },
-    {
-      knobs: {
-        text: "--cui-item-description-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-            "data-surface": "transparent",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "item",
-            "data-control-ui": "item",
-            "data-slot": "root",
-            "data-variant": "outline",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "item",
-            "data-control-ui": "item",
-            "data-slot": "description",
-          },
-        },
-      ],
-      recipe: "item",
-      rendersText: true,
-      state: false,
-      route: "/components/item",
-    },
-    {
-      knobs: {
-        text: "--cui-item-media-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-layout": "viewport",
-            "data-scroll": "page",
-            "data-slot": "wrapper",
-            "data-surface": "transparent",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "item",
-            "data-control-ui": "item",
-            "data-slot": "root",
-            "data-variant": "outline",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "item",
-            "data-control-ui": "item",
-            "data-slot": "media",
-          },
-        },
-      ],
-      recipe: "item",
-      rendersText: false,
-      state: false,
-      route: "/components/item",
-    },
   ),
   uncovered: [
     "--cui-audio-recorder-recorded-foreground",
@@ -83390,6 +86625,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     "--cui-calendar-range-background",
     "--cui-calendar-selected-background",
     "--cui-calendar-selected-foreground",
+    "--cui-card-hover-background",
     "--cui-chart-tooltip-background",
     "--cui-chart-tooltip-foreground",
     "--cui-chat-composer-attachment-progress-background",
@@ -83402,6 +86638,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     "--cui-code-diff-expand-button-hover-foreground",
     "--cui-code-line-highlight-background",
     "--cui-collapsible-trigger-hover-background",
+    "--cui-collapsible-trigger-hover-foreground",
     "--cui-context-segment-cache-fill",
     "--cui-dockable-panel-drop-zone-active-background",
     "--cui-dockable-panel-drop-zone-background",

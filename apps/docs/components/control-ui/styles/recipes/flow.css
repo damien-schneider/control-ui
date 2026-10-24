@@ -13,6 +13,10 @@
     --cui-flow-node-border-width: var(--control-rim-width);
     --cui-flow-node-radius: var(--radius-lg);
     --cui-flow-node-shadow: var(--shadow-sm);
+    --cui-flow-node-body-background: transparent;
+    --cui-flow-node-body-radius: 0px;
+    --cui-flow-node-body-padding-inline: calc(var(--spacing) * 3);
+    --cui-flow-node-body-padding-block: 0px;
     --cui-flow-handle-size: calc(var(--spacing) * 2);
     --cui-flow-handle-background: var(--background);
     --cui-flow-handle-border-color: var(--muted-foreground);
@@ -101,8 +105,11 @@
 
   :where([data-control-family="flow"][data-slot="node-body"]) {
     gap: calc(var(--spacing) * 1.5);
-    padding-inline: calc(var(--spacing) * 3);
-    padding-block-end: calc(var(--spacing) * 3);
+    margin-block-end: calc(var(--spacing) * 3);
+    border-radius: var(--cui-flow-node-body-radius);
+    background-color: var(--cui-flow-node-body-background);
+    padding-block: var(--cui-flow-node-body-padding-block);
+    padding-inline: var(--cui-flow-node-body-padding-inline);
     font-size: var(--text-caption);
   }
 
@@ -207,6 +214,30 @@
 
 @property --cui-flow-node-border-width {
   syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-flow-node-body-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-flow-node-body-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-flow-node-body-padding-inline {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-flow-node-body-padding-block {
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }

@@ -20,6 +20,12 @@
       "defaultValue": "var(--radius-panel)"
     },
     {
+      "name": "--cui-tabs-trigger-padding-inline",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3.5)"
+    },
+    {
       "name": "--cui-tabs-trigger-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",

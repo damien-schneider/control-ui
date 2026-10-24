@@ -136,7 +136,14 @@ export const displayCompositions = {
   progress: [
     example("Anatomy", part("Progress", part("ProgressLabel"), part("ProgressValue"), part("ProgressTrack", part("ProgressIndicator")))),
   ],
-  alert: [example("Anatomy", part("Alert", part("AlertTitle"), part("AlertDescription")))],
+  alert: [
+    example("Anatomy", part("Alert", part("AlertTitle"), part("AlertDescription"))),
+    example(
+      "Dismissible",
+      part("Alert", part("AlertTitle"), part("AlertDescription"), part("AlertAction", part("Button"))),
+      "AlertAction takes its own column beside the title, so long text wraps before a dismiss button instead of running under it.",
+    ),
+  ],
   badge: [example("Status or label", part("Badge"))],
   card: [
     example(
@@ -147,6 +154,11 @@ export const displayCompositions = {
         part("CardContent"),
         part("CardFooter"),
       ),
+    ),
+    example(
+      "Clickable card",
+      part("Card", part("CardHeader", part("CardTitle", part("CardLink")), part("CardDescription")), part("CardContent")),
+      "CardLink turns the whole card into its hit area: the card paints --cui-card-hover-background on hover and the focus ring while the link has focus. It renders a button; pass render={<a href />} to navigate. Buttons placed after CardLink stay clickable above it.",
     ),
   ],
   table: [

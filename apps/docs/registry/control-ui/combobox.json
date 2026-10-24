@@ -9,6 +9,7 @@
   ],
   "registryDependencies": [
     "core",
+    "input-group",
     "scroll-area",
     "surface-variants"
   ],

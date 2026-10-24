@@ -18,6 +18,15 @@ export const overlaysCompositions = {
   ],
   popover: [
     example(
+      "Header bar",
+      part(
+        "Popover",
+        part("PopoverTrigger"),
+        part("PopoverContent", part("PopoverHeader", part("PopoverTitle")), content("edge-to-edge list")),
+      ),
+      'With padding="none", PopoverHeader pads itself and draws a separator above the content that follows. padding="sm" suits compact pickers.',
+    ),
+    example(
       "Resizing content",
       part("Popover", part("PopoverTrigger"), part("PopoverContent", part("PopoverViewport", content("changing panel content")))),
       "PopoverViewport animates content height with the shared motion tokens and preserves automatic sizing before hydration.",

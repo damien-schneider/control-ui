@@ -37,6 +37,12 @@
       "defaultValue": "1px"
     },
     {
+      "name": "--cui-badge-font-family",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--font-body)"
+    },
+    {
       "name": "--cui-badge-font-size",
       "syntax": "<length-percentage>",
       "initialValue": "0px",

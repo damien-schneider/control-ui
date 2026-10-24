@@ -2464,7 +2464,7 @@ export const registryMetadata = {
   },
   combobox: {
     dependencies: ["@base-ui/react@^1.9.0"],
-    registryDependencies: ["core", "scroll-area", "surface-variants"],
+    registryDependencies: ["core", "input-group", "scroll-area", "surface-variants"],
     sourceManifestPath: "registry/control-ui/combobox.json",
     files: [
       {

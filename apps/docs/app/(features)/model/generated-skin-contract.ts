@@ -65,7 +65,7 @@ export const generatedSkinContract: SkinContract = {
     "inline-attachment": ["inline-attachment"],
     "inline-citation": ["inline-citation"],
     input: ["input"],
-    "input-group": ["input", "input-group"],
+    "input-group": ["combobox", "input", "input-group"],
     "input-otp": ["input-otp"],
     item: ["item"],
     kbd: ["kbd"],
@@ -401,6 +401,11 @@ export const generatedSkinContract: SkinContract = {
               values: ["default", "destructive"],
             },
           ],
+        },
+        action: {
+          family: "alert",
+          registryItems: ["alert"],
+          states: [],
         },
         description: {
           family: "alert",
@@ -1481,7 +1486,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-variant",
               source: "control-ui",
               valueKind: "enum",
-              values: ["ghost", "quiet", "solid", "surface"],
+              values: ["ghost", "link", "quiet", "solid", "surface"],
             },
           ],
         },
@@ -1682,6 +1687,18 @@ export const generatedSkinContract: SkinContract = {
           family: "card",
           registryItems: ["card"],
           states: [],
+        },
+        link: {
+          family: "card",
+          registryItems: ["card"],
+          states: [
+            {
+              attribute: "data-focus-ring",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["none"],
+            },
+          ],
         },
         title: {
           family: "card",
@@ -7435,7 +7452,7 @@ export const generatedSkinContract: SkinContract = {
         },
         input: {
           family: "field",
-          registryItems: ["input"],
+          registryItems: ["combobox", "input"],
           states: [
             {
               attribute: "data-dirty",
@@ -7474,6 +7491,42 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
+              attribute: "data-list-empty",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-popup-open",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-popup-side",
+              source: "external",
+              valueKind: "enum",
+              values: ["bottom", "inline-end", "inline-start", "left", "right", "top"],
+            },
+            {
+              attribute: "data-pressed",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-readonly",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-required",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-touched",
               source: "external",
               valueKind: "presence",
@@ -7488,7 +7541,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
       },
-      registryItems: ["input", "input-group"],
+      registryItems: ["combobox", "input", "input-group"],
     },
     "input-otp": {
       parts: {
@@ -9565,7 +9618,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-padding",
               source: "control-ui",
               valueKind: "enum",
-              values: ["default", "none"],
+              values: ["default", "none", "sm"],
             },
             {
               attribute: "data-popup-kind",
@@ -13167,7 +13220,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-variant",
               source: "control-ui",
               valueKind: "enum",
-              values: ["ghost", "quiet", "solid", "surface"],
+              values: ["ghost", "link", "quiet", "solid", "surface"],
             },
           ],
         },
@@ -14526,6 +14579,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "1px",
       },
       {
+        name: "--cui-badge-font-family",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "var(--font-body)",
+      },
+      {
         name: "--cui-badge-font-size",
         syntax: "<length-percentage>",
         initialValue: "0px",
@@ -14834,6 +14893,12 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--card)",
+      },
+      {
+        name: "--cui-card-hover-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--accent)",
       },
       {
         name: "--cui-card-border-color",
@@ -15575,6 +15640,24 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length-percentage>",
         initialValue: "0px",
         defaultValue: "calc(var(--spacing) * 2)",
+      },
+      {
+        name: "--cui-collapsible-trigger-padding-block",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "0px",
+      },
+      {
+        name: "--cui-collapsible-trigger-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--foreground)",
+      },
+      {
+        name: "--cui-collapsible-trigger-hover-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--foreground)",
       },
     ],
     "color-picker": [
@@ -16384,6 +16467,30 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length>",
         initialValue: "0px",
         defaultValue: "var(--control-rim-width)",
+      },
+      {
+        name: "--cui-flow-node-body-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "transparent",
+      },
+      {
+        name: "--cui-flow-node-body-radius",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "0px",
+      },
+      {
+        name: "--cui-flow-node-body-padding-inline",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 3)",
+      },
+      {
+        name: "--cui-flow-node-body-padding-block",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "0px",
       },
       {
         name: "--cui-flow-node-radius",
@@ -18870,6 +18977,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--radius-panel)",
       },
       {
+        name: "--cui-tabs-trigger-padding-inline",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 3.5)",
+      },
+      {
         name: "--cui-tabs-trigger-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
@@ -19702,7 +19815,7 @@ export const generatedSkinContract: SkinContract = {
       layer: {
         context: {
           tone: "ControlTone",
-          variant: "ControlVariant",
+          variant: "ButtonVariant",
         },
       },
     },

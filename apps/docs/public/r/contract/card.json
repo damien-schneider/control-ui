@@ -19,6 +19,12 @@
       "defaultValue": "var(--card)"
     },
     {
+      "name": "--cui-card-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--accent)"
+    },
+    {
       "name": "--cui-card-border-color",
       "syntax": "<color>",
       "initialValue": "transparent",
@@ -130,6 +136,22 @@
         ],
         "states": []
       },
+      "link": {
+        "family": "card",
+        "registryItems": [
+          "card"
+        ],
+        "states": [
+          {
+            "attribute": "data-focus-ring",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "none"
+            ]
+          }
+        ]
+      },
       "title": {
         "family": "card",
         "registryItems": [
@@ -140,6 +162,8 @@
     }
   },
   "adornments": {},
-  "uncovered": [],
+  "uncovered": [
+    "--cui-card-hover-background"
+  ],
   "contrast": "/r/contract/card.contrast.json"
 }

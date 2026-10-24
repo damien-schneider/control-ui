@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
 import type { HoverIndicator, SelectionIndicator } from "@/components/control-ui/control-props";
-import type { ControlTone, ControlVariant } from "@/components/control-ui/control-variants";
+import type { ButtonVariant, ControlTone } from "@/components/control-ui/control-variants";
 
 type StatelessPart = Record<never, never>;
 export type SkinAdornmentContexts = {
-  button: { layer: { variant: ControlVariant; tone: ControlTone } };
+  button: { layer: { variant: ButtonVariant; tone: ControlTone } };
   "chat-layout": { titlebar: StatelessPart };
   dialog: { titlebar: StatelessPart };
   "chat-composer": { "send-layer": { sendCount: number } };

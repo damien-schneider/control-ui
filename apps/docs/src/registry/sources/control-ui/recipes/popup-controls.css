@@ -154,6 +154,18 @@
     padding: calc(var(--spacing) * 4);
   }
 
+  :where([data-control-family="popup"][data-popup-kind="popover"][data-popup-part="surface"][data-padding="sm"]) {
+    padding: calc(var(--spacing) * 2);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="popover"][data-padding="none"] > [data-slot="header"]) {
+    padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="popover"][data-padding="none"] > [data-slot="header"]:not(:last-child)) {
+    border-block-end: 1px solid var(--cui-popup-separator-color);
+  }
+
   :where([data-control-family="popup"][data-popup-kind="hover-card"][data-slot="trigger"]:is(a)) {
     border-radius: var(--radius-sm);
     color: var(--foreground);

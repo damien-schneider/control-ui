@@ -7,7 +7,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 
-export const popoverContentPaddings = ["default", "none"] as const;
+export const popoverContentPaddings = ["default", "sm", "none"] as const;
 
 export type PopoverContentPadding = (typeof popoverContentPaddings)[number];
 

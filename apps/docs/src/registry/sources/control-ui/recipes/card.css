@@ -2,6 +2,7 @@
   :where([data-control-family="card"][data-slot="root"]) {
     --cui-card-radius: var(--radius-lg);
     --cui-card-background: var(--card);
+    --cui-card-hover-background: var(--accent);
     --cui-card-border-color: var(--border);
     --cui-card-border-width: var(--control-rim-width);
     --cui-card-shadow: var(--shadow-sm);
@@ -32,6 +33,34 @@
 
   :where([data-control-family="card"][data-slot="footer"]) {
     padding-inline: var(--cui-card-padding-inline);
+  }
+
+  :where([data-control-family="card"][data-slot="root"]:has([data-control-family="card"][data-slot="link"])) {
+    position: relative;
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="card"][data-slot="root"]:has([data-control-family="card"][data-slot="link"]:hover)) {
+      background: var(--cui-card-hover-background);
+    }
+  }
+
+  :where([data-control-family="card"][data-slot="root"]:has([data-control-family="card"][data-slot="link"]:focus-visible)) {
+    outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  :where([data-control-family="card"][data-slot="link"]) {
+    text-align: start;
+    cursor: pointer;
+    outline: none;
+  }
+
+  :where([data-control-family="card"][data-slot="link"])::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--cui-card-radius);
   }
 
   :where([data-control-family="card"][data-slot="root"][data-size="sm"]) {
@@ -76,6 +105,12 @@
 }
 
 @property --cui-card-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-card-hover-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

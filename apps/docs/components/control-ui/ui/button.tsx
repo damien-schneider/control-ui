@@ -5,13 +5,13 @@ import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { Children, createContext, Fragment, isValidElement, useContext } from "react";
 import type { RenderProp } from "@/components/control-ui/control-props";
-import type { ControlSize, ControlTone, ControlVariant } from "@/components/control-ui/control-variants";
+import type { ButtonVariant, ControlSize, ControlTone } from "@/components/control-ui/control-variants";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinAdornment } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 
-export type ButtonVariant = ControlVariant;
+export type { ButtonVariant } from "@/components/control-ui/control-variants";
 
 export type ButtonSize = ControlSize;
 

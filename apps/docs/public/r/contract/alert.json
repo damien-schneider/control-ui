@@ -116,6 +116,13 @@
           }
         ]
       },
+      "action": {
+        "family": "alert",
+        "registryItems": [
+          "alert"
+        ],
+        "states": []
+      },
       "description": {
         "family": "alert",
         "registryItems": [

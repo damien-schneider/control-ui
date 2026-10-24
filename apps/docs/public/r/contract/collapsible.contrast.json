@@ -1,6 +1,120 @@
 {
   "version": 1,
   "family": "collapsible",
-  "anatomies": [],
-  "probes": []
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-closed": "",
+          "data-control-family": "collapsible",
+          "data-control-ui": "collapsible",
+          "data-slot": "root",
+          "data-state": "closed"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "collapsible",
+          "data-control-ui": "collapsible",
+          "data-slot": "trigger",
+          "data-state": "closed",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "collapsible",
+          "data-control-ui": "collapsible",
+          "data-open": "",
+          "data-slot": "root",
+          "data-state": "open"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "collapsible",
+          "data-control-ui": "collapsible",
+          "data-open": "",
+          "data-panel-open": "",
+          "data-slot": "trigger",
+          "data-state": "open",
+          "tabindex": "0"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "text": "--cui-collapsible-trigger-foreground"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-collapsible-trigger-foreground"
+      },
+      "anatomy": 1,
+      "rendersText": true,
+      "state": false
+    }
+  ]
 }

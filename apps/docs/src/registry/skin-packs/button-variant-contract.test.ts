@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import postcss, { type Root } from "postcss";
 import selectorParser from "postcss-selector-parser";
 import { readCssRulesWithImports } from "../../../scripts/read-css";
-import { controlTones, controlVariants } from "../sources/control-ui/control-variants";
+import { buttonVariants, controlTones } from "../sources/control-ui/control-variants";
 import { buttonShapes } from "../sources/control-ui/ui/button";
 
 const SKIN_PACKS_DIR = fileURLToPath(new URL("./", import.meta.url));
@@ -17,7 +17,7 @@ const CORE_CSS_PATHS = ["../sources/control-ui/theme.css", "../sources/control-u
 const BASE_VARIANT = "quiet";
 const BASE_TONE = "neutral";
 
-const VARIANT_NAMES = new Set<string>(controlVariants);
+const VARIANT_NAMES = new Set<string>(buttonVariants);
 const TONE_NAMES = new Set<string>(controlTones);
 
 const core = postcss.parse(CORE_CSS_PATHS.map((filePath) => readFileSync(filePath, "utf8")).join("\n"));
@@ -79,7 +79,7 @@ describe("button variant contract", () => {
     const paintedVariants = buttonAttributeValues(core, "data-variant");
     const paintedTones = buttonAttributeValues(core, "data-tone");
     const missing = [
-      ...controlVariants.filter((variant) => variant !== BASE_VARIANT && !paintedVariants.has(variant)).map((v) => `variant ${v}`),
+      ...buttonVariants.filter((variant) => variant !== BASE_VARIANT && !paintedVariants.has(variant)).map((v) => `variant ${v}`),
       ...controlTones.filter((tone) => tone !== BASE_TONE && !paintedTones.has(tone)).map((t) => `tone ${t}`),
     ];
     expect(missing).toEqual([]);
@@ -95,6 +95,6 @@ describe("button variant contract", () => {
 
   test("vocabulary values follow the public grammar", () => {
     const grammar = /^[a-z]+(?:-[a-z]+)*$/;
-    expect([...controlVariants, ...controlTones, ...buttonShapes].filter((value) => !grammar.test(value))).toEqual([]);
+    expect([...buttonVariants, ...controlTones, ...buttonShapes].filter((value) => !grammar.test(value))).toEqual([]);
   });
 });
