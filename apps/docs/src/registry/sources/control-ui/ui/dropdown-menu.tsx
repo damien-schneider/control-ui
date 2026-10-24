@@ -3,6 +3,7 @@
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { mergeProps } from "@base-ui/react/merge-props";
 import type { ComponentProps, CSSProperties } from "react";
+import { isValidElement } from "react";
 import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
@@ -54,32 +55,41 @@ export function DropdownMenu({ children, ...props }: DropdownMenuProps) {
   return <MenuPrimitive.Root {...props}>{children}</MenuPrimitive.Root>;
 }
 
-export function DropdownMenuTrigger({
-  size = "sm",
-  iconOnly = false,
-  variant = "surface",
-  className,
-  children,
-  disabled,
-  ...props
-}: DropdownMenuTriggerProps) {
+function explicitAppearance({ size, variant, iconOnly }: Pick<DropdownMenuTriggerProps, "size" | "variant" | "iconOnly">) {
+  const attributes: Partial<Record<"data-size" | "data-variant" | "data-icon-only", string>> = {};
+  if (size) attributes["data-size"] = size;
+  if (variant) attributes["data-variant"] = variant;
+  if (iconOnly) attributes["data-icon-only"] = "true";
+  return attributes;
+}
+
+export function DropdownMenuTrigger({ size, iconOnly, variant, className, ...props }: DropdownMenuTriggerProps) {
+  const rendersComponent = props.render !== undefined && !(isValidElement(props.render) && typeof props.render.type === "string");
+  if (rendersComponent) {
+    return (
+      <MenuPrimitive.Trigger
+        data-control-ui="dropdown-menu"
+        data-slot="trigger"
+        {...explicitAppearance({ size, variant, iconOnly })}
+        className={className}
+        {...props}
+      />
+    );
+  }
   return (
     <MenuPrimitive.Trigger
       data-control-ui="dropdown-menu"
       data-control-family="button"
       data-slot="trigger"
       data-control="true"
-      data-size={size}
+      data-size={size ?? "sm"}
       data-icon-only={iconOnly ? "true" : undefined}
-      data-variant={variant}
+      data-variant={variant ?? "surface"}
       data-tone="neutral"
       data-shape="default"
       className={cn("relative isolate inline-flex shrink-0 items-center justify-center overflow-visible", className)}
-      disabled={disabled}
       {...props}
-    >
-      {children}
-    </MenuPrimitive.Trigger>
+    />
   );
 }
 

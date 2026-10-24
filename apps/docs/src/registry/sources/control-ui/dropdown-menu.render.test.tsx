@@ -22,6 +22,19 @@ describe("DropdownMenu trigger composition", () => {
     expect(html).toContain('data-variant="ghost"');
   });
 
+  test("a composed component keeps its own size and variant", () => {
+    const html = renderToString(
+      <DropdownMenu>
+        <DropdownMenuTrigger render={<Button variant="ghost" size="xs" iconOnly aria-label="More actions" />} />
+      </DropdownMenu>,
+    );
+
+    expect(html).toContain('data-size="xs"');
+    expect(html).toContain('data-variant="ghost"');
+    expect(html).toContain('data-icon-only="true"');
+    expect(html).not.toContain('data-variant="surface"');
+  });
+
   test("the public props support non-native triggers with button semantics", () => {
     const triggerProps: DropdownMenuTriggerProps = {
       nativeButton: false,
