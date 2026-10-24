@@ -431,7 +431,7 @@ export const componentEntries = [
         title: "Resizable sidebar",
         previewClassName: "min-h-0",
         description:
-          "Add SidebarRail with resizable to drag or use arrow keys to resize. Drag below minWidth to collapse; click or press Enter to toggle. SidebarProvider accepts defaultWidth or width/onWidthChange in pixels. Keep saved preferences in your application.",
+          "SidebarRail resizes by default: drag it or use the arrow keys. Drag below minWidth to collapse; click or press Enter to toggle. Pass resizable={false} for a rail that only toggles. SidebarProvider accepts defaultWidth or width/onWidthChange in pixels. Keep saved preferences in your application.",
         source: sourceFile("Resizable sidebar", "src/registry/examples/control-ui/primitives/sidebar.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/sidebar").then((mod) => ({

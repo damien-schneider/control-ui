@@ -62,8 +62,8 @@ export {
 } from "@/components/control-ui/ui/sidebar-provider";
 
 export type SidebarRailProps =
-  | (Omit<ComponentProps<"button">, "style"> & { resizable?: false; style?: CSSProperties & SidebarKnobStyle })
-  | (SidebarResizeRailProps & { resizable: true });
+  | (SidebarResizeRailProps & { resizable?: true })
+  | (Omit<ComponentProps<"button">, "style"> & { resizable: false; style?: CSSProperties & SidebarKnobStyle });
 
 export type SidebarInsetProps = Omit<ComponentProps<"main">, "style" | "id"> & {
   render?: RenderProp<ComponentProps<"main">>;
@@ -328,12 +328,12 @@ export function SidebarRail(props: SidebarRailProps) {
   const { isMobile } = useSidebar();
   const { railContainer } = useSidebarSurface();
   if (isMobile || !railContainer) return null;
-  if (props.resizable) {
-    const { resizable, ...resizeProps } = props;
-    return createPortal(<SidebarResizeRail {...resizeProps} />, railContainer);
+  if (props.resizable === false) {
+    const { resizable, ...toggleProps } = props;
+    return createPortal(<SidebarToggleRail {...toggleProps} />, railContainer);
   }
-  const { resizable, ...toggleProps } = props;
-  return createPortal(<SidebarToggleRail {...toggleProps} />, railContainer);
+  const { resizable, ...resizeProps } = props;
+  return createPortal(<SidebarResizeRail {...resizeProps} />, railContainer);
 }
 
 function SidebarToggleRail({

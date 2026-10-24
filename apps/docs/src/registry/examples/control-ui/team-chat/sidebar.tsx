@@ -14,6 +14,7 @@ import {
   SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarRail,
 } from "@/components/control-ui/ui/sidebar";
 import { Text } from "@/components/control-ui/ui/typography";
 import { channels, directMessagePeople, people, unreadDirectMessages } from "./data";
@@ -95,6 +96,7 @@ export function TeamChatSidebar({ activeId, onSelect }: { activeId: string; onSe
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarRail />
     </Sidebar>
   );
 }

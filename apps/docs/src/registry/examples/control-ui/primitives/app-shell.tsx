@@ -44,7 +44,7 @@ export function PrimitiveAppShellExample() {
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarContent>
-        <SidebarRail resizable />
+        <SidebarRail />
       </Sidebar>
       <AppShellContent>
         <AppShellHeader>

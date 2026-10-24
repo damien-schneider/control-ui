@@ -192,7 +192,7 @@ export function DocsSidebarContent({
         </SidebarFooter>
       </div>
 
-      <SidebarRail resizable />
+      <SidebarRail />
     </Sidebar>
   );
 }

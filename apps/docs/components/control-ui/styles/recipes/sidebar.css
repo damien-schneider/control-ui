@@ -77,6 +77,10 @@
     background-color: transparent;
   }
 
+  :where([data-control-family="sidebar"][data-slot="root"]:is([data-variant="page"], [data-variant="inset"])[data-state]) {
+    --cui-sidebar-header-border-width: 0px;
+  }
+
   :where([data-control-family="sidebar"][data-slot="gap"]) {
     background-color: transparent;
     transition: width var(--_sidebar-transition-duration) var(--ease-standard);

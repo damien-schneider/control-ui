@@ -40,7 +40,7 @@ function Fixture() {
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarContent>
-        <SidebarRail resizable />
+        <SidebarRail />
       </Sidebar>
       <AppShellContent>
         <AppShellHeader>

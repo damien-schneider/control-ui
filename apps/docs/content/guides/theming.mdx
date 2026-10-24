@@ -14,8 +14,10 @@
 
 <GuideSection id="sidebar" title="Let pages scroll with the window">
   Set `sidebarLayout: "page"` in your skin config, or use `<Sidebar variant="page">` for one layout.
-  An explicit `variant` takes precedence over the skin default. Page removes the sidebar divider and inset
-  frame while retaining the fixed desktop navigation, collapse controls, resize rail, and mobile drawer.
+  An explicit `variant` takes precedence over the skin default. Page removes the sidebar divider, the
+  `SidebarHeader divider` line, and the inset frame while retaining the fixed desktop navigation, collapse
+  controls, resize rail, and mobile drawer. Inset drops the header divider too, since the content panel
+  already separates the sidebar.
 
   Use `AppShell` once in your persistent layout. It includes `SidebarProvider`, so collapse, resize,
   keyboard shortcuts, mobile navigation, and the skip link keep the same state while routes change.
