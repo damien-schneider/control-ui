@@ -122,6 +122,16 @@ export const navigationCompositions = {
       ),
     ),
     example(
+      "Item with description",
+      part(
+        "CommandItem",
+        content("icon"),
+        part("CommandItemContent", part("CommandItemTitle"), part("CommandItemDescription")),
+        part("CommandShortcut"),
+      ),
+      "CommandItemContent stacks a truncating title over a muted description; the row keeps its icon and shortcut.",
+    ),
+    example(
       "Command palette dialog",
       part("CommandDialog", part("CommandInput"), part("CommandList", part("CommandEmpty"), part("CommandGroup", part("CommandItem")))),
       "CommandDialog supplies the dialog and Command root.",

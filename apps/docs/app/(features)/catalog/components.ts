@@ -1244,6 +1244,24 @@ export const componentEntries = [
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/primitives/command").then((mod) => ({ default: mod.PrimitiveCommandExample })),
     ),
+    additionalPreviews: [
+      {
+        id: "descriptions",
+        title: "Item descriptions",
+        description:
+          "Stack CommandItemTitle and CommandItemDescription in CommandItemContent for slash menus and block pickers. The description stays muted on the highlighted row; skins tune it through --cui-popup-item-description-foreground and --cui-popup-item-description-font-size.",
+        source: sourceFile(
+          "Command descriptions preview",
+          "src/registry/examples/control-ui/primitives/command-descriptions.tsx",
+          "example",
+        ),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/command-descriptions").then((mod) => ({
+            default: mod.PrimitiveCommandDescriptionsExample,
+          })),
+        ),
+      },
+    ],
   },
   {
     id: "kbd",
@@ -1479,7 +1497,7 @@ export const componentEntries = [
         id: "choice-card",
         title: "Choice card",
         description:
-          'FieldLabel variant="card" turns a label around a Radio or Checkbox into a selectable tile. The whole card selects the control, its border and fill follow the checked state, one focus ring wraps the card, and a disabled control disables the card. Wrap each card in FieldItem so every label targets its own control inside one Field.',
+          'FieldLabel variant="card" turns a label around a Radio or Checkbox into a selectable tile. The whole card selects the control, its border and fill follow the checked state, one focus ring wraps the card, and a disabled control disables the card. Wrap each card in FieldItem so every label targets its own control inside one Field; in a grid, every card fills its row to the tallest one.',
         source: sourceFile("Choice card", "src/registry/examples/control-ui/primitives/field-choice-card.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/field-choice-card").then((mod) => ({
@@ -2030,10 +2048,20 @@ export const componentEntries = [
         ),
       },
       {
+        id: "status",
+        title: "Status page",
+        description:
+          "Axis-free status charts. xScale and yScale take axis: false; a series color accepts any CSS color such as var(--success), and on bars a function of the row colors each bar by its own day. A numeric radius rounds every bar corner, and formatValue(value, row) reads the whole row for the tooltip.",
+        source: sourceFile("Status page", "src/registry/examples/control-ui/primitives/chart-status.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/chart-status").then((mod) => ({ default: mod.ChartStatusExample })),
+        ),
+      },
+      {
         id: "hatched",
         title: "Actual vs. forecast",
         description:
-          "Hatching separates projected from measured values: a dashed hatched forecast area, and a hatched planned series in bars.",
+          "Hatching separates projected from measured values: a dashed hatched forecast area, and a hatched planned series in bars. Hatch patterns come from the palette, so a series with a CSS color paints solid.",
         source: sourceFile("Hatched forecast", "src/registry/examples/control-ui/primitives/chart-showcase.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/chart-showcase").then((mod) => ({ default: mod.ChartHatchedExample })),
@@ -2124,6 +2152,24 @@ export const componentEntries = [
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/primitives/autocomplete").then((mod) => ({ default: mod.PrimitiveAutocompleteExample })),
     ),
+    additionalPreviews: [
+      {
+        id: "leading-addon",
+        title: "Leading addon",
+        description:
+          "Wrap AutocompleteInput in AutocompleteInputGroup to put a search icon or prefix before the text. The group draws the field surface, the clear button moves to a trailing addon, and the popup still aligns to the whole group.",
+        source: sourceFile(
+          "Autocomplete leading addon preview",
+          "src/registry/examples/control-ui/primitives/autocomplete-input-group.tsx",
+          "example",
+        ),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/autocomplete-input-group").then((mod) => ({
+            default: mod.PrimitiveAutocompleteInputGroupExample,
+          })),
+        ),
+      },
+    ],
   },
   {
     id: "number-field",
@@ -2719,6 +2765,16 @@ export const componentEntries = [
         example: sourceFile("Markdown preview", "src/registry/examples/control-ui/primitives/markdown.tsx", "example"),
         source: sourceFile("Markdown slot", "src/registry/sources/control-ui/ui/markdown.tsx", "component"),
         supportFiles: [
+          sourceFile(
+            "Markdown root and prose parts, without optional peers",
+            "src/registry/sources/control-ui/ui/markdown-elements.tsx",
+            "component",
+          ),
+          sourceFile(
+            "Fenced code renderer and the full component map",
+            "src/registry/sources/control-ui/ui/markdown-components.tsx",
+            "component",
+          ),
           sourceFile("Diff engine", "src/registry/lib/diff.ts", "diff-engine"),
           sourceFile("Shiki tokenizer", "src/registry/lib/code-tokens.ts", "tokenizer"),
           sourceFile("Code + diff tokens", "src/registry/sources/control-ui/code.css", "code-css"),

@@ -1,10 +1,11 @@
 import { describe, expect, test } from "bun:test";
 import { scaleLinear } from "@tanstack/charts/scales/linear";
 import { renderToString } from "react-dom/server";
-import { Chart, ChartPlot } from "./chart";
+import { Chart, ChartPlot, type ChartPlotProps } from "./chart";
 import { areaChart, barChart, lineChart, scatterChart, sparklineChart } from "./chart-cartesian";
+import { seriesTooltip } from "./chart-marks";
 import { donutChart, radialBarChart } from "./chart-polar";
-import { resolveChartSeries } from "./chart-series";
+import { chartSeriesRows, resolveChartSeries } from "./chart-series";
 
 const visits = [
   { month: "Jan", desktop: 186, mobile: 80, tablet: 40 },
@@ -79,6 +80,67 @@ describe("presets", () => {
       "Chart presets need an xScale for Date x values, for example { scale: scaleUtc } from d3-scale.",
     );
     expect(() => areaChart({ data, x: "day", series: [{ key: "value" }], xScale: { scale: scaleLinear } })).not.toThrow();
+  });
+});
+
+describe("cartesian options", () => {
+  const render = <TDatum,>(definition: ChartPlotProps<TDatum>["definition"]) =>
+    renderToString(<ChartPlot ariaLabel="Visits" definition={definition} width={320} height={160} />);
+
+  test("hide the category axis when xScale turns it off", () => {
+    const bars = render(barChart({ data: visits, x: "month", series: [{ key: "desktop" }], xScale: { axis: false } }));
+    const lines = render(lineChart({ data: visits, x: "month", series: [{ key: "desktop" }], xScale: { axis: false } }));
+    expect(bars).not.toContain("x-tick-label");
+    expect(lines).not.toContain("x-tick-label");
+    expect(bars).toContain("y-tick-label");
+  });
+
+  test("paint a series with a CSS color", () => {
+    const html = render(areaChart({ data: visits, x: "month", series: [{ key: "desktop", color: "var(--success)" }] }));
+    const gradientId = html.match(/fill="url\(#([^)]+)\)"/)?.[1];
+    expect(gradientId).toBeDefined();
+    expect(html).toContain(`id="${gradientId}"`);
+    expect(html).toContain('stop-color="var(--success)"');
+    expect(html).toContain('stroke="var(--success)"');
+  });
+
+  test("paint a hatched series solid when its color has no palette pattern", () => {
+    const html = render(barChart({ data: visits, x: "month", series: [{ key: "desktop", color: "#3b82f6", fill: "hatched" }] }));
+    expect(html.match(/<path[^>]*fill="#3b82f6"/g)).toHaveLength(visits.length);
+    expect(html).not.toContain("--_cui-chart-hatch-#");
+  });
+
+  test("color each bar from its datum", () => {
+    const html = render(
+      barChart({
+        data: visits,
+        x: "month",
+        fill: "solid",
+        series: [{ key: "desktop", color: (month) => (month.desktop > 200 ? "var(--warning)" : "green") }],
+      }),
+    );
+    expect(html.match(/<path[^>]*fill="var\(--chart-green\)"/g)).toHaveLength(1);
+    expect(html.match(/<path[^>]*fill="var\(--warning\)"/g)).toHaveLength(2);
+  });
+
+  test("round every bar corner with a numeric radius", () => {
+    const html = render(barChart({ data: visits, x: "month", series: [{ key: "desktop" }], radius: 3 }));
+    expect(html.match(/<rect[^>]*rx="3"/g)).toHaveLength(visits.length);
+  });
+});
+
+describe("seriesTooltip", () => {
+  test("formats each value with its source datum", () => {
+    const uptime = [
+      { day: "Mon", height: 100, measured: 99.2 },
+      { day: "Tue", height: 100, measured: null },
+    ];
+    const rows = chartSeriesRows(uptime, "day", resolveChartSeries<(typeof uptime)[number]>([{ key: "height", label: "Uptime" }]));
+    const { content } = seriesTooltip<(typeof uptime)[number]>(["Uptime"], String, (_height, day) =>
+      day.measured === null ? "No data" : `${day.measured}%`,
+    );
+    const values = rows.map((row) => content([{ key: row.id, datum: row }], {}).rows[0]?.value);
+    expect(values).toEqual(["99.2%", "No data"]);
   });
 });
 

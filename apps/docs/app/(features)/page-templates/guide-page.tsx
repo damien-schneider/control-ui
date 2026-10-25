@@ -15,7 +15,7 @@ import { TypographyFoundations } from "@/app/(features)/foundations/typography-f
 import type { GuideId, GuidePage as GuidePageData, IntegrationId } from "@/app/(features)/model/types";
 import { ThemeAccessibility } from "@/app/(features)/theme-accessibility/theme-accessibility";
 import { Card, CardContent } from "@/components/control-ui/ui/card";
-import { MarkdownRoot } from "@/components/control-ui/ui/markdown";
+import { MarkdownRoot } from "@/components/control-ui/ui/markdown-elements";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
 import { SKIN_CATEGORY, type ThemeCategoryId } from "@/components/theme-drawer/theme-categories";
 import { ThemeEditor } from "@/components/theme-drawer/theme-editor";

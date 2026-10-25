@@ -109,3 +109,18 @@ export const plannedHeadcount = [
   { team: "Sales", hired: 9, planned: 5 },
   { team: "Support", hired: 7, planned: 2 },
 ];
+
+const UPTIME_START = Date.UTC(2026, 6, 28);
+const DAY_MS = 86_400_000;
+const UPTIME_INCIDENTS: Partial<Record<number, number>> = { 23: 97.4, 41: 86.2, 42: 98.1, 67: 99.2 };
+
+export const dailyUptime = Array.from({ length: 90 }, (_, index) => ({
+  day: new Date(UPTIME_START + index * DAY_MS).toISOString().slice(0, 10),
+  uptime: index < 5 ? null : (UPTIME_INCIDENTS[index] ?? 99.9 + ((index * 7) % 10) / 100),
+  full: 1,
+}));
+
+export const hourlyLatency = Array.from({ length: 24 }, (_, hour) => ({
+  hour: `${String(hour).padStart(2, "0")}:00`,
+  latency: Math.round(180 + Math.sin(hour / 3) * 40 + (hour === 15 ? 240 : 0)),
+}));

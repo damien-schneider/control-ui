@@ -47,24 +47,6 @@
       "syntax": "*",
       "initialValue": "",
       "defaultValue": "0 0 0 1px oklch(from var(--foreground) l c h / 0.4)"
-    },
-    {
-      "name": "--cui-gradient-editor-add-radius",
-      "syntax": "<length-percentage>",
-      "initialValue": "0px",
-      "defaultValue": "9999px"
-    },
-    {
-      "name": "--cui-gradient-editor-add-border-color",
-      "syntax": "<color>",
-      "initialValue": "transparent",
-      "defaultValue": "var(--border)"
-    },
-    {
-      "name": "--cui-gradient-editor-add-border-width",
-      "syntax": "<length>",
-      "initialValue": "0px",
-      "defaultValue": "var(--control-rim-width)"
     }
   ],
   "parts": {
@@ -96,13 +78,6 @@
             "values": []
           }
         ]
-      },
-      "stop-add": {
-        "family": "gradient-editor",
-        "registryItems": [
-          "color-picker"
-        ],
-        "states": []
       },
       "track": {
         "family": "gradient-editor",

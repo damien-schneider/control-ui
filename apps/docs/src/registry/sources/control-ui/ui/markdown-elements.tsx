@@ -1,23 +1,41 @@
 "use client";
 
-import { type ComponentProps, type CSSProperties, createContext, type JSX, type ReactNode, use, useId } from "react";
+import { type ComponentProps, type CSSProperties, createContext, type JSX, use, useId } from "react";
 import type { MarkdownKnobStyle } from "@/components/control-ui/knob-contracts/markdown-knobs";
 
 import { cn } from "@/components/control-ui/lib/cn";
 import { Checkbox } from "@/components/control-ui/ui/checkbox";
-import { Code, CodeActions, CodeContent, CodeCopy, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
-import { CodeDiff } from "@/components/control-ui/ui/code-diff";
 import { markdownHeadingAttributes } from "@/components/control-ui/ui/markdown-heading";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Heading } from "@/components/control-ui/ui/typography";
 
-type MarkdownCodeProps = ComponentProps<"code"> & {
+export type MarkdownCodeProps = ComponentProps<"code"> & {
   node?: unknown;
 } & { style?: CSSProperties & MarkdownKnobStyle };
 
 type MarkdownElementProps<Tag extends keyof JSX.IntrinsicElements> = ComponentProps<Tag> & {
   node?: unknown;
 } & { style?: CSSProperties & MarkdownKnobStyle };
+
+export type MarkdownRootProps = Omit<ComponentProps<"div">, "style"> & {
+  style?: CSSProperties & MarkdownKnobStyle;
+};
+
+export function MarkdownRoot({ className, ...props }: MarkdownRootProps) {
+  return (
+    <div
+      data-control-ui="markdown"
+      data-control-family="markdown"
+      data-slot="root"
+      className={cn("[&>*:first-child]:mt-0 [&>*:last-child]:mb-0", className)}
+      {...props}
+    />
+  );
+}
+
+export function MarkdownFlow(props: MarkdownRootProps) {
+  return <div data-control-ui="markdown" data-control-family="markdown" data-slot="flow" {...props} />;
+}
 
 const MarkdownTaskLabelContext = createContext<string | undefined>(undefined);
 
@@ -35,14 +53,6 @@ export function MarkdownInput({ type, checked, className, node: _node, ...props 
   );
 }
 
-function textValue(children: ReactNode) {
-  return Array.isArray(children) ? children.join("") : String(children ?? "");
-}
-
-function languageFromClassName(className?: string) {
-  return /language-([\w-]+)/.exec(className ?? "")?.[1];
-}
-
 export function MarkdownInlineCode({ className, children, node: _node, ...props }: MarkdownCodeProps) {
   return (
     <code data-control-ui="markdown" data-control-family="markdown" data-slot="inline-code" className={className} {...props}>
@@ -53,35 +63,6 @@ export function MarkdownInlineCode({ className, children, node: _node, ...props 
 
 export function MarkdownPre({ children, node: _node }: MarkdownElementProps<"pre">) {
   return <>{children}</>;
-}
-
-export function MarkdownCode({ className, children, node: _node, ...props }: MarkdownCodeProps) {
-  const lang = languageFromClassName(className);
-  const rawValue = textValue(children);
-  if (!lang && !rawValue.includes("\n")) {
-    return (
-      <MarkdownInlineCode className={className} {...props}>
-        {children}
-      </MarkdownInlineCode>
-    );
-  }
-
-  const value = rawValue.replace(/^\n/, "").replace(/\n$/, "");
-  if (lang === "diff" && value.includes("@@")) {
-    return <CodeDiff patch={value} lang="diff" diffStyle="unified" />;
-  }
-
-  return (
-    <Code>
-      <CodeHeader>
-        {lang ? <CodeTitle>{lang}</CodeTitle> : null}
-        <CodeActions>
-          <CodeCopy value={value} />
-        </CodeActions>
-      </CodeHeader>
-      <CodeContent code={value} lang={lang} highlight={lang ? "auto" : "none"} />
-    </Code>
-  );
 }
 
 export function MarkdownH1({ className, node: _node, ...props }: MarkdownElementProps<"h1">) {
@@ -251,28 +232,3 @@ export function MarkdownTh({ className, node: _node, ...props }: MarkdownElement
 export function MarkdownTd({ className, node: _node, ...props }: MarkdownElementProps<"td">) {
   return <td data-control-ui="markdown" data-control-family="markdown" data-slot="table-cell" className={className} {...props} />;
 }
-
-// `pre` overrides break Streamdown's fence detection.
-export const markdownComponents = {
-  input: MarkdownInput,
-  code: MarkdownCode,
-  inlineCode: MarkdownInlineCode,
-  h1: MarkdownH1,
-  h2: MarkdownH2,
-  h3: MarkdownH3,
-  h4: MarkdownH4,
-  h5: MarkdownH5,
-  h6: MarkdownH6,
-  p: MarkdownP,
-  ul: MarkdownUl,
-  ol: MarkdownOl,
-  li: MarkdownLi,
-  a: MarkdownA,
-  blockquote: MarkdownBlockquote,
-  hr: MarkdownHr,
-  strong: MarkdownStrong,
-  em: MarkdownEm,
-  table: MarkdownTable,
-  th: MarkdownTh,
-  td: MarkdownTd,
-};

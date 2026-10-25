@@ -436,13 +436,6 @@
           }
         ]
       },
-      "swatch-add": {
-        "family": "color-picker",
-        "registryItems": [
-          "color-picker"
-        ],
-        "states": []
-      },
       "swatch-checker": {
         "family": "color-picker",
         "registryItems": [

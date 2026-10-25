@@ -71,6 +71,12 @@
       "defaultValue": "calc(var(--spacing) * 3)"
     },
     {
+      "name": "--cui-field-legend-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
       "name": "--cui-field-legend-font-size",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
@@ -1549,6 +1555,7 @@
       "input": {
         "family": "field",
         "registryItems": [
+          "autocomplete",
           "combobox",
           "input"
         ],

@@ -10,6 +10,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
+import { InputGroup, InputGroupAddon, type InputGroupProps, useIsInsideInputGroup } from "@/components/control-ui/ui/input-group";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
 export type AutocompleteProps<Value = string> = {
@@ -36,6 +37,8 @@ export type AutocompleteProps<Value = string> = {
 export type AutocompleteInputProps = Omit<Omit<ComponentProps<"input">, "size">, "style"> & { style?: CSSProperties & FieldKnobStyle } & {
   size?: ControlSize;
 };
+
+export type AutocompleteInputGroupProps = Omit<InputGroupProps, "render">;
 
 export type AutocompleteClearProps = ComponentProps<"button"> & { style?: CSSProperties & FieldKnobStyle };
 
@@ -92,7 +95,28 @@ export function AutocompleteClear({ className, children, ...props }: Autocomplet
   );
 }
 
+export function AutocompleteInputGroup(props: AutocompleteInputGroupProps) {
+  return <InputGroup {...props} render={<AutocompletePrimitive.InputGroup />} />;
+}
+
 export function AutocompleteInput({ size = "md", className, ...props }: AutocompleteInputProps) {
+  if (useIsInsideInputGroup()) {
+    return (
+      <>
+        <AutocompletePrimitive.Input
+          {...props}
+          data-control-ui="input-group"
+          data-control-family="field"
+          data-field-kind="input-group"
+          data-slot="input"
+          className={cn("h-full min-w-0 flex-1", className)}
+        />
+        <InputGroupAddon>
+          <AutocompleteClear />
+        </InputGroupAddon>
+      </>
+    );
+  }
   return (
     <AutocompletePrimitive.InputGroup
       data-control-ui="autocomplete"

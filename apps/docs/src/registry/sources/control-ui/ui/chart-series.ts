@@ -16,29 +16,34 @@ export type ChartValueKey<TDatum> = {
   keyof TDatum &
   string;
 
-export type ChartSeries<TDatum> = {
+export type ChartDatumColor<TDatum> = ChartColor | ((datum: TDatum) => ChartColor);
+
+export type ChartSeries<TDatum, TColor extends ChartDatumColor<TDatum> = ChartColor> = {
   key: ChartValueKey<TDatum>;
   label?: string;
-  color?: ChartColor;
+  color?: TColor;
   fill?: ChartFill;
   dashed?: boolean;
 };
 
-export type ResolvedChartSeries<TDatum> = Required<ChartSeries<TDatum>>;
+export type ChartBarSeries<TDatum> = ChartSeries<TDatum, ChartDatumColor<TDatum>>;
 
-export type ChartSeriesRow = {
+export type ResolvedChartSeries<TDatum, TColor extends ChartDatumColor<TDatum> = ChartColor> = Required<ChartSeries<TDatum, TColor>>;
+
+export type ChartSeriesRow<TDatum = unknown> = {
   id: string;
   x: ChartXValue;
   value: number | null;
   series: string;
   color: ChartColor;
   fill: ChartFill;
+  datum: TDatum;
 };
 
-export function resolveChartSeries<TDatum>(
-  series: readonly ChartSeries<TDatum>[],
+export function resolveChartSeries<TDatum, TColor extends ChartDatumColor<TDatum> = ChartColor>(
+  series: readonly ChartSeries<TDatum, TColor>[],
   fill: ChartFill = "gradient",
-): ResolvedChartSeries<TDatum>[] {
+): ResolvedChartSeries<TDatum, TColor | ChartColor>[] {
   return series.map((entry, index) => ({
     key: entry.key,
     label: entry.label ?? entry.key,
@@ -55,8 +60,8 @@ function isChartXValue(value: unknown): value is ChartXValue {
 export function chartSeriesRows<TDatum>(
   data: readonly TDatum[],
   x: ChartXKey<TDatum>,
-  series: readonly ResolvedChartSeries<TDatum>[],
-): ChartSeriesRow[] {
+  series: readonly ResolvedChartSeries<TDatum, ChartDatumColor<TDatum>>[],
+): ChartSeriesRow<TDatum>[] {
   return series.flatMap((entry) =>
     data.flatMap((datum) => {
       const xValue: unknown = datum[x];
@@ -67,8 +72,9 @@ export function chartSeriesRows<TDatum>(
         x: xValue,
         value: typeof value === "number" && Number.isFinite(value) ? value : null,
         series: entry.label,
-        color: entry.color,
+        color: typeof entry.color === "function" ? entry.color(datum) : entry.color,
         fill: entry.fill,
+        datum,
       };
     }),
   );

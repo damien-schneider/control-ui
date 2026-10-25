@@ -11,6 +11,7 @@ import type {
 } from "react";
 import { createContext, useContext, useRef, useState } from "react";
 import { useColorArea } from "@/components/control-ui/hooks/use-color-area";
+import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { GradientEditorKnobStyle } from "@/components/control-ui/knob-contracts/gradient-editor-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import {
@@ -21,6 +22,7 @@ import {
   type GradientValue,
   gradientColorAt,
 } from "@/components/control-ui/lib/gradient";
+import { Button } from "@/components/control-ui/ui/button";
 
 export type { GradientInterpolation, GradientStop, GradientType, GradientValue } from "@/components/control-ui/lib/gradient";
 
@@ -44,7 +46,7 @@ export type GradientEditorStopProps = Omit<ComponentProps<"button">, "style"> & 
 };
 
 export type GradientEditorStopAddProps = Omit<ComponentProps<"button">, "onClick" | "style"> & {
-  style?: CSSProperties & GradientEditorKnobStyle;
+  style?: CSSProperties & ButtonKnobStyle;
 };
 
 const DEFAULT_GRADIENT: GradientValue = {
@@ -346,32 +348,23 @@ export function GradientEditorStop({
   );
 }
 
-export function GradientEditorStopAdd({ className, children, ...props }: GradientEditorStopAddProps) {
+export function GradientEditorStopAdd({ children, ...props }: GradientEditorStopAddProps) {
   const { addStop } = useGradientEditor();
   return (
-    <button
-      type="button"
-      data-control-ui="gradient-editor"
-      data-control-family="gradient-editor"
-      data-slot="stop-add"
+    <Button
+      variant="dashed"
+      size="xs"
+      iconOnly
+      data-gradient-editor-stop-add="true"
       aria-label="Add gradient stop"
       onClick={() => addStop(0.5)}
-      className={cn("flex shrink-0 cursor-pointer items-center justify-center", className)}
       {...props}
     >
       {children ?? (
-        <svg
-          viewBox="0 0 16 16"
-          className="size-3.5"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          aria-hidden="true"
-        >
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
           <path d="M8 3v10M3 8h10" />
         </svg>
       )}
-    </button>
+    </Button>
   );
 }

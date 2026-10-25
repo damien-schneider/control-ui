@@ -1709,7 +1709,7 @@ export const registryMetadata = {
   },
   autocomplete: {
     dependencies: ["@base-ui/react@^1.9.0"],
-    registryDependencies: ["core", "scroll-area", "surface-variants"],
+    registryDependencies: ["core", "input-group", "scroll-area", "surface-variants"],
     sourceManifestPath: "registry/control-ui/autocomplete.json",
     files: [
       {
@@ -3632,6 +3632,11 @@ export const registryMetadata = {
         path: "src/registry/sources/control-ui/recipes/markdown.css",
         target: "@components/control-ui/styles/recipes/markdown.css",
         type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/ui/markdown-components.tsx",
+        target: "@components/control-ui/ui/markdown-components.tsx",
+        type: "registry:ui",
       },
       {
         path: "src/registry/sources/control-ui/ui/markdown-elements.tsx",

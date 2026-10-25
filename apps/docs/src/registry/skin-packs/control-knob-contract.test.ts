@@ -691,6 +691,7 @@ function recipeIdentitySelectorOffenders(root: Root, family?: string): string[] 
 
 const FAMILY_SOURCE_MARKERS: Record<string, readonly string[]> = {
   badge: ['family = "badge"'],
+  markdown: ["<MarkdownRoot"],
   "phone-input": ['data-field-kind="phone-input"'],
   "rich-tooltip": ['data-popup-kind="rich-tooltip"'],
   "source-badge": ['data-source-badge=""'],

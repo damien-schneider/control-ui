@@ -88115,6 +88115,194 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       state: true,
       route: "/components/field",
     },
+    {
+      knobs: {
+        text: "--cui-field-legend-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "field",
+            "data-control-ui": "field",
+            "data-field-kind": "field",
+            "data-slot": "set",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "field",
+            "data-control-ui": "field",
+            "data-field-kind": "field",
+            "data-slot": "legend",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "field-parts",
+      rendersText: true,
+      state: false,
+      route: "/components/field",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-item-description-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "popup",
+            "data-control-ui": "command",
+            "data-popup-kind": "command",
+            "data-popup-part": "surface",
+            "data-popup-static": "",
+            "data-slot": "root",
+            "data-surface": "panel",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "true",
+            "data-control-family": "popup",
+            "data-control-ui": "command",
+            "data-disabled": "false",
+            "data-popup-kind": "command",
+            "data-popup-part": "item",
+            "data-selected": "true",
+            "data-slot": "item",
+            "data-value": "heading",
+            role: "option",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "command",
+            "data-popup-kind": "command",
+            "data-slot": "item-description",
+          },
+        },
+      ],
+      recipe: "popup-lists",
+      rendersText: true,
+      state: false,
+      route: "/components/command",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-item-description-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "popup",
+            "data-control-ui": "command",
+            "data-popup-kind": "command",
+            "data-popup-part": "surface",
+            "data-popup-static": "",
+            "data-slot": "root",
+            "data-surface": "panel",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "command",
+            "data-popup-kind": "command",
+            "data-slot": "item-description",
+          },
+        },
+      ],
+      recipe: "popup-lists",
+      rendersText: true,
+      state: false,
+      route: "/components/command",
+    },
   ),
   uncovered: [
     "--cui-audio-recorder-recorded-foreground",

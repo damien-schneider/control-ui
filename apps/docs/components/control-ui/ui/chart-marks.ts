@@ -9,7 +9,7 @@ import {
 } from "@tanstack/charts";
 import { decorative } from "@tanstack/charts/mark/decorative";
 import { tooltip } from "@tanstack/charts/tooltip";
-import { type ChartColor, chartColor } from "@/components/control-ui/ui/chart-colors";
+import { type ChartColor, chartColor, isChartPaletteColor } from "@/components/control-ui/ui/chart-colors";
 import type { ChartFill, ChartSeriesRow, ChartXValue } from "@/components/control-ui/ui/chart-series";
 
 type AnyChartMark = Parameters<typeof decorative>[0];
@@ -112,11 +112,22 @@ const GRADIENT_GEOMETRY: Record<ChartGradientKind, Omit<ChartLinearGradient, "id
   },
 };
 
+function chartColorId(color: ChartColor) {
+  if (isChartPaletteColor(color)) return color;
+  let hash = 0;
+  for (const character of color) hash = (Math.imul(hash, 31) + (character.codePointAt(0) ?? 0)) | 0;
+  return `css-${(hash >>> 0).toString(36)}`;
+}
+
+function chartGradientId(color: ChartColor, kind: ChartGradientKind) {
+  return `cui-${kind}-${chartColorId(color)}`;
+}
+
 export function chartGradient(color: ChartColor, kind: ChartGradientKind): ChartLinearGradient {
   const { stops, ...geometry } = GRADIENT_GEOMETRY[kind];
   return {
     ...geometry,
-    id: `cui-${kind}-${color}`,
+    id: chartGradientId(color, kind),
     stops: stops.map(([offset, opacity, lightnessLift]) => ({
       offset,
       opacity,
@@ -130,11 +141,11 @@ export function chartGradients(colors: Iterable<ChartColor>, kind: ChartGradient
 }
 
 export function chartHatch(color: ChartColor): string {
-  return `var(--_cui-chart-hatch-${color}, ${chartColor(color)})`;
+  return isChartPaletteColor(color) ? `var(--_cui-chart-hatch-${color}, ${chartColor(color)})` : chartColor(color);
 }
 
 export function chartFillPaint(color: ChartColor, fill: ChartFill, kind: ChartGradientKind): string {
-  if (fill === "gradient") return `url(#cui-${kind}-${color})`;
+  if (fill === "gradient") return `url(#${chartGradientId(color, kind)})`;
   if (fill === "hatched") return chartHatch(color);
   return kind === "area" ? `oklch(from ${chartColor(color)} l c h / 0.2)` : chartColor(color);
 }
@@ -196,17 +207,17 @@ export function chartReferenceMarks(references: readonly ChartReference[], axis:
   return [...marks, decorative(labels)];
 }
 
-type SeriesPoint = { key: string; datum: ChartSeriesRow };
+type SeriesPoint<TDatum> = { key: string; datum: ChartSeriesRow<TDatum> };
 
-export function seriesTooltip(
+export function seriesTooltip<TDatum>(
   seriesLabels: readonly string[],
   formatX: (value: ChartXValue) => string,
-  formatValue: (value: number) => string,
+  formatValue: (value: number, datum: TDatum) => string,
 ) {
-  const seriesRank = (point: SeriesPoint) => seriesLabels.indexOf(point.datum.series);
+  const seriesRank = (point: SeriesPoint<TDatum>) => seriesLabels.indexOf(point.datum.series);
   return {
     use: tooltip,
-    content: (points: readonly SeriesPoint[], context: ChartTooltipContentContext) => ({
+    content: (points: readonly SeriesPoint<TDatum>[], context: Pick<ChartTooltipContentContext, "primaryPoint">) => ({
       title: points[0] ? formatX(points[0].datum.x) : undefined,
       rows: [...points]
         .sort((left, right) => seriesRank(left) - seriesRank(right))
@@ -215,7 +226,7 @@ export function seriesTooltip(
             ? []
             : {
                 label: point.datum.series,
-                value: formatValue(point.datum.value),
+                value: formatValue(point.datum.value, point.datum.datum),
                 color: chartColor(point.datum.color),
                 active: point.key === context.primaryPoint?.key,
               },

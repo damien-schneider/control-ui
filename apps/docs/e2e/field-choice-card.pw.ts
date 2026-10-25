@@ -27,6 +27,10 @@ for (const skin of ["refined", "linear"]) {
     await waitForReactHydration(generated);
     await expect(page.locator("html")).toHaveAttribute("data-skin", skin);
 
+    const [generatedBox, importedBox] = await Promise.all([generatedCard.boundingBox(), importedCard.boundingBox()]);
+    expect(importedBox?.y).toBe(generatedBox?.y);
+    expect(importedBox?.height).toBe(generatedBox?.height);
+
     await expect(generated).toHaveAttribute("aria-checked", "true");
     const checkedBorder = await generatedCard.evaluate((element) => getComputedStyle(element).borderTopColor);
     const idleBorder = await importedCard.evaluate((element) => getComputedStyle(element).borderTopColor);

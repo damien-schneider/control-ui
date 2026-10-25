@@ -65,7 +65,7 @@ export const generatedSkinContract: SkinContract = {
     "inline-attachment": ["inline-attachment"],
     "inline-citation": ["inline-citation"],
     input: ["input"],
-    "input-group": ["combobox", "input", "input-group"],
+    "input-group": ["autocomplete", "combobox", "input", "input-group"],
     "input-otp": ["input-otp"],
     item: ["item"],
     kbd: ["kbd"],
@@ -3498,11 +3498,6 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
-        "swatch-add": {
-          family: "color-picker",
-          registryItems: ["color-picker"],
-          states: [],
-        },
         "swatch-checker": {
           family: "color-picker",
           registryItems: ["color-picker"],
@@ -4234,6 +4229,42 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "enum",
               values: ["false", "true"],
+            },
+          ],
+        },
+        "item-content": {
+          family: "popup",
+          registryItems: ["command"],
+          states: [
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["command"],
+            },
+          ],
+        },
+        "item-description": {
+          family: "popup",
+          registryItems: ["command"],
+          states: [
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["command"],
+            },
+          ],
+        },
+        "item-title": {
+          family: "popup",
+          registryItems: ["command"],
+          states: [
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["command"],
             },
           ],
         },
@@ -6831,11 +6862,6 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
-        "stop-add": {
-          family: "gradient-editor",
-          registryItems: ["color-picker"],
-          states: [],
-        },
         track: {
           family: "gradient-editor",
           registryItems: ["color-picker"],
@@ -7470,7 +7496,7 @@ export const generatedSkinContract: SkinContract = {
         },
         input: {
           family: "field",
-          registryItems: ["combobox", "input"],
+          registryItems: ["autocomplete", "combobox", "input"],
           states: [
             {
               attribute: "data-dirty",
@@ -7559,7 +7585,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
       },
-      registryItems: ["combobox", "input", "input-group"],
+      registryItems: ["autocomplete", "combobox", "input", "input-group"],
     },
     "input-otp": {
       parts: {
@@ -16303,6 +16329,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "calc(var(--spacing) * 3)",
       },
       {
+        name: "--cui-field-legend-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--foreground)",
+      },
+      {
         name: "--cui-field-legend-font-size",
         syntax: "<length-percentage>",
         initialValue: "0px",
@@ -16782,24 +16814,6 @@ export const generatedSkinContract: SkinContract = {
         syntax: "*",
         initialValue: "",
         defaultValue: "0 0 0 1px oklch(from var(--foreground) l c h / 0.4)",
-      },
-      {
-        name: "--cui-gradient-editor-add-radius",
-        syntax: "<length-percentage>",
-        initialValue: "0px",
-        defaultValue: "9999px",
-      },
-      {
-        name: "--cui-gradient-editor-add-border-color",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--border)",
-      },
-      {
-        name: "--cui-gradient-editor-add-border-width",
-        syntax: "<length>",
-        initialValue: "0px",
-        defaultValue: "var(--control-rim-width)",
       },
     ],
     "icon-picker": [
@@ -17758,6 +17772,18 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length-percentage>",
         initialValue: "0px",
         defaultValue: "32rem",
+      },
+      {
+        name: "--cui-popup-item-description-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted-foreground)",
+      },
+      {
+        name: "--cui-popup-item-description-font-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--text-label)",
       },
       {
         name: "--cui-popup-shortcut-foreground",

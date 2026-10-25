@@ -7,7 +7,7 @@ import { guideCodeForKind, languageForGuideCode } from "@/app/(features)/model/r
 import type { GuideSection as GuideSectionData, IntegrationId } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Card, CardContent } from "@/components/control-ui/ui/card";
-import { MarkdownFlow } from "@/components/control-ui/ui/markdown";
+import { MarkdownFlow } from "@/components/control-ui/ui/markdown-elements";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
 import { IntegrationSelect, integrationChangesCode } from "./integration";
 

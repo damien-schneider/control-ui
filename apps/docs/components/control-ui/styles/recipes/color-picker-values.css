@@ -53,23 +53,9 @@
     font-size: var(--text-caption);
   }
 
-  :where([data-control-family="color-picker"][data-slot="swatch-add"]) {
-    border-radius: var(--radius-md);
-    border-width: var(--control-rim-width);
-    border-style: dashed;
-    --_color-picker-swatch-add-border-color: var(--border);
-    border-color: var(--_color-picker-swatch-add-border-color);
-    --_color-picker-swatch-add-foreground: var(--muted-foreground);
-    color: var(--_color-picker-swatch-add-foreground);
-  }
-
-  @media (hover: hover) {
-    :where([data-control-family="color-picker"][data-slot="swatch-add"]:hover:not(:disabled)) {
-      --_color-picker-swatch-add-border-color: oklch(from var(--foreground) l c h / 0.4);
-      border-color: var(--_color-picker-swatch-add-border-color);
-      --_color-picker-swatch-add-foreground: var(--foreground);
-      color: var(--_color-picker-swatch-add-foreground);
-    }
+  :where([data-control-family="button"][data-color-picker-swatch-add="true"]) {
+    --nest-radius: var(--radius-md);
+    --cui-button-height: calc(var(--spacing) * 6);
   }
 
   :where([data-control-family="color-picker"][data-slot="swatch"]) {
@@ -91,7 +77,7 @@
     transition: box-shadow var(--duration-fast) var(--ease-standard);
   }
 
-  :where([data-control-family="color-picker"]:is([data-slot="swatch"], [data-slot="swatch-add"], [data-slot="contrast-fix"]):disabled) {
+  :where([data-control-family="color-picker"]:is([data-slot="swatch"], [data-slot="contrast-fix"]):disabled) {
     opacity: var(--disabled-opacity);
   }
 

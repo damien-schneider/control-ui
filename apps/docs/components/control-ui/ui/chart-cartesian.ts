@@ -34,6 +34,7 @@ import {
   seriesTooltip,
 } from "@/components/control-ui/ui/chart-marks";
 import {
+  type ChartDatumColor,
   type ChartFill,
   type ChartSeries,
   type ChartValueKey,
@@ -46,15 +47,15 @@ import {
   resolveChartSeries,
 } from "@/components/control-ui/ui/chart-series";
 
-export type CartesianChartOptions<TDatum> = {
+export type CartesianChartOptions<TDatum, TColor extends ChartDatumColor<TDatum> = ChartColor> = {
   data: readonly TDatum[];
   x: ChartXKey<TDatum>;
-  series: readonly ChartSeries<TDatum>[];
+  series: readonly ChartSeries<TDatum, TColor>[];
   fill?: ChartFill;
   xScale?: Partial<ChartPositionScaleOptions>;
   yScale?: Partial<ChartPositionScaleOptions>;
   formatX?: (value: ChartXValue) => string;
-  formatValue?: (value: number) => string;
+  formatValue?: (value: number, datum: TDatum) => string;
   formatTick?: (value: number) => string;
   locale?: Intl.LocalesArgument;
   references?: readonly ChartReference[];
@@ -72,12 +73,13 @@ export type LineChartOptions<TDatum> = CartesianChartOptions<TDatum> & {
   dots?: boolean;
 };
 
-export type BarChartOptions<TDatum> = CartesianChartOptions<TDatum> & {
+export type BarChartOptions<TDatum> = CartesianChartOptions<TDatum, ChartDatumColor<TDatum>> & {
   orientation?: "vertical" | "horizontal";
   layout?: "grouped" | "stacked" | "percent";
+  radius?: number | { end: number };
 };
 
-function cartesianSetup<TDatum>(options: CartesianChartOptions<TDatum>, percent: boolean) {
+function cartesianSetup<TDatum, TColor extends ChartDatumColor<TDatum>>(options: CartesianChartOptions<TDatum, TColor>, percent: boolean) {
   const series = resolveChartSeries(options.series, options.fill ?? "gradient");
   const rows = chartSeriesRows(options.data, options.x, series);
   const formats = chartFormatters(options.locale);
@@ -155,7 +157,7 @@ export function areaChart<TDatum>(options: AreaChartOptions<TDatum>) {
       crosshair({ x: true, y: false, strokeDasharray: "3 3" }),
     ],
     scales: {
-      x: { ...chartXScale(rows, "point", options.xScale), axis: quietAxis(formatX) },
+      x: { axis: quietAxis(formatX), ...chartXScale(rows, "point", options.xScale) },
       y: valueScale,
     },
     gradients: chartGradients(gradientColors(series), "area"),
@@ -211,7 +213,7 @@ export function lineChart<TDatum>(options: LineChartOptions<TDatum>) {
       crosshair({ x: true, y: false, strokeDasharray: "3 3" }),
     ],
     scales: {
-      x: { ...chartXScale(rows, "point", options.xScale), axis: quietAxis(formatX) },
+      x: { axis: quietAxis(formatX), ...chartXScale(rows, "point", options.xScale) },
       y: valueScale,
     },
     margin: { top: 8 },
@@ -226,7 +228,7 @@ export function barChart<TDatum>(options: BarChartOptions<TDatum>) {
   const { rows, formatX, valueScale, tooltip } = cartesianSetup(options, layoutName === "percent");
   const barLayouts = { grouped: group({ padding: 0.15 }), stacked: undefined, percent: stack({ offset: "normalize" }) };
   const layout = barLayouts[layoutName];
-  const categoryScale = { ...chartXScale(rows, "band", options.xScale), axis: quietAxis(formatX) };
+  const categoryScale = { axis: quietAxis(formatX), ...chartXScale(rows, "band", options.xScale) };
   const band = { inset: -4, radius: 6, fillOpacity: 0.06 };
   const shared = {
     id: "bars",
@@ -234,7 +236,7 @@ export function barChart<TDatum>(options: BarChartOptions<TDatum>) {
     z: "series",
     stroke: (row: (typeof rows)[number]) => chartOutline(row.color, row.fill),
     strokeWidth: 1,
-    radius: { end: 6 },
+    radius: options.radius ?? { end: 6 },
     states: dimUnfocused,
     layout,
   } as const;

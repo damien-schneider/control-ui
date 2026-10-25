@@ -2394,6 +2394,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="field"][data-field-kind="field"])',
       },
       {
+        name: "--cui-field-legend-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--foreground)",
+        selector: ':where([data-control-family="field"][data-field-kind="field"])',
+      },
+      {
         name: "--cui-field-padding-inline",
         syntax: "<length-percentage>",
         defaultValue: "var(--padding-x)",
@@ -2673,24 +2679,6 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
   {
     id: "gradient-editor",
     knobs: [
-      {
-        name: "--cui-gradient-editor-add-border-color",
-        syntax: "<color>",
-        defaultValue: "var(--border)",
-        selector: ':where([data-control-family="gradient-editor"][data-slot="root"])',
-      },
-      {
-        name: "--cui-gradient-editor-add-border-width",
-        syntax: "<length>",
-        defaultValue: "var(--control-rim-width)",
-        selector: ':where([data-control-family="gradient-editor"][data-slot="root"])',
-      },
-      {
-        name: "--cui-gradient-editor-add-radius",
-        syntax: "<length-percentage>",
-        defaultValue: "9999px",
-        selector: ':where([data-control-family="gradient-editor"][data-slot="root"])',
-      },
       {
         name: "--cui-gradient-editor-preview-radius",
         syntax: "<length-percentage>",
@@ -3147,85 +3135,99 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-markdown-blockquote-border-color",
         syntax: "<color>",
         defaultValue: "var(--border)",
-        selector: ':where([data-control-family="markdown"][data-slot="root"])',
+        selector:
+          ':where([data-control-family="markdown"][data-slot="root"]),\n  :where([data-control-family="markdown"]:not([data-control-family="markdown"][data-slot="root"] *))',
       },
       {
         name: "--cui-markdown-blockquote-foreground",
         syntax: "<color>",
         defaultValue: "var(--muted-foreground)",
-        selector: ':where([data-control-family="markdown"][data-slot="root"])',
+        selector:
+          ':where([data-control-family="markdown"][data-slot="root"]),\n  :where([data-control-family="markdown"]:not([data-control-family="markdown"][data-slot="root"] *))',
       },
       {
         name: "--cui-markdown-flow-gap",
         syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 4)",
-        selector: ':where([data-control-family="markdown"][data-slot="root"])',
+        selector:
+          ':where([data-control-family="markdown"][data-slot="root"]),\n  :where([data-control-family="markdown"]:not([data-control-family="markdown"][data-slot="root"] *))',
       },
       {
         name: "--cui-markdown-font-size",
         syntax: "<length-percentage>",
         defaultValue: "var(--text-body)",
-        selector: ':where([data-control-family="markdown"][data-slot="root"])',
+        selector:
+          ':where([data-control-family="markdown"][data-slot="root"]),\n  :where([data-control-family="markdown"]:not([data-control-family="markdown"][data-slot="root"] *))',
       },
       {
         name: "--cui-markdown-foreground",
         syntax: "<color>",
         defaultValue: "oklch(from var(--foreground) l c h / 0.9)",
-        selector: ':where([data-control-family="markdown"][data-slot="root"])',
+        selector:
+          ':where([data-control-family="markdown"][data-slot="root"]),\n  :where([data-control-family="markdown"]:not([data-control-family="markdown"][data-slot="root"] *))',
       },
       {
         name: "--cui-markdown-heading-gap",
         syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 6)",
-        selector: ':where([data-control-family="markdown"][data-slot="root"])',
+        selector:
+          ':where([data-control-family="markdown"][data-slot="root"]),\n  :where([data-control-family="markdown"]:not([data-control-family="markdown"][data-slot="root"] *))',
       },
       {
         name: "--cui-markdown-image-outline-color",
         syntax: "<color>",
         defaultValue: "var(--image-outline)",
-        selector: ':where([data-control-family="markdown"][data-slot="root"])',
+        selector:
+          ':where([data-control-family="markdown"][data-slot="root"]),\n  :where([data-control-family="markdown"]:not([data-control-family="markdown"][data-slot="root"] *))',
       },
       {
         name: "--cui-markdown-inline-code-background",
         syntax: "<color>",
         defaultValue: "color-mix(in oklab, var(--foreground) 8%, transparent)",
-        selector: ':where([data-control-family="markdown"][data-slot="root"])',
+        selector:
+          ':where([data-control-family="markdown"][data-slot="root"]),\n  :where([data-control-family="markdown"]:not([data-control-family="markdown"][data-slot="root"] *))',
       },
       {
         name: "--cui-markdown-inline-code-foreground",
         syntax: "<color>",
         defaultValue: "var(--foreground)",
-        selector: ':where([data-control-family="markdown"][data-slot="root"])',
+        selector:
+          ':where([data-control-family="markdown"][data-slot="root"]),\n  :where([data-control-family="markdown"]:not([data-control-family="markdown"][data-slot="root"] *))',
       },
       {
         name: "--cui-markdown-inline-code-radius",
         syntax: "<length-percentage>+",
         defaultValue: "0.25rem",
-        selector: ':where([data-control-family="markdown"][data-slot="root"])',
+        selector:
+          ':where([data-control-family="markdown"][data-slot="root"]),\n  :where([data-control-family="markdown"]:not([data-control-family="markdown"][data-slot="root"] *))',
       },
       {
         name: "--cui-markdown-line-height",
         syntax: "<number>",
         defaultValue: "var(--leading-relaxed)",
-        selector: ':where([data-control-family="markdown"][data-slot="root"])',
+        selector:
+          ':where([data-control-family="markdown"][data-slot="root"]),\n  :where([data-control-family="markdown"]:not([data-control-family="markdown"][data-slot="root"] *))',
       },
       {
         name: "--cui-markdown-link-foreground",
         syntax: "<color>",
         defaultValue: "var(--primary-text)",
-        selector: ':where([data-control-family="markdown"][data-slot="root"])',
+        selector:
+          ':where([data-control-family="markdown"][data-slot="root"]),\n  :where([data-control-family="markdown"]:not([data-control-family="markdown"][data-slot="root"] *))',
       },
       {
         name: "--cui-markdown-table-cell-border-color",
         syntax: "<color>",
         defaultValue: "var(--border)",
-        selector: ':where([data-control-family="markdown"][data-slot="root"])',
+        selector:
+          ':where([data-control-family="markdown"][data-slot="root"]),\n  :where([data-control-family="markdown"]:not([data-control-family="markdown"][data-slot="root"] *))',
       },
       {
         name: "--cui-markdown-table-header-background",
         syntax: "<color>",
         defaultValue: "var(--muted)",
-        selector: ':where([data-control-family="markdown"][data-slot="root"])',
+        selector:
+          ':where([data-control-family="markdown"][data-slot="root"]),\n  :where([data-control-family="markdown"]:not([data-control-family="markdown"][data-slot="root"] *))',
       },
     ],
   },
@@ -3699,6 +3701,20 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-popup-foreground",
         syntax: "<color>",
         defaultValue: "var(--popover-foreground)",
+        selector:
+          ':where([data-control-family="popup"][data-popup-part="surface"]),\n  :where([data-control-family="popup"][data-popup-part="list-surface"]),\n  :where([data-control-family="popup"][data-popup-part="bar"])',
+      },
+      {
+        name: "--cui-popup-item-description-font-size",
+        syntax: "<length-percentage>",
+        defaultValue: "var(--text-label)",
+        selector:
+          ':where([data-control-family="popup"][data-popup-part="surface"]),\n  :where([data-control-family="popup"][data-popup-part="list-surface"]),\n  :where([data-control-family="popup"][data-popup-part="bar"])',
+      },
+      {
+        name: "--cui-popup-item-description-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--muted-foreground)",
         selector:
           ':where([data-control-family="popup"][data-popup-part="surface"]),\n  :where([data-control-family="popup"][data-popup-part="list-surface"]),\n  :where([data-control-family="popup"][data-popup-part="bar"])',
       },

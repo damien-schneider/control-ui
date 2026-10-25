@@ -5,9 +5,6 @@
 
   :where([data-control-family="gradient-editor"][data-slot="root"]) {
     gap: calc(var(--spacing) * 3);
-    --cui-gradient-editor-add-border-color: var(--border);
-    --cui-gradient-editor-add-border-width: var(--control-rim-width);
-    --cui-gradient-editor-add-radius: 9999px;
     --cui-gradient-editor-preview-radius: var(--radius-field);
     --cui-gradient-editor-preview-ring-color: oklch(from var(--border) l c h / 0.6);
     --cui-gradient-editor-stop-border-color: oklch(1 0 0);
@@ -48,19 +45,9 @@
     transition: scale var(--duration-fast) var(--ease-standard);
   }
 
-  :where([data-control-family="gradient-editor"][data-slot="stop-add"]) {
-    inline-size: calc(var(--spacing) * 7);
-    block-size: calc(var(--spacing) * 7);
-    border: var(--cui-gradient-editor-add-border-width) dashed var(--cui-gradient-editor-add-border-color);
-    border-radius: var(--cui-gradient-editor-add-radius);
-    color: var(--muted-foreground);
-  }
-
-  @media (hover: hover) {
-    :where([data-control-family="gradient-editor"][data-slot="stop-add"]:hover:not(:disabled)) {
-      border-color: oklch(from var(--foreground) l c h / 0.4);
-      color: var(--foreground);
-    }
+  :where([data-control-family="button"][data-gradient-editor-stop-add="true"]) {
+    --nest-radius: 9999px;
+    --cui-button-height: calc(var(--spacing) * 7);
   }
 
   :where([data-control-family="gradient-editor"][data-slot="stop"][data-selected="true"]) {
@@ -77,19 +64,6 @@
   }
 
   @media (pointer: coarse) {
-    :where([data-control-family="gradient-editor"][data-slot="stop-add"]) {
-      position: relative;
-    }
-
-    :where([data-control-family="gradient-editor"][data-slot="stop-add"])::after {
-      content: "";
-      position: absolute;
-      inset: 50%;
-      translate: -50% -50%;
-      inline-size: max(100%, var(--touch-target));
-      block-size: max(100%, var(--touch-target));
-    }
-
     :where([data-control-family="gradient-editor"][data-slot="stop"])::after {
       block-size: max(100%, var(--touch-target));
     }
@@ -135,22 +109,4 @@
 @property --cui-gradient-editor-stop-shadow {
   syntax: "*";
   inherits: true;
-}
-
-@property --cui-gradient-editor-add-radius {
-  syntax: "<length-percentage>";
-  inherits: true;
-  initial-value: 0px;
-}
-
-@property --cui-gradient-editor-add-border-color {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
-@property --cui-gradient-editor-add-border-width {
-  syntax: "<length>";
-  inherits: true;
-  initial-value: 0px;
 }

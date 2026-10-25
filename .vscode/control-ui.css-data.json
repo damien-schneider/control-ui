@@ -1867,6 +1867,11 @@
       "syntax": "<number>"
     },
     {
+      "name": "--cui-field-legend-foreground",
+      "description": "Control UI field-parts knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
       "name": "--cui-field-padding-inline",
       "description": "Control UI field knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
@@ -2082,21 +2087,6 @@
       "name": "--cui-flow-selected-edge-stroke",
       "description": "Control UI flow knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
-    },
-    {
-      "name": "--cui-gradient-editor-add-border-color",
-      "description": "Control UI gradient-editor knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--cui-gradient-editor-add-border-width",
-      "description": "Control UI gradient-editor knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<length>"
-    },
-    {
-      "name": "--cui-gradient-editor-add-radius",
-      "description": "Control UI gradient-editor knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<length-percentage>"
     },
     {
       "name": "--cui-gradient-editor-preview-radius",
@@ -2840,6 +2830,16 @@
     {
       "name": "--cui-popup-foreground",
       "description": "Control UI popup knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-popup-item-description-font-size",
+      "description": "Control UI popup-lists knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-popup-item-description-foreground",
+      "description": "Control UI popup-lists knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {

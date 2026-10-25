@@ -185,6 +185,18 @@
       "defaultValue": "32rem"
     },
     {
+      "name": "--cui-popup-item-description-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-popup-item-description-font-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--text-label)"
+    },
+    {
       "name": "--cui-popup-shortcut-foreground",
       "syntax": "<color>",
       "initialValue": "transparent",
@@ -1497,6 +1509,54 @@
             "values": [
               "false",
               "true"
+            ]
+          }
+        ]
+      },
+      "item-content": {
+        "family": "popup",
+        "registryItems": [
+          "command"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "command"
+            ]
+          }
+        ]
+      },
+      "item-description": {
+        "family": "popup",
+        "registryItems": [
+          "command"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "command"
+            ]
+          }
+        ]
+      },
+      "item-title": {
+        "family": "popup",
+        "registryItems": [
+          "command"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "command"
             ]
           }
         ]

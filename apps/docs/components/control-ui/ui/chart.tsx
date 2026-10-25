@@ -10,7 +10,7 @@ import { type ComponentProps, type CSSProperties, type ReactNode, useEffect, use
 import type { ChartKnobStyle } from "@/components/control-ui/knob-contracts/chart-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { readDurationMs } from "@/components/control-ui/lib/motion";
-import { CHART_COLORS, type ChartColor, chartColor } from "@/components/control-ui/ui/chart-colors";
+import { CHART_COLORS, type ChartColor, type ChartPaletteColor, chartColor } from "@/components/control-ui/ui/chart-colors";
 import type { ChartFill } from "@/components/control-ui/ui/chart-series";
 
 const NON_ID_CHARACTERS = /[^\w-]/g;
@@ -32,7 +32,7 @@ export type ChartPlotProps<TDatum, TXValue extends ChartValue = ChartValue, TYVa
   children?: ReactNode;
 };
 
-type ChartPatternStyle = Record<`--_cui-chart-hatch-${ChartColor}` | "--_cui-chart-fade", string>;
+type ChartPatternStyle = Record<`--_cui-chart-hatch-${ChartPaletteColor}` | "--_cui-chart-fade", string>;
 
 type ChartSwatchStyle = CSSProperties & { "--_cui-chart-swatch": string };
 

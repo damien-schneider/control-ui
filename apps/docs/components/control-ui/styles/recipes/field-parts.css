@@ -240,6 +240,7 @@
   }
 
   :where([data-control-family="field"][data-field-kind="field"]) {
+    --cui-field-legend-foreground: var(--foreground);
     --cui-field-legend-font-size: var(--text-label);
     --cui-field-legend-font-weight: var(--font-weight-semibold);
     --cui-field-label-radius: var(--radius-lg);
@@ -254,7 +255,7 @@
   }
 
   :where([data-control-family="field"][data-field-kind="field"][data-slot="legend"]) {
-    color: var(--foreground);
+    color: var(--cui-field-legend-foreground);
     font-size: var(--cui-field-legend-font-size);
     font-weight: var(--cui-field-legend-font-weight);
   }
@@ -366,6 +367,12 @@
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
+}
+
+@property --cui-field-legend-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
 }
 
 @property --cui-field-legend-font-size {

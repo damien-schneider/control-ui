@@ -44,6 +44,7 @@ import { PrimitiveAppShellExample } from "@/src/registry/examples/control-ui/pri
 import { PrimitiveAppShellCollapsedExample } from "@/src/registry/examples/control-ui/primitives/app-shell-collapsed";
 import { AspectRatioRuntimeExample, PrimitiveAspectRatioExample } from "@/src/registry/examples/control-ui/primitives/aspect-ratio";
 import { PrimitiveAutocompleteExample } from "@/src/registry/examples/control-ui/primitives/autocomplete";
+import { PrimitiveAutocompleteInputGroupExample } from "@/src/registry/examples/control-ui/primitives/autocomplete-input-group";
 import { PrimitiveAvatarExample } from "@/src/registry/examples/control-ui/primitives/avatar";
 import { PrimitiveBadgeExample } from "@/src/registry/examples/control-ui/primitives/badge";
 import { PrimitiveBreadcrumbExample } from "@/src/registry/examples/control-ui/primitives/breadcrumb";
@@ -66,6 +67,7 @@ import {
   ChartSparklineExample,
   ChartStatesExample,
 } from "@/src/registry/examples/control-ui/primitives/chart-showcase";
+import { ChartStatusExample } from "@/src/registry/examples/control-ui/primitives/chart-status";
 import { PrimitiveCheckboxExample } from "@/src/registry/examples/control-ui/primitives/checkbox";
 import { PrimitiveCheckboxGroupExample } from "@/src/registry/examples/control-ui/primitives/checkbox-group";
 import { PrimitiveCodeExample } from "@/src/registry/examples/control-ui/primitives/code";
@@ -80,6 +82,7 @@ import { PrimitiveColorPickerStripsExample } from "@/src/registry/examples/contr
 import { PrimitiveColorPickerWheelExample } from "@/src/registry/examples/control-ui/primitives/color-picker-wheel";
 import { PrimitiveComboboxExample } from "@/src/registry/examples/control-ui/primitives/combobox";
 import { PrimitiveCommandExample } from "@/src/registry/examples/control-ui/primitives/command";
+import { PrimitiveCommandDescriptionsExample } from "@/src/registry/examples/control-ui/primitives/command-descriptions";
 import { PrimitiveContextMenuExample } from "@/src/registry/examples/control-ui/primitives/context-menu";
 import { PrimitiveDatePickerExample } from "@/src/registry/examples/control-ui/primitives/date-picker";
 import { PrimitiveDialogExample } from "@/src/registry/examples/control-ui/primitives/dialog";
@@ -249,6 +252,7 @@ export const previewReferences: LoadedPreviews = {
   "component/dropzone/compact": PrimitiveDropzoneCompactExample,
   "component/phone-input": PrimitivePhoneInputExample,
   "component/command": PrimitiveCommandExample,
+  "component/command/descriptions": PrimitiveCommandDescriptionsExample,
   "component/kbd": PrimitiveKbdExample,
   "component/checkbox": PrimitiveCheckboxExample,
   "component/radio-group": PrimitiveRadioGroupExample,
@@ -291,12 +295,14 @@ export const previewReferences: LoadedPreviews = {
   "component/chart/donut": ChartDonutExample,
   "component/chart/radial-bar": ChartRadialBarExample,
   "component/chart/sparkline": ChartSparklineExample,
+  "component/chart/status": ChartStatusExample,
   "component/chart/hatched": ChartHatchedExample,
   "component/chart/interactive-legend": ChartLegendExample,
   "component/chart/states": ChartStatesExample,
   "component/tree": PrimitiveTreeExample,
   "component/checkbox-group": PrimitiveCheckboxGroupExample,
   "component/autocomplete": PrimitiveAutocompleteExample,
+  "component/autocomplete/leading-addon": PrimitiveAutocompleteInputGroupExample,
   "component/number-field": PrimitiveNumberFieldExample,
   "component/trigger-menu": PrimitiveTriggerMenuExample,
   "component/toolbar": PrimitiveToolbarExample,

@@ -97,6 +97,7 @@ export const formsCompositions = {
           part("FieldSeparator"),
         ),
       ),
+      'FieldLegend names the set: a label-size semibold title by default, or variant="section" for a list title. Re-value --cui-field-legend-foreground, --cui-field-legend-font-size, and --cui-field-legend-font-weight through its style prop for a muted caption legend.',
     ),
     example(
       "Choice card",
@@ -187,6 +188,15 @@ export const formsCompositions = {
       "AutocompleteInput includes its clear button.",
     ),
     example("Separate clear action", part("Autocomplete", part("AutocompleteInput"), part("AutocompleteClear"))),
+    example(
+      "Leading addon",
+      part(
+        "Autocomplete",
+        part("AutocompleteInputGroup", part("InputGroupAddon"), part("AutocompleteInput")),
+        part("AutocompleteContent", part("AutocompleteList", part("AutocompleteItem"))),
+      ),
+      "Inside AutocompleteInputGroup, AutocompleteInput drops its own field surface and moves its clear button to a trailing addon; the popup still aligns to the whole group.",
+    ),
   ],
   "number-field": [
     example(

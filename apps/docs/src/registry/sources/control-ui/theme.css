@@ -710,6 +710,10 @@
     outline-width: 0;
   }
 
+  :where([data-control-family][data-focus-ring="none"]):focus-visible {
+    outline-style: none;
+  }
+
   :where([data-control-family][data-highlighted]):focus-visible {
     outline-offset: calc(var(--focus-ring-width) * -1);
   }

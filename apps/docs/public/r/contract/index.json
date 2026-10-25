@@ -264,8 +264,8 @@
         "select",
         "textarea"
       ],
-      "knobs": 40,
-      "probes": 99
+      "knobs": 41,
+      "probes": 100
     },
     "filter-bar": {
       "registryItems": [
@@ -285,7 +285,7 @@
       "registryItems": [
         "color-picker"
       ],
-      "knobs": 10,
+      "knobs": 7,
       "probes": 0
     },
     "icon-picker": {
@@ -419,8 +419,8 @@
         "tooltip",
         "trigger-menu"
       ],
-      "knobs": 54,
-      "probes": 168
+      "knobs": 56,
+      "probes": 170
     },
     "progressive-blur": {
       "registryItems": [

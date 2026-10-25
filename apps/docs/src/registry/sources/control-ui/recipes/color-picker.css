@@ -59,8 +59,7 @@
     border-radius: 9999px;
   }
 
-  :where([data-control-family="color-picker"][data-slot="swatch"]),
-  :where([data-control-family="color-picker"][data-slot="swatch-add"]) {
+  :where([data-control-family="color-picker"][data-slot="swatch"]) {
     inline-size: calc(var(--spacing) * 6);
     block-size: calc(var(--spacing) * 6);
   }
@@ -125,7 +124,7 @@
     --_color-picker-thumb-elevation: var(--shadow-md);
   }
 
-  :where([data-control-family="color-picker"]:is([data-slot="slider-thumb"], [data-slot="swatch-add"]))::after {
+  :where([data-control-family="color-picker"][data-slot="slider-thumb"])::after {
     content: "";
     position: absolute;
     inset: 50%;
@@ -135,7 +134,7 @@
   }
 
   @media (pointer: coarse) {
-    :where([data-control-family="color-picker"]:is([data-slot="slider-thumb"], [data-slot="swatch-add"]))::after {
+    :where([data-control-family="color-picker"][data-slot="slider-thumb"])::after {
       inline-size: max(100%, var(--touch-target));
       block-size: max(100%, var(--touch-target));
     }

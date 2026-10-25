@@ -169,6 +169,11 @@
     letter-spacing: var(--cui-popup-shortcut-letter-spacing);
   }
 
+  :where([data-control-family="popup"][data-slot="item-description"]) {
+    color: var(--cui-popup-item-description-foreground);
+    font-size: var(--cui-popup-item-description-font-size);
+  }
+
   :where([data-control-family="popup"][data-popup-kind="command"][data-slot="shortcut"]) {
     --cui-popup-shortcut-font-size: var(--text-label);
   }
@@ -364,6 +369,18 @@
 }
 
 @property --cui-popup-dialog-max-inline-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-popup-item-description-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-popup-item-description-font-size {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;

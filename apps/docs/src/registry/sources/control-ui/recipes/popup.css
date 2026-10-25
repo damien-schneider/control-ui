@@ -28,6 +28,8 @@
     --cui-popup-item-highlight-background: var(--hover-fill);
     --cui-popup-item-highlight-foreground: var(--cui-popup-item-foreground);
     --cui-popup-item-highlight-muted-foreground: var(--muted-foreground);
+    --cui-popup-item-description-foreground: var(--muted-foreground);
+    --cui-popup-item-description-font-size: var(--text-label);
     --cui-popup-item-highlight-shadow: inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.35);
     --cui-popup-item-disabled-opacity: var(--disabled-opacity);
     --cui-popup-label-padding-block: var(--cui-popup-item-padding-block);
@@ -209,6 +211,7 @@
   ) {
     --cui-popup-shortcut-foreground: var(--cui-popup-item-highlight-foreground);
     --cui-popup-submenu-indicator-foreground: var(--cui-popup-item-highlight-foreground);
+    --cui-popup-item-description-foreground: var(--cui-popup-item-highlight-muted-foreground);
     --muted-foreground: var(--cui-popup-item-highlight-muted-foreground);
     background-color: var(--cui-popup-item-highlight-background);
     color: var(--cui-popup-item-highlight-foreground);

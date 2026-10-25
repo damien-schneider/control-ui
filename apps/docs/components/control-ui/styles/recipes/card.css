@@ -63,6 +63,14 @@
     border-radius: var(--cui-card-radius);
   }
 
+  :where(
+    [data-control-family="card"][data-slot="root"]:has([data-control-family="card"][data-slot="link"])
+      :is(a[href], button, input, select, textarea, [role="checkbox"]):not([data-control-family="card"][data-slot="link"])
+  ) {
+    position: relative;
+    z-index: 1;
+  }
+
   :where([data-control-family="card"][data-slot="root"][data-size="sm"]) {
     --cui-card-padding-block: calc(var(--spacing) * 3);
     --cui-card-padding-inline: calc(var(--spacing) * 4);

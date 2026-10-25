@@ -26,6 +26,8 @@ export const popupKnobs = [
   "--cui-popup-command-heading-letter-spacing",
   "--cui-popup-command-heading-text-transform",
   "--cui-popup-dialog-max-inline-size",
+  "--cui-popup-item-description-foreground",
+  "--cui-popup-item-description-font-size",
   "--cui-popup-shortcut-foreground",
   "--cui-popup-tooltip-arrow-radius",
   "--cui-popup-status-success-foreground",

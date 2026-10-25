@@ -118,7 +118,7 @@ export function FieldLabel({ className, variant = "default", ...props }: FieldLa
       data-focus-ring={variant === "card" ? "within" : undefined}
       className={cn(
         variant === "card" &&
-          "flex w-full cursor-pointer items-start gap-3 has-[[data-disabled]]:cursor-not-allowed [&>[data-control-family=choice]]:mt-[calc((1lh_-_var(--spacing)*4)/2)]",
+          "flex w-full cursor-pointer items-start gap-3 self-stretch has-[[data-disabled]]:cursor-not-allowed [&>[data-control-family=choice]]:mt-[calc((1lh_-_var(--spacing)*4)/2)]",
         className,
       )}
       {...props}

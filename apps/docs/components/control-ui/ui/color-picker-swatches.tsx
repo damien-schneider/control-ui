@@ -1,9 +1,11 @@
 "use client";
 
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { ColorPickerKnobStyle } from "@/components/control-ui/knob-contracts/color-picker-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { formatColor, parseColor } from "@/components/control-ui/lib/color";
+import { Button } from "@/components/control-ui/ui/button";
 import { useColorPicker } from "@/components/control-ui/ui/color-picker-context";
 
 export type ColorPickerSwatchesProps = ComponentProps<"div"> & {
@@ -17,8 +19,8 @@ export type ColorPickerSwatchProps = Omit<Omit<ComponentProps<"button">, "color"
   color: string;
 };
 
-export type ColorPickerSwatchAddProps = Omit<Omit<ComponentProps<"button">, "onClick">, "style"> & {
-  style?: CSSProperties & ColorPickerKnobStyle;
+export type ColorPickerSwatchAddProps = Omit<ComponentProps<"button">, "onClick" | "style"> & {
+  style?: CSSProperties & ButtonKnobStyle;
 } & {
   onAdd?: (value: string) => void;
 };
@@ -84,22 +86,21 @@ export function ColorPickerSwatch({ color, className, "aria-label": ariaLabel, .
   );
 }
 
-export function ColorPickerSwatchAdd({ onAdd, className, children, ...props }: ColorPickerSwatchAddProps) {
+export function ColorPickerSwatchAdd({ onAdd, children, ...props }: ColorPickerSwatchAddProps) {
   const { valueString, disabled } = useColorPicker();
   return (
-    <button
-      type="button"
-      data-control-ui="color-picker"
-      data-control-family="color-picker"
-      data-slot="swatch-add"
+    <Button
+      variant="dashed"
+      size="xs"
+      iconOnly
+      data-color-picker-swatch-add="true"
       aria-label="Add current color"
       disabled={disabled}
       onClick={() => onAdd?.(valueString)}
-      className={cn("relative flex shrink-0 cursor-pointer items-center justify-center disabled:cursor-not-allowed", className)}
       {...props}
     >
       {children ?? <PlusIcon />}
-    </button>
+    </Button>
   );
 }
 
@@ -112,15 +113,7 @@ function sameColor(a: string, b: string): boolean {
 
 function PlusIcon() {
   return (
-    <svg
-      viewBox="0 0 16 16"
-      className="size-3.5"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      aria-hidden="true"
-    >
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
       <path d="M8 3v10M3 8h10" />
     </svg>
   );

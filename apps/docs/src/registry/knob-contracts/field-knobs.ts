@@ -9,6 +9,7 @@ export const fieldKnobs = [
   "--cui-field-label-border-width",
   "--cui-field-label-padding-block",
   "--cui-field-label-padding-inline",
+  "--cui-field-legend-foreground",
   "--cui-field-legend-font-size",
   "--cui-field-legend-font-weight",
   "--cui-field-radius",

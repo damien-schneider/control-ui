@@ -158,7 +158,7 @@ export const displayCompositions = {
     example(
       "Clickable card",
       part("Card", part("CardHeader", part("CardTitle", part("CardLink")), part("CardDescription")), part("CardContent")),
-      "CardLink turns the whole card into its hit area: the card paints --cui-card-hover-background on hover and the focus ring while the link has focus. It renders a button; pass render={<a href />} to navigate. Buttons placed after CardLink stay clickable above it.",
+      "CardLink turns the whole card into its hit area: the card paints --cui-card-hover-background on hover and the focus ring while the link has focus. It renders a button; pass render={<a href />} to navigate. Other buttons, links, inputs, and checkboxes in the card stay clickable above it.",
     ),
   ],
   table: [
@@ -365,7 +365,7 @@ export const displayCompositions = {
     example(
       "Custom prose",
       part("MarkdownRoot", part("MarkdownFlow", content("consumer-rendered prose"))),
-      "Compose MDX or Markdown parts inside MarkdownFlow. Re-value --cui-markdown-flow-gap and --cui-markdown-heading-gap on MarkdownRoot.",
+      "Compose MDX or Markdown parts inside MarkdownFlow, imported from ui/markdown-elements, which loads no optional peer: no Streamdown, Shiki, or virtualizer. Fenced code blocks and the full component map live in ui/markdown-components. MarkdownRoot carries the skin's markdown knobs; a part rendered outside it falls back to the neutral defaults. Re-value --cui-markdown-flow-gap and --cui-markdown-heading-gap on MarkdownRoot.",
     ),
   ],
 } as const;

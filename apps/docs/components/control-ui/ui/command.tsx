@@ -284,6 +284,51 @@ export function CommandItem({ className, disabled, onSelect, ...props }: Command
   );
 }
 
+export type CommandItemContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+
+export function CommandItemContent({ className, ...props }: CommandItemContentProps) {
+  return (
+    <div
+      data-control-ui="command"
+      data-popup-kind="command"
+      data-control-family="popup"
+      data-slot="item-content"
+      className={cn("flex min-w-0 flex-1 flex-col", className)}
+      {...props}
+    />
+  );
+}
+
+export type CommandItemTitleProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+
+export function CommandItemTitle({ className, ...props }: CommandItemTitleProps) {
+  return (
+    <span
+      data-control-ui="command"
+      data-popup-kind="command"
+      data-control-family="popup"
+      data-slot="item-title"
+      className={cn("truncate", className)}
+      {...props}
+    />
+  );
+}
+
+export type CommandItemDescriptionProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+
+export function CommandItemDescription({ className, ...props }: CommandItemDescriptionProps) {
+  return (
+    <span
+      data-control-ui="command"
+      data-popup-kind="command"
+      data-control-family="popup"
+      data-slot="item-description"
+      className={cn("truncate", className)}
+      {...props}
+    />
+  );
+}
+
 export type CommandShortcutProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
 export function CommandShortcut({ className, ...props }: CommandShortcutProps) {

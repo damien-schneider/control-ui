@@ -27,6 +27,11 @@
       "type": "registry:file"
     },
     {
+      "path": "src/registry/sources/control-ui/ui/markdown-components.tsx",
+      "target": "@components/control-ui/ui/markdown-components.tsx",
+      "type": "registry:ui"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/markdown-elements.tsx",
       "target": "@components/control-ui/ui/markdown-elements.tsx",
       "type": "registry:ui"

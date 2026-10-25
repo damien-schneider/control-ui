@@ -1,5 +1,6 @@
 @layer components {
-  :where([data-control-family="markdown"][data-slot="root"]) {
+  :where([data-control-family="markdown"][data-slot="root"]),
+  :where([data-control-family="markdown"]:not([data-control-family="markdown"][data-slot="root"] *)) {
     --cui-markdown-foreground: oklch(from var(--foreground) l c h / 0.9);
     --cui-markdown-blockquote-border-color: var(--border);
     --cui-markdown-blockquote-foreground: var(--muted-foreground);
@@ -14,6 +15,9 @@
     --cui-markdown-line-height: var(--leading-relaxed);
     --cui-markdown-flow-gap: calc(var(--spacing) * 4);
     --cui-markdown-heading-gap: calc(var(--spacing) * 6);
+  }
+
+  :where([data-control-family="markdown"][data-slot="root"]) {
     color: var(--cui-markdown-foreground);
     font-size: var(--cui-markdown-font-size);
     overflow-wrap: break-word;

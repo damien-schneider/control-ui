@@ -33,6 +33,34 @@ test("the docs alias never reaches published output", () => {
   }
 });
 
+function externalImports(entry: string): Set<string> {
+  const seen = new Set<string>();
+  const external = new Set<string>();
+  const visit = (name: string) => {
+    if (seen.has(name)) return;
+    seen.add(name);
+    for (const [, specifier = ""] of read(name).matchAll(/(?:from|import)\s*\(?\s*"([^"]+)"/g)) {
+      if (specifier.startsWith(".")) visit(path.posix.join(path.posix.dirname(name), specifier));
+      else external.add(specifier);
+    }
+  };
+  visit(entry);
+  return external;
+}
+
+const optionalPeers = Object.keys(pkg.peerDependenciesMeta);
+const optionalPeerImports = (entry: string) =>
+  [...externalImports(entry)].filter((specifier) => optionalPeers.some((peer) => specifier === peer || specifier.startsWith(`${peer}/`)));
+const peerFreeEntries = ["ui/markdown-elements.js", "ui/typography.js", "ui/button.js", "ui/card.js", "ui/field.js", "ui/input.js"];
+
+test("light entries install without any optional peer", () => {
+  expect(optionalPeerImports("ui/markdown.js")).toContain("streamdown");
+  expect(optionalPeerImports("ui/markdown-components.js")).toContain("@tanstack/react-virtual");
+  expect(read("ui/markdown-elements.js")).toInclude("function MarkdownRoot(");
+  expect(read("ui/markdown-elements.js")).toInclude("function MarkdownInlineCode(");
+  for (const entry of peerFreeEntries) expect({ entry, peers: optionalPeerImports(entry) }).toEqual({ entry, peers: [] });
+});
+
 test("the package works without a skin config or preset stylesheet", () => {
   expect(existsSync(path.join(dist, "skin.config.js"))).toBe(false);
   expect(existsSync(path.join(dist, "styles/skin-theme.css"))).toBe(false);
@@ -48,9 +76,11 @@ test("the stylesheet entry imports every shipped stylesheet, without a skin", ()
   for (const sheet of sheets) expect(existsSync(path.join(dist, sheet))).toBe(true);
 });
 
-test("peer dependencies mirror the closure manifests", () => {
-  expect(Object.keys(pkg.peerDependencies).sort()).toEqual([...dependencies.keys(), "react", "react-dom"].sort());
+test("peer dependencies mirror the closure manifests, plus the optional Biome floor for the lint preset", () => {
+  const lintPeer = "@biomejs/biome";
+  expect(Object.keys(pkg.peerDependencies).sort()).toEqual([...dependencies.keys(), "react", "react-dom", lintPeer].sort());
   for (const [name, range] of dependencies) expect(pkg.peerDependencies).toHaveProperty(name, range);
+  expect(pkg.peerDependenciesMeta).toHaveProperty([lintPeer, "optional"], true);
   for (const name of Object.keys(pkg.peerDependenciesMeta)) expect(pkg.peerDependencies).toHaveProperty(name);
 });
 
