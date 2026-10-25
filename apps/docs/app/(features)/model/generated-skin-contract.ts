@@ -1369,8 +1369,8 @@ export const generatedSkinContract: SkinContract = {
             {
               attribute: "data-color",
               source: "control-ui",
-              valueKind: "enum",
-              values: ["blue", "green", "neutral", "orange", "pink", "purple", "red", "yellow"],
+              valueKind: "open",
+              values: [],
             },
             {
               attribute: "data-size",
@@ -7761,6 +7761,24 @@ export const generatedSkinContract: SkinContract = {
           family: "item",
           registryItems: ["item"],
           states: [
+            {
+              attribute: "aria-selected",
+              source: "external",
+              valueKind: "enum",
+              values: ["false", "true"],
+            },
+            {
+              attribute: "data-dragging",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-drop-target",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
             {
               attribute: "data-variant",
               source: "control-ui",
@@ -17092,6 +17110,36 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--active-fill)",
       },
       {
+        name: "--cui-item-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--foreground)",
+      },
+      {
+        name: "--cui-item-selected-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--cui-item-current-background)",
+      },
+      {
+        name: "--cui-item-selected-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--cui-item-foreground)",
+      },
+      {
+        name: "--cui-item-dragging-opacity",
+        syntax: "<number>",
+        initialValue: "1",
+        defaultValue: "0.5",
+      },
+      {
+        name: "--cui-item-drop-target-shadow",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "inset 0 0 0 var(--focus-ring-width) var(--primary)",
+      },
+      {
         name: "--cui-item-hover-border-color",
         syntax: "<color>",
         initialValue: "transparent",
@@ -18211,6 +18259,12 @@ export const generatedSkinContract: SkinContract = {
         initialValue: "0px",
         defaultValue: "0px",
       },
+      {
+        name: "--cui-resize-handle-shadow",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "none",
+      },
     ],
     reveal: [
       {
@@ -19205,6 +19259,18 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length-percentage>",
         initialValue: "0px",
         defaultValue: "calc(var(--spacing) * 3.5)",
+      },
+      {
+        name: "--cui-tabs-trigger-padding-inline-start",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--cui-tabs-trigger-padding-inline)",
+      },
+      {
+        name: "--cui-tabs-trigger-padding-inline-end",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--cui-tabs-trigger-padding-inline)",
       },
       {
         name: "--cui-tabs-trigger-radius",
@@ -20620,6 +20686,7 @@ export const generatedSkinContract: SkinContract = {
     "data-dirty",
     "data-disabled",
     "data-dragging",
+    "data-drop-target",
     "data-empty",
     "data-ending-style",
     "data-error",

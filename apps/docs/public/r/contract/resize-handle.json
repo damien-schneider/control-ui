@@ -47,6 +47,12 @@
       "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "0px"
+    },
+    {
+      "name": "--cui-resize-handle-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
     }
   ],
   "parts": {

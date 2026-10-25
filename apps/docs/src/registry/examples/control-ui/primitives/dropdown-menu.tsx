@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 import { Button } from "@/components/control-ui/ui/button";
 import {
+  createDropdownMenuHandle,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
@@ -32,6 +33,9 @@ function Row({ label, children }: { label: string; children: ReactNode }) {
     </fieldset>
   );
 }
+
+const clipMenu = createDropdownMenuHandle<string>();
+const timelineClips = ["Intro", "Interview", "Outro"];
 
 export function PrimitiveDropdownMenuExample() {
   const [last, setLast] = useState<string | null>(null);
@@ -80,6 +84,28 @@ export function PrimitiveDropdownMenuExample() {
         <Text as="p" size="label" tone="muted">
           The trigger already owns button styling. Set size and variant on DropdownMenuTrigger, including when composing with render.
         </Text>
+      </Row>
+      <Row label="One menu, many triggers">
+        <div className="flex gap-2">
+          {timelineClips.map((clip) => (
+            <DropdownMenuTrigger key={clip} handle={clipMenu} payload={clip} variant="ghost">
+              {clip}
+            </DropdownMenuTrigger>
+          ))}
+        </div>
+        <DropdownMenu handle={clipMenu}>
+          {({ payload }) => (
+            <DropdownMenuContent>
+              <DropdownMenuGroup>
+                <DropdownMenuLabel>{payload}</DropdownMenuLabel>
+                <DropdownMenuItem onClick={() => setLast(`Split ${payload}`)}>Split here</DropdownMenuItem>
+                <DropdownMenuItem tone="danger" onClick={() => setLast(`Delete ${payload}`)}>
+                  Delete clip
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          )}
+        </DropdownMenu>
       </Row>
       <DropdownMenuChoicesExample />
       <Text size="caption" tone="muted">

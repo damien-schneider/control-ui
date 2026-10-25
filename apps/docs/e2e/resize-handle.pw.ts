@@ -35,3 +35,20 @@ test("resize handles sit centred on their edge or corner with the matching curso
     expect(Math.abs(placement.centreY - (placement.parent.top + placement.parent.height * expected.y))).toBeLessThanOrEqual(1);
   }
 });
+
+test("the focus ring follows the handle radius and the rim can ride the shadow knob", async ({ page }) => {
+  await page.goto("/components/resize-handle");
+  const handle = page.locator('main [data-control-family="resize-handle"][data-slot="root"][data-direction="se"]');
+  await waitForReactHydration(handle);
+  await handle.evaluate((element) => {
+    element.style.setProperty("--cui-resize-handle-radius", "9999px");
+    element.style.setProperty("--cui-resize-handle-shadow", "0 0 0 1px rgb(255, 0, 0)");
+  });
+  await handle.focus();
+  await expect(handle).toHaveCSS("border-top-left-radius", "9999px");
+  const rim = await handle.evaluate((element) => {
+    const before = getComputedStyle(element, "::before");
+    return { radius: before.borderTopLeftRadius, shadow: before.boxShadow };
+  });
+  expect(rim).toEqual({ radius: "9999px", shadow: "rgb(255, 0, 0) 0px 0px 0px 1px" });
+});

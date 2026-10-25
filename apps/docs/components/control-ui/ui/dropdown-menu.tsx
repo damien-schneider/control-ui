@@ -18,14 +18,20 @@ type DropdownMenuStyledProps<PrimitiveProps> = Omit<PrimitiveProps, "className" 
   style?: CSSProperties & PopupKnobStyle;
 };
 
-export type DropdownMenuProps = MenuPrimitive.Root.Props;
+export type DropdownMenuProps<Payload = unknown> = MenuPrimitive.Root.Props<Payload>;
+
+export type DropdownMenuHandle<Payload = unknown> = MenuPrimitive.Handle<Payload>;
+
+export const createDropdownMenuHandle = MenuPrimitive.createHandle;
 
 export const dropdownMenuTriggerVariants = ["surface", "ghost"] as const;
 
 export type DropdownMenuTriggerVariant = (typeof dropdownMenuTriggerVariants)[number];
 
-export type DropdownMenuTriggerProps = Omit<ComponentProps<"button">, "style"> &
-  Pick<ComponentProps<typeof MenuPrimitive.Trigger>, "nativeButton" | "render"> & { style?: CSSProperties & ButtonKnobStyle } & {
+export type DropdownMenuTriggerProps<Payload = unknown> = Omit<ComponentProps<"button">, "style"> &
+  Pick<MenuPrimitive.Trigger.Props<Payload>, "nativeButton" | "render" | "handle" | "payload"> & {
+    style?: CSSProperties & ButtonKnobStyle;
+  } & {
     size?: ControlSize;
     iconOnly?: boolean;
     variant?: DropdownMenuTriggerVariant;
@@ -51,7 +57,7 @@ export type DropdownMenuSeparatorProps = Omit<ComponentProps<"div">, "style"> & 
 
 export type DropdownMenuLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
-export function DropdownMenu({ children, ...props }: DropdownMenuProps) {
+export function DropdownMenu<Payload>({ children, ...props }: DropdownMenuProps<Payload>) {
   return <MenuPrimitive.Root {...props}>{children}</MenuPrimitive.Root>;
 }
 
@@ -63,7 +69,7 @@ function explicitAppearance({ size, variant, iconOnly }: Pick<DropdownMenuTrigge
   return attributes;
 }
 
-export function DropdownMenuTrigger({ size, iconOnly, variant, className, ...props }: DropdownMenuTriggerProps) {
+export function DropdownMenuTrigger<Payload>({ size, iconOnly, variant, className, ...props }: DropdownMenuTriggerProps<Payload>) {
   const rendersComponent = props.render !== undefined && !(isValidElement(props.render) && typeof props.render.type === "string");
   if (rendersComponent) {
     return (

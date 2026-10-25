@@ -84,11 +84,11 @@
   }
 
   :where([data-control-family="card"][data-slot="root"][data-variant="sectioned"] > [data-slot="content"]) {
-    padding-block: calc(var(--spacing) * 6);
+    padding-block: var(--cui-card-padding-block);
   }
 
   :where([data-control-family="card"][data-slot="root"][data-variant="sectioned"] > [data-slot="header"]) {
-    padding-block: calc(var(--spacing) * 5);
+    padding-block: calc(var(--cui-card-padding-block) - var(--spacing));
     border-block-end: 1px solid oklch(from var(--border) l c h / 0.7);
   }
 

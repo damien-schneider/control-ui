@@ -41,7 +41,10 @@ const REGISTRATION_BY_SUFFIX: readonly [RegExp, Registration][] = [
   [/-(?:opacity|scale)$/, { syntaxes: ["<number>"], initial: "1" }],
   [/-(?:animation-duration|transition-duration|transition-delay)$/, { syntaxes: ["<time>"], initial: "0s" }],
   [/-text-transform$/, { syntaxes: ["none | uppercase | lowercase | capitalize"], initial: "none" }],
-  [/-(?:radius|padding(?:-inline|-block)?|inset|height|min-height|max-height|size|inline-size|font-size|gap)$/, BOX_LENGTH],
+  [
+    /-(?:radius|padding(?:-(?:inline|block)(?:-start|-end)?)?|inset|height|min-height|max-height|size|inline-size|font-size|gap)$/,
+    BOX_LENGTH,
+  ],
   [/-(?:border-width|backdrop-blur|letter-spacing|icon)$/, LENGTH],
 ];
 

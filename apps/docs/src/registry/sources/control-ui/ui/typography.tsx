@@ -29,6 +29,7 @@ const weightClassNames = {
   normal: "font-normal",
   medium: "font-medium",
   semibold: "font-semibold",
+  bold: "font-bold",
 } as const;
 
 export type TypeSize = keyof typeof sizeClassNames;

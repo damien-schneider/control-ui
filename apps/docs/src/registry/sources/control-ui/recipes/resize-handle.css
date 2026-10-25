@@ -7,11 +7,13 @@
     --cui-resize-handle-border-color: var(--primary);
     --cui-resize-handle-border-width: var(--control-rim-width);
     --cui-resize-handle-radius: 0px;
+    --cui-resize-handle-shadow: none;
     inline-size: var(--cui-resize-handle-hit-size);
     block-size: var(--cui-resize-handle-hit-size);
     translate: -50% -50%;
     padding: 0;
     border: 0;
+    border-radius: var(--cui-resize-handle-radius);
     background: transparent;
   }
 
@@ -25,6 +27,7 @@
     border: var(--cui-resize-handle-border-width) solid var(--cui-resize-handle-border-color);
     border-radius: var(--cui-resize-handle-radius);
     background: var(--cui-resize-handle-background);
+    box-shadow: var(--cui-resize-handle-shadow);
     transition: background-color var(--duration-fast) var(--ease-standard);
   }
 
@@ -123,4 +126,9 @@
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
+}
+
+@property --cui-resize-handle-shadow {
+  syntax: "*";
+  inherits: true;
 }

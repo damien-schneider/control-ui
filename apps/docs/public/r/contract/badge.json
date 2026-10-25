@@ -66,17 +66,8 @@
           {
             "attribute": "data-color",
             "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "purple",
-              "red",
-              "yellow"
-            ]
+            "valueKind": "open",
+            "values": []
           },
           {
             "attribute": "data-size",

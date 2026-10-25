@@ -212,6 +212,11 @@ export const displayCompositions = {
         part("ItemSeparator"),
       ),
     ),
+    example(
+      "Selectable, draggable rows",
+      part("ItemGroup", part("Item", part("ItemMedia"), part("ItemContent", part("ItemTitle")))),
+      'Rows with role="option", "treeitem", "row" or "menuitem" get the hover fill. aria-selected="true" paints the selected fill; set data-dragging on the row being dragged and data-drop-target on the row under it. The host owns selection, keyboard movement and the drag logic.',
+    ),
   ],
   spinner: [example("Pending indicator", part("Spinner"))],
   swap: [example("Copy confirmation", part("Swap", part("SwapItem")), "Render every state once; change only the Swap value.")],
@@ -276,7 +281,13 @@ export const displayCompositions = {
       ),
     ),
   ],
-  "resize-handle": [example("Resizable box", content("positioned box", part("ResizeHandle")))],
+  "resize-handle": [
+    example(
+      "Resizable box",
+      content("positioned box", part("ResizeHandle")),
+      "Inside a zoomed canvas, border widths snap to device pixels before the scale applies: draw the rim with --cui-resize-handle-shadow instead, sized by the inverse scale. --cui-resize-handle-radius shapes the grip and its focus ring together.",
+    ),
+  ],
   "morphing-panel": [
     example(
       "Expandable surface",

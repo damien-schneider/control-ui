@@ -1,8 +1,13 @@
 @layer components {
   :where([data-control-family="item"][data-slot="root"]) {
     --cui-item-radius: var(--radius-lg);
+    --cui-item-foreground: var(--foreground);
     --cui-item-hover-background: var(--hover-fill);
     --cui-item-current-background: var(--active-fill);
+    --cui-item-selected-background: var(--cui-item-current-background);
+    --cui-item-selected-foreground: var(--cui-item-foreground);
+    --cui-item-dragging-opacity: 0.5;
+    --cui-item-drop-target-shadow: inset 0 0 0 var(--focus-ring-width) var(--primary);
     --cui-item-hover-border-color: var(--_item-border-color);
     --cui-item-border-width: 0px;
     --cui-item-active-scale: 0.99;
@@ -20,7 +25,7 @@
     border-radius: var(--cui-item-radius);
     background: var(--_item-background);
     box-shadow: none;
-    color: var(--foreground);
+    color: var(--cui-item-foreground);
     transition-property: scale;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
@@ -72,15 +77,48 @@
 
   @media (hover: hover) {
     :where(
-        [data-control-family="item"][data-slot="root"]:is(a, button, [href], [role="button"]):not(
-          :disabled,
-          [data-disabled],
-          [aria-disabled="true"]
-        ):hover
+        [data-control-family="item"][data-slot="root"]:is(
+          a,
+          button,
+          [href],
+          [role="button"],
+          [role="treeitem"],
+          [role="option"],
+          [role="row"],
+          [role="menuitem"]
+        ):not(:disabled, [data-disabled], [aria-disabled="true"]):hover
       ) {
       outline-color: var(--cui-item-hover-border-color);
       background: var(--cui-item-hover-background);
       box-shadow: none;
+    }
+  }
+
+  :where([data-control-family="item"][data-slot="root"][aria-selected="true"]) {
+    background: var(--cui-item-selected-background);
+    color: var(--cui-item-selected-foreground);
+  }
+
+  :where([data-control-family="item"][data-slot="root"][data-dragging]) {
+    opacity: var(--cui-item-dragging-opacity);
+  }
+
+  :where([data-control-family="item"][data-slot="root"][data-drop-target]) {
+    box-shadow: var(--cui-item-drop-target-shadow);
+  }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="item"][data-slot="root"][aria-selected="true"]) {
+      --cui-item-description-foreground: HighlightText;
+      --cui-item-media-foreground: HighlightText;
+      forced-color-adjust: none;
+      background: Highlight;
+      color: HighlightText;
+    }
+
+    :where([data-control-family="item"][data-slot="root"][data-drop-target]) {
+      outline: var(--focus-ring-width) solid Highlight;
+      outline-offset: calc(var(--focus-ring-width) * -1);
     }
   }
 
@@ -136,6 +174,35 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-item-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-item-selected-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-item-selected-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-item-dragging-opacity {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --cui-item-drop-target-shadow {
+  syntax: "*";
+  inherits: true;
 }
 
 @property --cui-item-hover-border-color {

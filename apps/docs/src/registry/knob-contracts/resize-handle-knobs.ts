@@ -7,5 +7,6 @@ export const resizeHandleKnobs = [
   "--cui-resize-handle-border-color",
   "--cui-resize-handle-border-width",
   "--cui-resize-handle-radius",
+  "--cui-resize-handle-shadow",
 ] as const;
 export type ResizeHandleKnobStyle = Partial<Record<(typeof resizeHandleKnobs)[number], string>>;

@@ -70,3 +70,21 @@ test("open appearance survives hover and respects skin knobs", async ({ page }) 
   await page.keyboard.press("Escape");
   await expect(trigger).not.toHaveCSS("box-shadow", /inset 0px 2px 3px/);
 });
+
+test("detached triggers open one shared menu with their own payload", async ({ page }) => {
+  await page.goto("/components/dropdown-menu");
+  const interview = page.getByRole("button", { name: "Interview", exact: true });
+  await waitForReactHydration(interview);
+
+  await interview.click();
+  const menu = page.getByRole("menu");
+  await expect(menu).toContainText("Interview");
+  await expect(interview).toHaveAttribute("aria-expanded", "true");
+  await page.keyboard.press("Escape");
+  await expect(menu).toBeHidden();
+
+  await page.getByRole("button", { name: "Outro", exact: true }).click();
+  await expect(page.getByRole("menu")).toContainText("Outro");
+  await page.getByRole("menuitem", { name: "Delete clip" }).click();
+  await expect(page.getByText("Last action: Delete Outro")).toBeVisible();
+});

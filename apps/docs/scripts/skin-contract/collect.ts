@@ -131,6 +131,11 @@ function contractState(attribute: string, source: ContractState["source"], value
 
 const externalStateAdditions: Record<string, ContractState[]> = {
   "tabs:tab": [{ attribute: "aria-selected", source: "external", valueKind: "enum", values: ["false", "true"] }],
+  "item:root": [
+    { attribute: "aria-selected", source: "external", valueKind: "enum", values: ["false", "true"] },
+    contractState("data-dragging", "external", []),
+    contractState("data-drop-target", "external", []),
+  ],
   "command:item": [
     contractState("data-disabled", "external", []),
     { attribute: "data-selected", source: "external", valueKind: "enum", values: ["false", "true"] },

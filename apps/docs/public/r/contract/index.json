@@ -320,8 +320,8 @@
       "registryItems": [
         "item"
       ],
-      "knobs": 13,
-      "probes": 3
+      "knobs": 18,
+      "probes": 10
     },
     "kbd": {
       "registryItems": [
@@ -450,7 +450,7 @@
       "registryItems": [
         "resize-handle"
       ],
-      "knobs": 7,
+      "knobs": 8,
       "probes": 0
     },
     "reveal": {
@@ -554,7 +554,7 @@
         "emoji-picker",
         "tabs"
       ],
-      "knobs": 20,
+      "knobs": 22,
       "probes": 55
     },
     "task-list": {

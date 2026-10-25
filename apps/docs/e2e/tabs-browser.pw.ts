@@ -88,3 +88,32 @@ test("browser tabs render connected corners and remain keyboard operable", async
   await expect(tabsTab).toHaveAttribute("aria-selected", "true");
   await expect(root.getByRole("tabpanel", { name: "tabs.tsx" })).toContainText("Browser-style tabs with connected corners.");
 });
+
+test("closable browser tabs keep the label clear of the close button and select a neighbour on close", async ({ page }) => {
+  await page.goto("/components/tabs");
+  const list = page
+    .locator('[data-control-ui="tabs"][data-slot="list"][data-variant="browser"]')
+    .filter({ has: page.getByRole("tab", { name: "index.tsx", exact: true }) });
+  const tabsTab = list.getByRole("tab", { name: "tabs.tsx", exact: true });
+  const closeTabs = list.getByRole("button", { name: "Close tabs.tsx" });
+  await waitForReactHydration(list);
+  await list.scrollIntoViewIfNeeded();
+
+  await expect(tabsTab).toHaveCSS("padding-inline-start", "14px");
+  const [tabBox, closeBox, labelRight] = await Promise.all([
+    tabsTab.boundingBox(),
+    closeTabs.boundingBox(),
+    tabsTab.evaluate((tab) => {
+      const range = document.createRange();
+      range.selectNodeContents(tab);
+      return range.getBoundingClientRect().right;
+    }),
+  ]);
+  if (!(tabBox && closeBox)) throw new Error("Closable tab is not measurable");
+  expect(closeBox.x).toBeGreaterThanOrEqual(labelRight);
+  expect(closeBox.x + closeBox.width).toBeLessThanOrEqual(tabBox.x + tabBox.width);
+
+  await closeTabs.click();
+  await expect(list.getByRole("tab", { name: "tabs.tsx", exact: true })).toHaveCount(0);
+  await expect(list.getByRole("tab", { name: "theme.css", exact: true })).toHaveAttribute("aria-selected", "true");
+});

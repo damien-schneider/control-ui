@@ -34,6 +34,8 @@
 
   :where([data-control-family="tabs"][data-slot="list"]) {
     --cui-tabs-trigger-height: var(--control-h-sm);
+    --cui-tabs-trigger-padding-inline-start: var(--cui-tabs-trigger-padding-inline);
+    --cui-tabs-trigger-padding-inline-end: var(--cui-tabs-trigger-padding-inline);
     --_tabs-trigger-radius-fit: min(var(--cui-tabs-trigger-radius), calc(var(--cui-tabs-trigger-height) / 2));
     position: relative;
     display: flex;
@@ -105,7 +107,7 @@
     gap: calc(var(--spacing) * 1.5);
     white-space: nowrap;
     border-radius: var(--_tabs-trigger-radius-fit);
-    padding-inline: var(--cui-tabs-trigger-padding-inline);
+    padding-inline: var(--cui-tabs-trigger-padding-inline-start) var(--cui-tabs-trigger-padding-inline-end);
     color: var(--cui-tabs-foreground);
     font-size: var(--cui-tabs-font-size);
     font-weight: var(--cui-tabs-font-weight);
@@ -280,6 +282,18 @@
 }
 
 @property --cui-tabs-trigger-padding-inline {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-tabs-trigger-padding-inline-start {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-tabs-trigger-padding-inline-end {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;

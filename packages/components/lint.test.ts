@@ -222,6 +222,35 @@ test("leaves layout on rendered elements, their children, and render props of ot
   expect(flaggedLinesPerLinter({ rule: "no-component-style-classes" }, lines)).toEqual(everyLinter([]));
 });
 
+const revealImports = [
+  `import { Reveal, RevealScope as Scope } from "@ctrl-ui/react/ui/reveal";`,
+  `import { RevealScope } from "@/components/control-ui/ui/reveal";`,
+];
+
+test("lets the painted element itself be a paint-free RevealScope, through className, style or render, in every linter", () => {
+  const lines = [
+    ...revealImports,
+    `export const a = <RevealScope className="rounded-md bg-muted p-2">x</RevealScope>;`,
+    `export const b = <RevealScope render={<li className="rounded-lg border px-3 hover:bg-accent" />}>x</RevealScope>;`,
+    `export const c = <RevealScope style={{ padding: 8, background: "var(--muted)" }}>x</RevealScope>;`,
+    "export const d = <RevealScope render={<li style={{ borderRadius: 6 }} />}>x</RevealScope>;",
+  ];
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-classes" }, lines)).toEqual(everyLinter([]));
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-props" }, lines)).toEqual(everyLinter([]));
+});
+
+test("still flags paint on Reveal and part selectors on a RevealScope in every linter", () => {
+  const lines = [
+    ...revealImports,
+    `export const a = <Reveal className="opacity-0 group-hover:opacity-100">x</Reveal>;`,
+    `export const b = <Reveal render={<div className="opacity-0" />}>x</Reveal>;`,
+    `export const c = <RevealScope className="[&_[data-slot=content]]:opacity-100">x</RevealScope>;`,
+    "export const d = <Reveal style={{ opacity: 0 }}>x</Reveal>;",
+  ];
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-classes" }, lines)).toEqual(everyLinter([3, 4, 5]));
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-props" }, lines)).toEqual(everyLinter([6]));
+});
+
 test("follows a local wrapper package once its import path is declared, in every linter", () => {
   const lines = [
     `import { Button } from "@acme/ui/components/button";`,

@@ -26,6 +26,18 @@
       "defaultValue": "calc(var(--spacing) * 3.5)"
     },
     {
+      "name": "--cui-tabs-trigger-padding-inline-start",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--cui-tabs-trigger-padding-inline)"
+    },
+    {
+      "name": "--cui-tabs-trigger-padding-inline-end",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--cui-tabs-trigger-padding-inline)"
+    },
+    {
       "name": "--cui-tabs-trigger-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",

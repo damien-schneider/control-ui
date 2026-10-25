@@ -14,6 +14,12 @@ export function PrimitiveBadgeExample() {
       <Badge color="blue">Beta</Badge>
       <Badge color="yellow">15</Badge>
       <Badge color="red">Denied</Badge>
+      <Badge color="primary" size="sm">
+        3
+      </Badge>
+      <Badge color="primary" variant="outline">
+        Primary
+      </Badge>
       <Badge variant="outline">Outline</Badge>
       <Badge color="green">
         <Check />

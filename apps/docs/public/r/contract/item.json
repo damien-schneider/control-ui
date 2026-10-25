@@ -25,6 +25,36 @@
       "defaultValue": "var(--active-fill)"
     },
     {
+      "name": "--cui-item-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-item-selected-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--cui-item-current-background)"
+    },
+    {
+      "name": "--cui-item-selected-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--cui-item-foreground)"
+    },
+    {
+      "name": "--cui-item-dragging-opacity",
+      "syntax": "<number>",
+      "initialValue": "1",
+      "defaultValue": "0.5"
+    },
+    {
+      "name": "--cui-item-drop-target-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "inset 0 0 0 var(--focus-ring-width) var(--primary)"
+    },
+    {
       "name": "--cui-item-hover-border-color",
       "syntax": "<color>",
       "initialValue": "transparent",
@@ -93,6 +123,27 @@
           "item"
         ],
         "states": [
+          {
+            "attribute": "aria-selected",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "false",
+              "true"
+            ]
+          },
+          {
+            "attribute": "data-dragging",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-drop-target",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
           {
             "attribute": "data-variant",
             "source": "control-ui",

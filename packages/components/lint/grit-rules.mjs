@@ -8,6 +8,7 @@ import {
   componentStyleMessage,
   componentStylePropMessage,
   controlUiImportPattern,
+  paintFreeComponents,
   paintProperty,
   rawTypeClass,
   rawTypeMessage,
@@ -30,6 +31,7 @@ const stringTexts = (name) =>
 const classLiterals = "or { JsStringLiteralExpression(), JsTemplateExpression(), JsObjectExpression() }";
 const renderedTag = "or { JsxTagExpression(tag=$tag), JsParenthesizedExpression(expression=JsxTagExpression(tag=$tag)) }";
 const componentName = `r"([A-Z]\\w*)(?:\\.[\\w.]+)?"`;
+const paintFreeComponent = gritExactRegex(`(?:${paintFreeComponents.join("|")})`);
 
 function constantMatches(reference, literals, offends) {
   return `contains JsReferenceIdentifier() as $${reference} where {
@@ -97,6 +99,7 @@ function componentAttributePattern({ attribute, offends, message, importSources 
     }
   } where {
     $name <: ${componentName}($component),
+    not $component <: ${paintFreeComponent},
     $attr <: within JsModule() as $module,
     ${offends("$attr")},
     ${importedFromControlUi("$component", importSources)},
@@ -115,6 +118,7 @@ function partClassPattern(importSources) {
     ${classNameMatches("$plainAttr", componentPartClass)},
     not and {
       $plainName <: ${componentName}($plainComponent),
+      not $plainComponent <: ${paintFreeComponent},
       ${importedFromControlUi("$plainComponent", importSources, "Plain")}
     },
     register_diagnostic(span=$plainAttr, message=${gritString(componentPartMessage)}, severity="error")

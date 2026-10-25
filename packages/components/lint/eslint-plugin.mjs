@@ -6,6 +6,7 @@ import {
   componentStyleMessage,
   componentStylePropMessage,
   controlUiImportPattern,
+  paintFreeComponents,
   rawTypeClass,
   rawTypeMessage,
 } from "./class-policy.mjs";
@@ -77,7 +78,9 @@ function controlUiLocalNames(program, controlUiImport) {
   for (const statement of program.body) {
     if (statement.type !== "ImportDeclaration" || statement.importKind === "type") continue;
     if (!controlUiImport.test(statement.source.value)) continue;
-    for (const specifier of statement.specifiers) names.add(specifier.local.name);
+    for (const specifier of statement.specifiers) {
+      if (!paintFreeComponents.includes(specifier.imported?.name)) names.add(specifier.local.name);
+    }
   }
   return names;
 }

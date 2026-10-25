@@ -9,6 +9,11 @@ export const navigationCompositions = {
   tabs: [
     example("Anatomy", part("Tabs", part("TabsList", part("TabsTab")), part("TabsPanel"))),
     example("Connected surface", part("Tabs", part("TabsList", part("TabsTab")), part("TabsSurface", part("TabsPanel")))),
+    example(
+      "Closable tab",
+      part("Tabs", part("TabsList", part("span", part("TabsTab"), part("Button"))), part("TabsPanel")),
+      "A close button can't sit inside the tab's own button: wrap each TabsTab and its icon-only Button in a relative span, place the Button absolutely at the end, and reserve its room with --cui-tabs-trigger-padding-inline-end on the TabsTab.",
+    ),
   ],
   "track-highlight": [
     example(
@@ -76,6 +81,11 @@ export const navigationCompositions = {
       "Custom portal content",
       part("DropdownMenu", part("DropdownMenuTrigger"), part("DropdownMenuPortal", content("custom positioned popup"))),
       "Use the portal only when supplying your own popup instead of DropdownMenuContent.",
+    ),
+    example(
+      "One menu, many triggers",
+      content("timeline", part("DropdownMenuTrigger"), part("DropdownMenu", part("DropdownMenuContent", part("DropdownMenuItem")))),
+      "createDropdownMenuHandle<Payload>() links detached triggers to one DropdownMenu: pass the handle to the menu and to every trigger, give each trigger a payload, and render the menu's children as a function of { payload }.",
     ),
   ],
   "context-menu": [

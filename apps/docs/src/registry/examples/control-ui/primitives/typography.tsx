@@ -23,6 +23,10 @@ export function TypographyTokensExample() {
         Body is the default for paragraphs, controls, and most of the interface. The five boxing wizards jump quickly, and the quick brown
         fox jumps over the lazy dog.
       </Text>
+      <Text as="p">
+        Weight: <Text weight="normal">normal</Text>, <Text weight="medium">medium</Text>, <Text weight="semibold">semibold</Text>,{" "}
+        <Text weight="bold">bold</Text> for figures and overlays that must read at a glance.
+      </Text>
       <Text as="p" size="label" tone="muted">
         Label — form labels and small chrome.
       </Text>

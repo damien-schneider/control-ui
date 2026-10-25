@@ -46,6 +46,18 @@
     }
   }
 
+  :where([data-control-family="badge"][data-slot="root"][data-color="primary"]) {
+    --_badge-color-background: var(--primary);
+    --_badge-color-foreground: var(--primary-foreground);
+    --_badge-color-border: var(--primary);
+    --_badge-color-background-hover: oklch(from var(--primary) calc(l - 0.05) c h);
+  }
+
+  :where([data-control-family="badge"][data-slot="root"][data-color="primary"][data-variant="outline"]) {
+    --_badge-color-background: oklch(from var(--primary) l c h / var(--badge-fill-alpha));
+    --_badge-color-foreground: var(--primary-text);
+  }
+
   :where([data-control-family="badge"][data-slot="root"][data-color="red"]) {
     --_badge-color-background: var(--badge-red);
     --_badge-color-foreground: var(--badge-red-foreground);

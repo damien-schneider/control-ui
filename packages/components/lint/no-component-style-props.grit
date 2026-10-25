@@ -30,6 +30,7 @@ or {
     }
   } where {
     $name <: r"([A-Z]\w*)(?:\.[\w.]+)?"($component),
+    not $component <: r"(?:RevealScope)",
     $attr <: within JsModule() as $module,
     $attr <: or {
     contains or { JsPropertyObjectMember(name=$attrKey), JsShorthandPropertyObjectMember(name=$attrKey) } where { $attrKey <: r"[\"']?(?:(?:padding|background|color|font|lineHeight|letterSpacing|border|outline|boxShadow|textShadow|textDecoration|textUnderline|textTransform|opacity|filter|backdropFilter|fill|stroke|caretColor|accentColor|mask|WebkitMask|WebkitFontSmoothing|MozOsxFontSmoothing)(?:[A-Z]\w*)?|(?:padding|background|color|font|line-height|letter-spacing|border|outline|box-shadow|text-shadow|text-decoration|text-underline|text-transform|opacity|filter|backdrop-filter|fill|stroke|caret-color|accent-color|mask|-webkit-mask|-webkit-font-smoothing|-moz-osx-font-smoothing)(?:-[\w-]*)?)[\"']?" },

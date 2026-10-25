@@ -16,7 +16,7 @@ export type BadgeSize = (typeof badgeSizes)[number];
 
 export const BADGE_COLORS = ["neutral", "red", "orange", "yellow", "green", "blue", "purple", "pink"] as const;
 
-export type BadgeColor = (typeof BADGE_COLORS)[number];
+export type BadgeColor = (typeof BADGE_COLORS)[number] | "primary";
 
 export type BadgeProps = Omit<ComponentProps<"span">, "style"> & {
   variant?: BadgeVariant;

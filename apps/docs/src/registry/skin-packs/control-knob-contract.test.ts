@@ -54,7 +54,7 @@ function knobsWithRepeatedFamilyPrefix(knobs: readonly string[]): string[] {
 }
 
 const KNOB_SUFFIX =
-  /-(?:background(?:-image)?|foreground|border-(?:color|width|style)|(?:ring|line|dot|marker|separator|handle|outline)-color|radius|shadow|fill|stroke|backdrop-(?:filter|blur)|opacity|scale|gap|inset|icon|height|size|padding(?:-inline|-block)?|font-(?:size|weight|family)|line-height|letter-spacing|text-transform|easing|animation-duration|transition-(?:duration|delay)|indicator-(?:start|middle|end))$/;
+  /-(?:background(?:-image)?|foreground|border-(?:color|width|style)|(?:ring|line|dot|marker|separator|handle|outline)-color|radius|shadow|fill|stroke|backdrop-(?:filter|blur)|opacity|scale|gap|inset|icon|height|size|padding(?:-(?:inline|block)(?:-start|-end)?)?|font-(?:size|weight|family)|line-height|letter-spacing|text-transform|easing|animation-duration|transition-(?:duration|delay)|indicator-(?:start|middle|end))$/;
 
 const knobsOutsideSuffixVocabulary = (knobs: readonly string[]) => knobs.filter((knob) => !KNOB_SUFFIX.test(knob));
 

@@ -1,5 +1,7 @@
 const controlUiImportPath = `(?:@ctrl-ui/react|[^'"]*components/control-ui)/`;
 
+export const paintFreeComponents = ["RevealScope"];
+
 const escapeRegExp = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 export function controlUiImportPattern(importSources = []) {

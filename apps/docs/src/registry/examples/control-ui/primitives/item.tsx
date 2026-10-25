@@ -1,6 +1,7 @@
 "use client";
 
-import { BellIcon, ChevronRightIcon, MoreHorizontalIcon, RotateCcwIcon } from "lucide-react";
+import { BellIcon, ChevronRightIcon, ImageIcon, MoreHorizontalIcon, RotateCcwIcon, TypeIcon, VideoIcon } from "lucide-react";
+import { type KeyboardEvent, useState } from "react";
 import { Button } from "@/components/control-ui/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
 import {
@@ -9,15 +10,91 @@ import {
   ItemContent,
   ItemDescription,
   ItemFooter,
+  ItemGroup,
   ItemHeader,
   ItemMedia,
   ItemTitle,
 } from "@/components/control-ui/ui/item";
 import { Text } from "@/components/control-ui/ui/typography";
 
+const initialLayers = [
+  { id: "title", label: "Title card", icon: TypeIcon },
+  { id: "camera", label: "Camera", icon: VideoIcon },
+  { id: "background", label: "Background", icon: ImageIcon },
+];
+
+function LayersList() {
+  const [layers, setLayers] = useState(initialLayers);
+  const [selectedId, setSelectedId] = useState("camera");
+  const [draggingId, setDraggingId] = useState<string | null>(null);
+  const [dropTargetId, setDropTargetId] = useState<string | null>(null);
+
+  const moveSelection = (event: KeyboardEvent<HTMLElement>, index: number) => {
+    const step = { ArrowDown: 1, ArrowUp: -1 }[event.key];
+    const next = step === undefined ? undefined : layers[index + step];
+    if (!next) return;
+    event.preventDefault();
+    setSelectedId(next.id);
+    event.currentTarget.parentElement?.querySelector<HTMLElement>(`[data-layer="${next.id}"]`)?.focus();
+  };
+
+  const dropOn = (targetId: string) => {
+    setLayers((current) => {
+      const dragged = current.find((layer) => layer.id === draggingId);
+      if (!dragged || dragged.id === targetId) return current;
+      const remaining = current.filter((layer) => layer.id !== dragged.id);
+      remaining.splice(
+        remaining.findIndex((layer) => layer.id === targetId),
+        0,
+        dragged,
+      );
+      return remaining;
+    });
+    setDraggingId(null);
+    setDropTargetId(null);
+  };
+
+  return (
+    <ItemGroup role="listbox" aria-label="Layers" className="gap-1">
+      {layers.map((layer, index) => (
+        <Item
+          key={layer.id}
+          role="option"
+          aria-selected={layer.id === selectedId}
+          tabIndex={layer.id === selectedId ? 0 : -1}
+          draggable
+          data-layer={layer.id}
+          data-dragging={layer.id === draggingId || undefined}
+          data-drop-target={(layer.id === dropTargetId && layer.id !== draggingId) || undefined}
+          style={{ "--cui-item-padding-block": "calc(var(--spacing) * 1.5)" }}
+          onClick={() => setSelectedId(layer.id)}
+          onKeyDown={(event) => moveSelection(event, index)}
+          onDragStart={() => setDraggingId(layer.id)}
+          onDragEnter={() => setDropTargetId(layer.id)}
+          onDragOver={(event) => event.preventDefault()}
+          onDrop={() => dropOn(layer.id)}
+          onDragEnd={() => {
+            setDraggingId(null);
+            setDropTargetId(null);
+          }}
+        >
+          <ItemMedia>
+            <layer.icon />
+          </ItemMedia>
+          <ItemContent>
+            <ItemTitle>{layer.label}</ItemTitle>
+          </ItemContent>
+        </Item>
+      ))}
+    </ItemGroup>
+  );
+}
+
 export function PrimitiveItemExample() {
   return (
     <div className="flex w-full max-w-md flex-col gap-3">
+      <LayersList />
+
       <Item variant="outline">
         <ItemMedia>
           <BellIcon />

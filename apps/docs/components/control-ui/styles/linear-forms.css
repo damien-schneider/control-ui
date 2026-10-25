@@ -14,6 +14,7 @@
 
   [data-skin="linear"] :where([data-control-family="tabs"][data-slot="list"][data-variant="default"]) {
     gap: 0.5rem;
+    --cui-tabs-trigger-padding-inline: 0.625rem;
   }
 
   [data-skin="linear"] :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"]) {
@@ -22,7 +23,6 @@
 
   [data-skin="linear"]
     :where([data-control-family="tabs"][data-slot="list"][data-variant="default"] [data-control-family="tabs"][data-slot="tab"]) {
-    --cui-tabs-trigger-padding-inline: 0.625rem;
     background-color: var(--linear-control-bg);
     box-shadow:
       0 0 0 var(--control-rim-width) var(--linear-rim),
