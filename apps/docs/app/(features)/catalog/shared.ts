@@ -46,6 +46,7 @@ export const registryKindIds = [
   "page-layout",
   "scroll-area",
   "progressive-blur",
+  "reveal",
   "table-of-contents",
   "stepper",
   "timeline",

@@ -142,6 +142,7 @@ import { PrimitiveResizableFloatingExample } from "@/src/registry/examples/contr
 import { PrimitiveResizableHoverHandleExample } from "@/src/registry/examples/control-ui/primitives/resizable-hover-handle";
 import { PrimitiveResizeHandleExample } from "@/src/registry/examples/control-ui/primitives/resize-handle";
 import { PrimitiveResponsiveDialogExample } from "@/src/registry/examples/control-ui/primitives/responsive-dialog";
+import { PrimitiveRevealExample } from "@/src/registry/examples/control-ui/primitives/reveal";
 import { PrimitiveRichTooltipExample } from "@/src/registry/examples/control-ui/primitives/rich-tooltip";
 import { PrimitiveRichTooltipInPanelExample } from "@/src/registry/examples/control-ui/primitives/rich-tooltip-in-panel";
 import { PrimitiveScrollAreaExample, ScrollAreaGutterExample } from "@/src/registry/examples/control-ui/primitives/scroll-area";
@@ -218,6 +219,7 @@ export const previewReferences: LoadedPreviews = {
   "component/scroll-area": PrimitiveScrollAreaExample,
   "component/scroll-area/stable-gutter": ScrollAreaGutterExample,
   "component/scroll-area/progressive-blur": ProgressiveBlurScrollExample,
+  "component/reveal": PrimitiveRevealExample,
   "component/progressive-blur": PrimitiveProgressiveBlurExample,
   "component/progressive-blur/scroll-edges": ProgressiveBlurScrollExample,
   "component/progressive-blur/horizontal-blur": ProgressiveBlurHorizontalExample,

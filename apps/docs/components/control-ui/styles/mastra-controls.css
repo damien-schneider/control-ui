@@ -8,8 +8,11 @@
     --cui-button-icon: 1rem;
     --cui-button-gap: 0.609375rem;
     --cui-button-press-scale: 1;
-    --cui-button-press-background: var(--active-fill);
     line-height: 1.5;
+  }
+
+  [data-skin="mastra"] :where([data-control-family="button"][data-control="true"]:not([data-variant="scrim"])) {
+    --cui-button-press-background: var(--active-fill);
   }
 
   [data-skin="mastra"] :where([data-control-family="button"][data-control="true"][data-size="sm"]) {

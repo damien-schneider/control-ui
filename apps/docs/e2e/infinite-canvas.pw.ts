@@ -134,12 +134,16 @@ test("holding Space pans from over a live preview without focusing it", async ({
   await page.mouse.move(point.x, point.y);
   await page.keyboard.down("Space");
   await expect(canvas).toHaveAttribute("data-pan-ready", "");
+  await expect(canvas).toHaveCSS("cursor", "grab");
   await page.mouse.down();
   await page.mouse.move(point.x + 80, point.y + 40, { steps: 6 });
+  await expect(canvas).toHaveCSS("cursor", "grabbing");
   await page.mouse.up();
+  await expect(canvas).toHaveCSS("cursor", "grab");
   await page.keyboard.up("Space");
 
   await expect(canvas).not.toHaveAttribute("data-pan-ready");
+  await expect(canvas).toHaveCSS("cursor", "auto");
   await expect.poll(() => cameraOf(content)).toEqual({ x: initial.x + 80, y: initial.y + 40, scale: 1 });
   await expect(email).not.toBeFocused();
   expect(await page.evaluate(() => scrollY)).toBe(pageScroll);

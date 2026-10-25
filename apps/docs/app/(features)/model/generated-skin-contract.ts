@@ -91,6 +91,7 @@ export const generatedSkinContract: SkinContract = {
     "radio-group": ["radio-group"],
     resizable: ["resizable"],
     "resize-handle": ["resize-handle"],
+    reveal: ["reveal"],
     "rich-tooltip": ["rich-tooltip"],
     "scroll-area": ["scroll-area"],
     select: ["select"],
@@ -1486,7 +1487,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-variant",
               source: "control-ui",
               valueKind: "enum",
-              values: ["dashed", "ghost", "link", "quiet", "solid", "surface"],
+              values: ["dashed", "ghost", "link", "quiet", "scrim", "solid", "surface"],
             },
           ],
         },
@@ -10277,6 +10278,21 @@ export const generatedSkinContract: SkinContract = {
       },
       registryItems: ["resize-handle"],
     },
+    reveal: {
+      parts: {
+        content: {
+          family: "reveal",
+          registryItems: ["reveal"],
+          states: [],
+        },
+        scope: {
+          family: "reveal",
+          registryItems: ["reveal"],
+          states: [],
+        },
+      },
+      registryItems: ["reveal"],
+    },
     "rich-tooltip": {
       parts: {
         arrow: {
@@ -13276,7 +13292,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-variant",
               source: "control-ui",
               valueKind: "enum",
-              values: ["dashed", "ghost", "link", "quiet", "solid", "surface"],
+              values: ["dashed", "ghost", "link", "quiet", "scrim", "solid", "surface"],
             },
           ],
         },
@@ -14717,6 +14733,60 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--cui-button-shadow)",
       },
       {
+        name: "--cui-button-hover-background-image",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "var(--cui-button-background-image)",
+      },
+      {
+        name: "--cui-button-hover-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--hover-fill)",
+      },
+      {
+        name: "--cui-button-hover-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--foreground)",
+      },
+      {
+        name: "--cui-button-active-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--active-fill)",
+      },
+      {
+        name: "--cui-button-active-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--foreground)",
+      },
+      {
+        name: "--cui-button-active-hover-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--cui-button-active-background)",
+      },
+      {
+        name: "--cui-button-hover-shadow",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "var(--cui-button-shadow)",
+      },
+      {
+        name: "--cui-button-press-shadow",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "var(--cui-button-hover-shadow)",
+      },
+      {
+        name: "--cui-button-active-shadow",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "var(--cui-button-shadow)",
+      },
+      {
         name: "--cui-button-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
@@ -14783,70 +14853,16 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "none",
       },
       {
-        name: "--cui-button-hover-background-image",
-        syntax: "*",
-        initialValue: "",
-        defaultValue: "var(--cui-button-background-image)",
-      },
-      {
         name: "--cui-button-foreground",
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--muted-foreground)",
       },
       {
-        name: "--cui-button-hover-background",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--hover-fill)",
-      },
-      {
-        name: "--cui-button-hover-foreground",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--foreground)",
-      },
-      {
-        name: "--cui-button-active-background",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--active-fill)",
-      },
-      {
-        name: "--cui-button-active-foreground",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--foreground)",
-      },
-      {
-        name: "--cui-button-active-hover-background",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--cui-button-active-background)",
-      },
-      {
         name: "--cui-button-shadow",
         syntax: "*",
         initialValue: "",
         defaultValue: "0 0 transparent",
-      },
-      {
-        name: "--cui-button-hover-shadow",
-        syntax: "*",
-        initialValue: "",
-        defaultValue: "var(--cui-button-shadow)",
-      },
-      {
-        name: "--cui-button-press-shadow",
-        syntax: "*",
-        initialValue: "",
-        defaultValue: "var(--cui-button-hover-shadow)",
-      },
-      {
-        name: "--cui-button-active-shadow",
-        syntax: "*",
-        initialValue: "",
-        defaultValue: "var(--cui-button-shadow)",
       },
       {
         name: "--cui-button-border-width",
@@ -14865,6 +14881,12 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--control-rim)",
+      },
+      {
+        name: "--cui-button-backdrop-filter",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "none",
       },
     ],
     "button-group": [
@@ -18188,6 +18210,14 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length-percentage>",
         initialValue: "0px",
         defaultValue: "0px",
+      },
+    ],
+    reveal: [
+      {
+        name: "--cui-reveal-hidden-opacity",
+        syntax: "<number>",
+        initialValue: "1",
+        defaultValue: "0",
       },
     ],
     "rich-tooltip": [

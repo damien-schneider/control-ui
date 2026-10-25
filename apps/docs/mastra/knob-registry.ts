@@ -498,6 +498,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="button"][data-control="true"])',
       },
       {
+        name: "--cui-button-backdrop-filter",
+        syntax: "*",
+        defaultValue: "none",
+        selector: ':where([data-control-family="button"][data-control="true"])',
+      },
+      {
         name: "--cui-button-background",
         syntax: "<color>",
         defaultValue: "transparent",
@@ -4227,6 +4233,17 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         syntax: "<length-percentage>",
         defaultValue: "10px",
         selector: ':where([data-control-family="resize-handle"][data-slot="root"])',
+      },
+    ],
+  },
+  {
+    id: "reveal",
+    knobs: [
+      {
+        name: "--cui-reveal-hidden-opacity",
+        syntax: "<number>",
+        defaultValue: "0",
+        selector: ':where([data-control-family="reveal"][data-slot="scope"])',
       },
     ],
   },

@@ -125,3 +125,53 @@
   syntax: "*";
   inherits: true;
 }
+
+@property --cui-button-hover-background-image {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-button-hover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-button-hover-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-button-active-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-button-active-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-button-active-hover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-button-hover-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-button-press-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-button-active-shadow {
+  syntax: "*";
+  inherits: true;
+}

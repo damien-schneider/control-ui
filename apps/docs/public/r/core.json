@@ -39,7 +39,7 @@
       "path": "src/registry/sources/control-ui/control-variants.ts",
       "target": "@components/control-ui/control-variants.ts",
       "type": "registry:component",
-      "content": "export type ControlSize = \"xs\" | \"sm\" | \"md\" | \"lg\";\n\nexport const buttonVariants = [\"solid\", \"surface\", \"ghost\", \"quiet\", \"dashed\", \"link\"] as const;\n\nexport type ButtonVariant = (typeof buttonVariants)[number];\n\nexport const controlTones = [\"neutral\", \"primary\", \"danger\"] as const;\n\nexport type ControlTone = (typeof controlTones)[number];\n"
+      "content": "export type ControlSize = \"xs\" | \"sm\" | \"md\" | \"lg\";\n\nexport const buttonVariants = [\"solid\", \"surface\", \"ghost\", \"quiet\", \"dashed\", \"link\", \"scrim\"] as const;\n\nexport type ButtonVariant = (typeof buttonVariants)[number];\n\nexport const controlTones = [\"neutral\", \"primary\", \"danger\"] as const;\n\nexport type ControlTone = (typeof controlTones)[number];\n"
     },
     {
       "path": "src/registry/sources/control-ui/scripts/contrast-eval.mjs",

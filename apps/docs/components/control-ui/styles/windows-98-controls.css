@@ -21,6 +21,14 @@
     --cui-button-icon: 13px;
     --cui-button-gap: 4px;
     --cui-button-press-scale: 1;
+    --cui-button-shadow: none;
+    --cui-button-hover-shadow: inset 1px 1px var(--win98-white), inset -1px -1px var(--win98-shadow);
+    --cui-button-press-shadow: var(--win98-pressed);
+    --cui-button-active-shadow: var(--win98-pressed);
+    line-height: 1;
+    --cui-button-font-weight: 400;
+  }
+  [data-skin="windows-98"] :where([data-control-family="button"][data-control="true"]:not([data-variant="scrim"])) {
     --cui-button-foreground: var(--foreground);
     --cui-button-hover-foreground: var(--foreground);
     --cui-button-hover-background: var(--win98-face);
@@ -28,12 +36,6 @@
     --cui-button-active-background: var(--win98-light);
     --cui-button-active-foreground: var(--foreground);
     --cui-button-active-hover-background: var(--win98-light);
-    --cui-button-shadow: none;
-    --cui-button-hover-shadow: inset 1px 1px var(--win98-white), inset -1px -1px var(--win98-shadow);
-    --cui-button-press-shadow: var(--win98-pressed);
-    --cui-button-active-shadow: var(--win98-pressed);
-    line-height: 1;
-    --cui-button-font-weight: 400;
   }
   [data-skin="windows-98"]
     :where([data-control-family="button"][data-control="true"]:is([data-variant="surface"], [data-variant="solid"])) {
@@ -50,7 +52,7 @@
     ) {
     min-inline-size: 75px;
   }
-  [data-skin="windows-98"] :where([data-control-family="button"][data-control="true"][data-tone="danger"]) {
+  [data-skin="windows-98"] :where([data-control-family="button"][data-control="true"][data-tone="danger"]:not([data-variant="scrim"])) {
     --cui-button-foreground: var(--destructive-text);
     --cui-button-hover-foreground: var(--destructive-text);
     --cui-button-active-foreground: var(--destructive-text);

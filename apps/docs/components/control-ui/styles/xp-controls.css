@@ -34,13 +34,6 @@
     --cui-button-gap: 4px;
     --cui-button-icon: 13px;
     --cui-button-press-scale: 1;
-    --cui-button-foreground: var(--foreground);
-    --cui-button-hover-foreground: var(--foreground);
-    --cui-button-hover-background: transparent;
-    --cui-button-press-background: transparent;
-    --cui-button-active-background: var(--secondary);
-    --cui-button-active-foreground: var(--foreground);
-    --cui-button-active-hover-background: var(--secondary);
     --cui-button-shadow: none;
     --cui-button-hover-shadow: inset 1px 1px var(--xp-light), inset -1px -1px var(--xp-shadow);
     --cui-button-press-shadow: inset 1px 1px var(--xp-shadow), inset -1px -1px var(--xp-light);
@@ -49,6 +42,15 @@
     --cui-button-border-color: transparent;
     line-height: 1;
     --cui-button-font-weight: 400;
+  }
+  [data-skin="xp"] :where([data-control-family="button"][data-control="true"]:not([data-variant="scrim"])) {
+    --cui-button-foreground: var(--foreground);
+    --cui-button-hover-foreground: var(--foreground);
+    --cui-button-hover-background: transparent;
+    --cui-button-press-background: transparent;
+    --cui-button-active-background: var(--secondary);
+    --cui-button-active-foreground: var(--foreground);
+    --cui-button-active-hover-background: var(--secondary);
   }
   [data-skin="xp"] :where([data-control-family="button"][data-control="true"]:is([data-variant="surface"], [data-variant="solid"])) {
     --cui-button-background: var(--secondary);
@@ -75,7 +77,7 @@
     ) {
     --cui-button-background-image: var(--xp-button-pressed);
   }
-  [data-skin="xp"] :where([data-control-family="button"][data-control="true"][data-tone="danger"]) {
+  [data-skin="xp"] :where([data-control-family="button"][data-control="true"][data-tone="danger"]:not([data-variant="scrim"])) {
     --cui-button-foreground: var(--destructive-text);
     --cui-button-hover-foreground: var(--destructive-text);
     --cui-button-active-foreground: var(--destructive-text);

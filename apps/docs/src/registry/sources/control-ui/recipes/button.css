@@ -56,10 +56,12 @@
     --cui-button-border-color: var(--control-rim);
     --cui-button-hover-border-color: var(--cui-button-border-color);
     --cui-button-open-border-color: var(--cui-button-hover-border-color);
+    --cui-button-backdrop-filter: none;
     border: var(--cui-button-border-width) var(--cui-button-border-style) var(--cui-button-border-color);
     border-radius: var(--cui-button-radius);
     background-color: var(--cui-button-background);
     background-image: var(--cui-button-background-image);
+    backdrop-filter: var(--cui-button-backdrop-filter);
     box-shadow: var(--cui-button-shadow);
     color: var(--cui-button-foreground);
     cursor: pointer;
@@ -193,6 +195,16 @@
     --cui-button-hover-background: transparent;
   }
 
+  :where([data-control-family="button"][data-variant="scrim"]) {
+    --cui-button-background: oklch(0 0 0 / 0.6);
+    --cui-button-foreground: oklch(1 0 0);
+    --cui-button-hover-background: oklch(0 0 0 / 0.8);
+    --cui-button-hover-foreground: var(--cui-button-foreground);
+    --cui-button-active-background: var(--cui-button-foreground);
+    --cui-button-active-foreground: oklch(0 0 0);
+    --cui-button-backdrop-filter: blur(8px);
+  }
+
   :where([data-control-family="button"]:is([data-variant="surface"], [data-variant="ghost"], [data-variant="quiet"])) {
     --cui-button-open-background: oklch(from var(--foreground) l c h / 0.07);
   }
@@ -210,7 +222,7 @@
     }
   }
 
-  :where([data-control-family="button"][data-tone="primary"]:not([data-variant="solid"])) {
+  :where([data-control-family="button"][data-tone="primary"]:not([data-variant="solid"], [data-variant="scrim"])) {
     --cui-button-foreground: var(--primary-text);
     --cui-button-hover-foreground: var(--primary-text);
     --cui-button-active-foreground: var(--primary-text);
@@ -226,7 +238,7 @@
     --cui-button-active-hover-background: var(--cui-button-hover-background);
   }
 
-  :where([data-control-family="button"][data-tone="danger"]:not([data-variant="solid"])) {
+  :where([data-control-family="button"][data-tone="danger"]:not([data-variant="solid"], [data-variant="scrim"])) {
     --cui-button-foreground: var(--destructive-text);
     --cui-button-hover-foreground: var(--destructive-text);
     --cui-button-active-foreground: var(--destructive-text);
@@ -316,63 +328,13 @@
   inherits: true;
 }
 
-@property --cui-button-hover-background-image {
-  syntax: "*";
-  inherits: true;
-}
-
 @property --cui-button-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --cui-button-hover-background {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
-@property --cui-button-hover-foreground {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
-@property --cui-button-active-background {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
-@property --cui-button-active-foreground {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
-@property --cui-button-active-hover-background {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
 @property --cui-button-shadow {
-  syntax: "*";
-  inherits: true;
-}
-
-@property --cui-button-hover-shadow {
-  syntax: "*";
-  inherits: true;
-}
-
-@property --cui-button-press-shadow {
-  syntax: "*";
-  inherits: true;
-}
-
-@property --cui-button-active-shadow {
   syntax: "*";
   inherits: true;
 }
@@ -392,4 +354,9 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-button-backdrop-filter {
+  syntax: "*";
+  inherits: true;
 }

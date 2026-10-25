@@ -99,7 +99,7 @@
         "navigation-menu",
         "toggle"
       ],
-      "knobs": 32,
+      "knobs": 33,
       "probes": 271
     },
     "button-group": {
@@ -451,6 +451,13 @@
         "resize-handle"
       ],
       "knobs": 7,
+      "probes": 0
+    },
+    "reveal": {
+      "registryItems": [
+        "reveal"
+      ],
+      "knobs": 1,
       "probes": 0
     },
     "rich-tooltip": {

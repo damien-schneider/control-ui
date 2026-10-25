@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "family": "reveal",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "reveal"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-reveal-hidden-opacity",
+      "syntax": "<number>",
+      "initialValue": "1",
+      "defaultValue": "0"
+    }
+  ],
+  "parts": {
+    "reveal": {
+      "content": {
+        "family": "reveal",
+        "registryItems": [
+          "reveal"
+        ],
+        "states": []
+      },
+      "scope": {
+        "family": "reveal",
+        "registryItems": [
+          "reveal"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/reveal.contrast.json"
+}

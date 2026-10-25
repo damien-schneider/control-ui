@@ -351,6 +351,7 @@
         "https://control-ui.dev/r/resizable.json",
         "https://control-ui.dev/r/resize-handle.json",
         "https://control-ui.dev/r/responsive-dialog.json",
+        "https://control-ui.dev/r/reveal.json",
         "https://control-ui.dev/r/rich-tooltip.json",
         "https://control-ui.dev/r/scroll-area.json",
         "https://control-ui.dev/r/select.json",
@@ -484,6 +485,7 @@
         "https://control-ui.dev/r/resizable.json",
         "https://control-ui.dev/r/resize-handle.json",
         "https://control-ui.dev/r/responsive-dialog.json",
+        "https://control-ui.dev/r/reveal.json",
         "https://control-ui.dev/r/rich-tooltip.json",
         "https://control-ui.dev/r/scroll-area.json",
         "https://control-ui.dev/r/select.json",
@@ -624,6 +626,7 @@
         "https://control-ui.dev/r/resizable.json",
         "https://control-ui.dev/r/resize-handle.json",
         "https://control-ui.dev/r/responsive-dialog.json",
+        "https://control-ui.dev/r/reveal.json",
         "https://control-ui.dev/r/rich-tooltip.json",
         "https://control-ui.dev/r/scroll-area.json",
         "https://control-ui.dev/r/select.json",
@@ -764,6 +767,7 @@
         "https://control-ui.dev/r/resizable.json",
         "https://control-ui.dev/r/resize-handle.json",
         "https://control-ui.dev/r/responsive-dialog.json",
+        "https://control-ui.dev/r/reveal.json",
         "https://control-ui.dev/r/rich-tooltip.json",
         "https://control-ui.dev/r/scroll-area.json",
         "https://control-ui.dev/r/select.json",
@@ -904,6 +908,7 @@
         "https://control-ui.dev/r/resizable.json",
         "https://control-ui.dev/r/resize-handle.json",
         "https://control-ui.dev/r/responsive-dialog.json",
+        "https://control-ui.dev/r/reveal.json",
         "https://control-ui.dev/r/rich-tooltip.json",
         "https://control-ui.dev/r/scroll-area.json",
         "https://control-ui.dev/r/select.json",
@@ -1044,6 +1049,7 @@
         "https://control-ui.dev/r/resizable.json",
         "https://control-ui.dev/r/resize-handle.json",
         "https://control-ui.dev/r/responsive-dialog.json",
+        "https://control-ui.dev/r/reveal.json",
         "https://control-ui.dev/r/rich-tooltip.json",
         "https://control-ui.dev/r/scroll-area.json",
         "https://control-ui.dev/r/select.json",
@@ -1184,6 +1190,7 @@
         "https://control-ui.dev/r/resizable.json",
         "https://control-ui.dev/r/resize-handle.json",
         "https://control-ui.dev/r/responsive-dialog.json",
+        "https://control-ui.dev/r/reveal.json",
         "https://control-ui.dev/r/rich-tooltip.json",
         "https://control-ui.dev/r/scroll-area.json",
         "https://control-ui.dev/r/select.json",
@@ -1324,6 +1331,7 @@
         "https://control-ui.dev/r/resizable.json",
         "https://control-ui.dev/r/resize-handle.json",
         "https://control-ui.dev/r/responsive-dialog.json",
+        "https://control-ui.dev/r/reveal.json",
         "https://control-ui.dev/r/rich-tooltip.json",
         "https://control-ui.dev/r/scroll-area.json",
         "https://control-ui.dev/r/select.json",
@@ -1464,6 +1472,7 @@
         "https://control-ui.dev/r/resizable.json",
         "https://control-ui.dev/r/resize-handle.json",
         "https://control-ui.dev/r/responsive-dialog.json",
+        "https://control-ui.dev/r/reveal.json",
         "https://control-ui.dev/r/rich-tooltip.json",
         "https://control-ui.dev/r/scroll-area.json",
         "https://control-ui.dev/r/select.json",
@@ -1604,6 +1613,7 @@
         "https://control-ui.dev/r/resizable.json",
         "https://control-ui.dev/r/resize-handle.json",
         "https://control-ui.dev/r/responsive-dialog.json",
+        "https://control-ui.dev/r/reveal.json",
         "https://control-ui.dev/r/rich-tooltip.json",
         "https://control-ui.dev/r/scroll-area.json",
         "https://control-ui.dev/r/select.json",
@@ -1744,6 +1754,7 @@
         "https://control-ui.dev/r/resizable.json",
         "https://control-ui.dev/r/resize-handle.json",
         "https://control-ui.dev/r/responsive-dialog.json",
+        "https://control-ui.dev/r/reveal.json",
         "https://control-ui.dev/r/rich-tooltip.json",
         "https://control-ui.dev/r/scroll-area.json",
         "https://control-ui.dev/r/select.json",
@@ -5628,6 +5639,42 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "reveal",
+      "type": "registry:ui",
+      "title": "Reveal",
+      "description": "Secondary content that appears while its scope is hovered, focused, or holds an open menu, and always shows on touch.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "https://control-ui.dev/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/knob-contracts/reveal-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/reveal-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/reveal.css",
+          "target": "@components/control-ui/styles/recipes/reveal.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/reveal.tsx",
+          "target": "@components/control-ui/ui/reveal.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/reveal.css\"": {}
+      },
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/reveal.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "rich-tooltip",
       "type": "registry:ui",
       "title": "Rich tooltip",
@@ -7597,6 +7644,7 @@
         "https://control-ui.dev/r/resizable.json",
         "https://control-ui.dev/r/resize-handle.json",
         "https://control-ui.dev/r/responsive-dialog.json",
+        "https://control-ui.dev/r/reveal.json",
         "https://control-ui.dev/r/rich-tooltip.json",
         "https://control-ui.dev/r/scroll-area.json",
         "https://control-ui.dev/r/select.json",

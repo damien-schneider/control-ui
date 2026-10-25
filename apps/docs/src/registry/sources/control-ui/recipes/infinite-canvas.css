@@ -26,6 +26,14 @@
     --focus-ring-offset: calc(var(--focus-ring-width) * -1);
   }
 
+  :where([data-control-family="infinite-canvas"][data-slot="root"][data-pan-ready]:not([data-panning])) {
+    cursor: grab;
+  }
+
+  :where([data-control-family="infinite-canvas"][data-slot="root"][data-panning]) {
+    cursor: grabbing;
+  }
+
   :where([data-control-family="infinite-canvas"][data-slot="root"][data-easing]) {
     transition-property: background-position, background-size;
     transition-duration: var(--duration-base);

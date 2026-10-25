@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 197,
+    "count": 198,
     "contracts": {
       "skin": "https://control-ui.dev/r/contract/index.json",
       "theme": "https://control-ui.dev/r/theme-contract.json"
@@ -849,6 +849,14 @@
         "summary": "Scroll container with overlay or space-reserving scrollbars, edge fades, and optional progressive blur.",
         "href": "/components/scroll-area",
         "install": "npx shadcn@latest add https://control-ui.dev/r/scroll-area.json"
+      },
+      {
+        "id": "reveal",
+        "name": "Reveal",
+        "kind": "Component",
+        "summary": "Secondary content that appears while its scope is hovered, focused, or holds an open menu, and always shows on touch.",
+        "href": "/components/reveal",
+        "install": "npx shadcn@latest add https://control-ui.dev/r/reveal.json"
       },
       {
         "id": "progressive-blur",

@@ -1,0 +1,26 @@
+@layer components {
+  :where([data-control-family="reveal"][data-slot="scope"]) {
+    --cui-reveal-hidden-opacity: 0;
+  }
+
+  :where([data-control-family="reveal"][data-slot="content"]) {
+    transition-property: opacity;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    :where(
+        [data-control-family="reveal"][data-slot="scope"]:not(:hover, :focus-within, :has([data-popup-open]))
+          [data-control-family="reveal"][data-slot="content"]
+      ) {
+      opacity: var(--cui-reveal-hidden-opacity);
+    }
+  }
+}
+
+@property --cui-reveal-hidden-opacity {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}

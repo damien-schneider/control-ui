@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRightIcon, CheckIcon, MonitorIcon, PlusIcon, SmartphoneIcon } from "lucide-react";
+import { ArrowUpRightIcon, CheckIcon, DownloadIcon, MonitorIcon, PlayIcon, PlusIcon, SmartphoneIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 import { Text } from "@/components/control-ui/ui/typography";
@@ -29,6 +29,24 @@ export function PrimitiveButtonExample() {
           Dashed
         </Button>
         <Button variant="link">Link</Button>
+      </Row>
+      <Row label="Over media">
+        <div className="relative w-72 max-w-full">
+          <img
+            src="/dynamic-notification/sequoia-sunrise.png"
+            alt="Sequoia grove at sunrise"
+            className="aspect-video w-full rounded-[var(--radius-lg)] object-cover"
+          />
+          <div className="absolute inset-x-2 bottom-2 flex items-center justify-between gap-2">
+            <Button variant="scrim">
+              <PlayIcon />
+              Play
+            </Button>
+            <Button variant="scrim" iconOnly aria-label="Download photo">
+              <DownloadIcon />
+            </Button>
+          </div>
+        </div>
       </Row>
       <Row label="Tone">
         <Button variant="solid" tone="primary">

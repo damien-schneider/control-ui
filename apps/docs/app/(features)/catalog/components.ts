@@ -595,6 +595,27 @@ export const componentEntries = [
     ],
   },
   {
+    id: "reveal",
+    category: "effects",
+    kind: "Component",
+    name: "Reveal",
+    summary: "Secondary content that appears while its scope is hovered, focused, or holds an open menu, and always shows on touch.",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/reveal.tsx",
+        example: sourceFile("Reveal preview", "src/registry/examples/control-ui/primitives/reveal.tsx", "example"),
+        source: sourceFile("Reveal slot", "src/registry/sources/control-ui/ui/reveal.tsx", "component"),
+        supportFiles: [
+          sourceFile("Reveal recipe — visibility + @property knobs", "src/registry/sources/control-ui/recipes/reveal.css", "recipe-css"),
+        ],
+        registryKind: "reveal",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/reveal").then((mod) => ({ default: mod.PrimitiveRevealExample })),
+    ),
+  },
+  {
     id: "progressive-blur",
     category: "effects",
     kind: "Component",

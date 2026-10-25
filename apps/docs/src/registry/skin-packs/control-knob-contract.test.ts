@@ -540,6 +540,7 @@ const FAMILY_ROOT_MARKERS: Record<string, readonly string[]> = {
     '[data-surface="floating"]',
   ].map((part) => `[data-control-family="popup"]${part}`),
   resizable: ['[data-control-family="resizable"][data-slot="panel-group"]'],
+  reveal: ['[data-control-family="reveal"][data-slot="scope"]'],
   "rich-tooltip": ['[data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"]'],
   sidebar: ['[data-control-family="sidebar"][data-slot="wrapper"]'],
   tabs: ['[data-control-family="tabs"][data-slot="list"]'],

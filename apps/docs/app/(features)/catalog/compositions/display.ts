@@ -112,6 +112,13 @@ export const displayCompositions = {
       "Position the container relatively and place the blur over its content.",
     ),
   ],
+  reveal: [
+    example(
+      "Row with hover actions",
+      part("RevealScope", content("row content"), part("Reveal", part("Button"))),
+      "Hover, keyboard focus, or an open menu inside the nearest RevealScope shows its Reveal content; touch screens always show it.",
+    ),
+  ],
   timeline: [
     example(
       "Anatomy",

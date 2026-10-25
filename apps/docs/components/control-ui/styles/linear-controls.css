@@ -6,6 +6,10 @@
     --cui-button-padding-inline: 0.75rem;
     --cui-button-icon-padding-inline: 0.625rem;
     --cui-button-press-scale: 1;
+    transition-property: scale, translate, background-color, color, box-shadow;
+  }
+
+  [data-skin="linear"] :where([data-control-family="button"][data-control="true"]:not([data-variant="scrim"])) {
     --cui-button-foreground: var(--muted-foreground);
     --cui-button-hover-background: var(--linear-control-hover);
     --cui-button-hover-foreground: var(--secondary-foreground);
@@ -13,7 +17,6 @@
     --cui-button-active-foreground: var(--foreground);
     --cui-button-active-hover-background: var(--linear-control-selected);
     --cui-button-open-background: var(--linear-control-hover);
-    transition-property: scale, translate, background-color, color, box-shadow;
   }
 
   [data-skin="linear"] :where([data-control-family="button"][data-control="true"][data-size="xs"]) {
@@ -72,7 +75,8 @@
     --cui-button-active-shadow: 0 0 0 var(--control-rim-width) var(--linear-rim);
   }
 
-  [data-skin="linear"] :where([data-control-family="button"][data-control="true"][data-tone="danger"]:not([data-variant="solid"])) {
+  [data-skin="linear"]
+    :where([data-control-family="button"][data-control="true"][data-tone="danger"]:not([data-variant="solid"], [data-variant="scrim"])) {
     --cui-button-foreground: var(--destructive-text);
     --cui-button-hover-foreground: var(--destructive-text);
   }
