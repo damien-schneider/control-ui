@@ -2612,6 +2612,19 @@ export const componentEntries = [
         ),
       },
       {
+        id: "layout",
+        title: "Static and contents layouts",
+        description:
+          'layout="static" keeps the group\'s box and orientation but drops its panels and handles, so each panel\'s children become flex items of the group; space them with gap. layout="contents" drops the group too, so the children join the parent\'s layout. Both disable resizing. Switching layout only changes CSS: panel children stay mounted and keep their state, such as a live video preview.',
+        previewClassName: "min-h-[400px]",
+        source: sourceFile("Layout example", "src/registry/examples/control-ui/primitives/resizable.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/resizable").then((mod) => ({
+            default: mod.PrimitiveResizableLayoutExample,
+          })),
+        ),
+      },
+      {
         id: "floating-panel",
         title: "Floating panel",
         description:

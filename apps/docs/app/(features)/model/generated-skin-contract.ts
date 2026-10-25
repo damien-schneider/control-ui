@@ -10251,6 +10251,12 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["resizable"],
           states: [
             {
+              attribute: "data-layout",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["contents", "resizable", "static"],
+            },
+            {
               attribute: "data-variant",
               source: "control-ui",
               valueKind: "enum",

@@ -137,7 +137,7 @@ import {
   ProgressiveBlurScrollExample,
 } from "@/src/registry/examples/control-ui/primitives/progressive-blur";
 import { PrimitiveRadioGroupExample } from "@/src/registry/examples/control-ui/primitives/radio-group";
-import { PrimitiveResizableExample } from "@/src/registry/examples/control-ui/primitives/resizable";
+import { PrimitiveResizableExample, PrimitiveResizableLayoutExample } from "@/src/registry/examples/control-ui/primitives/resizable";
 import { PrimitiveResizableFloatingExample } from "@/src/registry/examples/control-ui/primitives/resizable-floating";
 import { PrimitiveResizableHoverHandleExample } from "@/src/registry/examples/control-ui/primitives/resizable-hover-handle";
 import { PrimitiveResizeHandleExample } from "@/src/registry/examples/control-ui/primitives/resize-handle";
@@ -327,6 +327,7 @@ export const previewReferences: LoadedPreviews = {
   "component/icon-picker": PrimitiveIconPickerExample,
   "component/resizable": PrimitiveResizableExample,
   "component/resizable/hover-handle": PrimitiveResizableHoverHandleExample,
+  "component/resizable/layout": PrimitiveResizableLayoutExample,
   "component/resizable/floating-panel": PrimitiveResizableFloatingExample,
   "component/calendar": PrimitiveCalendarExample,
   "component/calendar/date-picker": PrimitiveDatePickerExample,

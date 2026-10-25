@@ -25,6 +25,21 @@
     --cui-resizable-group-radius: 0px;
   }
 
+  /* biome-ignore-start lint/complexity/noImportantStyles: react-resizable-panels sets inline display on the group and panels. */
+  :where([data-control-family="resizable"][data-slot="panel-group"][data-layout="contents"]) {
+    display: contents !important;
+  }
+
+  :where([data-control-family="resizable"][data-slot="panel-group"]:not([data-layout="resizable"]) > [data-slot="panel"]),
+  :where([data-control-family="resizable"][data-slot="panel-group"]:not([data-layout="resizable"]) > [data-slot="panel"] > div) {
+    display: contents !important;
+  }
+
+  :where([data-control-family="resizable"][data-slot="panel-group"]:not([data-layout="resizable"]) > [data-slot="handle"]) {
+    display: none !important;
+  }
+  /* biome-ignore-end lint/complexity/noImportantStyles: react-resizable-panels sets inline display on the group and panels. */
+
   :where([data-control-family="resizable"][data-slot="handle"]) {
     --_resizable-gradient-color: var(--cui-resizable-handle-hover-background);
     background-color: var(--cui-resizable-handle-background);

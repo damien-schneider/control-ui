@@ -47,6 +47,7 @@ import type { ProgressiveBlurSide } from "../../src/registry/sources/control-ui/
 import type {
   ResizableFloatingPanelSide,
   ResizableHandleVariant,
+  ResizablePanelGroupLayout,
   ResizablePanelGroupVariant,
 } from "../../src/registry/sources/control-ui/ui/resizable";
 import type { ResizeHandleDirection } from "../../src/registry/sources/control-ui/ui/resize-handle";
@@ -255,6 +256,7 @@ export type EmittedStateContract = {
   "rich-tooltip:progress:data-tone": RichTooltipTone;
   "rich-tooltip:progress:data-variant": RichTooltipProgressVariant;
   "phone-input:check:data-visible": true;
+  "resizable:panel-group:data-layout": ResizablePanelGroupLayout;
   "resizable:panel-group:data-variant": ResizablePanelGroupVariant;
   "toolbar:button:data-icon-only": true;
   "toolbar:link:data-active": true;

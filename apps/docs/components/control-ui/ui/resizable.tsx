@@ -10,11 +10,14 @@ export type ResizableLayout = { [panelId: string]: number };
 
 export type ResizablePanelGroupVariant = "framed" | "nested";
 
+export type ResizablePanelGroupLayout = "resizable" | "static" | "contents";
+
 export type ResizableHandleVariant = "solid" | "hover";
 
 export type ResizablePanelGroupProps = Omit<ComponentProps<"div">, "style"> & {
   orientation?: "horizontal" | "vertical";
   variant?: ResizablePanelGroupVariant;
+  layout?: ResizablePanelGroupLayout;
   defaultLayout?: ResizableLayout;
   disableCursor?: boolean;
   disabled?: boolean;
@@ -109,6 +112,8 @@ export function ResizablePanelGroup({
   className,
   orientation = "horizontal",
   variant = "framed",
+  layout = "resizable",
+  disabled = false,
   disableCursor = false,
   children,
   ...props
@@ -121,7 +126,9 @@ export function ResizablePanelGroup({
         data-slot="panel-group"
         data-surface="panel"
         data-variant={variant}
+        data-layout={layout}
         orientation={orientation}
+        disabled={disabled || layout !== "resizable"}
         disableCursor
         className={cn("flex h-full w-full", className)}
         {...props}
