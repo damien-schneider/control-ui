@@ -222,6 +222,24 @@ test("visible dropzone validates chooser and drag intake", async ({ page }) => {
   await expect(selectedFiles).toContainText("four.png");
 });
 
+test("compact dropzone is one start-aligned row that keeps file intake", async ({ page }) => {
+  await page.goto("/components/dropzone");
+
+  const compact = page.locator('[data-control-ui="dropzone"][data-slot="root"][data-size="sm"]');
+  const trigger = compact.locator('[data-control-ui="dropzone"][data-slot="trigger"]');
+  await waitForReactHydration(trigger);
+
+  const triggerBox = await trigger.boundingBox();
+  const iconBox = await trigger.locator("svg").boundingBox();
+  if (!triggerBox || !iconBox) throw new Error("Expected the compact trigger and its icon to render.");
+  expect(triggerBox.height).toBeLessThan(48);
+  expect(iconBox.x - triggerBox.x).toBeLessThan(24);
+  expect(Math.abs(iconBox.y + iconBox.height / 2 - (triggerBox.y + triggerBox.height / 2))).toBeLessThan(2);
+
+  await chooseBrowserFiles(compact.locator('input[type="file"]'), [imagePng]);
+  await expect(compact.getByRole("list", { name: "Attached images" })).toContainText("image.png");
+});
+
 test("global overlay ignores drags owned by another dropzone", async ({ page }) => {
   await page.goto("/components/dropzone");
 

@@ -1850,6 +1850,30 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="dropzone"][data-slot="root"])',
       },
       {
+        name: "--cui-dropzone-surface-gap",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 3)",
+        selector: ':where([data-control-family="dropzone"][data-slot="root"])',
+      },
+      {
+        name: "--cui-dropzone-surface-min-block-size",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 32)",
+        selector: ':where([data-control-family="dropzone"][data-slot="root"])',
+      },
+      {
+        name: "--cui-dropzone-surface-padding-block",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 6)",
+        selector: ':where([data-control-family="dropzone"][data-slot="root"])',
+      },
+      {
+        name: "--cui-dropzone-surface-padding-inline",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 6)",
+        selector: ':where([data-control-family="dropzone"][data-slot="root"])',
+      },
+      {
         name: "--cui-dropzone-surface-radius",
         syntax: "<length-percentage>",
         defaultValue: "var(--radius-panel)",
@@ -2292,6 +2316,36 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="field"][data-control="true"])',
       },
       {
+        name: "--cui-field-label-background",
+        syntax: "<color>",
+        defaultValue: "transparent",
+        selector: ':where([data-control-family="field"][data-field-kind="field"])',
+      },
+      {
+        name: "--cui-field-label-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--border)",
+        selector: ':where([data-control-family="field"][data-field-kind="field"])',
+      },
+      {
+        name: "--cui-field-label-border-width",
+        syntax: "<length>",
+        defaultValue: "var(--control-rim-width)",
+        selector: ':where([data-control-family="field"][data-field-kind="field"])',
+      },
+      {
+        name: "--cui-field-label-checked-background",
+        syntax: "<color>",
+        defaultValue: "oklch(from var(--primary) l c h / 0.06)",
+        selector: ':where([data-control-family="field"][data-field-kind="field"])',
+      },
+      {
+        name: "--cui-field-label-checked-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--primary)",
+        selector: ':where([data-control-family="field"][data-field-kind="field"])',
+      },
+      {
         name: "--cui-field-label-font-size",
         syntax: "<length-percentage>",
         defaultValue: "var(--text-label)",
@@ -2301,6 +2355,30 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-field-label-font-weight",
         syntax: "<number>",
         defaultValue: "var(--font-weight-medium)",
+        selector: ':where([data-control-family="field"][data-field-kind="field"])',
+      },
+      {
+        name: "--cui-field-label-hover-background",
+        syntax: "<color>",
+        defaultValue: "var(--hover-fill)",
+        selector: ':where([data-control-family="field"][data-field-kind="field"])',
+      },
+      {
+        name: "--cui-field-label-padding-block",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 3)",
+        selector: ':where([data-control-family="field"][data-field-kind="field"])',
+      },
+      {
+        name: "--cui-field-label-padding-inline",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 3)",
+        selector: ':where([data-control-family="field"][data-field-kind="field"])',
+      },
+      {
+        name: "--cui-field-label-radius",
+        syntax: "<length-percentage>",
+        defaultValue: "var(--radius-lg)",
         selector: ':where([data-control-family="field"][data-field-kind="field"])',
       },
       {

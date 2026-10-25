@@ -7,7 +7,19 @@
     --cui-dropzone-accept-border-color: var(--primary);
     --cui-dropzone-reject-border-color: var(--destructive);
     --cui-dropzone-overlay-background: oklch(from var(--card) l c h / 0.95);
+    --cui-dropzone-surface-min-block-size: calc(var(--spacing) * 32);
+    --cui-dropzone-surface-padding-block: calc(var(--spacing) * 6);
+    --cui-dropzone-surface-padding-inline: calc(var(--spacing) * 6);
+    --cui-dropzone-surface-gap: calc(var(--spacing) * 3);
   }
+
+  :where([data-control-family="dropzone"][data-slot="root"][data-size="sm"]) {
+    --cui-dropzone-surface-min-block-size: var(--control-h-md);
+    --cui-dropzone-surface-padding-block: calc(var(--spacing) * 2);
+    --cui-dropzone-surface-padding-inline: calc(var(--spacing) * 3);
+    --cui-dropzone-surface-gap: calc(var(--spacing) * 2);
+  }
+
   :where([data-control-family="dropzone"][data-slot="trigger"]),
   :where([data-control-family="dropzone"][data-slot="overlay"]) {
     border: var(--cui-dropzone-surface-border-width) dashed var(--cui-dropzone-surface-border-color);
@@ -16,14 +28,20 @@
   }
 
   :where([data-control-family="dropzone"][data-slot="trigger"]) {
-    min-block-size: calc(var(--spacing) * 32);
-    gap: calc(var(--spacing) * 3);
-    padding: calc(var(--spacing) * 6);
+    min-block-size: var(--cui-dropzone-surface-min-block-size);
+    gap: var(--cui-dropzone-surface-gap);
+    padding-block: var(--cui-dropzone-surface-padding-block);
+    padding-inline: var(--cui-dropzone-surface-padding-inline);
     background-color: var(--card);
+    font-size: var(--text-body);
     text-align: center;
     transition-property: border-color, color, opacity, box-shadow;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="dropzone"][data-slot="root"][data-size="sm"] [data-control-family="dropzone"][data-slot="trigger"]) {
+    text-align: start;
   }
 
   @media (hover: hover) {
@@ -53,7 +71,8 @@
   }
 
   :where([data-control-family="dropzone"][data-slot="overlay"]) {
-    padding: calc(var(--spacing) * 6);
+    padding-block: var(--cui-dropzone-surface-padding-block);
+    padding-inline: var(--cui-dropzone-surface-padding-inline);
     border-style: solid;
     background-color: var(--cui-dropzone-overlay-background);
     opacity: 0;
@@ -152,4 +171,28 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-dropzone-surface-min-block-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-dropzone-surface-padding-block {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-dropzone-surface-padding-inline {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-dropzone-surface-gap {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }

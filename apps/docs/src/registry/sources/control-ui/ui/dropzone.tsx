@@ -28,6 +28,8 @@ import { Item, ItemActions, ItemContent, ItemDescription, ItemMedia, ItemTitle }
 
 export type DropzoneOverlayScope = "local" | "global";
 
+export type DropzoneSize = "default" | "sm";
+
 export type DropzoneProps = Omit<ComponentProps<"div">, "defaultValue" | "onChange" | "onDrop" | "onError"> & {
   value?: readonly File[];
   defaultValue?: readonly File[];
@@ -39,6 +41,7 @@ export type DropzoneProps = Omit<ComponentProps<"div">, "defaultValue" | "onChan
   getFilesFromEvent?: DropzoneGetFilesFromEvent;
   onDrop?: (details: DropzoneDropDetails) => void;
   onError?: (error: Error) => void;
+  size?: DropzoneSize;
 } & { style?: CSSProperties & DropzoneKnobStyle };
 export type DropzoneAreaProps = ComponentProps<"div"> & { style?: CSSProperties & DropzoneKnobStyle };
 export type DropzoneInputProps = Omit<ComponentProps<"input">, "accept" | "disabled" | "multiple" | "onChange" | "onClick" | "type"> & {
@@ -59,6 +62,7 @@ export type DropzoneRejectionListProps = Omit<ComponentProps<"ul">, "children"> 
 } & { style?: CSSProperties & DropzoneKnobStyle };
 export type DropzoneContextValue = UseDropzoneReturn & {
   registerGlobalOverlay: () => () => void;
+  size: DropzoneSize;
 };
 export type DropzoneStatusProps = Omit<ComponentProps<"div">, "children" | "style"> & {
   children?: (state: DropzoneContextValue) => ReactNode;
@@ -148,6 +152,7 @@ export function Dropzone({
   getFilesFromEvent,
   onDrop,
   onError,
+  size = "default",
   className,
   children,
   ...props
@@ -176,7 +181,7 @@ export function Dropzone({
     onError,
     trackDocumentDrag: globalOverlayCount > 0,
   });
-  const context = { ...dropzone, registerGlobalOverlay };
+  const context = { ...dropzone, registerGlobalOverlay, size };
   const empty = dropzone.value.length === 0 && dropzone.fileRejections.length === 0;
 
   return (
@@ -187,6 +192,7 @@ export function Dropzone({
           data-control-ui="dropzone"
           data-control-family="dropzone"
           data-slot="root"
+          data-size={size}
           data-disabled={dropzone.disabled ? "true" : undefined}
           data-empty={empty ? "true" : undefined}
           className={cn("min-w-0", className)}
@@ -253,7 +259,8 @@ export function DropzoneTrigger({ className, children, onClick, disabled, ref, .
       data-state={context.visualState}
       data-disabled={triggerDisabled || busy ? "true" : undefined}
       className={cn(
-        "flex w-full cursor-pointer flex-col items-center justify-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed",
+        "flex w-full cursor-pointer items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed",
+        context.size === "sm" ? "flex-row justify-start [&>svg]:size-4 [&>svg]:shrink-0" : "flex-col justify-center",
         className,
       )}
       onClick={(event) => {
@@ -262,7 +269,7 @@ export function DropzoneTrigger({ className, children, onClick, disabled, ref, .
         if (!event.defaultPrevented) context.open();
       }}
     >
-      {children ?? <DropzoneFeedback state={context.visualState} />}
+      {children ?? <DropzoneFeedback state={context.visualState} size={context.size} />}
     </button>
   );
 }
@@ -288,7 +295,7 @@ export function DropzoneOverlay({ scope = "local", className, children, ...props
       data-scope={scope}
       className={cn("pointer-events-none absolute inset-0 z-10 hidden items-center justify-center data-[active=true]:flex", className)}
     >
-      {children ?? <DropzoneFeedback state={context.visualState} />}
+      {children ?? <DropzoneFeedback state={context.visualState} size={context.size} />}
     </div>
   );
 }
@@ -428,7 +435,7 @@ export function DropzoneClear({ children, onClick, disabled, ...props }: Dropzon
   );
 }
 
-function DropzoneFeedback({ state }: { state: DropzoneVisualState }) {
+function DropzoneFeedback({ state, size }: { state: DropzoneVisualState; size: DropzoneSize }) {
   let icon: ReactNode = <CloudUpload aria-hidden="true" />;
   let message = "Drop files here or choose files.";
   if (state === "processing") {
@@ -454,8 +461,18 @@ function DropzoneFeedback({ state }: { state: DropzoneVisualState }) {
   }
 
   return (
-    <span data-control-ui="dropzone" data-control-family="dropzone" data-slot="feedback" className="flex flex-col items-center">
-      <span data-control-ui="dropzone" data-control-family="dropzone" data-slot="feedback-icon" className="[&>svg]:size-6">
+    <span
+      data-control-ui="dropzone"
+      data-control-family="dropzone"
+      data-slot="feedback"
+      className={cn("flex items-center", size === "sm" ? "flex-row" : "flex-col")}
+    >
+      <span
+        data-control-ui="dropzone"
+        data-control-family="dropzone"
+        data-slot="feedback-icon"
+        className={size === "sm" ? "flex [&>svg]:size-4" : "[&>svg]:size-6"}
+      >
         {icon}
       </span>
       <span data-control-ui="dropzone" data-control-family="dropzone" data-slot="feedback-message">

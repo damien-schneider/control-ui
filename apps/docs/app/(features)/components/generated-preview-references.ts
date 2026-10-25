@@ -91,12 +91,14 @@ import { PrimitiveScrollableDrawerExample } from "@/src/registry/examples/contro
 import { PrimitiveDrawerSidesExample } from "@/src/registry/examples/control-ui/primitives/drawer-sides";
 import { PrimitiveDropdownMenuExample } from "@/src/registry/examples/control-ui/primitives/dropdown-menu";
 import { PrimitiveDropzoneExample } from "@/src/registry/examples/control-ui/primitives/dropzone";
+import { PrimitiveDropzoneCompactExample } from "@/src/registry/examples/control-ui/primitives/dropzone-compact";
 import { PrimitiveDropzoneOverlayExample } from "@/src/registry/examples/control-ui/primitives/dropzone-overlay";
 import { PrimitiveEmojiIconPickerExample } from "@/src/registry/examples/control-ui/primitives/emoji-icon-picker";
 import { PrimitiveEmojiPickerExample } from "@/src/registry/examples/control-ui/primitives/emoji-picker";
 import { EmojiReactionsExample } from "@/src/registry/examples/control-ui/primitives/emoji-reactions";
 import { PrimitiveEmptyExample } from "@/src/registry/examples/control-ui/primitives/empty";
 import { PrimitiveFieldExample } from "@/src/registry/examples/control-ui/primitives/field";
+import { PrimitiveFieldChoiceCardExample } from "@/src/registry/examples/control-ui/primitives/field-choice-card";
 import { PrimitiveFlowExample } from "@/src/registry/examples/control-ui/primitives/flow";
 import { PrimitiveFormExample } from "@/src/registry/examples/control-ui/primitives/form";
 import { PrimitiveGradientEditorExample } from "@/src/registry/examples/control-ui/primitives/gradient-editor";
@@ -244,6 +246,7 @@ export const previewReferences: LoadedPreviews = {
   "component/input-group": PrimitiveInputGroupExample,
   "component/dropzone": PrimitiveDropzoneExample,
   "component/dropzone/invisible-overlay": PrimitiveDropzoneOverlayExample,
+  "component/dropzone/compact": PrimitiveDropzoneCompactExample,
   "component/phone-input": PrimitivePhoneInputExample,
   "component/command": PrimitiveCommandExample,
   "component/kbd": PrimitiveKbdExample,
@@ -257,6 +260,7 @@ export const previewReferences: LoadedPreviews = {
   "component/menubar": PrimitiveMenubarExample,
   "component/navigation-menu": PrimitiveNavigationMenuExample,
   "component/field": PrimitiveFieldExample,
+  "component/field/choice-card": PrimitiveFieldChoiceCardExample,
   "component/form": PrimitiveFormExample,
   "component/native-select": PrimitiveNativeSelectExample,
   "component/textarea": PrimitiveTextareaExample,

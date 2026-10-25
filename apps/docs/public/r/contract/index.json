@@ -226,7 +226,7 @@
       "registryItems": [
         "dropzone"
       ],
-      "knobs": 7,
+      "knobs": 11,
       "probes": 1
     },
     "dynamic-notification": {
@@ -264,8 +264,8 @@
         "select",
         "textarea"
       ],
-      "knobs": 31,
-      "probes": 95
+      "knobs": 40,
+      "probes": 99
     },
     "filter-bar": {
       "registryItems": [

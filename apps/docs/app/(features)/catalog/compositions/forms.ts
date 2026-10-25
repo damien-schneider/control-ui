@@ -55,6 +55,15 @@ export const formsCompositions = {
         part("DropzoneClear"),
       ),
     ),
+    example(
+      "Compact drop bar",
+      part(
+        "Dropzone",
+        part("DropzoneInput"),
+        part("DropzoneArea", part("DropzoneTrigger", content("icon and label")), part("DropzoneOverlay")),
+      ),
+      'Dropzone size="sm" renders the trigger as one control-height row with start-aligned content, for an attachment bar inside a composer or form. A host that uploads on arrival reads acceptedFiles in onDrop and renders its own previews instead of DropzoneFileList.',
+    ),
   ],
   "phone-input": [
     example(
@@ -93,8 +102,12 @@ export const formsCompositions = {
       "Choice card",
       part(
         "Field",
-        part("FieldLabel", part("FieldItem", part("Checkbox"), part("FieldContent", part("FieldTitle"), part("FieldDescription")))),
+        part(
+          "RadioGroup",
+          part("FieldItem", part("FieldLabel", part("Radio"), part("FieldContent", part("FieldTitle"), part("FieldDescription")))),
+        ),
       ),
+      'FieldLabel variant="card" paints the selectable tile: the whole card selects its control, the checked control colors its border and fill, and one focus ring wraps the card. FieldItem gives each label its own control inside the shared Field; FieldItem disabled disables one option. A Checkbox takes the Radio\'s place for multiple choice.',
     ),
     example(
       "Settings list",

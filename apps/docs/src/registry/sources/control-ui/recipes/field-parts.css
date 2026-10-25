@@ -181,6 +181,36 @@
     opacity: var(--disabled-opacity);
   }
 
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="label"][data-variant="card"]) {
+    padding-block: var(--cui-field-label-padding-block);
+    padding-inline: var(--cui-field-label-padding-inline);
+    border: var(--cui-field-label-border-width) solid var(--cui-field-label-border-color);
+    border-radius: var(--cui-field-label-radius);
+    background-color: var(--cui-field-label-background);
+    transition-property: background-color, border-color;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  @media (hover: hover) {
+    :where(
+        [data-control-family="field"][data-field-kind="field"][data-slot="label"][data-variant="card"]:hover:not(
+          :has([data-control-family="choice"]:is([data-checked], [data-disabled]))
+        )
+      ) {
+      background-color: var(--cui-field-label-hover-background);
+    }
+  }
+
+  :where(
+    [data-control-family="field"][data-field-kind="field"][data-slot="label"][data-variant="card"]:has(
+      [data-control-family="choice"][data-checked]
+    )
+  ) {
+    border-color: var(--cui-field-label-checked-border-color);
+    background-color: var(--cui-field-label-checked-background);
+  }
+
   :where([data-control-family="field"][data-field-kind="field"][data-slot="description"]) {
     color: var(--muted-foreground);
     font-size: var(--cui-field-description-font-size);
@@ -212,6 +242,15 @@
   :where([data-control-family="field"][data-field-kind="field"]) {
     --cui-field-legend-font-size: var(--text-label);
     --cui-field-legend-font-weight: var(--font-weight-semibold);
+    --cui-field-label-radius: var(--radius-lg);
+    --cui-field-label-background: transparent;
+    --cui-field-label-hover-background: var(--hover-fill);
+    --cui-field-label-checked-background: oklch(from var(--primary) l c h / 0.06);
+    --cui-field-label-border-color: var(--border);
+    --cui-field-label-checked-border-color: var(--primary);
+    --cui-field-label-border-width: var(--control-rim-width);
+    --cui-field-label-padding-block: calc(var(--spacing) * 3);
+    --cui-field-label-padding-inline: calc(var(--spacing) * 3);
   }
 
   :where([data-control-family="field"][data-field-kind="field"][data-slot="legend"]) {
@@ -273,6 +312,60 @@
     margin-block: calc(var(--spacing) * 2);
     block-size: calc(var(--spacing) * 5);
   }
+}
+
+@property --cui-field-label-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-field-label-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-field-label-hover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-field-label-checked-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-field-label-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-field-label-checked-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-field-label-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-field-label-padding-block {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-field-label-padding-inline {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-field-legend-font-size {

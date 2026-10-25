@@ -1187,6 +1187,18 @@ export const componentEntries = [
           })),
         ),
       },
+      {
+        id: "compact",
+        title: "Compact",
+        description:
+          'size="sm" turns the trigger into a one-row drop bar for composers and forms: a control-height surface, start-aligned content, and a smaller default icon. The --cui-dropzone-surface-* knobs size both the trigger and the overlay.',
+        source: sourceFile("Compact dropzone", "src/registry/examples/control-ui/primitives/dropzone-compact.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/dropzone-compact").then((mod) => ({
+            default: mod.PrimitiveDropzoneCompactExample,
+          })),
+        ),
+      },
     ],
   },
   {
@@ -1462,6 +1474,20 @@ export const componentEntries = [
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/primitives/field").then((mod) => ({ default: mod.PrimitiveFieldExample })),
     ),
+    additionalPreviews: [
+      {
+        id: "choice-card",
+        title: "Choice card",
+        description:
+          'FieldLabel variant="card" turns a label around a Radio or Checkbox into a selectable tile. The whole card selects the control, its border and fill follow the checked state, one focus ring wraps the card, and a disabled control disables the card. Wrap each card in FieldItem so every label targets its own control inside one Field.',
+        source: sourceFile("Choice card", "src/registry/examples/control-ui/primitives/field-choice-card.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/field-choice-card").then((mod) => ({
+            default: mod.PrimitiveFieldChoiceCardExample,
+          })),
+        ),
+      },
+    ],
   },
   {
     id: "form",

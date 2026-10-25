@@ -34,9 +34,9 @@ import type {
   DrawerSide,
 } from "../../src/registry/sources/control-ui/ui/drawer";
 import type { DropdownMenuTriggerVariant } from "../../src/registry/sources/control-ui/ui/dropdown-menu";
-import type { DropzoneOverlayScope } from "../../src/registry/sources/control-ui/ui/dropzone";
+import type { DropzoneOverlayScope, DropzoneSize } from "../../src/registry/sources/control-ui/ui/dropzone";
 import type { EmptyVariant } from "../../src/registry/sources/control-ui/ui/empty";
-import type { FieldGroupVariant, FieldLegendVariant } from "../../src/registry/sources/control-ui/ui/field";
+import type { FieldGroupVariant, FieldLabelVariant, FieldLegendVariant } from "../../src/registry/sources/control-ui/ui/field";
 import type { KbdVariant } from "../../src/registry/sources/control-ui/ui/kbd";
 import type { LevelMeterOrientation } from "../../src/registry/sources/control-ui/ui/level-meter";
 import type { MorphingPanelAnchor, MorphingPanelBodyPadding } from "../../src/registry/sources/control-ui/ui/morphing-panel";
@@ -192,6 +192,7 @@ export type EmittedStateContract = {
   "calendar:day:data-range-end": true;
   "dropzone:root:data-disabled": true;
   "dropzone:root:data-empty": true;
+  "dropzone:root:data-size": DropzoneSize;
   "dropzone:area:data-disabled": true;
   "dropzone:trigger:data-disabled": true;
   "dropzone:overlay:data-active": true;
@@ -208,6 +209,7 @@ export type EmittedStateContract = {
   "dynamic-notification:island:data-variant": DynamicNotificationVariant;
   "field:group:data-variant": FieldGroupVariant;
   "field:legend:data-variant": FieldLegendVariant;
+  "field:label:data-variant": FieldLabelVariant;
   "field:root:data-orientation": "horizontal" | "vertical" | "responsive";
   "inline-attachment:root:data-state": InlineAttachmentState;
   "inline-citation:source:data-activation-direction": "left" | "right";

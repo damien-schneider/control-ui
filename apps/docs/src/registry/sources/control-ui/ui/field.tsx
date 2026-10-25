@@ -16,7 +16,12 @@ export type FieldProps = ComponentProps<"div"> & {
   validationMode?: "onSubmit" | "onBlur" | "onChange";
 } & { style?: CSSProperties & FieldKnobStyle };
 
-export type FieldLabelProps = Omit<ComponentProps<"label">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+export type FieldLabelVariant = "default" | "card";
+
+export type FieldLabelProps = Omit<ComponentProps<"label">, "style"> & {
+  variant?: FieldLabelVariant;
+  style?: CSSProperties & FieldKnobStyle;
+};
 
 export type FieldContentProps = ComponentProps<"div"> & { style?: CSSProperties & FieldKnobStyle };
 
@@ -42,7 +47,7 @@ export type FieldSeparatorProps = Omit<ComponentProps<"div">, "style"> & {
   style?: CSSProperties & FieldKnobStyle;
 };
 
-export type FieldItemProps = ComponentProps<"div"> & { style?: CSSProperties & FieldKnobStyle };
+export type FieldItemProps = ComponentProps<"div"> & { disabled?: boolean; style?: CSSProperties & FieldKnobStyle };
 
 export type FieldSetProps = Omit<ComponentProps<"fieldset">, "style"> & { style?: CSSProperties & FieldKnobStyle };
 
@@ -102,14 +107,20 @@ export function FieldTitle({ className, ...props }: FieldTitleProps) {
   );
 }
 
-export function FieldLabel({ className, ...props }: FieldLabelProps) {
+export function FieldLabel({ className, variant = "default", ...props }: FieldLabelProps) {
   return (
     <FieldPrimitive.Label
       data-control-ui="field"
       data-control-family="field"
       data-field-kind="field"
       data-slot="label"
-      className={className}
+      data-variant={variant}
+      data-focus-ring={variant === "card" ? "within" : undefined}
+      className={cn(
+        variant === "card" &&
+          "flex w-full cursor-pointer items-start gap-3 has-[[data-disabled]]:cursor-not-allowed [&>[data-control-family=choice]]:mt-[calc((1lh_-_var(--spacing)*4)/2)]",
+        className,
+      )}
       {...props}
     />
   );

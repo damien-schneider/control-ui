@@ -21,7 +21,7 @@ const requestedKnobPrefix = process.argv.find((argument) => argument.startsWith(
 const removedRoute = process.argv.find((argument) => argument.startsWith("--removed-route="))?.split("=")[1];
 const artifactPath = publicPayloadPath(publicPayloads.contrastAnatomy);
 const modulePath = "app/(features)/theme-accessibility/generated-contrast-anatomy.ts";
-const baseUrl = "http://127.0.0.1:3000";
+const baseUrl = process.argv.find((argument) => argument.startsWith("--base-url="))?.split("=")[1] ?? "http://127.0.0.1:3000";
 
 async function documentedRoutes(): Promise<string[]> {
   const sitemap = await fetch(`${baseUrl}/sitemap.xml`).then((response) => response.text());

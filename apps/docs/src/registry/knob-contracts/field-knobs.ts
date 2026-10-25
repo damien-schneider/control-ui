@@ -1,5 +1,14 @@
 // Generated from src/registry/sources/control-ui/recipes/field.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.
 export const fieldKnobs = [
+  "--cui-field-label-radius",
+  "--cui-field-label-background",
+  "--cui-field-label-hover-background",
+  "--cui-field-label-checked-background",
+  "--cui-field-label-border-color",
+  "--cui-field-label-checked-border-color",
+  "--cui-field-label-border-width",
+  "--cui-field-label-padding-block",
+  "--cui-field-label-padding-inline",
   "--cui-field-legend-font-size",
   "--cui-field-legend-font-weight",
   "--cui-field-radius",

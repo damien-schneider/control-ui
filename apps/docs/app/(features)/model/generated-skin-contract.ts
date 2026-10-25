@@ -5688,6 +5688,12 @@ export const generatedSkinContract: SkinContract = {
               valueKind: "presence",
               values: [],
             },
+            {
+              attribute: "data-size",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["default", "sm"],
+            },
           ],
         },
         area: {
@@ -6547,6 +6553,12 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
+              attribute: "data-focus-ring",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["within"],
+            },
+            {
               attribute: "data-focused",
               source: "external",
               valueKind: "presence",
@@ -6569,6 +6581,12 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
+            },
+            {
+              attribute: "data-variant",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["card", "default"],
             },
           ],
         },
@@ -15926,6 +15944,30 @@ export const generatedSkinContract: SkinContract = {
         initialValue: "transparent",
         defaultValue: "oklch(from var(--card) l c h / 0.95)",
       },
+      {
+        name: "--cui-dropzone-surface-min-block-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 32)",
+      },
+      {
+        name: "--cui-dropzone-surface-padding-block",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 6)",
+      },
+      {
+        name: "--cui-dropzone-surface-padding-inline",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 6)",
+      },
+      {
+        name: "--cui-dropzone-surface-gap",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 3)",
+      },
     ],
     "dynamic-notification": [
       {
@@ -16206,6 +16248,60 @@ export const generatedSkinContract: SkinContract = {
       },
     ],
     field: [
+      {
+        name: "--cui-field-label-radius",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--radius-lg)",
+      },
+      {
+        name: "--cui-field-label-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "transparent",
+      },
+      {
+        name: "--cui-field-label-hover-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--hover-fill)",
+      },
+      {
+        name: "--cui-field-label-checked-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "oklch(from var(--primary) l c h / 0.06)",
+      },
+      {
+        name: "--cui-field-label-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--border)",
+      },
+      {
+        name: "--cui-field-label-checked-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--primary)",
+      },
+      {
+        name: "--cui-field-label-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "var(--control-rim-width)",
+      },
+      {
+        name: "--cui-field-label-padding-block",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 3)",
+      },
+      {
+        name: "--cui-field-label-padding-inline",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 3)",
+      },
       {
         name: "--cui-field-legend-font-size",
         syntax: "<length-percentage>",

@@ -47,6 +47,30 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "oklch(from var(--card) l c h / 0.95)"
+    },
+    {
+      "name": "--cui-dropzone-surface-min-block-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 32)"
+    },
+    {
+      "name": "--cui-dropzone-surface-padding-block",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 6)"
+    },
+    {
+      "name": "--cui-dropzone-surface-padding-inline",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 6)"
+    },
+    {
+      "name": "--cui-dropzone-surface-gap",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3)"
     }
   ],
   "parts": {
@@ -68,6 +92,15 @@
             "source": "control-ui",
             "valueKind": "presence",
             "values": []
+          },
+          {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "sm"
+            ]
           }
         ]
       },

@@ -4785,6 +4785,126 @@
           "data-slot": "icon"
         }
       }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "field",
+          "data-control-ui": "field",
+          "data-field-kind": "field",
+          "data-filled": "",
+          "data-orientation": "vertical",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "field",
+          "data-control-ui": "field",
+          "data-field-kind": "field",
+          "data-filled": "",
+          "data-slot": "item"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "field",
+          "data-control-ui": "field",
+          "data-field-kind": "field",
+          "data-filled": "",
+          "data-focus-ring": "within",
+          "data-slot": "label",
+          "data-variant": "card"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "field",
+          "data-control-ui": "field",
+          "data-field-kind": "field",
+          "data-filled": "",
+          "data-orientation": "vertical",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "field",
+          "data-control-ui": "field",
+          "data-disabled": "",
+          "data-field-kind": "field",
+          "data-filled": "",
+          "data-slot": "item"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "field",
+          "data-control-ui": "field",
+          "data-disabled": "",
+          "data-field-kind": "field",
+          "data-filled": "",
+          "data-focus-ring": "within",
+          "data-slot": "label",
+          "data-variant": "card"
+        }
+      }
     ]
   ],
   "probes": [
@@ -5612,6 +5732,39 @@
       "anatomy": 92,
       "rendersText": false,
       "state": false
+    },
+    {
+      "knobs": {
+        "boundary": "--cui-field-label-checked-border-color",
+        "fill": "--cui-field-label-checked-background"
+      },
+      "anatomy": 93,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-field-label-background"
+      },
+      "anatomy": 94,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-field-label-background"
+      },
+      "anatomy": 93,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-field-label-hover-background"
+      },
+      "anatomy": 93,
+      "rendersText": true,
+      "state": true
     }
   ]
 }

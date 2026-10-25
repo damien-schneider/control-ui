@@ -7,5 +7,9 @@ export const dropzoneKnobs = [
   "--cui-dropzone-accept-border-color",
   "--cui-dropzone-reject-border-color",
   "--cui-dropzone-overlay-background",
+  "--cui-dropzone-surface-min-block-size",
+  "--cui-dropzone-surface-padding-block",
+  "--cui-dropzone-surface-padding-inline",
+  "--cui-dropzone-surface-gap",
 ] as const;
 export type DropzoneKnobStyle = Partial<Record<(typeof dropzoneKnobs)[number], string>>;
