@@ -44,6 +44,35 @@
     }
   }
 
+  :where([data-control-family="table"][data-slot="row"]:has([data-control-family="table"][data-slot="row-link"])) {
+    position: relative;
+  }
+
+  :where([data-control-family="table"][data-slot="row-link"]) {
+    text-align: start;
+    cursor: pointer;
+    outline: none;
+  }
+
+  :where([data-control-family="table"][data-slot="row-link"])::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+
+  :where([data-control-family="table"][data-slot="row-link"]:focus-visible)::after {
+    outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring);
+    outline-offset: calc(var(--focus-ring-width) * -1);
+  }
+
+  :where(
+    [data-control-family="table"][data-slot="row"]:has([data-control-family="table"][data-slot="row-link"])
+      :is(a[href], button, input, select, textarea, [role="checkbox"]):not([data-slot="row-link"])
+  ) {
+    position: relative;
+    z-index: 1;
+  }
+
   :where([data-control-family="table"][data-slot="row"][data-state="selected"]) {
     background: var(--cui-table-row-selected-background);
   }

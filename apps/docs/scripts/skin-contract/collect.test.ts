@@ -25,7 +25,7 @@ describe("skin contract generation", () => {
       attribute: "data-variant",
       source: "control-ui",
       valueKind: "enum",
-      values: ["ghost", "link", "quiet", "solid", "surface"],
+      values: ["dashed", "ghost", "link", "quiet", "solid", "surface"],
     });
     expect(contract.scopes.tree.parts.root.states.some((state) => state.attribute === "data-selection-mode")).toBe(false);
     expect(contract.scopes["dropdown-menu"].parts.item.states).toContainEqual({

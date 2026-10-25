@@ -4,6 +4,7 @@
       background-color: var(--cui-button-hover-background);
       background-image: var(--cui-button-hover-background-image);
       box-shadow: var(--cui-button-hover-shadow);
+      border-color: var(--cui-button-hover-border-color);
       color: var(--cui-button-hover-foreground);
     }
   }
@@ -12,6 +13,7 @@
     background-color: var(--cui-button-open-background);
     color: var(--cui-button-open-foreground);
     box-shadow: var(--cui-button-open-shadow);
+    border-color: var(--cui-button-open-border-color);
   }
 
   :where([data-control-family="button"][data-active="true"]) {
@@ -81,4 +83,45 @@
       outline-offset: calc(var(--focus-ring-width) * -1);
     }
   }
+}
+
+@property --cui-button-press-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-button-press-scale {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --cui-button-hover-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-button-open-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-button-open-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-button-open-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-button-open-shadow {
+  syntax: "*";
+  inherits: true;
 }

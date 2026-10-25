@@ -80,7 +80,7 @@ export function EmojiPickerPopover({ trigger, onPick }: { trigger: ReactElement;
 export function PersonAvatar({ person, size, className }: { person: TeamPerson; size?: "sm"; className?: string }) {
   return (
     <Avatar className={cn(size === "sm" && "size-5", className)}>
-      <AvatarFallback>{size === "sm" ? <Text size="micro">{person.initials}</Text> : person.initials}</AvatarFallback>
+      <AvatarFallback>{person.initials}</AvatarFallback>
       <AvatarBadge status={person.status} label={person.status} />
     </Avatar>
   );
@@ -165,9 +165,7 @@ export function TeamChatMessage({ message, continuation, onToggleReaction, onOpe
               <AvatarGroup aria-hidden="true" className="-space-x-1.5">
                 {repliers.map((person) => (
                   <Avatar key={person.id} className="size-5">
-                    <AvatarFallback>
-                      <Text size="micro">{person.initials}</Text>
-                    </AvatarFallback>
+                    <AvatarFallback>{person.initials}</AvatarFallback>
                   </Avatar>
                 ))}
               </AvatarGroup>

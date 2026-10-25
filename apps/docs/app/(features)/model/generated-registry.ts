@@ -5035,7 +5035,7 @@ export const registryMetadata = {
     ],
   },
   table: {
-    dependencies: [],
+    dependencies: ["@base-ui/react@^1.9.0"],
     registryDependencies: ["core", "scroll-area"],
     sourceManifestPath: "registry/control-ui/table.json",
     files: [

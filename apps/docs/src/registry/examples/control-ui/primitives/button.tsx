@@ -24,6 +24,10 @@ export function PrimitiveButtonExample() {
         <Button variant="surface">Surface</Button>
         <Button variant="ghost">Ghost</Button>
         <Button variant="quiet">Quiet</Button>
+        <Button variant="dashed">
+          <PlusIcon />
+          Dashed
+        </Button>
         <Button variant="link">Link</Button>
       </Row>
       <Row label="Tone">

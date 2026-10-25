@@ -15,6 +15,7 @@
     --cui-popup-title-line-height: var(--text-heading-3--line-height);
     --cui-popup-title-letter-spacing: -0.025em;
     --cui-popup-description-foreground: var(--muted-foreground);
+    --cui-popup-description-font-size: var(--text-body);
     --cui-popup-close-inset: calc(var(--spacing) * 3);
     --cui-popup-item-radius: var(--radius-popup-item-fit);
     --cui-popup-item-foreground: var(--foreground);
@@ -146,6 +147,7 @@
     --cui-popup-title-font-size: var(--text-body);
     --cui-popup-title-line-height: 1.35;
     --cui-popup-title-letter-spacing: -0.01em;
+    --cui-popup-description-font-size: var(--text-label);
     max-block-size: var(--available-height);
     max-inline-size: var(--available-width);
     overflow: auto;
@@ -388,12 +390,6 @@
 }
 
 @property --cui-popup-separator-color {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
-@property --cui-popup-shortcut-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

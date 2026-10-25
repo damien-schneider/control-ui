@@ -139,6 +139,12 @@
       "defaultValue": "none"
     },
     {
+      "name": "--cui-sidebar-container-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
       "name": "--cui-sidebar-inner-border-width",
       "syntax": "<length>",
       "initialValue": "0px",

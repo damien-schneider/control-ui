@@ -99,8 +99,8 @@
         "navigation-menu",
         "toggle"
       ],
-      "knobs": 26,
-      "probes": 249
+      "knobs": 32,
+      "probes": 271
     },
     "button-group": {
       "registryItems": [
@@ -376,7 +376,7 @@
       "registryItems": [
         "page-layout"
       ],
-      "knobs": 15,
+      "knobs": 16,
       "probes": 6
     },
     "pagination": {
@@ -419,7 +419,7 @@
         "tooltip",
         "trigger-menu"
       ],
-      "knobs": 53,
+      "knobs": 54,
       "probes": 168
     },
     "progressive-blur": {
@@ -476,7 +476,7 @@
       "registryItems": [
         "sidebar"
       ],
-      "knobs": 61,
+      "knobs": 62,
       "probes": 83
     },
     "sidebar-layout": {

@@ -6,6 +6,7 @@ export const popupKnobs = [
   "--cui-popup-title-line-height",
   "--cui-popup-title-letter-spacing",
   "--cui-popup-description-foreground",
+  "--cui-popup-description-font-size",
   "--cui-popup-close-inset",
   "--cui-popup-item-inset",
   "--cui-popup-label-padding-block",
@@ -25,6 +26,7 @@ export const popupKnobs = [
   "--cui-popup-command-heading-letter-spacing",
   "--cui-popup-command-heading-text-transform",
   "--cui-popup-dialog-max-inline-size",
+  "--cui-popup-shortcut-foreground",
   "--cui-popup-tooltip-arrow-radius",
   "--cui-popup-status-success-foreground",
   "--cui-popup-status-warning-foreground",
@@ -52,6 +54,5 @@ export const popupKnobs = [
   "--cui-popup-item-highlight-muted-foreground",
   "--cui-popup-item-disabled-opacity",
   "--cui-popup-separator-color",
-  "--cui-popup-shortcut-foreground",
 ] as const;
 export type PopupKnobStyle = Partial<Record<(typeof popupKnobs)[number], string>>;

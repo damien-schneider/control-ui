@@ -22,6 +22,7 @@ export const sidebarKnobs = [
   "--cui-sidebar-inner-border-color",
   "--cui-sidebar-inner-background-image",
   "--cui-sidebar-inner-backdrop-filter",
+  "--cui-sidebar-container-border-width",
   "--cui-sidebar-inner-border-width",
   "--cui-sidebar-inner-radius",
   "--cui-sidebar-inner-shadow",

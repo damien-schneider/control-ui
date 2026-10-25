@@ -1,4 +1,8 @@
+"use client";
+
+import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps, CSSProperties } from "react";
+import type { RenderProp } from "@/components/control-ui/control-props";
 import type { TableKnobStyle } from "@/components/control-ui/knob-contracts/table-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
@@ -16,6 +20,11 @@ export type TableRowProps = Omit<ComponentProps<"tr">, "style"> & { style?: CSSP
 export type TableHeadProps = Omit<ComponentProps<"th">, "style"> & { style?: CSSProperties & TableKnobStyle };
 
 export type TableCellProps = ComponentProps<"td"> & { style?: CSSProperties & TableKnobStyle };
+
+export type TableRowLinkProps = Omit<ComponentProps<"button">, "style"> & {
+  render?: RenderProp<ComponentProps<"button">>;
+  style?: CSSProperties & TableKnobStyle;
+};
 
 export type TableCaptionProps = Omit<ComponentProps<"caption">, "style"> & { style?: CSSProperties & TableKnobStyle };
 
@@ -77,4 +86,19 @@ export function TableCell({ className, ...props }: TableCellProps) {
 
 export function TableCaption({ className, ...props }: TableCaptionProps) {
   return <caption data-control-ui="table" data-control-family="table" data-slot="caption" className={className} {...props} />;
+}
+
+export function TableRowLink({ render, ...props }: TableRowLinkProps) {
+  return useRender({
+    defaultTagName: "button",
+    render,
+    props: {
+      type: render ? undefined : "button",
+      ...props,
+      "data-control-ui": "table",
+      "data-control-family": "table",
+      "data-slot": "row-link",
+      "data-focus-ring": "none",
+    },
+  });
 }

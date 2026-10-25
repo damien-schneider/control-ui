@@ -510,6 +510,24 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="button"][data-control="true"])',
       },
       {
+        name: "--cui-button-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--control-rim)",
+        selector: ':where([data-control-family="button"][data-control="true"])',
+      },
+      {
+        name: "--cui-button-border-style",
+        syntax: "*",
+        defaultValue: "solid",
+        selector: ':where([data-control-family="button"][data-control="true"])',
+      },
+      {
+        name: "--cui-button-border-width",
+        syntax: "<length>",
+        defaultValue: "0px",
+        selector: ':where([data-control-family="button"][data-control="true"])',
+      },
+      {
         name: "--cui-button-font-size",
         syntax: "<length-percentage>",
         defaultValue: "var(--text-body)",
@@ -552,6 +570,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="button"][data-control="true"])',
       },
       {
+        name: "--cui-button-hover-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--cui-button-border-color)",
+        selector: ':where([data-control-family="button"][data-control="true"])',
+      },
+      {
         name: "--cui-button-hover-foreground",
         syntax: "<color>",
         defaultValue: "var(--foreground)",
@@ -582,6 +606,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="button"][data-control="true"])',
       },
       {
+        name: "--cui-button-open-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--cui-button-hover-border-color)",
+        selector: ':where([data-control-family="button"][data-control="true"])',
+      },
+      {
         name: "--cui-button-open-foreground",
         syntax: "<color>",
         defaultValue: "var(--cui-button-hover-foreground)",
@@ -591,6 +621,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-button-open-shadow",
         syntax: "*",
         defaultValue: "var(--cui-button-shadow)",
+        selector: ':where([data-control-family="button"][data-control="true"])',
+      },
+      {
+        name: "--cui-button-padding-block",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 1.5)",
         selector: ':where([data-control-family="button"][data-control="true"])',
       },
       {
@@ -3385,6 +3421,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         defaultValue: "oklch(from var(--cui-page-layout-background) l c h / 0.85)",
         selector: ':where([data-control-family="page-layout"][data-slot="root"])',
       },
+      {
+        name: "--cui-page-layout-title-font-size",
+        syntax: "<length-percentage>",
+        defaultValue: "var(--text-heading-1)",
+        selector: ':where([data-control-family="page-layout"][data-slot="root"])',
+      },
     ],
   },
   {
@@ -3551,6 +3593,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-popup-command-heading-text-transform",
         syntax: "none | uppercase | lowercase | capitalize",
         defaultValue: "uppercase",
+        selector:
+          ':where([data-control-family="popup"][data-popup-part="surface"]),\n  :where([data-control-family="popup"][data-popup-part="list-surface"]),\n  :where([data-control-family="popup"][data-popup-part="bar"])',
+      },
+      {
+        name: "--cui-popup-description-font-size",
+        syntax: "<length-percentage>",
+        defaultValue: "var(--text-body)",
         selector:
           ':where([data-control-family="popup"][data-popup-part="surface"]),\n  :where([data-control-family="popup"][data-popup-part="list-surface"]),\n  :where([data-control-family="popup"][data-popup-part="bar"])',
       },
@@ -4184,6 +4233,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
   {
     id: "sidebar",
     knobs: [
+      {
+        name: "--cui-sidebar-container-border-width",
+        syntax: "<length>",
+        defaultValue: "1px",
+        selector: ':where([data-control-family="sidebar"][data-slot="root"])',
+      },
       {
         name: "--cui-sidebar-group-label-font-size",
         syntax: "<length-percentage>",

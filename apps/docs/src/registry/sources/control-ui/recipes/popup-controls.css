@@ -26,7 +26,7 @@
   :where([data-control-family="popup"][data-popup-kind="popover"][data-slot="description"]),
   :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="description"]) {
     color: var(--cui-popup-description-foreground);
-    font-size: var(--text-body);
+    font-size: var(--cui-popup-description-font-size);
     text-wrap: pretty;
   }
 
@@ -263,6 +263,12 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-popup-description-font-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-popup-close-inset {

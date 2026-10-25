@@ -1,6 +1,17 @@
 "use client";
 
-import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/control-ui/ui/table";
+import { useState } from "react";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableRowLink,
+} from "@/components/control-ui/ui/table";
 import { Text } from "@/components/control-ui/ui/typography";
 
 const invoices = [
@@ -10,6 +21,7 @@ const invoices = [
 ];
 
 export function PrimitiveTableExample() {
+  const [openInvoiceId, setOpenInvoiceId] = useState<string>();
   return (
     <div className="w-full max-w-lg">
       <Table>
@@ -24,9 +36,11 @@ export function PrimitiveTableExample() {
         </TableHeader>
         <TableBody>
           {invoices.map((invoice) => (
-            <TableRow key={invoice.id}>
+            <TableRow key={invoice.id} data-state={openInvoiceId === invoice.id ? "selected" : undefined}>
               <TableCell>
-                <Text weight="medium">{invoice.id}</Text>
+                <TableRowLink onClick={() => setOpenInvoiceId(invoice.id)}>
+                  <Text weight="medium">{invoice.id}</Text>
+                </TableRowLink>
               </TableCell>
               <TableCell>{invoice.status}</TableCell>
               <TableCell>{invoice.method}</TableCell>

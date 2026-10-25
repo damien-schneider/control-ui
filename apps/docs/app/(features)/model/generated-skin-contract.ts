@@ -1486,7 +1486,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-variant",
               source: "control-ui",
               valueKind: "enum",
-              values: ["ghost", "link", "quiet", "solid", "surface"],
+              values: ["dashed", "ghost", "link", "quiet", "solid", "surface"],
             },
           ],
         },
@@ -12505,6 +12505,18 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["table"],
           states: [],
         },
+        "row-link": {
+          family: "table",
+          registryItems: ["table"],
+          states: [
+            {
+              attribute: "data-focus-ring",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["none"],
+            },
+          ],
+        },
       },
       registryItems: ["table"],
     },
@@ -13220,7 +13232,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-variant",
               source: "control-ui",
               valueKind: "enum",
-              values: ["ghost", "link", "quiet", "solid", "surface"],
+              values: ["dashed", "ghost", "link", "quiet", "solid", "surface"],
             },
           ],
         },
@@ -14619,6 +14631,48 @@ export const generatedSkinContract: SkinContract = {
     ],
     button: [
       {
+        name: "--cui-button-press-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--cui-button-hover-background)",
+      },
+      {
+        name: "--cui-button-press-scale",
+        syntax: "<number>",
+        initialValue: "1",
+        defaultValue: "0.96",
+      },
+      {
+        name: "--cui-button-hover-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--cui-button-border-color)",
+      },
+      {
+        name: "--cui-button-open-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--cui-button-hover-border-color)",
+      },
+      {
+        name: "--cui-button-open-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--cui-button-hover-background)",
+      },
+      {
+        name: "--cui-button-open-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--cui-button-hover-foreground)",
+      },
+      {
+        name: "--cui-button-open-shadow",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "var(--cui-button-shadow)",
+      },
+      {
         name: "--cui-button-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
@@ -14647,6 +14701,12 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length-percentage>",
         initialValue: "0px",
         defaultValue: "var(--padding-x)",
+      },
+      {
+        name: "--cui-button-padding-block",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 1.5)",
       },
       {
         name: "--cui-button-icon-padding-inline",
@@ -14703,18 +14763,6 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--foreground)",
       },
       {
-        name: "--cui-button-press-background",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--cui-button-hover-background)",
-      },
-      {
-        name: "--cui-button-press-scale",
-        syntax: "<number>",
-        initialValue: "1",
-        defaultValue: "0.96",
-      },
-      {
         name: "--cui-button-active-background",
         syntax: "<color>",
         initialValue: "transparent",
@@ -14757,22 +14805,22 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--cui-button-shadow)",
       },
       {
-        name: "--cui-button-open-background",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--cui-button-hover-background)",
+        name: "--cui-button-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "0px",
       },
       {
-        name: "--cui-button-open-foreground",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--cui-button-hover-foreground)",
-      },
-      {
-        name: "--cui-button-open-shadow",
+        name: "--cui-button-border-style",
         syntax: "*",
         initialValue: "",
-        defaultValue: "var(--cui-button-shadow)",
+        defaultValue: "solid",
+      },
+      {
+        name: "--cui-button-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--control-rim)",
       },
     ],
     "button-group": [
@@ -17334,6 +17382,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "calc(var(--spacing) * 4)",
       },
       {
+        name: "--cui-page-layout-title-font-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--text-heading-1)",
+      },
+      {
         name: "--cui-page-layout-header-row-gap",
         syntax: "<length-percentage>",
         initialValue: "0px",
@@ -17490,6 +17544,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--muted-foreground)",
       },
       {
+        name: "--cui-popup-description-font-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--text-body)",
+      },
+      {
         name: "--cui-popup-close-inset",
         syntax: "<length-percentage>",
         initialValue: "0px",
@@ -17602,6 +17662,12 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length-percentage>",
         initialValue: "0px",
         defaultValue: "32rem",
+      },
+      {
+        name: "--cui-popup-shortcut-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted-foreground)",
       },
       {
         name: "--cui-popup-tooltip-arrow-radius",
@@ -17764,12 +17830,6 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--border)",
-      },
-      {
-        name: "--cui-popup-shortcut-foreground",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--muted-foreground)",
       },
     ],
     "progressive-blur": [
@@ -18225,6 +18285,12 @@ export const generatedSkinContract: SkinContract = {
         syntax: "*",
         initialValue: "",
         defaultValue: "none",
+      },
+      {
+        name: "--cui-sidebar-container-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "1px",
       },
       {
         name: "--cui-sidebar-inner-border-width",

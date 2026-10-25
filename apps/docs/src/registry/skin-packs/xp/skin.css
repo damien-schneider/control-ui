@@ -160,7 +160,8 @@
     --cui-button-hover-shadow: inset 0 0 0 1px var(--xp-white);
     --cui-button-height: 21px;
     --cui-button-icon: 13px;
-    border: 1px solid var(--xp-white);
+    --cui-button-border-width: 1px;
+    --cui-button-border-color: var(--xp-white);
     inline-size: var(--xp-close-inline-size);
   }
   [data-skin="xp"] :where([data-control-family="popup"][data-popup-kind="tooltip"][data-popup-part="surface"]) {

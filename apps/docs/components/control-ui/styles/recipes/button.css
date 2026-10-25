@@ -29,6 +29,7 @@
     --cui-button-icon: 1rem;
     --cui-button-height: var(--control-h-md);
     --cui-button-padding-inline: var(--padding-x);
+    --cui-button-padding-block: calc(var(--spacing) * 1.5);
     --cui-button-icon-padding-inline: max(0px, calc(var(--cui-button-padding-inline) - var(--spacing) * 0.5));
     --cui-button-font-size: var(--text-body);
     --cui-button-font-weight: var(--font-weight-medium);
@@ -50,6 +51,12 @@
     --cui-button-open-background: var(--cui-button-hover-background);
     --cui-button-open-foreground: var(--cui-button-hover-foreground);
     --cui-button-open-shadow: var(--cui-button-shadow);
+    --cui-button-border-width: 0px;
+    --cui-button-border-style: solid;
+    --cui-button-border-color: var(--control-rim);
+    --cui-button-hover-border-color: var(--cui-button-border-color);
+    --cui-button-open-border-color: var(--cui-button-hover-border-color);
+    border: var(--cui-button-border-width) var(--cui-button-border-style) var(--cui-button-border-color);
     border-radius: var(--cui-button-radius);
     background-color: var(--cui-button-background);
     background-image: var(--cui-button-background-image);
@@ -130,7 +137,7 @@
     --cui-button-radius: var(--nest-radius, min(var(--radius-control), var(--radius-field)));
     flex-direction: column;
     block-size: auto;
-    padding-block: calc(var(--spacing) * 1.5);
+    padding-block: var(--cui-button-padding-block);
     padding-inline: var(--cui-button-padding-inline);
   }
 
@@ -177,6 +184,13 @@
     --cui-button-active-foreground: var(--primary-text);
     --cui-button-active-shadow: inset 0 0 0 var(--control-rim-width) oklch(from var(--primary) l c h / 0.6), var(--shadow-sm);
     --cui-button-active-hover-background: oklch(from var(--primary) l c h / 0.1);
+  }
+
+  :where([data-control-family="button"][data-variant="dashed"]) {
+    --cui-button-border-width: var(--control-rim-width);
+    --cui-button-border-style: dashed;
+    --cui-button-hover-border-color: oklch(from var(--foreground) l c h / 0.4);
+    --cui-button-hover-background: transparent;
   }
 
   :where([data-control-family="button"]:is([data-variant="surface"], [data-variant="ghost"], [data-variant="quiet"])) {
@@ -267,6 +281,12 @@
   initial-value: 0px;
 }
 
+@property --cui-button-padding-block {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
 @property --cui-button-icon-padding-inline {
   syntax: "<length-percentage>";
   inherits: true;
@@ -319,18 +339,6 @@
   initial-value: transparent;
 }
 
-@property --cui-button-press-background {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
-@property --cui-button-press-scale {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 1;
-}
-
 @property --cui-button-active-background {
   syntax: "<color>";
   inherits: true;
@@ -369,19 +377,19 @@
   inherits: true;
 }
 
-@property --cui-button-open-background {
-  syntax: "<color>";
+@property --cui-button-border-width {
+  syntax: "<length>";
   inherits: true;
-  initial-value: transparent;
+  initial-value: 0px;
 }
 
-@property --cui-button-open-foreground {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
-@property --cui-button-open-shadow {
+@property --cui-button-border-style {
   syntax: "*";
   inherits: true;
+}
+
+@property --cui-button-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
 }

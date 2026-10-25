@@ -6718,7 +6718,9 @@
       "type": "registry:ui",
       "title": "Table",
       "description": "Responsive data table for lists, comparisons, and structured records.",
-      "dependencies": [],
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
         "https://control-ui.dev/r/scroll-area.json"

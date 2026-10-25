@@ -112,11 +112,13 @@
     color: var(--muted-foreground);
   }
 
-  :where([data-control-family="popup"][data-popup-kind="command"][data-slot="dialog-root"]) {
-    transition-property: grid-template-rows;
-    transition-duration: var(--duration-slow);
-    transition-timing-function: var(--ease-emphasized);
-    transition-delay: var(--duration-fast);
+  :where([data-control-family="popup"][data-popup-part="surface"]:has(> [data-popup-kind="command"][data-slot="dialog-root"])),
+  :where(
+    [data-control-family="popup"][data-popup-part="backdrop"]:has(
+      ~ [data-popup-part="surface"] > [data-popup-kind="command"][data-slot="dialog-root"]
+    )
+  ) {
+    transition: none;
   }
 
   :where([data-control-family="popup"][data-popup-kind="autocomplete"][data-slot="group-label"]) {
@@ -365,4 +367,10 @@
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
+}
+
+@property --cui-popup-shortcut-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
 }

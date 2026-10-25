@@ -45,7 +45,8 @@
     --cui-button-hover-shadow: inset 1px 1px var(--xp-light), inset -1px -1px var(--xp-shadow);
     --cui-button-press-shadow: inset 1px 1px var(--xp-shadow), inset -1px -1px var(--xp-light);
     --cui-button-active-shadow: var(--cui-button-press-shadow);
-    border: 1px solid transparent;
+    --cui-button-border-width: 1px;
+    --cui-button-border-color: transparent;
     line-height: 1;
     --cui-button-font-weight: 400;
   }
@@ -54,7 +55,10 @@
     --cui-button-background-image: var(--xp-button);
     --cui-button-hover-shadow: var(--xp-hover-rim);
     --cui-button-press-shadow: none;
-    border-color: var(--xp-edge);
+    --cui-button-border-color: var(--xp-edge);
+  }
+  [data-skin="xp"] :where([data-control-family="button"][data-control="true"][data-variant="dashed"]) {
+    --cui-button-border-color: var(--xp-edge);
   }
   [data-skin="xp"] :where([data-control-family="button"][data-control="true"][data-variant="solid"]) {
     --cui-button-shadow: var(--xp-default-rim);

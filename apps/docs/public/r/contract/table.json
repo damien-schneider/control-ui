@@ -113,6 +113,22 @@
           "table"
         ],
         "states": []
+      },
+      "row-link": {
+        "family": "table",
+        "registryItems": [
+          "table"
+        ],
+        "states": [
+          {
+            "attribute": "data-focus-ring",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "none"
+            ]
+          }
+        ]
       }
     }
   },

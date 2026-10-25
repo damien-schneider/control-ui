@@ -172,6 +172,11 @@ export const displayCompositions = {
         part("TableFooter", part("TableRow", part("TableCell"))),
       ),
     ),
+    example(
+      "Clickable rows",
+      part("Table", part("TableBody", part("TableRow", part("TableCell", part("TableRowLink"))))),
+      "TableRowLink turns the whole row into its hit area: the row paints --cui-table-row-hover-background on hover and the focus ring while the link has focus. It renders a button; pass render={<a href />} to navigate. Other buttons, links, and checkboxes in the row stay clickable above it.",
+    ),
   ],
   "aspect-ratio": [example("Constrained media", part("AspectRatio", part("img")))],
   empty: [

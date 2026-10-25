@@ -144,6 +144,7 @@
     --cui-popup-title-line-height: 1.6;
     --cui-popup-title-letter-spacing: -0.0056em;
     --cui-popup-description-foreground: var(--secondary-foreground);
+    --cui-popup-description-font-size: var(--text-body-lg);
     --cui-popup-close-inset: 0.75rem;
   }
 
@@ -152,7 +153,6 @@
       [data-control-family="popup"][data-popup-kind="dialog"][data-slot="description"],
       [data-control-family="popup"][data-popup-kind="alert-dialog"][data-slot="description"]
     ) {
-    font-size: var(--text-body-lg);
     line-height: 1.5;
   }
 

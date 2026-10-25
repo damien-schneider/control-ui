@@ -19,6 +19,7 @@
     --cui-avatar-fallback-background: var(--muted);
     --cui-avatar-fallback-foreground: var(--muted-foreground);
     border-radius: var(--cui-avatar-radius);
+    container-type: inline-size;
   }
 
   :where([data-control-family="avatar"][data-slot="root"])::after {
@@ -80,6 +81,7 @@
     border-radius: inherit;
     background: var(--cui-avatar-fallback-background);
     color: var(--cui-avatar-fallback-foreground);
+    font-size: max(var(--text-micro), 37.5cqi);
     font-weight: var(--font-weight-medium);
   }
 }

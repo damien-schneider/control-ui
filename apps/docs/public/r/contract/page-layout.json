@@ -55,6 +55,12 @@
       "defaultValue": "calc(var(--spacing) * 4)"
     },
     {
+      "name": "--cui-page-layout-title-font-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--text-heading-1)"
+    },
+    {
       "name": "--cui-page-layout-header-row-gap",
       "syntax": "<length-percentage>",
       "initialValue": "0px",

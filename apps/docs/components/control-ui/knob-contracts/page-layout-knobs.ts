@@ -8,6 +8,7 @@ export const pageLayoutKnobs = [
   "--cui-page-layout-header-start-gap",
   "--cui-page-layout-header-gap",
   "--cui-page-layout-header-column-gap",
+  "--cui-page-layout-title-font-size",
   "--cui-page-layout-header-row-gap",
   "--cui-page-layout-size",
   "--cui-page-layout-sticky-gap",

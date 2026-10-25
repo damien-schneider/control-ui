@@ -38,6 +38,7 @@
     --cui-sidebar-inner-border-width: 0px;
     --cui-sidebar-inner-radius: 0px;
     --cui-sidebar-inner-shadow: none;
+    --cui-sidebar-container-border-width: 1px;
     --cui-sidebar-header-background: transparent;
     --cui-sidebar-header-shadow: 0 0 transparent;
     --cui-sidebar-header-border-width: 1px;
@@ -88,11 +89,11 @@
   }
 
   :where([data-control-family="sidebar"][data-slot="root"][data-variant="sidebar"][data-side="left"] [data-slot="container"]) {
-    border-inline-end: 1px solid var(--sidebar-border);
+    border-inline-end: var(--cui-sidebar-container-border-width) solid var(--sidebar-border);
   }
 
   :where([data-control-family="sidebar"][data-slot="root"][data-variant="sidebar"][data-side="right"] [data-slot="container"]) {
-    border-inline-start: 1px solid var(--sidebar-border);
+    border-inline-start: var(--cui-sidebar-container-border-width) solid var(--sidebar-border);
   }
 
   :where([data-control-family="sidebar"][data-slot="inner"]) {
@@ -132,12 +133,6 @@
   }
 }
 
-@property --cui-sidebar-rail-divider-background {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
 @property --cui-sidebar-wrapper-background {
   syntax: "<color>";
   inherits: true;
@@ -169,6 +164,12 @@
 @property --cui-sidebar-inner-backdrop-filter {
   syntax: "*";
   inherits: true;
+}
+
+@property --cui-sidebar-container-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-sidebar-inner-border-width {

@@ -60,7 +60,7 @@ export function CommandDialog({
           data-popup-kind="command"
           data-control-family="popup"
           data-slot="dialog-root"
-          className={cn("grid grid-rows-[auto_1fr] in-data-[starting-style]:grid-rows-[auto_0fr]", commandProps?.className)}
+          className={cn("grid grid-rows-[auto_1fr]", commandProps?.className)}
         >
           {children}
         </Command>
