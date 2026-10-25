@@ -47,17 +47,17 @@ function ContrastSample({ result }: { result: ThemeAuditResult }) {
       className="inline-flex size-9 items-center justify-center overflow-hidden rounded-[var(--radius-control)] border border-border"
       style={{ background: result.surfacePaint ?? `var(${result.surface})` }}
     >
-      <Text
-        size="caption"
-        weight="semibold"
+      <span
         className="grid size-full place-items-center"
         style={{
           color: result.resolvedForeground ?? `var(${result.foreground})`,
           background: result.resolvedBackground ?? result.backgroundPaint ?? `var(${result.background})`,
         }}
       >
-        Aa
-      </Text>
+        <Text size="caption" weight="semibold">
+          Aa
+        </Text>
+      </span>
     </span>
   );
 }

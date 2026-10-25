@@ -49,12 +49,14 @@ Controls size their own text: pick the control's `size`, or set its `--cui-*-fon
 
 ## Lint rules
 
-Two rules keep call sites honest, shipped for Biome, ESLint, and oxlint from one policy (`lint/class-policy.mjs`):
+These rules keep call sites honest. They come from one policy (`lint/class-policy.mjs`) and ship for Biome, ESLint, and oxlint, except the stylesheet rule, which is Biome only:
 
-- `no-component-style-classes` errors when `className` on a component imported from `@ctrl-ui/react` (or a `components/control-ui` directory) sets what the component owns: colors, type, padding, borders, radius, shadows, state styles such as `hover:` and `data-[…]:`, or `!important`. Every `text-*` class counts except alignment and wrapping (`text-center`, `text-pretty`, `text-ellipsis`…). The rule also reads string constants the `className` references in the same file, and the `className` of the element passed to the component's `render` prop. Layout classes (`flex`, `gap-*`, widths, heights, margins, placement) stay allowed. Restyle through the component's props or its `--cui-*` knobs instead.
+- `no-component-style-classes` errors when `className` on a component imported from `@ctrl-ui/react` (or a `components/control-ui` directory) sets what the component owns: colors, type, padding, borders, radius, shadows, filters, state styles such as `hover:` and `data-[…]:`, arbitrary properties that paint (`[background:…]`), or `!important`. Every `text-*` class counts except alignment and wrapping (`text-center`, `text-pretty`, `text-ellipsis`…). The rule also reads string constants the `className` references in the same file, and the `className` of the element passed to the component's `render` prop. On any other element, it errors on classes that reach into a component's parts, such as `[&_[data-slot=trigger]]:` or `*:data-[slot=icon]:`. Layout classes (`flex`, `gap-*`, widths, heights, margins, placement) stay allowed. Restyle through the component's props or its `--cui-*` knobs instead.
+- `no-component-style-props` applies the same boundary to `style`: `--cui-*` knobs and layout keys pass, while paint keys error (`color`, `background`, `font*`, `padding*`, `border*`, `boxShadow`, `opacity`, `filter`…). It also checks same-file constant objects and the element passed to `render`. When the paint is data, such as a user-picked fill, put it on a plain element of your own and let the component inherit it.
+- `no-component-part-css` errors when a stylesheet paints a component part: a rule whose subject is `[data-slot]`, `[data-control-family]`, or another `[data-control…]` attribute, including nested `&` rules and `@apply`. Setting the part's `--cui-*` knobs and layout there stays allowed. The preset skips installed Control UI source under `components/control-ui`.
 - `no-raw-type-classes` errors on text sizes in any `className`: the type rungs, Tailwind's `text-xs`…`text-9xl`, and arbitrary `text-[13px]`. It reaches beyond Control UI, so adopt it folder by folder while you migrate.
 
-The Biome rules need Biome 2.4.11 or later; older versions fail with "Failed to compile the Grit plugin".
+The Biome rules need Biome 2.5.0 or later: the preset scopes the stylesheet rule with plugin `includes`.
 
 Biome, extending the shipped preset so rules added later arrive with the package update:
 
@@ -70,22 +72,31 @@ ESLint flat config:
 ```js
 import controlUi from "@ctrl-ui/react/eslint-plugin";
 
-export default [{ plugins: { "control-ui": controlUi }, rules: { "control-ui/no-component-style-classes": "error" } }];
+export default [
+  {
+    plugins: { "control-ui": controlUi },
+    rules: { "control-ui/no-component-style-classes": "error", "control-ui/no-component-style-props": "error" },
+  },
+];
 ```
 
 oxlint, through its JS plugin support:
 
 ```json
-{ "jsPlugins": ["@ctrl-ui/react/eslint-plugin"], "rules": { "control-ui/no-component-style-classes": "error" } }
+{
+  "jsPlugins": ["@ctrl-ui/react/eslint-plugin"],
+  "rules": { "control-ui/no-component-style-classes": "error", "control-ui/no-component-style-props": "error" }
+}
 ```
 
-When your app imports components through its own wrapper package or folder, declare that path so the rule follows those imports too:
+When your app imports components through its own wrapper package or folder, declare that path so the rules follow those imports too:
 
 ```js
-rules: { "control-ui/no-component-style-classes": ["error", { importSources: ["@acme/ui/components/"] }] }
+const options = { importSources: ["@acme/ui/components/"] };
+rules: { "control-ui/no-component-style-classes": ["error", options], "control-ui/no-component-style-props": ["error", options] }
 ```
 
-Biome's Grit plugins take no options, so the package ships `control-ui-grit` to write the rules with your paths. Run it on install so a package update regenerates them, gitignore `.control-ui`, and list `./.control-ui/no-component-style-classes.grit` under `plugins` in place of the preset:
+Biome's Grit plugins take no options, so the package ships `control-ui-grit` to write the rules with your paths. Run it on install so a package update regenerates them, gitignore `.control-ui`, and list the generated `no-component-style-classes.grit`, `no-component-style-props.grit`, and `no-component-part-css.grit` from `./.control-ui/` under `plugins` in place of the preset:
 
 ```json
 { "scripts": { "postinstall": "control-ui-grit --import-source=@acme/ui/components/ --out=.control-ui" } }

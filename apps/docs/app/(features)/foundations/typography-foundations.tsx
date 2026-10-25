@@ -25,9 +25,11 @@ function FontSpecimen({ role }: { role: string }) {
   const [ref, family] = useComputedReadout<HTMLParagraphElement>(readFirstFontFamily);
   return (
     <Specimen token={role} readout={family} description={contractDescription(role)}>
-      <Text ref={ref} as="p" size="heading-2" tone="foreground" className="truncate" style={{ fontFamily: `var(${role})` }}>
-        Aa Bb Gg 0123
-      </Text>
+      <div style={{ fontFamily: `var(${role})` }}>
+        <Text ref={ref} as="p" size="heading-2" tone="foreground" className="truncate">
+          Aa Bb Gg 0123
+        </Text>
+      </div>
     </Specimen>
   );
 }

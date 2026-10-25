@@ -54,8 +54,11 @@ function SurfaceSwatch({ role }: { role: string }) {
 function TextSwatch({ role }: { role: string }) {
   return (
     <Specimen token={role} description={contractDescription(role)}>
-      <div className="rounded-[var(--radius-panel)] bg-background px-4 py-3 ring-1 ring-inset ring-border">
-        <Text as="p" size="body-lg" style={{ color: `var(${role})` }}>
+      <div
+        className="rounded-[var(--radius-panel)] bg-background px-4 py-3 ring-1 ring-inset ring-border"
+        style={{ color: `var(${role})` }}
+      >
+        <Text as="p" size="body-lg">
           The quick brown fox
         </Text>
       </div>
@@ -67,9 +70,12 @@ function StatusSwatch({ role }: { role: string }) {
   const textRole = `${role}-text`;
   return (
     <Specimen token={role} companionTokens={[textRole]} description={contractDescription(role)}>
-      <div className="grid gap-3 rounded-[var(--radius-panel)] bg-background p-3 ring-1 ring-inset ring-border">
+      <div
+        className="grid gap-3 rounded-[var(--radius-panel)] bg-background p-3 ring-1 ring-inset ring-border"
+        style={{ color: `var(${textRole})` }}
+      >
         <span className="block h-6 rounded-[var(--radius-sm)]" style={{ background: `var(${role})` }} />
-        <Text as="p" size="body-lg" style={{ color: `var(${textRole})` }}>
+        <Text as="p" size="body-lg">
           The quick brown fox
         </Text>
       </div>

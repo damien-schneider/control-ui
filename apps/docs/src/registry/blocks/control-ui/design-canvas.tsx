@@ -436,7 +436,7 @@ function DesignCanvasLayerNode({ layer, selected, onSelect, onKeyDown, onLayerCh
       aria-pressed={interactive ? selected : undefined}
       aria-keyshortcuts={interactive ? LAYER_KEY_SHORTCUTS : undefined}
       data-selected={selected || undefined}
-      style={{ width: layer.width, height: layer.height, rotate: `${layer.rotation}deg`, opacity: layer.opacity / 100 }}
+      style={{ width: layer.width, height: layer.height, rotate: `${layer.rotation}deg` }}
       onPointerDown={onSelect}
       onKeyDown={onKeyDown}
       onPositionChange={onLayerChange && ((position) => onLayerChange({ ...layer, x: Math.round(position.x), y: Math.round(position.y) }))}
@@ -447,11 +447,20 @@ function DesignCanvasLayerNode({ layer, selected, onSelect, onKeyDown, onLayerCh
         </Text>
       ) : null}
       {layer.kind === "text" ? (
-        <Text as="p" size="heading-2" weight="normal" className="size-full overflow-hidden whitespace-nowrap" style={{ color: fillColor }}>
-          {layer.text}
-        </Text>
+        <div className="size-full" style={{ color: fillColor, opacity: layer.opacity / 100 }}>
+          <Text as="p" size="heading-2" weight="normal" className="size-full overflow-hidden whitespace-nowrap">
+            {layer.text}
+          </Text>
+        </div>
       ) : (
-        <div className="size-full" style={{ background: fillColor, borderRadius: layer.kind === "ellipse" ? "50%" : layer.cornerRadius }} />
+        <div
+          className="size-full"
+          style={{
+            background: fillColor,
+            borderRadius: layer.kind === "ellipse" ? "50%" : layer.cornerRadius,
+            opacity: layer.opacity / 100,
+          }}
+        />
       )}
       {selected ? (
         <>

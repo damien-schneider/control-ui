@@ -1,3 +1,10 @@
 {
-  "plugins": ["./node_modules/@ctrl-ui/react/lint/no-component-style-classes.grit"]
+  "plugins": [
+    "./node_modules/@ctrl-ui/react/lint/no-component-style-classes.grit",
+    "./node_modules/@ctrl-ui/react/lint/no-component-style-props.grit",
+    {
+      "path": "./node_modules/@ctrl-ui/react/lint/no-component-part-css.grit",
+      "includes": ["**/*.css", "!**/components/control-ui/**"]
+    }
+  ]
 }

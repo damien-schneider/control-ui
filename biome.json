@@ -199,6 +199,9 @@
         },
         {
           "path": "./packages/components/lint/no-component-style-classes.grit"
+        },
+        {
+          "path": "./packages/components/lint/no-component-style-props.grit"
         }
       ]
     },

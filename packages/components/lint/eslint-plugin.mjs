@@ -1,6 +1,18 @@
-import { componentStyleClass, componentStyleMessage, controlUiImportPattern, rawTypeClass, rawTypeMessage } from "./class-policy.mjs";
+import {
+  componentPartClass,
+  componentPartMessage,
+  componentStyleClass,
+  componentStyleKey,
+  componentStyleMessage,
+  componentStylePropMessage,
+  controlUiImportPattern,
+  rawTypeClass,
+  rawTypeMessage,
+} from "./class-policy.mjs";
 
 const componentStyle = new RegExp(componentStyleClass);
+const componentPart = new RegExp(componentPartClass);
+const componentStyleProperty = new RegExp(`^(?:${componentStyleKey})$`);
 const rawType = new RegExp(rawTypeClass);
 
 function stringsIn(node) {
@@ -20,19 +32,30 @@ function referencedNames(node) {
   return Object.entries(node).flatMap(([key, child]) => (key === "parent" ? [] : referencedNames(child)));
 }
 
-const classLiteralTypes = new Set(["Literal", "TemplateLiteral", "ObjectExpression"]);
-
-function classLiteral(init) {
-  const value = init?.type === "TSAsExpression" || init?.type === "TSSatisfiesExpression" ? init.expression : init;
-  return classLiteralTypes.has(value?.type) ? value : undefined;
+function propertyKeysIn(node) {
+  if (Array.isArray(node)) return node.flatMap(propertyKeysIn);
+  if (!node || typeof node !== "object") return [];
+  const key = node.type === "Property" && !node.computed ? [node.key.name ?? node.key.value] : [];
+  return [...key, ...Object.entries(node).flatMap(([name, child]) => (name === "parent" ? [] : propertyKeysIn(child)))];
 }
 
-function isClassName(attribute) {
-  return attribute.name.name === "className" && Boolean(attribute.value);
+const classLiteralTypes = new Set(["Literal", "TemplateLiteral", "ObjectExpression"]);
+const styleLiteralTypes = new Set(["ObjectExpression"]);
+
+function literalOf(init, types) {
+  const value = init?.type === "TSAsExpression" || init?.type === "TSSatisfiesExpression" ? init.expression : init;
+  return types.has(value?.type) ? value : undefined;
+}
+
+function insideRenderProp(node) {
+  for (let parent = node.parent; parent; parent = parent.parent) {
+    if (parent.type === "JSXAttribute" && parent.name.name === "render") return true;
+  }
+  return false;
 }
 
 function classNameMatches(attribute, pattern) {
-  return isClassName(attribute) && stringsIn(attribute.value).some((text) => pattern.test(text));
+  return attribute.name.name === "className" && Boolean(attribute.value) && stringsIn(attribute.value).some((text) => pattern.test(text));
 }
 
 function elementRootName(name) {
@@ -59,50 +82,75 @@ function controlUiLocalNames(program, controlUiImport) {
   return names;
 }
 
-const noComponentStyleClasses = {
-  meta: {
-    type: "problem",
-    docs: { description: "Keep className on Control UI components to layout; the component owns its look." },
-    messages: { componentStyle: componentStyleMessage },
-    schema: [
-      {
-        type: "object",
-        properties: { importSources: { type: "array", items: { type: "string" } } },
-        additionalProperties: false,
-      },
-    ],
-  },
-  create(context) {
-    const controlUiImport = new RegExp(`^${controlUiImportPattern(context.options[0]?.importSources)}`);
-    let controlUiNames = new Set();
-    const isControlUi = (element) => element !== undefined && controlUiNames.has(elementRootName(element.name));
-    const constantClasses = new Map();
-    const componentClassNames = [];
-    return {
-      Program(program) {
-        controlUiNames = controlUiLocalNames(program, controlUiImport);
-      },
-      VariableDeclarator(declarator) {
-        const literal = classLiteral(declarator.init);
-        if (declarator.parent.kind !== "const" || declarator.id.type !== "Identifier" || !literal) return;
-        constantClasses.set(declarator.id.name, [...(constantClasses.get(declarator.id.name) ?? []), ...stringsIn(literal)]);
-      },
-      JSXAttribute(attribute) {
-        if (!isClassName(attribute)) return;
-        const element = attribute.parent;
-        if (isControlUi(element) || isControlUi(renderPropOwner(element.parent))) componentClassNames.push(attribute);
-      },
-      "Program:exit"() {
-        for (const attribute of componentClassNames) {
-          const constants = referencedNames(attribute.value).flatMap((name) => constantClasses.get(name) ?? []);
-          if ([...stringsIn(attribute.value), ...constants].some((text) => componentStyle.test(text))) {
-            context.report({ node: attribute, messageId: "componentStyle" });
+function componentAttributeRule({ attribute, description, message, literalTypes, valuesIn, pattern, part }) {
+  return {
+    meta: {
+      type: "problem",
+      docs: { description },
+      messages: { component: message, ...(part && { part: part.message }) },
+      schema: [
+        {
+          type: "object",
+          properties: { importSources: { type: "array", items: { type: "string" } } },
+          additionalProperties: false,
+        },
+      ],
+    },
+    create(context) {
+      const controlUiImport = new RegExp(`^${controlUiImportPattern(context.options[0]?.importSources)}`);
+      let controlUiNames = new Set();
+      const isControlUi = (element) => element !== undefined && controlUiNames.has(elementRootName(element.name));
+      const constants = new Map();
+      const checks = [];
+      return {
+        Program(program) {
+          controlUiNames = controlUiLocalNames(program, controlUiImport);
+        },
+        VariableDeclarator(declarator) {
+          const literal = literalOf(declarator.init, literalTypes);
+          if (declarator.parent.kind !== "const" || declarator.id.type !== "Identifier" || !literal) return;
+          constants.set(declarator.id.name, [...(constants.get(declarator.id.name) ?? []), ...valuesIn(literal)]);
+        },
+        JSXAttribute(node) {
+          if (node.name.name !== attribute || !node.value) return;
+          const element = node.parent;
+          if (isControlUi(element) || isControlUi(renderPropOwner(element.parent))) {
+            checks.push({ node, messageId: "component", pattern });
+          } else if (part && !insideRenderProp(node)) {
+            checks.push({ node, messageId: "part", pattern: part.pattern });
           }
-        }
-      },
-    };
-  },
-};
+        },
+        "Program:exit"() {
+          for (const check of checks) {
+            const referenced = referencedNames(check.node.value).flatMap((name) => constants.get(name) ?? []);
+            if ([...valuesIn(check.node.value), ...referenced].some((value) => check.pattern.test(value))) {
+              context.report({ node: check.node, messageId: check.messageId });
+            }
+          }
+        },
+      };
+    },
+  };
+}
+
+const noComponentStyleClasses = componentAttributeRule({
+  attribute: "className",
+  description: "Keep className on Control UI components to layout, and off their parts; the component owns its look.",
+  message: componentStyleMessage,
+  literalTypes: classLiteralTypes,
+  valuesIn: stringsIn,
+  pattern: componentStyle,
+  part: { message: componentPartMessage, pattern: componentPart },
+});
+
+const noComponentStyleProps = componentAttributeRule({
+  attribute: "style",
+  description: "Keep style on Control UI components to --cui-* knobs and layout; the component owns its look.",
+  message: componentStylePropMessage,
+  literalTypes: styleLiteralTypes,
+  valuesIn: propertyKeysIn,
+  pattern: componentStyleProperty,
+});
 
 const noRawTypeClasses = {
   meta: {
@@ -124,6 +172,7 @@ const plugin = {
   meta: { name: "control-ui" },
   rules: {
     "no-component-style-classes": noComponentStyleClasses,
+    "no-component-style-props": noComponentStyleProps,
     "no-raw-type-classes": noRawTypeClasses,
   },
 };

@@ -29,17 +29,18 @@ Control UI reaches a repository one of two ways. Installed source: the component
 ## Class names on components
 
 - className on a Control UI component only places it: flex and grid behavior, gap, width and height, margin, position, overflow, z-index. Everything the component paints is the component's: color, background, type, padding, border, radius, shadow, ring, outline, opacity, state variants such as hover:, focus:, data-[…]: and aria-[…]:, arbitrary [&…] selectors, and !important.
+- style on a component carries --cui-* knobs and layout only; color, background, font, padding, border, radius, shadow, opacity and filter keys are the component's. Stylesheets never paint a part through a data-slot or data-control selector, and a parent never reaches into parts with classes such as [&_[data-slot=…]]: or *:data-[slot=…]:.
 - To change how a component looks, use its props (variant, tone, size, density, padding), set one of its --cui-* knobs through style or in the theme, or compose the part made for it. When none of those exists, the component is missing a prop, variant, or default: say so instead of overriding it at the call site.
-- Plain elements around components stay yours to style. Wrapping a component in a div only to paint it the same way is the same override.
-- Enforce this with a lint rule, wired once in the linter the repository already runs:
-  - Biome: `"extends": ["@ctrl-ui/react/biome"]` in biome.json, or list `./node_modules/@ctrl-ui/react/lint/no-component-style-classes.grit` under plugins. Rules added in later versions then arrive with the package update.
-  - ESLint (flat config): `import controlUi from "@ctrl-ui/react/eslint-plugin"`, register it under plugins as "control-ui", and turn on `control-ui/no-component-style-classes`.
-  - oxlint: `"jsPlugins": ["@ctrl-ui/react/eslint-plugin"]` in .oxlintrc.json, then the same rule name.
+- Plain elements around components stay yours to style. Wrapping a component in a div only to paint it the same way is the same override. Paint that is data, such as a user-picked fill or a color or font specimen, goes on a plain element of your own and the component inherits it.
+- Enforce this with the lint rules, wired once in the linter the repository already runs:
+  - Biome 2.5 or later: `"extends": ["@ctrl-ui/react/biome"]` in biome.json. It runs no-component-style-classes, no-component-style-props, and no-component-part-css, the stylesheet rule, which skips installed source under components/control-ui. Rules added in later versions then arrive with the package update.
+  - ESLint (flat config): `import controlUi from "@ctrl-ui/react/eslint-plugin"`, register it under plugins as "control-ui", and turn on `control-ui/no-component-style-classes` and `control-ui/no-component-style-props`. The stylesheet rule is Biome only.
+  - oxlint: `"jsPlugins": ["@ctrl-ui/react/eslint-plugin"]` in .oxlintrc.json, then the same rule names.
   - Installed source has no package to load rules from: add `@ctrl-ui/react` as a devDependency for the rules alone, or port them.
   - Any other linter: port the rule from `@ctrl-ui/react/lint/class-policy.mjs`, which holds the patterns and messages. Keep it scoped to JSX elements imported from `@ctrl-ui/react` or the control-ui directory, and test the string literals inside className.
 - The rule only follows imports from Control UI. When the app imports components through its own package or folder that re-exports or wraps them (`@acme/ui/components/button`), declare that path as an import source, or every call site stays invisible:
-  - ESLint and oxlint: `"control-ui/no-component-style-classes": ["error", { "importSources": ["@acme/ui/components/"] }]`.
-  - Biome: Grit rules take no options, so generate them with the path. Add `"postinstall": "control-ui-grit --import-source=@acme/ui/components/ --out=.control-ui"` to the root package.json, list `./.control-ui/no-component-style-classes.grit` under plugins instead of the preset, and gitignore `.control-ui`. Every install, including a Control UI update, regenerates the rules.
+  - ESLint and oxlint: `["error", { "importSources": ["@acme/ui/components/"] }]` on both component rules.
+  - Biome: Grit rules take no options, so generate them with the path. Add `"postinstall": "control-ui-grit --import-source=@acme/ui/components/ --out=.control-ui"` to the root package.json, list the generated no-component-style-classes.grit, no-component-style-props.grit, and no-component-part-css.grit from `./.control-ui/` under plugins instead of the preset, and gitignore `.control-ui`. Every install, including a Control UI update, regenerates the rules.
   - Keep the wrappers themselves layout-only: a wrapper that paints the component is the same override.
 - When the rule surfaces existing violations, fix them through props and knobs. A large backlog is enabled folder by folder through the linter's overrides, never silenced with suppressions.
 - `no-raw-type-classes` is the stricter companion for text sizes on every element, components or not. Adopt it folder by folder: it flags all hand-sized text, not only Control UI.

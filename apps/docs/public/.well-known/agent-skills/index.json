@@ -6,7 +6,7 @@
       "description": "Build, theme, lint, and update UI with Control UI in this repository, whether installed as source or as the @ctrl-ui/react package. Use when adding or migrating screens, styling a Control UI component, writing or applying a theme, setting up lint rules, or updating Control UI.",
       "type": "skill-md",
       "url": "https://control-ui.dev/r/control-ui-skill.md",
-      "digest": "sha256:2b7b6d82c9816b4f8b125e1fede28f014be812a7456a06dcfb6036397541394e"
+      "digest": "sha256:ec9db05c6313f917b4493515534d86f6ad2aef633814d91a2bf686e72ae014f4"
     }
   ]
 }

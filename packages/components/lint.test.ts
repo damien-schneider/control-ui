@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { gritRules } from "./lint/grit-rules.mjs";
 
-type Rule = "no-component-style-classes" | "no-raw-type-classes";
+type Rule = "no-component-style-classes" | "no-component-style-props" | "no-raw-type-classes";
 
 const packageRoot = import.meta.dir;
 const binary = (name: string) => path.join(packageRoot, "node_modules/.bin", name);
@@ -23,21 +23,26 @@ function ruleSetting({ importSources }: Setup) {
 }
 
 function biomeConfig({ rule, importSources }: Setup) {
-  if (!importSources) {
-    return rule === "no-component-style-classes"
-      ? { extends: ["@ctrl-ui/react/biome"] }
-      : { plugins: [`./node_modules/@ctrl-ui/react/lint/${rule}.grit`] };
-  }
+  if (!importSources) return { plugins: [`./node_modules/@ctrl-ui/react/lint/${rule}.grit`] };
   const sourceArguments = importSources.map((source) => `--import-source=${source}`);
   spawnSync("node", ["node_modules/@ctrl-ui/react/lint/write-grit-rules.mjs", ...sourceArguments, "--out=.control-ui"], { cwd: consumer });
   return { plugins: [`./.control-ui/${rule}.grit`] };
 }
 
+function biomeFlaggedLines(config: object, file: string) {
+  writeFileSync(
+    path.join(consumer, "biome.json"),
+    JSON.stringify({ ...config, linter: { rules: { recommended: false } }, css: { parser: { tailwindDirectives: true } } }),
+  );
+  const result = spawnSync(biome, ["lint", "--max-diagnostics=100", file], { cwd: consumer, encoding: "utf8" });
+  return [...`${result.stdout}${result.stderr}`.matchAll(/(\S+):(\d+):\d+ plugin/g)].map((match) =>
+    match[1] === file ? Number(match[2]) : -1,
+  );
+}
+
 const linters = {
   biome(setup: Setup) {
-    writeFileSync(path.join(consumer, "biome.json"), JSON.stringify({ ...biomeConfig(setup), linter: { rules: { recommended: false } } }));
-    const result = spawnSync(biome, ["lint", "--max-diagnostics=100", "sample.jsx"], { cwd: consumer, encoding: "utf8" });
-    return [...`${result.stdout}${result.stderr}`.matchAll(/sample\.jsx:(\d+):\d+ plugin/g)].map((match) => Number(match[1]));
+    return biomeFlaggedLines(biomeConfig(setup), "sample.jsx");
   },
   eslint(setup: Setup) {
     writeFileSync(
@@ -228,6 +233,115 @@ test("follows a local wrapper package once its import path is declared, in every
   expect(flaggedLinesPerLinter({ rule: "no-component-style-classes", importSources: ["@acme/ui/components/"] }, lines)).toEqual(
     everyLinter([3]),
   );
+});
+
+test("flags arbitrary paint properties and filter utilities on Control UI components in every linter", () => {
+  const lines = [
+    ...controlUiImports,
+    `export const a = <Button className="[background:var(--brand)]" />;`,
+    `export const b = <Text className="hover:[color:red]" />;`,
+    `export const c = <Panel className="[box-shadow:none] w-full" />;`,
+    `export const d = <Sidebar className="grayscale" />;`,
+    `export const e = <Item.Root className="blur-sm brightness-90" />;`,
+  ];
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-classes" }, lines)).toEqual(everyLinter([7, 8, 9, 10, 11]));
+});
+
+test("leaves arbitrary layout properties and knobs on Control UI components alone in every linter", () => {
+  const lines = [
+    ...controlUiImports,
+    `export const a = <Text className="[overflow-wrap:anywhere] [grid-area:main]" />;`,
+    `export const b = <Panel className="[--cui-card-padding:0] supports-[color:oklch(0_0_0)]:flex contrast-more:flex" />;`,
+  ];
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-classes" }, lines)).toEqual(everyLinter([]));
+});
+
+test("flags classes that reach into Control UI parts from any element, once, in every linter", () => {
+  const lines = [
+    ...controlUiImports,
+    `const PARTS = "[&_[data-slot=card-header]]:px-0";`,
+    `export const a = <div className="[&_[data-slot=trigger]]:bg-muted">x</div>;`,
+    `export const b = <section className="**:data-[slot=icon]:size-3">x</section>;`,
+    `export const c = <Section className="*:data-[control-family=button]:rounded-none" />;`,
+    "export const d = <div className={PARTS} />;",
+    `export const e = <Panel className="[&_[data-slot=card-header]]:px-0" />;`,
+    `export const f = <Button render={<a className="[&>[data-control]]:p-0" />} />;`,
+  ];
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-classes" }, lines)).toEqual(everyLinter([8, 9, 10, 11, 12, 13]));
+});
+
+test("leaves descendant variants that do not target Control UI parts alone in every linter", () => {
+  const lines = [
+    ...controlUiImports,
+    `export const a = <div className="**:selection:bg-muted [&_svg]:size-4 *:min-w-0">x</div>;`,
+    `export const b = <div className="has-data-[slot=icon]:pl-2 group-data-[slot=card]:flex **:data-slate-placeholder:top-0">x</div>;`,
+  ];
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-classes" }, lines)).toEqual(everyLinter([]));
+});
+
+test("flags paint properties in style on Control UI components and their rendered elements in every linter", () => {
+  const lines = [
+    ...controlUiImports,
+    `const TINT = { backgroundColor: "var(--brand)" };`,
+    `export const a = <Button style={{ color: "red" }}>x</Button>;`,
+    `export const b = <Panel style={{ "--cui-card-padding": 0, borderRadius: 0 }} />;`,
+    "export const c = <Text style={open ? { fontWeight: 600 } : undefined} />;",
+    "export const d = <Sidebar style={TINT} />;",
+    `export const e = <Button render={<a style={{ textDecoration: "none" }} />} />;`,
+    `export const f = <Item.Root style={{ ["padding"]: 0, WebkitMaskImage: "none" }} />;`,
+    "export const g = <Panel style={{ boxShadow }} />;",
+  ];
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-props" }, lines)).toEqual(everyLinter([8, 9, 10, 11, 12, 13, 14]));
+});
+
+test("leaves knobs, layout, and other elements' style alone in every linter", () => {
+  const lines = [
+    ...controlUiImports,
+    `const LAYOUT = { maxHeight: 320, width: "100%" };`,
+    `export const a = <Button style={{ "--cui-button-foreground": "var(--muted-foreground)" }} />;`,
+    `export const b = <Panel style={{ gridArea: "main", viewTransitionName: "card", columns: 2 }} />;`,
+    "export const c = <Sidebar style={LAYOUT} />;",
+    `export const d = <div style={{ color: "red" }} />;`,
+    `export const e = <Section style={{ color: "red" }} />;`,
+  ];
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-props" }, lines)).toEqual(everyLinter([]));
+});
+
+test("flags stylesheets that paint Control UI parts, and leaves knobs, layout and own elements alone, in Biome", () => {
+  writeFileSync(
+    path.join(consumer, "app.css"),
+    [
+      `[data-slot="card-header"]:hover { color: red; translate: 0 1px; --cui-card-padding: 0; }`,
+      `[data-control-family="button"] .brand-mark { color: red; }`,
+      `.toolbar { & [data-control-family="button"] { background: none; } }`,
+      `[data-slot="item"] { &:hover { padding: 0; } .meta { padding: 0; } }`,
+      `[data-slot="icon"] { @apply bg-muted p-1; }`,
+      `[data-slot="icon"] { @apply size-4 shrink-0; }`,
+      `.brand-mark, [data-control="true"]::after { border-radius: 0; }`,
+    ].join("\n"),
+  );
+  expect(biomeFlaggedLines({ plugins: ["./node_modules/@ctrl-ui/react/lint/no-component-part-css.grit"] }, "app.css")).toEqual([
+    1, 3, 4, 5, 7,
+  ]);
+});
+
+test("the Biome preset runs every component rule and skips installed Control UI source", () => {
+  writeFileSync(
+    path.join(consumer, "sample.jsx"),
+    [
+      `import { Button } from "@ctrl-ui/react/ui/button";`,
+      `export const a = <Button className="bg-muted" />;`,
+      `export const b = <Button style={{ color: "red" }} />;`,
+    ].join("\n"),
+  );
+  const partCss = `[data-control-family="button"] { background: none; }`;
+  writeFileSync(path.join(consumer, "app.css"), partCss);
+  mkdirSync(path.join(consumer, "components/control-ui/styles"), { recursive: true });
+  writeFileSync(path.join(consumer, "components/control-ui/styles/button.css"), partCss);
+  const preset = { extends: ["@ctrl-ui/react/biome"] };
+  expect(biomeFlaggedLines(preset, "sample.jsx")).toEqual([2, 3]);
+  expect(biomeFlaggedLines(preset, "app.css")).toEqual([1]);
+  expect(biomeFlaggedLines(preset, "components/control-ui/styles/button.css")).toEqual([]);
 });
 
 test("flags type rungs and Tailwind font sizes in className on any element in every linter", () => {
