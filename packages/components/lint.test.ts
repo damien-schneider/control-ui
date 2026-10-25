@@ -109,6 +109,114 @@ test("leaves layout classes, components from elsewhere, and non-literal classes 
   expect(flaggedLinesPerLinter({ rule: "no-component-style-classes" }, lines)).toEqual(everyLinter([]));
 });
 
+test("flags every text-* class but alignment and wrapping on Control UI components in every linter", () => {
+  const lines = [
+    ...controlUiImports,
+    `export const a = <Button className="mb-6 text-xs">x</Button>;`,
+    `export const b = <Text className="text-micro" />;`,
+    `export const c = <Panel className="min-w-0 text-label" />;`,
+    `export const d = <CardHeader className="text-[13px]" />;`,
+    `export const e = <Button className={entry.saved ? "text-brand" : ""} />;`,
+    `export const f = <Sidebar className="md:text-xl" />;`,
+    `export const g = <Item.Root className="text-shadow-sm" />;`,
+    `export const h = <Text className="text-centered text-balanced" />;`,
+  ];
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-classes" }, lines)).toEqual(everyLinter([7, 8, 9, 10, 11, 12, 13, 14]));
+});
+
+test("flags form-state and pseudo-element variants and paint utilities outside the core list in every linter", () => {
+  const lines = [
+    ...controlUiImports,
+    `export const a = <Button className="invalid:mt-1" />;`,
+    `export const b = <Sidebar className="starting:translate-y-2" />;`,
+    `export const c = <Text className="selection:w-full" />;`,
+    `export const d = <Panel className="drop-shadow-md" />;`,
+    `export const e = <Panel className="inset-shadow-sm inset-0" />;`,
+    `export const f = <Button className="caret-primary accent-brand" />;`,
+    `export const g = <Text className="antialiased overline" />;`,
+  ];
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-classes" }, lines)).toEqual(everyLinter([7, 8, 9, 10, 11, 12, 13]));
+});
+
+test("leaves text alignment, wrapping, truncation and knob classes alone on Control UI components in every linter", () => {
+  const lines = [
+    ...controlUiImports,
+    `export const a = <Panel className="text-left text-center text-right text-justify text-start text-end" />;`,
+    `export const b = <Text className="text-wrap text-nowrap text-balance text-pretty text-ellipsis text-clip truncate" />;`,
+    `export const c = <Button className="md:text-center [--cui-button-foreground:var(--muted-foreground)]" />;`,
+    `export const d = <Panel className="max-md:hidden supports-[display:grid]:grid contrast-more:flex inset-x-0 min-[600px]:w-1/2" />;`,
+  ];
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-classes" }, lines)).toEqual(everyLinter([]));
+});
+
+test("flags style classes a Control UI className reads from same-module constants in every linter", () => {
+  const lines = [
+    ...controlUiImports,
+    `const TRIGGER_CLASS = "w-full justify-between group-data-[collapsible=icon]:p-0";`,
+    `const CELL_CLASS = { code: "font-mono text-label text-muted-foreground", name: "min-w-0" };`,
+    "const PAD = `px-4`;",
+    "export const a = <Button className={TRIGGER_CLASS}>x</Button>;",
+    `export const b = <Text className={cn("align-top", CELL_CLASS[column.kind])}>x</Text>;`,
+    "export const c = <Panel className={active ? PAD : undefined} />;",
+    "export const d = <CardHeader className={open && CELL_CLASS.code} />;",
+    `export const e = <Sidebar className={cn(["flex", PAD])} />;`,
+    "export const f = <Item.Root className={LATE} />;",
+    `const LATE = "rounded-md";`,
+    `export const g = <Button className={cn("flex", { "gap-2": open }, { "bg-muted": active })} />;`,
+  ];
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-classes" }, lines)).toEqual(everyLinter([10, 11, 12, 13, 14, 15, 17]));
+});
+
+test("leaves layout constants, mutable bindings, call results and outside values alone in every linter", () => {
+  const lines = [
+    ...controlUiImports,
+    `const LAYOUT = "flex w-full gap-2";`,
+    `let mutable = "bg-muted";`,
+    `const fromCall = cn("bg-muted");`,
+    `const PAINT = "bg-muted";`,
+    "export const a = <Button className={LAYOUT} />;",
+    "export const b = <Button className={mutable} />;",
+    "export const c = <Button className={fromCall} />;",
+    "export const d = <div className={PAINT} />;",
+    "export const e = <Button className={cn(props.className, layout.PAINT)} />;",
+  ];
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-classes" }, lines)).toEqual(everyLinter([]));
+});
+
+test("flags style classes on the element a Control UI component renders, once, in every linter", () => {
+  const lines = [
+    ...controlUiImports,
+    `import Link from "next/link";`,
+    `const TONE = "text-brand";`,
+    `export const a = <Button render={<a className="ml-2 shrink-0 text-muted-foreground hover:text-foreground" />} />;`,
+    `export const b = <Panel render={<button className="rounded-full bg-foreground/70 text-background opacity-0" />} />;`,
+    `export const c = <Button render={(props) => <button {...props} className="px-4" />} />;`,
+    `export const d = <Button render={(props) => (<a {...props} className="underline" />)} />;`,
+    `export const e = <Button render={(props) => { return <a {...props} className="font-medium" />; }} />;`,
+    `export const f = <Button render={<Panel className="shadow-none" />} />;`,
+    "export const g = <Button render={<a className={TONE} />} />;",
+    `export const h = <Button render={<Link href="/" className="bg-muted">x</Link>} />;`,
+    `export const i = <Button className="w-full" render={<a className="rounded-md" />} />;`,
+    `export const j = <Button className="bg-muted" render={<a className="rounded-md" />} />;`,
+  ];
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-classes" }, lines)).toEqual(
+    everyLinter([9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 18]),
+  );
+});
+
+test("leaves layout on rendered elements, their children, and render props of other elements alone in every linter", () => {
+  const lines = [
+    ...controlUiImports,
+    `export const a = <Button render={<a href="/" className="w-full" />} />;`,
+    `export const b = <Button render={<a href="/"><span className="text-base rounded bg-muted">x</span></a>} />;`,
+    `export const c = <Button render={(props) => <a {...props}><span className="bg-muted" /></a>} />;`,
+    `export const d = <div render={<a className="bg-muted" />} />;`,
+    `export const e = <Section render={<a className="bg-muted" />} />;`,
+    `export const f = <Panel><Section render={<a className="bg-muted" />} /></Panel>;`,
+  ];
+  expect(flaggedLinesPerLinter({ rule: "no-component-style-classes" }, lines)).toEqual(everyLinter([]));
+});
+
 test("follows a local wrapper package once its import path is declared, in every linter", () => {
   const lines = [
     `import { Button } from "@acme/ui/components/button";`,
@@ -132,8 +240,9 @@ test("flags type rungs and Tailwind font sizes in className on any element in ev
     `export const f = <h3 className="text-2xl">x</h3>;`,
     `export const g = <span className="text-[13px]">x</span>;`,
     `export const h = <p className="md:text-lg hover:!text-sm">x</p>;`,
+    `export const i = <p className={cn({ "text-sm": dense })}>x</p>;`,
   ];
-  expect(flaggedLinesPerLinter({ rule: "no-raw-type-classes" }, lines)).toEqual(everyLinter([1, 2, 3, 4, 5, 6, 7, 8]));
+  expect(flaggedLinesPerLinter({ rule: "no-raw-type-classes" }, lines)).toEqual(everyLinter([1, 2, 3, 4, 5, 6, 7, 8, 9]));
 });
 
 test("leaves alignment, wrapping, colors and look-alike utilities alone in every linter", () => {

@@ -11,15 +11,42 @@ function stringsIn(node) {
   return Object.entries(node).flatMap(([key, child]) => (key === "parent" ? [] : stringsIn(child)));
 }
 
+function referencedNames(node) {
+  if (Array.isArray(node)) return node.flatMap(referencedNames);
+  if (!node || typeof node !== "object") return [];
+  if (node.type === "Identifier") return [node.name];
+  if (node.type === "MemberExpression" && !node.computed) return referencedNames(node.object);
+  if (node.type === "Property" && !node.computed) return referencedNames(node.value);
+  return Object.entries(node).flatMap(([key, child]) => (key === "parent" ? [] : referencedNames(child)));
+}
+
+const classLiteralTypes = new Set(["Literal", "TemplateLiteral", "ObjectExpression"]);
+
+function classLiteral(init) {
+  const value = init?.type === "TSAsExpression" || init?.type === "TSSatisfiesExpression" ? init.expression : init;
+  return classLiteralTypes.has(value?.type) ? value : undefined;
+}
+
+function isClassName(attribute) {
+  return attribute.name.name === "className" && Boolean(attribute.value);
+}
+
 function classNameMatches(attribute, pattern) {
-  if (attribute.name.name !== "className" || !attribute.value) return false;
-  return stringsIn(attribute.value).some((text) => pattern.test(text));
+  return isClassName(attribute) && stringsIn(attribute.value).some((text) => pattern.test(text));
 }
 
 function elementRootName(name) {
   if (name.type === "JSXIdentifier") return name.name;
   if (name.type === "JSXMemberExpression") return elementRootName(name.object);
   return undefined;
+}
+
+function renderPropOwner(element) {
+  const body =
+    element.parent.type === "ReturnStatement" && element.parent.parent.type === "BlockStatement" ? element.parent.parent : element;
+  const value = body.parent.type === "ArrowFunctionExpression" ? body.parent : element;
+  const attribute = value.parent.type === "JSXExpressionContainer" ? value.parent.parent : undefined;
+  return attribute?.type === "JSXAttribute" && attribute.name.name === "render" ? attribute.parent : undefined;
 }
 
 function controlUiLocalNames(program, controlUiImport) {
@@ -48,13 +75,30 @@ const noComponentStyleClasses = {
   create(context) {
     const controlUiImport = new RegExp(`^${controlUiImportPattern(context.options[0]?.importSources)}`);
     let controlUiNames = new Set();
+    const isControlUi = (element) => element !== undefined && controlUiNames.has(elementRootName(element.name));
+    const constantClasses = new Map();
+    const componentClassNames = [];
     return {
       Program(program) {
         controlUiNames = controlUiLocalNames(program, controlUiImport);
       },
+      VariableDeclarator(declarator) {
+        const literal = classLiteral(declarator.init);
+        if (declarator.parent.kind !== "const" || declarator.id.type !== "Identifier" || !literal) return;
+        constantClasses.set(declarator.id.name, [...(constantClasses.get(declarator.id.name) ?? []), ...stringsIn(literal)]);
+      },
       JSXAttribute(attribute) {
-        if (!controlUiNames.has(elementRootName(attribute.parent.name))) return;
-        if (classNameMatches(attribute, componentStyle)) context.report({ node: attribute, messageId: "componentStyle" });
+        if (!isClassName(attribute)) return;
+        const element = attribute.parent;
+        if (isControlUi(element) || isControlUi(renderPropOwner(element.parent))) componentClassNames.push(attribute);
+      },
+      "Program:exit"() {
+        for (const attribute of componentClassNames) {
+          const constants = referencedNames(attribute.value).flatMap((name) => constantClasses.get(name) ?? []);
+          if ([...stringsIn(attribute.value), ...constants].some((text) => componentStyle.test(text))) {
+            context.report({ node: attribute, messageId: "componentStyle" });
+          }
+        }
       },
     };
   },

@@ -46,7 +46,7 @@ function KpiCard({ kpi }: { kpi: Kpi }) {
           <span className="tabular-nums">{kpi.format(last)}</span>
         </CardTitle>
         <CardAction>
-          <Text size="caption" weight="medium" className={change >= 0 ? "text-chart-green" : "text-chart-red"}>
+          <Text size="caption" weight="medium" tone={change >= 0 ? "success" : "destructive"}>
             {change >= 0 ? "+" : ""}
             {(change * 100).toFixed(1)}%
           </Text>

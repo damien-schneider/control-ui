@@ -1,6 +1,6 @@
 language js(typescript, jsx)
 
 JsxAttribute(name=`className`) as $attr where {
-  $attr <: contains or { JsxString(), JsStringLiteralExpression(), JsTemplateChunkElement() } as $text where { $text <: r"(?s).*(?:(?:^|[^\w-])text-(?:micro|caption|label|body|body-lg|heading-[1-4]|display|xs|sm|base|lg|xl|[2-9]xl)\b|(?:^|[^\w-])text-\[\d[^\]]*\]).*" },
+  $attr <: contains or { JsxString(), JsStringLiteralExpression(), JsTemplateChunkElement(), JsLiteralMemberName() as $memberName where { $memberName <: r"(?s)[\"'].*" } } as $text where { $text <: r"(?s).*(?:(?:^|[^\w-])text-(?:micro|caption|label|body|body-lg|heading-[1-4]|display|xs|sm|base|lg|xl|[2-9]xl)\b|(?:^|[^\w-])text-\[\d[^\]]*\]).*" },
   register_diagnostic(span=$attr, message="Text size in className: render text through <Text>/<Heading> on the type scale, or size the control with its size prop or --cui-*-font-size knob.", severity="error")
 }

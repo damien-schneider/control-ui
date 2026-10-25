@@ -1,13 +1,48 @@
 language js(typescript, jsx)
 
 or {
-  JsxSelfClosingElement(name=$name, attributes=$attributes),
-  JsxOpeningElement(name=$name, attributes=$attributes)
-} as $element where {
+  or {
+    JsxSelfClosingElement(name=$name, attributes=$attributes),
+    JsxOpeningElement(name=$name, attributes=$attributes)
+  } where {
+    $attributes <: some JsxAttribute(name=`className`) as $attr
+  },
+  JsxAttribute(name=`render`, initializer=JsxAttributeInitializerClause(value=JsxExpressionAttributeValue(expression=$rendered))) as $render where {
+    $rendered <: or {
+      JsxTagExpression(tag=$tag),
+      JsArrowFunctionExpression(body=or {
+        or { JsxTagExpression(tag=$tag), JsParenthesizedExpression(expression=JsxTagExpression(tag=$tag)) },
+        JsFunctionBody(statements=some JsReturnStatement(argument=or { JsxTagExpression(tag=$tag), JsParenthesizedExpression(expression=JsxTagExpression(tag=$tag)) }))
+      })
+    },
+    $tag <: or {
+      JsxSelfClosingElement(name=$renderedName, attributes=$renderedAttributes),
+      JsxElement(opening_element=JsxOpeningElement(name=$renderedName, attributes=$renderedAttributes))
+    },
+    $renderedAttributes <: some JsxAttribute(name=`className`) as $attr,
+    $render <: within or { JsxSelfClosingElement(name=$name), JsxOpeningElement(name=$name) },
+    $render <: within JsModule() as $module,
+    $renderedName <: r"([^.]+).*"($renderedComponent),
+    not $module <: contains JsImport() as $importRendered where {
+    $importRendered <: r"(?s).*(?:from\s+['\"](?:(?:@ctrl-ui/react|[^'\"]*components/control-ui)/)).*",
+    $importRendered <: contains JsIdentifierBinding() as $bindingRendered where { $bindingRendered <: $renderedComponent }
+  }
+  }
+} where {
   $name <: r"([A-Z]\w*)(?:\.[\w.]+)?"($component),
-  $attributes <: some JsxAttribute(name=`className`) as $attr,
-  $attr <: contains or { JsxString(), JsStringLiteralExpression(), JsTemplateChunkElement() } as $text where { $text <: r"(?s).*(?:[^\s\"'\x60]!(?:[\s\"'\x60]|$)|(?:^|[\s\"'\x60])![\w\[-]|(?:^|[^\w-])(?:p[xytrblse]?-|bg-[\w\[]|text-(?:foreground|muted|primary|secondary|accent|destructive|success|warning|info|card|popover|sidebar|background|canvas|current|inherit|transparent|white|black|[a-z]+-\d{2,3}|\[(?:#|oklch|rgb|hsl|lab|lch|color|var))|font-|leading-|tracking-|border|divide-|rounded|shadow|ring\b|ring-|outline|opacity-|backdrop-|fill-|stroke-|decoration-|underline|line-through|italic|uppercase|lowercase|capitalize|tabular-nums|(?:hover|focus|focus-visible|focus-within|active|disabled|open|checked|dark|placeholder|aria-[^:\s]*|data-[^:\s]*|group-[^:\s]*|peer-[^:\s]*|has-[^:\s]*|\*|\[&[^\s]*?\]):)).*" },
-  $element <: within JsModule() as $module,
+  $attr <: within JsModule() as $module,
+  $attr <: or {
+    contains or { JsxString(), JsStringLiteralExpression(), JsTemplateChunkElement(), JsLiteralMemberName() as $memberName where { $memberName <: r"(?s)[\"'].*" } } as $text where { $text <: r"(?s).*(?:[^\s\"'\x60]!(?:[\s\"'\x60]|$)|(?:^|[\s\"'\x60])![\w\[-]|(?:^|[^\w-])(?:p[xytrblse]?-|bg-[\w\[]|text-(?:(?:[\s\"'\x60]|$)|[^lcrjsewnbp\s\"'\x60]|l(?:(?:[\s\"'\x60]|$)|[^e\s\"'\x60]|e(?:(?:[\s\"'\x60]|$)|[^f\s\"'\x60]|f(?:(?:[\s\"'\x60]|$)|[^t\s\"'\x60]|t(?:[^\s\"'\x60]))))|c(?:(?:[\s\"'\x60]|$)|[^el\s\"'\x60]|e(?:(?:[\s\"'\x60]|$)|[^n\s\"'\x60]|n(?:(?:[\s\"'\x60]|$)|[^t\s\"'\x60]|t(?:(?:[\s\"'\x60]|$)|[^e\s\"'\x60]|e(?:(?:[\s\"'\x60]|$)|[^r\s\"'\x60]|r(?:[^\s\"'\x60])))))|l(?:(?:[\s\"'\x60]|$)|[^i\s\"'\x60]|i(?:(?:[\s\"'\x60]|$)|[^p\s\"'\x60]|p(?:[^\s\"'\x60]))))|r(?:(?:[\s\"'\x60]|$)|[^i\s\"'\x60]|i(?:(?:[\s\"'\x60]|$)|[^g\s\"'\x60]|g(?:(?:[\s\"'\x60]|$)|[^h\s\"'\x60]|h(?:(?:[\s\"'\x60]|$)|[^t\s\"'\x60]|t(?:[^\s\"'\x60])))))|j(?:(?:[\s\"'\x60]|$)|[^u\s\"'\x60]|u(?:(?:[\s\"'\x60]|$)|[^s\s\"'\x60]|s(?:(?:[\s\"'\x60]|$)|[^t\s\"'\x60]|t(?:(?:[\s\"'\x60]|$)|[^i\s\"'\x60]|i(?:(?:[\s\"'\x60]|$)|[^f\s\"'\x60]|f(?:(?:[\s\"'\x60]|$)|[^y\s\"'\x60]|y(?:[^\s\"'\x60])))))))|s(?:(?:[\s\"'\x60]|$)|[^t\s\"'\x60]|t(?:(?:[\s\"'\x60]|$)|[^a\s\"'\x60]|a(?:(?:[\s\"'\x60]|$)|[^r\s\"'\x60]|r(?:(?:[\s\"'\x60]|$)|[^t\s\"'\x60]|t(?:[^\s\"'\x60])))))|e(?:(?:[\s\"'\x60]|$)|[^nl\s\"'\x60]|n(?:(?:[\s\"'\x60]|$)|[^d\s\"'\x60]|d(?:[^\s\"'\x60]))|l(?:(?:[\s\"'\x60]|$)|[^l\s\"'\x60]|l(?:(?:[\s\"'\x60]|$)|[^i\s\"'\x60]|i(?:(?:[\s\"'\x60]|$)|[^p\s\"'\x60]|p(?:(?:[\s\"'\x60]|$)|[^s\s\"'\x60]|s(?:(?:[\s\"'\x60]|$)|[^i\s\"'\x60]|i(?:(?:[\s\"'\x60]|$)|[^s\s\"'\x60]|s(?:[^\s\"'\x60]))))))))|w(?:(?:[\s\"'\x60]|$)|[^r\s\"'\x60]|r(?:(?:[\s\"'\x60]|$)|[^a\s\"'\x60]|a(?:(?:[\s\"'\x60]|$)|[^p\s\"'\x60]|p(?:[^\s\"'\x60]))))|n(?:(?:[\s\"'\x60]|$)|[^o\s\"'\x60]|o(?:(?:[\s\"'\x60]|$)|[^w\s\"'\x60]|w(?:(?:[\s\"'\x60]|$)|[^r\s\"'\x60]|r(?:(?:[\s\"'\x60]|$)|[^a\s\"'\x60]|a(?:(?:[\s\"'\x60]|$)|[^p\s\"'\x60]|p(?:[^\s\"'\x60]))))))|b(?:(?:[\s\"'\x60]|$)|[^a\s\"'\x60]|a(?:(?:[\s\"'\x60]|$)|[^l\s\"'\x60]|l(?:(?:[\s\"'\x60]|$)|[^a\s\"'\x60]|a(?:(?:[\s\"'\x60]|$)|[^n\s\"'\x60]|n(?:(?:[\s\"'\x60]|$)|[^c\s\"'\x60]|c(?:(?:[\s\"'\x60]|$)|[^e\s\"'\x60]|e(?:[^\s\"'\x60])))))))|p(?:(?:[\s\"'\x60]|$)|[^r\s\"'\x60]|r(?:(?:[\s\"'\x60]|$)|[^e\s\"'\x60]|e(?:(?:[\s\"'\x60]|$)|[^t\s\"'\x60]|t(?:(?:[\s\"'\x60]|$)|[^t\s\"'\x60]|t(?:(?:[\s\"'\x60]|$)|[^y\s\"'\x60]|y(?:[^\s\"'\x60])))))))|font-|leading-|tracking-|border|divide-|rounded|shadow|inset-shadow|drop-shadow|ring\b|ring-|inset-ring|outline|opacity-|backdrop-|fill-|stroke-|caret-|accent-|scheme-|mask-|decoration-|underline|no-underline|overline|line-through|italic|not-italic|uppercase|lowercase|capitalize|normal-case|antialiased|subpixel-antialiased|ordinal|slashed-zero|(?:normal|lining|oldstyle|proportional|tabular)-nums|(?:diagonal|stacked)-fractions|(?:hover|focus|focus-visible|focus-within|active|disabled|enabled|open|checked|indeterminate|visited|target|invalid|valid|user-invalid|user-valid|required|optional|read-only|autofill|placeholder-shown|in-range|out-of-range|inert|starting|dark|placeholder|selection|marker|file|first-letter|first-line|backdrop|details-content|aria-[^:\s]*|data-[^:\s]*|group-[^:\s]*|peer-[^:\s]*|has-[^:\s]*|\*|\[&[^\s]*?\]):)).*" },
+    contains JsReferenceIdentifier() as $reference where {
+      $reference <: r"(.+)"($referenced),
+      $module <: contains JsVariableDeclaration(declarators=$declarators) as $declaration where {
+        $declaration <: r"(?s)const\s.*",
+        $declarators <: some JsVariableDeclarator(id=$referenced, initializer=JsInitializerClause(expression=$value)),
+        $value <: or { or { JsStringLiteralExpression(), JsTemplateExpression(), JsObjectExpression() }, TsAsExpression(expression=or { JsStringLiteralExpression(), JsTemplateExpression(), JsObjectExpression() }), TsSatisfiesExpression(expression=or { JsStringLiteralExpression(), JsTemplateExpression(), JsObjectExpression() }) },
+        $value <: contains or { JsxString(), JsStringLiteralExpression(), JsTemplateChunkElement(), JsLiteralMemberName() as $memberName where { $memberName <: r"(?s)[\"'].*" } } as $constText where { $constText <: r"(?s).*(?:[^\s\"'\x60]!(?:[\s\"'\x60]|$)|(?:^|[\s\"'\x60])![\w\[-]|(?:^|[^\w-])(?:p[xytrblse]?-|bg-[\w\[]|text-(?:(?:[\s\"'\x60]|$)|[^lcrjsewnbp\s\"'\x60]|l(?:(?:[\s\"'\x60]|$)|[^e\s\"'\x60]|e(?:(?:[\s\"'\x60]|$)|[^f\s\"'\x60]|f(?:(?:[\s\"'\x60]|$)|[^t\s\"'\x60]|t(?:[^\s\"'\x60]))))|c(?:(?:[\s\"'\x60]|$)|[^el\s\"'\x60]|e(?:(?:[\s\"'\x60]|$)|[^n\s\"'\x60]|n(?:(?:[\s\"'\x60]|$)|[^t\s\"'\x60]|t(?:(?:[\s\"'\x60]|$)|[^e\s\"'\x60]|e(?:(?:[\s\"'\x60]|$)|[^r\s\"'\x60]|r(?:[^\s\"'\x60])))))|l(?:(?:[\s\"'\x60]|$)|[^i\s\"'\x60]|i(?:(?:[\s\"'\x60]|$)|[^p\s\"'\x60]|p(?:[^\s\"'\x60]))))|r(?:(?:[\s\"'\x60]|$)|[^i\s\"'\x60]|i(?:(?:[\s\"'\x60]|$)|[^g\s\"'\x60]|g(?:(?:[\s\"'\x60]|$)|[^h\s\"'\x60]|h(?:(?:[\s\"'\x60]|$)|[^t\s\"'\x60]|t(?:[^\s\"'\x60])))))|j(?:(?:[\s\"'\x60]|$)|[^u\s\"'\x60]|u(?:(?:[\s\"'\x60]|$)|[^s\s\"'\x60]|s(?:(?:[\s\"'\x60]|$)|[^t\s\"'\x60]|t(?:(?:[\s\"'\x60]|$)|[^i\s\"'\x60]|i(?:(?:[\s\"'\x60]|$)|[^f\s\"'\x60]|f(?:(?:[\s\"'\x60]|$)|[^y\s\"'\x60]|y(?:[^\s\"'\x60])))))))|s(?:(?:[\s\"'\x60]|$)|[^t\s\"'\x60]|t(?:(?:[\s\"'\x60]|$)|[^a\s\"'\x60]|a(?:(?:[\s\"'\x60]|$)|[^r\s\"'\x60]|r(?:(?:[\s\"'\x60]|$)|[^t\s\"'\x60]|t(?:[^\s\"'\x60])))))|e(?:(?:[\s\"'\x60]|$)|[^nl\s\"'\x60]|n(?:(?:[\s\"'\x60]|$)|[^d\s\"'\x60]|d(?:[^\s\"'\x60]))|l(?:(?:[\s\"'\x60]|$)|[^l\s\"'\x60]|l(?:(?:[\s\"'\x60]|$)|[^i\s\"'\x60]|i(?:(?:[\s\"'\x60]|$)|[^p\s\"'\x60]|p(?:(?:[\s\"'\x60]|$)|[^s\s\"'\x60]|s(?:(?:[\s\"'\x60]|$)|[^i\s\"'\x60]|i(?:(?:[\s\"'\x60]|$)|[^s\s\"'\x60]|s(?:[^\s\"'\x60]))))))))|w(?:(?:[\s\"'\x60]|$)|[^r\s\"'\x60]|r(?:(?:[\s\"'\x60]|$)|[^a\s\"'\x60]|a(?:(?:[\s\"'\x60]|$)|[^p\s\"'\x60]|p(?:[^\s\"'\x60]))))|n(?:(?:[\s\"'\x60]|$)|[^o\s\"'\x60]|o(?:(?:[\s\"'\x60]|$)|[^w\s\"'\x60]|w(?:(?:[\s\"'\x60]|$)|[^r\s\"'\x60]|r(?:(?:[\s\"'\x60]|$)|[^a\s\"'\x60]|a(?:(?:[\s\"'\x60]|$)|[^p\s\"'\x60]|p(?:[^\s\"'\x60]))))))|b(?:(?:[\s\"'\x60]|$)|[^a\s\"'\x60]|a(?:(?:[\s\"'\x60]|$)|[^l\s\"'\x60]|l(?:(?:[\s\"'\x60]|$)|[^a\s\"'\x60]|a(?:(?:[\s\"'\x60]|$)|[^n\s\"'\x60]|n(?:(?:[\s\"'\x60]|$)|[^c\s\"'\x60]|c(?:(?:[\s\"'\x60]|$)|[^e\s\"'\x60]|e(?:[^\s\"'\x60])))))))|p(?:(?:[\s\"'\x60]|$)|[^r\s\"'\x60]|r(?:(?:[\s\"'\x60]|$)|[^e\s\"'\x60]|e(?:(?:[\s\"'\x60]|$)|[^t\s\"'\x60]|t(?:(?:[\s\"'\x60]|$)|[^t\s\"'\x60]|t(?:(?:[\s\"'\x60]|$)|[^y\s\"'\x60]|y(?:[^\s\"'\x60])))))))|font-|leading-|tracking-|border|divide-|rounded|shadow|inset-shadow|drop-shadow|ring\b|ring-|inset-ring|outline|opacity-|backdrop-|fill-|stroke-|caret-|accent-|scheme-|mask-|decoration-|underline|no-underline|overline|line-through|italic|not-italic|uppercase|lowercase|capitalize|normal-case|antialiased|subpixel-antialiased|ordinal|slashed-zero|(?:normal|lining|oldstyle|proportional|tabular)-nums|(?:diagonal|stacked)-fractions|(?:hover|focus|focus-visible|focus-within|active|disabled|enabled|open|checked|indeterminate|visited|target|invalid|valid|user-invalid|user-valid|required|optional|read-only|autofill|placeholder-shown|in-range|out-of-range|inert|starting|dark|placeholder|selection|marker|file|first-letter|first-line|backdrop|details-content|aria-[^:\s]*|data-[^:\s]*|group-[^:\s]*|peer-[^:\s]*|has-[^:\s]*|\*|\[&[^\s]*?\]):)).*" }
+      }
+    }
+  },
   $module <: contains JsImport() as $import where {
     $import <: r"(?s).*(?:from\s+['\"](?:(?:@ctrl-ui/react|[^'\"]*components/control-ui)/)).*",
     $import <: contains JsIdentifierBinding() as $binding where { $binding <: $component }

@@ -51,7 +51,7 @@ Controls size their own text: pick the control's `size`, or set its `--cui-*-fon
 
 Two rules keep call sites honest, shipped for Biome, ESLint, and oxlint from one policy (`lint/class-policy.mjs`):
 
-- `no-component-style-classes` errors when `className` on a component imported from `@ctrl-ui/react` (or a `components/control-ui` directory) sets what the component owns: colors, type, padding, borders, radius, shadows, state styles such as `hover:` and `data-[…]:`, or `!important`. Layout classes (`flex`, `gap-*`, widths, heights, margins, placement) stay allowed. Restyle through the component's props or its `--cui-*` knobs instead.
+- `no-component-style-classes` errors when `className` on a component imported from `@ctrl-ui/react` (or a `components/control-ui` directory) sets what the component owns: colors, type, padding, borders, radius, shadows, state styles such as `hover:` and `data-[…]:`, or `!important`. Every `text-*` class counts except alignment and wrapping (`text-center`, `text-pretty`, `text-ellipsis`…). The rule also reads string constants the `className` references in the same file, and the `className` of the element passed to the component's `render` prop. Layout classes (`flex`, `gap-*`, widths, heights, margins, placement) stay allowed. Restyle through the component's props or its `--cui-*` knobs instead.
 - `no-raw-type-classes` errors on text sizes in any `className`: the type rungs, Tailwind's `text-xs`…`text-9xl`, and arbitrary `text-[13px]`. It reaches beyond Control UI, so adopt it folder by folder while you migrate.
 
 Biome, extending the shipped preset so rules added later arrive with the package update:

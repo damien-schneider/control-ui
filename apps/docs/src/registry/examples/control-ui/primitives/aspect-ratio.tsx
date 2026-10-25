@@ -37,8 +37,8 @@ export function AspectRatioRuntimeExample() {
   return (
     <>
       <Slider value={ratio} onValueChange={setRatio} min={NARROWEST_RATIO} max={WIDEST_RATIO} step={0.01} aria-label="Aspect ratio" />
-      <AspectRatio ratio={ratio} className={surfaceClassName}>
-        {ratio.toFixed(2)} / 1
+      <AspectRatio ratio={ratio}>
+        <div className={`${surfaceClassName} size-full`}>{ratio.toFixed(2)} / 1</div>
       </AspectRatio>
     </>
   );

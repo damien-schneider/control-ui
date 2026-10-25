@@ -6,7 +6,37 @@ export function controlUiImportPattern(importSources = []) {
   return `(?:${[controlUiImportPath, ...importSources.map(escapeRegExp)].join("|")})`;
 }
 
-export const componentStyleClass = String.raw`[^\s"'\x60]!(?:[\s"'\x60]|$)|(?:^|[\s"'\x60])![\w\[-]|(?:^|[^\w-])(?:p[xytrblse]?-|bg-[\w\[]|text-(?:foreground|muted|primary|secondary|accent|destructive|success|warning|info|card|popover|sidebar|background|canvas|current|inherit|transparent|white|black|[a-z]+-\d{2,3}|\[(?:#|oklch|rgb|hsl|lab|lch|color|var))|font-|leading-|tracking-|border|divide-|rounded|shadow|ring\b|ring-|outline|opacity-|backdrop-|fill-|stroke-|decoration-|underline|line-through|italic|uppercase|lowercase|capitalize|tabular-nums|(?:hover|focus|focus-visible|focus-within|active|disabled|open|checked|dark|placeholder|aria-[^:\s]*|data-[^:\s]*|group-[^:\s]*|peer-[^:\s]*|has-[^:\s]*|\*|\[&[^\s]*?\]):)`;
+const classDelimiter = String.raw`\s"'\x60`;
+const classEnd = `(?:[${classDelimiter}]|$)`;
+
+function classSuffixOtherThan(suffixes) {
+  const firsts = [...new Set(suffixes.filter(Boolean).map((suffix) => suffix[0]))];
+  const alternatives = [
+    ...(suffixes.includes("") ? [] : [classEnd]),
+    `[^${firsts.join("")}${classDelimiter}]`,
+    ...firsts.map(
+      (first) => first + classSuffixOtherThan(suffixes.filter((suffix) => suffix[0] === first).map((suffix) => suffix.slice(1))),
+    ),
+  ];
+  return `(?:${alternatives.join("|")})`;
+}
+
+const textLayoutSuffixes = [
+  "left",
+  "center",
+  "right",
+  "justify",
+  "start",
+  "end",
+  "wrap",
+  "nowrap",
+  "balance",
+  "pretty",
+  "ellipsis",
+  "clip",
+];
+
+export const componentStyleClass = String.raw`[^${classDelimiter}]!${classEnd}|(?:^|[${classDelimiter}])![\w\[-]|(?:^|[^\w-])(?:p[xytrblse]?-|bg-[\w\[]|text-${classSuffixOtherThan(textLayoutSuffixes)}|font-|leading-|tracking-|border|divide-|rounded|shadow|inset-shadow|drop-shadow|ring\b|ring-|inset-ring|outline|opacity-|backdrop-|fill-|stroke-|caret-|accent-|scheme-|mask-|decoration-|underline|no-underline|overline|line-through|italic|not-italic|uppercase|lowercase|capitalize|normal-case|antialiased|subpixel-antialiased|ordinal|slashed-zero|(?:normal|lining|oldstyle|proportional|tabular)-nums|(?:diagonal|stacked)-fractions|(?:hover|focus|focus-visible|focus-within|active|disabled|enabled|open|checked|indeterminate|visited|target|invalid|valid|user-invalid|user-valid|required|optional|read-only|autofill|placeholder-shown|in-range|out-of-range|inert|starting|dark|placeholder|selection|marker|file|first-letter|first-line|backdrop|details-content|aria-[^:\s]*|data-[^:\s]*|group-[^:\s]*|peer-[^:\s]*|has-[^:\s]*|\*|\[&[^\s]*?\]):)`;
 
 export const rawTypeClass = String.raw`(?:^|[^\w-])text-(?:micro|caption|label|body|body-lg|heading-[1-4]|display|xs|sm|base|lg|xl|[2-9]xl)\b|(?:^|[^\w-])text-\[\d[^\]]*\]`;
 
