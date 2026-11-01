@@ -1,6 +1,7 @@
 "use client";
 
 import { Toolbar as ToolbarPrimitive } from "@base-ui/react/toolbar";
+import { CheckIcon, CopyIcon, PencilIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
 import { createContext, useContext } from "react";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
@@ -103,13 +104,14 @@ export type ActionBarCopyProps = ActionBarItemBaseProps & {
 
 export function ActionBarCopy({
   value,
-  children = "Copy",
-  copiedChildren = "Copied",
+  children,
+  copiedChildren,
   copiedAriaLabel = "Copied to clipboard",
   copyFailedLabel = "Couldn't copy. Select the text and copy it manually.",
   resetDelay = 1200,
   disabled,
   onClick,
+  "aria-label": ariaLabel,
   ...props
 }: ActionBarCopyProps) {
   const { copyValue: contextCopyValue, onCopy, onCopyError } = useContext(ActionBarContext);
@@ -138,17 +140,26 @@ export function ActionBarCopy({
   if (copied) copyStatus = copiedAriaLabel;
   else if (status === "failed") copyStatus = copyFailedLabel;
 
+  const isIconOnly = children === undefined;
+  const swap = (
+    <Swap value={copied ? "copied" : "idle"}>
+      <SwapItem value="idle">{children ?? <CopyIcon aria-hidden="true" />}</SwapItem>
+      <SwapItem value="copied" aria-hidden="true">
+        {copiedChildren ?? (isIconOnly ? <CheckIcon aria-hidden="true" /> : "Copied")}
+      </SwapItem>
+    </Swap>
+  );
+
   return (
     <>
-      <ActionBarItem disabled={disabled ?? !copyValue} onClick={handleClick} {...props}>
-        <Swap value={copied ? "copied" : "idle"}>
-          <SwapItem value="idle">{children}</SwapItem>
-          <SwapItem value="copied" aria-hidden="true">
-            {copiedChildren}
-          </SwapItem>
-        </Swap>
-        {copied ? <span className="sr-only">{children}</span> : null}
-      </ActionBarItem>
+      {isIconOnly ? (
+        <ActionBarItem aria-label={ariaLabel ?? "Copy"} icon={swap} disabled={disabled ?? !copyValue} onClick={handleClick} {...props} />
+      ) : (
+        <ActionBarItem aria-label={ariaLabel} disabled={disabled ?? !copyValue} onClick={handleClick} {...props}>
+          {swap}
+          {copied ? <span className="sr-only">{children}</span> : null}
+        </ActionBarItem>
+      )}
       <LiveStatus message={copyStatus} />
     </>
   );
@@ -159,7 +170,7 @@ export type ActionBarEditProps = ActionBarItemBaseProps & {
   children?: NonNullable<ReactNode>;
 };
 
-export function ActionBarEdit({ value, children = "Edit", disabled, onClick, ...props }: ActionBarEditProps) {
+export function ActionBarEdit({ value, children, disabled, onClick, "aria-label": ariaLabel, ...props }: ActionBarEditProps) {
   const { copyValue, editValue: contextEditValue, onEdit, onEditError } = useContext(ActionBarContext);
   const editValue = value ?? contextEditValue ?? copyValue;
 
@@ -176,8 +187,22 @@ export function ActionBarEdit({ value, children = "Edit", disabled, onClick, ...
     }
   }
 
+  const itemDisabled = disabled ?? (editValue === undefined || !onEdit);
+
+  if (children === undefined) {
+    return (
+      <ActionBarItem
+        aria-label={ariaLabel ?? "Edit"}
+        icon={<PencilIcon aria-hidden="true" />}
+        disabled={itemDisabled}
+        onClick={handleClick}
+        {...props}
+      />
+    );
+  }
+
   return (
-    <ActionBarItem disabled={disabled ?? (editValue === undefined || !onEdit)} onClick={handleClick} {...props}>
+    <ActionBarItem aria-label={ariaLabel} disabled={itemDisabled} onClick={handleClick} {...props}>
       {children}
     </ActionBarItem>
   );

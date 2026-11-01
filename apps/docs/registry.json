@@ -47,7 +47,8 @@
       "title": "ActionBar",
       "description": "Reusable hover actions for message and response controls.",
       "dependencies": [
-        "@base-ui/react@^1.9.0"
+        "@base-ui/react@^1.9.0",
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",

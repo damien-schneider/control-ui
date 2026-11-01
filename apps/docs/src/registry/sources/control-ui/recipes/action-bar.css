@@ -12,16 +12,25 @@
   }
 
   @media (hover: hover) and (pointer: fine) {
-    :where([data-control-family="chat-layout"][data-slot="turn"] [data-control-family="action-bar"][data-slot="root"]) {
+    :where(
+        :is([data-control-family="chat-layout"][data-slot="turn"], [data-control-family="chat-message"][data-slot="editable"])
+          [data-control-family="action-bar"][data-slot="root"]
+      ) {
       opacity: var(--cui-action-bar-hidden-opacity);
     }
 
-    :where([data-control-family="chat-layout"][data-slot="turn"]:hover [data-control-family="action-bar"][data-slot="root"]) {
+    :where(
+        :is([data-control-family="chat-layout"][data-slot="turn"], [data-control-family="chat-message"][data-slot="editable"]):hover
+          [data-control-family="action-bar"][data-slot="root"]
+      ) {
       opacity: var(--cui-action-bar-visible-opacity);
     }
   }
 
-  :where([data-control-family="chat-layout"][data-slot="turn"]:focus-within [data-control-family="action-bar"][data-slot="root"]) {
+  :where(
+    :is([data-control-family="chat-layout"][data-slot="turn"], [data-control-family="chat-message"][data-slot="editable"]):focus-within
+      [data-control-family="action-bar"][data-slot="root"]
+  ) {
     opacity: var(--cui-action-bar-visible-opacity);
   }
 }

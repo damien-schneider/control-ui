@@ -23,7 +23,7 @@ export const registryMetadata = {
     ],
   },
   "action-bar": {
-    dependencies: ["@base-ui/react@^1.9.0"],
+    dependencies: ["@base-ui/react@^1.9.0", "lucide-react@^1.47.0"],
     registryDependencies: ["button", "core", "live-status", "swap", "use-copy-to-clipboard"],
     sourceManifestPath: "registry/control-ui/action-bar.json",
     files: [
