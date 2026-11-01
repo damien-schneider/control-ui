@@ -16,10 +16,12 @@ import { Drawer, DrawerBody, DrawerClose, DrawerContent, DrawerFooter, DrawerHea
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/control-ui/ui/sheet";
 import {
+  SidebarIconRailContext,
   type SidebarStyle,
   SidebarSurfaceContext,
   useSidebar,
   useSidebarElements,
+  useSidebarIconOnly,
   useSidebarSurface,
 } from "@/components/control-ui/ui/sidebar-provider";
 import { SidebarResizeRail, type SidebarResizeRailProps } from "@/components/control-ui/ui/sidebar-resize-rail";
@@ -71,6 +73,12 @@ export type SidebarInsetProps = Omit<ComponentProps<"main">, "style" | "id"> & {
 };
 
 type SidebarSurfaceStyle = CSSProperties & SidebarKnobStyle;
+
+export type SidebarIconRailLayer = "sidebar" | "raised";
+export type SidebarPanelLayer = "sidebar" | "raised" | "content";
+
+export type SidebarIconRailProps = Omit<ComponentProps<"div">, "style"> & { layer?: SidebarIconRailLayer; style?: SidebarSurfaceStyle };
+export type SidebarPanelProps = Omit<ComponentProps<"div">, "style"> & { layer?: SidebarPanelLayer; style?: SidebarSurfaceStyle };
 
 const SIDEBAR_WIDTH_MOBILE = "18rem";
 const sidebarTriggerWidth = {
@@ -141,7 +149,7 @@ function SidebarSurface({
             data-control-ui="sidebar"
             data-control-family="sidebar"
             data-slot="inner"
-            className="flex h-full w-full flex-col"
+            className="flex h-full w-full"
             inert={state === "collapsed" && collapsible === "offcanvas"}
           >
             {children}
@@ -178,7 +186,7 @@ function SidebarSurface({
         data-surface="panel"
         data-variant={resolvedVariant}
         data-side={side}
-        className={cn("group relative flex h-full w-(--sidebar-width) flex-col", className)}
+        className={cn("group relative flex h-full w-(--sidebar-width)", className)}
         style={style}
         {...props}
       >
@@ -243,7 +251,7 @@ function SidebarMobileSurface({ mobileVariant, label, variant, ref, className, c
       style={style}
       {...props}
     >
-      <div data-control-ui="sidebar" data-control-family="sidebar" data-slot="inner" className="flex min-h-0 flex-1 flex-col">
+      <div data-control-ui="sidebar" data-control-family="sidebar" data-slot="inner" className="flex min-h-0 flex-1">
         {children}
       </div>
     </div>
@@ -414,10 +422,40 @@ export function SidebarFooter({ className, ...props }: ComponentProps<"div"> & {
   );
 }
 
-export function SidebarContent({ className, children, ...props }: ComponentProps<"div">) {
-  const { state, isMobile } = useSidebar();
+export function SidebarIconRail({ layer = "sidebar", className, ...props }: SidebarIconRailProps) {
+  return (
+    <SidebarIconRailContext.Provider value={true}>
+      <div
+        data-control-ui="sidebar"
+        data-control-family="sidebar"
+        data-slot="icon-rail"
+        data-layer={layer}
+        data-collapsible="icon"
+        className={cn("group flex min-h-0 flex-col", className)}
+        {...props}
+      />
+    </SidebarIconRailContext.Provider>
+  );
+}
+
+export function SidebarPanel({ layer = "sidebar", className, ...props }: SidebarPanelProps) {
+  const { isMobile, state } = useSidebar();
   const { collapsible } = useSidebarSurface();
-  const iconOnly = !isMobile && state === "collapsed" && collapsible === "icon";
+  return (
+    <div
+      data-control-ui="sidebar"
+      data-control-family="sidebar"
+      data-slot="panel"
+      data-layer={layer}
+      inert={!isMobile && state === "collapsed" && collapsible === "icon"}
+      className={cn("flex min-h-0 min-w-0 flex-col", className)}
+      {...props}
+    />
+  );
+}
+
+export function SidebarContent({ className, children, ...props }: ComponentProps<"div">) {
+  const iconOnly = useSidebarIconOnly();
   return (
     <ScrollArea
       data-control-ui="sidebar"

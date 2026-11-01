@@ -157,6 +157,10 @@ import {
   PrimitiveSidebarRightExample,
 } from "@/src/registry/examples/control-ui/primitives/sidebar";
 import {
+  PrimitiveSidebarDoubleContentExample,
+  PrimitiveSidebarDoubleExample,
+} from "@/src/registry/examples/control-ui/primitives/sidebar-double";
+import {
   PrimitiveSidebarBottomNavExample,
   PrimitiveSidebarMobileFloatingExample,
 } from "@/src/registry/examples/control-ui/primitives/sidebar-mobile";
@@ -213,6 +217,8 @@ export const previewReferences: LoadedPreviews = {
   "component/sidebar/nested-navigation": PrimitiveSidebarNestedExample,
   "component/sidebar/floating": PrimitiveSidebarFloatingExample,
   "component/sidebar/inset": PrimitiveSidebarInsetExample,
+  "component/sidebar/double-sidebar": PrimitiveSidebarDoubleExample,
+  "component/sidebar/double-sidebar-content": PrimitiveSidebarDoubleContentExample,
   "component/app-shell": PrimitiveAppShellExample,
   "component/app-shell/collapsed": PrimitiveAppShellCollapsedExample,
   "component/page-layout": PrimitivePageLayoutExample,

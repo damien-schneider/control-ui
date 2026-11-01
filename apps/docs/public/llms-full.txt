@@ -97,7 +97,7 @@
 
 **Layout** — Content-agnostic structure: regions, panels, wrappers, scrolling, resizing, and disclosure. It never knows what is inside.
 - `collapsible` (Collapsible) — Accessible disclosure primitive with measured open and close motion. — `npx shadcn@latest add https://control-ui.dev/r/collapsible.json`
-- `sidebar` (Sidebar) **[beta]** — Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus. — `npx shadcn@latest add https://control-ui.dev/r/sidebar.json`
+- `sidebar` (Sidebar) **[beta]** — Responsive app sidebar with resizing, offcanvas and icon collapse, double sidebar layers, mobile navigation, and nested menus. — `npx shadcn@latest add https://control-ui.dev/r/sidebar.json`
 - `app-shell` (App shell) **[beta]** — The application container: persistent navigation and header around changing page content, with one shared scroll policy. — `npx shadcn@latest add https://control-ui.dev/r/app-shell.json`
 - `page-layout` (Page layout) **[beta]** — Page shell that owns the scroll container, the shared measure, and the title and actions row. — `npx shadcn@latest add https://control-ui.dev/r/page-layout.json`
 - `scroll-area` (Scroll area) — Scroll container with overlay or space-reserving scrollbars, edge fades, and optional progressive blur. — `npx shadcn@latest add https://control-ui.dev/r/scroll-area.json`

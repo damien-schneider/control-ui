@@ -1,0 +1,192 @@
+@layer components {
+  :where([data-control-family="sidebar"][data-slot="root"]) {
+    --cui-sidebar-icon-rail-border-width: 1px;
+    --cui-sidebar-icon-rail-border-color: var(--sidebar-border);
+    --cui-sidebar-raised-background: var(--cui-sidebar-inset-background);
+    --cui-sidebar-raised-border-width: var(--cui-sidebar-inset-border-width);
+    --cui-sidebar-raised-border-color: var(--cui-sidebar-inset-border-color);
+    --cui-sidebar-raised-radius: var(--cui-sidebar-inset-radius);
+    --cui-sidebar-raised-shadow: var(--cui-sidebar-inset-shadow);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="root"]:is([data-variant="page"], [data-variant="inset"])[data-state]),
+  :where([data-control-family="sidebar"][data-slot="root"][data-state="collapsed"]) {
+    --cui-sidebar-icon-rail-border-width: 0px;
+  }
+
+  :where(
+    [data-control-family="sidebar"][data-slot="root"][data-variant="sidebar"][data-state="expanded"]:has(
+      [data-control-family="sidebar"][data-slot="panel"][data-layer="content"]
+    )
+  ) {
+    --cui-sidebar-container-border-width: 0px;
+  }
+
+  :where([data-control-family="sidebar"]:is([data-slot="root"], [data-slot="inner"])) {
+    flex-direction: column;
+  }
+
+  :where([data-control-family="sidebar"]:is([data-slot="root"], [data-slot="inner"]):has(> [data-slot="panel"])) {
+    flex-direction: row;
+  }
+
+  :where([data-control-family="sidebar"][data-slot="root"][data-side="right"]:has(> [data-slot="panel"])),
+  :where(
+    [data-control-family="sidebar"][data-slot="root"][data-side="right"]
+      [data-control-family="sidebar"][data-slot="inner"]:has(> [data-slot="panel"])
+  ) {
+    flex-direction: row-reverse;
+  }
+
+  :where([data-control-family="sidebar"][data-slot="icon-rail"]) {
+    flex: none;
+    inline-size: var(--sidebar-width-icon);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="root"][data-side="left"] [data-control-family="sidebar"][data-slot="icon-rail"]) {
+    border-inline-end: var(--cui-sidebar-icon-rail-border-width) solid var(--cui-sidebar-icon-rail-border-color);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="root"][data-side="right"] [data-control-family="sidebar"][data-slot="icon-rail"]) {
+    border-inline-start: var(--cui-sidebar-icon-rail-border-width) solid var(--cui-sidebar-icon-rail-border-color);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="panel"]) {
+    flex: 1 1 0;
+  }
+
+  :where([data-control-family="sidebar"][data-slot="root"][data-collapsible="icon"] [data-control-family="sidebar"][data-slot="panel"]) {
+    visibility: hidden;
+  }
+
+  :where([data-control-family="sidebar"][data-slot="icon-rail"][data-layer="raised"]),
+  :where([data-control-family="sidebar"][data-slot="panel"][data-layer="raised"]) {
+    background-color: var(--cui-sidebar-raised-background);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="panel"][data-layer="content"]) {
+    background-color: var(--cui-sidebar-inset-background);
+    background-image: var(--cui-sidebar-inset-background-image);
+  }
+
+  :where(
+    [data-control-family="sidebar"][data-slot="root"][data-variant="floating"][data-state]
+      [data-control-family="sidebar"][data-slot="inner"]:has(> [data-slot="panel"])
+  ) {
+    overflow: clip;
+  }
+
+  :where(
+    [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"]
+      [data-control-family="sidebar"][data-slot="inner"]:has(> [data-layer="raised"])
+  ) {
+    column-gap: var(--cui-sidebar-inset-inset);
+  }
+
+  :where(
+    [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state]
+      [data-control-family="sidebar"][data-slot="icon-rail"][data-layer="raised"]
+  ),
+  :where(
+    [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state]
+      [data-control-family="sidebar"][data-slot="panel"][data-layer="raised"]
+  ) {
+    margin-block: calc(var(--cui-sidebar-inset-inset) - var(--spacing) * 2);
+    border: var(--cui-sidebar-raised-border-width) solid var(--cui-sidebar-raised-border-color);
+    border-radius: var(--cui-sidebar-raised-radius);
+    box-shadow: var(--cui-sidebar-raised-shadow);
+  }
+
+  :where(
+    [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"]
+      [data-control-family="sidebar"][data-slot="panel"][data-layer="content"]
+  ) {
+    margin-block: calc(var(--cui-sidebar-inset-inset) - var(--spacing) * 2);
+    border: var(--cui-sidebar-inset-border-width) solid var(--cui-sidebar-inset-border-color);
+    border-radius: var(--cui-sidebar-inset-radius);
+    box-shadow: var(--cui-sidebar-inset-shadow);
+  }
+
+  :where(
+    [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="left"]
+      [data-control-family="sidebar"][data-slot="panel"][data-layer="content"]
+  ) {
+    margin-inline-end: calc(var(--spacing) * -2 - var(--control-rim-width) * 2);
+    border-inline-end-width: 0;
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  :where(
+    [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="right"]
+      [data-control-family="sidebar"][data-slot="panel"][data-layer="content"]
+  ) {
+    margin-inline-start: calc(var(--spacing) * -2 - var(--control-rim-width) * 2);
+    border-inline-start-width: 0;
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+  }
+
+  :where(
+    [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="left"]:dir(ltr)
+      [data-control-family="sidebar"][data-slot="panel"][data-layer="content"]
+  ),
+  :where(
+    [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="right"]:dir(rtl)
+      [data-control-family="sidebar"][data-slot="panel"][data-layer="content"]
+  ) {
+    clip-path: inset(-100vmax var(--control-rim-width) -100vmax -100vmax);
+  }
+
+  :where(
+    [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="left"]:dir(rtl)
+      [data-control-family="sidebar"][data-slot="panel"][data-layer="content"]
+  ),
+  :where(
+    [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="right"]:dir(ltr)
+      [data-control-family="sidebar"][data-slot="panel"][data-layer="content"]
+  ) {
+    clip-path: inset(-100vmax -100vmax -100vmax var(--control-rim-width));
+  }
+}
+
+@property --cui-sidebar-icon-rail-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-sidebar-icon-rail-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-sidebar-raised-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-sidebar-raised-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-sidebar-raised-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-sidebar-raised-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-sidebar-raised-shadow {
+  syntax: "*";
+  inherits: true;
+}

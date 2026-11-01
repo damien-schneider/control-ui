@@ -59,9 +59,11 @@ import type {
 } from "../../src/registry/sources/control-ui/ui/scroll-area";
 import type { SheetBodyPadding } from "../../src/registry/sources/control-ui/ui/sheet";
 import type {
+  SidebarIconRailLayer,
   SidebarLayoutMode,
   SidebarMenuButtonSize,
   SidebarMenuButtonVariant,
+  SidebarPanelLayer,
   SidebarSelectionIndicator,
 } from "../../src/registry/sources/control-ui/ui/sidebar";
 import type { SkeletonShape, SkeletonVariant } from "../../src/registry/sources/control-ui/ui/skeleton";
@@ -288,6 +290,8 @@ export type EmittedStateContract = {
   "sidebar:root:data-side": "left" | "right";
   "sidebar:root:data-state": "expanded" | "collapsed";
   "sidebar:root:data-variant": SidebarLayout;
+  "sidebar:icon-rail:data-layer": SidebarIconRailLayer;
+  "sidebar:panel:data-layer": SidebarPanelLayer;
   "sidebar:menu:data-indicator": SidebarSelectionIndicator;
   "sidebar:menu-button:data-indicator": SidebarSelectionIndicator;
   "sidebar:menu-track:data-indicator": SidebarSelectionIndicator;

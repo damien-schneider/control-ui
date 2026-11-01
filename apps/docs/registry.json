@@ -5973,7 +5973,7 @@
       "name": "sidebar",
       "type": "registry:ui",
       "title": "Sidebar",
-      "description": "Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus.",
+      "description": "Responsive app sidebar with resizing, offcanvas and icon collapse, double sidebar layers, mobile navigation, and nested menus.",
       "dependencies": [
         "@base-ui/react@^1.9.0",
         "lucide-react@^1.47.0"
@@ -6006,6 +6006,11 @@
         {
           "path": "src/registry/sources/control-ui/recipes/sidebar-mobile.css",
           "target": "@components/control-ui/styles/recipes/sidebar-mobile.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/sidebar-panes.css",
+          "target": "@components/control-ui/styles/recipes/sidebar-panes.css",
           "type": "registry:file"
         },
         {
@@ -6048,6 +6053,7 @@
         "@import \"../components/control-ui/styles/recipes/sidebar.css\"": {},
         "@import \"../components/control-ui/styles/recipes/sidebar-menu.css\"": {},
         "@import \"../components/control-ui/styles/recipes/sidebar-mobile.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/sidebar-panes.css\"": {},
         "@import \"../components/control-ui/styles/recipes/sidebar-parts.css\"": {}
       },
       "meta": {

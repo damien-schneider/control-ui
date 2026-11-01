@@ -4548,6 +4548,11 @@ export const registryMetadata = {
         type: "registry:file",
       },
       {
+        path: "src/registry/sources/control-ui/recipes/sidebar-panes.css",
+        target: "@components/control-ui/styles/recipes/sidebar-panes.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/sidebar-parts.css",
         target: "@components/control-ui/styles/recipes/sidebar-parts.css",
         type: "registry:file",

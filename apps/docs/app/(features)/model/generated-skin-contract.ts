@@ -11450,6 +11450,24 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        "icon-rail": {
+          family: "sidebar",
+          registryItems: ["sidebar"],
+          states: [
+            {
+              attribute: "data-collapsible",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["icon"],
+            },
+            {
+              attribute: "data-layer",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["raised", "sidebar"],
+            },
+          ],
+        },
         inner: {
           family: "sidebar",
           registryItems: ["sidebar"],
@@ -11593,6 +11611,18 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "presence",
               values: [],
+            },
+          ],
+        },
+        panel: {
+          family: "sidebar",
+          registryItems: ["sidebar"],
+          states: [
+            {
+              attribute: "data-layer",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["content", "raised", "sidebar"],
             },
           ],
         },
@@ -18425,6 +18455,48 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length-percentage>",
         initialValue: "0px",
         defaultValue: "calc(var(--spacing) * 3)",
+      },
+      {
+        name: "--cui-sidebar-icon-rail-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "1px",
+      },
+      {
+        name: "--cui-sidebar-icon-rail-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--sidebar-border)",
+      },
+      {
+        name: "--cui-sidebar-raised-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--cui-sidebar-inset-background)",
+      },
+      {
+        name: "--cui-sidebar-raised-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "var(--cui-sidebar-inset-border-width)",
+      },
+      {
+        name: "--cui-sidebar-raised-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--cui-sidebar-inset-border-color)",
+      },
+      {
+        name: "--cui-sidebar-raised-radius",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--cui-sidebar-inset-radius)",
+      },
+      {
+        name: "--cui-sidebar-raised-shadow",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "var(--cui-sidebar-inset-shadow)",
       },
       {
         name: "--cui-sidebar-menu-badge-height",

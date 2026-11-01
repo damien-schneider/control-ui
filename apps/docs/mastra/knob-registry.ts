@@ -4447,6 +4447,18 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="sidebar"][data-slot="root"])',
       },
       {
+        name: "--cui-sidebar-icon-rail-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--sidebar-border)",
+        selector: ':where([data-control-family="sidebar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-sidebar-icon-rail-border-width",
+        syntax: "<length>",
+        defaultValue: "1px",
+        selector: ':where([data-control-family="sidebar"][data-slot="root"])',
+      },
+      {
         name: "--cui-sidebar-inner-backdrop-filter",
         syntax: "*",
         defaultValue: "none",
@@ -4714,6 +4726,36 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-sidebar-rail-divider-background",
         syntax: "<color>",
         defaultValue: "transparent",
+        selector: ':where([data-control-family="sidebar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-sidebar-raised-background",
+        syntax: "<color>",
+        defaultValue: "var(--cui-sidebar-inset-background)",
+        selector: ':where([data-control-family="sidebar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-sidebar-raised-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--cui-sidebar-inset-border-color)",
+        selector: ':where([data-control-family="sidebar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-sidebar-raised-border-width",
+        syntax: "<length>",
+        defaultValue: "var(--cui-sidebar-inset-border-width)",
+        selector: ':where([data-control-family="sidebar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-sidebar-raised-radius",
+        syntax: "<length-percentage>",
+        defaultValue: "var(--cui-sidebar-inset-radius)",
+        selector: ':where([data-control-family="sidebar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-sidebar-raised-shadow",
+        syntax: "*",
+        defaultValue: "var(--cui-sidebar-inset-shadow)",
         selector: ':where([data-control-family="sidebar"][data-slot="root"])',
       },
       {

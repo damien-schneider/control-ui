@@ -72,6 +72,28 @@ export const displayCompositions = {
         ),
       ),
     ),
+    example(
+      "Double sidebar",
+      part(
+        "SidebarProvider",
+        part(
+          "Sidebar",
+          part(
+            "SidebarIconRail",
+            content(
+              'layer="raised"; sections',
+              part("SidebarContent", part("SidebarMenu", part("SidebarMenuItem", part("SidebarMenuButton")))),
+            ),
+          ),
+          part(
+            "SidebarPanel",
+            content('layer="content"; pages of the selected section', part("SidebarHeader"), part("SidebarContent", part("SidebarGroup"))),
+          ),
+        ),
+        part("SidebarInset", part("SidebarTrigger")),
+      ),
+      'One Sidebar holds both panes, so they share one landmark, collapse state, and mobile sheet. The icon rail always shows icons with tooltips; collapsible="icon" keeps it and hides the panel. layer places each pane on the sidebar surface, its own raised card, or (for the panel) the content card.',
+    ),
   ],
   "app-shell": [
     example(

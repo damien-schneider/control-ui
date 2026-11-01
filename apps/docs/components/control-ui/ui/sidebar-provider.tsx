@@ -58,6 +58,7 @@ export const SidebarSurfaceContext = createContext<{
   collapsible: "offcanvas" | "icon" | "none";
   railContainer: HTMLDivElement | null;
 } | null>(null);
+export const SidebarIconRailContext = createContext(false);
 
 export function useSidebarElements() {
   const elements = useContext(SidebarElementsContext);
@@ -69,6 +70,13 @@ export function useSidebarSurface() {
   const surface = useContext(SidebarSurfaceContext);
   if (!surface) throw new Error("SidebarRail must be used within a Sidebar.");
   return surface;
+}
+
+export function useSidebarIconOnly() {
+  const { isMobile, state } = useSidebar();
+  const surface = useContext(SidebarSurfaceContext);
+  const inIconRail = useContext(SidebarIconRailContext);
+  return inIconRail || (!isMobile && state === "collapsed" && surface?.collapsible === "icon");
 }
 
 function focusOutsideCollapsedContent({

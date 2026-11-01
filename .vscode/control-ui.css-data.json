@@ -3375,6 +3375,16 @@
       "description": "Control UI sidebar knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
+      "name": "--cui-sidebar-icon-rail-border-color",
+      "description": "Control UI sidebar-panes knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-sidebar-icon-rail-border-width",
+      "description": "Control UI sidebar-panes knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
       "name": "--cui-sidebar-inner-backdrop-filter",
       "description": "Control UI sidebar knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
@@ -3589,6 +3599,30 @@
       "name": "--cui-sidebar-rail-divider-background",
       "description": "Control UI sidebar-parts knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-sidebar-raised-background",
+      "description": "Control UI sidebar-panes knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-sidebar-raised-border-color",
+      "description": "Control UI sidebar-panes knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-sidebar-raised-border-width",
+      "description": "Control UI sidebar-panes knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
+      "name": "--cui-sidebar-raised-radius",
+      "description": "Control UI sidebar-panes knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-sidebar-raised-shadow",
+      "description": "Control UI sidebar-panes knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
       "name": "--cui-sidebar-skip-link-background",

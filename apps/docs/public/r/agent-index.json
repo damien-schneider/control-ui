@@ -819,7 +819,7 @@
         "id": "sidebar",
         "name": "Sidebar",
         "kind": "Component",
-        "summary": "Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus.",
+        "summary": "Responsive app sidebar with resizing, offcanvas and icon collapse, double sidebar layers, mobile navigation, and nested menus.",
         "href": "/components/sidebar",
         "status": "beta",
         "install": "npx shadcn@latest add https://control-ui.dev/r/sidebar.json"

@@ -9,7 +9,7 @@ import type { SidebarKnobStyle } from "@/components/control-ui/knob-contracts/si
 import { cn } from "@/components/control-ui/lib/cn";
 import { useSkin } from "@/components/control-ui/skin-provider";
 
-import { SidebarSurfaceContext, useSidebar } from "@/components/control-ui/ui/sidebar-provider";
+import { SidebarIconRailContext, SidebarSurfaceContext, useSidebarIconOnly } from "@/components/control-ui/ui/sidebar-provider";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
 
 export const sidebarMenuButtonVariants = ["default", "outline"] as const;
@@ -190,9 +190,9 @@ export function SidebarMenuButton({
   ref,
   ...props
 }: SidebarMenuButtonProps) {
-  const { isMobile, state } = useSidebar();
   const surface = useContext(SidebarSurfaceContext);
-  const tooltipEnabled = !isMobile && state === "collapsed" && surface?.collapsible === "icon";
+  const inIconRail = useContext(SidebarIconRailContext);
+  const iconOnly = useSidebarIconOnly();
   const indicator = useContext(SidebarMenuContext);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [textLabel, setTextLabel] = useState("");
@@ -221,17 +221,17 @@ export function SidebarMenuButton({
     },
   });
 
-  if (!tooltip && surface?.collapsible !== "icon") return button;
+  if (!tooltip && !inIconRail && surface?.collapsible !== "icon") return button;
 
   return (
     <Tooltip
-      disabled={!tooltipEnabled}
+      disabled={!iconOnly}
       onOpenChange={(open) => {
         if (open && !tooltip) setTextLabel(buttonRef.current?.textContent?.trim() ?? "");
       }}
     >
       <TooltipTrigger render={button} />
-      <TooltipContent side={surface?.side === "right" ? "inline-start" : "inline-end"} align="center" hidden={!tooltipEnabled}>
+      <TooltipContent side={surface?.side === "right" ? "inline-start" : "inline-end"} align="center" hidden={!iconOnly}>
         {tooltip ?? textLabel}
       </TooltipContent>
     </Tooltip>

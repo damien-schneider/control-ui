@@ -100,17 +100,75 @@
           ~ [data-control-family="sidebar"][data-slot="inset"]
       ) {
       margin: var(--cui-sidebar-inset-inset);
-      margin-inline-start: 0;
       border: var(--cui-sidebar-inset-border-width) solid var(--cui-sidebar-inset-border-color);
       border-radius: var(--cui-sidebar-inset-radius);
       box-shadow: var(--cui-sidebar-inset-shadow);
     }
 
     :where(
-        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="collapsed"]
+        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="left"]
           ~ [data-control-family="sidebar"][data-slot="inset"]
       ) {
-      margin-inline-start: var(--cui-sidebar-inset-inset);
+      margin-inline-start: 0;
+    }
+
+    :where(
+        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="right"]
+          ~ [data-control-family="sidebar"][data-slot="inset"]
+      ) {
+      margin-inline-end: 0;
+    }
+
+    :where(
+        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="left"]:has(
+            [data-slot="panel"][data-layer="content"]
+          )
+          ~ [data-control-family="sidebar"][data-slot="inset"]
+      ) {
+      border-inline-start-width: 0;
+      border-start-start-radius: 0;
+      border-end-start-radius: 0;
+    }
+
+    :where(
+        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="right"]:has(
+            [data-slot="panel"][data-layer="content"]
+          )
+          ~ [data-control-family="sidebar"][data-slot="inset"]
+      ) {
+      border-inline-end-width: 0;
+      border-start-end-radius: 0;
+      border-end-end-radius: 0;
+    }
+
+    :where(
+        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="left"]:dir(ltr):has(
+            [data-slot="panel"][data-layer="content"]
+          )
+          ~ [data-control-family="sidebar"][data-slot="inset"]
+      ),
+    :where(
+        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="right"]:dir(rtl):has(
+            [data-slot="panel"][data-layer="content"]
+          )
+          ~ [data-control-family="sidebar"][data-slot="inset"]
+      ) {
+      clip-path: inset(-100vmax -100vmax -100vmax 0);
+    }
+
+    :where(
+        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="left"]:dir(rtl):has(
+            [data-slot="panel"][data-layer="content"]
+          )
+          ~ [data-control-family="sidebar"][data-slot="inset"]
+      ),
+    :where(
+        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="right"]:dir(ltr):has(
+            [data-slot="panel"][data-layer="content"]
+          )
+          ~ [data-control-family="sidebar"][data-slot="inset"]
+      ) {
+      clip-path: inset(-100vmax 0 -100vmax -100vmax);
     }
   }
 

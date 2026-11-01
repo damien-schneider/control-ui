@@ -88656,6 +88656,74 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       state: false,
       route: "/components/item",
     },
+    {
+      knobs: {
+        fill: "--cui-sidebar-raised-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "viewport",
+            "data-scroll": "page",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layout": "contained",
+            "data-slot": "wrapper",
+            "data-surface": "transparent",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "icon",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-layer": "raised",
+            "data-slot": "icon-rail",
+          },
+        },
+      ],
+      recipe: "sidebar-panes",
+      rendersText: true,
+      state: false,
+      route: "/components/sidebar",
+    },
   ),
   uncovered: [
     "--cui-audio-recorder-recorded-foreground",

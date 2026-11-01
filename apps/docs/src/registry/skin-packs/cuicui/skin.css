@@ -337,7 +337,8 @@
     isolation: isolate;
   }
 
-  [data-skin="cuicui"] :where([data-slot="inner"][data-control-family="sidebar"]) {
+  [data-skin="cuicui"]
+    :where([data-slot="inner"][data-control-family="sidebar"]:not(:has(> [data-control-family="sidebar"][data-slot="panel"]))) {
     padding: calc(var(--spacing) * 3);
   }
 

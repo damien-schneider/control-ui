@@ -373,7 +373,8 @@ export const componentEntries = [
     kind: "Component",
     status: "beta",
     name: "Sidebar",
-    summary: "Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus.",
+    summary:
+      "Responsive app sidebar with resizing, offcanvas and icon collapse, double sidebar layers, mobile navigation, and nested menus.",
     shadcnDocsUrl: "https://ui.shadcn.com/docs/components/sidebar",
     paths: {
       registry: {
@@ -389,6 +390,7 @@ export const componentEntries = [
           sourceFile("Sheet slot", "src/registry/sources/control-ui/ui/sheet.tsx", "skin-control"),
           sidebarRecipeFile,
           sourceFile("Sidebar parts recipe", "src/registry/sources/control-ui/recipes/sidebar-parts.css", "recipe-css"),
+          sourceFile("Sidebar panes recipe", "src/registry/sources/control-ui/recipes/sidebar-panes.css", "recipe-css"),
           sourceFile("Sidebar menu recipe", "src/registry/sources/control-ui/recipes/sidebar-menu.css", "recipe-css"),
           sourceFile("Sidebar mobile recipe", "src/registry/sources/control-ui/recipes/sidebar-mobile.css", "recipe-css"),
         ],
@@ -482,6 +484,32 @@ export const componentEntries = [
         source: sourceFile("Inset sidebar", "src/registry/examples/control-ui/primitives/sidebar.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/sidebar").then((mod) => ({ default: mod.PrimitiveSidebarInsetExample })),
+        ),
+      },
+      {
+        id: "double-sidebar",
+        title: "Double sidebar",
+        previewClassName: "min-h-0",
+        description:
+          'Compose SidebarIconRail and SidebarPanel inside one Sidebar for an icon rail beside a secondary navigation panel. Both share one collapse state, landmark, and mobile sheet: collapsible="icon" keeps the rail and hides the panel. The rail always shows icons with tooltips. layer="raised" lifts a pane onto its own card at the content level; in the inset layout it takes the content card\'s radius, border, and shadow. --sidebar-width sets the combined width.',
+        source: sourceFile("Double sidebar", "src/registry/examples/control-ui/primitives/sidebar-double.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/sidebar-double").then((mod) => ({
+            default: mod.PrimitiveSidebarDoubleExample,
+          })),
+        ),
+      },
+      {
+        id: "double-sidebar-content",
+        title: "Panel on the content layer",
+        previewClassName: "min-h-0",
+        description:
+          'SidebarPanel layer="content" paints the panel with the SidebarInset surface. In the inset layout, the panel and the content form one card with a single outer edge; the rail stays on the sidebar surface. Collapsing the sidebar returns the content card to its own corners.',
+        source: sourceFile("Panel on the content layer", "src/registry/examples/control-ui/primitives/sidebar-double.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/sidebar-double").then((mod) => ({
+            default: mod.PrimitiveSidebarDoubleContentExample,
+          })),
         ),
       },
     ],

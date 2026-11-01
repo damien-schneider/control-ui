@@ -34,7 +34,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Collapsible](https://control-ui.dev/components/collapsible): Accessible disclosure primitive with measured open and close motion.
 - [Tabs](https://control-ui.dev/components/tabs): Segmented and browser-style navigation with a stable active indicator.
 - [Track highlight](https://control-ui.dev/components/track-highlight): Shared fluid hover, keyboard-focus, and selection highlight for custom lists and groups, with CSS anchors and a measured fallback.
-- [Sidebar](https://control-ui.dev/components/sidebar): Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus. Status: beta.
+- [Sidebar](https://control-ui.dev/components/sidebar): Responsive app sidebar with resizing, offcanvas and icon collapse, double sidebar layers, mobile navigation, and nested menus. Status: beta.
 - [App shell](https://control-ui.dev/components/app-shell): The application container: persistent navigation and header around changing page content, with one shared scroll policy. Status: beta.
 - [Page layout](https://control-ui.dev/components/page-layout): Page shell that owns the scroll container, the shared measure, and the title and actions row. Status: beta.
 - [Scroll area](https://control-ui.dev/components/scroll-area): Scroll container with overlay or space-reserving scrollbars, edge fades, and optional progressive blur.
