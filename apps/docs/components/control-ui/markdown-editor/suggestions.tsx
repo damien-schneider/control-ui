@@ -20,7 +20,6 @@ import { detectTrigger } from "@/components/control-ui/lib/trigger-detect";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { TriggerMenu, TriggerMenuEmpty, TriggerMenuIcon, TriggerMenuItem, TriggerMenuList } from "@/components/control-ui/ui/trigger-menu";
 import { useMarkdownEditor } from "./context";
-import { isEditorUrl } from "./extensions";
 
 export type MarkdownEditorMention = TriggerMenuItemData & { href: string };
 type EditorSuggestion = TriggerMenuItemData & { href?: string; command?: (chain: ChainedCommands) => ChainedCommands };
@@ -94,7 +93,7 @@ export type MarkdownEditorSuggestionsProps = {
 
 export function MarkdownEditorSuggestions({ mentions = [], onMentionSelect }: MarkdownEditorSuggestionsProps) {
   const activeItem = useRef<HTMLDivElement>(null);
-  const { editor, disabled, source } = useMarkdownEditor();
+  const { editor, disabled, source, isUrlAllowed } = useMarkdownEditor();
   const enabled = Boolean(editor) && !disabled && !source;
   const controller = useTriggerMenu<EditorSuggestion>({
     triggers: [
@@ -107,7 +106,7 @@ export function MarkdownEditorSuggestions({ mentions = [], onMentionSelect }: Ma
       if (!match) return;
       const range = { from: match.start, to: match.end };
       if (match.char === "/" && item.command) item.command(editor.chain().focus().deleteRange(range)).run();
-      if (match.char === "@" && item.href && isEditorUrl(item.href)) {
+      if (match.char === "@" && item.href && isUrlAllowed(item.href, "link")) {
         editor
           .chain()
           .focus()
@@ -202,7 +201,7 @@ export function MarkdownEditorSuggestions({ mentions = [], onMentionSelect }: Ma
               key={item.id}
               id={controller.optionId(index)}
               active={index === controller.activeIndex}
-              disabled={item.disabled || (item.href !== undefined && !isEditorUrl(item.href))}
+              disabled={item.disabled || (item.href !== undefined && !isUrlAllowed(item.href, "link"))}
               ref={index === controller.activeIndex ? activeItem : undefined}
               onPointerMove={() => controller.setActiveIndex(index)}
               onClick={() => controller.select(item)}

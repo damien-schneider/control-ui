@@ -1,5 +1,6 @@
 import type { Editor } from "@tiptap/core";
 import { createContext, useContext } from "react";
+import type { MarkdownUrlPolicy } from "./extensions";
 import type { MarkdownImageUpload } from "./uploads";
 
 export type MarkdownEditorContextValue = {
@@ -8,6 +9,7 @@ export type MarkdownEditorContextValue = {
   source: boolean;
   markdown: string;
   sourceRequired: boolean;
+  isUrlAllowed: MarkdownUrlPolicy;
   setSource: (source: boolean) => void;
   setMarkdown: (value: string) => void;
   setContentAttributes: (attributes: Record<string, string>) => void;

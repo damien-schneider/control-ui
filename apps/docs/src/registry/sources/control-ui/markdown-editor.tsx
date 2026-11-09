@@ -1,5 +1,6 @@
 "use client";
 
+import type { Extensions } from "@tiptap/core";
 import { Slice } from "@tiptap/pm/model";
 import { EditorState } from "@tiptap/pm/state";
 import { EditorContent, useEditor } from "@tiptap/react";
@@ -9,7 +10,14 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { Textarea } from "@/components/control-ui/ui/textarea";
 import { MarkdownEditorContext, useMarkdownEditor } from "./markdown-editor/context";
 import { MarkdownEditorDragHandle } from "./markdown-editor/drag-handle";
-import { createMarkdownCodec, hasMarkdownContent, markdownExtensions, requiresMarkdownSource } from "./markdown-editor/extensions";
+import {
+  createMarkdownCodec,
+  hasMarkdownContent,
+  type MarkdownUrlPolicy,
+  markdownExtensions,
+  persistentUrlPolicy,
+  requiresMarkdownSource,
+} from "./markdown-editor/extensions";
 import type { MarkdownImageUploader } from "./markdown-editor/uploads";
 import { useImageUploads } from "./markdown-editor/use-image-uploads";
 
@@ -22,6 +30,10 @@ export type MarkdownEditorProps = Omit<ComponentProps<"div">, "defaultValue" | "
   onUploadImage?: MarkdownImageUploader;
   maxImageBytes?: number;
   onStatusChange?: (status: MarkdownEditorStatus) => void;
+  /** Extra TipTap extensions, applied after the built-in Markdown set. Read once, when the editor mounts. */
+  extensions?: Extensions;
+  /** Which link and image URLs the editor keeps; defaults to URLs that survive a reload. Read once, when the editor mounts. */
+  isUrlAllowed?: MarkdownUrlPolicy;
   style?: CSSProperties & MarkdownEditorKnobStyle;
 };
 
@@ -33,6 +45,8 @@ export function MarkdownEditor({
   onUploadImage,
   maxImageBytes = 10 * 1024 * 1024,
   onStatusChange,
+  extensions: extraExtensions,
+  isUrlAllowed: urlPolicy = persistentUrlPolicy,
   children,
   className,
   ...props
@@ -41,11 +55,13 @@ export function MarkdownEditor({
   const markdown = value ?? internalValue;
   const [sourceMode, setSourceMode] = useState(false);
   const [contentAttributes, setContentAttributes] = useState<Record<string, string>>({ role: "textbox", "aria-multiline": "true" });
-  const [codec] = useState(createMarkdownCodec);
-  const sourceRequired = useMemo(() => requiresMarkdownSource(markdown, codec), [markdown, codec]);
+  const [isUrlAllowed] = useState(() => urlPolicy);
+  const [extensionOptions] = useState(() => ({ extensions: extraExtensions, isUrlAllowed }));
+  const [codec] = useState(() => createMarkdownCodec(extensionOptions));
+  const sourceRequired = useMemo(() => requiresMarkdownSource(markdown, codec, isUrlAllowed), [markdown, codec, isUrlAllowed]);
   const source = sourceMode || sourceRequired;
   const lastValue = useRef(markdown);
-  const [extensions] = useState(markdownExtensions);
+  const [extensions] = useState(() => markdownExtensions(extensionOptions));
   const handlers = useRef<{ upload: (files: File[], position?: number) => void; cancelAll: () => void } | null>(null);
 
   function setMarkdown(next: string) {
@@ -73,7 +89,7 @@ export function MarkdownEditor({
           return true;
         }
         const text = event.clipboardData?.getData("text/plain");
-        if (!text || event.clipboardData?.getData("text/html") || requiresMarkdownSource(text, codec)) return false;
+        if (!text || event.clipboardData?.getData("text/html") || requiresMarkdownSource(text, codec, isUrlAllowed)) return false;
         const document = view.state.schema.nodeFromJSON(codec.parse(text));
         event.preventDefault();
         view.dispatch(view.state.tr.replaceSelection(Slice.maxOpen(document.content)).scrollIntoView());
@@ -135,6 +151,7 @@ export function MarkdownEditor({
         setMarkdown,
         setContentAttributes,
         canUpload: Boolean(onUploadImage),
+        isUrlAllowed,
         ...imageUploads,
       }}
     >

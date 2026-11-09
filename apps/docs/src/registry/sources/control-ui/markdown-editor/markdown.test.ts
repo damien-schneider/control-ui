@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { getSchema } from "@tiptap/core";
+import { getSchema, Node } from "@tiptap/core";
 import { createMarkdownCodec, hasMarkdownContent, isEditorUrl, markdownExtensions, requiresMarkdownSource } from "./extensions";
 
 const codec = createMarkdownCodec();
@@ -30,6 +30,24 @@ describe("Markdown storage contract", () => {
     for (const markdown of ["<details><summary>More</summary>Hidden</details>", "![Local](blob:temporary)", "[Bad](javascript:alert)"]) {
       expect(requiresMarkdownSource(markdown, codec)).toBe(true);
     }
+  });
+
+  test("a custom URL policy keeps relative links editable without widening images", () => {
+    const relativeLinks = (url: string, kind: "link" | "image") =>
+      (kind === "link" && !url.includes(":")) || isEditorUrl(url, kind === "image");
+    const fileCodec = createMarkdownCodec({ isUrlAllowed: relativeLinks });
+    const markdown = "See [the form guide](references/forms.md).";
+    expect(requiresMarkdownSource(markdown, codec)).toBe(true);
+    expect(requiresMarkdownSource(markdown, fileCodec, relativeLinks)).toBe(false);
+    expect(fileCodec.serialize(fileCodec.parse(markdown))).toBe(markdown);
+    expect(requiresMarkdownSource("![Chart](assets/chart.png)", fileCodec, relativeLinks)).toBe(true);
+  });
+
+  test("extra extensions join the schema the codec parses with", () => {
+    const Callout = Node.create({ name: "callout", group: "block", content: "inline*" });
+    const names = getSchema(markdownExtensions({ extensions: [Callout] })).spec.nodes;
+    expect(names.get("callout")).toBeDefined();
+    expect(getSchema(markdownExtensions()).spec.nodes.get("callout")).toBeUndefined();
   });
 
   test("only persistent, safe URLs can be inserted", () => {

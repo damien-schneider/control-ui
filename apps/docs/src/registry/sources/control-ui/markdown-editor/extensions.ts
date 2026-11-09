@@ -1,4 +1,4 @@
-import { Extension, type JSONContent, Node } from "@tiptap/core";
+import { Extension, type Extensions, type JSONContent, Node } from "@tiptap/core";
 import Image from "@tiptap/extension-image";
 import { TaskList } from "@tiptap/extension-list";
 import Paragraph from "@tiptap/extension-paragraph";
@@ -38,27 +38,42 @@ export function isEditorUrl(value: string, image = false): boolean {
   }
 }
 
-const SafeImage = Image.extend({
-  renderMarkdown: (node) => {
-    const src = String(node.attrs?.src ?? "").replace(/[()]/g, (character) => `\\${character}`);
-    const alt = String(node.attrs?.alt ?? "").replace(/[\\[\]]/g, (character) => `\\${character}`);
-    const title = String(node.attrs?.title ?? "").replace(/[\\"]/g, (character) => `\\${character}`);
-    return title ? `![${alt}](${src} "${title}")` : `![${alt}](${src})`;
-  },
-  addAttributes() {
-    return {
-      ...this.parent?.(),
-      src: {
-        default: null,
-        parseHTML: (element) => {
-          const src = element.getAttribute("src") ?? "";
-          return isEditorUrl(src, true) ? src : null;
+export type MarkdownUrlKind = "link" | "image";
+/** Decides which URLs the editor keeps. Content with a refused URL stays in source mode, so nothing is dropped. */
+export type MarkdownUrlPolicy = (url: string, kind: MarkdownUrlKind) => boolean;
+
+/** Web apps only keep URLs that still resolve after a reload: HTTP(S), mailto, root-relative paths and anchors. */
+export const persistentUrlPolicy: MarkdownUrlPolicy = (url, kind) => isEditorUrl(url, kind === "image");
+
+export type MarkdownExtensionOptions = {
+  /** Extra TipTap extensions, applied after the built-in Markdown set. */
+  extensions?: Extensions;
+  isUrlAllowed?: MarkdownUrlPolicy;
+};
+
+function safeImage(isUrlAllowed: MarkdownUrlPolicy) {
+  return Image.extend({
+    renderMarkdown: (node) => {
+      const src = String(node.attrs?.src ?? "").replace(/[()]/g, (character) => `\\${character}`);
+      const alt = String(node.attrs?.alt ?? "").replace(/[\\[\]]/g, (character) => `\\${character}`);
+      const title = String(node.attrs?.title ?? "").replace(/[\\"]/g, (character) => `\\${character}`);
+      return title ? `![${alt}](${src} "${title}")` : `![${alt}](${src})`;
+    },
+    addAttributes() {
+      return {
+        ...this.parent?.(),
+        src: {
+          default: null,
+          parseHTML: (element) => {
+            const src = element.getAttribute("src") ?? "";
+            return isUrlAllowed(src, "image") ? src : null;
+          },
+          renderHTML: (attributes) => ({ src: isUrlAllowed(attributes.src ?? "", "image") ? attributes.src : undefined }),
         },
-        renderHTML: (attributes) => ({ src: isEditorUrl(attributes.src ?? "", true) ? attributes.src : undefined }),
-      },
-    };
-  },
-});
+      };
+    },
+  });
+}
 
 const MarkdownParagraph = Paragraph.extend({
   parseMarkdown: (token, helpers) => {
@@ -79,26 +94,27 @@ export const ImageUpload = Node.create({
   renderMarkdown: () => "",
 });
 
-export function markdownExtensions() {
+export function markdownExtensions({ extensions = [], isUrlAllowed = persistentUrlPolicy }: MarkdownExtensionOptions = {}) {
   return [
     StarterKit.configure({
       underline: false,
       paragraph: false,
-      link: { openOnClick: false, isAllowedUri: (url) => isEditorUrl(url) },
+      link: { openOnClick: false, isAllowedUri: (url) => isUrlAllowed(url, "link") },
     }),
     MarkdownParagraph,
     MarkdownHeadings,
-    SafeImage.configure({ allowBase64: false, inline: true }),
+    safeImage(isUrlAllowed).configure({ allowBase64: false, inline: true }),
     TaskList,
     MarkdownTaskItem.configure({ nested: true, HTMLAttributes: { "data-type": "taskItem" } }),
     TableKit.configure({ table: { resizable: false } }),
     ImageUpload,
     Markdown,
+    ...extensions,
   ];
 }
 
-export function createMarkdownCodec() {
-  return new MarkdownManager({ extensions: markdownExtensions() });
+export function createMarkdownCodec(options?: MarkdownExtensionOptions) {
+  return new MarkdownManager({ extensions: markdownExtensions(options) });
 }
 
 const supportedTokens = new Set([
@@ -125,8 +141,8 @@ const supportedTokens = new Set([
   "taskItem",
 ]);
 
-function unsupportedToken(value: unknown): boolean {
-  if (Array.isArray(value)) return value.some(unsupportedToken);
+function unsupportedToken(value: unknown, isUrlAllowed: MarkdownUrlPolicy): boolean {
+  if (Array.isArray(value)) return value.some((item) => unsupportedToken(item, isUrlAllowed));
   if (typeof value !== "object" || value === null) return false;
   if ("type" in value && typeof value.type === "string") {
     if (!supportedTokens.has(value.type)) return true;
@@ -134,15 +150,19 @@ function unsupportedToken(value: unknown): boolean {
       (value.type === "image" || value.type === "link") &&
       "href" in value &&
       typeof value.href === "string" &&
-      !isEditorUrl(value.href, value.type === "image")
+      !isUrlAllowed(value.href, value.type)
     )
       return true;
   }
-  return Object.values(value).some(unsupportedToken);
+  return Object.values(value).some((item) => unsupportedToken(item, isUrlAllowed));
 }
 
-export function requiresMarkdownSource(markdown: string, codec: MarkdownManager): boolean {
-  return unsupportedToken(codec.instance.lexer(markdown));
+export function requiresMarkdownSource(
+  markdown: string,
+  codec: MarkdownManager,
+  isUrlAllowed: MarkdownUrlPolicy = persistentUrlPolicy,
+): boolean {
+  return unsupportedToken(codec.instance.lexer(markdown), isUrlAllowed);
 }
 
 export function hasMarkdownContent(document: JSONContent): boolean {

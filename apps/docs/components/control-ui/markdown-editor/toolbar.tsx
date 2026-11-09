@@ -35,7 +35,6 @@ import { Toolbar, ToolbarButton, ToolbarSeparator } from "@/components/control-u
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
 import { Text } from "@/components/control-ui/ui/typography";
 import { useMarkdownEditor } from "./context";
-import { isEditorUrl } from "./extensions";
 import { markdownImageTypes } from "./uploads";
 
 type MarkdownEditorFormatAction = { label: string; Icon: typeof BoldIcon; active: boolean; run: () => void };
@@ -195,11 +194,11 @@ export function MarkdownEditorHeading() {
 }
 
 export function MarkdownEditorLink() {
-  const { editor, disabled, source } = useMarkdownEditor();
+  const { editor, disabled, source, isUrlAllowed } = useMarkdownEditor();
   const [open, setOpen] = useState(false);
   const [url, setUrl] = useState("");
   const inputId = useId();
-  const valid = isEditorUrl(url.trim());
+  const valid = isUrlAllowed(url.trim(), "link");
   function apply() {
     if (!valid || disabled || source) return;
     editor?.chain().focus().extendMarkRange("link").setLink({ href: url.trim() }).run();
@@ -265,14 +264,14 @@ export function MarkdownEditorLink() {
 }
 
 export function MarkdownEditorImage() {
-  const { editor, disabled, source, canUpload, upload } = useMarkdownEditor();
+  const { editor, disabled, source, canUpload, upload, isUrlAllowed } = useMarkdownEditor();
   const [open, setOpen] = useState(false);
   const [url, setUrl] = useState("");
   const [alt, setAlt] = useState("");
   const inputId = useId();
   const altId = useId();
   const fileInput = useRef<HTMLInputElement>(null);
-  const valid = isEditorUrl(url.trim(), true);
+  const valid = isUrlAllowed(url.trim(), "image");
   function insert() {
     if (!valid || disabled || source) return;
     editor?.chain().focus().setImage({ src: url.trim(), alt }).run();
