@@ -3032,7 +3032,6 @@
         ]
       },
       "trigger": {
-        "family": "popup",
         "registryItems": [
           "hover-card"
         ],

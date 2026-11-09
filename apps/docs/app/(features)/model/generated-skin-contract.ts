@@ -6969,7 +6969,6 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         trigger: {
-          family: "popup",
           registryItems: ["hover-card"],
           states: [
             {

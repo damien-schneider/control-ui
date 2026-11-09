@@ -166,7 +166,7 @@
     border-block-end: 1px solid var(--cui-popup-separator-color);
   }
 
-  :where([data-control-family="popup"][data-popup-kind="hover-card"][data-slot="trigger"]:is(a)) {
+  :where([data-popup-kind="hover-card"][data-slot="trigger"]:is(a)) {
     border-radius: var(--radius-sm);
     color: var(--foreground);
     font-weight: var(--font-weight-medium);
@@ -178,12 +178,12 @@
     transition: text-decoration-color var(--duration-fast) var(--ease-standard);
   }
 
-  :where([data-control-family="popup"][data-popup-kind="hover-card"][data-slot="trigger"]:is(a)[data-popup-open]) {
+  :where([data-popup-kind="hover-card"][data-slot="trigger"]:is(a)[data-popup-open]) {
     text-decoration-color: var(--foreground);
   }
 
   @media (hover: hover) {
-    :where([data-control-family="popup"][data-popup-kind="hover-card"][data-slot="trigger"]:is(a):hover) {
+    :where([data-popup-kind="hover-card"][data-slot="trigger"]:is(a):hover) {
       text-decoration-color: var(--foreground);
     }
   }

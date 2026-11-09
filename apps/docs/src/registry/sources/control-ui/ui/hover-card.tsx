@@ -20,6 +20,8 @@ export type HoverCardContentProps = Omit<
     side?: "top" | "bottom" | "left" | "right";
     align?: "start" | "center" | "end";
     sideOffset?: number;
+    /** Positions the card against this element instead of the trigger, for hover targets React does not render. */
+    anchor?: ComponentProps<typeof PreviewCardPrimitive.Positioner>["anchor"];
   },
   "style"
 > & { style?: CSSProperties & PopupKnobStyle };
@@ -33,9 +35,9 @@ export function HoverCardTrigger({
   ...props
 }: ComponentProps<typeof PreviewCardPrimitive.Trigger> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
+    // No family here: a control passed as `render` keeps its own, which its recipe is keyed on.
     <PreviewCardPrimitive.Trigger
       data-control-ui="hover-card"
-      data-control-family="popup"
       data-popup-kind="hover-card"
       data-slot="trigger"
       className={className}
@@ -50,6 +52,7 @@ export function HoverCardContent({
   side = "bottom",
   align = "center",
   sideOffset = 8,
+  anchor,
   ...props
 }: HoverCardContentProps) {
   const skin = useSkin();
@@ -65,6 +68,7 @@ export function HoverCardContent({
         side={side}
         align={align}
         sideOffset={sideOffset}
+        anchor={anchor}
         className="z-(--z-popup)"
       >
         <PreviewCardPrimitive.Popup

@@ -104,7 +104,14 @@ export const overlaysCompositions = {
       ),
     ),
   ],
-  "hover-card": [example("Anatomy", part("HoverCard", part("HoverCardTrigger"), part("HoverCardContent")))],
+  "hover-card": [
+    example("Anatomy", part("HoverCard", part("HoverCardTrigger"), part("HoverCardContent"))),
+    example(
+      "Anchored to an element",
+      part("HoverCard", part("HoverCardContent")),
+      "When the hover target is not a React element, such as a decoration inside a rich text editor, control open yourself and pass that element to HoverCardContent's anchor prop instead of rendering a trigger.",
+    ),
+  ],
   "alert-dialog": [
     example(
       "Anatomy",
