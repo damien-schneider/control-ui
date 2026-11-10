@@ -652,8 +652,14 @@ function knobFallbackOffenders(root: Root, knobs: readonly string[]): string[] {
 // Slots hosted by another family's element (composed Button, render-prop trigger): the family attr belongs to the host, so recipes key them by data-control-ui.
 const COMPOSED_HOST_SLOTS: Record<string, "*" | readonly string[]> = {
   "audio-recorder": "*",
+  "hover-card": ["trigger"],
   "inline-citation": ["favicon", "content", "source-favicon"],
   "morphing-panel": ["trigger"],
+};
+
+// A family whose components each carry their own data-control-ui name.
+const FAMILY_COMPONENTS: Record<string, readonly string[]> = {
+  popup: ["hover-card"],
 };
 
 function selectorSlots(selector: string): string[] {
@@ -668,11 +674,14 @@ function selectorCompoundsOf(selector: string): string[] {
 }
 
 function isComposedHostCompound(compound: string, family: string | undefined): boolean {
-  const composedSlots = family ? COMPOSED_HOST_SLOTS[family] : undefined;
-  if (!composedSlots || !compound.includes(`[data-control-ui="${family}"]`)) return false;
-  if (composedSlots === "*") return true;
-  const slots = selectorSlots(compound);
-  return slots.length > 0 && slots.every((slot) => composedSlots.includes(slot));
+  if (!family) return false;
+  return [family, ...(FAMILY_COMPONENTS[family] ?? [])].some((component) => {
+    const composedSlots = COMPOSED_HOST_SLOTS[component];
+    if (!composedSlots || !compound.includes(`[data-control-ui="${component}"]`)) return false;
+    if (composedSlots === "*") return true;
+    const slots = selectorSlots(compound);
+    return slots.length > 0 && slots.every((slot) => composedSlots.includes(slot));
+  });
 }
 
 function recipeIdentitySelectorOffenders(root: Root, family?: string): string[] {
