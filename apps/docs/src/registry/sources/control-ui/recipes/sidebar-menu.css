@@ -39,12 +39,12 @@
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-button"][data-size="sm"]) {
-    --cui-sidebar-menu-button-height: var(--control-h-sm);
+    block-size: min(var(--cui-sidebar-menu-button-height), var(--control-h-sm));
     --cui-sidebar-menu-button-font-size: var(--text-label);
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-button"][data-size="lg"]) {
-    --cui-sidebar-menu-button-height: var(--control-h-lg);
+    block-size: max(var(--cui-sidebar-menu-button-height), var(--control-h-lg));
     gap: calc(var(--spacing) * 2);
   }
 
@@ -199,11 +199,11 @@
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-button"][data-size="sm"] ~ [data-slot="menu-action"]) {
-    inset-block-start: calc(var(--control-h-sm) / 2);
+    inset-block-start: calc(min(var(--cui-sidebar-menu-button-height), var(--control-h-sm)) / 2);
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-button"][data-size="lg"] ~ [data-slot="menu-action"]) {
-    inset-block-start: calc(var(--control-h-lg) / 2);
+    inset-block-start: calc(max(var(--cui-sidebar-menu-button-height), var(--control-h-lg)) / 2);
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-button"]:has(~ [data-slot="menu-action"])) {
@@ -226,11 +226,11 @@
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-button"][data-size="sm"] ~ [data-slot="menu-badge"]) {
-    inset-block-start: calc(var(--control-h-sm) / 2);
+    inset-block-start: calc(min(var(--cui-sidebar-menu-button-height), var(--control-h-sm)) / 2);
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-button"][data-size="lg"] ~ [data-slot="menu-badge"]) {
-    inset-block-start: calc(var(--control-h-lg) / 2);
+    inset-block-start: calc(max(var(--cui-sidebar-menu-button-height), var(--control-h-lg)) / 2);
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-button"][data-active] ~ [data-slot="menu-badge"]) {
@@ -291,11 +291,11 @@
     }
 
     :where([data-control-family="sidebar"][data-slot="menu-button"][data-size="sm"] ~ [data-slot="menu-action"]) {
-      inset-block-start: max(calc(var(--touch-target) / 2), calc(var(--control-h-sm) / 2));
+      inset-block-start: max(calc(var(--touch-target) / 2), calc(min(var(--cui-sidebar-menu-button-height), var(--control-h-sm)) / 2));
     }
 
     :where([data-control-family="sidebar"][data-slot="menu-button"][data-size="lg"] ~ [data-slot="menu-action"]) {
-      inset-block-start: max(calc(var(--touch-target) / 2), calc(var(--control-h-lg) / 2));
+      inset-block-start: max(calc(var(--touch-target) / 2), calc(max(var(--cui-sidebar-menu-button-height), var(--control-h-lg)) / 2));
     }
 
     :where([data-control-family="sidebar"][data-slot="menu-button"]:has(~ [data-slot="menu-action"])) {

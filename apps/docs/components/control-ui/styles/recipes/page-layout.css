@@ -22,6 +22,15 @@
     --cui-page-layout-size: calc(var(--cui-page-layout-article-size) + var(--cui-page-layout-padding-inline) * 2);
   }
 
+  /* Inside an inset sidebar's card, the page is the card: it paints the card's surface. */
+  :where(
+    [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state]
+      ~ [data-control-family="sidebar"][data-slot="inset"]
+      [data-control-family="page-layout"][data-slot="root"]
+  ) {
+    --cui-page-layout-background: var(--cui-sidebar-inset-background);
+  }
+
   /* The masked inset viewport is a backdrop root; painting the page surface inside it
      gives nested blur and glass an opaque backdrop instead of bare content. */
   :where(
