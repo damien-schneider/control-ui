@@ -95,6 +95,7 @@
     border: var(--cui-sidebar-raised-border-width) solid var(--cui-sidebar-raised-border-color);
     border-radius: var(--cui-sidebar-raised-radius);
     box-shadow: var(--cui-sidebar-raised-shadow);
+    overflow: clip;
   }
 
   :where(
@@ -105,6 +106,7 @@
     border: var(--cui-sidebar-inset-border-width) solid var(--cui-sidebar-inset-border-color);
     border-radius: var(--cui-sidebar-inset-radius);
     box-shadow: var(--cui-sidebar-inset-shadow);
+    overflow: clip;
   }
 
   :where(

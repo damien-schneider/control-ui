@@ -103,17 +103,26 @@
       border: var(--cui-sidebar-inset-border-width) solid var(--cui-sidebar-inset-border-color);
       border-radius: var(--cui-sidebar-inset-radius);
       box-shadow: var(--cui-sidebar-inset-shadow);
+      /* Content paints inside the rounded corners instead of squaring them off. */
+      overflow: clip;
     }
 
+    /* The sidebar container already pads this edge, both open and collapsed to icons. */
     :where(
-        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="left"]
+        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"]:is(
+            [data-state="expanded"],
+            [data-collapsible="icon"]
+          )[data-side="left"]
           ~ [data-control-family="sidebar"][data-slot="inset"]
       ) {
       margin-inline-start: 0;
     }
 
     :where(
-        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="right"]
+        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"]:is(
+            [data-state="expanded"],
+            [data-collapsible="icon"]
+          )[data-side="right"]
           ~ [data-control-family="sidebar"][data-slot="inset"]
       ) {
       margin-inline-end: 0;
