@@ -30,6 +30,7 @@ import {
   type CSSProperties,
   createContext,
   type KeyboardEvent,
+  type ReactNode,
   type RefObject,
   useContext,
   useImperativeHandle,
@@ -309,9 +310,19 @@ function EmojiPickerCategoryHeader({ category, className, ...props }: EmojiPicke
   );
 }
 
-export type EmojiPickerContentProps = Omit<ComponentProps<typeof EmojiPickerPrimitive.Viewport>, "style"> & EmojiPickerStyle;
+export type EmojiPickerContentProps = Omit<ComponentProps<typeof EmojiPickerPrimitive.Viewport>, "style"> &
+  EmojiPickerStyle & { empty?: ReactNode; loadingLabel?: string; errorLabel?: ReactNode; retryLabel?: ReactNode };
 
-export function EmojiPickerContent({ className, ref, children, ...props }: EmojiPickerContentProps) {
+export function EmojiPickerContent({
+  className,
+  ref,
+  children,
+  empty = "No emoji found.",
+  loadingLabel = "Loading emoji",
+  errorLabel = "Couldn’t load emoji.",
+  retryLabel = "Try again",
+  ...props
+}: EmojiPickerContentProps) {
   const { viewportRef, listRef, loadState, retryEmojiData } = useEmojiPicker();
   useImperativeHandle(ref, () => {
     if (!viewportRef.current) throw new Error("EmojiPicker viewport is not mounted.");
@@ -332,9 +343,15 @@ export function EmojiPickerContent({ className, ref, children, ...props }: Emoji
     >
       {loadState.status === "error" ? (
         <div data-control-ui="emoji-picker" data-control-family="emoji-picker" data-slot="error" role="alert">
-          <span>Couldn’t load emoji.</span>
-          <button type="button" onClick={retryEmojiData}>
-            Try again
+          <span>{errorLabel}</span>
+          <button
+            type="button"
+            data-control-ui="emoji-picker"
+            data-control-family="emoji-picker"
+            data-slot="error-retry"
+            onClick={retryEmojiData}
+          >
+            {retryLabel}
           </button>
         </div>
       ) : (
@@ -346,7 +363,7 @@ export function EmojiPickerContent({ className, ref, children, ...props }: Emoji
             data-slot="loading"
             className="absolute inset-0 flex items-center justify-center"
           >
-            <Spinner label="Loading emoji" />
+            <Spinner label={loadingLabel} />
           </EmojiPickerPrimitive.Loading>
           <EmojiPickerPrimitive.Empty
             data-control-ui="emoji-picker"
@@ -354,7 +371,7 @@ export function EmojiPickerContent({ className, ref, children, ...props }: Emoji
             data-slot="empty"
             className="absolute inset-0 flex items-center justify-center"
           >
-            No emoji found.
+            {empty}
           </EmojiPickerPrimitive.Empty>
           <EmojiPickerPrimitive.List
             data-control-ui="emoji-picker"
@@ -374,9 +391,9 @@ function renderEmojiViewport(viewportProps: ComponentProps<"div">) {
   return <EmojiPickerPrimitive.Viewport {...viewportProps} />;
 }
 
-export type EmojiPickerFooterProps = Omit<ComponentProps<"div">, "style" | "children"> & EmojiPickerStyle & { placeholder?: string };
+export type EmojiPickerFooterProps = Omit<ComponentProps<"div">, "style"> & EmojiPickerStyle & { placeholder?: string };
 
-export function EmojiPickerFooter({ className, placeholder = "Pick an emoji…", ...props }: EmojiPickerFooterProps) {
+export function EmojiPickerFooter({ className, placeholder = "Pick an emoji…", children, ...props }: EmojiPickerFooterProps) {
   return (
     <div
       data-control-ui="emoji-picker"
@@ -403,7 +420,22 @@ export function EmojiPickerFooter({ className, placeholder = "Pick an emoji…",
           )
         }
       </EmojiPickerPrimitive.ActiveEmoji>
+      {children}
     </div>
+  );
+}
+
+export type EmojiPickerSkinToneProps = Omit<ComponentProps<typeof EmojiPickerPrimitive.SkinToneSelector>, "style"> & EmojiPickerStyle;
+
+export function EmojiPickerSkinTone({ className, ...props }: EmojiPickerSkinToneProps) {
+  return (
+    <EmojiPickerPrimitive.SkinToneSelector
+      data-control-ui="emoji-picker"
+      data-control-family="emoji-picker"
+      data-slot="skin-tone"
+      className={cn("flex flex-none items-center justify-center", className)}
+      {...props}
+    />
   );
 }
 
@@ -418,10 +450,11 @@ export function EmojiIconPicker({ children, defaultValue = "emoji", ...props }: 
 export function EmojiIconPickerTabs({
   emojiLabel = "Emoji",
   iconsLabel = "Icons",
+  className,
   ...props
 }: Omit<ComponentProps<typeof TabsList>, "children"> & { emojiLabel?: string; iconsLabel?: string }) {
   return (
-    <TabsList size="xs" className="mx-2 mt-2" aria-label="Choose emoji or icon" {...props}>
+    <TabsList size="xs" className={cn("mx-2 mt-2", className)} aria-label="Choose emoji or icon" {...props}>
       <TabsTab value="emoji">{emojiLabel}</TabsTab>
       <TabsTab value="icons">{iconsLabel}</TabsTab>
     </TabsList>

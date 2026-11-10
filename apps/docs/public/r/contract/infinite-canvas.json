@@ -34,7 +34,7 @@
       "name": "--cui-infinite-canvas-padding",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "max(\n      calc(var(--spacing) * 2),\n      calc(var(--cui-infinite-canvas-radius) - var(--_infinite-canvas-controls-radius))\n    )"
+      "defaultValue": "max(\n      calc(var(--spacing) * 2),\n      calc(var(--_infinite-canvas-radius) - var(--_infinite-canvas-controls-radius))\n    )"
     }
   ],
   "parts": {
@@ -45,6 +45,15 @@
           "infinite-canvas"
         ],
         "states": [
+          {
+            "attribute": "data-chrome",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "embedded",
+              "standalone"
+            ]
+          },
           {
             "attribute": "data-easing",
             "source": "control-ui",

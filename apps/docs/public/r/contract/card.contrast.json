@@ -5,16 +5,6 @@
     [
       {
         "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper",
-          "data-surface": "transparent"
-        }
-      },
-      {
-        "attributes": {
           "data-control-family": "card",
           "data-control-ui": "card",
           "data-size": "default",
@@ -25,24 +15,6 @@
       }
     ],
     [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper",
-          "data-surface": "transparent"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
       {
         "attributes": {
           "data-control-family": "page-layout",
@@ -66,43 +38,6 @@
     [
       {
         "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "card",
-          "data-control-ui": "card",
-          "data-slot": "root",
-          "data-surface": "panel",
-          "data-variant": "default"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
           "data-scroll": "page",
@@ -114,6 +49,7 @@
         "attributes": {
           "data-control-family": "card",
           "data-control-ui": "card",
+          "data-size": "sm",
           "data-slot": "root",
           "data-surface": "panel",
           "data-variant": "default"
@@ -121,23 +57,6 @@
       }
     ],
     [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
       {
         "attributes": {
           "data-control-family": "page-layout",
@@ -158,61 +77,21 @@
       },
       {
         "attributes": {
-          "data-control-family": "card",
-          "data-control-ui": "card",
-          "data-slot": "root",
-          "data-surface": "panel",
-          "data-variant": "default"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "contained",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-id": "base-ui-_R_b9qatpesndl6lilb_-viewport",
+          "data-overflow-y-end": "",
+          "data-scroll-area-viewport": "",
+          "data-slot": "viewport",
+          "tabindex": "0"
         }
       },
       {
         "attributes": {
           "data-control-family": "card",
           "data-control-ui": "card",
+          "data-size": "default",
           "data-slot": "root",
           "data-surface": "panel",
           "data-variant": "default"
@@ -223,7 +102,8 @@
   "probes": [
     {
       "knobs": {
-        "fill": "--cui-card-background"
+        "fill": "--cui-card-background",
+        "text": "--cui-card-foreground"
       },
       "anatomy": 0,
       "rendersText": true,
@@ -231,7 +111,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-card-background"
+        "fill": "--cui-card-background",
+        "text": "--cui-card-foreground"
       },
       "anatomy": 1,
       "rendersText": true,
@@ -239,7 +120,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-card-background"
+        "fill": "--cui-card-background",
+        "text": "--cui-card-foreground"
       },
       "anatomy": 2,
       "rendersText": true,
@@ -247,25 +129,10 @@
     },
     {
       "knobs": {
-        "fill": "--cui-card-background"
+        "fill": "--cui-card-background",
+        "text": "--cui-card-foreground"
       },
       "anatomy": 3,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-card-background"
-      },
-      "anatomy": 4,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-card-background"
-      },
-      "anatomy": 5,
       "rendersText": true,
       "state": false
     }

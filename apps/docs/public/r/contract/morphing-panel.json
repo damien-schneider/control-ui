@@ -13,6 +13,12 @@
       "defaultValue": "var(--radius-control)"
     },
     {
+      "name": "--cui-morphing-panel-open-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-panel)"
+    },
+    {
       "name": "--cui-morphing-panel-background",
       "syntax": "<color>",
       "initialValue": "transparent",
@@ -37,10 +43,16 @@
       "defaultValue": "var(--shadow-md)"
     },
     {
+      "name": "--cui-morphing-panel-open-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-pop)"
+    },
+    {
       "name": "--cui-morphing-panel-trigger-hover-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "oklch(from var(--foreground) l c h / 0.06)"
+      "defaultValue": "var(--hover-fill)"
     },
     {
       "name": "--cui-morphing-panel-border-width",
@@ -156,6 +168,8 @@
     }
   },
   "adornments": {},
-  "uncovered": [],
+  "uncovered": [
+    "--cui-morphing-panel-trigger-hover-background"
+  ],
   "contrast": "/r/contract/morphing-panel.contrast.json"
 }

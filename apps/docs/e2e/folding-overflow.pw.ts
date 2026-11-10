@@ -72,7 +72,7 @@ for (const example of foldingExamples) {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.emulateMedia({ reducedMotion: "no-preference" });
     await page.goto(`/components/${example.component}`);
-    const preview = page.locator("main");
+    const preview = page.getByRole("tabpanel", { name: "Preview", exact: true }).first();
     const trigger = preview.getByText(example.trigger, { exact: true });
     await waitForReactHydration(trigger);
     const panel = preview.locator(`[data-control-family="${example.family}"][data-slot="${example.slot}"]`).first();

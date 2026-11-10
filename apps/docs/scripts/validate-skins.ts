@@ -8,13 +8,15 @@ import selectorParser from "postcss-selector-parser";
 import { THEME_CONTRACT_NAMES } from "../src/registry/lib/theme-contract";
 import {
   familyAttribute,
+  familyPartAttribute,
   identityAttribute,
   isAnatomyMetadataAttribute,
+  isFamilyQualifierAttribute,
   skinScopeAttribute,
   slotAttribute,
   surfaceAttribute,
 } from "./control-anatomy";
-import { knobPrefix, knobsByFamily } from "./knob-contracts/collect";
+import { knobPrefix, knobsByFamily, recipesDir } from "./knob-contracts/collect";
 import {
   type Anatomy,
   collectEffectUtilities,
@@ -23,15 +25,19 @@ import {
   createSubjectAnatomyResolver,
   knobsPainting,
 } from "./knob-ownership";
+import { flattenCompound } from "./selector-bucketing";
 import { collectSkinContract } from "./skin-contract/collect";
 import type { ContractPart } from "./skin-contract/model";
+import { type AnatomyPair, pairSetKey, stampedAnatomyKeys } from "./stamped-anatomy";
 
 const controlKnobContracts = knobsByFamily();
 
 const contract = collectSkinContract();
-const knobOwnership = collectKnobOwnership(contract);
 const resolveAnatomy = createAnatomyResolver(contract);
 const resolveSubjectAnatomy = createSubjectAnatomyResolver(contract);
+// A recipe rule paints its subject. Crediting its knobs to the compounds above it would bar a skin from
+// painting an ancestor those knobs never reach.
+const knobOwnership = collectKnobOwnership(contract, resolveSubjectAnatomy);
 const effectUtilities = collectEffectUtilities();
 const knobsByPrefix: Record<string, readonly string[]> = Object.fromEntries(
   Object.entries(controlKnobContracts)
@@ -39,6 +45,11 @@ const knobsByPrefix: Record<string, readonly string[]> = Object.fromEntries(
     .map(([family, knobs]) => [`${knobPrefix}${family}-`, knobs]),
 );
 const skinRoot = path.join(process.cwd(), "src/registry/skin-packs");
+const componentRoots = ["src/registry/sources/control-ui", "src/registry/blocks/control-ui"].map((root) => path.join(process.cwd(), root));
+const stampedAnatomies = stampedAnatomyKeys(
+  componentRoots.flatMap((root) => filesUnder(root, [".ts", ".tsx"])).map((file) => ({ source: readFileSync(file, "utf8") })),
+);
+const shadowLayerKnobs = collectShadowLayerKnobs();
 const failures: string[] = [];
 
 function attributeValue(attribute: any): string | undefined {
@@ -195,10 +206,94 @@ function validateKnobName(file: string, name: string, line: number | undefined):
   failures.push(`${file}:${line ?? "?"} unknown knob ${name}${hint}`);
 }
 
+function shadowLayers(value: string): string[] {
+  const layers: string[] = [];
+  let depth = 0;
+  let start = 0;
+  for (let index = 0; index < value.length; index++) {
+    const character = value[index];
+    if (character === "(") depth += 1;
+    else if (character === ")") depth -= 1;
+    else if (character === "," && depth === 0) {
+      layers.push(value.slice(start, index));
+      start = index + 1;
+    }
+  }
+  return [...layers, value.slice(start)].map((layer) => layer.trim());
+}
+
+/** The custom property a layer hands its whole value to: `var(--x)` or `var(--x, fallback)` and nothing beside it. */
+function layerReference(layer: string): string | undefined {
+  const name = /^var\(\s*(--[\w-]+)/.exec(layer)?.[1];
+  if (!name) return undefined;
+  let depth = 0;
+  for (let index = 0; index < layer.length; index++) {
+    if (layer[index] === "(") depth += 1;
+    if (layer[index] !== ")") continue;
+    depth -= 1;
+    if (depth === 0) return index === layer.length - 1 ? name : undefined;
+  }
+  return undefined;
+}
+
+type ShadowValue = { value: string; insideList: boolean };
+
+/** The custom properties a shadow value hands whole layers to, and whether each sits in a comma-separated list. */
+function layerReferences({ value, insideList }: ShadowValue): { name: string; isList: boolean }[] {
+  const layers = shadowLayers(value);
+  const isList = insideList || layers.length > 1;
+  return layers.flatMap((layer) => {
+    const name = layerReference(layer);
+    return name ? [{ name, isList }] : [];
+  });
+}
+
+/** The knobs that end up as one layer of a list, followed from the painted values through the properties that carry them. */
+function shadowListKnobs(painted: string[], declared: Map<string, string[]>): Set<string> {
+  const layerKnobs = new Set<string>();
+  const followed = new Set<string>();
+  const pending: ShadowValue[] = painted.map((value) => ({ value, insideList: false }));
+  for (let current = pending.pop(); current; current = pending.pop()) {
+    for (const { name, isList } of layerReferences(current)) {
+      const visit = `${name} ${isList}`;
+      if (followed.has(visit)) continue;
+      followed.add(visit);
+      if (isList && name.startsWith(knobPrefix)) layerKnobs.add(name);
+      for (const value of declared.get(name) ?? []) pending.push({ value, insideList: isList });
+    }
+  }
+  return layerKnobs;
+}
+
+/**
+ * Every knob a recipe paints as one layer of a comma-separated `box-shadow`, followed through the
+ * private aliases and knob defaults that carry it there. `none` is a whole-property keyword, so on one
+ * of these it voids every other layer of the list: the rim, the focus ring, the elevation.
+ */
+function collectShadowLayerKnobs(): Set<string> {
+  const declared = new Map<string, string[]>();
+  const painted: string[] = [];
+  for (const file of filesUnder(path.join(process.cwd(), recipesDir), [".css"])) {
+    postcss.parse(readFileSync(file, "utf8"), { from: file }).walkDecls((declaration) => {
+      if (declaration.prop.startsWith("--")) declared.set(declaration.prop, [...(declared.get(declaration.prop) ?? []), declaration.value]);
+      else if (declaration.prop === "box-shadow") painted.push(declaration.value);
+    });
+  }
+  return shadowListKnobs(painted, declared);
+}
+
+function validateShadowLayer(file: string, declaration: postcss.Declaration): void {
+  if (!shadowLayerKnobs.has(declaration.prop) || declaration.value.trim() !== "none") return;
+  failures.push(
+    `${file}:${declaration.source?.start?.line ?? "?"} ${declaration.prop}: none voids the box-shadow list the recipe composes it into — use 0 0 transparent`,
+  );
+}
+
 function validateKnobs(file: string, root: postcss.Root): void {
   root.walkDecls((declaration) => {
     const line = declaration.source?.start?.line;
     validateKnobName(file, declaration.prop, line);
+    validateShadowLayer(file, declaration);
     for (const match of declaration.value.matchAll(/var\(\s*(--[\w-]+)/g)) validateKnobName(file, match[1] ?? "", line);
   });
   root.walkAtRules("property", (atRule) => {
@@ -288,6 +383,103 @@ function validateModeScope(file: string, rule: postcss.Rule, selectors: any[]): 
   }
 }
 
+/** `:not(.dark, .dark *)` also rules out a dark ancestor, which makes it the one negation that does test the mode. */
+function isLightOnlyGate(node: selectorParser.Node): boolean {
+  if (node.type !== "pseudo" || node.value !== ":not") return "nodes" in node && node.nodes.some(isLightOnlyGate);
+  let negatesDark = false;
+  node.walkClasses((candidate) => {
+    if (candidate.value === "dark") negatesDark = true;
+  });
+  const excludesDarkAncestors = node.nodes.some((argument) => {
+    const compounds = directCompounds(argument);
+    return compounds.length > 1 && compounds[0].some((part) => part.type === "class" && part.value === "dark");
+  });
+  return negatesDark && !excludesDarkAncestors;
+}
+
+/**
+ * `:not(.dark)` asks whether one element lacks the class, not whether the page is light. `.dark` sits on
+ * `<html>`, so `<body>` and every portalled `[data-skin]` surface under it satisfy the negation in dark
+ * mode too and the light-only value leaks there. Only a compound pinned to the root element escapes that.
+ */
+function validateLightGate(file: string, rule: postcss.Rule, selectors: selectorParser.Selector[]): void {
+  const gated = selectors.some((selector) => {
+    const compounds: selectorParser.Node[][] = directCompounds(selector);
+    if (!compounds.some((compound) => attributesIn(compound).some((attribute) => attribute.attribute === skinScopeAttribute))) return false;
+    return compounds.some((compound) => {
+      const pinnedToRoot = compound.some(
+        (node) => (node.type === "pseudo" && node.value === ":root") || (node.type === "tag" && node.value.toLowerCase() === "html"),
+      );
+      return !pinnedToRoot && compound.some(isLightOnlyGate);
+    });
+  });
+  if (!gated) return;
+  failures.push(
+    `${file}:${rule.source?.start?.line ?? "?"} :not(.dark) also matches in dark mode, on any element below the one carrying .dark — make the light value the base and reset it under .dark: ${rule.selector}`,
+  );
+}
+
+/** The anatomy attributes one contract part can carry, including the qualifiers it only stamps conditionally. */
+const contractAnatomies = new Map<string, Map<string, Set<string>>>();
+for (const [scope, definition] of Object.entries(contract.scopes)) {
+  for (const [slot, part] of Object.entries(definition.parts)) {
+    const carried = new Map<string, Set<string>>([
+      [identityAttribute, new Set([scope])],
+      [slotAttribute, new Set([slot])],
+    ]);
+    if (part.family) carried.set(familyAttribute, new Set([part.family]));
+    for (const state of part.states) {
+      if (isFamilyQualifierAttribute(state.attribute)) carried.set(state.attribute, new Set(state.values));
+    }
+    contractAnatomies.set(`${scope}/${slot}`, carried);
+  }
+}
+for (const [popupPart, sites] of Object.entries(contract.semanticFamilies.popup)) {
+  for (const site of sites) {
+    const carried = contractAnatomies.get(`${site.scope}/${site.part}`);
+    const stamped = carried?.get(familyPartAttribute("popup")) ?? new Set<string>();
+    carried?.set(familyPartAttribute("popup"), stamped.add(popupPart));
+  }
+}
+
+/** The anatomy attributes a compound pins to one exact value. */
+function anatomyPairs(compound: selectorParser.Node[]): AnatomyPair[] {
+  const keyed = new Map<string, AnatomyPair>();
+  for (const attribute of attributesIn(compound)) {
+    const value = attributeValue(attribute);
+    const name: string = attribute.attribute;
+    const keysAnatomy =
+      name === identityAttribute || name === familyAttribute || name === slotAttribute || isFamilyQualifierAttribute(name);
+    if (value && attribute.operator === "=" && keysAnatomy) keyed.set(`${name}=${value}`, [name, value]);
+  }
+  return [...keyed.values()];
+}
+
+function isStampedAnatomy(pairs: AnatomyPair[]): boolean {
+  if (pairs.length === 0 || stampedAnatomies.has(pairSetKey(pairs))) return true;
+  return [...contractAnatomies.values()].some((carried) => pairs.every(([attribute, value]) => carried.get(attribute)?.has(value)));
+}
+
+/**
+ * A compound that names a family no element carries, or a part its scope never stamps, parses and passes
+ * every structural check while styling nothing. The anatomy attributes a compound keys must all sit
+ * together on one element: either a literal stamp in the components, or a part the contract describes.
+ */
+function validateStampedAnatomy(file: string, rule: postcss.Rule, selectors: selectorParser.Selector[]): void {
+  const unstamped = new Set<string>();
+  for (const selector of selectors.flatMap((current) => [current, ...nestedSelectors(current.nodes)])) {
+    for (const compound of directCompounds(selector).flatMap(flattenCompound)) {
+      const pairs = anatomyPairs(compound);
+      if (!isStampedAnatomy(pairs)) unstamped.add(pairSetKey(pairs));
+    }
+  }
+  for (const key of unstamped) {
+    failures.push(
+      `${file}:${rule.source?.start?.line ?? "?"} ${key} is stamped on no element, so the rule styles nothing: ${rule.selector}`,
+    );
+  }
+}
+
 /**
  * An app that keeps its own `--background`/`--primary` block declares them at `:root`, which lands on the same
  * element as the skin scope at equal weight, so source order alone would decide the palette. Every pack token
@@ -311,10 +503,13 @@ function validateCss(file: string, source: string): void {
   try {
     const root = postcss.parse(source, { from: file });
     root.walkRules((rule) => {
+      const reported = failures.length;
       selectorParser((selectorRoot) => {
         selectorRoot.each((selector) => validateSelectorStructure(file, rule.selector.replace(/\s+/g, " "), selector));
         validateModeScope(file, rule, [...selectorRoot.nodes]);
+        validateLightGate(file, rule, [...selectorRoot.nodes]);
         validateTokenScopeWeight(file, rule, [...selectorRoot.nodes]);
+        if (failures.length === reported) validateStampedAnatomy(file, rule, [...selectorRoot.nodes]);
       }).processSync(rule.selector);
       validateLayer(file, rule, resolveAnatomy(rule.selector).length > 0);
       validateKnobBypass(file, rule, resolveSubjectAnatomy(rule.selector));

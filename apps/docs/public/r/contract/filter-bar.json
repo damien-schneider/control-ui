@@ -65,6 +65,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--hover-fill)"
+    },
+    {
+      "name": "--cui-filter-bar-remove-icon",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3)"
     }
   ],
   "parts": {
@@ -89,6 +95,12 @@
           }
         ]
       },
+      "add-button": {
+        "registryItems": [
+          "filter-bar"
+        ],
+        "states": []
+      },
       "chip": {
         "family": "filter-bar",
         "registryItems": [
@@ -103,7 +115,20 @@
           }
         ]
       },
+      "clear": {
+        "registryItems": [
+          "filter-bar"
+        ],
+        "states": []
+      },
       "exit": {
+        "family": "filter-bar",
+        "registryItems": [
+          "filter-bar"
+        ],
+        "states": []
+      },
+      "input": {
         "family": "filter-bar",
         "registryItems": [
           "filter-bar"
@@ -128,8 +153,6 @@
   },
   "adornments": {},
   "uncovered": [
-    "--cui-filter-bar-background",
-    "--cui-filter-bar-foreground",
     "--cui-filter-bar-hover-background"
   ],
   "contrast": "/r/contract/filter-bar.contrast.json"

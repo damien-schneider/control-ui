@@ -17,6 +17,7 @@ import { Button } from "@/components/control-ui/ui/button";
 import { Drawer, DrawerBody, DrawerContent } from "@/components/control-ui/ui/drawer";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
+import type { HeadingLevel } from "@/components/control-ui/ui/typography";
 import {
   clampDockablePanelPosition,
   dockablePanelSideAt,
@@ -34,6 +35,7 @@ export type DockablePanelProps = Omit<ComponentProps<"aside">, "onChange" | "ref
   defaultPlacement?: DockablePanelPlacement;
   onPlacementChange?: (placement: DockablePanelPlacement) => void;
   finalFocus?: RefObject<HTMLElement | null>;
+  dockedAnnouncement?: (placement: DockablePanelPlacement) => string;
   style?: CSSProperties & DockablePanelKnobStyle;
 };
 
@@ -48,6 +50,7 @@ export type DockablePanelDragHandleProps = Omit<ComponentProps<"div">, "style"> 
 };
 
 export type DockablePanelTitleProps = Omit<ComponentProps<"h2">, "style" | "id"> & {
+  headingLevel?: HeadingLevel;
   style?: CSSProperties & DockablePanelKnobStyle;
 };
 
@@ -117,6 +120,7 @@ export function DockablePanel({
   defaultPlacement = "right",
   onPlacementChange,
   finalFocus,
+  dockedAnnouncement = defaultDockedAnnouncement,
   className,
   style,
   children,
@@ -128,7 +132,7 @@ export function DockablePanel({
   const [dragging, setDragging] = useState(false);
   const [potentialDock, setPotentialDock] = useState<DockablePanelPlacement>(placement);
   const [dragPosition, setDragPosition] = useState<{ x: number; y: number } | null>(null);
-  const [dragHeight, setDragHeight] = useState(0);
+  const [dropZoneStyle, setDropZoneStyle] = useState<CSSProperties & DockablePanelKnobStyle>();
   const [announcement, setAnnouncement] = useState("");
   const isMobile = useIsMobile();
   const titleId = useId();
@@ -155,7 +159,7 @@ export function DockablePanel({
 
   function setPlacement(next: DockablePanelPlacement) {
     setPlacementState(next);
-    setAnnouncement(`Panel docked ${next}.`);
+    setAnnouncement(dockedAnnouncement(next));
   }
 
   function togglePlacement() {
@@ -173,7 +177,7 @@ export function DockablePanel({
     if (shouldDock) setPlacement(potentialDockRef.current);
     dragRef.current = null;
     setDragPosition(null);
-    setDragHeight(0);
+    setDropZoneStyle(undefined);
     setDragging(false);
   }
 
@@ -195,7 +199,18 @@ export function DockablePanel({
     potentialDockRef.current = placement;
     setPotentialDock(placement);
     setDragPosition({ x: panelRect.left - containerRect.left, y: panelRect.top - containerRect.top });
-    setDragHeight(panelRect.height);
+    // Drop zones are siblings of the panel, so the knobs declared on its root never inherit to them.
+    const panelStyle = getComputedStyle(panel);
+    setDropZoneStyle({
+      height: panelRect.height,
+      "--cui-dockable-panel-radius": panelStyle.getPropertyValue("--cui-dockable-panel-radius"),
+      "--cui-dockable-panel-border-width": panelStyle.getPropertyValue("--cui-dockable-panel-border-width"),
+      "--cui-dockable-panel-drop-zone-background": panelStyle.getPropertyValue("--cui-dockable-panel-drop-zone-background"),
+      "--cui-dockable-panel-drop-zone-active-background": panelStyle.getPropertyValue("--cui-dockable-panel-drop-zone-active-background"),
+      "--cui-dockable-panel-drop-zone-active-border-color": panelStyle.getPropertyValue(
+        "--cui-dockable-panel-drop-zone-active-border-color",
+      ),
+    });
     setDragging(true);
   }
 
@@ -235,13 +250,6 @@ export function DockablePanel({
     titleId,
     dragHandleProps: { onPointerDown, onPointerMove, onPointerUp, onPointerCancel },
   };
-  const dropZoneStyle = dragging
-    ? ({
-        height: dragHeight,
-        "--cui-dockable-panel-drop-zone-active-background": style?.["--cui-dockable-panel-drop-zone-active-background"],
-        "--cui-dockable-panel-drop-zone-active-border-color": style?.["--cui-dockable-panel-drop-zone-active-border-color"],
-      } satisfies CSSProperties & DockablePanelKnobStyle)
-    : undefined;
 
   if (isMobile) {
     return (
@@ -284,7 +292,7 @@ export function DockablePanel({
         data-dragging={dragging ? "true" : undefined}
         aria-label={ariaLabel}
         className={cn(
-          "absolute z-30 flex w-[min(22rem,calc(50%_-_1.125rem))] flex-col overflow-hidden",
+          "absolute z-(--z-nav) flex w-[min(22rem,calc(50%_-_1.125rem))] flex-col overflow-hidden",
           !dragging && placement === "left" && "top-3 left-3 max-h-[calc(100%_-_1.5rem)]",
           !dragging && placement === "right" && "top-3 right-3 max-h-[calc(100%_-_1.5rem)]",
           dragging && "top-0 left-0 max-h-[calc(100%_-_1.5rem)]",
@@ -391,10 +399,11 @@ export function DockablePanelDragHandle({
   );
 }
 
-export function DockablePanelTitle({ className, children, ...props }: DockablePanelTitleProps) {
+export function DockablePanelTitle({ headingLevel = 2, className, children, ...props }: DockablePanelTitleProps) {
   const { titleId } = useDockablePanelContext();
+  const Heading: `h${HeadingLevel}` = `h${headingLevel}`;
   return (
-    <h2
+    <Heading
       data-control-ui="dockable-panel"
       data-control-family="dockable-panel"
       data-slot="title"
@@ -404,7 +413,7 @@ export function DockablePanelTitle({ className, children, ...props }: DockablePa
       id={titleId}
     >
       {children}
-    </h2>
+    </Heading>
   );
 }
 
@@ -424,14 +433,14 @@ export function DockablePanelToggle({ className, children, "aria-label": ariaLab
   const { isMobile, placement, togglePlacement } = useDockablePanelContext();
   if (isMobile) return null;
   const target = oppositeDockablePanelSide(placement);
-  const label = `Move panel to ${target}`;
+  const label = ariaLabel ?? `Move panel to ${target}`;
   return (
     <Button
       type="button"
       variant="ghost"
       size="sm"
       iconOnly
-      aria-label={ariaLabel ?? label}
+      aria-label={label}
       title={label}
       className={className}
       onClick={(event) => {
@@ -455,7 +464,7 @@ export function DockablePanelDock({
 }: DockablePanelDockProps) {
   const { isMobile, placement, setPlacement } = useDockablePanelContext();
   if (isMobile) return null;
-  const label = `Dock panel ${nextPlacement}`;
+  const label = ariaLabel ?? `Dock panel ${nextPlacement}`;
   return (
     <Button
       type="button"
@@ -464,7 +473,7 @@ export function DockablePanelDock({
       iconOnly
       active={placement === nextPlacement}
       aria-pressed={placement === nextPlacement}
-      aria-label={ariaLabel ?? label}
+      aria-label={label}
       title={label}
       className={className}
       onClick={(event) => {
@@ -538,10 +547,17 @@ function DockablePanelDropZone({
       data-surface="panel"
       data-side={side}
       data-active={active ? "true" : undefined}
-      className={cn("pointer-events-none absolute top-3 z-20 w-[min(22rem,calc(50%_-_1.125rem))]", side === "left" ? "left-3" : "right-3")}
+      className={cn(
+        "pointer-events-none absolute top-3 z-(--z-sticky) w-[min(22rem,calc(50%_-_1.125rem))]",
+        side === "left" ? "left-3" : "right-3",
+      )}
       style={style}
     />
   );
+}
+
+function defaultDockedAnnouncement(placement: DockablePanelPlacement) {
+  return `Panel docked ${placement}.`;
 }
 
 function PlacementIcon({ placement }: { placement: DockablePanelPlacement }) {

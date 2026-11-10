@@ -59,6 +59,26 @@ describe("field controls register with Field", () => {
     expect(inputs[1]).toContain('aria-label="Character 2 of 4"');
   });
 
+  test("InputOTP takes its name from a visible label through aria-labelledby", () => {
+    const html = renderToStaticMarkup(<InputOTP length={4} aria-label="Ignored" aria-labelledby="code-label" />);
+    const inputs = html.match(/<input\b[^>]*>/g) ?? [];
+    expect(html).not.toContain("Ignored");
+    expect(html).toMatch(/<div role="group" aria-labelledby="code-label"/);
+    expect(inputs[0]).toContain('aria-labelledby="code-label"');
+  });
+
+  test("InputOTP slot names are replaceable for other languages", () => {
+    const html = renderToStaticMarkup(<InputOTP length={4} slotLabel={(index, length) => `Chiffre ${index + 1} sur ${length}`} />);
+    const inputs = html.match(/<input\b[^>]*>/g) ?? [];
+    expect(inputs[1]).toContain('aria-label="Chiffre 2 sur 4"');
+  });
+
+  test("NativeSelect className sizes the wrapper its chevron is positioned in", () => {
+    const html = renderToStaticMarkup(<NativeSelect className="w-40" />);
+    expect(html).toMatch(/<div[^>]*data-slot="wrapper"[^>]*class="[^"]*\bw-40\b/);
+    expect(html.match(/<select\b[^>]*>/)?.[0]).not.toContain("w-40");
+  });
+
   test("choice cards in one radio group each label their own radio", () => {
     const html = renderToStaticMarkup(
       <Field>

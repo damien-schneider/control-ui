@@ -3,6 +3,7 @@
 import { ChevronDownIcon, MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
 import type { ComponentProps, ComponentType, CSSProperties } from "react";
 import { useId } from "react";
+import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
 import {
   DropdownMenu,
@@ -33,7 +34,6 @@ type ThemeControlProps = {
 export type ThemeToggleProps = Omit<ComponentProps<typeof Button>, "value" | "onChange"> &
   ThemeControlProps & {
     showLabel?: boolean;
-    showLabels?: boolean;
   };
 
 export type ThemeSwitchProps = Omit<ComponentProps<typeof Switch>, "checked" | "defaultChecked" | "onCheckedChange" | "value"> & {
@@ -65,10 +65,6 @@ const defaultThemeOptions: readonly ThemeToggleOption[] = [
 
 const defaultSwitchCheckedIcon = <MoonIcon />;
 const defaultSwitchUncheckedIcon = <SunIcon />;
-
-function classes(...values: Array<string | undefined>) {
-  return values.filter(Boolean).join(" ");
-}
 
 function enabledOptions(options: readonly ThemeToggleOption[]) {
   return options.filter((option) => !option.disabled);
@@ -139,9 +135,9 @@ export function ThemeSegmentedSwitch({
     choices.findIndex((option) => option.value === currentValue),
   );
   const indicatorStyle = {
-    "--_theme-switch-index": activeIndex,
-    width: `calc((100% - var(--_theme-switch-padding) * 2) / ${choices.length})`,
-  } satisfies CSSProperties & Record<"--_theme-switch-index", number>;
+    "--_theme-toggle-index": activeIndex,
+    width: `calc((100% - var(--_theme-toggle-padding) * 2) / ${choices.length})`,
+  } satisfies CSSProperties & Record<"--_theme-toggle-index", number>;
 
   return (
     <div
@@ -151,10 +147,7 @@ export function ThemeSegmentedSwitch({
       data-control-ui="theme-toggle"
       data-control-family="theme-toggle"
       data-slot="root"
-      className={classes(
-        "relative isolate inline-grid w-fit shrink-0 auto-cols-fr grid-flow-col [--_theme-switch-padding:calc(var(--spacing)*0.5)] [--_theme-switch-radius:min(var(--radius-control),calc(var(--control-h-xs)/2))] rounded-[calc(var(--_theme-switch-radius)+clamp(0px,var(--_theme-switch-radius)*1000,var(--_theme-switch-padding)))] border-(length:--control-rim-width) border-(--control-rim) bg-(--hover-fill) p-(--_theme-switch-padding) text-muted-foreground shadow-(--shadow-inset)",
-        className,
-      )}
+      className={cn("relative isolate inline-grid w-fit shrink-0 auto-cols-fr grid-flow-col", className)}
       style={style}
       {...props}
     >
@@ -163,7 +156,7 @@ export function ThemeSegmentedSwitch({
         data-control-ui="theme-toggle"
         data-control-family="theme-toggle"
         data-slot="indicator"
-        className="pointer-events-none absolute inset-y-(--_theme-switch-padding) start-(--_theme-switch-padding) translate-x-[calc(var(--_theme-switch-index)*100%)] rounded-(--_theme-switch-radius) bg-background shadow-(--shadow-sm) transition-transform duration-(--duration-base) ease-(--ease-standard) rtl:translate-x-[calc(var(--_theme-switch-index)*-100%)]"
+        className="pointer-events-none absolute inset-y-(--_theme-toggle-padding) start-(--_theme-toggle-padding) translate-x-[calc(var(--_theme-toggle-index)*100%)] rtl:translate-x-[calc(var(--_theme-toggle-index)*-100%)]"
         style={indicatorStyle}
       />
       {choices.map((option) => {
@@ -179,9 +172,9 @@ export function ThemeSegmentedSwitch({
             data-control="true"
             data-selected={selected ? "true" : undefined}
             data-disabled={option.disabled ? "true" : undefined}
-            className={classes(
-              "relative z-[1] inline-flex h-(--control-h-xs) cursor-pointer items-center justify-center gap-1.5 rounded-(--_theme-switch-radius) px-1.5 transition-colors duration-(--duration-fast) ease-(--ease-standard) not-data-[disabled=true]:hover:text-foreground data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-(--disabled-opacity) data-[selected=true]:text-foreground",
-              showLabels ? "min-w-20" : "w-(--control-h-xs)",
+            className={cn(
+              "relative z-1 inline-flex items-center justify-center gap-1.5 px-1.5",
+              showLabels ? "min-w-20" : "w-(--cui-theme-toggle-height)",
             )}
           >
             <input
@@ -213,31 +206,30 @@ export function ThemeToggle({
   value,
   onValueChange,
   options = defaultThemeOptions,
-  showLabel,
-  showLabels,
+  showLabel = false,
   className,
   onClick,
   "aria-label": ariaLabel,
   ...props
 }: ThemeToggleProps) {
-  const current = currentThemeOption(value, options);
+  const choices = controlOptions(options);
+  const current = currentThemeOption(value, choices);
   const Icon = current.icon;
-  const visibleLabel = showLabel ?? showLabels ?? false;
 
   return (
     <Button
       variant="surface"
       size="sm"
-      className={classes("gap-2", className)}
+      className={cn("gap-2", className)}
       aria-label={ariaLabel ?? `Theme: ${current.label}`}
       onClick={(event) => {
         onClick?.(event);
-        if (!event.defaultPrevented) onValueChange(nextThemeValue(value, options));
+        if (!event.defaultPrevented) onValueChange(nextThemeValue(value, choices));
       }}
       {...props}
     >
-      <Icon className="size-3.5" aria-hidden />
-      {visibleLabel ? <span>{current.label}</span> : null}
+      <Icon aria-hidden />
+      {showLabel ? <span>{current.label}</span> : null}
     </Button>
   );
 }
@@ -251,24 +243,21 @@ export function ThemeDropdown({
   "aria-label": ariaLabel,
   ...props
 }: ThemeDropdownProps) {
-  const current = currentThemeOption(value, options);
+  const choices = controlOptions(options);
+  const current = currentThemeOption(value, choices);
   const CurrentIcon = current.icon;
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger
-        aria-label={ariaLabel ?? `${label}: ${current.label}`}
-        className={classes("min-w-36 gap-2", className)}
-        {...props}
-      >
-        <CurrentIcon className="size-3.5" aria-hidden />
+      <DropdownMenuTrigger aria-label={ariaLabel ?? `${label}: ${current.label}`} className={cn("min-w-36 gap-2", className)} {...props}>
+        <CurrentIcon aria-hidden />
         <span className="min-w-0 truncate">{current.label}</span>
-        <ChevronDownIcon className="size-3 text-muted-foreground" aria-hidden />
+        <ChevronDownIcon className="text-muted-foreground" aria-hidden />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="min-w-40">
         <DropdownMenuRadioGroup value={value} onValueChange={onValueChange}>
           <DropdownMenuLabel>{label}</DropdownMenuLabel>
-          {options.map((option) => {
+          {choices.map((option) => {
             const Icon = option.icon;
 
             return (

@@ -13,14 +13,6 @@ export function DynamicNotificationDemoBackdrop() {
   );
 }
 
-const lightOnPhoto = {
-  "--cui-button-background": "oklch(1 0 0 / 0.86)",
-  "--cui-button-foreground": "oklch(0.19 0.02 275)",
-  "--cui-button-hover-background": "oklch(1 0 0 / 0.94)",
-  "--cui-button-hover-foreground": "oklch(0.19 0.02 275)",
-  "--cui-button-shadow": "inset 0 0 0 1px oklch(1 0 0 / 0.45), var(--shadow-sm)",
-};
-
-export function DynamicNotificationDemoButton(props: Omit<ComponentProps<typeof Button>, "variant" | "size" | "style">) {
-  return <Button variant="surface" size="sm" style={lightOnPhoto} {...props} />;
+export function DynamicNotificationDemoButton(props: Omit<ComponentProps<typeof Button>, "variant" | "size">) {
+  return <Button variant="surface" size="sm" {...props} />;
 }

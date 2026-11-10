@@ -42,7 +42,7 @@
 - `toolbar` (Toolbar) — Roving-focus toolbar for editor controls and compact actions. — `npx shadcn@latest add https://control-ui.dev/r/toolbar.json`
 
 **Forms** — Capture a value from the user — typed, picked, toggled, or uploaded — plus the scaffolding that labels and validates it.
-- `slider` (Slider) — Single-value range control with branded and plain treatments. — `npx shadcn@latest add https://control-ui.dev/r/slider.json`
+- `slider` (Slider) — Single-value or range control with branded and plain treatments. — `npx shadcn@latest add https://control-ui.dev/r/slider.json`
 - `channel-strip` (ChannelStrip) — Console mixer strips — title, fader, level meter with dB scale, value, and controls — whose rows line up across a Mixer even when a strip leaves a part out. — `npx shadcn@latest add https://control-ui.dev/r/channel-strip.json`
 - `select` (Select) — Single-choice picker with a token-matched trigger and floating list. — `npx shadcn@latest add https://control-ui.dev/r/select.json`
 - `toggle` (Toggle) — Pressed-state button and toggle group built on the Button surface. — `npx shadcn@latest add https://control-ui.dev/r/toggle.json`
@@ -207,7 +207,7 @@
 
 ### Utils
 - `cn` (cn) — Tailwind class-name merge helper.
-- `skin` (skin) — Skin slot and adornment resolvers for the Control UI library.
+- `skin` (skin) — Skin config type, scope attributes, and adornment resolvers for the Control UI library.
 - `serialize` (serialize) — Bridge a rich editor doc to plain text (and structured mentions) and back — independent of any one component.
 
 ### Guides

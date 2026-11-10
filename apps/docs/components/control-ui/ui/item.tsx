@@ -1,7 +1,7 @@
 "use client";
 
 import { useRender } from "@base-ui/react/use-render";
-import type { ComponentProps, CSSProperties } from "react";
+import { type ComponentProps, type CSSProperties, createContext, useContext } from "react";
 import type { RenderProp } from "@/components/control-ui/control-props";
 import type { ItemKnobStyle } from "@/components/control-ui/knob-contracts/item-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -32,37 +32,53 @@ export type ItemTitleProps = Omit<ComponentProps<"div">, "style"> & {
 
 export type ItemGroupProps = ComponentProps<"div"> & { style?: CSSProperties & ItemKnobStyle };
 
-export type ItemSeparatorProps = ComponentProps<"div">;
+export type ItemSeparatorProps = Omit<ComponentProps<typeof Separator>, "orientation">;
 
 export type ItemActionsProps = Omit<ComponentProps<"div">, "style"> & {
   showOnHover?: boolean;
   style?: CSSProperties & ItemKnobStyle;
 };
 
-export function ItemGroup({ className, ...props }: ItemGroupProps) {
+const ItemListContext = createContext(false);
+
+export function ItemGroup({ role = "list", className, ...props }: ItemGroupProps) {
   return (
-    // biome-ignore lint/a11y/useSemanticElements: Item may render as a link or button, so a ul would require invalid wrappers.
-    <div
-      role="list"
+    <ItemListContext.Provider value={role === "list"}>
+      <div
+        role={role}
+        data-control-ui="item"
+        data-control-family="item"
+        data-slot="group"
+        className={cn("group/item-group flex flex-col", className)}
+        {...props}
+      />
+    </ItemListContext.Provider>
+  );
+}
+
+export function ItemSeparator({ className, ...props }: ItemSeparatorProps) {
+  const inList = useContext(ItemListContext);
+  return (
+    <Separator
+      aria-hidden={inList || undefined}
       data-control-ui="item"
-      data-control-family="item"
-      data-slot="group"
-      className={cn("group/item-group flex flex-col", className)}
+      data-slot="separator"
+      orientation="horizontal"
+      className={cn("my-0", className)}
       {...props}
     />
   );
 }
 
-export function ItemSeparator({ className, ...props }: ItemSeparatorProps) {
-  return <Separator data-control-ui="item" data-slot="separator" orientation="horizontal" className={cn("my-0", className)} {...props} />;
-}
-
 export function Item({ variant = "default", render, className, children, ...props }: ItemProps) {
+  const inList = useContext(ItemListContext);
+  const listItemRole = inList && !render && !props.role ? { role: "listitem" } : undefined;
   return useRender({
     defaultTagName: "div",
     render,
     props: {
       ...props,
+      ...listItemRole,
       "data-control-ui": "item",
       "data-control-family": "item",
       "data-slot": "root",
@@ -79,7 +95,7 @@ export function ItemMedia({ className, ...props }: ItemMediaProps) {
       data-control-ui="item"
       data-control-family="item"
       data-slot="media"
-      className={cn("flex shrink-0 items-center justify-center self-start [&>svg]:size-5 [&>svg]:shrink-0", className)}
+      className={cn("flex shrink-0 items-center justify-center self-start [&>svg]:shrink-0", className)}
       {...props}
     />
   );

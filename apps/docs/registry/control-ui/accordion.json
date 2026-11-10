@@ -9,7 +9,8 @@
     "lucide-react@^1.47.0"
   ],
   "registryDependencies": [
-    "core"
+    "core",
+    "typography"
   ],
   "files": [
     {

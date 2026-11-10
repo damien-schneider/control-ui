@@ -7,7 +7,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 
 export type TextareaProps = Omit<ComponentProps<"textarea">, "style"> & { style?: CSSProperties & FieldKnobStyle };
 
-// `field-sizing-content` auto-grows it, so there is no ResizeObserver and no JS measuring.
+// `field-sizing-content` auto-grows it without JS measuring; engines without it keep the recipe's manual vertical resize.
 export function Textarea({ ref, id, name, value, defaultValue, disabled, autoFocus, className, ...props }: TextareaProps) {
   return (
     <InputPrimitive
@@ -26,7 +26,7 @@ export function Textarea({ ref, id, name, value, defaultValue, disabled, autoFoc
           data-slot="root"
           data-control-family="field"
           data-control="true"
-          className={cn("field-sizing-content w-full min-w-0 resize-none", className)}
+          className={cn("field-sizing-content w-full min-w-0", className)}
         />
       }
     />

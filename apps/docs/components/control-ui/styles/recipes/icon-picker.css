@@ -1,12 +1,18 @@
 @layer components {
   :where([data-control-family="icon-picker"][data-slot="root"]) {
-    --cui-icon-picker-cell-size: calc(var(--spacing) * 10);
+    --cui-icon-picker-cell-size: var(--control-h-lg);
     --cui-icon-picker-cell-radius: var(--radius-control);
     --cui-icon-picker-icon-size: calc(var(--spacing) * 4);
     --cui-icon-picker-foreground: var(--foreground);
-    --cui-icon-picker-cell-hover-background: var(--accent);
-    --cui-icon-picker-cell-pressed-background: var(--accent);
-    inline-size: calc(var(--_icon-picker-columns) * var(--cui-icon-picker-cell-size) + var(--spacing) * 4);
+    --cui-icon-picker-cell-hover-background: var(--hover-fill);
+    --cui-icon-picker-cell-pressed-background: var(--active-fill);
+    --_icon-picker-touch-min: 0px;
+    inline-size: calc(
+      var(--_icon-picker-columns) *
+      max(var(--cui-icon-picker-cell-size), var(--_icon-picker-touch-min)) +
+      var(--spacing) *
+      4
+    );
     max-inline-size: 100%;
     color: var(--cui-icon-picker-foreground);
   }
@@ -22,14 +28,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    block-size: var(--cui-icon-picker-cell-size);
+    block-size: max(var(--cui-icon-picker-cell-size), var(--_icon-picker-touch-min));
     min-inline-size: 0;
     border-radius: var(--cui-icon-picker-cell-radius);
     background: transparent;
     color: inherit;
     cursor: pointer;
     transition: background-color var(--duration-fast) var(--ease-standard);
-    animation: icon-picker-icon-enter var(--duration-slow) var(--ease-emphasized) both;
+    animation: cui-icon-picker-icon-enter var(--duration-slow) var(--ease-emphasized) both;
   }
   @supports (order: sibling-index()) {
     :where([data-control-family="icon-picker"][data-slot="icon"]) {
@@ -45,8 +51,10 @@
       );
     }
   }
-  :where([data-control-family="icon-picker"][data-slot="icon"]:hover) {
-    background: var(--cui-icon-picker-cell-hover-background);
+  @media (hover: hover) {
+    :where([data-control-family="icon-picker"][data-slot="icon"]:hover) {
+      background: var(--cui-icon-picker-cell-hover-background);
+    }
   }
   :where([data-control-family="icon-picker"][data-slot="icon"][aria-pressed="true"]) {
     background: var(--cui-icon-picker-cell-pressed-background);
@@ -64,19 +72,19 @@
   :where([data-control-family="icon-picker"][data-slot="color"]) {
     display: grid;
     place-items: center;
-    flex: 1 0 calc(var(--spacing) * 9);
-    block-size: calc(var(--spacing) * 10);
-    border-radius: var(--cui-icon-picker-cell-radius, var(--radius-control));
+    flex: 1 0 var(--control-h-md);
+    block-size: var(--control-h-lg);
+    border-radius: var(--cui-icon-picker-cell-radius);
     cursor: pointer;
   }
   :where([data-control-family="icon-picker"][data-slot="color"] > span) {
     inline-size: calc(var(--spacing) * 6);
     block-size: calc(var(--spacing) * 6);
-    border-radius: 50%;
+    border-radius: 9999px;
     background: currentColor;
   }
   :where([data-control-family="icon-picker"][data-slot="color"][data-checked] > span) {
-    outline: 2px solid var(--foreground);
+    outline: var(--focus-ring-width) solid var(--foreground);
     outline-offset: 3px;
   }
   :where([data-control-family="icon-picker"][data-slot="empty"]) {
@@ -88,11 +96,31 @@
   }
   @media (pointer: coarse) {
     :where([data-control-family="icon-picker"][data-slot="root"]) {
-      --cui-icon-picker-cell-size: 44px;
+      --_icon-picker-touch-min: var(--touch-target);
     }
     :where([data-control-family="icon-picker"][data-slot="color"]) {
-      min-inline-size: 44px;
-      block-size: 44px;
+      min-inline-size: var(--touch-target);
+      block-size: var(--touch-target);
+    }
+  }
+  @media (forced-colors: active) {
+    :where([data-control-family="icon-picker"][data-slot="icon"][aria-pressed="true"]) {
+      forced-color-adjust: none;
+      background: Highlight;
+      color: HighlightText;
+    }
+    :where([data-control-family="icon-picker"][data-slot="color"]) {
+      forced-color-adjust: none;
+    }
+    :where([data-control-family="icon-picker"][data-slot="color"][data-checked] > span) {
+      outline-color: CanvasText;
+    }
+  }
+
+  @keyframes cui-icon-picker-icon-enter {
+    from {
+      opacity: 0;
+      scale: 0.5;
     }
   }
 }
@@ -126,11 +154,4 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
-}
-
-@keyframes icon-picker-icon-enter {
-  from {
-    opacity: 0;
-    scale: 0.5;
-  }
 }

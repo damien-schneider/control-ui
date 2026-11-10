@@ -165,9 +165,10 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
 
   function isTabStop(questionId: string, optionKey: string) {
     if (allowsMultiple(questionId)) return true;
+    const options = optionsFor(questionId);
     const selectedKey = selectionFor(questionId);
-    if (selectedKey !== undefined) return selectedKey === optionKey;
-    return optionsFor(questionId).find((option) => !option.disabled)?.key === optionKey;
+    const selected = options.find((option) => option.key === selectedKey && !option.disabled);
+    return (selected ?? options.find((option) => !option.disabled))?.key === optionKey;
   }
 
   function selectDigit(digit: number) {
@@ -191,14 +192,19 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
   }
 
   function handleEnter(event: KeyboardEvent<HTMLElement>) {
-    if (event.nativeEvent.isComposing || event.keyCode === 229) return;
     if (event.target instanceof Element && event.target.closest('button:not([role="radio"]):not([role="checkbox"]), a[href]')) return;
     event.preventDefault();
-    advance();
+    // A held Enter must not run through every pre-selected question and submit.
+    if (!event.repeat) advance();
   }
 
   function handleOptionKey(event: KeyboardEvent<HTMLElement>) {
-    if (event.target instanceof Element && event.target.closest("input, textarea, [contenteditable]")) return;
+    if (event.metaKey || event.ctrlKey || event.altKey) return;
+    const editable = event.target instanceof Element ? event.target.closest("input, textarea, [contenteditable]") : null;
+    // Vertical arrows do nothing in a one-line input, so they leave the selected freeform row; otherwise a radiogroup dead-ends there.
+    const leavesFreeform =
+      editable?.matches('[data-slot="option-input"]') === true && !event.shiftKey && (event.key === "ArrowUp" || event.key === "ArrowDown");
+    if (editable && !leavesFreeform) return;
     const delta = arrowDeltas[event.key];
     if (delta !== undefined) {
       event.preventDefault();
@@ -213,7 +219,7 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
   }
 
   function handleKeyDown(event: KeyboardEvent<HTMLElement>) {
-    if (event.defaultPrevented) return;
+    if (event.defaultPrevented || event.nativeEvent.isComposing || event.keyCode === 229) return;
     if (event.key === "Escape") {
       event.preventDefault();
       dismiss();

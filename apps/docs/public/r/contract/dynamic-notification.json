@@ -19,10 +19,28 @@
       "defaultValue": "1.65rem"
     },
     {
+      "name": "--cui-dynamic-notification-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--control-h-lg) / 2)"
+    },
+    {
+      "name": "--cui-dynamic-notification-thinking-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "2.75rem"
+    },
+    {
       "name": "--cui-dynamic-notification-morph-easing",
       "syntax": "*",
       "initialValue": "",
       "defaultValue": "linear(\n      0,\n      0.0568 3.85%,\n      0.1888 7.69%,\n      0.351 11.54%,\n      0.5142 15.38%,\n      0.6608 19.23%,\n      0.7824 23.08%,\n      0.8767 26.92%,\n      0.9449 30.77%,\n      0.9908 34.62%,\n      1.0187 38.46%,\n      1.0332 42.31%,\n      1.0382 46.15%,\n      1.0372 50%,\n      1.0327 53.85%,\n      1.0266 57.69%,\n      1.0203 61.54%,\n      1.0145 65.38%,\n      1.0095 69.23%,\n      1.0056 73.08%,\n      1.0027 76.92%,\n      1.0008 80.77%,\n      0.9995 84.62%,\n      0.9988 88.46%,\n      0.9986 92.31%,\n      0.9985 96.15%,\n      1\n    )"
+    },
+    {
+      "name": "--cui-dynamic-notification-glass-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(0 0 0 / 0.97)"
     },
     {
       "name": "--cui-dynamic-notification-glass-foreground",
@@ -37,6 +55,12 @@
       "defaultValue": "oklch(1 0 0 / 0.12)"
     },
     {
+      "name": "--cui-dynamic-notification-glass-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-pop)"
+    },
+    {
       "name": "--cui-dynamic-notification-liquid-foreground",
       "syntax": "<color>",
       "initialValue": "transparent",
@@ -47,6 +71,12 @@
       "syntax": "*",
       "initialValue": "",
       "defaultValue": "0 1px 2px oklch(0 0 0 / 0.25)"
+    },
+    {
+      "name": "--cui-dynamic-notification-reply-input-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "9999px"
     },
     {
       "name": "--cui-dynamic-notification-surface-background",
@@ -262,9 +292,9 @@
   },
   "adornments": {},
   "uncovered": [
+    "--cui-dynamic-notification-glass-background",
     "--cui-dynamic-notification-glass-foreground",
-    "--cui-dynamic-notification-liquid-foreground",
-    "--cui-dynamic-notification-title-foreground"
+    "--cui-dynamic-notification-liquid-foreground"
   ],
   "contrast": "/r/contract/dynamic-notification.contrast.json"
 }

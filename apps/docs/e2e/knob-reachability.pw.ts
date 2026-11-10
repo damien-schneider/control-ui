@@ -18,22 +18,32 @@ const portalPages = [
   "/components/toast",
 ];
 
+/** The docs shell lays itself out on `panel` surfaces; a portalled surface floats or is modal. */
+const portalledSurface = '[data-surface="floating"], [data-surface="modal"]';
+
 /**
  * The probe keys knobs by family and slot, so a layout wrapper shares an anatomy with the control it holds. A part
  * the recipe never values (the knob still resolves its `@property` initial value without the probe) is no paint site.
- * The docs shell tunes knobs on its own chrome, so each check reads only the surface it is about.
+ * The docs shell tunes knobs on its own chrome, so each check reads only the surface it is about. A surface is read
+ * while it renders: `content-visibility` skips an off-screen preview, and the parts of a size container inside it
+ * keep the style they had before the probe toggled.
  */
-async function collectOffenders(page: Page, surface: string): Promise<string[]> {
-  return page.evaluate(
-    ({ expected, knobsByFamily, surface: surfaceSelector }) => {
+async function collectOffenders(surfaces: Locator): Promise<string[]> {
+  return surfaces.evaluateAll(
+    (surfaceElements, { expected, knobsByFamily }) => {
       const probeStyle = document.querySelector("style[data-knob-probe]");
       if (!(probeStyle instanceof HTMLStyleElement)) throw new Error("The knob probe stylesheet is missing");
       const unvalued = document.createElement("div");
       document.documentElement.append(unvalued);
       const initialStyle = getComputedStyle(unvalued);
 
-      const painted = `:is(${surfaceSelector}) [data-control-family], [data-control-family]:is(${surfaceSelector})`;
-      const parts = [...document.querySelectorAll(painted)].map((element) => {
+      const painted = new Set(
+        surfaceElements.flatMap((surface) => [
+          ...(surface.hasAttribute("data-control-family") ? [surface] : []),
+          ...surface.querySelectorAll("[data-control-family]"),
+        ]),
+      );
+      const parts = [...painted].map((element) => {
         const family = element.getAttribute("data-control-family") ?? "";
         const part = element.getAttribute(`data-${family}-part`) ?? element.getAttribute("data-slot") ?? "";
         const inline = element instanceof HTMLElement ? element.style : undefined;
@@ -61,7 +71,7 @@ async function collectOffenders(page: Page, surface: string): Promise<string[]> 
           .map(({ knob, resolved }) => `${identity} ${family}/${part} ${knob} = ${resolved || "<unset>"}`);
       });
     },
-    { ...probe, surface },
+    { expected: probe.expected, knobsByFamily: probe.knobsByFamily },
   );
 }
 
@@ -88,7 +98,7 @@ test("every knob a recipe paints reaches the part it paints in the catalog", asy
     for (let index = 0; index < total; index += 1) {
       await cards.nth(index).scrollIntoViewIfNeeded();
       await expect(cards.nth(index)).toHaveAttribute("data-gallery-preview-state", "mounted");
-      for (const offender of await collectOffenders(page, "[data-gallery-preview]")) offenders.add(offender);
+      for (const offender of await collectOffenders(cards.nth(index))) offenders.add(offender);
     }
   }
 
@@ -116,7 +126,7 @@ test("every knob a recipe paints reaches the part it paints on a portalled surfa
       const hovered = await trigger.hover({ timeout: 2_000 }).then(surfaced).then(succeeded, failed);
       if (!(hovered || (await trigger.click({ timeout: 2_000 }).then(surfaced).then(succeeded, failed)))) return;
       opened += 1;
-      for (const offender of await collectOffenders(page, "[data-surface]")) offenders.add(offender);
+      for (const offender of await collectOffenders(page.locator(portalledSurface))) offenders.add(offender);
       await page.keyboard.press("Escape");
       await page.mouse.move(0, 0);
     };

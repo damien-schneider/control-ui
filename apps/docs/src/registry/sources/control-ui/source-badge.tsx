@@ -65,6 +65,7 @@ export function SourceBadge({ faviconSrc, href, children, className, rel, target
         <a
           data-source-badge=""
           data-control-ui="source-badge"
+          data-control-family="badge"
           data-slot="root"
           href={href}
           target={target}

@@ -5,21 +5,25 @@
     [
       {
         "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
           "data-scroll": "page",
-          "data-slot": "wrapper"
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
         "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
+          "data-chrome": "embedded",
+          "data-control-family": "infinite-canvas",
+          "data-control-ui": "infinite-canvas",
+          "data-slot": "root",
+          "role": "application",
+          "tabindex": "0"
         }
-      },
+      }
+    ],
+    [
       {
         "attributes": {
           "data-control-family": "page-layout",
@@ -31,6 +35,7 @@
       },
       {
         "attributes": {
+          "data-chrome": "standalone",
           "data-control-family": "infinite-canvas",
           "data-control-ui": "infinite-canvas",
           "data-slot": "root",
@@ -46,6 +51,14 @@
         "fill": "--cui-infinite-canvas-background"
       },
       "anatomy": 0,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-infinite-canvas-background"
+      },
+      "anatomy": 1,
       "rendersText": true,
       "state": false
     }

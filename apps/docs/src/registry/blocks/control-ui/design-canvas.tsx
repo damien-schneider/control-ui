@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
 import { Drawer, DrawerContent, DrawerTitle } from "@/components/control-ui/ui/drawer";
+import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/control-ui/ui/empty";
 import {
   InfiniteCanvas,
   InfiniteCanvasContent,
@@ -27,9 +28,10 @@ import {
   designCanvasFillColor,
   drawnDesignCanvasBounds,
 } from "./design-canvas-data";
-import { DesignCanvasInspector } from "./design-canvas-inspector";
+import { DesignCanvasInspector, type DesignCanvasInspectorLabels } from "./design-canvas-inspector";
 
 export type { DesignCanvasFill, DesignCanvasLayer, DesignCanvasLayerKind, DesignCanvasTool } from "./design-canvas-data";
+export type { DesignCanvasInspectorLabels } from "./design-canvas-inspector";
 
 export type DesignCanvasBlockProps = Omit<ComponentProps<"div">, "children" | "defaultValue" | "onChange"> & {
   layers?: readonly DesignCanvasLayer[];
@@ -44,6 +46,14 @@ export type DesignCanvasBlockProps = Omit<ComponentProps<"div">, "children" | "d
   propertiesLabel?: string;
   openLayersLabel?: string;
   openPropertiesLabel?: string;
+  canvasLabel?: string;
+  toolbarLabel?: string;
+  toolsLabel?: string;
+  toolLabels?: Partial<Record<DesignCanvasTool, string>>;
+  documentLabel?: string;
+  emptyLayersTitle?: string;
+  emptyLayersDescription?: string;
+  inspectorLabels?: Partial<DesignCanvasInspectorLabels>;
 };
 
 const TOOLS: readonly { tool: DesignCanvasTool; label: string; shortcut: string; icon: ReactNode }[] = [
@@ -108,6 +118,14 @@ export function DesignCanvasBlock({
   propertiesLabel = "Properties",
   openLayersLabel = "Show layers",
   openPropertiesLabel = "Show properties",
+  canvasLabel = "Design canvas",
+  toolbarLabel = "Design tools",
+  toolsLabel = "Tools",
+  toolLabels,
+  documentLabel = "Design",
+  emptyLayersTitle = "No layers yet",
+  emptyLayersDescription = "Pick a shape tool and draw on the canvas to add one.",
+  inspectorLabels,
   className,
   ...props
 }: DesignCanvasBlockProps) {
@@ -229,9 +247,17 @@ export function DesignCanvasBlock({
     event.preventDefault();
   }
 
-  const layerList = <DesignCanvasLayerList layers={currentLayers} selectedLayerId={currentSelectedLayerId} onSelect={selectLayer} />;
-  const inspector = <DesignCanvasInspector layer={selectedLayer} onLayerChange={replaceLayer} />;
-  const propertiesTitle = selectedLayer?.name ?? "Design";
+  const layerList = (
+    <DesignCanvasLayerList
+      layers={currentLayers}
+      selectedLayerId={currentSelectedLayerId}
+      emptyTitle={emptyLayersTitle}
+      emptyDescription={emptyLayersDescription}
+      onSelect={selectLayer}
+    />
+  );
+  const inspector = <DesignCanvasInspector layer={selectedLayer} labels={inspectorLabels} onLayerChange={replaceLayer} />;
+  const propertiesTitle = selectedLayer?.name ?? documentLabel;
 
   return (
     <div
@@ -243,7 +269,7 @@ export function DesignCanvasBlock({
       {...props}
     >
       <InfiniteCanvas
-        aria-label="Design canvas"
+        aria-label={canvasLabel}
         aria-keyshortcuts={CANVAS_KEY_SHORTCUTS}
         defaultTransform={defaultTransform}
         onTransformChange={(next) => {
@@ -251,12 +277,9 @@ export function DesignCanvasBlock({
         }}
         data-tool={tool}
         panOnDrag={tool === "hand" ? "anywhere" : "background"}
+        chrome="embedded"
         className={cn("size-full", drawingKind && "cursor-crosshair")}
-        style={{
-          "--cui-infinite-canvas-radius": "0px",
-          "--cui-infinite-canvas-border-color": "transparent",
-          "--cui-infinite-canvas-background": "var(--muted)",
-        }}
+        style={{ "--cui-infinite-canvas-background": "var(--muted)" }}
         onPointerDown={beginDrawOrDeselect}
         onPointerMove={resizeDraft}
         onPointerUp={commitDraft}
@@ -310,21 +333,24 @@ export function DesignCanvasBlock({
       <TooltipProvider>
         <Toolbar
           variant="floating"
-          aria-label="Design tools"
+          aria-label={toolbarLabel}
           className="absolute start-4 bottom-4 w-max @4xl/design-canvas:inset-x-0 @4xl/design-canvas:mx-auto"
         >
-          <ToolbarGroup aria-label="Tools">
-            {TOOLS.map((entry) => (
-              <DesignCanvasToolbarButton
-                key={entry.tool}
-                label={entry.label}
-                hint={`${entry.label} · ${entry.shortcut}`}
-                pressed={tool === entry.tool}
-                onClick={() => setTool(entry.tool)}
-              >
-                {entry.icon}
-              </DesignCanvasToolbarButton>
-            ))}
+          <ToolbarGroup aria-label={toolsLabel}>
+            {TOOLS.map((entry) => {
+              const label = toolLabels?.[entry.tool] ?? entry.label;
+              return (
+                <DesignCanvasToolbarButton
+                  key={entry.tool}
+                  label={label}
+                  hint={`${label} · ${entry.shortcut}`}
+                  pressed={tool === entry.tool}
+                  onClick={() => setTool(entry.tool)}
+                >
+                  {entry.icon}
+                </DesignCanvasToolbarButton>
+              );
+            })}
           </ToolbarGroup>
           <ToolbarSeparator className="@4xl/design-canvas:hidden" />
           <ToolbarGroup className="@4xl/design-canvas:hidden">
@@ -387,10 +413,23 @@ function DesignCanvasPanel({ label, title, inDrawer = false, children }: DesignC
 type DesignCanvasLayerListProps = {
   layers: readonly DesignCanvasLayer[];
   selectedLayerId: string | null;
+  emptyTitle: string;
+  emptyDescription: string;
   onSelect: (layerId: string) => void;
 };
 
-function DesignCanvasLayerList({ layers, selectedLayerId, onSelect }: DesignCanvasLayerListProps) {
+function DesignCanvasLayerList({ layers, selectedLayerId, emptyTitle, emptyDescription, onSelect }: DesignCanvasLayerListProps) {
+  if (layers.length === 0) {
+    return (
+      <Empty className="h-full">
+        <EmptyHeader>
+          <EmptyTitle>{emptyTitle}</EmptyTitle>
+          <EmptyDescription>{emptyDescription}</EmptyDescription>
+        </EmptyHeader>
+      </Empty>
+    );
+  }
+
   return (
     <ul className="flex flex-col gap-0.5 p-2">
       {layers.toReversed().map((layer) => (

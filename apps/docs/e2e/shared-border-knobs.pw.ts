@@ -16,7 +16,9 @@ for (const skin of ["none", "sketch"]) {
 
     const code = page.locator('[data-control-family="code"][data-chrome="standalone"]').first();
     const surfaces = [
-      page.getByRole("link", { name: "Install", exact: true }).locator(".."),
+      page
+        .locator('[data-control-family="card"][data-slot="root"]')
+        .filter({ has: page.getByRole("link", { name: "Install", exact: true }) }),
       page.locator('[data-control-family="card"][data-slot="root"]').filter({ hasText: "What you should see now" }).first(),
       page.locator('[data-control-family="table-of-contents"][data-slot="root"]').first(),
       page.locator('[data-control-family="theme-toggle"][data-slot="root"]'),

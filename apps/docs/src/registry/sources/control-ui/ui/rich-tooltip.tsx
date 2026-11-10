@@ -3,13 +3,13 @@
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import { CheckIcon, ChevronLeftIcon, ChevronRightIcon, XIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode, Ref, RefObject } from "react";
-import { createContext, useContext, useEffect, useId, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useEffectEvent, useId, useRef, useState } from "react";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import type { RichTooltipKnobStyle } from "@/components/control-ui/knob-contracts/rich-tooltip-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { prefersReducedMotion } from "@/components/control-ui/lib/motion";
 import { PopupArrowShape } from "@/components/control-ui/popup-parts";
-import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { skinScopeAttributes } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { stepAfter, stepBefore, type TourPosition, tourPosition } from "./rich-tooltip-tour";
 
@@ -19,12 +19,15 @@ export type RichTooltipProgressVariant = "count" | "dots";
 
 type RichTooltipContentKnobStyle = RichTooltipKnobStyle & PopupKnobStyle;
 
-type TourValue = TourPosition & {
+/** `completed` when the last step is passed or `finish()` is called, `dismissed` when a step is closed, escaped or pressed away from. */
+export type TourEndReason = "completed" | "dismissed";
+
+export type TourValue = TourPosition & {
   activeStep: string | null;
   next: () => void;
   previous: () => void;
   goTo: (step: string) => void;
-  finish: () => void;
+  finish: (reason?: TourEndReason) => void;
 };
 
 const TourContext = createContext<TourValue | null>(null);
@@ -65,23 +68,25 @@ export type RichTooltipTourProps = {
   step?: string | null;
   defaultStep?: string;
   onStepChange?: (step: string | null) => void;
-  onComplete?: () => void;
+  onComplete?: (reason: TourEndReason) => void;
   storageKey?: string;
   children?: ReactNode;
 };
 
 export function RichTooltipTour({ steps, step, defaultStep, onStepChange, onComplete, storageKey, children }: RichTooltipTourProps) {
-  const [uncontrolledStep, setUncontrolledStep] = useState<string | null>(defaultStep ?? steps[0] ?? null);
-  const started = useSeenGate(storageKey, step === undefined);
-  const uncontrolledActiveStep = started ? uncontrolledStep : null;
-  const activeStep = step === undefined ? uncontrolledActiveStep : step;
+  const [navigatedStep, setNavigatedStep] = useState<string | null | undefined>();
+  const autoStart = useSeenGate(storageKey, step === undefined);
+  const initialStep = autoStart ? (defaultStep ?? steps[0] ?? null) : null;
+  const uncontrolledStep = navigatedStep === undefined ? initialStep : navigatedStep;
+  const activeStep = step === undefined ? uncontrolledStep : step;
 
-  function setStep(next: string | null) {
-    if (step === undefined) setUncontrolledStep(next);
+  function setStep(next: string | null, endReason: TourEndReason = "completed") {
+    if (next === activeStep) return;
+    if (step === undefined) setNavigatedStep(next);
     onStepChange?.(next);
     if (next === null) {
       writeSeen(storageKey);
-      onComplete?.();
+      onComplete?.(endReason);
     }
   }
 
@@ -92,7 +97,7 @@ export function RichTooltipTour({ steps, step, defaultStep, onStepChange, onComp
     next: () => setStep(stepAfter(steps, position.index)),
     previous: () => setStep(stepBefore(steps, position.index)),
     goTo: (target) => setStep(target),
-    finish: () => setStep(null),
+    finish: (reason) => setStep(null, reason),
   };
 
   return <TourContext.Provider value={value}>{children}</TourContext.Provider>;
@@ -100,7 +105,8 @@ export function RichTooltipTour({ steps, step, defaultStep, onStepChange, onComp
 
 type RichTooltipContextValue = {
   tone: RichTooltipTone;
-  inTour: boolean;
+  tour: TourValue | null;
+  open: boolean;
   dismiss: () => void;
   nextRef: RefObject<HTMLButtonElement | null>;
   descriptionId: string | undefined;
@@ -139,22 +145,27 @@ export function RichTooltip({
   children,
   ...props
 }: RichTooltipProps) {
-  const tour = useTour();
-  const inTour = tour !== null && step !== undefined;
-  const [standaloneOpen, setStandaloneOpen] = useState(defaultOpen);
-  const standaloneAllowed = useSeenGate(storageKey, open === undefined && !inTour);
+  const surroundingTour = useTour();
+  const tour = step === undefined ? null : surroundingTour;
+  const [readerOpen, setReaderOpen] = useState<boolean | undefined>();
+  const autoOpen = useSeenGate(storageKey, open === undefined && tour === null);
   const nextRef = useRef<HTMLButtonElement>(null);
   const [descriptionId, setDescriptionId] = useState<string | undefined>();
   const [progressId, setProgressId] = useState<string | undefined>();
 
-  const resolvedOpen = open ?? (inTour ? tour.activeStep === step : standaloneOpen && standaloneAllowed);
+  const resolvedOpen = open ?? (tour ? tour.activeStep === step : (readerOpen ?? (defaultOpen && autoOpen)));
+
+  function reveal() {
+    if (tour === null) setReaderOpen(true);
+    else if (step !== undefined) tour.goTo(step);
+  }
 
   function dismiss() {
-    if (inTour) {
-      tour.finish();
+    if (tour) {
+      tour.finish("dismissed");
       return;
     }
-    setStandaloneOpen(false);
+    setReaderOpen(false);
     writeSeen(storageKey);
   }
 
@@ -162,12 +173,14 @@ export function RichTooltip({
     if (!dismissOnOutsidePress && details.reason === "outside-press") return;
     if (!dismissOnFocusOut && details.reason === "focus-out") return;
     onOpenChange?.(nextOpen, details);
-    if (!nextOpen) dismiss();
+    if (nextOpen) reveal();
+    else dismiss();
   };
 
   const context: RichTooltipContextValue = {
     tone,
-    inTour,
+    tour,
+    open: resolvedOpen,
     dismiss,
     nextRef,
     descriptionId,
@@ -192,7 +205,6 @@ export function RichTooltipTrigger({
   return (
     <PopoverPrimitive.Trigger
       data-control-ui="rich-tooltip"
-      data-control-family="popup"
       data-popup-kind="rich-tooltip"
       data-slot="trigger"
       className={className}
@@ -212,12 +224,13 @@ function resolveAnchorElement(anchor: AnchorProp): Element | null {
 }
 
 function useAnchorScroll(anchor: AnchorProp, open: boolean, enabled: boolean) {
-  useEffect(() => {
-    if (!(open && enabled)) return;
+  const scrollToAnchor = useEffectEvent(() => {
     const element = resolveAnchorElement(anchor);
-    if (!element) return;
-    element.scrollIntoView({ block: "center", inline: "nearest", behavior: prefersReducedMotion(element) ? "auto" : "smooth" });
-  }, [anchor, enabled, open]);
+    element?.scrollIntoView({ block: "center", inline: "nearest", behavior: prefersReducedMotion(element) ? "auto" : "smooth" });
+  });
+  useEffect(() => {
+    if (open && enabled) scrollToAnchor();
+  }, [enabled, open]);
 }
 
 const richTooltipContentSelector = '[data-control-ui="rich-tooltip"][data-slot="content"]';
@@ -249,9 +262,9 @@ export function RichTooltipContent({
   ...props
 }: RichTooltipContentProps) {
   const skin = useSkin();
-  const { tone, inTour, nextRef, descriptionId, progressId } = useRichTooltipContext();
+  const { tone, tour, open, nextRef, descriptionId, progressId } = useRichTooltipContext();
   const isSurface = tone === "surface";
-  useAnchorScroll(anchor, true, scrollAnchorIntoView);
+  useAnchorScroll(anchor, open, scrollAnchorIntoView);
   const describedBy = [descriptionId, progressId].filter(Boolean).join(" ") || undefined;
 
   const initialFocus: RichTooltipContentProps["initialFocus"] = (openType) => {
@@ -259,7 +272,7 @@ export function RichTooltipContent({
     const openedWithoutInteraction = !openType;
     const focusIsElsewhere = active !== null && active !== document.body && active.closest(richTooltipContentSelector) === null;
     if (openedWithoutInteraction && focusIsElsewhere) return false;
-    return inTour && nextRef.current ? nextRef.current : true;
+    return tour && nextRef.current ? nextRef.current : true;
   };
 
   return (
@@ -269,8 +282,7 @@ export function RichTooltipContent({
         data-popup-kind="rich-tooltip"
         data-control-family="popup"
         data-slot="positioner"
-        data-skin={skin.id}
-        data-effects={controlEffectsAttribute(skin.effects)}
+        {...skinScopeAttributes(skin)}
         side={side}
         align={align}
         sideOffset={sideOffset}
@@ -396,12 +408,12 @@ export function RichTooltipFooter({ className, ...props }: ComponentProps<"div">
 
 export type RichTooltipProgressProps = Omit<ComponentProps<"div">, "style"> & {
   variant?: RichTooltipProgressVariant;
+  label?: string;
   style?: CSSProperties & RichTooltipKnobStyle & PopupKnobStyle;
 };
 
-export function RichTooltipProgress({ className, variant = "count", children, ...props }: RichTooltipProgressProps) {
-  const { tone, setProgressId } = useRichTooltipContext();
-  const tour = useTour();
+export function RichTooltipProgress({ className, variant = "count", label, children, ...props }: RichTooltipProgressProps) {
+  const { tone, tour, setProgressId } = useRichTooltipContext();
   const statusId = useId();
   const rendered = tour !== null && tour.total >= 2 && tour.index >= 0;
   useEffect(() => {
@@ -422,7 +434,9 @@ export function RichTooltipProgress({ className, variant = "count", children, ..
       className={cn("flex items-center", className)}
       {...props}
     >
-      <span id={statusId} className="sr-only">{`Step ${tour.index + 1} of ${tour.total}`}</span>
+      <span id={statusId} className="sr-only">
+        {label ?? `Step ${tour.index + 1} of ${tour.total}`}
+      </span>
       {children ??
         (variant === "dots" ? (
           Array.from({ length: tour.total }, (_, dot) => (
@@ -434,7 +448,6 @@ export function RichTooltipProgress({ className, variant = "count", children, ..
               data-popup-kind="rich-tooltip"
               data-slot="dot"
               data-active={dot === tour.index ? "true" : undefined}
-              className=""
             />
           ))
         ) : (
@@ -449,7 +462,7 @@ function assignRef<T>(ref: Ref<T> | undefined, node: T | null) {
   else if (ref) ref.current = node;
 }
 
-const actionClasses = "inline-flex shrink-0 cursor-pointer items-center justify-center disabled:pointer-events-none [&_svg]:size-4";
+const actionClasses = "inline-flex shrink-0 items-center justify-center";
 
 export function RichTooltipPrevious({
   className,
@@ -461,7 +474,7 @@ export function RichTooltipPrevious({
   style?: CSSProperties & RichTooltipKnobStyle & PopupKnobStyle;
   label?: string;
 }) {
-  const tour = useTour();
+  const { tour } = useRichTooltipContext();
   if (!tour || tour.total < 2) return null;
 
   return (
@@ -505,8 +518,7 @@ export function RichTooltipNext({
   finishLabel?: string;
   gotItLabel?: string;
 }) {
-  const { dismiss, nextRef } = useRichTooltipContext();
-  const tour = useTour();
+  const { dismiss, nextRef, tour } = useRichTooltipContext();
   const setRef = (node: HTMLButtonElement | null) => {
     nextRef.current = node;
     assignRef(ref, node);
@@ -552,7 +564,7 @@ export function RichTooltipClose({
   style?: CSSProperties & RichTooltipKnobStyle & PopupKnobStyle;
   label?: string;
 }) {
-  const { inTour } = useRichTooltipContext();
+  const { tour } = useRichTooltipContext();
   return (
     <PopoverPrimitive.Close
       data-control-ui="rich-tooltip"
@@ -566,7 +578,7 @@ export function RichTooltipClose({
       {children ?? (
         <>
           <XIcon aria-hidden="true" />
-          <span className="sr-only">{label ?? (inTour ? "End tour" : "Dismiss")}</span>
+          <span className="sr-only">{label ?? (tour ? "End tour" : "Dismiss")}</span>
         </>
       )}
     </PopoverPrimitive.Close>

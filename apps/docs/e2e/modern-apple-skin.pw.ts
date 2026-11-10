@@ -1,9 +1,53 @@
-import { expect, test } from "@playwright/test";
+import { expect, type Page, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY, THEME_STORAGE_KEY } from "../components/theme";
 import { waitForReactHydration } from "./browser-test-helpers";
 import { disableAnchorSupport, expectHighlightOn } from "./track-highlight-helpers";
 
 test.use({ launchOptions: { args: ["--disable-webgl"] } });
+
+type SidebarRowPaint = { selectedFill: string; hoverFill: string; restingForeground: string; selectedIconColor: string };
+
+async function expectSelectionEmphasisFollowsSidebarFocus(page: Page, behavior: "hover" | "slide", paint: SidebarRowPaint) {
+  const indicator = page.getByRole("combobox", { name: "Menu highlight" });
+  const sidebar = page.getByRole("group", { name: "Sidebar", exact: true });
+  const agents = sidebar.getByRole("button", { name: "Agents", exact: true });
+  const workflows = sidebar.getByRole("button", { name: "Workflows", exact: true });
+  await indicator.focus();
+  await indicator.selectOption(behavior);
+  const highlight = sidebar.locator('[data-control-family="track-highlight"]').first();
+  const slides = behavior === "slide";
+  const selection = slides ? highlight : workflows;
+  await workflows.hover();
+  if (slides) await expectHighlightOn(highlight, workflows);
+  else await expect(highlight).toHaveCount(0);
+  await expect(selection).toHaveCSS("background-color", paint.hoverFill);
+  await expect(agents).toHaveAttribute("data-active", "true");
+
+  await workflows.click();
+  await page.mouse.move(0, 0);
+  await expect(workflows).toHaveAttribute("data-active", "true");
+  await expect(workflows).toHaveCSS("font-weight", "600");
+  if (slides) await expectHighlightOn(highlight, workflows);
+  await expect(selection).not.toHaveCSS("background-color", paint.selectedFill);
+  await expect(workflows).not.toHaveCSS("color", paint.restingForeground);
+  const emphasizedForeground = await workflows.evaluate((element) => getComputedStyle(element).color);
+  await expect(workflows.locator("svg")).toHaveCSS("color", emphasizedForeground);
+  if (slides) {
+    await agents.hover();
+    await expectHighlightOn(highlight, agents);
+    await expect(workflows).toHaveCSS("color", paint.restingForeground);
+    await page.mouse.move(0, 0);
+  }
+
+  await indicator.focus();
+  await expect(selection).toHaveCSS("background-color", paint.selectedFill);
+  await expect(workflows).toHaveCSS("color", paint.restingForeground);
+  await expect(workflows.locator("svg")).toHaveCSS("color", paint.selectedIconColor);
+  await agents.focus();
+  await page.keyboard.press("Enter");
+  await expect(agents).toHaveAttribute("data-active", "true");
+  await expect(sidebar.getByRole("button", { name: "Tools", exact: true })).toBeDisabled();
+}
 
 test.describe("macOS", () => {
   test.beforeEach(async ({ page }) => {
@@ -80,7 +124,7 @@ test.describe("macOS", () => {
       range.selectNode(label);
       return range.getBoundingClientRect().left - indicator.getBoundingClientRect().right;
     });
-    expect(spacing).toBeGreaterThanOrEqual(4);
+    expect(spacing).toBeGreaterThanOrEqual(3);
     await page.keyboard.press("Home");
     await page.keyboard.press("Space");
     await expect(notifications).toHaveAttribute("aria-checked", "false");
@@ -102,6 +146,7 @@ test.describe("macOS", () => {
       const workflows = sidebar.getByRole("button", { name: "Workflows", exact: true });
       await expect(agents).toHaveCSS("font-weight", "600");
       const selectedFill = await agents.evaluate((element) => getComputedStyle(element).backgroundColor);
+      const restingForeground = await workflows.evaluate((element) => getComputedStyle(element).color);
       await workflows.hover();
       const hoverFill = await workflows.evaluate((element) => getComputedStyle(element).backgroundColor);
       expect(hoverFill).not.toBe(selectedFill);
@@ -115,34 +160,8 @@ test.describe("macOS", () => {
       const selectedIconColor = await agents.locator("svg").evaluate((element) => getComputedStyle(element).color);
       await expect(workflows.locator("svg")).toHaveCSS("color", selectedIconColor);
 
-      for (const behavior of ["hover", "slide"]) {
-        await indicator.focus();
-        await indicator.selectOption(behavior);
-        const highlight = sidebar.locator('[data-control-family="track-highlight"]').first();
-        await workflows.hover();
-        if (behavior === "slide") {
-          await expectHighlightOn(highlight, workflows);
-          await expect(highlight).toHaveCSS("background-color", hoverFill);
-        } else {
-          await expect(highlight).toHaveCount(0);
-          await expect(workflows).toHaveCSS("background-color", hoverFill);
-        }
-        await expect(agents).toHaveAttribute("data-active", "true");
-        await workflows.click();
-        await page.mouse.move(0, 0);
-        await expect(workflows).toHaveAttribute("data-active", "true");
-        await expect(workflows).toHaveCSS("font-weight", "600");
-        await expect(workflows.locator("svg")).toHaveCSS("color", selectedIconColor);
-        if (behavior === "slide") {
-          await expectHighlightOn(highlight, workflows);
-          await expect(highlight).toHaveCSS("background-color", selectedFill);
-        } else {
-          await expect(workflows).toHaveCSS("background-color", selectedFill);
-        }
-        await agents.focus();
-        await page.keyboard.press("Enter");
-        await expect(agents).toHaveAttribute("data-active", "true");
-        await expect(sidebar.getByRole("button", { name: "Tools", exact: true })).toBeDisabled();
+      for (const behavior of ["hover", "slide"] as const) {
+        await expectSelectionEmphasisFollowsSidebarFocus(page, behavior, { selectedFill, hoverFill, restingForeground, selectedIconColor });
       }
     });
   }

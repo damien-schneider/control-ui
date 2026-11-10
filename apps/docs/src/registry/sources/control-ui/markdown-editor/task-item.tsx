@@ -7,14 +7,15 @@ import { Checkbox } from "@/components/control-ui/ui/checkbox";
 import { useMarkdownEditor } from "./context";
 
 function MarkdownTaskItemView({ editor, node, getPos }: NodeViewProps) {
-  const { disabled } = useMarkdownEditor();
+  const { disabled, readOnly, labels } = useMarkdownEditor();
   return (
     <NodeViewWrapper data-control-ui="markdown-editor" data-control-family="markdown-editor" data-slot="task-item">
       <span contentEditable={false} data-control-ui="markdown-editor" data-control-family="markdown-editor" data-slot="task-checkbox">
         <Checkbox
           checked={Boolean(node.attrs.checked)}
           disabled={disabled}
-          aria-label={node.firstChild?.textContent || "Task item"}
+          readOnly={readOnly}
+          aria-label={node.firstChild?.textContent || labels.taskItem}
           onCheckedChange={(checked) => {
             const position = getPos();
             if (!editor.isEditable || position === undefined) return;

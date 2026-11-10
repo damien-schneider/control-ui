@@ -70,9 +70,7 @@ export function PrimitiveNavigationMenuExample() {
           </NavigationMenuItem>
 
           <NavigationMenuItem>
-            <NavigationMenuLink href="#" variant="compact">
-              Changelog
-            </NavigationMenuLink>
+            <NavigationMenuLink href="#">Changelog</NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
 

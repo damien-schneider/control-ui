@@ -9,7 +9,6 @@ import {
   GitBranchIcon,
   GitPullRequestIcon,
   HammerIcon,
-  LoaderCircleIcon,
   ScanSearchIcon,
   TelescopeIcon,
   WrenchIcon,
@@ -36,6 +35,7 @@ import {
 import { ChatTurn } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
 import { ModelSwitcher } from "@/components/control-ui/model-switcher";
+import { Spinner } from "@/components/control-ui/ui/spinner";
 import { Text } from "@/components/control-ui/ui/typography";
 
 const navigation: readonly CodingAgentNavigationItem[] = [
@@ -64,8 +64,7 @@ const projects: readonly CodingAgentProject[] = [
         title: "Build a coding-agent workspace",
         trailing: (
           <span className="flex items-center">
-            <LoaderCircleIcon className="size-3.5 animate-spin text-muted-foreground" aria-hidden="true" />
-            <span className="sr-only">Running</span>
+            <Spinner size="xs" label="Running" />
           </span>
         ),
       },
@@ -127,6 +126,12 @@ const models = [
 
 const initialPrompt = "Thanks to our components, create a block that feels like a focused coding workspace.";
 
+const navigationSummaries: Record<string, string> = {
+  "pull-requests": "Three pull requests are waiting for review across control-ui and docs.",
+  scheduled: "The nightly registry audit ran at 02:00 and found one outdated manifest.",
+  plugins: "Connect GitHub, Linear, or your own tools so the agent can reach them.",
+};
+
 export function CodingAgentExample() {
   const [activeTaskId, setActiveTaskId] = useState<string | undefined>("coding-agent-block");
   const [customTaskTitle, setCustomTaskTitle] = useState<string>();
@@ -134,10 +139,13 @@ export function CodingAgentExample() {
   const [submittedPrompt, setSubmittedPrompt] = useState(initialPrompt);
   const [isRunning, setIsRunning] = useState(true);
   const [model, setModel] = useState("sonnet");
+  const [activeNavigationId, setActiveNavigationId] = useState<string>();
+  const activeNavigation = navigation.find((item) => item.id === activeNavigationId);
   const activeTask = findTask(activeTaskId);
-  const activeTaskTitle = customTaskTitle ?? activeTask?.title ?? "New task";
+  const activeTaskTitle = activeNavigation?.label ?? customTaskTitle ?? activeTask?.title ?? "New task";
 
   function startNewTask() {
+    setActiveNavigationId(undefined);
     setActiveTaskId(undefined);
     setCustomTaskTitle(undefined);
     setSubmittedPrompt("");
@@ -145,16 +153,26 @@ export function CodingAgentExample() {
   }
 
   function selectTask(task: CodingAgentTask) {
+    setActiveNavigationId(undefined);
     setActiveTaskId(task.id);
     setCustomTaskTitle(undefined);
     setSubmittedPrompt(task.title);
     setIsRunning(task.id === "coding-agent-block");
   }
 
+  function selectNavigation(item: CodingAgentNavigationItem) {
+    setActiveNavigationId(item.id);
+    setActiveTaskId(undefined);
+    setCustomTaskTitle(undefined);
+    setSubmittedPrompt("");
+    setIsRunning(false);
+  }
+
   function submitPrompt({ value, clear }: { value: string; clear: () => void }) {
     const prompt = value.trim();
     if (!prompt) return;
 
+    setActiveNavigationId(undefined);
     if (!activeTaskId) {
       setActiveTaskId("local-task");
       setCustomTaskTitle(prompt);
@@ -203,13 +221,20 @@ export function CodingAgentExample() {
               onStop={() => setIsRunning(false)}
               stopIcon={<span aria-hidden="true" className="size-2 rounded-[2px] bg-current" />}
             >
-              <ArrowUpIcon className="size-4" />
+              <ArrowUpIcon />
             </ChatComposerSubmit>
           </div>
         </ChatComposerToolbar>
       </ChatComposerShell>
     </ChatComposer>
   );
+
+  let conversation = <CodingAgentEmptyState suggestions={suggestions} onSuggestionSelect={(prompt) => setDraft(prompt)} />;
+  if (activeNavigation) {
+    conversation = <CodingAgentEmptyState title={activeNavigation.label} description={navigationSummaries[activeNavigation.id]} />;
+  } else if (activeTaskId) {
+    conversation = <ActiveTask prompt={submittedPrompt} isRunning={isRunning} />;
+  }
 
   return (
     <div className="h-[min(760px,82vh)] min-h-160 w-full overflow-hidden rounded-[var(--radius-panel)] border bg-background shadow-md">
@@ -220,18 +245,14 @@ export function CodingAgentExample() {
         appName="Workbench"
         navigation={navigation}
         projects={projects}
+        activeNavigationId={activeNavigationId}
         activeTaskId={activeTaskId}
         activeTaskTitle={activeTaskTitle}
+        onNavigationSelect={selectNavigation}
         onTaskSelect={selectTask}
         onNewTask={startNewTask}
       >
-        <CodingAgentConversation composer={composer}>
-          {activeTaskId ? (
-            <ActiveTask prompt={submittedPrompt} isRunning={isRunning} />
-          ) : (
-            <CodingAgentEmptyState suggestions={suggestions} onSuggestionSelect={(prompt) => setDraft(prompt)} />
-          )}
-        </CodingAgentConversation>
+        <CodingAgentConversation composer={composer}>{conversation}</CodingAgentConversation>
       </CodingAgentBlock>
     </div>
   );

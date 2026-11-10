@@ -1,6 +1,9 @@
 @layer components {
   :where([data-control-family="dynamic-notification"][data-slot="root"]) {
     --_dynamic-notification-word-stagger: calc(var(--duration-fast) * 0.35);
+    --_dynamic-notification-ink-mid: var(--cui-dynamic-notification-glass-background);
+    --_dynamic-notification-ink-low: var(--cui-dynamic-notification-glass-background);
+    --_dynamic-notification-ink-tail: var(--cui-dynamic-notification-glass-background);
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="root"][data-state="thinking"]) {
@@ -8,9 +11,9 @@
     --_dynamic-notification-ink-mid-stop: calc(50% - 3%);
     --_dynamic-notification-ink-low-stop: calc(50% + 3%);
     --_dynamic-notification-ink-tail-stop: calc(50% + 10%);
-    --_dynamic-notification-ink-mid: oklch(0 0 0 / 0.72);
-    --_dynamic-notification-ink-low: oklch(0 0 0 / 0.3);
-    --_dynamic-notification-ink-tail: oklch(0 0 0 / 0.1);
+    --_dynamic-notification-ink-mid: oklch(from var(--cui-dynamic-notification-glass-background) l c h / 0.72);
+    --_dynamic-notification-ink-low: oklch(from var(--cui-dynamic-notification-glass-background) l c h / 0.3);
+    --_dynamic-notification-ink-tail: oklch(from var(--cui-dynamic-notification-glass-background) l c h / 0.1);
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="root"][data-state="expanded"]) {
@@ -18,16 +21,16 @@
     --_dynamic-notification-ink-mid-stop: 82%;
     --_dynamic-notification-ink-low-stop: 92%;
     --_dynamic-notification-ink-tail-stop: 100%;
-    --_dynamic-notification-ink-mid: oklch(0 0 0 / 0.78);
-    --_dynamic-notification-ink-low: oklch(0 0 0 / 0.55);
-    --_dynamic-notification-ink-tail: oklch(0 0 0 / 0.4);
+    --_dynamic-notification-ink-mid: oklch(from var(--cui-dynamic-notification-glass-background) l c h / 0.78);
+    --_dynamic-notification-ink-low: oklch(from var(--cui-dynamic-notification-glass-background) l c h / 0.55);
+    --_dynamic-notification-ink-tail: oklch(from var(--cui-dynamic-notification-glass-background) l c h / 0.4);
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="island"]) {
     interpolate-size: allow-keywords;
     inline-size: 8.5rem;
-    block-size: 2.5rem;
-    border-radius: calc(2.5rem / 2);
+    block-size: var(--control-h-lg);
+    border-radius: var(--cui-dynamic-notification-radius);
     opacity: 1;
     scale: 1;
     translate: 0 0;
@@ -62,7 +65,7 @@
   :where([data-control-family="dynamic-notification"][data-slot="island"][data-state="thinking"]) {
     inline-size: min(10rem, 100%);
     block-size: 5.75rem;
-    border-radius: 2.75rem;
+    border-radius: var(--cui-dynamic-notification-thinking-radius);
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="island"][data-state="expanded"]) {
@@ -79,6 +82,11 @@
       opacity var(--duration-base) var(--ease-standard) calc(var(--duration-slow) * 0.55),
       filter var(--duration-base) var(--ease-standard) calc(var(--duration-slow) * 0.55),
       scale var(--duration-base) var(--ease-emphasized) calc(var(--duration-slow) * 0.55);
+  }
+
+  :where([data-control-family="dynamic-notification"][data-slot="pill"]:disabled) {
+    opacity: var(--disabled-opacity);
+    cursor: not-allowed;
   }
 
   :where(
@@ -132,7 +140,7 @@
       :where([data-control-family="dynamic-notification"][data-slot="message"])
       [data-control-family="dynamic-notification"][data-slot="word"]
   ) {
-    animation: dn-word-in calc(var(--duration-slow) * 1.8) var(--cui-dynamic-notification-content-easing) both;
+    animation: cui-dynamic-notification-word-in calc(var(--duration-slow) * 1.8) var(--cui-dynamic-notification-content-easing) both;
     animation-delay: calc(
       var(--duration-base) *
       0.8 +
@@ -143,7 +151,11 @@
 
   :where([data-control-family="dynamic-notification"][data-slot="indicator"]) {
     background:
-      radial-gradient(circle at 30% 30%, oklch(0.85 0.1 210 / 0.9), transparent 60%),
+      radial-gradient(
+        circle at 30% 30%,
+        oklch(from var(--cui-dynamic-notification-indicator-end) calc(l + 0.15) calc(c - 0.07) calc(h - 40) / 0.9),
+        transparent 60%
+      ),
       conic-gradient(
         from 210deg,
         var(--cui-dynamic-notification-indicator-start),
@@ -152,28 +164,28 @@
         var(--cui-dynamic-notification-indicator-start)
       );
     box-shadow: 0 0 8px oklch(from var(--cui-dynamic-notification-indicator-end) l c h / 0.55);
-    animation: dn-indicator-breathe calc(var(--duration-slow) * 5) var(--ease-standard) infinite;
-  }
-}
-
-@keyframes dn-word-in {
-  from {
-    opacity: 0;
-    filter: blur(8px);
-    translate: 0 0.4em;
-  }
-}
-
-@keyframes dn-indicator-breathe {
-  0%,
-  100% {
-    scale: 1;
-    opacity: 0.85;
+    animation: cui-dynamic-notification-indicator-breathe calc(var(--duration-slow) * 5) var(--ease-standard) infinite;
   }
 
-  50% {
-    scale: 1.35;
-    opacity: 1;
+  @keyframes cui-dynamic-notification-word-in {
+    from {
+      opacity: 0;
+      filter: blur(8px);
+      translate: 0 0.4em;
+    }
+  }
+
+  @keyframes cui-dynamic-notification-indicator-breathe {
+    0%,
+    100% {
+      scale: 1;
+      opacity: 0.85;
+    }
+
+    50% {
+      scale: 1.35;
+      opacity: 1;
+    }
   }
 }
 
@@ -229,6 +241,19 @@
   inherits: true;
   initial-value: 0px;
 }
+
+@property --cui-dynamic-notification-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-dynamic-notification-thinking-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
 @property --cui-dynamic-notification-morph-easing {
   syntax: "*";
   inherits: true;

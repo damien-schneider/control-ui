@@ -44,7 +44,7 @@ export function TimelineItem({ state = "neutral", className, ...props }: Timelin
       data-state={state}
       aria-current={state === "running" || state === "waiting" ? "step" : undefined}
       {...props}
-      className={cn("group/timeline-item relative grid min-w-0 grid-cols-[1rem_minmax(0,1fr)]", className)}
+      className={cn("group/timeline-item relative grid min-w-0", className)}
     />
   );
 }
@@ -58,7 +58,7 @@ export function TimelineIndicator({ className, ...props }: TimelineIndicatorProp
       data-control-family="timeline"
       data-slot="indicator"
       {...props}
-      className={cn("relative z-10 col-start-1 row-start-1 flex shrink-0 items-center justify-center", className)}
+      className={cn("relative z-1 col-start-1 row-start-1 flex shrink-0 items-center justify-center", className)}
     />
   );
 }
@@ -71,7 +71,7 @@ export function TimelineSeparator({ className, ...props }: TimelineSeparatorProp
       data-control-family="timeline"
       data-slot="separator"
       {...props}
-      className={cn("absolute top-5 bottom-0 col-start-1 group-last/timeline-item:hidden", className)}
+      className={cn("absolute bottom-0 col-start-1 group-last/timeline-item:hidden", className)}
     />
   );
 }

@@ -10,6 +10,7 @@
   "registryDependencies": [
     "core",
     "input-group",
+    "popup-item-focus",
     "scroll-area",
     "surface-variants"
   ],
@@ -27,6 +28,11 @@
     {
       "path": "src/registry/sources/control-ui/recipes/field-parts.css",
       "target": "@components/control-ui/styles/recipes/field-parts.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/field-select.css",
+      "target": "@components/control-ui/styles/recipes/field-select.css",
       "type": "registry:file"
     },
     {
@@ -68,6 +74,7 @@
   "css": {
     "@import \"../components/control-ui/styles/recipes/field.css\"": {},
     "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {},
+    "@import \"../components/control-ui/styles/recipes/field-select.css\"": {},
     "@import \"../components/control-ui/styles/recipes/popup.css\"": {},
     "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
     "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},

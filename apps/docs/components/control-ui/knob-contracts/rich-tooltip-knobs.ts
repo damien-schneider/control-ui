@@ -7,6 +7,7 @@ export const richTooltipKnobs = [
   "--cui-rich-tooltip-dot-background",
   "--cui-rich-tooltip-action-radius",
   "--cui-rich-tooltip-action-background",
+  "--cui-rich-tooltip-action-hover-background",
   "--cui-rich-tooltip-action-foreground",
   "--cui-rich-tooltip-focus-ring-color",
 ] as const;

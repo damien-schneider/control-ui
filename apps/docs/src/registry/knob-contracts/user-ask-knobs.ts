@@ -15,6 +15,8 @@ export const userAskKnobs = [
   "--cui-user-ask-option-selected-background",
   "--cui-user-ask-indicator-background",
   "--cui-user-ask-indicator-foreground",
+  "--cui-user-ask-indicator-selected-background",
+  "--cui-user-ask-indicator-selected-foreground",
   "--cui-user-ask-input-background",
   "--cui-user-ask-input-foreground",
 ] as const;

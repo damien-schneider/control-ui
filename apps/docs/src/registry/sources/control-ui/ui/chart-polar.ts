@@ -6,7 +6,13 @@ import { scaleLinear } from "@tanstack/charts/scales/linear";
 import { tooltip } from "@tanstack/charts/tooltip";
 import { type ChartColor, chartColor, chartSeriesColor } from "@/components/control-ui/ui/chart-colors";
 import { chartFillPaint, chartGradients, chartHatch, chartOutline, dimUnfocused } from "@/components/control-ui/ui/chart-marks";
-import { type ChartFill, type ChartValueKey, type ChartXKey, chartFormatters } from "@/components/control-ui/ui/chart-series";
+import {
+  type ChartFill,
+  type ChartValueKey,
+  type ChartXKey,
+  chartFormatters,
+  chartOccurrenceKey,
+} from "@/components/control-ui/ui/chart-series";
 
 export type ChartSliceOptions<TDatum> = {
   data: readonly TDatum[];
@@ -22,12 +28,13 @@ export type ChartSliceOptions<TDatum> = {
 export type ChartSlice = { id: string; label: string; value: number; color: ChartColor; fill: ChartFill };
 
 export function resolveChartSlices<TDatum>(options: ChartSliceOptions<TDatum>): ChartSlice[] {
+  const seenLabels = new Map<string, number>();
   return options.data.flatMap((datum, index) => {
     const label: unknown = datum[options.label];
     const value: unknown = datum[options.value];
     if (typeof label !== "string" || typeof value !== "number" || !Number.isFinite(value) || value < 0) return [];
     return {
-      id: label,
+      id: chartOccurrenceKey(seenLabels, label),
       label,
       value,
       color: options.colors?.[label] ?? chartSeriesColor(index),
@@ -48,7 +55,7 @@ export function donutChart<TDatum>(options: DonutChartOptions<TDatum>) {
       polar({
         marks: [
           radialArc(pie(slices, { value: "value", gapAngle: 0.025 }), {
-            key: "label",
+            key: "id",
             innerRadius: ({ radius }) => radius * innerRadius,
             cornerRadius: 4,
             fill: (slice) => chartFillPaint(slice.color, slice.fill, "arc"),
@@ -88,7 +95,7 @@ export type RadialBarChartOptions<TDatum> = ChartSliceOptions<TDatum> & {
 
 export function radialBarChart<TDatum>(options: RadialBarChartOptions<TDatum>) {
   const rows = resolveChartSlices(options);
-  const max = options.max ?? Math.max(1, ...rows.map((row) => row.value));
+  const max = options.max ?? rows.reduce((largest, row) => Math.max(largest, row.value), 1);
   const track = options.track ?? "hatched";
   const formatValue = options.formatValue ?? chartFormatters(options.locale).value;
   const ringScales = () => ({
@@ -109,7 +116,7 @@ export function radialBarChart<TDatum>(options: RadialBarChartOptions<TDatum>) {
                 radialBarAngle(rows, {
                   id: "track",
                   key: "id",
-                  radius: "label",
+                  radius: "id",
                   angle: () => max,
                   cornerRadius: "full",
                   fill: track === "hatched" ? chartHatch("neutral") : "oklch(from var(--chart-neutral) l c h / 0.15)",
@@ -127,7 +134,7 @@ export function radialBarChart<TDatum>(options: RadialBarChartOptions<TDatum>) {
           radialBarAngle(rows, {
             id: "value",
             key: "id",
-            radius: "label",
+            radius: "id",
             angle: "value",
             cornerRadius: "full",
             fill: (row) => chartFillPaint(row.color, row.fill, "arc"),

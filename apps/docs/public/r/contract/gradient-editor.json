@@ -56,7 +56,20 @@
         "registryItems": [
           "color-picker"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-readonly",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
       },
       "preview": {
         "family": "gradient-editor",
@@ -72,6 +85,12 @@
         ],
         "states": [
           {
+            "attribute": "data-readonly",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-selected",
             "source": "control-ui",
             "valueKind": "presence",
@@ -84,7 +103,14 @@
         "registryItems": [
           "color-picker"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-readonly",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
       },
       "value-row": {
         "family": "gradient-editor",

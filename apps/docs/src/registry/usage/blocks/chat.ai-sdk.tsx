@@ -108,7 +108,7 @@ function renderToolPart(part: ToolUIPart | DynamicToolUIPart, onApprovalResponse
           {part.output !== undefined || part.errorText ? (
             <ActivityDetail>
               <ActivityDetailLabel>Output</ActivityDetailLabel>
-              <ActivityDetailContent tone={state === "error" ? "destructive" : "default"}>
+              <ActivityDetailContent tone={state === "error" ? "danger" : "neutral"}>
                 {part.errorText ?? JSON.stringify(part.output, null, 2)}
               </ActivityDetailContent>
             </ActivityDetail>
@@ -120,13 +120,11 @@ function renderToolPart(part: ToolUIPart | DynamicToolUIPart, onApprovalResponse
   );
 }
 
-function partKey(part: UIMessage["parts"][number]) {
+function partKey(part: UIMessage["parts"][number], index: number) {
   if ("toolCallId" in part) return part.toolCallId;
   if ("sourceId" in part) return part.sourceId;
   if ("id" in part && typeof part.id === "string") return part.id;
-  if ("url" in part && typeof part.url === "string") return `${part.type}-${part.url}`;
-  if ("text" in part && typeof part.text === "string") return `${part.type}-${part.text}`;
-  return `${part.type}-${JSON.stringify(part)}`;
+  return `${part.type}-${index}`;
 }
 
 function AiSdkMessage({ message, onApprovalResponse }: { message: UIMessage; onApprovalResponse: ApprovalResponse }) {
@@ -138,8 +136,8 @@ function AiSdkMessage({ message, onApprovalResponse }: { message: UIMessage; onA
         <ChatMessageRow>
           <ChatMessageBody>
             <ChatMessageContent>
-              {message.parts.map((part) => {
-                const key = partKey(part);
+              {message.parts.map((part, index) => {
+                const key = partKey(part, index);
 
                 if (isToolUIPart(part) || isDynamicToolUIPart(part)) {
                   return (

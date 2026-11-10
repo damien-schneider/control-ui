@@ -14,7 +14,12 @@ import type {
 import { createContext, use, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import type { InfiniteCanvasKnobStyle } from "@/components/control-ui/knob-contracts/infinite-canvas-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import type { InfiniteCanvasPoint, InfiniteCanvasTransform } from "@/components/control-ui/lib/infinite-canvas-camera";
+import {
+  boundedTransform,
+  clampScale,
+  type InfiniteCanvasPoint,
+  type InfiniteCanvasTransform,
+} from "@/components/control-ui/lib/infinite-canvas-camera";
 import {
   createInfiniteCanvasCamera,
   type InfiniteCanvasCamera,
@@ -53,6 +58,8 @@ export type {
 } from "@/components/control-ui/lib/infinite-canvas-camera-store";
 export type { InfiniteCanvasPanOnDrag } from "@/components/control-ui/lib/infinite-canvas-navigation";
 
+export type InfiniteCanvasChrome = "standalone" | "embedded";
+
 export type InfiniteCanvasProps = Omit<ComponentProps<"section">, "onChange" | "onWheel" | "style"> & {
   transform?: InfiniteCanvasTransform;
   defaultTransform?: InfiniteCanvasTransform;
@@ -60,12 +67,16 @@ export type InfiniteCanvasProps = Omit<ComponentProps<"section">, "onChange" | "
   minScale?: number;
   maxScale?: number;
   panOnDrag?: InfiniteCanvasPanOnDrag;
+  /** Plain wheel pans the canvas. Turn it off to let the page scroll; Ctrl/⌘ + wheel and pinch still zoom. */
+  panOnWheel?: boolean;
+  /** `embedded` drops the radius and rim so the canvas sits flush inside another surface. */
+  chrome?: InfiniteCanvasChrome;
   keyboardNavigation?: boolean;
   onWheel?: (event: WheelEvent) => void;
   style?: CSSProperties & InfiniteCanvasKnobStyle;
 };
 
-export type InfiniteCanvasContentProps = Omit<ComponentProps<"div">, "ref" | "style"> & {
+export type InfiniteCanvasContentProps = Omit<ComponentProps<"div">, "style"> & {
   style?: CSSProperties & InfiniteCanvasKnobStyle;
 };
 
@@ -82,6 +93,11 @@ export type InfiniteCanvasItemHandleProps = ComponentProps<typeof Button> & {
 };
 
 export type InfiniteCanvasControlsProps = Omit<ComponentProps<"div">, "children" | "style"> & {
+  toolbarLabel?: string;
+  zoomOutLabel?: string;
+  zoomInLabel?: string;
+  fitViewLabel?: string;
+  getResetLabel?: (percentage: number) => string;
   style?: CSSProperties & InfiniteCanvasKnobStyle;
 };
 
@@ -105,6 +121,8 @@ const DEFAULT_MIN_SCALE = 0.35;
 const DEFAULT_MAX_SCALE = 2.5;
 const CONTROL_ZOOM_FACTOR = 1.2;
 const ITEM_KEY_SHORTCUTS = "ArrowLeft ArrowRight ArrowUp ArrowDown";
+const NESTED_CONTROL =
+  'a[href], button, input, select, textarea, summary, [role="button"], [contenteditable]:not([contenteditable="false"])';
 
 const InfiniteCanvasContext = createContext<InfiniteCanvasContextValue | null>(null);
 const InfiniteCanvasStoreContext = createContext<InfiniteCanvasStoreContextValue | null>(null);
@@ -144,6 +162,8 @@ export function InfiniteCanvas({
   minScale: minScaleProp = DEFAULT_MIN_SCALE,
   maxScale: maxScaleProp = DEFAULT_MAX_SCALE,
   panOnDrag = "background",
+  panOnWheel = true,
+  chrome = "standalone",
   keyboardNavigation = true,
   ref,
   className,
@@ -157,20 +177,26 @@ export function InfiniteCanvas({
   ...props
 }: InfiniteCanvasProps) {
   const minScale = minScaleProp > 0 ? minScaleProp : DEFAULT_MIN_SCALE;
-  const maxScale = Math.max(minScale, maxScaleProp);
+  const maxScale = Math.max(minScale, maxScaleProp > 0 ? maxScaleProp : DEFAULT_MAX_SCALE);
   const cameraOptions = { minScale, maxScale, defaultTransform, controlled: transform !== undefined, onTransformChange };
-  const [initialTransform] = useState(() => transform ?? defaultTransform);
+  const [initialTransform] = useState(
+    () =>
+      boundedTransform(transform ?? defaultTransform, minScale, maxScale) ?? {
+        ...DEFAULT_TRANSFORM,
+        scale: clampScale(DEFAULT_TRANSFORM.scale, minScale, maxScale),
+      },
+  );
   const [store] = useState(() => createInfiniteCanvasCamera(initialTransform, cameraOptions));
   const rootRef = useRef<HTMLElement>(null);
   const navigationRef = useRef<InfiniteCanvasNavigation | null>(null);
-  const navigationOptionsRef = useRef<InfiniteCanvasNavigationOptions>({ panOnDrag, onWheel });
+  const navigationOptionsRef = useRef<InfiniteCanvasNavigationOptions>({ panOnDrag, panOnWheel, onWheel });
   const controlledX = transform?.x;
   const controlledY = transform?.y;
   const controlledScale = transform?.scale;
 
   useLayoutEffect(() => {
     store.configure(cameraOptions);
-    navigationOptionsRef.current = { panOnDrag, onWheel };
+    navigationOptionsRef.current = { panOnDrag, panOnWheel, onWheel };
     navigationRef.current?.syncPanReady();
   });
 
@@ -219,10 +245,11 @@ export function InfiniteCanvas({
       "data-control-ui": "infinite-canvas",
       "data-control-family": "infinite-canvas",
       "data-slot": "root",
+      "data-chrome": chrome,
       "aria-label": ariaLabel,
       role: "application",
       "aria-keyshortcuts": keyShortcuts || undefined,
-      className: cn("relative isolate overflow-hidden overscroll-none touch-none data-panning:select-none", className),
+      className: cn("relative isolate overflow-hidden touch-none data-panning:select-none", panOnWheel && "overscroll-none", className),
       style: { ...style, ...infiniteCanvasGridStyle(initialTransform) },
       onPointerDown: beginBackgroundPan,
       onKeyDown: navigateWithKeyboard,
@@ -237,20 +264,21 @@ export function InfiniteCanvas({
   );
 }
 
-export function InfiniteCanvasContent({ className, style, ...props }: InfiniteCanvasContentProps) {
+export function InfiniteCanvasContent({ className, style, ref, ...props }: InfiniteCanvasContentProps) {
   const { store, initialTransform } = useInfiniteCanvasStore();
-  return (
-    <div
-      ref={store.attachContent}
-      {...props}
-      data-control-ui="infinite-canvas"
-      data-control-family="infinite-canvas"
-      data-slot="content"
-      data-scale={initialTransform.scale}
-      className={cn("absolute top-0 left-0 h-0 w-0", className)}
-      style={{ ...style, transform: infiniteCanvasTransformCss(initialTransform) }}
-    />
-  );
+  return useRender({
+    defaultTagName: "div",
+    ref: [ref ?? null, store.attachContent],
+    props: {
+      ...props,
+      "data-control-ui": "infinite-canvas",
+      "data-control-family": "infinite-canvas",
+      "data-slot": "content",
+      "data-scale": initialTransform.scale,
+      className: cn("absolute top-0 left-0 h-0 w-0", className),
+      style: { ...style, transform: infiniteCanvasTransformCss(initialTransform) },
+    },
+  });
 }
 
 function useInfiniteCanvasItemDrag<Element extends HTMLElement>(
@@ -273,6 +301,8 @@ function useInfiniteCanvasItemDrag<Element extends HTMLElement>(
     onPointerDown(event) {
       handlers.onPointerDown?.(event);
       if (event.defaultPrevented || !onPositionChange || !event.isPrimary || event.button !== 0) return;
+      const control = event.target instanceof Element ? event.target.closest(NESTED_CONTROL) : null;
+      if (control && control !== event.currentTarget && event.currentTarget.contains(control)) return;
       event.currentTarget.setPointerCapture(event.pointerId);
       dragRef.current = { pointerId: event.pointerId, startWorld: canvas.toWorldPoint(event), startPosition: position };
       setDragging(true);
@@ -400,35 +430,52 @@ export function InfiniteCanvasItemHandle({
   );
 }
 
-export function InfiniteCanvasControls({ className, ...props }: InfiniteCanvasControlsProps) {
+function defaultResetLabel(percentage: number) {
+  return `Reset canvas zoom, currently ${percentage}%`;
+}
+
+export function InfiniteCanvasControls({
+  toolbarLabel = "Canvas view",
+  zoomOutLabel = "Zoom out",
+  zoomInLabel = "Zoom in",
+  fitViewLabel = "Fit view",
+  getResetLabel = defaultResetLabel,
+  className,
+  ...props
+}: InfiniteCanvasControlsProps) {
   const canvas = useInfiniteCanvas();
   const scale = useInfiniteCanvasTransform(selectScale);
   const percentage = Math.round(scale * 100);
   return (
     <div
+      {...props}
       data-control-ui="infinite-canvas"
       data-control-family="infinite-canvas"
       data-slot="controls"
-      className={cn("absolute z-40", className)}
-      {...props}
+      className={cn("absolute z-1", className)}
     >
-      <Toolbar variant="floating" aria-label="Canvas view">
+      <Toolbar variant="floating" aria-label={toolbarLabel}>
         <ToolbarButton
           iconOnly
           disabled={scale <= canvas.minScale}
-          aria-label="Zoom out"
+          aria-label={zoomOutLabel}
           onClick={() => canvas.zoomBy(1 / CONTROL_ZOOM_FACTOR)}
         >
           <MinusIcon />
         </ToolbarButton>
-        <ToolbarButton className="tabular-nums" aria-label={`Reset canvas zoom, currently ${percentage}%`} onClick={() => canvas.reset()}>
+        <ToolbarButton className="tabular-nums" aria-label={getResetLabel(percentage)} onClick={() => canvas.reset()}>
           {percentage}%
         </ToolbarButton>
-        <ToolbarButton iconOnly disabled={scale >= canvas.maxScale} aria-label="Zoom in" onClick={() => canvas.zoomBy(CONTROL_ZOOM_FACTOR)}>
+        <ToolbarButton
+          iconOnly
+          disabled={scale >= canvas.maxScale}
+          aria-label={zoomInLabel}
+          onClick={() => canvas.zoomBy(CONTROL_ZOOM_FACTOR)}
+        >
           <PlusIcon />
         </ToolbarButton>
         <ToolbarSeparator />
-        <ToolbarButton iconOnly aria-label="Fit view" onClick={() => canvas.fit()}>
+        <ToolbarButton iconOnly aria-label={fitViewLabel} onClick={() => canvas.fit()}>
           <MaximizeIcon />
         </ToolbarButton>
       </Toolbar>

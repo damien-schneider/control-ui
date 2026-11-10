@@ -6,6 +6,7 @@
 @import "../src/registry/sources/control-ui/recipes/button-states.css";
 @import "../src/registry/sources/control-ui/recipes/field.css";
 @import "../src/registry/sources/control-ui/recipes/field-parts.css";
+@import "../src/registry/sources/control-ui/recipes/field-select.css";
 @import "../src/registry/sources/control-ui/recipes/popup.css";
 @import "../src/registry/sources/control-ui/recipes/popup-controls.css";
 @import "../src/registry/sources/control-ui/recipes/popup-lists.css";
@@ -16,6 +17,7 @@
 @import "../src/registry/sources/control-ui/recipes/choice.css";
 @import "../src/registry/sources/control-ui/recipes/switch.css";
 @import "../src/registry/sources/control-ui/recipes/range.css";
+@import "../src/registry/sources/control-ui/recipes/range-slider.css";
 @import "../src/registry/sources/control-ui/recipes/range-level-meter.css";
 @import "../src/registry/sources/control-ui/recipes/channel-strip.css";
 @import "../src/registry/sources/control-ui/recipes/alert.css";
@@ -62,6 +64,7 @@
 @import "../src/registry/sources/control-ui/recipes/infinite-canvas.css";
 @import "../src/registry/sources/control-ui/recipes/flow.css";
 @import "../src/registry/sources/control-ui/recipes/chart.css";
+@import "../src/registry/sources/control-ui/recipes/chart-parts.css";
 @import "../src/registry/sources/control-ui/recipes/resize-handle.css";
 @import "../src/registry/sources/control-ui/recipes/morphing-panel.css";
 @import "../src/registry/sources/control-ui/recipes/resizable.css";
@@ -100,6 +103,7 @@
 @import "../src/registry/sources/control-ui/recipes/label.css";
 @import "../src/registry/sources/control-ui/recipes/rich-tooltip.css";
 @import "../src/registry/sources/control-ui/recipes/separator.css";
+@import "../src/registry/sources/control-ui/recipes/theme-toggle.css";
 @import "../src/registry/sources/control-ui/effects.css";
 @import "../src/registry/sources/control-ui/extensions/view-transition.css";
 @import "../src/registry/sources/control-ui/extensions/control-effects.css";

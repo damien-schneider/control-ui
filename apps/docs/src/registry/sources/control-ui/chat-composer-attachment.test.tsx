@@ -29,4 +29,19 @@ describe("attachment upload progress", () => {
       expect(html.includes("Retry the upload")).toBe(status === "error");
     }
   });
+
+  test("a host can localize what the upload announces", () => {
+    const html = renderToStaticMarkup(
+      <ChatComposerAttachment
+        name="rapport.pdf"
+        status="uploading"
+        progress={64}
+        uploadingLabel={(name) => `Envoi de ${name}`}
+        uploadingDescription={(progress) => `Envoi ${progress ?? 0} %`}
+      />,
+    );
+    expect(html).toContain('aria-label="Envoi de rapport.pdf"');
+    expect(html).toContain("Envoi 64 %");
+    expect(html).not.toContain("Uploading");
+  });
 });

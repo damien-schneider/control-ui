@@ -18,6 +18,7 @@
     --cui-toolbar-item-background: transparent;
     --cui-toolbar-item-foreground: var(--muted-foreground);
     --cui-toolbar-item-shadow: none;
+    --cui-toolbar-item-icon-size: calc(var(--spacing) * 4);
     --cui-toolbar-item-hover-background: var(--hover-fill);
     --cui-toolbar-item-hover-foreground: var(--foreground);
     --cui-toolbar-item-active-background: var(--active-fill);
@@ -37,6 +38,10 @@
     --cui-toolbar-border-width: 0px;
     --cui-toolbar-radius: 0px;
     --cui-toolbar-shadow: none;
+  }
+
+  :where([data-control-family="toolbar"][data-slot="root"]:not([data-chrome="embedded"])) {
+    --nest-radius: var(--cui-toolbar-item-radius);
   }
 
   :where([data-control-family="toolbar"][data-slot="root"][data-variant="floating"]) {
@@ -93,6 +98,12 @@
     font-weight: var(--font-weight-medium);
   }
 
+  :where([data-control-family="toolbar"][data-slot="button"] svg),
+  :where([data-control-family="toolbar"][data-slot="link"] svg) {
+    inline-size: var(--cui-toolbar-item-icon-size);
+    block-size: var(--cui-toolbar-item-icon-size);
+  }
+
   :where([data-control-family="toolbar"][data-slot="group"]) {
     gap: calc(var(--spacing) * 1);
   }
@@ -112,7 +123,7 @@
   }
 
   @media (hover: hover) {
-    :where([data-control-family="toolbar"][data-slot="button"]:hover),
+    :where([data-control-family="toolbar"][data-slot="button"]:hover:not([data-disabled])),
     :where([data-control-family="toolbar"][data-slot="link"]:hover) {
       background-color: var(--cui-toolbar-item-hover-background);
       color: var(--cui-toolbar-item-hover-foreground);
@@ -197,14 +208,30 @@
     :where([data-control-family="toolbar"][data-slot="link"])::after {
       content: "";
       position: absolute;
-      inset: 50% 50%;
+      inset: 50% auto auto 50%;
       translate: -50% -50%;
       inline-size: 100%;
       block-size: max(100%, var(--touch-target));
     }
 
+    :where([data-control-family="toolbar"][data-slot="button"][data-orientation="vertical"])::after,
+    :where([data-control-family="toolbar"][data-slot="link"][data-orientation="vertical"])::after {
+      inline-size: max(100%, var(--touch-target));
+      block-size: 100%;
+    }
+
     :where([data-control-family="toolbar"][data-slot="input"]) {
       font-size: max(var(--text-input-min), var(--text-label));
+    }
+  }
+
+  @media (forced-colors: active) {
+    :where(
+        [data-control-family="toolbar"][data-slot="button"]:is([data-pressed], [data-active], [aria-pressed="true"]):not(:focus-visible)
+      ),
+    :where([data-control-family="toolbar"][data-slot="link"]:is([data-pressed], [data-active]):not(:focus-visible)) {
+      outline: var(--focus-ring-width) solid Highlight;
+      outline-offset: calc(var(--focus-ring-width) * -1);
     }
   }
 }
@@ -265,6 +292,12 @@
 @property --cui-toolbar-item-shadow {
   syntax: "*";
   inherits: true;
+}
+
+@property --cui-toolbar-item-icon-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-toolbar-item-foreground {

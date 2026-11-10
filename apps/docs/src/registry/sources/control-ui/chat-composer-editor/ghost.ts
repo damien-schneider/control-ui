@@ -1,11 +1,13 @@
 "use client";
 
-import { prefersReducedMotion } from "@/components/control-ui/lib/motion";
+import { prefersReducedMotion, readDurationMs } from "@/components/control-ui/lib/motion";
 
 // ProseMirror removes nodes synchronously, so they are gone before any transition runs and @starting-style cannot cover exit.
 // element is cloned into fixed-position ghost over its last rect, animated out by chat-composer-editor.css, and self-removes on animationend with timeout backstop.
 
-// .ProseMirror is styled by scoped utilities on its mount wrapper, which body-appended clone never inherits
+const REMOVE_MARGIN_MS = 50;
+
+// .ProseMirror is styled by scoped utilities on its mount wrapper, which a clone outside that wrapper never inherits
 const MESSAGE_INHERIT = [
   "font-family",
   "font-size",
@@ -53,13 +55,20 @@ export function spawnExitGhost(source: HTMLElement, inherit: readonly string[] =
   ghost.style.margin = "0";
   ghost.style.overflow = "hidden";
   ghost.style.pointerEvents = "none";
-  ghost.style.zIndex = "50";
+  ghost.style.zIndex = "var(--z-popup)";
 
-  document.body.appendChild(ghost);
+  // The skin scope keeps the clone's tokens and recipes resolving; <body> has neither when the skin is scoped to a subtree.
+  const host = source.closest("[data-skin]") ?? document.body;
+  host.appendChild(ghost);
+
+  // A transformed scope (a popup positioner) is the containing block of a fixed child, so shift the clone back onto the source rect.
+  const placed = ghost.getBoundingClientRect();
+  ghost.style.left = `${rect.left * 2 - placed.left}px`;
+  ghost.style.top = `${rect.top * 2 - placed.top}px`;
 
   const remove = () => ghost.remove();
   ghost.addEventListener("animationend", remove, { once: true });
-  window.setTimeout(remove, 600);
+  window.setTimeout(remove, readDurationMs(ghost, "animation-duration") + REMOVE_MARGIN_MS);
 }
 
 export const MESSAGE_GHOST_INHERIT = MESSAGE_INHERIT;

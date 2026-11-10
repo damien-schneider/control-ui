@@ -1,9 +1,11 @@
 @layer components {
   :where([data-control-family="card"][data-slot="root"]) {
-    --cui-card-radius: var(--radius-lg);
+    --cui-card-radius: var(--radius-panel);
     --cui-card-background: var(--card);
-    --cui-card-hover-background: var(--accent);
+    --cui-card-foreground: var(--card-foreground);
+    --cui-card-hover-background: var(--hover-fill);
     --cui-card-border-color: var(--border);
+    --cui-card-section-border-color: oklch(from var(--border) l c h / 0.7);
     --cui-card-border-width: var(--control-rim-width);
     --cui-card-shadow: var(--shadow-sm);
     --cui-card-backdrop-filter: none;
@@ -14,7 +16,7 @@
     border: var(--cui-card-border-width) solid var(--cui-card-border-color);
     border-radius: var(--cui-card-radius);
     background: var(--cui-card-background);
-    color: var(--card-foreground);
+    color: var(--cui-card-foreground);
     box-shadow: var(--cui-card-shadow);
     -webkit-backdrop-filter: var(--cui-card-backdrop-filter);
     backdrop-filter: var(--cui-card-backdrop-filter);
@@ -40,8 +42,12 @@
   }
 
   @media (hover: hover) {
-    :where([data-control-family="card"][data-slot="root"]:has([data-control-family="card"][data-slot="link"]:hover)) {
-      background: var(--cui-card-hover-background);
+    :where(
+        [data-control-family="card"][data-slot="root"]:has(
+          [data-control-family="card"][data-slot="link"]:hover:not(:disabled, [aria-disabled="true"])
+        )
+      ) {
+      background-image: linear-gradient(var(--cui-card-hover-background), var(--cui-card-hover-background));
     }
   }
 
@@ -56,6 +62,11 @@
     outline: none;
   }
 
+  :where([data-control-family="card"][data-slot="link"]:is(:disabled, [aria-disabled="true"])) {
+    cursor: not-allowed;
+    opacity: var(--disabled-opacity);
+  }
+
   :where([data-control-family="card"][data-slot="link"])::after {
     content: "";
     position: absolute;
@@ -65,7 +76,9 @@
 
   :where(
     [data-control-family="card"][data-slot="root"]:has([data-control-family="card"][data-slot="link"])
-      :is(a[href], button, input, select, textarea, [role="checkbox"]):not([data-control-family="card"][data-slot="link"])
+      :is(a[href], button, summary, input, select, textarea, [role="button"], [role="checkbox"], [role="radio"], [role="switch"]):not(
+        [data-control-family="card"][data-slot="link"]
+      )
   ) {
     position: relative;
     z-index: 1;
@@ -89,7 +102,12 @@
 
   :where([data-control-family="card"][data-slot="root"][data-variant="sectioned"] > [data-slot="header"]) {
     padding-block: calc(var(--cui-card-padding-block) - var(--spacing));
-    border-block-end: 1px solid oklch(from var(--border) l c h / 0.7);
+    border-block-end: var(--control-rim-width) solid var(--cui-card-section-border-color);
+  }
+
+  :where([data-control-family="card"][data-slot="root"][data-variant="sectioned"] > [data-slot="footer"]) {
+    padding-block: calc(var(--cui-card-padding-block) - var(--spacing));
+    border-block-start: var(--control-rim-width) solid var(--cui-card-section-border-color);
   }
 
   :where([data-control-family="card"][data-slot="title"]) {
@@ -113,6 +131,18 @@
 }
 
 @property --cui-card-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-card-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-card-section-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

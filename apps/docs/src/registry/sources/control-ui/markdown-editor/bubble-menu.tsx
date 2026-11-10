@@ -21,9 +21,9 @@ const showForFormattableText: NonNullable<BubbleMenuProps["shouldShow"]> = ({ ed
 const floatingOptions: BubbleMenuProps["options"] = { placement: "top", offset: 8, flip: { padding: 8 }, shift: { padding: 8 } };
 
 export function MarkdownEditorBubbleMenu({ children }: { children?: ReactNode }) {
-  const { editor, disabled, source } = useMarkdownEditor();
+  const { editor, editable, labels } = useMarkdownEditor();
   const { marks } = useMarkdownEditorFormatActions();
-  if (!editor || disabled || source) return null;
+  if (!editor || !editable) return null;
   return (
     <BubbleMenu
       editor={editor}
@@ -34,7 +34,7 @@ export function MarkdownEditorBubbleMenu({ children }: { children?: ReactNode })
       data-slot="bubble-menu"
     >
       <TooltipProvider>
-        <Toolbar aria-label="Selection formatting" variant="floating">
+        <Toolbar aria-label={labels.selectionToolbar} variant="floating">
           <MarkdownEditorHeading />
           <ToolbarSeparator />
           {marks.map((action) => (

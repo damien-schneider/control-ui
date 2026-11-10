@@ -10,7 +10,7 @@
       "name": "--cui-alert-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-lg)"
+      "defaultValue": "var(--radius-panel)"
     },
     {
       "name": "--cui-alert-background",
@@ -106,12 +106,15 @@
         ],
         "states": [
           {
-            "attribute": "data-variant",
+            "attribute": "data-tone",
             "source": "control-ui",
             "valueKind": "enum",
             "values": [
-              "default",
-              "destructive"
+              "danger",
+              "info",
+              "neutral",
+              "success",
+              "warning"
             ]
           }
         ]

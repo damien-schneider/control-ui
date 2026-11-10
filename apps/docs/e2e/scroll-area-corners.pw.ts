@@ -50,6 +50,7 @@ test("attachment corners take priority over blur and retain the edge fade", asyn
 
 test("code blocks and popup lists preserve the skin corners", async ({ page }) => {
   await page.goto("/components/phone-input");
+  await page.addStyleTag({ content: '[data-skin="modern-apple"][data-skin][data-skin] { --corner-shape: superellipse(1.25); }' });
   const code = page.locator('[data-control-family="code"][data-slot="root"]:has([data-scroll-area-viewport])').first();
   await expect(code).toHaveCSS("corner-shape", "superellipse(1.25)");
   const countryTrigger = page.getByRole("button", { name: "Phone number country: France (+33)", exact: true }).first();

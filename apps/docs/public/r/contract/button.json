@@ -6,7 +6,6 @@
     "button",
     "dropdown-menu",
     "menubar",
-    "model-switcher",
     "navigation-menu",
     "toggle"
   ],
@@ -449,25 +448,53 @@
         ]
       }
     },
-    "model-switcher": {
-      "value": {
+    "navigation-menu": {
+      "list-link": {
         "family": "button",
         "registryItems": [
-          "model-switcher"
+          "navigation-menu"
         ],
         "states": [
           {
-            "attribute": "data-button-kind",
+            "attribute": "data-active",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-shape",
             "source": "control-ui",
             "valueKind": "enum",
             "values": [
-              "model-switcher"
+              "default"
+            ]
+          },
+          {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "sm"
+            ]
+          },
+          {
+            "attribute": "data-tone",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "neutral"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "quiet"
             ]
           }
         ]
-      }
-    },
-    "navigation-menu": {
+      },
       "trigger": {
         "family": "button",
         "registryItems": [
@@ -561,6 +588,15 @@
             "values": [
               "inline",
               "tile"
+            ]
+          },
+          {
+            "attribute": "data-shape",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "circle",
+              "default"
             ]
           },
           {

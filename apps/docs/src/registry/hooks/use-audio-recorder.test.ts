@@ -163,6 +163,33 @@ function environment(stream = new MockStream(), overrides: Partial<AudioRecorder
   };
 }
 
+function deferredStopRecorder() {
+  const pendingStops: (() => void)[] = [];
+  const instances: MockMediaRecorder[] = [];
+  const Recorder = class extends MockMediaRecorder {
+    constructor(stream: AudioRecorderStreamLike, options?: MediaRecorderOptions) {
+      super(stream, options);
+      instances.push(this);
+    }
+
+    // real recorders go inactive synchronously and deliver `stop` in a later task
+    stop() {
+      this.state = "inactive";
+      pendingStops.push(() => super.stop());
+    }
+  };
+
+  return {
+    Recorder,
+    emitChunk() {
+      for (const instance of instances) instance.ondataavailable?.({ data: new Blob(["voice"]) });
+    },
+    flushStops() {
+      for (const finishStop of pendingStops.splice(0)) finishStop();
+    },
+  };
+}
+
 describe("useAudioRecorder controller", () => {
   test("starts recording only after start", async () => {
     const setup = environment();
@@ -481,5 +508,162 @@ describe("useAudioRecorder controller", () => {
     setup.setNow(1840);
     setup.runFrame();
     expect(controller.getSnapshot().levels).toHaveLength(3);
+  });
+
+  test("cancel after stop was requested discards the pending take", async () => {
+    const deferred = deferredStopRecorder();
+    const setup = environment(new MockStream(), { MediaRecorder: deferred.Recorder });
+    const controller = createAudioRecorderController({}, setup.env);
+
+    await controller.start();
+    const stopping = controller.stop();
+    controller.cancel();
+    deferred.flushStops();
+
+    await expect(stopping).resolves.toBeNull();
+    expect(controller.getSnapshot().state).toBe("idle");
+    expect(controller.getSnapshot().recording).toBeUndefined();
+  });
+
+  test("delivers the complete take when the recorder unmounts right after submit", async () => {
+    const completed: { current: AudioRecording | null } = { current: null };
+    let objectUrls = 0;
+    const deferred = deferredStopRecorder();
+    const setup = environment(new MockStream(), {
+      MediaRecorder: deferred.Recorder,
+      createObjectURL() {
+        objectUrls += 1;
+        return "blob:voice";
+      },
+    });
+    const controller = createAudioRecorderController(
+      {
+        onRecordingComplete(completedRecording) {
+          completed.current = completedRecording;
+        },
+      },
+      setup.env,
+    );
+
+    await controller.start();
+    deferred.emitChunk();
+    setup.setNow(2450);
+    const submitting = controller.submit();
+    controller.destroy();
+    deferred.flushStops();
+    await submitting;
+
+    expect(completed.current?.durationMs).toBe(1450);
+    expect(completed.current?.blob.size).toBe(10);
+    expect(objectUrls).toBe(0);
+  });
+
+  test("releases the microphone when the recorder cannot be constructed", async () => {
+    const track = new MockTrack();
+    const Unconstructible = class extends MockMediaRecorder {
+      constructor(stream: AudioRecorderStreamLike, options?: MediaRecorderOptions) {
+        super(stream, options);
+        throw Object.assign(new Error("Unsupported recorder options"), { name: "NotSupportedError" });
+      }
+    };
+    const setup = environment(new MockStream(track), { MediaRecorder: Unconstructible });
+    const controller = createAudioRecorderController({}, setup.env);
+
+    await expect(controller.start()).resolves.toBe(false);
+    expect(track.stopped).toBe(true);
+    expect(controller.getSnapshot().state).toBe("error");
+  });
+
+  test("a permission failure from a canceled request leaves the newer recording alone", async () => {
+    const track = new MockTrack();
+    const stream = new MockStream(track);
+    const rejections: ((error: Error) => void)[] = [];
+    const setup = environment(stream, {
+      mediaDevices: {
+        getUserMedia() {
+          if (rejections.length > 0) return Promise.resolve(stream);
+          return new Promise<MockStream>((_resolve, reject) => {
+            rejections.push(reject);
+          });
+        },
+      },
+    });
+    const controller = createAudioRecorderController({}, setup.env);
+
+    const canceledStart = controller.start();
+    controller.cancel();
+    await expect(controller.start()).resolves.toBe(true);
+    rejections[0]?.(Object.assign(new Error("Permission dismissed"), { name: "NotAllowedError" }));
+
+    await expect(canceledStart).resolves.toBe(false);
+    expect(controller.getSnapshot().state).toBe("recording");
+    expect(controller.getSnapshot().error).toBeNull();
+    expect(track.stopped).toBe(false);
+  });
+
+  test("ignores start and cancel while a submission is in flight", async () => {
+    const upload: { finish: () => void } = { finish() {} };
+    const setup = environment();
+    const controller = createAudioRecorderController(
+      {
+        onRecordingComplete: () =>
+          new Promise<void>((resolve) => {
+            upload.finish = resolve;
+          }),
+      },
+      setup.env,
+    );
+
+    await controller.start();
+    await controller.stop();
+    const submitting = controller.submit();
+    expect(controller.getSnapshot().state).toBe("submitting");
+
+    await expect(controller.start()).resolves.toBe(false);
+    controller.cancel();
+    expect(setup.mediaRequests).toBe(1);
+    expect(setup.objectUrlRevoked).toBeNull();
+    expect(controller.getSnapshot().state).toBe("submitting");
+
+    upload.finish();
+    await expect(submitting).resolves.not.toBeNull();
+    expect(controller.getSnapshot().state).toBe("idle");
+  });
+
+  test("enforces the time limit while animation frames are paused", async () => {
+    const timers: { callback: () => void; delayMs: number; canceled: boolean }[] = [];
+    const setup = environment(new MockStream(), {
+      scheduleTimeout(callback, delayMs) {
+        const timer = { callback, delayMs, canceled: false };
+        timers.push(timer);
+        return () => {
+          timer.canceled = true;
+        };
+      },
+    });
+    const controller = createAudioRecorderController({ maxDurationMs: 5000 }, setup.env);
+
+    await controller.start();
+    expect(timers.map((timer) => timer.delayMs)).toEqual([5000]);
+
+    setup.setNow(6000);
+    timers[0]?.callback();
+    expect(controller.getSnapshot().state).toBe("recorded");
+    expect(controller.getSnapshot().durationMs).toBe(5000);
+
+    await controller.start();
+    controller.cancel();
+    expect(timers[1]?.canceled).toBe(true);
+  });
+
+  test("restore lets a destroyed controller record again", async () => {
+    const setup = environment();
+    const controller = createAudioRecorderController({}, setup.env);
+
+    controller.destroy();
+    controller.restore();
+
+    await expect(controller.start()).resolves.toBe(true);
+    expect(controller.getSnapshot().state).toBe("recording");
   });
 });

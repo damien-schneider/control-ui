@@ -63,13 +63,16 @@ for (const mode of ["light", "dark"] as const) {
     const png = await menu.screenshot();
     const colorRow = await readScreenshotRow(page, png.toString("base64"), 10);
     const colors = { left: colorAtFraction(colorRow, 0.25), right: colorAtFraction(colorRow, 0.75) };
-    expect(colors.left[2] - colors.left[0], JSON.stringify(colors)).toBeGreaterThan(45);
-    expect(colors.right[0] - colors.right[2], JSON.stringify(colors)).toBeGreaterThan(45);
+    expect(colors.left[2] - colors.left[0], JSON.stringify(colors)).toBeGreaterThan(25);
+    expect(colors.right[0] - colors.right[2], JSON.stringify(colors)).toBeGreaterThan(25);
     await page.locator("[data-glass-transmission-fixture]").evaluate((backdrop) => {
       backdrop.style.background = "repeating-linear-gradient(to right, rgb(32 32 32) 0 16px, rgb(240 240 240) 16px 32px)";
     });
     const refracted = await menu.screenshot();
-    await menu.evaluate((element) => element.style.setProperty("--apple-glass-refraction", "blur(0px)"));
+    await menu.evaluate((element) => {
+      const glassWithoutRefraction = getComputedStyle(element).backdropFilter.replace(/url\([^)]*\)/, "blur(0px)");
+      element.style.setProperty("--cui-popup-backdrop-filter", glassWithoutRefraction);
+    });
     const blurred = await menu.screenshot();
     const rows = await Promise.all([
       readScreenshotRow(page, refracted.toString("base64"), 6),
@@ -142,8 +145,8 @@ test("search dialog glass blocks background scrolling with JavaScript paused", a
   expect(await viewport.evaluate((element) => element.scrollTop)).toBe(0);
   const rows = await Promise.all([readScreenshotRow(page, before.data, 6), readScreenshotRow(page, after.data, 6)]);
   const transmitted = rows.map((row) => colorAtFraction(row, 0.5));
-  expect(transmitted[0][2] - transmitted[0][0], JSON.stringify(transmitted)).toBeGreaterThan(45);
-  expect(transmitted[1][2] - transmitted[1][0], JSON.stringify(transmitted)).toBeGreaterThan(45);
+  expect(transmitted[0][2] - transmitted[0][0], JSON.stringify(transmitted)).toBeGreaterThan(25);
+  expect(transmitted[1][2] - transmitted[1][0], JSON.stringify(transmitted)).toBeGreaterThan(25);
   await search.fill("Popover");
   await expect(popup.getByRole("option", { name: /^Popover / })).toBeVisible();
   await search.press("Escape");

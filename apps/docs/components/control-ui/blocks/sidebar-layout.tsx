@@ -118,7 +118,7 @@ export function SidebarLayout({ children, active = "Playground" }: { children: R
       <AppSidebar active={active} />
       <AppShellContent>
         <AppShellHeader>
-          <SidebarTrigger className="hidden lg:inline-flex" />
+          <SidebarTrigger className="hidden sidebar:inline-flex" />
         </AppShellHeader>
         <PageLayout width="full">
           <div

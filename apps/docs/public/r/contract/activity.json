@@ -22,7 +22,7 @@
       "name": "--cui-activity-trigger-hover-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "oklch(from var(--muted) l c h / 0.45)"
+      "defaultValue": "var(--hover-fill)"
     },
     {
       "name": "--cui-activity-code-background",
@@ -81,7 +81,16 @@
         "registryItems": [
           "activity"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-icon-dir",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "inline"
+            ]
+          }
+        ]
       },
       "content": {
         "registryItems": [
@@ -123,8 +132,8 @@
             "source": "control-ui",
             "valueKind": "enum",
             "values": [
-              "default",
-              "destructive"
+              "danger",
+              "neutral"
             ]
           }
         ]
@@ -205,6 +214,8 @@
     }
   },
   "adornments": {},
-  "uncovered": [],
+  "uncovered": [
+    "--cui-activity-trigger-hover-background"
+  ],
   "contrast": "/r/contract/activity.contrast.json"
 }

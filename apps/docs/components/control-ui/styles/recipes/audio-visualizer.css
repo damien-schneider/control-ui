@@ -8,13 +8,14 @@
     --cui-audio-visualizer-line-fill: oklch(from var(--primary) l c h / 0.18);
     --cui-audio-visualizer-line-stroke: oklch(from var(--primary) l c h / 0.8);
     --cui-audio-visualizer-baseline-stroke: oklch(from var(--border) l c h / 0.55);
+    --cui-audio-visualizer-animation-duration: calc(var(--duration-slow) * 4);
     --_audio-visualizer-inline-sign: 1;
   }
   :where([data-control-family="audio-visualizer"][data-variant]:dir(rtl)) {
     --_audio-visualizer-inline-sign: -1;
   }
   :where([data-control-family="audio-visualizer"][data-slot="root"][data-variant]) {
-    block-size: calc(var(--spacing) * 7);
+    block-size: var(--control-h-xs);
     inline-size: calc(var(--spacing) * 44);
     padding-inline: calc(var(--spacing) * 1.5);
     --_audio-visualizer-bar-track-filter: none;
@@ -127,16 +128,16 @@
   }
 
   :where([data-control-family="audio-visualizer"][data-variant="bar"][data-idle="pulse"]:not([data-active="true"]) [data-slot="bar"]) {
-    animation: cui-audio-bar-pulse calc(var(--duration-slow) * 4) var(--ease-standard) infinite;
+    animation: cui-audio-visualizer-bar-pulse var(--cui-audio-visualizer-animation-duration) var(--ease-standard) infinite;
   }
 
   :where([data-control-family="audio-visualizer"][data-variant="bar"][data-idle="wave"]:not([data-active="true"]) [data-slot="bar"]),
   :where([data-control-family="audio-visualizer"][data-variant="bar"][data-loading="true"] [data-slot="bar"]) {
-    animation: cui-audio-bar-pulse calc(var(--duration-slow) * 4) var(--ease-standard) infinite;
+    animation: cui-audio-visualizer-bar-pulse var(--cui-audio-visualizer-animation-duration) var(--ease-standard) infinite;
     animation-delay: var(--_audio-visualizer-delay);
   }
 
-  @keyframes cui-audio-bar-pulse {
+  @keyframes cui-audio-visualizer-bar-pulse {
     0%,
     100% {
       transform: scaleY(1);
@@ -150,6 +151,17 @@
     :where([data-control-family="audio-visualizer"] [data-slot]) {
       animation: none;
       transition: none;
+    }
+  }
+
+  :where([data-motion="reduced"] [data-control-family="audio-visualizer"] [data-slot]) {
+    animation: none;
+    transition: none;
+  }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="audio-visualizer"][data-slot="bar"]) {
+      background: CanvasText;
     }
   }
 }
@@ -200,4 +212,10 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-audio-visualizer-animation-duration {
+  syntax: "<time>";
+  inherits: true;
+  initial-value: 0s;
 }

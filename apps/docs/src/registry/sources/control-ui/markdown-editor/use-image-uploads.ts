@@ -1,8 +1,16 @@
 import type { Editor } from "@tiptap/core";
 import { useEffect, useId, useRef, useState } from "react";
+import { defaultMarkdownEditorLabels, type MarkdownEditorLabels } from "./context";
+import { type MarkdownUrlPolicy, persistentUrlPolicy } from "./extensions";
 import { completeImageUpload, findImageUpload, type MarkdownImageUpload, type MarkdownImageUploader, markdownImageTypes } from "./uploads";
 
-export function useImageUploads(editor: Editor | null, uploader: MarkdownImageUploader | undefined, maxImageBytes: number) {
+export function useImageUploads(
+  editor: Editor | null,
+  uploader: MarkdownImageUploader | undefined,
+  maxImageBytes: number,
+  isUrlAllowed: MarkdownUrlPolicy = persistentUrlPolicy,
+  labels: Pick<MarkdownEditorLabels, "uploadFailed" | "uploadRejected"> = defaultMarkdownEditorLabels,
+) {
   const [uploads, setUploads] = useState<MarkdownImageUpload[]>([]);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const uploadPrefix = useId();
@@ -62,7 +70,7 @@ export function useImageUploads(editor: Editor | null, uploader: MarkdownImageUp
         },
       });
       if (controller.signal.aborted || editor.isDestroyed) return;
-      completeImageUpload(editor, id, image, file.name);
+      completeImageUpload(editor, id, image, file.name, isUrlAllowed);
       discard(id);
     } catch (error) {
       if (controller.signal.aborted) return;
@@ -72,7 +80,7 @@ export function useImageUploads(editor: Editor | null, uploader: MarkdownImageUp
             ? {
                 ...item,
                 status: "error",
-                error: error instanceof Error ? error.message : "Image upload failed.",
+                error: error instanceof Error ? error.message : labels.uploadFailed,
               }
             : item,
         ),
@@ -86,7 +94,7 @@ export function useImageUploads(editor: Editor | null, uploader: MarkdownImageUp
     let insertAt = position ?? editor.state.selection.to;
     for (const file of files) {
       if (!markdownImageTypes.includes(file.type) || file.size > maxImageBytes) {
-        setUploadError(`Choose a PNG, JPEG, GIF, WebP or AVIF image up to ${Math.round(maxImageBytes / 1024 / 1024)} MB.`);
+        setUploadError(labels.uploadRejected(Math.round(maxImageBytes / 1024 / 1024)));
         continue;
       }
       const id = `${uploadPrefix}-${nextId.current++}`;

@@ -198,6 +198,7 @@
   },
   "adornments": {},
   "uncovered": [
+    "--cui-audio-recorder-error-foreground",
     "--cui-audio-recorder-recorded-foreground",
     "--cui-audio-recorder-recording-foreground"
   ],

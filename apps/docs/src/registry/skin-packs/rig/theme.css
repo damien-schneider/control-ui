@@ -4,11 +4,11 @@
   --font-sans: "Helvetica Neue", "Arial Nova", Arial, "Segoe UI", ui-sans-serif, sans-serif;
   --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
 
-  /* THE one radius knob: 0 squares every control + surface (the chamfer is added in skin.css). */
+  /* Radius stays on the core default (--radius: 0px): every control + surface is square; the chamfer is added in skin.css. */
 
-  --padding-x: 18px;
-  --padding-y: 11px;
-  --control-h: 40px;
+  --padding-x: 1.125rem;
+  --padding-y: 0.6875rem;
+  --control-h: 2.5rem;
 
   /* Flat + matte: brutalist controls carry their weight with fill + chamfer, not elevation. */
   --overlay-opacity: 0.6;
@@ -43,10 +43,6 @@
   --card-foreground: oklch(0.2168 0.0113 55.716);
   --popover: oklch(0.9933 0.0016 81.514);
   --popover-foreground: oklch(0.2168 0.0113 55.716);
-}
-
-:root:not(.dark)[data-skin="rig"][data-skin],
-:where(:not(.dark)) [data-skin="rig"][data-skin] {
   --control-rim: oklch(from var(--foreground) l c h / 0.5);
   --control-rim-width: 1.5px;
 }
@@ -72,4 +68,7 @@
   --input: oklch(0.3082 0.0147 67);
   --ring: oklch(0.5521 0.0181 70);
   --shadow-color: oklch(0 0 0);
+  /* The heavy rim is light-only. Reset here rather than gating the base block on :not(.dark): portalled [data-skin] surfaces sit under a non-.dark <body>, so an ancestor :not(.dark) test matches them in dark mode too. */
+  --control-rim: var(--border);
+  --control-rim-width: 1px;
 }

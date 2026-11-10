@@ -38,7 +38,6 @@
 
 @layer components {
   [data-skin="mastra"] :where([data-control-family="card"][data-slot="root"]) {
-    --cui-card-radius: var(--radius-panel);
     --cui-card-border-width: 0px;
     --cui-card-shadow: var(--mastra-lip), inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--mastra-raised-shadow);
     --cui-card-gap: 0px;
@@ -142,19 +141,16 @@
   }
 
   [data-skin="mastra"] :where([data-control-family="avatar"][data-slot="badge"][data-status="offline"]) {
-    --cui-avatar-badge-background: var(--muted-foreground);
+    --cui-avatar-badge-offline-background: var(--muted-foreground);
   }
 
   [data-skin="mastra"] :where([data-control-family="sidebar"][data-slot="wrapper"]) {
     --cui-sidebar-wrapper-background: var(--canvas);
-    --cui-sidebar-inset-background: var(--background);
     --cui-sidebar-inset-shadow: var(--mastra-lip), inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--mastra-raised-shadow);
     --cui-sidebar-inset-radius: var(--radius-scene);
-    --cui-sidebar-inset-border-width: 0px;
   }
 
   [data-skin="mastra"] :where([data-control-family="sidebar"][data-slot="root"]) {
-    --cui-sidebar-inner-background: var(--canvas);
     --cui-sidebar-menu-button-font-size: var(--text-label);
     --cui-sidebar-menu-button-font-weight: 500;
     --cui-sidebar-menu-button-padding-inline: 0.75rem;
@@ -176,13 +172,13 @@
   }
 
   [data-skin="mastra"] :where([data-control-family="table"][data-slot="root"]) {
+    --cui-table-head-height: 1.75rem;
     --cui-table-row-hover-background: var(--hover-fill);
     --cui-table-row-selected-background: var(--active-fill);
     font-size: var(--text-label);
   }
 
   [data-skin="mastra"] :where([data-control-family="table"][data-slot="head"]) {
-    block-size: 1.75rem;
     font-size: var(--text-caption);
   }
 
@@ -234,7 +230,7 @@
 
   [data-skin="mastra"] :where([data-control-family="track-highlight"][data-slot="root"]) {
     --cui-track-highlight-background: var(--active-fill);
-    --cui-track-highlight-shadow: none;
+    --cui-track-highlight-shadow: 0 0 transparent;
     --cui-track-highlight-ring-color: transparent;
   }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Circle, CircleAlert, CircleDashed, CirclePause, LoaderCircle } from "lucide-react";
+import { Check, Circle, CircleAlert, CircleDashed, CirclePause } from "lucide-react";
 import type { ComponentProps, ReactNode } from "react";
 import { createContext, useContext, useId } from "react";
 import type { ActivityProps } from "@/components/control-ui/activity";
@@ -27,6 +27,7 @@ import {
   type SidebarStyle,
   SidebarTrigger,
 } from "@/components/control-ui/ui/sidebar";
+import { Spinner } from "@/components/control-ui/ui/spinner";
 import type { TimelineItemProps, TimelineState } from "@/components/control-ui/ui/timeline";
 import {
   Timeline,
@@ -69,6 +70,10 @@ export type AgentRunBlockProps = Omit<ComponentProps<"div">, "children"> &
     onRunSelect?: (run: AgentRunSummary) => void;
     onNewRun?: () => void;
     sidebarFooter?: ReactNode;
+    newRunLabel?: string;
+    runsLabel?: string;
+    emptyRunsLabel?: string;
+    statusLabels?: Partial<Record<AgentRunStatus, string>>;
     children: ReactNode;
     layout?: AgentRunLayout;
   };
@@ -81,6 +86,10 @@ export function AgentRunBlock({
   onRunSelect,
   onNewRun,
   sidebarFooter,
+  newRunLabel = "New run",
+  runsLabel = "Runs",
+  emptyRunsLabel = "No runs yet",
+  statusLabels,
   children,
   layout = "viewport",
   className,
@@ -103,6 +112,10 @@ export function AgentRunBlock({
         runs={runs}
         activeRunId={activeRunId}
         sidebarFooter={sidebarFooter}
+        newRunLabel={newRunLabel}
+        runsLabel={runsLabel}
+        emptyRunsLabel={emptyRunsLabel}
+        statusLabels={{ ...agentRunStatusLabels, ...statusLabels }}
         onRunSelect={onRunSelect}
         onNewRun={onNewRun}
       />
@@ -136,26 +149,36 @@ export function AgentRunElapsed({ startedAt, endedAt, size = "label", className,
 export type AgentRunHeaderProps = Omit<ComponentProps<"header">, "title"> & {
   title: string;
   status: AgentRunStatus;
+  statusLabel?: string;
   startedAt?: number;
   endedAt?: number;
   actions?: ReactNode;
 };
 
-export function AgentRunHeader({ title, status, startedAt, endedAt, actions, className, ...props }: AgentRunHeaderProps) {
+export function AgentRunHeader({
+  title,
+  status,
+  statusLabel = agentRunStatusLabels[status],
+  startedAt,
+  endedAt,
+  actions,
+  className,
+  ...props
+}: AgentRunHeaderProps) {
   const levels = useHeadingLevels();
 
   return (
     <header className={cn("flex h-12 shrink-0 items-center gap-2 border-b border-border/70 px-3", className)} {...props}>
-      <SidebarTrigger size="xs" className="lg:hidden" />
+      <SidebarTrigger size="xs" className="sidebar:hidden" />
       <Heading level={levels.title} size="label" weight="medium" className="min-w-0 truncate" title={title}>
         {title}
       </Heading>
       <Badge size="sm" color={agentRunStatusColors[status]}>
-        {agentRunStatusLabels[status]}
+        {statusLabel}
       </Badge>
       {startedAt === undefined ? null : <AgentRunElapsed startedAt={startedAt} endedAt={endedAt} size="body" />}
       <div className="ms-auto flex shrink-0 items-center gap-1">{actions}</div>
-      <LiveStatus message={`${title}: ${agentRunStatusLabels[status]}`} />
+      <LiveStatus message={`${title}: ${statusLabel}`} />
     </header>
   );
 }
@@ -201,7 +224,7 @@ export function AgentRunPlan({ title = "Plan", description, className, children,
 const stepIcons = {
   neutral: <Circle aria-hidden="true" />,
   pending: <CircleDashed aria-hidden="true" />,
-  running: <LoaderCircle className="motion-safe:animate-spin" aria-hidden="true" />,
+  running: <Spinner aria-hidden="true" />,
   waiting: <CirclePause aria-hidden="true" />,
   success: <Check aria-hidden="true" />,
   error: <CircleAlert aria-hidden="true" />,
@@ -210,17 +233,28 @@ const stepIcons = {
 export type AgentRunStepProps = Omit<TimelineItemProps, "title"> & {
   title: ReactNode;
   detail?: ReactNode;
+  stateLabel?: string;
   startedAt?: number;
   endedAt?: number;
   actions?: ReactNode;
 };
 
-export function AgentRunStep({ title, detail, startedAt, endedAt, actions, state = "pending", children, ...props }: AgentRunStepProps) {
+export function AgentRunStep({
+  title,
+  detail,
+  stateLabel,
+  startedAt,
+  endedAt,
+  actions,
+  state = "pending",
+  children,
+  ...props
+}: AgentRunStepProps) {
   const hasMeta = startedAt !== undefined || actions !== undefined;
 
   return (
     <TimelineItem state={state} {...props}>
-      <TimelineIndicator aria-label={agentRunStepLabels[state]}>{stepIcons[state]}</TimelineIndicator>
+      <TimelineIndicator aria-label={stateLabel ?? agentRunStepLabels[state]}>{stepIcons[state]}</TimelineIndicator>
       <TimelineSeparator />
       <TimelineContent>
         <TimelineTitle>{title}</TimelineTitle>
@@ -248,11 +282,27 @@ export type AgentRunToolCallProps = Omit<ActivityProps, "kind" | "name" | "child
   input?: unknown;
   output?: unknown;
   errorText?: string;
+  inputLabel?: string;
+  outputLabel?: string;
+  errorLabel?: string;
   startedAt?: number;
   endedAt?: number;
 };
 
-export function AgentRunToolCall({ name, summary, icon, input, output, errorText, startedAt, endedAt, ...props }: AgentRunToolCallProps) {
+export function AgentRunToolCall({
+  name,
+  summary,
+  icon,
+  input,
+  output,
+  errorText,
+  inputLabel = "Input",
+  outputLabel = "Output",
+  errorLabel = "Error",
+  startedAt,
+  endedAt,
+  ...props
+}: AgentRunToolCallProps) {
   const hasDetails = input !== undefined || output !== undefined || errorText !== undefined;
   const Row = hasDetails ? ActivityTrigger : ActivityRow;
 
@@ -271,20 +321,20 @@ export function AgentRunToolCall({ name, summary, icon, input, output, errorText
         <ActivityContent>
           {input === undefined ? null : (
             <ActivityDetail>
-              <ActivityDetailLabel>Input</ActivityDetailLabel>
+              <ActivityDetailLabel>{inputLabel}</ActivityDetailLabel>
               <ActivityDetailContent format="code">{formatToolValue(input)}</ActivityDetailContent>
             </ActivityDetail>
           )}
           {output === undefined ? null : (
             <ActivityDetail>
-              <ActivityDetailLabel>Output</ActivityDetailLabel>
+              <ActivityDetailLabel>{outputLabel}</ActivityDetailLabel>
               <ActivityDetailContent format="code">{formatToolValue(output)}</ActivityDetailContent>
             </ActivityDetail>
           )}
           {errorText === undefined ? null : (
             <ActivityDetail>
-              <ActivityDetailLabel>Error</ActivityDetailLabel>
-              <ActivityDetailContent tone="destructive">{errorText}</ActivityDetailContent>
+              <ActivityDetailLabel>{errorLabel}</ActivityDetailLabel>
+              <ActivityDetailContent tone="danger">{errorText}</ActivityDetailContent>
             </ActivityDetail>
           )}
         </ActivityContent>

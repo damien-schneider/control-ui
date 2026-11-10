@@ -3,9 +3,11 @@
 import { Radio as RadioPrimitive } from "@base-ui/react/radio";
 import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group";
 import type { ComponentProps, CSSProperties } from "react";
-import type { ControlledChoice } from "@/components/control-ui/control-props";
+import type { ControlledChoice, HoverIndicator } from "@/components/control-ui/control-props";
+import { TrackHighlight } from "@/components/control-ui/extensions/track-highlight";
 import type { ChoiceKnobStyle } from "@/components/control-ui/knob-contracts/choice-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkin } from "@/components/control-ui/skin-provider";
 
 export type RadioGroupProps<TValue extends string = string> = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> &
   ControlledChoice<TValue> & {
@@ -14,26 +16,24 @@ export type RadioGroupProps<TValue extends string = string> = Omit<ComponentProp
     required?: boolean;
     name?: string;
     orientation?: "horizontal" | "vertical";
+    indicator?: HoverIndicator;
   } & { style?: CSSProperties & ChoiceKnobStyle };
 
-export type RadioProps = Omit<
-  {
-    value: string;
-    disabled?: boolean;
-    readOnly?: boolean;
-    required?: boolean;
-    id?: string;
-    className?: string;
-    "aria-label"?: string;
-    "aria-labelledby"?: string;
-    "aria-describedby"?: string;
-    "aria-invalid"?: boolean | "true" | "false";
-  },
-  "style"
-> & { style?: CSSProperties & ChoiceKnobStyle };
+export type RadioProps = Omit<RadioPrimitive.Root.Props<string>, "className" | "style" | "children"> & {
+  className?: string;
+  style?: CSSProperties & ChoiceKnobStyle;
+};
 
 // `orientation` is visual only — Base UI owns roving focus on both axes and exposes no such prop.
-export function RadioGroup<TValue extends string = string>({ className, orientation = "vertical", ...props }: RadioGroupProps<TValue>) {
+export function RadioGroup<TValue extends string = string>({
+  className,
+  orientation = "vertical",
+  indicator,
+  children,
+  ...props
+}: RadioGroupProps<TValue>) {
+  const skin = useSkin();
+  const resolvedIndicator = indicator ?? skin.indicators?.["radio-group"] ?? "none";
   return (
     <RadioGroupPrimitive<TValue>
       data-control-ui="radio-group"
@@ -41,25 +41,27 @@ export function RadioGroup<TValue extends string = string>({ className, orientat
       data-choice-kind="radio-group"
       data-slot="root"
       data-orientation={orientation}
-      className={cn("flex data-[orientation=horizontal]:flex-row data-[orientation=vertical]:flex-col", className)}
+      data-track={resolvedIndicator}
+      className={cn(
+        "flex data-[orientation=horizontal]:flex-row data-[orientation=vertical]:flex-col data-[track=hover]:relative data-[track=hover]:isolate",
+        className,
+      )}
       {...props}
-    />
+    >
+      {children}
+      {resolvedIndicator === "hover" ? <TrackHighlight /> : null}
+    </RadioGroupPrimitive>
   );
 }
 
-export function Radio({ className, disabled, ...props }: RadioProps) {
+export function Radio({ className, ...props }: RadioProps) {
   return (
     <RadioPrimitive.Root
       data-control-ui="radio-group"
       data-choice-kind="radio-group"
       data-slot="item"
       data-control-family="choice"
-      disabled={disabled}
-      className={cn(
-        "group/radio relative inline-flex shrink-0 cursor-pointer items-center justify-center",
-        "data-[disabled]:cursor-not-allowed",
-        className,
-      )}
+      className={cn("group/radio relative inline-flex shrink-0 items-center justify-center", className)}
       {...props}
     >
       <RadioPrimitive.Indicator
@@ -78,11 +80,11 @@ export function RadioGroupItem({ className, htmlFor, children, ...props }: Compo
     <label
       htmlFor={htmlFor}
       data-control-ui="radio-group"
+      data-control-family="choice"
+      data-choice-kind="radio-group"
       data-slot="label"
-      className={cn(
-        "flex cursor-pointer items-start gap-2.5 rounded-(--radius-control) p-2 text-body has-[[data-disabled]]:cursor-not-allowed [&>[data-control-family=choice]]:mt-[calc((1lh_-_var(--spacing)*4)/2)]",
-        className,
-      )}
+      data-track-item=""
+      className={cn("flex items-start [&>[data-control-family=choice]]:mt-[calc((1lh_-_var(--cui-choice-size))/2)]", className)}
       {...props}
     >
       {children}

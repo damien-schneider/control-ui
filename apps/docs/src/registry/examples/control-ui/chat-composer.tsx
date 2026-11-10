@@ -59,7 +59,7 @@ export function ChatComposerExample() {
               <ModelSwitcher models={models} value={model} onValueChange={setModel} size="xs" variant="ghost" />
               <Select value={thinking} onValueChange={setThinking}>
                 <SelectTrigger size="xs" variant="ghost" aria-label="Thinking level">
-                  <Brain className="size-3.5" aria-hidden="true" />
+                  <Brain aria-hidden="true" />
                   <SelectValue>{(value) => thinkingLevels.find((level) => level.value === value)?.label}</SelectValue>
                 </SelectTrigger>
                 <SelectContent>
@@ -72,7 +72,7 @@ export function ChatComposerExample() {
               </Select>
             </ChatComposerTools>
             <ChatComposerSubmit size="sm" iconOnly aria-label="Send message">
-              <ArrowUp className="size-4" />
+              <ArrowUp />
             </ChatComposerSubmit>
           </ChatComposerToolbar>
         </ChatComposerShell>

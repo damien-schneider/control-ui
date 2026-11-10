@@ -16,3 +16,19 @@ test("a channel strip is a group named by its title", () => {
   expect(labelledBy).toBeDefined();
   expect(html).toContain(`id="${labelledBy}"`);
 });
+
+test("an explicit aria-label names the strip instead of its title", () => {
+  const html = renderToString(
+    <ChannelStrip aria-label="Channel 1, Shure MV7+">
+      <ChannelStripHeader>
+        <ChannelStripTitle>Shure MV7+</ChannelStripTitle>
+      </ChannelStripHeader>
+    </ChannelStrip>,
+  );
+  expect(html).toContain('aria-label="Channel 1, Shure MV7+"');
+  expect(html).not.toContain("aria-labelledby");
+});
+
+test("a title outside a channel strip keeps its own id", () => {
+  expect(renderToString(<ChannelStripTitle id="input-name">Shure MV7+</ChannelStripTitle>)).toContain('id="input-name"');
+});

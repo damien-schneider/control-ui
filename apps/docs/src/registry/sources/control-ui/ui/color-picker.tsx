@@ -6,7 +6,7 @@ import type { OpenChangeEventDetails } from "@/components/control-ui/control-pro
 import type { ColorPickerKnobStyle } from "@/components/control-ui/knob-contracts/color-picker-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { skinScopeAttributes } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { ColorPickerArea } from "@/components/control-ui/ui/color-picker-area";
 import {
@@ -102,8 +102,8 @@ export type ColorPickerProps = ColorPickerStateProps & {
 export type ColorPickerTriggerProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & ColorPickerKnobStyle };
 
 export type ColorPickerContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
-  side?: "top" | "right" | "bottom" | "left";
-  align?: "start" | "center" | "end";
+  side?: ComponentProps<typeof PopoverPrimitive.Positioner>["side"];
+  align?: ComponentProps<typeof PopoverPrimitive.Positioner>["align"];
   sideOffset?: number;
 };
 
@@ -138,7 +138,7 @@ export function ColorPickerTrigger({
       disabled={disabled}
       aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? `Choose color (${valueString})`) : ariaLabel}
       aria-labelledby={ariaLabelledBy}
-      className={cn("relative inline-flex shrink-0 cursor-pointer overflow-hidden disabled:cursor-not-allowed", className)}
+      className={cn("relative inline-flex shrink-0 overflow-hidden", className)}
       {...props}
     >
       <span
@@ -176,8 +176,7 @@ export function ColorPickerContent({
         data-popup-kind="color-picker"
         data-control-family="popup"
         data-slot="positioner"
-        data-skin={skin.id}
-        data-effects={controlEffectsAttribute(skin.effects)}
+        {...skinScopeAttributes(skin)}
         side={side}
         align={align}
         sideOffset={sideOffset}
@@ -219,10 +218,15 @@ export function ColorPickerPanel({ className, children, ...props }: ColorPickerP
 }
 
 export function GradientEditorStopColor({ children }: GradientEditorStopColorProps) {
-  const { selectedStop, setStopColor } = useGradientEditor();
+  const { selectedStop, setStopColor, disabled, readOnly } = useGradientEditor();
   if (!selectedStop) return null;
   return (
-    <ColorPicker value={selectedStop.color} onValueChange={(color) => setStopColor(selectedStop.id, color)} defaultFormat="hex">
+    <ColorPicker
+      value={selectedStop.color}
+      onValueChange={(color) => setStopColor(selectedStop.id, color)}
+      defaultFormat="hex"
+      disabled={disabled || readOnly}
+    >
       {children ?? (
         <>
           <ColorPickerTrigger />

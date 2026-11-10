@@ -2,7 +2,7 @@
 
 import { ChevronRight, CircleCheck, CircleDashed, Loader2 } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
-import { createContext, useContext, useEffect, useId, useState } from "react";
+import { createContext, useContext, useEffect, useId, useRef, useState } from "react";
 
 import type { TaskListKnobStyle } from "@/components/control-ui/knob-contracts/task-list-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -18,6 +18,8 @@ export const taskStatusLabels: TaskStatusLabels = { pending: "Pending", active: 
 
 export type TaskListProps = Omit<CollapsibleProps, "style"> & {
   statusLabels?: Partial<TaskStatusLabels>;
+  /** Announced once every task is done. */
+  completedLabel?: string;
   style?: CSSProperties & TaskListKnobStyle;
 };
 
@@ -27,6 +29,7 @@ type TaskEntry = {
   key: string;
   status: TaskStatus;
   label: string;
+  node: HTMLElement | null;
 };
 
 type TaskListRegistrationContextValue = {
@@ -67,6 +70,21 @@ function upsert(entries: TaskEntry[], entry: TaskEntry) {
   return next;
 }
 
+function compareDocumentOrder(a: TaskEntry, b: TaskEntry) {
+  if (!a.node || !b.node) return 0;
+  const position = a.node.compareDocumentPosition(b.node);
+  if (position & Node.DOCUMENT_POSITION_FOLLOWING) return -1;
+  if (position & Node.DOCUMENT_POSITION_PRECEDING) return 1;
+  return 0;
+}
+
+// Items register in mount order, so one inserted mid-list would count as the last task.
+// Returns the input array when it is already ordered so a state update can bail out.
+function inDocumentOrder(entries: TaskEntry[]) {
+  const sorted = [...entries].sort(compareDocumentOrder);
+  return sorted.every((entry, index) => entry === entries[index]) ? entries : sorted;
+}
+
 function currentTaskIndex(tasks: TaskEntry[]) {
   const active = tasks.findIndex((task) => task.status === "active");
   if (active !== -1) return active;
@@ -75,25 +93,31 @@ function currentTaskIndex(tasks: TaskEntry[]) {
   return tasks.length - 1;
 }
 
-export function TaskList({ statusLabels, className, children, ...props }: TaskListProps) {
+export function TaskList({ statusLabels, completedLabel = "All tasks completed", className, children, ...props }: TaskListProps) {
   const [tasks, setTasks] = useState<TaskEntry[]>([]);
+  const [hasProgressed, setHasProgressed] = useState(false);
   // register upserts in place so status change never reorders, and unregister runs only at item unmount —
   // combined effect cleanup would move every updated item to end
   const [registration] = useState<TaskListRegistrationContextValue>(() => ({
     registerTask(entry) {
-      setTasks((previous) => upsert(previous, entry));
+      setTasks((previous) => inDocumentOrder(upsert(previous, entry)));
     },
     unregisterTask(key) {
       setTasks((previous) => previous.filter((task) => task.key !== key));
     },
   }));
+  // A keyed reorder re-renders no item, so nothing re-registers.
+  useEffect(() => setTasks(inDocumentOrder));
 
   const total = tasks.length;
   const currentIndex = currentTaskIndex(tasks);
   const current = tasks[currentIndex];
   const allCompleted = total > 0 && tasks.every((task) => task.status === "completed");
   const labels = { ...taskStatusLabels, ...statusLabels };
-  const progressStatus = current?.status === "active" ? `${current.label}: ${labels.active}` : "";
+  // A list that mounts already finished (history) stays silent; only a completion that happens while mounted is announced.
+  if (!hasProgressed && total > 0 && !allCompleted) setHasProgressed(true);
+  const completedStatus = allCompleted && hasProgressed ? completedLabel : "";
+  const progressStatus = current?.status === "active" ? `${current.label}: ${labels.active}` : completedStatus;
 
   return (
     <TaskListRegistrationContext.Provider value={registration}>
@@ -119,7 +143,7 @@ export function TaskList({ statusLabels, className, children, ...props }: TaskLi
 export type TaskListTriggerProps = TaskListStyleProps<ComponentProps<"button">, TaskListKnobStyle>;
 
 export function TaskListTrigger({ className, children, ...props }: TaskListTriggerProps) {
-  const { allCompleted } = useTaskListContext();
+  const { current } = useTaskListContext();
 
   return (
     <CollapsibleTrigger
@@ -131,10 +155,11 @@ export function TaskListTrigger({ className, children, ...props }: TaskListTrigg
     >
       {children ?? (
         <>
-          <TaskListIndicator status={allCompleted ? "completed" : "active"} />
+          <TaskListIndicator status={current?.status ?? "pending"} />
           <TaskListProgress />
           <ChevronRight
             aria-hidden="true"
+            data-icon-dir="inline"
             data-control-ui="task-list"
             data-control-family="task-list"
             data-slot="chevron"
@@ -148,14 +173,21 @@ export function TaskListTrigger({ className, children, ...props }: TaskListTrigg
   );
 }
 
-export type TaskListProgressProps = TaskListStyleProps<ComponentProps<"span">, TaskListKnobStyle>;
+export type TaskListProgressProps = TaskListStyleProps<ComponentProps<"span">, TaskListKnobStyle> & {
+  /** Formats the 1-based position of the current task; `children` replaces it entirely. */
+  label?: (current: number, total: number) => string;
+};
 
-export function TaskListProgress({ className, children, ...props }: TaskListProgressProps) {
+function taskProgressLabel(current: number, total: number) {
+  return `Task ${current} of ${total}`;
+}
+
+export function TaskListProgress({ label = taskProgressLabel, className, children, ...props }: TaskListProgressProps) {
   const { currentNumber, total } = useTaskListContext();
 
   return (
     <span data-control-ui="task-list" data-control-family="task-list" data-slot="progress" className={cn("shrink-0", className)} {...props}>
-      {children ?? `Task ${currentNumber} of ${total}`}
+      {children ?? label(currentNumber, total)}
     </span>
   );
 }
@@ -187,6 +219,8 @@ export function TaskListContent({ className, children, ...props }: TaskListConte
     // closed items must stay registered — collapsed pill derives "Task 3 of 5" from them
     <CollapsibleContent keepMounted>
       <ol
+        // biome-ignore lint/a11y/noRedundantRoles: Safari drops list semantics when list-style is none.
+        role="list"
         data-control-ui="task-list"
         data-control-family="task-list"
         data-slot="items"
@@ -205,15 +239,21 @@ export type TaskListItemProps = TaskListStyleProps<Omit<ComponentProps<"li">, "c
   children?: ReactNode;
 };
 
-export function TaskListItem({ label, status = "pending", className, children, ...props }: TaskListItemProps) {
+export function TaskListItem({ label, status = "pending", className, children, ref, ...props }: TaskListItemProps) {
   const { registerTask, unregisterTask } = useTaskListRegistrationContext();
   const key = useId();
+  const itemRef = useRef<HTMLLIElement>(null);
 
-  useEffect(() => registerTask({ key, status, label }), [registerTask, key, status, label]);
+  useEffect(() => registerTask({ key, status, label, node: itemRef.current }), [registerTask, key, status, label]);
   useEffect(() => () => unregisterTask(key), [unregisterTask, key]);
 
   return (
     <li
+      ref={(node) => {
+        itemRef.current = node;
+        if (typeof ref === "function") ref(node);
+        else if (ref) ref.current = node;
+      }}
       data-control-ui="task-list"
       data-control-family="task-list"
       data-slot="item"
@@ -250,7 +290,7 @@ export function TaskListIndicator({ status = "pending", className, ...props }: T
       className={cn("inline-flex shrink-0 items-center justify-center", className)}
       {...props}
     >
-      <Icon aria-hidden="true" data-motion-essential={status === "active" ? "" : undefined} className="size-3.5" />
+      <Icon aria-hidden="true" data-motion-essential={status === "active" ? "" : undefined} />
       <span className="sr-only">{statusLabels[status]}</span>
     </span>
   );

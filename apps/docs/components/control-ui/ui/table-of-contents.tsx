@@ -34,37 +34,83 @@ function getScrollContainer(el: HTMLElement): HTMLElement | null {
   return null;
 }
 
+function sectionBeingRead(elements: HTMLElement[], bandTop: number): string[] {
+  const passed = elements.findLast((el) => el.getBoundingClientRect().top < bandTop);
+  return passed ? [passed.id] : [];
+}
+
 export function useVisibleSections(ids: string[], knobSourceRef: RefObject<HTMLElement | null>): string[] {
   const [visibleState, setVisibleState] = useState<{ idsKey: string; visibleIds: string[] }>({ idsKey: "", visibleIds: [] });
   const idsKey = ids.join("|");
 
   useEffect(() => {
     const idList = idsKey ? idsKey.split("|") : [];
-    const elements = idList.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => el !== null);
-    const firstElement = elements[0];
-    if (!firstElement) return;
-    const knobSource = knobSourceRef.current;
-    const scrollInset = knobSource ? readLengthKnob(getComputedStyle(knobSource), "--cui-table-of-contents-scroll-inset") : 0;
+    const resolveSections = () => idList.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => el !== null);
 
-    const order = new Map(elements.map((el, index) => [el.id, index]));
-    const visible = new Set<string>();
+    const track = (elements: HTMLElement[]) => {
+      const firstElement = elements[0];
+      if (!firstElement) return;
+      const knobSource = knobSourceRef.current;
+      const scrollInset = knobSource ? readLengthKnob(getComputedStyle(knobSource), "--cui-table-of-contents-scroll-inset") : 0;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) visible.add(entry.target.id);
-          else visible.delete(entry.target.id);
-        }
-        setVisibleState({
-          idsKey,
-          visibleIds: [...visible].sort((a, b) => (order.get(a) ?? 0) - (order.get(b) ?? 0)),
-        });
-      },
-      { root: getScrollContainer(firstElement), rootMargin: `-${scrollInset}px 0px -20% 0px`, threshold: 0 },
-    );
+      const order = new Map(elements.map((el, index) => [el.id, index]));
+      const visible = new Set<string>();
+      const root = getScrollContainer(firstElement);
+      let publishedKey: string | null = null;
 
-    for (const el of elements) observer.observe(el);
-    return () => observer.disconnect();
+      const publish = () => {
+        const visibleIds =
+          visible.size > 0
+            ? [...visible].sort((a, b) => (order.get(a) ?? 0) - (order.get(b) ?? 0))
+            : sectionBeingRead(elements, (root?.getBoundingClientRect().top ?? 0) + scrollInset);
+        const key = visibleIds.join("|");
+        if (key === publishedKey) return;
+        publishedKey = key;
+        setVisibleState({ idsKey, visibleIds });
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) visible.add(entry.target.id);
+            else visible.delete(entry.target.id);
+          }
+          publish();
+        },
+        { root, rootMargin: `-${scrollInset}px 0px -20% 0px`, threshold: 0 },
+      );
+      // No target intersects while a section taller than the band is being read, so the observer stays silent.
+      const trackSectionBeingRead = () => {
+        if (visible.size === 0) publish();
+      };
+
+      for (const el of elements) observer.observe(el);
+      // Scroll does not bubble: capturing on window covers the page scroller and any nested scroll container.
+      window.addEventListener("scroll", trackSectionBeingRead, { passive: true, capture: true });
+      return () => {
+        observer.disconnect();
+        window.removeEventListener("scroll", trackSectionBeingRead, { capture: true });
+      };
+    };
+
+    let sections = resolveSections();
+    let stopTracking = track(sections);
+    if (sections.length === idList.length) return stopTracking;
+
+    // Sections can mount after the list: streamed or lazily rendered content keeps the same items.
+    const lateSections = new MutationObserver(() => {
+      const resolved = resolveSections();
+      if (resolved.length === sections.length && resolved.every((el, index) => el === sections[index])) return;
+      sections = resolved;
+      stopTracking?.();
+      stopTracking = track(sections);
+      if (sections.length === idList.length) lateSections.disconnect();
+    });
+    lateSections.observe(document.body, { childList: true, subtree: true });
+    return () => {
+      lateSections.disconnect();
+      stopTracking?.();
+    };
   }, [idsKey, knobSourceRef]);
 
   return visibleState.idsKey === idsKey ? visibleState.visibleIds : [];
@@ -207,7 +253,12 @@ function trailStyle(rail: RailGeometry, activeItems: TocNode[], variant: TableOf
   };
 }
 
-export function TableOfContents({
+export function TableOfContents({ items, ...props }: TableOfContentsProps) {
+  if (items.length === 0) return null;
+  return <TableOfContentsNav items={items} {...props} />;
+}
+
+function TableOfContentsNav({
   items,
   label = "On this page",
   variant = "range",
@@ -229,8 +280,6 @@ export function TableOfContents({
   const currentHref = activeHrefs.has(locationHash) ? locationHash : activeItems[0]?.href;
   const rail = useRailGeometry(trackRef, itemElements);
   const hasActiveSection = activeItems.length > 0;
-
-  if (items.length === 0) return null;
 
   return (
     <nav

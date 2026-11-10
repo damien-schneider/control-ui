@@ -42,7 +42,7 @@ const mentionNode: NodeSpec = {
           id: dom.getAttribute("data-id") ?? "",
           label: dom.textContent ?? "",
           kind: dom.getAttribute("data-mention") ?? "mention",
-          icon: dom.getAttribute("data-icon"),
+          icon: dom.getAttribute("data-icon") || null,
         };
       },
     },

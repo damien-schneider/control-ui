@@ -129,16 +129,13 @@
     --cui-switch-border-width: 0px;
     --cui-switch-background: var(--apple-fill-strong);
     --cui-switch-hover-background: var(--apple-fill-strong);
+    --cui-switch-press-background: var(--apple-fill-pressed);
     --cui-switch-checked-hover-background: var(--primary);
+    --cui-switch-checked-press-background: oklch(from var(--primary) calc(l * 0.95) c h);
     --cui-switch-thumb-background: var(--apple-knob);
     --cui-switch-thumb-shadow: var(--apple-knob-shadow);
     --cui-switch-thumb-press-scale: 1.12 1.2;
     --cui-switch-thumb-press-inline-size: var(--cui-switch-thumb-inline-size);
-  }
-
-  [data-skin="modern-apple"] :where([data-control-family="switch"][data-slot="root"]:is(:active, [data-dragging])) {
-    --cui-switch-background: var(--apple-fill-pressed);
-    --cui-switch-checked-background: oklch(from var(--primary) calc(l * 0.95) c h);
   }
 
   @supports (backdrop-filter: blur(1px)) {

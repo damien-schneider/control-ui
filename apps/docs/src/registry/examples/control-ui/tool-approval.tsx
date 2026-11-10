@@ -49,11 +49,14 @@ export function ToolApprovalExample() {
           <ToolApprovalApprove />
         </ToolApprovalFooter>
       </ToolApproval>
-      {state === "pending" ? null : (
-        <Button size="xs" variant="quiet" className="justify-self-center" onClick={() => setState("pending")}>
-          Reset
-        </Button>
-      )}
+      <Button
+        size="xs"
+        variant="quiet"
+        className="justify-self-center"
+        onClick={() => setState(state === "pending" ? "expired" : "pending")}
+      >
+        {state === "pending" ? "Let the request time out" : "Reset"}
+      </Button>
     </div>
   );
 }

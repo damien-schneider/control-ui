@@ -212,9 +212,7 @@
   },
   "adornments": {},
   "uncovered": [
-    "--cui-tree-guide-background",
-    "--cui-tree-item-trigger-selected-background",
-    "--cui-tree-item-trigger-selected-foreground"
+    "--cui-tree-guide-background"
   ],
   "contrast": "/r/contract/tree.contrast.json"
 }

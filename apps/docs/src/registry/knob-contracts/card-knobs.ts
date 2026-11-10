@@ -2,6 +2,8 @@
 export const cardKnobs = [
   "--cui-card-radius",
   "--cui-card-background",
+  "--cui-card-foreground",
+  "--cui-card-section-border-color",
   "--cui-card-hover-background",
   "--cui-card-border-color",
   "--cui-card-border-width",

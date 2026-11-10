@@ -1,10 +1,11 @@
 import { describe, expect, test } from "bun:test";
+import type { ChartValue } from "@tanstack/charts";
 import { scaleLinear } from "@tanstack/charts/scales/linear";
 import { renderToString } from "react-dom/server";
 import { Chart, ChartPlot, type ChartPlotProps } from "./chart";
 import { areaChart, barChart, lineChart, scatterChart, sparklineChart } from "./chart-cartesian";
 import { seriesTooltip } from "./chart-marks";
-import { donutChart, radialBarChart } from "./chart-polar";
+import { donutChart, radialBarChart, resolveChartSlices } from "./chart-polar";
 import { chartSeriesRows, resolveChartSeries } from "./chart-series";
 
 const visits = [
@@ -84,8 +85,9 @@ describe("presets", () => {
 });
 
 describe("cartesian options", () => {
-  const render = <TDatum,>(definition: ChartPlotProps<TDatum>["definition"]) =>
-    renderToString(<ChartPlot ariaLabel="Visits" definition={definition} width={320} height={160} />);
+  const render = <TDatum, TXValue extends ChartValue, TYValue extends ChartValue>(
+    definition: ChartPlotProps<TDatum, TXValue, TYValue>["definition"],
+  ) => renderToString(<ChartPlot ariaLabel="Visits" definition={definition} width={320} height={160} />);
 
   test("hide the category axis when xScale turns it off", () => {
     const bars = render(barChart({ data: visits, x: "month", series: [{ key: "desktop" }], xScale: { axis: false } }));
@@ -127,6 +129,41 @@ describe("cartesian options", () => {
     const html = render(barChart({ data: visits, x: "month", series: [{ key: "desktop" }], radius: 3 }));
     expect(html.match(/<rect[^>]*rx="3"/g)).toHaveLength(visits.length);
   });
+
+  test("keep scatter dots whose size value is negative", () => {
+    const profit = [
+      { revenue: 10, margin: 4, delta: -30 },
+      { revenue: 20, margin: 8, delta: 30 },
+    ];
+    const html = render(scatterChart({ data: profit, x: "revenue", y: "margin", size: "delta" }));
+    expect(html.match(/<circle/g)).toHaveLength(profit.length);
+    expect(html).toContain('r="3"');
+  });
+
+  test("draw series that share a label as separate series", () => {
+    const html = render(
+      lineChart({
+        data: visits,
+        x: "month",
+        dots: true,
+        series: [
+          { key: "desktop", label: "Visits" },
+          { key: "mobile", label: "Visits" },
+        ],
+      }),
+    );
+    expect(html.match(/<circle[^>]*r="3"/g)).toHaveLength(visits.length * 2);
+  });
+
+  test("give slices that share a label distinct ids", () => {
+    const browsers = [
+      { name: "Other", users: 40 },
+      { name: "Other", users: 60 },
+    ];
+    const slices = resolveChartSlices({ data: browsers, label: "name", value: "users" });
+    expect(slices.map((slice) => slice.label)).toEqual(["Other", "Other"]);
+    expect(new Set(slices.map((slice) => slice.id)).size).toBe(browsers.length);
+  });
 });
 
 describe("seriesTooltip", () => {
@@ -136,7 +173,7 @@ describe("seriesTooltip", () => {
       { day: "Tue", height: 100, measured: null },
     ];
     const rows = chartSeriesRows(uptime, "day", resolveChartSeries<(typeof uptime)[number]>([{ key: "height", label: "Uptime" }]));
-    const { content } = seriesTooltip<(typeof uptime)[number]>(["Uptime"], String, (_height, day) =>
+    const { content } = seriesTooltip<(typeof uptime)[number]>(["height"], String, (_height, day) =>
       day.measured === null ? "No data" : `${day.measured}%`,
     );
     const values = rows.map((row) => content([{ key: row.id, datum: row }], {}).rows[0]?.value);

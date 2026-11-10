@@ -6,6 +6,7 @@ import postcss, { type Root } from "postcss";
 import selectorParser from "postcss-selector-parser";
 import { familyAttribute, identityAttribute, isFamilyQualifierAttribute, slotAttribute } from "../../../scripts/control-anatomy";
 import { knobsByFamily } from "../../../scripts/knob-contracts/collect";
+import { paintedStates } from "../../../scripts/painted-states";
 import { bucketingOffenders, flattenCompound } from "../../../scripts/selector-bucketing";
 import { type AnatomyPair, pairSetKey, stampedAnatomyKeys } from "../../../scripts/stamped-anatomy";
 
@@ -17,9 +18,15 @@ const recipePaths = readdirSync(RECIPES_DIR)
   .filter((name) => name.endsWith(".css"))
   .sort()
   .map((name) => path.join(RECIPES_DIR, name));
-const componentSources = readdirSync(SOURCES_DIR, { encoding: "utf8", recursive: true })
-  .filter((name) => /\.(?:ts|tsx)$/.test(name) && !name.includes(".test."))
-  .map((name) => ({ name, source: readFileSync(path.join(SOURCES_DIR, name), "utf8") }));
+const BLOCKS_DIR = fileURLToPath(new URL("../blocks/control-ui/", import.meta.url));
+const componentSources = [
+  { directory: SOURCES_DIR, prefix: "" },
+  { directory: BLOCKS_DIR, prefix: "blocks/" },
+].flatMap(({ directory, prefix }) =>
+  readdirSync(directory, { encoding: "utf8", recursive: true })
+    .filter((name) => /\.(?:ts|tsx)$/.test(name) && !name.includes(".test."))
+    .map((name) => ({ name: `${prefix}${name}`, source: readFileSync(path.join(directory, name), "utf8") })),
+);
 const sourceText = componentSources.map(({ source }) => source).join("\n");
 const recipes = postcss.root();
 for (const recipePath of recipePaths) {
@@ -308,6 +315,54 @@ function paletteReadOffenders({ file, source }: RecipeSource): string[] {
   });
 }
 
+/**
+ * A skin re-values a knob on the bare part at (0,1,0), above every zero-specificity recipe rule. A state rule that
+ * re-values the same knob is therefore masked the moment a skin touches the base value; the state has to travel through
+ * a private property the base rule reads.
+ */
+function stateRuleOwnKnobOffenders({ file, source }: RecipeSource): string[] {
+  const root = postcss.parse(source, { from: file });
+  const offenders: string[] = [];
+  root.walkRules((rule) => {
+    if (paintedStates(rule.selector).length === 0) return;
+    const subjectFamilies = new Set(Array.from(rule.selector.matchAll(/data-control-family="([^"]*)"/g), ([, family]) => family));
+    rule.each((node) => {
+      if (node.type !== "decl" || !node.prop.startsWith("--cui-")) return;
+      const family = Object.keys(controlKnobContracts).find((candidate) => controlKnobContracts[candidate]?.includes(node.prop));
+      if (family && subjectFamilies.size > 0 && !subjectFamilies.has(family)) return;
+      offenders.push(`${file}:${node.source?.start?.line ?? "?"} ${node.prop}`);
+    });
+  });
+  return offenders;
+}
+
+function hasTopLevelComma(value: string): boolean {
+  let depth = 0;
+  for (const character of value) {
+    if (character === "(") depth += 1;
+    else if (character === ")") depth -= 1;
+    else if (character === "," && depth === 0) return true;
+  }
+  return false;
+}
+
+/** `none` is not a shadow layer: one `none` inside a comma list invalidates the whole `box-shadow`. */
+function listComposedShadowNoneOffenders(root: Root): string[] {
+  const listComposed = new Set<string>();
+  root.walkDecls((declaration) => {
+    if (!hasTopLevelComma(declaration.value)) return;
+    for (const [, knob] of declaration.value.matchAll(/var\((--cui-[\w-]+-shadow)\)/g)) listComposed.add(knob);
+  });
+  const offenders: string[] = [];
+  root.walkDecls((declaration) => {
+    if (!listComposed.has(declaration.prop) || declaration.value.trim() !== "none") return;
+    offenders.push(
+      `${path.basename(declaration.source?.input.file ?? "recipe.css")}:${declaration.source?.start?.line ?? "?"} ${declaration.prop}`,
+    );
+  });
+  return offenders;
+}
+
 const recipeSources = recipePaths.map((recipePath) => ({
   file: path.basename(recipePath),
   source: readFileSync(recipePath, "utf8"),
@@ -399,6 +454,31 @@ describe("recipe hygiene", () => {
   test("rejects a Tailwind palette stop or ramp step in a recipe", () => {
     const invalid = { file: "invalid.css", source: "a {\n  color: var(--color-red-500);\n  background: var(--scale-neutral-3);\n}" };
     expect(paletteReadOffenders(invalid)).toEqual(["invalid.css:2 --color-red-500", "invalid.css:3 --scale-neutral-3"]);
+  });
+
+  test("state rules carry their value through a private property, never the family's own knob", () => {
+    expect(recipeSources.flatMap(stateRuleOwnKnobOffenders)).toEqual([]);
+  });
+
+  test("rejects a state rule that re-values its own family's knob", () => {
+    const invalid = {
+      file: "invalid.css",
+      source:
+        ':where([data-control-family="choice"][data-slot="root"][data-checked]) {\n  --cui-choice-border-color: red;\n}\n:where([data-control-family="choice"][data-slot="root"]:not([data-disabled])) {\n  --cui-choice-border-color: blue;\n}',
+    };
+    expect(stateRuleOwnKnobOffenders(invalid)).toEqual(["invalid.css:2 --cui-choice-border-color"]);
+  });
+
+  test("a shadow knob composed into a list never defaults to none", () => {
+    expect(listComposedShadowNoneOffenders(recipes)).toEqual([]);
+  });
+
+  test("rejects none on a shadow knob that is one layer of a list", () => {
+    const invalid = postcss.parse(
+      "a {\n  --cui-x-shadow: none;\n  --cui-y-shadow: none;\n  box-shadow: inset 0 0 0 1px red, var(--cui-x-shadow);\n}\nb { box-shadow: var(--cui-y-shadow); }",
+      { from: "invalid.css" },
+    );
+    expect(listComposedShadowNoneOffenders(invalid)).toEqual(["invalid.css:2 --cui-x-shadow"]);
   });
 
   test("rejects a literal border width beside a border-color knob", () => {

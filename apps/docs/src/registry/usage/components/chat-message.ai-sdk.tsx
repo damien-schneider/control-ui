@@ -56,7 +56,7 @@ function renderTool(part: ToolUIPart | DynamicToolUIPart, key: string) {
         {part.output !== undefined || part.errorText ? (
           <ActivityDetail>
             <ActivityDetailLabel>Output</ActivityDetailLabel>
-            <ActivityDetailContent tone={state === "error" ? "destructive" : "default"}>
+            <ActivityDetailContent tone={state === "error" ? "danger" : "neutral"}>
               {part.errorText ?? renderJson(part.output)}
             </ActivityDetailContent>
           </ActivityDetail>
@@ -66,17 +66,15 @@ function renderTool(part: ToolUIPart | DynamicToolUIPart, key: string) {
   );
 }
 
-function partKey(part: UIMessage["parts"][number]) {
+function partKey(part: UIMessage["parts"][number], index: number) {
   if ("toolCallId" in part) return part.toolCallId;
   if ("sourceId" in part) return part.sourceId;
   if ("id" in part && typeof part.id === "string") return part.id;
-  if ("url" in part && typeof part.url === "string") return `${part.type}-${part.url}`;
-  if ("text" in part && typeof part.text === "string") return `${part.type}-${part.text}`;
-  return `${part.type}-${JSON.stringify(part)}`;
+  return `${part.type}-${index}`;
 }
 
-function renderPart(part: UIMessage["parts"][number]) {
-  const key = partKey(part);
+function renderPart(part: UIMessage["parts"][number], index: number) {
+  const key = partKey(part, index);
 
   if (isToolUIPart(part) || isDynamicToolUIPart(part)) return renderTool(part, key);
   if (isDataUIPart(part)) return <pre key={key}>{renderJson(part.data)}</pre>;
@@ -98,7 +96,7 @@ function renderPart(part: UIMessage["parts"][number]) {
       const name = part.filename ?? "Attachment";
       return (
         <InlineAttachment key={key} name={name}>
-          {isImageMediaType(part.mediaType) ? <InlineAttachmentMedia src={part.url} alt={name} /> : null}
+          <InlineAttachmentMedia src={isImageMediaType(part.mediaType) ? part.url : undefined} alt={name} />
           <InlineAttachmentContent>
             <InlineAttachmentTitle />
           </InlineAttachmentContent>

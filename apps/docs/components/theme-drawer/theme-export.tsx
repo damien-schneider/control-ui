@@ -51,7 +51,7 @@ Explain the proposed changes before editing, then verify the theme in the applic
         </div>
       </div>
       {cssCopy.status === "failed" || promptCopy.status === "failed" ? (
-        <Text role="alert" as="p" size="caption" tone="destructive" className="mt-3">
+        <Text role="alert" as="p" size="caption" tone="danger" className="mt-3">
           Could not copy {cssCopy.status === "failed" ? "CSS overrides" : "the theme prompt"}. Try again or allow clipboard access.
         </Text>
       ) : null}

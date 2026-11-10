@@ -47,7 +47,9 @@ function copyViaSelection(value: string) {
   textarea.style.opacity = "0";
   textarea.style.pointerEvents = "none";
 
-  document.body.appendChild(textarea);
+  // a modal dialog makes the rest of the page inert, so the helper has to sit inside it to take focus
+  const host = activeElement?.closest("dialog, [role='dialog'], [role='alertdialog']") ?? document.body;
+  host.appendChild(textarea);
 
   try {
     textarea.focus({ preventScroll: true });
@@ -90,7 +92,7 @@ export function useCopyToClipboard({ text, copiedDuration = 1200, onCopy, onCopy
   function settle(next: Exclude<CopyStatus, "idle">) {
     setStatus(next);
     if (resetTimeout.current) window.clearTimeout(resetTimeout.current);
-    resetTimeout.current = next === "copied" ? window.setTimeout(() => setStatus("idle"), copiedDuration) : null;
+    resetTimeout.current = window.setTimeout(() => setStatus("idle"), copiedDuration);
     return next === "copied";
   }
 

@@ -62,7 +62,7 @@ export function SkinPresetControls({
 
   return (
     <Select value={selectedValue} onValueChange={selectValue}>
-      <SelectTrigger aria-label={label} className={className}>
+      <SelectTrigger size="sm" aria-label={label} className={className}>
         <SelectValue placeholder="Skin">
           {() =>
             activeCustomSkin ? (

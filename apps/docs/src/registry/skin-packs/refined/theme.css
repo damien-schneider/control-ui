@@ -57,9 +57,6 @@
   --padding-x: 0.75rem;
   --padding-y: 0.5rem;
   --control-h: 2rem;
-  --control-h-xs: round(var(--control-h) * 0.75, 1px);
-  --control-h-sm: round(var(--control-h) * 0.875, 1px);
-  --control-h-lg: round(var(--control-h) * 1.125, 1px);
   --ease-emphasized: cubic-bezier(0.23, 1, 0.32, 1);
 }
 

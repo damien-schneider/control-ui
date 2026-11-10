@@ -64,6 +64,22 @@ describe("ToolApproval", () => {
     expect(renderApproval("denied")).toContain("Denied");
   });
 
+  test("an expired card reports the expiry and offers no decision", () => {
+    const html = renderApproval("expired");
+
+    expect(html).toContain('data-state="expired"');
+    expect(html).toContain("Expired");
+    expect(html).toContain("Approval request expired");
+    expect(html).not.toContain('data-slot="footer"');
+  });
+
+  test("the decision announcement can be localised", () => {
+    const html = renderToString(<ToolApproval state="denied" announcements={{ denied: "Action refusée" }} />);
+
+    expect(html).toContain("Action refusée");
+    expect(html).not.toContain("Action denied");
+  });
+
   test("the section is labelled by its title", () => {
     const html = renderApproval("pending");
     const labelledBy = html.match(/<section[^>]*aria-labelledby="([^"]+)"/)?.[1];

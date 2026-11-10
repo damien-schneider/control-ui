@@ -1,6 +1,8 @@
 @layer components {
   @media (hover: hover) {
-    :where([data-control-family="button"][data-control="true"]:hover:not(:disabled, [data-disabled], [aria-disabled="true"])) {
+    :where(
+        [data-control-family="button"][data-control="true"]:hover:not(:disabled, [data-disabled], [aria-disabled="true"], :has(:disabled))
+      ) {
       background-color: var(--cui-button-hover-background);
       background-image: var(--cui-button-hover-background-image);
       box-shadow: var(--cui-button-hover-shadow);
@@ -23,7 +25,9 @@
   }
 
   @media (hover: hover) {
-    :where([data-control-family="button"][data-active="true"]:hover:not(:disabled, [data-disabled], [aria-disabled="true"])) {
+    :where(
+        [data-control-family="button"][data-active="true"]:hover:not(:disabled, [data-disabled], [aria-disabled="true"], :has(:disabled))
+      ) {
       background-color: var(--cui-button-active-hover-background);
       color: var(--cui-button-active-foreground);
     }
@@ -55,7 +59,9 @@
     }
   }
 
-  :where([data-control-family="button"][data-control="true"]:active:not(:disabled, [data-disabled], [aria-disabled="true"])) {
+  :where(
+    [data-control-family="button"][data-control="true"]:active:not(:disabled, [data-disabled], [aria-disabled="true"], :has(:disabled))
+  ) {
     background-color: var(--cui-button-press-background);
     box-shadow: var(--cui-button-press-shadow);
     scale: var(--cui-button-press-scale);
@@ -68,6 +74,11 @@
   }
 
   :where([data-control-family="button"]:is(:disabled, [data-disabled], [aria-disabled="true"])) {
+    cursor: not-allowed;
+    opacity: var(--disabled-opacity);
+  }
+
+  :where(label[data-control-family="button"]:has(:disabled)) {
     cursor: not-allowed;
     opacity: var(--disabled-opacity);
   }

@@ -24,12 +24,12 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-variant="edge"][data-side="bottom"]) {
-    border-top-width: var(--cui-popup-border-width);
+    border-block-start-width: var(--cui-popup-border-width);
     border-radius: var(--cui-popup-radius) var(--cui-popup-radius) 0 0;
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-variant="edge"][data-side="top"]) {
-    border-bottom-width: var(--cui-popup-border-width);
+    border-block-end-width: var(--cui-popup-border-width);
     --_drawer-content-closed-translate: 0 -100%;
     border-radius: 0 0 var(--cui-popup-radius) var(--cui-popup-radius);
   }

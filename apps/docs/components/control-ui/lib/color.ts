@@ -261,7 +261,7 @@ function parseRgbFunction(raw: string): Hsva | null {
 }
 
 function parseHslFunction(raw: string): Hsva | null {
-  const match = raw.match(/^hsla?\(\s*([\d.]+)(?:deg)?[\s,]+([\d.]+)%[\s,]+([\d.]+)%\s*(?:[/,]\s*([\d.]+%?))?\s*\)$/);
+  const match = raw.match(/^hsla?\(\s*(-?[\d.]+)(?:deg)?[\s,]+([\d.]+)%[\s,]+([\d.]+)%\s*(?:[/,]\s*([\d.]+%?))?\s*\)$/);
   if (!match) return null;
   const [, hue, saturation, lightness, alpha] = match;
   if (!hue || !saturation || !lightness) return null;
@@ -274,7 +274,7 @@ function parseHslFunction(raw: string): Hsva | null {
 }
 
 function parseOklchFunction(raw: string): Hsva | null {
-  const match = raw.match(/^oklch\(\s*([\d.]+%?)\s+([\d.]+%?)\s+([\d.]+)\s*(?:[/,]\s*([\d.]+%?))?\s*\)$/);
+  const match = raw.match(/^oklch\(\s*([\d.]+%?)\s+([\d.]+%?)\s+(-?[\d.]+)(?:deg)?\s*(?:[/,]\s*([\d.]+%?))?\s*\)$/);
   if (!match) return null;
   const [, lightness, chroma, hue, alpha] = match;
   if (!lightness || !chroma || !hue) return null;
@@ -291,8 +291,10 @@ export function parseColor(input: string): Hsva | null {
 
   const named = NAMED[raw];
   if (named) return parseHexColor(named);
-  if (raw.startsWith("#")) return parseHexColor(raw);
-  return parseRgbFunction(raw) ?? parseHslFunction(raw) ?? parseOklchFunction(raw);
+  if (raw.startsWith("#") || /^[0-9a-f]+$/.test(raw)) return parseHexColor(raw);
+  const parsed = parseRgbFunction(raw) ?? parseHslFunction(raw) ?? parseOklchFunction(raw);
+  // `[\d.]+` also matches a lone ".", which parses to NaN and would be emitted as "#NaNNaNNaN"
+  return parsed && Object.values(parsed).every(Number.isFinite) ? parsed : null;
 }
 
 // preserves hue (+sat at true black) on achromatic mutation so area/hue thumbs don't jump to red; `prev` = color before edit
@@ -355,7 +357,7 @@ export function setChannel(hsva: Hsva, id: ChannelId, value: number): Hsva {
       return preserveAchromatic({ ...rgbaToHsva(next), a: hsva.a }, hsva);
     }
     case "h":
-      return { ...hsva, ...hslaToHsva({ ...hsvaToHsla(hsva), h: wrapHue(value) }), a: hsva.a };
+      return { ...hsva, h: wrapHue(value) };
     case "s":
     case "l": {
       const hsla = hsvaToHsla(hsva);

@@ -91,10 +91,16 @@
       "defaultValue": "calc(var(--spacing) * 1.5)"
     },
     {
+      "name": "--cui-chat-message-pending-animation-duration",
+      "syntax": "<time>",
+      "initialValue": "0s",
+      "defaultValue": "calc(var(--duration-slow) * 3)"
+    },
+    {
       "name": "--cui-chat-message-row-hover-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "oklch(from var(--muted) l c h / 0.6)"
+      "defaultValue": "var(--hover-fill)"
     },
     {
       "name": "--cui-chat-message-reaction-radius",

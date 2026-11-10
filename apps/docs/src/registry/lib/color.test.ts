@@ -90,6 +90,10 @@ describe("achromatic hue preservation — the core guarantee", () => {
     expect(next.h).toBe(100); // hue is set even though the color stays gray
   });
 
+  test("setting H at true black keeps the stored saturation", () => {
+    expect(setChannel({ h: 210, s: 50, v: 0, a: 1 }, "h", 100)).toEqual({ h: 100, s: 50, v: 0, a: 1 });
+  });
+
   test("setting R/G/B rebuilds HSVA and preserves hue when it turns gray", () => {
     const withGreen = setChannel(RED, "g", 128);
     expect(hsvaToRgba(withGreen).g).toBeCloseTo(128, 0);
@@ -158,6 +162,12 @@ describe("parseColor per format", () => {
     expect(present(parseColor("#ff000080")).a).toBeCloseTo(0.502, 2);
   });
 
+  test("hex pasted without the leading #", () => {
+    expect(hsvaToRgba(present(parseColor("22c55e")))).toEqual({ r: 34, g: 197, b: 94, a: 1 });
+    expect(hsvaToRgba(present(parseColor("ABC")))).toEqual({ r: 170, g: 187, b: 204, a: 1 });
+    expect(parseColor("22c55")).toBeNull();
+  });
+
   test("rgb comma and space syntax, with alpha", () => {
     expect(hsvaToRgba(present(parseColor("rgb(255 0 0)")))).toEqual({ r: 255, g: 0, b: 0, a: 1 });
     expect(hsvaToRgba(present(parseColor("rgb(255, 0, 0)")))).toEqual({ r: 255, g: 0, b: 0, a: 1 });
@@ -187,6 +197,19 @@ describe("parseColor per format", () => {
     expect(parseColor("lab(50% 40 59.5)")).toBeNull();
     expect(parseColor("garbage")).toBeNull();
     expect(parseColor("")).toBeNull();
+  });
+
+  test("numbers made only of dots are rejected instead of parsing to NaN", () => {
+    expect(parseColor("rgb(. . .)")).toBeNull();
+    expect(parseColor("hsl(. .% .%)")).toBeNull();
+    expect(parseColor("oklch(. . .)")).toBeNull();
+    expect(parseColor("rgb(255 0 0 / .)")).toBeNull();
+  });
+
+  test("hue accepts a sign and the deg unit", () => {
+    expect(present(parseColor("hsl(-120 100% 50%)")).h).toBeCloseTo(240, 5);
+    expect(formatColor(present(parseColor("oklch(0.7 0.15 150deg)")), "oklch")).toBe("oklch(0.7 0.15 150)");
+    expect(formatColor(present(parseColor("oklch(0.7 0.15 -210)")), "oklch")).toBe("oklch(0.7 0.15 150)");
   });
 });
 

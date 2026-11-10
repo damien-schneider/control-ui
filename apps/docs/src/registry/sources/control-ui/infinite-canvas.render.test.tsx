@@ -35,4 +35,47 @@ describe("InfiniteCanvas", () => {
     expect(zoomOutButton).toContain('aria-disabled="false"');
     expect(zoomOutButton).not.toContain("data-disabled");
   });
+
+  test("starts inside the zoom range when the initial transform is out of range or unusable", () => {
+    const zoomedPastMax = renderToString(
+      <InfiniteCanvas defaultTransform={{ x: 10, y: 20, scale: 8 }}>
+        <InfiniteCanvasContent />
+        <InfiniteCanvasControls />
+      </InfiniteCanvas>,
+    );
+    const zeroScale = renderToString(
+      <InfiniteCanvas defaultTransform={{ x: 10, y: 20, scale: 0 }}>
+        <InfiniteCanvasContent />
+      </InfiniteCanvas>,
+    );
+
+    expect(zoomedPastMax).toContain('data-scale="2.5"');
+    expect(zoomedPastMax).toContain("250%");
+    expect(zeroScale).toContain('data-scale="1"');
+    expect(zeroScale).toContain("translate(0px, 0px) scale(1)");
+  });
+
+  test("announces the zoom-in shortcut with a key name assistive technology can parse", () => {
+    const html = renderToString(<InfiniteCanvas />);
+
+    expect(html).toContain('aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown Plus - 0 1"');
+  });
+
+  test("names every control from its label props", () => {
+    const html = renderToString(
+      <InfiniteCanvas transform={{ x: 0, y: 0, scale: 1.5 }}>
+        <InfiniteCanvasControls
+          toolbarLabel="Vue du canevas"
+          zoomOutLabel="Dézoomer"
+          zoomInLabel="Zoomer"
+          fitViewLabel="Ajuster"
+          getResetLabel={(percentage) => `Réinitialiser le zoom, ${percentage} %`}
+        />
+      </InfiniteCanvas>,
+    );
+
+    for (const label of ["Vue du canevas", "Dézoomer", "Zoomer", "Ajuster", "Réinitialiser le zoom, 150 %"]) {
+      expect(html).toContain(`aria-label="${label}"`);
+    }
+  });
 });

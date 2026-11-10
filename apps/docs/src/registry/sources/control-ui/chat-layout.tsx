@@ -2,7 +2,7 @@
 
 import { useRender } from "@base-ui/react/use-render";
 import { ArrowDown } from "lucide-react";
-import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
+import type { ComponentProps, CSSProperties, MouseEvent, ReactNode, RefObject } from "react";
 import { createContext, useContext, useState } from "react";
 import type { RenderProp } from "@/components/control-ui/control-props";
 import { ChatThreadAnnounceContext } from "@/components/control-ui/hooks/use-chat-message";
@@ -108,15 +108,30 @@ export function ChatLayoutActions({ className, ...props }: ChatLayoutActionsProp
 type ChatThreadScrollContextValue = {
   atBottom: boolean;
   scrollToBottom: (behavior?: ScrollBehavior) => void;
+  viewportRef: RefObject<HTMLDivElement | null>;
 };
 
 const ChatThreadScrollContext = createContext<ChatThreadScrollContextValue | null>(null);
+
+/** Scroll state of the surrounding `ChatThread`, for a custom jump control or an unread marker. */
+export function useChatThread(): Pick<ChatThreadScrollContextValue, "atBottom" | "scrollToBottom"> {
+  const scroll = useContext(ChatThreadScrollContext);
+  if (!scroll) throw new Error("useChatThread() must be called inside <ChatThread>.");
+  return { atBottom: scroll.atBottom, scrollToBottom: scroll.scrollToBottom };
+}
 
 export type ChatThreadProps = ComponentProps<"div"> & {
   composer?: ReactNode;
 };
 
-export function ChatThread({ children, composer, className, ...props }: ChatThreadProps) {
+export function ChatThread({
+  children,
+  composer,
+  className,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledby,
+  ...props
+}: ChatThreadProps) {
   const { viewportRef, contentRef, atBottom, scrollToBottom } = useChatThreadScroll();
   const [announcement, setAnnouncement] = useState("");
   const [announce] = useState(() => (message: string) => {
@@ -126,7 +141,7 @@ export function ChatThread({ children, composer, className, ...props }: ChatThre
 
   return (
     <ChatThreadAnnounceContext.Provider value={announce}>
-      <ChatThreadScrollContext.Provider value={{ atBottom, scrollToBottom }}>
+      <ChatThreadScrollContext.Provider value={{ atBottom, scrollToBottom, viewportRef }}>
         <div
           data-control-ui="chat-thread"
           data-control-family="chat-layout"
@@ -136,7 +151,10 @@ export function ChatThread({ children, composer, className, ...props }: ChatThre
           className={cn("flex min-h-0 min-w-0 flex-1 flex-col", className)}
           {...props}
         >
+          {/* The viewport is the focusable scroller, so a name belongs there (as a region), not on the role-less root. */}
           <ScrollArea
+            aria-label={ariaLabel ?? (ariaLabelledby ? undefined : "Conversation")}
+            aria-labelledby={ariaLabelledby}
             className="flex min-h-0 flex-1 flex-col"
             viewportClassName="min-h-0 flex-1"
             contentClassName="flex min-h-full flex-col"
@@ -159,7 +177,7 @@ export function ChatThread({ children, composer, className, ...props }: ChatThre
                   data-control-ui="chat-thread"
                   data-control-family="chat-layout"
                   data-slot="dock"
-                  className="sticky bottom-0 z-10 shrink-0"
+                  className="sticky bottom-0 z-1 shrink-0"
                 >
                   {composer}
                 </div>
@@ -177,13 +195,23 @@ export type ChatThreadScrollButtonProps = Omit<ComponentProps<typeof Button>, "c
   label?: string;
 };
 
-export function ChatThreadScrollButton({ label = "Scroll to latest", className, onClick, ...props }: ChatThreadScrollButtonProps) {
+export function ChatThreadScrollButton({
+  label = "Scroll to latest",
+  variant = "surface",
+  size = "sm",
+  shape = "circle",
+  onClick,
+  ...props
+}: ChatThreadScrollButtonProps) {
   const scroll = useContext(ChatThreadScrollContext);
   if (!scroll) throw new Error("<ChatThreadScrollButton> must be rendered inside <ChatThread>.");
 
   function handleClick(event: MouseEvent<HTMLButtonElement>) {
     onClick?.(event);
-    if (!event.defaultPrevented) scroll?.scrollToBottom();
+    if (event.defaultPrevented || !scroll) return;
+    scroll.scrollToBottom();
+    // The button hides once the thread is at the bottom; hand its focus to the scroller instead of dropping it on <body>.
+    if (document.activeElement === event.currentTarget) scroll.viewportRef.current?.focus({ preventScroll: true });
   }
 
   return (
@@ -193,16 +221,7 @@ export function ChatThreadScrollButton({ label = "Scroll to latest", className, 
       data-slot="scroll-anchor"
       data-hidden={scroll.atBottom ? "" : undefined}
     >
-      <Button
-        {...props}
-        type="button"
-        variant="surface"
-        size="sm"
-        iconOnly
-        aria-label={label}
-        onClick={handleClick}
-        className={cn("rounded-full", className)}
-      >
+      <Button {...props} type="button" variant={variant} size={size} shape={shape} iconOnly aria-label={label} onClick={handleClick}>
         <ArrowDown aria-hidden="true" />
       </Button>
     </div>

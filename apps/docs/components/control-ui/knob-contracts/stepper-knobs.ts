@@ -10,5 +10,10 @@ export const stepperKnobs = [
   "--cui-stepper-indicator-size",
   "--cui-stepper-indicator-current-border-width",
   "--cui-stepper-title-current-font-weight",
+  "--cui-stepper-indicator-current-border-color",
+  "--cui-stepper-indicator-complete-background",
+  "--cui-stepper-indicator-complete-foreground",
+  "--cui-stepper-separator-complete-background",
+  "--cui-stepper-separator-size",
 ] as const;
 export type StepperKnobStyle = Partial<Record<(typeof stepperKnobs)[number], string>>;

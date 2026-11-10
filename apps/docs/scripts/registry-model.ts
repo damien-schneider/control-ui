@@ -316,7 +316,7 @@ function blockDefinitions(): Definition[] {
     type: "registry:block",
     title: entry.name,
     description: entry.summary,
-    seeds: [entry.paths.files[0].path],
+    seeds: entry.paths.files.map(sourcePath),
     primary: [entry.paths.files[0].path],
   }));
 }
@@ -859,10 +859,12 @@ export type RecipeSourceExpectation = {
   sources: string[];
 };
 
+const recipeStampingSourceRoots = ["src/registry/sources/control-ui/", "src/registry/blocks/control-ui/"];
+
 export function createRecipeSourceExpectations(): RecipeSourceExpectation[] {
   return definitions().flatMap((definition) => {
     const sources = definition.primary.filter(
-      (source) => source.startsWith("src/registry/sources/control-ui/") && /\.(?:ts|tsx)$/.test(source),
+      (source) => recipeStampingSourceRoots.some((sourceRoot) => source.startsWith(sourceRoot)) && /\.(?:ts|tsx)$/.test(source),
     );
     return definition.seeds.filter(isRecipeSource).map((recipe) => ({ recipe, sources }));
   });

@@ -10,6 +10,7 @@
     --cui-filter-bar-padding-inline: calc(var(--spacing) * 2);
     --cui-filter-bar-font-size: var(--text-label);
     --cui-filter-bar-hover-background: var(--hover-fill);
+    --cui-filter-bar-remove-icon: calc(var(--spacing) * 3);
     --_filter-bar-inline-sign: 1;
     gap: var(--cui-filter-bar-gap);
     border: 0;
@@ -22,6 +23,7 @@
   }
 
   :where([data-control-family="filter-bar"][data-slot="chip"]) {
+    --_filter-bar-inner-radius: max(0px, calc(var(--cui-filter-bar-radius) - var(--cui-filter-bar-border-width)));
     border: var(--cui-filter-bar-border-width) solid var(--cui-filter-bar-border-color);
     border-radius: var(--cui-filter-bar-radius);
     background: var(--cui-filter-bar-background);
@@ -31,6 +33,7 @@
   }
 
   :where([data-control-family="filter-bar"]:is([data-slot="segment"], [data-slot="remove"])) {
+    position: relative;
     display: inline-flex;
     align-items: center;
     min-inline-size: 0;
@@ -45,8 +48,46 @@
     --focus-ring-offset: calc(var(--focus-ring-width) * -1);
   }
 
+  :where([data-control-family="filter-bar"][data-control="true"]:is([data-slot="segment"], [data-slot="remove"])) {
+    cursor: pointer;
+  }
+
+  :where(
+    [data-control-family="filter-bar"]:is([data-slot="segment"], [data-slot="remove"]):is(
+      :disabled,
+      [data-disabled],
+      [aria-disabled="true"]
+    )
+  ) {
+    cursor: not-allowed;
+  }
+
+  :where([data-control-family="filter-bar"][data-slot="remove"] svg) {
+    flex-shrink: 0;
+    inline-size: var(--cui-filter-bar-remove-icon);
+    block-size: var(--cui-filter-bar-remove-icon);
+  }
+
+  :where([data-control-family="filter-bar"][data-slot="root"] [data-control-family="button"][data-slot="add-button"]) {
+    --cui-button-icon: 0.875rem;
+  }
+
+  :where([data-control-family="filter-bar"][data-slot="chip"] > :first-child) {
+    border-start-start-radius: var(--_filter-bar-inner-radius);
+    border-end-start-radius: var(--_filter-bar-inner-radius);
+  }
+
+  :where([data-control-family="filter-bar"][data-slot="chip"] > :last-child) {
+    border-start-end-radius: var(--_filter-bar-inner-radius);
+    border-end-end-radius: var(--_filter-bar-inner-radius);
+  }
+
   :where([data-control-family="filter-bar"][data-slot="chip"] > :not(:first-child)) {
     border-inline-start: var(--cui-filter-bar-border-width) solid var(--cui-filter-bar-border-color);
+  }
+
+  :where([data-control-family="filter-bar"][data-slot="segment"][aria-expanded="true"]) {
+    background: var(--cui-filter-bar-hover-background);
   }
 
   @media (hover: hover) {
@@ -61,42 +102,53 @@
     }
   }
 
+  @media (pointer: coarse) {
+    :where([data-control-family="filter-bar"][data-control="true"]:is([data-slot="segment"], [data-slot="remove"]))::after {
+      content: "";
+      position: absolute;
+      inset: 50% auto auto 50%;
+      translate: -50% -50%;
+      inline-size: 100%;
+      block-size: max(100%, var(--touch-target));
+    }
+  }
+
   :where([data-control-family="filter-bar"][data-draft] [data-slot="segment"]) {
     opacity: 1;
-    animation: cui-filter-segment-enter var(--duration-fast) var(--ease-emphasized);
+    animation: cui-filter-bar-segment-enter var(--duration-fast) var(--ease-emphasized);
   }
 
   :where([data-control-family="filter-bar"][data-slot="exit"]) {
     pointer-events: none;
     transform-origin: calc(50% - 50% * var(--_filter-bar-inline-sign)) center;
-    animation: cui-filter-chip-exit var(--duration-fast) var(--ease-standard) forwards;
+    animation: cui-filter-bar-chip-exit var(--duration-fast) var(--ease-standard) forwards;
   }
 
   :where([data-control-family="filter-bar"][data-slot="exit"] [data-slot="chip"]) {
     block-size: 100%;
   }
 
-  :where([data-control-family="filter-bar"][data-disabled]) {
+  :where([data-control-family="filter-bar"][data-slot="root"][data-disabled] [data-slot="chip"]) {
     opacity: var(--disabled-opacity);
   }
-}
 
-@keyframes cui-filter-segment-enter {
-  from {
-    opacity: 0;
-    translate: calc(-4px * var(--_filter-bar-inline-sign)) 0;
+  @keyframes cui-filter-bar-segment-enter {
+    from {
+      opacity: 0;
+      translate: calc(-4px * var(--_filter-bar-inline-sign)) 0;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
   }
-  to {
-    opacity: 1;
-    translate: 0 0;
-  }
-}
 
-@keyframes cui-filter-chip-exit {
-  to {
-    opacity: 0;
-    translate: calc(-4px * var(--_filter-bar-inline-sign)) 0;
-    scale: 0.97;
+  @keyframes cui-filter-bar-chip-exit {
+    to {
+      opacity: 0;
+      translate: calc(-4px * var(--_filter-bar-inline-sign)) 0;
+      scale: 0.97;
+    }
   }
 }
 
@@ -158,4 +210,10 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-filter-bar-remove-icon {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }

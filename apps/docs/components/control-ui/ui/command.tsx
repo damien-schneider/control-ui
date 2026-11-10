@@ -34,6 +34,13 @@ export function Command({ chrome = "standalone", className, ...props }: CommandP
   );
 }
 
+export type CommandDialogProps = ComponentProps<typeof Dialog> & {
+  title?: string;
+  description?: string;
+  className?: string;
+  commandProps?: CommandProps;
+};
+
 export function CommandDialog({
   title = "Command palette",
   description = "Search for a command to run…",
@@ -41,12 +48,7 @@ export function CommandDialog({
   className,
   commandProps,
   ...props
-}: ComponentProps<typeof Dialog> & {
-  title?: string;
-  description?: string;
-  className?: string;
-  commandProps?: ComponentProps<typeof Command>;
-}) {
+}: CommandDialogProps) {
   return (
     <Dialog {...props}>
       <DialogContent className={cn("p-0", className)} showCloseButton={false}>
@@ -90,7 +92,7 @@ export function CommandInput({ className, ...props }: CommandInputProps) {
         data-control-family="popup"
         data-slot="input-icon"
         viewBox="0 0 16 16"
-        className="size-4 shrink-0"
+        className="shrink-0"
         aria-hidden="true"
         fill="none"
       >
@@ -103,7 +105,7 @@ export function CommandInput({ className, ...props }: CommandInputProps) {
         data-popup-kind="command"
         data-control-family="popup"
         data-slot="input"
-        className={cn("h-full w-full disabled:cursor-not-allowed", className)}
+        className={cn("h-full w-full", className)}
         {...props}
       >
         <input role="combobox" aria-expanded={hasResults} />
@@ -140,7 +142,11 @@ export function CommandList({ className, children, getResultsLabel = defaultResu
 
   return (
     <>
-      <ScrollArea viewportRef={viewportRef} maxHeight="min(360px, var(--available-height, 360px))" className="min-h-0 w-full">
+      <ScrollArea
+        viewportRef={viewportRef}
+        maxHeight="min(var(--cui-popup-list-max-height), var(--available-height, 100dvh))"
+        className="min-h-0 w-full"
+      >
         <CommandPrimitive.List
           asChild
           data-control-ui="command"
@@ -261,12 +267,7 @@ export function CommandSeparator({ className, ...props }: CommandSeparatorProps)
 
 export type CommandItemProps = Omit<ComponentProps<typeof CommandPrimitive.Item>, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
-export function CommandItem({ className, disabled, onSelect, ...props }: CommandItemProps) {
-  function handleSelect(value: string) {
-    if (disabled) return;
-    onSelect?.(value);
-  }
-
+export function CommandItem({ className, ...props }: CommandItemProps) {
   return (
     <CommandPrimitive.Item
       data-control-ui="command"
@@ -276,10 +277,6 @@ export function CommandItem({ className, disabled, onSelect, ...props }: Command
       data-slot="item"
       className={cn("relative", popupItemStructureClasses, className)}
       {...props}
-      data-disabled={disabled ? "true" : undefined}
-      aria-disabled={disabled || undefined}
-      disabled={disabled}
-      onSelect={handleSelect}
     />
   );
 }

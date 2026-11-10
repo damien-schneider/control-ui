@@ -44,7 +44,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Timeline](https://control-ui.dev/components/timeline): Static chronological events with independent status, connectors, descriptions, and metadata.
 - [Stepper](https://control-ui.dev/components/stepper): Static and interactive workflow steps with horizontal and vertical layouts.
 - [Skeleton](https://control-ui.dev/components/skeleton): Loading placeholders with seamless shimmer, pulse, and static variants. Match their dimensions to the incoming content. Status: beta.
-- [Slider](https://control-ui.dev/components/slider): Single-value range control with branded and plain treatments.
+- [Slider](https://control-ui.dev/components/slider): Single-value or range control with branded and plain treatments.
 - [ChannelStrip](https://control-ui.dev/components/channel-strip): Console mixer strips — title, fader, level meter with dB scale, value, and controls — whose rows line up across a Mixer even when a strip leaves a part out.
 - [Select](https://control-ui.dev/components/select): Single-choice picker with a token-matched trigger and floating list.
 - [DropdownMenu](https://control-ui.dev/components/dropdown-menu): Dropdown menu for actions, resources, labels, separators, and submenus.
@@ -189,7 +189,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 ## Utilities
 
 - [cn](https://control-ui.dev/utils/cn): Tailwind class-name merge helper.
-- [skin](https://control-ui.dev/utils/skin): Skin slot and adornment resolvers for the Control UI library.
+- [skin](https://control-ui.dev/utils/skin): Skin config type, scope attributes, and adornment resolvers for the Control UI library.
 - [serialize](https://control-ui.dev/utils/serialize): Bridge a rich editor doc to plain text (and structured mentions) and back — independent of any one component.
 
 ## Practice guides

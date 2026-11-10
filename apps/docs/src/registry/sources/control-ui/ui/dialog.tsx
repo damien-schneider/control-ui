@@ -5,8 +5,8 @@ import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { PopupCloseButton } from "@/components/control-ui/popup-parts";
-import { controlEffectsAttribute, skinAdornment } from "@/components/control-ui/skin";
+import { PopupCloseButton, popupBackdropStyle } from "@/components/control-ui/popup-parts";
+import { skinAdornment, skinScopeAttributes } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import type { ButtonProps } from "@/components/control-ui/ui/button";
 import { Button } from "@/components/control-ui/ui/button";
@@ -17,12 +17,16 @@ export type DialogProps = {
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+  onOpenChangeComplete?: (open: boolean) => void;
+  disablePointerDismissal?: boolean;
 };
 
-export type DialogContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
-  showCloseButton?: boolean;
-  closeLabel?: string;
-};
+export type DialogContentProps = Omit<ComponentProps<"div">, "style"> &
+  Pick<ComponentProps<typeof DialogPrimitive.Popup>, "initialFocus" | "finalFocus"> & {
+    style?: CSSProperties & PopupKnobStyle;
+    showCloseButton?: boolean;
+    closeLabel?: string;
+  };
 
 export function Dialog(props: DialogProps) {
   return <DialogPrimitive.Root {...props} />;
@@ -67,30 +71,29 @@ export function DialogClose({
   );
 }
 
-export function DialogContent({ className, children, showCloseButton = true, closeLabel = "Close", ...props }: DialogContentProps) {
+export function DialogContent({ className, children, showCloseButton = true, closeLabel = "Close", style, ...props }: DialogContentProps) {
   const skin = useSkin();
+  const backdropStyle = popupBackdropStyle(style);
   return (
-    <DialogPrimitive.Portal>
+    <DialogPrimitive.Portal {...skinScopeAttributes(skin)}>
       <DialogPrimitive.Backdrop
         data-control-ui="dialog"
         data-popup-kind="dialog"
         data-slot="backdrop"
         data-control-family="popup"
         data-popup-part="backdrop"
-        data-skin={skin.id}
-        data-effects={controlEffectsAttribute(skin.effects)}
         className="fixed inset-0 z-(--z-overlay)"
+        style={backdropStyle}
       />
       <DialogPrimitive.Popup
-        data-skin={skin.id}
-        data-effects={controlEffectsAttribute(skin.effects)}
         data-control-ui="dialog"
         data-popup-kind="dialog"
         data-slot="content"
         data-control-family="popup"
         data-popup-part="surface"
         data-surface="modal"
-        className={cn("fixed left-1/2 top-[12vh] z-(--z-modal) grid w-[calc(100%-2rem)] -translate-x-1/2", className)}
+        className={cn("fixed left-1/2 top-[12vh] z-(--z-modal) flex w-[calc(100%-2rem)] -translate-x-1/2 flex-col", className)}
+        style={style}
         {...props}
       >
         {skinAdornment(skin, "dialog", "titlebar", {})}
@@ -108,7 +111,7 @@ export function DialogHeader({ className, ...props }: ComponentProps<"div"> & { 
       data-control-family="popup"
       data-popup-kind="dialog"
       data-slot="header"
-      className={cn("grid", className)}
+      className={cn("grid shrink-0", className)}
       {...props}
     />
   );
@@ -121,7 +124,7 @@ export function DialogBody({ className, ...props }: ComponentProps<"div"> & { st
       data-control-family="popup"
       data-popup-kind="dialog"
       data-slot="body"
-      className={cn("grid", className)}
+      className={cn("grid min-h-0 overflow-y-auto", className)}
       {...props}
     />
   );
@@ -134,7 +137,7 @@ export function DialogFooter({ className, ...props }: ComponentProps<"div"> & { 
       data-control-family="popup"
       data-popup-kind="dialog"
       data-slot="footer"
-      className={cn("flex flex-col-reverse sm:flex-row sm:justify-end", className)}
+      className={cn("flex shrink-0 flex-col-reverse sm:flex-row sm:justify-end", className)}
       {...props}
     />
   );

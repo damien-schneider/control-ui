@@ -157,7 +157,13 @@ export const navigationCompositions = {
           part("MenubarTrigger"),
           part(
             "MenubarContent",
-            part("MenubarGroup", part("MenubarLabel"), part("MenubarItem", part("MenubarShortcut"))),
+            part(
+              "MenubarGroup",
+              part("MenubarLabel"),
+              part("MenubarItem", part("MenubarShortcut")),
+              part("MenubarCheckboxItem"),
+              part("MenubarRadioGroup", part("MenubarRadioItem")),
+            ),
             part("MenubarSeparator"),
             part("MenubarSub", part("MenubarSubTrigger"), part("MenubarSubContent", part("MenubarItem"))),
             part("MenubarItem", part("MenubarShortcut")),
@@ -209,6 +215,7 @@ export const navigationCompositions = {
           content("next page", part("PaginationItem", part("PaginationNext"))),
         ),
       ),
+      "Links render anchors. Pass render to PaginationLink, PaginationPrevious, or PaginationNext to use your router's link component.",
     ),
   ],
   breadcrumb: [

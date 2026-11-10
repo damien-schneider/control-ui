@@ -3,10 +3,15 @@
     --cui-table-background: transparent;
     --cui-table-foreground: var(--foreground);
     --cui-table-border-color: var(--border);
+    --cui-table-border-width: var(--control-rim-width);
+    --cui-table-cell-padding: calc(var(--spacing) * 2);
+    --cui-table-head-height: var(--control-h-lg);
     --cui-table-footer-background: oklch(from var(--foreground) l c h / 0.03);
     --cui-table-header-foreground: var(--muted-foreground);
     --cui-table-row-hover-background: oklch(from var(--foreground) l c h / 0.03);
     --cui-table-row-selected-background: oklch(from var(--foreground) l c h / 0.05);
+    --cui-table-header-sticky-background: var(--background);
+    --cui-table-header-sticky-shadow: inset 0 calc(var(--cui-table-border-width) * -1) 0 var(--cui-table-border-color);
     background: var(--cui-table-background);
     color: var(--cui-table-foreground);
     border-collapse: collapse;
@@ -14,21 +19,21 @@
   }
 
   :where([data-control-family="table"][data-slot="header"] [data-slot="row"]) {
-    border-bottom-color: var(--cui-table-border-color);
+    border-block-end-color: var(--cui-table-border-color);
   }
 
   :where([data-control-family="table"][data-slot="footer"]) {
-    border-top-color: var(--cui-table-border-color);
+    border-block-start-color: var(--cui-table-border-color);
     background: var(--cui-table-footer-background);
-    border-top-style: solid;
-    border-top-width: 1px;
+    border-block-start-style: solid;
+    border-block-start-width: var(--cui-table-border-width);
     font-weight: var(--font-weight-medium);
   }
 
   :where([data-control-family="table"][data-slot="row"]) {
-    border-bottom-color: var(--cui-table-border-color);
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
+    border-block-end-color: var(--cui-table-border-color);
+    border-block-end-style: solid;
+    border-block-end-width: var(--cui-table-border-width);
   }
 
   @media (hover: hover) {
@@ -38,7 +43,7 @@
           [tabindex],
           [role="button"],
           :has(a, button, [role="checkbox"])
-        ):hover
+        ):not(:has([data-control-family="table"][data-slot="row-link"]:is(:disabled, [aria-disabled="true"]))):hover
       ) {
       background: var(--cui-table-row-hover-background);
     }
@@ -54,6 +59,11 @@
     outline: none;
   }
 
+  :where([data-control-family="table"][data-slot="row-link"]:is(:disabled, [aria-disabled="true"])) {
+    cursor: not-allowed;
+    opacity: var(--disabled-opacity);
+  }
+
   :where([data-control-family="table"][data-slot="row-link"])::after {
     content: "";
     position: absolute;
@@ -67,19 +77,28 @@
 
   :where(
     [data-control-family="table"][data-slot="row"]:has([data-control-family="table"][data-slot="row-link"])
-      :is(a[href], button, input, select, textarea, [role="checkbox"]):not([data-slot="row-link"])
+      :is(a[href], button, summary, input, select, textarea, [role="button"], [role="checkbox"], [role="radio"], [role="switch"]):not(
+        [data-slot="row-link"]
+      )
   ) {
     position: relative;
     z-index: 1;
   }
 
-  :where([data-control-family="table"][data-slot="row"][data-state="selected"]) {
+  :where([data-control-family="table"][data-slot="row"]:is([data-state="selected"], [aria-selected="true"])) {
     background: var(--cui-table-row-selected-background);
   }
 
+  @media (forced-colors: active) {
+    :where([data-control-family="table"][data-slot="row"]:is([data-state="selected"], [aria-selected="true"])) {
+      outline: var(--focus-ring-width) solid Highlight;
+      outline-offset: calc(var(--focus-ring-width) * -1);
+    }
+  }
+
   :where([data-control-family="table"][data-slot="head"]) {
-    block-size: calc(var(--spacing) * 10);
-    padding-inline: calc(var(--spacing) * 2);
+    block-size: var(--cui-table-head-height);
+    padding-inline: var(--cui-table-cell-padding);
     color: var(--cui-table-header-foreground);
     text-align: start;
     font-weight: var(--font-weight-medium);
@@ -93,8 +112,8 @@
   }
 
   :where([data-control-family="table"][data-slot="footer"] > tr:last-child) {
-    border-bottom-style: solid;
-    border-bottom-width: 0px;
+    border-block-end-style: solid;
+    border-block-end-width: 0px;
   }
 
   :where([data-control-family="table"][data-slot="body"] tr:last-child) {
@@ -103,12 +122,25 @@
   }
 
   :where([data-control-family="table"][data-slot="header"] tr) {
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
+    border-block-end-style: solid;
+    border-block-end-width: var(--cui-table-border-width);
+  }
+
+  /* Collapsed borders stay behind when a cell sticks, so a pinned header draws its own separator. */
+  :where([data-control-family="table"][data-slot="root"][data-sticky-header="true"] [data-slot="head"]) {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 1;
+    background: var(--cui-table-header-sticky-background);
+    box-shadow: var(--cui-table-header-sticky-shadow);
+  }
+
+  :where([data-control-family="table"][data-slot="root"][data-sticky-header="true"] [data-slot="header"] tr) {
+    border-block-end-width: 0px;
   }
 
   :where([data-control-family="table"][data-slot="cell"]) {
-    padding: calc(var(--spacing) * 2);
+    padding: var(--cui-table-cell-padding);
     font-variant-numeric: tabular-nums;
   }
 }
@@ -129,6 +161,24 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-table-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-table-cell-padding {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-table-head-height {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-table-row-hover-background {
@@ -153,4 +203,15 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-table-header-sticky-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-table-header-sticky-shadow {
+  syntax: "*";
+  inherits: true;
 }

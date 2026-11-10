@@ -34,34 +34,83 @@ import { type DesignCanvasFill, type DesignCanvasLayer, resizeDesignCanvasLayer 
 const WHOLE_NUMBER_FORMAT: Intl.NumberFormatOptions = { useGrouping: false, maximumFractionDigits: 0 };
 const DEFAULT_FILL: DesignCanvasFill = { color: "#D9D9D9", opacity: 100, visible: true };
 
+export type DesignCanvasInspectorLabels = {
+  emptyTitle: string;
+  emptyDescription: string;
+  position: string;
+  x: string;
+  y: string;
+  rotation: string;
+  layout: string;
+  width: string;
+  height: string;
+  lockAspectRatio: string;
+  appearance: string;
+  opacity: string;
+  cornerRadius: string;
+  fill: string;
+  addFill: string;
+  removeFill: string;
+  showFill: string;
+  chooseFillColor: string;
+  fillColor: string;
+  fillOpacity: string;
+};
+
+export const designCanvasInspectorLabels: DesignCanvasInspectorLabels = {
+  emptyTitle: "Nothing selected",
+  emptyDescription: "Select a layer to edit its position, size, and fill.",
+  position: "Position",
+  x: "X position",
+  y: "Y position",
+  rotation: "Rotation",
+  layout: "Layout",
+  width: "Width",
+  height: "Height",
+  lockAspectRatio: "Lock aspect ratio",
+  appearance: "Appearance",
+  opacity: "Layer opacity",
+  cornerRadius: "Corner radius",
+  fill: "Fill",
+  addFill: "Add fill",
+  removeFill: "Remove fill",
+  showFill: "Show fill",
+  chooseFillColor: "Choose fill color",
+  fillColor: "Fill color",
+  fillOpacity: "Fill opacity",
+};
+
 export type DesignCanvasInspectorProps = {
   layer: DesignCanvasLayer | undefined;
   onLayerChange: (layer: DesignCanvasLayer) => void;
+  labels?: Partial<DesignCanvasInspectorLabels>;
 };
 
-export function DesignCanvasInspector({ layer, onLayerChange }: DesignCanvasInspectorProps) {
+export function DesignCanvasInspector({ layer, onLayerChange, labels: labelOverrides }: DesignCanvasInspectorProps) {
+  const labels = { ...designCanvasInspectorLabels, ...labelOverrides };
   const [aspectRatioLocked, setAspectRatioLocked] = useState(false);
 
   if (!layer) {
     return (
       <Empty className="h-full">
         <EmptyHeader>
-          <EmptyTitle>Nothing selected</EmptyTitle>
-          <EmptyDescription>Select a layer to edit its position, size, and fill.</EmptyDescription>
+          <EmptyTitle>{labels.emptyTitle}</EmptyTitle>
+          <EmptyDescription>{labels.emptyDescription}</EmptyDescription>
         </EmptyHeader>
       </Empty>
     );
   }
 
   const update = (patch: Partial<DesignCanvasLayer>) => onLayerChange({ ...layer, ...patch });
+  const hasCornerRadius = layer.kind === "frame" || layer.kind === "rectangle";
 
   return (
     <div className="flex flex-col">
-      <InspectorSection title="Position">
-        <ScrubField label="X position" prefix="X" value={layer.x} onValueChange={(x) => update({ x })} />
-        <ScrubField label="Y position" prefix="Y" value={layer.y} onValueChange={(y) => update({ y })} />
+      <InspectorSection title={labels.position}>
+        <ScrubField label={labels.x} prefix="X" value={layer.x} onValueChange={(x) => update({ x })} />
+        <ScrubField label={labels.y} prefix="Y" value={layer.y} onValueChange={(y) => update({ y })} />
         <ScrubField
-          label="Rotation"
+          label={labels.rotation}
           className="col-start-1"
           prefix={<RotateCwIcon />}
           value={layer.rotation}
@@ -72,16 +121,16 @@ export function DesignCanvasInspector({ layer, onLayerChange }: DesignCanvasInsp
         />
       </InspectorSection>
 
-      <InspectorSection title="Layout">
+      <InspectorSection title={labels.layout}>
         <ScrubField
-          label="Width"
+          label={labels.width}
           prefix="W"
           value={layer.width}
           min={1}
           onValueChange={(width) => onLayerChange(resizeDesignCanvasLayer(layer, { width }, aspectRatioLocked))}
         />
         <ScrubField
-          label="Height"
+          label={labels.height}
           prefix="H"
           value={layer.height}
           min={1}
@@ -91,7 +140,7 @@ export function DesignCanvasInspector({ layer, onLayerChange }: DesignCanvasInsp
           size="sm"
           variant="ghost"
           iconOnly
-          aria-label="Lock aspect ratio"
+          aria-label={labels.lockAspectRatio}
           pressed={aspectRatioLocked}
           onPressedChange={setAspectRatioLocked}
         >
@@ -99,9 +148,9 @@ export function DesignCanvasInspector({ layer, onLayerChange }: DesignCanvasInsp
         </Toggle>
       </InspectorSection>
 
-      <InspectorSection title="Appearance">
+      <InspectorSection title={labels.appearance}>
         <ScrubField
-          label="Layer opacity"
+          label={labels.opacity}
           prefix={<BlendIcon />}
           suffix="%"
           value={layer.opacity}
@@ -109,27 +158,29 @@ export function DesignCanvasInspector({ layer, onLayerChange }: DesignCanvasInsp
           max={100}
           onValueChange={(opacity) => update({ opacity })}
         />
-        <ScrubField
-          label="Corner radius"
-          prefix={<SquareRoundCornerIcon />}
-          value={layer.cornerRadius}
-          min={0}
-          onValueChange={(cornerRadius) => update({ cornerRadius })}
-        />
+        {hasCornerRadius ? (
+          <ScrubField
+            label={labels.cornerRadius}
+            prefix={<SquareRoundCornerIcon />}
+            value={layer.cornerRadius}
+            min={0}
+            onValueChange={(cornerRadius) => update({ cornerRadius })}
+          />
+        ) : null}
       </InspectorSection>
 
       <InspectorSection
-        title="Fill"
+        title={labels.fill}
         action={
           layer.fill ? null : (
-            <Button size="xs" variant="ghost" iconOnly aria-label="Add fill" onClick={() => update({ fill: DEFAULT_FILL })}>
+            <Button size="xs" variant="ghost" iconOnly aria-label={labels.addFill} onClick={() => update({ fill: DEFAULT_FILL })}>
               <PlusIcon />
             </Button>
           )
         }
       >
         {layer.fill ? (
-          <FillRow fill={layer.fill} onFillChange={(fill) => update({ fill })} onRemove={() => update({ fill: null })} />
+          <FillRow labels={labels} fill={layer.fill} onFillChange={(fill) => update({ fill })} onRemove={() => update({ fill: null })} />
         ) : null}
       </InspectorSection>
     </div>
@@ -185,20 +236,21 @@ function ScrubField({ label, className, prefix, suffix, value, onValueChange, mi
 }
 
 type FillRowProps = {
+  labels: DesignCanvasInspectorLabels;
   fill: DesignCanvasFill;
   onFillChange: (fill: DesignCanvasFill) => void;
   onRemove: () => void;
 };
 
-function FillRow({ fill, onFillChange, onRemove }: FillRowProps) {
+function FillRow({ labels, fill, onFillChange, onRemove }: FillRowProps) {
   return (
     <>
       <ColorPicker value={fill.color} alpha={false} onValueChange={(color) => onFillChange({ ...fill, color })}>
         <InputGroup size="sm" className="col-span-2">
           <InputGroupAddon>
-            <ColorPickerTrigger aria-label="Choose fill color" />
+            <ColorPickerTrigger aria-label={labels.chooseFillColor} />
           </InputGroupAddon>
-          <ColorPickerInput aria-label="Fill color" />
+          <ColorPickerInput aria-label={labels.fillColor} />
           <Separator orientation="vertical" className="h-4" />
           <NumberField
             value={fill.opacity}
@@ -211,7 +263,7 @@ function FillRow({ fill, onFillChange, onRemove }: FillRowProps) {
             }}
           >
             <NumberFieldGroup className="w-full">
-              <NumberFieldInput aria-label="Fill opacity" />
+              <NumberFieldInput aria-label={labels.fillOpacity} />
               <NumberFieldScrubArea>%</NumberFieldScrubArea>
             </NumberFieldGroup>
           </NumberField>
@@ -229,13 +281,13 @@ function FillRow({ fill, onFillChange, onRemove }: FillRowProps) {
           size="sm"
           variant="ghost"
           iconOnly
-          aria-label="Show fill"
+          aria-label={labels.showFill}
           pressed={fill.visible}
           onPressedChange={(visible) => onFillChange({ ...fill, visible })}
         >
           {fill.visible ? <EyeIcon /> : <EyeOffIcon />}
         </Toggle>
-        <Button size="sm" variant="ghost" iconOnly aria-label="Remove fill" onClick={onRemove}>
+        <Button size="sm" variant="ghost" iconOnly aria-label={labels.removeFill} onClick={onRemove}>
           <MinusIcon />
         </Button>
       </div>

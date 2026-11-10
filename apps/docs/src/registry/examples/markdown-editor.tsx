@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { MarkdownEditor, MarkdownEditorContent } from "@/components/control-ui/markdown-editor";
 import { MarkdownEditorBubbleMenu } from "@/components/control-ui/markdown-editor/bubble-menu";
 import { MarkdownEditorSuggestions } from "@/components/control-ui/markdown-editor/suggestions";
 import { MarkdownEditorToolbar, MarkdownEditorUploads } from "@/components/control-ui/markdown-editor/toolbar";
 import { Markdown } from "@/components/control-ui/ui/markdown";
+import { Switch } from "@/components/control-ui/ui/switch";
 import { Text } from "@/components/control-ui/ui/typography";
 
 const people = [
@@ -49,6 +50,31 @@ export function MarkdownEditorBubbleMenuExample() {
       </MarkdownEditor>
       <Text size="label" tone="muted">
         Select text to format it, type / for blocks, or @ to mention someone.
+      </Text>
+    </div>
+  );
+}
+
+export function MarkdownEditorReadOnlyExample() {
+  const [value, setValue] = useState(initialMarkdown);
+  const [locked, setLocked] = useState(true);
+  const lockId = useId();
+  return (
+    <div className="grid gap-4">
+      <Text as="div" size="label" className="flex items-center gap-2 justify-self-start">
+        <Switch id={lockId} checked={locked} onCheckedChange={setLocked} />
+        <label htmlFor={lockId}>Lock while in review</label>
+      </Text>
+      <MarkdownEditor value={value} onValueChange={setValue} readOnly={locked}>
+        <MarkdownEditorToolbar />
+        <MarkdownEditorContent label="Description in review" placeholder="Describe your project…" />
+        <MarkdownEditorSuggestions mentions={people} />
+        <MarkdownEditorUploads />
+      </MarkdownEditor>
+      <Text size="label" tone="muted">
+        {locked
+          ? "Read-only content stays selectable and focusable, so it can be copied and read by assistive technology."
+          : "Unlocked. Edit the description, then lock it again."}
       </Text>
     </div>
   );

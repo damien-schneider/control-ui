@@ -32,10 +32,14 @@
 
   :where([data-control-family="color-picker"][data-slot="slider-track"]) {
     block-size: var(--_color-picker-thumb-size);
-    border-radius: 9999px;
+    border-radius: var(--cui-color-picker-slider-thumb-radius);
     background-image: var(--_color-picker-slider-track-image), var(--_color-picker-checker-image);
     background-size: auto, var(--_color-picker-checker-size);
     box-shadow: inset 0 0 0 var(--control-rim-width) oklch(from var(--foreground) l c h / 0.1);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="slider-track"]:dir(rtl)) {
+    --_color-picker-slider-direction: to left;
   }
 
   :where([data-control-family="color-picker"][data-slot="slider-thumb"]),
@@ -56,12 +60,12 @@
 
   :where([data-control-family="color-picker"][data-slot="area-thumb"]),
   :where([data-control-family="color-picker"][data-slot="wheel-thumb"]) {
-    border-radius: 9999px;
+    border-radius: var(--cui-color-picker-slider-thumb-radius);
   }
 
   :where([data-control-family="color-picker"][data-slot="swatch"]) {
-    inline-size: calc(var(--spacing) * 6);
-    block-size: calc(var(--spacing) * 6);
+    inline-size: var(--target-min);
+    block-size: var(--target-min);
   }
 
   :where([data-control-family="color-picker"][data-slot="swatches-group"]),
@@ -96,10 +100,12 @@
   :where([data-control-family="color-picker"][data-slot="slider"]) {
     block-size: var(--_color-picker-thumb-size);
     min-inline-size: calc(var(--spacing) * 24);
+    cursor: pointer;
   }
 
   :where([data-control-family="color-picker"][data-slot="slider"][data-disabled]) {
     opacity: var(--disabled-opacity);
+    cursor: not-allowed;
   }
 
   :where([data-control-family="color-picker"][data-slot="slider-thumb"]) {
@@ -127,7 +133,7 @@
   :where([data-control-family="color-picker"][data-slot="slider-thumb"])::after {
     content: "";
     position: absolute;
-    inset: 50%;
+    inset: 50% auto auto 50%;
     translate: -50% -50%;
     inline-size: max(100%, var(--target-min));
     block-size: max(100%, var(--target-min));

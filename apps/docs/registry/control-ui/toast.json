@@ -11,7 +11,8 @@
   "registryDependencies": [
     "button",
     "core",
-    "dialog"
+    "dialog",
+    "spinner"
   ],
   "files": [
     {

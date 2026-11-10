@@ -9,6 +9,7 @@ import {
   type FilterBarItem,
   type FilterBarScalar,
 } from "@/components/control-ui/filter-bar";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/control-ui/ui/table";
 import { Text } from "@/components/control-ui/ui/typography";
 
 const fields: readonly FilterBarField[] = [
@@ -126,28 +127,41 @@ function IssueFilters({ input = false }: { input?: boolean }) {
         <FilterBar.AddButton />
         <FilterBar.Clear />
       </FilterBar.Root>
-      <ul className="divide-y rounded-[var(--radius-lg)] border bg-card">
-        {matching.map((issue) => (
-          <li key={issue.id} className="flex items-center gap-3 px-4 py-3">
-            <Text size="caption" tone="muted">
-              {issue.id}
-            </Text>
-            <Text size="label" className="min-w-0 flex-1">
-              {issue.title}
-            </Text>
-            <Text size="caption" tone="muted" className="shrink-0">
-              {issue.status.replace("-", " ")}
-            </Text>
-          </li>
-        ))}
-        {matching.length === 0 && (
-          <li className="px-4 py-6 text-center">
-            <Text size="caption" tone="muted">
-              No issues match these filters.
-            </Text>
-          </li>
-        )}
-      </ul>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Issue</TableHead>
+            <TableHead>Title</TableHead>
+            <TableHead>Status</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {matching.map((issue) => (
+            <TableRow key={issue.id}>
+              <TableCell>
+                <Text size="caption" tone="muted">
+                  {issue.id}
+                </Text>
+              </TableCell>
+              <TableCell>{issue.title}</TableCell>
+              <TableCell>
+                <Text size="caption" tone="muted">
+                  {issue.status.replace("-", " ")}
+                </Text>
+              </TableCell>
+            </TableRow>
+          ))}
+          {matching.length === 0 && (
+            <TableRow>
+              <TableCell colSpan={3} className="text-center">
+                <Text size="caption" tone="muted">
+                  No issues match these filters.
+                </Text>
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
     </div>
   );
 }

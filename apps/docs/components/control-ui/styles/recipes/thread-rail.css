@@ -32,8 +32,8 @@
     content: "";
     position: absolute;
     inset-block: calc(var(--spacing) * -1);
-    inset-inline-start: 0;
-    inline-size: calc(var(--spacing) * 4);
+    inset-inline-start: min(0px, calc((var(--spacing) * 4 - var(--target-min)) / 2));
+    inline-size: max(calc(var(--spacing) * 4), var(--target-min));
   }
 
   :where([data-control-family="thread-rail"][data-slot="item"][data-in-view] [data-control-family="thread-rail"][data-slot="line"]) {
@@ -84,6 +84,12 @@
     anchor-name: --_thread-rail-active;
   }
 
+  @media (forced-colors: active) {
+    :where([data-control-family="thread-rail"][data-slot="line"]) {
+      background: ButtonText;
+    }
+  }
+
   :where([data-control-family="thread-rail"][data-slot="popover"]) {
     position: absolute;
     inset-inline-start: 100%;
@@ -124,6 +130,16 @@
       scale: 1;
       opacity: 1;
     }
+
+    @starting-style {
+      :where(
+          [data-control-family="thread-rail"][data-slot="root"]:has([data-control-family="thread-rail"][data-slot="item"]:hover)
+            [data-control-family="thread-rail"][data-slot="popover"]
+        ) {
+        scale: 0.98;
+        opacity: 0;
+      }
+    }
   }
 
   :where([data-control-family="thread-rail"][data-slot="root"]:focus-within [data-control-family="thread-rail"][data-slot="popover"]) {
@@ -132,10 +148,6 @@
   }
 
   @starting-style {
-    :where(
-        [data-control-family="thread-rail"][data-slot="root"]:has([data-control-family="thread-rail"][data-slot="item"]:hover)
-          [data-control-family="thread-rail"][data-slot="popover"]
-      ),
     :where([data-control-family="thread-rail"][data-slot="root"]:focus-within [data-control-family="thread-rail"][data-slot="popover"]) {
       scale: 0.98;
       opacity: 0;
@@ -165,15 +177,23 @@
   }
 
   :where(
-    [data-control-family="thread-rail"][data-slot="root"]:is(
-        :has([data-control-family="thread-rail"][data-slot="item"]:hover),
-        :focus-within
-      )
+    [data-control-family="thread-rail"][data-slot="root"]:focus-within
       [data-control-family="thread-rail"][data-slot="popover-layer"][data-active]
   ) {
     scale: 1;
     opacity: 1;
     filter: blur(0);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    :where(
+        [data-control-family="thread-rail"][data-slot="root"]:has([data-control-family="thread-rail"][data-slot="item"]:hover)
+          [data-control-family="thread-rail"][data-slot="popover-layer"][data-active]
+      ) {
+      scale: 1;
+      opacity: 1;
+      filter: blur(0);
+    }
   }
 
   :where([data-control-family="thread-rail"][data-slot="title"]) {
@@ -214,7 +234,7 @@
 
   :where([data-control-family="thread-rail"][data-slot="summary"]) {
     margin-block-start: calc(var(--spacing) * 1.5);
-    line-height: calc(var(--spacing) * 5);
+    line-height: var(--leading-relaxed);
   }
 }
 

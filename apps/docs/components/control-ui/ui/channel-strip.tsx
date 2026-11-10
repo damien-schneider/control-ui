@@ -1,7 +1,7 @@
 "use client";
 
 import type { ComponentProps, CSSProperties } from "react";
-import { createContext, use, useId } from "react";
+import { createContext, use, useId, useLayoutEffect, useState, useSyncExternalStore } from "react";
 import type { ChannelStripKnobStyle } from "@/components/control-ui/knob-contracts/channel-strip-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
@@ -25,7 +25,13 @@ export type ChannelStripValueProps = ChannelStripPartProps;
 
 export type ChannelStripControlsProps = ChannelStripPartProps;
 
-const ChannelStripTitleIdContext = createContext<string | null>(null);
+type ChannelStripTitleRegistry = { id: string; register: () => () => void };
+
+const ChannelStripTitleContext = createContext<ChannelStripTitleRegistry | null>(null);
+
+function subscribeToNothing() {
+  return () => {};
+}
 
 export function Mixer({ className, ...props }: MixerProps) {
   return (
@@ -41,14 +47,30 @@ export function Mixer({ className, ...props }: MixerProps) {
   );
 }
 
-export function ChannelStrip({ variant = "default", className, ...props }: ChannelStripProps) {
+export function ChannelStrip({ variant = "default", className, "aria-label": ariaLabel, ...props }: ChannelStripProps) {
   const titleId = useId();
+  const [titleCount, setTitleCount] = useState(0);
+  const [titleRegistry] = useState<ChannelStripTitleRegistry>(() => ({
+    id: titleId,
+    register: () => {
+      setTitleCount((count) => count + 1);
+      return () => setTitleCount((count) => count - 1);
+    },
+  }));
+  // the server cannot see a title nested in the header, so it references one; the client drops the reference when none mounted
+  const hydrated = useSyncExternalStore(
+    subscribeToNothing,
+    () => true,
+    () => false,
+  );
+  const titled = titleCount > 0 || !hydrated;
   return (
-    <ChannelStripTitleIdContext value={titleId}>
+    <ChannelStripTitleContext value={titleRegistry}>
       {/* biome-ignore lint/a11y/useSemanticElements: a channel strip is a labelled group of controls, not a fieldset form group. */}
       <div
         role="group"
-        aria-labelledby={titleId}
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabel === undefined && titled ? titleId : undefined}
         data-control-ui="channel-strip"
         data-control-family="channel-strip"
         data-slot="root"
@@ -56,7 +78,7 @@ export function ChannelStrip({ variant = "default", className, ...props }: Chann
         className={cn("min-w-0", className)}
         {...props}
       />
-    </ChannelStripTitleIdContext>
+    </ChannelStripTitleContext>
   );
 }
 
@@ -72,16 +94,18 @@ export function ChannelStripHeader({ className, ...props }: ChannelStripHeaderPr
   );
 }
 
-export function ChannelStripTitle({ className, ...props }: ChannelStripTitleProps) {
-  const titleId = use(ChannelStripTitleIdContext);
+export function ChannelStripTitle({ className, id, ...props }: ChannelStripTitleProps) {
+  const registry = use(ChannelStripTitleContext);
+  const register = registry?.register;
+  useLayoutEffect(() => register?.(), [register]);
   return (
     <span
       data-control-ui="channel-strip"
       data-control-family="channel-strip"
       data-slot="title"
-      className={cn("min-w-0 flex-1 truncate text-caption", className)}
+      className={cn("min-w-0 flex-1 truncate", className)}
       {...props}
-      id={titleId ?? undefined}
+      id={registry?.id ?? id}
     />
   );
 }
@@ -116,7 +140,7 @@ export function ChannelStripValue({ className, ...props }: ChannelStripValueProp
       data-control-ui="channel-strip"
       data-control-family="channel-strip"
       data-slot="value"
-      className={cn("text-caption tabular-nums", className)}
+      className={cn("tabular-nums", className)}
       {...props}
     />
   );

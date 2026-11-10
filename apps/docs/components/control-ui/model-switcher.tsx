@@ -1,8 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { useState } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
-import type { SelectTriggerProps, SelectTriggerVariant } from "@/components/control-ui/ui/select";
+import type { SelectTriggerProps } from "@/components/control-ui/ui/select";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/control-ui/ui/select";
 
 export type ModelOption = {
@@ -12,17 +13,16 @@ export type ModelOption = {
   icon?: ReactNode;
 };
 
-export type ModelSwitcherProps = {
-  models: ModelOption[];
+export type ModelSwitcherProps = Omit<SelectTriggerProps, "children" | "value" | "defaultValue" | "size" | "name" | "form"> & {
+  models: readonly ModelOption[];
   value?: string;
   defaultValue?: string;
   onValueChange?: (value: string) => void;
-  disabled?: boolean;
   size?: "xs" | "sm";
-  variant?: SelectTriggerVariant;
-  className?: string;
   label?: string;
-  style?: SelectTriggerProps["style"];
+  /** Submits the selected model with the surrounding form. */
+  name?: string;
+  form?: string;
 };
 
 export function ModelSwitcher({
@@ -35,20 +35,31 @@ export function ModelSwitcher({
   variant = "surface",
   className,
   label = "Model",
-  style,
+  name,
+  form,
+  "aria-labelledby": ariaLabelledby,
+  ...props
 }: ModelSwitcherProps) {
-  const fallback = defaultValue ?? models[0]?.value;
+  // Owned here rather than handed to Select as a default: models often load after mount, and a default is only read once.
+  const [picked, setPicked] = useState(defaultValue);
+  const selected = value ?? picked ?? models[0]?.value ?? null;
+
+  function handleValueChange(next: string) {
+    setPicked(next);
+    onValueChange?.(next);
+  }
 
   return (
-    <Select value={value} defaultValue={fallback} onValueChange={onValueChange} disabled={disabled || models.length === 0}>
-      <SelectTrigger size={size} variant={variant} className={cn("max-w-52", className)} style={style} aria-label={label}>
-        <span
-          data-control-ui="model-switcher"
-          data-control-family="button"
-          data-button-kind="model-switcher"
-          data-slot="value"
-          className="flex min-w-0 items-center"
-        >
+    <Select value={selected} onValueChange={handleValueChange} disabled={disabled || models.length === 0} name={name} form={form}>
+      <SelectTrigger
+        size={size}
+        variant={variant}
+        className={cn("max-w-52", className)}
+        aria-label={ariaLabelledby ? undefined : label}
+        aria-labelledby={ariaLabelledby}
+        {...props}
+      >
+        <span data-control-ui="model-switcher" data-slot="value" className="flex min-w-0 items-center">
           <SelectValue placeholder={label}>
             {(current: string) => {
               const model = models.find((option) => option.value === current);

@@ -71,7 +71,7 @@ export function PrimitiveDropzoneOverlayExample() {
       <DropzoneFileList />
       <DropzoneRejectionList />
       {intakeError ? (
-        <Text as="p" role="alert" tone="destructive" className="mt-3">
+        <Text as="p" role="alert" tone="danger" className="mt-3">
           {intakeError}
         </Text>
       ) : null}

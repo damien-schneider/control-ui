@@ -5,7 +5,7 @@ import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 
 import { ActionBar, ActionBarCopy, ActionBarEdit, ActionBarItem } from "@/components/control-ui/action-bar";
 
-import type { ChatMessageProps } from "@/components/control-ui/hooks/use-chat-message";
+import type { ChatMessageProps, ChatState } from "@/components/control-ui/hooks/use-chat-message";
 import {
   ChatMessageStateProvider,
   chatAuthorLabels,
@@ -51,7 +51,8 @@ export function ChatMessage({
 }: ChatMessageProps) {
   const message = useChatMessage({ from, state, density, layout, continuation });
   const announce = useChatThreadAnnounce();
-  const previousState = useRef(state);
+  // A reply usually mounts already pending; seeding from idle lets that first state announce too.
+  const previousState = useRef<ChatState>(state === "pending" ? "idle" : state);
   const pendingLabel = statusLabels?.pending ?? chatMessageStatusLabels.pending;
   const repliedLabel = statusLabels?.replied ?? chatMessageStatusLabels.replied;
   const errorLabel = statusLabels?.error ?? chatMessageStatusLabels.error;
@@ -222,6 +223,7 @@ export type ChatMessageEditableProps = Omit<ChatMessagePartProps<"div">, "onErro
   cancelLabel?: string;
   savingLabel?: string;
   saveErrorLabel?: string;
+  editActionsLabel?: string;
 };
 
 function useMessageEditor({ value, onSave, onSaveError }: Pick<ChatMessageEditableProps, "value" | "onSave" | "onSaveError">) {
@@ -307,6 +309,7 @@ export function ChatMessageEditable({
   cancelLabel = "Cancel",
   savingLabel = "Saving…",
   saveErrorLabel = "Couldn't save your message. Try again.",
+  editActionsLabel = "Edit actions",
   children,
   className,
   ...props
@@ -373,7 +376,7 @@ export function ChatMessageEditable({
       <div data-control-ui="chat-message" data-control-family="chat-message" data-slot="edit-actions">
         <ActionBar
           align={message.isEndAligned ? "end" : "start"}
-          label="Edit actions"
+          label={editActionsLabel}
           aria-busy={saving}
           style={{ "--cui-action-bar-hidden-opacity": "1" }}
         >

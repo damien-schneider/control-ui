@@ -19,6 +19,12 @@
       "defaultValue": "var(--muted-foreground)"
     },
     {
+      "name": "--cui-timeline-indicator-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 4)"
+    },
+    {
       "name": "--cui-timeline-running-foreground",
       "syntax": "<color>",
       "initialValue": "transparent",
@@ -150,8 +156,7 @@
   "adornments": {},
   "uncovered": [
     "--cui-timeline-indicator-background",
-    "--cui-timeline-indicator-foreground",
-    "--cui-timeline-waiting-foreground"
+    "--cui-timeline-indicator-foreground"
   ],
   "contrast": "/r/contract/timeline.contrast.json"
 }

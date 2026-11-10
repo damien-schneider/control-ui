@@ -81,11 +81,11 @@ function AttachmentComposer() {
           <ChatComposerToolbar>
             <ChatComposerTools>
               <Button variant="ghost" size="xs" iconOnly aria-label="Add files" onClick={dropzone.open}>
-                <Paperclip className="size-4" />
+                <Paperclip />
               </Button>
             </ChatComposerTools>
             <ChatComposerSubmit size="sm" iconOnly aria-label="Send message">
-              <ArrowUp className="size-4" />
+              <ArrowUp />
             </ChatComposerSubmit>
           </ChatComposerToolbar>
           <DropzoneOverlay>Drop to attach</DropzoneOverlay>

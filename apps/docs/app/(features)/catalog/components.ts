@@ -8,6 +8,7 @@ const buttonRecipeFiles = [
 const fieldRecipeFiles = [
   sourceFile("Field recipe — controls + @property knobs", "src/registry/sources/control-ui/recipes/field.css", "recipe-css"),
   sourceFile("Field recipe — descendants", "src/registry/sources/control-ui/recipes/field-parts.css", "recipe-css"),
+  sourceFile("Field recipe — select and combobox controls", "src/registry/sources/control-ui/recipes/field-select.css", "recipe-css"),
 ] as const;
 export const popupRecipeFiles = [
   sourceFile("Popup recipe — shared surfaces and items", "src/registry/sources/control-ui/recipes/popup.css", "recipe-css"),
@@ -47,6 +48,11 @@ const switchRecipeFile = sourceFile(
 const rangeRecipeFile = sourceFile(
   "Range recipe — paint + @property knobs",
   "src/registry/sources/control-ui/recipes/range.css",
+  "recipe-css",
+);
+const sliderRecipeFile = sourceFile(
+  "Range recipe — slider parts",
+  "src/registry/sources/control-ui/recipes/range-slider.css",
   "recipe-css",
 );
 const levelMeterRecipeFile = sourceFile(
@@ -218,6 +224,11 @@ const flowRecipeFile = sourceFile(
 const chartRecipeFile = sourceFile(
   "Chart recipe — paint, motion + @property knobs",
   "src/registry/sources/control-ui/recipes/chart.css",
+  "recipe-css",
+);
+const chartPartsRecipeFile = sourceFile(
+  "Chart recipe — legend and tooltip",
+  "src/registry/sources/control-ui/recipes/chart-parts.css",
   "recipe-css",
 );
 const resizeHandleRecipeFile = sourceFile(
@@ -452,6 +463,16 @@ export const componentEntries = [
           import("@/src/registry/examples/control-ui/primitives/sidebar").then((mod) => ({ default: mod.PrimitiveSidebarRightExample })),
         ),
       },
+      {
+        id: "sheet",
+        title: "Sheet",
+        description:
+          "Sheet is the edge panel the sidebar uses on small screens, and it works on its own. SheetTrigger opens it, showCloseButton adds a close button named by closeLabel, and SheetHeader, SheetBody, and SheetFooter keep the title and actions in place while the body scrolls.",
+        source: sourceFile("Sheet preview", "src/registry/examples/control-ui/primitives/sheet.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/sheet").then((mod) => ({ default: mod.PrimitiveSheetExample })),
+        ),
+      },
 
       {
         id: "nested-navigation",
@@ -612,7 +633,7 @@ export const componentEntries = [
         title: "Progressive blur",
         previewClassName: "min-h-80",
         description:
-          "Enable blur to soften overflowing edges. Combine it with the default mask, or use mask={false} for blur alone. blurProps.style accepts the ProgressiveBlur knobs. Effects follow each unlocked edge without adding scroll listeners. Where non-round corner shapes are supported, those shapes take priority and disable scroll-edge blur; the mask remains available.",
+          "Enable blur to soften overflowing edges. Combine it with the default mask, or use mask={false} for blur alone. blurProps.style accepts the ProgressiveBlur knobs. Effects follow each unlocked edge without adding scroll listeners. Where non-round corner shapes are supported, those shapes take priority and disable scroll-edge blur; the mask remains available. Blur samples what is painted inside the nearest masked ancestor, so a scroll area nested in a masked one needs an opaque surface between them; PageLayout's inset viewport paints the page surface for that reason.",
         source: sourceFile("Progressive scroll edges", "src/registry/examples/control-ui/primitives/progressive-blur.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/progressive-blur").then((mod) => ({
@@ -792,14 +813,14 @@ export const componentEntries = [
     category: "forms",
     kind: "Component",
     name: "Slider",
-    summary: "Single-value range control with branded and plain treatments.",
+    summary: "Single-value or range control with branded and plain treatments.",
     shadcnDocsUrl: "https://ui.shadcn.com/docs/components/slider",
     paths: {
       registry: {
         target: "components/control-ui/ui/slider.tsx",
         example: sourceFile("Slider preview", "src/registry/examples/control-ui/primitives/slider.tsx", "example"),
         source: sourceFile("Base UI Slider slot", "src/registry/sources/control-ui/ui/slider.tsx", "component"),
-        supportFiles: [rangeRecipeFile],
+        supportFiles: [rangeRecipeFile, sliderRecipeFile],
         registryKind: "slider",
       },
     },
@@ -1663,6 +1684,24 @@ export const componentEntries = [
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/primitives/combobox").then((mod) => ({ default: mod.PrimitiveComboboxExample })),
     ),
+    additionalPreviews: [
+      {
+        id: "leading-addon",
+        title: "Leading addon",
+        description:
+          "Wrap ComboboxInput in ComboboxInputGroup to put an icon or prefix before the text. The group draws the field surface, the trigger moves to a trailing addon, and pressing an addon focuses the input.",
+        source: sourceFile(
+          "Combobox leading addon preview",
+          "src/registry/examples/control-ui/primitives/combobox-input-group.tsx",
+          "example",
+        ),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/combobox-input-group").then((mod) => ({
+            default: mod.PrimitiveComboboxInputGroupExample,
+          })),
+        ),
+      },
+    ],
   },
   {
     id: "alert",
@@ -1745,6 +1784,20 @@ export const componentEntries = [
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/primitives/table").then((mod) => ({ default: mod.PrimitiveTableExample })),
     ),
+    additionalPreviews: [
+      {
+        id: "sticky-header",
+        title: "Sticky header",
+        description:
+          "maxHeight turns the table into a vertical scroll region, and stickyHeader keeps the column headings pinned while the rows scroll beneath them.",
+        source: sourceFile("Sticky header table preview", "src/registry/examples/control-ui/primitives/table-sticky-header.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/table-sticky-header").then((mod) => ({
+            default: mod.PrimitiveTableStickyHeaderExample,
+          })),
+        ),
+      },
+    ],
   },
   {
     id: "aspect-ratio",
@@ -2022,6 +2075,7 @@ export const componentEntries = [
           sourceFile("Cartesian presets", "src/registry/sources/control-ui/ui/chart-cartesian.ts", "cartesian"),
           sourceFile("Polar presets", "src/registry/sources/control-ui/ui/chart-polar.ts", "polar"),
           chartRecipeFile,
+          chartPartsRecipeFile,
         ],
         registryKind: "chart",
       },
@@ -2156,6 +2210,20 @@ export const componentEntries = [
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/primitives/tree").then((mod) => ({ default: mod.PrimitiveTreeExample })),
     ),
+    additionalPreviews: [
+      {
+        id: "multiple-selection",
+        title: "Multiple selection",
+        description:
+          'selectionMode="multiple" lets Ctrl or Command click toggle items and Shift click or Shift with the arrow keys extend a range; Ctrl or Command with A selects every item. The sliding selection indicator is off in this mode.',
+        source: sourceFile("Tree multiple selection preview", "src/registry/examples/control-ui/primitives/tree-multiple.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/tree-multiple").then((mod) => ({
+            default: mod.PrimitiveTreeMultipleExample,
+          })),
+        ),
+      },
+    ],
   },
   {
     id: "checkbox-group",
@@ -2359,6 +2427,24 @@ export const componentEntries = [
       })),
     ),
     previewClassName: "min-h-[640px]",
+    additionalPreviews: [
+      {
+        id: "embedded",
+        title: "Embedded in a panel",
+        description:
+          'chrome="embedded" drops the canvas radius and rim so it sits flush inside a card, panel, or split view that already draws the frame.',
+        source: sourceFile(
+          "Embedded infinite canvas preview",
+          "src/registry/examples/control-ui/primitives/infinite-canvas-embedded.tsx",
+          "example",
+        ),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/infinite-canvas-embedded").then((mod) => ({
+            default: mod.PrimitiveInfiniteCanvasEmbeddedExample,
+          })),
+        ),
+      },
+    ],
   },
   {
     id: "flow",
@@ -2531,7 +2617,8 @@ export const componentEntries = [
       {
         id: "gradient-editor",
         title: "Gradient editor",
-        description: "Drag stops along the track, pick each stop color with the same picker, and read back a CSS gradient.",
+        description:
+          "Drag stops along the track, pick each stop color with the same picker, and read back a CSS gradient. readOnly keeps the gradient visible and focusable without edits; disabled dims it and blocks interaction.",
         source: sourceFile("Gradient editor example", "src/registry/examples/control-ui/primitives/gradient-editor.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/gradient-editor").then((mod) => ({

@@ -9,6 +9,8 @@
       calc(var(--cui-inline-attachment-padding) + var(--_inline-attachment-content-line-height) / 2 + var(--spacing))
     );
     --cui-inline-attachment-ring-color: var(--border);
+    --cui-inline-attachment-error-ring-color: oklch(from var(--destructive) l c h / 0.45);
+    --_inline-attachment-ring-color: var(--cui-inline-attachment-ring-color);
     --cui-inline-attachment-image-outline-color: var(--image-outline);
     --cui-inline-attachment-shadow: var(--shadow-sm);
     --cui-inline-attachment-content-background: oklch(from var(--background) l c h / 0.85);
@@ -24,31 +26,40 @@
     border-radius: var(--cui-inline-attachment-radius);
     background: var(--cui-inline-attachment-background);
     box-shadow:
-      inset 0 0 0 var(--control-rim-width) var(--cui-inline-attachment-ring-color),
+      inset 0 0 0 var(--control-rim-width) var(--_inline-attachment-ring-color),
       var(--cui-inline-attachment-shadow);
     text-align: start;
+    cursor: pointer;
     transition-property: box-shadow;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
   }
 
+  :where([data-control-family="inline-attachment"][data-slot="root"][data-state="error"]) {
+    --_inline-attachment-ring-color: var(--cui-inline-attachment-error-ring-color);
+  }
+
   :where([data-control-family="inline-attachment"][data-slot="root"]:focus-visible) {
     box-shadow:
-      inset 0 0 0 var(--control-rim-width) var(--cui-inline-attachment-ring-color),
+      inset 0 0 0 var(--control-rim-width) var(--_inline-attachment-ring-color),
       var(--cui-inline-attachment-hover-shadow);
   }
 
-  @media (hover: hover) {
-    :where([data-control-family="inline-attachment"][data-slot="root"]:hover) {
-      box-shadow:
-        inset 0 0 0 var(--control-rim-width) var(--cui-inline-attachment-ring-color),
-        var(--cui-inline-attachment-hover-shadow);
-    }
+  /* Pending is busy, not unavailable: it keeps focus and full opacity and only stops inviting a click. */
+  :where([data-control-family="inline-attachment"][data-slot="root"][aria-disabled="true"]) {
+    cursor: default;
+  }
 
-    :where([data-control-family="inline-attachment"][data-slot="root"]:is(:disabled, [aria-disabled="true"]):hover) {
+  :where([data-control-family="inline-attachment"][data-slot="root"]:disabled) {
+    opacity: var(--disabled-opacity);
+    cursor: not-allowed;
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="inline-attachment"][data-slot="root"]:not(:disabled, [aria-disabled="true"]):hover) {
       box-shadow:
-        inset 0 0 0 var(--control-rim-width) var(--cui-inline-attachment-ring-color),
-        var(--cui-inline-attachment-shadow);
+        inset 0 0 0 var(--control-rim-width) var(--_inline-attachment-ring-color),
+        var(--cui-inline-attachment-hover-shadow);
     }
   }
 
@@ -78,13 +89,13 @@
   :where([data-control-family="inline-attachment"][data-slot="document-sheet"]) {
     padding: calc(var(--spacing) * 4);
     border-radius: max(0px, calc(var(--cui-inline-attachment-radius) - var(--cui-inline-attachment-document-padding)));
-    background: oklch(from var(--card) l c h / 0.78);
+    background: oklch(from var(--cui-inline-attachment-background) l c h / 0.78);
     box-shadow:
       inset 0 0 0 var(--control-rim-width) oklch(from var(--foreground) l c h / 0.1),
       var(--shadow-sm);
   }
 
-  :where([data-control-family="inline-attachment"][data-slot="document-sheet"] > div) {
+  :where([data-control-family="inline-attachment"][data-slot="document-sheet"] > :not([data-slot])) {
     margin-block-start: calc(var(--spacing) * 5);
     gap: calc(var(--spacing) * 2);
   }
@@ -92,6 +103,7 @@
   :where([data-control-family="inline-attachment"][data-slot="document-heading"]) {
     block-size: calc(var(--spacing) * 2);
     inline-size: calc(var(--spacing) * 20);
+    max-inline-size: 100%;
     border-radius: 9999px;
     background: oklch(from var(--foreground) l c h / 0.12);
   }
@@ -99,13 +111,13 @@
   :where([data-control-family="inline-attachment"][data-slot="document-line"]) {
     block-size: calc(var(--spacing) * 1.5);
     inline-size: calc(var(--spacing) * 44);
+    max-inline-size: 100%;
     border-radius: 9999px;
     background: oklch(from var(--foreground) l c h / 0.12);
   }
 
   :where([data-control-family="inline-attachment"][data-slot="document-line"][data-width="medium"]) {
     inline-size: calc(var(--spacing) * 36);
-    background: oklch(from var(--foreground) l c h / 0.12);
   }
 
   :where([data-control-family="inline-attachment"][data-slot="document-line"][data-width="longest"]) {
@@ -122,6 +134,7 @@
     margin-block-start: calc(var(--spacing) * 5);
     block-size: calc(var(--spacing) * 9);
     inline-size: calc(var(--spacing) * 24);
+    max-inline-size: 100%;
     border: var(--control-rim-width) dashed oklch(from var(--foreground) l c h / 0.18);
     border-radius: var(--radius-control);
   }
@@ -156,7 +169,7 @@
     padding-inline: calc(var(--spacing) * 1.5);
     padding-block: calc(var(--spacing) * 0.5);
     border-radius: var(--radius-control);
-    background: oklch(from var(--foreground) l c h / 0.08);
+    background: var(--active-fill);
     font-size: var(--text-micro);
   }
 }
@@ -174,6 +187,12 @@
 }
 
 @property --cui-inline-attachment-ring-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-inline-attachment-error-ring-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

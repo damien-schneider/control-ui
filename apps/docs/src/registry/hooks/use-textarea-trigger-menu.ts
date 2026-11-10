@@ -1,6 +1,7 @@
 "use client";
 
 import type { ComponentProps, RefObject } from "react";
+import { useEffect, useRef } from "react";
 import { caretRectInTextarea, detectTrigger } from "../lib/trigger-detect";
 import type { TriggerConfig, TriggerMenuItemData } from "./use-trigger-menu";
 import { isComposingKey, useTriggerMenu } from "./use-trigger-menu";
@@ -36,6 +37,20 @@ export function useTextareaTriggerMenu<Item extends TriggerMenuItemData>(
       trigger.onSelect?.(item, { char: trigger.char, query: match.query });
     },
   });
+  const blurClose = useRef<number | null>(null);
+
+  function cancelBlurClose() {
+    if (blurClose.current === null) return;
+    window.clearTimeout(blurClose.current);
+    blurClose.current = null;
+  }
+
+  useEffect(
+    () => () => {
+      if (blurClose.current !== null) window.clearTimeout(blurClose.current);
+    },
+    [],
+  );
 
   function reportTriggerAtCaret(textarea: HTMLTextAreaElement) {
     const caret = textarea.selectionStart ?? textarea.value.length;
@@ -45,7 +60,7 @@ export function useTextareaTriggerMenu<Item extends TriggerMenuItemData>(
   }
 
   function getTextareaProps(props: ComponentProps<"textarea"> = {}): ComponentProps<"textarea"> {
-    const { onChange, onKeyDown, onKeyUp, onClick, onBlur, ...textareaProps } = props;
+    const { onChange, onKeyDown, onKeyUp, onClick, onFocus, onBlur, ...textareaProps } = props;
 
     return {
       ...textareaProps,
@@ -67,9 +82,17 @@ export function useTextareaTriggerMenu<Item extends TriggerMenuItemData>(
         onClick?.(event);
         reportTriggerAtCaret(event.currentTarget);
       },
+      onFocus: (event) => {
+        cancelBlurClose();
+        onFocus?.(event);
+      },
       onBlur: (event) => {
         onBlur?.(event);
-        window.setTimeout(controller.close, CLOSE_AFTER_BLUR_MS);
+        cancelBlurClose();
+        blurClose.current = window.setTimeout(() => {
+          blurClose.current = null;
+          controller.close();
+        }, CLOSE_AFTER_BLUR_MS);
       },
     };
   }

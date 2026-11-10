@@ -22,7 +22,9 @@ export function Kbd({ variant = "default", className, ...props }: KbdProps) {
   );
 }
 
-export function KbdGroup({ className, ...props }: ComponentProps<"span"> & { style?: CSSProperties & KbdKnobStyle }) {
+export type KbdGroupProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & KbdKnobStyle };
+
+export function KbdGroup({ className, ...props }: KbdGroupProps) {
   return (
     <span
       data-control-ui="kbd"

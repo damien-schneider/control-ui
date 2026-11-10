@@ -147,6 +147,24 @@ describe("Stepper", () => {
     expect(html).toContain("Step 2, upcoming, disabled");
   });
 
+  test("keeps consumer-provided trigger relationships", () => {
+    const html = renderToStaticMarkup(
+      <Stepper value={0}>
+        <StepperList>
+          <StepperItem step={0}>
+            <StepperTrigger aria-labelledby="external-title" aria-describedby="external-hint" aria-controls="external-panel">
+              <StepperIndicator />
+            </StepperTrigger>
+          </StepperItem>
+        </StepperList>
+      </Stepper>,
+    );
+
+    expect(slotAttributeValues(html, "trigger", "aria-labelledby")).toEqual(["external-title"]);
+    expect(slotAttributeValues(html, "trigger", "aria-describedby")).toEqual(["external-hint"]);
+    expect(slotAttributeValues(html, "trigger", "aria-controls")).toEqual(["external-panel"]);
+  });
+
   test("preserves inactive content with only inactive panels hidden", () => {
     const html = renderToStaticMarkup(
       <Stepper value={1}>

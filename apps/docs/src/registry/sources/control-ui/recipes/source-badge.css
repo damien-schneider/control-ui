@@ -1,12 +1,12 @@
 @layer components {
   :where([data-control-family="badge"][data-source-badge][data-slot="root"]) {
-    block-size: calc(var(--spacing) * 6);
+    block-size: var(--target-min);
     gap: calc(var(--spacing) * 1.5);
     padding-block: 0;
     padding-inline: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2);
     --cui-source-badge-background: var(--background);
     --cui-source-badge-foreground: var(--muted-foreground);
-    --cui-source-badge-hover-background: oklch(from var(--muted) l c h / 0.6);
+    --cui-source-badge-hover-background: var(--hover-fill);
     --cui-source-badge-hover-foreground: var(--foreground);
     --cui-source-badge-favicon-background: var(--muted);
     --cui-source-badge-favicon-radius: var(--radius-sm);
@@ -27,28 +27,12 @@
     color: var(--cui-source-badge-hover-foreground);
   }
 
-  @media (pointer: coarse) {
-    :where([data-control-family="badge"][data-source-badge][data-slot="root"]) {
-      position: relative;
-    }
-
-    :where([data-control-family="badge"][data-source-badge][data-slot="root"])::after {
-      content: "";
-      position: absolute;
-      inset: 50% 50%;
-      translate: -50% -50%;
-      inline-size: 100%;
-      block-size: max(100%, var(--touch-target));
-    }
-  }
-
   :where([data-control-family="badge"][data-source-badge][data-slot="root"] [data-slot="label"]) {
     max-inline-size: calc(var(--spacing) * 44);
   }
 
   :where([data-control-family="avatar"][data-source-badge-favicon][data-slot="root"]) {
-    inline-size: calc(var(--spacing) * 3.5);
-    block-size: calc(var(--spacing) * 3.5);
+    --cui-avatar-size: calc(var(--spacing) * 3.5);
     --cui-avatar-radius: var(--cui-source-badge-favicon-radius);
     --cui-avatar-fallback-background: var(--cui-source-badge-favicon-background);
     --cui-avatar-fallback-foreground: var(--cui-source-badge-foreground);

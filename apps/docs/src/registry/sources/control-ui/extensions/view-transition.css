@@ -29,11 +29,11 @@
 }
 
 ::view-transition-old(docs-page) {
-  animation: aui-view-page-rise-old var(--duration-fast) var(--ease-standard) both;
+  animation: cui-view-page-rise-old var(--duration-fast) var(--ease-standard) both;
 }
 
 ::view-transition-new(docs-page) {
-  animation: aui-view-page-rise-new var(--duration-slow) var(--ease-emphasized) both;
+  animation: cui-view-page-rise-new var(--duration-slow) var(--ease-emphasized) both;
 }
 
 /* Fallback for engines ignoring root un-naming: shell swaps instantly inside snapshot instead of cross-fading; dead rules when root opt-out applies.
@@ -44,7 +44,7 @@
   animation: none;
 }
 
-@keyframes aui-view-page-rise-old {
+@keyframes cui-view-page-rise-old {
   from {
     opacity: 1;
     filter: blur(0);
@@ -57,7 +57,7 @@
   }
 }
 
-@keyframes aui-view-page-rise-new {
+@keyframes cui-view-page-rise-new {
   from {
     opacity: 0;
     filter: blur(var(--view-transition-page-blur));
@@ -116,14 +116,14 @@
 
 /* Old leaves early, new fades across the full travel: content settles as the box lands rather than before it. */
 ::view-transition-old(.aui-morph) {
-  animation: aui-morph-fade-out var(--duration-fast) var(--ease-standard) both;
+  animation: cui-morph-fade-out var(--duration-fast) var(--ease-standard) both;
 }
 
 ::view-transition-new(.aui-morph) {
-  animation: aui-morph-fade-in var(--duration-slow) var(--ease-emphasized) both;
+  animation: cui-morph-fade-in var(--duration-slow) var(--ease-emphasized) both;
 }
 
-@keyframes aui-morph-fade-out {
+@keyframes cui-morph-fade-out {
   from {
     opacity: 1;
   }
@@ -132,7 +132,7 @@
   }
 }
 
-@keyframes aui-morph-fade-in {
+@keyframes cui-morph-fade-in {
   from {
     opacity: 0;
   }

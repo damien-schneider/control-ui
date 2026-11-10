@@ -1,7 +1,7 @@
 "use client";
 
 import { useRender } from "@base-ui/react/use-render";
-import { Check, ShieldAlert, X } from "lucide-react";
+import { Check, Clock, ShieldAlert, X } from "lucide-react";
 import type { ComponentProps, CSSProperties, KeyboardEvent, MouseEvent, ReactNode } from "react";
 import { createContext, useContext, useEffect, useId, useRef } from "react";
 
@@ -14,7 +14,7 @@ import { Button } from "@/components/control-ui/ui/button";
 import { Kbd } from "@/components/control-ui/ui/kbd";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
 
-export type ToolApprovalState = "pending" | "approved" | "denied";
+export type ToolApprovalState = "pending" | "approved" | "denied" | "expired";
 
 export type ToolApprovalRiskLevel = "low" | "medium" | "high";
 
@@ -26,6 +26,8 @@ export type ToolApprovalProps = ToolApprovalStyleProps<ComponentProps<"section">
   onApprove?: () => void;
   onDeny?: () => void;
   autoFocus?: boolean;
+  /** Screen-reader announcement made once the request is decided. */
+  announcements?: Partial<Record<Exclude<ToolApprovalState, "pending">, string>>;
 };
 
 type ToolApprovalContextValue = {
@@ -45,10 +47,10 @@ function useToolApprovalContext() {
 }
 
 const decisionAnnouncements = {
-  pending: "",
   approved: "Action approved",
   denied: "Action denied",
-} satisfies Record<ToolApprovalState, string>;
+  expired: "Approval request expired",
+} satisfies Record<Exclude<ToolApprovalState, "pending">, string>;
 
 export function ToolApproval({
   state = "pending",
@@ -56,21 +58,34 @@ export function ToolApproval({
   onApprove,
   onDeny,
   autoFocus = false,
+  announcements,
   className,
   children,
   onKeyDown,
+  ref,
   ...props
 }: ToolApprovalProps) {
   const titleId = useId();
-  const rootRef = useRef<HTMLElement>(null);
+  const rootRef = useRef<HTMLElement | null>(null);
+  const decidedFromInside = useRef(false);
   const isPending = state === "pending";
+  const announcement = isPending ? "" : (announcements?.[state] ?? decisionAnnouncements[state]);
 
-  const approve = () => {
-    if (isPending) onApprove?.();
+  const decide = (callback: (() => void) | undefined) => {
+    if (!isPending) return;
+    decidedFromInside.current = rootRef.current?.contains(document.activeElement) === true;
+    callback?.();
   };
-  const deny = () => {
-    if (isPending) onDeny?.();
-  };
+  const approve = () => decide(onApprove);
+  const deny = () => decide(onDeny);
+
+  // deciding unmounts the footer, so a focused Approve/Deny would drop keyboard focus to <body>
+  useEffect(() => {
+    if (isPending || !decidedFromInside.current) return;
+    decidedFromInside.current = false;
+    const active = document.activeElement;
+    if (!active || active === document.body) rootRef.current?.focus();
+  }, [isPending]);
 
   // native autofocus only fires at document load, and this card mounts mid-run
   useEffect(() => {
@@ -79,7 +94,7 @@ export function ToolApproval({
 
   function handleKeyDown(event: KeyboardEvent<HTMLElement>) {
     onKeyDown?.(event);
-    if (event.defaultPrevented || !isPending || event.nativeEvent.isComposing) return;
+    if (event.defaultPrevented || !isPending || event.nativeEvent.isComposing || event.nativeEvent.keyCode === 229) return;
     if (event.key === "Escape") {
       event.preventDefault();
       deny();
@@ -87,14 +102,19 @@ export function ToolApproval({
     }
     if (event.key === "Enter" && (event.metaKey || event.ctrlKey)) {
       event.preventDefault();
-      approve();
+      // A held composer-submit chord must not approve the card that just took focus.
+      if (!event.repeat) approve();
     }
   }
 
   return (
     <ToolApprovalContext.Provider value={{ state, risk, titleId, approve, deny }}>
       <section
-        ref={rootRef}
+        ref={(node) => {
+          rootRef.current = node;
+          if (typeof ref === "function") ref(node);
+          else if (ref) ref.current = node;
+        }}
         data-control-ui="tool-approval"
         data-control-family="tool-approval"
         data-slot="root"
@@ -107,7 +127,7 @@ export function ToolApproval({
         {...props}
       >
         {children}
-        <LiveStatus message={decisionAnnouncements[state]} />
+        <LiveStatus message={announcement} />
       </section>
     </ToolApprovalContext.Provider>
   );
@@ -150,7 +170,7 @@ export function ToolApprovalIcon({ className, children, ...props }: ToolApproval
       data-control-family="tool-approval"
       data-slot="icon"
       aria-hidden="true"
-      className={cn("inline-flex size-5 shrink-0 items-center justify-center [&_svg]:size-4", className)}
+      className={cn("inline-flex size-5 shrink-0 items-center justify-center", className)}
       {...props}
     >
       {children ?? <ShieldAlert />}
@@ -173,7 +193,7 @@ export function ToolApprovalTitle({ render, className, ...props }: ToolApprovalT
       "data-control-ui": "tool-approval",
       "data-control-family": "tool-approval",
       "data-slot": "title",
-      className: cn("min-w-0 flex-1 font-medium", className),
+      className: cn("min-w-0 flex-1", className),
     },
   });
 }
@@ -190,14 +210,16 @@ const riskLabels = {
   high: "High risk",
 } satisfies Record<ToolApprovalRiskLevel, string>;
 
-export type ToolApprovalRiskProps = Omit<ComponentProps<typeof Badge>, "color">;
+export type ToolApprovalRiskProps = Omit<ComponentProps<typeof Badge>, "color"> & {
+  labels?: Partial<Record<ToolApprovalRiskLevel, string>>;
+};
 
-export function ToolApprovalRisk({ children, ...props }: ToolApprovalRiskProps) {
+export function ToolApprovalRisk({ labels, children, ...props }: ToolApprovalRiskProps) {
   const { state, risk } = useToolApprovalContext();
   if (state !== "pending") return null;
   return (
     <Badge data-control-ui="tool-approval" data-slot="risk" size="sm" color={riskColors[risk]} {...props}>
-      {children ?? riskLabels[risk]}
+      {children ?? labels?.[risk] ?? riskLabels[risk]}
     </Badge>
   );
 }
@@ -205,14 +227,19 @@ export function ToolApprovalRisk({ children, ...props }: ToolApprovalRiskProps) 
 const decisionLabels = {
   approved: "Approved",
   denied: "Denied",
+  expired: "Expired",
 } satisfies Record<Exclude<ToolApprovalState, "pending">, string>;
 
-export type ToolApprovalStatusProps = ToolApprovalStyleProps<ComponentProps<"div">>;
+const decisionIcons = { approved: Check, denied: X, expired: Clock } as const;
 
-export function ToolApprovalStatus({ className, children, ...props }: ToolApprovalStatusProps) {
+export type ToolApprovalStatusProps = ToolApprovalStyleProps<ComponentProps<"div">> & {
+  labels?: Partial<Record<Exclude<ToolApprovalState, "pending">, string>>;
+};
+
+export function ToolApprovalStatus({ labels, className, children, ...props }: ToolApprovalStatusProps) {
   const { state } = useToolApprovalContext();
   if (state === "pending") return null;
-  const StatusIcon = state === "approved" ? Check : X;
+  const StatusIcon = decisionIcons[state];
   return (
     <div
       data-control-ui="tool-approval"
@@ -222,9 +249,9 @@ export function ToolApprovalStatus({ className, children, ...props }: ToolApprov
       {...props}
     >
       <span data-control-ui="tool-approval" data-control-family="tool-approval" data-slot="status-icon" aria-hidden="true">
-        <StatusIcon className="size-3.5" />
+        <StatusIcon />
       </span>
-      {children ?? decisionLabels[state]}
+      {children ?? labels?.[state] ?? decisionLabels[state]}
     </div>
   );
 }
@@ -279,9 +306,9 @@ export function ToolApprovalFooter({ className, ...props }: ToolApprovalFooterPr
   return <div data-control-ui="tool-approval" data-control-family="tool-approval" data-slot="footer" className={className} {...props} />;
 }
 
-export type ToolApprovalDenyProps = ComponentProps<typeof Button>;
+export type ToolApprovalDenyProps = ComponentProps<typeof Button> & { label?: string };
 
-export function ToolApprovalDeny({ children, onClick, ...props }: ToolApprovalDenyProps) {
+export function ToolApprovalDeny({ label = "Deny", children, onClick, ...props }: ToolApprovalDenyProps) {
   const { deny } = useToolApprovalContext();
 
   function handleClick(event: MouseEvent<HTMLButtonElement>) {
@@ -302,7 +329,7 @@ export function ToolApprovalDeny({ children, onClick, ...props }: ToolApprovalDe
     >
       {children ?? (
         <>
-          Deny
+          {label}
           <Kbd aria-hidden="true">Esc</Kbd>
         </>
       )}
@@ -310,9 +337,9 @@ export function ToolApprovalDeny({ children, onClick, ...props }: ToolApprovalDe
   );
 }
 
-export type ToolApprovalApproveProps = ComponentProps<typeof Button>;
+export type ToolApprovalApproveProps = ComponentProps<typeof Button> & { label?: string };
 
-export function ToolApprovalApprove({ children, onClick, ...props }: ToolApprovalApproveProps) {
+export function ToolApprovalApprove({ label = "Approve", children, onClick, ...props }: ToolApprovalApproveProps) {
   const { approve } = useToolApprovalContext();
 
   function handleClick(event: MouseEvent<HTMLButtonElement>) {
@@ -334,7 +361,7 @@ export function ToolApprovalApprove({ children, onClick, ...props }: ToolApprova
     >
       {children ?? (
         <>
-          Approve
+          {label}
           <Kbd aria-hidden="true">⌘⏎</Kbd>
         </>
       )}

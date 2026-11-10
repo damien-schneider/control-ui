@@ -18,7 +18,7 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
   return (
     <div className="flex min-w-0 flex-col gap-3">
       {storageError ? (
-        <Text role="alert" as="p" size="caption" tone="destructive">
+        <Text role="alert" as="p" size="caption" tone="danger">
           {storageError}
         </Text>
       ) : null}

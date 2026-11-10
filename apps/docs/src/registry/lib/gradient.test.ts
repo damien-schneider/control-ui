@@ -1,4 +1,5 @@
 import { describe, expect, test } from "bun:test";
+import { hsvaToOklcha, parseColor } from "./color";
 import { formatGradient, type GradientValue, gradientColorAt } from "./gradient";
 
 const BLUE_TO_YELLOW: GradientValue = {
@@ -56,5 +57,26 @@ describe("gradientColorAt", () => {
     };
     expect(gradientColorAt(inset, 0)).toBe("#0000ff");
     expect(gradientColorAt(inset, 1)).toBe("#ffff00");
+  });
+  test("a transparent stop fades the neighbouring color instead of darkening it, as CSS premultiplies alpha", () => {
+    const fade = [
+      { id: "clear", position: 0, color: "transparent" },
+      { id: "red", position: 1, color: "#ff0000" },
+    ];
+    expect(gradientColorAt({ stops: fade, interpolation: "srgb" }, 0.5)).toBe("#ff000080");
+    expect(gradientColorAt({ stops: fade, interpolation: "oklab" }, 0.5)).toBe("#ff000080");
+    expect(gradientColorAt({ stops: fade, interpolation: "oklch" }, 0.5)).toBe("#ff000080");
+  });
+  test("an achromatic stop takes the other stop's hue in oklch", () => {
+    const tint = [
+      { id: "white", position: 0, color: "#ffffff" },
+      { id: "blue", position: 1, color: "#0000ff" },
+    ];
+    const hueOf = (color: string) => {
+      const parsed = parseColor(color);
+      if (!parsed) throw new Error(`unparseable ${color}`);
+      return hsvaToOklcha(parsed).H;
+    };
+    expect(Math.abs(hueOf(gradientColorAt({ stops: tint, interpolation: "oklch" }, 0.5)) - hueOf("#0000ff"))).toBeLessThan(3);
   });
 });

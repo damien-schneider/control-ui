@@ -30,6 +30,8 @@ export type GradientEditorProps = Omit<ComponentProps<"div">, "onChange" | "defa
   value?: GradientValue;
   defaultValue?: GradientValue;
   onValueChange?: (value: GradientValue) => void;
+  disabled?: boolean;
+  readOnly?: boolean;
 } & { style?: CSSProperties & GradientEditorKnobStyle };
 
 export type GradientEditorPreviewProps = Omit<ComponentProps<"div">, "style"> & {
@@ -38,6 +40,7 @@ export type GradientEditorPreviewProps = Omit<ComponentProps<"div">, "style"> & 
 
 export type GradientEditorTrackProps = Omit<ComponentProps<"fieldset">, "style"> & {
   style?: CSSProperties & GradientEditorKnobStyle;
+  stopLabel?: (stop: GradientStop, index: number) => string;
 };
 
 export type GradientEditorStopProps = Omit<ComponentProps<"button">, "style"> & {
@@ -76,6 +79,8 @@ type GradientEditorContextValue = GradientValue & {
   gradient: string;
   selectedStop: GradientStop | undefined;
   canRemoveStop: boolean;
+  disabled: boolean;
+  readOnly: boolean;
   trackRef: RefObject<HTMLFieldSetElement | null>;
   stopNodes: Map<string, HTMLButtonElement>;
   select: (id: string) => void;
@@ -100,6 +105,8 @@ export function GradientEditor({
   value: controlledValue,
   defaultValue = DEFAULT_GRADIENT,
   onValueChange,
+  disabled = false,
+  readOnly = false,
   className,
   children,
   ...props
@@ -111,16 +118,20 @@ export function GradientEditor({
   const trackRef = useRef<HTMLFieldSetElement | null>(null);
   const [stopNodes] = useState(() => new Map<string, HTMLButtonElement>());
 
+  const locked = disabled || readOnly;
+
   function change(patch: Partial<GradientValue>) {
+    if (locked) return;
     const next = { ...value, ...patch };
     if (controlledValue === undefined) setUncontrolledValue(next);
     onValueChange?.(next);
   }
 
-  const canRemoveStop = stops.length > MIN_GRADIENT_STOPS;
+  const canRemoveStop = !locked && stops.length > MIN_GRADIENT_STOPS;
   const changeStop = (id: string, patch: Partial<GradientStop>) =>
     change({ stops: stops.map((stop) => (stop.id === id ? { ...stop, ...patch } : stop)) });
   const addStop = (position: number) => {
+    if (locked) return;
     const id = unusedStopId(stops);
     const clamped = clamp01(position);
     change({ stops: [...stops, { id, position: clamped, color: gradientColorAt(value, clamped) }] });
@@ -135,6 +146,8 @@ export function GradientEditor({
     gradient: formatGradient(value),
     selectedStop: stops.find((stop) => stop.id === selectedId) ?? stops[0],
     canRemoveStop,
+    disabled,
+    readOnly,
     trackRef,
     stopNodes,
     select: setSelectedId,
@@ -153,6 +166,8 @@ export function GradientEditor({
         data-control-ui="gradient-editor"
         data-control-family="gradient-editor"
         data-slot="root"
+        data-disabled={disabled ? "true" : undefined}
+        data-readonly={readOnly ? "true" : undefined}
         className={cn("grid", className)}
         {...props}
       >
@@ -188,34 +203,44 @@ export function GradientEditorTrack({
   className,
   children,
   style,
+  stopLabel,
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledBy,
+  ref,
+  onPointerDown,
   ...props
 }: GradientEditorTrackProps) {
-  const { stops, interpolation, trackRef, addStop } = useGradientEditor();
+  const { stops, interpolation, trackRef, addStop, disabled, readOnly } = useGradientEditor();
   const imageStyle: GradientImageStyle = {
     ...style,
     "--_gradient-editor-image": formatGradient({ type: "linear", angle: 90, interpolation, stops }),
   };
   return (
     <fieldset
-      ref={trackRef}
+      ref={(node) => {
+        trackRef.current = node;
+        if (typeof ref === "function") return ref(node);
+        if (ref) ref.current = node;
+      }}
       data-control-ui="gradient-editor"
       data-control-family="gradient-editor"
       data-slot="track"
+      data-readonly={readOnly ? "true" : undefined}
+      disabled={disabled}
       aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? "Gradient stops") : ariaLabel}
       aria-labelledby={ariaLabelledBy}
-      className={cn("relative m-0 min-w-0 w-full cursor-copy touch-pan-y p-0", className)}
+      className={cn("relative m-0 min-w-0 w-full touch-pan-y p-0", className)}
       style={imageStyle}
       onPointerDown={(event) => {
+        onPointerDown?.(event);
         const pressedBareTrack = event.target === event.currentTarget;
-        if (!pressedBareTrack) return;
+        if (event.defaultPrevented || event.button !== 0 || !pressedBareTrack) return;
         const rect = event.currentTarget.getBoundingClientRect();
         addStop((event.clientX - rect.left) / rect.width);
       }}
       {...props}
     >
-      {children ?? stops.map((stop) => <GradientEditorStop key={stop.id} stop={stop} />)}
+      {children ?? stops.map((stop, index) => <GradientEditorStop key={stop.id} stop={stop} aria-label={stopLabel?.(stop, index)} />)}
     </fieldset>
   );
 }
@@ -233,18 +258,23 @@ export function GradientEditorStop({
   ref,
   ...props
 }: GradientEditorStopProps) {
-  const { stops, selectedStop, canRemoveStop, select, setStopPosition, removeStop, trackRef, stopNodes } = useGradientEditor();
-  const { onPointerDown: startDrag } = useColorArea<HTMLFieldSetElement>(
-    (offset, rect) => setStopPosition(stop.id, offset.x / rect.width),
-    trackRef,
-  );
+  const { stops, selectedStop, canRemoveStop, disabled, readOnly, select, setStopPosition, removeStop, trackRef, stopNodes } =
+    useGradientEditor();
+  const press = useRef({ grabOffset: 0, starting: false });
+  const { onPointerDown: startDrag } = useColorArea<HTMLFieldSetElement>((offset, rect) => {
+    if (!press.current.starting) setStopPosition(stop.id, (offset.x - press.current.grabOffset) / rect.width);
+  }, trackRef);
 
   function handlePointerDown(event: ReactPointerEvent<HTMLButtonElement>) {
     onPointerDown?.(event);
-    if (event.defaultPrevented) return;
+    if (event.defaultPrevented || disabled) return;
     select(stop.id);
     event.currentTarget.focus();
+    // pressing a stop off-centre must select it without moving it, so the drag keeps the pointer's offset from the stop
+    const track = trackRef.current?.getBoundingClientRect();
+    press.current = { grabOffset: track ? event.clientX - track.left - stop.position * track.width : 0, starting: true };
     startDrag(event);
+    press.current.starting = false;
   }
 
   function registerStop(node: HTMLButtonElement) {
@@ -319,7 +349,7 @@ export function GradientEditorStop({
   }
 
   const percent = Math.round(stop.position * 100);
-  const defaultLabel = `Gradient stop ${stops.indexOf(stop) + 1}`;
+  const defaultLabel = `Gradient stop ${stops.findIndex((candidate) => candidate.id === stop.id) + 1}`;
 
   return (
     <button
@@ -330,6 +360,9 @@ export function GradientEditorStop({
       data-control-family="gradient-editor"
       data-slot="stop"
       data-selected={stop.id === selectedStop?.id ? "true" : undefined}
+      data-readonly={readOnly ? "true" : undefined}
+      disabled={disabled}
+      aria-readonly={readOnly || undefined}
       aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? defaultLabel) : ariaLabel}
       aria-labelledby={ariaLabelledBy}
       aria-orientation="horizontal"
@@ -341,15 +374,15 @@ export function GradientEditorStop({
       onFocus={handleFocus}
       onKeyDown={handleKeyDown}
       onDoubleClick={handleDoubleClick}
-      className={cn("-translate-x-1/2 absolute top-1/2 -translate-y-1/2 cursor-grab touch-pan-y active:cursor-grabbing", className)}
+      className={cn("-translate-x-1/2 absolute top-1/2 -translate-y-1/2 touch-pan-y", className)}
       style={{ ...style, left: `${stop.position * 100}%`, backgroundColor: stop.color }}
       {...props}
     />
   );
 }
 
-export function GradientEditorStopAdd({ children, ...props }: GradientEditorStopAddProps) {
-  const { addStop } = useGradientEditor();
+export function GradientEditorStopAdd({ children, disabled: disabledProp, ...props }: GradientEditorStopAddProps) {
+  const { addStop, disabled, readOnly } = useGradientEditor();
   return (
     <Button
       variant="dashed"
@@ -357,6 +390,7 @@ export function GradientEditorStopAdd({ children, ...props }: GradientEditorStop
       iconOnly
       data-gradient-editor-stop-add="true"
       aria-label="Add gradient stop"
+      disabled={disabled || readOnly || disabledProp}
       onClick={() => addStop(0.5)}
       {...props}
     >

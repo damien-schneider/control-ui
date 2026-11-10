@@ -8,6 +8,11 @@
     display: flex;
   }
 
+  /* A modal hides the rest of the page from assistive technology. The feedback launcher floats above every layer, so it leaves with the page instead of covering the modal. */
+  [data-reflet-widget][data-base-ui-inert][aria-hidden="true"] {
+    display: none;
+  }
+
   @media (width >= 64rem) {
     :where([data-docs-sidebar-trigger]) {
       display: none;

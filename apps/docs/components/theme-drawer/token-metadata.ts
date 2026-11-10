@@ -49,6 +49,7 @@ const SLIDER_SPECS: Record<string, SliderSpec> = {
   "--radius-panel": slider(0, 48, 1, "px"),
   "--radius-scene": slider(0, 48, 1, "px"),
   "--radius-popup-item": slider(0, 48, 1, "px"),
+  "--radius-popup-item-fit": slider(0, 48, 1, "px"),
   "--radius-popover": slider(0, 48, 1, "px"),
   "--control-rim-width": slider(0, 4, 0.5, "px"),
   "--ring-opacity": slider(0, 1, 0.01, ""),
@@ -166,6 +167,7 @@ const FRIENDLY_LABELS: Record<string, string> = {
   "--radius-scene": "Scene radius",
   "--radius-popover": "Popover radius",
   "--radius-popup-item": "Menu row radius",
+  "--radius-popup-item-fit": "Fitted menu row radius",
   "--corner-shape": "Corner shape",
   "--shadow-color": "Shadow tint",
   "--shadow-highlight": "Top edge highlight",
@@ -190,6 +192,7 @@ const FRIENDLY_LABELS: Record<string, string> = {
   "--scroll-fade-size": "Scroll edge fade",
   "--popup-item-disabled-opacity": "Disabled row opacity",
   "--disabled-opacity": "Disabled opacity",
+  "--spacing": "Density unit",
   "--popover-padding": "Popover padding",
   "--padding-x": "Padding X",
   "--padding-y": "Padding Y",
@@ -200,6 +203,14 @@ const FRIENDLY_LABELS: Record<string, string> = {
   "--touch-target": "Touch target",
   "--target-min": "Minimum target",
   "--text-input-min": "Minimum input text on touch",
+  "--z-raised": "Raised layer",
+  "--z-sticky": "Sticky layer",
+  "--z-nav": "Navigation layer",
+  "--z-overlay": "Backdrop layer",
+  "--z-modal": "Dialog layer",
+  "--z-popup": "Popup layer",
+  "--z-toast": "Toast layer",
+  "--z-tooltip": "Tooltip layer",
 };
 
 function humanize(name: string): string {

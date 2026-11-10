@@ -16,8 +16,9 @@ import { ChatExample } from "@/src/registry/examples/control-ui/chat";
 import { ChatComposerExample } from "@/src/registry/examples/control-ui/chat-composer";
 import { ChatLayoutExample } from "@/src/registry/examples/control-ui/chat-layout";
 import { ChatMessageTeamExample } from "@/src/registry/examples/control-ui/chat-message-team";
+import { ChatThreadPositionExample } from "@/src/registry/examples/control-ui/chat-thread-position";
 import { CodingAgentExample } from "@/src/registry/examples/control-ui/coding-agent";
-import { ContextExample } from "@/src/registry/examples/control-ui/context";
+import { ContextComposedExample, ContextExample } from "@/src/registry/examples/control-ui/context";
 import { DesignCanvasExample } from "@/src/registry/examples/control-ui/design-canvas";
 import { DiscussionExample } from "@/src/registry/examples/control-ui/discussion";
 import { DynamicNotificationExample } from "@/src/registry/examples/control-ui/dynamic-notification";
@@ -36,6 +37,7 @@ import {
 import { FileExplorerExample } from "@/src/registry/examples/control-ui/file-explorer";
 import { FilterBarExample, FilterBarInputExample } from "@/src/registry/examples/control-ui/filter-bar";
 import { FilterBarRemoteExample } from "@/src/registry/examples/control-ui/filter-bar-remote";
+import { FilterBarSavedViewExample } from "@/src/registry/examples/control-ui/filter-bar-saved-view";
 import { InlineCitationExample } from "@/src/registry/examples/control-ui/inline-citation";
 import { PrimitiveAccordionExample } from "@/src/registry/examples/control-ui/primitives/accordion";
 import { PrimitiveAlertExample } from "@/src/registry/examples/control-ui/primitives/alert";
@@ -81,6 +83,7 @@ import { PrimitiveColorPickerInlineExample } from "@/src/registry/examples/contr
 import { PrimitiveColorPickerStripsExample } from "@/src/registry/examples/control-ui/primitives/color-picker-strips";
 import { PrimitiveColorPickerWheelExample } from "@/src/registry/examples/control-ui/primitives/color-picker-wheel";
 import { PrimitiveComboboxExample } from "@/src/registry/examples/control-ui/primitives/combobox";
+import { PrimitiveComboboxInputGroupExample } from "@/src/registry/examples/control-ui/primitives/combobox-input-group";
 import { PrimitiveCommandExample } from "@/src/registry/examples/control-ui/primitives/command";
 import { PrimitiveCommandDescriptionsExample } from "@/src/registry/examples/control-ui/primitives/command-descriptions";
 import { PrimitiveContextMenuExample } from "@/src/registry/examples/control-ui/primitives/context-menu";
@@ -108,6 +111,7 @@ import { PrimitiveGradientEditorExample } from "@/src/registry/examples/control-
 import { PrimitiveHoverCardExample } from "@/src/registry/examples/control-ui/primitives/hover-card";
 import { PrimitiveIconPickerExample } from "@/src/registry/examples/control-ui/primitives/icon-picker";
 import { PrimitiveInfiniteCanvasExample } from "@/src/registry/examples/control-ui/primitives/infinite-canvas";
+import { PrimitiveInfiniteCanvasEmbeddedExample } from "@/src/registry/examples/control-ui/primitives/infinite-canvas-embedded";
 import { PrimitiveInputExample } from "@/src/registry/examples/control-ui/primitives/input";
 import { PrimitiveInputGroupExample } from "@/src/registry/examples/control-ui/primitives/input-group";
 import { PrimitiveInputOtpExample } from "@/src/registry/examples/control-ui/primitives/input-otp";
@@ -148,6 +152,7 @@ import { PrimitiveRichTooltipInPanelExample } from "@/src/registry/examples/cont
 import { PrimitiveScrollAreaExample, ScrollAreaGutterExample } from "@/src/registry/examples/control-ui/primitives/scroll-area";
 import { PrimitiveSelectExample } from "@/src/registry/examples/control-ui/primitives/select";
 import { PrimitiveSeparatorExample } from "@/src/registry/examples/control-ui/primitives/separator";
+import { PrimitiveSheetExample } from "@/src/registry/examples/control-ui/primitives/sheet";
 import {
   PrimitiveSidebarExample,
   PrimitiveSidebarFloatingExample,
@@ -173,6 +178,7 @@ import { PrimitiveSwapExample } from "@/src/registry/examples/control-ui/primiti
 import { PrimitiveSwitchExample } from "@/src/registry/examples/control-ui/primitives/switch";
 import { PrimitiveTableExample } from "@/src/registry/examples/control-ui/primitives/table";
 import { PrimitiveTableOfContentsExample } from "@/src/registry/examples/control-ui/primitives/table-of-contents";
+import { PrimitiveTableStickyHeaderExample } from "@/src/registry/examples/control-ui/primitives/table-sticky-header";
 import { PrimitiveTabsExample } from "@/src/registry/examples/control-ui/primitives/tabs";
 import { PrimitiveTextareaExample } from "@/src/registry/examples/control-ui/primitives/textarea";
 import { PrimitiveTimelineExample } from "@/src/registry/examples/control-ui/primitives/timeline";
@@ -186,6 +192,7 @@ import {
   PrimitiveTrackHighlightSelectionExample,
 } from "@/src/registry/examples/control-ui/primitives/track-highlight";
 import { PrimitiveTreeExample } from "@/src/registry/examples/control-ui/primitives/tree";
+import { PrimitiveTreeMultipleExample } from "@/src/registry/examples/control-ui/primitives/tree-multiple";
 import { PrimitiveTriggerMenuExample } from "@/src/registry/examples/control-ui/primitives/trigger-menu";
 import { TypographyTokensExample } from "@/src/registry/examples/control-ui/primitives/typography";
 import { SerializeExample } from "@/src/registry/examples/control-ui/serialize";
@@ -200,7 +207,11 @@ import { TranscriptDividerExample } from "@/src/registry/examples/control-ui/tra
 import { UserAskExample } from "@/src/registry/examples/control-ui/user-ask";
 import { InlineAttachmentExample } from "@/src/registry/examples/inline-attachment";
 import { MarkdownBlockExample } from "@/src/registry/examples/markdown-block";
-import { MarkdownEditorBubbleMenuExample, MarkdownEditorExample } from "@/src/registry/examples/markdown-editor";
+import {
+  MarkdownEditorBubbleMenuExample,
+  MarkdownEditorExample,
+  MarkdownEditorReadOnlyExample,
+} from "@/src/registry/examples/markdown-editor";
 import type { LoadedPreviews } from "./preview-targets";
 
 export const previewReferences: LoadedPreviews = {
@@ -214,6 +225,7 @@ export const previewReferences: LoadedPreviews = {
   "component/sidebar/mobile-floating": PrimitiveSidebarMobileFloatingExample,
   "component/sidebar/resizable": PrimitiveSidebarResizableExample,
   "component/sidebar/right": PrimitiveSidebarRightExample,
+  "component/sidebar/sheet": PrimitiveSheetExample,
   "component/sidebar/nested-navigation": PrimitiveSidebarNestedExample,
   "component/sidebar/floating": PrimitiveSidebarFloatingExample,
   "component/sidebar/inset": PrimitiveSidebarInsetExample,
@@ -278,10 +290,12 @@ export const previewReferences: LoadedPreviews = {
   "component/textarea": PrimitiveTextareaExample,
   "component/input-otp": PrimitiveInputOtpExample,
   "component/combobox": PrimitiveComboboxExample,
+  "component/combobox/leading-addon": PrimitiveComboboxInputGroupExample,
   "component/alert": PrimitiveAlertExample,
   "component/badge": PrimitiveBadgeExample,
   "component/card": PrimitiveCardExample,
   "component/table": PrimitiveTableExample,
+  "component/table/sticky-header": PrimitiveTableStickyHeaderExample,
   "component/aspect-ratio": PrimitiveAspectRatioExample,
   "component/aspect-ratio/runtime-ratio": AspectRatioRuntimeExample,
   "component/button-group": PrimitiveButtonGroupExample,
@@ -308,6 +322,7 @@ export const previewReferences: LoadedPreviews = {
   "component/chart/interactive-legend": ChartLegendExample,
   "component/chart/states": ChartStatesExample,
   "component/tree": PrimitiveTreeExample,
+  "component/tree/multiple-selection": PrimitiveTreeMultipleExample,
   "component/checkbox-group": PrimitiveCheckboxGroupExample,
   "component/autocomplete": PrimitiveAutocompleteExample,
   "component/autocomplete/leading-addon": PrimitiveAutocompleteInputGroupExample,
@@ -317,6 +332,7 @@ export const previewReferences: LoadedPreviews = {
   "component/toolbar/floating-editor": PrimitiveFloatingToolbarExample,
   "component/dockable-panel": PrimitiveDockablePanelExample,
   "component/infinite-canvas": PrimitiveInfiniteCanvasExample,
+  "component/infinite-canvas/embedded": PrimitiveInfiniteCanvasEmbeddedExample,
   "component/flow": PrimitiveFlowExample,
   "component/resize-handle": PrimitiveResizeHandleExample,
   "component/morphing-panel": PrimitiveMorphingPanelExample,
@@ -374,17 +390,21 @@ export const previewReferences: LoadedPreviews = {
   "kit/filter-bar": FilterBarExample,
   "kit/filter-bar/input": FilterBarInputExample,
   "kit/filter-bar/remote": FilterBarRemoteExample,
+  "kit/filter-bar/saved-view": FilterBarSavedViewExample,
   "kit/activity": ActivityExample,
   "kit/transcript-divider": TranscriptDividerExample,
   "kit/context": ContextExample,
+  "kit/context/composed-legend": ContextComposedExample,
   "kit/inline-citation": InlineCitationExample,
   "kit/source-badge": SourceBadgeExample,
   "kit/action-bar": ActionBarExample,
   "kit/inline-attachment": InlineAttachmentExample,
   "kit/markdown-editor": MarkdownEditorExample,
   "kit/markdown-editor/bubble-menu": MarkdownEditorBubbleMenuExample,
+  "kit/markdown-editor/read-only": MarkdownEditorReadOnlyExample,
   "kit/markdown-block": MarkdownBlockExample,
   "kit/chat-layout": ChatLayoutExample,
+  "kit/chat-layout/thread-position": ChatThreadPositionExample,
   "kit/thread-rail": ThreadRailExample,
   "block/chat": ChatExample,
   "block/theme-toggle": ThemeToggleExample,

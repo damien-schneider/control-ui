@@ -11,6 +11,8 @@
     --cui-dockable-panel-border-color: oklch(from var(--border) l c h / 0.8);
     --cui-dockable-panel-border-width: var(--control-rim-width);
     --cui-dockable-panel-shadow: var(--shadow-pop);
+    --cui-dockable-panel-dragging-shadow: var(--shadow-modal);
+    --_dockable-panel-shadow: var(--cui-dockable-panel-shadow);
     --cui-dockable-panel-drop-zone-background: oklch(from var(--background) l c h / 0.12);
     --cui-dockable-panel-drop-zone-active-background: oklch(from var(--primary) l c h / 0.12);
     --cui-dockable-panel-drop-zone-active-border-color: oklch(from var(--primary) l c h / 0.55);
@@ -18,11 +20,11 @@
     border-radius: var(--cui-dockable-panel-radius);
     background-color: var(--cui-dockable-panel-background);
     color: var(--cui-dockable-panel-foreground);
-    box-shadow: var(--cui-dockable-panel-shadow);
+    box-shadow: var(--_dockable-panel-shadow);
   }
 
   :where([data-control-family="dockable-panel"][data-slot="root"][data-dragging]) {
-    --cui-dockable-panel-shadow: var(--shadow-modal);
+    --_dockable-panel-shadow: var(--cui-dockable-panel-dragging-shadow);
   }
 
   :where([data-control-family="dockable-panel"][data-slot="header"]) {
@@ -33,12 +35,12 @@
     min-block-size: calc(var(--control-h-sm) + var(--_dockable-panel-header-inset) * 2);
     gap: calc(var(--spacing) * 2);
     padding-inline: var(--_dockable-panel-header-inset);
-    border-block-end: 1px solid oklch(from var(--border) l c h / 0.7);
+    border-block-end: var(--cui-dockable-panel-border-width) solid var(--cui-dockable-panel-border-color);
   }
 
   :where([data-control-family="dockable-panel"][data-slot="drag-handle"]) {
     padding-inline: calc(var(--spacing) * 2);
-    border-radius: var(--radius-control);
+    border-radius: var(--nest-radius);
     text-align: start;
   }
 
@@ -61,9 +63,9 @@
   }
 
   :where([data-control-family="dockable-panel"][data-slot="drop-zone"]) {
-    border-radius: var(--radius-panel);
+    border-radius: var(--cui-dockable-panel-radius);
     background-color: var(--cui-dockable-panel-drop-zone-background);
-    box-shadow: 0 0 0 1px oklch(from var(--foreground) l c h / 0.2);
+    box-shadow: 0 0 0 var(--cui-dockable-panel-border-width) oklch(from var(--foreground) l c h / 0.2);
     transition-property: background-color, box-shadow;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
@@ -73,7 +75,7 @@
     background-color: var(--cui-dockable-panel-drop-zone-active-background);
     box-shadow:
       var(--shadow-sm),
-      0 0 0 1px var(--cui-dockable-panel-drop-zone-active-border-color);
+      0 0 0 var(--cui-dockable-panel-border-width) var(--cui-dockable-panel-drop-zone-active-border-color);
   }
 }
 
@@ -108,6 +110,11 @@
 }
 
 @property --cui-dockable-panel-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-dockable-panel-dragging-shadow {
   syntax: "*";
   inherits: true;
 }

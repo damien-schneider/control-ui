@@ -7,28 +7,36 @@
 
   @media (forced-colors: active) {
     :where([data-control-family="color-picker"][data-slot="trigger-color"]) {
+      forced-color-adjust: none;
       outline: 1px solid CanvasText;
       outline-offset: -1px;
+    }
+
+    :where([data-control-family="color-picker"][data-slot="slider-track"]),
+    :where([data-control-family="color-picker"][data-slot="area"]),
+    :where([data-control-family="color-picker"][data-slot="wheel"]),
+    :where([data-control-family="color-picker"][data-slot="swatch-color"]),
+    :where([data-control-family="color-picker"][data-slot="output-color"]) {
+      forced-color-adjust: none;
     }
   }
 
   :where([data-control-family="color-picker"][data-slot="trigger"]) {
     border-radius: var(--cui-color-picker-trigger-radius);
+    cursor: pointer;
     transition-property: transform, translate, scale, rotate;
     transition-timing-function: var(--ease-standard);
     transition-duration: var(--duration-fast);
   }
 
-  :where([data-control-family="color-picker"][data-slot="trigger"]:disabled) {
-    opacity: var(--disabled-opacity);
+  :where([data-control-family="color-picker"]:is([data-slot="area"], [data-slot="wheel"])) {
+    cursor: crosshair;
   }
 
-  :where([data-control-family="color-picker"][data-slot="area"][data-disabled="true"]) {
+  :where([data-control-family="color-picker"][data-slot="trigger"]:disabled),
+  :where([data-control-family="color-picker"]:is([data-slot="area"], [data-slot="wheel"])[data-disabled="true"]) {
     opacity: var(--disabled-opacity);
-  }
-
-  :where([data-control-family="color-picker"][data-slot="wheel"][data-disabled="true"]) {
-    opacity: var(--disabled-opacity);
+    cursor: not-allowed;
   }
 
   :where([data-control-family="color-picker"][data-slot="area-saturation"]) {

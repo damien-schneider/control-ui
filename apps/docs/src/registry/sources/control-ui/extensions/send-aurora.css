@@ -6,7 +6,7 @@
     --_send-aurora-band-4: oklch(0.86 0.03 235);
     --_send-aurora-band-5: oklch(0.45 0.19 262);
     opacity: 0;
-    animation: send-aurora-sweep calc(var(--duration-slow) * 4) var(--ease-emphasized) forwards;
+    animation: cui-send-aurora-sweep calc(var(--duration-slow) * 4) var(--ease-emphasized) forwards;
   }
 
   :where([data-send-aurora] [data-column="center"]) {
@@ -36,22 +36,22 @@
   :where([data-send-aurora] [data-band="5"]) {
     background-color: var(--_send-aurora-band-5);
   }
-}
 
-@keyframes send-aurora-sweep {
-  0% {
-    opacity: 0;
-    translate: 0 30%;
-  }
-  18% {
-    opacity: 1;
-  }
-  60% {
-    opacity: 0.85;
-    translate: 0 4%;
-  }
-  100% {
-    opacity: 0;
-    translate: 0 -14%;
+  @keyframes cui-send-aurora-sweep {
+    0% {
+      opacity: 0;
+      translate: 0 30%;
+    }
+    18% {
+      opacity: 1;
+    }
+    60% {
+      opacity: 0.85;
+      translate: 0 4%;
+    }
+    100% {
+      opacity: 0;
+      translate: 0 -14%;
+    }
   }
 }

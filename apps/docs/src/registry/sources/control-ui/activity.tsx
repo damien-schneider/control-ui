@@ -131,6 +131,7 @@ export function ActivityTrigger({ className, children, chevronProps, ...props }:
       {children}
       <ChevronRight
         aria-hidden="true"
+        data-icon-dir="inline"
         data-control-ui="activity"
         data-control-family="activity"
         data-slot="chevron"
@@ -154,7 +155,7 @@ export function ActivityIcon({ className, children, ...props }: ActivityIconProp
       data-status-icon={children === undefined ? "" : undefined}
       data-slot="icon"
       {...props}
-      className={cn("flex shrink-0 items-center justify-center [&_svg]:size-4", className)}
+      className={cn("flex shrink-0 items-center justify-center", className)}
     >
       {children ?? <Icon data-motion-essential={activity.isRunning ? "" : undefined} />}
     </span>
@@ -251,26 +252,18 @@ export function ActivityDetail({ className, ...props }: ActivityDetailProps) {
 
 export type ActivityDetailLabelProps = ActivityStyleProps<ComponentProps<"div">, ActivityKnobStyle>;
 
-export function ActivityDetailLabel({ className, ...props }: ActivityDetailLabelProps) {
-  return (
-    <div
-      data-control-ui="activity"
-      data-control-family="activity"
-      data-slot="detail-label"
-      {...props}
-      className={cn("uppercase", className)}
-    />
-  );
+export function ActivityDetailLabel(props: ActivityDetailLabelProps) {
+  return <div data-control-ui="activity" data-control-family="activity" data-slot="detail-label" {...props} />;
 }
 
-export type ActivityDetailTone = "default" | "destructive";
+export type ActivityDetailTone = "neutral" | "danger";
 
 export type ActivityDetailContentProps = ActivityStyleProps<ComponentProps<"div">, ActivityKnobStyle> & {
   format?: ActivityDetailFormat;
   tone?: ActivityDetailTone;
 };
 
-export function ActivityDetailContent({ format = "text", tone = "default", className, ...props }: ActivityDetailContentProps) {
+export function ActivityDetailContent({ format = "text", tone = "neutral", className, ...props }: ActivityDetailContentProps) {
   return (
     <div
       data-control-ui="activity"

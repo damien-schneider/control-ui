@@ -117,7 +117,7 @@ test("each sidebar preview is one responsive workspace", async ({ page }) => {
   const example = page.getByRole("group", { name: "Sidebar", exact: true });
   const trigger = example.getByRole("button", { name: "Toggle sidebar", exact: true });
   await waitForReactHydration(trigger);
-  await expect(example.locator('[data-slot="wrapper"]')).toHaveCount(1);
+  await expect(example.locator('[data-control-ui="sidebar"][data-slot="wrapper"]')).toHaveCount(1);
   await trigger.click();
   const popup = page.locator(sidebarPopup);
   await popup.getByRole("button", { name: "Workflows", exact: true }).click();

@@ -57,7 +57,8 @@
     --cui-button-hover-foreground: var(--destructive-text);
     --cui-button-active-foreground: var(--destructive-text);
   }
-  [data-skin="windows-98"] :where([data-control-family="button"][data-control="true"]:disabled) {
+  [data-skin="windows-98"]
+    :where([data-control-family="button"][data-control="true"]:is(:disabled, [data-disabled], [aria-disabled="true"])) {
     opacity: 1;
     --cui-button-foreground: var(--win98-shadow);
     text-shadow: 1px 1px var(--win98-white);
@@ -76,7 +77,8 @@
   [data-skin="windows-98"] :where([data-control-family="popup"][data-control-ui="select"][data-slot="icon"]) {
     align-self: stretch;
     width: 16px;
-    margin: 2px -2px 2px 4px;
+    margin-block: 2px;
+    margin-inline: 4px -2px;
     background: var(--win98-face);
     box-shadow: var(--win98-raised);
     rotate: 0deg;
@@ -88,18 +90,19 @@
     ) {
     --cui-choice-background: var(--background);
     --cui-choice-checked-background: var(--background);
-    --cui-choice-border-color: transparent;
-    --cui-choice-checked-border-color: transparent;
+    --cui-choice-border-width: 0px;
     --cui-choice-size: 13px;
+    /* the theme's -4px inset ring would land on the 5px mark inside a 13px box; draw it around the box instead */
+    --focus-ring-offset: 1px;
     color: var(--foreground);
-    --cui-choice-shadow: inset 0 0 0 var(--cui-choice-border-width) var(--cui-choice-border-color), var(--win98-sunken);
+    --cui-choice-shadow: var(--win98-sunken);
   }
   [data-skin="windows-98"] :where([data-control-family="choice"][data-slot="root"][data-choice-kind="checkbox"]) {
     --cui-choice-radius: 0px;
+    --cui-choice-indicator-size: 12px;
   }
   [data-skin="windows-98"] :where([data-control-family="choice"][data-slot="indicator"][data-choice-kind="radio-group"]) {
-    inline-size: 5px;
-    block-size: 5px;
+    --cui-choice-indicator-size: 5px;
     background: currentColor;
   }
   [data-skin="windows-98"] :where([data-control-family="switch"][data-slot="root"]) {
@@ -146,16 +149,18 @@
   [data-skin="windows-98"] :where([data-control-family="range"][data-slot="root"]) {
     --cui-range-track-radius: 0px;
     --cui-range-track-background: var(--win98-face);
+    --cui-range-track-dragging-background: var(--cui-range-track-background);
     --cui-range-indicator-radius: 0px;
     --cui-range-indicator-background: var(--primary);
     --cui-range-thumb-radius: 0px;
     --cui-range-thumb-background: var(--win98-face);
     --cui-range-thumb-border-color: transparent;
     --cui-range-thumb-shadow: var(--win98-raised);
+    --cui-range-thumb-dragging-shadow: var(--cui-range-thumb-shadow);
   }
   [data-skin="windows-98"]
     :where([data-control-family="range"][data-slot="track"]:is([data-range-kind="progress"], [data-range-kind="meter"])) {
-    block-size: 17px;
+    --cui-range-track-size: 17px;
     padding: 2px;
     box-shadow: var(--win98-sunken);
   }
@@ -164,8 +169,10 @@
     max-block-size: 100%;
     mask-image: repeating-linear-gradient(90deg, oklch(0 0 0) 0 6px, transparent 6px 8px);
   }
+  [data-skin="windows-98"] :where([data-control-family="range"][data-range-kind="slider"][data-slot="root"]) {
+    --cui-range-track-size: 4px;
+  }
   [data-skin="windows-98"] :where([data-control-family="range"][data-range-kind="slider"][data-slot="track"]:not([data-labeled])) {
-    block-size: 4px;
     box-shadow: var(--win98-sunken);
   }
   [data-skin="windows-98"] :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-variant="default"]) {

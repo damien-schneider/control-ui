@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpen, Globe, LoaderCircle, Radio, Search, SquareTerminal } from "lucide-react";
+import { BookOpen, Globe, Radio, Search, SquareTerminal } from "lucide-react";
 
 import type { ReactNode } from "react";
 
@@ -17,6 +17,7 @@ import {
   ActivityTrigger,
 } from "@/components/control-ui/activity";
 import { SourceBadge } from "@/components/control-ui/source-badge";
+import { Spinner } from "@/components/control-ui/ui/spinner";
 import type { TimelineState } from "@/components/control-ui/ui/timeline";
 import {
   Timeline,
@@ -35,7 +36,7 @@ const thinkingTrace = [
   { icon: <BookOpen />, label: "Read chat-layout.tsx", state: "success" },
   { icon: <Search />, label: "Compared disclosure behavior across agent surfaces", state: "success" },
   { icon: <Globe />, label: "Searched the web for Base UI accessibility guidance", state: "success" },
-  { icon: <LoaderCircle className="motion-safe:animate-spin" />, label: "Reading the ScrollArea overflow contract", state: "running" },
+  { icon: <Spinner />, label: "Reading the ScrollArea overflow contract", state: "running" },
   { icon: <SquareTerminal />, label: "Run the focused render tests", state: "pending" },
 ] satisfies Array<{ icon: ReactNode; label: string; state: TimelineState }>;
 

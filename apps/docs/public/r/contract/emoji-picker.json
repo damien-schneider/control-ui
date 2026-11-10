@@ -10,7 +10,7 @@
       "name": "--cui-emoji-picker-cell-size",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "calc(var(--spacing) * 10)"
+      "defaultValue": "var(--control-h-lg)"
     },
     {
       "name": "--cui-emoji-picker-height",
@@ -34,7 +34,7 @@
       "name": "--cui-emoji-picker-active-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "var(--accent)"
+      "defaultValue": "var(--hover-fill)"
     },
     {
       "name": "--cui-emoji-picker-header-background",
@@ -209,6 +209,13 @@
         ],
         "states": []
       },
+      "error-retry": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      },
       "footer": {
         "family": "emoji-picker",
         "registryItems": [
@@ -293,6 +300,13 @@
         "states": []
       },
       "search-input": {
+        "family": "emoji-picker",
+        "registryItems": [
+          "emoji-picker"
+        ],
+        "states": []
+      },
+      "skin-tone": {
         "family": "emoji-picker",
         "registryItems": [
           "emoji-picker"

@@ -31,8 +31,9 @@
     <GuidePoint>Recipes paint at zero specificity: every rule lives in `@layer components` behind `:where()`, so any
     selector you write anywhere outranks the library's paint.</GuidePoint>
     <GuidePoint>Every knob is registered with `@property { inherits: true }`, and each family declares its defaults only
-    at its root parts. Re-value a knob on any ancestor — the skin root, a `data-skin` boundary, a free `data-*`
-    attribute, an inline style — and every part beneath inherits it.</GuidePoint>
+    at its root parts. Re-value a knob on that root — from a skin, under a `data-skin` boundary, behind a free `data-*`
+    attribute, or with an inline style — and every part beneath inherits it. Setting it on an ancestor of the root, such
+    as `:root`, does nothing: the root re-declares its default.</GuidePoint>
     <GuidePoint>The trade: a knob declared directly on a part beats every inherited re-value, whatever its specificity.
     Shipped skins therefore re-value at family roots; the moment a rule targets an inner part, callers can no longer
     override that knob from above.</GuidePoint>

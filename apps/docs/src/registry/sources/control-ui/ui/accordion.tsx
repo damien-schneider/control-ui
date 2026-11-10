@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 import type { ComponentProps, CSSProperties } from "react";
 import type { AccordionKnobStyle } from "@/components/control-ui/knob-contracts/accordion-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import type { HeadingLevel } from "@/components/control-ui/ui/typography";
 
 export type AccordionValue = (string | number)[];
 
@@ -24,7 +25,10 @@ export type AccordionItemProps = Omit<
   "style"
 > & { style?: CSSProperties & AccordionKnobStyle };
 
-export type AccordionTriggerProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & AccordionKnobStyle };
+export type AccordionTriggerProps = Omit<ComponentProps<"button">, "style"> & {
+  headingLevel?: HeadingLevel;
+  style?: CSSProperties & AccordionKnobStyle;
+};
 
 export type AccordionPanelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AccordionKnobStyle };
 
@@ -52,14 +56,16 @@ export function AccordionItem({ className, ...props }: AccordionItemProps) {
   );
 }
 
-export function AccordionTrigger({ className, children, ...props }: AccordionTriggerProps) {
+export function AccordionTrigger({ headingLevel = 3, className, children, ...props }: AccordionTriggerProps) {
+  const Heading: `h${HeadingLevel}` = `h${headingLevel}`;
+
   return (
-    <AccordionPrimitive.Header className="flex">
+    <AccordionPrimitive.Header className="flex" render={<Heading />}>
       <AccordionPrimitive.Trigger
         data-control-ui="accordion"
         data-control-family="accordion"
         data-slot="trigger"
-        className={cn("group flex flex-1 cursor-pointer select-none items-center justify-between", className)}
+        className={cn("group flex flex-1 select-none items-center justify-between", className)}
         {...props}
       >
         {children}

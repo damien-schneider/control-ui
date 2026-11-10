@@ -69,7 +69,7 @@ export function AgentActions({ name, installCommand }: { name: string; installCo
         </DropdownMenu>
       </ButtonGroup>
       {status === "failed" ? (
-        <Text role="alert" as="p" size="caption" tone="destructive" className="mt-2">
+        <Text role="alert" as="p" size="caption" tone="danger" className="mt-2">
           Copy failed. Check clipboard permissions and try again.
         </Text>
       ) : null}

@@ -22,6 +22,32 @@ import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import type { ContextModel } from "./context-model";
 import { deriveContextModel } from "./context-model";
 
+/** Counts and share already formatted with the root `locale`; `null` marks a value that does not apply. */
+export type ContextUsage = {
+  usedTokens: string;
+  maxTokens: string | null;
+  percentage: string | null;
+  overageTokens: string | null;
+};
+
+const defaultUsageLabel = ({ usedTokens, maxTokens, percentage, overageTokens }: ContextUsage) =>
+  maxTokens === null
+    ? `${usedTokens} tokens used; limit unavailable`
+    : `${usedTokens} of ${maxTokens} tokens used (${percentage})${overageTokens === null ? "" : `; ${overageTokens} tokens over limit`}`;
+
+const defaultTriggerLabel = (percentage: string | null) => (percentage === null ? "Context unavailable" : `${percentage} context`);
+
+const defaultUsedLabel = (usedTokens: string, percentage: string | null) =>
+  percentage === null ? `${usedTokens} tokens used` : `${percentage} used`;
+
+const defaultLimitLabel = (usedTokens: string, maxTokens: string | null) =>
+  maxTokens === null ? "Limit unavailable" : `${usedTokens} of ${maxTokens} tokens`;
+
+const defaultTokensLabel = (tokens: string, percentage: string | null) =>
+  percentage === null ? `${tokens} tokens` : `${tokens} tokens · ${percentage}`;
+
+const defaultOverageLabel = (tokens: string) => `${tokens} tokens over limit`;
+
 export type ContextProps = Omit<ComponentProps<"div">, "children"> & {
   segments: readonly ContextSegment[];
   maxTokens?: number | null;
@@ -30,6 +56,8 @@ export type ContextProps = Omit<ComponentProps<"div">, "children"> & {
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+  /** Sentence read with the trigger and as the graph's value text. */
+  usageLabel?: (usage: ContextUsage) => string;
   children?: ReactNode;
 } & { style?: CSSProperties & ContextKnobStyle };
 
@@ -60,6 +88,7 @@ export function Context({
   open,
   defaultOpen,
   onOpenChange,
+  usageLabel = defaultUsageLabel,
   className,
   children,
   ...props
@@ -75,13 +104,12 @@ export function Context({
     [locale],
   );
   const percentage = model.ratio === null ? null : percentageFormatter.format(model.ratio);
-  const usedTokens = numberFormatter.format(model.usedTokens);
-  const usage =
-    model.maxTokens === null
-      ? `${usedTokens} tokens used; limit unavailable`
-      : `${usedTokens} of ${numberFormatter.format(model.maxTokens)} tokens used (${percentage})${
-          model.overageTokens > 0 ? `; ${numberFormatter.format(model.overageTokens)} tokens over limit` : ""
-        }`;
+  const usage = usageLabel({
+    usedTokens: numberFormatter.format(model.usedTokens),
+    maxTokens: model.maxTokens === null ? null : numberFormatter.format(model.maxTokens),
+    percentage,
+    overageTokens: model.overageTokens > 0 ? numberFormatter.format(model.overageTokens) : null,
+  });
   const context = { model, modelName, numberFormatter, percentageFormatter, percentage, usage } satisfies ContextValue;
 
   return (
@@ -107,12 +135,16 @@ export function Context({
   );
 }
 
-export type ContextTriggerProps = ContextStyleProps<ComponentProps<typeof Button>, ButtonKnobStyle & ContextKnobStyle>;
+export type ContextTriggerProps = ContextStyleProps<ComponentProps<typeof Button>, ButtonKnobStyle & ContextKnobStyle> & {
+  /** Visible trigger text; receives the formatted share, `null` when the limit is unknown. */
+  label?: (percentage: string | null) => string;
+};
 
 export function ContextTrigger({
   "aria-describedby": describedBy,
   variant = "surface",
   size = "sm",
+  label = defaultTriggerLabel,
   className,
   children,
   ...props
@@ -158,7 +190,7 @@ export function ContextTrigger({
                 data-slot="trigger-track"
                 data-status={model.status}
               />
-              {model.status !== "unavailable" ? (
+              {visualPercentage > 0 ? (
                 <circle
                   cx="8"
                   cy="8"
@@ -175,7 +207,7 @@ export function ContextTrigger({
               ) : null}
             </svg>
             <span data-control-ui="context" data-control-family="context" data-slot="trigger-label">
-              {percentage === null ? "Context unavailable" : `${percentage} context`}
+              {label(percentage)}
             </span>
           </>
         )}
@@ -215,17 +247,31 @@ export function ContextContent({
       className={cn("w-[min(28rem,calc(100vw-2rem))] overflow-hidden", className)}
     >
       <div data-control-ui="context" data-control-family="context" data-slot="content" className="overflow-hidden">
-        {children ?? (
-          <ScrollArea maxHeight="min(36rem, calc(100dvh - 8rem))" lockAxis="x">
-            <div data-control-ui="context" data-control-family="context" data-slot="content-grid" className="grid">
-              <ContextSummary />
-              <ContextGraph />
-              <ContextLegend />
-            </div>
-          </ScrollArea>
-        )}
+        {children ?? <ContextBody />}
       </div>
     </PopoverContent>
+  );
+}
+
+export type ContextBodyProps = ComponentProps<"div"> & {
+  /** Height past which the body scrolls under the header. */
+  maxHeight?: string;
+} & { style?: CSSProperties & ContextKnobStyle };
+
+/** The scrolling region of the panel. Without children it holds the summary, graph and legend. */
+export function ContextBody({ maxHeight = "min(36rem, calc(100dvh - 8rem))", className, children, ...props }: ContextBodyProps) {
+  return (
+    <ScrollArea maxHeight={maxHeight} lockAxis="x">
+      <div {...props} data-control-ui="context" data-control-family="context" data-slot="content-grid" className={cn("grid", className)}>
+        {children ?? (
+          <>
+            <ContextSummary />
+            <ContextGraph />
+            <ContextLegend />
+          </>
+        )}
+      </div>
+    </ScrollArea>
   );
 }
 
@@ -274,10 +320,22 @@ export function ContextDescription({ className, children, ...props }: ContextDes
   );
 }
 
-export type ContextSummaryProps = ContextStyleProps<ComponentProps<"div">, ContextKnobStyle>;
+export type ContextSummaryProps = ContextStyleProps<ComponentProps<"div">, ContextKnobStyle> & {
+  /** Receives the formatted used-token count and the formatted share, `null` when the limit is unknown. */
+  usedLabel?: (usedTokens: string, percentage: string | null) => string;
+  /** Receives the formatted used-token count and the formatted limit, `null` when the limit is unknown. */
+  limitLabel?: (usedTokens: string, maxTokens: string | null) => string;
+};
 
-export function ContextSummary({ className, children, ...props }: ContextSummaryProps) {
+export function ContextSummary({
+  usedLabel = defaultUsedLabel,
+  limitLabel = defaultLimitLabel,
+  className,
+  children,
+  ...props
+}: ContextSummaryProps) {
   const { model, numberFormatter, percentage } = useContextValue();
+  const usedTokens = numberFormatter.format(model.usedTokens);
 
   return (
     <div
@@ -290,11 +348,9 @@ export function ContextSummary({ className, children, ...props }: ContextSummary
     >
       {children ?? (
         <>
-          <span>{percentage === null ? `${numberFormatter.format(model.usedTokens)} tokens used` : `${percentage} used`}</span>
+          <span>{usedLabel(usedTokens, percentage)}</span>
           <span data-control-ui="context" data-control-family="context" data-slot="summary-value">
-            {model.maxTokens === null
-              ? "Limit unavailable"
-              : `${numberFormatter.format(model.usedTokens)} of ${numberFormatter.format(model.maxTokens)} tokens`}
+            {limitLabel(usedTokens, model.maxTokens === null ? null : numberFormatter.format(model.maxTokens))}
           </span>
         </>
       )}
@@ -331,7 +387,7 @@ export function ContextGraph({ "aria-label": ariaLabel = "Context usage", classN
       preserveAspectRatio="none"
       className={cn("w-full overflow-hidden", className)}
     >
-      <rect data-control-ui="context" data-control-family="context" data-slot="track" x="0" y="0" width="100" height="10" rx="5" />
+      <rect data-control-ui="context" data-control-family="context" data-slot="track" x="0" y="0" width="100" height="10" />
       {model.segments.map((segment) => (
         <rect
           key={segment.segment.id}
@@ -372,25 +428,27 @@ export function ContextGraph({ "aria-label": ariaLabel = "Context usage", classN
   );
 }
 
-export type ContextLegendProps = ContextStyleProps<ComponentProps<"ul">, ContextKnobStyle>;
+export type ContextLegendItemTone = "available" | "over-limit";
 
-type ContextLegendRowProps = {
-  kind: ContextSegmentKind;
+export type ContextLegendItemProps = ContextStyleProps<Omit<ComponentProps<"li">, "children">, ContextKnobStyle> & {
+  kind?: ContextSegmentKind;
+  /** Marks a row that reports the remaining budget or the overage instead of a segment. */
+  tone?: ContextLegendItemTone;
   label: ReactNode;
   description?: ReactNode;
   value?: ReactNode;
-  tone?: "available" | "over-limit";
 };
 
-function ContextLegendRow({ kind, label, description, value, tone }: ContextLegendRowProps) {
+export function ContextLegendItem({ kind = "other", tone, label, description, value, className, ...props }: ContextLegendItemProps) {
   return (
     <li
+      {...props}
       data-control-ui="context"
       data-control-family="context"
       data-slot="legend-item"
       data-kind={kind}
       data-tone={tone}
-      className="grid grid-cols-[minmax(0,1fr)_auto] items-start"
+      className={cn("grid grid-cols-[minmax(0,1fr)_auto] items-start", className)}
     >
       <div className="flex min-w-0 items-start">
         <span
@@ -421,43 +479,65 @@ function ContextLegendRow({ kind, label, description, value, tone }: ContextLege
   );
 }
 
-export function ContextLegend({ className, children, ...props }: ContextLegendProps) {
+export type ContextLegendProps = ContextStyleProps<ComponentProps<"ul">, ContextKnobStyle> & {
+  /** Receives a formatted token count and its formatted share, `null` when the limit is unknown. */
+  tokensLabel?: (tokens: string, percentage: string | null) => string;
+  overageLabel?: (tokens: string) => string;
+  availableLabel?: ReactNode;
+  overLimitLabel?: ReactNode;
+  unavailableLabel?: ReactNode;
+};
+
+export function ContextLegend({
+  tokensLabel = defaultTokensLabel,
+  overageLabel = defaultOverageLabel,
+  availableLabel = "Available",
+  overLimitLabel = "Over limit",
+  unavailableLabel = "Limit unavailable",
+  className,
+  children,
+  ...props
+}: ContextLegendProps) {
   const { model, numberFormatter, percentageFormatter } = useContextValue();
 
   return (
-    <ul {...props} data-control-ui="context" data-control-family="context" data-slot="legend" className={cn("grid", className)}>
+    <ul
+      {...props}
+      // biome-ignore lint/a11y/noRedundantRoles: Safari drops list semantics when list-style is none.
+      role="list"
+      data-control-ui="context"
+      data-control-family="context"
+      data-slot="legend"
+      className={cn("grid", className)}
+    >
       {children ?? (
         <>
           {model.segments.map((segment) => (
-            <ContextLegendRow
+            <ContextLegendItem
               key={segment.segment.id}
               kind={segment.kind}
               label={segment.segment.label}
               description={segment.segment.description}
-              value={`${numberFormatter.format(segment.tokens)} tokens${
-                segment.ratio === null ? "" : ` · ${percentageFormatter.format(segment.ratio)}`
-              }`}
+              value={tokensLabel(
+                numberFormatter.format(segment.tokens),
+                segment.ratio === null ? null : percentageFormatter.format(segment.ratio),
+              )}
             />
           ))}
           {model.status === "normal" && model.remainingTokens !== null ? (
-            <ContextLegendRow
-              kind="other"
-              label="Available"
+            <ContextLegendItem
               tone="available"
-              value={`${numberFormatter.format(model.remainingTokens)} tokens · ${percentageFormatter.format(
-                model.remainingTokens / (model.maxTokens ?? 1),
-              )}`}
+              label={availableLabel}
+              value={tokensLabel(
+                numberFormatter.format(model.remainingTokens),
+                percentageFormatter.format(model.remainingTokens / (model.maxTokens ?? 1)),
+              )}
             />
           ) : null}
           {model.status === "over-limit" ? (
-            <ContextLegendRow
-              kind="other"
-              label="Over limit"
-              tone="over-limit"
-              value={`${numberFormatter.format(model.overageTokens)} tokens over limit`}
-            />
+            <ContextLegendItem tone="over-limit" label={overLimitLabel} value={overageLabel(numberFormatter.format(model.overageTokens))} />
           ) : null}
-          {model.status === "unavailable" ? <ContextLegendRow kind="other" label="Limit unavailable" /> : null}
+          {model.status === "unavailable" ? <ContextLegendItem label={unavailableLabel} /> : null}
         </>
       )}
     </ul>
@@ -485,7 +565,7 @@ export function ContextClose({
       aria-label={ariaLabel}
       className={cn("ms-auto", className)}
     >
-      {children ?? <X aria-hidden="true" className="size-4" />}
+      {children ?? <X aria-hidden="true" />}
     </Button>
   );
 }

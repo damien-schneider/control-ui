@@ -28,7 +28,7 @@
       "name": "--cui-code-diff-border-color",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "var(--border)"
+      "defaultValue": "var(--control-rim)"
     },
     {
       "name": "--cui-code-diff-border-width",
@@ -94,7 +94,7 @@
       "name": "--cui-code-diff-expand-button-hover-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "oklch(from var(--foreground) l c h / 0.08)"
+      "defaultValue": "var(--hover-fill)"
     },
     {
       "name": "--cui-code-diff-expand-button-hover-foreground",
@@ -172,6 +172,13 @@
             ]
           }
         ]
+      },
+      "empty": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": []
       },
       "empty-half": {
         "family": "code-diff",
@@ -317,6 +324,13 @@
             ]
           }
         ]
+      },
+      "no-newline": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": []
       },
       "revealed-row": {
         "family": "code-diff",

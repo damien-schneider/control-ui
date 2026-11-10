@@ -121,7 +121,16 @@
         "registryItems": [
           "code"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-focus-ring",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "none"
+            ]
+          }
+        ]
       },
       "floating-frame": {
         "family": "code",

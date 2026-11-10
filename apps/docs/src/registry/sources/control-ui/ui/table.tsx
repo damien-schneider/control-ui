@@ -7,7 +7,12 @@ import type { TableKnobStyle } from "@/components/control-ui/knob-contracts/tabl
 import { cn } from "@/components/control-ui/lib/cn";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
-export type TableProps = Omit<ComponentProps<"table">, "style"> & { style?: CSSProperties & TableKnobStyle };
+export type TableProps = Omit<ComponentProps<"table">, "style"> & { style?: CSSProperties & TableKnobStyle } & {
+  containerClassName?: string;
+  maxHeight?: string;
+  /** Pins the header cells while the body scrolls under `maxHeight`; they paint `--cui-table-header-sticky-background`. */
+  stickyHeader?: boolean;
+};
 
 export type TableHeaderProps = Omit<ComponentProps<"thead">, "style"> & { style?: CSSProperties & TableKnobStyle };
 
@@ -28,14 +33,21 @@ export type TableRowLinkProps = Omit<ComponentProps<"button">, "style"> & {
 
 export type TableCaptionProps = Omit<ComponentProps<"caption">, "style"> & { style?: CSSProperties & TableKnobStyle };
 
-export function Table({ className, ...props }: TableProps) {
+export function Table({ className, containerClassName, maxHeight, stickyHeader = false, ...props }: TableProps) {
   return (
-    <div data-control-ui="table" data-control-family="table" data-slot="container" className="relative w-full">
-      <ScrollArea lockAxis="y" aria-label={props["aria-label"]} aria-labelledby={props["aria-labelledby"]}>
+    <div data-control-ui="table" data-control-family="table" data-slot="container" className={cn("relative w-full", containerClassName)}>
+      <ScrollArea
+        maxHeight={maxHeight}
+        mask={!stickyHeader}
+        lockAxis={maxHeight ? undefined : "y"}
+        aria-label={props["aria-label"]}
+        aria-labelledby={props["aria-labelledby"]}
+      >
         <table
           data-control-ui="table"
           data-control-family="table"
           data-slot="root"
+          data-sticky-header={stickyHeader ? "true" : undefined}
           className={cn("w-full caption-bottom", className)}
           {...props}
         />

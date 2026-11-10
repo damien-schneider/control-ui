@@ -10,5 +10,5 @@ const segments = [
 ] satisfies ContextSegment[];
 
 export function Example() {
-  return <Context segments={segments} maxTokens={200_000} model="GPT-5" />;
+  return <Context segments={segments} maxTokens={200_000} model="GPT-5" locale="en-US" />;
 }

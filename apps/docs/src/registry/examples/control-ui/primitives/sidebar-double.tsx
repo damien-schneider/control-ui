@@ -169,7 +169,7 @@ function DoubleSidebarWorkspace({
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton size="lg" tooltip="Jamie Davis">
-                  <Avatar aria-hidden="true" className="size-7">
+                  <Avatar aria-hidden="true" size="sm">
                     <AvatarFallback>JD</AvatarFallback>
                   </Avatar>
                   <span>Jamie Davis</span>
@@ -242,22 +242,21 @@ function LayerSelect<Value extends string>({
       <label htmlFor={id} className="shrink-0">
         {label}
       </label>
-      <div className="w-28">
-        <NativeSelect
-          id={id}
-          value={value}
-          onChange={(event) => {
-            const selected = options.find((option) => option === event.target.value);
-            if (selected) onChange(selected);
-          }}
-        >
-          {options.map((option) => (
-            <option key={option} value={option}>
-              {option[0].toUpperCase() + option.slice(1)}
-            </option>
-          ))}
-        </NativeSelect>
-      </div>
+      <NativeSelect
+        id={id}
+        className="w-28"
+        value={value}
+        onChange={(event) => {
+          const selected = options.find((option) => option === event.target.value);
+          if (selected) onChange(selected);
+        }}
+      >
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option[0].toUpperCase() + option.slice(1)}
+          </option>
+        ))}
+      </NativeSelect>
     </>
   );
 }

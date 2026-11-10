@@ -7,7 +7,21 @@ import type { RenderProp } from "@/components/control-ui/control-props";
 import type { BreadcrumbKnobStyle } from "@/components/control-ui/knob-contracts/breadcrumb-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
-export function Breadcrumb({ className, ...props }: ComponentProps<"nav"> & { style?: CSSProperties & BreadcrumbKnobStyle }) {
+export type BreadcrumbProps = ComponentProps<"nav"> & { style?: CSSProperties & BreadcrumbKnobStyle };
+export type BreadcrumbListProps = Omit<ComponentProps<"ol">, "style"> & { style?: CSSProperties & BreadcrumbKnobStyle };
+export type BreadcrumbItemProps = ComponentProps<"li"> & { style?: CSSProperties & BreadcrumbKnobStyle };
+export type BreadcrumbLinkProps = Omit<ComponentProps<"a">, "style"> & {
+  render?: RenderProp<ComponentProps<"a">>;
+  style?: CSSProperties & BreadcrumbKnobStyle;
+};
+export type BreadcrumbPageProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & BreadcrumbKnobStyle };
+export type BreadcrumbSeparatorProps = ComponentProps<"li"> & { style?: CSSProperties & BreadcrumbKnobStyle };
+export type BreadcrumbEllipsisProps = Omit<ComponentProps<"span">, "children"> & {
+  label?: string;
+  style?: CSSProperties & BreadcrumbKnobStyle;
+};
+
+export function Breadcrumb({ className, ...props }: BreadcrumbProps) {
   return (
     <nav
       aria-label="Breadcrumb"
@@ -20,10 +34,7 @@ export function Breadcrumb({ className, ...props }: ComponentProps<"nav"> & { st
   );
 }
 
-export function BreadcrumbList({
-  className,
-  ...props
-}: Omit<ComponentProps<"ol">, "style"> & { style?: CSSProperties & BreadcrumbKnobStyle }) {
+export function BreadcrumbList({ className, ...props }: BreadcrumbListProps) {
   return (
     <ol
       data-control-ui="breadcrumb"
@@ -35,7 +46,7 @@ export function BreadcrumbList({
   );
 }
 
-export function BreadcrumbItem({ className, ...props }: ComponentProps<"li"> & { style?: CSSProperties & BreadcrumbKnobStyle }) {
+export function BreadcrumbItem({ className, ...props }: BreadcrumbItemProps) {
   return (
     <li
       data-control-ui="breadcrumb"
@@ -47,14 +58,7 @@ export function BreadcrumbItem({ className, ...props }: ComponentProps<"li"> & {
   );
 }
 
-export function BreadcrumbLink({
-  render,
-  className,
-  children,
-  ...props
-}: ComponentProps<"a"> & {
-  render?: RenderProp<ComponentProps<"a">>;
-}) {
+export function BreadcrumbLink({ render, className, children, ...props }: BreadcrumbLinkProps) {
   return useRender({
     defaultTagName: "a",
     render,
@@ -69,10 +73,7 @@ export function BreadcrumbLink({
   });
 }
 
-export function BreadcrumbPage({
-  className,
-  ...props
-}: Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & BreadcrumbKnobStyle }) {
+export function BreadcrumbPage({ className, ...props }: BreadcrumbPageProps) {
   return (
     <span
       data-control-ui="breadcrumb"
@@ -85,11 +86,7 @@ export function BreadcrumbPage({
   );
 }
 
-export function BreadcrumbSeparator({
-  children,
-  className,
-  ...props
-}: ComponentProps<"li"> & { style?: CSSProperties & BreadcrumbKnobStyle }) {
+export function BreadcrumbSeparator({ children, className, ...props }: BreadcrumbSeparatorProps) {
   return (
     <li
       data-control-ui="breadcrumb"
@@ -97,7 +94,7 @@ export function BreadcrumbSeparator({
       data-slot="separator"
       role="presentation"
       aria-hidden="true"
-      className={cn("[&>svg]:size-3.5", className)}
+      className={className}
       {...props}
     >
       {children ?? <ChevronRight data-icon-dir="inline" />}
@@ -105,11 +102,7 @@ export function BreadcrumbSeparator({
   );
 }
 
-export function BreadcrumbEllipsis({
-  label = "Show hidden breadcrumbs",
-  className,
-  ...props
-}: Omit<ComponentProps<"span">, "children"> & { label?: string; style?: CSSProperties & BreadcrumbKnobStyle }) {
+export function BreadcrumbEllipsis({ label = "Show hidden breadcrumbs", className, ...props }: BreadcrumbEllipsisProps) {
   return (
     <span
       data-control-ui="breadcrumb"
@@ -118,7 +111,7 @@ export function BreadcrumbEllipsis({
       className={cn("flex items-center justify-center", className)}
       {...props}
     >
-      <MoreHorizontal aria-hidden="true" className="size-4" />
+      <MoreHorizontal aria-hidden="true" />
       <span className="sr-only">{label}</span>
     </span>
   );

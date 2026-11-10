@@ -11,7 +11,8 @@
     "drawer",
     "live-status",
     "scroll-area",
-    "sidebar"
+    "sidebar",
+    "typography"
   ],
   "files": [
     {

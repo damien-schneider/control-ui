@@ -2,7 +2,7 @@
 export const registryMetadata = {
   accordion: {
     dependencies: ["@base-ui/react@^1.9.0", "lucide-react@^1.47.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "typography"],
     sourceManifestPath: "registry/control-ui/accordion.json",
     files: [
       {
@@ -68,7 +68,7 @@ export const registryMetadata = {
   },
   "agent-run-block": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["activity", "badge", "card", "core", "live-status", "sidebar", "timeline", "typography"],
+    registryDependencies: ["activity", "badge", "card", "core", "live-status", "sidebar", "spinner", "timeline", "typography"],
     sourceManifestPath: "registry/control-ui/agent-run-block.json",
     files: [
       {
@@ -117,7 +117,7 @@ export const registryMetadata = {
   },
   "alert-dialog": {
     dependencies: ["@base-ui/react@^1.9.0"],
-    registryDependencies: ["button", "core", "surface-variants"],
+    registryDependencies: ["button", "core", "dialog", "surface-variants"],
     sourceManifestPath: "registry/control-ui/alert-dialog.json",
     files: [
       {
@@ -1659,7 +1659,7 @@ export const registryMetadata = {
   },
   "audio-visualizer": {
     dependencies: [],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "motion"],
     sourceManifestPath: "registry/control-ui/audio-visualizer.json",
     files: [
       {
@@ -1720,7 +1720,7 @@ export const registryMetadata = {
   },
   autocomplete: {
     dependencies: ["@base-ui/react@^1.9.0"],
-    registryDependencies: ["core", "input-group", "scroll-area", "surface-variants"],
+    registryDependencies: ["core", "input-group", "popup-item-focus", "scroll-area", "surface-variants"],
     sourceManifestPath: "registry/control-ui/autocomplete.json",
     files: [
       {
@@ -1736,6 +1736,11 @@ export const registryMetadata = {
       {
         path: "src/registry/sources/control-ui/recipes/field-parts.css",
         target: "@components/control-ui/styles/recipes/field-parts.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/field-select.css",
+        target: "@components/control-ui/styles/recipes/field-select.css",
         type: "registry:file",
       },
       {
@@ -1972,6 +1977,11 @@ export const registryMetadata = {
         path: "src/registry/knob-contracts/chart-knobs.ts",
         target: "@components/control-ui/knob-contracts/chart-knobs.ts",
         type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/chart-parts.css",
+        target: "@components/control-ui/styles/recipes/chart-parts.css",
+        type: "registry:file",
       },
       {
         path: "src/registry/sources/control-ui/recipes/chart.css",
@@ -2475,7 +2485,7 @@ export const registryMetadata = {
   },
   combobox: {
     dependencies: ["@base-ui/react@^1.9.0"],
-    registryDependencies: ["core", "input-group", "scroll-area", "surface-variants"],
+    registryDependencies: ["core", "input-group", "popup-item-focus", "scroll-area", "surface-variants"],
     sourceManifestPath: "registry/control-ui/combobox.json",
     files: [
       {
@@ -2491,6 +2501,11 @@ export const registryMetadata = {
       {
         path: "src/registry/sources/control-ui/recipes/field-parts.css",
         target: "@components/control-ui/styles/recipes/field-parts.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/field-select.css",
+        target: "@components/control-ui/styles/recipes/field-select.css",
         type: "registry:file",
       },
       {
@@ -2826,7 +2841,7 @@ export const registryMetadata = {
   },
   "dockable-panel": {
     dependencies: [],
-    registryDependencies: ["button", "core", "drawer", "live-status", "scroll-area", "sidebar"],
+    registryDependencies: ["button", "core", "drawer", "live-status", "scroll-area", "sidebar", "typography"],
     sourceManifestPath: "registry/control-ui/dockable-panel.json",
     files: [
       {
@@ -2858,7 +2873,7 @@ export const registryMetadata = {
   },
   drawer: {
     dependencies: ["@base-ui/react@^1.9.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "dialog"],
     sourceManifestPath: "registry/control-ui/drawer.json",
     files: [
       {
@@ -3158,6 +3173,11 @@ export const registryMetadata = {
         type: "registry:file",
       },
       {
+        path: "src/registry/sources/control-ui/recipes/field-select.css",
+        target: "@components/control-ui/styles/recipes/field-select.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/field.css",
         target: "@components/control-ui/styles/recipes/field.css",
         type: "registry:file",
@@ -3442,6 +3462,11 @@ export const registryMetadata = {
         type: "registry:file",
       },
       {
+        path: "src/registry/sources/control-ui/recipes/field-select.css",
+        target: "@components/control-ui/styles/recipes/field-select.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/field.css",
         target: "@components/control-ui/styles/recipes/field.css",
         type: "registry:file",
@@ -3469,6 +3494,11 @@ export const registryMetadata = {
         type: "registry:file",
       },
       {
+        path: "src/registry/sources/control-ui/recipes/field-select.css",
+        target: "@components/control-ui/styles/recipes/field-select.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/field.css",
         target: "@components/control-ui/styles/recipes/field.css",
         type: "registry:file",
@@ -3493,6 +3523,11 @@ export const registryMetadata = {
       {
         path: "src/registry/sources/control-ui/recipes/field-parts.css",
         target: "@components/control-ui/styles/recipes/field-parts.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/field-select.css",
+        target: "@components/control-ui/styles/recipes/field-select.css",
         type: "registry:file",
       },
       {
@@ -3784,7 +3819,7 @@ export const registryMetadata = {
   },
   menubar: {
     dependencies: ["@base-ui/react@^1.9.0"],
-    registryDependencies: ["core", "surface-variants"],
+    registryDependencies: ["core", "popup-item-focus", "surface-variants"],
     sourceManifestPath: "registry/control-ui/menubar.json",
     files: [
       {
@@ -3918,6 +3953,11 @@ export const registryMetadata = {
         type: "registry:file",
       },
       {
+        path: "src/registry/sources/control-ui/recipes/field-select.css",
+        target: "@components/control-ui/styles/recipes/field-select.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/field.css",
         target: "@components/control-ui/styles/recipes/field.css",
         type: "registry:file",
@@ -4014,6 +4054,11 @@ export const registryMetadata = {
         type: "registry:file",
       },
       {
+        path: "src/registry/sources/control-ui/recipes/field-select.css",
+        target: "@components/control-ui/styles/recipes/field-select.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/field.css",
         target: "@components/control-ui/styles/recipes/field.css",
         type: "registry:file",
@@ -4048,7 +4093,7 @@ export const registryMetadata = {
     ],
   },
   pagination: {
-    dependencies: ["lucide-react@^1.47.0"],
+    dependencies: ["@base-ui/react@^1.9.0", "lucide-react@^1.47.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/pagination.json",
     files: [
@@ -4196,7 +4241,7 @@ export const registryMetadata = {
   },
   "radio-group": {
     dependencies: ["@base-ui/react@^1.9.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "track-highlight"],
     sourceManifestPath: "registry/control-ui/radio-group.json",
     files: [
       {
@@ -4406,6 +4451,11 @@ export const registryMetadata = {
         type: "registry:file",
       },
       {
+        path: "src/registry/sources/control-ui/recipes/field-select.css",
+        target: "@components/control-ui/styles/recipes/field-select.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/field.css",
         target: "@components/control-ui/styles/recipes/field.css",
         type: "registry:file",
@@ -4507,7 +4557,7 @@ export const registryMetadata = {
   },
   sheet: {
     dependencies: ["@base-ui/react@^1.9.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "dialog"],
     sourceManifestPath: "registry/control-ui/sheet.json",
     files: [
       {
@@ -4694,7 +4744,7 @@ export const registryMetadata = {
   },
   "skin-liquid-metal": {
     dependencies: ["metal-fx@^2.0.10"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "motion"],
     sourceManifestPath: "registry/liquid-metal/skin.json",
     files: [
       {
@@ -4932,6 +4982,11 @@ export const registryMetadata = {
         path: "src/registry/knob-contracts/range-knobs.ts",
         target: "@components/control-ui/knob-contracts/range-knobs.ts",
         type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/range-slider.css",
+        target: "@components/control-ui/styles/recipes/range-slider.css",
+        type: "registry:file",
       },
       {
         path: "src/registry/sources/control-ui/recipes/range.css",
@@ -5198,6 +5253,11 @@ export const registryMetadata = {
         type: "registry:file",
       },
       {
+        path: "src/registry/sources/control-ui/recipes/field-select.css",
+        target: "@components/control-ui/styles/recipes/field-select.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/field.css",
         target: "@components/control-ui/styles/recipes/field.css",
         type: "registry:file",
@@ -5218,6 +5278,11 @@ export const registryMetadata = {
         path: "src/registry/blocks/control-ui/theme-toggle.tsx",
         target: "@components/control-ui/blocks/theme-toggle.tsx",
         type: "registry:block",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/theme-toggle.css",
+        target: "@components/control-ui/styles/recipes/theme-toggle.css",
+        type: "registry:file",
       },
     ],
   },
@@ -5267,7 +5332,7 @@ export const registryMetadata = {
   },
   toast: {
     dependencies: ["@base-ui/react@^1.9.0", "lucide-react@^1.47.0"],
-    registryDependencies: ["button", "core", "dialog"],
+    registryDependencies: ["button", "core", "dialog", "spinner"],
     sourceManifestPath: "registry/control-ui/toast.json",
     files: [
       {
@@ -5715,7 +5780,7 @@ export const registryMetadata = {
     ],
   },
   "user-ask": {
-    dependencies: ["lucide-react@^1.47.0"],
+    dependencies: ["@base-ui/react@^1.9.0", "lucide-react@^1.47.0"],
     registryDependencies: ["button", "core", "kbd", "live-status"],
     sourceManifestPath: "registry/control-ui/user-ask.json",
     files: [

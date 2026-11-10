@@ -3,6 +3,7 @@
     --cui-scroll-area-thumb-radius: 9999px;
     --cui-scroll-area-thumb-background: oklch(from var(--foreground) l c h / 0.4);
     --cui-scroll-area-corner-background: transparent;
+    --cui-scroll-area-scrollbar-size: calc(var(--spacing) * 1.5);
   }
 
   :where([data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"]) {
@@ -60,6 +61,23 @@
     z-index: 0;
     border-radius: inherit;
     outline: none;
+  }
+
+  :where(
+    [data-control-family="scroll-area"][data-slot="root"]:not(
+      [data-control-family][data-control="true"] *,
+      [data-control-family][data-focus-ring="within"] *,
+      [data-control-family][data-focus-ring="none"] *
+    ):has(> [data-scroll-area-viewport][tabindex="0"]:not([data-focus-ring="none"]):focus-visible)
+  )::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring);
+    outline-offset: calc(var(--focus-ring-width) * -1);
+    pointer-events: none;
   }
 
   :where(
@@ -153,11 +171,11 @@
   }
 
   :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="vertical"]) {
-    inline-size: calc(var(--spacing) * 1.5);
+    inline-size: var(--cui-scroll-area-scrollbar-size);
   }
 
   :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="horizontal"]) {
-    block-size: calc(var(--spacing) * 1.5);
+    block-size: var(--cui-scroll-area-scrollbar-size);
   }
 
   :where([data-control-family="scroll-area"][data-slot="scrollbar"]) {
@@ -186,6 +204,18 @@
   :where([data-control-family="scroll-area"][data-slot="corner"]) {
     background: var(--cui-scroll-area-corner-background);
   }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="scroll-area"][data-slot="thumb"]) {
+      background: CanvasText;
+    }
+  }
+}
+
+@property --cui-scroll-area-scrollbar-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --_scroll-area-fade-top {

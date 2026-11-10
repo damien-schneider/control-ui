@@ -1,6 +1,6 @@
 "use client";
 
-import type { ComponentProps, CSSProperties, KeyboardEvent, ReactElement, ReactNode, RefObject } from "react";
+import type { ComponentProps, CSSProperties, KeyboardEvent, ReactElement, ReactNode, Ref, RefObject } from "react";
 import {
   Children,
   cloneElement,
@@ -37,6 +37,7 @@ type RailContextValue = {
   count: number;
   activate: (index: number) => void;
   layerId: (index: number, part: "title" | "summary") => string;
+  summaries: readonly boolean[];
   lines: RefObject<Array<HTMLButtonElement | null>>;
 };
 const RailContext = createContext<RailContextValue | null>(null);
@@ -58,7 +59,14 @@ function useItem() {
 
 const LayerContext = createContext<number | null>(null);
 
-export function ThreadRail({ className, children, style, ...props }: ThreadRailProps) {
+function containsSummary(node: ReactNode): boolean {
+  return Children.toArray(node).some(
+    (child) =>
+      isValidElement<{ children?: ReactNode }>(child) && (child.type === ThreadRailSummary || containsSummary(child.props.children)),
+  );
+}
+
+export function ThreadRail({ className, children, style, "aria-label": ariaLabel = "Conversation timeline", ...props }: ThreadRailProps) {
   const [hovered, setHovered] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
   const activeLayerRef = useRef<HTMLDivElement>(null);
@@ -73,31 +81,46 @@ export function ThreadRail({ className, children, style, ...props }: ThreadRailP
     const popover = Children.toArray(item.props.children).find((child) => isValidElement(child) && child.type === ThreadRailPopover);
     return isValidElement<ThreadRailPopoverProps>(popover) ? popover.props : undefined;
   });
-  const activePopover = popovers[hovered];
+  // A thread that shrinks (an edit or regenerate drops later turns) must not strand the roving tab stop on a missing line.
+  const current = Math.min(hovered, Math.max(items.length - 1, 0));
+  const activePopover = popovers[current];
+  const summaries = popovers.map((popover) => containsSummary(popover?.children));
 
   // `transition: height` needs explicit border-box height; offsetHeight ignores cross-fade scale, and offset/client delta re-adds borders whatever skin
   useIsomorphicLayoutEffect(() => {
     const card = cardRef.current;
     const activeLayer = activeLayerRef.current;
     if (!card || !activeLayer) return;
-    setCardHeight(activeLayer.offsetHeight + card.offsetHeight - card.clientHeight);
-  }, [hovered]);
+    const measure = () => setCardHeight(activeLayer.offsetHeight + card.offsetHeight - card.clientHeight);
+    measure();
+    // The active layer's own content also changes (a streaming summary, another thread's turns) without the index moving.
+    const observer = new ResizeObserver(measure);
+    observer.observe(activeLayer);
+    return () => observer.disconnect();
+  }, [current]);
 
   // fallback for browsers without anchor positioning; anchor path ignores it
   const railStyle: CSSProperties & Record<"--_thread-rail-active-index", number> = {
     ...style,
-    "--_thread-rail-active-index": hovered,
+    "--_thread-rail-active-index": current,
   };
 
   return (
     <RailContext.Provider
-      value={{ current: hovered, count: items.length, activate: setHovered, layerId: (index, part) => `${baseId}-${index}-${part}`, lines }}
+      value={{
+        current,
+        count: items.length,
+        activate: setHovered,
+        layerId: (index, part) => `${baseId}-${index}-${part}`,
+        summaries,
+        lines,
+      }}
     >
       <nav
         data-control-ui="thread-rail"
         data-control-family="thread-rail"
         data-slot="root"
-        aria-label="Conversation timeline"
+        aria-label={ariaLabel}
         style={railStyle}
         // widest fisheye tick gets — fixed column stops card drifting as ticks resize
         className={cn("flex flex-col", className)}
@@ -114,7 +137,7 @@ export function ThreadRail({ className, children, style, ...props }: ThreadRailP
           data-slot="popover"
           data-surface="floating"
           style={{ ...activePopover?.style, height: cardHeight }}
-          className={cn("pointer-events-none z-20 w-72 overflow-hidden", activePopover?.className)}
+          className={cn("pointer-events-none z-(--z-sticky) w-72 overflow-hidden", activePopover?.className)}
         >
           {items.map((item, index) => (
             <LayerContext.Provider key={item.key ?? index} value={index}>
@@ -122,8 +145,8 @@ export function ThreadRail({ className, children, style, ...props }: ThreadRailP
                 data-control-ui="thread-rail"
                 data-control-family="thread-rail"
                 data-slot="popover-layer"
-                ref={index === hovered ? activeLayerRef : undefined}
-                data-active={index === hovered ? "true" : undefined}
+                ref={index === current ? activeLayerRef : undefined}
+                data-active={index === current ? "true" : undefined}
               >
                 {popovers[index]?.children ?? null}
               </div>
@@ -155,7 +178,7 @@ export function ThreadRailItem({
         data-slot="item"
         data-from={from}
         data-in-view={isInView ? "true" : undefined}
-        data-active={isInView ? "true" : undefined}
+        data-active={active ? "true" : undefined}
         // driven by state, not :hover, so card's anchor survives pointer leaving
         data-rail-current={index === rail.current ? "true" : undefined}
         // tiles rows with no gap, so :hover travels tick to tick without ever losing anchor
@@ -178,7 +201,20 @@ function rovingTarget(key: string, index: number, count: number): number | undef
   return targets[key];
 }
 
-export function ThreadRailLine({ className, onKeyDown, "aria-label": ariaLabel, ...props }: ThreadRailLineProps) {
+function assignRef<T>(ref: Ref<T> | undefined, node: T | null) {
+  if (typeof ref === "function") ref(node);
+  else if (ref) ref.current = node;
+}
+
+export function ThreadRailLine({
+  className,
+  onKeyDown,
+  onMouseEnter,
+  onFocus,
+  ref,
+  "aria-label": ariaLabel,
+  ...props
+}: ThreadRailLineProps) {
   const { index, active } = useItem();
   const rail = useRail();
 
@@ -186,6 +222,7 @@ export function ThreadRailLine({ className, onKeyDown, "aria-label": ariaLabel, 
     <button
       ref={(node) => {
         rail.lines.current[index] = node;
+        assignRef(ref, node);
       }}
       data-control-ui="thread-rail"
       data-control-family="thread-rail"
@@ -195,9 +232,15 @@ export function ThreadRailLine({ className, onKeyDown, "aria-label": ariaLabel, 
       aria-current={active ? "location" : undefined}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabel === undefined ? rail.layerId(index, "title") : undefined}
-      aria-describedby={rail.layerId(index, "summary")}
-      onMouseEnter={() => rail.activate(index)}
-      onFocus={() => rail.activate(index)}
+      aria-describedby={rail.summaries[index] ? rail.layerId(index, "summary") : undefined}
+      onMouseEnter={(event) => {
+        onMouseEnter?.(event);
+        rail.activate(index);
+      }}
+      onFocus={(event) => {
+        onFocus?.(event);
+        rail.activate(index);
+      }}
       onKeyDown={(event: KeyboardEvent<HTMLButtonElement>) => {
         onKeyDown?.(event);
         const target = event.defaultPrevented ? undefined : rovingTarget(event.key, index, rail.count);
@@ -281,7 +324,7 @@ export type ThreadRailFileProps = Omit<ComponentProps<"span">, "style"> & {
   style?: CSSProperties & ThreadRailKnobStyle;
 };
 
-export function ThreadRailFile({ className, ...props }: ThreadRailFileProps) {
+export function ThreadRailFile({ className, children, ...props }: ThreadRailFileProps) {
   return (
     <span
       data-control-ui="thread-rail"
@@ -289,7 +332,11 @@ export function ThreadRailFile({ className, ...props }: ThreadRailFileProps) {
       data-slot="file"
       className={cn("inline-flex max-w-[180px] items-center truncate", className)}
       {...props}
-    />
+    >
+      {Children.map(children, (child) =>
+        typeof child === "string" || typeof child === "number" ? <span className="min-w-0 truncate">{child}</span> : child,
+      )}
+    </span>
   );
 }
 

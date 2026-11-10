@@ -6,6 +6,7 @@ import { formatPx, useComputedReadout } from "./specimen/theme-readouts";
 const RADIUS_SCALE = ["--radius-sm", "--radius-md", "--radius-lg", "--radius-xl", "--radius-2xl"];
 const RADIUS_ROLES = [
   "--radius-popup-item",
+  "--radius-popup-item-fit",
   "--radius-control",
   "--radius-field",
   "--radius-composer",

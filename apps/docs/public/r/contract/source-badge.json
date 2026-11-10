@@ -2,9 +2,7 @@
   "version": 1,
   "family": "source-badge",
   "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
-  "registryItems": [
-    "source-badge"
-  ],
+  "registryItems": [],
   "knobs": [
     {
       "name": "--cui-source-badge-background",
@@ -22,7 +20,7 @@
       "name": "--cui-source-badge-hover-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "oklch(from var(--muted) l c h / 0.6)"
+      "defaultValue": "var(--hover-fill)"
     },
     {
       "name": "--cui-source-badge-hover-foreground",
@@ -43,35 +41,7 @@
       "defaultValue": "var(--radius-sm)"
     }
   ],
-  "parts": {
-    "source-badge": {
-      "root": {
-        "registryItems": [
-          "source-badge"
-        ],
-        "states": [
-          {
-            "attribute": "data-source-badge",
-            "source": "control-ui",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-source-badge-favicon",
-            "source": "control-ui",
-            "valueKind": "presence",
-            "values": []
-          }
-        ]
-      },
-      "label": {
-        "registryItems": [
-          "source-badge"
-        ],
-        "states": []
-      }
-    }
-  },
+  "parts": {},
   "adornments": {},
   "uncovered": [],
   "contrast": "/r/contract/source-badge.contrast.json"

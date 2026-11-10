@@ -40,7 +40,7 @@ for (const width of [390, 1440]) {
     await page.evaluate(() => document.fonts.ready);
 
     for (const sectionId of ["package", "install", "verify"]) {
-      const body = page.locator(`#${sectionId} > div`);
+      const body = page.locator(`#${sectionId} [data-control-family="markdown"][data-slot="flow"]`);
       await body.scrollIntoViewIfNeeded();
       await expect(body).toBeVisible();
       const gaps = await measureBlockGaps(body);

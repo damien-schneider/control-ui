@@ -1,0 +1,110 @@
+@layer components {
+  :where([data-control-family="field"][data-field-kind="native-select"][data-slot="wrapper"]),
+  :where([data-control-family="field"][data-field-kind="combobox"][data-slot="input-group"]),
+  :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="root"]) {
+    --cui-field-radius: var(--nest-radius, var(--radius-control));
+    --cui-field-affordance-background: transparent;
+    --cui-field-affordance-shadow: 0 0 transparent;
+    --cui-field-affordance-hover-background: var(--hover-fill);
+    --cui-field-affordance-foreground: var(--muted-foreground);
+    --cui-field-font-size: var(--text-body);
+  }
+
+  :where([data-control-family="field"][data-field-kind="select"][data-slot="trigger"]) {
+    --cui-field-font-weight: var(--font-weight-medium);
+    font-weight: var(--cui-field-font-weight);
+  }
+
+  :where([data-control-family="field"][data-field-kind="combobox"][data-slot="input"]),
+  :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="input"]) {
+    padding-inline-end: calc(var(--spacing) * 9);
+    --cui-field-font-weight: var(--font-weight-medium);
+    font-weight: var(--cui-field-font-weight);
+  }
+
+  :where([data-control-family="field"][data-field-kind="native-select"][data-slot="root"]) {
+    padding-inline-end: calc(var(--padding-x) * 0.6 + var(--spacing) * 3 + var(--spacing) * 1.5);
+    --cui-field-font-weight: var(--font-weight-medium);
+    font-weight: var(--cui-field-font-weight);
+    appearance: none;
+  }
+
+  :where([data-control-family="field"][data-field-kind="native-select"][data-slot="icon"]) {
+    inset-inline-end: calc(var(--padding-x) * 0.6);
+    background-color: var(--cui-field-affordance-background);
+    box-shadow: var(--cui-field-affordance-shadow);
+    color: var(--cui-field-affordance-foreground);
+  }
+
+  :where(
+    [data-control-family="field"][data-field-kind="native-select"][data-slot="root"]:is(:disabled, [data-disabled])
+      + [data-control-family="field"][data-field-kind="native-select"][data-slot="icon"]
+  ) {
+    opacity: var(--disabled-opacity);
+  }
+
+  :where([data-control-family="field"][data-field-kind="native-select"][data-slot="icon"] > svg),
+  :where([data-control-family="field"][data-field-kind="combobox"][data-slot="icon"] > svg),
+  :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"] > svg) {
+    inline-size: calc(var(--spacing) * 3);
+    block-size: calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]) {
+    border-radius: max(0px, calc(var(--cui-field-radius) - var(--spacing) * 1.5));
+    background-color: var(--cui-field-affordance-background);
+    box-shadow: var(--cui-field-affordance-shadow);
+    color: var(--cui-field-affordance-foreground);
+  }
+
+  :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]) {
+    border-radius: max(0px, calc(var(--cui-field-radius) - var(--spacing) * 1.5));
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="field"][data-field-kind="select"][data-slot="trigger"]:not(:disabled, [data-disabled])),
+  :where([data-control-family="field"][data-field-kind="native-select"][data-slot="root"]:not(:disabled, [data-disabled])),
+  :where([data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]:not(:disabled, [data-disabled])),
+  :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]:not(:disabled, [data-disabled])) {
+    cursor: pointer;
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]:hover:not(:disabled, [data-disabled])),
+    :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]:hover:not(:disabled, [data-disabled])) {
+      background-color: var(--cui-field-affordance-hover-background);
+      color: var(--foreground);
+    }
+  }
+
+  :where([data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]:disabled),
+  :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]:disabled) {
+    cursor: not-allowed;
+  }
+
+  :where(
+    [data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]:disabled:not(
+      [data-control-family="field"][data-control="true"] *
+    )
+  ),
+  :where(
+    [data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]:disabled:not(
+      [data-control-family="field"][data-control="true"] *
+    )
+  ) {
+    opacity: var(--disabled-opacity);
+  }
+
+  :where([data-control-family="field"][data-field-kind="combobox"][data-slot="icon"]) {
+    transition-property: rotate;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-emphasized);
+  }
+
+  :where(
+    [data-control-family="field"][data-field-kind="combobox"][data-popup-open]
+      :where([data-control-family="field"][data-field-kind="combobox"][data-slot="icon"])
+  ) {
+    rotate: 180deg;
+  }
+}

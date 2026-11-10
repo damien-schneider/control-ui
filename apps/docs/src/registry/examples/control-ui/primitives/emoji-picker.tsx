@@ -11,6 +11,7 @@ import {
   EmojiPickerFooter,
   EmojiPickerRecent,
   EmojiPickerSearch,
+  EmojiPickerSkinTone,
 } from "@/components/control-ui/ui/emoji-picker";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/control-ui/ui/popover";
 import { Text } from "@/components/control-ui/ui/typography";
@@ -40,7 +41,9 @@ export function PrimitiveEmojiPickerExample() {
             <EmojiPickerContent>
               <EmojiPickerRecent emojis={recentEmoji} />
             </EmojiPickerContent>
-            <EmojiPickerFooter />
+            <EmojiPickerFooter>
+              <EmojiPickerSkinTone />
+            </EmojiPickerFooter>
           </EmojiPicker>
         </PopoverContent>
       </Popover>

@@ -7,6 +7,7 @@ import type { ActivityDetailFormat, ActivityDetailTone, ActivityKind, ActivitySt
 import type { AudioDevicePermission } from "../../src/registry/sources/control-ui/audio-device-select";
 import type { BarAudioVisualizerProps } from "../../src/registry/sources/control-ui/audio-visualizer-bar";
 import type { ChatLayoutChrome } from "../../src/registry/sources/control-ui/chat-layout";
+import type { ContextLegendItemTone } from "../../src/registry/sources/control-ui/context";
 import type { ContextSegmentKind, ContextStatus } from "../../src/registry/sources/control-ui/context-model";
 import type { HoverIndicator } from "../../src/registry/sources/control-ui/control-props";
 import type { ControlSize } from "../../src/registry/sources/control-ui/control-variants";
@@ -16,7 +17,7 @@ import type { PopupItemTone } from "../../src/registry/sources/control-ui/surfac
 import type { TaskStatus } from "../../src/registry/sources/control-ui/task-list";
 import type { ToolApprovalRiskLevel, ToolApprovalState } from "../../src/registry/sources/control-ui/tool-approval";
 import type { ChatTone } from "../../src/registry/sources/control-ui/transcript-divider";
-import type { AlertVariant } from "../../src/registry/sources/control-ui/ui/alert";
+import type { AlertTone } from "../../src/registry/sources/control-ui/ui/alert";
 import type { AvatarBadgeStatus } from "../../src/registry/sources/control-ui/ui/avatar";
 import type { BadgeColor, BadgeSize, BadgeVariant } from "../../src/registry/sources/control-ui/ui/badge";
 import type { ButtonLayout, ButtonShape, ButtonTone, ButtonVariant } from "../../src/registry/sources/control-ui/ui/button";
@@ -37,10 +38,10 @@ import type { DropdownMenuTriggerVariant } from "../../src/registry/sources/cont
 import type { DropzoneOverlayScope, DropzoneSize } from "../../src/registry/sources/control-ui/ui/dropzone";
 import type { EmptyVariant } from "../../src/registry/sources/control-ui/ui/empty";
 import type { FieldGroupVariant, FieldLabelVariant, FieldLegendVariant } from "../../src/registry/sources/control-ui/ui/field";
+import type { InfiniteCanvasChrome } from "../../src/registry/sources/control-ui/ui/infinite-canvas";
 import type { KbdVariant } from "../../src/registry/sources/control-ui/ui/kbd";
 import type { LevelMeterOrientation } from "../../src/registry/sources/control-ui/ui/level-meter";
 import type { MorphingPanelAnchor, MorphingPanelBodyPadding } from "../../src/registry/sources/control-ui/ui/morphing-panel";
-import type { NavigationMenuLinkVariant } from "../../src/registry/sources/control-ui/ui/navigation-menu";
 import type { PageHeaderVariant, PageScrollMode, PageWidth } from "../../src/registry/sources/control-ui/ui/page-layout";
 import type { PopoverContentPadding } from "../../src/registry/sources/control-ui/ui/popover";
 import type { ProgressiveBlurSide } from "../../src/registry/sources/control-ui/ui/progressive-blur";
@@ -89,6 +90,7 @@ export type EmittedStateContract = {
   "activity:status:data-status": ActivityState;
   "activity:status:data-kind": ActivityKind;
   "avatar:badge:data-status": AvatarBadgeStatus;
+  "avatar:root:data-size": ControlSize;
   "context:root:data-status": ContextStatus;
   "context:trigger:data-status": ContextStatus;
   "context:trigger-indicator:data-status": ContextStatus;
@@ -98,7 +100,7 @@ export type EmittedStateContract = {
   "context:graph:data-status": ContextStatus;
   "context:segment:data-kind": ContextSegmentKind;
   "context:legend-item:data-kind": ContextSegmentKind;
-  "context:legend-item:data-tone": "available" | "over-limit";
+  "context:legend-item:data-tone": ContextLegendItemTone;
   "context:legend-indicator:data-kind": ContextSegmentKind;
   "audio-recorder:root:data-disabled": true;
   "audio-device-select:trigger:data-permission": AudioDevicePermission;
@@ -108,7 +110,7 @@ export type EmittedStateContract = {
   "audio-recorder:root:data-error": true;
   "audio-recorder:root:data-state": "idle" | "requesting" | "recording" | "recorded" | "submitting" | "error";
   "audio-recorder:trigger:data-recorder-state": "idle" | "requesting" | "recording" | "recorded" | "submitting" | "error";
-  "alert:root:data-variant": AlertVariant;
+  "alert:root:data-tone": AlertTone;
   "autocomplete:input:data-size": ControlSize;
   "badge:root:data-color": BadgeColor;
   "badge:root:data-size": BadgeSize;
@@ -177,6 +179,7 @@ export type EmittedStateContract = {
   "combobox:input:data-size": ControlSize;
   "dockable-panel:root:data-placement": DockablePanelPlacement;
   "dockable-panel:drop-zone:data-side": DockablePanelPlacement;
+  "infinite-canvas:root:data-chrome": InfiniteCanvasChrome;
   "infinite-canvas:root:data-panning": true;
   "infinite-canvas:root:data-easing": true;
   "infinite-canvas:root:data-moving": true;
@@ -193,6 +196,7 @@ export type EmittedStateContract = {
   "calendar:day:data-range-start": true;
   "calendar:day:data-range-middle": true;
   "calendar:day:data-range-end": true;
+  "calendar:dropdown:data-disabled": true;
   "dropzone:root:data-disabled": true;
   "dropzone:root:data-empty": true;
   "dropzone:root:data-size": DropzoneSize;
@@ -236,7 +240,6 @@ export type EmittedStateContract = {
   "dropdown-menu:trigger:data-size": ControlSize;
   "dropdown-menu:trigger:data-icon-only": true;
   "dropdown-menu:trigger:data-variant": DropdownMenuTriggerVariant;
-  "navigation-menu:link:data-variant": NavigationMenuLinkVariant;
   "dockable-panel:content:data-padding": DockablePanelContentPadding;
   "drawer:body:data-padding": DrawerBodyPadding;
   "drawer:content:data-surface-variant": DrawerContentSurface;
@@ -273,6 +276,7 @@ export type EmittedStateContract = {
   "native-select:root:data-size": ControlSize;
   "number-field:group:data-size": ControlSize;
   "radio-group:root:data-orientation": "horizontal" | "vertical";
+  "radio-group:root:data-track": HoverIndicator;
   "select:trigger:data-size": ControlSize;
   "spinner:indicator:data-size": ControlSize;
   "scroll-area:scrollbar:data-visibility": ScrollAreaScrollbarVisibility;
@@ -306,6 +310,7 @@ export type EmittedStateContract = {
   "page-layout:body:data-aside": true;
   "skeleton:root:data-variant": SkeletonVariant;
   "skeleton:root:data-shape": SkeletonShape;
+  "slider:root:data-labeled": "true";
   "slider:root:data-variant": SliderVariant;
   "slider:control:data-labeled": "true";
   "slider:track:data-labeled": "true";
@@ -317,8 +322,16 @@ export type EmittedStateContract = {
   "stepper:indicator:data-state": StepperState;
   "stepper:item:data-state": StepperState;
   "stepper:item:data-step": number;
+  "stepper:item:data-orientation": StepperOrientation;
+  "stepper:item:data-responsive": true;
   "stepper:list:data-orientation": StepperOrientation;
   "stepper:separator:data-state": StepperState;
+  "stepper:separator:data-orientation": StepperOrientation;
+  "stepper:separator:data-responsive": true;
+  "stepper:title:data-orientation": StepperOrientation;
+  "stepper:title:data-responsive": true;
+  "stepper:description:data-orientation": StepperOrientation;
+  "stepper:description:data-responsive": true;
   "stepper:trigger:data-state": StepperState;
   "swap:root:data-swapped": true;
   "swap:item:data-state": SwapItemState;
@@ -331,6 +344,8 @@ export type EmittedStateContract = {
   "table-of-contents:item:data-level": number;
   "table-of-contents:trail:data-visible": true;
   "table-of-contents:indicator:data-visible": true;
+  "table:root:data-sticky-header": true;
+  "tabs:list:data-scrollable": true;
   "tabs:list:data-size": ControlSize;
   "tabs:list:data-variant": TabsListVariant;
   "task-list:item:data-status": TaskStatus;
@@ -340,6 +355,7 @@ export type EmittedStateContract = {
   "toggle:root:data-size": ControlSize;
   "toggle:root:data-icon-only": true;
   "toggle:root:data-layout": ButtonLayout;
+  "toggle:root:data-shape": ButtonShape;
   "toggle:group:data-track": HoverIndicator;
   "toggle:root:data-tone": ButtonTone;
   "toggle:root:data-variant": ButtonVariant;

@@ -5,7 +5,8 @@ import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { popupBackdropStyle } from "@/components/control-ui/popup-parts";
+import { skinScopeAttributes } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import type { ButtonProps } from "@/components/control-ui/ui/button";
 import { Button } from "@/components/control-ui/ui/button";
@@ -15,9 +16,13 @@ export type AlertDialogProps = {
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+  onOpenChangeComplete?: (open: boolean) => void;
 };
 
-export type AlertDialogContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export type AlertDialogContentProps = Omit<ComponentProps<"div">, "style"> &
+  Pick<ComponentProps<typeof AlertDialogPrimitive.Popup>, "initialFocus" | "finalFocus"> & {
+    style?: CSSProperties & PopupKnobStyle;
+  };
 
 export function AlertDialog(props: AlertDialogProps) {
   return <AlertDialogPrimitive.Root {...props} />;
@@ -38,7 +43,7 @@ export function AlertDialogTrigger({
   );
 }
 
-type AlertDialogCloseProps = Omit<ComponentProps<typeof AlertDialogPrimitive.Close>, "render"> &
+export type AlertDialogCloseProps = Omit<ComponentProps<typeof AlertDialogPrimitive.Close>, "render"> &
   Pick<ButtonProps, "variant" | "size" | "tone" | "iconOnly">;
 
 export function AlertDialogClose({
@@ -70,30 +75,29 @@ export function AlertDialogClose({
   );
 }
 
-export function AlertDialogContent({ className, children, ...props }: AlertDialogContentProps) {
+export function AlertDialogContent({ className, children, style, ...props }: AlertDialogContentProps) {
   const skin = useSkin();
+  const backdropStyle = popupBackdropStyle(style);
   return (
-    <AlertDialogPrimitive.Portal>
+    <AlertDialogPrimitive.Portal {...skinScopeAttributes(skin)}>
       <AlertDialogPrimitive.Backdrop
         data-control-ui="alert-dialog"
         data-popup-kind="alert-dialog"
         data-slot="backdrop"
         data-control-family="popup"
         data-popup-part="backdrop"
-        data-skin={skin.id}
-        data-effects={controlEffectsAttribute(skin.effects)}
         className="fixed inset-0 z-(--z-overlay)"
+        style={backdropStyle}
       />
       <AlertDialogPrimitive.Popup
-        data-skin={skin.id}
-        data-effects={controlEffectsAttribute(skin.effects)}
         data-control-ui="alert-dialog"
         data-popup-kind="alert-dialog"
         data-slot="content"
         data-control-family="popup"
         data-popup-part="surface"
         data-surface="modal"
-        className={cn("fixed left-1/2 top-[12vh] z-(--z-modal) grid w-[calc(100%-2rem)] -translate-x-1/2", className)}
+        className={cn("fixed left-1/2 top-[12vh] z-(--z-modal) flex w-[calc(100%-2rem)] -translate-x-1/2 flex-col", className)}
+        style={style}
         {...props}
       >
         {children}
@@ -109,7 +113,7 @@ export function AlertDialogHeader({ className, ...props }: ComponentProps<"div">
       data-control-family="popup"
       data-popup-kind="alert-dialog"
       data-slot="header"
-      className={cn("grid", className)}
+      className={cn("grid shrink-0", className)}
       {...props}
     />
   );
@@ -122,7 +126,7 @@ export function AlertDialogBody({ className, ...props }: ComponentProps<"div"> &
       data-control-family="popup"
       data-popup-kind="alert-dialog"
       data-slot="body"
-      className={cn("grid", className)}
+      className={cn("grid min-h-0 overflow-y-auto", className)}
       {...props}
     />
   );
@@ -135,7 +139,7 @@ export function AlertDialogFooter({ className, ...props }: ComponentProps<"div">
       data-control-family="popup"
       data-popup-kind="alert-dialog"
       data-slot="footer"
-      className={cn("flex flex-col-reverse sm:flex-row sm:justify-end", className)}
+      className={cn("flex shrink-0 flex-col-reverse sm:flex-row sm:justify-end", className)}
       {...props}
     />
   );

@@ -3,7 +3,7 @@
 import { Toolbar as ToolbarPrimitive } from "@base-ui/react/toolbar";
 import { CheckIcon, CopyIcon, PencilIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import type { ActionBarKnobStyle } from "@/components/control-ui/knob-contracts/action-bar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -51,6 +51,7 @@ export function ActionBar({
   onCopyError,
   onEdit,
   onEditError,
+  "aria-label": ariaLabel,
   ...props
 }: ActionBarProps) {
   const actionContext = { copyValue, editValue, onCopy, onCopyError, onEdit, onEditError };
@@ -62,7 +63,7 @@ export function ActionBar({
         data-control-ui="action-bar"
         data-control-family="action-bar"
         data-slot="root"
-        aria-label={label}
+        aria-label={ariaLabel ?? label}
         className={cn("flex items-center", align === "end" ? "justify-end" : "justify-start", className)}
       >
         {children}
@@ -121,24 +122,33 @@ export function ActionBarCopy({
     onCopy,
     onCopyError,
   });
+  const [resolveFailed, setResolveFailed] = useState(false);
+
+  useEffect(() => {
+    if (!resolveFailed) return;
+    const timeout = window.setTimeout(() => setResolveFailed(false), resetDelay);
+    return () => window.clearTimeout(timeout);
+  }, [resolveFailed, resetDelay]);
 
   async function handleClick(event: MouseEvent<HTMLButtonElement>) {
     onClick?.(event);
     if (event.defaultPrevented) return;
 
+    setResolveFailed(false);
     try {
       const nextValue = await resolveCopyValue(copyValue);
       if (!nextValue) return;
       await copyToClipboard(nextValue);
     } catch (error) {
       onCopyError?.(error);
+      setResolveFailed(true);
     }
   }
 
   const copied = status === "copied";
   let copyStatus = "";
   if (copied) copyStatus = copiedAriaLabel;
-  else if (status === "failed") copyStatus = copyFailedLabel;
+  else if (status === "failed" || resolveFailed) copyStatus = copyFailedLabel;
 
   const isIconOnly = children === undefined;
   const swap = (

@@ -10,7 +10,7 @@
       "name": "--cui-icon-picker-cell-size",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "calc(var(--spacing) * 10)"
+      "defaultValue": "var(--control-h-lg)"
     },
     {
       "name": "--cui-icon-picker-cell-radius",
@@ -34,13 +34,13 @@
       "name": "--cui-icon-picker-cell-hover-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "var(--accent)"
+      "defaultValue": "var(--hover-fill)"
     },
     {
       "name": "--cui-icon-picker-cell-pressed-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "var(--accent)"
+      "defaultValue": "var(--active-fill)"
     }
   ],
   "parts": {

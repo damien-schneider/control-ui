@@ -1,6 +1,87 @@
 {
   "version": 1,
   "family": "theme-toggle",
-  "anatomies": [],
-  "probes": []
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "theme-toggle",
+          "data-control-ui": "theme-toggle",
+          "data-slot": "root",
+          "role": "radiogroup"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "theme-toggle",
+          "data-control-ui": "theme-toggle",
+          "data-slot": "root",
+          "role": "radiogroup"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "footer"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "theme-toggle",
+          "data-control-ui": "theme-toggle",
+          "data-slot": "root",
+          "role": "radiogroup"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "fill": "--cui-theme-toggle-background"
+      },
+      "anatomy": 0,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-theme-toggle-background"
+      },
+      "anatomy": 1,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-theme-toggle-background"
+      },
+      "anatomy": 2,
+      "rendersText": false,
+      "state": false
+    }
+  ]
 }

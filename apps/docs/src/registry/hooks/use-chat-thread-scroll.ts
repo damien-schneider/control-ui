@@ -23,6 +23,10 @@ function firstVisibleChild(list: Element, viewportTop: number) {
   return found;
 }
 
+function isNearBottom(viewport: HTMLElement) {
+  return viewport.scrollHeight - viewport.scrollTop - viewport.clientHeight <= BOTTOM_THRESHOLD;
+}
+
 export function useChatThreadScroll() {
   const viewportRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -36,8 +40,11 @@ export function useChatThreadScroll() {
     pinnedRef.current = true;
     setAtBottom(true);
     clearTimeout(settlingRef.current);
+    // No scrollend (older Safari) or an interrupted glide: re-read, or a stale pin yanks the reader back on the next resize.
     settlingRef.current = setTimeout(() => {
       settlingRef.current = undefined;
+      pinnedRef.current = isNearBottom(viewport);
+      setAtBottom(pinnedRef.current);
     }, SETTLE_TIMEOUT);
     viewport.scrollTo({ top: viewport.scrollHeight, behavior: behavior ?? (prefersReducedMotion(viewport) ? "auto" : "smooth") });
   }
@@ -71,8 +78,7 @@ export function useChatThreadScroll() {
 
     function readPosition() {
       if (!viewport || settlingRef.current) return;
-      const distance = viewport.scrollHeight - viewport.scrollTop - viewport.clientHeight;
-      pinnedRef.current = distance <= BOTTOM_THRESHOLD;
+      pinnedRef.current = isNearBottom(viewport);
       setAtBottom(pinnedRef.current);
     }
 
@@ -97,6 +103,7 @@ export function useChatThreadScroll() {
     return () => {
       observer.disconnect();
       clearTimeout(settlingRef.current);
+      settlingRef.current = undefined;
       viewport.removeEventListener("scroll", handleScroll);
       viewport.removeEventListener("scrollend", settle);
     };

@@ -5,6 +5,7 @@ export const chatComposerAttachmentKnobs = [
   "--cui-chat-composer-attachment-list-padding",
   "--cui-chat-composer-attachment-background",
   "--cui-chat-composer-attachment-border-color",
+  "--cui-chat-composer-attachment-error-border-color",
   "--cui-chat-composer-attachment-shadow",
   "--cui-chat-composer-attachment-backdrop-filter",
   "--cui-chat-composer-attachment-progress-background",

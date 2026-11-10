@@ -36,12 +36,11 @@ export function startPageViewTransition(update: () => void, { finishTimeout = FI
       new Promise<void>((resolve) => {
         finishTransition = resolve;
         update();
-        // blocked or cancelled navigation would otherwise leave page frozen under snapshot
+        // Blocked or cancelled navigation would otherwise leave page frozen under snapshot. Unconditional: a second
+        // navigation can replace finishTransition before this callback's turn, and that orphaned promise must still settle.
         window.setTimeout(() => {
-          if (finishTransition === resolve) {
-            finishTransition = null;
-            resolve();
-          }
+          if (finishTransition === resolve) finishTransition = null;
+          resolve();
         }, finishTimeout);
       }),
   );

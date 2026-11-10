@@ -4,9 +4,9 @@
     --cui-markdown-foreground: oklch(from var(--foreground) l c h / 0.9);
     --cui-markdown-blockquote-border-color: var(--border);
     --cui-markdown-blockquote-foreground: var(--muted-foreground);
-    --cui-markdown-inline-code-background: color-mix(in oklab, var(--foreground) 8%, transparent);
+    --cui-markdown-inline-code-background: oklch(from var(--foreground) l c h / 0.08);
     --cui-markdown-inline-code-foreground: var(--foreground);
-    --cui-markdown-inline-code-radius: 0.25rem;
+    --cui-markdown-inline-code-radius: var(--radius-sm);
     --cui-markdown-image-outline-color: var(--image-outline);
     --cui-markdown-link-foreground: var(--primary-text);
     --cui-markdown-table-cell-border-color: var(--border);
@@ -23,9 +23,17 @@
     overflow-wrap: break-word;
   }
 
-  :where([data-control-family="markdown"][data-slot="root"] img[data-streamdown="image"]) {
+  :where([data-control-family="markdown"][data-slot="image"]) {
+    display: inline-block;
+    max-inline-size: 100%;
+    block-size: auto;
+    border-radius: var(--radius-lg);
     outline: 1px solid var(--cui-markdown-image-outline-color);
     outline-offset: -1px;
+  }
+
+  :where([data-control-family="markdown"][data-slot="blocked-link"]) {
+    color: var(--muted-foreground);
   }
 
   :where([data-control-family="markdown"][data-slot="table-cell"]) {
@@ -42,7 +50,7 @@
     padding-block: calc(var(--spacing) * 1.5);
     border-style: solid;
     border-width: 1px;
-    border-color: var(--border);
+    border-color: var(--cui-markdown-table-cell-border-color);
     background-color: var(--cui-markdown-table-header-background);
     text-align: start;
     font-weight: var(--font-weight-semibold);

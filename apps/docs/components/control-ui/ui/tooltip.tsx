@@ -2,31 +2,58 @@
 
 import type { TooltipPopupProps, TooltipPositionerProps } from "@base-ui/react/tooltip";
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
-import type { ComponentProps, CSSProperties, Ref } from "react";
+import { type ComponentProps, type CSSProperties, createContext, type Ref, useContext, useEffect, useId, useMemo, useState } from "react";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { PopupArrowShape } from "@/components/control-ui/popup-parts";
-import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { skinScopeAttributes } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 
 export function TooltipProvider({ delay = 500, ...props }: ComponentProps<typeof TooltipPrimitive.Provider>) {
   return <TooltipPrimitive.Provider delay={delay} {...props} />;
 }
 
+type TooltipDescriptionContextValue = { contentId: string | undefined; setContentId: (contentId: string | undefined) => void };
+
+// The popup only exists while the tooltip is open, so it names itself here and the trigger never points at a missing id.
+const TooltipDescriptionContext = createContext<TooltipDescriptionContextValue | null>(null);
+
 export function Tooltip(props: ComponentProps<typeof TooltipPrimitive.Root>) {
-  return <TooltipPrimitive.Root {...props} />;
+  const [contentId, setContentId] = useState<string>();
+  const description = useMemo(() => ({ contentId, setContentId }), [contentId]);
+  return (
+    <TooltipDescriptionContext value={description}>
+      <TooltipPrimitive.Root {...props} />
+    </TooltipDescriptionContext>
+  );
 }
 
-type TooltipTriggerProps = ComponentProps<typeof TooltipPrimitive.Trigger> & {
+export type TooltipTriggerProps = ComponentProps<typeof TooltipPrimitive.Trigger> & {
   ref?: Ref<HTMLButtonElement>;
 };
 
-export function TooltipTrigger({ render, children, ref, ...props }: TooltipTriggerProps) {
+export function TooltipTrigger({ render, children, ref, "aria-describedby": describedBy, ...props }: TooltipTriggerProps) {
+  const contentId = useContext(TooltipDescriptionContext)?.contentId;
   return (
-    <TooltipPrimitive.Trigger ref={ref} render={render} {...props}>
+    <TooltipPrimitive.Trigger
+      ref={ref}
+      render={render}
+      aria-describedby={[describedBy, contentId].filter(Boolean).join(" ") || undefined}
+      {...props}
+    >
       {children}
     </TooltipPrimitive.Trigger>
   );
+}
+
+function TooltipDescriptionLink({ id }: { id: string }) {
+  const setContentId = useContext(TooltipDescriptionContext)?.setContentId;
+  useEffect(() => {
+    if (!setContentId) return;
+    setContentId(id);
+    return () => setContentId(undefined);
+  }, [id, setContentId]);
+  return null;
 }
 
 type TooltipContentPositionerProps = Omit<TooltipPositionerProps, keyof TooltipPopupProps>;
@@ -56,10 +83,13 @@ export function TooltipContent({
   collisionAvoidance,
   arrow = true,
   hidden = false,
+  id,
   ref,
   ...props
 }: TooltipContentProps) {
   const skin = useSkin();
+  const generatedId = useId();
+  const contentId = id ?? generatedId;
   if (hidden) return null;
 
   const positionerProps: TooltipContentPositionerProps = {
@@ -84,13 +114,13 @@ export function TooltipContent({
         data-popup-kind="tooltip"
         data-control-family="popup"
         data-slot="positioner"
-        data-skin={skin.id}
-        data-effects={controlEffectsAttribute(skin.effects)}
+        {...skinScopeAttributes(skin)}
         className="z-(--z-tooltip)"
         {...positionerProps}
       >
         <TooltipPrimitive.Popup
           ref={ref}
+          id={contentId}
           role="tooltip"
           data-control-ui="tooltip"
           data-popup-kind="tooltip"
@@ -101,6 +131,7 @@ export function TooltipContent({
           className={cn("relative flex w-fit max-w-xs flex-col", className)}
           {...props}
         >
+          <TooltipDescriptionLink id={contentId} />
           {children}
           {arrow ? (
             <TooltipPrimitive.Arrow

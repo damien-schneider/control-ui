@@ -265,12 +265,10 @@ export const agentsCompositions = {
         part(
           "ContextContent",
           part("ContextHeader", part("ContextTitle"), part("ContextDescription"), part("ContextClose")),
-          part("ContextSummary"),
-          part("ContextGraph"),
-          part("ContextLegend"),
+          part("ContextBody", part("ContextSummary"), part("ContextGraph"), part("ContextLegend", part("ContextLegendItem"))),
         ),
       ),
-      "Omitting children uses the built-in trigger and content. Add a header when composing a custom inspector.",
+      "Omitting children uses the built-in trigger and content. Add a header when composing a custom inspector; ContextBody scrolls under it. ContextLegend derives one row per segment; pass ContextLegendItem children to write the rows yourself.",
     ),
   ],
   "inline-citation": [

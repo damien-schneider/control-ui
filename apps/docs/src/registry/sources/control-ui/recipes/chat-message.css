@@ -14,13 +14,32 @@
     --cui-chat-message-shadow: none;
     --cui-chat-message-pending-dot-color: var(--muted-foreground);
     --cui-chat-message-pending-dot-size: calc(var(--spacing) * 1.5);
-    --cui-chat-message-row-hover-background: oklch(from var(--muted) l c h / 0.6);
+    --cui-chat-message-pending-animation-duration: calc(var(--duration-slow) * 3);
+    --cui-chat-message-row-hover-background: var(--hover-fill);
     --cui-chat-message-reaction-radius: 9999px;
     --cui-chat-message-reaction-background: oklch(from var(--muted) l c h / 0.7);
     --cui-chat-message-reaction-border-color: transparent;
     --cui-chat-message-reaction-border-width: var(--control-rim-width);
     --cui-chat-message-reaction-pressed-background: oklch(from var(--primary) l c h / 0.14);
     --cui-chat-message-reaction-pressed-border-color: oklch(from var(--primary) l c h / 0.55);
+    opacity: 1;
+    filter: none;
+    translate: 0 0;
+    scale: 1;
+    transition:
+      opacity var(--duration-slow) var(--ease-emphasized),
+      filter var(--duration-slow) var(--ease-emphasized),
+      translate var(--duration-slow) var(--ease-emphasized),
+      scale var(--duration-slow) var(--ease-emphasized);
+  }
+
+  @starting-style {
+    :where([data-control-family="chat-message"][data-slot="root"]) {
+      opacity: 0;
+      filter: blur(8px);
+      translate: 0 0.5rem;
+      scale: 0.985;
+    }
   }
 
   :where([data-control-family="chat-message"][data-slot="pending"]),
@@ -38,20 +57,20 @@
     block-size: var(--cui-chat-message-pending-dot-size);
     border-radius: 9999px;
     background: var(--cui-chat-message-pending-dot-color);
-    animation: chat-message-pending calc(var(--duration-slow) * 3) var(--ease-standard) infinite;
+    animation: cui-chat-message-pending var(--cui-chat-message-pending-animation-duration) var(--ease-standard) infinite;
   }
 
   :where([data-control-family="chat-message"][data-slot="pending"] > span:nth-child(2)),
   :where([data-control-family="chat-message"][data-slot="typing-dots"] > span:nth-child(2)) {
-    animation-delay: calc(var(--duration-slow) / 2);
+    animation-delay: calc(var(--cui-chat-message-pending-animation-duration) / 6);
   }
 
   :where([data-control-family="chat-message"][data-slot="pending"] > span:nth-child(3)),
   :where([data-control-family="chat-message"][data-slot="typing-dots"] > span:nth-child(3)) {
-    animation-delay: var(--duration-slow);
+    animation-delay: calc(var(--cui-chat-message-pending-animation-duration) / 3);
   }
 
-  @keyframes chat-message-pending {
+  @keyframes cui-chat-message-pending {
     0%,
     60%,
     100% {
@@ -129,7 +148,7 @@
     color: var(--cui-chat-message-foreground);
     overflow-wrap: break-word;
     font-size: var(--text-body);
-    line-height: calc(var(--spacing) * 5);
+    line-height: var(--leading-normal);
   }
 
   :where([data-control-family="chat-message"][data-slot="root"][data-layout="bubble"][data-role="user"]) {
@@ -165,7 +184,7 @@
   }
 
   :where([data-control-family="chat-message"][data-slot="author"]) {
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     color: var(--foreground);
   }
 
@@ -308,6 +327,12 @@
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
+}
+
+@property --cui-chat-message-pending-animation-duration {
+  syntax: "<time>";
+  inherits: true;
+  initial-value: 0s;
 }
 
 @property --cui-chat-message-row-hover-background {

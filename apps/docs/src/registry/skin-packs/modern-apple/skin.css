@@ -68,19 +68,8 @@
 }
 
 @layer components {
-  [data-skin="modern-apple"] .apple-glass {
-    background-color: var(--apple-glass-fill);
-    -webkit-backdrop-filter: var(--apple-glass-filter);
-    backdrop-filter: var(--apple-glass-filter);
-    box-shadow: var(--apple-glass-rim);
-  }
-
   [data-skin="modern-apple"] :where([data-slot="wrapper"][data-control-family="sidebar"]) {
-    --cui-sidebar-wrapper-background-image: none;
-    --cui-sidebar-inset-background: var(--background);
-    --cui-sidebar-inset-background-image: none;
     --cui-sidebar-inset-shadow: none;
-    --cui-sidebar-inset-border-width: 0px;
     --cui-sidebar-inset-radius: 0px;
     --cui-sidebar-inset-inset: 0px;
   }
@@ -89,9 +78,9 @@
     --sidebar: transparent;
     --cui-sidebar-inner-background: var(--apple-sidebar-material);
     --cui-sidebar-inner-backdrop-filter: var(--apple-sidebar-backdrop-filter);
-    --cui-sidebar-inner-border-width: 0px;
-    --cui-sidebar-inner-radius: 0px;
-    --cui-sidebar-inner-shadow: none;
+    --cui-sidebar-inner-floating-border-width: 0px;
+    --cui-sidebar-inner-floating-radius: var(--radius-scene);
+    --cui-sidebar-inner-floating-shadow: var(--apple-window-shadow);
     --cui-sidebar-group-label-foreground: var(--muted-foreground);
     --cui-sidebar-group-label-font-size: var(--text-caption);
     --cui-sidebar-group-label-font-weight: 700;
@@ -105,31 +94,15 @@
     --cui-sidebar-menu-button-hover-foreground: var(--foreground);
     --cui-sidebar-menu-button-active-background: var(--apple-selection-unemphasized);
     --cui-sidebar-menu-button-active-foreground: var(--foreground);
+    --cui-sidebar-menu-button-icon-foreground: var(--apple-sidebar-icon);
+    --cui-sidebar-menu-button-active-icon-foreground: var(--apple-sidebar-icon);
   }
 
   [data-skin="modern-apple"] :where([data-slot="root"][data-control-family="sidebar"]:focus-within) {
     --cui-sidebar-menu-button-active-background: var(--apple-selection);
     --cui-sidebar-menu-button-active-foreground: var(--primary-foreground);
-  }
-
-  [data-skin="modern-apple"] :where([data-slot="root"][data-control-family="sidebar"][data-variant="floating"][data-state]) {
-    --cui-sidebar-inner-radius: var(--radius-scene);
-    --cui-sidebar-inner-shadow: var(--apple-window-shadow);
-  }
-
-  [data-skin="modern-apple"]
-    :where([data-control-family="sidebar"][data-slot="menu-button"], [data-control-family="sidebar"][data-slot="group-label"])
-    > svg:first-child {
-    color: var(--apple-sidebar-icon);
-  }
-
-  [data-skin="modern-apple"]
-    :where(
-      [data-control-family="sidebar"][data-slot="root"]:focus-within
-        [data-control-family="sidebar"][data-slot="menu-button"]:is([data-active="true"], [aria-current="page"])
-    )
-    > svg:first-child {
-    color: currentColor;
+    --cui-sidebar-menu-button-track-active-foreground: var(--primary-foreground);
+    --cui-sidebar-menu-button-active-icon-foreground: currentColor;
   }
 
   [data-skin="modern-apple"]
@@ -139,7 +112,7 @@
     --cui-track-highlight-hover-background: var(--cui-sidebar-menu-button-hover-background);
     --cui-track-highlight-radius: var(--cui-sidebar-menu-button-radius);
     --cui-track-highlight-ring-color: transparent;
-    --cui-track-highlight-shadow: none;
+    --cui-track-highlight-shadow: 0 0 transparent;
   }
 
   [data-skin="modern-apple"] :where([data-slot="root"][data-control-family="toolbar"]) {

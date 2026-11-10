@@ -91,6 +91,10 @@ function getHighlighter(): Promise<HighlighterCore> {
         engine: createJavaScriptRegexEngine(),
       });
     })();
+    // a failed chunk load must not poison every later highlight
+    highlighterPromise.catch(() => {
+      highlighterPromise = null;
+    });
   }
 
   return highlighterPromise;

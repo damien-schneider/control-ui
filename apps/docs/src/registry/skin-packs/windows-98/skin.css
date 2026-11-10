@@ -100,10 +100,9 @@
   }
   [data-skin="windows-98"] :where([data-control-family="sidebar"][data-slot="root"]) {
     --cui-sidebar-inner-background: var(--win98-face);
-    --cui-sidebar-inner-background-image: none;
-    --cui-sidebar-inner-border-width: 0px;
-    --cui-sidebar-inner-radius: 0px;
     --cui-sidebar-inner-shadow: var(--win98-raised);
+    --cui-sidebar-inner-floating-border-width: 0px;
+    --cui-sidebar-inner-floating-shadow: var(--win98-raised);
     --cui-sidebar-group-label-foreground: var(--foreground);
     --cui-sidebar-group-label-padding: 0px 4px;
     --cui-sidebar-group-label-font-weight: 400;
@@ -126,7 +125,7 @@
     --cui-track-highlight-background: var(--cui-sidebar-menu-button-active-background);
     --cui-track-highlight-radius: 0px;
     --cui-track-highlight-ring-color: transparent;
-    --cui-track-highlight-shadow: none;
+    --cui-track-highlight-shadow: 0 0 transparent;
   }
   [data-skin="windows-98"]
     :where([data-control-family="sidebar"][data-slot="inner"] [data-control-family="scroll-area"][data-slot="root"]) {
@@ -208,15 +207,10 @@
     --cui-scroll-area-thumb-radius: 0;
     --cui-scroll-area-thumb-background: var(--win98-face);
     --cui-scroll-area-corner-background: var(--secondary);
+    --cui-scroll-area-scrollbar-size: 16px;
   }
   [data-skin="windows-98"] :where([data-control-family="scroll-area"][data-slot="scrollbar"]) {
     background: var(--secondary);
-  }
-  [data-skin="windows-98"] :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="vertical"]) {
-    inline-size: 16px;
-  }
-  [data-skin="windows-98"] :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="horizontal"]) {
-    block-size: 16px;
   }
   [data-skin="windows-98"] :where([data-control-family="scroll-area"][data-slot="thumb"]) {
     border: 0;

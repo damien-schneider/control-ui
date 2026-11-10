@@ -190,7 +190,8 @@ export function InlineCitationTrigger({
 }: InlineCitationTriggerProps) {
   const { sources } = useInlineCitation();
   const firstSource = sources[0];
-  const accessibleLabel = `${citationLabel(sources, emptyLabel)}, ${viewSourcesLabel(sources.length)}`;
+  const sourcesLabel = citationLabel(sources, emptyLabel);
+  const accessibleLabel = firstSource ? `${sourcesLabel}, ${viewSourcesLabel(sources.length)}` : sourcesLabel;
 
   return (
     <PopoverTrigger
@@ -228,9 +229,10 @@ export function InlineCitationFavicons({ limit = 3, className, ...props }: Inlin
       {...props}
       className={cn("flex shrink-0 -space-x-1", className)}
     >
-      {sources.slice(0, limit).map((source) => (
+      {sources.slice(0, limit).map((source, index) => (
         <SourceFavicon
-          key={source.href}
+          // biome-ignore lint/suspicious/noArrayIndexKey: the same page can be cited twice, so the href alone is not a unique key.
+          key={`${index}:${source.href}`}
           data-control-ui="inline-citation"
           data-slot="favicon"
           href={source.href}
@@ -272,7 +274,8 @@ export function InlineCitationContent({ className, children, align = "start", pa
       data-control-ui="inline-citation"
       data-slot="content"
       data-slide="scope"
-      className={cn("w-[min(24rem,calc(100vw-2rem))] overflow-hidden", className)}
+      // only the inline axis clips (sliding panels); the block axis keeps the popup's own scroll so a long quote stays reachable
+      className={cn("w-[min(24rem,calc(100vw-2rem))] overflow-x-hidden", className)}
     >
       {children ?? (
         <>
@@ -328,7 +331,7 @@ export function InlineCitationPrevious({ className, children, disabled, onClick,
       data-slot="previous"
       className={className}
     >
-      {children ?? <ArrowLeft aria-hidden="true" />}
+      {children ?? <ArrowLeft aria-hidden="true" data-icon-dir="inline" />}
     </Button>
   );
 }
@@ -355,7 +358,7 @@ export function InlineCitationNext({ className, children, disabled, onClick, ...
       data-slot="next"
       className={className}
     >
-      {children ?? <ArrowRight aria-hidden="true" />}
+      {children ?? <ArrowRight aria-hidden="true" data-icon-dir="inline" />}
     </Button>
   );
 }

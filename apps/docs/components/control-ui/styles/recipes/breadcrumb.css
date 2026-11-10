@@ -13,7 +13,7 @@
   :where([data-control-family="breadcrumb"][data-slot="list"]) {
     gap: calc(var(--spacing) * 1.5);
     font-size: var(--text-body);
-    line-height: calc(var(--spacing) * 5);
+    line-height: var(--text-body--line-height);
     color: var(--cui-breadcrumb-list-foreground);
   }
 
@@ -32,14 +32,29 @@
   }
 
   @media (hover: hover) {
-    :where([data-control-family="breadcrumb"][data-slot="link"]:hover:not([aria-disabled="true"])) {
+    :where([data-control-family="breadcrumb"][data-slot="link"]:hover:not(:disabled, [data-disabled], [aria-disabled="true"])) {
       color: var(--cui-breadcrumb-link-hover-foreground);
     }
   }
 
+  :where([data-control-family="breadcrumb"][data-slot="link"]:is(:disabled, [aria-disabled="true"])) {
+    opacity: var(--disabled-opacity);
+    cursor: not-allowed;
+  }
+
+  :where([data-control-family="breadcrumb"][data-slot="separator"] > svg) {
+    inline-size: calc(var(--spacing) * 3.5);
+    block-size: calc(var(--spacing) * 3.5);
+  }
+
   :where([data-control-family="breadcrumb"][data-slot="ellipsis"]) {
-    inline-size: calc(var(--spacing) * 9);
-    block-size: calc(var(--spacing) * 9);
+    inline-size: var(--control-h-md);
+    block-size: var(--control-h-md);
+  }
+
+  :where([data-control-family="breadcrumb"][data-slot="ellipsis"] > svg) {
+    inline-size: calc(var(--spacing) * 4);
+    block-size: calc(var(--spacing) * 4);
   }
 
   @media (pointer: coarse) {
@@ -50,9 +65,9 @@
     :where([data-control-family="breadcrumb"][data-slot="link"])::after {
       content: "";
       position: absolute;
-      inset: 50% 50%;
-      translate: -50% -50%;
-      inline-size: 100%;
+      inset-inline: 0;
+      inset-block-start: 50%;
+      translate: 0 -50%;
       block-size: max(100%, var(--touch-target));
     }
   }

@@ -2,8 +2,8 @@
   :where([data-control-family="field"][data-field-kind="phone-input"][data-slot="root"]) {
     --cui-phone-input-country-border-color: var(--border);
     --cui-phone-input-country-border-width: var(--control-rim-width);
-    --cui-phone-input-trigger-hover-background: oklch(from var(--foreground) l c h / 0.06);
-    --cui-phone-input-trigger-focus-background: oklch(from var(--foreground) l c h / 0.06);
+    --cui-phone-input-trigger-hover-background: var(--hover-fill);
+    --cui-phone-input-trigger-focus-background: var(--hover-fill);
     --cui-phone-input-metadata-foreground: var(--muted-foreground);
     --cui-phone-input-chevron-foreground: var(--muted-foreground);
   }
@@ -29,7 +29,7 @@
   :where([data-control-family="phone-input"][data-slot="flag"]) {
     inline-size: calc(var(--spacing) * 5);
     block-size: calc(var(--spacing) * 3.5);
-    border-radius: 2px;
+    border-radius: min(var(--radius-sm), 2px);
     color: var(--muted-foreground);
   }
 
@@ -46,6 +46,8 @@
 
   :where([data-control-family="phone-input"][data-slot="chevron"]) {
     --_phone-input-chevron-rotate: 0deg;
+    inline-size: calc(var(--spacing) * 3);
+    block-size: calc(var(--spacing) * 3);
     color: var(--cui-phone-input-chevron-foreground);
     transition-property: transform, translate, scale, rotate;
     transition-duration: var(--duration-base);
@@ -57,6 +59,16 @@
     --_phone-input-chevron-rotate: 180deg;
   }
 
+  :where([data-control-family="phone-input"][data-slot="check"]) {
+    inline-size: calc(var(--spacing) * 3.5);
+    block-size: calc(var(--spacing) * 3.5);
+  }
+
+  :where([data-control-family="phone-input"][data-slot="check"] > svg) {
+    inline-size: calc(var(--spacing) * 3);
+    block-size: calc(var(--spacing) * 3);
+  }
+
   :where([data-control-family="phone-input"][data-slot="check"]:not([data-visible])) {
     opacity: 0;
   }
@@ -65,6 +77,19 @@
     min-inline-size: calc(var(--spacing) * 14);
     gap: calc(var(--spacing) * 2);
     padding-inline: calc(var(--spacing) * 3);
+    cursor: pointer;
+  }
+
+  :where([data-control-family="phone-input"][data-slot="country-trigger"]:disabled) {
+    cursor: not-allowed;
+  }
+
+  :where(
+    [data-control-family="phone-input"][data-slot="country-trigger"]:disabled:not(
+      [data-control-family="field"][data-control="true"][data-disabled] *
+    )
+  ) {
+    opacity: var(--disabled-opacity);
   }
 
   :where(

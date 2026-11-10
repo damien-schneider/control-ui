@@ -71,6 +71,7 @@
   }
 
   :where([data-control-family="resizable"][data-slot="handle"][data-separator="disabled"]) {
+    cursor: not-allowed;
     opacity: var(--disabled-opacity);
   }
 
@@ -100,7 +101,7 @@
   }
 
   :where([data-control-family="resizable"][data-slot="handle-grip"]) {
-    border: 1px solid var(--border);
+    border: var(--control-rim-width) solid var(--cui-resizable-group-border-color);
     border-radius: var(--cui-resizable-grip-radius);
     background-color: var(--cui-resizable-grip-background);
     color: var(--cui-resizable-grip-foreground);

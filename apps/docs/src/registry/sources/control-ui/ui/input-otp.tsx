@@ -12,6 +12,10 @@ export type InputOTPProps = {
   value?: string;
   defaultValue?: string;
   onValueChange?: (value: string) => void;
+  onValueComplete?: (value: string) => void;
+  validationType?: OTPFieldPrimitive.Root.Props["validationType"];
+  autoSubmit?: boolean;
+  form?: string;
   disabled?: boolean;
   readOnly?: boolean;
   required?: boolean;
@@ -21,8 +25,12 @@ export type InputOTPProps = {
   className?: string;
   children?: ReactNode;
   "aria-label"?: string;
+  "aria-labelledby"?: string;
   "aria-describedby"?: string;
+  slotLabel?: InputOTPSlotLabel;
 } & { style?: CSSProperties & FieldKnobStyle };
+
+export type InputOTPSlotLabel = (index: number, length: number | undefined) => string;
 
 export type InputOTPSlotProps = {
   index: number;
@@ -30,20 +38,23 @@ export type InputOTPSlotProps = {
   disabled?: boolean;
   placeholder?: string;
   className?: string;
+  "aria-label"?: string;
   style?: CSSProperties & FieldKnobStyle;
 };
 
 export type InputOTPSeparatorProps = ComponentProps<"div"> & { style?: CSSProperties & FieldKnobStyle };
 
-const InputOTPLabelContext = createContext<string | undefined>(undefined);
+type InputOTPContextValue = { labelledBy?: string; slotLabel: InputOTPSlotLabel };
 
-function slotAriaLabel(index: number, length: number | undefined): string | undefined {
-  if (index === 0) return undefined;
+function defaultSlotLabel(index: number, length: number | undefined) {
   return length ? `Character ${index + 1} of ${length}` : `Character ${index + 1}`;
 }
 
+const InputOTPContext = createContext<InputOTPContextValue>({ slotLabel: defaultSlotLabel });
+
+// First slot takes the group's name, so a wrapping Field label or the group label is announced on entry.
 export function InputOTPSlot({ index, length, className, ...props }: InputOTPSlotProps) {
-  const labelId = useContext(InputOTPLabelContext);
+  const { labelledBy, slotLabel } = useContext(InputOTPContext);
   return (
     <OTPFieldPrimitive.Input
       data-control-ui="input-otp"
@@ -51,9 +62,9 @@ export function InputOTPSlot({ index, length, className, ...props }: InputOTPSlo
       data-slot="slot"
       data-control-family="field"
       data-control="true"
-      aria-label={slotAriaLabel(index, length)}
-      aria-labelledby={index === 0 ? labelId : undefined}
-      className={cn("relative flex size-control-md items-center justify-center", className)}
+      aria-label={index === 0 ? undefined : slotLabel(index, length)}
+      aria-labelledby={index === 0 ? labelledBy : undefined}
+      className={cn("relative flex items-center justify-center", className)}
       {...props}
     />
   );
@@ -72,14 +83,24 @@ export function InputOTPSeparator({ className, ...props }: InputOTPSeparatorProp
   );
 }
 
-export function InputOTP({ length = 6, separator = false, className, children, "aria-label": ariaLabel, ...props }: InputOTPProps) {
+export function InputOTP({
+  length = 6,
+  separator = false,
+  className,
+  children,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
+  slotLabel = defaultSlotLabel,
+  ...props
+}: InputOTPProps) {
   const labelId = useId();
-  const labelledBy = ariaLabel ? labelId : undefined;
+  const ownLabel = ariaLabel && !ariaLabelledBy ? ariaLabel : undefined;
+  const labelledBy = ariaLabelledBy ?? (ownLabel ? labelId : undefined);
   return (
-    <InputOTPLabelContext.Provider value={labelledBy}>
-      {ariaLabel ? (
+    <InputOTPContext.Provider value={{ labelledBy, slotLabel }}>
+      {ownLabel ? (
         <span id={labelId} hidden>
-          {ariaLabel}
+          {ownLabel}
         </span>
       ) : null}
       <OTPFieldPrimitive.Root
@@ -100,6 +121,6 @@ export function InputOTP({ length = 6, separator = false, className, children, "
             </Fragment>
           ))}
       </OTPFieldPrimitive.Root>
-    </InputOTPLabelContext.Provider>
+    </InputOTPContext.Provider>
   );
 }

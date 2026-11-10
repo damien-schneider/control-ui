@@ -59,6 +59,15 @@ function safeImage(isUrlAllowed: MarkdownUrlPolicy) {
       const title = String(node.attrs?.title ?? "").replace(/[\\"]/g, (character) => `\\${character}`);
       return title ? `![${alt}](${src} "${title}")` : `![${alt}](${src})`;
     },
+    // a pasted image with a refused URL would save as "![alt]()" and force the whole document into source mode
+    parseHTML() {
+      return [
+        {
+          tag: 'img[src]:not([src^="data:"])',
+          getAttrs: (element) => (isUrlAllowed(element.getAttribute("src") ?? "", "image") ? null : false),
+        },
+      ];
+    },
     addAttributes() {
       return {
         ...this.parent?.(),

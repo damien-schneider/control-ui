@@ -20,7 +20,7 @@
       "name": "--cui-field-label-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-lg)"
+      "defaultValue": "var(--radius-control)"
     },
     {
       "name": "--cui-field-label-background",
@@ -182,7 +182,7 @@
       "name": "--cui-field-font-weight",
       "syntax": "<number>",
       "initialValue": "400",
-      "defaultValue": "400"
+      "defaultValue": "var(--font-weight-normal)"
     },
     {
       "name": "--cui-field-font-family",
@@ -194,7 +194,7 @@
       "name": "--cui-field-group-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-lg)"
+      "defaultValue": "var(--radius-panel)"
     },
     {
       "name": "--cui-field-group-background",
@@ -266,6 +266,7 @@
   "parts": {
     "autocomplete": {
       "root": {
+        "family": "field",
         "registryItems": [
           "autocomplete"
         ],
@@ -1016,6 +1017,14 @@
             "source": "external",
             "valueKind": "presence",
             "values": []
+          },
+          {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "md"
+            ]
           },
           {
             "attribute": "data-touched",
@@ -1878,9 +1887,101 @@
             ]
           }
         ]
+      },
+      "wrapper": {
+        "family": "field",
+        "registryItems": [
+          "native-select"
+        ],
+        "states": [
+          {
+            "attribute": "data-field-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "native-select"
+            ]
+          }
+        ]
       }
     },
     "number-field": {
+      "root": {
+        "family": "field",
+        "registryItems": [
+          "number-field"
+        ],
+        "states": [
+          {
+            "attribute": "data-dirty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-field-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "number-field"
+            ]
+          },
+          {
+            "attribute": "data-filled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focused",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-invalid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-readonly",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-required",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-scrubbing",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-touched",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-valid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
       "decrement": {
         "family": "field",
         "registryItems": [

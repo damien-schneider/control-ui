@@ -23,6 +23,7 @@ export type ColorPickerContrastProps = Omit<Omit<ComponentProps<"div">, "childre
   background?: string;
   passLabel?: string;
   failLabel?: string;
+  fixLabel?: (level: WcagLevel) => ReactNode;
 };
 
 export type ColorPickerAreaContrastProps = Omit<ComponentProps<"span">, "children" | "style"> & {
@@ -32,10 +33,13 @@ export type ColorPickerAreaContrastProps = Omit<ComponentProps<"span">, "childre
   level?: WcagLevel;
 };
 
+const defaultFixLabel = (level: WcagLevel) => `Fix for ${level}`;
+
 export function ColorPickerContrast({
   background = "#ffffff",
   passLabel = "Passes",
   failLabel = "Fails",
+  fixLabel = defaultFixLabel,
   className,
   ...props
 }: ColorPickerContrastProps) {
@@ -78,9 +82,9 @@ export function ColorPickerContrast({
           data-slot="contrast-fix"
           disabled={disabled}
           onClick={applyFix}
-          className="ms-auto cursor-pointer disabled:cursor-not-allowed"
+          className="ms-auto"
         >
-          Fix for {target}
+          {fixLabel(target)}
         </button>
       ) : null}
     </div>

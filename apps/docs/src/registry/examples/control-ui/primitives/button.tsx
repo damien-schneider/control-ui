@@ -91,7 +91,7 @@ export function PrimitiveButtonExample() {
         </Button>
       </Row>
       <Row label="State">
-        <Button variant="quiet" active>
+        <Button variant="quiet" active aria-pressed>
           Active
         </Button>
         <Button variant="solid" disabled>
@@ -103,11 +103,11 @@ export function PrimitiveButtonExample() {
         </Button>
       </Row>
       <Row label="Tile">
-        <Button variant="surface" layout="tile">
+        <Button variant="surface" layout="tile" aria-pressed={false}>
           <MonitorIcon className="size-4" />
           Desktop
         </Button>
-        <Button variant="surface" layout="tile" active>
+        <Button variant="surface" layout="tile" active aria-pressed>
           <SmartphoneIcon className="size-4" />
           Mobile
         </Button>

@@ -3,9 +3,16 @@
   "family": "badge",
   "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
   "registryItems": [
-    "badge"
+    "badge",
+    "source-badge"
   ],
   "knobs": [
+    {
+      "name": "--cui-badge-icon",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3)"
+    },
     {
       "name": "--cui-badge-radius",
       "syntax": "<length-percentage>",
@@ -88,6 +95,34 @@
             ]
           }
         ]
+      }
+    },
+    "source-badge": {
+      "root": {
+        "family": "badge",
+        "registryItems": [
+          "source-badge"
+        ],
+        "states": [
+          {
+            "attribute": "data-source-badge",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-source-badge-favicon",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "label": {
+        "registryItems": [
+          "source-badge"
+        ],
+        "states": []
       }
     }
   },

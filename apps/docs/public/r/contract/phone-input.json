@@ -22,13 +22,13 @@
       "name": "--cui-phone-input-trigger-hover-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "oklch(from var(--foreground) l c h / 0.06)"
+      "defaultValue": "var(--hover-fill)"
     },
     {
       "name": "--cui-phone-input-trigger-focus-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "oklch(from var(--foreground) l c h / 0.06)"
+      "defaultValue": "var(--hover-fill)"
     },
     {
       "name": "--cui-phone-input-metadata-foreground",

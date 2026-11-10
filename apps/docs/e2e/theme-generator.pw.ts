@@ -284,9 +284,9 @@ test("a generated theme selects the skin that carries its depth", async ({ page 
   await expect(page.locator('[data-control-ui="activity"][data-slot="root"]').last()).toContainText("Glass Desk");
   await expect(page.locator("[data-skin]").first()).toHaveAttribute("data-skin", "modern-apple");
 
-  // The skin only earns its place if it paints something tokens cannot: a gradient canvas.
-  const sidebarWrapper = page.locator('[data-slot="wrapper"][data-control-family="sidebar"]').first();
-  await expect(sidebarWrapper).toHaveCSS("background-image", /gradient/);
+  // The skin only earns its place if it paints something tokens cannot: a live backdrop blur.
+  const sidebarSurface = page.locator('[data-control-family="sidebar"][data-slot="inner"]').first();
+  await expect.poll(() => sidebarSurface.evaluate((element) => getComputedStyle(element, "::before").backdropFilter)).not.toBe("none");
 });
 
 // A skin that scrolls the page instead of an inset viewport rebuilds the tree under PageLayout, which

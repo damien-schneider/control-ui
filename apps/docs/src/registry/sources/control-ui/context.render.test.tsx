@@ -97,4 +97,12 @@ describe("Context", () => {
     expect(html).toContain('data-slot="limit-marker"');
     expect(html).toContain("20 tokens over limit");
   });
+
+  test("an empty window draws no usage arc on the trigger", () => {
+    const html = renderToStaticMarkup(<Context segments={[]} maxTokens={200_000} />);
+
+    expect(html).toContain("0% context");
+    expect(html).toContain('data-slot="trigger-track"');
+    expect(html).not.toContain('data-slot="trigger-value"');
+  });
 });

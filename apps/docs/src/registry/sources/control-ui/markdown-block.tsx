@@ -91,13 +91,17 @@ export function MarkdownBlockCopy({ "aria-label": ariaLabel = "Copy markdown", .
   return <CodeCopy value={code} aria-label={ariaLabel} {...props} />;
 }
 
-export type MarkdownBlockContentProps = ComponentProps<"div"> & { style?: CSSProperties & MarkdownBlockKnobStyle };
+export type MarkdownBlockContentProps = ComponentProps<"div"> & {
+  /** Height at which the content starts to scroll. */
+  maxHeight?: string;
+  style?: CSSProperties & MarkdownBlockKnobStyle;
+};
 
-export function MarkdownBlockContent({ children, className, ...props }: MarkdownBlockContentProps) {
+export function MarkdownBlockContent({ children, className, maxHeight = "420px", ...props }: MarkdownBlockContentProps) {
   const code = useMarkdownBlockContext();
 
   return (
-    <ScrollArea maxHeight="420px">
+    <ScrollArea maxHeight={maxHeight}>
       <div data-control-ui="markdown-block" data-control-family="markdown-block" data-slot="content" className={className} {...props}>
         {children ?? <Markdown content={code} />}
       </div>

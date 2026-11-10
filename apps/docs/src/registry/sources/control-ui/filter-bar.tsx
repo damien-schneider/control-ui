@@ -7,45 +7,81 @@ import type { FilterBarKnobStyle } from "@/components/control-ui/knob-contracts/
 import { cn } from "@/components/control-ui/lib/cn";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { FilterBarContext, type FilterBarContextValue, type FilterBarExit } from "./filter-bar/context";
-import { describeFilter, fieldOperators, filterNavigationKeys } from "./filter-bar/model";
+import { defaultFilterBarLabels, describeFilter, fieldOperators, filterNavigationKeys } from "./filter-bar/model";
 import { filterMotionEnabled, useFilterBarMotion } from "./filter-bar/motion";
 import { FilterBarAddButton, FilterBarChip, FilterBarChips, FilterBarClear, FilterBarInput } from "./filter-bar/parts";
-import type { FilterBarDraft, FilterBarField, FilterBarItem, FilterBarOperator, FilterBarStage, FilterBarValue } from "./filter-bar/types";
-
-export type { FilterBarChipProps } from "./filter-bar/parts";
-export type {
+import type {
+  FilterBarDraft,
   FilterBarField,
   FilterBarItem,
+  FilterBarLabels,
+  FilterBarOperator,
+  FilterBarStage,
+  FilterBarValue,
+} from "./filter-bar/types";
+
+export type {
+  FilterBarAddButtonProps,
+  FilterBarChipProps,
+  FilterBarChipsProps,
+  FilterBarClearProps,
+  FilterBarInputProps,
+} from "./filter-bar/parts";
+export type {
+  FilterBarField,
+  FilterBarFieldType,
+  FilterBarItem,
+  FilterBarLabels,
   FilterBarOperator,
   FilterBarOption,
   FilterBarQuery,
   FilterBarScalar,
+  FilterBarStage,
   FilterBarValue,
 } from "./filter-bar/types";
 
-export type FilterBarRootProps = Omit<ComponentProps<"fieldset">, "onChange" | "style"> & {
+export type FilterBarRootProps = Omit<ComponentProps<"fieldset">, "onChange" | "style" | "defaultValue"> & {
   fields: readonly FilterBarField[];
   operators: readonly FilterBarOperator[];
-  value: readonly FilterBarItem[];
-  onValueChange: (value: FilterBarItem[]) => void;
+  value?: readonly FilterBarItem[];
+  defaultValue?: readonly FilterBarItem[];
+  onValueChange?: (value: FilterBarItem[]) => void;
+  labels?: Partial<FilterBarLabels>;
   createItemId?: () => string;
   disabled?: boolean;
   readOnly?: boolean;
   style?: CSSProperties & FilterBarKnobStyle;
 };
 
-function valueStatusMessage(field: FilterBarField | undefined): string | undefined {
-  if (field?.error) return typeof field.error === "string" ? field.error : "Couldn’t load values.";
-  if (field?.loading) return "Loading values…";
+function valueStatusMessage(field: FilterBarField | undefined, labels: FilterBarLabels): string | undefined {
+  if (field?.error) return typeof field.error === "string" ? field.error : labels.loadError;
+  if (field?.loading) return labels.loading;
   return undefined;
+}
+
+let fallbackItemCount = 0;
+
+/** Swapping "is" for "is not" on a chip must not cost the value already picked; only a different arity needs a new one. */
+function valuesKeptByOperator(draft: FilterBarDraft, operator: FilterBarOperator, operators: readonly FilterBarOperator[]) {
+  const previous = operators.find((candidate) => candidate.id === draft.operatorId);
+  return previous && (previous.arity ?? "one") === (operator.arity ?? "one") ? draft.values : [];
+}
+
+function createFilterItemId() {
+  // randomUUID only exists in secure contexts; plain-http origins still need unique chip ids.
+  if (typeof crypto.randomUUID === "function") return crypto.randomUUID();
+  fallbackItemCount += 1;
+  return `filter-${Date.now().toString(36)}-${fallbackItemCount}`;
 }
 
 function FilterBarRoot({
   fields,
   operators,
   value,
+  defaultValue = [],
   onValueChange,
-  createItemId = () => crypto.randomUUID(),
+  labels,
+  createItemId = createFilterItemId,
   disabled = false,
   readOnly = false,
   className,
@@ -54,9 +90,12 @@ function FilterBarRoot({
   "aria-label": ariaLabel = "Filters",
   ...props
 }: FilterBarRootProps) {
+  const [uncontrolledItems, setUncontrolledItems] = useState(defaultValue);
+  const items = value ?? uncontrolledItems;
+  const text = { ...defaultFilterBarLabels, ...labels };
   const [draft, setDraft] = useState<FilterBarDraft | null>(null);
   const [exits, setExits] = useState<FilterBarExit[]>([]);
-  const [announcement, setAnnouncement] = useState("");
+  const [announcement, setAnnouncement] = useState({ message: "", key: 0 });
   const [focusNodes] = useState(() => new Map<string, HTMLElement>());
   const { rootRef, ...motion } = useFilterBarMotion();
 
@@ -66,14 +105,31 @@ function FilterBarRoot({
     else focusNodes.delete(key);
   }
 
+  function setItems(next: FilterBarItem[]) {
+    if (value === undefined) setUncontrolledItems(next);
+    onValueChange?.(next);
+  }
+
+  // Removing the same filter twice produces the same sentence; the key makes the live region speak it again.
+  function announce(message: string) {
+    setAnnouncement((current) => ({ message, key: current.key + 1 }));
+  }
+
   function transition(next: FilterBarDraft) {
     motion.capture();
+    setAnnouncement((current) => ({ ...current, message: "" }));
     setDraft(next);
-    if (next.stage === "value" && next.fieldId && next.operatorId) {
-      fields
-        .find((field) => field.id === next.fieldId)
-        ?.onQueryChange?.({ fieldId: next.fieldId, operatorId: next.operatorId, query: next.query });
-    }
+    if (next.stage !== "value" || !next.fieldId || !next.operatorId) return;
+    const sameRequest =
+      draft?.stage === "value" &&
+      draft.id === next.id &&
+      draft.fieldId === next.fieldId &&
+      draft.operatorId === next.operatorId &&
+      draft.query === next.query;
+    if (sameRequest) return;
+    fields
+      .find((field) => field.id === next.fieldId)
+      ?.onQueryChange?.({ fieldId: next.fieldId, operatorId: next.operatorId, query: next.query });
   }
 
   function start(owner: string, anchor: HTMLElement, stage: FilterBarStage = "field", item?: FilterBarItem, initialQuery?: string) {
@@ -122,19 +178,20 @@ function FilterBarRoot({
     if (!next.fieldId || !next.operatorId) return;
     const item: FilterBarItem = { id: next.id, fieldId: next.fieldId, operatorId: next.operatorId, value: nextValue };
     motion.capture();
-    onValueChange(next.editing ? value.map((current) => (current.id === item.id ? item : current)) : [...value, item]);
-    setAnnouncement(`${next.editing ? "Updated" : "Added"} filter: ${describeFilter(item, fields, operators)}`);
+    setItems(next.editing ? items.map((current) => (current.id === item.id ? item : current)) : [...items, item]);
+    announce((next.editing ? text.updated : text.added)(describeFilter(item, fields, operators)));
     if (next.anchor.isConnected) next.anchor.focus();
     setDraft(null);
   }
 
   function selectOperator(operatorId: string, next = draft) {
-    if (!next) return;
     const operator = operators.find((candidate) => candidate.id === operatorId);
-    if (!operator) return;
-    const nextDraft: FilterBarDraft = { ...next, operatorId, stage: "value", values: [], query: "" };
+    if (!next || !operator) return;
+    const values = valuesKeptByOperator(next, operator, operators);
+    const nextDraft: FilterBarDraft = { ...next, operatorId, stage: "value", values, query: "" };
     if (operator.arity === "none") commitDraft(nextDraft, null);
-    else transition(nextDraft);
+    else if (values.length === 0) transition(nextDraft);
+    else commitDraft(nextDraft, operator.arity === "many" ? values : (values[0] ?? null));
   }
 
   function selectField(fieldId: string) {
@@ -147,11 +204,11 @@ function FilterBarRoot({
     else transition(next);
   }
 
-  function addExits(items: readonly FilterBarItem[]) {
+  function addExits(leavingItems: readonly FilterBarItem[]) {
     const root = rootRef.current;
     if (!root || !filterMotionEnabled(root)) return;
     const rootBounds = root.getBoundingClientRect();
-    const leaving = items.flatMap((item) => {
+    const leaving = leavingItems.flatMap((item) => {
       const node = focusNodes.get(`chip:${item.id}`);
       if (!node) return [];
       const bounds = node.getBoundingClientRect();
@@ -176,40 +233,44 @@ function FilterBarRoot({
     entry?.[1].focus();
   }
 
-  function remove(item: FilterBarItem) {
+  function remove(item: FilterBarItem, moveFocus = true) {
     if (disabled || readOnly) return;
     motion.capture();
     addExits([item]);
-    const index = value.findIndex((candidate) => candidate.id === item.id);
-    const neighbour = value[index + 1] ?? value[index - 1];
-    if (neighbour) focusNodes.get(`${neighbour.id}:field`)?.focus();
-    else focusEntry();
+    if (moveFocus) {
+      const index = items.findIndex((candidate) => candidate.id === item.id);
+      const neighbour = items[index + 1] ?? items[index - 1];
+      const target = neighbour ? focusNodes.get(`${neighbour.id}:field`) : undefined;
+      if (target) target.focus();
+      else focusEntry();
+    }
     if (draft?.id === item.id) setDraft(null);
-    onValueChange(value.filter((candidate) => candidate.id !== item.id));
-    setAnnouncement(`Removed filter: ${describeFilter(item, fields, operators)}`);
+    setItems(items.filter((candidate) => candidate.id !== item.id));
+    announce(text.removed(describeFilter(item, fields, operators)));
   }
 
   function clear() {
     if (disabled || readOnly) return;
     motion.capture();
-    addExits(value);
+    addExits(items);
     setDraft(null);
-    onValueChange([]);
+    setItems([]);
     focusEntry();
-    setAnnouncement("Cleared all filters");
+    announce(text.cleared);
   }
 
   function deleteFocusedFilter(event: KeyboardEvent<HTMLElement>, itemId: string) {
-    const item = value.find((candidate) => candidate.id === itemId);
+    const item = items.find((candidate) => candidate.id === itemId);
     if (!item) return;
     event.preventDefault();
     remove(item);
   }
 
   function focusAdjacentFilter(event: KeyboardEvent<HTMLElement>, itemId?: string, part?: string) {
-    const keys = filterNavigationKeys(value);
+    const keys = filterNavigationKeys(items).filter((key) => focusNodes.has(key));
     const index = itemId ? keys.indexOf(`${itemId}:${part}`) : keys.length;
-    const direction = event.key === "ArrowLeft" ? -1 : 1;
+    const rtl = getComputedStyle(event.currentTarget).direction === "rtl";
+    const direction = (event.key === "ArrowLeft") === rtl ? 1 : -1;
     const target = keys[index + direction];
     event.preventDefault();
     if (target) focusNodes.get(target)?.focus();
@@ -226,7 +287,8 @@ function FilterBarRoot({
   const context: FilterBarContextValue = {
     fields,
     operators,
-    items: value,
+    labels: text,
+    items,
     draft,
     exits,
     disabled,
@@ -251,7 +313,7 @@ function FilterBarRoot({
   };
 
   const draftField = draft?.stage === "value" ? fields.find((field) => field.id === draft.fieldId) : undefined;
-  const liveMessage = valueStatusMessage(draftField) ?? announcement;
+  const liveMessage = valueStatusMessage(draftField, text) ?? announcement.message;
 
   const rootElement = useRender({
     ref: [rootRef, ref ?? null],
@@ -267,7 +329,7 @@ function FilterBarRoot({
         {...props}
       >
         {children}
-        <LiveStatus message={liveMessage} />
+        <LiveStatus message={liveMessage} announcementKey={announcement.key} />
       </fieldset>
     ),
   });
@@ -286,13 +348,13 @@ export const FilterBar = {
 export const DEFAULT_FILTER_OPERATORS: readonly FilterBarOperator[] = [
   { id: "is", label: "is" },
   { id: "is-not", label: "is not" },
-  { id: "contains", label: "contains" },
-  { id: "starts-with", label: "starts with" },
-  { id: "gt", label: ">", ariaLabel: "greater than" },
-  { id: "gte", label: "≥", ariaLabel: "at least" },
-  { id: "lt", label: "<", ariaLabel: "less than" },
-  { id: "lte", label: "≤", ariaLabel: "at most" },
-  { id: "in", label: "is any of", arity: "many" },
+  { id: "contains", label: "contains", types: ["text"] },
+  { id: "starts-with", label: "starts with", types: ["text"] },
+  { id: "gt", label: ">", ariaLabel: "greater than", types: ["number"] },
+  { id: "gte", label: "≥", ariaLabel: "at least", types: ["number"] },
+  { id: "lt", label: "<", ariaLabel: "less than", types: ["number"] },
+  { id: "lte", label: "≤", ariaLabel: "at most", types: ["number"] },
+  { id: "in", label: "is any of", arity: "many", types: ["text", "number"] },
   { id: "is-empty", label: "is empty", arity: "none" },
   { id: "is-not-empty", label: "is not empty", arity: "none" },
 ];

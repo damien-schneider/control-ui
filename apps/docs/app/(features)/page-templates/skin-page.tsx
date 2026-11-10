@@ -93,7 +93,7 @@ const SKIN_VALUE_RULES = [
   },
   {
     label: "component knob",
-    body: "A component-specific visual is re-valued through its registered --component-* property in scoped skin.css.",
+    body: "A component-specific visual is re-valued through its registered --cui-<family>-* property in scoped skin.css.",
   },
   {
     label: "custom CSS",
@@ -133,7 +133,7 @@ const SKIN_REQUIREMENTS = [
   },
   {
     label: "declared intents, mirrored",
-    body: 'colorScheme locks the page mode to a fixed-scheme skin and motion: "reduced" collapses --duration-* through data-motion — never animation: none on finite animations. Both flags are mirrored in components/theme.ts for the pre-paint script; theme-color-scheme-lock.test.ts fails on drift.',
+    body: 'colorScheme locks the page mode to a fixed-scheme skin and motion: "reduced" collapses --duration-* through data-motion — never animation: none on finite animations. SkinProvider applies both when the skin sits on <html data-skin>; a wrapper scope spreads skinScopeAttributes(skin) for motion, and colorScheme stays root-only. The docs pre-paint script mirrors both flags in components/theme.ts; theme-color-scheme-lock.test.ts fails on drift.',
   },
   {
     label: "extensions attach by anatomy",
@@ -252,11 +252,13 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
         </section>
 
         <section id="motion" className="min-w-0 scroll-mt-20">
-          <SectionTitle title="Motion flag" description="One boolean, zero JavaScript." />
+          <SectionTitle title="Motion flag" description="One config field, nothing to wire." />
           <Text as="p" tone="muted" className="text-pretty">
             <code>motion: &quot;reduced&quot;</code> stamps <code>data-motion=&quot;reduced&quot;</code>, which collapses{" "}
             <code>--duration-fast/base/slow</code> to 0 — every cva transition, Base UI enter/exit and the shimmer/ripple keyframes flatten
-            at once. The theme editor also exposes a manual “Reduce motion” toggle.
+            at once. <code>SkinProvider</code> stamps it on the root when the skin is installed on <code>&lt;html data-skin&gt;</code>; a
+            wrapper scope gets it from <code>skinScopeAttributes(skin)</code>. The theme editor also exposes a manual “Reduce motion”
+            toggle.
           </Text>
         </section>
 

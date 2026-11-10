@@ -25,7 +25,7 @@
   }
 
   :where([data-control-family="context"][data-slot="trigger-track"][data-status="unavailable"]) {
-    stroke: var(--muted);
+    stroke: var(--cui-context-track-fill);
   }
 
   :where([data-control-family="context"][data-slot="trigger-value"]) {
@@ -33,7 +33,7 @@
   }
 
   :where([data-control-family="context"][data-slot="trigger-value"][data-status="over-limit"]) {
-    stroke: var(--destructive-text);
+    stroke: var(--cui-context-limit-marker-color);
   }
 
   :where([data-control-family="context"][data-slot="trigger-label"]) {
@@ -86,6 +86,10 @@
   :where([data-control-family="context"][data-slot="graph"]) {
     block-size: calc(var(--spacing) * 2.5);
     border-radius: var(--cui-context-graph-radius);
+  }
+
+  :where([data-control-family="context"][data-slot="graph"]:dir(rtl)) {
+    scale: -1 1;
   }
 
   :where([data-control-family="context"][data-slot="track"]) {
@@ -161,11 +165,11 @@
   }
 
   :where([data-control-family="context"][data-slot="legend-item"][data-tone="available"] [data-slot="legend-indicator"]) {
-    background: var(--muted);
+    background: var(--cui-context-track-fill);
   }
 
   :where([data-control-family="context"][data-slot="legend-item"][data-tone="over-limit"] [data-slot="legend-indicator"]) {
-    background: var(--destructive-text);
+    background: var(--cui-context-limit-marker-color);
   }
 
   :where([data-control-family="context"][data-slot="legend-label"]) {

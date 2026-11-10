@@ -1,34 +1,44 @@
 @layer components {
   :where([data-control-family="pagination"][data-slot="root"]) {
+    --cui-pagination-link-height: var(--control-h-sm);
     --cui-pagination-link-radius: var(--radius-control);
     --cui-pagination-link-background: transparent;
     --cui-pagination-link-hover-background: var(--hover-fill);
+    --cui-pagination-link-active-background: var(--control-fill);
+    --cui-pagination-link-active-border-color: var(--border);
     --cui-pagination-link-foreground: var(--foreground);
-    --cui-pagination-link-shadow: none;
-    --cui-pagination-link-font-size: 1em;
+    --cui-pagination-link-shadow: 0 0 transparent;
+    --cui-pagination-link-active-shadow: var(--shadow-sm);
+    --cui-pagination-link-font-size: var(--text-body);
   }
+
   :where([data-control-family="pagination"][data-slot="content"]) {
     gap: calc(var(--spacing) * 1);
   }
 
   :where([data-control-family="pagination"][data-slot="link"]) {
-    gap: calc(var(--spacing) * 1);
-    padding-inline: calc(var(--spacing) * 2.5);
+    --_pagination-link-background: var(--cui-pagination-link-background);
     --_pagination-link-border-color: transparent;
+    --_pagination-link-shadow: var(--cui-pagination-link-shadow);
+    gap: calc(var(--spacing) * 1);
+    block-size: var(--cui-pagination-link-height);
+    min-inline-size: var(--cui-pagination-link-height);
+    padding-inline: calc(var(--spacing) * 2.5);
     border-radius: var(--cui-pagination-link-radius);
-    background: var(--cui-pagination-link-background);
+    background: var(--_pagination-link-background);
     box-shadow:
       inset 0 0 0 var(--control-rim-width) var(--_pagination-link-border-color),
-      var(--cui-pagination-link-shadow);
+      var(--_pagination-link-shadow);
     color: var(--cui-pagination-link-foreground);
     font-size: var(--cui-pagination-link-font-size);
     font-variant-numeric: tabular-nums;
+    cursor: pointer;
   }
 
   :where([data-control-family="pagination"][data-slot="link"][data-active="true"]) {
-    --cui-pagination-link-background: var(--control-fill);
-    --_pagination-link-border-color: var(--border);
-    --cui-pagination-link-shadow: var(--shadow-sm);
+    --_pagination-link-background: var(--cui-pagination-link-active-background);
+    --_pagination-link-border-color: var(--cui-pagination-link-active-border-color);
+    --_pagination-link-shadow: var(--cui-pagination-link-active-shadow);
   }
 
   @media (hover: hover) {
@@ -39,6 +49,7 @@
 
   :where([data-control-family="pagination"][data-slot="link"][aria-disabled="true"]) {
     opacity: var(--disabled-opacity);
+    cursor: not-allowed;
   }
 
   @media (forced-colors: active) {
@@ -57,7 +68,15 @@
   }
 
   :where([data-control-family="pagination"][data-slot="ellipsis"]) {
+    block-size: var(--cui-pagination-link-height);
+    min-inline-size: var(--cui-pagination-link-height);
     color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="pagination"]:is([data-slot="link"], [data-slot="ellipsis"]) > svg) {
+    flex-shrink: 0;
+    inline-size: calc(var(--spacing) * 4);
+    block-size: calc(var(--spacing) * 4);
   }
 
   @media (pointer: coarse) {
@@ -68,9 +87,9 @@
     :where([data-control-family="pagination"][data-slot="link"])::after {
       content: "";
       position: absolute;
-      inset: 50% 50%;
-      translate: -50% -50%;
-      inline-size: 100%;
+      inset-inline: 0;
+      inset-block-start: 50%;
+      translate: 0 -50%;
       block-size: max(100%, var(--touch-target));
     }
   }
@@ -109,4 +128,27 @@
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
+}
+
+@property --cui-pagination-link-height {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-pagination-link-active-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-pagination-link-active-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-pagination-link-active-shadow {
+  syntax: "*";
+  inherits: true;
 }

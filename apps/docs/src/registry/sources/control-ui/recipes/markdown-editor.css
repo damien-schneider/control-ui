@@ -33,6 +33,27 @@
     white-space: pre-wrap;
     outline: none;
   }
+  :where([data-control-family="markdown-editor"][data-slot="root"][data-disabled] [data-slot="content"] .tiptap) {
+    opacity: var(--disabled-opacity);
+    cursor: not-allowed;
+  }
+  :where(
+    [data-control-family="markdown-editor"][data-slot="root"]:has(
+      :is([data-slot="content"] .tiptap, [data-slot="source"] textarea):focus-visible
+    ):not([data-control-family="chat-composer"][data-slot="shell"] *)
+  ) {
+    outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring);
+    outline-offset: calc(var(--focus-ring-width) * -1);
+  }
+  @media (forced-colors: active) {
+    :where(
+        [data-control-family="markdown-editor"][data-slot="root"]:has(
+          :is([data-slot="content"] .tiptap, [data-slot="source"] textarea):focus-visible
+        ):not([data-control-family="chat-composer"][data-slot="shell"] *)
+      ) {
+      outline-color: Highlight;
+    }
+  }
   :where([data-control-family="markdown-editor"][data-slot="toolbar"]) {
     min-inline-size: 0;
     border-block-end: var(--cui-markdown-editor-border-width) solid var(--cui-markdown-editor-border-color);
@@ -50,7 +71,7 @@
   :where([data-control-family="markdown-editor"] [data-markdown-drag-handle]) {
     position: absolute;
     inset-inline-start: calc(var(--cui-markdown-editor-padding) / 2);
-    top: var(--cui-markdown-editor-padding);
+    inset-block-start: var(--cui-markdown-editor-padding);
     cursor: grab;
     opacity: 0;
     pointer-events: none;
@@ -100,7 +121,7 @@
   }
   :where([data-control-family="markdown-editor"] .tiptap a) {
     text-decoration: underline;
-    color: var(--primary);
+    color: var(--primary-text);
   }
   :where([data-control-family="markdown-editor"] .tiptap ul) {
     list-style: disc;
@@ -152,9 +173,14 @@
   :where([data-control-family="markdown-editor"] .tiptap .ProseMirror-selectednode) {
     outline: none;
   }
+  :where([data-control-family="markdown-editor"][data-slot="content"]:focus-within .tiptap .ProseMirror-selectednode) {
+    outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring);
+    outline-offset: 2px;
+  }
   :where([data-control-family="markdown-editor"] [data-markdown-drag-preview]) {
     position: fixed;
-    inset: -10000px auto auto -10000px;
+    inset-block-start: -10000px;
+    inset-inline-start: -10000px;
     min-block-size: 0;
     max-block-size: calc(var(--spacing) * 24);
     padding: 0;
@@ -175,6 +201,9 @@
   :where([data-control-family="markdown-editor"] .tiptap :is(td, th)) {
     border: var(--cui-markdown-editor-border-width) solid var(--cui-markdown-editor-border-color);
     padding: var(--cui-markdown-editor-padding);
+  }
+  :where([data-control-family="markdown-editor"][data-slot="suggestion-description"]) {
+    color: var(--muted-foreground);
   }
   @keyframes cui-markdown-editor-bubble-enter {
     from {

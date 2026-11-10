@@ -7,9 +7,10 @@ import type { CSSProperties, ReactNode } from "react";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { PopupCloseButton } from "@/components/control-ui/popup-parts";
-import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { skinScopeAttributes } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { Button, type ButtonProps } from "@/components/control-ui/ui/button";
+import { Spinner } from "@/components/control-ui/ui/spinner";
 
 export type ToasterProps = {
   className?: string;
@@ -19,11 +20,13 @@ export type ToasterProps = {
   indicatorStyle?: CSSProperties & PopupKnobStyle;
   actionStyle?: ButtonProps["style"];
   closeStyle?: ButtonProps["style"];
+  label?: string;
   closeLabel?: string;
   successLabel?: string;
   errorLabel?: string;
   warningLabel?: string;
   infoLabel?: string;
+  loadingLabel?: string;
 };
 
 export const toastManager = ToastPrimitive.createToastManager();
@@ -55,12 +58,18 @@ export const toast = Object.assign(show, {
   error: withType("error"),
   warning: withType("warning"),
   info: withType("info"),
+  /** Stays until it is updated or dismissed: resolve it with `toastManager.update(id, …)` or `toast.dismiss(id)`. */
+  loading: withType("loading"),
   message: (title: ReactNode, options?: ToastOptions) => show(title, options),
-  promise: <Value,>(promise: Promise<Value>, options: ToastManagerPromiseOptions<Value, object>) =>
-    toastManager.promise(promise, {
+  promise: <Value,>(promise: Promise<Value>, options: ToastManagerPromiseOptions<Value, object>) => {
+    const settled = toastManager.promise(promise, {
       ...options,
       error: (reason: unknown) => persistentError(typeof options.error === "function" ? options.error(reason) : options.error),
-    }),
+    });
+    // The error toast already reports the failure, so a caller that does not await must not get an unhandled rejection.
+    settled.catch(() => {});
+    return settled;
+  },
   dismiss: (id?: string) => toastManager.close(id),
 });
 
@@ -71,10 +80,10 @@ const statusIcons = {
   info: InfoIcon,
 };
 
-type ToastStatus = keyof typeof statusIcons;
+type ToastStatus = keyof typeof statusIcons | "loading";
 
 function isToastStatus(type: string | undefined): type is ToastStatus {
-  return type !== undefined && Object.hasOwn(statusIcons, type);
+  return type === "loading" || (type !== undefined && Object.hasOwn(statusIcons, type));
 }
 
 export const useToast = ToastPrimitive.useToastManager;
@@ -86,7 +95,7 @@ type ToastListProps = Pick<ToasterProps, "rootStyle" | "indicatorStyle" | "actio
 
 function ToastIndicator({ status, style }: { status: ToastStatus | undefined; style: ToasterProps["indicatorStyle"] }) {
   if (!status) return null;
-  const StatusIcon = statusIcons[status];
+  const StatusIcon = status === "loading" ? null : statusIcons[status];
   return (
     <span
       aria-hidden="true"
@@ -97,24 +106,26 @@ function ToastIndicator({ status, style }: { status: ToastStatus | undefined; st
       style={style}
       className="shrink-0"
     >
-      <StatusIcon className="size-4" />
+      {StatusIcon ? <StatusIcon /> : <Spinner size="sm" />}
     </span>
   );
 }
 
+// A toast with one line of text shows it as its title, so the toast always has an accessible name.
 function ToastText({ entry, statusPrefix }: { entry: ToastObject<object>; statusPrefix: ReactNode }) {
+  const title = entry.title || entry.description;
+  const description = entry.title ? entry.description : null;
   return (
     <div className="flex min-w-0 flex-1 flex-col">
-      {entry.title ? (
+      {title ? (
         <ToastPrimitive.Title data-control-ui="toast" data-control-family="popup" data-popup-kind="toast" data-slot="title">
           {statusPrefix}
-          {entry.title}
+          {title}
         </ToastPrimitive.Title>
       ) : null}
-      {entry.description ? (
+      {description ? (
         <ToastPrimitive.Description data-control-ui="toast" data-control-family="popup" data-popup-kind="toast" data-slot="description">
-          {entry.title ? null : statusPrefix}
-          {entry.description}
+          {description}
         </ToastPrimitive.Description>
       ) : null}
     </div>
@@ -156,6 +167,9 @@ function ToastList({ rootStyle, indicatorStyle, actionStyle, closeStyle, closeLa
           {entry.actionProps ? (
             <ToastPrimitive.Action
               style={actionStyle}
+              onClick={(event) => {
+                if (!event.defaultPrevented) toastManager.close(entry.id);
+              }}
               render={(renderProps) => (
                 <Button {...renderProps} data-popup-kind="toast" data-popup-part="action" variant="surface" size="xs" />
               )}
@@ -179,24 +193,29 @@ export function Toaster({
   indicatorStyle,
   actionStyle,
   closeStyle,
+  label = "Notifications",
   closeLabel = "Dismiss notification",
   successLabel = "Success",
   errorLabel = "Error",
   warningLabel = "Warning",
   infoLabel = "Info",
+  loadingLabel = "Loading",
 }: ToasterProps) {
   const skin = useSkin();
   return (
     <ToastPrimitive.Provider toastManager={toastManager} timeout={timeout} limit={limit}>
       <ToastPrimitive.Portal>
         <ToastPrimitive.Viewport
+          aria-label={label}
           data-control-ui="toast"
           data-control-family="popup"
           data-popup-kind="toast"
           data-slot="viewport"
-          data-skin={skin.id}
-          data-effects={controlEffectsAttribute(skin.effects)}
-          className={cn("fixed end-4 bottom-4 z-(--z-toast) mx-auto w-[calc(100vw-2rem)] sm:end-6 sm:bottom-6 sm:w-[22.5rem]", className)}
+          {...skinScopeAttributes(skin)}
+          className={cn(
+            "fixed end-4 bottom-[max(--spacing(4),env(safe-area-inset-bottom))] z-(--z-toast) mx-auto w-[calc(100vw-2rem)] sm:end-6 sm:bottom-[max(--spacing(6),env(safe-area-inset-bottom))] sm:w-[22.5rem]",
+            className,
+          )}
         >
           <ToastList
             rootStyle={rootStyle}
@@ -204,7 +223,7 @@ export function Toaster({
             actionStyle={actionStyle}
             closeStyle={closeStyle}
             closeLabel={closeLabel}
-            statusLabels={{ success: successLabel, error: errorLabel, warning: warningLabel, info: infoLabel }}
+            statusLabels={{ success: successLabel, error: errorLabel, warning: warningLabel, info: infoLabel, loading: loadingLabel }}
           />
         </ToastPrimitive.Viewport>
       </ToastPrimitive.Portal>

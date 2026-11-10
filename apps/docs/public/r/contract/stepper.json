@@ -52,7 +52,7 @@
       "name": "--cui-stepper-indicator-size",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "calc(var(--spacing) * 8)"
+      "defaultValue": "var(--control-h-sm)"
     },
     {
       "name": "--cui-stepper-indicator-current-border-width",
@@ -65,6 +65,36 @@
       "syntax": "<number>",
       "initialValue": "400",
       "defaultValue": "var(--font-weight-semibold)"
+    },
+    {
+      "name": "--cui-stepper-indicator-current-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary)"
+    },
+    {
+      "name": "--cui-stepper-indicator-complete-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary)"
+    },
+    {
+      "name": "--cui-stepper-indicator-complete-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary-foreground)"
+    },
+    {
+      "name": "--cui-stepper-separator-complete-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--cui-stepper-indicator-complete-background)"
+    },
+    {
+      "name": "--cui-stepper-separator-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
     }
   ],
   "parts": {
@@ -123,7 +153,23 @@
         "registryItems": [
           "stepper"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-orientation",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-responsive",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
       },
       "indicator": {
         "family": "stepper",
@@ -164,6 +210,21 @@
           },
           {
             "attribute": "data-invalid",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-responsive",
             "source": "control-ui",
             "valueKind": "presence",
             "values": []
@@ -217,6 +278,21 @@
             "values": []
           },
           {
+            "attribute": "data-orientation",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-responsive",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-state",
             "source": "control-ui",
             "valueKind": "enum",
@@ -234,7 +310,23 @@
         "registryItems": [
           "stepper"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-orientation",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-responsive",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
       },
       "trigger": {
         "family": "stepper",

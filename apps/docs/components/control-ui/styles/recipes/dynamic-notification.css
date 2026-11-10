@@ -26,8 +26,10 @@
       1
     );
     --cui-dynamic-notification-expanded-radius: 1.65rem;
+    --cui-dynamic-notification-glass-background: oklch(0 0 0 / 0.97);
     --cui-dynamic-notification-glass-foreground: oklch(1 0 0);
     --cui-dynamic-notification-glass-ring-color: oklch(1 0 0 / 0.12);
+    --cui-dynamic-notification-glass-shadow: var(--shadow-pop);
     --cui-dynamic-notification-indicator-end: oklch(0.7 0.17 250);
     --cui-dynamic-notification-indicator-middle: oklch(0.75 0.15 70);
     --cui-dynamic-notification-indicator-start: oklch(0.62 0.19 25);
@@ -62,29 +64,33 @@
       0.9985 96.15%,
       1
     );
+    --cui-dynamic-notification-radius: calc(var(--control-h-lg) / 2);
+    --cui-dynamic-notification-reply-input-radius: 9999px;
     --cui-dynamic-notification-surface-background: var(--popover);
     --cui-dynamic-notification-surface-foreground: var(--popover-foreground);
     --cui-dynamic-notification-surface-ring-color: var(--border);
     --cui-dynamic-notification-surface-shadow: var(--shadow-pop);
+    --cui-dynamic-notification-thinking-radius: 2.75rem;
     --cui-dynamic-notification-title-foreground: var(--muted-foreground);
     --_dynamic-notification-active-foreground: var(--cui-dynamic-notification-surface-foreground);
+    --_dynamic-notification-title-foreground: var(--cui-dynamic-notification-title-foreground);
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="root"][data-variant="glass"]) {
     --_dynamic-notification-active-foreground: var(--cui-dynamic-notification-glass-foreground);
-    --cui-dynamic-notification-title-foreground: oklch(from var(--cui-dynamic-notification-glass-foreground) l c h / 0.6);
+    --_dynamic-notification-title-foreground: oklch(from var(--cui-dynamic-notification-glass-foreground) l c h / 0.6);
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="root"][data-variant="liquid"]) {
     --_dynamic-notification-active-foreground: var(--cui-dynamic-notification-liquid-foreground);
-    --cui-dynamic-notification-title-foreground: oklch(from var(--cui-dynamic-notification-liquid-foreground) l c h / 0.6);
+    --_dynamic-notification-title-foreground: oklch(from var(--cui-dynamic-notification-liquid-foreground) l c h / 0.6);
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="island"]:is([data-variant="glass"], [data-variant="liquid"])) {
     background: linear-gradient(
       to bottom,
-      oklch(0 0 0 / 0.97) 0%,
-      oklch(0 0 0 / 0.97) var(--_dynamic-notification-ink-plateau),
+      var(--cui-dynamic-notification-glass-background) 0%,
+      var(--cui-dynamic-notification-glass-background) var(--_dynamic-notification-ink-plateau),
       var(--_dynamic-notification-ink-mid) var(--_dynamic-notification-ink-mid-stop),
       var(--_dynamic-notification-ink-low) var(--_dynamic-notification-ink-low-stop),
       var(--_dynamic-notification-ink-tail) var(--_dynamic-notification-ink-tail-stop),
@@ -97,7 +103,7 @@
     color: var(--cui-dynamic-notification-glass-foreground);
     box-shadow:
       inset 0 0 0 1px var(--cui-dynamic-notification-glass-ring-color),
-      var(--shadow-pop);
+      var(--cui-dynamic-notification-glass-shadow);
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="island"][data-variant="liquid"]) {
@@ -136,11 +142,12 @@
     gap: calc(var(--spacing) * 2);
     padding-inline: calc(var(--spacing) * 4);
     font-size: var(--text-caption);
+    cursor: pointer;
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="title"]) {
     font-size: var(--text-caption);
-    color: var(--cui-dynamic-notification-title-foreground);
+    color: var(--_dynamic-notification-title-foreground);
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--tracking-wide);
     text-wrap: balance;
@@ -156,7 +163,7 @@
   :where([data-control-family="dynamic-notification"][data-slot="indicator"]) {
     inline-size: calc(var(--spacing) * 2);
     block-size: calc(var(--spacing) * 2);
-    border-radius: calc(infinity * 1px);
+    border-radius: 9999px;
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="content"]) {
@@ -175,13 +182,49 @@
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="reply-input"]) {
-    block-size: calc(var(--spacing) * 9);
+    block-size: var(--control-h-md);
     padding-inline: calc(var(--spacing) * 3.5);
   }
 
   :where([data-control-family="button"][data-dynamic-notification-close="true"]) {
+    --cui-button-icon: 0.875rem;
     margin-inline-end: calc(var(--spacing) * -1.5);
   }
+
+  :where([data-control-family="button"][data-dynamic-notification-submit="true"]) {
+    --cui-button-icon: 1rem;
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    :where([data-control-family="dynamic-notification"][data-slot="island"]:is([data-variant="glass"], [data-variant="liquid"])) {
+      background: var(--cui-dynamic-notification-glass-background);
+    }
+
+    :where([data-control-family="dynamic-notification"]:is([data-slot="glass"], [data-slot="liquid"])) {
+      display: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="dynamic-notification"][data-slot="island"]:not(:focus-visible)) {
+      outline: 1px solid CanvasText;
+      outline-offset: -1px;
+    }
+
+    :where([data-control-family="dynamic-notification"][data-slot="island"]:is([data-variant="glass"], [data-variant="liquid"])) {
+      background: Canvas;
+    }
+
+    :where([data-control-family="dynamic-notification"]:is([data-slot="glass"], [data-slot="liquid"])) {
+      display: none;
+    }
+  }
+}
+
+@property --cui-dynamic-notification-glass-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
 }
 
 @property --cui-dynamic-notification-glass-foreground {
@@ -196,6 +239,11 @@
   initial-value: transparent;
 }
 
+@property --cui-dynamic-notification-glass-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
 @property --cui-dynamic-notification-liquid-foreground {
   syntax: "<color>";
   inherits: true;
@@ -205,6 +253,12 @@
 @property --cui-dynamic-notification-liquid-text-shadow {
   syntax: "*";
   inherits: true;
+}
+
+@property --cui-dynamic-notification-reply-input-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-dynamic-notification-surface-background {

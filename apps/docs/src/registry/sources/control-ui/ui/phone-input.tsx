@@ -36,6 +36,7 @@ export type PhoneInputProps = Omit<ComponentProps<"input">, "defaultValue" | "si
   countrySearchPlaceholder?: string;
   countrySearchLabel?: string;
   countryEmptyMessage?: string;
+  countrySelectedLabel?: string;
   "data-invalid"?: boolean | string;
   style?: CSSProperties & PhoneInputKnobStyle;
 };
@@ -57,12 +58,14 @@ type PhoneCountrySelectProps = {
   searchPlaceholder?: string;
   searchLabel?: string;
   emptyMessage?: string;
+  selectedLabel?: string;
   knobStyle?: CSSProperties & PhoneInputKnobStyle;
 };
 
 type PhoneInputControlProps = ComponentProps<typeof Input> & {
   normalizationCountry?: PhoneInputCountry;
   onNativeChange?: ChangeEventHandler<HTMLInputElement>;
+  submitValue?: string;
 };
 
 // country-flag-icons accepts SVG props; react-phone-number-input requires title.
@@ -79,7 +82,8 @@ function PhoneInputContainer({ className, ...props }: ComponentProps<typeof Inpu
   return <InputGroup data-field-kind="phone-input" className={cn("gap-0 p-0", className)} {...props} />;
 }
 
-function PhoneInputControl({ className, normalizationCountry, onChange, onNativeChange, ...props }: PhoneInputControlProps) {
+// Field resolves the submitted name on the control, so the visible formatted text gives it up to one hidden E.164 input.
+function PhoneInputControl({ className, normalizationCountry, onChange, onNativeChange, submitValue, ...props }: PhoneInputControlProps) {
   return (
     <Input
       {...props}
@@ -90,6 +94,16 @@ function PhoneInputControl({ className, normalizationCountry, onChange, onNative
         if (normalizedText !== event.currentTarget.value) event.currentTarget.value = normalizedText;
         onChange?.(event);
         onNativeChange?.(event);
+      }}
+      render={(inputProps) => {
+        const name = "name" in inputProps && typeof inputProps.name === "string" ? inputProps.name : undefined;
+        const disabled = "disabled" in inputProps && inputProps.disabled === true;
+        return (
+          <>
+            <input {...inputProps} name={undefined} />
+            {name ? <input type="hidden" name={name} value={submitValue ?? ""} form={props.form} disabled={disabled} /> : null}
+          </>
+        );
       }}
     />
   );
@@ -107,6 +121,7 @@ function PhoneCountrySelect({
   searchPlaceholder = "Search country…",
   searchLabel = "Search countries",
   emptyMessage,
+  selectedLabel = "Selected",
   knobStyle,
 }: PhoneCountrySelectProps) {
   const [open, setOpen] = useState(false);
@@ -128,7 +143,7 @@ function PhoneCountrySelect({
           aria-label={accessibleLabel}
           onFocus={onFocus}
           onBlur={onBlur}
-          className="inline-flex h-full items-center justify-center disabled:cursor-not-allowed"
+          className="inline-flex h-full items-center justify-center"
         >
           <CountryFlag country={value} />
           <ChevronIcon open={open} />
@@ -161,7 +176,7 @@ function PhoneCountrySelect({
                             {callingCode}
                           </span>
                         ) : null}
-                        {selected ? <span className="sr-only">Selected</span> : null}
+                        {selected ? <span className="sr-only">{selectedLabel}</span> : null}
                         <CheckIcon visible={selected} />
                       </CommandItem>
                     );
@@ -225,6 +240,7 @@ export function PhoneInput(props: PhoneInputProps) {
     countrySearchPlaceholder,
     countrySearchLabel,
     countryEmptyMessage,
+    countrySelectedLabel,
     "aria-invalid": ariaInvalid,
     "data-invalid": dataInvalid,
     ...inputProps
@@ -247,52 +263,51 @@ export function PhoneInput(props: PhoneInputProps) {
   }
 
   return (
-    <>
-      <PhoneNumberInputWithRef
-        {...inputProps}
-        inputRef={ref}
-        value={currentValue}
-        onChange={handleValueChange}
-        name={undefined}
-        className={className}
-        style={style}
-        disabled={disabled}
-        readOnly={readOnly}
-        defaultCountry={defaultCountry}
-        countries={countries}
-        labels={labels}
-        locales={locales}
-        countryOptionsOrder={countryOptionsOrder}
-        onCountryChange={handleCountryChange}
-        international
-        countryCallingCodeEditable={countryCallingCodeEditable}
-        addInternationalOption={addInternationalOption}
-        autoComplete={inputProps.autoComplete ?? "tel"}
-        containerComponent={PhoneInputContainer}
-        containerComponentProps={{
-          size,
-          "aria-invalid": ariaInvalid,
-          "data-invalid": dataInvalid,
-          "data-disabled": disabled ? "true" : undefined,
-        }}
-        inputComponent={PhoneInputControl}
-        numberInputProps={{
-          normalizationCountry: selectedCountry,
-          onNativeChange,
-          "aria-invalid": ariaInvalid,
-          "data-invalid": dataInvalid,
-        }}
-        countrySelectComponent={PhoneCountrySelect}
-        countrySelectProps={{
-          searchPlaceholder: countrySearchPlaceholder,
-          searchLabel: countrySearchLabel,
-          emptyMessage: countryEmptyMessage,
-          knobStyle,
-        }}
-        flagComponent={PhoneFlag}
-      />
-      {name && currentValue ? <input type="hidden" name={name} value={currentValue} disabled={disabled} /> : null}
-    </>
+    <PhoneNumberInputWithRef
+      {...inputProps}
+      inputRef={ref}
+      value={currentValue}
+      onChange={handleValueChange}
+      name={name}
+      className={className}
+      style={style}
+      disabled={disabled}
+      readOnly={readOnly}
+      defaultCountry={defaultCountry}
+      countries={countries}
+      labels={labels}
+      locales={locales}
+      countryOptionsOrder={countryOptionsOrder}
+      onCountryChange={handleCountryChange}
+      international
+      countryCallingCodeEditable={countryCallingCodeEditable}
+      addInternationalOption={addInternationalOption}
+      autoComplete={inputProps.autoComplete ?? "tel"}
+      containerComponent={PhoneInputContainer}
+      containerComponentProps={{
+        size,
+        "aria-invalid": ariaInvalid,
+        "data-invalid": dataInvalid,
+        "data-disabled": disabled ? "true" : undefined,
+      }}
+      inputComponent={PhoneInputControl}
+      numberInputProps={{
+        normalizationCountry: selectedCountry,
+        onNativeChange,
+        submitValue: currentValue,
+        "aria-invalid": ariaInvalid,
+        "data-invalid": dataInvalid,
+      }}
+      countrySelectComponent={PhoneCountrySelect}
+      countrySelectProps={{
+        searchPlaceholder: countrySearchPlaceholder,
+        searchLabel: countrySearchLabel,
+        emptyMessage: countryEmptyMessage,
+        selectedLabel: countrySelectedLabel,
+        knobStyle,
+      }}
+      flagComponent={PhoneFlag}
+    />
   );
 }
 
@@ -304,7 +319,6 @@ function ChevronIcon({ open }: { open: boolean }) {
       data-slot="chevron"
       viewBox="0 0 12 12"
       data-open={open ? "true" : undefined}
-      className="size-3"
       aria-hidden="true"
       fill="none"
     >
@@ -320,10 +334,10 @@ function CheckIcon({ visible }: { visible: boolean }) {
       data-control-family="phone-input"
       data-slot="check"
       data-visible={visible || undefined}
-      className="flex size-3.5 shrink-0 items-center justify-center"
+      className="flex shrink-0 items-center justify-center"
       aria-hidden="true"
     >
-      <svg viewBox="0 0 12 12" className="size-3" fill="none" aria-hidden="true">
+      <svg viewBox="0 0 12 12" fill="none" aria-hidden="true">
         <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </span>

@@ -15,7 +15,7 @@ export function PrimitiveRadioGroupExample() {
   const [plan, setPlan] = useState("pro");
 
   return (
-    <RadioGroup value={plan} onValueChange={setPlan} aria-label="Billing plan" className="w-full max-w-xs">
+    <RadioGroup value={plan} onValueChange={setPlan} indicator="hover" aria-label="Billing plan" className="w-full max-w-xs">
       {plans.map((option) => (
         <RadioGroupItem key={option.value} htmlFor={`plan-${option.value}`}>
           <Radio id={`plan-${option.value}`} value={option.value} aria-label={option.label} />

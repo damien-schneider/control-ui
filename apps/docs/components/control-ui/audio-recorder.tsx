@@ -153,9 +153,29 @@ function AudioRecorderDefaultLayout({ points }: { points?: number }) {
   );
 }
 
-export type AudioRecorderTriggerProps = AudioRecorderStyleProps<ComponentProps<typeof Button>, ButtonKnobStyle & AudioRecorderKnobStyle>;
+export type AudioRecorderTriggerProps = AudioRecorderStyleProps<ComponentProps<typeof Button>, ButtonKnobStyle & AudioRecorderKnobStyle> & {
+  startLabel?: string;
+  retryLabel?: string;
+  requestingLabel?: string;
+  recordingLabel?: string;
+  recordedLabel?: string;
+  sendingLabel?: string;
+};
 
-export function AudioRecorderTrigger({ className, children, disabled, onClick, ref, ...props }: AudioRecorderTriggerProps) {
+export function AudioRecorderTrigger({
+  className,
+  children,
+  disabled,
+  onClick,
+  ref,
+  startLabel = "Start voice recording",
+  retryLabel = "Retry voice recording",
+  requestingLabel = "Requesting microphone permission",
+  recordingLabel = "Recording voice",
+  recordedLabel = "Voice recording ready",
+  sendingLabel = "Sending voice recording",
+  ...props
+}: AudioRecorderTriggerProps) {
   const recorder = useAudioRecorderContext();
   const triggerRef = use(AudioRecorderTriggerRefContext);
 
@@ -171,7 +191,13 @@ export function AudioRecorderTrigger({ className, children, disabled, onClick, r
     (recorder.state === "requesting" || recorder.state === "recording" || recorder.state === "recorded" || recorder.state === "submitting");
   const triggerVariant = audioRecorderTriggerVariant(recorder, isActive);
   const triggerTone = audioRecorderTriggerTone(recorder);
-  const ariaLabel = audioRecorderTriggerLabel(recorder);
+  const idleLabel = recorder.error ? retryLabel : startLabel;
+  const activeLabels: Partial<Record<UseAudioRecorderResult["state"], string>> = {
+    requesting: requestingLabel,
+    recording: recordingLabel,
+    recorded: recordedLabel,
+    submitting: sendingLabel,
+  };
 
   async function handleClick(event: MouseEvent<HTMLButtonElement>) {
     onClick?.(event);
@@ -191,7 +217,7 @@ export function AudioRecorderTrigger({ className, children, disabled, onClick, r
       size="sm"
       iconOnly
       shape="circle"
-      aria-label={ariaLabel}
+      aria-label={activeLabels[recorder.state] ?? idleLabel}
       title={recorder.error?.message}
       disabled={disabled ?? (recorder.isDisabled || !recorder.canStart)}
       focusableWhenDisabled
@@ -217,20 +243,6 @@ function audioRecorderTriggerTone(recorder: UseAudioRecorderResult) {
   return "neutral";
 }
 
-function audioRecorderTriggerLabel(recorder: UseAudioRecorderResult) {
-  switch (recorder.state) {
-    case "requesting":
-      return "Requesting microphone permission";
-    case "recording":
-      return "Recording voice";
-    case "recorded":
-      return "Voice recording ready";
-    case "submitting":
-      return "Sending voice recording";
-    default:
-      return recorder.error ? "Retry voice recording" : "Start voice recording";
-  }
-}
 export type AudioRecorderVisualizerProps = AudioRecorderStyleProps<
   Omit<ComponentProps<"div">, "children">,
   AudioVisualizerKnobStyle & AudioRecorderKnobStyle
@@ -257,11 +269,24 @@ export function AudioRecorderVisualizer({ points, className, ...props }: AudioRe
   );
 }
 
-export type AudioRecorderStatusProps = AudioRecorderStyleProps<ComponentProps<"span">, AudioRecorderKnobStyle>;
+export type AudioRecorderStatusProps = AudioRecorderStyleProps<ComponentProps<"span">, AudioRecorderKnobStyle> & {
+  requestingLabel?: string;
+  sendingLabel?: string;
+};
 
-export function AudioRecorderStatus({ className, children, ...props }: AudioRecorderStatusProps) {
+export function AudioRecorderStatus({
+  className,
+  children,
+  requestingLabel = "Allow microphone access",
+  sendingLabel = "Sending voice recording",
+  ...props
+}: AudioRecorderStatusProps) {
   const recorder = useAudioRecorderContext();
-  const message = children ?? audioRecorderStatusMessage(recorder);
+  const stateMessages: Partial<Record<UseAudioRecorderResult["state"], string>> = {
+    requesting: requestingLabel,
+    submitting: sendingLabel,
+  };
+  const message = children ?? stateMessages[recorder.state] ?? recorder.error?.message ?? null;
   const isVisible = Boolean(message);
   const title = typeof message === "string" ? message : undefined;
 
@@ -282,21 +307,11 @@ export function AudioRecorderStatus({ className, children, ...props }: AudioReco
   );
 }
 
-function audioRecorderStatusMessage(recorder: UseAudioRecorderResult) {
-  if (recorder.state === "requesting") return "Allow microphone access";
-  if (recorder.state === "submitting") return "Sending voice recording";
-  if (recorder.error) return recorder.error.message;
-  return null;
-}
+export type AudioRecorderDurationProps = AudioRecorderStyleProps<ComponentProps<"span">, AudioRecorderKnobStyle> & {
+  durationLabel?: string;
+};
 
-export type AudioRecorderDurationProps = AudioRecorderStyleProps<ComponentProps<"span">, AudioRecorderKnobStyle>;
-
-export function AudioRecorderDuration({
-  className,
-  children,
-  durationLabel = "Recording length",
-  ...props
-}: AudioRecorderDurationProps & { durationLabel?: string }) {
+export function AudioRecorderDuration({ className, children, durationLabel = "Recording length", ...props }: AudioRecorderDurationProps) {
   const recorder = useAudioRecorderContext();
   const isVisible = recorder.state === "recording" || recorder.state === "recorded";
 
@@ -316,9 +331,19 @@ export function AudioRecorderDuration({
   );
 }
 
-export type AudioRecorderCancelProps = AudioRecorderStyleProps<ComponentProps<typeof Button>, ButtonKnobStyle & AudioRecorderKnobStyle>;
+export type AudioRecorderCancelProps = AudioRecorderStyleProps<ComponentProps<typeof Button>, ButtonKnobStyle & AudioRecorderKnobStyle> & {
+  label?: string;
+};
 
-export function AudioRecorderCancel({ className, children, disabled, onClick, tabIndex, ...props }: AudioRecorderCancelProps) {
+export function AudioRecorderCancel({
+  className,
+  children,
+  disabled,
+  onClick,
+  tabIndex,
+  label = "Cancel voice recording",
+  ...props
+}: AudioRecorderCancelProps) {
   const recorder = useAudioRecorderContext();
   const triggerRef = use(AudioRecorderTriggerRefContext);
   const isVisible = recorder.canCancel;
@@ -341,7 +366,7 @@ export function AudioRecorderCancel({ className, children, disabled, onClick, ta
       size="sm"
       iconOnly
       shape="circle"
-      aria-label="Cancel voice recording"
+      aria-label={label}
       aria-hidden={!isVisible}
       tabIndex={isVisible ? tabIndex : -1}
       disabled={disabled ?? (recorder.isDisabled || !isVisible)}
@@ -354,7 +379,10 @@ export function AudioRecorderCancel({ className, children, disabled, onClick, ta
   );
 }
 
-export type AudioRecorderSubmitProps = AudioRecorderStyleProps<ComponentProps<typeof Button>, ButtonKnobStyle & AudioRecorderKnobStyle>;
+export type AudioRecorderSubmitProps = AudioRecorderStyleProps<ComponentProps<typeof Button>, ButtonKnobStyle & AudioRecorderKnobStyle> & {
+  label?: string;
+  retryLabel?: string;
+};
 
 export function AudioRecorderSubmit({
   className,
@@ -365,7 +393,7 @@ export function AudioRecorderSubmit({
   label = "Send voice recording",
   retryLabel = "Retry sending voice recording",
   ...props
-}: AudioRecorderSubmitProps & { label?: string; retryLabel?: string }) {
+}: AudioRecorderSubmitProps) {
   const recorder = useAudioRecorderContext();
   const triggerRef = use(AudioRecorderTriggerRefContext);
   const isVisible = recorder.canSubmit;

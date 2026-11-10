@@ -36,7 +36,8 @@ export type EmailFooterAlign = "start" | "center";
 
 function separatedLinks(links: EmailNavLink[]) {
   return links.map((link, index) => (
-    <Fragment key={link.href}>
+    // biome-ignore lint/suspicious/noArrayIndexKey: links are positional content; two may share an href.
+    <Fragment key={index}>
       {index > 0 ? " · " : null}
       <EmailMutedLink href={link.href}>{link.label}</EmailMutedLink>
     </Fragment>
@@ -95,7 +96,8 @@ export function EmailSocialLinks({
         const { label, iconUrl, alt } = resolveSocialLink(link, iconBaseUrl);
         const spacing = index < links.length - 1 ? socialGapClasses[sides.end] : "";
         return (
-          <Fragment key={link.href}>
+          // biome-ignore lint/suspicious/noArrayIndexKey: links are positional content; two may share an href.
+          <Fragment key={index}>
             {index > 0 ? " " : null}
             <EmailMutedLink href={link.href} className={`${iconUrl ? "no-underline" : "underline"} ${spacing}`}>
               {iconUrl ? <Img src={iconUrl} alt={alt} width={iconSize} height={iconSize} className="inline-block align-middle" /> : label}
@@ -116,8 +118,9 @@ export function EmailAddress({ company, lines }: { company: string; lines: strin
   return (
     <EmailCaption className="mb-2">
       <strong className="font-semibold">{company}</strong>
-      {lines.map((line) => (
-        <Fragment key={line}>
+      {lines.map((line, index) => (
+        // biome-ignore lint/suspicious/noArrayIndexKey: address lines are positional content; two may repeat.
+        <Fragment key={index}>
           <br />
           {line}
         </Fragment>

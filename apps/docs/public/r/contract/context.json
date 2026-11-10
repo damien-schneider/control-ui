@@ -378,6 +378,7 @@
   },
   "adornments": {},
   "uncovered": [
+    "--cui-context-limit-marker-color",
     "--cui-context-segment-cache-fill"
   ],
   "contrast": "/r/contract/context.contrast.json"

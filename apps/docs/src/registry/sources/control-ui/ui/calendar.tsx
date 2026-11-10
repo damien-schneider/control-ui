@@ -7,12 +7,16 @@ import {
   Day as DayBase,
   type DayButtonProps,
   DayPicker,
+  type DropdownProps,
   Month as MonthBase,
   MonthCaption as MonthCaptionBase,
   MonthGrid as MonthGridBase,
   Months as MonthsBase,
   Nav as NavBase,
+  useDayPicker,
   Weekday as WeekdayBase,
+  WeekNumber as WeekNumberBase,
+  WeekNumberHeader as WeekNumberHeaderBase,
 } from "react-day-picker";
 import type { CalendarKnobStyle } from "@/components/control-ui/knob-contracts/calendar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -24,9 +28,9 @@ type CalendarPropsWithStyle<Props> = Props extends unknown ? Omit<Props, "style"
 
 export type CalendarProps = CalendarPropsWithStyle<ComponentProps<typeof DayPicker>>;
 
-const dayButtonClasses = "flex w-full items-center justify-center disabled:pointer-events-none aria-disabled:pointer-events-none";
+const dayButtonClasses = "flex w-full items-center justify-center";
 
-const navButtonClasses = "inline-flex items-center justify-center disabled:pointer-events-none aria-disabled:pointer-events-none";
+const navButtonClasses = "inline-flex items-center justify-center";
 
 const chevronPathByOrientation = {
   left: "M10 3 5.5 8 10 13",
@@ -35,7 +39,7 @@ const chevronPathByOrientation = {
   down: "M3 6 8 10.5 13 6",
 } satisfies Record<NonNullable<ChevronProps["orientation"]>, string>;
 
-export function Calendar({ className, showOutsideDays, style, ...props }: CalendarProps) {
+export function Calendar({ className, showOutsideDays, style, components, ...props }: CalendarProps) {
   const skin = useSkin();
   return (
     <div data-control-ui="calendar" data-control-family="calendar" data-slot="root" className={cn("w-fit", className)} style={style}>
@@ -47,13 +51,18 @@ export function Calendar({ className, showOutsideDays, style, ...props }: Calend
           Month: CalendarMonth,
           MonthCaption: CalendarMonthCaption,
           CaptionLabel: CalendarCaptionLabel,
+          DropdownNav: CalendarDropdownNav,
+          Dropdown: CalendarDropdown,
           Nav: CalendarNav,
           PreviousMonthButton: CalendarNavButton,
           NextMonthButton: CalendarNavButton,
           MonthGrid: CalendarMonthGrid,
           Weekday: CalendarWeekday,
+          WeekNumberHeader: CalendarWeekNumberHeader,
+          WeekNumber: CalendarWeekNumber,
           Day: CalendarDay,
           DayButton: CalendarDayButton,
+          ...components,
         }}
         {...props}
       />
@@ -110,6 +119,58 @@ function CalendarCaptionLabel({ className, ...props }: ComponentProps<typeof Cap
   );
 }
 
+function CalendarDropdownNav({ className, ...props }: ComponentProps<"div">) {
+  return (
+    <div
+      data-control-ui="calendar"
+      data-control-family="calendar"
+      data-slot="dropdowns"
+      className={cn("inline-flex items-center", className)}
+      {...props}
+    />
+  );
+}
+
+// the native select stays the control (keyboard, screen reader, mobile picker); it sits transparent over a label the recipe can paint
+function CalendarDropdown({ options, className, ...selectProps }: DropdownProps) {
+  const { components } = useDayPicker();
+  const selectedOption = options?.find((option) => option.value === selectProps.value);
+  return (
+    <span
+      data-control-ui="calendar"
+      data-control-family="calendar"
+      data-slot="dropdown"
+      data-focus-ring="within"
+      data-disabled={selectProps.disabled ? "true" : undefined}
+      className="relative inline-flex items-center"
+    >
+      <components.Select
+        data-control-ui="calendar"
+        data-control-family="calendar"
+        data-slot="dropdown-select"
+        className={cn("absolute start-0 top-1/2 w-full -translate-y-1/2 appearance-none opacity-0", className)}
+        {...selectProps}
+      >
+        {options?.map((option) => (
+          <components.Option key={option.value} value={option.value} disabled={option.disabled}>
+            {option.label}
+          </components.Option>
+        ))}
+      </components.Select>
+      <span
+        data-control-ui="calendar"
+        data-control-family="calendar"
+        data-slot="dropdown-label"
+        aria-hidden="true"
+        className="inline-flex items-center"
+      >
+        {selectedOption?.label}
+        <components.Chevron orientation="down" />
+      </span>
+    </span>
+  );
+}
+
 // matches MonthCaption row so buttons centre on month label
 function CalendarNav({ className, ...props }: ComponentProps<typeof NavBase>) {
   return (
@@ -149,6 +210,24 @@ function CalendarMonthGrid({ className, ...props }: ComponentProps<typeof MonthG
 
 function CalendarWeekday({ className, ...props }: ComponentProps<typeof WeekdayBase>) {
   return <WeekdayBase data-control-ui="calendar" data-control-family="calendar" data-slot="weekday" className={cn(className)} {...props} />;
+}
+
+function CalendarWeekNumberHeader({ className, ...props }: ComponentProps<typeof WeekNumberHeaderBase>) {
+  return (
+    <WeekNumberHeaderBase
+      data-control-ui="calendar"
+      data-control-family="calendar"
+      data-slot="week-number-header"
+      className={className}
+      {...props}
+    />
+  );
+}
+
+function CalendarWeekNumber({ className, ...props }: ComponentProps<typeof WeekNumberBase>) {
+  return (
+    <WeekNumberBase data-control-ui="calendar" data-control-family="calendar" data-slot="week-number" className={className} {...props} />
+  );
 }
 
 function CalendarDay({ className, day, ...props }: ComponentProps<typeof DayBase>) {
@@ -193,17 +272,25 @@ function CalendarDayButton({ day, modifiers, className, ...props }: DayButtonPro
 }
 
 function CalendarChevron({ className, orientation }: ChevronProps) {
+  const { dayPickerProps } = useDayPicker();
   const path = chevronPathByOrientation[orientation ?? "down"];
+  // the library swaps the previous/next chevrons only for navLayout="around" with an explicit dir prop; every other RTL case mirrors in CSS
+  const librarySwaps = dayPickerProps.navLayout === "around" && dayPickerProps.dir === "rtl";
+  const mirrorsInRtl = (orientation === "left" || orientation === "right") && !librarySwaps;
   return (
     <svg
+      data-control-ui="calendar"
+      data-control-family="calendar"
+      data-slot="chevron"
       viewBox="0 0 16 16"
-      className={cn("size-4", className)}
+      className={className}
       fill="none"
       stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
+      data-icon-dir={mirrorsInRtl ? "inline" : undefined}
     >
       <path d={path} />
     </svg>

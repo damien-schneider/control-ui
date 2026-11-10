@@ -1,9 +1,9 @@
 @layer components {
   :where([data-control-family="emoji-picker"][data-slot="root"]) {
-    --cui-emoji-picker-cell-size: calc(var(--spacing) * 10);
+    --cui-emoji-picker-cell-size: var(--control-h-lg);
     --cui-emoji-picker-cell-radius: var(--radius-control);
     --cui-emoji-picker-glyph-size: 1.25rem;
-    --cui-emoji-picker-active-background: var(--accent);
+    --cui-emoji-picker-active-background: var(--hover-fill);
     --cui-emoji-picker-header-background: var(--popover);
     --cui-emoji-picker-header-foreground: var(--muted-foreground);
     --cui-emoji-picker-header-font-size: var(--text-caption);
@@ -35,19 +35,15 @@
   :where([data-control-family="emoji-picker"][data-slot="category"]) {
     display: grid;
     place-items: center;
-    flex: 0 1 calc(var(--spacing) * 9);
+    flex: 0 1 var(--control-h-md);
     min-inline-size: 0;
-    block-size: calc(var(--spacing) * 9);
+    block-size: var(--control-h-md);
     border-radius: var(--cui-emoji-picker-cell-radius);
     color: var(--muted-foreground);
     cursor: pointer;
     transition:
       color var(--duration-fast) var(--ease-standard),
       background-color var(--duration-fast) var(--ease-standard);
-  }
-  :where([data-control-family="emoji-picker"][data-slot="category"]:hover) {
-    color: var(--foreground);
-    background: var(--cui-emoji-picker-active-background);
   }
   :where([data-control-family="emoji-picker"][data-slot="category"] svg) {
     inline-size: calc(var(--spacing) * 4);
@@ -89,10 +85,10 @@
     color: var(--muted-foreground);
     font-size: var(--text-label);
   }
-  :where([data-control-family="emoji-picker"][data-slot="error"] button) {
+  :where([data-control-family="emoji-picker"][data-slot="error-retry"]) {
     color: var(--foreground);
     text-decoration: underline;
-    min-block-size: 44px;
+    min-block-size: var(--touch-target);
     cursor: pointer;
   }
   :where([data-control-family="emoji-picker"][data-slot="search"]) {
@@ -160,9 +156,20 @@
     transition: background-color var(--duration-fast) var(--ease-standard);
   }
 
-  :where([data-control-family="emoji-picker"][data-slot="emoji"][data-active]),
-  :where([data-control-family="emoji-picker"][data-variant="reactions"] > [data-slot="emoji"]:hover) {
+  :where([data-control-family="emoji-picker"][data-slot="emoji"][data-active]) {
     background: var(--cui-emoji-picker-active-background);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="emoji-picker"]:is([data-slot="category"], [data-slot="skin-tone"]):hover) {
+      background: var(--cui-emoji-picker-active-background);
+    }
+    :where([data-control-family="emoji-picker"][data-slot="category"]:hover) {
+      color: var(--foreground);
+    }
+    :where([data-control-family="emoji-picker"][data-variant="reactions"] > [data-slot="emoji"]:hover) {
+      background: var(--cui-emoji-picker-active-background);
+    }
   }
 
   :where([data-control-family="emoji-picker"][data-slot="footer"]) {
@@ -183,16 +190,38 @@
     color: var(--foreground);
   }
 
+  :where([data-control-family="emoji-picker"][data-slot="skin-tone"]) {
+    margin-inline-start: auto;
+    inline-size: var(--control-h-sm);
+    block-size: var(--control-h-sm);
+    border-radius: var(--cui-emoji-picker-cell-radius);
+    font-size: var(--cui-emoji-picker-glyph-size);
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--ease-standard);
+  }
+
   @media (pointer: coarse) {
     :where([data-control-family="emoji-picker"][data-slot="root"]) {
-      --_emoji-picker-touch-min: 44px;
+      --_emoji-picker-touch-min: var(--touch-target);
     }
     :where([data-control-family="emoji-picker"][data-slot="category"]) {
-      flex: 0 0 44px;
-      block-size: 44px;
+      flex: 0 0 var(--touch-target);
+      block-size: var(--touch-target);
+    }
+    :where([data-control-family="emoji-picker"][data-slot="skin-tone"]) {
+      inline-size: var(--touch-target);
+      block-size: var(--touch-target);
     }
     :where([data-control-family="emoji-picker"][data-slot="search-input"]) {
-      font-size: 16px;
+      font-size: max(var(--text-input-min), var(--cui-emoji-picker-search-font-size));
+    }
+  }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="emoji-picker"][data-slot="emoji"][data-active]) {
+      outline: var(--focus-ring-width) solid Highlight;
+      outline-offset: calc(var(--focus-ring-width) * -1);
     }
   }
 }

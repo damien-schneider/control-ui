@@ -1,34 +1,52 @@
 @layer components {
   :where([data-control-family="stepper"][data-slot="root"]) {
-    --cui-stepper-indicator-size: calc(var(--spacing) * 8);
+    --cui-stepper-indicator-size: var(--control-h-sm);
     --cui-stepper-indicator-radius: 9999px;
     --cui-stepper-indicator-background: var(--background);
     --cui-stepper-indicator-foreground: var(--muted-foreground);
     --cui-stepper-indicator-border-color: var(--border);
     --cui-stepper-indicator-border-width: var(--control-rim-width);
     --cui-stepper-indicator-current-border-width: 2px;
+    --cui-stepper-indicator-current-border-color: var(--primary);
+    --cui-stepper-indicator-complete-background: var(--primary);
+    --cui-stepper-indicator-complete-foreground: var(--primary-foreground);
     --cui-stepper-separator-background: var(--border);
+    --cui-stepper-separator-complete-background: var(--cui-stepper-indicator-complete-background);
+    --cui-stepper-separator-size: 1px;
     --cui-stepper-title-foreground: var(--foreground);
     --cui-stepper-title-current-font-weight: var(--font-weight-semibold);
   }
   :where([data-control-family="stepper"][data-slot="trigger"]) {
     border-radius: var(--radius-control);
+    cursor: pointer;
     transition: color var(--duration-fast) var(--ease-standard);
     text-align: start;
   }
 
   :where([data-control-family="stepper"][data-slot="trigger"]:disabled) {
+    cursor: not-allowed;
+  }
+
+  :where([data-control-family="stepper"][data-slot="trigger"]:disabled),
+  :where(
+    [data-control-family="stepper"][data-slot="item"][data-disabled="true"]
+      > :is([data-slot="indicator"], [data-slot="title"], [data-slot="description"])
+  ) {
     opacity: var(--disabled-opacity);
   }
 
   :where([data-control-family="stepper"][data-slot="indicator"]) {
+    --_stepper-indicator-background: var(--cui-stepper-indicator-background);
+    --_stepper-indicator-foreground: var(--cui-stepper-indicator-foreground);
+    --_stepper-indicator-border-color: var(--cui-stepper-indicator-border-color);
+    --_stepper-indicator-border-width: var(--cui-stepper-indicator-border-width);
+    --_stepper-indicator-shadow: 0 0 transparent;
     inline-size: var(--cui-stepper-indicator-size);
     block-size: var(--cui-stepper-indicator-size);
-    --_stepper-indicator-shadow: 0 0 transparent;
-    border: var(--cui-stepper-indicator-border-width) solid var(--cui-stepper-indicator-border-color);
+    border: var(--_stepper-indicator-border-width) solid var(--_stepper-indicator-border-color);
     border-radius: var(--cui-stepper-indicator-radius);
-    background: var(--cui-stepper-indicator-background);
-    color: var(--cui-stepper-indicator-foreground);
+    background: var(--_stepper-indicator-background);
+    color: var(--_stepper-indicator-foreground);
     box-shadow: var(--_stepper-indicator-shadow);
     font-size: var(--text-caption);
     font-weight: var(--font-weight-semibold);
@@ -39,33 +57,34 @@
   }
 
   :where([data-control-family="stepper"][data-slot="indicator"][data-state="complete"]:not([data-invalid])) {
-    --cui-stepper-indicator-background: var(--primary);
-    --cui-stepper-indicator-foreground: var(--primary-foreground);
-    --cui-stepper-indicator-border-color: var(--primary);
+    --_stepper-indicator-background: var(--cui-stepper-indicator-complete-background);
+    --_stepper-indicator-foreground: var(--cui-stepper-indicator-complete-foreground);
+    --_stepper-indicator-border-color: var(--cui-stepper-indicator-complete-background);
   }
 
   :where([data-control-family="stepper"][data-slot="indicator"][data-state="current"]:not([data-invalid])) {
-    --cui-stepper-indicator-foreground: var(--primary-text);
-    --cui-stepper-indicator-border-color: var(--primary);
-    --cui-stepper-indicator-border-width: var(--cui-stepper-indicator-current-border-width);
-    --_stepper-indicator-shadow: 0 0 0 4px oklch(from var(--primary) l c h / 0.1);
+    --_stepper-indicator-foreground: var(--primary-text);
+    --_stepper-indicator-border-color: var(--cui-stepper-indicator-current-border-color);
+    --_stepper-indicator-border-width: var(--cui-stepper-indicator-current-border-width);
+    --_stepper-indicator-shadow: 0 0 0 4px oklch(from var(--cui-stepper-indicator-current-border-color) l c h / 0.1);
   }
 
   :where([data-control-family="stepper"][data-slot="indicator"][data-invalid]) {
-    --cui-stepper-indicator-background: oklch(from var(--destructive) l c h / 0.1);
-    --cui-stepper-indicator-foreground: var(--destructive-text);
-    --cui-stepper-indicator-border-color: var(--destructive);
+    --_stepper-indicator-background: oklch(from var(--destructive) l c h / 0.1);
+    --_stepper-indicator-foreground: var(--destructive-text);
+    --_stepper-indicator-border-color: var(--destructive);
     --_stepper-indicator-shadow: 0 0 transparent;
     border-style: dashed;
   }
 
   :where([data-control-family="stepper"][data-slot="separator"]) {
-    background: var(--cui-stepper-separator-background);
+    --_stepper-separator-background: var(--cui-stepper-separator-background);
+    background: var(--_stepper-separator-background);
     transition: background-color var(--duration-base) var(--ease-standard);
   }
 
   :where([data-control-family="stepper"][data-slot="separator"][data-state="complete"]:not([data-invalid])) {
-    --cui-stepper-separator-background: var(--primary);
+    --_stepper-separator-background: var(--cui-stepper-separator-complete-background);
   }
 
   :where([data-control-family="stepper"][data-slot="title"]) {
@@ -75,7 +94,8 @@
     line-height: var(--leading-tight);
   }
 
-  :where([data-control-family="stepper"][data-slot="item"][aria-current="step"] [data-slot="title"]) {
+  :where([data-control-family="stepper"][data-slot="item"][aria-current="step"] > [data-slot="title"]),
+  :where([data-control-family="stepper"][data-slot="item"][aria-current="step"] > [data-slot="trigger"] > [data-slot="title"]) {
     font-weight: var(--cui-stepper-title-current-font-weight);
   }
 
@@ -89,55 +109,56 @@
     margin-block-start: calc(var(--spacing) * 6);
   }
 
-  :where([data-control-family="stepper"][data-slot="root"][data-orientation="vertical"] [data-slot="item"]) {
+  :where([data-control-family="stepper"][data-slot="item"][data-orientation="vertical"]) {
     padding-block-end: calc(var(--spacing) * 6);
   }
 
-  :where([data-control-family="stepper"][data-slot="root"][data-orientation="vertical"] [data-slot="item"]:last-child) {
+  :where([data-control-family="stepper"][data-slot="item"][data-orientation="vertical"]:last-child) {
     padding-block-end: 0;
   }
 
-  :where(
-    [data-control-family="stepper"][data-slot="root"][data-orientation="vertical"] :is([data-slot="title"], [data-slot="description"])
-  ) {
+  :where([data-control-family="stepper"]:is([data-slot="title"], [data-slot="description"])[data-orientation="vertical"]) {
     margin-inline-start: calc(var(--spacing) * 3);
   }
 
-  :where([data-control-family="stepper"][data-slot="root"][data-orientation="horizontal"] [data-slot="title"]) {
+  :where([data-control-family="stepper"][data-slot="title"][data-orientation="horizontal"]) {
     margin-block-start: calc(var(--spacing) * 2);
   }
 
-  :where([data-control-family="stepper"][data-slot="root"][data-orientation="horizontal"] [data-slot="description"]) {
+  :where([data-control-family="stepper"][data-slot="description"][data-orientation="horizontal"]) {
     margin-block-start: calc(var(--spacing) * 0.5);
   }
 
-  :where([data-control-family="stepper"][data-slot="root"][data-orientation="horizontal"] [data-slot="separator"]) {
-    block-size: 1px;
+  :where([data-control-family="stepper"][data-slot="separator"][data-orientation="horizontal"]) {
+    block-size: var(--cui-stepper-separator-size);
   }
 
-  :where([data-control-family="stepper"][data-slot="root"][data-orientation="vertical"] [data-slot="separator"]) {
-    inline-size: 1px;
+  :where([data-control-family="stepper"][data-slot="separator"][data-orientation="vertical"]) {
+    inline-size: var(--cui-stepper-separator-size);
   }
 
   @container stepper (width < 28rem) {
-    :where([data-control-family="stepper"][data-slot="root"][data-orientation="horizontal"] [data-slot="item"]) {
+    :where([data-control-family="stepper"][data-slot="item"][data-responsive="true"][data-orientation="horizontal"]) {
       padding-block-end: calc(var(--spacing) * 6);
     }
 
-    :where([data-control-family="stepper"][data-slot="root"][data-orientation="horizontal"] [data-slot="item"]:last-child) {
+    :where([data-control-family="stepper"][data-slot="item"][data-responsive="true"][data-orientation="horizontal"]:last-child) {
       padding-block-end: 0;
     }
 
     :where(
-        [data-control-family="stepper"][data-slot="root"][data-orientation="horizontal"] :is([data-slot="title"], [data-slot="description"])
+        [data-control-family="stepper"]:is(
+          [data-slot="title"],
+          [data-slot="description"]
+        )[data-responsive="true"][data-orientation="horizontal"]
       ) {
       margin-block-start: 0;
       margin-inline-start: calc(var(--spacing) * 3);
     }
 
-    :where([data-control-family="stepper"][data-slot="root"][data-orientation="horizontal"] [data-slot="separator"]) {
+    :where([data-control-family="stepper"][data-slot="separator"][data-responsive="true"][data-orientation="horizontal"]) {
       block-size: auto;
-      inline-size: 1px;
+      inline-size: var(--cui-stepper-separator-size);
     }
   }
 }
@@ -200,4 +221,34 @@
   syntax: "<number>";
   inherits: true;
   initial-value: 400;
+}
+
+@property --cui-stepper-indicator-current-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-stepper-indicator-complete-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-stepper-indicator-complete-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-stepper-separator-complete-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-stepper-separator-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }

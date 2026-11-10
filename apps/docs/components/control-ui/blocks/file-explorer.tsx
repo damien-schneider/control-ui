@@ -87,6 +87,17 @@ export type FileExplorerBlockProps = Omit<ComponentProps<"div">, "children" | "d
     backLabel?: string;
     moreActionsLabel?: string;
     detailsLabel?: string;
+    addressLabel?: string;
+    topLevelLabel?: string;
+    itemCountLabel?: (count: number) => string;
+    noSelectionLabel?: string;
+    noSelectionTitle?: string;
+    noSelectionDescription?: string;
+    emptyFolderTitle?: string;
+    emptyFolderDescription?: (folderLabel: string) => string;
+    noResultsDescription?: string;
+    noLocationsTitle?: string;
+    noLocationsDescription?: string;
     layout?: "viewport" | "contained";
   };
 
@@ -95,6 +106,14 @@ type OptionTarget = { columnIndex: number; entryId: string };
 function defaultSearchStatusLabel(count: number, query: string) {
   if (count === 0) return `No results for “${query}”`;
   return count === 1 ? "1 result" : `${count} results`;
+}
+
+function defaultItemCountLabel(count: number) {
+  return count === 1 ? "1 item" : `${count} items`;
+}
+
+function defaultEmptyFolderDescription(folderLabel: string) {
+  return `${folderLabel} has no files yet.`;
 }
 
 export function FileExplorerBlock({
@@ -121,6 +140,17 @@ export function FileExplorerBlock({
   backLabel = "Go back",
   moreActionsLabel = "More actions",
   detailsLabel = "Details",
+  addressLabel = "Current folder",
+  topLevelLabel = "Top level",
+  itemCountLabel = defaultItemCountLabel,
+  noSelectionLabel = "No selection",
+  noSelectionTitle = "Select an item",
+  noSelectionDescription = "Choose a file or folder to inspect its details.",
+  emptyFolderTitle = "Empty folder",
+  emptyFolderDescription = defaultEmptyFolderDescription,
+  noResultsDescription = "Try a shorter file or folder name.",
+  noLocationsTitle = "No locations",
+  noLocationsDescription = "Add at least one location to populate the file explorer.",
   layout = "viewport",
   persistOpen,
   keyboardShortcut,
@@ -156,7 +186,15 @@ export function FileExplorerBlock({
   }
 
   if (!activeLocation) {
-    return <FileExplorerUnavailable className={className} style={style} {...props} />;
+    return (
+      <FileExplorerUnavailable
+        emptyTitle={noLocationsTitle}
+        emptyDescription={noLocationsDescription}
+        className={className}
+        style={style}
+        {...props}
+      />
+    );
   }
 
   const resolution = resolveFileExplorer(activeLocation, currentPath);
@@ -203,6 +241,7 @@ export function FileExplorerBlock({
           clearSearchLabel={clearSearchLabel}
           backLabel={backLabel}
           moreActionsLabel={moreActionsLabel}
+          addressLabel={addressLabel}
           canGoBack={resolution.validPath.length > 0}
           headerActions={headerActions}
           headerMenuItems={headerMenuItems}
@@ -217,6 +256,8 @@ export function FileExplorerBlock({
               label={searchResultsLabel}
               status={searchStatus}
               clearSearchLabel={clearSearchLabel}
+              noResultsDescription={noResultsDescription}
+              topLevelLabel={topLevelLabel}
               results={searchResults}
               onSelect={selectSearchResult}
               onOpen={openEntry}
@@ -230,20 +271,34 @@ export function FileExplorerBlock({
               headingLevel={contained ? 3 : 2}
               backLabel={backLabel}
               detailsLabel={detailsLabel}
+              noSelectionTitle={noSelectionTitle}
+              noSelectionDescription={noSelectionDescription}
+              emptyFolderTitle={emptyFolderTitle}
+              emptyFolderDescription={emptyFolderDescription}
               onNavigate={changePath}
               onOpen={openEntry}
             />
           )}
         </div>
 
-        <FileExplorerStatusBar breadcrumbs={resolution.breadcrumbs} selectedEntry={resolution.selectedEntry} />
+        <FileExplorerStatusBar
+          breadcrumbs={resolution.breadcrumbs}
+          selectedEntry={resolution.selectedEntry}
+          noSelectionLabel={noSelectionLabel}
+          itemCountLabel={itemCountLabel}
+        />
         <LiveStatus message={searchStatus} />
       </SidebarInset>
     </SidebarProvider>
   );
 }
 
-function FileExplorerUnavailable({ className, ...props }: ComponentProps<"div">) {
+function FileExplorerUnavailable({
+  emptyTitle,
+  emptyDescription,
+  className,
+  ...props
+}: ComponentProps<"div"> & { emptyTitle: string; emptyDescription: string }) {
   return (
     <div className={cn("flex min-h-96 items-center justify-center border bg-background", className)} {...props}>
       <Empty>
@@ -251,8 +306,8 @@ function FileExplorerUnavailable({ className, ...props }: ComponentProps<"div">)
           <EmptyMedia>
             <FolderIcon />
           </EmptyMedia>
-          <EmptyTitle>No locations</EmptyTitle>
-          <EmptyDescription>Add at least one location to populate the file explorer.</EmptyDescription>
+          <EmptyTitle>{emptyTitle}</EmptyTitle>
+          <EmptyDescription>{emptyDescription}</EmptyDescription>
         </EmptyHeader>
       </Empty>
     </div>
@@ -318,6 +373,7 @@ function FileExplorerHeader({
   clearSearchLabel,
   backLabel,
   moreActionsLabel,
+  addressLabel,
   canGoBack,
   headerActions,
   headerMenuItems,
@@ -334,6 +390,7 @@ function FileExplorerHeader({
   clearSearchLabel: string;
   backLabel: string;
   moreActionsLabel: string;
+  addressLabel: string;
   canGoBack: boolean;
   headerActions?: ReactNode;
   headerMenuItems?: ReactNode;
@@ -354,7 +411,7 @@ function FileExplorerHeader({
           aria-label={backLabel}
           onClick={onBack}
         >
-          <ChevronLeftIcon className="size-4" data-icon-dir="inline" />
+          <ChevronLeftIcon data-icon-dir="inline" />
         </Button>
         <Heading level={headingLevel} size="label" weight="semibold" className="min-w-0 flex-1 truncate" title={location.label}>
           {location.label}
@@ -371,7 +428,7 @@ function FileExplorerHeader({
               aria-label={moreActionsLabel}
               className={headerActions ? "@2xl/explorer:hidden" : undefined}
             >
-              <MoreHorizontalIcon className="size-3.5" aria-hidden="true" />
+              <MoreHorizontalIcon aria-hidden="true" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">{headerMenuItems}</DropdownMenuContent>
           </DropdownMenu>
@@ -379,7 +436,7 @@ function FileExplorerHeader({
         {searchPlaceholder ? (
           <InputGroup size="sm" className="flex-[0_1_9rem] @xl/explorer:flex-[0_0_12rem]">
             <InputGroupAddon>
-              <SearchIcon className="size-3.5" aria-hidden="true" />
+              <SearchIcon aria-hidden="true" />
             </InputGroupAddon>
             <Input
               type="search"
@@ -390,14 +447,14 @@ function FileExplorerHeader({
             />
             {query ? (
               <Button variant="ghost" size="xs" iconOnly className="me-1" aria-label={clearSearchLabel} onClick={() => onQueryChange("")}>
-                <XIcon className="size-3.5" />
+                <XIcon />
               </Button>
             ) : null}
           </InputGroup>
         ) : null}
       </div>
       <div className="px-3 pb-2">
-        <FileExplorerAddressBar breadcrumbs={breadcrumbs} onSelect={onBreadcrumbSelect} />
+        <FileExplorerAddressBar label={addressLabel} breadcrumbs={breadcrumbs} onSelect={onBreadcrumbSelect} />
       </div>
     </header>
   );
@@ -410,6 +467,10 @@ function FileExplorerColumns({
   headingLevel,
   backLabel,
   detailsLabel,
+  noSelectionTitle,
+  noSelectionDescription,
+  emptyFolderTitle,
+  emptyFolderDescription,
   onNavigate,
   onOpen,
 }: {
@@ -419,6 +480,10 @@ function FileExplorerColumns({
   headingLevel: HeadingLevel;
   backLabel: string;
   detailsLabel: string;
+  noSelectionTitle: string;
+  noSelectionDescription: string;
+  emptyFolderTitle: string;
+  emptyFolderDescription: (folderLabel: string) => string;
   onNavigate: (path: readonly string[], entry: FileExplorerEntry | undefined) => void;
   onOpen: (entry: FileExplorerEntry, path: readonly string[]) => void;
 }) {
@@ -527,6 +592,8 @@ function FileExplorerColumns({
     return (
       <FileExplorerColumnView
         column={column}
+        emptyTitle={emptyFolderTitle}
+        emptyDescription={emptyFolderDescription(column.label)}
         optionRef={(entryId) => (element) => {
           const key = `${layout}:${columnIndex}:${entryId}`;
           if (element) optionElements.current.set(key, element);
@@ -556,7 +623,7 @@ function FileExplorerColumns({
                   aria-label={`${backLabel}: ${parentColumn.label}`}
                   onClick={() => moveToParent(activeIndex)}
                 >
-                  <ChevronLeftIcon className="size-4" data-icon-dir="inline" />
+                  <ChevronLeftIcon data-icon-dir="inline" />
                   <span className="truncate">{parentColumn.label}</span>
                 </Button>
               ) : (
@@ -603,7 +670,12 @@ function FileExplorerColumns({
               </FileExplorerPanel>
             ))}
             <ResizablePanel defaultSize="32%" minSize="20%">
-              <FileExplorerPreview entry={selectedEntry} headingLevel={headingLevel} />
+              <FileExplorerPreview
+                entry={selectedEntry}
+                headingLevel={headingLevel}
+                emptyTitle={noSelectionTitle}
+                emptyDescription={noSelectionDescription}
+              />
             </ResizablePanel>
           </ResizablePanelGroup>
         ) : null}
@@ -642,12 +714,16 @@ function FileExplorerEntryIcon({ entry }: { entry: FileExplorerEntry }) {
 
 function FileExplorerColumnView({
   column,
+  emptyTitle,
+  emptyDescription,
   optionRef,
   onSelect,
   onOpen,
   onOptionKeyDown,
 }: {
   column: FileExplorerColumn;
+  emptyTitle: string;
+  emptyDescription: string;
   optionRef: (entryId: string) => RefCallback<HTMLButtonElement>;
   onSelect: (entry: FileExplorerEntry) => void;
   onOpen: (entry: FileExplorerEntry) => void;
@@ -664,8 +740,8 @@ function FileExplorerColumnView({
           <EmptyMedia>
             <FolderIcon />
           </EmptyMedia>
-          <EmptyTitle>Empty folder</EmptyTitle>
-          <EmptyDescription>{column.label} has no files yet.</EmptyDescription>
+          <EmptyTitle>{emptyTitle}</EmptyTitle>
+          <EmptyDescription>{emptyDescription}</EmptyDescription>
         </EmptyHeader>
       </Empty>
     );
@@ -723,7 +799,17 @@ function FileExplorerColumnView({
   );
 }
 
-function FileExplorerPreview({ entry, headingLevel }: { entry?: FileExplorerEntry; headingLevel: HeadingLevel }) {
+function FileExplorerPreview({
+  entry,
+  headingLevel,
+  emptyTitle,
+  emptyDescription,
+}: {
+  entry?: FileExplorerEntry;
+  headingLevel: HeadingLevel;
+  emptyTitle: string;
+  emptyDescription: string;
+}) {
   if (!entry) {
     return (
       <Empty className="h-full" style={{ "--cui-empty-radius": "0px" }}>
@@ -731,8 +817,8 @@ function FileExplorerPreview({ entry, headingLevel }: { entry?: FileExplorerEntr
           <EmptyMedia>
             <FileIcon />
           </EmptyMedia>
-          <EmptyTitle>Select an item</EmptyTitle>
-          <EmptyDescription>Choose a file or folder to inspect its details.</EmptyDescription>
+          <EmptyTitle>{emptyTitle}</EmptyTitle>
+          <EmptyDescription>{emptyDescription}</EmptyDescription>
         </EmptyHeader>
       </Empty>
     );
@@ -788,6 +874,8 @@ function FileExplorerSearchResults({
   label,
   status,
   clearSearchLabel,
+  noResultsDescription,
+  topLevelLabel,
   results,
   onSelect,
   onOpen,
@@ -796,6 +884,8 @@ function FileExplorerSearchResults({
   label: string;
   status: string;
   clearSearchLabel: string;
+  noResultsDescription: string;
+  topLevelLabel: string;
   results: readonly FileExplorerSearchResult[];
   onSelect: (result: FileExplorerSearchResult) => void;
   onOpen: (entry: FileExplorerEntry, path: readonly string[]) => void;
@@ -813,7 +903,7 @@ function FileExplorerSearchResults({
             <SearchIcon />
           </EmptyMedia>
           <EmptyTitle>{status}</EmptyTitle>
-          <EmptyDescription>Try a shorter file or folder name.</EmptyDescription>
+          <EmptyDescription>{noResultsDescription}</EmptyDescription>
         </EmptyHeader>
         <EmptyContent>
           <Button variant="surface" size="sm" onClick={onClear}>
@@ -870,7 +960,7 @@ function FileExplorerSearchResults({
                   {result.entry.name}
                 </Text>
                 <Text size="caption" tone="muted" className="block truncate">
-                  {result.parents.join(" / ") || "Top level"}
+                  {result.parents.join(" / ") || topLevelLabel}
                 </Text>
               </span>
             </Button>
@@ -884,13 +974,16 @@ function FileExplorerSearchResults({
 function FileExplorerStatusBar({
   breadcrumbs,
   selectedEntry,
+  noSelectionLabel,
+  itemCountLabel,
 }: {
   breadcrumbs: readonly FileExplorerBreadcrumb[];
   selectedEntry?: FileExplorerEntry;
+  noSelectionLabel: string;
+  itemCountLabel: (count: number) => string;
 }) {
   const path = breadcrumbs.map((breadcrumb) => breadcrumb.label).join(" / ");
   const itemCount = selectedEntry?.children?.length ?? 0;
-  const itemLabel = itemCount === 1 ? "1 item" : `${itemCount} items`;
 
   return (
     <footer className="flex h-8 shrink-0 items-center gap-3 border-t border-border/70 px-3">
@@ -898,22 +991,24 @@ function FileExplorerStatusBar({
         {path}
       </Text>
       <Text size="micro" tone="muted" numeric className="shrink-0">
-        {selectedEntry?.kind === "folder" ? itemLabel : (selectedEntry?.name ?? "No selection")}
+        {selectedEntry?.kind === "folder" ? itemCountLabel(itemCount) : (selectedEntry?.name ?? noSelectionLabel)}
       </Text>
     </footer>
   );
 }
 
 function FileExplorerAddressBar({
+  label,
   breadcrumbs,
   onSelect,
 }: {
+  label: string;
   breadcrumbs: readonly FileExplorerBreadcrumb[];
   onSelect: (breadcrumb: FileExplorerBreadcrumb) => void;
 }) {
   return (
     <div className="min-w-0 overflow-hidden px-1">
-      <Breadcrumb aria-label="Current folder" className="min-w-0">
+      <Breadcrumb aria-label={label} className="min-w-0">
         <BreadcrumbList className="min-w-0 flex-nowrap overflow-hidden">
           {breadcrumbs.map((breadcrumb, index) => {
             const isCurrent = index === breadcrumbs.length - 1;

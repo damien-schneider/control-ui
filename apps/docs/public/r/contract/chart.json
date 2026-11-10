@@ -226,6 +226,13 @@
         ],
         "states": []
       },
+      "tooltip-label": {
+        "family": "chart",
+        "registryItems": [
+          "chart"
+        ],
+        "states": []
+      },
       "tooltip-row": {
         "family": "chart",
         "registryItems": [
@@ -241,6 +248,13 @@
         ]
       },
       "tooltip-title": {
+        "family": "chart",
+        "registryItems": [
+          "chart"
+        ],
+        "states": []
+      },
+      "tooltip-value": {
         "family": "chart",
         "registryItems": [
           "chart"

@@ -83,6 +83,17 @@
     gap: var(--cui-chat-layout-turn-gap);
   }
 
+  :where([data-control-family="chat-layout"][data-slot="dock"]) {
+    padding-block-end: env(safe-area-inset-bottom, 0px);
+  }
+
+  :where(
+    :is([data-popup-part="surface"], [data-control-family="chat-layout"][data-slot="root"][data-chrome="panel"])
+      [data-control-family="chat-layout"][data-slot="dock"]
+  ) {
+    padding-block-end: 0;
+  }
+
   :where([data-control-family="chat-layout"][data-slot="dock"])::before {
     content: "";
     position: absolute;

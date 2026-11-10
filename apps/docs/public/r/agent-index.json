@@ -903,7 +903,7 @@
         "id": "slider",
         "name": "Slider",
         "kind": "Component",
-        "summary": "Single-value range control with branded and plain treatments.",
+        "summary": "Single-value or range control with branded and plain treatments.",
         "href": "/components/slider",
         "install": "npx shadcn@latest add https://control-ui.dev/r/slider.json"
       },
@@ -1535,7 +1535,7 @@
         "id": "skin",
         "name": "skin",
         "kind": "Util",
-        "summary": "Skin slot and adornment resolvers for the Control UI library.",
+        "summary": "Skin config type, scope attributes, and adornment resolvers for the Control UI library.",
         "href": "/utils/skin"
       },
       {

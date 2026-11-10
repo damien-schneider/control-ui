@@ -3,12 +3,10 @@ import type { ComponentProps, CSSProperties } from "react";
 import type { SeparatorKnobStyle } from "@/components/control-ui/knob-contracts/separator-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
+export type SeparatorProps = Omit<ComponentProps<typeof SeparatorPrimitive>, "style"> & { style?: CSSProperties & SeparatorKnobStyle };
+
 // axis comes straight from prop, never data-attribute, so no skin can break it
-export function Separator({
-  className,
-  orientation = "horizontal",
-  ...props
-}: Omit<ComponentProps<typeof SeparatorPrimitive>, "style"> & { style?: CSSProperties & SeparatorKnobStyle }) {
+export function Separator({ className, orientation = "horizontal", ...props }: SeparatorProps) {
   return (
     <SeparatorPrimitive
       data-control-ui="separator"

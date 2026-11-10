@@ -35,6 +35,8 @@
   :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="scale"]) {
     block-size: calc(1lh + var(--spacing));
     color: var(--cui-range-level-scale-foreground);
+    font-size: var(--text-micro);
+    line-height: var(--text-micro--line-height);
   }
 
   :where(
@@ -138,6 +140,20 @@
     clip-path: inset(
       calc((1 - var(--_range-level-peak, 0)) * 100%) 0 calc(var(--_range-level-peak, 0) * 100% - var(--_range-level-peak-size)) 0
     );
+  }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="bar"]),
+    :where([data-control-family="range"][data-range-kind="level-meter"][data-slot="peak"]) {
+      background: Highlight;
+    }
+
+    :where(
+        [data-range-kind="level-meter"][data-slot="root"][data-muted]
+          [data-control-family="range"][data-range-kind="level-meter"]:is([data-slot="bar"], [data-slot="peak"])
+      ) {
+      background: GrayText;
+    }
   }
 }
 

@@ -89,7 +89,7 @@ describe("Activity", () => {
       </Activity>,
     );
 
-    expect(html).toMatch(/<span[^>]*role="status"[^>]*aria-live="polite"[^>]*>Web search: Search failed<\/span>/);
+    expect(html).toMatch(/<span(?=[^>]*role="status")(?=[^>]*aria-live="polite")[^>]*>Web search: Search failed<\/span>/);
     expect(html).not.toContain('role="alert"');
     expect(html).not.toContain("aria-busy");
   });

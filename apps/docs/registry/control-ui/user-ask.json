@@ -5,6 +5,7 @@
   "title": "UserAsk",
   "description": "Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.",
   "dependencies": [
+    "@base-ui/react@^1.9.0",
     "lucide-react@^1.47.0"
   ],
   "registryDependencies": [

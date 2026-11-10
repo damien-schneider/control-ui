@@ -108,11 +108,11 @@ export function triggerMenuReducer(state: TriggerMenuState, action: TriggerMenuA
     }
     case "close":
       return { ...CLOSED_TRIGGER_MENU, dismissed: action.dismissed };
-    case "move":
-      return {
-        ...state,
-        activeIndex: action.count === 0 ? 0 : (state.activeIndex + action.delta + action.count) % action.count,
-      };
+    case "move": {
+      if (action.count === 0) return { ...state, activeIndex: 0 };
+      const current = Math.min(state.activeIndex, action.count - 1);
+      return { ...state, activeIndex: (current + action.delta + action.count) % action.count };
+    }
     case "activate":
       return { ...state, activeIndex: action.index };
   }
@@ -159,7 +159,9 @@ export function useTriggerMenu<Item extends TriggerMenuItemData>({
   const activeTrigger = state.char === null ? null : (triggers.find((trigger) => trigger.char === state.char) ?? null);
   const items = activeTrigger === null ? [] : resolveItems(activeTrigger, state.query);
   const optionId = (index: number) => `${listId}-option-${index}`;
-  const hasActiveItem = state.open && state.activeIndex < items.length;
+  // A function source can return fewer items for the same query (async results), leaving the stored index past the end.
+  const activeIndex = Math.min(state.activeIndex, Math.max(items.length - 1, 0));
+  const hasActiveItem = state.open && activeIndex < items.length;
 
   function dismiss() {
     const match = lastMatch.current;
@@ -189,7 +191,7 @@ export function useTriggerMenu<Item extends TriggerMenuItemData>({
     if (intent === "next" || intent === "previous") {
       dispatch({ type: "move", delta: intent === "next" ? 1 : -1, count: items.length });
     } else if (intent === "commit") {
-      const item = items[state.activeIndex];
+      const item = items[activeIndex];
       if (item && !item.disabled) select(item);
     } else if (intent === "dismiss") {
       dismiss();
@@ -208,7 +210,7 @@ export function useTriggerMenu<Item extends TriggerMenuItemData>({
   return {
     open: state.open,
     items,
-    activeIndex: state.activeIndex,
+    activeIndex,
     anchorRect: state.anchorRect,
     activeChar: state.char,
     query: state.query,
@@ -218,7 +220,7 @@ export function useTriggerMenu<Item extends TriggerMenuItemData>({
       "aria-autocomplete": "list",
       "aria-haspopup": "listbox",
       "aria-controls": state.open ? listId : undefined,
-      "aria-activedescendant": hasActiveItem ? optionId(state.activeIndex) : undefined,
+      "aria-activedescendant": hasActiveItem ? optionId(activeIndex) : undefined,
     },
     report,
     handleKeyDown,

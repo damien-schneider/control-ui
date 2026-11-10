@@ -192,6 +192,28 @@
     text-decoration-line: none;
   }
 
+  :where([data-control-family="popup"][data-popup-kind="select"][data-slot="value-text"][data-placeholder]) {
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="select"][data-slot="icon"] > svg),
+  :where([data-control-family="popup"][data-popup-kind="navigation-menu"][data-slot="icon"] > svg),
+  :where([data-control-family="popup"]:is([data-popup-kind="select"], [data-popup-kind="combobox"])[data-slot="item-indicator"] svg) {
+    inline-size: calc(var(--spacing) * 3);
+    block-size: calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="popup"]:is([data-popup-kind="select"], [data-popup-kind="combobox"])[data-slot="item-indicator"]) {
+    inline-size: calc(var(--spacing) * 3.5);
+    block-size: calc(var(--spacing) * 3.5);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="trigger-menu"][data-slot="icon"] svg),
+  :where([data-control-family="popup"][data-popup-kind="command"][data-slot="input-icon"]) {
+    inline-size: var(--cui-popup-item-icon-size);
+    block-size: var(--cui-popup-item-icon-size);
+  }
+
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"]) {
     text-align: start;
   }

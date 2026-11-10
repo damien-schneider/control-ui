@@ -99,7 +99,7 @@
   [data-skin="linear"] :where([data-slot="root"][data-control-family="track-highlight"]) {
     --cui-track-highlight-background: var(--linear-menu-highlight);
     --cui-track-highlight-ring-color: transparent;
-    --cui-track-highlight-shadow: none;
+    --cui-track-highlight-shadow: 0 0 transparent;
   }
 
   [data-skin="linear"] :where([data-control-family="button-group"][data-slot="root"][data-orientation="horizontal"]) {

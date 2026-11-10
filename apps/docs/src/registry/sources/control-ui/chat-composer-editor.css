@@ -6,7 +6,7 @@
 
 @layer components {
   /* resting look + blur-IN transition; :not([data-chat-composer-exit] *) excludes exit ghosts/cloned pills from entry choreography */
-  :where([data-control-ui="chat-composer"][data-slot="mention"]):not([data-chat-composer-exit]):not([data-chat-composer-exit] *) {
+  :where([data-control-ui="chat-composer"][data-slot="mention"]:not([data-chat-composer-exit], [data-chat-composer-exit] *)) {
     opacity: 1;
     filter: blur(0);
     scale: 1;
@@ -17,7 +17,7 @@
   }
 
   @starting-style {
-    :where([data-control-ui="chat-composer"][data-slot="mention"]):not([data-chat-composer-exit]):not([data-chat-composer-exit] *) {
+    :where([data-control-ui="chat-composer"][data-slot="mention"]:not([data-chat-composer-exit], [data-chat-composer-exit] *)) {
       opacity: 0;
       filter: blur(6px);
       scale: 0.82;
@@ -30,15 +30,15 @@
     filter: blur(0);
     scale: 1;
     translate: 0 0;
-    animation: chat-composer-blur-out var(--duration-base) var(--ease-emphasized) forwards;
+    animation: cui-chat-composer-blur-out var(--duration-base) var(--ease-emphasized) forwards;
   }
-}
 
-@keyframes chat-composer-blur-out {
-  to {
-    opacity: 0;
-    filter: blur(8px);
-    scale: 0.94;
-    translate: 0 -0.25rem;
+  @keyframes cui-chat-composer-blur-out {
+    to {
+      opacity: 0;
+      filter: blur(8px);
+      scale: 0.94;
+      translate: 0 -0.25rem;
+    }
   }
 }

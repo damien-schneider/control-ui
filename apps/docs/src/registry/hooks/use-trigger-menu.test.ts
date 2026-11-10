@@ -47,6 +47,12 @@ describe("triggerMenuReducer", () => {
     expect(triggerMenuReducer(moved, { type: "report", match: mention, anchorRect: null }).activeIndex).toBe(1);
     expect(triggerMenuReducer(moved, { type: "report", match: { ...mention, query: "s" }, anchorRect: null }).activeIndex).toBe(0);
   });
+
+  test("arrow keys step from the last option when the list shrank below the highlighted index", () => {
+    const onFifth = triggerMenuReducer(openAt(mention), { type: "activate", index: 4 });
+    expect(triggerMenuReducer(onFifth, { type: "move", delta: 1, count: 2 }).activeIndex).toBe(0);
+    expect(triggerMenuReducer(onFifth, { type: "move", delta: -1, count: 3 }).activeIndex).toBe(1);
+  });
 });
 
 describe("triggerMenuKeyIntent", () => {

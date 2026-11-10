@@ -14,6 +14,7 @@ export const chatMessageKnobs = [
   "--cui-chat-message-shadow",
   "--cui-chat-message-pending-dot-color",
   "--cui-chat-message-pending-dot-size",
+  "--cui-chat-message-pending-animation-duration",
   "--cui-chat-message-row-hover-background",
   "--cui-chat-message-reaction-radius",
   "--cui-chat-message-reaction-background",

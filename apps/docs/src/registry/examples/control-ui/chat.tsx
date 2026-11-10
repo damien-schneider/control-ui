@@ -41,7 +41,7 @@ import {
 } from "@/components/control-ui/markdown-block";
 import { Button } from "@/components/control-ui/ui/button";
 import { CHAT_PREVIEW_AGENT_ID } from "@/mastra/chat-preview-contract";
-import { assistantLead, noteMarkdown, userPrompt } from "../shared";
+import { assistantCopy, assistantLead, noteMarkdown, userPrompt } from "../shared";
 
 const slashCommands: TriggerMenuItemData[] = [
   { id: "summarize", label: "summarize", description: "Condense the thread", icon: "✦" },
@@ -61,7 +61,6 @@ const composerTriggers: TriggerConfig[] = [
 ];
 
 const editorExtensions = [mentionExtension({ triggers: composerTriggers, side: "top" })];
-const responseCopy = `${assistantLead}\n\n${noteMarkdown}`;
 
 export function ChatExample() {
   return (
@@ -143,7 +142,7 @@ function PreviewConversation() {
             </ChatMessageBody>
           </ChatMessageRow>
         </ChatMessage>
-        <ActionBar label="Response actions" copyValue={responseCopy}>
+        <ActionBar label="Response actions" copyValue={assistantCopy}>
           <ActionBarCopy />
         </ActionBar>
       </ChatTurn>

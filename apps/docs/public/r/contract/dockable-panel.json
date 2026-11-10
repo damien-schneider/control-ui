@@ -43,6 +43,12 @@
       "defaultValue": "var(--shadow-pop)"
     },
     {
+      "name": "--cui-dockable-panel-dragging-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-modal)"
+    },
+    {
       "name": "--cui-dockable-panel-drop-zone-active-background",
       "syntax": "<color>",
       "initialValue": "transparent",

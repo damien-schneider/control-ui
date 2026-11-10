@@ -234,7 +234,7 @@ export function LevelMeterScale({ ticks, className, ...props }: LevelMeterScaleP
       data-control-family="range"
       data-range-kind="level-meter"
       data-slot="scale"
-      className={cn("relative text-micro tabular-nums", className)}
+      className={cn("relative tabular-nums", className)}
       {...props}
     >
       {visibleTicks.map((db) => {

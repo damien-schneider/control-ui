@@ -2,10 +2,15 @@
 
 import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar";
 import type { ComponentProps, CSSProperties } from "react";
+import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { AvatarKnobStyle } from "@/components/control-ui/knob-contracts/avatar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
-export type AvatarProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & AvatarKnobStyle };
+export type AvatarProps = Omit<ComponentProps<"span">, "style"> & {
+  /** Named step of `--cui-avatar-size`. Omit it to keep the size the recipe or an ancestor recipe sets. */
+  size?: ControlSize;
+  style?: CSSProperties & AvatarKnobStyle;
+};
 
 export type AvatarGroupProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AvatarKnobStyle };
 
@@ -24,16 +29,18 @@ export type AvatarBadgeStatus = (typeof avatarBadgeStatuses)[number];
 
 export type AvatarBadgeProps = Omit<ComponentProps<"span">, "style"> & {
   status?: AvatarBadgeStatus;
+  /** Text alternative for the badge. Defaults to `status` so presence is never colour-only; pass `""` for a decorative badge. */
   label?: string;
   style?: CSSProperties & AvatarKnobStyle;
 };
 
-export function Avatar({ className, ...props }: AvatarProps) {
+export function Avatar({ size, className, ...props }: AvatarProps) {
   return (
     <AvatarPrimitive.Root
       data-control-ui="avatar"
       data-control-family="avatar"
       data-slot="root"
+      data-size={size}
       className={cn("relative inline-flex shrink-0 select-none items-center justify-center align-middle", className)}
       {...props}
     />
@@ -48,7 +55,7 @@ export function AvatarGroup({ className, ...props }: AvatarGroupProps) {
       data-control-ui="avatar"
       data-control-family="avatar"
       data-slot="group"
-      className={cn("isolate inline-flex items-center -space-x-2", className)}
+      className={cn("isolate inline-flex items-center", className)}
       {...props}
     />
   );
@@ -78,7 +85,7 @@ export function AvatarFallback({ className, ...props }: AvatarFallbackProps) {
   );
 }
 
-export function AvatarBadge({ className, status, label, children, ...props }: AvatarBadgeProps) {
+export function AvatarBadge({ className, status, label = status, children, ...props }: AvatarBadgeProps) {
   return (
     <span
       data-control-ui="avatar"

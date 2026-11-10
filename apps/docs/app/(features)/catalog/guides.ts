@@ -66,7 +66,7 @@ export const guideEntries = [
       { id: "items", title: "Install one item at a time", code: "component-install" },
       { id: "wire-css", title: "Wire the CSS" },
       { id: "verify", title: "Verify the install" },
-      { id: "contract", title: "The contract" },
+      { id: "contract", title: "Own your theme" },
       { id: "package", title: "Or install the package" },
     ],
   },
@@ -77,7 +77,10 @@ export const guideEntries = [
     name: "Theme it",
     summary: "Pick the pack, re-value the token contract in one artifact, and check the contrast the components actually paint.",
     sections: [
-      { id: "pack", title: "Pick the pack" },
+      { id: "pack", title: "Start from the defaults" },
+      { id: "document", title: "Paint the document, not just the body" },
+      { id: "sidebar", title: "Let pages scroll with the window" },
+      { id: "feedback", title: "Keep frequent feedback immediate" },
       { id: "artifact", title: "One artifact owns the theme" },
       { id: "contrast", title: "Contrast is part of the theme" },
       { id: "deeper", title: "Go deeper" },
@@ -103,10 +106,10 @@ export const guideEntries = [
     summary:
       "Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.",
     sections: [
-      { id: "lanes", title: "Two lanes" },
-      { id: "override", title: "Re-value tokens over a pack" },
+      { id: "lanes", title: "Start with the defaults" },
+      { id: "override", title: "Re-value application tokens" },
       { id: "ramps", title: "Retint a color ramp" },
-      { id: "pack", title: "Own a full pack", code: "skin-scaffold-install" },
+      { id: "pack", title: "Add an optional skin", code: "skin-scaffold-install" },
       { id: "knobs", title: "Go deeper with component knobs" },
     ],
   },
@@ -273,12 +276,12 @@ export const guideEntries = [
       {
         question: "Is Control UI a replacement for shadcn/ui?",
         answer:
-          "It can be. Control UI covers the classic app surface — forms, overlays, navigation, tables, sidebars — so most projects could run on it alone; charts and carousels are the notable gaps. It is a separate registry rather than a fork, following shadcn conventions of CLI install, owned source, and compatible token names, so running both side by side stays a first-class option.",
+          "It can be. Control UI covers the classic app surface — forms, overlays, navigation, tables, sidebars, charts — so most projects could run on it alone; the carousel is the notable gap. It is a separate registry rather than a fork, following shadcn conventions of CLI install, owned source, and compatible token names, so running both side by side stays a first-class option.",
       },
       {
         question: "Should I use shadcn/ui instead of Control UI for a dashboard or SaaS console?",
         answer:
-          "Not automatically. Both cover the components a dashboard needs, and Control UI adds a skin system and a contrast gate that re-checks every supported skin mode against WCAG AA on every commit. Pick shadcn/ui when you rely on its larger pool of community recipes, or when you need its chart and carousel components today.",
+          "Not automatically. Both cover the components a dashboard needs, and Control UI adds a skin system and a contrast gate that re-checks every supported skin mode against WCAG AA on every commit. Pick shadcn/ui when you rely on its larger pool of community recipes, or when you need its carousel component today.",
       },
       {
         question: "Can I use Control UI and shadcn/ui components in the same project?",

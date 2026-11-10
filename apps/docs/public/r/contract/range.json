@@ -46,6 +46,18 @@
       "defaultValue": "40%"
     },
     {
+      "name": "--cui-range-indeterminate-animation-duration",
+      "syntax": "<time>",
+      "initialValue": "0s",
+      "defaultValue": "calc(var(--duration-loop) * 1.5)"
+    },
+    {
+      "name": "--cui-range-track-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 2)"
+    },
+    {
       "name": "--cui-range-track-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
@@ -104,6 +116,36 @@
       "syntax": "*",
       "initialValue": "",
       "defaultValue": "var(--shadow-sm)"
+    },
+    {
+      "name": "--cui-range-track-dragging-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--active-fill)"
+    },
+    {
+      "name": "--cui-range-indicator-dragging-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary)"
+    },
+    {
+      "name": "--cui-range-thumb-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--cui-range-thumb-background)"
+    },
+    {
+      "name": "--cui-range-thumb-dragging-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--cui-range-thumb-background)"
+    },
+    {
+      "name": "--cui-range-thumb-dragging-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-md)"
     }
   ],
   "parts": {
@@ -514,8 +556,10 @@
           {
             "attribute": "data-labeled",
             "source": "control-ui",
-            "valueKind": "presence",
-            "values": []
+            "valueKind": "enum",
+            "values": [
+              "true"
+            ]
           },
           {
             "attribute": "data-orientation",

@@ -11,7 +11,7 @@
       height: var(--_tabs-panel-height);
       margin: 0;
       overflow: clip;
-      animation: aui-slide-exit-hold var(--duration-slow) var(--ease-emphasized) both;
+      animation: cui-slide-exit-hold var(--duration-slow) var(--ease-emphasized) both;
     }
 
     @supports (height: anchor-size(height)) {
@@ -106,4 +106,24 @@
   syntax: "<length>";
   inherits: false;
   initial-value: 0px;
+}
+
+@property --cui-tabs-list-backdrop-filter {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-tabs-indicator-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-tabs-list-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-tabs-indicator-background-image {
+  syntax: "*";
+  inherits: true;
 }

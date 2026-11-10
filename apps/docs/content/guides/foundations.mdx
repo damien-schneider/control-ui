@@ -21,6 +21,11 @@
   Canvas is the paper, background and card sit on it, and popovers float above everything. Floating surfaces and the
   modal overlay take their translucency and blur from the surface knobs.
 
+  Stacking follows one ladder of tiers, so layers from different components never compete: `--z-raised` (10),
+  `--z-sticky` (20), `--z-nav` (30), `--z-overlay` (70), `--z-modal` (one above the overlay), `--z-popup` (80),
+  `--z-toast` (90), and `--z-tooltip` (95). A part that only needs to sit above or below a sibling inside its own
+  component uses a local `z-1` or `-z-1` instead of a tier.
+
   <SurfaceFoundations />
 </GuideSection>
 
@@ -32,22 +37,26 @@
 </GuideSection>
 
 <GuideSection id="radius" title="Radius and corners">
-  One `--radius` knob drives the whole scale. Roles multiply from it so nested corners stay concentric, and
-  `--corner-shape` reshapes every corner where the browser supports it.
+  One `--radius` knob drives the whole scale: each role is a multiple of it. Nested corners stay concentric through
+  the additive tokens — `--radius-popover`, `--radius-composer`, and `--nest-radius` add the inset to the inner
+  corner — and `--corner-shape` reshapes every corner where the browser supports it.
 
   <RadiusFoundations />
 </GuideSection>
 
 <GuideSection id="sizing" title="Sizing and density">
-  `--control-h` is the medium control height; the other sizes derive from it. Padding knobs set the density of
-  rounded surfaces such as bubbles and the composer.
+  `--control-h` is the medium control height, 2.25rem by default. The extra-small, small, and large sizes are 0.78,
+  0.89, and 1.11 times that height, snapped to 2px, so one declaration rescales every control and the heights follow
+  the user's font size. `--spacing` is the density unit: gaps and padding are multiples of it, including
+  `--popover-padding` and `--composer-padding`. Padding knobs set the density of rounded surfaces such as bubbles and
+  the composer.
 
   <SizingFoundations />
 </GuideSection>
 
 <GuideSection id="motion" title="Motion">
-  Three tempos and two curves cover every transition. Reduced-motion settings shorten them globally, so components
-  never check the preference themselves.
+  Three tempos and two curves cover every transition. Reduced-motion settings collapse them to zero globally, so
+  components never check the preference themselves.
 
   <MotionFoundations />
 </GuideSection>

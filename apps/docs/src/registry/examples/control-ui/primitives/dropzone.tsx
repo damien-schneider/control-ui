@@ -1,13 +1,11 @@
 "use client";
 
-import { FileWarningIcon } from "lucide-react";
 import { useState } from "react";
 
 import {
   Dropzone,
   DropzoneArea,
   DropzoneClear,
-  DropzoneErrorCode,
   DropzoneFileList,
   DropzoneInput,
   type DropzonePolicy,
@@ -15,7 +13,6 @@ import {
   DropzoneStatus,
   DropzoneTrigger,
 } from "@/components/control-ui/ui/dropzone";
-import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "@/components/control-ui/ui/item";
 
 const documentPolicy: DropzonePolicy = {
   accept: {
@@ -28,16 +25,10 @@ const documentPolicy: DropzonePolicy = {
   maxFiles: 4,
 };
 
-const rejectionMessages: Partial<Record<string, string>> = {
-  [DropzoneErrorCode.FileInvalidType]: "Choose a PNG, JPEG, WebP, or PDF file.",
-  [DropzoneErrorCode.FileTooLarge]: "Choose a file smaller than 5 MB.",
-  [DropzoneErrorCode.TooManyFiles]: "You can select up to 4 files.",
-  [DropzoneErrorCode.FileAlreadySelected]: "This file is already selected.",
-};
-
-const rejectedItemStyle = {
-  "--cui-item-media-foreground": "var(--destructive-text)",
-  "--cui-item-description-foreground": "var(--destructive-text)",
+const triggerMessages = {
+  idle: "Drop up to 4 images or PDFs, or choose files",
+  accept: "Release to add these files",
+  reject: "Only PNG, JPEG, WebP, and PDF files up to 5 MB",
 };
 
 export function PrimitiveDropzoneExample() {
@@ -47,24 +38,10 @@ export function PrimitiveDropzoneExample() {
     <Dropzone value={files} onValueChange={(nextFiles) => setFiles(nextFiles)} policy={documentPolicy} className="w-full max-w-xl">
       <DropzoneInput />
       <DropzoneArea>
-        <DropzoneTrigger />
+        <DropzoneTrigger messages={triggerMessages} />
       </DropzoneArea>
       <DropzoneFileList />
-      <DropzoneRejectionList>
-        {(rejection) => (
-          <Item variant="muted" style={rejectedItemStyle}>
-            <ItemMedia>
-              <FileWarningIcon aria-hidden="true" />
-            </ItemMedia>
-            <ItemContent>
-              <ItemTitle className="wrap-anywhere">{rejection.file.name}</ItemTitle>
-              {rejection.errors.map((error) => (
-                <ItemDescription key={`${error.code}-${error.message}`}>{rejectionMessages[error.code] ?? error.message}</ItemDescription>
-              ))}
-            </ItemContent>
-          </Item>
-        )}
-      </DropzoneRejectionList>
+      <DropzoneRejectionList />
       <div className="mt-3">
         <DropzoneClear />
       </div>

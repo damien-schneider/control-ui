@@ -1,9 +1,11 @@
 "use client";
 
+import { useRender } from "@base-ui/react/use-render";
 import { Check, ChevronLeft, ChevronRight, PencilLine } from "lucide-react";
-import type { ChangeEvent, ComponentProps, CSSProperties, MouseEvent } from "react";
+import type { ChangeEvent, ComponentProps, CSSProperties, KeyboardEvent, MouseEvent } from "react";
 import { createContext, useContext, useEffect, useId, useRef } from "react";
 
+import type { RenderProp } from "@/components/control-ui/control-props";
 import type { UserAskProps } from "@/components/control-ui/hooks/use-user-ask";
 import { useUserAsk } from "@/components/control-ui/hooks/use-user-ask";
 import type { UserAskKnobStyle } from "@/components/control-ui/knob-contracts/user-ask-knobs";
@@ -51,6 +53,7 @@ export function UserAsk({
   questionStatusLabel = defaultQuestionStatusLabel,
   className,
   children,
+  onKeyDown,
   ...props
 }: UserAskProps) {
   const ask = useUserAsk({ onComplete, onDismiss });
@@ -75,6 +78,11 @@ export function UserAsk({
     if (panel && !activeIsUsable) panel.focus();
   }, [ask.activeIndex, ask.hasNavigated]);
 
+  function handleKeyDown(event: KeyboardEvent<HTMLElement>) {
+    onKeyDown?.(event);
+    ask.handleKeyDown(event);
+  }
+
   return (
     <UserAskContext.Provider value={{ ...ask, titleId }}>
       {/* fx anchor candidate: "user-ask:panel-layer" */}
@@ -86,9 +94,9 @@ export function UserAsk({
         data-surface="panel"
         aria-labelledby={titleId}
         tabIndex={-1}
-        onKeyDown={ask.handleKeyDown}
         className={cn("relative w-full", className)}
         {...props}
+        onKeyDown={handleKeyDown}
       >
         {children}
         <LiveStatus message={questionStatus} />
@@ -111,21 +119,44 @@ export function UserAskHeader({ className, ...props }: UserAskHeaderProps) {
   );
 }
 
-export type UserAskTitleProps = UserAskStyleProps<ComponentProps<"h3">, UserAskKnobStyle>;
+export type UserAskTitleProps = UserAskStyleProps<ComponentProps<"h3">, UserAskKnobStyle> & {
+  render?: RenderProp<ComponentProps<"h3">>;
+};
 
-export function UserAskTitle({ className, children, ...props }: UserAskTitleProps) {
+export function UserAskTitle({ render, className, children, ...props }: UserAskTitleProps) {
   const ask = useUserAskContext();
-
-  return (
-    <h3 id={ask.titleId} data-control-ui="user-ask" data-control-family="user-ask" data-slot="title" className={className} {...props}>
-      {children ?? ask.activeQuestion?.title}
-    </h3>
-  );
+  return useRender({
+    defaultTagName: "h3",
+    render,
+    props: {
+      ...props,
+      id: ask.titleId,
+      "data-control-ui": "user-ask",
+      "data-control-family": "user-ask",
+      "data-slot": "title",
+      className,
+      children: children ?? ask.activeQuestion?.title,
+    },
+  });
 }
 
-export type UserAskPaginationProps = UserAskStyleProps<ComponentProps<"div">, UserAskKnobStyle>;
+export type UserAskPaginationProps = UserAskStyleProps<ComponentProps<"div">, UserAskKnobStyle> & {
+  previousLabel?: string;
+  nextLabel?: string;
+  countLabel?: (current: number, total: number) => string;
+};
 
-export function UserAskPagination({ className, ...props }: UserAskPaginationProps) {
+function defaultPaginationCountLabel(current: number, total: number) {
+  return `${current} of ${total}`;
+}
+
+export function UserAskPagination({
+  previousLabel = "Previous question",
+  nextLabel = "Next question",
+  countLabel = defaultPaginationCountLabel,
+  className,
+  ...props
+}: UserAskPaginationProps) {
   const ask = useUserAskContext();
   if (ask.questions.length <= 1) return null;
 
@@ -141,24 +172,24 @@ export function UserAskPagination({ className, ...props }: UserAskPaginationProp
         type="button"
         variant="quiet"
         size="xs"
-        aria-label="Previous question"
+        aria-label={previousLabel}
         disabled={ask.activeIndex === 0}
         onClick={() => ask.goTo(ask.activeIndex - 1)}
       >
-        <ChevronLeft aria-hidden="true" className="size-3.5" />
+        <ChevronLeft aria-hidden="true" data-icon-dir="inline" />
       </Button>
       <span data-control-ui="user-ask" data-control-family="user-ask" data-slot="pagination-count">
-        {ask.activeIndex + 1} of {ask.questions.length}
+        {countLabel(ask.activeIndex + 1, ask.questions.length)}
       </span>
       <Button
         type="button"
         variant="quiet"
         size="xs"
-        aria-label="Next question"
+        aria-label={nextLabel}
         disabled={ask.isLastQuestion}
         onClick={() => ask.goTo(ask.activeIndex + 1)}
       >
-        <ChevronRight aria-hidden="true" className="size-3.5" />
+        <ChevronRight aria-hidden="true" data-icon-dir="inline" />
       </Button>
     </div>
   );
@@ -266,7 +297,7 @@ export function UserAskOption({
         data-selected={selected ? "" : undefined}
         data-recommended={recommended ? "" : undefined}
         onClick={handleClick}
-        className={cn(optionRowClasses, "disabled:cursor-not-allowed", className)}
+        className={cn(optionRowClasses, className)}
         {...props}
       >
         <span
@@ -278,7 +309,7 @@ export function UserAskOption({
           data-selected={selected ? "" : undefined}
           className="inline-flex shrink-0 items-center justify-center"
         >
-          {selected ? <Check className="size-3" /> : index + 1}
+          {selected ? <Check /> : index + 1}
         </span>
         <span className="min-w-0">{children}</span>
       </button>
@@ -286,9 +317,11 @@ export function UserAskOption({
   );
 }
 
-export type UserAskOptionLabelProps = UserAskStyleProps<ComponentProps<"span">, UserAskKnobStyle>;
+export type UserAskOptionLabelProps = UserAskStyleProps<ComponentProps<"span">, UserAskKnobStyle> & {
+  recommendedLabel?: string;
+};
 
-export function UserAskOptionLabel({ className, children, ...props }: UserAskOptionLabelProps) {
+export function UserAskOptionLabel({ recommendedLabel = "(Recommended)", className, children, ...props }: UserAskOptionLabelProps) {
   const option = useUserAskOptionContext();
 
   return (
@@ -297,7 +330,7 @@ export function UserAskOptionLabel({ className, children, ...props }: UserAskOpt
       {option.recommended ? (
         <span data-control-ui="user-ask" data-control-family="user-ask" data-slot="recommended">
           {" "}
-          (Recommended)
+          {recommendedLabel}
         </span>
       ) : null}
     </span>
@@ -330,12 +363,19 @@ export function UserAskOptionInput({
   className,
   onChange,
   style,
+  ref,
   ...props
 }: UserAskOptionInputProps) {
   const ask = useUserAskContext();
   const question = useUserAskQuestionContext();
   const key = useId();
   const inputRef = useRef<HTMLInputElement>(null);
+
+  function setInputRef(node: HTMLInputElement | null) {
+    inputRef.current = node;
+    if (typeof ref === "function") return ref(node);
+    if (ref) ref.current = node;
+  }
 
   useEffect(
     () => ask.registerOption(question.id, { key, value: "", disabled, freeform: true }),
@@ -371,7 +411,7 @@ export function UserAskOptionInput({
         data-multiple={question.multiple ? "" : undefined}
         data-freeform=""
         onClick={() => ask.select(question.id, key)}
-        className={cn(optionRowClasses, "disabled:cursor-not-allowed", className)}
+        className={cn(optionRowClasses, className)}
         style={style}
       >
         <span
@@ -409,6 +449,7 @@ export function UserAskOptionInput({
           role="checkbox"
           aria-checked={true}
           aria-label={label}
+          disabled={disabled}
           data-control-ui="user-ask"
           data-control-family="user-ask"
           data-slot="option-indicator"
@@ -417,7 +458,7 @@ export function UserAskOptionInput({
           onClick={() => ask.select(question.id, key)}
           className="inline-flex shrink-0 items-center justify-center"
         >
-          <Check className="size-3" />
+          <Check />
         </button>
       ) : (
         // biome-ignore lint/a11y/useSemanticElements: the selected freeform row's label is the text input beside it; the indicator exposes checked state and hands focus to that input.
@@ -426,6 +467,7 @@ export function UserAskOptionInput({
           role="radio"
           aria-checked={true}
           aria-label={label}
+          disabled={disabled}
           tabIndex={-1}
           data-control-ui="user-ask"
           data-control-family="user-ask"
@@ -434,14 +476,15 @@ export function UserAskOptionInput({
           onClick={() => inputRef.current?.focus()}
           className="inline-flex shrink-0 items-center justify-center"
         >
-          <PencilLine className="size-3" />
+          <PencilLine />
         </button>
       )}
       <input
         {...props}
-        ref={inputRef}
+        ref={setInputRef}
         type="text"
         aria-label={label}
+        disabled={disabled}
         data-control-ui="user-ask"
         data-control-family="user-ask"
         data-slot="option-input"
@@ -449,7 +492,6 @@ export function UserAskOptionInput({
         onChange={handleChange}
         placeholder={placeholder}
         className="min-w-0"
-        style={style}
       />
     </div>
   );
@@ -511,6 +553,7 @@ export function UserAskSubmit({
   children,
   disabled,
   onClick,
+  onKeyDown,
   ...props
 }: UserAskSubmitProps) {
   const ask = useUserAskContext();
@@ -518,6 +561,12 @@ export function UserAskSubmit({
   function handleClick(event: MouseEvent<HTMLButtonElement>) {
     onClick?.(event);
     if (!event.defaultPrevented) ask.advance();
+  }
+
+  function handleKeyDown(event: KeyboardEvent<HTMLButtonElement>) {
+    onKeyDown?.(event);
+    // A held Enter repeats the button's click and would run through every remaining question.
+    if (event.key === "Enter" && event.repeat) event.preventDefault();
   }
 
   return (
@@ -532,15 +581,14 @@ export function UserAskSubmit({
       disabled={disabled ?? !ask.canContinue}
       aria-keyshortcuts="Enter"
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
       className={className}
       {...props}
     >
       {children ?? (
         <>
           {ask.isLastQuestion ? submitLabel : continueLabel}
-          <Kbd aria-hidden="true" data-user-ask-submit-kbd="true">
-            ⏎
-          </Kbd>
+          <Kbd aria-hidden="true">⏎</Kbd>
         </>
       )}
     </Button>

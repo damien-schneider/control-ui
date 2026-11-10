@@ -130,7 +130,7 @@
   [data-skin="mastra"] :where([data-control-family="choice"]:is([data-choice-kind="checkbox"], [data-choice-kind="radio-group"])) {
     --control-fill: var(--mastra-fill-hover);
     --cui-choice-border-color: var(--mastra-boundary-rest);
-    --cui-choice-shadow: inset 0 0 0 var(--cui-choice-border-width) var(--cui-choice-border-color);
+    --cui-choice-shadow: 0 0 transparent;
   }
 
   [data-skin="mastra"] :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]) {
@@ -143,6 +143,7 @@
     --cui-switch-hover-background: var(--mastra-fill-press);
     --cui-switch-checked-background: oklch(from var(--foreground) l c h / 0.9);
     --cui-switch-checked-hover-background: var(--foreground);
+    --cui-switch-checked-press-background: var(--foreground);
     --cui-switch-thumb-inline-size: 1.25rem;
     --cui-switch-thumb-background: var(--foreground);
     --cui-switch-thumb-shadow: none;
@@ -153,20 +154,18 @@
   }
 
   [data-skin="mastra"] :where([data-control-family="theme-toggle"][data-slot="root"]) {
-    --radius-control: 9999px;
-    --control-h-xs: calc(var(--control-h) - 4px);
-    --control-rim-width: 0px;
-    --hover-fill: var(--card);
-    --shadow-inset: var(--mastra-lip), inset 0 0 0 1px var(--control-rim), var(--mastra-raised-shadow);
-  }
-
-  [data-skin="mastra"] :where([data-control-family="theme-toggle"][data-slot="indicator"]) {
-    --background: var(--mastra-fill-hover);
-    --shadow-sm: inset 0 0 0 1px var(--border);
+    --cui-theme-toggle-radius: 9999px;
+    --cui-theme-toggle-height: calc(var(--control-h) - 4px);
+    --cui-theme-toggle-border-width: 0px;
+    --cui-theme-toggle-background: var(--card);
+    --cui-theme-toggle-shadow: var(--mastra-lip), inset 0 0 0 1px var(--control-rim), var(--mastra-raised-shadow);
+    --cui-theme-toggle-indicator-background: var(--mastra-fill-hover);
+    --cui-theme-toggle-indicator-shadow: inset 0 0 0 1px var(--border);
   }
 
   [data-skin="mastra"] :where([data-control-family="range"][data-slot="root"]) {
     --cui-range-indicator-background: var(--foreground);
+    --cui-range-indicator-dragging-background: var(--foreground);
     --cui-range-thumb-background: var(--foreground);
     --cui-range-thumb-border-color: transparent;
     --cui-range-thumb-shadow: var(--mastra-raised-shadow);

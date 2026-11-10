@@ -5,6 +5,8 @@
 
   :where([data-control-family="audio-device-select"][data-slot="status"]) {
     color: var(--cui-audio-device-select-status-foreground);
+    font-size: var(--text-caption);
+    line-height: var(--text-caption--line-height);
   }
 }
 

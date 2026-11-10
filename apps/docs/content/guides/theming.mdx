@@ -10,6 +10,11 @@
 <GuideSection id="document" title="Paint the document, not just the body">
   Apply `bg-background` to your document’s `<html>` element so overscroll and viewport gaps use the active theme.
   The Next.js starter includes this root background. Keep the skin and color-mode attributes on the same theme boundary.
+
+  With a named skin on `<html data-skin>`, `SkinProvider` applies the config's `motion` and `colorScheme` to the root.
+  A skin that declares a fixed `colorScheme` holds the page in that mode while it is mounted, whatever the theme
+  toggle asks for. A skin scoped to a wrapper spreads `skinScopeAttributes(skin)` on that element and follows the
+  page mode. [Create a skin](/create-a-skin#pack) shows both installs.
 </GuideSection>
 
 <GuideSection id="sidebar" title="Let pages scroll with the window">

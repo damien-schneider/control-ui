@@ -87,9 +87,22 @@
         [data-popup-open]
       )
     ) {
-    --focus-ring-width: 0px;
-    --cui-popup-shortcut-foreground: var(--cui-popup-item-highlight-muted-foreground);
-    --cui-popup-submenu-indicator-foreground: var(--cui-popup-item-highlight-muted-foreground);
+    --cui-popup-shortcut-highlight-foreground: var(--cui-popup-item-highlight-muted-foreground);
+    --cui-popup-submenu-indicator-highlight-foreground: var(--cui-popup-item-highlight-muted-foreground);
+  }
+
+  /* The highlight fill replaces the ring, except where forced colors drop the fill and the recipe outlines the item instead. */
+  @media (forced-colors: none) {
+    [data-skin="linear"]
+      :where(
+        [data-control-family="popup"][data-popup-part="item"]:is(
+          [data-highlighted],
+          [data-popup-kind="command"][data-selected="true"],
+          [data-popup-open]
+        )
+      ) {
+      --focus-ring-width: 0px;
+    }
   }
 
   [data-skin="linear"] :where([data-control-family="popup"][data-popup-kind="tooltip"][data-popup-part="surface"]) {

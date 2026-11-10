@@ -185,6 +185,12 @@
       "defaultValue": "32rem"
     },
     {
+      "name": "--cui-popup-list-max-height",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "20rem"
+    },
+    {
       "name": "--cui-popup-item-description-foreground",
       "syntax": "<color>",
       "initialValue": "transparent",
@@ -206,7 +212,19 @@
       "name": "--cui-popup-tooltip-arrow-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "3px"
+      "defaultValue": "min(var(--radius-sm), 3px)"
+    },
+    {
+      "name": "--cui-popup-shortcut-highlight-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--cui-popup-item-highlight-foreground)"
+    },
+    {
+      "name": "--cui-popup-submenu-indicator-highlight-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--cui-popup-item-highlight-foreground)"
     },
     {
       "name": "--cui-popup-status-success-foreground",
@@ -568,100 +586,6 @@
       }
     },
     "autocomplete": {
-      "root": {
-        "registryItems": [
-          "autocomplete"
-        ],
-        "states": [
-          {
-            "attribute": "data-dirty",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-disabled",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-field-kind",
-            "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "autocomplete"
-            ]
-          },
-          {
-            "attribute": "data-filled",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-focused",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-invalid",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-list-empty",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-popup-open",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-popup-side",
-            "source": "external",
-            "valueKind": "enum",
-            "values": [
-              "bottom",
-              "inline-end",
-              "inline-start",
-              "left",
-              "right",
-              "top"
-            ]
-          },
-          {
-            "attribute": "data-pressed",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-readonly",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-touched",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          },
-          {
-            "attribute": "data-valid",
-            "source": "external",
-            "valueKind": "presence",
-            "values": []
-          }
-        ]
-      },
       "content": {
         "family": "popup",
         "registryItems": [
@@ -1490,7 +1414,7 @@
         "states": [
           {
             "attribute": "data-disabled",
-            "source": "control-ui",
+            "source": "external",
             "valueKind": "presence",
             "values": []
           },
@@ -2781,6 +2705,12 @@
             "values": []
           },
           {
+            "attribute": "data-inset",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-tone",
             "source": "control-ui",
             "valueKind": "enum",
@@ -2796,7 +2726,14 @@
         "registryItems": [
           "dropdown-menu"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-inset",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
       },
       "radio-group": {
         "family": "popup",
@@ -2882,6 +2819,12 @@
           {
             "attribute": "data-highlighted",
             "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-inset",
+            "source": "control-ui",
             "valueKind": "presence",
             "values": []
           },
@@ -3091,6 +3034,46 @@
           }
         ]
       },
+      "checkbox-item": {
+        "family": "popup",
+        "registryItems": [
+          "menubar"
+        ],
+        "states": [
+          {
+            "attribute": "data-checked",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-highlighted",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "menubar"
+            ]
+          },
+          {
+            "attribute": "data-unchecked",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
       "content": {
         "family": "popup",
         "registryItems": [
@@ -3200,6 +3183,12 @@
             "values": []
           },
           {
+            "attribute": "data-inset",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-popup-kind",
             "source": "control-ui",
             "valueKind": "enum",
@@ -3237,6 +3226,62 @@
             "values": [
               "menubar"
             ]
+          }
+        ]
+      },
+      "radio-group": {
+        "family": "popup",
+        "registryItems": [
+          "menubar"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "menubar"
+            ]
+          }
+        ]
+      },
+      "radio-item": {
+        "family": "popup",
+        "registryItems": [
+          "menubar"
+        ],
+        "states": [
+          {
+            "attribute": "data-checked",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-highlighted",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "menubar"
+            ]
+          },
+          {
+            "attribute": "data-unchecked",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
           }
         ]
       },
@@ -3436,6 +3481,12 @@
             ]
           }
         ]
+      },
+      "value": {
+        "registryItems": [
+          "model-switcher"
+        ],
+        "states": []
       }
     },
     "navigation-menu": {
@@ -3562,15 +3613,6 @@
             "valueKind": "enum",
             "values": [
               "navigation-menu"
-            ]
-          },
-          {
-            "attribute": "data-variant",
-            "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "compact",
-              "default"
             ]
           }
         ]
@@ -3741,8 +3783,22 @@
       }
     },
     "popover": {
+      "anchor": {
+        "registryItems": [
+          "popover"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "popover"
+            ]
+          }
+        ]
+      },
       "close": {
-        "family": "popup",
         "registryItems": [
           "popover"
         ],
@@ -4398,7 +4454,6 @@
         ]
       },
       "trigger": {
-        "family": "popup",
         "registryItems": [
           "rich-tooltip"
         ],
@@ -4497,6 +4552,38 @@
           }
         ]
       },
+      "group": {
+        "family": "popup",
+        "registryItems": [
+          "select"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "select"
+            ]
+          }
+        ]
+      },
+      "group-label": {
+        "family": "popup",
+        "registryItems": [
+          "select"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "select"
+            ]
+          }
+        ]
+      },
       "icon": {
         "family": "popup",
         "registryItems": [
@@ -4584,6 +4671,44 @@
             ]
           }
         ]
+      },
+      "separator": {
+        "family": "popup",
+        "registryItems": [
+          "select"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "select"
+            ]
+          }
+        ]
+      },
+      "value-text": {
+        "family": "popup",
+        "registryItems": [
+          "select"
+        ],
+        "states": [
+          {
+            "attribute": "data-placeholder",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "select"
+            ]
+          }
+        ]
       }
     },
     "sheet": {
@@ -4653,7 +4778,6 @@
         ]
       },
       "close": {
-        "family": "popup",
         "registryItems": [
           "sheet"
         ],
@@ -4796,6 +4920,33 @@
             "values": [
               "sheet"
             ]
+          }
+        ]
+      },
+      "trigger": {
+        "registryItems": [
+          "sheet"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "sheet"
+            ]
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
           }
         ]
       }

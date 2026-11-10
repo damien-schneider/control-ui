@@ -19,8 +19,10 @@ const skinContract: SkinContract = JSON.parse(readFileSync(new URL("../../../pub
 
 const SKIN_PACKS_DIR = fileURLToPath(new URL("./", import.meta.url));
 const COMPONENTS_DIR = fileURLToPath(new URL("../sources/control-ui/", import.meta.url));
+const BLOCKS_DIR = fileURLToPath(new URL("../blocks/", import.meta.url));
 const COMPONENT_REFERENCE_ROOTS = [
   { root: COMPONENTS_DIR, label: "src/registry/sources/control-ui" },
+  { root: BLOCKS_DIR, label: "src/registry/blocks" },
   { root: fileURLToPath(new URL("../examples/", import.meta.url)), label: "src/registry/examples" },
   { root: fileURLToPath(new URL("../../../app/", import.meta.url)), label: "app" },
   { root: fileURLToPath(new URL("../../../components/", import.meta.url)), label: "components" },
@@ -82,7 +84,6 @@ describe("knob naming", () => {
   });
 });
 
-const COMPONENT_SOURCE_ROOT = "src/registry/sources/control-ui/";
 const contractEntries = Object.entries(controlKnobContracts);
 
 function recipeKnobFamilies(root: Root): string[] {
@@ -130,7 +131,7 @@ for (const expectation of createRecipeSourceExpectations()) {
   if (!recipeFamily) continue;
   familyRecipePaths[recipeFamily]?.add(filePath);
   for (const source of expectation.sources) {
-    familySources[recipeFamily]?.add(source.slice(COMPONENT_SOURCE_ROOT.length));
+    familySources[recipeFamily]?.add(source);
   }
 }
 
@@ -164,7 +165,7 @@ describe("family source coverage", () => {
   test("every painted catalog component attaches a recipe", () => {
     const recipeAttachedSources = new Set(Object.values(familySources).flatMap((sources) => [...sources]));
     const missing = catalogComponentSources
-      .filter(({ source }) => !recipeAttachedSources.has(source.slice(COMPONENT_SOURCE_ROOT.length)))
+      .filter(({ source }) => !recipeAttachedSources.has(source))
       .map(({ id }) => id)
       .sort();
     expect(missing).toEqual([...recipeOptionalCatalogIds].sort());
@@ -282,9 +283,11 @@ const recipeCssCache = new Map<string, string>();
 let componentSources: readonly string[] | undefined;
 
 function readComponentSources(): readonly string[] {
-  componentSources ??= readdirSync(COMPONENTS_DIR, { encoding: "utf8", recursive: true })
-    .filter((name) => /\.(?:ts|tsx)$/.test(name) && !name.includes(".test."))
-    .map((name) => readFileSync(path.join(COMPONENTS_DIR, name), "utf8"));
+  componentSources ??= [COMPONENTS_DIR, BLOCKS_DIR].flatMap((directory) =>
+    readdirSync(directory, { encoding: "utf8", recursive: true })
+      .filter((name) => /\.(?:ts|tsx)$/.test(name) && !name.includes(".test."))
+      .map((name) => readFileSync(path.join(directory, name), "utf8")),
+  );
   return componentSources;
 }
 
@@ -831,7 +834,7 @@ for (const family of families) {
     test("every family source stamps its semantic identity", () => {
       const sources = family.sources.map((name) => ({
         name,
-        source: readFileSync(path.join(COMPONENTS_DIR, name), "utf8"),
+        source: readFileSync(path.join(process.cwd(), name), "utf8"),
       }));
       expect(semanticIdentityOffenders(family.id, sources)).toEqual([]);
     });

@@ -1,5 +1,6 @@
 @layer components {
   :where([data-control-family="dropzone"][data-slot="root"]) {
+    --_dropzone-icon-size: calc(var(--spacing) * 6);
     --cui-dropzone-surface-radius: var(--radius-panel);
     --cui-dropzone-surface-foreground: var(--foreground);
     --cui-dropzone-surface-border-color: var(--border);
@@ -14,6 +15,7 @@
   }
 
   :where([data-control-family="dropzone"][data-slot="root"][data-size="sm"]) {
+    --_dropzone-icon-size: calc(var(--spacing) * 4);
     --cui-dropzone-surface-min-block-size: var(--control-h-md);
     --cui-dropzone-surface-padding-block: calc(var(--spacing) * 2);
     --cui-dropzone-surface-padding-inline: calc(var(--spacing) * 3);
@@ -35,6 +37,7 @@
     background-color: var(--card);
     font-size: var(--text-body);
     text-align: center;
+    cursor: pointer;
     transition-property: border-color, color, opacity, box-shadow;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
@@ -44,14 +47,22 @@
     text-align: start;
   }
 
+  :where([data-control-family="dropzone"][data-slot="feedback-icon"] > svg),
+  :where([data-control-family="dropzone"][data-slot="root"][data-size="sm"] [data-control-family="dropzone"][data-slot="trigger"] > svg) {
+    flex-shrink: 0;
+    inline-size: var(--_dropzone-icon-size);
+    block-size: var(--_dropzone-icon-size);
+  }
+
   @media (hover: hover) {
     :where([data-control-family="dropzone"][data-slot="trigger"]:hover:not(:disabled, [aria-disabled="true"])) {
-      background-color: oklch(from var(--muted) l c h / 0.5);
+      background-image: linear-gradient(var(--hover-fill), var(--hover-fill));
     }
   }
 
   :where([data-control-family="dropzone"][data-slot="trigger"]:is(:disabled, [aria-disabled="true"])) {
     opacity: var(--disabled-opacity);
+    cursor: not-allowed;
   }
 
   :where([data-control-family="dropzone"][data-slot="file-list"]),
@@ -83,7 +94,7 @@
     transition-timing-function: var(--ease-standard);
   }
 
-  :where([data-control-family="dropzone"][data-slot="overlay"][data-active]) {
+  :where([data-control-family="dropzone"][data-slot="overlay"][data-active="true"]) {
     opacity: 1;
   }
 

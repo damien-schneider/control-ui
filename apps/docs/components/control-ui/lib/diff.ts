@@ -18,6 +18,8 @@ export type DiffLine = {
   text: string;
   // only on change lines paired across del/add boundary
   segments?: DiffSegment[];
+  // this side ends on this line without the final newline the other side has
+  noNewline?: boolean;
 };
 
 export type DiffHunk = {
@@ -54,10 +56,14 @@ export type BuildDiffOptions = {
   lineDiffType?: LineDiffType;
   // skips intra-line diffing past old.length + new.length; 0 disables guard
   maxLineDiffLength?: number;
+  // past this edit distance the whole change renders as one replace block; 0 disables guard
+  maxEditLength?: number;
 };
 
 const DEFAULT_CONTEXT = 3;
 const DEFAULT_MAX_LINE_DIFF_LENGTH = 2000;
+// line diff cost grows with the square of the edit distance
+const DEFAULT_MAX_EDIT_LENGTH = 2000;
 
 function splitLines(text: string): string[] {
   // trailing newline yields phantom final "" — drop it so counts match file
@@ -132,16 +138,21 @@ function attachWordDiff(lines: DiffLine[], kind: LineDiffType, maxLength: number
   }
 }
 
-// patch prefixes: ' ' context, '+' add, '-' del, '\' no-newline marker
+// patch prefixes: ' ' context, '+' add, '-' del, '\' no-newline marker; an empty line is blank context with its space stripped
 function hunkLines(hunk: StructuredPatchHunk): DiffLine[] {
   const lines: DiffLine[] = [];
+  const unterminated: DiffLine[] = [];
   let oldNo = hunk.oldStart;
   let newNo = hunk.newStart;
   for (const raw of hunk.lines) {
-    if (raw.length === 0) continue;
     const marker = raw[0];
     const text = raw.slice(1);
-    if (marker === "\\") continue; // "\ No newline at end of file"
+    if (marker === "\\") {
+      // "\ No newline at end of file" describes the line above it
+      const previous = lines[lines.length - 1];
+      if (previous) unterminated.push(previous);
+      continue;
+    }
     if (marker === "-") {
       lines.push({ type: "del", oldNo, text });
       oldNo += 1;
@@ -154,6 +165,10 @@ function hunkLines(hunk: StructuredPatchHunk): DiffLine[] {
       newNo += 1;
     }
   }
+  // a final newline missing on both sides is not a change, so only a one-sided gap is flagged
+  const oldSideUnterminated = unterminated.some((line) => line.type !== "add");
+  const newSideUnterminated = unterminated.some((line) => line.type !== "del");
+  if (oldSideUnterminated !== newSideUnterminated) for (const line of unterminated) line.noNewline = true;
   return lines;
 }
 
@@ -257,12 +272,49 @@ function resolveDiffFileType(
   return "change";
 }
 
+// one replace block between the shared leading and trailing lines
+function replacementPatch(name: string, oldLines: string[], newLines: string[], context: number): StructuredPatch {
+  const shared = Math.min(oldLines.length, newLines.length);
+  let prefix = 0;
+  while (prefix < shared && oldLines[prefix] === newLines[prefix]) prefix += 1;
+  let suffix = 0;
+  while (suffix < shared - prefix && oldLines[oldLines.length - 1 - suffix] === newLines[newLines.length - 1 - suffix]) suffix += 1;
+
+  const lead = Math.min(context, prefix);
+  const trail = Math.min(context, suffix);
+  const oldEnd = oldLines.length - suffix;
+  const newEnd = newLines.length - suffix;
+  const lines: string[] = [];
+  for (let index = prefix - lead; index < prefix; index += 1) lines.push(` ${oldLines[index]}`);
+  for (let index = prefix; index < oldEnd; index += 1) lines.push(`-${oldLines[index]}`);
+  for (let index = prefix; index < newEnd; index += 1) lines.push(`+${newLines[index]}`);
+  for (let index = oldEnd; index < oldEnd + trail; index += 1) lines.push(` ${oldLines[index]}`);
+
+  const start = prefix - lead + 1;
+  return {
+    oldFileName: name,
+    newFileName: name,
+    oldHeader: "",
+    newHeader: "",
+    hunks: [
+      { oldStart: start, oldLines: oldEnd - prefix + lead + trail, newStart: start, newLines: newEnd - prefix + lead + trail, lines },
+    ],
+  };
+}
+
 // keeps both full line arrays, so result is never partial and renderer can expand hidden context
 export function buildDiffFromFiles(oldText: string, newText: string, options: BuildDiffOptions = {}): DiffFile {
   const name = options.name ?? "file";
   const context = options.context ?? DEFAULT_CONTEXT;
-  const patch = structuredPatch(name, name, oldText, newText, "", "", { context });
-  return toDiffFile(patch, options, splitLines(oldText), splitLines(newText), false);
+  const oldLines = splitLines(oldText);
+  const newLines = splitLines(newText);
+  const maxEditLength = options.maxEditLength ?? DEFAULT_MAX_EDIT_LENGTH;
+  const patch = structuredPatch(name, name, oldText, newText, "", "", {
+    context,
+    maxEditLength: maxEditLength > 0 ? maxEditLength : Number.POSITIVE_INFINITY,
+  });
+  if (patch) return toDiffFile(patch, options, oldLines, newLines, false);
+  return toDiffFile(replacementPatch(name, oldLines, newLines, context), { ...options, lineDiffType: "none" }, oldLines, newLines, false);
 }
 
 // one DiffFile per patch section; all are isPartial, so renderer disables expand-context
@@ -310,6 +362,8 @@ type LenientPatchState = {
   files: StructuredPatch[];
   current?: StructuredPatch;
   hunk?: StructuredPatchHunk;
+  // blank lines seen inside the open hunk, kept only if its body continues
+  pendingBlankLines: number;
 };
 
 function ensureCurrentFile(state: LenientPatchState): StructuredPatch {
@@ -320,9 +374,13 @@ function ensureCurrentFile(state: LenientPatchState): StructuredPatch {
 function closeLenientHunk(state: LenientPatchState): void {
   if (state.current && state.hunk) {
     reconcileHunkCounts(state.hunk);
+    // the format writes an empty range one line early; the strict parser undoes that too
+    if (state.hunk.oldLines === 0) state.hunk.oldStart += 1;
+    if (state.hunk.newLines === 0) state.hunk.newStart += 1;
     state.current.hunks.push(state.hunk);
   }
   state.hunk = undefined;
+  state.pendingBlankLines = 0;
 }
 
 function closeLenientFile(state: LenientPatchState): void {
@@ -342,21 +400,28 @@ function isHunkBodyLine(line: string): boolean {
   return marker === " " || marker === "+" || marker === "-" || marker === "\\";
 }
 
-function consumeLenientPatchLine(state: LenientPatchState, line: string): void {
+function consumeLenientFileHeader(state: LenientPatchState, line: string, next: string | undefined): boolean {
   if (line.startsWith("diff --git")) {
     closeLenientFile(state);
     state.current = emptyStructuredPatch();
-    return;
+    return true;
   }
-  if (line.startsWith("--- ")) {
-    if (state.current) closeLenientHunk(state);
+  // inside a hunk "--- x" is a deleted "-- x" line unless its "+++" header follows, and "+++ x" is always an added "++ x" line
+  if (line.startsWith("--- ") && (!state.hunk || next?.startsWith("+++ "))) {
+    // plain unified patches carry no "diff --git" line, so a second file starts here
+    if (state.current && (state.hunk || state.current.hunks.length > 0)) closeLenientFile(state);
     ensureCurrentFile(state).oldFileName = patchFileName(line.slice(4));
-    return;
+    return true;
   }
-  if (line.startsWith("+++ ")) {
+  if (line.startsWith("+++ ") && !state.hunk) {
     ensureCurrentFile(state).newFileName = patchFileName(line.slice(4));
-    return;
+    return true;
   }
+  return false;
+}
+
+function consumeLenientPatchLine(state: LenientPatchState, line: string, next: string | undefined): void {
+  if (consumeLenientFileHeader(state, line, next)) return;
 
   const header = lenientHunkHeader(line);
   if (header) {
@@ -368,19 +433,25 @@ function consumeLenientPatchLine(state: LenientPatchState, line: string): void {
   }
 
   if (!state.hunk) return;
+  if (line === "" || line === "\r") {
+    state.pendingBlankLines += 1;
+    return;
+  }
   if (isHunkBodyLine(line)) {
+    for (; state.pendingBlankLines > 0; state.pendingBlankLines -= 1) state.hunk.lines.push("");
     state.hunk.lines.push(line);
     return;
   }
   closeLenientHunk(state);
 }
 
-// trusts body over header, so miscounted @@ lines still render; unknown or blank line closes current hunk
+// trusts body over header, so miscounted @@ lines still render; unknown line closes current hunk, blank line stays context while body continues
 function parsePatchLenient(patchText: string): StructuredPatch[] {
-  const state: LenientPatchState = { files: [] };
+  const state: LenientPatchState = { files: [], pendingBlankLines: 0 };
 
-  for (const line of patchText.split("\n")) {
-    consumeLenientPatchLine(state, line);
+  const lines = patchText.split("\n");
+  for (const [index, line] of lines.entries()) {
+    consumeLenientPatchLine(state, line, lines[index + 1]);
   }
   closeLenientFile(state);
   return state.files;

@@ -13,7 +13,9 @@
     --cui-sidebar-skip-link-foreground: var(--foreground);
     --cui-sidebar-skip-link-radius: var(--radius-control);
     --cui-sidebar-skip-link-shadow: var(--shadow-md);
-    background-color: var(--cui-sidebar-wrapper-background);
+    --_sidebar-wrapper-background: var(--cui-sidebar-wrapper-background);
+    --_sidebar-inset-background: var(--cui-sidebar-inset-background);
+    background-color: var(--_sidebar-wrapper-background);
     background-image: var(--cui-sidebar-wrapper-background-image);
   }
 
@@ -23,11 +25,11 @@
   }
 
   :where([data-control-family="sidebar"][data-slot="wrapper"]:has([data-control-family="sidebar"][data-variant="inset"][data-state])) {
-    --cui-sidebar-wrapper-background: var(--sidebar);
+    --_sidebar-wrapper-background: var(--sidebar);
   }
 
   :where([data-control-family="sidebar"][data-slot="wrapper"]:has([data-control-family="sidebar"][data-variant="page"][data-state])) {
-    --cui-sidebar-inset-background: transparent;
+    --_sidebar-inset-background: transparent;
   }
 
   :where([data-control-family="sidebar"][data-slot="root"]) {
@@ -37,7 +39,10 @@
     --cui-sidebar-inner-border-color: var(--sidebar-border);
     --cui-sidebar-inner-border-width: 0px;
     --cui-sidebar-inner-radius: 0px;
-    --cui-sidebar-inner-shadow: none;
+    --cui-sidebar-inner-shadow: 0 0 transparent;
+    --cui-sidebar-inner-floating-border-width: var(--control-rim-width);
+    --cui-sidebar-inner-floating-radius: var(--radius-panel);
+    --cui-sidebar-inner-floating-shadow: var(--shadow-md);
     --cui-sidebar-container-border-width: 1px;
     --cui-sidebar-header-background: transparent;
     --cui-sidebar-header-shadow: 0 0 transparent;
@@ -46,7 +51,7 @@
     --cui-sidebar-rail-divider-background: transparent;
     --cui-sidebar-group-label-foreground: oklch(from var(--sidebar-foreground) l c h / 0.7);
     --cui-sidebar-group-label-font-size: var(--text-caption);
-    --cui-sidebar-group-label-font-weight: 500;
+    --cui-sidebar-group-label-font-weight: var(--font-weight-medium);
     --cui-sidebar-group-label-letter-spacing: 0em;
     --cui-sidebar-group-label-text-transform: none;
     --cui-sidebar-group-label-padding: 0px calc(var(--spacing) * 2);
@@ -54,11 +59,14 @@
     --cui-sidebar-menu-button-padding-block: 0px;
     --cui-sidebar-menu-button-padding-inline: calc(var(--sidebar-width-icon) / 2 - var(--spacing) * 4);
     --cui-sidebar-menu-button-font-size: var(--text-body);
-    --cui-sidebar-menu-button-font-weight: 400;
-    --cui-sidebar-menu-button-active-font-weight: 500;
+    --cui-sidebar-menu-button-font-weight: var(--font-weight-normal);
+    --cui-sidebar-menu-button-active-font-weight: var(--font-weight-medium);
     --cui-sidebar-menu-button-radius: var(--radius-popup-item);
     --cui-sidebar-menu-button-foreground: var(--sidebar-foreground);
+    --cui-sidebar-menu-button-icon-foreground: currentColor;
+    --cui-sidebar-menu-button-active-icon-foreground: currentColor;
     --cui-sidebar-menu-badge-height: calc(var(--spacing) * 5);
+    --cui-sidebar-menu-badge-radius: 9999px;
     --cui-sidebar-menu-badge-background: oklch(from var(--sidebar-foreground) l c h / 0.08);
     --cui-sidebar-menu-badge-foreground: var(--sidebar-foreground);
     --cui-sidebar-menu-button-background: transparent;
@@ -70,17 +78,26 @@
     --cui-sidebar-menu-button-active-shadow: 0 0 transparent;
     --cui-sidebar-menu-button-active-foreground: var(--foreground);
     --cui-sidebar-menu-button-track-active-foreground: var(--foreground);
+    --_sidebar-inner-background: var(--cui-sidebar-inner-background);
+    --_sidebar-inner-border-width: var(--cui-sidebar-inner-border-width);
+    --_sidebar-inner-radius: var(--cui-sidebar-inner-radius);
+    --_sidebar-inner-shadow: var(--cui-sidebar-inner-shadow);
+    --_sidebar-container-border-width: var(--cui-sidebar-container-border-width);
+    --_sidebar-header-border-width: var(--cui-sidebar-header-border-width);
+    --_sidebar-icon-rail-border-width: var(--cui-sidebar-icon-rail-border-width);
+    --_sidebar-raised-background: var(--cui-sidebar-raised-background);
     background-color: var(--sidebar);
     color: var(--sidebar-foreground);
   }
 
   :where([data-control-family="sidebar"][data-slot="root"][data-variant="page"][data-state]) {
-    --cui-sidebar-inner-background: transparent;
+    --_sidebar-inner-background: transparent;
+    --_sidebar-raised-background: transparent;
     background-color: transparent;
   }
 
   :where([data-control-family="sidebar"][data-slot="root"]:is([data-variant="page"], [data-variant="inset"])[data-state]) {
-    --cui-sidebar-header-border-width: 0px;
+    --_sidebar-header-border-width: 0px;
   }
 
   :where([data-control-family="sidebar"][data-slot="gap"]) {
@@ -89,19 +106,19 @@
   }
 
   :where([data-control-family="sidebar"][data-slot="root"][data-variant="sidebar"][data-side="left"] [data-slot="container"]) {
-    border-inline-end: var(--cui-sidebar-container-border-width) solid var(--sidebar-border);
+    border-inline-end: var(--_sidebar-container-border-width) solid var(--sidebar-border);
   }
 
   :where([data-control-family="sidebar"][data-slot="root"][data-variant="sidebar"][data-side="right"] [data-slot="container"]) {
-    border-inline-start: var(--cui-sidebar-container-border-width) solid var(--sidebar-border);
+    border-inline-start: var(--_sidebar-container-border-width) solid var(--sidebar-border);
   }
 
   :where([data-control-family="sidebar"][data-slot="inner"]) {
     position: relative;
     isolation: isolate;
-    border: var(--cui-sidebar-inner-border-width) solid var(--cui-sidebar-inner-border-color);
-    border-radius: var(--cui-sidebar-inner-radius);
-    box-shadow: var(--cui-sidebar-inner-shadow);
+    border: var(--_sidebar-inner-border-width) solid var(--cui-sidebar-inner-border-color);
+    border-radius: var(--_sidebar-inner-radius);
+    box-shadow: var(--_sidebar-inner-shadow);
   }
 
   :where([data-control-family="sidebar"][data-slot="inner"])::before {
@@ -112,16 +129,16 @@
     pointer-events: none;
     border-radius: inherit;
     corner-shape: inherit;
-    background-color: var(--cui-sidebar-inner-background);
+    background-color: var(--_sidebar-inner-background);
     background-image: var(--cui-sidebar-inner-background-image);
     -webkit-backdrop-filter: var(--cui-sidebar-inner-backdrop-filter);
     backdrop-filter: var(--cui-sidebar-inner-backdrop-filter);
   }
 
   :where([data-control-family="sidebar"][data-slot="root"][data-variant="floating"][data-state]) {
-    --cui-sidebar-inner-border-width: var(--control-rim-width);
-    --cui-sidebar-inner-radius: var(--radius-panel);
-    --cui-sidebar-inner-shadow: var(--shadow-md);
+    --_sidebar-inner-border-width: var(--cui-sidebar-inner-floating-border-width);
+    --_sidebar-inner-radius: var(--cui-sidebar-inner-floating-radius);
+    --_sidebar-inner-shadow: var(--cui-sidebar-inner-floating-shadow);
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-track"] > [data-control-family="track-highlight"]) {
@@ -362,38 +379,4 @@
   syntax: "<length-percentage>+";
   inherits: true;
   initial-value: 0px;
-}
-
-@property --cui-sidebar-skip-link-background {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
-@property --cui-sidebar-skip-link-foreground {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
-@property --cui-sidebar-skip-link-radius {
-  syntax: "<length-percentage>";
-  inherits: true;
-  initial-value: 0px;
-}
-
-@property --cui-sidebar-skip-link-shadow {
-  syntax: "*";
-  inherits: true;
-}
-
-@property --cui-sidebar-menu-button-background {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
-@property --cui-sidebar-menu-button-shadow {
-  syntax: "*";
-  inherits: true;
 }

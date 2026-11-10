@@ -69,7 +69,7 @@ function renderFile(part: FilePart) {
   const name = "filename" in part && typeof part.filename === "string" ? part.filename : "Attachment";
   return (
     <InlineAttachment name={name}>
-      {isImageMediaType(part.mimeType) ? <InlineAttachmentMedia src={fileSrc(part)} alt={name} /> : null}
+      <InlineAttachmentMedia src={isImageMediaType(part.mimeType) ? fileSrc(part) : undefined} alt={name} />
       <InlineAttachmentContent>
         <InlineAttachmentTitle />
       </InlineAttachmentContent>
@@ -107,7 +107,7 @@ function renderToolInvocation(part: ToolInvocationPart, pendingApprovals: readon
         {invocation.result !== undefined || invocation.errorText ? (
           <ActivityDetail>
             <ActivityDetailLabel>Output</ActivityDetailLabel>
-            <ActivityDetailContent tone={state === "error" ? "destructive" : "default"}>
+            <ActivityDetailContent tone={state === "error" ? "danger" : "neutral"}>
               {invocation.errorText ?? renderJson(invocation.result)}
             </ActivityDetailContent>
           </ActivityDetail>

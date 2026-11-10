@@ -37,10 +37,16 @@
       "defaultValue": "var(--control-rim)"
     },
     {
+      "name": "--cui-chat-composer-attachment-error-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--destructive) l c h / 0.45)"
+    },
+    {
       "name": "--cui-chat-composer-attachment-shadow",
       "syntax": "*",
       "initialValue": "",
-      "defaultValue": "inset 0 0 0 var(--control-rim-width) var(--cui-chat-composer-attachment-border-color), var(--shadow-sm)"
+      "defaultValue": "var(--shadow-sm)"
     },
     {
       "name": "--cui-chat-composer-attachment-backdrop-filter",

@@ -16,7 +16,7 @@ function isHighlightable(node: Element | null): node is HTMLElement {
   return (
     node instanceof HTMLElement &&
     !node.matches(
-      ':disabled, [aria-disabled="true"], [data-disabled]:not([data-disabled="false"]), :has([role="checkbox"][data-disabled])',
+      ':disabled, [aria-disabled="true"], [data-disabled]:not([data-disabled="false"]), :has(:is([role="checkbox"], [role="radio"])[data-disabled])',
     ) &&
     node.checkVisibility()
   );

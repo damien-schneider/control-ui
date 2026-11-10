@@ -18,10 +18,12 @@
     user-select: none;
     --cui-switch-background: oklch(from var(--foreground) l c h / 0.14);
     --cui-switch-hover-background: oklch(from var(--foreground) l c h / 0.2);
+    --cui-switch-press-background: color-mix(in oklch, var(--cui-switch-background), var(--foreground) 12.8%);
     --cui-switch-border-color: var(--control-boundary);
     --cui-switch-border-width: var(--control-rim-width);
     --cui-switch-checked-background: var(--primary);
     --cui-switch-checked-hover-background: color-mix(in oklch, var(--primary) 90%, var(--foreground));
+    --cui-switch-checked-press-background: color-mix(in oklch, var(--cui-switch-checked-background) 80%, var(--foreground));
     --cui-switch-checked-border-color: transparent;
     --cui-switch-radius: 9999px;
     --cui-switch-shadow: 0 0 transparent;
@@ -29,11 +31,14 @@
     --cui-switch-thumb-background: var(--background);
     --cui-switch-thumb-shadow: var(--shadow-sm);
     --_switch-border-color: var(--cui-switch-border-color);
+    --_switch-ring: 0 0 transparent;
     border-radius: var(--cui-switch-radius);
     background: var(--cui-switch-background);
     box-shadow:
       inset 0 0 0 var(--cui-switch-border-width) var(--_switch-border-color),
-      var(--cui-switch-shadow);
+      var(--cui-switch-shadow),
+      var(--_switch-ring);
+    cursor: pointer;
   }
 
   :where([data-control-family="switch"][data-slot="root"][data-checked]) {
@@ -53,24 +58,28 @@
   }
 
   :where([data-control-family="switch"][data-slot="root"]:active:not([data-checked], [data-disabled], [data-readonly])) {
-    --cui-switch-background: oklch(from var(--foreground) l c h / 0.25);
-    background: var(--cui-switch-background);
+    background: var(--cui-switch-press-background);
   }
 
   :where([data-control-family="switch"][data-slot="root"][data-checked]:active:not([data-disabled], [data-readonly])) {
-    --cui-switch-checked-background: color-mix(in oklch, var(--primary) 80%, var(--foreground));
-    background: var(--cui-switch-checked-background);
+    background: var(--cui-switch-checked-press-background);
   }
 
   :where([data-control-family="switch"][data-slot="root"][data-disabled]) {
     opacity: var(--disabled-opacity);
+    cursor: not-allowed;
+  }
+
+  :where([data-control-family="switch"][data-slot="root"]:is([data-invalid], [aria-invalid="true"])) {
+    --_switch-border-color: var(--destructive);
+    --_switch-ring: 0 0 0 1px var(--destructive);
   }
 
   @media (pointer: coarse) {
     :where([data-control-family="switch"][data-slot="root"])::after {
       content: "";
       position: absolute;
-      inset: 50%;
+      inset: 50% auto auto 50%;
       translate: -50% -50%;
       inline-size: max(100%, var(--touch-target));
       block-size: max(100%, var(--touch-target));
@@ -92,15 +101,17 @@
     transition-timing-function: var(--ease-emphasized);
   }
 
-  :where([data-control-family="switch"][data-slot="root"][data-disabled] [data-slot="thumb"]) {
-    opacity: 0.8;
-  }
-
   :where([data-control-family="switch"][data-slot="thumb-icon"]) {
     color: oklch(from var(--foreground) l c h / 0.7);
     transition-property: color, opacity;
     transition-duration: var(--duration-base);
     transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="switch"][data-slot="thumb-icon"] svg) {
+    inline-size: calc(var(--spacing) * 2.5);
+    block-size: calc(var(--spacing) * 2.5);
+    stroke-width: 2.5;
   }
 
   :where([data-control-family="switch"][data-slot="root"][data-checked] [data-slot="thumb-icon"]:not([data-switch-icon="unchecked"])) {
@@ -154,16 +165,43 @@
 
   :where([data-control-family="switch"][data-slot="root"][data-drag-checked="false"]) {
     --_switch-border-color: var(--cui-switch-border-color);
-    background: var(--cui-switch-background);
+    background: var(--cui-switch-press-background);
   }
 
   :where([data-control-family="switch"][data-slot="root"][data-drag-checked="true"]) {
     --_switch-border-color: var(--cui-switch-checked-border-color);
-    background: var(--cui-switch-checked-background);
+    background: var(--cui-switch-checked-press-background);
   }
 
   :where([data-control-family="switch"][data-slot="root"][data-dragging] [data-slot="thumb"]) {
     transition-property: inline-size, scale, background-color, box-shadow;
+  }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="switch"][data-slot="root"]:not(:focus-visible)) {
+      outline: 1px solid CanvasText;
+      outline-offset: -1px;
+    }
+
+    :where([data-control-family="switch"][data-slot="root"][data-checked]) {
+      background: Highlight;
+    }
+
+    :where([data-control-family="switch"][data-slot="thumb"]) {
+      background: CanvasText;
+    }
+
+    :where([data-control-family="switch"][data-slot="root"][data-checked] [data-slot="thumb"]) {
+      background: HighlightText;
+    }
+
+    :where([data-control-family="switch"][data-slot="thumb-icon"]) {
+      color: Canvas;
+    }
+
+    :where([data-control-family="switch"][data-slot="root"][data-checked] [data-slot="thumb-icon"]) {
+      color: Highlight;
+    }
   }
 }
 
@@ -268,9 +306,21 @@
 }
 
 @property --cui-switch-thumb-press-scale {
-  syntax: "<number>";
+  syntax: "<number>+";
   inherits: true;
   initial-value: 1;
+}
+
+@property --cui-switch-press-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-switch-checked-press-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
 }
 
 @property --cui-switch-thumb-backdrop-filter {

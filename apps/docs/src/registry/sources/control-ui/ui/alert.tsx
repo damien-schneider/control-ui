@@ -6,11 +6,11 @@ import type { RenderProp } from "@/components/control-ui/control-props";
 import type { AlertKnobStyle } from "@/components/control-ui/knob-contracts/alert-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
-export const alertVariants = ["default", "destructive"] as const;
+export const alertTones = ["neutral", "info", "success", "warning", "danger"] as const;
 
-export type AlertVariant = (typeof alertVariants)[number];
+export type AlertTone = (typeof alertTones)[number];
 
-export type AlertProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AlertKnobStyle } & { variant?: AlertVariant };
+export type AlertProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AlertKnobStyle } & { tone?: AlertTone };
 
 export type AlertTitleProps = Omit<ComponentProps<"div">, "style"> & {
   render?: RenderProp<ComponentProps<"div">>;
@@ -21,15 +21,15 @@ export type AlertDescriptionProps = Omit<ComponentProps<"div">, "style"> & { sty
 
 export type AlertActionProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AlertKnobStyle };
 
-export function Alert({ variant = "default", className, ...props }: AlertProps) {
+export function Alert({ tone = "neutral", className, ...props }: AlertProps) {
   return (
     <div
-      role={variant === "destructive" ? "alert" : "status"}
+      role={tone === "danger" ? "alert" : "status"}
       data-control-ui="alert"
       data-control-family="alert"
       data-slot="root"
       data-surface="panel"
-      data-variant={variant}
+      data-tone={tone}
       className={cn("relative grid w-full items-start", className)}
       {...props}
     />

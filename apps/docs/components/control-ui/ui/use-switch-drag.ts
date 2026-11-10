@@ -51,7 +51,7 @@ export function useSwitchDrag() {
         Number.parseFloat(styles.paddingLeft) -
         Number.parseFloat(styles.paddingRight) -
         Number.parseFloat(styles.getPropertyValue("--cui-switch-thumb-inline-size"));
-      if (travel <= 0) return;
+      if (!(travel > 0)) return;
       const progress = root.hasAttribute("data-checked") ? 1 : 0;
       gestureRef.current = {
         pointerId: event.pointerId,

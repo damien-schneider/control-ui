@@ -8,7 +8,12 @@ import { type ComponentProps, type CSSProperties, useEffect, useMemo, useRef, us
 import type { MarkdownEditorKnobStyle } from "@/components/control-ui/knob-contracts/markdown-editor-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Textarea } from "@/components/control-ui/ui/textarea";
-import { MarkdownEditorContext, useMarkdownEditor } from "./markdown-editor/context";
+import {
+  defaultMarkdownEditorLabels,
+  MarkdownEditorContext,
+  type MarkdownEditorLabels,
+  useMarkdownEditor,
+} from "./markdown-editor/context";
 import { MarkdownEditorDragHandle } from "./markdown-editor/drag-handle";
 import {
   createMarkdownCodec,
@@ -27,6 +32,10 @@ export type MarkdownEditorProps = Omit<ComponentProps<"div">, "defaultValue" | "
   defaultValue?: string;
   onValueChange?: (markdown: string) => void;
   disabled?: boolean;
+  /** Shows the content without letting it change; the Markdown source stays viewable. */
+  readOnly?: boolean;
+  /** Replaces any of the editor's built-in strings, for every part at once. */
+  labels?: Partial<MarkdownEditorLabels>;
   onUploadImage?: MarkdownImageUploader;
   maxImageBytes?: number;
   onStatusChange?: (status: MarkdownEditorStatus) => void;
@@ -42,6 +51,8 @@ export function MarkdownEditor({
   defaultValue = "",
   onValueChange,
   disabled = false,
+  readOnly = false,
+  labels: labelOverrides,
   onUploadImage,
   maxImageBytes = 10 * 1024 * 1024,
   onStatusChange,
@@ -63,6 +74,8 @@ export function MarkdownEditor({
   const lastValue = useRef(markdown);
   const [extensions] = useState(() => markdownExtensions(extensionOptions));
   const handlers = useRef<{ upload: (files: File[], position?: number) => void; cancelAll: () => void } | null>(null);
+  const labels = useMemo(() => ({ ...defaultMarkdownEditorLabels, ...labelOverrides }), [labelOverrides]);
+  const writable = !disabled && !readOnly;
 
   function setMarkdown(next: string) {
     lastValue.current = next;
@@ -76,7 +89,7 @@ export function MarkdownEditor({
     shouldRerenderOnTransaction: false,
     content: sourceRequired ? "" : markdown,
     contentType: "markdown",
-    editable: !disabled,
+    editable: writable,
     onUpdate: ({ editor: currentEditor }) => setMarkdown(currentEditor.getMarkdown()),
     editorProps: {
       attributes: contentAttributes,
@@ -105,15 +118,15 @@ export function MarkdownEditor({
       },
     },
   });
-  const imageUploads = useImageUploads(editor, onUploadImage, maxImageBytes);
+  const imageUploads = useImageUploads(editor, onUploadImage, maxImageBytes, isUrlAllowed, labels);
   useEffect(() => {
     handlers.current = imageUploads;
   });
 
   useEffect(() => {
     if (!editor || editor.isDestroyed) return;
-    editor.setEditable(!disabled, false);
-  }, [editor, disabled]);
+    editor.setEditable(writable, false);
+  }, [editor, writable]);
 
   useEffect(() => {
     if (!editor || editor.isDestroyed) return;
@@ -144,6 +157,9 @@ export function MarkdownEditor({
       value={{
         editor,
         disabled,
+        readOnly,
+        editable: Boolean(editor) && writable && !source,
+        labels,
         source,
         markdown,
         sourceRequired,
@@ -160,6 +176,7 @@ export function MarkdownEditor({
         data-control-family="markdown-editor"
         data-slot="root"
         data-disabled={disabled ? "" : undefined}
+        data-readonly={readOnly ? "" : undefined}
         className={cn("min-w-0", className)}
         {...props}
       >
@@ -169,25 +186,25 @@ export function MarkdownEditor({
   );
 }
 
-export type MarkdownEditorContentProps = {
+export type MarkdownEditorContentProps = Omit<ComponentProps<"div">, "children"> & {
   label: string;
   placeholder?: string;
   autoFocus?: boolean;
-  className?: string;
 };
 
-export function MarkdownEditorContent({ label, placeholder, autoFocus = false, className }: MarkdownEditorContentProps) {
+export function MarkdownEditorContent({ label, placeholder, autoFocus = false, ref, ...props }: MarkdownEditorContentProps) {
   const container = useRef<HTMLDivElement>(null);
-  const { editor, disabled, source, sourceRequired, markdown, setMarkdown, setContentAttributes } = useMarkdownEditor();
+  const { editor, disabled, readOnly, labels, source, sourceRequired, markdown, setMarkdown, setContentAttributes } = useMarkdownEditor();
   useEffect(() => {
     setContentAttributes({
       role: "textbox",
       "aria-multiline": "true",
       "aria-label": label,
       "aria-disabled": String(disabled),
+      "aria-readonly": String(readOnly),
       "data-placeholder": placeholder ?? "",
     });
-  }, [setContentAttributes, label, disabled, placeholder]);
+  }, [setContentAttributes, label, disabled, readOnly, placeholder]);
 
   useEffect(() => {
     if (editor && !editor.isDestroyed && autoFocus && !source && !disabled) editor.commands.focus("end");
@@ -195,15 +212,14 @@ export function MarkdownEditorContent({ label, placeholder, autoFocus = false, c
 
   if (source || !editor)
     return (
-      <div data-control-ui="markdown-editor" data-control-family="markdown-editor" data-slot="source" className={className}>
-        {sourceRequired ? (
-          <p role="status">This content uses Markdown that is only available in source mode. Its source is preserved.</p>
-        ) : null}
+      <div ref={ref} data-control-ui="markdown-editor" data-control-family="markdown-editor" data-slot="source" {...props}>
+        {sourceRequired ? <p role="status">{labels.sourceRequired}</p> : null}
         <Textarea
           aria-label={label}
           placeholder={placeholder}
           value={markdown}
-          disabled={disabled || !editor}
+          disabled={disabled}
+          readOnly={readOnly || !source}
           onChange={(event) => setMarkdown(event.target.value)}
           rows={5}
           autoFocus={autoFocus}
@@ -211,13 +227,23 @@ export function MarkdownEditorContent({ label, placeholder, autoFocus = false, c
             "--cui-field-background": "transparent",
             "--cui-field-border-width": "0px",
             "--cui-field-radius": "0px",
-            "--cui-field-shadow": "none",
+            "--cui-field-shadow": "0 0 transparent",
           }}
         />
       </div>
     );
   return (
-    <div ref={container} data-control-ui="markdown-editor" data-control-family="markdown-editor" data-slot="content" className={className}>
+    <div
+      ref={(node) => {
+        container.current = node;
+        if (typeof ref === "function") return ref(node);
+        if (ref) ref.current = node;
+      }}
+      data-control-ui="markdown-editor"
+      data-control-family="markdown-editor"
+      data-slot="content"
+      {...props}
+    >
       <EditorContent editor={editor} />
       <MarkdownEditorDragHandle container={container} />
     </div>

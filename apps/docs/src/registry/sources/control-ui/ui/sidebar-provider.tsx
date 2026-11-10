@@ -179,7 +179,7 @@ export function SidebarProvider({
     onOpenChange?.(openState);
     if (persistOpen) {
       // biome-ignore lint/suspicious/noDocumentCookie: Cookie Store API isn't cross-browser yet.
-      document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
+      document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}; SameSite=Lax`;
     }
   };
 

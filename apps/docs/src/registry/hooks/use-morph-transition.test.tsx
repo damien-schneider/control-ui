@@ -34,10 +34,11 @@ describe("useMorphTransition", () => {
     expect(html).toMatch(/data-testid="surface"[^>]*--morph-name:aui-morph-probe/);
   });
 
-  test("both ends keep the preset class so the pair is styled from one rule", () => {
+  test("only the end that owns the name wears the preset class", () => {
     const html = renderToString(<Probe open={false} name="aui-morph-probe" />);
 
     expect(html.match(/class="morph-surface"/g)).toHaveLength(1);
+    expect(html).toMatch(/data-testid="trigger"[^>]*class="morph-surface"/);
   });
 
   // useId ships delimiters (:r1:, «r1») that view-transition-name rejects as custom-ident.

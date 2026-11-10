@@ -13,7 +13,7 @@ import type { ChatComposerKnobStyle } from "@/components/control-ui/knob-contrac
 import { cn } from "@/components/control-ui/lib/cn";
 import { MESSAGE_GHOST_INHERIT, spawnExitGhost } from "./chat-composer-editor/ghost";
 import { createEditorSchema } from "./chat-composer-editor/schema";
-import { docFromText, serializeDoc } from "./chat-composer-editor/serialize";
+import { docFromText, serializeDoc, serializeSlice, sliceFromText } from "./chat-composer-editor/serialize";
 import type { ChatComposerEditorApi, ChatComposerEditorProps } from "./chat-composer-editor/types";
 
 function releaseFileDrag(_view: EditorView, event: DragEvent) {
@@ -116,6 +116,22 @@ export function ChatComposerEditor({
               return false;
             },
             handleDOMEvents: fileTransferPassthrough,
+            // Foreign markup parses with whitespace collapsed, so a <br> line break becomes a space; its plain-text flavor keeps every line.
+            handlePaste: (editorView, event) => {
+              const html = event.clipboardData?.getData("text/html");
+              const text = event.clipboardData?.getData("text/plain");
+              if (!html || !text || html.includes("data-pm-slice")) return false;
+              editorView.dispatch(
+                editorView.state.tr
+                  .replaceSelection(sliceFromText(schema, text))
+                  .scrollIntoView()
+                  .setMeta("paste", true)
+                  .setMeta("uiEvent", "paste"),
+              );
+              return true;
+            },
+            clipboardTextParser: (text) => sliceFromText(schema, text),
+            clipboardTextSerializer: serializeSlice,
           },
           filterTransaction: (transaction) => !transaction.docChanged || !inputRef.current.isLocked,
         }),
@@ -199,7 +215,7 @@ export function ChatComposerEditor({
           data-control-ui="chat-composer-editor"
           data-control-family="chat-composer"
           data-slot="placeholder"
-          className="pointer-events-none absolute start-[var(--padding-x)] top-[var(--padding-y)]"
+          className="pointer-events-none absolute start-[var(--padding-x)] end-[var(--padding-x)] top-[var(--padding-y)]"
         >
           {placeholder}
         </div>

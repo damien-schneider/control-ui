@@ -66,7 +66,11 @@ export function SketchStrokeRuntime() {
       if (control.style.getPropertyValue("--sketch-outline-image") !== image) {
         control.style.setProperty("--sketch-outline-image", image);
         control.style.setProperty("--sketch-recipe-outline-width", "0px");
-        control.style.setProperty("--sketch-outline-slice", String(Math.ceil(Math.max(4, paint.width * 2 + 1))));
+        // border-image drops the image's middle, so the kept band has to reach as deep as the corner arc; staying under half the short side leaves every edge a tile to stretch.
+        const shortSide = Math.min(width, height);
+        const cornerDepth = Math.min(radius, shortSide / 2) * 0.3;
+        const slice = Math.max(4, Math.min(Math.floor(shortSide / 2) - 1, Math.ceil(paint.width * 2 + 1 + cornerDepth)));
+        control.style.setProperty("--sketch-outline-slice", String(slice));
       }
     }
 

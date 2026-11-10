@@ -44,6 +44,7 @@ const MIRROR_PROPERTIES = [
   "word-spacing",
   "text-transform",
   "text-indent",
+  "text-align",
   "line-height",
   "tab-size",
   "padding-top",
@@ -55,6 +56,11 @@ const MIRROR_PROPERTIES = [
   "border-bottom-width",
   "border-left-width",
 ];
+
+function pixels(value: string | undefined) {
+  const parsed = Number.parseFloat(value ?? "");
+  return Number.isFinite(parsed) ? parsed : 0;
+}
 
 // textarea exposes no caret geometry, so text is mirrored into off-screen div and marker's box is read at offset
 export function caretRectInTextarea(element: HTMLTextAreaElement, offset: number): DOMRect {
@@ -71,6 +77,15 @@ export function caretRectInTextarea(element: HTMLTextAreaElement, offset: number
   if (computed) {
     for (const property of MIRROR_PROPERTIES) style.setProperty(property, computed.getPropertyValue(property));
   }
+  const borderLeft = pixels(computed?.borderLeftWidth);
+  // a classic scrollbar narrows textarea's wrapping width, and on left (RTL) it also pushes text inward
+  const gutter = element.offsetWidth - element.clientWidth - borderLeft - pixels(computed?.borderRightWidth);
+  const hasGutter = gutter >= 1;
+  const leadingGutter = hasGutter ? Math.max(0, element.clientLeft - borderLeft) : 0;
+  if (hasGutter) {
+    style.boxSizing = "content-box";
+    style.width = `${element.clientWidth - pixels(computed?.paddingLeft) - pixels(computed?.paddingRight)}px`;
+  }
 
   mirror.textContent = element.value.slice(0, offset);
   const marker = doc.createElement("span");
@@ -81,10 +96,11 @@ export function caretRectInTextarea(element: HTMLTextAreaElement, offset: number
 
   const elementRect = element.getBoundingClientRect();
   const mirrorRect = mirror.getBoundingClientRect();
-  const markerRect = marker.getBoundingClientRect();
+  // marker runs to end of text: its bounding box spans every line it wraps onto, so only first line fragment marks offset
+  const markerRect = marker.getClientRects().item(0) ?? marker.getBoundingClientRect();
   const lineHeight = computed ? Number.parseFloat(computed.lineHeight) : 0;
   const height = markerRect.height || (Number.isFinite(lineHeight) ? lineHeight : 16);
-  const x = elementRect.left + (markerRect.left - mirrorRect.left) - element.scrollLeft;
+  const x = elementRect.left + leadingGutter + (markerRect.left - mirrorRect.left) - element.scrollLeft;
   const y = elementRect.top + (markerRect.top - mirrorRect.top) - element.scrollTop;
 
   doc.body.removeChild(mirror);

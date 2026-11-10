@@ -10,6 +10,7 @@ export const toolbarKnobs = [
   "--cui-toolbar-item-radius",
   "--cui-toolbar-item-background",
   "--cui-toolbar-item-shadow",
+  "--cui-toolbar-item-icon-size",
   "--cui-toolbar-item-foreground",
   "--cui-toolbar-item-hover-background",
   "--cui-toolbar-item-hover-foreground",

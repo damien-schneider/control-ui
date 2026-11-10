@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { renderToString } from "react-dom/server";
 import { array, object, string } from "zod";
 
+import { Field } from "./ui/field";
 import { PhoneInput } from "./ui/phone-input";
 
 const MANIFEST = object({
@@ -22,6 +23,23 @@ describe("phone input registry contract", () => {
     expect(html.match(/name="phone"/g)).toHaveLength(1);
     expect(html).toContain('type="hidden"');
     expect(html).toContain('value="+33612345678"');
+  });
+
+  test("keeps the formatted text out of the submission inside a named field", () => {
+    const html = renderToString(
+      <Field name="phone">
+        <PhoneInput defaultCountry="FR" name="phone" value="+33612345678" onValueChange={() => {}} aria-label="Phone number" />
+      </Field>,
+    );
+
+    expect(html.match(/name="phone"/g)).toHaveLength(1);
+    expect(html).toContain('type="hidden" name="phone" value="+33612345678"');
+  });
+
+  test("submits an empty value instead of dropping the key", () => {
+    const html = renderToString(<PhoneInput defaultCountry="FR" name="phone" aria-label="Phone number" />);
+
+    expect(html).toContain('type="hidden" name="phone" value=""');
   });
 
   test("forwards invalid, disabled, and read-only states", () => {

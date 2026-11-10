@@ -1,6 +1,6 @@
 @layer components {
   :where([data-control-family="alert"][data-slot="root"]) {
-    --cui-alert-radius: var(--radius-lg);
+    --cui-alert-radius: var(--radius-panel);
     --cui-alert-background: var(--card);
     --cui-alert-border-color: var(--border);
     --cui-alert-shadow: none;
@@ -15,23 +15,46 @@
     --cui-alert-font-size: var(--text-body);
     --cui-alert-title-font-weight: var(--font-weight-medium);
     --cui-alert-description-gap: var(--spacing);
+    --_alert-foreground: var(--cui-alert-foreground);
+    --_alert-border-color: var(--cui-alert-border-color);
+    --_alert-description-foreground: var(--cui-alert-description-foreground);
     grid-template-columns: 0 minmax(0, 1fr);
     row-gap: var(--cui-alert-gap);
     padding: var(--cui-alert-padding) var(--cui-alert-padding-inline);
-    border: var(--cui-alert-border-width) solid var(--cui-alert-border-color);
+    border: var(--cui-alert-border-width) solid var(--_alert-border-color);
     border-radius: var(--cui-alert-radius);
     background: var(--cui-alert-background);
     box-shadow: var(--cui-alert-shadow);
-    color: var(--cui-alert-foreground);
+    color: var(--_alert-foreground);
     font-size: var(--cui-alert-font-size);
     line-height: var(--leading-normal);
     overflow-wrap: anywhere;
   }
 
-  :where([data-control-family="alert"][data-slot="root"][data-variant="destructive"]) {
-    --cui-alert-foreground: var(--destructive-text);
-    --cui-alert-border-color: oklch(from var(--destructive) l c h / 0.5);
-    --cui-alert-description-foreground: oklch(from var(--destructive-text) l c h / 0.9);
+  :where([data-control-family="alert"][data-slot="root"][data-tone="info"]) {
+    --_alert-tone: var(--info);
+    --_alert-tone-text: var(--info-text);
+  }
+
+  :where([data-control-family="alert"][data-slot="root"][data-tone="success"]) {
+    --_alert-tone: var(--success);
+    --_alert-tone-text: var(--success-text);
+  }
+
+  :where([data-control-family="alert"][data-slot="root"][data-tone="warning"]) {
+    --_alert-tone: var(--warning);
+    --_alert-tone-text: var(--warning-text);
+  }
+
+  :where([data-control-family="alert"][data-slot="root"][data-tone="danger"]) {
+    --_alert-tone: var(--destructive);
+    --_alert-tone-text: var(--destructive-text);
+  }
+
+  :where([data-control-family="alert"][data-slot="root"][data-tone]:not([data-tone="neutral"])) {
+    --_alert-foreground: var(--_alert-tone-text);
+    --_alert-border-color: oklch(from var(--_alert-tone) l c h / 0.5);
+    --_alert-description-foreground: oklch(from var(--_alert-tone-text) l c h / 0.9);
   }
 
   :where([data-control-family="alert"][data-slot="root"]:has(> svg)) {
@@ -53,7 +76,7 @@
 
   :where([data-control-family="alert"][data-slot="description"]) {
     gap: var(--cui-alert-description-gap);
-    color: var(--cui-alert-description-foreground);
+    color: var(--_alert-description-foreground);
     font-size: var(--cui-alert-font-size);
     line-height: var(--leading-normal);
     text-wrap: pretty;

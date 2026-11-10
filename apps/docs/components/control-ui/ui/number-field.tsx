@@ -6,7 +6,7 @@ import { createContext, useContext } from "react";
 import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { useIsInsideInputGroup } from "@/components/control-ui/ui/input-group";
+import { useInputGroupControlRef, useIsInsideInputGroup } from "@/components/control-ui/ui/input-group";
 
 export type NumberFieldChangeReason =
   | "input-change"
@@ -81,6 +81,10 @@ export function NumberField({ size = "md", value, defaultValue, className, child
     <NumberFieldSizeContext.Provider value={size}>
       {/* explicit, never spread — Base UI decides controlled-ness from value !== undefined on first render */}
       <NumberFieldPrimitive.Root
+        data-control-ui="number-field"
+        data-control-family="field"
+        data-field-kind="number-field"
+        data-slot="root"
         value={value}
         defaultValue={defaultValue}
         className={cn("flex flex-col items-start gap-1.5", className)}
@@ -124,14 +128,16 @@ export function NumberFieldGroup({ className, children, ...props }: NumberFieldG
   );
 }
 
-export function NumberFieldInput({ className, ...props }: NumberFieldInputProps) {
+export function NumberFieldInput({ ref, className, ...props }: NumberFieldInputProps) {
+  const groupControlRef = useInputGroupControlRef(ref);
   return (
     <NumberFieldPrimitive.Input
+      ref={groupControlRef}
       data-control-ui="number-field"
       data-control-family="field"
       data-field-kind="number-field"
       data-slot="input"
-      className={cn("h-full min-w-0 flex-1 disabled:cursor-not-allowed", className)}
+      className={cn("h-full min-w-0 flex-1", className)}
       {...props}
     />
   );
@@ -145,7 +151,10 @@ export function NumberFieldDecrement({ className, children, ...props }: NumberFi
       data-field-kind="number-field"
       data-slot="decrement"
       aria-label="Decrease"
-      className={cn("flex aspect-square h-full shrink-0 cursor-pointer select-none items-center justify-center", className)}
+      className={cn(
+        "flex aspect-square h-full shrink-0 select-none items-center justify-center data-[readonly]:pointer-events-none",
+        className,
+      )}
       {...props}
     >
       {children ?? <MinusIcon />}
@@ -161,7 +170,10 @@ export function NumberFieldIncrement({ className, children, ...props }: NumberFi
       data-field-kind="number-field"
       data-slot="increment"
       aria-label="Increase"
-      className={cn("flex aspect-square h-full shrink-0 cursor-pointer select-none items-center justify-center", className)}
+      className={cn(
+        "flex aspect-square h-full shrink-0 select-none items-center justify-center data-[readonly]:pointer-events-none",
+        className,
+      )}
       {...props}
     >
       {children ?? <PlusIcon />}
@@ -170,15 +182,18 @@ export function NumberFieldIncrement({ className, children, ...props }: NumberFi
 }
 
 // drag-to-change affordance: wrap the field's label, or place inside Group as a prefix icon or suffix unit
-export function NumberFieldScrubArea({ className, children, ...props }: NumberFieldScrubAreaProps) {
+export function NumberFieldScrubArea({ className, children, direction = "horizontal", ...props }: NumberFieldScrubAreaProps) {
+  const vertical = direction === "vertical";
   return (
     <NumberFieldPrimitive.ScrubArea
       data-control-ui="number-field"
       data-control-family="field"
       data-field-kind="number-field"
       data-slot="scrub-area"
+      direction={direction}
       className={cn(
-        "inline-flex shrink-0 cursor-ew-resize touch-pan-y select-none items-center [&>svg]:size-3.5 [&>svg]:shrink-0",
+        "inline-flex shrink-0 select-none items-center [&>svg]:shrink-0",
+        vertical ? "cursor-ns-resize" : "cursor-ew-resize",
         className,
       )}
       {...props}
@@ -190,7 +205,7 @@ export function NumberFieldScrubArea({ className, children, ...props }: NumberFi
         data-field-kind="number-field"
         data-slot="scrub-cursor"
       >
-        <CursorGrowIcon />
+        <CursorGrowIcon vertical={vertical} />
       </NumberFieldPrimitive.ScrubAreaCursor>
     </NumberFieldPrimitive.ScrubArea>
   );
@@ -198,15 +213,7 @@ export function NumberFieldScrubArea({ className, children, ...props }: NumberFi
 
 function MinusIcon() {
   return (
-    <svg
-      viewBox="0 0 16 16"
-      className="size-3.5"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      aria-hidden="true"
-    >
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
       <path d="M3 8h10" />
     </svg>
   );
@@ -214,21 +221,13 @@ function MinusIcon() {
 
 function PlusIcon() {
   return (
-    <svg
-      viewBox="0 0 16 16"
-      className="size-3.5"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      aria-hidden="true"
-    >
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
       <path d="M8 3v10M3 8h10" />
     </svg>
   );
 }
 
-function CursorGrowIcon() {
+function CursorGrowIcon({ vertical }: { vertical: boolean }) {
   return (
     <svg
       data-control-ui="number-field"
@@ -239,7 +238,7 @@ function CursorGrowIcon() {
       height="14"
       viewBox="0 0 24 14"
       fill="currentColor"
-      className="block"
+      className={vertical ? "block rotate-90" : "block"}
       aria-hidden="true"
     >
       <path d="M19.5 5.5 6.5 5.52V2L1 7l5.5 5V8.5h13V12L25 7l-5.5-5v3.5Z" />

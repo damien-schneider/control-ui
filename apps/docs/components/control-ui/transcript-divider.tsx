@@ -1,4 +1,5 @@
 import type { ComponentProps, CSSProperties } from "react";
+import { isValidElement } from "react";
 import type { TranscriptDividerKnobStyle } from "@/components/control-ui/knob-contracts/transcript-divider-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
@@ -10,6 +11,8 @@ export type TranscriptDividerProps = Omit<ComponentProps<"div">, "style"> & {
 };
 
 export function TranscriptDivider({ tone = "neutral", className, children, ...props }: TranscriptDividerProps) {
+  const isLabel = isValidElement(children) && children.type === TranscriptDividerLabel;
+
   return (
     <div
       role={children == null ? "separator" : undefined}
@@ -20,7 +23,7 @@ export function TranscriptDivider({ tone = "neutral", className, children, ...pr
       className={cn("flex min-w-0 items-center before:flex-1 after:flex-1", className)}
       {...props}
     >
-      {children != null ? <TranscriptDividerLabel>{children}</TranscriptDividerLabel> : null}
+      {children == null || isLabel ? children : <TranscriptDividerLabel>{children}</TranscriptDividerLabel>}
     </div>
   );
 }

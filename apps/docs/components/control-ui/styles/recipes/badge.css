@@ -2,6 +2,8 @@
   :where([data-control-family="badge"][data-slot="root"]) {
     gap: calc(var(--spacing) * 1);
     padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 2);
+    overflow: hidden;
+    --cui-badge-icon: calc(var(--spacing) * 3);
     --cui-badge-radius: var(--radius-control);
     --cui-badge-background: var(--_badge-color-background);
     --cui-badge-foreground: var(--_badge-color-foreground);
@@ -27,6 +29,12 @@
     font-variant-numeric: tabular-nums;
   }
 
+  :where([data-control-family="badge"][data-slot="root"] > svg) {
+    pointer-events: none;
+    inline-size: var(--cui-badge-icon);
+    block-size: var(--cui-badge-icon);
+  }
+
   :where([data-control-family="badge"][data-slot="root"][data-size="sm"]) {
     --cui-badge-font-size: var(--text-micro);
     block-size: calc(var(--spacing) * 4);
@@ -39,11 +47,36 @@
     --_badge-hover-background: var(--_badge-color-background);
   }
 
+  :where(:is(a, button)[data-control-family="badge"][data-slot="root"]) {
+    position: relative;
+    overflow: visible;
+    cursor: pointer;
+  }
+
+  :where(:is(a, button)[data-control-family="badge"][data-slot="root"])::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    translate: -50% -50%;
+    inline-size: max(100%, var(--target-min));
+    block-size: max(100%, var(--target-min));
+  }
+
+  @media (pointer: coarse) {
+    :where(:is(a, button)[data-control-family="badge"][data-slot="root"])::after {
+      block-size: max(100%, var(--touch-target));
+    }
+  }
+
   @media (hover: hover) {
-    :where(a[data-control-family="badge"][data-slot="root"]:hover),
-    :where(button[data-control-family="badge"][data-slot="root"]:not(:disabled):hover) {
+    :where(:is(a, button)[data-control-family="badge"][data-slot="root"]:hover:not(:disabled, [data-disabled], [aria-disabled="true"])) {
       background: var(--_badge-hover-background);
     }
+  }
+
+  :where([data-control-family="badge"][data-slot="root"]:is(:disabled, [data-disabled], [aria-disabled="true"])) {
+    cursor: not-allowed;
+    opacity: var(--disabled-opacity);
   }
 
   :where([data-control-family="badge"][data-slot="root"][data-color="primary"]) {
@@ -106,6 +139,12 @@
     --_badge-color-border: var(--badge-pink-border);
     --_badge-color-background-hover: var(--badge-pink-hover);
   }
+}
+
+@property --cui-badge-icon {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-badge-radius {

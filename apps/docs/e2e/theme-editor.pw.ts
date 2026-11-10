@@ -151,6 +151,7 @@ test("theme edits survive navigation, direct loads, and refresh", async ({ page,
   await expect(radius).toBeVisible();
   await radius.focus();
   await radius.press("Home");
+  await expect(radius).toHaveAttribute("aria-valuenow", "0");
   await radius.press("ArrowRight");
   await expect(radius).toHaveAttribute("aria-valuenow", "1");
   await expect

@@ -56,24 +56,31 @@
   :where([data-motion="reduced"] [data-control-family="skeleton"][data-slot="root"])::after {
     animation: none;
   }
-}
 
-@keyframes cui-skeleton-shimmer {
-  from {
-    transform: translateX(-125%);
+  @media (forced-colors: active) {
+    :where([data-control-family="skeleton"][data-slot="root"]) {
+      outline: 1px solid CanvasText;
+      outline-offset: -1px;
+    }
   }
-  to {
-    transform: translateX(125%);
-  }
-}
 
-@keyframes cui-skeleton-pulse {
-  0%,
-  100% {
-    opacity: 1;
+  @keyframes cui-skeleton-shimmer {
+    from {
+      transform: translateX(-125%);
+    }
+    to {
+      transform: translateX(125%);
+    }
   }
-  50% {
-    opacity: var(--cui-skeleton-pulse-opacity);
+
+  @keyframes cui-skeleton-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: var(--cui-skeleton-pulse-opacity);
+    }
   }
 }
 

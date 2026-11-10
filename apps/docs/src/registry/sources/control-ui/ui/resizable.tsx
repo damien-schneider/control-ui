@@ -58,7 +58,7 @@ export type ResizableHandleProps = Omit<ComponentProps<"div">, "role" | "tabInde
 
 export type ResizableFloatingPanelSide = "left" | "right";
 
-export type ResizableSeparatorState = "inactive" | "hover" | "focus" | "active";
+export type ResizableSeparatorState = "inactive" | "hover" | "focus" | "active" | "disabled";
 
 type ResizableFloatingPanelStyle = CSSProperties & ResizableKnobStyle & { "--resizable-floating-width"?: string };
 
@@ -83,6 +83,11 @@ type FloatingResizeSession = { pointerId: number; startX: number; startSize: num
 
 const FLOATING_KEYBOARD_STEP_PX = 10;
 const FLOATING_ARROW_DIRECTIONS: Partial<Record<string, number>> = { ArrowLeft: -1, ArrowRight: 1 };
+
+function assignRef<T>(ref: Ref<T> | undefined, node: T | null) {
+  if (typeof ref === "function") ref(node);
+  else if (ref) ref.current = node;
+}
 
 function useResizeCursor(handleRef: RefObject<HTMLDivElement | null>, disableCursor: boolean) {
   useEffect(() => {
@@ -116,6 +121,7 @@ export function ResizablePanelGroup({
   disabled = false,
   disableCursor = false,
   children,
+  ref,
   ...props
 }: ResizablePanelGroupProps) {
   return (
@@ -131,6 +137,7 @@ export function ResizablePanelGroup({
         disabled={disabled || layout !== "resizable"}
         disableCursor
         className={cn("flex h-full w-full", className)}
+        elementRef={ref}
         {...props}
       >
         {children}
@@ -139,8 +146,17 @@ export function ResizablePanelGroup({
   );
 }
 
-export function ResizablePanel({ className, ...props }: ResizablePanelProps) {
-  return <Panel data-control-ui="resizable" data-control-family="resizable" data-slot="panel" className={className} {...props} />;
+export function ResizablePanel({ className, ref, ...props }: ResizablePanelProps) {
+  return (
+    <Panel
+      data-control-ui="resizable"
+      data-control-family="resizable"
+      data-slot="panel"
+      className={className}
+      elementRef={ref}
+      {...props}
+    />
+  );
 }
 
 export function ResizableHandle({
@@ -149,6 +165,7 @@ export function ResizableHandle({
   withHandle,
   children,
   "aria-label": ariaLabel = "Resize panel",
+  ref,
   ...props
 }: ResizableHandleProps) {
   const { orientation, disableCursor } = useContext(ResizableGroupContext);
@@ -163,10 +180,13 @@ export function ResizableHandle({
       data-variant={variant}
       data-axis={axis}
       data-cursor={disableCursor ? "none" : undefined}
-      className={cn("relative flex items-center justify-center", axis === "vertical" ? "w-px touch-pan-y" : "h-px touch-pan-x", className)}
+      className={cn("relative flex items-center justify-center", axis === "vertical" ? "w-px" : "h-px", className)}
       aria-label={ariaLabel}
       {...props}
-      elementRef={handleRef}
+      elementRef={(node) => {
+        handleRef.current = node;
+        assignRef(ref, node);
+      }}
     >
       {withHandle ? (
         <span
@@ -175,7 +195,7 @@ export function ResizableHandle({
           data-slot="handle-grip"
           data-variant={variant}
           data-axis={axis}
-          className="absolute top-1/2 left-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+          className="absolute top-1/2 left-1/2 z-(--z-raised) flex -translate-x-1/2 -translate-y-1/2 items-center justify-center"
         >
           <GripIcon className={axis === "horizontal" ? "rotate-90" : undefined} />
         </span>
@@ -204,7 +224,6 @@ export function ResizableFloatingPanel({
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const [resizing, setResizing] = useState(false);
-  const panelRef = useRef<HTMLDivElement>(null);
   const handleRef = useRef<HTMLDivElement>(null);
   useResizeCursor(handleRef, false);
   const resizeRef = useRef<FloatingResizeSession | null>(null);
@@ -219,7 +238,7 @@ export function ResizableFloatingPanel({
   }
 
   function beginResize(event: ReactPointerEvent<HTMLDivElement>) {
-    const panel = panelRef.current;
+    const panel = event.currentTarget.parentElement;
     if (!panel || !event.isPrimary || event.button !== 0) return;
     event.preventDefault();
     event.currentTarget.focus({ preventScroll: true });
@@ -259,7 +278,6 @@ export function ResizableFloatingPanel({
 
   return (
     <div
-      ref={panelRef}
       {...props}
       data-control-ui="resizable"
       data-control-family="resizable"

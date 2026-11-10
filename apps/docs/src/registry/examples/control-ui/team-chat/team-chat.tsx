@@ -185,7 +185,7 @@ export function TeamChatExample() {
       >
         <ChatLayout key={activeId} chrome="embedded" className="h-full">
           <ChatLayoutHeader>
-            <SidebarTrigger className="lg:hidden" />
+            <SidebarTrigger className="sidebar:hidden" />
             <ChatLayoutTitle render={(props) => <h2 {...props} />}>{heading.title}</ChatLayoutTitle>
             <ChatLayoutDescription>{heading.description}</ChatLayoutDescription>
             <ChatLayoutActions>

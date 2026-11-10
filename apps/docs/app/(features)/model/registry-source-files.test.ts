@@ -73,11 +73,7 @@ describe("knob family ownership", () => {
     };
 
     expect(paths("button")).toContain("src/registry/sources/control-ui/recipes/button.css");
-    expect(paths("menubar")).toEqual([
-      "src/registry/sources/control-ui/ui/menubar.tsx",
-      "src/registry/sources/control-ui/surface-variants.ts",
-      "src/registry/sources/control-ui/control-variants.ts",
-    ]);
+    expect(paths("menubar").filter((path) => path.includes("/recipes/"))).toEqual([]);
   });
 
   test("links a consumed family to the page that owns it", () => {

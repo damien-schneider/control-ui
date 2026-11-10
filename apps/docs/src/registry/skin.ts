@@ -21,6 +21,7 @@ export type SkinIndicators = {
   "button-group"?: HoverIndicator;
   "toggle-group"?: HoverIndicator;
   "checkbox-group"?: HoverIndicator;
+  "radio-group"?: HoverIndicator;
 };
 
 export type ControlUiSkin = {
@@ -38,7 +39,7 @@ export type ControlUiSkin = {
   calendarShowOutsideDays?: boolean;
   indicators?: SkinIndicators;
 
-  effects?: ControlEffect[];
+  effects?: readonly ControlEffect[];
   adornments?: {
     [Scope in SkinAdornmentScope]?: {
       [Part in SkinAdornmentPart<Scope>]?: AdornmentEntry<SkinAdornmentContexts[Scope][Part]>;
@@ -50,12 +51,29 @@ export type SidebarLayout = "sidebar" | "floating" | "inset" | "page";
 
 export type ControlEffect = "top-shine" | "ripple" | "hover-circle";
 
-export type ControlEffectValue = ControlEffect | ControlEffect[];
+export type ControlEffectValue = ControlEffect | readonly ControlEffect[];
 
 export function controlEffectsAttribute(effects?: ControlEffectValue): string | undefined {
   if (!effects) return undefined;
-  const value = (Array.isArray(effects) ? effects : [effects]).join(" ");
+  const value = typeof effects === "string" ? effects : effects.join(" ");
   return value.length > 0 ? value : undefined;
+}
+
+export type SkinScopeAttributes = {
+  "data-skin"?: string;
+  "data-effects"?: string;
+  "data-motion"?: "reduced";
+};
+
+// Everything a skin boundary carries as attributes, so a wrapper or a portalled surface re-creates the scope with one
+// spread. colorScheme is absent on purpose: the page mode is the root `dark` class, which no descendant can undo.
+export function skinScopeAttributes(skin: ControlUiSkin): SkinScopeAttributes {
+  const attributes: SkinScopeAttributes = {};
+  if (skin.id) attributes["data-skin"] = skin.id;
+  const effects = controlEffectsAttribute(skin.effects);
+  if (effects) attributes["data-effects"] = effects;
+  if (skin.motion) attributes["data-motion"] = skin.motion;
+  return attributes;
 }
 
 function resolveAdornment<Ctx>(entry: AdornmentEntry<Ctx> | undefined, ctx: Ctx): ReactNode | undefined {

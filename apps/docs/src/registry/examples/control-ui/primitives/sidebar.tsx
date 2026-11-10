@@ -182,7 +182,7 @@ function Workspace({
         <SidebarFooter>
           <DropdownMenu>
             <DropdownMenuTrigger render={<SidebarMenuButton size="lg" tooltip="Jamie Davis" />}>
-              <Avatar aria-hidden="true" className="size-7">
+              <Avatar aria-hidden="true" size="sm">
                 <AvatarFallback>JD</AvatarFallback>
               </Avatar>
               <span>Jamie Davis</span>
@@ -277,69 +277,65 @@ function SidebarExample({
           <label htmlFor={layoutId} className="shrink-0">
             Layout
           </label>
-          <div className="w-32">
-            <NativeSelect
-              id={layoutId}
-              value={layout ?? variant}
-              onChange={(event) => {
-                const value = event.target.value;
-                if (value === "sidebar" || value === "floating" || value === "inset" || value === "page") setLayout(value);
-              }}
-            >
-              <option value="sidebar">Sidebar</option>
-              <option value="floating">Floating</option>
-              <option value="inset">Inset</option>
-              <option value="page">Page</option>
-            </NativeSelect>
-          </div>
+          <NativeSelect
+            id={layoutId}
+            className="w-32"
+            value={layout ?? variant}
+            onChange={(event) => {
+              const value = event.target.value;
+              if (value === "sidebar" || value === "floating" || value === "inset" || value === "page") setLayout(value);
+            }}
+          >
+            <option value="sidebar">Sidebar</option>
+            <option value="floating">Floating</option>
+            <option value="inset">Inset</option>
+            <option value="page">Page</option>
+          </NativeSelect>
           <label htmlFor={highlightId} className="shrink-0">
             Menu highlight
           </label>
-          <div className="w-40">
-            <NativeSelect
-              id={highlightId}
-              value={indicator ?? "skin"}
-              onChange={(event) => {
-                const value = event.target.value;
-                if (value === "none" || value === "slide" || value === "hover") setIndicator(value);
-                else setIndicator(undefined);
-              }}
-            >
-              <option value="skin">Skin default</option>
-              <option value="none">Static</option>
-              <option value="slide">Sliding selection</option>
-              <option value="hover">Fluid hover</option>
-            </NativeSelect>
-          </div>
+          <NativeSelect
+            id={highlightId}
+            className="w-40"
+            value={indicator ?? "skin"}
+            onChange={(event) => {
+              const value = event.target.value;
+              if (value === "none" || value === "slide" || value === "hover") setIndicator(value);
+              else setIndicator(undefined);
+            }}
+          >
+            <option value="skin">Skin default</option>
+            <option value="none">Static</option>
+            <option value="slide">Sliding selection</option>
+            <option value="hover">Fluid hover</option>
+          </NativeSelect>
           <label htmlFor={sideId}>Side</label>
-          <div className="w-24">
-            <NativeSelect
-              id={sideId}
-              value={sidebarSide}
-              onChange={(event) => {
-                const value = event.target.value;
-                if (value === "left" || value === "right") setSidebarSide(value);
-              }}
-            >
-              <option value="left">Left</option>
-              <option value="right">Right</option>
-            </NativeSelect>
-          </div>
+          <NativeSelect
+            id={sideId}
+            className="w-24"
+            value={sidebarSide}
+            onChange={(event) => {
+              const value = event.target.value;
+              if (value === "left" || value === "right") setSidebarSide(value);
+            }}
+          >
+            <option value="left">Left</option>
+            <option value="right">Right</option>
+          </NativeSelect>
           <label htmlFor={collapseId}>Collapse</label>
-          <div className="w-32">
-            <NativeSelect
-              id={collapseId}
-              value={collapsible}
-              onChange={(event) => {
-                const value = event.target.value;
-                if (value === "icon" || value === "offcanvas" || value === "none") setCollapsible(value);
-              }}
-            >
-              <option value="icon">Icon rail</option>
-              <option value="offcanvas">Off-canvas</option>
-              <option value="none">Fixed</option>
-            </NativeSelect>
-          </div>
+          <NativeSelect
+            id={collapseId}
+            className="w-32"
+            value={collapsible}
+            onChange={(event) => {
+              const value = event.target.value;
+              if (value === "icon" || value === "offcanvas" || value === "none") setCollapsible(value);
+            }}
+          >
+            <option value="icon">Icon rail</option>
+            <option value="offcanvas">Off-canvas</option>
+            <option value="none">Fixed</option>
+          </NativeSelect>
         </Text>
       ) : null}
       <div className="relative isolate h-[30rem] w-full overflow-hidden rounded-(--radius-panel) border border-border bg-canvas [transform:translateZ(0)]">

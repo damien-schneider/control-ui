@@ -9,6 +9,7 @@
   ],
   "registryDependencies": [
     "core",
+    "popup-item-focus",
     "surface-variants"
   ],
   "files": [

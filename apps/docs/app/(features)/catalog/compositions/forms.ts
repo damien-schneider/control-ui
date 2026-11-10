@@ -22,7 +22,13 @@ export const formsCompositions = {
       part("FilterBar.Root", part("FilterBar.Chips", content("renderChip(item)", part("FilterBar.Chip"))), part("FilterBar.AddButton")),
     ),
   ],
-  slider: [example("Value control", part("Slider"))],
+  slider: [
+    example(
+      "Value control",
+      part("Slider"),
+      "Pass a number for one thumb or an array for a range: one thumb per entry, each named by thumbLabels.",
+    ),
+  ],
   "channel-strip": [
     example(
       "Console mixer",
@@ -38,7 +44,23 @@ export const formsCompositions = {
       ),
     ),
   ],
-  select: [example("Anatomy", part("Select", part("SelectTrigger", part("SelectValue")), part("SelectContent", part("SelectItem"))))],
+  select: [
+    example("Anatomy", part("Select", part("SelectTrigger", part("SelectValue")), part("SelectContent", part("SelectItem")))),
+    example(
+      "Grouped options",
+      part(
+        "Select",
+        part("SelectTrigger", part("SelectValue")),
+        part(
+          "SelectContent",
+          part("SelectGroup", part("SelectGroupLabel"), part("SelectItem")),
+          part("SelectSeparator"),
+          part("SelectItem"),
+        ),
+      ),
+      "SelectGroupLabel names its group, so it must sit inside SelectGroup.",
+    ),
+  ],
   switch: [example("On/off control", part("Switch"))],
   input: [example("Text input", part("Input"))],
   "input-group": [example("Input with addons", part("InputGroup", part("InputGroupAddon", content("addon content")), part("Input")))],
@@ -50,7 +72,7 @@ export const formsCompositions = {
         part("DropzoneInput"),
         part("DropzoneArea", part("DropzoneTrigger"), part("DropzoneOverlay")),
         part("DropzoneFileList", content("file render callback", content("file content"), part("DropzoneRemove"))),
-        part("DropzoneRejectionList"),
+        part("DropzoneRejectionList", content("custom rejection row", part("DropzoneRejectionRemove"))),
         part("DropzoneStatus"),
         part("DropzoneClear"),
       ),
@@ -216,7 +238,7 @@ export const formsCompositions = {
         part("EmojiPickerSearch"),
         part("EmojiPickerCategories"),
         part("EmojiPickerContent", part("EmojiPickerRecent")),
-        part("EmojiPickerFooter"),
+        part("EmojiPickerFooter", part("EmojiPickerSkinTone")),
       ),
     ),
     example(

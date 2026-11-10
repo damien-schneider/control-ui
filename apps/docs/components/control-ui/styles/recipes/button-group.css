@@ -7,7 +7,8 @@
   }
 
   :where([data-control-family="button-group"][data-slot="text"]) {
-    block-size: var(--control-h-md);
+    --_button-group-text-icon: 1rem;
+    min-block-size: var(--control-h-md);
     border: var(--control-rim-width) solid var(--control-rim);
     border-radius: var(--cui-button-group-text-radius);
     background: var(--cui-button-group-text-background);
@@ -18,26 +19,37 @@
     font-weight: var(--font-weight-medium);
   }
 
+  :where([data-control-family="button-group"][data-slot="text"] > svg) {
+    pointer-events: none;
+    flex-shrink: 0;
+    inline-size: var(--_button-group-text-icon);
+    block-size: var(--_button-group-text-icon);
+  }
+
   :where([data-control-family="button-group"][data-slot="text"][data-size="xs"]) {
-    block-size: var(--control-h-xs);
+    --_button-group-text-icon: 0.875rem;
+    min-block-size: var(--control-h-xs);
     padding-inline: calc(var(--padding-x) * 0.6);
     font-size: var(--text-caption);
   }
 
   :where([data-control-family="button-group"][data-slot="text"][data-size="sm"]) {
-    block-size: var(--control-h-sm);
+    min-block-size: var(--control-h-sm);
     padding-inline: calc(var(--padding-x) * 0.75);
     font-size: var(--text-label);
   }
 
   :where([data-control-family="button-group"][data-slot="text"][data-size="lg"]) {
-    block-size: var(--control-h-lg);
+    --_button-group-text-icon: 1.125rem;
+    min-block-size: var(--control-h-lg);
     padding-inline: calc(var(--padding-x) * 1.25);
   }
 
   :where([data-control-family="button-group"][data-slot="separator"]) {
+    z-index: 1;
     background: var(--cui-button-group-separator-background);
   }
+
   :where([data-control-family="button-group"][data-slot="root"] > :not([data-control-family="track-highlight"])) {
     position: relative;
   }
@@ -91,9 +103,21 @@
   }
 
   :where(
-    [data-control-family="button-group"][data-slot="root"][data-orientation="vertical"] [data-control-family="button"][data-size="xs"]
+    [data-control-family="button-group"][data-slot="root"][data-orientation="horizontal"] [data-control-family="button"][data-size]
+  )::after {
+    inline-size: 100%;
+  }
+
+  :where(
+    [data-control-family="button-group"][data-slot="root"][data-orientation="vertical"] [data-control-family="button"][data-size]
   )::after {
     block-size: 100%;
+  }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="button-group"][data-slot="separator"]) {
+      background: CanvasText;
+    }
   }
 }
 

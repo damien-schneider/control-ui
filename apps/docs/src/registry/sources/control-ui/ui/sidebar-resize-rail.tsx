@@ -15,7 +15,7 @@ export type SidebarResizeRailProps = ComponentProps<"div"> & {
 };
 
 export function SidebarResizeRail({ className, ref, onPointerDown, onClick, onKeyDown, ...props }: SidebarResizeRailProps) {
-  const { open, setOpen, setWidth, toggleSidebar, minWidth, maxWidth } = useSidebar();
+  const { open, setOpen, setWidth, toggleSidebar, minWidth, maxWidth, sidebarId } = useSidebar();
   const { wrapperRef, railRef } = useSidebarElements();
   const { side, collapsible } = useSidebarSurface();
   const widthMeasureRef = useRef<HTMLSpanElement>(null);
@@ -197,11 +197,12 @@ export function SidebarResizeRail({ className, ref, onPointerDown, onClick, onKe
       ...props,
       role: "separator",
       "aria-orientation": "vertical",
+      "aria-controls": sidebarId,
       "aria-label": props["aria-label"] ?? "Resize sidebar",
       "aria-valuenow": isCollapsed ? 0 : measuredWidth,
       "aria-valuemin": collapsible === "none" ? minWidth : 0,
       "aria-valuemax": maxWidth,
-      "aria-valuetext": isCollapsed ? "collapsed" : widthDescription,
+      "aria-valuetext": props["aria-valuetext"] ?? (isCollapsed ? "collapsed" : widthDescription),
       tabIndex: 0,
       "data-control-ui": "sidebar",
       "data-control-family": "sidebar",
@@ -212,7 +213,7 @@ export function SidebarResizeRail({ className, ref, onPointerDown, onClick, onKe
       onClick: handleClick,
       onKeyDown: handleKeyDown,
       className: cn(
-        "absolute inset-y-0 z-20 hidden cursor-col-resize touch-pan-y group-data-[side=left]:-end-1 group-data-[side=right]:-start-1 group-data-[side=left]:group-data-[collapsible=offcanvas]:-end-2 group-data-[side=right]:group-data-[collapsible=offcanvas]:-start-2 sidebar:block",
+        "absolute inset-y-0 z-(--z-sticky) hidden cursor-col-resize touch-pan-y group-data-[side=left]:-end-1 group-data-[side=right]:-start-1 group-data-[side=left]:group-data-[collapsible=offcanvas]:-end-2 group-data-[side=right]:group-data-[collapsible=offcanvas]:-start-2 sidebar:block",
         className,
       ),
       children: (

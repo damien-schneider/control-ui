@@ -83,6 +83,7 @@ export type DynamicNotificationController = {
   canSubmit: boolean;
   replyPending: boolean;
   replyFailed: boolean;
+  resetReplyError: () => void;
   clear: () => void;
   submitReply: () => Promise<void>;
   handleReplySubmit: (event: FormSubmitEvent) => void;
@@ -113,6 +114,12 @@ export function useDynamicNotification({
   const normalizedReply = reply.trim();
   const [replyPending, setReplyPending] = useState(false);
   const [replyFailed, setReplyFailed] = useState(false);
+  // A failure belongs to the visit it happened in, so collapsing drops it; one that lands after collapse stays for the reopen to show.
+  const [wasOpen, setWasOpen] = useState(isOpen);
+  if (wasOpen !== isOpen) {
+    setWasOpen(isOpen);
+    if (!isOpen) setReplyFailed(false);
+  }
   const replyInFlight = useRef(false);
   const canSubmit = normalizedReply.length > 0 && !disabled && !replyPending;
 
@@ -134,6 +141,13 @@ export function useDynamicNotification({
       setReply("");
     },
     [setReply],
+  );
+
+  const resetReplyError = useMemo(
+    () => () => {
+      setReplyFailed(false);
+    },
+    [],
   );
 
   const submitReply = useMemo(
@@ -172,6 +186,7 @@ export function useDynamicNotification({
     canSubmit,
     replyPending,
     replyFailed,
+    resetReplyError,
     clear,
     submitReply,
     handleReplySubmit,

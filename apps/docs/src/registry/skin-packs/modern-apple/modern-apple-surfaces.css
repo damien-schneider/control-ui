@@ -42,7 +42,6 @@
       [data-control-family="popup"][data-slot][data-popup-part="list-surface"][data-surface="floating"],
       [data-control-family="popup"][data-slot][data-popup-part="surface"][data-surface="modal"]
     ) {
-    --cui-popup-radius: var(--radius-popover);
     --cui-popup-background: var(--apple-glass-fill);
     --cui-popup-shadow: var(--apple-menu-shadow);
     --cui-popup-backdrop-filter: var(--apple-glass-filter);
@@ -69,12 +68,26 @@
     --cui-popup-description-foreground: var(--foreground);
   }
 
+  [data-skin="modern-apple"] :where([data-control-family="popup"][data-slot][data-popup-part="surface"][data-popup-kind="sheet"]) {
+    --cui-popup-radius: 0px;
+  }
+
   [data-skin="modern-apple"]
     :where([data-control-family="popup"][data-slot][data-popup-part="surface"][data-surface="modal"][data-popup-kind="alert-dialog"]) {
     --cui-popup-radius: 1.625rem;
     --cui-popup-background: var(--apple-glass-fill);
     --cui-popup-backdrop-filter: var(--apple-glass-filter);
     --cui-popup-dialog-max-inline-size: 16.25rem;
+  }
+
+  [data-skin="modern-apple"]
+    :where(
+      [data-control-family="popup"][data-slot][data-popup-part="surface"][data-surface="modal"]:has(
+        > [data-control-family="popup"][data-popup-kind="command"][data-slot="dialog-root"]
+      )
+    ) {
+    --cui-popup-background: var(--apple-glass-fill);
+    --cui-popup-backdrop-filter: var(--apple-glass-filter);
   }
 
   [data-skin="modern-apple"]

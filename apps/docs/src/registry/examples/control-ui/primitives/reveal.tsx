@@ -41,7 +41,7 @@ export function PrimitiveRevealExample() {
           alt="Sequoia grove at sunrise"
           className="aspect-video w-full rounded-[var(--radius-lg)] object-cover"
         />
-        <Reveal className="absolute top-2 right-2 flex gap-1.5">
+        <Reveal className="absolute top-2 end-2 flex gap-1.5">
           <Button variant="scrim" size="sm" iconOnly aria-label="Download photo">
             <DownloadIcon />
           </Button>

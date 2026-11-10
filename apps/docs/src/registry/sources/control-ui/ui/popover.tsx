@@ -1,27 +1,50 @@
 "use client";
 
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
-import { type ComponentProps, type CSSProperties, useImperativeHandle, useLayoutEffect, useRef } from "react";
+import { useRender } from "@base-ui/react/use-render";
+import {
+  type ComponentProps,
+  type CSSProperties,
+  createContext,
+  useContext,
+  useImperativeHandle,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import type { RenderProp } from "@/components/control-ui/control-props";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { skinScopeAttributes } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 
 export const popoverContentPaddings = ["default", "sm", "none"] as const;
 
 export type PopoverContentPadding = (typeof popoverContentPaddings)[number];
 
-type PopoverPopupProps = Omit<ComponentProps<typeof PopoverPrimitive.Popup>, "style"> & {
+export type PopoverContentProps = Omit<ComponentProps<typeof PopoverPrimitive.Popup>, "style"> & {
   side?: ComponentProps<typeof PopoverPrimitive.Positioner>["side"];
   align?: ComponentProps<typeof PopoverPrimitive.Positioner>["align"];
   sideOffset?: number;
+  anchor?: ComponentProps<typeof PopoverPrimitive.Positioner>["anchor"];
   collisionPadding?: ComponentProps<typeof PopoverPrimitive.Positioner>["collisionPadding"];
   padding?: PopoverContentPadding;
   style?: CSSProperties & PopupKnobStyle;
 };
 
+type PopoverAnchorContextValue = { anchor: Element | null; setAnchor: (anchor: Element | null) => void };
+
+const PopoverAnchorContext = createContext<PopoverAnchorContextValue | null>(null);
+
 export function Popover(props: ComponentProps<typeof PopoverPrimitive.Root>) {
-  return <PopoverPrimitive.Root {...props} />;
+  const [anchor, setAnchor] = useState<Element | null>(null);
+  const anchorContext = useMemo(() => ({ anchor, setAnchor }), [anchor]);
+  return (
+    <PopoverAnchorContext value={anchorContext}>
+      <PopoverPrimitive.Root {...props} />
+    </PopoverAnchorContext>
+  );
 }
 
 export function PopoverTrigger({
@@ -33,8 +56,18 @@ export function PopoverTrigger({
   );
 }
 
-export function PopoverAnchor(props: ComponentProps<typeof PopoverPrimitive.Trigger>) {
-  return <PopoverPrimitive.Trigger {...props} />;
+export type PopoverAnchorProps = ComponentProps<"div"> & { render?: RenderProp<ComponentProps<"div">> };
+
+/** The element the popup positions against instead of its trigger. Renders a `div`; pass `render` to anchor an element you already have. */
+export function PopoverAnchor({ render, ref, ...props }: PopoverAnchorProps) {
+  const context = useContext(PopoverAnchorContext);
+  if (!context) throw new Error("PopoverAnchor must be used within Popover.");
+  return useRender({
+    defaultTagName: "div",
+    render,
+    ref: [ref ?? null, context.setAnchor],
+    props: { ...props, "data-control-ui": "popover", "data-popup-kind": "popover", "data-slot": "anchor" },
+  });
 }
 
 export function PopoverContent({
@@ -43,19 +76,21 @@ export function PopoverContent({
   side = "bottom",
   align = "center",
   sideOffset = 6,
+  anchor,
   collisionPadding,
   padding = "default",
   ...props
-}: PopoverPopupProps) {
+}: PopoverContentProps) {
   const skin = useSkin();
+  const anchorContext = useContext(PopoverAnchorContext);
   return (
     <PopoverPrimitive.Portal>
       <PopoverPrimitive.Positioner
-        data-skin={skin.id}
-        data-effects={controlEffectsAttribute(skin.effects)}
+        {...skinScopeAttributes(skin)}
         side={side}
         align={align}
         sideOffset={sideOffset}
+        anchor={anchor ?? anchorContext?.anchor}
         collisionPadding={collisionPadding}
         className="z-(--z-popup)"
       >
@@ -153,14 +188,5 @@ export function PopoverClose({
   className,
   ...props
 }: ComponentProps<typeof PopoverPrimitive.Close> & { style?: CSSProperties & PopupKnobStyle }) {
-  return (
-    <PopoverPrimitive.Close
-      data-control-ui="popover"
-      data-control-family="popup"
-      data-popup-kind="popover"
-      data-slot="close"
-      className={className}
-      {...props}
-    />
-  );
+  return <PopoverPrimitive.Close data-control-ui="popover" data-popup-kind="popover" data-slot="close" className={className} {...props} />;
 }

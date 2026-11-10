@@ -6,6 +6,7 @@ import type {
   FilterBarDraft,
   FilterBarField,
   FilterBarItem,
+  FilterBarLabels,
   FilterBarOperator,
   FilterBarScalar,
   FilterBarStage,
@@ -17,6 +18,7 @@ export type FilterBarExit = { item: FilterBarItem; style: CSSProperties };
 export type FilterBarContextValue = {
   fields: readonly FilterBarField[];
   operators: readonly FilterBarOperator[];
+  labels: FilterBarLabels;
   items: readonly FilterBarItem[];
   draft: FilterBarDraft | null;
   exits: FilterBarExit[];
@@ -31,7 +33,7 @@ export type FilterBarContextValue = {
   selectOperator: (operatorId: string) => void;
   selectValues: (values: FilterBarScalar[]) => void;
   commit: (value: FilterBarValue) => void;
-  remove: (item: FilterBarItem) => void;
+  remove: (item: FilterBarItem, moveFocus?: boolean) => void;
   clear: () => void;
   releaseExit: (id: string) => void;
   navigate: (event: KeyboardEvent<HTMLElement>, itemId?: string, part?: string) => void;

@@ -15,7 +15,34 @@
     display: flow-root;
   }
 
+  :where([data-control-family="popup"]:is([data-slot="title"], [data-slot="description"])) {
+    overflow-wrap: anywhere;
+  }
+
+  /* The body is the scroller; the bleed keeps focus rings on its first and last controls from being clipped at the scroll edge. */
+  :where([data-control-family="popup"]:is([data-popup-kind="dialog"], [data-popup-kind="alert-dialog"])[data-slot="body"]) {
+    --_popup-body-ring-bleed: calc(var(--focus-ring-width) + var(--focus-ring-offset));
+    margin-block-start: calc(var(--_popup-body-ring-bleed) * -1);
+    padding-block-start: var(--_popup-body-ring-bleed);
+    overscroll-behavior: contain;
+  }
+
+  :where(
+    [data-control-family="popup"]:is([data-popup-kind="dialog"], [data-popup-kind="alert-dialog"])[data-slot="body"]:has(
+      ~ [data-slot="footer"]
+    )
+  ) {
+    margin-block-end: calc(var(--_popup-body-ring-bleed) * -1);
+    padding-block-end: var(--_popup-body-ring-bleed);
+  }
+
   :where([data-control-family="popup"][data-popup-kind="sheet"][data-popup-part="surface"]) {
+    --cui-popup-radius: 0px;
+    --cui-popup-shadow: var(--shadow-overlay);
+    max-block-size: 100dvh;
+    padding-block: env(safe-area-inset-top, 0px) env(safe-area-inset-bottom, 0px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
     transition-property: translate;
     transition-duration: var(--duration-base);
     transition-timing-function: var(--ease-emphasized);
@@ -24,27 +51,44 @@
     border-width: 0px;
   }
 
-  :where(
-    [data-control-family="popup"][data-popup-kind="sheet"][data-popup-part="surface"][data-side="left"]:is(
-      [data-starting-style],
-      [data-ending-style]
-    )
-  ) {
-    translate: -100% 0;
+  /* `left` is the inline-start edge: only the corners facing the page take the radius, and the notch inset follows the physical edge. */
+  :where([data-control-family="popup"][data-popup-kind="sheet"][data-popup-part="surface"][data-side="left"]) {
+    --_popup-sheet-closed-translate: -100% 0;
+    padding-inline-start: env(safe-area-inset-left, 0px);
+    border-start-end-radius: var(--cui-popup-radius);
+    border-end-end-radius: var(--cui-popup-radius);
   }
 
-  :where(
-    [data-control-family="popup"][data-popup-kind="sheet"][data-popup-part="surface"][data-side="right"]:is(
-      [data-starting-style],
-      [data-ending-style]
-    )
-  ) {
-    translate: 100% 0;
+  :where([data-control-family="popup"][data-popup-kind="sheet"][data-popup-part="surface"][data-side="left"]:dir(rtl)) {
+    --_popup-sheet-closed-translate: 100% 0;
+    padding-inline-start: env(safe-area-inset-right, 0px);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="sheet"][data-popup-part="surface"][data-side="right"]) {
+    --_popup-sheet-closed-translate: 100% 0;
+    padding-inline-end: env(safe-area-inset-right, 0px);
+    border-start-start-radius: var(--cui-popup-radius);
+    border-end-start-radius: var(--cui-popup-radius);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="sheet"][data-popup-part="surface"][data-side="right"]:dir(rtl)) {
+    --_popup-sheet-closed-translate: -100% 0;
+    padding-inline-end: env(safe-area-inset-left, 0px);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="sheet"][data-popup-part="surface"]:is([data-starting-style], [data-ending-style])) {
+    translate: var(--_popup-sheet-closed-translate);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="tooltip"][data-popup-part="surface"]) {
+    --cui-popup-radius: var(--radius-control);
+    --cui-popup-background: var(--foreground);
+    --cui-popup-foreground: var(--background);
   }
 
   :where([data-control-family="popup"][data-popup-kind="tooltip"][data-slot="content"]) {
     font-size: var(--text-label);
-    line-height: 1.35;
+    line-height: var(--leading-snug);
     text-wrap: balance;
     transition-property: opacity, scale;
     transition-timing-function: var(--ease-standard);
@@ -72,4 +116,16 @@
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
+}
+
+@property --cui-popup-shortcut-highlight-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-popup-submenu-indicator-highlight-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
 }

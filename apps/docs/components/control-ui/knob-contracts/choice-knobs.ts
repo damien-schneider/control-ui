@@ -1,6 +1,7 @@
 // Generated from src/registry/sources/control-ui/recipes/choice.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.
 export const choiceKnobs = [
   "--cui-choice-size",
+  "--cui-choice-indicator-size",
   "--cui-choice-radius",
   "--cui-choice-border-color",
   "--cui-choice-border-width",

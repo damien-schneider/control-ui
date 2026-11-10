@@ -20,18 +20,22 @@ export function useColorArea<Element extends HTMLElement = HTMLDivElement>(
   const ownRef = useRef<Element | null>(null);
   const areaRef = targetRef ?? ownRef;
   const [dragging, setDragging] = useState(false);
+  const dragPointerId = useRef<number | null>(null);
   const emitDragChange = useEffectEvent(onChange);
 
   useEffect(() => {
     if (!dragging) return;
 
     function onMove(event: globalThis.PointerEvent) {
+      if (event.pointerId !== dragPointerId.current) return;
       const el = areaRef.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
       emitDragChange({ x: event.clientX - rect.left, y: event.clientY - rect.top }, { width: rect.width, height: rect.height });
     }
-    function onEnd() {
+    function onEnd(event: globalThis.PointerEvent) {
+      if (event.pointerId !== dragPointerId.current) return;
+      dragPointerId.current = null;
       setDragging(false);
     }
 
@@ -48,6 +52,9 @@ export function useColorArea<Element extends HTMLElement = HTMLDivElement>(
 
   function onPointerDown(event: ReactPointerEvent) {
     if (event.button !== 0) return;
+    // a second finger landing mid-drag must not steal or end the first pointer's gesture
+    if (dragPointerId.current !== null && !event.isPrimary) return;
+    dragPointerId.current = event.pointerId;
     const el = areaRef.current;
     if (el) {
       const rect = el.getBoundingClientRect();

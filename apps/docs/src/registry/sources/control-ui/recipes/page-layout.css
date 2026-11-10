@@ -22,6 +22,16 @@
     --cui-page-layout-size: calc(var(--cui-page-layout-article-size) + var(--cui-page-layout-padding-inline) * 2);
   }
 
+  /* The masked inset viewport is a backdrop root; painting the page surface inside it
+     gives nested blur and glass an opaque backdrop instead of bare content. */
+  :where(
+    [data-control-family="page-layout"][data-slot="root"]
+      > [data-control-family="scroll-area"][data-slot="root"]
+      > [data-scroll-area-viewport]
+  ) {
+    background: var(--cui-page-layout-background);
+  }
+
   :where([data-control-family="page-layout"][data-slot="root"][data-width="content"]) {
     --cui-page-layout-article-size: 48rem;
   }
@@ -46,8 +56,8 @@
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas: "title" "description" "actions";
     align-items: center;
-    width: 100%;
-    max-width: var(--cui-page-layout-size);
+    inline-size: 100%;
+    max-inline-size: var(--cui-page-layout-size);
     margin-inline: auto;
     column-gap: var(--cui-page-layout-header-column-gap);
     row-gap: var(--cui-page-layout-header-row-gap);
@@ -58,8 +68,8 @@
   :where([data-control-family="page-layout"][data-slot="body"]) {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    width: 100%;
-    max-width: var(--cui-page-layout-size);
+    inline-size: 100%;
+    max-inline-size: var(--cui-page-layout-size);
     margin-inline: auto;
     gap: var(--cui-page-layout-column-gap);
     padding-inline: var(--cui-page-layout-padding-inline);
@@ -111,7 +121,7 @@
   :where([data-control-family="page-layout"][data-slot="header"][data-variant="sticky"]) {
     position: sticky;
     inset-block-start: var(--cui-page-layout-sticky-gap);
-    z-index: 20;
+    z-index: var(--z-sticky);
     background: var(--cui-page-layout-sticky-header-background);
     -webkit-backdrop-filter: var(--cui-page-layout-sticky-header-backdrop-filter);
     backdrop-filter: var(--cui-page-layout-sticky-header-backdrop-filter);
@@ -129,10 +139,10 @@
   :where([data-control-family="page-layout"][data-slot="header"][data-variant="floating"]) {
     position: sticky;
     inset-block-start: var(--cui-page-layout-floating-inset);
-    z-index: 20;
+    z-index: var(--z-sticky);
     align-items: start;
-    max-width: none;
-    height: 0;
+    max-inline-size: none;
+    block-size: 0;
     row-gap: 0;
     padding-block: 0;
     padding-inline: var(--cui-page-layout-floating-inset);

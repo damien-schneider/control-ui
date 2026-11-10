@@ -29,7 +29,7 @@
   }
 
   :where(
-    [data-control-family="sidebar"][data-slot="wrapper"][data-resizing]
+    [data-control-family="sidebar"][data-slot="wrapper"][data-resizing="true"]
       [data-control-family="sidebar"]:is([data-slot="container"], [data-slot="gap"], [data-slot="inner"])
   ) {
     transition: none;
@@ -41,9 +41,14 @@
     }
   }
 
+  :where([data-motion="reduced"] [data-control-family="sidebar"]:is([data-slot="container"], [data-slot="gap"], [data-slot="inner"])) {
+    transition: none;
+  }
+
   :where([data-control-family="sidebar"][data-slot="rail"]) {
+    --_sidebar-rail-divider-background: var(--cui-sidebar-rail-divider-background);
     inline-size: calc(var(--spacing) * 4);
-    background-image: linear-gradient(var(--cui-sidebar-rail-divider-background), var(--cui-sidebar-rail-divider-background));
+    background-image: linear-gradient(var(--_sidebar-rail-divider-background), var(--_sidebar-rail-divider-background));
     background-position: center;
     background-repeat: no-repeat;
     background-size: 2px 100%;
@@ -59,7 +64,7 @@
 
   @media (hover: hover) {
     :where([data-control-family="sidebar"][data-slot="rail"]:hover) {
-      --cui-sidebar-rail-divider-background: var(--sidebar-border);
+      --_sidebar-rail-divider-background: var(--sidebar-border);
     }
 
     :where([data-control-family="sidebar"][data-collapsible="offcanvas"] [data-slot="rail"]:not([data-resizable]):hover) {
@@ -78,15 +83,15 @@
     inset-block: 12.5%;
     inset-inline-start: 50%;
     inline-size: 1px;
-    background-image: linear-gradient(transparent, var(--cui-sidebar-rail-divider-background), transparent);
+    background-image: linear-gradient(transparent, var(--_sidebar-rail-divider-background), transparent);
   }
 
   :where([data-control-family="sidebar"][data-slot="rail"]:is(:focus-visible, [data-resizing="true"])) {
-    --cui-sidebar-rail-divider-background: var(--focus-ring);
+    --_sidebar-rail-divider-background: var(--focus-ring);
   }
 
   :where([data-control-family="sidebar"][data-slot="inset"]) {
-    background-color: var(--cui-sidebar-inset-background);
+    background-color: var(--_sidebar-inset-background);
     background-image: var(--cui-sidebar-inset-background-image);
   }
 
@@ -181,7 +186,7 @@
   }
 
   :where([data-control-family="sidebar"][data-slot="header"][data-divider]) {
-    border-block-end: var(--cui-sidebar-header-border-width) solid var(--cui-sidebar-header-border-color);
+    border-block-end: var(--_sidebar-header-border-width) solid var(--cui-sidebar-header-border-color);
   }
 
   :where([data-control-family="sidebar"][data-slot="content-stack"]) {
@@ -298,4 +303,33 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-sidebar-menu-badge-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-sidebar-menu-button-icon-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-sidebar-menu-button-active-icon-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-sidebar-menu-button-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-sidebar-menu-button-shadow {
+  syntax: "*";
+  inherits: true;
 }

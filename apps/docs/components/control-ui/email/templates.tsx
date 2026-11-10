@@ -59,7 +59,9 @@ export function InvitationEmail({
         together.
       </EmailText>
       <EmailPanel>
-        <EmailHeading as="h3">Your team is waiting</EmailHeading>
+        <EmailHeading as="h2" size="heading-3">
+          Your team is waiting
+        </EmailHeading>
         <EmailText className="mb-0">Projects, conversations, and the details that move work forward. All in one shared space.</EmailText>
       </EmailPanel>
       <EmailButton href={inviteUrl} width="full">
@@ -106,7 +108,7 @@ export function ProductEmail({
       <EmailColumns dir={dir}>
         {highlights.map((highlight) => (
           <EmailSection key={highlight.title} align="center">
-            <EmailHeading as="h4" align="center" className="mb-1">
+            <EmailHeading as="h2" size="heading-4" align="center" className="mb-1">
               {highlight.title}
             </EmailHeading>
             <EmailCaption align="center" className="mb-0">
@@ -226,20 +228,22 @@ export function SummaryEmail({
       <EmailCaption className="mb-6">{period}</EmailCaption>
       <EmailHeading size="heading-2">Good work adds up.</EmailHeading>
       <EmailText>Here’s what your team moved forward this week.</EmailText>
-      <EmailPanel className="p-4">
-        <Row className="table-fixed">
-          {metrics.map((metric) => (
-            <Column key={metric.label} className="px-2 align-top">
-              <EmailText align="center" className="mb-1 text-heading-2 font-semibold">
-                {metric.value}
-              </EmailText>
-              <EmailCaption align="center" className="mb-0">
-                {metric.label}
-              </EmailCaption>
-            </Column>
-          ))}
-        </Row>
-      </EmailPanel>
+      {metrics.length > 0 ? (
+        <EmailPanel className="p-4">
+          <Row className="table-fixed">
+            {metrics.map((metric) => (
+              <Column key={metric.label} className="px-2 align-top">
+                <EmailText align="center" className="mb-1 text-heading-2 font-semibold">
+                  {metric.value}
+                </EmailText>
+                <EmailCaption align="center" className="mb-0">
+                  {metric.label}
+                </EmailCaption>
+              </Column>
+            ))}
+          </Row>
+        </EmailPanel>
+      ) : null}
       {details.map((detail) => (
         <EmailDetailRow dir={dir} key={detail.label} label={detail.label} value={detail.value} />
       ))}
@@ -275,7 +279,7 @@ export function VerificationEmail({
       <EmailText align="center">Enter this code to finish signing in. It works once, and only for this device.</EmailText>
       <EmailOneTimeCode>{code}</EmailOneTimeCode>
       <EmailCaption align="center" className="mb-6">
-        The code expires in {expiresInMinutes} minutes.
+        The code expires in {expiresInMinutes} {expiresInMinutes === 1 ? "minute" : "minutes"}.
       </EmailCaption>
       <EmailText align="center" className="mb-0">
         Didn’t ask for this code? Ignore this email, or <EmailLink href={supportUrl}>tell our team</EmailLink>.
@@ -364,7 +368,9 @@ export function ReleaseNotesEmail({
       <EmailText>{summary}</EmailText>
       {sections.map((section) => (
         <EmailSection key={section.title} className="mb-4">
-          <EmailHeading as="h3">{section.title}</EmailHeading>
+          <EmailHeading as="h2" size="heading-3">
+            {section.title}
+          </EmailHeading>
           <EmailBulletList dir={dir} items={section.changes} />
         </EmailSection>
       ))}

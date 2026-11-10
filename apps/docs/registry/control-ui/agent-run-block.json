@@ -14,6 +14,7 @@
     "core",
     "live-status",
     "sidebar",
+    "spinner",
     "timeline",
     "typography"
   ],

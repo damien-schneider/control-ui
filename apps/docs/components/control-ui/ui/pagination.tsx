@@ -1,6 +1,10 @@
-import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
-import type { ComponentProps, CSSProperties } from "react";
+"use client";
 
+import { useRender } from "@base-ui/react/use-render";
+import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
+import type { ComponentProps, CSSProperties, MouseEvent } from "react";
+
+import type { RenderProp } from "@/components/control-ui/control-props";
 import type { PaginationKnobStyle } from "@/components/control-ui/knob-contracts/pagination-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
@@ -13,12 +17,17 @@ export type PaginationLinkProps = Omit<
   ComponentProps<"a"> & {
     isActive?: boolean;
     disabled?: boolean;
+    render?: RenderProp<ComponentProps<"a">>;
   },
   "style"
 > & { style?: CSSProperties & PaginationKnobStyle };
 
+export type PaginationProps = ComponentProps<"nav"> & { style?: CSSProperties & PaginationKnobStyle };
+export type PaginationContentProps = ComponentProps<"ul"> & { style?: CSSProperties & PaginationKnobStyle };
+export type PaginationItemProps = ComponentProps<"li"> & { style?: CSSProperties & PaginationKnobStyle };
+
 // Links are control-shaped by hand rather than importing Button, so pagination installs alone.
-export function Pagination({ className, ...props }: ComponentProps<"nav"> & { style?: CSSProperties & PaginationKnobStyle }) {
+export function Pagination({ className, ...props }: PaginationProps) {
   return (
     <nav
       aria-label="Pagination"
@@ -31,7 +40,7 @@ export function Pagination({ className, ...props }: ComponentProps<"nav"> & { st
   );
 }
 
-export function PaginationContent({ className, ...props }: ComponentProps<"ul"> & { style?: CSSProperties & PaginationKnobStyle }) {
+export function PaginationContent({ className, ...props }: PaginationContentProps) {
   return (
     <ul
       data-control-ui="pagination"
@@ -43,29 +52,35 @@ export function PaginationContent({ className, ...props }: ComponentProps<"ul"> 
   );
 }
 
-export function PaginationItem({ className, ...props }: ComponentProps<"li"> & { style?: CSSProperties & PaginationKnobStyle }) {
+export function PaginationItem({ className, ...props }: PaginationItemProps) {
   return <li data-control-ui="pagination" data-control-family="pagination" data-slot="item" className={className} {...props} />;
 }
 
-const paginationLinkChrome =
-  "inline-flex h-control-sm min-w-control-sm cursor-pointer select-none items-center justify-center whitespace-nowrap aria-disabled:pointer-events-none [&>svg]:size-4 [&>svg]:shrink-0";
+const paginationLinkChrome = "inline-flex select-none items-center justify-center whitespace-nowrap";
 
-export function PaginationLink({ isActive = false, disabled = false, href, className, ...props }: PaginationLinkProps) {
-  return (
-    <a
-      aria-current={isActive ? "page" : undefined}
-      data-control-ui="pagination"
-      data-control-family="pagination"
-      data-slot="link"
-      data-control="true"
-      data-active={isActive ? "true" : undefined}
-      role={disabled ? "link" : undefined}
-      aria-disabled={disabled || undefined}
-      className={cn(paginationLinkChrome, className)}
-      {...props}
-      href={disabled ? undefined : href}
-    />
-  );
+function preventNavigation(event: MouseEvent<HTMLAnchorElement>) {
+  event.preventDefault();
+}
+
+export function PaginationLink({ isActive = false, disabled = false, render, href, onClick, className, ...props }: PaginationLinkProps) {
+  return useRender({
+    defaultTagName: "a",
+    render,
+    props: {
+      "aria-current": isActive ? "page" : undefined,
+      "data-control-ui": "pagination",
+      "data-control-family": "pagination",
+      "data-slot": "link",
+      "data-control": "true",
+      "data-active": isActive ? "true" : undefined,
+      role: disabled ? "link" : undefined,
+      "aria-disabled": disabled || undefined,
+      className: cn(paginationLinkChrome, className),
+      ...props,
+      href: disabled ? undefined : href,
+      onClick: disabled ? preventNavigation : onClick,
+    },
+  });
 }
 
 export function PaginationPrevious({ className, children = "Previous", ...props }: PaginationLinkProps) {
@@ -92,7 +107,7 @@ export function PaginationEllipsis({ label = "More pages", className, ...props }
       data-control-ui="pagination"
       data-control-family="pagination"
       data-slot="ellipsis"
-      className={cn("flex h-control-sm min-w-control-sm items-center justify-center [&>svg]:size-4", className)}
+      className={cn("flex items-center justify-center", className)}
       {...props}
     >
       <MoreHorizontal aria-hidden="true" />

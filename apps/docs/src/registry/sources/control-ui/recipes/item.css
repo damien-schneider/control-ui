@@ -1,6 +1,6 @@
 @layer components {
   :where([data-control-family="item"][data-slot="root"]) {
-    --cui-item-radius: var(--radius-lg);
+    --cui-item-radius: var(--radius-control);
     --cui-item-foreground: var(--foreground);
     --cui-item-hover-background: var(--hover-fill);
     --cui-item-current-background: var(--active-fill);
@@ -18,6 +18,7 @@
     --cui-item-description-line-height: var(--leading-relaxed);
     --cui-item-description-foreground: var(--muted-foreground);
     --cui-item-media-foreground: var(--muted-foreground);
+    --cui-item-media-icon-size: calc(var(--spacing) * 5);
     --_item-background: transparent;
     --_item-border-color: transparent;
     outline: var(--cui-item-border-width) solid var(--_item-border-color);
@@ -107,19 +108,14 @@
     box-shadow: var(--cui-item-drop-target-shadow);
   }
 
-  @media (forced-colors: active) {
-    :where([data-control-family="item"][data-slot="root"][aria-selected="true"]) {
-      --cui-item-description-foreground: HighlightText;
-      --cui-item-media-foreground: HighlightText;
-      forced-color-adjust: none;
-      background: Highlight;
-      color: HighlightText;
-    }
+  :where([data-control-family="item"][data-slot="root"]:is(:disabled, [data-disabled], [aria-disabled="true"])) {
+    cursor: not-allowed;
+    opacity: var(--disabled-opacity);
+  }
 
-    :where([data-control-family="item"][data-slot="root"][data-drop-target]) {
-      outline: var(--focus-ring-width) solid Highlight;
-      outline-offset: calc(var(--focus-ring-width) * -1);
-    }
+  :where([data-control-family="item"][data-slot="footer"]) {
+    font-size: var(--text-caption);
+    color: var(--muted-foreground);
   }
 
   :where(
@@ -130,11 +126,6 @@
     ):active
   ) {
     scale: var(--cui-item-active-scale);
-  }
-
-  :where([data-control-family="item"][data-slot="footer"]) {
-    font-size: var(--text-caption);
-    color: var(--muted-foreground);
   }
 
   :where([data-control-family="item"][data-slot="description"]) {
@@ -149,16 +140,46 @@
     font-size: var(--text-body);
     font-weight: var(--font-weight-medium);
     line-height: var(--leading-tight);
-    color: var(--foreground);
     text-wrap: balance;
   }
 
   :where([data-control-family="item"][data-slot="media"]) {
     color: var(--cui-item-media-foreground);
   }
+
+  :where([data-control-family="item"][data-slot="media"] > svg) {
+    inline-size: var(--cui-item-media-icon-size);
+    block-size: var(--cui-item-media-icon-size);
+  }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="item"][data-slot="root"][aria-selected="true"]) {
+      forced-color-adjust: none;
+      background: Highlight;
+      color: HighlightText;
+    }
+
+    :where(
+        [data-control-family="item"][data-slot="root"][aria-selected="true"]
+          [data-control-family="item"]:is([data-slot="description"], [data-slot="media"], [data-slot="footer"])
+      ) {
+      color: HighlightText;
+    }
+
+    :where([data-control-family="item"][data-slot="root"][data-drop-target]) {
+      outline: var(--focus-ring-width) solid Highlight;
+      outline-offset: calc(var(--focus-ring-width) * -1);
+    }
+  }
 }
 
 @property --cui-item-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-item-media-icon-size {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;

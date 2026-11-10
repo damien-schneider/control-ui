@@ -11,7 +11,7 @@
     --cui-flow-node-hover-border-color: oklch(from var(--foreground) l c h / 0.2);
     --cui-flow-node-selected-border-color: var(--primary);
     --cui-flow-node-border-width: var(--control-rim-width);
-    --cui-flow-node-radius: var(--radius-lg);
+    --cui-flow-node-radius: var(--radius-panel);
     --cui-flow-node-shadow: var(--shadow-sm);
     --cui-flow-node-body-background: transparent;
     --cui-flow-node-body-radius: 0px;
@@ -21,10 +21,12 @@
     --cui-flow-handle-background: var(--background);
     --cui-flow-handle-border-color: var(--muted-foreground);
     --cui-flow-handle-border-width: var(--control-rim-width);
+    --cui-flow-handle-radius: 9999px;
     --cui-flow-edge-label-background: var(--background);
     --cui-flow-edge-label-foreground: var(--muted-foreground);
     --cui-flow-edge-label-border-color: var(--border);
     --cui-flow-edge-label-border-width: var(--control-rim-width);
+    --cui-flow-edge-label-radius: 9999px;
     --cui-flow-controls-item-radius: min(var(--radius-sm), calc(var(--control-h-sm) / 2));
     --cui-flow-controls-padding: calc(var(--spacing) * 1);
     --cui-flow-controls-radius: calc(
@@ -41,6 +43,12 @@
     --xy-selection-background-color: oklch(from var(--primary) l c h / 0.08);
     --xy-selection-border: var(--control-rim-width) solid oklch(from var(--primary) l c h / 0.4);
     --xy-attribution-background-color: oklch(from var(--background) l c h / 0.5);
+    --xy-node-border-selected: 1px solid var(--cui-flow-node-selected-border-color);
+    --xy-handle-background-color: var(--cui-flow-handle-border-color);
+    --xy-minimap-background-color: var(--cui-flow-controls-background);
+    --xy-minimap-mask-background-color: oklch(from var(--cui-flow-background) l c h / 0.6);
+    --xy-minimap-node-background-color: oklch(from var(--foreground) l c h / 0.15);
+    --xy-resize-background-color: var(--cui-flow-node-selected-border-color);
     background-color: var(--cui-flow-background);
     color: var(--foreground);
   }
@@ -56,6 +64,16 @@
   :where([data-control-family="flow"][data-slot="panel"]),
   :where([data-control-family="flow"][data-slot="controls"]) {
     margin: calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="flow"][data-slot="panel"].center:is(.top, .bottom)),
+  :where([data-control-family="flow"][data-slot="controls"].center:is(.top, .bottom)) {
+    transform: translateX(calc(var(--spacing) * -3)) translateX(-50%);
+  }
+
+  :where([data-control-family="flow"][data-slot="panel"].center:is(.left, .right)),
+  :where([data-control-family="flow"][data-slot="controls"].center:is(.left, .right)) {
+    transform: translateY(calc(var(--spacing) * -3)) translateY(-50%);
   }
 
   :where([data-control-family="flow"][data-slot="controls"]) {
@@ -94,9 +112,32 @@
       0 0 0 calc(var(--control-rim-width) * 3) oklch(from var(--cui-flow-node-selected-border-color) l c h / 0.15);
   }
 
+  @media (forced-colors: active) {
+    :where([data-control-family="flow"][data-slot="controls"]) {
+      outline: 1px solid CanvasText;
+      outline-offset: -1px;
+    }
+
+    :where([data-control-family="flow"][data-slot="node"][data-selected]) {
+      border-color: Highlight;
+    }
+  }
+
+  :where(
+    [data-control-family="flow"][data-slot="root"] .react-flow__node:focus-visible:has(> [data-control-family="flow"][data-slot="node"])
+  ) {
+    outline: none;
+  }
+
+  :where(.react-flow__node:focus-visible > [data-control-family="flow"][data-slot="node"]) {
+    outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+  }
+
   :where([data-control-family="flow"][data-slot="node-header"]) {
+    --nest-radius: max(0px, calc(var(--cui-flow-node-radius) - var(--cui-flow-node-border-width) - var(--spacing) * 1.5));
     gap: calc(var(--spacing) * 2);
-    min-block-size: calc(var(--spacing) * 10);
+    min-block-size: var(--control-h-lg);
     padding-block: calc(var(--spacing) * 1.5);
     padding-inline: calc(var(--spacing) * 3) calc(var(--spacing) * 1.5);
     font-size: var(--text-body);
@@ -117,8 +158,17 @@
     inline-size: var(--cui-flow-handle-size);
     block-size: var(--cui-flow-handle-size);
     border: var(--cui-flow-handle-border-width) solid var(--cui-flow-handle-border-color);
-    border-radius: 9999px;
+    border-radius: var(--cui-flow-handle-radius);
     background-color: var(--cui-flow-handle-background);
+  }
+
+  :where([data-control-family="flow"][data-slot="handle"])::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    translate: -50% -50%;
+    inline-size: max(100%, var(--target-min));
+    block-size: max(100%, var(--target-min));
   }
 
   :where([data-control-family="flow"][data-slot="edge"]) {
@@ -144,7 +194,7 @@
     padding-block: calc(var(--spacing) * 0.5);
     padding-inline: calc(var(--spacing) * 2);
     border: var(--cui-flow-edge-label-border-width) solid var(--cui-flow-edge-label-border-color);
-    border-radius: 9999px;
+    border-radius: var(--cui-flow-edge-label-radius);
     background-color: var(--cui-flow-edge-label-background);
     color: var(--cui-flow-edge-label-foreground);
     font-size: var(--text-caption);
@@ -277,6 +327,12 @@
   initial-value: 0px;
 }
 
+@property --cui-flow-handle-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
 @property --cui-flow-edge-label-background {
   syntax: "<color>";
   inherits: true;
@@ -297,6 +353,12 @@
 
 @property --cui-flow-edge-label-border-width {
   syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-flow-edge-label-radius {
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }

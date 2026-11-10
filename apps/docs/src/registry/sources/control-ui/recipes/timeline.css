@@ -2,6 +2,7 @@
   :where([data-control-family="timeline"][data-slot="root"]) {
     --cui-timeline-indicator-background: var(--background);
     --cui-timeline-indicator-foreground: var(--muted-foreground);
+    --cui-timeline-indicator-size: calc(var(--spacing) * 4);
     --cui-timeline-running-foreground: var(--primary-text);
     --cui-timeline-waiting-foreground: var(--warning-text);
     --cui-timeline-success-foreground: var(--foreground);
@@ -11,8 +12,11 @@
     --cui-timeline-title-foreground: var(--foreground);
     --cui-timeline-title-font-weight: var(--font-weight-medium);
     --cui-timeline-item-padding-block: calc(var(--spacing) * 5);
+    --_timeline-line-height: calc(var(--spacing) * 5);
   }
+
   :where([data-control-family="timeline"][data-slot="item"]) {
+    grid-template-columns: var(--cui-timeline-indicator-size) minmax(0, 1fr);
     column-gap: calc(var(--spacing) * 3);
     padding-block-end: var(--cui-timeline-item-padding-block);
   }
@@ -31,11 +35,18 @@
   }
 
   :where([data-control-family="timeline"][data-slot="indicator"]) {
-    inline-size: calc(var(--spacing) * 4);
-    block-size: calc(var(--spacing) * 4);
+    inline-size: var(--cui-timeline-indicator-size);
+    block-size: var(--cui-timeline-indicator-size);
+    margin-block-start: calc((var(--_timeline-line-height) - var(--cui-timeline-indicator-size)) / 2);
     border-radius: 9999px;
     background: var(--cui-timeline-indicator-background);
     color: var(--cui-timeline-indicator-foreground);
+  }
+
+  :where([data-control-family="timeline"][data-slot="indicator"] svg) {
+    flex-shrink: 0;
+    inline-size: var(--cui-timeline-indicator-size);
+    block-size: var(--cui-timeline-indicator-size);
   }
 
   :where([data-control-family="timeline"][data-slot="item"][data-state="running"] [data-control-family="timeline"][data-slot="indicator"]) {
@@ -55,7 +66,8 @@
   }
 
   :where([data-control-family="timeline"][data-slot="separator"]) {
-    inset-inline-start: calc(var(--spacing) * 2 - var(--cui-timeline-separator-inline-size) / 2);
+    inset-block-start: calc((var(--_timeline-line-height) + var(--cui-timeline-indicator-size)) / 2 + var(--spacing));
+    inset-inline-start: calc((var(--cui-timeline-indicator-size) - var(--cui-timeline-separator-inline-size)) / 2);
     inline-size: var(--cui-timeline-separator-inline-size);
     background: var(--cui-timeline-separator-background);
   }
@@ -64,14 +76,14 @@
     color: var(--cui-timeline-title-foreground);
     font-size: var(--text-label);
     font-weight: var(--cui-timeline-title-font-weight);
-    line-height: calc(var(--spacing) * 5);
+    line-height: var(--_timeline-line-height);
     text-wrap: balance;
   }
 
   :where([data-control-family="timeline"][data-slot="description"]) {
     color: var(--muted-foreground);
     font-size: var(--text-label);
-    line-height: calc(var(--spacing) * 5);
+    line-height: var(--_timeline-line-height);
     text-wrap: pretty;
   }
 }
@@ -86,6 +98,12 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-timeline-indicator-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-timeline-running-foreground {

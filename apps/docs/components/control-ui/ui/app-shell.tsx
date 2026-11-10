@@ -38,7 +38,7 @@ export function AppShellHeader({ className, ...props }: AppShellHeaderProps) {
       data-control-ui="app-shell"
       data-control-family="app-shell-header"
       data-slot="root"
-      className={cn("sticky top-0 z-30 flex shrink-0 items-center gap-2", className)}
+      className={cn("sticky top-0 z-(--z-nav) flex shrink-0 items-center gap-2", className)}
       {...props}
     />
   );

@@ -11,8 +11,8 @@
 
   :where([data-control-family="collapsible"][data-slot="trigger"]) {
     display: flex;
-    width: 100%;
-    min-height: var(--control-h-sm);
+    inline-size: 100%;
+    min-block-size: var(--control-h-sm);
     align-items: center;
     gap: calc(var(--spacing) * 2);
     border-radius: var(--cui-collapsible-trigger-radius);
@@ -37,9 +37,13 @@
     }
   }
 
+  :where([data-control-family="collapsible"][data-slot="trigger"]:is(:disabled, [data-disabled])) {
+    opacity: var(--disabled-opacity);
+  }
+
   :where([data-control-family="collapsible"][data-slot="trigger"] > svg) {
-    inline-size: 1rem;
-    block-size: 1rem;
+    inline-size: calc(var(--spacing) * 4);
+    block-size: calc(var(--spacing) * 4);
     flex-shrink: 0;
     color: var(--muted-foreground);
     transition: rotate var(--duration-base) var(--ease-standard);

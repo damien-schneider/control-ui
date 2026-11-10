@@ -47,11 +47,14 @@ export type DropzoneAreaProps = ComponentProps<"div"> & { style?: CSSProperties 
 export type DropzoneInputProps = Omit<ComponentProps<"input">, "accept" | "disabled" | "multiple" | "onChange" | "onClick" | "type"> & {
   style?: CSSProperties & DropzoneKnobStyle;
 };
+export type DropzoneFeedbackMessages = Partial<Record<DropzoneVisualState, ReactNode>>;
 export type DropzoneTriggerProps = Omit<ComponentProps<"button">, "style"> & {
+  messages?: DropzoneFeedbackMessages;
   style?: CSSProperties & DropzoneKnobStyle;
 };
 export type DropzoneOverlayProps = Omit<ComponentProps<"div">, "style"> & {
   scope?: DropzoneOverlayScope;
+  messages?: DropzoneFeedbackMessages;
   style?: CSSProperties & DropzoneKnobStyle;
 };
 export type DropzoneFileListProps = Omit<ComponentProps<"ul">, "children"> & {
@@ -69,6 +72,7 @@ export type DropzoneStatusProps = Omit<ComponentProps<"div">, "children" | "styl
   style?: CSSProperties & DropzoneKnobStyle;
 };
 export type DropzoneRemoveProps = ComponentProps<typeof Button> & { file: File };
+export type DropzoneRejectionRemoveProps = ComponentProps<typeof Button> & { file: File };
 export type DropzoneClearProps = ComponentProps<typeof Button>;
 
 type DropzoneFocusTargets = {
@@ -240,7 +244,7 @@ export function DropzoneInput({ className, "aria-label": ariaLabel, "aria-labell
   );
 }
 
-export function DropzoneTrigger({ className, children, onClick, disabled, ref, ...props }: DropzoneTriggerProps) {
+export function DropzoneTrigger({ className, children, messages, onClick, disabled, ref, ...props }: DropzoneTriggerProps) {
   const context = useDropzoneContext();
   const triggerRef = useFocusTargetRef("trigger", ref);
   const triggerDisabled = disabled || context.disabled;
@@ -258,23 +262,19 @@ export function DropzoneTrigger({ className, children, onClick, disabled, ref, .
       data-slot="trigger"
       data-state={context.visualState}
       data-disabled={triggerDisabled || busy ? "true" : undefined}
-      className={cn(
-        "flex w-full cursor-pointer items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed",
-        context.size === "sm" ? "flex-row justify-start [&>svg]:size-4 [&>svg]:shrink-0" : "flex-col justify-center",
-        className,
-      )}
+      className={cn("flex w-full items-center", context.size === "sm" ? "flex-row justify-start" : "flex-col justify-center", className)}
       onClick={(event) => {
         if (busy) return;
         onClick?.(event);
         if (!event.defaultPrevented) context.open();
       }}
     >
-      {children ?? <DropzoneFeedback state={context.visualState} size={context.size} />}
+      {children ?? <DropzoneFeedback state={context.visualState} size={context.size} messages={messages} />}
     </button>
   );
 }
 
-export function DropzoneOverlay({ scope = "local", className, children, ...props }: DropzoneOverlayProps) {
+export function DropzoneOverlay({ scope = "local", className, children, messages, ...props }: DropzoneOverlayProps) {
   const context = useDropzoneContext();
   const active = scope === "global" ? context.isDragGlobal : context.isDragActive;
 
@@ -293,9 +293,9 @@ export function DropzoneOverlay({ scope = "local", className, children, ...props
       data-state={context.visualState}
       data-active={active ? "true" : undefined}
       data-scope={scope}
-      className={cn("pointer-events-none absolute inset-0 z-10 hidden items-center justify-center data-[active=true]:flex", className)}
+      className={cn("pointer-events-none absolute inset-0 z-1 hidden items-center justify-center data-[active=true]:flex", className)}
     >
-      {children ?? <DropzoneFeedback state={context.visualState} size={context.size} />}
+      {children ?? <DropzoneFeedback state={context.visualState} size={context.size} messages={messages} />}
     </div>
   );
 }
@@ -386,7 +386,15 @@ export function DropzoneStatus({ className, children, role = "status", "aria-liv
   );
 }
 
-export function DropzoneRemove({ file, children, onClick, disabled, ref, ...props }: DropzoneRemoveProps) {
+function DropzoneItemRemove({
+  label,
+  onRemove,
+  children,
+  onClick,
+  disabled,
+  ref,
+  ...props
+}: ComponentProps<typeof Button> & { label: string; onRemove: () => void }) {
   const context = useDropzoneContext();
   const focusTargets = useContext(DropzoneFocusContext);
   const removeRef = useFocusTargetRef("remove", ref);
@@ -398,18 +406,28 @@ export function DropzoneRemove({ file, children, onClick, disabled, ref, ...prop
       variant={props.variant ?? "quiet"}
       size={props.size ?? "sm"}
       iconOnly={props.iconOnly ?? true}
-      aria-label={props["aria-label"] ?? `Remove ${file.name}`}
+      aria-label={props["aria-label"] ?? label}
       disabled={disabled || context.disabled || context.isProcessing}
       onClick={(event) => {
         onClick?.(event);
         if (event.defaultPrevented) return;
         focusTargets?.focusAfterRemoval(event.currentTarget, false);
-        context.removeFile(file);
+        onRemove();
       }}
     >
       {children ?? <XIcon aria-hidden="true" />}
     </Button>
   );
+}
+
+export function DropzoneRemove({ file, ...props }: DropzoneRemoveProps) {
+  const { removeFile } = useDropzoneContext();
+  return <DropzoneItemRemove label={`Remove ${file.name}`} onRemove={() => removeFile(file)} {...props} />;
+}
+
+export function DropzoneRejectionRemove({ file, ...props }: DropzoneRejectionRemoveProps) {
+  const { removeRejection } = useDropzoneContext();
+  return <DropzoneItemRemove label={`Dismiss ${file.name}`} onRemove={() => removeRejection(file)} {...props} />;
 }
 
 export function DropzoneClear({ children, onClick, disabled, ...props }: DropzoneClearProps) {
@@ -435,9 +453,24 @@ export function DropzoneClear({ children, onClick, disabled, ...props }: Dropzon
   );
 }
 
-function DropzoneFeedback({ state, size }: { state: DropzoneVisualState; size: DropzoneSize }) {
+const feedbackMessages: Record<DropzoneVisualState, string> = {
+  idle: "Drop files here or choose files.",
+  processing: "Checking files…",
+  accept: "Release to add files.",
+  reject: "Some files are not accepted.",
+  unknown: "Release to check files.",
+};
+
+function DropzoneFeedback({
+  state,
+  size,
+  messages,
+}: {
+  state: DropzoneVisualState;
+  size: DropzoneSize;
+  messages?: DropzoneFeedbackMessages;
+}) {
   let icon: ReactNode = <CloudUpload aria-hidden="true" />;
-  let message = "Drop files here or choose files.";
   if (state === "processing") {
     icon = (
       <LoaderCircle
@@ -448,16 +481,10 @@ function DropzoneFeedback({ state, size }: { state: DropzoneVisualState; size: D
         aria-hidden="true"
       />
     );
-    message = "Checking files…";
-  } else if (state === "accept") {
-    icon = <CloudUpload aria-hidden="true" />;
-    message = "Release to add files.";
   } else if (state === "reject") {
     icon = <CircleAlertIcon aria-hidden="true" />;
-    message = "Some files are not accepted.";
   } else if (state === "unknown") {
     icon = <Search aria-hidden="true" />;
-    message = "Release to check files.";
   }
 
   return (
@@ -471,12 +498,12 @@ function DropzoneFeedback({ state, size }: { state: DropzoneVisualState; size: D
         data-control-ui="dropzone"
         data-control-family="dropzone"
         data-slot="feedback-icon"
-        className={size === "sm" ? "flex [&>svg]:size-4" : "[&>svg]:size-6"}
+        className={size === "sm" ? "flex" : undefined}
       >
         {icon}
       </span>
       <span data-control-ui="dropzone" data-control-family="dropzone" data-slot="feedback-message">
-        {message}
+        {messages?.[state] ?? feedbackMessages[state]}
       </span>
     </span>
   );
@@ -516,6 +543,9 @@ function DefaultRejection({ rejection }: { rejection: DropzoneFileRejection }) {
           <ItemDescription key={`${error.code}-${error.message}`}>{error.message}</ItemDescription>
         ))}
       </ItemContent>
+      <ItemActions>
+        <DropzoneRejectionRemove file={rejection.file} />
+      </ItemActions>
     </Item>
   );
 }

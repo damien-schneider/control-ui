@@ -31,6 +31,11 @@
     min-block-size: calc(var(--spacing) * 6);
   }
 
+  :where([data-control-family="channel-strip"][data-slot="title"]) {
+    font-size: var(--text-caption);
+    line-height: var(--text-caption--line-height);
+  }
+
   :where([data-control-family="channel-strip"][data-slot="body"]) {
     grid-row: 2;
     gap: calc(var(--spacing) * 2);
@@ -41,6 +46,8 @@
   :where([data-control-family="channel-strip"][data-slot="value"]) {
     grid-row: 3;
     color: var(--cui-channel-strip-value-foreground);
+    font-size: var(--text-caption);
+    line-height: var(--text-caption--line-height);
     text-align: center;
   }
 

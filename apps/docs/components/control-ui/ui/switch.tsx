@@ -1,49 +1,46 @@
 "use client";
 
 import { Switch as SwitchPrimitive } from "@base-ui/react/switch";
-import type { CSSProperties, ReactNode } from "react";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { SwitchKnobStyle } from "@/components/control-ui/knob-contracts/switch-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { useSwitchDrag } from "./use-switch-drag";
 
 export type SwitchProps = Omit<
-  {
-    checked?: boolean;
-    defaultChecked?: boolean;
-    onCheckedChange?: (checked: boolean) => void;
-    disabled?: boolean;
-    readOnly?: boolean;
-    required?: boolean;
-    name?: string;
-    value?: string;
-    id?: string;
-    className?: string;
-    icon?: ReactNode;
-    checkedIcon?: ReactNode;
-    uncheckedIcon?: ReactNode;
-    "aria-label"?: string;
-    "aria-labelledby"?: string;
-    "aria-describedby"?: string;
-    "aria-invalid"?: boolean | "true" | "false";
-  },
-  "style"
-> & { style?: CSSProperties & SwitchKnobStyle };
+  ComponentProps<typeof SwitchPrimitive.Root>,
+  "className" | "style" | "children" | "render" | "nativeButton"
+> & {
+  className?: string;
+  icon?: ReactNode;
+  checkedIcon?: ReactNode;
+  uncheckedIcon?: ReactNode;
+  style?: CSSProperties & SwitchKnobStyle;
+};
+
+function chainHandlers<E extends { defaultPrevented: boolean }>(
+  ours: ((event: E) => void) | undefined,
+  theirs: ((event: E) => void) | undefined,
+) {
+  if (!theirs) return ours;
+  return (event: E) => {
+    ours?.(event);
+    if (!event.defaultPrevented) theirs(event);
+  };
+}
 
 export function Switch({
   className,
-  checked,
-  defaultChecked,
-  onCheckedChange,
-  disabled,
-  readOnly,
-  required,
-  name,
-  value,
-  id,
   icon,
   checkedIcon,
   uncheckedIcon,
   style,
+  onPointerDown,
+  onPointerMove,
+  onPointerUp,
+  onPointerCancel,
+  onLostPointerCapture,
+  onClick,
+  onKeyDown,
   ...props
 }: SwitchProps) {
   const { thumbRef, dragProps, dragProgress } = useSwitchDrag();
@@ -61,20 +58,17 @@ export function Switch({
       data-dragging={dragProgress !== null ? "" : undefined}
       data-drag-checked={dragProgress === null ? undefined : dragProgress >= 0.5}
       style={{ ...style, ...dragStyle }}
-      checked={checked}
-      defaultChecked={defaultChecked}
-      onCheckedChange={onCheckedChange}
-      disabled={disabled}
-      readOnly={readOnly}
-      required={required}
-      name={name}
-      value={value}
-      id={id}
       nativeButton
       render={<button type="button" />}
-      className={cn("relative inline-flex shrink-0 cursor-pointer items-center", "data-[disabled]:cursor-not-allowed", className)}
+      className={cn("relative inline-flex shrink-0 items-center", className)}
       {...props}
-      {...dragProps}
+      onPointerDown={chainHandlers(dragProps.onPointerDown, onPointerDown)}
+      onPointerMove={chainHandlers(dragProps.onPointerMove, onPointerMove)}
+      onPointerUp={chainHandlers(dragProps.onPointerUp, onPointerUp)}
+      onPointerCancel={chainHandlers(dragProps.onPointerCancel, onPointerCancel)}
+      onLostPointerCapture={chainHandlers(dragProps.onLostPointerCapture, onLostPointerCapture)}
+      onClick={chainHandlers(dragProps.onClick, onClick)}
+      onKeyDown={chainHandlers(dragProps.onKeyDown, onKeyDown)}
     >
       <SwitchPrimitive.Thumb
         ref={thumbRef}
@@ -90,7 +84,7 @@ export function Switch({
 }
 
 function SwitchThumbIcon({ icon, checkedIcon, uncheckedIcon }: { icon?: ReactNode; checkedIcon?: ReactNode; uncheckedIcon?: ReactNode }) {
-  const base = "absolute inset-0 flex items-center justify-center [&_svg]:size-2.5 [&_svg]:stroke-[2.5]";
+  const base = "absolute inset-0 flex items-center justify-center";
 
   if (icon !== undefined) {
     return (

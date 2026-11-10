@@ -2,8 +2,8 @@
 
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { CheckIcon, CopyIcon } from "lucide-react";
-import type { ChangeEvent, ComponentProps, CSSProperties, ReactNode } from "react";
-import { Children, createContext, isValidElement, useContext, useEffect, useMemo, useRef, useState } from "react";
+import type { ChangeEvent, ComponentProps, CSSProperties, Dispatch, ReactNode, SetStateAction } from "react";
+import { Children, createContext, isValidElement, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 import { type CopyStatus, useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import type { CodeKnobStyle } from "@/components/control-ui/knob-contracts/code-knobs";
@@ -26,7 +26,16 @@ export type CodeChrome = "standalone" | "embedded";
 const MAX_STATIC_CODE_LINES = 1000;
 const ESTIMATED_LINE_HEIGHT = 20;
 
-type CodeContextValue = { chrome: CodeChrome; density: CodeDensity; overflow: CodeOverflow; hasHeader: boolean; copy: boolean };
+type CodeContextValue = {
+  chrome: CodeChrome;
+  density: CodeDensity;
+  overflow: CodeOverflow;
+  hasHeader: boolean;
+  copy: boolean;
+  setRegisteredHeaders: Dispatch<SetStateAction<number>>;
+};
+
+type CodeGridStyle = CSSProperties & { "--_code-gutter-digits"?: number };
 
 const CodeContext = createContext<CodeContextValue | null>(null);
 
@@ -58,10 +67,12 @@ export function Code({
   children,
   ...props
 }: CodeProps) {
-  const hasHeader = hasCodeHeader(children);
+  const [registeredHeaders, setRegisteredHeaders] = useState(0);
+  // the child scan settles the server render; registration finds a header wrapped in a fragment or a component
+  const hasHeader = hasCodeHeader(children) || registeredHeaders > 0;
 
   return (
-    <CodeContext.Provider value={{ chrome, density, overflow, hasHeader, copy }}>
+    <CodeContext.Provider value={{ chrome, density, overflow, hasHeader, copy, setRegisteredHeaders }}>
       <figure
         data-control-ui="code"
         data-control-family="code"
@@ -83,6 +94,13 @@ export function Code({
 export type CodeHeaderProps = Omit<ComponentProps<"figcaption">, "style"> & { style?: CSSProperties & CodeKnobStyle };
 
 export function CodeHeader({ className, ...props }: CodeHeaderProps) {
+  const setRegisteredHeaders = useContext(CodeContext)?.setRegisteredHeaders;
+  useLayoutEffect(() => {
+    if (!setRegisteredHeaders) return;
+    setRegisteredHeaders((count) => count + 1);
+    return () => setRegisteredHeaders((count) => count - 1);
+  }, [setRegisteredHeaders]);
+
   return (
     <figcaption
       data-control-ui="code"
@@ -125,12 +143,14 @@ export function CodeActions({ className, ...props }: CodeActionsProps) {
   );
 }
 
-export type CodeCopyProps = Omit<ComponentProps<typeof Button>, "children" | "onClick"> & {
+export type CodeCopyProps = Omit<ComponentProps<typeof Button>, "children" | "onClick" | "onCopy"> & {
   value: string;
   children?: ReactNode;
   copiedLabel?: ReactNode;
   copiedAriaLabel?: string;
   copyFailedLabel?: string;
+  onCopy?: (value: string) => void;
+  onCopyError?: (error: unknown) => void;
 };
 
 function copyStatusMessage(status: CopyStatus, copiedMessage: string, failedMessage: string) {
@@ -144,15 +164,17 @@ export function CodeCopy({
   copiedLabel,
   copiedAriaLabel = "Copied to clipboard",
   copyFailedLabel = "Couldn't copy. Select the text and copy it manually.",
+  onCopy,
+  onCopyError,
   children,
   className,
   "aria-label": ariaLabel,
   ...props
 }: CodeCopyProps) {
-  const { status, handleCopy } = useCopyToClipboard({ text: value });
+  const { status, handleCopy } = useCopyToClipboard({ text: value, onCopy, onCopyError });
   const isIconOnly = children === undefined;
   const label = ariaLabel ?? (isIconOnly ? "Copy code" : undefined);
-  const copied = copiedLabel ?? (isIconOnly ? <CheckIcon aria-hidden="true" className="size-3.5" /> : "Copied");
+  const copied = copiedLabel ?? (isIconOnly ? <CheckIcon aria-hidden="true" /> : "Copied");
   const liveStatus = <LiveStatus message={copyStatusMessage(status, copiedAriaLabel, copyFailedLabel)} />;
 
   const button = (
@@ -167,7 +189,7 @@ export function CodeCopy({
       onClick={handleCopy}
     >
       <Swap value={status === "copied" ? "copied" : "idle"}>
-        <SwapItem value="idle">{children ?? <CopyIcon aria-hidden="true" className="size-3.5" />}</SwapItem>
+        <SwapItem value="idle">{children ?? <CopyIcon aria-hidden="true" />}</SwapItem>
         <SwapItem value="copied">{copied}</SwapItem>
       </Swap>
     </Button>
@@ -186,7 +208,7 @@ export function CodeCopy({
     <>
       <Tooltip>
         <TooltipTrigger render={button} />
-        <TooltipContent side="inline-start">{status === "copied" ? copiedAriaLabel : label}</TooltipContent>
+        <TooltipContent side="inline-start">{copyStatusMessage(status, copiedAriaLabel, copyFailedLabel) || label}</TooltipContent>
       </Tooltip>
       {liveStatus}
     </>
@@ -196,7 +218,7 @@ export function CodeCopy({
 export type CodeFloatingCopyProps = Omit<CodeCopyProps, "children" | "copiedLabel">;
 
 export function CodeFloatingCopy({ className, ...props }: CodeFloatingCopyProps) {
-  return <CodeCopy variant="surface" data-code-floating="true" className={cn("absolute z-10", className)} {...props} />;
+  return <CodeCopy variant="surface" data-code-floating="true" className={cn("absolute z-1", className)} {...props} />;
 }
 
 export function useCodeTokens({
@@ -210,31 +232,42 @@ export function useCodeTokens({
   tokens?: CodeTokenLines | null;
   highlight: CodeHighlight;
 }): CodeTokenLines | null {
-  const requestKey = `${lang ?? ""}\n${code}`;
-  const [clientTokens, setClientTokens] = useState<{ key: string; tokens: CodeTokenLines | null } | null>(null);
+  const [clientTokens, setClientTokens] = useState<{ lang: string; tokens: CodeTokenLines | null } | null>(null);
 
   useEffect(() => {
     if (highlight === "none" || tokens !== undefined || !lang) return;
     let cancelled = false;
-    void highlightToTokens(code, lang)
+    const requested = lang;
+    void highlightToTokens(code, requested)
       .then((result) => {
-        if (!cancelled) setClientTokens({ key: requestKey, tokens: result });
+        if (!cancelled) setClientTokens({ lang: requested, tokens: result });
       })
       .catch(() => {
-        if (!cancelled) setClientTokens({ key: requestKey, tokens: null });
+        if (!cancelled) setClientTokens({ lang: requested, tokens: null });
       });
     return () => {
       cancelled = true;
     };
-  }, [code, lang, tokens, highlight, requestKey]);
+  }, [code, lang, tokens, highlight]);
 
   if (highlight === "none") return null;
   if (tokens !== undefined) return tokens;
-  return clientTokens?.key === requestKey ? clientTokens.tokens : null;
+  // while the next highlight resolves, the previous lines stay; rows drop any whose text has changed
+  return clientTokens && clientTokens.lang === lang ? clientTokens.tokens : null;
+}
+
+// Shiki ends a line before "\r"; a diff line keeps it
+function tokensMatchLine(tokens: CodeTokenLines[number], plain: string): boolean {
+  let offset = 0;
+  for (const token of tokens) {
+    if (!plain.startsWith(token.content, offset)) return false;
+    offset += token.content.length;
+  }
+  return offset === plain.length || (offset === plain.length - 1 && plain.endsWith("\r"));
 }
 
 export function CodeTokenLine({ tokens, plain }: { tokens: CodeTokenLines[number] | null; plain: string }): ReactNode {
-  if (!tokens || tokens.length === 0) return plain;
+  if (!tokens || tokens.length === 0 || !tokensMatchLine(tokens, plain)) return plain;
   return tokens.map((token, index) => {
     const style: CSSProperties = { ...token.style };
     return (
@@ -255,7 +288,6 @@ function CodeRow({
   showLineNumbers,
   highlighted,
   measureRef,
-  style,
 }: {
   index?: number;
   number: number;
@@ -265,7 +297,6 @@ function CodeRow({
   showLineNumbers: boolean;
   highlighted: boolean;
   measureRef?: (node: HTMLDivElement | null) => void;
-  style?: CSSProperties;
 }) {
   return (
     <div
@@ -276,7 +307,6 @@ function CodeRow({
       data-slot="line"
       data-highlighted={highlighted ? "true" : undefined}
       className="flex w-full"
-      style={style}
     >
       {showLineNumbers ? (
         <span data-control-ui="code" data-control-family="code" data-slot="gutter" aria-hidden="true" className="shrink-0 select-none">
@@ -284,7 +314,8 @@ function CodeRow({
         </span>
       ) : null}
       <code className={cn("min-w-0 flex-1", overflow === "wrap" ? "whitespace-pre-wrap break-words" : "whitespace-pre")}>
-        <CodeTokenLine tokens={tokens} plain={plain} />
+        {/* a row holding no text node is skipped by text selection, losing the blank line on copy */}
+        {plain === "" ? "\n" : <CodeTokenLine tokens={tokens} plain={plain} />}
       </code>
     </div>
   );
@@ -301,6 +332,10 @@ export type CodeContentProps = Omit<ComponentProps<"div">, "children" | "style">
   highlightLines?: readonly number[];
   maxHeight?: string;
   virtualize?: boolean;
+  /** Names of the copy button a headerless surface overlays. */
+  copyLabel?: string;
+  copiedLabel?: string;
+  copyFailedLabel?: string;
   style?: CSSProperties & CodeKnobStyle;
 };
 
@@ -315,6 +350,9 @@ export function CodeContent({
   highlightLines,
   maxHeight = "32rem",
   virtualize,
+  copyLabel,
+  copiedLabel,
+  copyFailedLabel,
   className,
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledby,
@@ -325,7 +363,7 @@ export function CodeContent({
   const { density, overflow, hasHeader, copy } = useCodeContext();
   const regionLabel = ariaLabelledby ? ariaLabel : (ariaLabel ?? fileName ?? (lang ? `${lang} code` : "Code"));
   const resolvedTokens = useCodeTokens({ code, lang, tokens, highlight });
-  const plainLines = useMemo(() => code.split("\n"), [code]);
+  const plainLines = useMemo(() => code.split(/\r?\n/), [code]);
   const highlightedLineNumbers = new Set(highlightLines);
   const isCompact = density === "compact";
 
@@ -345,9 +383,12 @@ export function CodeContent({
     overscan: 24,
     enabled: shouldVirtualize,
   });
+  const virtualItems = virtualizer.getVirtualItems();
 
   const gridClassName = overflow === "scroll" ? "w-max min-w-full" : "w-full";
-  const textStyle = style;
+  const gridStyle: CodeGridStyle = showLineNumbers
+    ? { ...style, "--_code-gutter-digits": String(startLine + plainLines.length - 1).length }
+    : { ...style };
 
   const grid = shouldVirtualize ? (
     <>
@@ -361,22 +402,24 @@ export function CodeContent({
         data-density={isCompact ? "compact" : "default"}
         aria-hidden="true"
         className={gridClassName}
-        style={{ ...textStyle, position: "relative", height: `${virtualizer.getTotalSize()}px` }}
+        style={{ ...gridStyle, position: "relative", height: `${virtualizer.getTotalSize()}px` }}
       >
-        {virtualizer.getVirtualItems().map((item) => (
-          <CodeRow
-            key={item.key}
-            index={item.index}
-            number={startLine + item.index}
-            tokens={resolvedTokens?.[item.index] ?? null}
-            plain={plainLines[item.index] ?? ""}
-            overflow={overflow}
-            showLineNumbers={showLineNumbers}
-            highlighted={highlightedLineNumbers.has(startLine + item.index)}
-            measureRef={virtualizer.measureElement}
-            style={{ position: "absolute", top: 0, left: 0, width: "100%", transform: `translateY(${item.start}px)` }}
-          />
-        ))}
+        {/* rows share one in-flow window, so each spans the widest rendered line as in the static grid */}
+        <div className={cn("absolute start-0 top-0", gridClassName)} style={{ transform: `translateY(${virtualItems[0]?.start ?? 0}px)` }}>
+          {virtualItems.map((item) => (
+            <CodeRow
+              key={item.key}
+              index={item.index}
+              number={startLine + item.index}
+              tokens={resolvedTokens?.[item.index] ?? null}
+              plain={plainLines[item.index] ?? ""}
+              overflow={overflow}
+              showLineNumbers={showLineNumbers}
+              highlighted={highlightedLineNumbers.has(startLine + item.index)}
+              measureRef={virtualizer.measureElement}
+            />
+          ))}
+        </div>
       </div>
     </>
   ) : (
@@ -386,7 +429,7 @@ export function CodeContent({
       data-slot="grid"
       data-density={isCompact ? "compact" : "default"}
       className={gridClassName}
-      style={textStyle}
+      style={gridStyle}
     >
       {plainLines.map((plain, index) => (
         <CodeRow
@@ -426,7 +469,7 @@ export function CodeContent({
 
   return (
     <div data-control-ui="code" data-control-family="code" data-slot="floating-frame" className="relative">
-      <CodeFloatingCopy value={code} />
+      <CodeFloatingCopy value={code} aria-label={copyLabel} copiedAriaLabel={copiedLabel} copyFailedLabel={copyFailedLabel} />
       {content}
     </div>
   );
@@ -465,10 +508,14 @@ export function CodeEditable({
       data-control-ui="code"
       data-control-family="code"
       data-slot="editor"
+      data-focus-ring="none"
       value={currentValue}
       onChange={handleChange}
       aria-label={ariaLabel ?? (fileName ? `${fileName} code` : "Code editor")}
       spellCheck={false}
+      autoCapitalize="off"
+      autoCorrect="off"
+      autoComplete="off"
       className={cn(
         "block w-full max-w-full resize-y overflow-auto",
         overflow === "scroll" ? "whitespace-pre" : "whitespace-pre-wrap break-words",

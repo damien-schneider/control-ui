@@ -9,7 +9,8 @@ function settled(locator: Locator) {
 
 test("context trigger is named by its visible label and the inspector dismisses accessibly", async ({ page }) => {
   await page.goto("/kits/context");
-  const root = page.locator('[data-control-ui="context"][data-slot="root"]');
+  const preview = page.getByRole("tabpanel", { name: "Preview", exact: true }).first();
+  const root = preview.locator('[data-control-ui="context"][data-slot="root"]');
   const trigger = root.getByRole("button", { name: "50% context", exact: true });
   const label = root.locator('[data-control-ui="context"][data-slot="trigger-label"]');
   const popup = page.locator('[data-control-ui="popover"][data-slot="content"]');
@@ -62,7 +63,8 @@ test("context trigger is named by its visible label and the inspector dismisses 
 test("context inspector stays bounded and scrollable on narrow viewports", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 700 });
   await page.goto("/kits/context");
-  const root = page.locator('[data-control-ui="context"][data-slot="root"]');
+  const preview = page.getByRole("tabpanel", { name: "Preview", exact: true }).first();
+  const root = preview.locator('[data-control-ui="context"][data-slot="root"]');
   const trigger = root.getByRole("button", { name: "50% context", exact: true });
   const popup = page.locator('[data-control-ui="popover"][data-slot="content"]');
   await waitForReactHydration(trigger);

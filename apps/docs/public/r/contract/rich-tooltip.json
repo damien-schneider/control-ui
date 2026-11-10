@@ -47,6 +47,12 @@
       "defaultValue": "transparent"
     },
     {
+      "name": "--cui-rich-tooltip-action-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from currentColor l c h / 0.15)"
+    },
+    {
       "name": "--cui-rich-tooltip-action-foreground",
       "syntax": "<color>",
       "initialValue": "transparent",

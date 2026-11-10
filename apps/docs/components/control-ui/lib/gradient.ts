@@ -35,31 +35,52 @@ export function formatGradient({ type, angle, interpolation, stops }: GradientVa
   }
 }
 
+// below this chroma the hue is numerical noise, the same cut `formatColor` uses to print an oklch hue of 0
+const ACHROMATIC_CHROMA = 1e-4;
+
+// CSS blends premultiplied components, so a transparent stop fades the neighbouring color instead of dragging it toward its own
+function premultipliedLerp(from: { a: number }, to: { a: number }, t: number) {
+  const alpha = lerp(from.a, to.a, t);
+  return {
+    alpha,
+    mix: (fromComponent: number, toComponent: number) => {
+      const mixed = lerp(fromComponent * from.a, toComponent * to.a, t);
+      return alpha === 0 ? mixed : mixed / alpha;
+    },
+  };
+}
+
 function mixSrgb(from: Hsva, to: Hsva, t: number): Hsva {
   const a = hsvaToRgba(from);
   const b = hsvaToRgba(to);
-  return rgbaToHsva({ r: lerp(a.r, b.r, t), g: lerp(a.g, b.g, t), b: lerp(a.b, b.b, t), a: lerp(a.a, b.a, t) });
+  const { alpha, mix } = premultipliedLerp(a, b, t);
+  return rgbaToHsva({ r: mix(a.r, b.r), g: mix(a.g, b.g), b: mix(a.b, b.b), a: alpha });
 }
 
 function mixOklab(from: Hsva, to: Hsva, t: number): Hsva {
   const a = hsvaToOklcha(from);
   const b = hsvaToOklcha(to);
+  const { alpha, mix } = premultipliedLerp(a, b, t);
   const radians = (hue: number) => (hue * Math.PI) / 180;
-  const greenRed = lerp(a.C * Math.cos(radians(a.H)), b.C * Math.cos(radians(b.H)), t);
-  const blueYellow = lerp(a.C * Math.sin(radians(a.H)), b.C * Math.sin(radians(b.H)), t);
+  const greenRed = mix(a.C * Math.cos(radians(a.H)), b.C * Math.cos(radians(b.H)));
+  const blueYellow = mix(a.C * Math.sin(radians(a.H)), b.C * Math.sin(radians(b.H)));
   return oklchaToHsva({
-    L: lerp(a.L, b.L, t),
+    L: mix(a.L, b.L),
     C: Math.hypot(greenRed, blueYellow),
     H: (Math.atan2(blueYellow, greenRed) * 180) / Math.PI,
-    a: lerp(a.a, b.a, t),
+    a: alpha,
   });
 }
 
 function mixOklch(from: Hsva, to: Hsva, t: number): Hsva {
   const a = hsvaToOklcha(from);
   const b = hsvaToOklcha(to);
-  const shorterArc = ((b.H - a.H + 540) % 360) - 180;
-  return oklchaToHsva({ L: lerp(a.L, b.L, t), C: lerp(a.C, b.C, t), H: a.H + shorterArc * t, a: lerp(a.a, b.a, t) });
+  const { alpha, mix } = premultipliedLerp(a, b, t);
+  // an achromatic stop has no hue of its own: CSS carries the other stop's hue across the whole span
+  const fromHue = a.C < ACHROMATIC_CHROMA ? b.H : a.H;
+  const toHue = b.C < ACHROMATIC_CHROMA ? a.H : b.H;
+  const shorterArc = ((toHue - fromHue + 540) % 360) - 180;
+  return oklchaToHsva({ L: mix(a.L, b.L), C: mix(a.C, b.C), H: fromHue + shorterArc * t, a: alpha });
 }
 
 const MIX: Record<GradientInterpolation, (from: Hsva, to: Hsva, t: number) => Hsva> = {

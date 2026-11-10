@@ -57,16 +57,12 @@ export function useFilterBarMotion() {
       },
       cancel,
       play() {
-        const root = rootRef.current;
-        if (!root || !filterMotionEnabled(root)) {
-          cancel();
-          captured = null;
-          return;
-        }
         if (!captured) return;
         const origin = captured;
         captured = null;
         cancel();
+        const root = rootRef.current;
+        if (!root || !filterMotionEnabled(root)) return;
         const next = measure();
         const duration = readDurationMs(root, "--duration-fast");
         const easing = getComputedStyle(root).getPropertyValue("--ease-standard").trim();

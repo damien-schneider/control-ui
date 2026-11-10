@@ -5,7 +5,7 @@
     --cui-app-shell-header-background: var(--background);
     --cui-app-shell-header-border-width: 1px;
     --cui-app-shell-header-border-color: var(--border);
-    min-height: var(--cui-app-shell-header-height);
+    min-block-size: var(--cui-app-shell-header-height);
     padding-inline: var(--cui-app-shell-header-padding-inline);
     background: var(--cui-app-shell-header-background);
     border-block-end: var(--cui-app-shell-header-border-width) solid var(--cui-app-shell-header-border-color);

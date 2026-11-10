@@ -10,6 +10,7 @@ export type NativeSelectProps = Omit<Omit<ComponentProps<"select">, "size">, "st
   size?: ControlSize;
 };
 
+// `className` sizes the wrapper so the select and its chevron follow one width; `style` stays on the select, which carries the field knobs.
 export function NativeSelect({
   ref,
   id,
@@ -24,7 +25,13 @@ export function NativeSelect({
   ...props
 }: NativeSelectProps) {
   return (
-    <div data-control-family="field" data-field-kind="native-select" className="relative inline-flex w-full items-center">
+    <div
+      data-control-ui="native-select"
+      data-control-family="field"
+      data-field-kind="native-select"
+      data-slot="wrapper"
+      className={cn("relative inline-flex w-full items-center", className)}
+    >
       <InputPrimitive
         ref={ref}
         id={id}
@@ -42,7 +49,7 @@ export function NativeSelect({
             data-size={size}
             data-control-family="field"
             data-control="true"
-            className={cn("w-full min-w-0 cursor-pointer", className)}
+            className="w-full min-w-0"
           >
             {children}
           </select>
@@ -56,7 +63,7 @@ export function NativeSelect({
         data-slot="icon"
         className="pointer-events-none absolute"
       >
-        <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
+        <svg viewBox="0 0 12 12" aria-hidden="true" fill="none">
           <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </span>

@@ -88,7 +88,7 @@
     --cui-field-foreground: var(--foreground);
     --cui-field-border-color: var(--xp-field);
     --cui-field-border-width: 1px;
-    --cui-field-shadow: none;
+    --cui-field-shadow: 0 0 transparent;
     --cui-field-padding-inline: 4px;
     --cui-field-affordance-shadow: inset 1px 1px var(--xp-light), inset -1px -1px var(--xp-shadow);
     --cui-field-affordance-foreground: var(--xp-glyph);
@@ -96,7 +96,8 @@
   [data-skin="xp"] :where([data-control-ui="select"][data-slot="icon"][data-control-family="popup"]) {
     align-self: stretch;
     width: 17px;
-    margin: 1px -2px 1px 4px;
+    margin-block: 1px;
+    margin-inline: 4px -2px;
     border: 1px solid var(--xp-field);
     border-radius: 2px;
     background: var(--xp-scroll);
@@ -111,13 +112,17 @@
     --cui-choice-checked-border-color: var(--xp-field);
     --cui-choice-checked-background: var(--background);
     --cui-choice-size: 13px;
+    /* the theme's -4px inset ring would land on the 5px mark inside a 13px box; draw it around the box instead */
+    --focus-ring-offset: 1px;
     color: var(--xp-check);
     background-image: linear-gradient(135deg, oklch(from var(--xp-field) l c h / 0.3), transparent 70%);
   }
   [data-skin="xp"] :where([data-control-family="choice"][data-slot="root"][data-choice-kind="checkbox"]) {
     --cui-choice-radius: 0px;
+    --cui-choice-indicator-size: 12px;
   }
   [data-skin="xp"] :where([data-control-family="choice"][data-slot="indicator"][data-choice-kind="radio-group"]) {
+    --cui-choice-indicator-size: 6px;
     background: currentColor;
   }
   [data-skin="xp"] :where([data-control-family="switch"][data-slot="root"]) {
@@ -164,15 +169,18 @@
   [data-skin="xp"] :where([data-control-family="range"][data-slot="root"]) {
     --cui-range-track-radius: 2px;
     --cui-range-track-background: var(--background);
+    --cui-range-track-dragging-background: var(--cui-range-track-background);
     --cui-range-indicator-radius: 0px;
     --cui-range-indicator-background: var(--xp-progress);
+    --cui-range-indicator-dragging-background: var(--xp-progress);
     --cui-range-thumb-radius: 3px;
     --cui-range-thumb-background: var(--secondary);
     --cui-range-thumb-border-color: var(--xp-field);
     --cui-range-thumb-shadow: inset 1px 1px var(--xp-light), inset -1px -1px var(--xp-shadow);
+    --cui-range-thumb-dragging-shadow: var(--cui-range-thumb-shadow);
   }
   [data-skin="xp"] :where([data-control-family="range"][data-slot="track"]:is([data-range-kind="progress"], [data-range-kind="meter"])) {
-    block-size: 16px;
+    --cui-range-track-size: 16px;
     padding: 2px;
     border: 1px solid var(--xp-field);
   }
@@ -182,8 +190,10 @@
     background-image: linear-gradient(oklch(1 0 0 / 0.4), transparent 45%, oklch(0 0 0 / 0.15));
     mask-image: repeating-linear-gradient(90deg, oklch(0 0 0) 0 6px, transparent 6px 8px);
   }
+  [data-skin="xp"] :where([data-control-family="range"][data-range-kind="slider"][data-slot="root"]) {
+    --cui-range-track-size: 4px;
+  }
   [data-skin="xp"] :where([data-control-family="range"][data-range-kind="slider"][data-slot="track"]:not([data-labeled])) {
-    block-size: 4px;
     border: 1px solid var(--xp-field);
   }
   [data-skin="xp"] :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-variant="default"]) {

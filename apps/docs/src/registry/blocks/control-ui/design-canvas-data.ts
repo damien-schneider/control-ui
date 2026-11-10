@@ -65,12 +65,13 @@ export function resizeDesignCanvasLayer(
   aspectRatioLocked: boolean,
 ): DesignCanvasLayer {
   const aspectRatio = layer.width / layer.height;
+  const scalesOtherSide = aspectRatioLocked && Number.isFinite(aspectRatio) && aspectRatio > 0;
   if (size.width !== undefined) {
-    const height = aspectRatioLocked ? Math.round(size.width / aspectRatio) : layer.height;
+    const height = scalesOtherSide ? Math.max(1, Math.round(size.width / aspectRatio)) : layer.height;
     return { ...layer, width: size.width, height };
   }
   if (size.height !== undefined) {
-    const width = aspectRatioLocked ? Math.round(size.height * aspectRatio) : layer.width;
+    const width = scalesOtherSide ? Math.max(1, Math.round(size.height * aspectRatio)) : layer.width;
     return { ...layer, width, height: size.height };
   }
   return layer;
@@ -78,5 +79,5 @@ export function resizeDesignCanvasLayer(
 
 export function designCanvasFillColor(fill: DesignCanvasFill | null) {
   if (!fill?.visible) return "transparent";
-  return `color-mix(in srgb, ${fill.color} ${fill.opacity}%, transparent)`;
+  return `color-mix(in srgb, ${fill.color} ${Math.min(100, Math.max(0, fill.opacity))}%, transparent)`;
 }

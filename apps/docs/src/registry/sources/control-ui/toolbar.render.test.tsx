@@ -3,7 +3,7 @@ import { renderToString } from "react-dom/server";
 
 import { Button } from "@/components/control-ui/ui/button";
 import { DropdownMenu, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
-import { Toolbar, ToolbarButton, ToolbarInput } from "@/components/control-ui/ui/toolbar";
+import { Toolbar, ToolbarButton, ToolbarInput, ToolbarSeparator } from "@/components/control-ui/ui/toolbar";
 
 describe("Toolbar contracts", () => {
   test("keeps menu semantics when a button renders a DropdownMenu trigger", () => {
@@ -62,5 +62,31 @@ describe("Toolbar contracts", () => {
     expect(html.match(/<button/g)).toHaveLength(1);
     expect(html).toContain('data-orientation="horizontal"');
     expect(html).toContain('aria-label="Edit theme"');
+  });
+
+  test("separators default to the orientation perpendicular to their toolbar", () => {
+    const separator = (html: string) => html.match(/<div[^>]*data-slot="separator"[^>]*>/)?.[0];
+
+    const horizontal = renderToString(
+      <Toolbar>
+        <ToolbarSeparator />
+      </Toolbar>,
+    );
+    expect(separator(horizontal)).toContain('aria-orientation="vertical"');
+
+    const vertical = renderToString(
+      <Toolbar orientation="vertical">
+        <ToolbarSeparator />
+      </Toolbar>,
+    );
+    expect(separator(vertical)).toContain('aria-orientation="horizontal"');
+    expect(separator(vertical)).toContain('data-orientation="horizontal"');
+
+    const explicit = renderToString(
+      <Toolbar orientation="vertical">
+        <ToolbarSeparator orientation="vertical" />
+      </Toolbar>,
+    );
+    expect(separator(explicit)).toContain('aria-orientation="vertical"');
   });
 });

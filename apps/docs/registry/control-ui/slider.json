@@ -3,7 +3,7 @@
   "name": "slider",
   "type": "registry:ui",
   "title": "Slider",
-  "description": "Single-value range control with branded and plain treatments.",
+  "description": "Single-value or range control with branded and plain treatments.",
   "dependencies": [
     "@base-ui/react@^1.9.0"
   ],
@@ -17,6 +17,11 @@
       "type": "registry:component"
     },
     {
+      "path": "src/registry/sources/control-ui/recipes/range-slider.css",
+      "target": "@components/control-ui/styles/recipes/range-slider.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/range.css",
       "target": "@components/control-ui/styles/recipes/range.css",
       "type": "registry:file"
@@ -28,7 +33,8 @@
     }
   ],
   "css": {
-    "@import \"../components/control-ui/styles/recipes/range.css\"": {}
+    "@import \"../components/control-ui/styles/recipes/range.css\"": {},
+    "@import \"../components/control-ui/styles/recipes/range-slider.css\"": {}
   },
   "meta": {
     "sourceManifestPath": "registry/control-ui/slider.json"

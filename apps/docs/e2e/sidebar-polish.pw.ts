@@ -208,7 +208,7 @@ for (const direction of ["ltr", "rtl"]) {
       await expect(example.locator('[data-slot="inner"]')).toHaveAttribute("inert", "");
       await expect(example.locator('[data-slot="container"]')).toHaveCSS("transition-duration", "0s");
       const container = await example.locator('[data-slot="container"]').boundingBox();
-      const wrapper = await example.locator('[data-slot="wrapper"]').boundingBox();
+      const wrapper = await example.locator('[data-control-ui="sidebar"][data-slot="wrapper"]').boundingBox();
       if (!(container && wrapper)) throw new Error("Sidebar bounds unavailable");
       const physicalLeft = (side === "left") === (direction === "ltr");
       if (physicalLeft) expect(container.x + container.width).toBeLessThanOrEqual(wrapper.x + 1);

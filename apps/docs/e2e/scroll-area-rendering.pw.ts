@@ -24,16 +24,18 @@ async function inspectScrollEdge(page: Page, screenshot: Buffer) {
     const pixels = context.getImageData(0, 24, image.width, 24).data;
     let coloredPixels = 0;
     let detailedPixels = 0;
+    let brightness = 0;
     for (let index = 0; index < pixels.length; index += 4) {
       const red = pixels[index];
       const green = pixels[index + 1];
       const blue = pixels[index + 2];
+      brightness += (red + green + blue) / 3;
       if (Math.max(red, green, blue) - Math.min(red, green, blue) > 80) coloredPixels += 1;
       if ((index / 4 + 1) % image.width === 0) continue;
       const difference = Math.max(...[0, 1, 2].map((channel) => Math.abs(pixels[index + channel] - pixels[index + 4 + channel])));
       if (difference > 10) detailedPixels += 1;
     }
-    return { coloredPixels, detailedPixels };
+    return { coloredPixels, detailedPixels, meanBrightness: brightness / (pixels.length / 4) };
   }, screenshot.toString("base64"));
 }
 
@@ -96,7 +98,7 @@ for (const skinId of ["refined", "modern-apple"] as const) {
         await page.evaluate((isDark) => document.documentElement.classList.toggle("dark", isDark), dark);
         if (skinId === "modern-apple")
           await expect(dialog.locator('[data-side="top"] [data-slot="layer"]').last()).toHaveCSS("opacity", "1");
-        expect((await inspectScrollEdge(page, await dialog.screenshot())).detailedPixels).toBeGreaterThan(100);
+        expect((await inspectScrollEdge(page, await viewport.locator("..").screenshot())).detailedPixels).toBeGreaterThan(100);
       }
       await expect(search).toBeFocused();
     });
@@ -110,7 +112,7 @@ for (const skinId of ["refined", "modern-apple"] as const) {
       await expectUnchangedBackdropAtZeroBlur(page, viewport);
     });
 
-    test("code block blur preserves syntax at the clipped edge", async ({ page }) => {
+    test("code block blur preserves syntax and brightness at the clipped edge", async ({ page }) => {
       await visitWithSkin(page, "/components/scroll-area", skinId);
       await waitForReactHydration(page.getByLabel("Horizontal roadmap", { exact: true }).getByRole("button").first());
       const viewport = page
@@ -126,7 +128,15 @@ for (const skinId of ["refined", "modern-apple"] as const) {
         "opacity",
         "1",
       );
-      expect((await inspectScrollEdge(page, await scrollArea.screenshot())).coloredPixels).toBeGreaterThan(10);
+      await expect.poll(async () => (await inspectScrollEdge(page, await scrollArea.screenshot())).coloredPixels).toBeGreaterThan(10);
+      const blurred = await inspectScrollEdge(page, await scrollArea.screenshot());
+      await scrollArea.locator(':scope > [data-control-family="progressive-blur"]').evaluateAll((elements) => {
+        for (const element of elements) {
+          if (element instanceof HTMLElement) element.style.display = "none";
+        }
+      });
+      const sharp = await inspectScrollEdge(page, await scrollArea.screenshot());
+      expect(Math.abs(blurred.meanBrightness - sharp.meanBrightness)).toBeLessThan(8);
     });
 
     test("country list blur preserves the masked countries", async ({ page }) => {

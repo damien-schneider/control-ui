@@ -1,11 +1,11 @@
 @layer components {
   :where([data-control-family="empty"][data-slot="root"]) {
-    --cui-empty-radius: var(--radius-lg);
+    --cui-empty-radius: var(--radius-panel);
     --cui-empty-background: transparent;
     --cui-empty-border-color: transparent;
     --cui-empty-border-width: var(--control-rim-width);
     --cui-empty-border-style: solid;
-    --cui-empty-media-radius: var(--radius-lg);
+    --cui-empty-media-radius: var(--radius-control);
     --cui-empty-media-background: var(--muted);
     --cui-empty-media-background-image: none;
     --cui-empty-shadow: none;

@@ -22,6 +22,7 @@ for (const skin of ["refined", "xp", "linear"]) {
     await expect(trigger).not.toHaveCSS("background-color", idleBackground);
     await expect(trigger).toHaveCSS("color", idleColor);
     await expect(trigger).toHaveCSS("color", await input.evaluate((element) => getComputedStyle(element).color));
+    await trigger.evaluate((element) => Promise.all(element.getAnimations().map((animation) => animation.finished)));
     const hoverBackground = await trigger.evaluate((element) => getComputedStyle(element).backgroundColor);
     await icon.hover();
     await expect(icon).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");

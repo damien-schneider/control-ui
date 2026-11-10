@@ -33,7 +33,12 @@ export type FlowBackgroundProps = { id?: string; className?: string };
 
 export type FlowPanelProps = Omit<ComponentProps<typeof Panel>, "style"> & { style?: CSSProperties & FlowKnobStyle };
 
-export type FlowControlsProps = Omit<FlowPanelProps, "children"> & { fitViewOptions?: FitViewOptions };
+export type FlowControlsProps = Omit<FlowPanelProps, "children"> & {
+  fitViewOptions?: FitViewOptions;
+  zoomOutLabel?: string;
+  zoomInLabel?: string;
+  fitViewLabel?: string;
+};
 
 export type FlowNodeProps = Omit<ComponentProps<"div">, "style"> & {
   selected?: boolean;
@@ -78,12 +83,22 @@ export function FlowPanel(props: FlowPanelProps) {
   return <Panel {...props} data-control-ui="flow" data-control-family="flow" data-slot="panel" />;
 }
 
-export function FlowControls({ position = "bottom-left", fitViewOptions, className, ...props }: FlowControlsProps) {
+export function FlowControls({
+  position = "bottom-left",
+  fitViewOptions,
+  zoomOutLabel = "Zoom out",
+  zoomInLabel = "Zoom in",
+  fitViewLabel = "Fit view",
+  className,
+  ...props
+}: FlowControlsProps) {
   const { zoomIn, zoomOut, fitView } = useReactFlow();
   const atMinZoom = useStore((state) => state.transform[2] <= state.minZoom);
   const atMaxZoom = useStore((state) => state.transform[2] >= state.maxZoom);
   return (
     <Panel
+      role="group"
+      aria-label="Flow view"
       {...props}
       position={position}
       data-control-ui="flow"
@@ -97,7 +112,8 @@ export function FlowControls({ position = "bottom-left", fitViewOptions, classNa
         variant="ghost"
         iconOnly
         disabled={atMinZoom}
-        aria-label="Zoom out"
+        focusableWhenDisabled
+        aria-label={zoomOutLabel}
         onClick={(event) => zoomOut({ duration: viewportTransitionMs(event.currentTarget) })}
       >
         <MinusIcon />
@@ -108,7 +124,8 @@ export function FlowControls({ position = "bottom-left", fitViewOptions, classNa
         variant="ghost"
         iconOnly
         disabled={atMaxZoom}
-        aria-label="Zoom in"
+        focusableWhenDisabled
+        aria-label={zoomInLabel}
         onClick={(event) => zoomIn({ duration: viewportTransitionMs(event.currentTarget) })}
       >
         <PlusIcon />
@@ -118,7 +135,7 @@ export function FlowControls({ position = "bottom-left", fitViewOptions, classNa
         size="sm"
         variant="ghost"
         iconOnly
-        aria-label="Fit view"
+        aria-label={fitViewLabel}
         onClick={(event) => fitView({ ...fitViewOptions, duration: viewportTransitionMs(event.currentTarget) })}
       >
         <MaximizeIcon />

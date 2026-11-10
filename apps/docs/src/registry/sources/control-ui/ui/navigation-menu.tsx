@@ -2,10 +2,11 @@
 
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu";
 import type { ComponentProps, CSSProperties } from "react";
+import { createContext, use } from "react";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { skinScopeAttributes } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 
 export type NavigationMenuProps = ComponentProps<"nav"> & {
@@ -29,19 +30,21 @@ export type NavigationMenuTriggerProps = Omit<ComponentProps<"button">, "style">
 
 export type NavigationMenuContentProps = ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle };
 
-export const navigationMenuLinkVariants = ["default", "compact"] as const;
-
-export type NavigationMenuLinkVariant = (typeof navigationMenuLinkVariants)[number];
-
-export type NavigationMenuLinkProps = Omit<ComponentProps<"a">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
+export type NavigationMenuLinkProps = Omit<ComponentProps<"a">, "style"> & {
+  style?: CSSProperties & ButtonKnobStyle & PopupKnobStyle;
+} & {
   active?: boolean;
   closeOnClick?: boolean;
-  variant?: NavigationMenuLinkVariant;
 };
 
-export type NavigationMenuViewportProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export type NavigationMenuViewportProps = Omit<ComponentProps<"div">, "style"> &
+  Pick<ComponentProps<typeof NavigationMenuPrimitive.Positioner>, "align" | "alignOffset" | "collisionBoundary" | "collisionPadding"> & {
+    style?: CSSProperties & PopupKnobStyle;
+  };
 
 type RefinedLinkProps = NavigationMenuLinkProps & Pick<ComponentProps<typeof NavigationMenuPrimitive.Link>, "render">;
+
+const NavigationMenuPanelContext = createContext(false);
 
 export function NavigationMenu({ className, children, ...props }: NavigationMenuProps) {
   return (
@@ -60,14 +63,16 @@ export function NavigationMenu({ className, children, ...props }: NavigationMenu
 
 export function NavigationMenuList({ className, ...props }: NavigationMenuListProps) {
   return (
-    <NavigationMenuPrimitive.List
-      data-control-ui="navigation-menu"
-      data-control-family="popup"
-      data-popup-kind="navigation-menu"
-      data-slot="list"
-      className={cn("flex flex-1 list-none items-center justify-center", className)}
-      {...props}
-    />
+    <NavigationMenuPanelContext.Provider value={false}>
+      <NavigationMenuPrimitive.List
+        data-control-ui="navigation-menu"
+        data-control-family="popup"
+        data-popup-kind="navigation-menu"
+        data-slot="list"
+        className={cn("flex flex-1 list-none items-center justify-center", className)}
+        {...props}
+      />
+    </NavigationMenuPanelContext.Provider>
   );
 }
 
@@ -106,7 +111,7 @@ export function NavigationMenuTrigger({ className, children, ...props }: Navigat
         data-popup-kind="navigation-menu"
         data-slot="icon"
       >
-        <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
+        <svg viewBox="0 0 12 12" aria-hidden="true" fill="none">
           <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </NavigationMenuPrimitive.Icon>
@@ -124,12 +129,35 @@ export function NavigationMenuContent({ className, children, ...props }: Navigat
       className={cn("h-full w-full p-[var(--popover-padding)]", className)}
       {...props}
     >
-      {children}
+      <NavigationMenuPanelContext.Provider value={true}>{children}</NavigationMenuPanelContext.Provider>
     </NavigationMenuPrimitive.Content>
   );
 }
 
-export function NavigationMenuLink({ variant = "default", className, active, children, ...props }: RefinedLinkProps) {
+export function NavigationMenuLink({ className, active, children, ...props }: RefinedLinkProps) {
+  const inPanel = use(NavigationMenuPanelContext);
+
+  if (!inPanel) {
+    return (
+      <NavigationMenuPrimitive.Link
+        data-control-ui="navigation-menu"
+        data-control-family="button"
+        data-slot="list-link"
+        data-control="true"
+        data-size="sm"
+        data-variant="quiet"
+        data-tone="neutral"
+        data-shape="default"
+        data-active={active ? "true" : undefined}
+        active={active}
+        className={cn("inline-flex select-none items-center", className)}
+        {...props}
+      >
+        {children}
+      </NavigationMenuPrimitive.Link>
+    );
+  }
+
   return (
     <NavigationMenuPrimitive.Link
       data-control-ui="navigation-menu"
@@ -137,13 +165,8 @@ export function NavigationMenuLink({ variant = "default", className, active, chi
       data-slot="link"
       data-control-family="popup"
       data-popup-part="navigation-link"
-      data-variant={variant}
       active={active}
-      className={cn(
-        "block select-none",
-        variant === "compact" && "inline-flex h-control-sm items-center px-[calc(var(--padding-x)*0.75)]",
-        className,
-      )}
+      className={cn("block select-none", className)}
       {...props}
     >
       {children}
@@ -151,7 +174,16 @@ export function NavigationMenuLink({ variant = "default", className, active, chi
   );
 }
 
-export function NavigationMenuViewport({ className, ...props }: NavigationMenuViewportProps) {
+const viewportCollisionPadding = { top: 5, bottom: 5, left: 16, right: 16 };
+
+export function NavigationMenuViewport({
+  className,
+  align,
+  alignOffset,
+  collisionBoundary,
+  collisionPadding = viewportCollisionPadding,
+  ...props
+}: NavigationMenuViewportProps) {
   const skin = useSkin();
   return (
     <NavigationMenuPrimitive.Portal>
@@ -160,10 +192,12 @@ export function NavigationMenuViewport({ className, ...props }: NavigationMenuVi
         data-control-family="popup"
         data-popup-kind="navigation-menu"
         data-slot="positioner"
-        data-skin={skin.id}
-        data-effects={controlEffectsAttribute(skin.effects)}
+        {...skinScopeAttributes(skin)}
         sideOffset={8}
-        collisionPadding={{ top: 5, bottom: 5, left: 16, right: 16 }}
+        align={align}
+        alignOffset={alignOffset}
+        collisionBoundary={collisionBoundary}
+        collisionPadding={collisionPadding}
         collisionAvoidance={{ side: "none" }}
         className="z-(--z-popup) h-[var(--positioner-height)] w-[var(--positioner-width)] max-w-[var(--available-width)] before:absolute before:inset-x-0 before:top-[-8px] before:h-2 before:content-['']"
       >

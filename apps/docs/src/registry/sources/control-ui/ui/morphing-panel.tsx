@@ -204,7 +204,7 @@ export function MorphingPanel({
 export function MorphingPanelTrigger({ render, className, children, ...props }: MorphingPanelTriggerProps) {
   return (
     <CollapsiblePrimitive.Trigger
-      className="group/morphing-panel-trigger absolute top-0 end-0 z-10 flex cursor-pointer items-center justify-between data-[state=open]:top-2 data-[state=open]:end-2 data-[state=open]:justify-center [&>svg]:shrink-0"
+      className="group/morphing-panel-trigger absolute top-0 end-0 z-1 flex items-center justify-between data-[state=open]:top-2 data-[state=open]:end-2 data-[state=open]:justify-center [&>svg]:shrink-0"
       {...props}
       render={(triggerProps, state) => (
         <MorphingPanelTriggerElement triggerProps={triggerProps} open={state.open} render={render} className={className}>

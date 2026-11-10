@@ -88,7 +88,7 @@ function MobileWorkspace({ floating }: { floating: boolean }) {
       </Sidebar>
       <SidebarInset>
         <header className="flex shrink-0 items-center gap-2 border-b border-border p-3">
-          <SidebarTrigger className="lg:hidden" />
+          <SidebarTrigger className="sidebar:hidden" />
           <Text size="label" weight="medium">
             Acme workspace
           </Text>

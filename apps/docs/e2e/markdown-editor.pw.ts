@@ -1,4 +1,5 @@
 import { expect, type Page, test } from "@playwright/test";
+import { unpaintedShadow } from "./browser-test-helpers";
 import { FIXTURE_ORIGIN, serveFixture } from "./fixtures/serve-fixture";
 
 test.beforeEach(async ({ page }) => {
@@ -304,7 +305,7 @@ test("editor has one frame and an embedded shared toolbar at narrow widths", asy
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   await editor.press("Escape");
   await page.getByRole("button", { name: "Markdown source" }).click();
-  await expect(editor).toHaveCSS("box-shadow", "none");
+  await expect(editor).toHaveCSS("box-shadow", unpaintedShadow);
   await expect(editor).toHaveCSS("border-width", "0px");
 });
 
@@ -411,7 +412,7 @@ test("drag previews are compact, transparent and cleaned up after dragging", asy
   const handle = page.getByRole("button", { name: "Drag to reorder block" });
   await handle.hover();
   await expect(handle).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
-  await expect(handle).toHaveCSS("box-shadow", "none");
+  await expect(handle).toHaveCSS("box-shadow", unpaintedShadow);
   await handle.dispatchEvent("dragstart", { dataTransfer: await page.evaluateHandle(() => new DataTransfer()) });
   const preview = page.locator("[data-markdown-drag-preview]");
   await expect(preview).toHaveCount(1);
@@ -463,7 +464,7 @@ for (const skin of ["modern-apple", "refined"]) {
     await page.getByRole("button", { name: "Markdown source" }).click();
     const source = page.getByRole("textbox", { name: "Comment", exact: true });
     await source.fill("## Source title");
-    await expect(source).toHaveCSS("box-shadow", "none");
+    await expect(source).toHaveCSS("box-shadow", unpaintedShadow);
     await expect(source).toHaveCSS("border-width", "0px");
     await expect(source).toHaveCSS("border-radius", "0px");
     await page.getByRole("button", { name: "Markdown source" }).click();

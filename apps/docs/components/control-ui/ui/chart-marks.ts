@@ -210,11 +210,11 @@ export function chartReferenceMarks(references: readonly ChartReference[], axis:
 type SeriesPoint<TDatum> = { key: string; datum: ChartSeriesRow<TDatum> };
 
 export function seriesTooltip<TDatum>(
-  seriesLabels: readonly string[],
+  seriesKeys: readonly string[],
   formatX: (value: ChartXValue) => string,
   formatValue: (value: number, datum: TDatum) => string,
 ) {
-  const seriesRank = (point: SeriesPoint<TDatum>) => seriesLabels.indexOf(point.datum.series);
+  const seriesRank = (point: SeriesPoint<TDatum>) => seriesKeys.indexOf(point.datum.seriesKey);
   return {
     use: tooltip,
     content: (points: readonly SeriesPoint<TDatum>[], context: Pick<ChartTooltipContentContext, "primaryPoint">) => ({

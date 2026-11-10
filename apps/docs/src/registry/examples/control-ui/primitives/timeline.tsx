@@ -1,8 +1,9 @@
 "use client";
 
-import { Check, CircleAlert, LoaderCircle, Search } from "lucide-react";
+import { Check, CircleAlert, Search } from "lucide-react";
 
 import { SourceBadge } from "@/components/control-ui/source-badge";
+import { Spinner } from "@/components/control-ui/ui/spinner";
 import {
   Timeline,
   TimelineContent,
@@ -47,7 +48,7 @@ export function PrimitiveTimelineExample() {
 
       <TimelineItem state="running">
         <TimelineIndicator>
-          <LoaderCircle className="motion-safe:animate-spin" />
+          <Spinner />
         </TimelineIndicator>
         <TimelineSeparator />
         <TimelineContent>

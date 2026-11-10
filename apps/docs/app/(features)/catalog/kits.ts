@@ -523,6 +523,17 @@ export const kitEntries = [
           import("@/src/registry/examples/control-ui/filter-bar-remote").then((mod) => ({ default: mod.FilterBarRemoteExample })),
         ),
       },
+      {
+        id: "saved-view",
+        previewClassName: "min-h-[240px] items-start",
+        title: "Saved view with custom labels",
+        description:
+          "Uncontrolled: defaultValue seeds the filters and the bar keeps its own state. The labels prop rewords the editor, its placeholders, and the announcements.",
+        source: sourceFile("Saved view example", "src/registry/examples/control-ui/filter-bar-saved-view.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/filter-bar-saved-view").then((mod) => ({ default: mod.FilterBarSavedViewExample })),
+        ),
+      },
     ],
   },
   {
@@ -581,6 +592,18 @@ export const kitEntries = [
       supportFiles: [sourceFile("Derivation model", "src/registry/sources/control-ui/context-model.ts", "support"), contextRecipeFile],
     },
     preview: preview(() => import("@/src/registry/examples/control-ui/context").then((mod) => ({ default: mod.ContextExample }))),
+    additionalPreviews: [
+      {
+        id: "composed-legend",
+        title: "Composed inspector and legend",
+        description:
+          "Compose the header, summary, and graph yourself, and write the legend rows with ContextLegendItem to group segments or name the remaining budget.",
+        source: sourceFile("Composed legend example", "src/registry/examples/control-ui/context.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/context").then((mod) => ({ default: mod.ContextComposedExample })),
+        ),
+      },
+    ],
   },
   {
     id: "inline-citation",
@@ -692,6 +715,15 @@ export const kitEntries = [
           import("@/src/registry/examples/markdown-editor").then((mod) => ({ default: mod.MarkdownEditorBubbleMenuExample })),
         ),
       },
+      {
+        id: "read-only",
+        title: "Read-only",
+        description: "readOnly locks the document, the toolbar, and task checkboxes while the content stays focusable and selectable.",
+        source: sourceFile("Read-only example", "src/registry/examples/markdown-editor.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/markdown-editor").then((mod) => ({ default: mod.MarkdownEditorReadOnlyExample })),
+        ),
+      },
     ],
   },
   {
@@ -729,6 +761,18 @@ export const kitEntries = [
       supportFiles: [chatLayoutRecipeFile],
     },
     preview: preview(() => import("@/src/registry/examples/control-ui/chat-layout").then((mod) => ({ default: mod.ChatLayoutExample }))),
+    additionalPreviews: [
+      {
+        id: "thread-position",
+        title: "Custom jump control",
+        description:
+          "useChatThread reads whether the thread is at the bottom and scrolls it there, so any control inside ChatThread can replace the built-in scroll button.",
+        source: sourceFile("Custom jump control example", "src/registry/examples/control-ui/chat-thread-position.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/chat-thread-position").then((mod) => ({ default: mod.ChatThreadPositionExample })),
+        ),
+      },
+    ],
   },
   {
     id: "thread-rail",

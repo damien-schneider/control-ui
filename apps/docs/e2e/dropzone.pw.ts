@@ -171,7 +171,7 @@ test("visible dropzone validates chooser and drag intake", async ({ page }) => {
   await chooseBrowserFiles(input, [imagePng, inputExecutable]);
   await expect(selectedFiles.locator("li")).toHaveCount(1);
   await expect(selectedFiles).toContainText("image.png");
-  await expect(rejectedFiles).toContainText("Choose a PNG, JPEG, WebP, or PDF file.");
+  await expect(rejectedFiles).toContainText("File type is not accepted. Use .png, .jpg, .jpeg, .webp, .pdf.");
 
   const chooserPromise = page.waitForEvent("filechooser");
   await trigger.focus();
@@ -180,7 +180,7 @@ test("visible dropzone validates chooser and drag intake", async ({ page }) => {
   await chooser.setFiles([]);
   await chooseBrowserFiles(input, [imagePng]);
   await expect(selectedFiles.locator("li")).toHaveCount(1);
-  await expect(rejectedFiles).toContainText("This file is already selected.");
+  await expect(rejectedFiles).toContainText('File "image.png" is already selected.');
 
   await main.getByRole("button", { name: "Remove image.png" }).click();
   await expect(selectedFiles.locator("li")).toHaveCount(0);
@@ -218,7 +218,7 @@ test("visible dropzone validates chooser and drag intake", async ({ page }) => {
   await expect(status).toHaveText("Some files are not accepted.");
   await dispatchFileEvent(area, "drop", aggregateFiles);
   await expect(selectedFiles.locator("li")).toHaveCount(4);
-  await expect(rejectedFiles).toContainText("You can select up to 4 files.");
+  await expect(rejectedFiles).toContainText("Too many files. Choose up to 4 files.");
   await expect(selectedFiles).toContainText("four.png");
 });
 

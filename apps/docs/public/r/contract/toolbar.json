@@ -67,6 +67,12 @@
       "defaultValue": "none"
     },
     {
+      "name": "--cui-toolbar-item-icon-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 4)"
+    },
+    {
       "name": "--cui-toolbar-item-foreground",
       "syntax": "<color>",
       "initialValue": "transparent",

@@ -12,14 +12,28 @@
       var(--radius-panel),
       calc(var(--_infinite-canvas-controls-radius) + clamp(0px, calc(var(--_infinite-canvas-controls-radius) * 1000), var(--spacing) * 2))
     );
+    --_infinite-canvas-radius: var(--cui-infinite-canvas-radius);
+    --_infinite-canvas-rim-width: var(--control-rim-width);
     --cui-infinite-canvas-padding: max(
       calc(var(--spacing) * 2),
-      calc(var(--cui-infinite-canvas-radius) - var(--_infinite-canvas-controls-radius))
+      calc(var(--_infinite-canvas-radius) - var(--_infinite-canvas-controls-radius))
     );
-    border-radius: var(--cui-infinite-canvas-radius);
+    border-radius: var(--_infinite-canvas-radius);
     background-color: var(--cui-infinite-canvas-background);
     background-image: radial-gradient(circle at center, var(--cui-infinite-canvas-grid-dot-color) 1px, transparent 1px);
-    box-shadow: 0 0 0 1px var(--cui-infinite-canvas-border-color);
+    box-shadow: 0 0 0 var(--_infinite-canvas-rim-width) var(--cui-infinite-canvas-border-color);
+  }
+
+  :where([data-control-family="infinite-canvas"][data-slot="root"][data-chrome="embedded"]) {
+    --_infinite-canvas-radius: 0px;
+    --_infinite-canvas-rim-width: 0px;
+  }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="infinite-canvas"][data-slot="root"]:not([data-chrome="embedded"], :focus-visible)) {
+      outline: 1px solid CanvasText;
+      outline-offset: -1px;
+    }
   }
 
   :where([data-control-family="infinite-canvas"][data-slot="root"]:focus-visible) {

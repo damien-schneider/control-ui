@@ -45,7 +45,7 @@ describe("InlineCitation", () => {
   test("disables the disclosure trigger when no sources are available", () => {
     const html = renderToStaticMarkup(<InlineCitation sources={[]} />);
 
-    expect(html.match(/aria-label="([^"]+)"/)?.[1]?.startsWith("No sources")).toBe(true);
+    expect(html.match(/aria-label="([^"]+)"/)?.[1]).toBe("No sources");
     expect(html).toContain("disabled");
     expect(html).toContain("No sources");
   });

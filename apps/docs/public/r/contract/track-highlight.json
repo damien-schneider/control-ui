@@ -22,7 +22,7 @@
       "name": "--cui-track-highlight-hover-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "color-mix(in oklab, var(--card) 92%, var(--foreground) 8%)"
+      "defaultValue": "var(--hover-fill)"
     },
     {
       "name": "--cui-track-highlight-ring-color",

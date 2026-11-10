@@ -38,6 +38,7 @@ export type DiscussionComposerProps = Omit<ComponentProps<typeof ChatComposer>, 
   submitLabel?: ReactNode;
   secondaryAction?: ReactNode;
   hint?: ReactNode;
+  submitErrorLabel?: string;
   autoFocus?: boolean;
   format?: "plain" | "markdown";
   onUploadImage?: MarkdownImageUploader;
@@ -58,6 +59,7 @@ export function DiscussionComposer({
       <span>to post</span>
     </>
   ),
+  submitErrorLabel = "Couldn't post your comment. Please try again.",
   autoFocus,
   format = "plain",
   onUploadImage,
@@ -88,7 +90,7 @@ export function DiscussionComposer({
         try {
           await onSubmit?.({ ...payload, value: format === "markdown" ? value : payload.value });
         } catch (cause) {
-          setError(cause instanceof Error ? cause.message : "Couldn't post your comment. Please try again.");
+          setError(cause instanceof Error ? cause.message : submitErrorLabel);
         } finally {
           setSubmitting(false);
         }
@@ -140,6 +142,7 @@ export type DiscussionCommentProps = Omit<ComponentProps<typeof ChatMessage>, "f
   sentAt: string;
   timeLabel: ReactNode;
   edited?: boolean;
+  editedLabel?: ReactNode;
   children?: ReactNode;
   markdown?: string;
   actions?: ReactNode;
@@ -163,6 +166,7 @@ export function DiscussionComment({
   sentAt,
   timeLabel,
   edited = false,
+  editedLabel = "(edited)",
   children,
   markdown,
   actions,
@@ -182,7 +186,7 @@ export function DiscussionComment({
           <ChatMessageHeader>
             <ChatMessageAuthor>{author}</ChatMessageAuthor>
             <ChatMessageTime dateTime={sentAt}>{timeLabel}</ChatMessageTime>
-            {edited ? <span>(edited)</span> : null}
+            {edited ? <span>{editedLabel}</span> : null}
           </ChatMessageHeader>
           <ChatMessageContent>{markdown !== undefined ? <Markdown content={markdown} mode="static" /> : children}</ChatMessageContent>
           {onReply ? (

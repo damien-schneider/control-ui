@@ -85,7 +85,7 @@ export function infiniteCanvasTransformCss({ x, y, scale }: InfiniteCanvasTransf
 }
 
 export function infiniteCanvasGridStyle({ x, y, scale }: InfiniteCanvasTransform) {
-  let spacing = CANVAS_GRID_GAP * scale;
+  let spacing = CANVAS_GRID_GAP * (Number.isFinite(scale) && scale > 0 ? scale : 1);
   while (spacing < MIN_GRID_SPACING_PX) spacing *= 2;
   return { backgroundPosition: `${x}px ${y}px`, backgroundSize: `${spacing}px ${spacing}px` };
 }
@@ -159,8 +159,9 @@ export function createInfiniteCanvasCamera(
   }
 
   function toLocalPoint(point: InfiniteCanvasClientPoint): InfiniteCanvasPoint {
-    const bounds = root?.getBoundingClientRect();
-    return { x: point.clientX - (bounds?.left ?? 0), y: point.clientY - (bounds?.top ?? 0) };
+    if (!root) return { x: point.clientX, y: point.clientY };
+    const bounds = root.getBoundingClientRect();
+    return { x: point.clientX - bounds.left - root.clientLeft, y: point.clientY - bounds.top - root.clientTop };
   }
 
   function contentBounds() {
@@ -199,7 +200,7 @@ export function createInfiniteCanvasCamera(
     const limits = {
       padding: fitOptions.padding ?? DEFAULT_FIT_PADDING_PX,
       minScale: options.minScale,
-      maxScale: Math.min(fitOptions.maxScale ?? DEFAULT_FIT_MAX_SCALE, options.maxScale),
+      maxScale: Math.max(options.minScale, Math.min(fitOptions.maxScale ?? DEFAULT_FIT_MAX_SCALE, options.maxScale)),
     };
     move(fitTransform(bounds, fitOptions.area ?? viewportArea(), limits), fitOptions.reason ?? "control");
   }

@@ -41,7 +41,7 @@ export function AudioDeviceSelectExample() {
         </AudioDeviceSelectPreview>
         <AudioDeviceSelectStatus />
       </AudioDeviceSelect>
-      <Button variant="surface" size="sm" onClick={() => setDisconnected((previous) => !previous)}>
+      <Button variant="surface" size="md" onClick={() => setDisconnected((previous) => !previous)}>
         {disconnected ? "Reconnect microphone" : "Disconnect microphone"}
       </Button>
     </div>

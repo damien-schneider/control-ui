@@ -26,7 +26,7 @@ export function CheckboxGroup({ className, orientation = "vertical", indicator, 
       data-orientation={orientation}
       data-track={resolvedIndicator}
       className={cn(
-        "flex flex-col gap-2.5 data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:gap-4 data-[track=hover]:relative data-[track=hover]:isolate data-[track=hover]:gap-0",
+        "flex flex-col data-[orientation=horizontal]:flex-row data-[track=hover]:relative data-[track=hover]:isolate",
         className,
       )}
       {...props}
@@ -42,12 +42,10 @@ export function CheckboxGroupItem({ className, htmlFor, children, ...props }: Co
     <label
       htmlFor={htmlFor}
       data-control-ui="checkbox-group"
+      data-control-family="checkbox-group"
       data-slot="item"
       data-track-item=""
-      className={cn(
-        "flex cursor-pointer items-start gap-2.5 rounded-(--radius-control) p-2 text-body has-[[data-disabled]]:cursor-not-allowed [&>[data-control-family=choice]]:mt-[calc((1lh_-_var(--spacing)*4)/2)]",
-        className,
-      )}
+      className={cn("flex items-start [&>[data-control-family=choice]]:mt-[calc((1lh_-_var(--cui-choice-size))/2)]", className)}
       {...props}
     >
       {children}

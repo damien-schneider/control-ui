@@ -7,6 +7,12 @@
   ],
   "knobs": [
     {
+      "name": "--cui-scroll-area-scrollbar-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 1.5)"
+    },
+    {
       "name": "--cui-scroll-area-thumb-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",

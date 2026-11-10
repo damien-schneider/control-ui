@@ -40,7 +40,7 @@
       "name": "--cui-inline-citation-trigger-hover-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "var(--muted)"
+      "defaultValue": "var(--hover-fill)"
     },
     {
       "name": "--cui-inline-citation-trigger-hover-foreground",
@@ -245,7 +245,9 @@
   },
   "adornments": {},
   "uncovered": [
-    "--cui-inline-citation-quote-background"
+    "--cui-inline-citation-quote-background",
+    "--cui-inline-citation-trigger-hover-background",
+    "--cui-inline-citation-trigger-hover-foreground"
   ],
   "contrast": "/r/contract/inline-citation.contrast.json"
 }

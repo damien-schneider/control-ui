@@ -2,7 +2,7 @@
 
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
 import type { ComponentProps, CSSProperties, ReactNode, Ref } from "react";
-import { Children, createContext, Fragment, isValidElement, useContext, useEffect, useRef, useState } from "react";
+import { Children, createContext, Fragment, isValidElement, useContext, useEffect, useImperativeHandle, useRef, useState } from "react";
 import type { ControlledChoice, RenderProp } from "@/components/control-ui/control-props";
 import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { TabsKnobStyle } from "@/components/control-ui/knob-contracts/tabs-knobs";
@@ -18,6 +18,8 @@ export type TabsListProps = Omit<ComponentProps<"div">, "style"> & { style?: CSS
   variant?: TabsListVariant;
   activateOnFocus?: boolean;
   loopFocus?: boolean;
+  /** Scrolls the list along its own axis instead of overflowing when the tabs do not fit. */
+  scrollable?: boolean;
 };
 
 export type TabsTabProps = Omit<Omit<ComponentProps<"button">, "value">, "style"> & { style?: CSSProperties & TabsKnobStyle } & {
@@ -67,8 +69,12 @@ function setRef<T>(ref: Ref<T> | undefined, value: T | null) {
   if (ref) ref.current = value;
 }
 
-export function Tabs<TValue extends string = string>({ className, onValueChange, children, ...props }: TabsProps<TValue>) {
+export function Tabs<TValue extends string = string>({ className, onValueChange, children, ref, ...props }: TabsProps<TValue>) {
   const rootRef = useRef<HTMLDivElement>(null);
+  useImperativeHandle(ref, () => {
+    if (!rootRef.current) throw new Error("Tabs root is not mounted.");
+    return rootRef.current;
+  }, []);
   const activePanelRef = useRef<ActiveTabsPanel | null>(null);
   const startingPanelsRef = useRef<HTMLDivElement[]>([]);
   const previousHeightRef = useRef<string | null>(null);
@@ -155,7 +161,7 @@ function countTabs(children: ReactNode): number {
   }, 0);
 }
 
-export function TabsList({ size = "sm", variant = "default", className, children, ...props }: TabsListProps) {
+export function TabsList({ size = "sm", variant = "default", scrollable, className, children, ...props }: TabsListProps) {
   const isSingle = countTabs(children) === 1;
 
   return (
@@ -166,6 +172,7 @@ export function TabsList({ size = "sm", variant = "default", className, children
       data-size={size}
       data-variant={variant}
       data-single={isSingle ? "true" : undefined}
+      data-scrollable={scrollable ? "true" : undefined}
       className={cn(variant === "browser" && "gap-0 p-0 px-(--_tabs-browser-inset) pt-(--cui-tabs-list-padding)", className)}
       {...props}
     >

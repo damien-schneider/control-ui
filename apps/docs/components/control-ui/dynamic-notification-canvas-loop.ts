@@ -74,6 +74,7 @@ export function createNotificationCanvasLoop(
   let staticFrameDrawn = false;
   let previousFrameAt = performance.now();
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let resolutionQuery = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
 
   function tick(): void {
     rafId = 0;
@@ -104,6 +105,13 @@ export function createNotificationCanvasLoop(
     invalidate();
   }
 
+  /* zoom or a move between displays rescales the backing store while the CSS box, and so ResizeObserver, stays put */
+  function handleResolutionChange(): void {
+    resolutionQuery = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
+    resolutionQuery.addEventListener("change", handleResolutionChange, { once: true });
+    invalidate();
+  }
+
   const resizeObserver = new ResizeObserver(invalidate);
   resizeObserver.observe(canvas);
 
@@ -129,6 +137,7 @@ export function createNotificationCanvasLoop(
 
   document.addEventListener("visibilitychange", handleVisibility);
   reducedMotionQuery.addEventListener("change", invalidate);
+  resolutionQuery.addEventListener("change", handleResolutionChange, { once: true });
 
   return {
     invalidate,
@@ -142,6 +151,7 @@ export function createNotificationCanvasLoop(
       stateObserver.disconnect();
       document.removeEventListener("visibilitychange", handleVisibility);
       reducedMotionQuery.removeEventListener("change", invalidate);
+      resolutionQuery.removeEventListener("change", handleResolutionChange);
     },
   };
 }

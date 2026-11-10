@@ -3,6 +3,7 @@ export const inlineAttachmentKnobs = [
   "--cui-inline-attachment-radius",
   "--cui-inline-attachment-background",
   "--cui-inline-attachment-ring-color",
+  "--cui-inline-attachment-error-ring-color",
   "--cui-inline-attachment-padding",
   "--cui-inline-attachment-document-padding",
   "--cui-inline-attachment-document-background",

@@ -9,7 +9,7 @@ import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/but
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { popupItemFocusProps } from "@/components/control-ui/lib/popup-item-focus";
-import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { skinScopeAttributes } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { type PopupItemTone, popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 
@@ -43,19 +43,19 @@ export type DropdownMenuContentProps = DropdownMenuStyledProps<MenuPrimitive.Pop
     "side" | "sideOffset" | "align" | "alignOffset" | "collisionBoundary" | "collisionPadding" | "collisionAvoidance"
   >;
 
-export type DropdownMenuItemProps = DropdownMenuStyledProps<MenuPrimitive.Item.Props> & { tone?: PopupItemTone };
+export type DropdownMenuItemProps = DropdownMenuStyledProps<MenuPrimitive.Item.Props> & { tone?: PopupItemTone; inset?: boolean };
 export type DropdownMenuGroupProps = DropdownMenuStyledProps<MenuPrimitive.Group.Props>;
 export type DropdownMenuCheckboxItemProps = DropdownMenuStyledProps<MenuPrimitive.CheckboxItem.Props>;
 export type DropdownMenuRadioGroupProps = DropdownMenuStyledProps<MenuPrimitive.RadioGroup.Props>;
 export type DropdownMenuRadioItemProps = DropdownMenuStyledProps<MenuPrimitive.RadioItem.Props>;
 export type DropdownMenuSubProps = MenuPrimitive.SubmenuRoot.Props;
-export type DropdownMenuSubTriggerProps = DropdownMenuStyledProps<MenuPrimitive.SubmenuTrigger.Props>;
+export type DropdownMenuSubTriggerProps = DropdownMenuStyledProps<MenuPrimitive.SubmenuTrigger.Props> & { inset?: boolean };
 export type DropdownMenuSubContentProps = DropdownMenuContentProps;
 export type DropdownMenuShortcutProps = DropdownMenuStyledProps<ComponentProps<"span">>;
 
 export type DropdownMenuSeparatorProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
-export type DropdownMenuLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export type DropdownMenuLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle; inset?: boolean };
 
 export function DropdownMenu<Payload>({ children, ...props }: DropdownMenuProps<Payload>) {
   return <MenuPrimitive.Root {...props}>{children}</MenuPrimitive.Root>;
@@ -115,8 +115,7 @@ export function DropdownMenuContent({
   return (
     <MenuPrimitive.Portal>
       <MenuPrimitive.Positioner
-        data-skin={skin.id}
-        data-effects={controlEffectsAttribute(skin.effects)}
+        {...skinScopeAttributes(skin)}
         side={side}
         align={align}
         sideOffset={sideOffset}
@@ -142,7 +141,7 @@ export function DropdownMenuContent({
   );
 }
 
-export function DropdownMenuItem({ tone = "neutral", className, ...props }: DropdownMenuItemProps) {
+export function DropdownMenuItem({ tone = "neutral", inset, className, ...props }: DropdownMenuItemProps) {
   return (
     <MenuPrimitive.Item
       data-control-ui="dropdown-menu"
@@ -150,6 +149,7 @@ export function DropdownMenuItem({ tone = "neutral", className, ...props }: Drop
       data-control-family="popup"
       data-popup-part="item"
       data-tone={tone}
+      data-inset={inset ? "true" : undefined}
       className={cn(popupItemStructureClasses, className)}
       {...mergeProps(popupItemFocusProps, props)}
     />
@@ -169,13 +169,14 @@ export function DropdownMenuSeparator({ className, ...props }: DropdownMenuSepar
   );
 }
 
-export function DropdownMenuLabel({ className, ...props }: DropdownMenuLabelProps) {
+export function DropdownMenuLabel({ inset, className, ...props }: DropdownMenuLabelProps) {
   return (
     <MenuPrimitive.GroupLabel
       data-control-ui="dropdown-menu"
       data-slot="label"
       data-control-family="popup"
       data-popup-part="label"
+      data-inset={inset ? "true" : undefined}
       className={cn(className)}
       {...props}
     />
@@ -243,13 +244,14 @@ export function DropdownMenuSub(props: DropdownMenuSubProps) {
   return <MenuPrimitive.SubmenuRoot {...props} />;
 }
 
-export function DropdownMenuSubTrigger({ className, children, ...props }: DropdownMenuSubTriggerProps) {
+export function DropdownMenuSubTrigger({ inset, className, children, ...props }: DropdownMenuSubTriggerProps) {
   return (
     <MenuPrimitive.SubmenuTrigger
       data-control-ui="dropdown-menu"
       data-control-family="popup"
       data-popup-part="item"
       data-slot="sub-trigger"
+      data-inset={inset ? "true" : undefined}
       className={cn(popupItemStructureClasses, className)}
       {...props}
     >

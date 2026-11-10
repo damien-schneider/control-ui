@@ -577,7 +577,16 @@
           "registryItems": [
             "activity"
           ],
-          "states": []
+          "states": [
+            {
+              "attribute": "data-icon-dir",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "inline"
+              ]
+            }
+          ]
         },
         "content": {
           "registryItems": [
@@ -619,8 +628,8 @@
               "source": "control-ui",
               "valueKind": "enum",
               "values": [
-                "default",
-                "destructive"
+                "danger",
+                "neutral"
               ]
             }
           ]
@@ -712,12 +721,15 @@
           ],
           "states": [
             {
-              "attribute": "data-variant",
+              "attribute": "data-tone",
               "source": "control-ui",
               "valueKind": "enum",
               "values": [
-                "default",
-                "destructive"
+                "danger",
+                "info",
+                "neutral",
+                "success",
+                "warning"
               ]
             }
           ]
@@ -1338,6 +1350,7 @@
     "autocomplete": {
       "parts": {
         "root": {
+          "family": "field",
           "registryItems": [
             "autocomplete"
           ],
@@ -1847,7 +1860,19 @@
           "registryItems": [
             "avatar"
           ],
-          "states": []
+          "states": [
+            {
+              "attribute": "data-size",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "lg",
+                "md",
+                "sm",
+                "xs"
+              ]
+            }
+          ]
         },
         "badge": {
           "family": "avatar",
@@ -2198,6 +2223,22 @@
           ],
           "states": []
         },
+        "chevron": {
+          "family": "calendar",
+          "registryItems": [
+            "calendar"
+          ],
+          "states": [
+            {
+              "attribute": "data-icon-dir",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "inline"
+              ]
+            }
+          ]
+        },
         "day": {
           "family": "calendar",
           "registryItems": [
@@ -2250,6 +2291,49 @@
             }
           ]
         },
+        "dropdown": {
+          "family": "calendar",
+          "registryItems": [
+            "calendar"
+          ],
+          "states": [
+            {
+              "attribute": "data-disabled",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-focus-ring",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "within"
+              ]
+            }
+          ]
+        },
+        "dropdown-label": {
+          "family": "calendar",
+          "registryItems": [
+            "calendar"
+          ],
+          "states": []
+        },
+        "dropdown-select": {
+          "family": "calendar",
+          "registryItems": [
+            "calendar"
+          ],
+          "states": []
+        },
+        "dropdowns": {
+          "family": "calendar",
+          "registryItems": [
+            "calendar"
+          ],
+          "states": []
+        },
         "month": {
           "family": "calendar",
           "registryItems": [
@@ -2286,6 +2370,20 @@
           "states": []
         },
         "nav-button": {
+          "family": "calendar",
+          "registryItems": [
+            "calendar"
+          ],
+          "states": []
+        },
+        "week-number": {
+          "family": "calendar",
+          "registryItems": [
+            "calendar"
+          ],
+          "states": []
+        },
+        "week-number-header": {
           "family": "calendar",
           "registryItems": [
             "calendar"
@@ -2573,6 +2671,13 @@
           ],
           "states": []
         },
+        "tooltip-label": {
+          "family": "chart",
+          "registryItems": [
+            "chart"
+          ],
+          "states": []
+        },
         "tooltip-row": {
           "family": "chart",
           "registryItems": [
@@ -2588,6 +2693,13 @@
           ]
         },
         "tooltip-title": {
+          "family": "chart",
+          "registryItems": [
+            "chart"
+          ],
+          "states": []
+        },
+        "tooltip-value": {
           "family": "chart",
           "registryItems": [
             "chart"
@@ -3752,6 +3864,7 @@
           ]
         },
         "item": {
+          "family": "checkbox-group",
           "registryItems": [
             "checkbox-group"
           ],
@@ -3829,7 +3942,16 @@
           "registryItems": [
             "code"
           ],
-          "states": []
+          "states": [
+            {
+              "attribute": "data-focus-ring",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "none"
+              ]
+            }
+          ]
         },
         "floating-frame": {
           "family": "code",
@@ -3970,6 +4092,13 @@
               ]
             }
           ]
+        },
+        "empty": {
+          "family": "code-diff",
+          "registryItems": [
+            "code-diff"
+          ],
+          "states": []
         },
         "empty-half": {
           "family": "code-diff",
@@ -4115,6 +4244,13 @@
               ]
             }
           ]
+        },
+        "no-newline": {
+          "family": "code-diff",
+          "registryItems": [
+            "code-diff"
+          ],
+          "states": []
         },
         "revealed-row": {
           "family": "code-diff",
@@ -5637,7 +5773,7 @@
           "states": [
             {
               "attribute": "data-disabled",
-              "source": "control-ui",
+              "source": "external",
               "valueKind": "presence",
               "values": []
             },
@@ -7359,6 +7495,12 @@
               "values": []
             },
             {
+              "attribute": "data-inset",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
               "attribute": "data-tone",
               "source": "control-ui",
               "valueKind": "enum",
@@ -7374,7 +7516,14 @@
           "registryItems": [
             "dropdown-menu"
           ],
-          "states": []
+          "states": [
+            {
+              "attribute": "data-inset",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            }
+          ]
         },
         "radio-group": {
           "family": "popup",
@@ -7460,6 +7609,12 @@
             {
               "attribute": "data-highlighted",
               "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-inset",
+              "source": "control-ui",
               "valueKind": "presence",
               "values": []
             },
@@ -8115,6 +8270,13 @@
           ],
           "states": []
         },
+        "error-retry": {
+          "family": "emoji-picker",
+          "registryItems": [
+            "emoji-picker"
+          ],
+          "states": []
+        },
         "footer": {
           "family": "emoji-picker",
           "registryItems": [
@@ -8199,6 +8361,13 @@
           "states": []
         },
         "search-input": {
+          "family": "emoji-picker",
+          "registryItems": [
+            "emoji-picker"
+          ],
+          "states": []
+        },
+        "skin-tone": {
           "family": "emoji-picker",
           "registryItems": [
             "emoji-picker"
@@ -8398,6 +8567,14 @@
               "source": "external",
               "valueKind": "presence",
               "values": []
+            },
+            {
+              "attribute": "data-size",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "md"
+              ]
             },
             {
               "attribute": "data-touched",
@@ -8843,6 +9020,12 @@
             }
           ]
         },
+        "add-button": {
+          "registryItems": [
+            "filter-bar"
+          ],
+          "states": []
+        },
         "chip": {
           "family": "filter-bar",
           "registryItems": [
@@ -8857,7 +9040,20 @@
             }
           ]
         },
+        "clear": {
+          "registryItems": [
+            "filter-bar"
+          ],
+          "states": []
+        },
         "exit": {
+          "family": "filter-bar",
+          "registryItems": [
+            "filter-bar"
+          ],
+          "states": []
+        },
+        "input": {
           "family": "filter-bar",
           "registryItems": [
             "filter-bar"
@@ -9004,7 +9200,20 @@
           "registryItems": [
             "color-picker"
           ],
-          "states": []
+          "states": [
+            {
+              "attribute": "data-disabled",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-readonly",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            }
+          ]
         },
         "preview": {
           "family": "gradient-editor",
@@ -9020,6 +9229,12 @@
           ],
           "states": [
             {
+              "attribute": "data-readonly",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
               "attribute": "data-selected",
               "source": "control-ui",
               "valueKind": "presence",
@@ -9032,7 +9247,14 @@
           "registryItems": [
             "color-picker"
           ],
-          "states": []
+          "states": [
+            {
+              "attribute": "data-readonly",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            }
+          ]
         },
         "value-row": {
           "family": "gradient-editor",
@@ -9370,6 +9592,15 @@
             "infinite-canvas"
           ],
           "states": [
+            {
+              "attribute": "data-chrome",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "embedded",
+                "standalone"
+              ]
+            },
             {
               "attribute": "data-easing",
               "source": "control-ui",
@@ -10431,6 +10662,13 @@
           ],
           "states": []
         },
+        "blocked-link": {
+          "family": "markdown",
+          "registryItems": [
+            "markdown"
+          ],
+          "states": []
+        },
         "blockquote": {
           "family": "markdown",
           "registryItems": [
@@ -10494,6 +10732,13 @@
           ],
           "states": []
         },
+        "image": {
+          "family": "markdown",
+          "registryItems": [
+            "markdown"
+          ],
+          "states": []
+        },
         "inline-code": {
           "family": "markdown",
           "registryItems": [
@@ -10543,7 +10788,28 @@
           ],
           "states": []
         },
+        "subscript": {
+          "family": "markdown",
+          "registryItems": [
+            "markdown"
+          ],
+          "states": []
+        },
+        "superscript": {
+          "family": "markdown",
+          "registryItems": [
+            "markdown"
+          ],
+          "states": []
+        },
         "table": {
+          "family": "markdown",
+          "registryItems": [
+            "markdown"
+          ],
+          "states": []
+        },
+        "table-body": {
           "family": "markdown",
           "registryItems": [
             "markdown"
@@ -10557,7 +10823,21 @@
           ],
           "states": []
         },
+        "table-head": {
+          "family": "markdown",
+          "registryItems": [
+            "markdown"
+          ],
+          "states": []
+        },
         "table-header": {
+          "family": "markdown",
+          "registryItems": [
+            "markdown"
+          ],
+          "states": []
+        },
+        "table-row": {
           "family": "markdown",
           "registryItems": [
             "markdown"
@@ -10638,6 +10918,12 @@
               "source": "control-ui",
               "valueKind": "presence",
               "values": []
+            },
+            {
+              "attribute": "data-readonly",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
             }
           ]
         },
@@ -10656,6 +10942,13 @@
           "states": []
         },
         "source": {
+          "family": "markdown-editor",
+          "registryItems": [
+            "markdown-editor"
+          ],
+          "states": []
+        },
+        "suggestion-description": {
           "family": "markdown-editor",
           "registryItems": [
             "markdown-editor"
@@ -10738,6 +11031,46 @@
               "values": [
                 "menubar"
               ]
+            }
+          ]
+        },
+        "checkbox-item": {
+          "family": "popup",
+          "registryItems": [
+            "menubar"
+          ],
+          "states": [
+            {
+              "attribute": "data-checked",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-disabled",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-highlighted",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-popup-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "menubar"
+              ]
+            },
+            {
+              "attribute": "data-unchecked",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
             }
           ]
         },
@@ -10850,6 +11183,12 @@
               "values": []
             },
             {
+              "attribute": "data-inset",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
               "attribute": "data-popup-kind",
               "source": "control-ui",
               "valueKind": "enum",
@@ -10887,6 +11226,62 @@
               "values": [
                 "menubar"
               ]
+            }
+          ]
+        },
+        "radio-group": {
+          "family": "popup",
+          "registryItems": [
+            "menubar"
+          ],
+          "states": [
+            {
+              "attribute": "data-popup-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "menubar"
+              ]
+            }
+          ]
+        },
+        "radio-item": {
+          "family": "popup",
+          "registryItems": [
+            "menubar"
+          ],
+          "states": [
+            {
+              "attribute": "data-checked",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-disabled",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-highlighted",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-popup-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "menubar"
+              ]
+            },
+            {
+              "attribute": "data-unchecked",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
             }
           ]
         },
@@ -11246,20 +11641,10 @@
           ]
         },
         "value": {
-          "family": "button",
           "registryItems": [
             "model-switcher"
           ],
-          "states": [
-            {
-              "attribute": "data-button-kind",
-              "source": "control-ui",
-              "valueKind": "enum",
-              "values": [
-                "model-switcher"
-              ]
-            }
-          ]
+          "states": []
         }
       },
       "registryItems": [
@@ -11419,6 +11804,22 @@
               ]
             }
           ]
+        },
+        "wrapper": {
+          "family": "field",
+          "registryItems": [
+            "native-select"
+          ],
+          "states": [
+            {
+              "attribute": "data-field-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "native-select"
+              ]
+            }
+          ]
         }
       },
       "registryItems": [
@@ -11551,15 +11952,6 @@
               "values": [
                 "navigation-menu"
               ]
-            },
-            {
-              "attribute": "data-variant",
-              "source": "control-ui",
-              "valueKind": "enum",
-              "values": [
-                "compact",
-                "default"
-              ]
             }
           ]
         },
@@ -11575,6 +11967,52 @@
               "valueKind": "enum",
               "values": [
                 "navigation-menu"
+              ]
+            }
+          ]
+        },
+        "list-link": {
+          "family": "button",
+          "registryItems": [
+            "navigation-menu"
+          ],
+          "states": [
+            {
+              "attribute": "data-active",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-shape",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "default"
+              ]
+            },
+            {
+              "attribute": "data-size",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "sm"
+              ]
+            },
+            {
+              "attribute": "data-tone",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "neutral"
+              ]
+            },
+            {
+              "attribute": "data-variant",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "quiet"
               ]
             }
           ]
@@ -11800,6 +12238,82 @@
     },
     "number-field": {
       "parts": {
+        "root": {
+          "family": "field",
+          "registryItems": [
+            "number-field"
+          ],
+          "states": [
+            {
+              "attribute": "data-dirty",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-disabled",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-field-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "number-field"
+              ]
+            },
+            {
+              "attribute": "data-filled",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-focused",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-invalid",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-readonly",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-required",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-scrubbing",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-touched",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-valid",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            }
+          ]
+        },
         "decrement": {
           "family": "field",
           "registryItems": [
@@ -12512,8 +13026,22 @@
     },
     "popover": {
       "parts": {
+        "anchor": {
+          "registryItems": [
+            "popover"
+          ],
+          "states": [
+            {
+              "attribute": "data-popup-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "popover"
+              ]
+            }
+          ]
+        },
         "close": {
-          "family": "popup",
           "registryItems": [
             "popover"
           ],
@@ -12976,6 +13504,15 @@
                 "horizontal",
                 "vertical"
               ]
+            },
+            {
+              "attribute": "data-track",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "hover",
+                "none"
+              ]
             }
           ]
         },
@@ -13156,10 +13693,26 @@
           ]
         },
         "label": {
+          "family": "choice",
           "registryItems": [
             "radio-group"
           ],
-          "states": []
+          "states": [
+            {
+              "attribute": "data-choice-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "radio-group"
+              ]
+            },
+            {
+              "attribute": "data-track-item",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            }
+          ]
         }
       },
       "registryItems": [
@@ -13788,7 +14341,6 @@
           ]
         },
         "trigger": {
-          "family": "popup",
           "registryItems": [
             "rich-tooltip"
           ],
@@ -14191,6 +14743,38 @@
             }
           ]
         },
+        "group": {
+          "family": "popup",
+          "registryItems": [
+            "select"
+          ],
+          "states": [
+            {
+              "attribute": "data-popup-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "select"
+              ]
+            }
+          ]
+        },
+        "group-label": {
+          "family": "popup",
+          "registryItems": [
+            "select"
+          ],
+          "states": [
+            {
+              "attribute": "data-popup-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "select"
+              ]
+            }
+          ]
+        },
         "icon": {
           "family": "popup",
           "registryItems": [
@@ -14264,6 +14848,22 @@
           ]
         },
         "item-text": {
+          "family": "popup",
+          "registryItems": [
+            "select"
+          ],
+          "states": [
+            {
+              "attribute": "data-popup-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "select"
+              ]
+            }
+          ]
+        },
+        "separator": {
           "family": "popup",
           "registryItems": [
             "select"
@@ -14406,6 +15006,28 @@
               ]
             }
           ]
+        },
+        "value-text": {
+          "family": "popup",
+          "registryItems": [
+            "select"
+          ],
+          "states": [
+            {
+              "attribute": "data-placeholder",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-popup-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "select"
+              ]
+            }
+          ]
         }
       },
       "registryItems": [
@@ -14504,7 +15126,6 @@
           ]
         },
         "close": {
-          "family": "popup",
           "registryItems": [
             "sheet"
           ],
@@ -14647,6 +15268,33 @@
               "values": [
                 "sheet"
               ]
+            }
+          ]
+        },
+        "trigger": {
+          "registryItems": [
+            "sheet"
+          ],
+          "states": [
+            {
+              "attribute": "data-disabled",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-popup-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "sheet"
+              ]
+            },
+            {
+              "attribute": "data-popup-open",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
             }
           ]
         }
@@ -15158,8 +15806,10 @@
             {
               "attribute": "data-labeled",
               "source": "control-ui",
-              "valueKind": "presence",
-              "values": []
+              "valueKind": "enum",
+              "values": [
+                "true"
+              ]
             },
             {
               "attribute": "data-orientation",
@@ -15649,6 +16299,7 @@
     "source-badge": {
       "parts": {
         "root": {
+          "family": "badge",
           "registryItems": [
             "source-badge"
           ],
@@ -15774,7 +16425,23 @@
           "registryItems": [
             "stepper"
           ],
-          "states": []
+          "states": [
+            {
+              "attribute": "data-orientation",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "horizontal",
+                "vertical"
+              ]
+            },
+            {
+              "attribute": "data-responsive",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            }
+          ]
         },
         "indicator": {
           "family": "stepper",
@@ -15815,6 +16482,21 @@
             },
             {
               "attribute": "data-invalid",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-orientation",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "horizontal",
+                "vertical"
+              ]
+            },
+            {
+              "attribute": "data-responsive",
               "source": "control-ui",
               "valueKind": "presence",
               "values": []
@@ -15868,6 +16550,21 @@
               "values": []
             },
             {
+              "attribute": "data-orientation",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "horizontal",
+                "vertical"
+              ]
+            },
+            {
+              "attribute": "data-responsive",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
               "attribute": "data-state",
               "source": "control-ui",
               "valueKind": "enum",
@@ -15885,7 +16582,23 @@
           "registryItems": [
             "stepper"
           ],
-          "states": []
+          "states": [
+            {
+              "attribute": "data-orientation",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "horizontal",
+                "vertical"
+              ]
+            },
+            {
+              "attribute": "data-responsive",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            }
+          ]
         },
         "trigger": {
           "family": "stepper",
@@ -16157,7 +16870,14 @@
           "registryItems": [
             "table"
           ],
-          "states": []
+          "states": [
+            {
+              "attribute": "data-sticky-header",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            }
+          ]
         },
         "body": {
           "family": "table",
@@ -16445,6 +17165,12 @@
               ]
             },
             {
+              "attribute": "data-scrollable",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
               "attribute": "data-single",
               "source": "control-ui",
               "valueKind": "presence",
@@ -16615,7 +17341,16 @@
           "registryItems": [
             "task-list"
           ],
-          "states": []
+          "states": [
+            {
+              "attribute": "data-icon-dir",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "inline"
+              ]
+            }
+          ]
         },
         "item": {
           "family": "task-list",
@@ -17159,6 +17894,15 @@
               ]
             },
             {
+              "attribute": "data-shape",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "circle",
+                "default"
+              ]
+            },
+            {
               "attribute": "data-size",
               "source": "control-ui",
               "valueKind": "enum",
@@ -17276,6 +18020,7 @@
               "values": [
                 "approved",
                 "denied",
+                "expired",
                 "pending"
               ]
             }
@@ -18534,7 +19279,7 @@
         "name": "--cui-activity-trigger-hover-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--muted) l c h / 0.45)"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-activity-code-background",
@@ -18554,7 +19299,7 @@
         "name": "--cui-alert-radius",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "var(--radius-lg)"
+        "defaultValue": "var(--radius-panel)"
       },
       {
         "name": "--cui-alert-background",
@@ -18767,14 +19512,38 @@
         "syntax": "<color>",
         "initialValue": "transparent",
         "defaultValue": "oklch(from var(--border) l c h / 0.55)"
+      },
+      {
+        "name": "--cui-audio-visualizer-animation-duration",
+        "syntax": "<time>",
+        "initialValue": "0s",
+        "defaultValue": "calc(var(--duration-slow) * 4)"
       }
     ],
     "avatar": [
+      {
+        "name": "--cui-avatar-size",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 9)"
+      },
       {
         "name": "--cui-avatar-radius",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
         "defaultValue": "9999px"
+      },
+      {
+        "name": "--cui-avatar-group-gap",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * -2)"
+      },
+      {
+        "name": "--cui-avatar-group-ring-size",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "2px"
       },
       {
         "name": "--cui-avatar-group-ring-color",
@@ -18807,6 +19576,12 @@
         "defaultValue": "max(0.5rem, 30%)"
       },
       {
+        "name": "--cui-avatar-badge-radius",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "9999px"
+      },
+      {
         "name": "--cui-avatar-badge-ring-size",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
@@ -18829,9 +19604,39 @@
         "syntax": "<color>",
         "initialValue": "transparent",
         "defaultValue": "var(--primary-foreground)"
+      },
+      {
+        "name": "--cui-avatar-badge-online-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--success)"
+      },
+      {
+        "name": "--cui-avatar-badge-away-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--warning)"
+      },
+      {
+        "name": "--cui-avatar-badge-busy-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--destructive)"
+      },
+      {
+        "name": "--cui-avatar-badge-offline-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "oklch(from var(--muted-foreground) l c h / 0.6)"
       }
     ],
     "badge": [
+      {
+        "name": "--cui-badge-icon",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 3)"
+      },
       {
         "name": "--cui-badge-radius",
         "syntax": "<length-percentage>",
@@ -19135,6 +19940,18 @@
         "defaultValue": "var(--radius-control)"
       },
       {
+        "name": "--cui-calendar-nav-button-radius",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "var(--radius-control)"
+      },
+      {
+        "name": "--cui-calendar-hover-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--hover-fill)"
+      },
+      {
         "name": "--cui-calendar-today-background",
         "syntax": "<color>",
         "initialValue": "transparent",
@@ -19162,7 +19979,7 @@
         "name": "--cui-calendar-day-size",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "calc(var(--spacing) * 9)"
+        "defaultValue": "var(--control-h-md)"
       },
       {
         "name": "--cui-calendar-cell-padding",
@@ -19174,7 +19991,7 @@
         "name": "--cui-calendar-today-shadow",
         "syntax": "*",
         "initialValue": "",
-        "defaultValue": "none"
+        "defaultValue": "0 0 transparent"
       },
       {
         "name": "--cui-calendar-weekend-foreground",
@@ -19205,6 +20022,12 @@
         "syntax": "<length-percentage>",
         "initialValue": "0px",
         "defaultValue": "var(--text-caption)"
+      },
+      {
+        "name": "--cui-calendar-outside-foreground",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--muted-foreground)"
       }
     ],
     "card": [
@@ -19212,7 +20035,7 @@
         "name": "--cui-card-radius",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "var(--radius-lg)"
+        "defaultValue": "var(--radius-panel)"
       },
       {
         "name": "--cui-card-background",
@@ -19221,10 +20044,22 @@
         "defaultValue": "var(--card)"
       },
       {
+        "name": "--cui-card-foreground",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--card-foreground)"
+      },
+      {
+        "name": "--cui-card-section-border-color",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "oklch(from var(--border) l c h / 0.7)"
+      },
+      {
         "name": "--cui-card-hover-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "var(--accent)"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-card-border-color",
@@ -19541,10 +20376,16 @@
         "defaultValue": "var(--control-rim)"
       },
       {
+        "name": "--cui-chat-composer-attachment-error-border-color",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "oklch(from var(--destructive) l c h / 0.45)"
+      },
+      {
         "name": "--cui-chat-composer-attachment-shadow",
         "syntax": "*",
         "initialValue": "",
-        "defaultValue": "inset 0 0 0 var(--control-rim-width) var(--cui-chat-composer-attachment-border-color), var(--shadow-sm)"
+        "defaultValue": "var(--shadow-sm)"
       },
       {
         "name": "--cui-chat-composer-attachment-backdrop-filter",
@@ -19701,10 +20542,16 @@
         "defaultValue": "calc(var(--spacing) * 1.5)"
       },
       {
+        "name": "--cui-chat-message-pending-animation-duration",
+        "syntax": "<time>",
+        "initialValue": "0s",
+        "defaultValue": "calc(var(--duration-slow) * 3)"
+      },
+      {
         "name": "--cui-chat-message-row-hover-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--muted) l c h / 0.6)"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-chat-message-reaction-radius",
@@ -19751,6 +20598,12 @@
         "defaultValue": "calc(var(--spacing) * 4)"
       },
       {
+        "name": "--cui-choice-indicator-size",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--cui-choice-size) * 0.75)"
+      },
+      {
         "name": "--cui-choice-radius",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
@@ -19790,7 +20643,7 @@
         "name": "--cui-choice-shadow",
         "syntax": "*",
         "initialValue": "",
-        "defaultValue": "inset 0 0 0 var(--cui-choice-border-width) var(--cui-choice-border-color), var(--shadow-sm)"
+        "defaultValue": "var(--shadow-sm)"
       }
     ],
     "code": [
@@ -19872,7 +20725,7 @@
         "name": "--cui-code-diff-border-color",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "var(--border)"
+        "defaultValue": "var(--control-rim)"
       },
       {
         "name": "--cui-code-diff-border-width",
@@ -19938,7 +20791,7 @@
         "name": "--cui-code-diff-expand-button-hover-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--foreground) l c h / 0.08)"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-code-diff-expand-button-hover-foreground",
@@ -20141,6 +20994,12 @@
         "defaultValue": "var(--shadow-pop)"
       },
       {
+        "name": "--cui-dockable-panel-dragging-shadow",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "var(--shadow-modal)"
+      },
+      {
         "name": "--cui-dockable-panel-drop-zone-active-background",
         "syntax": "<color>",
         "initialValue": "transparent",
@@ -20241,10 +21100,28 @@
         "defaultValue": "1.65rem"
       },
       {
+        "name": "--cui-dynamic-notification-radius",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--control-h-lg) / 2)"
+      },
+      {
+        "name": "--cui-dynamic-notification-thinking-radius",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "2.75rem"
+      },
+      {
         "name": "--cui-dynamic-notification-morph-easing",
         "syntax": "*",
         "initialValue": "",
         "defaultValue": "linear(\n      0,\n      0.0568 3.85%,\n      0.1888 7.69%,\n      0.351 11.54%,\n      0.5142 15.38%,\n      0.6608 19.23%,\n      0.7824 23.08%,\n      0.8767 26.92%,\n      0.9449 30.77%,\n      0.9908 34.62%,\n      1.0187 38.46%,\n      1.0332 42.31%,\n      1.0382 46.15%,\n      1.0372 50%,\n      1.0327 53.85%,\n      1.0266 57.69%,\n      1.0203 61.54%,\n      1.0145 65.38%,\n      1.0095 69.23%,\n      1.0056 73.08%,\n      1.0027 76.92%,\n      1.0008 80.77%,\n      0.9995 84.62%,\n      0.9988 88.46%,\n      0.9986 92.31%,\n      0.9985 96.15%,\n      1\n    )"
+      },
+      {
+        "name": "--cui-dynamic-notification-glass-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "oklch(0 0 0 / 0.97)"
       },
       {
         "name": "--cui-dynamic-notification-glass-foreground",
@@ -20259,6 +21136,12 @@
         "defaultValue": "oklch(1 0 0 / 0.12)"
       },
       {
+        "name": "--cui-dynamic-notification-glass-shadow",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "var(--shadow-pop)"
+      },
+      {
         "name": "--cui-dynamic-notification-liquid-foreground",
         "syntax": "<color>",
         "initialValue": "transparent",
@@ -20269,6 +21152,12 @@
         "syntax": "*",
         "initialValue": "",
         "defaultValue": "0 1px 2px oklch(0 0 0 / 0.25)"
+      },
+      {
+        "name": "--cui-dynamic-notification-reply-input-radius",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "9999px"
       },
       {
         "name": "--cui-dynamic-notification-surface-background",
@@ -20324,7 +21213,7 @@
         "name": "--cui-emoji-picker-cell-size",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "calc(var(--spacing) * 10)"
+        "defaultValue": "var(--control-h-lg)"
       },
       {
         "name": "--cui-emoji-picker-height",
@@ -20348,7 +21237,7 @@
         "name": "--cui-emoji-picker-active-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "var(--accent)"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-emoji-picker-header-background",
@@ -20380,7 +21269,7 @@
         "name": "--cui-empty-radius",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "var(--radius-lg)"
+        "defaultValue": "var(--radius-panel)"
       },
       {
         "name": "--cui-empty-background",
@@ -20410,7 +21299,7 @@
         "name": "--cui-empty-media-radius",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "var(--radius-lg)"
+        "defaultValue": "var(--radius-control)"
       },
       {
         "name": "--cui-empty-media-background",
@@ -20508,7 +21397,7 @@
         "name": "--cui-field-label-radius",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "var(--radius-lg)"
+        "defaultValue": "var(--radius-control)"
       },
       {
         "name": "--cui-field-label-background",
@@ -20670,7 +21559,7 @@
         "name": "--cui-field-font-weight",
         "syntax": "<number>",
         "initialValue": "400",
-        "defaultValue": "400"
+        "defaultValue": "var(--font-weight-normal)"
       },
       {
         "name": "--cui-field-font-family",
@@ -20682,7 +21571,7 @@
         "name": "--cui-field-group-radius",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "var(--radius-lg)"
+        "defaultValue": "var(--radius-panel)"
       },
       {
         "name": "--cui-field-group-background",
@@ -20811,6 +21700,12 @@
         "syntax": "<color>",
         "initialValue": "transparent",
         "defaultValue": "var(--hover-fill)"
+      },
+      {
+        "name": "--cui-filter-bar-remove-icon",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 3)"
       }
     ],
     "flow": [
@@ -20908,7 +21803,7 @@
         "name": "--cui-flow-node-radius",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "var(--radius-lg)"
+        "defaultValue": "var(--radius-panel)"
       },
       {
         "name": "--cui-flow-node-shadow",
@@ -20941,6 +21836,12 @@
         "defaultValue": "var(--control-rim-width)"
       },
       {
+        "name": "--cui-flow-handle-radius",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "9999px"
+      },
+      {
         "name": "--cui-flow-edge-label-background",
         "syntax": "<color>",
         "initialValue": "transparent",
@@ -20963,6 +21864,12 @@
         "syntax": "<length>",
         "initialValue": "0px",
         "defaultValue": "var(--control-rim-width)"
+      },
+      {
+        "name": "--cui-flow-edge-label-radius",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "9999px"
       },
       {
         "name": "--cui-flow-controls-item-radius",
@@ -21050,7 +21957,7 @@
         "name": "--cui-icon-picker-cell-size",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "calc(var(--spacing) * 10)"
+        "defaultValue": "var(--control-h-lg)"
       },
       {
         "name": "--cui-icon-picker-cell-radius",
@@ -21074,13 +21981,13 @@
         "name": "--cui-icon-picker-cell-hover-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "var(--accent)"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-icon-picker-cell-pressed-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "var(--accent)"
+        "defaultValue": "var(--active-fill)"
       }
     ],
     "infinite-canvas": [
@@ -21112,7 +22019,7 @@
         "name": "--cui-infinite-canvas-padding",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "max(\n      calc(var(--spacing) * 2),\n      calc(var(--cui-infinite-canvas-radius) - var(--_infinite-canvas-controls-radius))\n    )"
+        "defaultValue": "max(\n      calc(var(--spacing) * 2),\n      calc(var(--_infinite-canvas-radius) - var(--_infinite-canvas-controls-radius))\n    )"
       }
     ],
     "inline-attachment": [
@@ -21133,6 +22040,12 @@
         "syntax": "<color>",
         "initialValue": "transparent",
         "defaultValue": "var(--border)"
+      },
+      {
+        "name": "--cui-inline-attachment-error-ring-color",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "oklch(from var(--destructive) l c h / 0.45)"
       },
       {
         "name": "--cui-inline-attachment-padding",
@@ -21236,7 +22149,7 @@
         "name": "--cui-inline-citation-trigger-hover-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "var(--muted)"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-inline-citation-trigger-hover-foreground",
@@ -21280,7 +22193,13 @@
         "name": "--cui-item-radius",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "var(--radius-lg)"
+        "defaultValue": "var(--radius-control)"
+      },
+      {
+        "name": "--cui-item-media-icon-size",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 5)"
       },
       {
         "name": "--cui-item-hover-background",
@@ -21466,7 +22385,7 @@
         "name": "--cui-markdown-inline-code-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "color-mix(in oklab, var(--foreground) 8%, transparent)"
+        "defaultValue": "oklch(from var(--foreground) l c h / 0.08)"
       },
       {
         "name": "--cui-markdown-inline-code-foreground",
@@ -21478,7 +22397,7 @@
         "name": "--cui-markdown-inline-code-radius",
         "syntax": "<length-percentage>+",
         "initialValue": "0px",
-        "defaultValue": "0.25rem"
+        "defaultValue": "var(--radius-sm)"
       },
       {
         "name": "--cui-markdown-link-foreground",
@@ -21661,6 +22580,12 @@
         "defaultValue": "var(--radius-control)"
       },
       {
+        "name": "--cui-morphing-panel-open-radius",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "var(--radius-panel)"
+      },
+      {
         "name": "--cui-morphing-panel-background",
         "syntax": "<color>",
         "initialValue": "transparent",
@@ -21685,10 +22610,16 @@
         "defaultValue": "var(--shadow-md)"
       },
       {
+        "name": "--cui-morphing-panel-open-shadow",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "var(--shadow-pop)"
+      },
+      {
         "name": "--cui-morphing-panel-trigger-hover-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--foreground) l c h / 0.06)"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-morphing-panel-border-width",
@@ -21824,13 +22755,37 @@
         "name": "--cui-pagination-link-shadow",
         "syntax": "*",
         "initialValue": "",
-        "defaultValue": "none"
+        "defaultValue": "0 0 transparent"
       },
       {
         "name": "--cui-pagination-link-font-size",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "1em"
+        "defaultValue": "var(--text-body)"
+      },
+      {
+        "name": "--cui-pagination-link-height",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "var(--control-h-sm)"
+      },
+      {
+        "name": "--cui-pagination-link-active-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--control-fill)"
+      },
+      {
+        "name": "--cui-pagination-link-active-border-color",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--border)"
+      },
+      {
+        "name": "--cui-pagination-link-active-shadow",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "var(--shadow-sm)"
       }
     ],
     "phone-input": [
@@ -21850,13 +22805,13 @@
         "name": "--cui-phone-input-trigger-hover-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--foreground) l c h / 0.06)"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-phone-input-trigger-focus-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--foreground) l c h / 0.06)"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-phone-input-metadata-foreground",
@@ -22029,6 +22984,12 @@
         "defaultValue": "32rem"
       },
       {
+        "name": "--cui-popup-list-max-height",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "20rem"
+      },
+      {
         "name": "--cui-popup-item-description-foreground",
         "syntax": "<color>",
         "initialValue": "transparent",
@@ -22050,7 +23011,19 @@
         "name": "--cui-popup-tooltip-arrow-radius",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "3px"
+        "defaultValue": "min(var(--radius-sm), 3px)"
+      },
+      {
+        "name": "--cui-popup-shortcut-highlight-foreground",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--cui-popup-item-highlight-foreground)"
+      },
+      {
+        "name": "--cui-popup-submenu-indicator-highlight-foreground",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--cui-popup-item-highlight-foreground)"
       },
       {
         "name": "--cui-popup-status-success-foreground",
@@ -22279,6 +23252,18 @@
         "defaultValue": "40%"
       },
       {
+        "name": "--cui-range-indeterminate-animation-duration",
+        "syntax": "<time>",
+        "initialValue": "0s",
+        "defaultValue": "calc(var(--duration-loop) * 1.5)"
+      },
+      {
+        "name": "--cui-range-track-size",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 2)"
+      },
+      {
         "name": "--cui-range-track-radius",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
@@ -22337,6 +23322,36 @@
         "syntax": "*",
         "initialValue": "",
         "defaultValue": "var(--shadow-sm)"
+      },
+      {
+        "name": "--cui-range-track-dragging-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--active-fill)"
+      },
+      {
+        "name": "--cui-range-indicator-dragging-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--primary)"
+      },
+      {
+        "name": "--cui-range-thumb-hover-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--cui-range-thumb-background)"
+      },
+      {
+        "name": "--cui-range-thumb-dragging-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--cui-range-thumb-background)"
+      },
+      {
+        "name": "--cui-range-thumb-dragging-shadow",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "var(--shadow-md)"
       }
     ],
     "resizable": [
@@ -22503,6 +23518,12 @@
         "defaultValue": "transparent"
       },
       {
+        "name": "--cui-rich-tooltip-action-hover-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "oklch(from currentColor l c h / 0.15)"
+      },
+      {
         "name": "--cui-rich-tooltip-action-foreground",
         "syntax": "<color>",
         "initialValue": "transparent",
@@ -22516,6 +23537,12 @@
       }
     ],
     "scroll-area": [
+      {
+        "name": "--cui-scroll-area-scrollbar-size",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 1.5)"
+      },
       {
         "name": "--cui-scroll-area-thumb-radius",
         "syntax": "<length-percentage>",
@@ -22647,6 +23674,48 @@
         "defaultValue": "var(--cui-sidebar-inset-shadow)"
       },
       {
+        "name": "--cui-sidebar-inner-floating-border-width",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "var(--control-rim-width)"
+      },
+      {
+        "name": "--cui-sidebar-inner-floating-radius",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "var(--radius-panel)"
+      },
+      {
+        "name": "--cui-sidebar-inner-floating-shadow",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "var(--shadow-md)"
+      },
+      {
+        "name": "--cui-sidebar-skip-link-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--background)"
+      },
+      {
+        "name": "--cui-sidebar-skip-link-foreground",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--foreground)"
+      },
+      {
+        "name": "--cui-sidebar-skip-link-radius",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "var(--radius-control)"
+      },
+      {
+        "name": "--cui-sidebar-skip-link-shadow",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "var(--shadow-md)"
+      },
+      {
         "name": "--cui-sidebar-menu-badge-height",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
@@ -22681,6 +23750,36 @@
         "syntax": "<color>",
         "initialValue": "transparent",
         "defaultValue": "transparent"
+      },
+      {
+        "name": "--cui-sidebar-menu-badge-radius",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "9999px"
+      },
+      {
+        "name": "--cui-sidebar-menu-button-icon-foreground",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "currentColor"
+      },
+      {
+        "name": "--cui-sidebar-menu-button-active-icon-foreground",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "currentColor"
+      },
+      {
+        "name": "--cui-sidebar-menu-button-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "transparent"
+      },
+      {
+        "name": "--cui-sidebar-menu-button-shadow",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "0 0 transparent"
       },
       {
         "name": "--cui-sidebar-wrapper-background",
@@ -22740,7 +23839,7 @@
         "name": "--cui-sidebar-inner-shadow",
         "syntax": "*",
         "initialValue": "",
-        "defaultValue": "none"
+        "defaultValue": "0 0 transparent"
       },
       {
         "name": "--cui-sidebar-header-background",
@@ -22884,13 +23983,13 @@
         "name": "--cui-sidebar-menu-button-font-weight",
         "syntax": "<number>",
         "initialValue": "400",
-        "defaultValue": "400"
+        "defaultValue": "var(--font-weight-normal)"
       },
       {
         "name": "--cui-sidebar-menu-button-active-font-weight",
         "syntax": "<number>",
         "initialValue": "400",
-        "defaultValue": "500"
+        "defaultValue": "var(--font-weight-medium)"
       },
       {
         "name": "--cui-sidebar-group-label-font-size",
@@ -22902,7 +24001,7 @@
         "name": "--cui-sidebar-group-label-font-weight",
         "syntax": "<number>",
         "initialValue": "400",
-        "defaultValue": "500"
+        "defaultValue": "var(--font-weight-medium)"
       },
       {
         "name": "--cui-sidebar-group-label-letter-spacing",
@@ -22921,42 +24020,6 @@
         "syntax": "<length-percentage>+",
         "initialValue": "0px",
         "defaultValue": "0px calc(var(--spacing) * 2)"
-      },
-      {
-        "name": "--cui-sidebar-skip-link-background",
-        "syntax": "<color>",
-        "initialValue": "transparent",
-        "defaultValue": "var(--background)"
-      },
-      {
-        "name": "--cui-sidebar-skip-link-foreground",
-        "syntax": "<color>",
-        "initialValue": "transparent",
-        "defaultValue": "var(--foreground)"
-      },
-      {
-        "name": "--cui-sidebar-skip-link-radius",
-        "syntax": "<length-percentage>",
-        "initialValue": "0px",
-        "defaultValue": "var(--radius-control)"
-      },
-      {
-        "name": "--cui-sidebar-skip-link-shadow",
-        "syntax": "*",
-        "initialValue": "",
-        "defaultValue": "var(--shadow-md)"
-      },
-      {
-        "name": "--cui-sidebar-menu-button-background",
-        "syntax": "<color>",
-        "initialValue": "transparent",
-        "defaultValue": "transparent"
-      },
-      {
-        "name": "--cui-sidebar-menu-button-shadow",
-        "syntax": "*",
-        "initialValue": "",
-        "defaultValue": "0 0 transparent"
       }
     ],
     "skeleton": [
@@ -23020,7 +24083,7 @@
         "name": "--cui-source-badge-hover-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--muted) l c h / 0.6)"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-source-badge-hover-foreground",
@@ -23102,7 +24165,7 @@
         "name": "--cui-stepper-indicator-size",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "calc(var(--spacing) * 8)"
+        "defaultValue": "var(--control-h-sm)"
       },
       {
         "name": "--cui-stepper-indicator-current-border-width",
@@ -23115,6 +24178,36 @@
         "syntax": "<number>",
         "initialValue": "400",
         "defaultValue": "var(--font-weight-semibold)"
+      },
+      {
+        "name": "--cui-stepper-indicator-current-border-color",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--primary)"
+      },
+      {
+        "name": "--cui-stepper-indicator-complete-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--primary)"
+      },
+      {
+        "name": "--cui-stepper-indicator-complete-foreground",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--primary-foreground)"
+      },
+      {
+        "name": "--cui-stepper-separator-complete-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--cui-stepper-indicator-complete-background)"
+      },
+      {
+        "name": "--cui-stepper-separator-size",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "1px"
       }
     ],
     "swap": [
@@ -23248,9 +24341,21 @@
       },
       {
         "name": "--cui-switch-thumb-press-scale",
-        "syntax": "<number>",
+        "syntax": "<number>+",
         "initialValue": "1",
         "defaultValue": "1"
+      },
+      {
+        "name": "--cui-switch-press-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "color-mix(in oklch, var(--cui-switch-background), var(--foreground) 12.8%)"
+      },
+      {
+        "name": "--cui-switch-checked-press-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "color-mix(in oklch, var(--cui-switch-checked-background) 80%, var(--foreground))"
       },
       {
         "name": "--cui-switch-thumb-backdrop-filter",
@@ -23279,6 +24384,24 @@
         "defaultValue": "var(--border)"
       },
       {
+        "name": "--cui-table-border-width",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "var(--control-rim-width)"
+      },
+      {
+        "name": "--cui-table-cell-padding",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 2)"
+      },
+      {
+        "name": "--cui-table-head-height",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "var(--control-h-lg)"
+      },
+      {
         "name": "--cui-table-row-hover-background",
         "syntax": "<color>",
         "initialValue": "transparent",
@@ -23301,6 +24424,18 @@
         "syntax": "<color>",
         "initialValue": "transparent",
         "defaultValue": "oklch(from var(--foreground) l c h / 0.03)"
+      },
+      {
+        "name": "--cui-table-header-sticky-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--background)"
+      },
+      {
+        "name": "--cui-table-header-sticky-shadow",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "inset 0 calc(var(--cui-table-border-width) * -1) 0 var(--cui-table-border-color)"
       }
     ],
     "table-of-contents": [
@@ -23469,6 +24604,30 @@
     ],
     "tabs": [
       {
+        "name": "--cui-tabs-list-backdrop-filter",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "none"
+      },
+      {
+        "name": "--cui-tabs-indicator-shadow",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "var(--shadow-sm)"
+      },
+      {
+        "name": "--cui-tabs-list-shadow",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--shadow-inset)"
+      },
+      {
+        "name": "--cui-tabs-indicator-background-image",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "none"
+      },
+      {
         "name": "--cui-tabs-surface-background",
         "syntax": "<color>",
         "initialValue": "transparent",
@@ -23529,12 +24688,6 @@
         "defaultValue": "var(--hover-fill)"
       },
       {
-        "name": "--cui-tabs-list-backdrop-filter",
-        "syntax": "*",
-        "initialValue": "",
-        "defaultValue": "none"
-      },
-      {
         "name": "--cui-tabs-indicator-background",
         "syntax": "<color>",
         "initialValue": "transparent",
@@ -23571,18 +24724,6 @@
         "defaultValue": "var(--foreground)"
       },
       {
-        "name": "--cui-tabs-indicator-shadow",
-        "syntax": "*",
-        "initialValue": "",
-        "defaultValue": "var(--shadow-sm)"
-      },
-      {
-        "name": "--cui-tabs-list-shadow",
-        "syntax": "*",
-        "initialValue": "",
-        "defaultValue": "inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--shadow-inset)"
-      },
-      {
         "name": "--cui-tabs-border-color",
         "syntax": "<color>",
         "initialValue": "transparent",
@@ -23593,12 +24734,6 @@
         "syntax": "<length>",
         "initialValue": "0px",
         "defaultValue": "var(--control-rim-width)"
-      },
-      {
-        "name": "--cui-tabs-indicator-background-image",
-        "syntax": "*",
-        "initialValue": "",
-        "defaultValue": "none"
       }
     ],
     "task-list": [
@@ -23630,7 +24765,7 @@
         "name": "--cui-task-list-trigger-hover-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--muted) l c h / 0.4)"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-task-list-background",
@@ -23685,6 +24820,50 @@
         "syntax": "<color>",
         "initialValue": "transparent",
         "defaultValue": "var(--primary-text)"
+      }
+    ],
+    "theme-toggle": [
+      {
+        "name": "--cui-theme-toggle-height",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "var(--control-h-xs)"
+      },
+      {
+        "name": "--cui-theme-toggle-radius",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "var(--radius-control)"
+      },
+      {
+        "name": "--cui-theme-toggle-border-width",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "var(--control-rim-width)"
+      },
+      {
+        "name": "--cui-theme-toggle-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--hover-fill)"
+      },
+      {
+        "name": "--cui-theme-toggle-shadow",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "var(--shadow-inset)"
+      },
+      {
+        "name": "--cui-theme-toggle-indicator-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--background)"
+      },
+      {
+        "name": "--cui-theme-toggle-indicator-shadow",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "var(--shadow-sm)"
       }
     ],
     "thread-rail": [
@@ -23755,6 +24934,12 @@
         "syntax": "<color>",
         "initialValue": "transparent",
         "defaultValue": "var(--muted-foreground)"
+      },
+      {
+        "name": "--cui-timeline-indicator-size",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 4)"
       },
       {
         "name": "--cui-timeline-running-foreground",
@@ -23840,7 +25025,7 @@
         "name": "--cui-tool-approval-radius",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "var(--radius-lg)"
+        "defaultValue": "var(--radius-panel)"
       },
       {
         "name": "--cui-tool-approval-shadow",
@@ -23876,7 +25061,7 @@
         "name": "--cui-tool-approval-body-radius",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "var(--radius-lg)"
+        "defaultValue": "max(\n      0px,\n      calc(var(--cui-tool-approval-radius) - var(--cui-tool-approval-padding) - var(--cui-tool-approval-border-width))\n    )"
       },
       {
         "name": "--cui-tool-approval-body-shadow",
@@ -23942,7 +25127,7 @@
         "name": "--cui-tool-approval-preview-radius",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "var(--radius-md)"
+        "defaultValue": "max(\n      0px,\n      calc(var(--cui-tool-approval-body-radius) - var(--cui-tool-approval-body-padding) - var(--cui-tool-approval-body-border-width))\n    )"
       },
       {
         "name": "--cui-tool-approval-preview-padding",
@@ -24037,6 +25222,12 @@
         "defaultValue": "none"
       },
       {
+        "name": "--cui-toolbar-item-icon-size",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 4)"
+      },
+      {
         "name": "--cui-toolbar-item-foreground",
         "syntax": "<color>",
         "initialValue": "transparent",
@@ -24090,7 +25281,7 @@
         "name": "--cui-track-highlight-hover-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "color-mix(in oklab, var(--card) 92%, var(--foreground) 8%)"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-track-highlight-ring-color",
@@ -24309,6 +25500,18 @@
         "defaultValue": "var(--muted-foreground)"
       },
       {
+        "name": "--cui-user-ask-indicator-selected-background",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--primary)"
+      },
+      {
+        "name": "--cui-user-ask-indicator-selected-foreground",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--primary-foreground)"
+      },
+      {
         "name": "--cui-user-ask-input-background",
         "syntax": "<color>",
         "initialValue": "transparent",
@@ -24318,7 +25521,7 @@
         "name": "--cui-user-ask-input-foreground",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "var(--foreground)"
+        "defaultValue": "var(--cui-user-ask-foreground)"
       }
     ]
   },
@@ -24422,7 +25625,15 @@
         },
         {
           "scope": "menubar",
+          "part": "checkbox-item"
+        },
+        {
+          "scope": "menubar",
           "part": "item"
+        },
+        {
+          "scope": "menubar",
+          "part": "radio-item"
         },
         {
           "scope": "menubar",
@@ -24457,6 +25668,10 @@
         {
           "scope": "menubar",
           "part": "label"
+        },
+        {
+          "scope": "select",
+          "part": "group-label"
         },
         {
           "scope": "trigger-menu",
@@ -24536,6 +25751,10 @@
         },
         {
           "scope": "menubar",
+          "part": "separator"
+        },
+        {
+          "scope": "select",
           "part": "separator"
         }
       ],
@@ -24672,6 +25891,10 @@
       {
         "scope": "native-select",
         "part": "root"
+      },
+      {
+        "scope": "navigation-menu",
+        "part": "list-link"
       },
       {
         "scope": "navigation-menu",

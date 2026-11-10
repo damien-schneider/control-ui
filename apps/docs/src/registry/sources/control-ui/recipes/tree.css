@@ -22,6 +22,10 @@
     --focus-ring-width: 0px;
   }
 
+  :where([data-control-family="tree"][data-slot="item"] > *) {
+    --focus-ring-width: var(--_tree-focus-ring-width);
+  }
+
   :where([data-control-family="tree"][data-slot="item"]:focus-visible > [data-slot="item-trigger"]) {
     outline: var(--_tree-focus-ring-width) var(--focus-ring-style) var(--focus-ring);
     outline-offset: calc(var(--_tree-focus-ring-width) * -1);
@@ -45,6 +49,12 @@
     font-weight: var(--font-weight-normal);
   }
 
+  @media (pointer: coarse) {
+    :where([data-control-family="tree"][data-slot="item-trigger"]) {
+      min-block-size: var(--touch-target);
+    }
+  }
+
   @media (hover: hover) {
     :where([data-control-family="tree"][data-slot="item-trigger"]:hover) {
       background-color: var(--cui-tree-item-trigger-hover-background);
@@ -60,6 +70,10 @@
 
   :where([data-control-family="tree"][data-slot="item-trigger"][aria-disabled="true"]) {
     opacity: var(--disabled-opacity);
+  }
+
+  :where([data-control-family="tree"][data-slot="item"][data-disabled]) {
+    cursor: not-allowed;
   }
 
   :where(
@@ -95,22 +109,22 @@
   }
 
   :where([data-control-family="tree"][data-slot="item-content"]) {
-    height: var(--collapsible-panel-height);
+    block-size: var(--collapsible-panel-height);
     opacity: 1;
-    transition-property: height, opacity;
+    transition-property: block-size, opacity;
     transition-duration: var(--duration-base);
     transition-timing-function: var(--ease-emphasized);
   }
 
   :where([data-control-family="tree"][data-slot="item-content"]:is([data-starting-style], [data-ending-style])) {
-    height: 0;
+    block-size: 0;
     overflow: clip;
     opacity: 0;
   }
 
   @supports (transition-behavior: allow-discrete) {
     :where([data-control-family="tree"][data-slot="item-content"]) {
-      transition-property: height, opacity, overflow;
+      transition-property: block-size, opacity, overflow;
       transition-timing-function: var(--ease-emphasized), var(--ease-emphasized), step-end;
       transition-behavior: normal, normal, allow-discrete;
     }
@@ -122,6 +136,7 @@
 
   :where([data-control-family="tree"][data-slot="item-group"]) {
     position: relative;
+    cursor: auto;
     translate: 0 0;
     transition: translate var(--duration-base) var(--ease-emphasized);
   }

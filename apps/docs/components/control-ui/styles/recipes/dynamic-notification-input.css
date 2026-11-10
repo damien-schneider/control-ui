@@ -1,8 +1,8 @@
 @layer components {
   :where([data-control-family="dynamic-notification"][data-slot="reply-input"]) {
-    --_dynamic-notification-input-placeholder-paint: oklch(from var(--_dynamic-notification-active-foreground) l c h / 0.45);
+    --_dynamic-notification-input-placeholder-paint: oklch(from var(--_dynamic-notification-active-foreground) l c h / 0.6);
     border: 0;
-    border-radius: 9999px;
+    border-radius: var(--cui-dynamic-notification-reply-input-radius);
     background: oklch(from var(--_dynamic-notification-active-foreground) l c h / 0.08);
     color: var(--_dynamic-notification-active-foreground);
     box-shadow: inset 0 0 0 1px oklch(from var(--_dynamic-notification-active-foreground) l c h / 0.1);
@@ -16,6 +16,7 @@
 
   :where([data-control-family="dynamic-notification"][data-slot="reply-input"]:disabled) {
     opacity: var(--disabled-opacity);
+    cursor: not-allowed;
   }
 
   :where([data-control-family="button"][data-dynamic-notification-close="true"]) {
@@ -27,6 +28,13 @@
         [data-control-family="button"][data-dynamic-notification-close="true"]:not(:disabled, [data-disabled], [aria-disabled="true"]):hover
       ) {
       color: inherit;
+    }
+  }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="dynamic-notification"][data-slot="reply-input"]:not(:focus-visible)) {
+      outline: 1px solid CanvasText;
+      outline-offset: -1px;
     }
   }
 

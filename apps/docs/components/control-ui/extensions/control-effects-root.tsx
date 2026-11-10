@@ -6,24 +6,34 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { type ControlEffect, controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 
-type ControlEffectsRootProps = ComponentProps<"div"> & {
-  effects?: ControlEffect[];
+export type ControlEffectsRootProps = ComponentProps<"div"> & {
+  effects?: readonly ControlEffect[];
 };
 
-const EMPTY_EFFECTS: ControlEffect[] = [];
+const EMPTY_EFFECTS: readonly ControlEffect[] = [];
 const controlSelector = '[data-control-ui][data-control="true"]';
+const rippleAnimationName = "cui-ripple-pulse";
 
 function onRippleEnd(event: AnimationEvent) {
-  if (event.animationName !== "aui-ripple-pulse") return;
+  // a nested control's pulse bubbles through its ancestors; only the control that owns the pulse settles here
+  if (event.animationName !== rippleAnimationName || event.target !== event.currentTarget) return;
   const control = event.currentTarget;
   if (!(control instanceof HTMLElement)) return;
+  // a retrigger cancels the previous pulse, and that late animationcancel must not clear the pulse that replaced it
+  if (
+    event.type === "animationcancel" &&
+    control.getAnimations().some((animation) => animation instanceof CSSAnimation && animation.animationName === rippleAnimationName)
+  ) {
+    return;
+  }
   control.removeAttribute("data-ripple");
   control.removeEventListener("animationend", onRippleEnd);
+  control.removeEventListener("animationcancel", onRippleEnd);
 }
 
 function startRipple(control: HTMLElement, event: PointerEvent) {
   if (event.pointerType === "mouse" && event.button !== 0) return;
-  if (control.matches(":disabled,[aria-disabled='true'],[data-disabled='true']")) return;
+  if (control.matches(":disabled,[aria-disabled='true'],[data-disabled]")) return;
 
   const rect = control.getBoundingClientRect();
   control.style.setProperty("--aui-ripple-x", `${event.clientX - rect.left}px`);
@@ -35,6 +45,8 @@ function startRipple(control: HTMLElement, event: PointerEvent) {
   void control.offsetWidth;
   control.setAttribute("data-ripple", "");
   control.addEventListener("animationend", onRippleEnd);
+  // a control hidden mid-pulse (closing popup, collapsing panel) never fires animationend; without this the attribute stays and the pulse replays when the control is shown again
+  control.addEventListener("animationcancel", onRippleEnd);
 }
 
 let rippleClients = 0;
@@ -64,24 +76,34 @@ function onDocumentPointerMove(event: PointerEvent) {
   const control = event.target.closest<HTMLElement>(controlSelector);
   if (control !== hoverCircleControl) {
     hoverCircleControl = control?.closest('[data-effects~="hover-circle"]') ? control : null;
-    hoverCircleRect = hoverCircleControl?.getBoundingClientRect() ?? null;
-    if (hoverCircleControl && hoverCircleRect) {
-      const radius = Math.ceil(Math.max(hoverCircleRect.width, hoverCircleRect.height) * 1.1);
-      hoverCircleControl.style.setProperty("--aui-hover-circle-r", `${radius}px`);
-    }
+    hoverCircleRect = null;
   }
-  if (!hoverCircleControl || !hoverCircleRect) return;
+  if (!hoverCircleControl) return;
+  if (!hoverCircleRect) {
+    hoverCircleRect = hoverCircleControl.getBoundingClientRect();
+    const radius = Math.ceil(Math.max(hoverCircleRect.width, hoverCircleRect.height) * 1.1);
+    hoverCircleControl.style.setProperty("--aui-hover-circle-r", `${radius}px`);
+  }
   hoverCircleControl.style.setProperty("--aui-hover-circle-x", `${event.clientX - hoverCircleRect.left}px`);
   hoverCircleControl.style.setProperty("--aui-hover-circle-y", `${event.clientY - hoverCircleRect.top}px`);
 }
 
+// the rect is cached per hovered control; any scroll moves the control under the pointer, so the next move re-measures
+function onDocumentScroll() {
+  hoverCircleRect = null;
+}
+
 function acquireHoverCircleListener() {
-  if (hoverCircleClients === 0) document.addEventListener("pointermove", onDocumentPointerMove, { passive: true });
+  if (hoverCircleClients === 0) {
+    document.addEventListener("pointermove", onDocumentPointerMove, { passive: true });
+    document.addEventListener("scroll", onDocumentScroll, { capture: true, passive: true });
+  }
   hoverCircleClients += 1;
   return () => {
     hoverCircleClients -= 1;
     if (hoverCircleClients === 0) {
       document.removeEventListener("pointermove", onDocumentPointerMove);
+      document.removeEventListener("scroll", onDocumentScroll, { capture: true });
       hoverCircleControl = null;
       hoverCircleRect = null;
     }

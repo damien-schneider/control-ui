@@ -19,7 +19,7 @@ export function PrimitiveAvatarExample() {
           <AvatarFallback>GH</AvatarFallback>
         </Avatar>
       </AvatarGroup>
-      <Avatar className="size-12">
+      <Avatar size="lg">
         <AvatarFallback>CU</AvatarFallback>
         <AvatarBadge status="busy" label="Busy" />
       </Avatar>

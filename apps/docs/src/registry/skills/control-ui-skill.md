@@ -216,6 +216,7 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --radius-scene [shared] Scene frame / large media corner; --radius × 2.8.
 - --corner-shape [shared] Progressive corner reshape (round | squircle | scoop | …); defaults to round.
 - --radius-popup-item [shared] Select/menu row corner; derived from --radius-control.
+- --radius-popup-item-fit [shared] Row corner capped at half the smallest control height; --radius-popover nests around it.
 - --radius-popover [shared] Popup container corner, concentric with the fitted row corner.
 - --shadow-color [light+dark] Hue every shadow is tinted with.
 - --shadow-highlight [light+dark] Inner top light painted along raised surfaces' top edge (carries its resting alpha).
@@ -239,21 +240,25 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --backdrop-blur-overlay [shared] Backdrop blur of the modal overlay.
 - --scroll-fade-size [shared] Edge-fade depth of scrollable surfaces; 0 = hard edges.
 - --disabled-opacity [shared] Opacity of a disabled control; defaults to 0.45.
+- --spacing [shared] THE density unit (Tailwind's --spacing); gaps, insets, and --popover-padding multiply from it.
 - --popover-padding [shared] Gap between popup container edge and rows (drives concentric corners).
 - --padding-x [shared] Horizontal content density of rounded surfaces (bubble, composer).
 - --padding-y [shared] Vertical content density of rounded surfaces.
 - --control-h [shared] THE base control height (md); the ramp derives from it.
-- --control-h-xs [shared] Derived control height: xs (×0.78, px-snapped).
-- --control-h-sm [shared] Derived control height: sm (×0.89, px-snapped).
+- --control-h-xs [shared] Derived control height: xs (×0.78, snapped to 2px).
+- --control-h-sm [shared] Derived control height: sm (×0.89, snapped to 2px).
 - --control-h-md [shared] Derived control height: md (= --control-h).
-- --control-h-lg [shared] Derived control height: lg (×1.11, px-snapped).
+- --control-h-lg [shared] Derived control height: lg (×1.11, snapped to 2px).
 - --sidebar-width [shared] Expanded sidebar width; a dragged width overrides it inline.
 - --sidebar-width-icon [shared] Collapsed icon-rail sidebar width.
+- --z-raised [shared] Stacking level of content lifted above its page siblings.
+- --z-sticky [shared] Stacking level of sticky headers, toolbars, and rails.
+- --z-nav [shared] Stacking level of app navigation: fixed sidebars and mobile bars.
 - --z-overlay [shared] Stacking level of modal backdrops.
-- --z-modal [shared] Stacking level of dialogs and sheets.
+- --z-modal [shared] Stacking level of dialogs and sheets; one above --z-overlay.
 - --z-popup [shared] Stacking level of menus, popovers, and selects.
-- --z-tooltip [shared] Stacking level of tooltips.
 - --z-toast [shared] Stacking level of toasts.
+- --z-tooltip [shared] Stacking level of tooltips; the topmost tier.
 - --focus-ring-width [shared] Thickness of the keyboard focus indicator; 0 removes it and fails WCAG 2.4.7.
 - --focus-ring-style [shared] Line style of the keyboard focus indicator (solid, dotted, dashed); none removes it and fails WCAG 2.4.7.
 - --focus-ring-offset [shared] Gap between a control edge and its focus ring; negative draws it inside. Bordered fields ignore it and paint the indicator over their border.

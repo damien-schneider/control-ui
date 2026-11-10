@@ -30,6 +30,13 @@
     box-shadow: none;
   }
 
+  :where([data-control-family="button"]:is([data-variant="solid"], [data-variant="scrim"]) [data-control-family="kbd"][data-slot="root"]) {
+    --cui-kbd-background: oklch(from currentColor l c h / 0.16);
+    --cui-kbd-foreground: currentColor;
+    --cui-kbd-border-color: oklch(from currentColor l c h / 0.2);
+    --cui-kbd-shadow: 0 0 transparent;
+  }
+
   @media (forced-colors: active) {
     :where([data-control-family="kbd"][data-slot="root"]:not([data-variant="ghost"])) {
       outline: 1px solid CanvasText;

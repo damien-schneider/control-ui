@@ -49,8 +49,12 @@ export type AudioDeviceSelectProps = Omit<SelectProps, "items" | "children"> & {
   allowNone?: boolean;
   noneLabel?: string;
   label?: string;
+  loadingLabel?: string;
+  unknownDeviceLabel?: string;
+  disconnectedLabel?: (name: string) => string;
   error?: string | null;
   className?: string;
+  style?: CSSProperties & AudioDeviceSelectKnobStyle;
   children?: ReactNode;
 };
 
@@ -66,6 +70,9 @@ type AudioDeviceSelectContextValue = {
   allowNone: boolean;
   noneLabel: string;
   label: string;
+  loadingLabel: string;
+  unknownDeviceLabel: string;
+  disconnectedLabel: (name: string) => string;
   error: string | null;
   onRequestPermission?: () => void | Promise<void>;
 };
@@ -95,8 +102,12 @@ export function AudioDeviceSelect({
   allowNone = false,
   noneLabel = AUDIO_DEVICE_COPY[kind].noneLabel,
   label = AUDIO_DEVICE_COPY[kind].label,
+  loadingLabel = "Finding devices…",
+  unknownDeviceLabel = "Unknown device",
+  disconnectedLabel = (name) => `${name} (disconnected)`,
   error = null,
   className,
+  style,
   children,
   ...props
 }: AudioDeviceSelectProps) {
@@ -127,6 +138,9 @@ export function AudioDeviceSelect({
         allowNone,
         noneLabel,
         label,
+        loadingLabel,
+        unknownDeviceLabel,
+        disconnectedLabel,
         error,
         onRequestPermission,
       }}
@@ -136,6 +150,7 @@ export function AudioDeviceSelect({
         data-control-family="audio-device-select"
         data-slot="root"
         className={cn("grid min-w-0 grid-cols-[minmax(0,1fr)] gap-2", className)}
+        style={style}
       >
         <Select value={current} onValueChange={handleValueChange} disabled={disabled || loading} {...props}>
           {children ?? (
@@ -180,22 +195,39 @@ export function AudioDeviceSelectTrigger({ children, className, ...props }: Sele
   );
 }
 
-export function AudioDeviceSelectValue({ placeholder }: { placeholder?: string }) {
+export type AudioDeviceSelectValueProps = Omit<ComponentProps<"span">, "children"> & { placeholder?: string };
+
+export function AudioDeviceSelectValue({ placeholder, className, ...props }: AudioDeviceSelectValueProps) {
   const context = useAudioDeviceSelect();
   let text = placeholder ?? AUDIO_DEVICE_COPY[context.kind].placeholder;
   if (context.selected) text = deviceLabel(context.selected, context.kind, context.devices.indexOf(context.selected));
   if (context.allowNone && context.value === "") text = context.noneLabel;
-  if (context.missing) text = `${context.selected ? deviceLabel(context.selected, context.kind) : "Unknown device"} (disconnected)`;
-  if (context.loading) text = "Finding devices…";
+  if (context.missing) {
+    text = context.disconnectedLabel(context.selected ? deviceLabel(context.selected, context.kind) : context.unknownDeviceLabel);
+  }
+  if (context.loading) text = context.loadingLabel;
   return (
-    <span data-control-ui="audio-device-select" data-slot="value" className="min-w-0 truncate" title={text}>
+    <span data-control-ui="audio-device-select" data-slot="value" className={cn("min-w-0 truncate", className)} title={text} {...props}>
       {text}
     </span>
   );
 }
 
-export function AudioDeviceSelectContent({ children, ...props }: ComponentProps<typeof SelectContent>) {
+export type AudioDeviceSelectContentProps = ComponentProps<typeof SelectContent> & {
+  defaultLabel?: string;
+  emptyLabel?: string;
+  permissionLabel?: string;
+};
+
+export function AudioDeviceSelectContent({
+  children,
+  defaultLabel = "Default",
+  emptyLabel,
+  permissionLabel = "Allow microphone access to find devices",
+  ...props
+}: AudioDeviceSelectContentProps) {
   const context = useAudioDeviceSelect();
+  const noDevicesLabel = emptyLabel ?? AUDIO_DEVICE_COPY[context.kind].empty;
   return (
     <SelectContent data-control-ui="audio-device-select" data-slot="content" {...props}>
       {children ?? (
@@ -218,14 +250,14 @@ export function AudioDeviceSelectContent({ children, ...props }: ComponentProps<
                 <span className="min-w-0 flex-1 truncate">{deviceLabel(device, context.kind, index)}</span>
                 {device.isDefault || device.deviceId === "default" ? (
                   <Text size="caption" tone="muted" className="ms-3">
-                    Default
+                    {defaultLabel}
                   </Text>
                 ) : null}
               </AudioDeviceSelectItem>
             ))}
           {context.devices.length === 0 && !context.missing && !context.allowNone ? (
             <SelectItem value="__audio-device-empty__" disabled>
-              {context.permission === "granted" ? AUDIO_DEVICE_COPY[context.kind].empty : "Allow microphone access to find devices"}
+              {context.permission === "granted" ? noDevicesLabel : permissionLabel}
             </SelectItem>
           ) : null}
         </>
@@ -243,22 +275,29 @@ export function AudioDeviceSelectPreview({ className, ...props }: ComponentProps
 }
 
 export type AudioDeviceSelectStatusProps = Omit<ComponentProps<"p">, "style"> & {
+  deniedLabel?: string;
+  missingLabel?: string;
   style?: CSSProperties & AudioDeviceSelectKnobStyle;
 };
 
-export function AudioDeviceSelectStatus({ className, ...props }: AudioDeviceSelectStatusProps) {
+export function AudioDeviceSelectStatus({
+  className,
+  deniedLabel = "Microphone access is blocked. Allow it in your browser’s site settings.",
+  missingLabel,
+  ...props
+}: AudioDeviceSelectStatusProps) {
   const context = useAudioDeviceSelect();
   let message = context.error;
-  if (!message && context.permission === "denied") message = "Microphone access is blocked. Allow it in your browser’s site settings.";
-  if (!message && context.missing) message = AUDIO_DEVICE_COPY[context.kind].disconnected;
-  if (!message) return null;
+  if (!message && context.permission === "denied") message = deniedLabel;
+  if (!message && context.missing) message = missingLabel ?? AUDIO_DEVICE_COPY[context.kind].disconnected;
+  // stays mounted while empty so the message is announced when it appears
   return (
     <p
       data-control-ui="audio-device-select"
       data-control-family="audio-device-select"
       data-slot="status"
       role="status"
-      className={cn("text-caption", className)}
+      className={cn(!message && "sr-only", className)}
       {...props}
     >
       {message}
@@ -274,7 +313,7 @@ export function AudioDeviceSelectPermission({ children = "Allow microphone acces
       data-control-ui="audio-device-select"
       data-slot="permission"
       variant="surface"
-      size="sm"
+      size="md"
       disabled={context.disabled || context.loading}
       onClick={(event) => {
         onClick?.(event);

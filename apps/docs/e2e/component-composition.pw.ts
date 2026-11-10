@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 import { waitForReactHydration } from "./browser-test-helpers";
 
 test("menu choices persist, link items compose, and submenus work from the keyboard", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/components/dropdown-menu");
   const example = page.getByRole("group", { name: "Workspace options", exact: true });
   const trigger = example.getByRole("button", { name: "Options" });
@@ -38,6 +39,7 @@ test("menu choices persist, link items compose, and submenus work from the keybo
   await page.keyboard.press("Enter");
   await expect(example.getByRole("status")).toHaveText("Last action: Copy workspace link");
   await expect(trigger).toBeFocused();
+  await expect(menu).not.toBeVisible();
   await trigger.click();
   await notifications.hover();
   await share.hover();

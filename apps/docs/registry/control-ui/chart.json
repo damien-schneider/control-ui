@@ -18,6 +18,11 @@
       "type": "registry:component"
     },
     {
+      "path": "src/registry/sources/control-ui/recipes/chart-parts.css",
+      "target": "@components/control-ui/styles/recipes/chart-parts.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/chart.css",
       "target": "@components/control-ui/styles/recipes/chart.css",
       "type": "registry:file"
@@ -59,7 +64,8 @@
     }
   ],
   "css": {
-    "@import \"../components/control-ui/styles/recipes/chart.css\"": {}
+    "@import \"../components/control-ui/styles/recipes/chart.css\"": {},
+    "@import \"../components/control-ui/styles/recipes/chart-parts.css\"": {}
   },
   "meta": {
     "sourceManifestPath": "registry/control-ui/chart.json"

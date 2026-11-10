@@ -7,7 +7,7 @@ import { renderEmailExample } from "@/src/registry/examples/control-ui/email/ren
 import { EmailLayout } from "./email";
 import type { EmailFooterContent } from "./email-brand";
 import { EmailSocialLinks } from "./email-footer";
-import { InvitationEmail, ReleaseNotesEmail } from "./templates";
+import { InvitationEmail, ProductEmail, ReleaseNotesEmail, VerificationEmail } from "./templates";
 import { emailThemeFromCss } from "./theme";
 
 const coreCss = readFileSync(new URL("../theme.css", import.meta.url), "utf8");
@@ -212,6 +212,68 @@ describe("email rendering", () => {
     expect(html).toContain("<ul");
     expect(text).toContain("Shared spaces");
     expect(text).toContain("Recurring reminders no longer skip the first week of a new month.");
+  });
+
+  test("templates with sub-sections keep a heading outline that starts at h1 and never skips a level", async () => {
+    const theme = emailThemeFromCss([coreCss, codeCss, refinedCss]);
+    const messages = [
+      <InvitationEmail key="invitation" {...invitation} theme={theme} />,
+      <ProductEmail
+        key="product"
+        theme={theme}
+        brand={invitation.brand}
+        footer={footer}
+        title="Make room for what’s next."
+        description="A calmer canvas."
+        imageUrl="https://example.com/forest.jpg"
+        imageAlt="A green forest"
+        highlights={[{ title: "Infinite canvas", description: "Keep every draft in view." }]}
+        actionUrl="https://example.com/releases"
+      />,
+      <ReleaseNotesEmail key="release" {...release} theme={theme} />,
+    ];
+    for (const message of messages) {
+      const html = await render(message);
+      const levels = [...html.matchAll(/<h([1-6])[\s>]/g)].map((match) => Number(match[1]));
+      expect(levels.length).toBeGreaterThan(1);
+      for (const [index, level] of levels.entries()) {
+        expect(level - (levels[index - 1] ?? 0)).toBeLessThanOrEqual(1);
+      }
+    }
+  });
+
+  test("right-to-left messages keep one-time codes and code blocks left-to-right", async () => {
+    const theme = emailThemeFromCss([coreCss, codeCss, refinedCss]);
+    const releaseHtml = await render(<ReleaseNotesEmail {...release} theme={theme} dir="rtl" />);
+    expect(releaseHtml).toMatch(/<html[^>]*dir="rtl"/);
+    expect(releaseHtml).toMatch(/<table[^>]*dir="ltr"/);
+
+    const verificationHtml = await render(
+      <VerificationEmail
+        theme={theme}
+        dir="rtl"
+        brand={invitation.brand}
+        footer={footer}
+        code="418 902"
+        expiresInMinutes={10}
+        supportUrl="https://example.com/support"
+      />,
+    );
+    expect(verificationHtml).toContain('<span dir="ltr">418 902</span>');
+  });
+
+  test("a one-minute verification code reads in the singular", async () => {
+    const html = await render(
+      <VerificationEmail
+        theme={emailThemeFromCss([coreCss, refinedCss])}
+        brand={invitation.brand}
+        footer={footer}
+        code="418902"
+        expiresInMinutes={1}
+        supportUrl="https://example.com/support"
+      />,
+    );
+    expect(toPlainText(html)).toContain("The code expires in 1 minute.");
   });
 });
 

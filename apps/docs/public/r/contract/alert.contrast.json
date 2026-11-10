@@ -5,23 +5,6 @@
     [
       {
         "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
           "data-scroll": "page",
@@ -35,45 +18,7 @@
           "data-control-ui": "alert",
           "data-slot": "root",
           "data-surface": "panel",
-          "data-variant": "default",
-          "role": "status"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "alert",
-          "data-control-ui": "alert",
-          "data-slot": "root",
-          "data-surface": "panel",
-          "data-variant": "destructive",
+          "data-tone": "danger",
           "role": "alert"
         }
       }
@@ -81,23 +26,6 @@
     [
       {
         "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
           "data-scroll": "page",
@@ -111,36 +39,33 @@
           "data-control-ui": "alert",
           "data-slot": "root",
           "data-surface": "panel",
-          "data-variant": "default",
+          "data-tone": "info",
           "role": "status"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "alert",
-          "data-control-ui": "alert",
-          "data-slot": "description"
         }
       }
     ],
     [
       {
         "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
           "data-scroll": "page",
-          "data-slot": "wrapper"
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
         "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
+          "data-control-family": "alert",
+          "data-control-ui": "alert",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-tone": "neutral",
+          "role": "status"
         }
-      },
+      }
+    ],
+    [
       {
         "attributes": {
           "data-control-family": "page-layout",
@@ -156,15 +81,29 @@
           "data-control-ui": "alert",
           "data-slot": "root",
           "data-surface": "panel",
-          "data-variant": "destructive",
-          "role": "alert"
+          "data-tone": "success",
+          "role": "status"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
         "attributes": {
           "data-control-family": "alert",
           "data-control-ui": "alert",
-          "data-slot": "description"
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-tone": "warning",
+          "role": "status"
         }
       }
     ]
@@ -172,8 +111,7 @@
   "probes": [
     {
       "knobs": {
-        "fill": "--cui-alert-background",
-        "text": "--cui-alert-foreground"
+        "fill": "--cui-alert-background"
       },
       "anatomy": 0,
       "rendersText": true,
@@ -181,8 +119,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-alert-background",
-        "text": "--cui-alert-foreground"
+        "fill": "--cui-alert-background"
       },
       "anatomy": 1,
       "rendersText": true,
@@ -190,7 +127,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-alert-description-foreground"
+        "fill": "--cui-alert-background"
       },
       "anatomy": 2,
       "rendersText": true,
@@ -198,9 +135,17 @@
     },
     {
       "knobs": {
-        "text": "--cui-alert-description-foreground"
+        "fill": "--cui-alert-background"
       },
       "anatomy": 3,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-alert-background"
+      },
+      "anatomy": 4,
       "rendersText": true,
       "state": false
     }

@@ -1,20 +1,40 @@
 @layer components {
   :where([data-control-family="avatar"][data-slot="root"]) {
+    --cui-avatar-size: calc(var(--spacing) * 9);
+    --cui-avatar-group-gap: calc(var(--spacing) * -2);
     --cui-avatar-image-outline-color: var(--image-outline);
     --cui-avatar-badge-size: max(0.5rem, 30%);
+    --cui-avatar-badge-radius: 9999px;
     --cui-avatar-badge-ring-size: 2px;
     --cui-avatar-badge-ring-color: var(--background);
     --cui-avatar-badge-background: var(--primary);
     --cui-avatar-badge-foreground: var(--primary-foreground);
-    inline-size: calc(var(--spacing) * 9);
-    block-size: calc(var(--spacing) * 9);
+    --cui-avatar-badge-online-background: var(--success);
+    --cui-avatar-badge-away-background: var(--warning);
+    --cui-avatar-badge-busy-background: var(--destructive);
+    --cui-avatar-badge-offline-background: oklch(from var(--muted-foreground) l c h / 0.6);
+    inline-size: var(--cui-avatar-size);
+    block-size: var(--cui-avatar-size);
     font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="avatar"][data-slot="root"][data-size="xs"]) {
+    --cui-avatar-size: calc(var(--spacing) * 5);
+  }
+
+  :where([data-control-family="avatar"][data-slot="root"][data-size="sm"]) {
+    --cui-avatar-size: calc(var(--spacing) * 7);
+  }
+
+  :where([data-control-family="avatar"][data-slot="root"][data-size="lg"]) {
+    --cui-avatar-size: calc(var(--spacing) * 12);
   }
 
   :where([data-control-family="avatar"][data-slot="root"]),
   :where([data-control-family="avatar"][data-slot="favicon"]),
   :where([data-control-family="avatar"][data-slot="source-favicon"]) {
     --cui-avatar-radius: 9999px;
+    --cui-avatar-group-ring-size: 2px;
     --cui-avatar-group-ring-color: var(--background);
     --cui-avatar-fallback-background: var(--muted);
     --cui-avatar-fallback-foreground: var(--muted-foreground);
@@ -31,8 +51,12 @@
     box-shadow: inset 0 0 0 1px var(--cui-avatar-image-outline-color);
   }
 
+  :where([data-control-family="avatar"][data-slot="group"] > :not(:last-child)) {
+    margin-inline-end: var(--cui-avatar-group-gap);
+  }
+
   :where([data-control-family="avatar"][data-slot="group"] > [data-control-family="avatar"]) {
-    box-shadow: 0 0 0 2px var(--cui-avatar-group-ring-color);
+    box-shadow: 0 0 0 var(--cui-avatar-group-ring-size) var(--cui-avatar-group-ring-color);
   }
 
   :where([data-control-family="avatar"][data-slot="image"]) {
@@ -40,16 +64,17 @@
   }
 
   :where([data-control-family="avatar"][data-slot="badge"]) {
+    --_avatar-badge-background: var(--cui-avatar-badge-background);
     z-index: 1;
     inset-block-end: 0;
     inset-inline-end: 0;
     inline-size: var(--cui-avatar-badge-size);
     aspect-ratio: 1;
-    border-radius: 9999px;
-    background: var(--cui-avatar-badge-background);
+    border-radius: var(--cui-avatar-badge-radius);
+    background: var(--_avatar-badge-background);
     color: var(--cui-avatar-badge-foreground);
     box-shadow: 0 0 0 var(--cui-avatar-badge-ring-size) var(--cui-avatar-badge-ring-color);
-    font-size: 0.5rem;
+    font-size: var(--text-micro);
     font-weight: var(--font-weight-medium);
     font-variant-numeric: tabular-nums;
     line-height: 1;
@@ -62,19 +87,19 @@
   }
 
   :where([data-control-family="avatar"][data-slot="badge"][data-status="online"]) {
-    --cui-avatar-badge-background: var(--success);
+    --_avatar-badge-background: var(--cui-avatar-badge-online-background);
   }
 
   :where([data-control-family="avatar"][data-slot="badge"][data-status="away"]) {
-    --cui-avatar-badge-background: var(--warning);
+    --_avatar-badge-background: var(--cui-avatar-badge-away-background);
   }
 
   :where([data-control-family="avatar"][data-slot="badge"][data-status="busy"]) {
-    --cui-avatar-badge-background: var(--destructive);
+    --_avatar-badge-background: var(--cui-avatar-badge-busy-background);
   }
 
   :where([data-control-family="avatar"][data-slot="badge"][data-status="offline"]) {
-    --cui-avatar-badge-background: oklch(from var(--muted-foreground) l c h / 0.6);
+    --_avatar-badge-background: var(--cui-avatar-badge-offline-background);
   }
 
   :where([data-control-family="avatar"][data-slot="fallback"]) {
@@ -84,9 +109,34 @@
     font-size: max(var(--text-micro), 37.5cqi);
     font-weight: var(--font-weight-medium);
   }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="avatar"][data-slot="badge"]) {
+      outline: 1px solid CanvasText;
+      outline-offset: -1px;
+    }
+  }
+}
+
+@property --cui-avatar-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-avatar-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-avatar-group-gap {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-avatar-group-ring-size {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
@@ -122,6 +172,12 @@
   initial-value: 0px;
 }
 
+@property --cui-avatar-badge-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
 @property --cui-avatar-badge-ring-size {
   syntax: "<length-percentage>";
   inherits: true;
@@ -141,6 +197,30 @@
 }
 
 @property --cui-avatar-badge-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-avatar-badge-online-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-avatar-badge-away-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-avatar-badge-busy-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-avatar-badge-offline-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

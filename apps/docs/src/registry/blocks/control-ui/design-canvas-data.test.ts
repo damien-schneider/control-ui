@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { createDesignCanvasLayer, drawnDesignCanvasBounds, resizeDesignCanvasLayer } from "./design-canvas-data";
+import { createDesignCanvasLayer, designCanvasFillColor, drawnDesignCanvasBounds, resizeDesignCanvasLayer } from "./design-canvas-data";
 
 const layer = createDesignCanvasLayer("rectangle", { x: 0, y: 0, width: 200, height: 100 }, "card");
 
@@ -11,6 +11,29 @@ describe("resizeDesignCanvasLayer", () => {
   test("scales the other side when the aspect ratio is locked", () => {
     expect(resizeDesignCanvasLayer(layer, { width: 300 }, true)).toMatchObject({ width: 300, height: 150 });
     expect(resizeDesignCanvasLayer(layer, { height: 50 }, true)).toMatchObject({ width: 100, height: 50 });
+  });
+
+  test("a locked resize never collapses the other side below one pixel", () => {
+    const sliver = createDesignCanvasLayer("rectangle", { x: 0, y: 0, width: 300, height: 2 }, "sliver");
+    expect(resizeDesignCanvasLayer(sliver, { width: 50 }, true)).toMatchObject({ width: 50, height: 1 });
+  });
+
+  test("a locked resize keeps the other side when the layer has no usable aspect ratio", () => {
+    const flat = createDesignCanvasLayer("rectangle", { x: 0, y: 0, width: 120, height: 0 }, "flat");
+    expect(resizeDesignCanvasLayer(flat, { height: 40 }, true)).toMatchObject({ width: 120, height: 40 });
+    expect(resizeDesignCanvasLayer(flat, { width: 60 }, true)).toMatchObject({ width: 60, height: 0 });
+  });
+});
+
+describe("designCanvasFillColor", () => {
+  test("hidden and missing fills paint nothing", () => {
+    expect(designCanvasFillColor(null)).toBe("transparent");
+    expect(designCanvasFillColor({ color: "#FF0000", opacity: 100, visible: false })).toBe("transparent");
+  });
+
+  test("keeps the mix percentage inside the range color-mix accepts", () => {
+    expect(designCanvasFillColor({ color: "#FF0000", opacity: 140, visible: true })).toBe("color-mix(in srgb, #FF0000 100%, transparent)");
+    expect(designCanvasFillColor({ color: "#FF0000", opacity: -5, visible: true })).toBe("color-mix(in srgb, #FF0000 0%, transparent)");
   });
 });
 

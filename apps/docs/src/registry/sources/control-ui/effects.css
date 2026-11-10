@@ -4,10 +4,11 @@
 @utility shimmer {
   background-image: linear-gradient(100deg, var(--muted) 30%, oklch(from var(--muted-foreground) l c h / 0.25) 50%, var(--muted) 70%);
   background-size: 220% 100%;
-  animation: shimmer calc(var(--duration-slow) * 5) var(--ease-standard) infinite;
+  animation: cui-shimmer calc(var(--duration-slow) * 5) var(--ease-standard) infinite;
 }
 
-/* shimmer-text — same sweep clipped to text ("AI is generating" treatment); subtle --muted-foreground↔--foreground stops keep it readable. */
+/* shimmer-text — same sweep clipped to text ("AI is generating" treatment); subtle --muted-foreground↔--foreground stops keep it readable.
+ * Forced colors removes the gradient that paints the glyphs, so the fill returns to the system text color there. */
 @utility shimmer-text {
   background-image: linear-gradient(100deg, var(--muted-foreground) 35%, var(--foreground) 50%, var(--muted-foreground) 65%);
   background-size: 220% 100%;
@@ -15,10 +16,14 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  animation: shimmer calc(var(--duration-slow) * 6) var(--ease-standard) infinite;
+  animation: cui-shimmer calc(var(--duration-slow) * 6) var(--ease-standard) infinite;
+
+  @media (forced-colors: active) {
+    -webkit-text-fill-color: currentColor;
+  }
 }
 
-@keyframes shimmer {
+@keyframes cui-shimmer {
   from {
     background-position: 180% 0;
   }
@@ -52,10 +57,10 @@
   mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  animation: aui-halftone calc(var(--duration-slow) * 6) var(--ease-standard) infinite;
+  animation: cui-halftone calc(var(--duration-slow) * 6) var(--ease-standard) infinite;
 }
 
-@keyframes aui-halftone {
+@keyframes cui-halftone {
   0%,
   100% {
     --cui-halftone-pulse: 0.55;
@@ -81,10 +86,14 @@
   -webkit-text-fill-color: transparent;
   color: transparent;
   text-shadow: none;
-  animation: aui-progress-sweep calc(var(--duration-slow) * 12) linear infinite;
+  animation: cui-progress-sweep calc(var(--duration-slow) * 12) linear infinite;
+
+  @media (forced-colors: active) {
+    -webkit-text-fill-color: currentColor;
+  }
 }
 
-@keyframes aui-progress-sweep {
+@keyframes cui-progress-sweep {
   from {
     background-position: 0 0;
   }

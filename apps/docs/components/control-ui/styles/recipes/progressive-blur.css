@@ -20,21 +20,21 @@
 
   :where([data-control-family="progressive-blur"][data-slot="root"]:is([data-side="top"], [data-side="bottom"])) {
     inset-inline: 0;
-    height: min(50%, max(0px, var(--cui-progressive-blur-size)));
+    block-size: min(50%, max(0px, var(--cui-progressive-blur-size)));
   }
 
   :where([data-control-family="progressive-blur"][data-slot="root"][data-side="top"]) {
-    top: 0;
+    inset-block-start: 0;
     --_progressive-blur-direction: to top;
   }
 
   :where([data-control-family="progressive-blur"][data-slot="root"][data-side="bottom"]) {
-    bottom: 0;
+    inset-block-end: 0;
   }
 
   :where([data-control-family="progressive-blur"][data-slot="root"]:is([data-side="inline-start"], [data-side="inline-end"])) {
     inset-block: 0;
-    width: min(50%, max(0px, var(--cui-progressive-blur-size)));
+    inline-size: min(50%, max(0px, var(--cui-progressive-blur-size)));
   }
 
   :where([data-control-family="progressive-blur"][data-slot="root"][data-side="inline-start"]) {

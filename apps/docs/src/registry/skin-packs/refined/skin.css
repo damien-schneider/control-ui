@@ -107,7 +107,6 @@
   }
 
   [data-skin="refined"] :where([data-control-family="card"][data-slot="root"]) {
-    --cui-card-radius: var(--radius-panel);
     --cui-card-border-width: 0px;
     --cui-card-shadow: var(--refined-surface-shadow);
   }
@@ -119,7 +118,6 @@
     --cui-tool-approval-radius: calc(var(--radius-panel) + var(--spacing));
     --cui-tool-approval-padding: var(--spacing);
     --cui-tool-approval-body-background: var(--card);
-    --cui-tool-approval-body-radius: var(--radius-panel);
     --cui-tool-approval-body-shadow: var(--refined-surface-shadow);
     --cui-tool-approval-footer-border-width: 0px;
     --cui-tool-approval-footer-padding: calc(var(--spacing) * 2);
@@ -173,6 +171,7 @@
 
   [data-skin="refined"] :where([data-control-family="range"][data-range-kind="slider"][data-slot="root"][data-variant="default"]) {
     --cui-range-indicator-background: oklch(from var(--muted-foreground) l c h / 0.5);
+    --cui-range-indicator-dragging-background: var(--cui-range-indicator-background);
     --cui-range-thumb-background: var(--primary);
     --cui-range-thumb-border-color: var(--primary);
     --cui-range-thumb-shadow: var(--shadow-sm);

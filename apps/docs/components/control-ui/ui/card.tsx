@@ -56,7 +56,7 @@ export function CardHeader({ className, ...props }: CardHeaderProps) {
       data-control-ui="card"
       data-control-family="card"
       data-slot="header"
-      className={cn("grid auto-rows-min grid-rows-[auto_auto] items-start has-data-[slot=card-action]:grid-cols-[1fr_auto]", className)}
+      className={cn("grid auto-rows-min grid-rows-[auto_auto] items-start has-[>[data-slot=action]]:grid-cols-[1fr_auto]", className)}
       {...props}
     />
   );
@@ -96,7 +96,7 @@ export function CardFooter({ className, ...props }: CardFooterProps) {
       data-control-ui="card"
       data-control-family="card"
       data-slot="footer"
-      className={cn("flex items-center [.border-t]:pt-6", className)}
+      className={cn("flex items-center [.border-t]:pt-(--cui-card-gap)", className)}
       {...props}
     />
   );

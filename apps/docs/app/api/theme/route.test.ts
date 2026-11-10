@@ -156,7 +156,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  process.env.DEEPSEEK_API_KEY = undefined;
+  Reflect.deleteProperty(process.env, "DEEPSEEK_API_KEY");
 });
 
 test("paints tokens progressively and finishes with the gated palette", async () => {
@@ -230,7 +230,7 @@ test("does not spend a generation on a request it rejects", async () => {
 });
 
 test("reports an unconfigured deployment instead of failing inside the stream", async () => {
-  process.env.DEEPSEEK_API_KEY = undefined;
+  Reflect.deleteProperty(process.env, "DEEPSEEK_API_KEY");
 
   const response = await generate({ prompt: "calm", appearance: "light" });
   expect(response.status).toBe(503);

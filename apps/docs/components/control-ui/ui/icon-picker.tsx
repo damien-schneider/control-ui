@@ -132,8 +132,11 @@ export function IconPickerContent({
     if (currentIndex < 0) return;
     event.preventDefault();
     const direction = event.key === "ArrowDown" ? 1 : -1;
-    const nextIndex = Math.max(0, Math.min(filteredItems.length - 1, currentIndex + direction * picker.columns));
-    buttonsRef.current.get(filteredItems[nextIndex].value)?.focus();
+    const lastIndex = filteredItems.length - 1;
+    const targetIndex = currentIndex + direction * picker.columns;
+    const hasRowBelow = Math.floor(currentIndex / picker.columns) < Math.floor(lastIndex / picker.columns);
+    if (targetIndex < 0 || (targetIndex > lastIndex && !hasRowBelow)) return;
+    buttonsRef.current.get(filteredItems[Math.min(lastIndex, targetIndex)].value)?.focus();
   };
 
   return (

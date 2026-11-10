@@ -11,13 +11,18 @@ export function PrimitiveButtonGroupExample() {
   return (
     <div className="flex flex-col items-start gap-4">
       <ButtonGroup aria-label="Text alignment">
-        <Button variant="surface" active={alignment === "left"} onClick={() => setAlignment("left")}>
+        <Button variant="surface" active={alignment === "left"} aria-pressed={alignment === "left"} onClick={() => setAlignment("left")}>
           Left
         </Button>
-        <Button variant="surface" active={alignment === "center"} onClick={() => setAlignment("center")}>
+        <Button
+          variant="surface"
+          active={alignment === "center"}
+          aria-pressed={alignment === "center"}
+          onClick={() => setAlignment("center")}
+        >
           Center
         </Button>
-        <Button variant="surface" active={alignment === "right"} onClick={() => setAlignment("right")}>
+        <Button variant="surface" active={alignment === "right"} aria-pressed={alignment === "right"} onClick={() => setAlignment("right")}>
           Right
         </Button>
       </ButtonGroup>

@@ -97,6 +97,18 @@
       "defaultValue": "var(--muted-foreground)"
     },
     {
+      "name": "--cui-user-ask-indicator-selected-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary)"
+    },
+    {
+      "name": "--cui-user-ask-indicator-selected-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary-foreground)"
+    },
+    {
       "name": "--cui-user-ask-input-background",
       "syntax": "<color>",
       "initialValue": "transparent",
@@ -106,7 +118,7 @@
       "name": "--cui-user-ask-input-foreground",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "var(--foreground)"
+      "defaultValue": "var(--cui-user-ask-foreground)"
     }
   ],
   "parts": {

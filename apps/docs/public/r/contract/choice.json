@@ -14,6 +14,12 @@
       "defaultValue": "calc(var(--spacing) * 4)"
     },
     {
+      "name": "--cui-choice-indicator-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--cui-choice-size) * 0.75)"
+    },
+    {
       "name": "--cui-choice-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
@@ -53,7 +59,7 @@
       "name": "--cui-choice-shadow",
       "syntax": "*",
       "initialValue": "",
-      "defaultValue": "inset 0 0 0 var(--cui-choice-border-width) var(--cui-choice-border-color), var(--shadow-sm)"
+      "defaultValue": "var(--shadow-sm)"
     }
   ],
   "parts": {
@@ -276,6 +282,15 @@
               "horizontal",
               "vertical"
             ]
+          },
+          {
+            "attribute": "data-track",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "hover",
+              "none"
+            ]
           }
         ]
       },
@@ -456,10 +471,26 @@
         ]
       },
       "label": {
+        "family": "choice",
         "registryItems": [
           "radio-group"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-choice-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "radio-group"
+            ]
+          },
+          {
+            "attribute": "data-track-item",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
       }
     }
   },

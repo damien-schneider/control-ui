@@ -31,7 +31,7 @@ import {
   SidebarMenuItem,
 } from "@/components/control-ui/ui/sidebar";
 
-type Message = { id: string; author: string; sentAt: string; text: string };
+type Message = { id: string; author: string; sentAt: string; timeLabel: string; text: string };
 
 export default function TeamChatPage({ messages, onSend }: { messages: Message[]; onSend: (text: string) => Promise<void> }) {
   const [draft, setDraft] = useState("");
@@ -86,7 +86,7 @@ export default function TeamChatPage({ messages, onSend }: { messages: Message[]
                 <ChatMessageBody>
                   <ChatMessageHeader>
                     <ChatMessageAuthor>{message.author}</ChatMessageAuthor>
-                    <ChatMessageTime dateTime={message.sentAt}>{new Date(message.sentAt).toLocaleTimeString()}</ChatMessageTime>
+                    <ChatMessageTime dateTime={message.sentAt}>{message.timeLabel}</ChatMessageTime>
                   </ChatMessageHeader>
                   <ChatMessageContent>{message.text}</ChatMessageContent>
                 </ChatMessageBody>

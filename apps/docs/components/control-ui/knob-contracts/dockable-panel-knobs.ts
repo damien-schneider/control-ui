@@ -6,6 +6,7 @@ export const dockablePanelKnobs = [
   "--cui-dockable-panel-border-color",
   "--cui-dockable-panel-border-width",
   "--cui-dockable-panel-shadow",
+  "--cui-dockable-panel-dragging-shadow",
   "--cui-dockable-panel-drop-zone-active-background",
   "--cui-dockable-panel-drop-zone-active-border-color",
   "--cui-dockable-panel-drop-zone-background",

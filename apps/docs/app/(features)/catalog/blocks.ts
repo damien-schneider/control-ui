@@ -56,7 +56,10 @@ export const blockEntries = [
         mastra: sourceFile("Adapter usage", "src/registry/usage/blocks/theme-toggle.tsx", "usage"),
         "ai-sdk": sourceFile("Adapter usage", "src/registry/usage/blocks/theme-toggle.tsx", "usage"),
       },
-      files: [sourceFile("Block recipe", "src/registry/blocks/control-ui/theme-toggle.tsx", "block")],
+      files: [
+        sourceFile("Block recipe", "src/registry/blocks/control-ui/theme-toggle.tsx", "block"),
+        sourceFile("Segmented switch paint + @property knobs", "src/registry/sources/control-ui/recipes/theme-toggle.css", "recipe-css"),
+      ],
     },
     preview: preview(() => import("@/src/registry/examples/control-ui/theme-toggle").then((mod) => ({ default: mod.ThemeToggleExample }))),
   },

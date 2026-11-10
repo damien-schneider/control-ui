@@ -70,7 +70,7 @@ export const utilEntries = [
     id: "skin",
     kind: "Util",
     name: "skin",
-    summary: "Skin slot and adornment resolvers for the Control UI library.",
+    summary: "Skin config type, scope attributes, and adornment resolvers for the Control UI library.",
     target: "components/control-ui/skin.ts",
     source: sourceFile("Skin resolver", "src/registry/skin.ts", "util"),
   },

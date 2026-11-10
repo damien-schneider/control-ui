@@ -156,7 +156,13 @@ export const displayCompositions = {
     ),
   ],
   skeleton: [example("Loading placeholder", part("Skeleton"))],
-  toast: [example("Application toast host", part("Toaster"))],
+  toast: [
+    example(
+      "Application toast host",
+      part("Toaster"),
+      "Mount one Toaster and call toast() from anywhere. An action button dismisses its toast after its handler runs; call event.preventDefault() in actionProps.onClick to keep it open. toast.loading stays until it is updated or dismissed.",
+    ),
+  ],
   kbd: [example("Keyboard chord", part("KbdGroup", part("Kbd")))],
   separator: [example("Divider", part("Separator"))],
   "live-status": [example("Polite announcement", part("LiveStatus"), "Keep it mounted and change only its message.")],

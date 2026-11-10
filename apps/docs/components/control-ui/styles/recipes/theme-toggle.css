@@ -1,0 +1,103 @@
+@layer components {
+  :where([data-control-family="theme-toggle"][data-slot="root"]) {
+    --cui-theme-toggle-height: var(--control-h-xs);
+    --cui-theme-toggle-radius: var(--radius-control);
+    --cui-theme-toggle-border-width: var(--control-rim-width);
+    --cui-theme-toggle-background: var(--hover-fill);
+    --cui-theme-toggle-shadow: var(--shadow-inset);
+    --cui-theme-toggle-indicator-background: var(--background);
+    --cui-theme-toggle-indicator-shadow: var(--shadow-sm);
+    --_theme-toggle-padding: calc(var(--spacing) * 0.5);
+    --_theme-toggle-radius: min(var(--cui-theme-toggle-radius), calc(var(--cui-theme-toggle-height) / 2));
+    border: var(--cui-theme-toggle-border-width) solid var(--control-rim);
+    border-radius: calc(
+      var(--_theme-toggle-radius) +
+      clamp(0px, var(--_theme-toggle-radius) * 1000, var(--_theme-toggle-padding) + var(--cui-theme-toggle-border-width))
+    );
+    padding: var(--_theme-toggle-padding);
+    background: var(--cui-theme-toggle-background);
+    box-shadow: var(--cui-theme-toggle-shadow);
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="theme-toggle"][data-slot="indicator"]) {
+    border-radius: var(--_theme-toggle-radius);
+    background: var(--cui-theme-toggle-indicator-background);
+    box-shadow: var(--cui-theme-toggle-indicator-shadow);
+    transition: translate var(--duration-base) var(--ease-standard);
+  }
+
+  :where([data-control-family="theme-toggle"][data-slot="option"]) {
+    block-size: var(--cui-theme-toggle-height);
+    border-radius: var(--_theme-toggle-radius);
+    cursor: pointer;
+    transition: color var(--duration-fast) var(--ease-standard);
+  }
+
+  :where([data-control-family="theme-toggle"][data-slot="option"][data-selected]) {
+    color: var(--foreground);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="theme-toggle"][data-slot="option"]:hover:not([data-disabled])) {
+      color: var(--foreground);
+    }
+  }
+
+  :where([data-control-family="theme-toggle"][data-slot="option"][data-disabled]) {
+    opacity: var(--disabled-opacity);
+    cursor: not-allowed;
+  }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="theme-toggle"][data-slot="root"]) {
+      outline: 1px solid CanvasText;
+      outline-offset: -1px;
+    }
+
+    :where([data-control-family="theme-toggle"][data-slot="indicator"]) {
+      outline: var(--focus-ring-width) solid Highlight;
+      outline-offset: calc(var(--focus-ring-width) * -1);
+    }
+  }
+}
+
+@property --cui-theme-toggle-height {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-theme-toggle-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-theme-toggle-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-theme-toggle-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-theme-toggle-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-theme-toggle-indicator-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-theme-toggle-indicator-shadow {
+  syntax: "*";
+  inherits: true;
+}

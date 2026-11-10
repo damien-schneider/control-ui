@@ -4,7 +4,8 @@ import { Drawer as DrawerPrimitive } from "@base-ui/react/drawer";
 import { type ComponentProps, type CSSProperties, createContext, useContext } from "react";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { popupBackdropStyle } from "@/components/control-ui/popup-parts";
+import { skinScopeAttributes } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 
 export const drawerSides = ["bottom", "top", "right", "left"] as const;
@@ -34,11 +35,11 @@ const placement: Record<DrawerContentVariant, Record<DrawerSide, { viewport: str
   edge: {
     bottom: {
       viewport: "items-end justify-center",
-      popup: "w-full max-h-[85vh]",
+      popup: "w-full max-h-[85dvh]",
     },
     top: {
       viewport: "items-start justify-center",
-      popup: "w-full max-h-[85vh]",
+      popup: "w-full max-h-[85dvh]",
     },
     right: {
       viewport: "items-stretch justify-end",
@@ -53,11 +54,11 @@ const placement: Record<DrawerContentVariant, Record<DrawerSide, { viewport: str
     bottom: {
       viewport:
         "items-end justify-center pb-[var(--_drawer-float-gap)] [--_drawer-float-gap:max(--spacing(2),env(safe-area-inset-bottom))]",
-      popup: "w-full max-h-[85vh]",
+      popup: "w-full max-h-[85dvh]",
     },
     top: {
       viewport: "items-start justify-center pt-[var(--_drawer-float-gap)] [--_drawer-float-gap:max(--spacing(2),env(safe-area-inset-top))]",
-      popup: "w-full max-h-[85vh]",
+      popup: "w-full max-h-[85dvh]",
     },
     right: {
       viewport:
@@ -77,11 +78,16 @@ const placement: Record<DrawerContentVariant, Record<DrawerSide, { viewport: str
 // behind it would be worse than no drawer, so the content layers read the root's own modal flag.
 const DrawerModalContext = createContext(true);
 
+// The content sits on the edge the root swipes toward unless it names its own side.
+const DrawerSideContext = createContext<DrawerSide>("bottom");
+
 export function Drawer(props: ComponentProps<typeof DrawerPrimitive.Root> & { side?: DrawerSide }) {
   const { side = "bottom", swipeDirection, modal = true, ...rest } = props;
   return (
     <DrawerModalContext value={modal === true}>
-      <DrawerPrimitive.Root swipeDirection={swipeDirection ?? swipeFor[side]} modal={modal} {...rest} />
+      <DrawerSideContext value={side}>
+        <DrawerPrimitive.Root swipeDirection={swipeDirection ?? swipeFor[side]} modal={modal} {...rest} />
+      </DrawerSideContext>
     </DrawerModalContext>
   );
 }
@@ -100,40 +106,37 @@ export function DrawerClose({
   return <DrawerPrimitive.Close data-control-ui="drawer" data-popup-kind="drawer" data-slot="close" className={className} {...props} />;
 }
 
-export function DrawerContent({
-  className,
-  children,
-  side = "bottom",
-  surface = "background",
-  variant = "edge",
-  style,
-  ...props
-}: Omit<ComponentProps<typeof DrawerPrimitive.Popup>, "style"> & {
+export type DrawerContentProps = Omit<ComponentProps<typeof DrawerPrimitive.Popup>, "style"> & {
   side?: DrawerSide;
   surface?: DrawerContentSurface;
   variant?: DrawerContentVariant;
   style?: CSSProperties & PopupKnobStyle;
-}) {
+};
+
+export function DrawerContent({
+  className,
+  children,
+  side: sideProp,
+  surface = "background",
+  variant = "edge",
+  style,
+  ...props
+}: DrawerContentProps) {
   const skin = useSkin();
   const modal = useContext(DrawerModalContext);
+  const rootSide = useContext(DrawerSideContext);
+  const side = sideProp ?? rootSide;
   const place = placement[variant][side];
   const grabbable = side === "bottom" || side === "top";
-  const backdropStyle: (CSSProperties & PopupKnobStyle) | undefined = style
-    ? {
-        "--cui-popup-backdrop-background": style["--cui-popup-backdrop-background"],
-        "--cui-popup-backdrop-blur": style["--cui-popup-backdrop-blur"],
-      }
-    : undefined;
+  const backdropStyle = popupBackdropStyle(style);
   return (
-    <DrawerPrimitive.Portal>
+    <DrawerPrimitive.Portal {...skinScopeAttributes(skin)}>
       <DrawerPrimitive.Backdrop
         data-control-ui="drawer"
         data-control-family="popup"
         data-popup-kind="drawer"
         data-popup-part="backdrop"
         data-slot="backdrop"
-        data-skin={skin.id}
-        data-effects={controlEffectsAttribute(skin.effects)}
         className={cn("fixed inset-0 z-(--z-overlay)", !modal && "pointer-events-none")}
         style={backdropStyle}
       />
@@ -144,8 +147,6 @@ export function DrawerContent({
         data-slot="viewport"
         data-side={side}
         data-variant={variant}
-        data-skin={skin.id}
-        data-effects={controlEffectsAttribute(skin.effects)}
         className={cn("fixed inset-0 z-(--z-modal) flex", place.viewport, !modal && "pointer-events-none")}
       >
         <DrawerPrimitive.Popup
@@ -213,7 +214,7 @@ export function DrawerFooter({ className, ...props }: ComponentProps<"div"> & { 
       data-control-family="popup"
       data-popup-kind="drawer"
       data-slot="footer"
-      className={cn("mt-auto flex shrink-0 flex-col sm:flex-row sm:justify-end", className)}
+      className={cn("mt-auto flex shrink-0 flex-col-reverse sm:flex-row sm:justify-end", className)}
       {...props}
     />
   );

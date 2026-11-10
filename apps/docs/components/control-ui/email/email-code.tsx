@@ -13,7 +13,7 @@ import { type EmailDirection, type EmailSides, type EmailVariant, emailSides, su
 import type { EmailTheme } from "./theme";
 
 export function EmailInlineCode({ className = "", ...props }: CodeInlineProps) {
-  return <CodeInline {...props} className={`rounded-control bg-muted px-1 font-mono text-card-foreground ${className}`} />;
+  return <CodeInline dir="ltr" {...props} className={`rounded-control bg-muted px-1 font-mono text-card-foreground ${className}`} />;
 }
 
 function prismTheme(theme: EmailTheme): PrismTheme {
@@ -73,7 +73,7 @@ export function EmailCodeBlock({
   className?: string;
 }) {
   return (
-    <Section className={`mb-6 ${className}`}>
+    <Section dir="ltr" className={`mb-6 ${className}`}>
       <CodeBlock code={code} language={language} lineNumbers={lineNumbers} fontFamily={theme.fonts.mono} theme={prismTheme(theme)} />
     </Section>
   );
@@ -123,8 +123,16 @@ function markdownStyles(theme: EmailTheme, variant: EmailVariant, sides: EmailSi
     bold: { fontWeight: 600 },
     italic: { fontStyle: "italic" },
     link: { color: colors["primary-text"], textDecoration: "underline" },
-    codeInline: { ...monospace, padding: "2px 4px" },
-    codeBlock: { ...monospace, display: "block", padding: "16px", borderRadius: theme.radii.panel, whiteSpace: "pre-wrap" },
+    codeInline: { ...monospace, padding: "2px 4px", direction: "ltr", unicodeBidi: "isolate" },
+    codeBlock: {
+      ...monospace,
+      display: "block",
+      padding: "16px",
+      borderRadius: theme.radii.panel,
+      whiteSpace: "pre-wrap",
+      direction: "ltr",
+      textAlign: "left",
+    },
     blockQuote: {
       ...body,
       ...(sides.start === "left" ? { borderLeft: startRule } : { borderRight: startRule }),

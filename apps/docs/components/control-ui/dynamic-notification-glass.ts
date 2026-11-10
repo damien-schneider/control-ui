@@ -168,13 +168,23 @@ function buildProgram(gl: WebGLRenderingContext): GlassProgram | null {
 export function createDynamicNotificationGlass(canvas: HTMLCanvasElement, options: DynamicNotificationGlassOptions = {}): () => void {
   const { intensity = 1, maxDpr = 2 } = options;
   const gl = canvas.getContext("webgl", { alpha: true, premultipliedAlpha: true, antialias: true });
-  if (!gl) return () => {};
+  if (!gl) {
+    canvas.dataset.glassFailed = "webgl";
+    return () => {
+      delete canvas.dataset.glassFailed;
+    };
+  }
 
   // remount on same canvas hands back SAME live context, so cleanup must never loseContext():
   // lost context returns null from getExtension, leaving no later instance able to restore it.
   let contextLost = gl.isContextLost();
   let glass = contextLost ? null : buildProgram(gl);
-  if (!contextLost && !glass) return () => {};
+  if (!contextLost && !glass) {
+    canvas.dataset.glassFailed = "shader";
+    return () => {
+      delete canvas.dataset.glassFailed;
+    };
+  }
 
   let dpr = 1;
   const motion = createNotificationMotion(canvas.parentElement?.dataset.state);
@@ -216,6 +226,7 @@ export function createDynamicNotificationGlass(canvas: HTMLCanvasElement, option
     gl.uniform1f(glass.lift, lift);
     gl.uniform1f(glass.ribbonHorizon, 0.5);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    delete canvas.dataset.glassFailed;
     if (canvas.dataset.glassReady !== "true") canvas.dataset.glassReady = "true";
     return keepAnimating;
   }
@@ -226,6 +237,8 @@ export function createDynamicNotificationGlass(canvas: HTMLCanvasElement, option
     // preventDefault asks for context back — browser then fires webglcontextrestored
     event.preventDefault();
     contextLost = true;
+    delete canvas.dataset.glassReady;
+    canvas.dataset.glassFailed = "context";
     loop.cancel();
   }
 
@@ -234,6 +247,10 @@ export function createDynamicNotificationGlass(canvas: HTMLCanvasElement, option
     if (!gl) return;
     contextLost = false;
     glass = buildProgram(gl);
+    if (!glass) {
+      canvas.dataset.glassFailed = "shader";
+      return;
+    }
     loop.invalidate();
   }
 
@@ -247,6 +264,7 @@ export function createDynamicNotificationGlass(canvas: HTMLCanvasElement, option
     canvas.removeEventListener("webglcontextlost", handleContextLost);
     canvas.removeEventListener("webglcontextrestored", handleContextRestored);
     delete canvas.dataset.glassReady;
+    delete canvas.dataset.glassFailed;
     if (glass && !gl.isContextLost()) {
       gl.deleteProgram(glass.program);
       gl.deleteBuffer(glass.buffer);

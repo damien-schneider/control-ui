@@ -1,7 +1,18 @@
 "use client";
 
-import { createInstance, destroyInstance, type MetalFxInstance, type MetalFxPreset, setSharedPreset, updateInstance } from "metal-fx";
+import {
+  createInstance,
+  destroyInstance,
+  isMetalFxSupported,
+  type MetalFxInstance,
+  type MetalFxPreset,
+  PRESETS,
+  setSharedPreset,
+  setSharedPresetMode,
+  updateInstance,
+} from "metal-fx";
 import { useEffect } from "react";
+import { prefersReducedMotion } from "@/components/control-ui/lib/motion";
 
 const controlSelector = '[data-control-ui][data-control="true"]';
 const skinScopeSelector = "[data-skin-scope]";
@@ -50,8 +61,9 @@ type LiquidMetalAttachment = {
   };
 };
 
+// Without WebGL2 the shared renderer throws on first use: controls keep the recipe look instead.
 function activeSkin() {
-  return document.documentElement.dataset.skin === "liquid-metal";
+  return document.documentElement.dataset.skin === "liquid-metal" && isMetalFxSupported();
 }
 
 function activeTheme(): "dark" | "light" {
@@ -365,6 +377,7 @@ function syncControls(root: HTMLElement, attachments: Map<HTMLElement, LiquidMet
   cleanupStaleChrome(root, attachments);
 
   if (!activeSkin()) {
+    if (attachments.size > 0) setSharedPresetMode(null);
     for (const [control, attachment] of attachments) {
       detachControl(control, attachment);
     }
@@ -372,7 +385,10 @@ function syncControls(root: HTMLElement, attachments: Map<HTMLElement, LiquidMet
     return;
   }
 
-  setSharedPreset(defaultPreset, activeTheme());
+  const theme = activeTheme();
+  // metal-fx only stills its cursor light under reduced motion: a zero-speed mode holds the shader on one frame.
+  setSharedPresetMode(prefersReducedMotion(document.documentElement) ? { ...PRESETS[defaultPreset].modes[theme], speed: 0 } : null);
+  setSharedPreset(defaultPreset, theme);
 
   // Attach new controls before detaching stale ones: metal-fx's shared WebGL context tears
   // down when instance count hits 0 and can't rebuild same-tick. Skin swaps remount whole
@@ -427,14 +443,19 @@ export function LiquidMetalSkinRuntime() {
     const skinObserver = new MutationObserver(scheduleSync);
     skinObserver.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ["class", "data-skin", "style"],
+      attributeFilter: ["class", "data-motion", "data-skin", "style"],
     });
+
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    reducedMotionQuery.addEventListener("change", scheduleSync);
 
     return () => {
       if (syncRaf !== 0) cancelAnimationFrame(syncRaf);
       skinObserver.disconnect();
+      reducedMotionQuery.removeEventListener("change", scheduleSync);
       domObserver?.disconnect();
       domObserver = null;
+      if (attachments.size > 0) setSharedPresetMode(null);
       for (const [control, attachment] of attachments) {
         detachControl(control, attachment);
       }

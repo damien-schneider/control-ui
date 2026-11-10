@@ -1,6 +1,19 @@
 "use client";
 
+import type { CSSProperties } from "react";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { Button, type ButtonProps } from "@/components/control-ui/ui/button";
+
+type PopupStyle = CSSProperties & PopupKnobStyle;
+
+// The backdrop is a sibling of the popup, so backdrop knobs set on the popup's style never inherit into it.
+export function popupBackdropStyle(style: PopupStyle | undefined): PopupStyle | undefined {
+  if (!style) return undefined;
+  return {
+    "--cui-popup-backdrop-background": style["--cui-popup-backdrop-background"],
+    "--cui-popup-backdrop-blur": style["--cui-popup-backdrop-blur"],
+  };
+}
 
 export type PopupCloseButtonProps = Omit<ButtonProps, "children" | "iconOnly"> & {
   label: string;

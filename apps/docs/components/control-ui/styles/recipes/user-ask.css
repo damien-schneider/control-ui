@@ -10,10 +10,12 @@
     --cui-user-ask-shadow: var(--shadow-pop);
     --cui-user-ask-indicator-background: var(--muted);
     --cui-user-ask-indicator-foreground: var(--muted-foreground);
+    --cui-user-ask-indicator-selected-background: var(--primary);
+    --cui-user-ask-indicator-selected-foreground: var(--primary-foreground);
     --cui-user-ask-indicator-radius: 9999px;
     --cui-user-ask-indicator-multiple-radius: var(--radius-sm);
     --cui-user-ask-input-background: transparent;
-    --cui-user-ask-input-foreground: var(--foreground);
+    --cui-user-ask-input-foreground: var(--cui-user-ask-foreground);
     --cui-user-ask-option-hover-background: var(--hover-fill);
     --cui-user-ask-option-radius: max(
       var(--radius-sm),
@@ -49,7 +51,7 @@
   }
 
   :where([data-control-family="user-ask"][data-slot="title"]) {
-    color: var(--foreground);
+    color: var(--cui-user-ask-foreground);
     font-size: var(--text-body);
   }
 
@@ -89,10 +91,25 @@
     :where([data-control-family="user-ask"][data-slot="option"]) {
       min-block-size: var(--touch-target);
     }
+
+    :where([data-control-family="user-ask"][data-slot="option"][data-freeform][data-selected] > [data-slot="option-indicator"]) {
+      position: relative;
+    }
+
+    /* Sized to the row's own padding and gap so the area never reaches the input or a neighbouring option. */
+    :where([data-control-family="user-ask"][data-slot="option"][data-freeform][data-selected] > [data-slot="option-indicator"])::after {
+      content: "";
+      position: absolute;
+      inset: 50% auto auto 50%;
+      translate: -50% -50%;
+      inline-size: calc(100% + var(--spacing) * 4);
+      block-size: calc(100% + var(--spacing) * 3);
+    }
   }
 
   :where([data-control-family="user-ask"][data-slot="option"]:disabled) {
     opacity: var(--disabled-opacity);
+    cursor: not-allowed;
   }
 
   :where([data-control-family="user-ask"][data-slot="option-indicator"]) {
@@ -105,9 +122,14 @@
     font-size: var(--text-micro);
   }
 
+  :where([data-control-family="user-ask"][data-slot="option-indicator"] > svg) {
+    inline-size: calc(var(--spacing) * 3);
+    block-size: calc(var(--spacing) * 3);
+  }
+
   :where([data-control-family="user-ask"][data-slot="option-indicator"][data-selected]) {
-    background: var(--primary);
-    color: var(--primary-foreground);
+    background: var(--cui-user-ask-indicator-selected-background);
+    color: var(--cui-user-ask-indicator-selected-foreground);
   }
 
   :where([data-control-family="user-ask"][data-slot="option-indicator"][data-multiple]) {
@@ -115,7 +137,7 @@
   }
 
   :where([data-control-family="user-ask"][data-slot="option-label"]) {
-    color: var(--foreground);
+    color: var(--cui-user-ask-foreground);
   }
 
   :where([data-control-family="user-ask"]:is([data-slot="recommended"], [data-slot="option-description"], [data-slot="freeform-label"])) {
@@ -134,6 +156,7 @@
   }
 
   :where([data-control-family="button"][data-user-ask-dismiss="true"]) {
+    --cui-button-foreground: var(--muted-foreground);
     gap: calc(var(--spacing) * 1.5);
   }
 
@@ -233,6 +256,18 @@
 }
 
 @property --cui-user-ask-indicator-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-user-ask-indicator-selected-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-user-ask-indicator-selected-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

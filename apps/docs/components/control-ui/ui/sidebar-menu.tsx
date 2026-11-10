@@ -2,7 +2,7 @@
 
 import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
-import { createContext, useContext, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useId, useRef, useState } from "react";
 import type { HoverIndicator, RenderProp, SelectionIndicator } from "@/components/control-ui/control-props";
 import { TrackHighlight } from "@/components/control-ui/extensions/track-highlight";
 import type { SidebarKnobStyle } from "@/components/control-ui/knob-contracts/sidebar-knobs";
@@ -50,7 +50,7 @@ export function SidebarMenuAction({ className, render, showOnHover = false, chil
       "data-slot": "menu-action",
       "data-show-on-hover": showOnHover || undefined,
       className: cn(
-        "end-1 flex size-5 items-center justify-center -translate-y-1/2 disabled:pointer-events-none group-data-[collapsible=icon]:hidden [&>svg]:size-4 [&>svg]:shrink-0",
+        "end-1 flex size-5 items-center justify-center -translate-y-1/2 group-data-[collapsible=icon]:hidden",
         className,
         "absolute",
       ),
@@ -67,29 +67,49 @@ export type SidebarMenuButtonProps = Omit<ComponentProps<"button">, "style"> & {
   size?: SidebarMenuButtonSize;
 };
 
-export function SidebarGroup({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & SidebarKnobStyle }) {
+export type SidebarGroupProps = ComponentProps<"div"> & { style?: CSSProperties & SidebarKnobStyle };
+
+const SidebarGroupLabelContext = createContext<((labelId: string | undefined) => void) | null>(null);
+
+export function SidebarGroup({ className, ...props }: SidebarGroupProps) {
+  const [labelId, setLabelId] = useState<string>();
   return (
-    <div
-      data-control-ui="sidebar"
-      data-control-family="sidebar"
-      data-slot="group"
-      className={cn("relative flex w-full min-w-0 flex-col", className)}
-      {...props}
-    />
+    <SidebarGroupLabelContext.Provider value={setLabelId}>
+      <div
+        {...(labelId ? ({ role: "group", "aria-labelledby": labelId } as const) : undefined)}
+        data-control-ui="sidebar"
+        data-control-family="sidebar"
+        data-slot="group"
+        className={cn("relative flex w-full min-w-0 flex-col", className)}
+        {...props}
+      />
+    </SidebarGroupLabelContext.Provider>
   );
 }
 
-export function SidebarGroupLabel({ className, render, children, ...props }: SidebarGroupLabelProps) {
+export function SidebarGroupLabel({ className, render, children, id, ref, ...props }: SidebarGroupLabelProps) {
+  const generatedId = useId();
+  const labelId = id ?? generatedId;
+  const labelRef = useRef<HTMLDivElement>(null);
+  const registerLabel = useContext(SidebarGroupLabelContext);
+
+  useEffect(() => {
+    registerLabel?.(labelRef.current?.id || labelId);
+    return () => registerLabel?.(undefined);
+  }, [registerLabel, labelId]);
+
   return useRender({
     defaultTagName: "div",
     render,
+    ref: [ref ?? null, labelRef],
     props: {
       ...props,
+      id: labelId,
       "data-control-ui": "sidebar",
       "data-control-family": "sidebar",
       "data-slot": "group-label",
       className: cn(
-        "flex h-control-sm shrink-0 items-center [&>svg]:size-4 [&>svg]:shrink-0",
+        "flex h-control-sm shrink-0 items-center",
         "group-data-[collapsible=icon]:invisible group-data-[collapsible=icon]:-mt-control-sm group-data-[collapsible=icon]:opacity-0",
         className,
       ),
@@ -102,15 +122,11 @@ export type SidebarSelectionIndicator = SelectionIndicator | HoverIndicator;
 
 const SidebarMenuContext = createContext<SidebarSelectionIndicator>("none");
 
-export function SidebarMenu({
-  className,
-  indicator,
-  style,
-  children,
-  ...props
-}: ComponentProps<"ul"> & {
+export type SidebarMenuProps = ComponentProps<"ul"> & {
   indicator?: SidebarSelectionIndicator;
-} & { style?: CSSProperties & SidebarKnobStyle }) {
+} & { style?: CSSProperties & SidebarKnobStyle };
+
+export function SidebarMenu({ className, indicator, style, children, ...props }: SidebarMenuProps) {
   const skin = useSkin();
   const resolvedIndicator = indicator ?? skin.indicators?.sidebar ?? "none";
   const hasHighlight = resolvedIndicator === "slide";
@@ -150,7 +166,9 @@ export function SidebarMenu({
   );
 }
 
-export function SidebarMenuItem({ className, ...props }: ComponentProps<"li"> & { style?: CSSProperties & SidebarKnobStyle }) {
+export type SidebarMenuItemProps = ComponentProps<"li"> & { style?: CSSProperties & SidebarKnobStyle };
+
+export function SidebarMenuItem({ className, ...props }: SidebarMenuItemProps) {
   return (
     <li
       data-control-ui="sidebar"
@@ -214,7 +232,7 @@ export function SidebarMenuButton({
       "data-indicator": indicator,
       "data-track-item": indicator === "slide" ? "" : undefined,
       className: cn(
-        "peer/menu-button flex items-center overflow-hidden text-start disabled:pointer-events-none aria-disabled:pointer-events-none [&>span]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+        "peer/menu-button flex items-center overflow-hidden text-start aria-disabled:pointer-events-none [&>span]:truncate",
         className,
       ),
       children,
@@ -238,6 +256,8 @@ export function SidebarMenuButton({
   );
 }
 
-export function SidebarMenuSub({ className, ...props }: ComponentProps<typeof SidebarMenu>) {
+export type SidebarMenuSubProps = SidebarMenuProps;
+
+export function SidebarMenuSub({ className, ...props }: SidebarMenuSubProps) {
   return <SidebarMenu data-submenu="" className={cn("group-data-[collapsible=icon]:hidden", className)} {...props} />;
 }

@@ -44,6 +44,18 @@ export function PrimitiveSliderExample() {
           formatValue={(v) => `${v}%`}
         />
       </Row>
+      <Row label="Range, one thumb per value">
+        <Slider
+          variant="plain"
+          label="Price"
+          defaultValue={[200, 600]}
+          thumbLabels={["Minimum price", "Maximum price"]}
+          min={0}
+          max={1000}
+          step={50}
+          formatValue={(price) => `$${price}`}
+        />
+      </Row>
       <Row label="Disabled">
         <Slider variant="plain" aria-label="Disabled slider" value={30} disabled min={0} max={100} />
       </Row>

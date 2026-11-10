@@ -842,6 +842,12 @@
       "description": "Select/menu row corner; derived from --radius-control."
     },
     {
+      "name": "--radius-popup-item-fit",
+      "group": "radius",
+      "tier": "derived",
+      "description": "Row corner capped at half the smallest control height; --radius-popover nests around it."
+    },
+    {
       "name": "--radius-popover",
       "group": "radius",
       "tier": "derived",
@@ -980,6 +986,12 @@
       "description": "Opacity of a disabled control; defaults to 0.45."
     },
     {
+      "name": "--spacing",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "THE density unit (Tailwind's --spacing); gaps, insets, and --popover-padding multiply from it."
+    },
+    {
       "name": "--popover-padding",
       "group": "layout",
       "tier": "advanced",
@@ -1007,13 +1019,13 @@
       "name": "--control-h-xs",
       "group": "layout",
       "tier": "derived",
-      "description": "Derived control height: xs (×0.78, px-snapped)."
+      "description": "Derived control height: xs (×0.78, snapped to 2px)."
     },
     {
       "name": "--control-h-sm",
       "group": "layout",
       "tier": "derived",
-      "description": "Derived control height: sm (×0.89, px-snapped)."
+      "description": "Derived control height: sm (×0.89, snapped to 2px)."
     },
     {
       "name": "--control-h-md",
@@ -1025,7 +1037,7 @@
       "name": "--control-h-lg",
       "group": "layout",
       "tier": "derived",
-      "description": "Derived control height: lg (×1.11, px-snapped)."
+      "description": "Derived control height: lg (×1.11, snapped to 2px)."
     },
     {
       "name": "--sidebar-width",
@@ -1040,6 +1052,24 @@
       "description": "Collapsed icon-rail sidebar width."
     },
     {
+      "name": "--z-raised",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "Stacking level of content lifted above its page siblings."
+    },
+    {
+      "name": "--z-sticky",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "Stacking level of sticky headers, toolbars, and rails."
+    },
+    {
+      "name": "--z-nav",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "Stacking level of app navigation: fixed sidebars and mobile bars."
+    },
+    {
       "name": "--z-overlay",
       "group": "layout",
       "tier": "advanced",
@@ -1049,7 +1079,7 @@
       "name": "--z-modal",
       "group": "layout",
       "tier": "advanced",
-      "description": "Stacking level of dialogs and sheets."
+      "description": "Stacking level of dialogs and sheets; one above --z-overlay."
     },
     {
       "name": "--z-popup",
@@ -1058,16 +1088,16 @@
       "description": "Stacking level of menus, popovers, and selects."
     },
     {
-      "name": "--z-tooltip",
-      "group": "layout",
-      "tier": "advanced",
-      "description": "Stacking level of tooltips."
-    },
-    {
       "name": "--z-toast",
       "group": "layout",
       "tier": "advanced",
       "description": "Stacking level of toasts."
+    },
+    {
+      "name": "--z-tooltip",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "Stacking level of tooltips; the topmost tier."
     },
     {
       "name": "--focus-ring-width",

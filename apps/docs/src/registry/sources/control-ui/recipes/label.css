@@ -6,7 +6,7 @@
     font-weight: var(--font-weight-medium);
   }
 
-  :where([data-control-family="label"][data-slot="root"]:has(:disabled, [data-disabled])) {
+  :where([data-control-family="label"][data-slot="root"]:is([data-disabled], :has(:disabled, [data-disabled]))) {
     cursor: not-allowed;
     opacity: var(--disabled-opacity);
   }

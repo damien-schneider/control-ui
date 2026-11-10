@@ -11,7 +11,7 @@ import type { ChartKnobStyle } from "@/components/control-ui/knob-contracts/char
 import { cn } from "@/components/control-ui/lib/cn";
 import { readDurationMs } from "@/components/control-ui/lib/motion";
 import { CHART_COLORS, type ChartColor, type ChartPaletteColor, chartColor } from "@/components/control-ui/ui/chart-colors";
-import type { ChartFill } from "@/components/control-ui/ui/chart-series";
+import { type ChartFill, chartOccurrenceKey } from "@/components/control-ui/ui/chart-series";
 
 const NON_ID_CHARACTERS = /[^\w-]/g;
 
@@ -177,7 +177,9 @@ export function ChartPlot<TDatum, TXValue extends ChartValue = ChartValue, TYVal
   );
 }
 
-export function ChartCenter({ className, ...props }: ComponentProps<"div">) {
+export type ChartCenterProps = ComponentProps<"div">;
+
+export function ChartCenter({ className, ...props }: ChartCenterProps) {
   return (
     <div
       data-control-ui="chart"
@@ -189,16 +191,10 @@ export function ChartCenter({ className, ...props }: ComponentProps<"div">) {
   );
 }
 
-export function ChartLegend({ className, ...props }: ComponentProps<"ul">) {
-  return (
-    <ul
-      data-control-ui="chart"
-      data-control-family="chart"
-      data-slot="legend"
-      className={cn("text-label text-muted-foreground", className)}
-      {...props}
-    />
-  );
+export type ChartLegendProps = ComponentProps<"ul">;
+
+export function ChartLegend({ className, ...props }: ChartLegendProps) {
+  return <ul data-control-ui="chart" data-control-family="chart" data-slot="legend" className={cn(className)} {...props} />;
 }
 
 export type ChartLegendItemProps = Omit<ComponentProps<"li">, "color"> & {
@@ -262,6 +258,8 @@ export function ChartLegendItem({
 export type ChartTooltipBodyProps = Omit<ComponentProps<"div">, "content"> & { content: string | ChartTooltipContent };
 
 export function ChartTooltipBody({ content, className, ...props }: ChartTooltipBodyProps) {
+  const seenLabels = new Map<string, number>();
+  const rows = typeof content === "string" ? [] : content.rows.map((row) => ({ key: chartOccurrenceKey(seenLabels, row.label), row }));
   return (
     <div
       data-control-ui="chart"
@@ -271,26 +269,30 @@ export function ChartTooltipBody({ content, className, ...props }: ChartTooltipB
       {...props}
     >
       {typeof content === "string" ? (
-        <p className="text-label">{content}</p>
+        <p>{content}</p>
       ) : (
         <>
           {content.title ? (
-            <p data-control-ui="chart" data-control-family="chart" data-slot="tooltip-title" className="font-medium text-label">
+            <p data-control-ui="chart" data-control-family="chart" data-slot="tooltip-title">
               {content.title}
             </p>
           ) : null}
-          {content.rows.map((row) => (
+          {rows.map(({ key, row }) => (
             <div
-              key={row.label}
+              key={key}
               data-control-ui="chart"
               data-control-family="chart"
               data-slot="tooltip-row"
               data-active={row.active ? "true" : undefined}
-              className="flex items-center gap-2 text-label"
+              className="flex items-center gap-2"
             >
               <ChartSwatch color={row.color ?? "currentColor"} />
-              <span className={row.active ? undefined : "text-muted-foreground"}>{row.label}</span>
-              <span className="ms-auto font-medium tabular-nums">{row.value}</span>
+              <span data-control-ui="chart" data-control-family="chart" data-slot="tooltip-label">
+                {row.label}
+              </span>
+              <span data-control-ui="chart" data-control-family="chart" data-slot="tooltip-value" className="ms-auto tabular-nums">
+                {row.value}
+              </span>
             </div>
           ))}
         </>

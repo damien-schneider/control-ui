@@ -26,20 +26,24 @@
 
   :where([data-control-family="morphing-panel"][data-slot="root"]) {
     --cui-morphing-panel-radius: var(--radius-control);
+    --cui-morphing-panel-open-radius: var(--radius-panel);
     --cui-morphing-panel-background: var(--card);
     --cui-morphing-panel-foreground: var(--card-foreground);
     --cui-morphing-panel-border-width: var(--control-rim-width);
     --cui-morphing-panel-border-color: oklch(from var(--border) l c h / 0.8);
     --cui-morphing-panel-shadow: var(--shadow-md);
-    --cui-morphing-panel-trigger-hover-background: oklch(from var(--foreground) l c h / 0.06);
+    --cui-morphing-panel-open-shadow: var(--shadow-pop);
+    --cui-morphing-panel-trigger-hover-background: var(--hover-fill);
+    --_morphing-panel-radius: var(--cui-morphing-panel-radius);
+    --_morphing-panel-shadow: var(--cui-morphing-panel-shadow);
     --_morphing-panel-close-size: calc(var(--spacing) * 9);
-    width: min(var(--_morphing-panel-collapsed-width), 100%);
-    height: var(--_morphing-panel-collapsed-height);
-    border-radius: var(--cui-morphing-panel-radius);
+    inline-size: min(var(--_morphing-panel-collapsed-width), 100%);
+    block-size: var(--_morphing-panel-collapsed-height);
+    border-radius: var(--_morphing-panel-radius);
     background-color: var(--cui-morphing-panel-background);
     color: var(--cui-morphing-panel-foreground);
     box-shadow:
-      var(--cui-morphing-panel-shadow),
+      var(--_morphing-panel-shadow),
       0 0 0 var(--cui-morphing-panel-border-width) var(--cui-morphing-panel-border-color);
     transition-property: width, height, border-radius, box-shadow;
     transition-duration: var(--duration-slow);
@@ -47,10 +51,10 @@
   }
 
   :where([data-control-family="morphing-panel"][data-slot="root"][data-state="open"]) {
-    width: min(var(--_morphing-panel-expanded-width), 100%);
-    height: var(--_morphing-panel-expanded-height);
-    --cui-morphing-panel-radius: var(--radius-panel);
-    --cui-morphing-panel-shadow: var(--shadow-pop);
+    --_morphing-panel-radius: var(--cui-morphing-panel-open-radius);
+    --_morphing-panel-shadow: var(--cui-morphing-panel-open-shadow);
+    inline-size: min(var(--_morphing-panel-expanded-width), 100%);
+    block-size: var(--_morphing-panel-expanded-height);
   }
 
   :where([data-control-family="morphing-panel"][data-slot="trigger"]) {
@@ -60,6 +64,7 @@
     padding-inline: calc(var(--spacing) * 4);
     border-radius: inherit;
     --focus-ring-offset: calc(var(--focus-ring-width) * -1);
+    cursor: pointer;
     color: currentColor;
     font-size: var(--text-body);
     font-weight: var(--font-weight-medium);
@@ -72,7 +77,12 @@
     inline-size: var(--_morphing-panel-close-size);
     block-size: var(--_morphing-panel-close-size);
     padding: 0;
-    border-radius: var(--radius-control);
+    border-radius: var(--cui-morphing-panel-radius);
+  }
+
+  :where([data-control-family="morphing-panel"][data-slot="trigger"]:is(:disabled, [data-disabled])) {
+    cursor: not-allowed;
+    opacity: var(--disabled-opacity);
   }
 
   @media (pointer: coarse) {
@@ -82,13 +92,13 @@
   }
 
   @media (hover: hover) {
-    :where([data-control-family="morphing-panel"][data-slot="trigger"]:hover) {
+    :where([data-control-family="morphing-panel"][data-slot="trigger"]:hover:not(:disabled, [data-disabled])) {
       background-color: var(--cui-morphing-panel-trigger-hover-background);
     }
   }
 
   :where([data-control-family="morphing-panel"][data-slot="header"]) {
-    min-height: calc(var(--_morphing-panel-close-size) + var(--spacing) * 4);
+    min-block-size: calc(var(--_morphing-panel-close-size) + var(--spacing) * 4);
     padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
     padding-inline-end: calc(var(--_morphing-panel-close-size) + var(--spacing) * 6);
   }
@@ -99,7 +109,7 @@
 
   :where([data-control-family="morphing-panel"][data-slot="footer"]) {
     padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
-    border-top: var(--cui-morphing-panel-border-width) solid var(--cui-morphing-panel-border-color);
+    border-block-start: var(--cui-morphing-panel-border-width) solid var(--cui-morphing-panel-border-color);
   }
 
   :where([data-control-family="morphing-panel"][data-slot="content"]) {
@@ -128,6 +138,12 @@
   initial-value: 0px;
 }
 
+@property --cui-morphing-panel-open-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
 @property --cui-morphing-panel-background {
   syntax: "<color>";
   inherits: true;
@@ -147,6 +163,11 @@
 }
 
 @property --cui-morphing-panel-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-morphing-panel-open-shadow {
   syntax: "*";
   inherits: true;
 }

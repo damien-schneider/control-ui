@@ -7,10 +7,28 @@
   ],
   "knobs": [
     {
+      "name": "--cui-avatar-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 9)"
+    },
+    {
       "name": "--cui-avatar-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "9999px"
+    },
+    {
+      "name": "--cui-avatar-group-gap",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * -2)"
+    },
+    {
+      "name": "--cui-avatar-group-ring-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "2px"
     },
     {
       "name": "--cui-avatar-group-ring-color",
@@ -43,6 +61,12 @@
       "defaultValue": "max(0.5rem, 30%)"
     },
     {
+      "name": "--cui-avatar-badge-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "9999px"
+    },
+    {
       "name": "--cui-avatar-badge-ring-size",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
@@ -65,6 +89,30 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--primary-foreground)"
+    },
+    {
+      "name": "--cui-avatar-badge-online-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--success)"
+    },
+    {
+      "name": "--cui-avatar-badge-away-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--warning)"
+    },
+    {
+      "name": "--cui-avatar-badge-busy-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--destructive)"
+    },
+    {
+      "name": "--cui-avatar-badge-offline-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--muted-foreground) l c h / 0.6)"
     }
   ],
   "parts": {
@@ -74,7 +122,19 @@
         "registryItems": [
           "avatar"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "lg",
+              "md",
+              "sm",
+              "xs"
+            ]
+          }
+        ]
       },
       "badge": {
         "family": "avatar",

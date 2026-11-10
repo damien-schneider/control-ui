@@ -75,47 +75,48 @@
   ) {
     animation: cui-swap-icon-exit var(--cui-swap-animation-duration) var(--cui-swap-easing) both;
   }
-}
 
-@keyframes cui-swap-item-enter {
-  from {
-    opacity: 0;
-    filter: blur(var(--blur-xs));
+  @keyframes cui-swap-item-enter {
+    from {
+      opacity: 0;
+      filter: blur(var(--blur-xs));
+    }
   }
-}
 
-@keyframes cui-swap-item-exit {
-  from {
-    opacity: 1;
-    filter: blur(0);
+  @keyframes cui-swap-item-exit {
+    from {
+      opacity: 1;
+      filter: blur(0);
+    }
+    to {
+      opacity: 0;
+      filter: blur(var(--blur-xs));
+      visibility: hidden;
+    }
   }
-  to {
-    opacity: 0;
-    filter: blur(var(--blur-xs));
-  }
-}
 
-@keyframes cui-swap-label-enter {
-  from {
-    translate: 0 var(--cui-swap-label-inset);
+  @keyframes cui-swap-label-enter {
+    from {
+      translate: 0 var(--cui-swap-label-inset);
+    }
   }
-}
 
-@keyframes cui-swap-label-exit {
-  to {
-    translate: 0 calc(var(--cui-swap-label-inset) * -1);
+  @keyframes cui-swap-label-exit {
+    to {
+      translate: 0 calc(var(--cui-swap-label-inset) * -1);
+    }
   }
-}
 
-@keyframes cui-swap-icon-enter {
-  from {
-    scale: var(--cui-swap-icon-scale);
+  @keyframes cui-swap-icon-enter {
+    from {
+      scale: var(--cui-swap-icon-scale);
+    }
   }
-}
 
-@keyframes cui-swap-icon-exit {
-  to {
-    scale: var(--cui-swap-icon-scale);
+  @keyframes cui-swap-icon-exit {
+    to {
+      scale: var(--cui-swap-icon-scale);
+    }
   }
 }
 

@@ -1,19 +1,32 @@
 @layer components {
-  :where([data-control-family="field"][data-field-kind="input-group"][data-slot="addon"]),
-  :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]) {
+  :where([data-control-family="field"][data-field-kind="input-group"][data-slot="addon"]) {
+    --nest-radius: max(0px, calc(var(--cui-field-radius) - var(--spacing) * 1.5));
     color: var(--muted-foreground);
   }
 
-  :where([data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]),
+  :where([data-control-family="field"][data-slot="root"][data-control="true"] > [data-control-family="button"]) {
+    --nest-radius: max(0px, calc(var(--cui-field-radius) - var(--spacing) * 1.5));
+  }
+
   :where([data-control-family="field"][data-field-kind="number-field"]:is([data-slot="decrement"], [data-slot="increment"])) {
     background-color: var(--cui-field-affordance-background);
     box-shadow: var(--cui-field-affordance-shadow);
     color: var(--cui-field-affordance-foreground);
+    cursor: pointer;
+  }
+
+  :where([data-control-family="field"][data-field-kind="number-field"]:is([data-slot="decrement"], [data-slot="increment"]) > svg),
+  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="scrub-area"] > svg),
+  :where([data-control-family="field"][data-field-kind="input-group"][data-slot="addon"] > svg) {
+    inline-size: calc(var(--spacing) * 3.5);
+    block-size: calc(var(--spacing) * 3.5);
   }
 
   :where([data-control-family="field"][data-slot="root"][data-control="true"]:is(button, a)) {
     cursor: pointer;
     --cui-field-foreground: var(--muted-foreground);
+    --_field-foreground: var(--cui-field-foreground);
+    color: var(--_field-foreground);
     text-align: start;
   }
 
@@ -25,7 +38,7 @@
           [aria-disabled="true"]
         )
       ) {
-      --cui-field-foreground: var(--foreground);
+      --_field-foreground: var(--foreground);
     }
   }
 
@@ -40,42 +53,17 @@
     color: var(--muted-foreground);
   }
 
-  :where([data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]),
-  :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]) {
-    border-radius: var(--radius-control);
+  :where([data-control-family="field"][data-field-kind="input-group"][data-slot="input"]:disabled),
+  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="input"]:disabled) {
+    cursor: not-allowed;
   }
 
   @media (hover: hover) {
-    :where([data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]:hover:not(:disabled, [data-disabled])),
     :where([data-control-family="field"][data-field-kind="number-field"][data-slot="decrement"]:hover:not(:disabled, [data-disabled])),
     :where([data-control-family="field"][data-field-kind="number-field"][data-slot="increment"]:hover:not(:disabled, [data-disabled])) {
       background-color: var(--cui-field-affordance-hover-background);
       color: var(--foreground);
     }
-
-    :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]:hover:not(:disabled, [data-disabled])) {
-      background: var(--hover-fill);
-      color: var(--foreground);
-    }
-  }
-
-  :where([data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]:disabled),
-  :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]:disabled) {
-    cursor: not-allowed;
-    opacity: var(--disabled-opacity);
-  }
-
-  :where([data-control-family="field"][data-field-kind="combobox"][data-slot="icon"]) {
-    transition-property: rotate;
-    transition-duration: var(--duration-base);
-    transition-timing-function: var(--ease-emphasized);
-  }
-
-  :where(
-    [data-control-family="field"][data-field-kind="combobox"][data-popup-open]
-      :where([data-control-family="field"][data-field-kind="combobox"][data-slot="icon"])
-  ) {
-    rotate: 180deg;
   }
 
   :where([data-control-family="field"][data-field-kind="number-field"][data-slot="decrement"]) {
@@ -88,12 +76,20 @@
 
   :where([data-control-family="field"][data-field-kind="number-field"][data-slot="decrement"]:active:not(:disabled, [data-disabled])),
   :where([data-control-family="field"][data-field-kind="number-field"][data-slot="increment"]:active:not(:disabled, [data-disabled])) {
-    background: oklch(from var(--foreground) l c h / 0.06);
+    background: var(--active-fill);
   }
 
   :where([data-control-family="field"][data-field-kind="number-field"][data-slot="decrement"][data-disabled]),
   :where([data-control-family="field"][data-field-kind="number-field"][data-slot="increment"][data-disabled]) {
-    color: oklch(from var(--muted-foreground) l c h / 0.5);
+    cursor: not-allowed;
+  }
+
+  :where(
+    [data-control-family="field"][data-field-kind="number-field"]:is([data-slot="decrement"], [data-slot="increment"])[data-disabled]:not(
+      [data-control-family="field"][data-control="true"][data-disabled] *
+    )
+  ) {
+    opacity: var(--disabled-opacity);
   }
 
   :where(
@@ -187,6 +183,7 @@
     border: var(--cui-field-label-border-width) solid var(--cui-field-label-border-color);
     border-radius: var(--cui-field-label-radius);
     background-color: var(--cui-field-label-background);
+    cursor: pointer;
     transition-property: background-color, border-color;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
@@ -211,10 +208,19 @@
     background-color: var(--cui-field-label-checked-background);
   }
 
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="label"][data-variant="card"]:has([data-disabled])) {
+    cursor: not-allowed;
+  }
+
   :where([data-control-family="field"][data-field-kind="field"][data-slot="description"]) {
     color: var(--muted-foreground);
     font-size: var(--cui-field-description-font-size);
     text-wrap: pretty;
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="error-reserve"]) {
+    font-size: var(--text-caption);
+    line-height: var(--text-caption--line-height);
   }
 
   :where([data-control-family="field"][data-field-kind="field"][data-slot="error"]) {
@@ -243,7 +249,7 @@
     --cui-field-legend-foreground: var(--foreground);
     --cui-field-legend-font-size: var(--text-label);
     --cui-field-legend-font-weight: var(--font-weight-semibold);
-    --cui-field-label-radius: var(--radius-lg);
+    --cui-field-label-radius: var(--radius-control);
     --cui-field-label-background: transparent;
     --cui-field-label-hover-background: var(--hover-fill);
     --cui-field-label-checked-background: oklch(from var(--primary) l c h / 0.06);

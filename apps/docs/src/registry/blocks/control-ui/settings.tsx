@@ -24,6 +24,7 @@ import {
   SidebarMenuItem,
   SidebarProvider,
   type SidebarProviderProps,
+  SidebarRail,
   type SidebarStyle,
   SidebarTrigger,
   useSidebar,
@@ -48,6 +49,12 @@ export type SettingsBlockProps = Omit<ComponentProps<"div">, "children"> &
     backAction?: ReactNode;
     searchPlaceholder?: string;
     searchLabel?: string;
+    clearSearchLabel?: string;
+    searchStatusLabel?: (count: number) => string;
+    noResultsDescription?: string;
+    navigationLabel?: string;
+    noPagesTitle?: string;
+    noPagesDescription?: string;
     layout?: "viewport" | "contained";
   };
 
@@ -57,6 +64,11 @@ type PendingTarget = {
   controlId: string;
 };
 
+function defaultSearchStatusLabel(count: number) {
+  if (count === 0) return "No matching settings";
+  return `${count} ${count === 1 ? "setting" : "settings"} found`;
+}
+
 export function SettingsBlock({
   pages,
   activePageId,
@@ -65,6 +77,12 @@ export function SettingsBlock({
   backAction,
   searchPlaceholder = "Search settings",
   searchLabel = "Search settings",
+  clearSearchLabel = "Clear search",
+  searchStatusLabel = defaultSearchStatusLabel,
+  noResultsDescription = "Try another name or keyword.",
+  navigationLabel = "Settings",
+  noPagesTitle = "No settings",
+  noPagesDescription = "Add a settings page to populate this space.",
   layout = "viewport",
   className,
   style,
@@ -101,6 +119,12 @@ export function SettingsBlock({
         backAction={backAction}
         searchPlaceholder={searchPlaceholder}
         searchLabel={searchLabel}
+        clearSearchLabel={clearSearchLabel}
+        searchStatus={query.trim() ? searchStatusLabel(results.length) : ""}
+        noResultsDescription={noResultsDescription}
+        navigationLabel={navigationLabel}
+        noPagesTitle={noPagesTitle}
+        noPagesDescription={noPagesDescription}
         instanceId={instanceId}
         pendingTarget={pendingTarget}
         onPendingTargetChange={setPendingTarget}
@@ -119,6 +143,12 @@ function SettingsShell({
   backAction,
   searchPlaceholder,
   searchLabel,
+  clearSearchLabel,
+  searchStatus,
+  noResultsDescription,
+  navigationLabel,
+  noPagesTitle,
+  noPagesDescription,
   instanceId,
   pendingTarget,
   onPendingTargetChange,
@@ -132,6 +162,12 @@ function SettingsShell({
   backAction?: ReactNode;
   searchPlaceholder: string;
   searchLabel: string;
+  clearSearchLabel: string;
+  searchStatus: string;
+  noResultsDescription: string;
+  navigationLabel: string;
+  noPagesTitle: string;
+  noPagesDescription: string;
   instanceId: string;
   pendingTarget: PendingTarget | null;
   onPendingTargetChange: (target: PendingTarget | null) => void;
@@ -166,38 +202,50 @@ function SettingsShell({
   }
 
   const trimmedQuery = query.trim();
-  const resultCount = `${results.length} ${results.length === 1 ? "setting" : "settings"} found`;
-  const searchStatus = results.length > 0 ? resultCount : "No matching settings";
 
   return (
     <>
-      <LiveStatus message={trimmedQuery ? searchStatus : ""} />
+      <LiveStatus message={searchStatus} />
       <Sidebar collapsible="offcanvas">
         <SidebarHeader divider className="gap-3">
           {backAction ? <div className="min-w-0">{backAction}</div> : null}
-          <SettingsSearch value={query} label={searchLabel} placeholder={searchPlaceholder} onValueChange={onQueryChange} />
+          <SettingsSearch
+            value={query}
+            label={searchLabel}
+            clearLabel={clearSearchLabel}
+            placeholder={searchPlaceholder}
+            onValueChange={onQueryChange}
+          />
         </SidebarHeader>
         <SidebarContent>
           {trimmedQuery ? (
-            <SettingsSearchNavigation results={results} onSelect={openResult} onClear={() => onQueryChange("")} />
+            <SettingsSearchNavigation
+              results={results}
+              emptyTitle={searchStatus}
+              emptyDescription={noResultsDescription}
+              clearLabel={clearSearchLabel}
+              onSelect={openResult}
+              onClear={() => onQueryChange("")}
+            />
           ) : (
-            <SettingsPageNavigation pages={pages} activePageId={currentPage?.id} onSelect={navigate} />
+            <SettingsPageNavigation label={navigationLabel} pages={pages} activePageId={currentPage?.id} onSelect={navigate} />
           )}
         </SidebarContent>
+        <SidebarRail />
       </Sidebar>
 
       <SidebarInset className="h-full min-h-0 min-w-0">
-        <header className="flex h-12 shrink-0 items-center gap-2 border-b px-3 lg:hidden">
+        <header className="flex h-12 shrink-0 items-center gap-2 border-b px-3 sidebar:hidden">
           <SidebarTrigger />
           <Text size="label" weight="medium" className="truncate" title={currentPage?.title}>
-            {currentPage?.title ?? "Settings"}
+            {currentPage?.title ?? navigationLabel}
           </Text>
         </header>
         <ScrollArea className="min-h-0 flex-1" lockAxis="x">
           {currentPage ? (
             <SettingsPage page={currentPage} instanceId={instanceId} />
           ) : (
-            <SettingsEmpty title="No settings" description="Add a settings page to populate this space." />
+            <SettingsEmpty title={noPagesTitle} description={noPagesDescription} />
           )}
         </ScrollArea>
       </SidebarInset>
@@ -208,18 +256,20 @@ function SettingsShell({
 function SettingsSearch({
   value,
   label,
+  clearLabel,
   placeholder,
   onValueChange,
 }: {
   value: string;
   label: string;
+  clearLabel: string;
   placeholder: string;
   onValueChange: (value: string) => void;
 }) {
   return (
     <InputGroup size="sm">
       <InputGroupAddon>
-        <SearchIcon className="size-3.5" aria-hidden="true" />
+        <SearchIcon aria-hidden="true" />
       </InputGroupAddon>
       <Input
         type="search"
@@ -229,8 +279,8 @@ function SettingsSearch({
         onChange={(event) => onValueChange(event.currentTarget.value)}
       />
       {value ? (
-        <Button variant="ghost" size="xs" iconOnly aria-label="Clear settings search" className="me-1" onClick={() => onValueChange("")}>
-          <XIcon className="size-3.5" aria-hidden="true" />
+        <Button variant="ghost" size="xs" iconOnly aria-label={clearLabel} className="me-1" onClick={() => onValueChange("")}>
+          <XIcon aria-hidden="true" />
         </Button>
       ) : null}
     </InputGroup>
@@ -238,17 +288,19 @@ function SettingsSearch({
 }
 
 function SettingsPageNavigation({
+  label,
   pages,
   activePageId,
   onSelect,
 }: {
+  label: string;
   pages: readonly SettingsPageDefinition[];
   activePageId?: string;
   onSelect: (pageId: string) => void;
 }) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Settings</SidebarGroupLabel>
+      <SidebarGroupLabel>{label}</SidebarGroupLabel>
       <SidebarMenu>
         {pages.map((page) => (
           <SidebarMenuItem key={page.id}>
@@ -265,21 +317,27 @@ function SettingsPageNavigation({
 
 function SettingsSearchNavigation({
   results,
+  emptyTitle,
+  emptyDescription,
+  clearLabel,
   onSelect,
   onClear,
 }: {
   results: readonly SettingsSearchResult[];
+  emptyTitle: string;
+  emptyDescription: string;
+  clearLabel: string;
   onSelect: (result: SettingsSearchResult) => void;
   onClear: () => void;
 }) {
   if (results.length === 0) {
     return (
       <SettingsEmpty
-        title="No matching settings"
-        description="Try another name or keyword."
+        title={emptyTitle}
+        description={emptyDescription}
         action={
           <Button variant="surface" size="sm" onClick={onClear}>
-            Clear search
+            {clearLabel}
           </Button>
         }
       />
@@ -379,7 +437,7 @@ function SettingsEmpty({ title, description, action }: { title: string; descript
     <Empty className="min-h-40">
       <EmptyHeader>
         <EmptyMedia>
-          <SearchIcon className="size-4" aria-hidden="true" />
+          <SearchIcon aria-hidden="true" />
         </EmptyMedia>
         <EmptyTitle>{title}</EmptyTitle>
         <EmptyDescription>{description}</EmptyDescription>
@@ -401,11 +459,12 @@ function settingDomIds(instanceId: string, pageId: string, sectionId: string, se
 
 export function SettingsBackAction({
   children = "Back to app",
+  className,
   ...props
 }: Omit<ComponentProps<typeof Button>, "children"> & { children?: ReactNode }) {
   return (
-    <Button variant="quiet" size="sm" className="-ms-1 justify-start gap-2" {...props}>
-      <ArrowLeftIcon className="size-4" data-icon-dir="inline" aria-hidden="true" />
+    <Button variant="quiet" size="sm" className={cn("-ms-1 justify-start gap-2", className)} {...props}>
+      <ArrowLeftIcon data-icon-dir="inline" aria-hidden="true" />
       {children}
     </Button>
   );

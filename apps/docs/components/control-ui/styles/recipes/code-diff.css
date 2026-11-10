@@ -1,7 +1,7 @@
 @layer components {
   :where([data-control-family="code-diff"][data-slot="root"]) {
     --cui-code-diff-background: var(--background);
-    --cui-code-diff-border-color: var(--border);
+    --cui-code-diff-border-color: var(--control-rim);
     --cui-code-diff-border-width: var(--control-rim-width);
     --_code-corner-inset: calc(var(--spacing) * 1.5);
     --cui-code-diff-radius: min(
@@ -19,7 +19,7 @@
     --cui-code-diff-expand-button-background: transparent;
     --cui-code-diff-expand-button-foreground: var(--muted-foreground);
     --cui-code-diff-expand-button-shadow: none;
-    --cui-code-diff-expand-button-hover-background: oklch(from var(--foreground) l c h / 0.08);
+    --cui-code-diff-expand-button-hover-background: var(--hover-fill);
     --cui-code-diff-expand-button-hover-foreground: var(--foreground);
     border: var(--cui-code-diff-border-width) solid var(--cui-code-diff-border-color);
     border-radius: var(--cui-code-diff-radius);
@@ -33,7 +33,7 @@
   }
 
   :where([data-control-family="code-diff"][data-slot="file-header"]) {
-    min-block-size: calc(var(--spacing) * 9);
+    min-block-size: var(--control-h-lg);
     gap: calc(var(--spacing) * 3);
     padding-block: calc(var(--spacing) * 1.5);
     padding-inline: calc(var(--spacing) * 3);
@@ -45,10 +45,11 @@
     gap: calc(var(--spacing) * 2);
   }
 
-  :where([data-control-family="code-diff"][data-slot="title"]),
-  :where([data-control-family="code-diff"][data-slot="file-header"] > span:first-child) {
+  :where([data-control-family="code-diff"][data-slot="title"]) {
     color: var(--muted-foreground);
+    font-family: var(--font-mono);
     font-size: var(--text-label);
+    font-variant-numeric: tabular-nums;
   }
 
   :where([data-control-family="code-diff"][data-slot="body"] > div) {
@@ -65,7 +66,7 @@
   }
 
   :where([data-control-family="code-diff"][data-slot="emphasis"]) {
-    border-radius: 2px;
+    border-radius: min(var(--radius-sm), 2px);
   }
 
   :where([data-control-family="code-diff"][data-slot="emphasis"][data-line-type="add"]) {
@@ -76,12 +77,16 @@
     background: var(--diff-del-emphasis);
   }
 
+  :where([data-control-family="code-diff"][data-slot="line"][data-indicators="bars"]) {
+    border-inline-start: 2px solid transparent;
+  }
+
   :where([data-control-family="code-diff"][data-slot="line"][data-indicators="bars"][data-line-type="add"]) {
-    border-inline-start: 2px solid var(--diff-add-fg);
+    border-inline-start-color: var(--diff-add-fg);
   }
 
   :where([data-control-family="code-diff"][data-slot="line"][data-indicators="bars"][data-line-type="del"]) {
-    border-inline-start: 2px solid var(--diff-del-fg);
+    border-inline-start-color: var(--diff-del-fg);
   }
 
   :where([data-control-family="code-diff"][data-slot="line"][data-side="left"]),
@@ -118,6 +123,11 @@
     background: var(--diff-del-gutter);
   }
 
+  :where([data-control-family="code-diff"][data-slot="no-newline"]) {
+    margin-inline-start: calc(var(--spacing) * 1.5);
+    color: var(--muted-foreground);
+  }
+
   :where([data-control-family="code-diff"][data-slot="marker"]) {
     padding-inline: calc(var(--spacing) * 1);
     color: transparent;
@@ -149,6 +159,12 @@
     font-size: var(--text-micro);
   }
 
+  :where([data-control-family="code-diff"][data-slot="empty"]) {
+    padding-inline: calc(var(--spacing) * 3);
+    padding-block: calc(var(--spacing) * 3);
+    color: var(--muted-foreground);
+  }
+
   :where([data-control-family="code-diff"][data-slot="expand-button"]) {
     position: relative;
     min-block-size: var(--target-min);
@@ -171,16 +187,11 @@
     :where([data-control-family="code-diff"][data-slot="expand-button"])::after {
       content: "";
       position: absolute;
-      inset: 50% 50%;
+      inset: 50% auto auto 50%;
       translate: -50% -50%;
       inline-size: max(100%, var(--touch-target));
       block-size: max(100%, var(--touch-target));
     }
-  }
-
-  :where([data-control-family="code-diff"][data-slot="title"]) {
-    font-family: var(--font-mono);
-    font-variant-numeric: tabular-nums;
   }
 
   :where([data-control-family="code-diff"][data-slot="file-title"]) {
@@ -191,6 +202,16 @@
 
   :where([data-control-family="code-diff"][data-slot="expander-label"]) {
     font-family: var(--font-mono);
+  }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="code-diff"][data-slot="emphasis"][data-line-type="add"]) {
+      text-decoration: underline;
+    }
+
+    :where([data-control-family="code-diff"][data-slot="emphasis"][data-line-type="del"]) {
+      text-decoration: line-through;
+    }
   }
 }
 

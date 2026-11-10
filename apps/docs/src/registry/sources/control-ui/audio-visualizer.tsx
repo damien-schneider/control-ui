@@ -5,6 +5,7 @@ import { useLayoutEffect, useRef } from "react";
 import type { AudioVisualizerKnobStyle } from "@/components/control-ui/knob-contracts/audio-visualizer-knobs";
 import { audioVisualizerHistory } from "@/components/control-ui/lib/audio-visualizer-levels";
 import { cn } from "@/components/control-ui/lib/cn";
+import { prefersReducedMotion } from "@/components/control-ui/lib/motion";
 
 export type AudioVisualizerProps = Omit<ComponentProps<"div">, "children" | "style"> & {
   levels: ArrayLike<number>;
@@ -41,7 +42,7 @@ export function AudioVisualizer({ levels, points, active = true, className, styl
     const firstBar = firstBarRef.current;
     if (!track || !firstBar || !historyAdvanced(previous, next) || document.hidden) return;
     const duration = next.time - (previous?.time ?? next.time);
-    if (duration < 16 || duration > 250 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (duration < 16 || duration > 250 || prefersReducedMotion(track)) return;
     const direction = getComputedStyle(track).direction === "rtl" ? -1 : 1;
     const pitch = (track.clientWidth - firstBar.clientWidth) / (visible.length - 1);
     const animation = track.animate([{ transform: `translateX(${pitch * direction}px)` }, { transform: "translateX(0)" }], {

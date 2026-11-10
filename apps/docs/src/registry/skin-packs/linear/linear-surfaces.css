@@ -27,7 +27,6 @@
   [data-skin="linear"] :where([data-slot="root"][data-control-family="sidebar"]) {
     --cui-sidebar-inner-background: transparent;
     --cui-sidebar-header-border-width: 0px;
-    --cui-sidebar-inner-border-width: 0px;
     --cui-sidebar-menu-button-height: 1.75rem;
     --cui-sidebar-menu-button-radius: var(--radius-control);
     --cui-sidebar-menu-button-padding-inline: 0.625rem;
@@ -55,7 +54,6 @@
 
   [data-skin="linear"] :where([data-slot="wrapper"][data-control-family="sidebar"]) {
     --cui-sidebar-wrapper-background: var(--canvas);
-    --cui-sidebar-inset-background: var(--background);
     --cui-sidebar-inset-border-color: var(--linear-panel-border);
     --cui-sidebar-inset-border-width: var(--control-rim-width);
     --cui-sidebar-inset-radius: var(--radius-panel);
@@ -100,7 +98,6 @@
   }
 
   [data-skin="linear"] :where([data-slot="root"][data-control-family="empty"]) {
-    --cui-empty-radius: var(--radius-panel);
     --cui-empty-background: transparent;
     --cui-empty-border-color: var(--border);
     --cui-empty-border-width: var(--control-rim-width);
@@ -142,13 +139,14 @@
     --cui-pagination-link-radius: 9999px;
     --cui-pagination-link-foreground: var(--secondary-foreground);
     --cui-pagination-link-hover-background: var(--linear-control-hover);
+    --cui-pagination-link-active-background: var(--linear-control-selected);
+    --cui-pagination-link-active-border-color: transparent;
+    --cui-pagination-link-active-shadow: 0 0 transparent;
     --cui-pagination-link-font-size: var(--text-body);
   }
 
   [data-skin="linear"] :where([data-slot="link"][data-control-family="pagination"][data-active="true"]) {
-    --cui-pagination-link-background: var(--linear-control-selected);
     --cui-pagination-link-foreground: var(--foreground);
-    --cui-pagination-link-shadow: none;
   }
 
   [data-skin="linear"] :where([data-slot="root"][data-control-family="skeleton"]) {
@@ -259,12 +257,14 @@
     --cui-dockable-panel-background: var(--popover);
     --cui-dockable-panel-border-color: var(--linear-popup-border);
     --cui-dockable-panel-shadow: var(--linear-shadow-menu);
+    --cui-dockable-panel-dragging-shadow: var(--linear-shadow-modal);
   }
 
   [data-skin="linear"] :where([data-slot="root"][data-control-family="morphing-panel"]) {
     --cui-morphing-panel-background: var(--popover);
     --cui-morphing-panel-border-color: var(--linear-popup-border);
     --cui-morphing-panel-shadow: var(--linear-shadow-menu);
+    --cui-morphing-panel-open-shadow: var(--linear-shadow-menu);
     --cui-morphing-panel-trigger-hover-background: var(--linear-menu-highlight);
   }
 

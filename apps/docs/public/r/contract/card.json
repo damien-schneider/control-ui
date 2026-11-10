@@ -10,7 +10,7 @@
       "name": "--cui-card-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-lg)"
+      "defaultValue": "var(--radius-panel)"
     },
     {
       "name": "--cui-card-background",
@@ -19,10 +19,22 @@
       "defaultValue": "var(--card)"
     },
     {
+      "name": "--cui-card-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card-foreground)"
+    },
+    {
+      "name": "--cui-card-section-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--border) l c h / 0.7)"
+    },
+    {
       "name": "--cui-card-hover-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "var(--accent)"
+      "defaultValue": "var(--hover-fill)"
     },
     {
       "name": "--cui-card-border-color",
@@ -162,8 +174,6 @@
     }
   },
   "adornments": {},
-  "uncovered": [
-    "--cui-card-hover-background"
-  ],
+  "uncovered": [],
   "contrast": "/r/contract/card.contrast.json"
 }

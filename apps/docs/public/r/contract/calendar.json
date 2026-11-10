@@ -13,6 +13,18 @@
       "defaultValue": "var(--radius-control)"
     },
     {
+      "name": "--cui-calendar-nav-button-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-calendar-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--hover-fill)"
+    },
+    {
       "name": "--cui-calendar-today-background",
       "syntax": "<color>",
       "initialValue": "transparent",
@@ -40,7 +52,7 @@
       "name": "--cui-calendar-day-size",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "calc(var(--spacing) * 9)"
+      "defaultValue": "var(--control-h-md)"
     },
     {
       "name": "--cui-calendar-cell-padding",
@@ -52,7 +64,7 @@
       "name": "--cui-calendar-today-shadow",
       "syntax": "*",
       "initialValue": "",
-      "defaultValue": "none"
+      "defaultValue": "0 0 transparent"
     },
     {
       "name": "--cui-calendar-weekend-foreground",
@@ -83,6 +95,12 @@
       "syntax": "<length-percentage>",
       "initialValue": "0px",
       "defaultValue": "var(--text-caption)"
+    },
+    {
+      "name": "--cui-calendar-outside-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
     }
   ],
   "parts": {
@@ -100,6 +118,22 @@
           "calendar"
         ],
         "states": []
+      },
+      "chevron": {
+        "family": "calendar",
+        "registryItems": [
+          "calendar"
+        ],
+        "states": [
+          {
+            "attribute": "data-icon-dir",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "inline"
+            ]
+          }
+        ]
       },
       "day": {
         "family": "calendar",
@@ -153,6 +187,49 @@
           }
         ]
       },
+      "dropdown": {
+        "family": "calendar",
+        "registryItems": [
+          "calendar"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focus-ring",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "within"
+            ]
+          }
+        ]
+      },
+      "dropdown-label": {
+        "family": "calendar",
+        "registryItems": [
+          "calendar"
+        ],
+        "states": []
+      },
+      "dropdown-select": {
+        "family": "calendar",
+        "registryItems": [
+          "calendar"
+        ],
+        "states": []
+      },
+      "dropdowns": {
+        "family": "calendar",
+        "registryItems": [
+          "calendar"
+        ],
+        "states": []
+      },
       "month": {
         "family": "calendar",
         "registryItems": [
@@ -195,6 +272,20 @@
         ],
         "states": []
       },
+      "week-number": {
+        "family": "calendar",
+        "registryItems": [
+          "calendar"
+        ],
+        "states": []
+      },
+      "week-number-header": {
+        "family": "calendar",
+        "registryItems": [
+          "calendar"
+        ],
+        "states": []
+      },
       "weekday": {
         "family": "calendar",
         "registryItems": [
@@ -205,10 +296,6 @@
     }
   },
   "adornments": {},
-  "uncovered": [
-    "--cui-calendar-range-background",
-    "--cui-calendar-selected-background",
-    "--cui-calendar-selected-foreground"
-  ],
+  "uncovered": [],
   "contrast": "/r/contract/calendar.contrast.json"
 }

@@ -5,7 +5,8 @@
     color: var(--cui-spinner-foreground);
   }
 
-  :where([data-control-family="button"] [data-control-family="spinner"][data-slot="root"]) {
+  :where([data-control-family="button"] [data-control-family="spinner"][data-slot="root"]),
+  :where([data-control-family="timeline"][data-slot="indicator"] [data-control-family="spinner"][data-slot="root"]) {
     --cui-spinner-foreground: currentColor;
   }
 
@@ -28,6 +29,11 @@
   :where([data-control-family="spinner"][data-slot="indicator"][data-size="lg"]) {
     inline-size: calc(var(--spacing) * 6);
     block-size: calc(var(--spacing) * 6);
+  }
+
+  :where([data-control-family="button"][data-control="true"] [data-control-family="spinner"][data-slot="indicator"]) {
+    inline-size: var(--cui-button-icon);
+    block-size: var(--cui-button-icon);
   }
 }
 

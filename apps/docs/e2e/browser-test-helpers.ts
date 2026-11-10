@@ -1,6 +1,9 @@
 import { expect, type Locator, type Page } from "@playwright/test";
 import { PAGE_LAYOUT_SKINS } from "../components/theme";
 
+/** Recipes remove a shadow with `0 0 transparent` layers, which a registered shadow knob can still interpolate. */
+export const unpaintedShadow = /^(?:none|(?:rgba\(0, 0, 0, 0\) 0px 0px 0px 0px(?:, )?)+)$/;
+
 export async function waitForReactHydration(locator: Locator) {
   await expect.poll(() => locator.evaluate((element) => Object.keys(element).some((key) => key.startsWith("__reactProps$")))).toBe(true);
 }

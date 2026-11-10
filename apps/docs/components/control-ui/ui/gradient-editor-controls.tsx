@@ -13,10 +13,10 @@ type GradientEditorSelectProps = {
   "aria-labelledby"?: string;
 };
 
-export type GradientEditorTypeSelectProps = GradientEditorSelectProps;
+export type GradientEditorTypeSelectProps = GradientEditorSelectProps & { labels?: Partial<Record<GradientType, string>> };
 export type GradientEditorInterpolationSelectProps = GradientEditorSelectProps;
 
-export type GradientEditorAngleProps = { size?: ControlSize; className?: string; "aria-label"?: string };
+export type GradientEditorAngleProps = { size?: ControlSize; className?: string; "aria-label"?: string; "aria-labelledby"?: string };
 
 const GRADIENT_TYPE_LABELS: Record<GradientType, string> = { linear: "Linear", radial: "Radial", conic: "Conic" };
 const GRADIENT_INTERPOLATION_LABELS: Record<GradientInterpolation, string> = { srgb: "sRGB", oklab: "OKLab", oklch: "OKLCH" };
@@ -37,8 +37,9 @@ function GradientEditorSelect<TValue extends string>({
   labels: Record<TValue, string>;
   defaultLabel: string;
 }) {
+  const { disabled, readOnly } = useGradientEditor();
   return (
-    <Select<TValue> value={value} onValueChange={onValueChange} items={labels}>
+    <Select<TValue> value={value} onValueChange={onValueChange} items={labels} disabled={disabled} readOnly={readOnly}>
       <SelectTrigger
         size={size}
         aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? defaultLabel) : ariaLabel}
@@ -58,10 +59,16 @@ function GradientEditorSelect<TValue extends string>({
   );
 }
 
-export function GradientEditorTypeSelect(props: GradientEditorTypeSelectProps) {
+export function GradientEditorTypeSelect({ labels, ...props }: GradientEditorTypeSelectProps) {
   const { type, setType } = useGradientEditor();
   return (
-    <GradientEditorSelect value={type} onValueChange={setType} labels={GRADIENT_TYPE_LABELS} defaultLabel="Gradient type" {...props} />
+    <GradientEditorSelect
+      value={type}
+      onValueChange={setType}
+      labels={{ ...GRADIENT_TYPE_LABELS, ...labels }}
+      defaultLabel="Gradient type"
+      {...props}
+    />
   );
 }
 
@@ -78,8 +85,13 @@ export function GradientEditorInterpolationSelect(props: GradientEditorInterpola
   );
 }
 
-export function GradientEditorAngle({ size = "sm", className, "aria-label": ariaLabel = "Gradient angle" }: GradientEditorAngleProps) {
-  const { type, angle, setAngle } = useGradientEditor();
+export function GradientEditorAngle({
+  size = "sm",
+  className,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
+}: GradientEditorAngleProps) {
+  const { type, angle, setAngle, disabled, readOnly } = useGradientEditor();
   if (type === "radial") return null;
   return (
     <NumberField
@@ -89,12 +101,17 @@ export function GradientEditorAngle({ size = "sm", className, "aria-label": aria
       min={0}
       max={360}
       format={WHOLE_DEGREES}
+      disabled={disabled}
+      readOnly={readOnly}
       onValueChange={(next) => {
         if (next !== null) setAngle(next);
       }}
     >
       <NumberFieldGroup className="w-full">
-        <NumberFieldInput aria-label={ariaLabel} />
+        <NumberFieldInput
+          aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? "Gradient angle") : ariaLabel}
+          aria-labelledby={ariaLabelledBy}
+        />
         <NumberFieldScrubArea>°</NumberFieldScrubArea>
       </NumberFieldGroup>
     </NumberField>

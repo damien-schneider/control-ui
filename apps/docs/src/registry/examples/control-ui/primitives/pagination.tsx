@@ -1,6 +1,6 @@
 "use client";
 
-import type { MouseEvent } from "react";
+import type { ComponentProps, MouseEvent } from "react";
 import { useState } from "react";
 
 import {
@@ -14,6 +14,16 @@ import {
 } from "@/components/control-ui/ui/pagination";
 
 const LAST_PAGE = 8;
+const VISIBLE_PAGES = [1, 2, 3];
+
+// Stands in for your router's link component, which PaginationLink renders through `render`.
+function RouterLink({ href, children, ...props }: ComponentProps<"a">) {
+  return (
+    <a href={href} {...props}>
+      {children}
+    </a>
+  );
+}
 
 export function PrimitivePaginationExample() {
   const [page, setPage] = useState(2);
@@ -26,33 +36,25 @@ export function PrimitivePaginationExample() {
     <Pagination>
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious href="#" disabled={page === 1} onClick={go(page - 1)} />
+          <PaginationPrevious href={`?page=${page - 1}`} disabled={page === 1} onClick={go(page - 1)} />
         </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#" isActive={page === 1} onClick={go(1)}>
-            1
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#" isActive={page === 2} onClick={go(2)}>
-            2
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#" isActive={page === 3} onClick={go(3)}>
-            3
-          </PaginationLink>
-        </PaginationItem>
+        {VISIBLE_PAGES.map((visiblePage) => (
+          <PaginationItem key={visiblePage}>
+            <PaginationLink render={<RouterLink />} href={`?page=${visiblePage}`} isActive={page === visiblePage} onClick={go(visiblePage)}>
+              {visiblePage}
+            </PaginationLink>
+          </PaginationItem>
+        ))}
         <PaginationItem>
           <PaginationEllipsis />
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink href="#" isActive={page === LAST_PAGE} onClick={go(LAST_PAGE)}>
+          <PaginationLink render={<RouterLink />} href={`?page=${LAST_PAGE}`} isActive={page === LAST_PAGE} onClick={go(LAST_PAGE)}>
             {LAST_PAGE}
           </PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <PaginationNext href="#" disabled={page === LAST_PAGE} onClick={go(page + 1)} />
+          <PaginationNext href={`?page=${page + 1}`} disabled={page === LAST_PAGE} onClick={go(page + 1)} />
         </PaginationItem>
       </PaginationContent>
     </Pagination>

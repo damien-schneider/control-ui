@@ -6,7 +6,7 @@ import { supportsAnchorTransitions } from "@/components/control-ui/extensions/su
 import type { TrackHighlightKnobStyle } from "@/components/control-ui/knob-contracts/track-highlight-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
-const trackHighlightStructureClasses = "pointer-events-none absolute -z-10";
+const trackHighlightStructureClasses = "pointer-events-none absolute -z-1";
 const defaultItemSelector = "[data-track-item]";
 const defaultActiveSelector = '[data-track-item][data-active="true"]';
 const loadTrackHighlight = () => import("@/components/control-ui/extensions/create-track-highlight");
@@ -54,10 +54,14 @@ export function TrackHighlight({
     const hoverHighlight = layered ? (hoverRef.current ?? undefined) : undefined;
     let cancelled = false;
     let dispose: (() => void) | undefined;
-    loadTrackHighlight().then(({ createTrackHighlight }) => {
-      if (cancelled) return;
-      dispose = createTrackHighlight(track, highlight, { itemSelector, activeSelector, range, followHover }, hoverHighlight);
-    });
+    // Decorative layer: when its chunk fails to load the track stays usable without it.
+    loadTrackHighlight().then(
+      ({ createTrackHighlight }) => {
+        if (cancelled) return;
+        dispose = createTrackHighlight(track, highlight, { itemSelector, activeSelector, range, followHover }, hoverHighlight);
+      },
+      () => undefined,
+    );
     return () => {
       cancelled = true;
       dispose?.();

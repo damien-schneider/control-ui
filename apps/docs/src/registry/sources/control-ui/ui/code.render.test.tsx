@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { renderToString } from "react-dom/server";
 
-import { Code, CodeContent, CodeEditable } from "@/components/control-ui/ui/code";
+import { Code, CodeContent, CodeEditable, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
 
 describe("Code renders", () => {
   test("uses the shared ScrollArea for scrollable code", () => {
@@ -38,6 +38,21 @@ describe("Code renders", () => {
     );
 
     expect(html).not.toContain("​");
+    // an empty row has no text node, so selecting across it would copy "first\nthird"
+    expect(html).toContain('<code class="min-w-0 flex-1 whitespace-pre">\n</code>');
+  });
+
+  test("tokens that no longer match their line fall back to the source text", () => {
+    const code = "const a = 1;\nconst b = 2;";
+    const html = renderToString(
+      <Code>
+        <CodeContent code={code} tokens={[[{ content: "const a = 1;" }], [{ content: "const stale = 0;" }]]} />
+      </Code>,
+    );
+
+    expect(html).toContain("<span>const a = 1;</span>");
+    expect(html).toContain("const b = 2;");
+    expect(html).not.toContain("const stale = 0;");
   });
 
   test("highlights lines by their displayed number", () => {
@@ -78,5 +93,52 @@ describe("Code renders", () => {
 
     expect(withCopy).toContain('data-code-floating="true"');
     expect(withoutCopy).not.toContain('data-code-floating="true"');
+  });
+
+  test("CRLF sources render one row per line without the carriage return", () => {
+    const crlfSource = "first\r\nsecond";
+    const html = renderToString(
+      <Code>
+        <CodeContent code={crlfSource} highlight="none" />
+      </Code>,
+    );
+
+    expect(html).toContain(">first</code>");
+    expect(html).toContain(">second</code>");
+    expect(html).not.toContain("\r");
+  });
+
+  test("the floating copy button takes its name from the content", () => {
+    const html = renderToString(
+      <Code>
+        <CodeContent code="bun run dev" highlight="none" copyLabel="Copier le code" />
+      </Code>,
+    );
+
+    expect(html).toContain('aria-label="Copier le code"');
+    expect(html).not.toContain('aria-label="Copy code"');
+  });
+
+  test("a direct header replaces the floating copy button", () => {
+    const html = renderToString(
+      <Code>
+        <CodeHeader>
+          <CodeTitle>demo.ts</CodeTitle>
+        </CodeHeader>
+        <CodeContent code="bun run dev" highlight="none" />
+      </Code>,
+    );
+
+    expect(html).not.toContain('data-code-floating="true"');
+  });
+
+  test("the editor leaves its focus indicator to the surface frame", () => {
+    const html = renderToString(
+      <Code>
+        <CodeEditable defaultValue="const answer = 42;" />
+      </Code>,
+    );
+
+    expect(html).toMatch(/<textarea[^>]*data-slot="editor"[^>]*data-focus-ring="none"/);
   });
 });

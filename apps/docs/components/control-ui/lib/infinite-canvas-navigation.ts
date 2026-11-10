@@ -12,6 +12,7 @@ export type InfiniteCanvasPanOnDrag = "background" | "anywhere" | "never";
 
 export type InfiniteCanvasNavigationOptions = {
   panOnDrag: InfiniteCanvasPanOnDrag;
+  panOnWheel?: boolean;
   onWheel?: (event: WheelEvent) => void;
 };
 
@@ -41,7 +42,7 @@ type PinchGesture = {
 
 type NavigationGesture = PanGesture | PinchGesture;
 
-export const INFINITE_CANVAS_KEY_SHORTCUTS = "ArrowLeft ArrowRight ArrowUp ArrowDown + - 0 1";
+export const INFINITE_CANVAS_KEY_SHORTCUTS = "ArrowLeft ArrowRight ArrowUp ArrowDown Plus - 0 1";
 
 export const ARROW_KEY_DIRECTIONS: Partial<Record<string, InfiniteCanvasPoint>> = {
   ArrowLeft: { x: -1, y: 0 },
@@ -76,6 +77,7 @@ const SPACE_CONSUMING_TARGET = [
   "textarea",
   "select",
   "button",
+  "summary",
   "a[href]",
   "[contenteditable]:not([contenteditable='false'])",
   ...SPACE_CONSUMING_ROLES.map((role) => `[role='${role}']`),
@@ -103,9 +105,11 @@ export function runInfiniteCanvasKeyCommand(camera: InfiniteCanvasCameraStore, k
 
 function canScrollFurther(element: Element, delta: InfiniteCanvasPoint) {
   if (element.scrollHeight <= element.clientHeight && element.scrollWidth <= element.clientWidth) return false;
-  const { overflowX, overflowY } = getComputedStyle(element);
+  const { overflowX, overflowY, direction } = getComputedStyle(element);
   const verticalRoom = delta.y < 0 ? element.scrollTop > 0 : Math.ceil(element.scrollTop + element.clientHeight) < element.scrollHeight;
-  const horizontalRoom = delta.x < 0 ? element.scrollLeft > 0 : Math.ceil(element.scrollLeft + element.clientWidth) < element.scrollWidth;
+  const scrollRange = element.scrollWidth - element.clientWidth;
+  const leftEdge = direction === "rtl" ? -scrollRange : 0;
+  const horizontalRoom = delta.x < 0 ? element.scrollLeft > leftEdge : Math.ceil(element.scrollLeft) < leftEdge + scrollRange;
   return (
     (delta.y !== 0 && SCROLLABLE_OVERFLOW.test(overflowY) && verticalRoom) ||
     (delta.x !== 0 && SCROLLABLE_OVERFLOW.test(overflowX) && horizontalRoom)
@@ -168,7 +172,12 @@ export function attachInfiniteCanvasNavigation(
   }
 
   function startPan(event: PointerEvent, explicit: boolean) {
-    root.setPointerCapture(event.pointerId);
+    try {
+      root.setPointerCapture(event.pointerId);
+    } catch {
+      // An inactive pointer (synthetic event, already released) cannot be captured, and its release would never reach the root.
+      return;
+    }
     root.toggleAttribute("data-panning", true);
     gesture = {
       kind: "pan",
@@ -288,12 +297,14 @@ export function attachInfiniteCanvasNavigation(
   }
 
   function handleWheel(event: WheelEvent) {
-    readOptions().onWheel?.(event);
+    const options = readOptions();
+    options.onWheel?.(event);
     if (event.defaultPrevented) return;
     if (event.ctrlKey || event.metaKey) {
       zoomWithWheel(event);
       return;
     }
+    if (options.panOnWheel === false) return;
     const delta = wheelDeltaPixels(event, root.clientHeight);
     if (nestedScrollerConsumes(event.target, root, delta)) return;
     event.preventDefault();
@@ -415,9 +426,9 @@ export function attachInfiniteCanvasNavigation(
     syncPanReady,
     detach() {
       listeners.abort();
+      releaseHeldInput();
       clearTimeout(suppressedClickTimer);
       clearTimeout(pointerFocusTimer);
-      releaseHeldInput();
       root.removeAttribute("data-pan-ready");
     },
   };

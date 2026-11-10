@@ -86,4 +86,62 @@ describe("CodeDiff renders", () => {
     expect(html).toContain("Deleted line 1: old 1");
     expect(html).toContain("Added line 160: new 160");
   });
+
+  test("identical texts say so instead of rendering an empty body", () => {
+    const html = renderToString(<CodeDiff name="same.ts" oldText={OLD} newText={OLD} />);
+
+    expect(html).not.toContain('data-slot="line"');
+    expect(html).toContain('data-slot="empty"');
+    expect(html).toContain("No changes");
+  });
+
+  test("a blank context line keeps its row and a line break for text selection", () => {
+    const patch = "--- a/notes.txt\n+++ b/notes.txt\n@@ -1,3 +1,3 @@\n one\n\n-three\n+THREE\n";
+    const html = renderToString(<CodeDiff patch={patch} diffStyle="unified" />);
+    const rows = html.match(/data-slot="line"/g) ?? [];
+
+    expect(rows).toHaveLength(4);
+    expect(html).toContain('<code class="min-w-0 flex-1 whitespace-pre">\n</code>');
+    expect(html).toContain("Deleted line 3: three");
+  });
+
+  test("unchanged lines after the last change stay reachable through a trailing expander", () => {
+    const oldText = Array.from({ length: 12 }, (_, index) => `row ${index + 1}`).join("\n");
+    const html = renderToString(<CodeDiff oldText={oldText} newText={oldText.replace("row 3", "ROW 3")} expandLabel="Show hidden rows" />);
+
+    expect(html).not.toContain("row 12</code>");
+    expect(html.match(/data-slot="expand-button"[^>]*aria-label="Show hidden rows"/g)).toHaveLength(1);
+  });
+
+  test("a missing final newline is marked on its line and in the accessible source", () => {
+    const withoutFinalNewline = "a\nb";
+    const html = renderToString(
+      <CodeDiff oldText={withoutFinalNewline} newText={`${withoutFinalNewline}\n`} noNewlineLabel="No trailing newline" />,
+    );
+
+    expect(html.match(/data-slot="no-newline"/g)).toHaveLength(1);
+    expect(html).toContain('title="No trailing newline"');
+    expect(html).toContain("Deleted line 2: b (No trailing newline)");
+  });
+
+  test("every announced string can be replaced", () => {
+    const oldText = "a\nb\n";
+    const newText = "a\nc\n";
+    const html = renderToString(
+      <CodeDiff
+        name="demo.ts"
+        oldText={oldText}
+        newText={newText}
+        copyLabel="Copier"
+        getStatsLabel={(additions, deletions) => `${additions} ajout, ${deletions} retrait`}
+        getLineLabel={(role, lineNumber, text) => `${role}|${lineNumber}|${text}`}
+      />,
+    );
+
+    expect(html).toContain('aria-label="Copier"');
+    expect(html).toContain("1 ajout, 1 retrait");
+    expect(html).toContain("deleted|2|b");
+    expect(html).toContain("added|2|c");
+    expect(html).not.toContain("Deleted line");
+  });
 });

@@ -1,6 +1,8 @@
 // Generated from src/registry/sources/control-ui/recipes/calendar.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.
 export const calendarKnobs = [
   "--cui-calendar-day-radius",
+  "--cui-calendar-nav-button-radius",
+  "--cui-calendar-hover-background",
   "--cui-calendar-today-background",
   "--cui-calendar-selected-background",
   "--cui-calendar-selected-foreground",
@@ -13,5 +15,6 @@ export const calendarKnobs = [
   "--cui-calendar-caption-font-size",
   "--cui-calendar-caption-font-weight",
   "--cui-calendar-weekday-font-size",
+  "--cui-calendar-outside-foreground",
 ] as const;
 export type CalendarKnobStyle = Partial<Record<(typeof calendarKnobs)[number], string>>;

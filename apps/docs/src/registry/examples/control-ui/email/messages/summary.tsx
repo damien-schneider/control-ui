@@ -10,7 +10,7 @@ export function SummaryEmailExample({ theme, variant }: EmailExampleProps) {
       brand={brand}
       browserUrl={browserUrl}
       footer={marketingFooter}
-      period="YOUR WEEK IN REVIEW"
+      period="March 2 – 8, 2026"
       dashboardUrl="https://example.com/workspace"
       metrics={[
         { label: "Completed", value: "24" },

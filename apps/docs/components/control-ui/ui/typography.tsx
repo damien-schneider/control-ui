@@ -22,7 +22,7 @@ const toneClassNames = {
   primary: "text-primary-text",
   success: "text-success-text",
   warning: "text-warning-text",
-  destructive: "text-destructive-text",
+  danger: "text-destructive-text",
 } as const;
 
 const weightClassNames = {

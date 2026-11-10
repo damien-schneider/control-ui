@@ -1,7 +1,7 @@
 "use client";
 
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
-import { Children, createContext, useContext, useState } from "react";
+import { Children, createContext, useContext, useLayoutEffect, useRef, useState } from "react";
 import type { SwapKnobStyle } from "@/components/control-ui/knob-contracts/swap-knobs";
 
 export type SwapItemState = "active" | "exiting" | "inactive";
@@ -21,7 +21,9 @@ function fitRootToItem(item: HTMLSpanElement) {
   if (!root) return;
   const observer = new ResizeObserver(([entry]) => {
     const [borderBox] = entry.borderBoxSize;
-    root.style.setProperty("--_swap-inline-size", `${borderBox.inlineSize}px`);
+    // A hidden item measures 0: release the width so the next reveal snaps to size instead of growing from 0.
+    if (borderBox.inlineSize === 0) root.style.removeProperty("--_swap-inline-size");
+    else root.style.setProperty("--_swap-inline-size", `${borderBox.inlineSize}px`);
   });
   observer.observe(item);
   return () => observer.disconnect();
@@ -69,12 +71,15 @@ function wrapLabelText(children: ReactNode): ReactNode {
   );
 }
 
-export type SwapItemProps = Omit<ComponentProps<"span">, "ref"> & {
+export type SwapItemProps = ComponentProps<"span"> & {
   value: string;
 };
 
-export function SwapItem({ value, children, ...props }: SwapItemProps) {
+export function SwapItem({ value, children, ref, ...props }: SwapItemProps) {
   const state = itemState(useSwap(), value);
+  const itemRef = useRef<HTMLSpanElement | null>(null);
+  const fitsRoot = state === "active";
+  useLayoutEffect(() => (fitsRoot && itemRef.current ? fitRootToItem(itemRef.current) : undefined), [fitsRoot]);
 
   return (
     <span
@@ -84,7 +89,11 @@ export function SwapItem({ value, children, ...props }: SwapItemProps) {
       data-state={state}
       aria-hidden={state === "active" ? undefined : true}
       {...props}
-      ref={state === "active" ? fitRootToItem : undefined}
+      ref={(item) => {
+        itemRef.current = item;
+        if (typeof ref === "function") return ref(item);
+        if (ref) ref.current = item;
+      }}
     >
       {wrapLabelText(children)}
     </span>

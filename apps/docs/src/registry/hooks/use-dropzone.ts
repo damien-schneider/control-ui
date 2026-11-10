@@ -265,6 +265,13 @@ export function useDropzone({
     if (fileRejections.length > 0) setFileRejections([]);
   }
 
+  // stopPropagation hides the event from the document guard, so a switched-off zone refuses the drop itself or the browser opens the file
+  function refuseDrag(event: ReactDragEvent<HTMLDivElement>) {
+    if (!preventDropOnDocument) return;
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "none";
+  }
+
   function getRootProps(props: ComponentProps<"div"> = {}): ComponentProps<"div"> {
     const { onDragEnter, onDragOver, onDragLeave, onDragEnd, onDrop: callerOnDrop, onPaste, ref, ...rootProps } = props;
 
@@ -296,7 +303,8 @@ export function useDropzone({
         onDragOver?.(event);
         if (!isFileDrag(event.dataTransfer)) return;
         event.stopPropagation();
-        if (event.defaultPrevented || !dragEnabledRef.current) return;
+        if (event.defaultPrevented) return;
+        if (!dragEnabledRef.current) return refuseDrag(event);
         event.preventDefault();
         event.dataTransfer.dropEffect = "copy";
         if (!isDragActive) {
@@ -326,7 +334,8 @@ export function useDropzone({
         if (!isFileDrag(event.dataTransfer)) return;
         event.stopPropagation();
         resetDragState();
-        if (event.defaultPrevented || !dragEnabledRef.current) return;
+        if (event.defaultPrevented) return;
+        if (!dragEnabledRef.current) return refuseDrag(event);
         event.preventDefault();
         void intake(event, "drop");
       },

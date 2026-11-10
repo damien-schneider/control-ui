@@ -267,8 +267,10 @@ export function formatDropzoneFileSize(size: number) {
   const units = ["B", "KB", "MB", "GB", "TB"];
   if (safeSize === 0) return "0 B";
 
-  const unitIndex = Math.min(Math.floor(Math.log(safeSize) / Math.log(1024)), units.length - 1);
+  const lastUnitIndex = units.length - 1;
+  const unitIndex = Math.max(0, Math.min(Math.floor(Math.log(safeSize) / Math.log(1024)), lastUnitIndex));
   const value = Math.round((safeSize / 1024 ** unitIndex) * 10) / 10;
+  if (value >= 1024 && unitIndex < lastUnitIndex) return `1 ${units[unitIndex + 1]}`;
   return `${value} ${units[unitIndex]}`;
 }
 

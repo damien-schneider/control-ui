@@ -41,7 +41,7 @@ export function SetupPromptCopyButton({ className, compact }: { className?: stri
         />
       </Button>
       {copyError ? (
-        <Text role="alert" as="p" size="caption" tone="destructive" className="mt-2">
+        <Text role="alert" as="p" size="caption" tone="danger" className="mt-2">
           {copyError}
         </Text>
       ) : null}
@@ -66,7 +66,7 @@ export function AgentSetup() {
         <CodeContent code={setupPrompt} lang="markdown" maxHeight="24rem" />
       </Code>
       {copyError ? (
-        <Text role="alert" as="p" size="caption" tone="destructive">
+        <Text role="alert" as="p" size="caption" tone="danger">
           {copyError}
         </Text>
       ) : null}

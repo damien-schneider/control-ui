@@ -11,6 +11,17 @@ export type ResizeHandleProps = Omit<ComponentProps<"button">, "style"> & {
   style?: CSSProperties & ResizeHandleKnobStyle;
 };
 
+const resizeHandleLabels = {
+  n: "Resize top edge",
+  ne: "Resize top-right corner",
+  e: "Resize right edge",
+  se: "Resize bottom-right corner",
+  s: "Resize bottom edge",
+  sw: "Resize bottom-left corner",
+  w: "Resize left edge",
+  nw: "Resize top-left corner",
+} as const satisfies Record<ResizeHandleDirection, string>;
+
 export function ResizeHandle({ direction, className, ...props }: ResizeHandleProps) {
   return (
     <button
@@ -19,6 +30,7 @@ export function ResizeHandle({ direction, className, ...props }: ResizeHandlePro
       data-control-family="resize-handle"
       data-slot="root"
       data-direction={direction}
+      aria-label={resizeHandleLabels[direction]}
       className={cn("absolute touch-none", className)}
       {...props}
     />

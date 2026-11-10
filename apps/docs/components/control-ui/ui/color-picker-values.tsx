@@ -83,7 +83,6 @@ export function ColorPickerInput({
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledBy,
   "aria-describedby": ariaDescribedBy,
-  onFocus,
   onBlur,
   onKeyDown,
   ...props
@@ -96,6 +95,7 @@ export function ColorPickerInput({
   const describedBy = [ariaDescribedBy, invalid ? invalidMessageId : undefined].filter(Boolean).join(" ") || undefined;
   const shown = editing ? draft : valueString;
   const commit = () => {
+    if (!editing) return;
     const accepted = setFromString(draft);
     setInvalid(!accepted);
     if (accepted) setEditing(false);
@@ -118,13 +118,10 @@ export function ColorPickerInput({
         aria-invalid={invalid || undefined}
         aria-describedby={describedBy}
         className={className}
-        onFocus={(event) => {
-          onFocus?.(event);
-          if (editing) return;
-          setDraft(valueString);
+        onChange={(event) => {
+          setDraft(event.target.value);
           setEditing(true);
         }}
-        onChange={(event) => setDraft(event.target.value)}
         onBlur={(event) => {
           onBlur?.(event);
           commit();
@@ -240,7 +237,7 @@ declare global {
   }
 }
 
-export function ColorPickerEyeDropper({ className, children, ...props }: ColorPickerEyeDropperProps) {
+export function ColorPickerEyeDropper({ className, children, onClick, disabled: disabledProp, ...props }: ColorPickerEyeDropperProps) {
   const { setFromString, disabled } = useColorPicker();
   const supported = useSyncExternalStore(subscribeEyeDropper, getEyeDropperSnapshot, getEyeDropperServerSnapshot);
   if (!supported) return null;
@@ -257,12 +254,15 @@ export function ColorPickerEyeDropper({ className, children, ...props }: ColorPi
       variant="surface"
       size="sm"
       iconOnly
-      disabled={disabled}
+      disabled={disabled || disabledProp}
       aria-label="Pick a color from the screen"
       data-control-ui="color-picker"
       data-slot="eye-dropper"
       className={className}
-      onClick={pick}
+      onClick={(event) => {
+        onClick?.(event);
+        if (!event.defaultPrevented) void pick();
+      }}
       {...props}
     >
       {children ?? <EyeDropperIcon />}
@@ -319,7 +319,6 @@ function EyeDropperIcon() {
   return (
     <svg
       viewBox="0 0 16 16"
-      className="size-4"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.3"

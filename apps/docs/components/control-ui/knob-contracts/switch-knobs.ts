@@ -18,6 +18,8 @@ export const switchKnobs = [
   "--cui-switch-thumb-inline-size",
   "--cui-switch-thumb-press-inline-size",
   "--cui-switch-thumb-press-scale",
+  "--cui-switch-press-background",
+  "--cui-switch-checked-press-background",
   "--cui-switch-thumb-backdrop-filter",
 ] as const;
 export type SwitchKnobStyle = Partial<Record<(typeof switchKnobs)[number], string>>;

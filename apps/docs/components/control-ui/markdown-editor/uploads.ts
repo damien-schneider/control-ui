@@ -1,6 +1,6 @@
 import type { Editor } from "@tiptap/core";
 import type { Node as ProseMirrorNode } from "@tiptap/pm/model";
-import { isEditorUrl } from "./extensions";
+import { type MarkdownUrlPolicy, persistentUrlPolicy } from "./extensions";
 
 export type MarkdownImage = { url: string; alt?: string; title?: string };
 export type MarkdownImageUploader = (
@@ -23,8 +23,20 @@ export function findImageUpload(document: ProseMirrorNode, id: string) {
   return position;
 }
 
-export function completeImageUpload(editor: Editor, id: string, image: MarkdownImage, fallbackAlt: string) {
-  if (!isEditorUrl(image.url, true)) throw new Error("The upload must return a permanent HTTP(S) or root-relative image URL.");
+export function completeImageUpload(
+  editor: Editor,
+  id: string,
+  image: MarkdownImage,
+  fallbackAlt: string,
+  isUrlAllowed: MarkdownUrlPolicy = persistentUrlPolicy,
+) {
+  if (!isUrlAllowed(image.url, "image")) {
+    throw new Error(
+      isUrlAllowed === persistentUrlPolicy
+        ? "The upload must return a permanent HTTP(S) or root-relative image URL."
+        : "The upload returned an image URL this editor does not accept.",
+    );
+  }
   const position = findImageUpload(editor.state.doc, id);
   if (position === undefined) return;
   const imageType = editor.schema.nodes.image;

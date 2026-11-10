@@ -92,6 +92,12 @@
             "source": "control-ui",
             "valueKind": "presence",
             "values": []
+          },
+          {
+            "attribute": "data-readonly",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
           }
         ]
       },
@@ -110,6 +116,13 @@
         "states": []
       },
       "source": {
+        "family": "markdown-editor",
+        "registryItems": [
+          "markdown-editor"
+        ],
+        "states": []
+      },
+      "suggestion-description": {
         "family": "markdown-editor",
         "registryItems": [
           "markdown-editor"

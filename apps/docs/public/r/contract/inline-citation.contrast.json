@@ -5,23 +5,6 @@
     [
       {
         "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
           "data-scroll": "page",
@@ -58,21 +41,40 @@
     [
       {
         "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
           "data-scroll": "page",
-          "data-slot": "wrapper"
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
         "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
+          "data-control-family": "inline-citation",
+          "data-control-ui": "inline-citation",
+          "data-slot": "root"
         }
       },
+      {
+        "attributes": {
+          "aria-expanded": "false",
+          "data-control-family": "inline-citation",
+          "data-control-ui": "inline-citation",
+          "data-popup-kind": "popover",
+          "data-slot": "trigger",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "inline-citation",
+          "data-slot": "favicon",
+          "data-source-badge-favicon": ""
+        }
+      }
+    ],
+    [
       {
         "attributes": {
           "data-control-family": "page-layout",
@@ -91,6 +93,7 @@
       },
       {
         "attributes": {
+          "aria-expanded": "true",
           "data-control-family": "inline-citation",
           "data-control-ui": "inline-citation",
           "data-popup-kind": "popover",
@@ -110,75 +113,6 @@
       }
     ],
     [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "inline-citation",
-          "data-control-ui": "inline-citation",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "inline-citation",
-          "data-control-ui": "inline-citation",
-          "data-popup-kind": "popover",
-          "data-slot": "trigger",
-          "tabindex": "0"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "avatar",
-          "data-control-ui": "inline-citation",
-          "data-slot": "favicon",
-          "data-source-badge-favicon": ""
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
       {
         "attributes": {
           "data-control-family": "page-layout",
@@ -216,23 +150,6 @@
     [
       {
         "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
           "data-scroll": "page",
@@ -249,55 +166,10 @@
       },
       {
         "attributes": {
+          "aria-expanded": "false",
           "data-control-family": "inline-citation",
           "data-control-ui": "inline-citation",
           "data-popup-kind": "popover",
-          "data-slot": "trigger",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-layout": "viewport",
-          "data-scroll": "page",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "inline-citation",
-          "data-control-ui": "inline-citation",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "inline-citation",
-          "data-control-ui": "inline-citation",
-          "data-popup-kind": "popover",
-          "data-popup-open": "",
-          "data-pressed": "",
           "data-slot": "trigger",
           "tabindex": "0"
         }
@@ -345,24 +217,6 @@
       "anatomy": 4,
       "rendersText": true,
       "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-inline-citation-trigger-hover-background",
-        "text": "--cui-inline-citation-trigger-hover-foreground"
-      },
-      "anatomy": 5,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-inline-citation-trigger-hover-background",
-        "text": "--cui-inline-citation-trigger-hover-foreground"
-      },
-      "anatomy": 4,
-      "rendersText": true,
-      "state": true
     }
   ]
 }

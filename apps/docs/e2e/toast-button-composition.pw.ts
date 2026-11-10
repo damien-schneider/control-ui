@@ -28,14 +28,16 @@ for (const skin of ["refined", "xp"]) {
       await expect(button).toHaveCSS("border-radius", "9px");
     }
 
+    await page.keyboard.press("Tab");
+    await expect(close).toBeFocused();
+    await page.keyboard.press("Shift+Tab");
+    await expect(undo).toBeFocused();
     await page.keyboard.press("Enter");
     const restoredToast = page.locator('[data-control-ui="toast"][data-slot="root"]').filter({ hasText: "Restored" });
     await expect(restoredToast).toHaveCount(1);
-    await expect(archivedToast).toBeVisible();
-    await page.keyboard.press("Tab");
-    await expect(close).toBeFocused();
-    await page.keyboard.press("Enter");
     await expect(archivedToast).toHaveCount(0);
-    await expect(restoredToast).toBeVisible();
+    await restoredToast.getByRole("button", { name: "Dismiss notification", exact: true }).focus();
+    await page.keyboard.press("Enter");
+    await expect(restoredToast).toHaveCount(0);
   });
 }

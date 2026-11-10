@@ -126,12 +126,12 @@ for (const skin of skinsWithOwnComposerShellCode) {
     await file.evaluate((element) => {
       element.style.setProperty("--cui-chat-composer-attachment-background", "oklch(0.8 0.1 250)");
       element.style.setProperty("--cui-chat-composer-attachment-radius", "3px");
-      element.style.setProperty("--cui-chat-composer-attachment-shadow", "none");
+      element.style.setProperty("--cui-chat-composer-attachment-shadow", "0 0 0 3px rgb(255, 0, 0)");
     });
     await expect(file).toHaveCSS("background-color", "oklch(0.8 0.1 250)");
     await expect(file).toHaveCSS("border-radius", "3px");
     await expect(file).toHaveCSS("border-width", "0px");
-    await expect(file).toHaveCSS("box-shadow", "none");
+    await expect(file).toHaveCSS("box-shadow", /rgb\(255, 0, 0\) 0px 0px 0px 3px$/);
     const removeImage = rail.getByRole("button", { name: "Remove vision-reference.png" });
     await removeImage.focus();
     await removeImage.press("Enter");

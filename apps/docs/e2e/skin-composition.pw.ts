@@ -68,14 +68,18 @@ async function expectNestedCorners(page: Page) {
     return {
       shell: Number.parseFloat(getComputedStyle(shell).borderBottomLeftRadius),
       button: Number.parseFloat(getComputedStyle(button).borderBottomLeftRadius),
+      pill: inner.height / 2,
       x: inner.left - outer.left,
       y: outer.bottom - inner.bottom,
       pixel: 1 / window.devicePixelRatio,
     };
   });
-  // Fractional borders snap to device pixels while custom-property lengths retain their precision.
-  expect(Math.abs(corners.button - Math.max(0, corners.shell - corners.x))).toBeLessThanOrEqual(corners.pixel);
-  expect(Math.abs(corners.button - Math.max(0, corners.shell - corners.y))).toBeLessThanOrEqual(corners.pixel);
+  // A skin that rounds its controls fully has no corner left to nest.
+  if (corners.button < corners.pill) {
+    // Fractional borders snap to device pixels while custom-property lengths retain their precision.
+    expect(Math.abs(corners.button - Math.max(0, corners.shell - corners.x))).toBeLessThanOrEqual(corners.pixel);
+    expect(Math.abs(corners.button - Math.max(0, corners.shell - corners.y))).toBeLessThanOrEqual(corners.pixel);
+  }
   await expect(page.locator("#field")).toHaveCSS("border-radius", `${corners.button}px`);
 }
 

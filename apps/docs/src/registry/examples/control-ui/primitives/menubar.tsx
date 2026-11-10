@@ -4,11 +4,14 @@ import { useState } from "react";
 
 import {
   Menubar,
+  MenubarCheckboxItem,
   MenubarContent,
   MenubarGroup,
   MenubarItem,
   MenubarLabel,
   MenubarMenu,
+  MenubarRadioGroup,
+  MenubarRadioItem,
   MenubarSeparator,
   MenubarShortcut,
   MenubarSub,
@@ -21,6 +24,9 @@ import { Text } from "@/components/control-ui/ui/typography";
 export function PrimitiveMenubarExample() {
   const [last, setLast] = useState<string | null>(null);
   const run = (label: string) => () => setLast(label);
+  const [sidebarVisible, setSidebarVisible] = useState(true);
+  const [statusBarVisible, setStatusBarVisible] = useState(false);
+  const [density, setDensity] = useState("comfortable");
 
   return (
     <div className="flex max-w-xl flex-col gap-6">
@@ -77,9 +83,26 @@ export function PrimitiveMenubarExample() {
         <MenubarMenu>
           <MenubarTrigger>View</MenubarTrigger>
           <MenubarContent>
+            <MenubarGroup>
+              <MenubarLabel>Panels</MenubarLabel>
+              <MenubarCheckboxItem checked={sidebarVisible} onCheckedChange={setSidebarVisible}>
+                Sidebar
+              </MenubarCheckboxItem>
+              <MenubarCheckboxItem checked={statusBarVisible} onCheckedChange={setStatusBarVisible}>
+                Status bar
+              </MenubarCheckboxItem>
+            </MenubarGroup>
+            <MenubarSeparator />
+            <MenubarGroup>
+              <MenubarLabel>Density</MenubarLabel>
+              <MenubarRadioGroup value={density} onValueChange={setDensity}>
+                <MenubarRadioItem value="compact">Compact</MenubarRadioItem>
+                <MenubarRadioItem value="comfortable">Comfortable</MenubarRadioItem>
+              </MenubarRadioGroup>
+            </MenubarGroup>
+            <MenubarSeparator />
             <MenubarItem onClick={run("Zoom in")}>Zoom in</MenubarItem>
             <MenubarItem onClick={run("Zoom out")}>Zoom out</MenubarItem>
-            <MenubarSeparator />
             <MenubarItem disabled>Reset zoom</MenubarItem>
           </MenubarContent>
         </MenubarMenu>

@@ -14,58 +14,78 @@ import {
   TextIcon,
   UserIcon,
 } from "lucide-react";
-import { useEffect, useEffectEvent, useRef } from "react";
+import { useEffect, useEffectEvent, useMemo } from "react";
 import { isComposingKey, type TriggerMenuItemData, useTriggerMenu } from "@/components/control-ui/hooks/use-trigger-menu";
 import { detectTrigger } from "@/components/control-ui/lib/trigger-detect";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { TriggerMenu, TriggerMenuEmpty, TriggerMenuIcon, TriggerMenuItem, TriggerMenuList } from "@/components/control-ui/ui/trigger-menu";
-import { useMarkdownEditor } from "./context";
+import { type MarkdownEditorLabels, useMarkdownEditor } from "./context";
 
 export type MarkdownEditorMention = TriggerMenuItemData & { href: string };
 type EditorSuggestion = TriggerMenuItemData & { href?: string; command?: (chain: ChainedCommands) => ChainedCommands };
 
-const blockCommands: readonly EditorSuggestion[] = [
-  { id: "paragraph", label: "Text", keywords: ["paragraph"], icon: <TextIcon />, command: (chain) => chain.clearNodes().setParagraph() },
-  {
-    id: "heading-1",
-    label: "Heading 1",
-    keywords: ["h1", "title"],
-    icon: <Heading1Icon />,
-    command: (chain) => chain.clearNodes().setHeading({ level: 1 }),
-  },
-  {
-    id: "heading-2",
-    label: "Heading 2",
-    keywords: ["h2", "subtitle"],
-    icon: <Heading2Icon />,
-    command: (chain) => chain.clearNodes().setHeading({ level: 2 }),
-  },
-  {
-    id: "heading-3",
-    label: "Heading 3",
-    keywords: ["h3"],
-    icon: <Heading3Icon />,
-    command: (chain) => chain.clearNodes().setHeading({ level: 3 }),
-  },
-  { id: "bullet-list", label: "Bullet list", icon: <ListIcon />, command: (chain) => chain.clearNodes().toggleBulletList() },
-  {
-    id: "ordered-list",
-    label: "Numbered list",
-    keywords: ["ordered"],
-    icon: <ListOrderedIcon />,
-    command: (chain) => chain.clearNodes().toggleOrderedList(),
-  },
-  {
-    id: "task-list",
-    label: "Task list",
-    keywords: ["todo", "checklist"],
-    icon: <ListChecksIcon />,
-    command: (chain) => chain.clearNodes().toggleTaskList(),
-  },
-  { id: "quote", label: "Quote", keywords: ["blockquote"], icon: <QuoteIcon />, command: (chain) => chain.clearNodes().toggleBlockquote() },
-  { id: "code-block", label: "Code block", icon: <SquareCodeIcon />, command: (chain) => chain.clearNodes().setCodeBlock() },
-  { id: "divider", label: "Divider", keywords: ["rule", "separator"], icon: <MinusIcon />, command: (chain) => chain.setHorizontalRule() },
-];
+function blockCommands(labels: MarkdownEditorLabels): readonly EditorSuggestion[] {
+  return [
+    {
+      id: "paragraph",
+      label: labels.text,
+      keywords: ["paragraph"],
+      icon: <TextIcon />,
+      command: (chain) => chain.clearNodes().setParagraph(),
+    },
+    {
+      id: "heading-1",
+      label: labels.heading(1),
+      keywords: ["h1", "title"],
+      icon: <Heading1Icon />,
+      command: (chain) => chain.clearNodes().setHeading({ level: 1 }),
+    },
+    {
+      id: "heading-2",
+      label: labels.heading(2),
+      keywords: ["h2", "subtitle"],
+      icon: <Heading2Icon />,
+      command: (chain) => chain.clearNodes().setHeading({ level: 2 }),
+    },
+    {
+      id: "heading-3",
+      label: labels.heading(3),
+      keywords: ["h3"],
+      icon: <Heading3Icon />,
+      command: (chain) => chain.clearNodes().setHeading({ level: 3 }),
+    },
+    { id: "bullet-list", label: labels.bulletList, icon: <ListIcon />, command: (chain) => chain.clearNodes().toggleBulletList() },
+    {
+      id: "ordered-list",
+      label: labels.orderedList,
+      keywords: ["ordered"],
+      icon: <ListOrderedIcon />,
+      command: (chain) => chain.clearNodes().toggleOrderedList(),
+    },
+    {
+      id: "task-list",
+      label: labels.taskList,
+      keywords: ["todo", "checklist"],
+      icon: <ListChecksIcon />,
+      command: (chain) => chain.clearNodes().toggleTaskList(),
+    },
+    {
+      id: "quote",
+      label: labels.quote,
+      keywords: ["blockquote"],
+      icon: <QuoteIcon />,
+      command: (chain) => chain.clearNodes().toggleBlockquote(),
+    },
+    { id: "code-block", label: labels.codeBlock, icon: <SquareCodeIcon />, command: (chain) => chain.clearNodes().setCodeBlock() },
+    {
+      id: "divider",
+      label: labels.divider,
+      keywords: ["rule", "separator"],
+      icon: <MinusIcon />,
+      command: (chain) => chain.setHorizontalRule(),
+    },
+  ];
+}
 
 function readTrigger(editor: Editor) {
   const { selection } = editor.state;
@@ -92,12 +112,11 @@ export type MarkdownEditorSuggestionsProps = {
 };
 
 export function MarkdownEditorSuggestions({ mentions = [], onMentionSelect }: MarkdownEditorSuggestionsProps) {
-  const activeItem = useRef<HTMLDivElement>(null);
-  const { editor, disabled, source, isUrlAllowed } = useMarkdownEditor();
-  const enabled = Boolean(editor) && !disabled && !source;
+  const { editor, editable: enabled, labels, isUrlAllowed } = useMarkdownEditor();
+  const commands = useMemo(() => blockCommands(labels), [labels]);
   const controller = useTriggerMenu<EditorSuggestion>({
     triggers: [
-      { char: "/", items: blockCommands },
+      { char: "/", items: commands },
       { char: "@", items: mentions },
     ],
     onCommit: (item) => {
@@ -164,11 +183,6 @@ export function MarkdownEditorSuggestions({ mentions = [], onMentionSelect }: Ma
       owner.defaultView?.removeEventListener("resize", report);
     };
   }, [editor, open]);
-  const { activeIndex, activeChar, query } = controller;
-  // biome-ignore lint/correctness/useExhaustiveDependencies: changing the active result or query must reveal the current option.
-  useEffect(() => {
-    if (open) activeItem.current?.scrollIntoView({ block: "nearest" });
-  }, [open, activeIndex, activeChar, query]);
   const { "aria-controls": controls, "aria-activedescendant": activeDescendant } = controller.inputAria;
   useEffect(() => {
     if (!editor || editor.isDestroyed || !enabled) return;
@@ -188,11 +202,11 @@ export function MarkdownEditorSuggestions({ mentions = [], onMentionSelect }: Ma
     };
   }, [editor, enabled, controls, activeDescendant]);
 
-  const label = controller.activeChar === "@" ? "Mention people" : "Insert block";
-  const emptyLabel = controller.activeChar === "@" ? "No people found" : "No commands found";
+  const label = controller.activeChar === "@" ? labels.mentions : labels.commands;
+  const emptyLabel = controller.activeChar === "@" ? labels.noMentions : labels.noCommands;
   return (
     <>
-      <LiveStatus message={open ? `${controller.items.length} ${label.toLowerCase()} suggestions` : ""} />
+      <LiveStatus message={open ? labels.suggestionCount(controller.items.length, label) : ""} />
       <TriggerMenu open={open} onOpenChange={controller.setOpen} anchorRect={controller.anchorRect} side="bottom">
         {controller.items.length === 0 ? <TriggerMenuEmpty>{emptyLabel}</TriggerMenuEmpty> : null}
         <TriggerMenuList id={controller.listId} aria-label={label}>
@@ -202,13 +216,21 @@ export function MarkdownEditorSuggestions({ mentions = [], onMentionSelect }: Ma
               id={controller.optionId(index)}
               active={index === controller.activeIndex}
               disabled={item.disabled || (item.href !== undefined && !isUrlAllowed(item.href, "link"))}
-              ref={index === controller.activeIndex ? activeItem : undefined}
               onPointerMove={() => controller.setActiveIndex(index)}
               onClick={() => controller.select(item)}
             >
               <TriggerMenuIcon>{item.icon ?? <UserIcon />}</TriggerMenuIcon>
               <span className="min-w-0 flex-1 truncate">{item.label}</span>
-              {item.description ? <span className="truncate text-muted-foreground">{item.description}</span> : null}
+              {item.description ? (
+                <span
+                  data-control-ui="markdown-editor"
+                  data-control-family="markdown-editor"
+                  data-slot="suggestion-description"
+                  className="truncate"
+                >
+                  {item.description}
+                </span>
+              ) : null}
             </TriggerMenuItem>
           ))}
         </TriggerMenuList>

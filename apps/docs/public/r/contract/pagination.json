@@ -34,13 +34,37 @@
       "name": "--cui-pagination-link-shadow",
       "syntax": "*",
       "initialValue": "",
-      "defaultValue": "none"
+      "defaultValue": "0 0 transparent"
     },
     {
       "name": "--cui-pagination-link-font-size",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "1em"
+      "defaultValue": "var(--text-body)"
+    },
+    {
+      "name": "--cui-pagination-link-height",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--control-h-sm)"
+    },
+    {
+      "name": "--cui-pagination-link-active-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--control-fill)"
+    },
+    {
+      "name": "--cui-pagination-link-active-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-pagination-link-active-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-sm)"
     }
   ],
   "parts": {

@@ -5,7 +5,7 @@ import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { skinScopeAttributes } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 
 export type HoverCardProps = {
@@ -17,8 +17,8 @@ export type HoverCardProps = {
 
 export type HoverCardContentProps = Omit<
   ComponentProps<"div"> & {
-    side?: "top" | "bottom" | "left" | "right";
-    align?: "start" | "center" | "end";
+    side?: ComponentProps<typeof PreviewCardPrimitive.Positioner>["side"];
+    align?: ComponentProps<typeof PreviewCardPrimitive.Positioner>["align"];
     sideOffset?: number;
     /** Positions the card against this element instead of the trigger, for hover targets React does not render. */
     anchor?: ComponentProps<typeof PreviewCardPrimitive.Positioner>["anchor"];
@@ -63,8 +63,7 @@ export function HoverCardContent({
         data-popup-kind="hover-card"
         data-control-family="popup"
         data-slot="positioner"
-        data-skin={skin.id}
-        data-effects={controlEffectsAttribute(skin.effects)}
+        {...skinScopeAttributes(skin)}
         side={side}
         align={align}
         sideOffset={sideOffset}

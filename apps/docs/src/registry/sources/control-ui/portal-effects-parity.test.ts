@@ -3,20 +3,24 @@ import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const UI_DIR = fileURLToPath(new URL("./ui/", import.meta.url));
+const SOURCES_DIR = fileURLToPath(new URL("./", import.meta.url));
 
-const count = (haystack: string, needle: string) => haystack.split(needle).length - 1;
+const handStampedScopeAttributes = [
+  "data-skin={skin.id}",
+  "data-effects={controlEffectsAttribute(skin.effects)}",
+  "data-motion={skin.motion}",
+];
 
-describe("portal skin stamps carry the effects scope", () => {
-  const files = readdirSync(UI_DIR).filter((name) => name.endsWith(".tsx"));
+describe("portalled surfaces re-create the whole skin scope", () => {
+  const files = readdirSync(SOURCES_DIR, { encoding: "utf8", recursive: true }).filter(
+    (name) => name.endsWith(".tsx") && !name.includes(".test."),
+  );
 
-  for (const name of files) {
-    const source = readFileSync(path.join(UI_DIR, name), "utf8");
-    const skinStamps = count(source, "data-skin={skin.id}");
-    if (skinStamps === 0) continue;
-
-    test(`${name} stamps data-effects beside each data-skin`, () => {
-      expect(count(source, "data-effects={controlEffectsAttribute(skin.effects)}")).toBe(skinStamps);
+  test("no surface stamps one scope attribute by hand", () => {
+    const offenders = files.filter((name) => {
+      const source = readFileSync(path.join(SOURCES_DIR, name), "utf8");
+      return handStampedScopeAttributes.some((attribute) => source.includes(attribute));
     });
-  }
+    expect(offenders).toEqual([]);
+  });
 });

@@ -13,6 +13,18 @@ describe("Toggle anatomy", () => {
     expect(html).not.toContain('data-control-ui="button"');
   });
 
+  test("stamps the shape for the shared Button recipe instead of leaking it to the DOM", () => {
+    const html = renderToStaticMarkup(
+      <Toggle shape="circle" iconOnly aria-label="Bold">
+        B
+      </Toggle>,
+    );
+
+    expect(html).toContain('data-shape="circle"');
+    expect(html).not.toContain(' shape="circle"');
+    expect(renderToStaticMarkup(<Toggle>Bold</Toggle>)).toContain('data-shape="default"');
+  });
+
   test("emits group anatomy independently from its children", () => {
     const html = renderToStaticMarkup(
       <ToggleGroup>

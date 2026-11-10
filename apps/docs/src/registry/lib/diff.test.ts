@@ -77,6 +77,82 @@ describe("buildDiffFromFiles — new and deleted", () => {
   });
 });
 
+describe("buildDiffFromFiles — oversized change", () => {
+  const row = (label: string) => (_: unknown, index: number) => `${label} ${index}`;
+  const rewritten = (count: number, label: string) => ["head", ...Array.from({ length: count }, row(label)), "tail a", "tail b"].join("\n");
+
+  test("a rewrite past the edit budget collapses to one replace block instead of stalling", () => {
+    const started = performance.now();
+    const file = buildDiffFromFiles(rewritten(6000, "old"), rewritten(6000, "new"), { name: "big.txt", context: 1 });
+
+    expect(performance.now() - started).toBeLessThan(2000);
+    expect(file.hunks).toHaveLength(1);
+    expect(file.deletions).toBe(6000);
+    expect(file.additions).toBe(6000);
+    expect(file.isPartial).toBe(false);
+
+    const { lines } = file.hunks[0];
+    expect(lines[0]).toEqual({ type: "context", oldNo: 1, newNo: 1, text: "head" });
+    expect(lines[1]).toEqual({ type: "del", oldNo: 2, text: "old 0" });
+    expect(lines[6001]).toEqual({ type: "add", newNo: 2, text: "new 0" });
+    expect(lines.at(-1)).toEqual({ type: "context", oldNo: 6002, newNo: 6002, text: "tail a" });
+    expect(file.hunks[0].collapsedBefore).toBe(0);
+  });
+
+  test("a large pure addition stays a new file", () => {
+    const file = buildDiffFromFiles("", rewritten(3000, "new"), { name: "big.txt" });
+    expect(file.type).toBe("new");
+    expect(file.additions).toBe(3003);
+    expect(file.deletions).toBe(0);
+  });
+});
+
+describe("buildDiffFromFiles — edit budget option", () => {
+  const before = Array.from({ length: 3000 }, (_, index) => `row ${index}`).join("\n");
+  const after = Array.from({ length: 3000 }, (_, index) => (index % 2 === 0 ? `row ${index}` : `changed ${index}`)).join("\n");
+
+  test("maxEditLength: 0 lifts the budget and keeps the exact line diff", () => {
+    const collapsed = buildDiffFromFiles(before, after);
+    const exact = buildDiffFromFiles(before, after, { maxEditLength: 0 });
+
+    expect(collapsed.deletions).toBe(2999);
+    expect(exact.deletions).toBe(1500);
+    expect(exact.additions).toBe(1500);
+  });
+
+  test("a smaller budget collapses a change the default diffs exactly", () => {
+    const exact = buildDiffFromFiles("a\nb\nc\nd\ne", "a\nB\nc\nD\ne");
+    const collapsed = buildDiffFromFiles("a\nb\nc\nd\ne", "a\nB\nc\nD\ne", { maxEditLength: 1 });
+
+    expect(exact.deletions).toBe(2);
+    expect(typesOf(collapsed.hunks[0].lines)).toBe("cdddaaac");
+  });
+});
+
+describe("missing final newline", () => {
+  test("a before/after pair flags the side that lacks it", () => {
+    const lines = buildDiffFromFiles("a\nb", "a\nb\n").hunks[0].lines;
+
+    expect(lines.map((line) => `${line.type[0]}:${line.text}:${line.noNewline === true}`)).toEqual(["c:a:false", "d:b:true", "a:b:false"]);
+  });
+
+  test("a patch marker flags the line it follows instead of becoming a row", () => {
+    const patch = "--- a/x\n+++ b/x\n@@ -1,2 +1,2 @@\n a\n-b\n+c\n\\ No newline at end of file\n";
+    const lines = buildDiffFromPatch(patch)[0].hunks[0].lines;
+
+    expect(typesOf(lines)).toBe("cda");
+    expect(lines[1].noNewline).toBeUndefined();
+    expect(lines[2].noNewline).toBe(true);
+  });
+
+  test("a final newline missing on both sides is not flagged", () => {
+    const unchangedLastLine = buildDiffFromFiles("a\nb", "A\nb").hunks[0].lines;
+    const changedLastLine = buildDiffFromFiles("a\nb", "a\nc").hunks[0].lines;
+
+    expect([...unchangedLastLine, ...changedLastLine].some((line) => line.noNewline)).toBe(false);
+  });
+});
+
 describe("buildDiffFromPatch — unified/git patch string", () => {
   const patch = `diff --git a/src/hello.ts b/src/hello.ts
 index 000..111 100644
@@ -142,6 +218,55 @@ index 000..111 100644
     expect(typesOf(recoveredFiles[0].hunks[0].lines)).toBe("cdac");
     expect(recoveredFiles[0].additions).toBe(1);
     expect(recoveredFiles[0].deletions).toBe(1);
+  });
+
+  test("an empty line inside a hunk is blank context and keeps later line numbers", () => {
+    // editors and mail clients strip the single space of a blank context line
+    const stripped = "--- a/notes.txt\n+++ b/notes.txt\n@@ -1,5 +1,5 @@\n one\n\n-three\n+THREE\n four\n five\n";
+    const lines = buildDiffFromPatch(stripped)[0].hunks[0].lines;
+    expect(typesOf(lines)).toBe("ccdacc");
+    expect(lines[1]).toEqual({ type: "context", oldNo: 2, newNo: 2, text: "" });
+    expect(lines[2].oldNo).toBe(3);
+    expect(lines[3].newNo).toBe(3);
+    expect(lines[5]).toEqual({ type: "context", oldNo: 5, newNo: 5, text: "five" });
+  });
+
+  test("lenient fallback keeps the hunk body that follows an empty line", () => {
+    const miscounted =
+      "--- a/notes.txt\n+++ b/notes.txt\n@@ -1,9 +1,9 @@\n one\n\n-three\n+THREE\n four\n\n--- a/other.txt\n+++ b/other.txt\n@@ -1,2 +1,2 @@\n-a\n+b\n";
+    const parsed = buildDiffFromPatch(miscounted);
+    expect(parsed).toHaveLength(2);
+    expect(typesOf(parsed[0].hunks[0].lines)).toBe("ccdac");
+    expect(parsed[0].hunks[0].lines[2].oldNo).toBe(3);
+    expect(parsed[0].hunks[0].oldCount).toBe(4);
+    expect(typesOf(parsed[1].hunks[0].lines)).toBe("da");
+  });
+
+  test("lenient fallback keeps deleted and added lines that look like file headers", () => {
+    const miscounted = "--- a/schema.sql\n+++ b/schema.sql\n@@ -1,9 +1,9 @@\n select 1;\n--- old comment\n select 2;\n+++ new marker\n";
+    const parsed = buildDiffFromPatch(miscounted);
+    expect(parsed).toHaveLength(1);
+    expect(parsed[0].name).toBe("schema.sql");
+    expect(parsed[0].hunks[0].lines.map((line) => `${line.type[0]}:${line.text}`)).toEqual([
+      "c:select 1;",
+      "d:-- old comment",
+      "c:select 2;",
+      "a:++ new marker",
+    ]);
+  });
+
+  test("a zero-count side starts on the line after its anchor, strict or lenient", () => {
+    // unified diff writes "-2,0" for an insertion after old line 2; rows and gaps count from the next line
+    const strict = buildDiffFromPatch("--- a/x\n+++ b/x\n@@ -2,0 +3 @@\n+X\n")[0].hunks[0];
+    const lenient = buildDiffFromPatch("--- a/x\n+++ b/x\n@@ -2,0 +3,5 @@\n+X\n")[0].hunks[0];
+
+    for (const hunk of [strict, lenient]) {
+      expect(hunk.oldStart).toBe(3);
+      expect(hunk.oldCount).toBe(0);
+      expect(hunk.newStart).toBe(3);
+      expect(hunk.newCount).toBe(1);
+      expect(hunk.collapsedBefore).toBe(2);
+    }
   });
 });
 

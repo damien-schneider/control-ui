@@ -1,6 +1,16 @@
 "use client";
 
-import { Context } from "@/components/control-ui/context";
+import {
+  Context,
+  ContextBody,
+  ContextContent,
+  ContextGraph,
+  ContextHeader,
+  ContextLegend,
+  ContextLegendItem,
+  ContextSummary,
+  ContextTrigger,
+} from "@/components/control-ui/context";
 import type { ContextSegment } from "@/components/control-ui/context-model";
 
 const segments = [
@@ -14,7 +24,40 @@ const segments = [
 export function ContextExample() {
   return (
     <div className="flex min-h-40 w-full items-center justify-center">
-      <Context segments={segments} maxTokens={200_000} model="GPT-5" />
+      <Context segments={segments} maxTokens={200_000} model="GPT-5" locale="en-US" />
+    </div>
+  );
+}
+
+export function ContextComposedExample() {
+  return (
+    <div className="flex min-h-40 w-full items-center justify-center">
+      <Context segments={segments} maxTokens={200_000} model="GPT-5" locale="en-US">
+        <ContextTrigger />
+        <ContextContent>
+          <ContextHeader />
+          <ContextBody>
+            <ContextSummary />
+            <ContextGraph />
+            <ContextLegend>
+              <ContextLegendItem
+                kind="message"
+                label="Conversation"
+                description="Messages and reasoning from this thread"
+                value="62,000 tokens"
+              />
+              <ContextLegendItem
+                kind="tool"
+                label="Instructions and tools"
+                description="System prompt and 14 tool definitions"
+                value="30,000 tokens"
+              />
+              <ContextLegendItem kind="source" label="Sources" description="3 attached files" value="8,000 tokens" />
+              <ContextLegendItem tone="available" label="Free before compaction" value="100,000 tokens" />
+            </ContextLegend>
+          </ContextBody>
+        </ContextContent>
+      </Context>
     </div>
   );
 }

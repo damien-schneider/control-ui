@@ -8,5 +8,6 @@ export const skin: ControlUiSkin = {
     "button-group": "hover",
     "toggle-group": "hover",
     "checkbox-group": "hover",
+    "radio-group": "hover",
   },
 };

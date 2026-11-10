@@ -3,7 +3,7 @@
     --cui-action-bar-hidden-opacity: 0;
     --cui-action-bar-visible-opacity: 1;
     margin-block-start: calc(var(--spacing) * 1);
-    min-block-size: calc(var(--spacing) * 8);
+    min-block-size: var(--control-h-sm);
     gap: calc(var(--spacing) * 1);
     opacity: var(--cui-action-bar-visible-opacity);
     transition-property: opacity;

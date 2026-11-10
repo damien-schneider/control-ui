@@ -65,7 +65,7 @@ export function resolveFileExplorer(location: FileExplorerLocation, selectedPath
     const selected = selectedId ? entries.find((entry) => entry.id === selectedId) : undefined;
 
     columns.push({
-      id: depth === 0 ? `location:${location.id}` : `folder:${validPath[depth - 1]}`,
+      id: depth === 0 ? `location:${location.id}` : `folder:${validPath.join("/")}`,
       label: columnLabel,
       entries,
       selectedId: selected?.id,

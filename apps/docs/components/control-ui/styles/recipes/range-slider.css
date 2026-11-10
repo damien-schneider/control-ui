@@ -1,0 +1,202 @@
+@layer components {
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="label-overlay"]) {
+    padding-inline: calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="track"]) {
+    --_range-track-background: var(--cui-range-track-background);
+    block-size: var(--cui-range-track-size);
+    border-radius: var(--cui-range-track-radius);
+    background: var(--_range-track-background);
+    touch-action: pan-y;
+    transition: background-color var(--duration-fast) var(--ease-standard);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="track"][data-dragging]) {
+    --_range-track-background: var(--cui-range-track-dragging-background);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="indicator"]) {
+    --_range-indicator-background: var(--cui-range-indicator-background);
+    block-size: 100%;
+    border-radius: var(--cui-range-indicator-radius);
+    background: var(--_range-indicator-background);
+    transition: background-color var(--duration-fast) var(--ease-standard);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="indicator"][data-dragging]) {
+    --_range-indicator-background: var(--cui-range-indicator-dragging-background);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="control"]) {
+    padding-block: calc(var(--spacing) * 1.5);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="control"][data-labeled]) {
+    block-size: calc(var(--spacing) * 7.5);
+    padding-block: 0;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="track"][data-labeled]) {
+    block-size: 100%;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"]) {
+    --_range-thumb-background: var(--cui-range-thumb-background);
+    --_range-thumb-shadow: var(--cui-range-thumb-shadow);
+    position: relative;
+    inline-size: var(--cui-range-thumb-inline-size);
+    block-size: var(--cui-range-thumb-block-size);
+    border: var(--_range-thumb-border-width) solid var(--cui-range-thumb-border-color);
+    border-radius: var(--cui-range-thumb-radius);
+    background: var(--_range-thumb-background);
+    box-shadow: var(--_range-thumb-shadow);
+    touch-action: pan-y;
+    transition-property: scale, box-shadow, block-size, inline-size;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"]:hover:not([data-disabled])) {
+      --_range-thumb-background: var(--cui-range-thumb-hover-background);
+      scale: 1.1;
+    }
+
+    :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-variant="plain"]:hover:not([data-disabled])) {
+      scale: 1;
+    }
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-dragging]) {
+    --_range-thumb-background: var(--cui-range-thumb-dragging-background);
+    --_range-thumb-shadow: var(--cui-range-thumb-dragging-shadow);
+    scale: 1.1;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-variant="plain"][data-dragging]) {
+    block-size: calc(var(--cui-range-thumb-block-size) * 1.25);
+    scale: 1;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="tick"]) {
+    inline-size: 1px;
+    block-size: var(--cui-range-track-size);
+    background: oklch(from var(--foreground) l c h / 0.15);
+    transition-property: block-size, background-color;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="root"][data-dragging] [data-slot="tick"]) {
+    block-size: calc(var(--cui-range-track-size) * 2);
+    background: oklch(from var(--foreground) l c h / 0.25);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"]:is([data-slot="label"], [data-slot="value"])) {
+    color: var(--muted-foreground);
+    font-size: var(--text-caption);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    transition-property: color, scale, translate;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="value"]) {
+    font-variant-numeric: tabular-nums;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="root"][data-dragging] [data-slot="label"]) {
+    translate: calc(var(--spacing) * -1) calc(var(--spacing) * -1.5);
+    scale: 0.9;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="root"][data-dragging] [data-slot="value"]) {
+    translate: calc(var(--spacing) * 0.5) calc(var(--spacing) * -1.5);
+    color: var(--foreground);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-orientation="vertical"][data-slot="control"]) {
+    padding-inline: calc(var(--spacing) * 1.5);
+    padding-block: 0;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-orientation="vertical"][data-slot="control"][data-labeled]) {
+    inline-size: calc(var(--spacing) * 7.5);
+    block-size: auto;
+    padding-inline: 0;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-orientation="vertical"][data-slot="track"]),
+  :where([data-control-family="range"][data-range-kind="slider"][data-orientation="vertical"][data-slot="thumb"]) {
+    touch-action: pan-x;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-orientation="vertical"][data-slot="track"]) {
+    inline-size: var(--cui-range-track-size);
+    block-size: auto;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-orientation="vertical"][data-slot="track"][data-labeled]) {
+    inline-size: 100%;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-orientation="vertical"][data-slot="indicator"]) {
+    inline-size: 100%;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-orientation="vertical"][data-slot="thumb"][data-variant="plain"]) {
+    inline-size: var(--cui-range-thumb-block-size);
+    block-size: var(--cui-range-thumb-inline-size);
+  }
+
+  :where(
+    [data-control-family="range"][data-range-kind="slider"][data-orientation="vertical"][data-slot="thumb"][data-variant="plain"][data-dragging]
+  ) {
+    inline-size: calc(var(--cui-range-thumb-block-size) * 1.25);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-orientation="vertical"][data-slot="root"] [data-slot="tick"]) {
+    inline-size: var(--cui-range-track-size);
+    block-size: 1px;
+    inset-inline-start: 0;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-orientation="vertical"][data-slot="root"] [data-slot="label"]) {
+    margin-block-end: calc(var(--spacing) * 1.5);
+    translate: none;
+    scale: none;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-orientation="vertical"][data-slot="root"] [data-slot="value"]) {
+    margin-block-start: calc(var(--spacing) * 1.5);
+    translate: none;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"])::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    translate: -50% -50%;
+    inline-size: max(100%, var(--target-min));
+    block-size: max(100%, var(--target-min));
+  }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"])::after {
+      inline-size: max(100%, var(--touch-target));
+      block-size: max(100%, var(--touch-target));
+    }
+  }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="range"][data-range-kind="slider"][data-slot="indicator"]) {
+      background: Highlight;
+    }
+
+    :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-variant="plain"]) {
+      background: CanvasText;
+    }
+  }
+}

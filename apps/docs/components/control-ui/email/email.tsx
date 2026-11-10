@@ -219,7 +219,9 @@ export function EmailPanel({ className = "", ...props }: SectionProps) {
 export function EmailOneTimeCode({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
     <EmailPanel className={`text-center ${className}`}>
-      <EmailText className="mb-0 text-center font-mono text-heading-2 font-semibold tracking-[0.25em]">{children}</EmailText>
+      <EmailText className="mb-0 text-center font-mono text-heading-2 font-semibold tracking-[0.25em]">
+        <span dir="ltr">{children}</span>
+      </EmailText>
     </EmailPanel>
   );
 }

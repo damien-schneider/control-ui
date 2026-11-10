@@ -12,6 +12,8 @@ export type ToolbarLinkVariant = "default" | "track";
 
 export type ToolbarProps = Omit<ComponentProps<"div">, "style"> & {
   orientation?: "horizontal" | "vertical";
+  disabled?: boolean;
+  loopFocus?: boolean;
   variant?: ToolbarVariant;
   chrome?: ToolbarChrome;
   style?: CSSProperties & ToolbarKnobStyle;
@@ -28,7 +30,7 @@ export type ToolbarLinkProps = Omit<ComponentProps<"a">, "style"> & {
   style?: CSSProperties & ToolbarKnobStyle;
 };
 
-export type ToolbarGroupProps = ComponentProps<"div"> & { style?: CSSProperties & ToolbarKnobStyle };
+export type ToolbarGroupProps = ComponentProps<"div"> & { disabled?: boolean; style?: CSSProperties & ToolbarKnobStyle };
 
 export type ToolbarSeparatorProps = Omit<ComponentProps<"div">, "style"> & {
   orientation?: "horizontal" | "vertical";
@@ -88,7 +90,7 @@ export function ToolbarButton({ iconOnly = false, className, ...props }: Refined
       data-size="sm"
       data-icon-only={iconOnly ? "true" : undefined}
       className={cn(
-        "inline-flex shrink-0 items-center justify-center select-none data-[disabled]:pointer-events-none [&_svg]:block [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+        "inline-flex shrink-0 items-center justify-center select-none data-[disabled]:pointer-events-none [&_svg]:block [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className,
       )}
       {...props}
@@ -110,7 +112,7 @@ export function ToolbarLink({ variant = "default", active = false, className, ..
       data-active={active || undefined}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "inline-flex shrink-0 items-center justify-center [&_svg]:block [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+        "inline-flex shrink-0 items-center justify-center [&_svg]:block [&_svg]:pointer-events-none [&_svg]:shrink-0",
         variant === "track" && "relative z-[2]",
         className,
       )}
@@ -125,16 +127,16 @@ export function ToolbarGroup({ className, ...props }: ToolbarGroupProps) {
       data-control-ui="toolbar"
       data-control-family="toolbar"
       data-slot="group"
-      className={cn("inline-flex items-center", className)}
+      className={cn("inline-flex items-center data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-stretch", className)}
       {...props}
     />
   );
 }
 
-export function ToolbarSeparator({ orientation = "vertical", className, ...props }: ToolbarSeparatorProps) {
+export function ToolbarSeparator({ orientation, className, ...props }: ToolbarSeparatorProps) {
   return (
     <ToolbarPrimitive.Separator
-      orientation={orientation}
+      {...(orientation && { orientation })}
       data-control-ui="toolbar"
       data-control-family="toolbar"
       data-slot="separator"

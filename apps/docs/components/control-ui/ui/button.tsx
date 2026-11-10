@@ -158,7 +158,6 @@ export function ButtonLink({
     render,
     props: {
       "data-track-item": tracksHover ? "" : undefined,
-      ...props,
       "data-control-ui": "button",
       "data-control-family": "button",
       "data-slot": "root",
@@ -171,6 +170,7 @@ export function ButtonLink({
       "data-tone": tone,
       "data-size": size,
       className: cn(buttonStructureClasses, className),
+      ...props,
       children: <ButtonBody layer={skinAdornment(skin, "button", "layer", { variant, tone })}>{children}</ButtonBody>,
     },
   });
@@ -194,7 +194,6 @@ export function ButtonLabel({
     // biome-ignore lint/a11y/noLabelWithoutControl: The wrapped file input is supplied through children.
     <label
       data-track-item={tracksHover ? "" : undefined}
-      {...props}
       data-control-ui="button"
       data-control-family="button"
       data-slot="root"
@@ -207,6 +206,7 @@ export function ButtonLabel({
       data-tone={tone}
       data-size={size}
       className={cn(buttonStructureClasses, className)}
+      {...props}
     >
       <ButtonBody layer={skinAdornment(skin, "button", "layer", { variant, tone })}>{children}</ButtonBody>
     </label>

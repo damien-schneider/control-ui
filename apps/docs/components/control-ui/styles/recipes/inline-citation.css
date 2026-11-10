@@ -10,13 +10,13 @@
     --cui-inline-citation-trigger-border-color: var(--border);
     --cui-inline-citation-trigger-border-width: var(--control-rim-width);
     --cui-inline-citation-trigger-foreground: var(--muted-foreground);
-    --cui-inline-citation-trigger-hover-background: var(--muted);
+    --cui-inline-citation-trigger-hover-background: var(--hover-fill);
     --cui-inline-citation-trigger-hover-foreground: var(--foreground);
     --cui-inline-citation-trigger-radius: 9999px;
   }
   :where([data-control-family="inline-citation"][data-slot="trigger"]) {
     margin-inline-start: calc(var(--spacing) * 1);
-    block-size: calc(var(--spacing) * 6);
+    block-size: var(--target-min);
     max-inline-size: calc(var(--spacing) * 52);
     gap: calc(var(--spacing) * 1.5);
     padding-inline: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2);
@@ -26,11 +26,15 @@
     color: var(--cui-inline-citation-trigger-foreground);
     font-size: var(--text-caption);
     font-weight: var(--font-weight-normal);
-    outline-style: none;
+  }
+
+  :where([data-control-family="inline-citation"][data-slot="trigger"]:disabled) {
+    opacity: var(--disabled-opacity);
+    cursor: not-allowed;
   }
 
   @media (hover: hover) {
-    :where([data-control-family="inline-citation"][data-slot="trigger"]:hover) {
+    :where([data-control-family="inline-citation"][data-slot="trigger"]:not(:disabled):hover) {
       background: var(--cui-inline-citation-trigger-hover-background);
       color: var(--cui-inline-citation-trigger-hover-foreground);
     }
@@ -49,7 +53,7 @@
     :where([data-control-family="inline-citation"][data-slot="trigger"])::after {
       content: "";
       position: absolute;
-      inset: 50% 50%;
+      inset: 50% auto auto 50%;
       translate: -50% -50%;
       inline-size: 100%;
       block-size: max(100%, var(--touch-target));
@@ -65,7 +69,7 @@
   }
 
   :where([data-control-family="inline-citation"][data-slot="navigation"]) {
-    min-block-size: calc(var(--spacing) * 10);
+    min-block-size: var(--control-h-lg);
     gap: calc(var(--spacing) * 1);
     padding-inline: calc(var(--spacing) * 2);
     border-block-end: var(--control-rim-width) solid var(--border);
@@ -102,11 +106,9 @@
 
   :where([data-control-family="inline-citation"][data-slot="source-title"]) {
     gap: calc(var(--spacing) * 2);
-    color: var(--foreground);
     font-size: var(--text-label);
     font-weight: var(--font-weight-medium);
     line-height: calc(var(--spacing) * 5);
-    outline-style: none;
   }
 
   :where([data-control-family="inline-citation"][data-slot="source-title"]:focus-visible) {

@@ -28,7 +28,7 @@
       "name": "--cui-markdown-inline-code-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "color-mix(in oklab, var(--foreground) 8%, transparent)"
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.08)"
     },
     {
       "name": "--cui-markdown-inline-code-foreground",
@@ -40,7 +40,7 @@
       "name": "--cui-markdown-inline-code-radius",
       "syntax": "<length-percentage>+",
       "initialValue": "0px",
-      "defaultValue": "0.25rem"
+      "defaultValue": "var(--radius-sm)"
     },
     {
       "name": "--cui-markdown-link-foreground",
@@ -94,6 +94,13 @@
   "parts": {
     "markdown": {
       "root": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "blocked-link": {
         "family": "markdown",
         "registryItems": [
           "markdown"
@@ -163,6 +170,13 @@
         ],
         "states": []
       },
+      "image": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
       "inline-code": {
         "family": "markdown",
         "registryItems": [
@@ -212,7 +226,28 @@
         ],
         "states": []
       },
+      "subscript": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "superscript": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
       "table": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "table-body": {
         "family": "markdown",
         "registryItems": [
           "markdown"
@@ -226,7 +261,21 @@
         ],
         "states": []
       },
+      "table-head": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
       "table-header": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "table-row": {
         "family": "markdown",
         "registryItems": [
           "markdown"

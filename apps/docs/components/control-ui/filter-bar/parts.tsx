@@ -7,10 +7,11 @@ import { useEffect, useId, useRef } from "react";
 import type { FilterBarKnobStyle } from "@/components/control-ui/knob-contracts/filter-bar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button, type ButtonProps } from "@/components/control-ui/ui/button";
+import type { ComboboxInputProps } from "@/components/control-ui/ui/combobox";
 import { useFilterBarContext } from "./context";
 import { FilterBarEditor, FilterBarInlineInput } from "./editor";
 import { describeFilter, formatFilterValue } from "./model";
-import type { FilterBarField, FilterBarItem, FilterBarOperator, FilterBarStage } from "./types";
+import type { FilterBarField, FilterBarItem, FilterBarLabels, FilterBarOperator, FilterBarStage } from "./types";
 
 export type FilterBarChipProps = ComponentProps<"div"> & {
   item: FilterBarItem;
@@ -18,13 +19,25 @@ export type FilterBarChipProps = ComponentProps<"div"> & {
   style?: CSSProperties & FilterBarKnobStyle;
 };
 
+export type FilterBarChipsProps = { renderChip?: (item: FilterBarItem) => ReactNode };
+export type FilterBarAddButtonProps = ButtonProps;
+export type FilterBarInputProps = ComboboxInputProps;
+export type FilterBarClearProps = ButtonProps;
+
 type FilterBarSegmentData = { stage: FilterBarStage; label: string; spokenLabel?: string; icon?: ReactNode };
 
-function chipSegments(item: FilterBarItem, field: FilterBarField | undefined, operator: FilterBarOperator | undefined, draft: boolean) {
+function chipSegments(
+  item: FilterBarItem,
+  field: FilterBarField | undefined,
+  operator: FilterBarOperator | undefined,
+  draft: boolean,
+  labels: FilterBarLabels,
+) {
   const segments: FilterBarSegmentData[] = [{ stage: "field", label: field?.label ?? item.fieldId, icon: field?.icon }];
-  if (operator || draft) segments.push({ stage: "operator", label: operator?.label ?? "Operator…", spokenLabel: operator?.ariaLabel });
+  if (operator || draft)
+    segments.push({ stage: "operator", label: operator?.label ?? labels.operatorPlaceholder, spokenLabel: operator?.ariaLabel });
   if (item.value !== null || (draft && operator))
-    segments.push({ stage: "value", label: item.value === null ? "Value…" : formatFilterValue(item, field) });
+    segments.push({ stage: "value", label: formatFilterValue(item, field) || labels.valuePlaceholder });
   return segments;
 }
 
@@ -34,7 +47,7 @@ function FilterBarChipContent({ item, readOnly = false, className, ref, ...props
   const operator = context.operators.find((candidate) => candidate.id === item.operatorId);
   const draft = Boolean(context.draft?.id === item.id && !context.draft.editing);
   const locked = readOnly || context.readOnly;
-  const segments = chipSegments(item, field, operator, draft);
+  const segments = chipSegments(item, field, operator, draft, context.labels);
 
   return useRender({
     ref: [ref ?? null, locked ? null : (element: HTMLDivElement | null) => context.register(`chip:${item.id}`, element)],
@@ -44,7 +57,7 @@ function FilterBarChipContent({ item, readOnly = false, className, ref, ...props
         data-control-family="filter-bar"
         data-slot="chip"
         data-draft={draft || undefined}
-        className={cn("inline-flex max-w-full min-w-0 items-stretch overflow-hidden", className)}
+        className={cn("inline-flex max-w-full min-w-0 items-stretch", className)}
         {...props}
       >
         {segments.map((segment) => (
@@ -59,12 +72,12 @@ function FilterBarChipContent({ item, readOnly = false, className, ref, ...props
             data-control-ui="filter-bar"
             data-control-family="filter-bar"
             data-slot="remove"
-            aria-label={`Remove filter: ${describeFilter(item, context.fields, context.operators)}`}
+            aria-label={context.labels.removeFilter(describeFilter(item, context.fields, context.operators))}
             disabled={context.disabled}
             onClick={() => context.remove(item)}
             onKeyDown={(event) => context.navigate(event, item.id, "remove")}
           >
-            <XIcon aria-hidden="true" className="size-3" />
+            <XIcon aria-hidden="true" />
           </Button>
         )}
       </div>
@@ -105,7 +118,7 @@ function FilterBarSegment({
       data-control-family="filter-bar"
       data-slot="segment"
       className="shrink"
-      aria-label={`Edit ${segment.stage}: ${segment.spokenLabel ?? segment.label}`}
+      aria-label={context.labels.editSegment(segment.stage, segment.spokenLabel ?? segment.label)}
       aria-haspopup="listbox"
       aria-expanded={context.draft?.owner === item.id && context.draft.stage === segment.stage}
       disabled={context.disabled || draft}
@@ -151,7 +164,7 @@ function ExitingChip({ item, style }: { item: FilterBarItem; style: CSSPropertie
   );
 }
 
-export function FilterBarChips({ renderChip }: { renderChip?: (item: FilterBarItem) => ReactNode }) {
+export function FilterBarChips({ renderChip }: FilterBarChipsProps) {
   const context = useFilterBarContext();
   const items = [...context.items];
   const draft = context.draft;
@@ -179,7 +192,7 @@ function FilterBarChipContentWithEditor({ item, renderChip }: { item: FilterBarI
   return renderChip && item.id !== context.draft?.id ? renderChip(item) : <FilterBarChip item={item} />;
 }
 
-export function FilterBarAddButton({ className, children = "Add filter", onClick, onKeyDown, ref, ...props }: ButtonProps) {
+export function FilterBarAddButton({ className, children = "Add filter", onClick, onKeyDown, ref, ...props }: FilterBarAddButtonProps) {
   const context = useFilterBarContext();
   const owner = useId();
   const button = useRender({
@@ -188,6 +201,8 @@ export function FilterBarAddButton({ className, children = "Add filter", onClick
       <Button
         variant="ghost"
         size="sm"
+        data-control-ui="filter-bar"
+        data-slot="add-button"
         className={className}
         aria-haspopup="listbox"
         aria-expanded={context.draft?.owner === owner}
@@ -202,7 +217,7 @@ export function FilterBarAddButton({ className, children = "Add filter", onClick
           context.navigate(event);
         }}
       >
-        <PlusIcon aria-hidden="true" className="size-3.5" />
+        <PlusIcon aria-hidden="true" />
         {children}
       </Button>
     ),
@@ -214,19 +229,29 @@ export function FilterBarAddButton({ className, children = "Add filter", onClick
   );
 }
 
-export function FilterBarInput({ className, ...props }: Omit<Parameters<typeof FilterBarInlineInput>[0], "owner" | "inputRef">) {
+export function FilterBarInput({ className, ref, ...props }: FilterBarInputProps) {
   const context = useFilterBarContext();
   const owner = useId();
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  function setInputRef(node: HTMLInputElement | null) {
+    inputRef.current = node;
+    if (typeof ref === "function") ref(node);
+    else if (ref) ref.current = node;
+  }
+
   return (
     <FilterBarEditor owner={owner} mode="input" anchorRef={inputRef}>
       <div
         ref={(element) => context.register(`entry:${owner}`, element ? inputRef.current : null)}
+        data-control-ui="filter-bar"
+        data-control-family="filter-bar"
+        data-slot="input"
         className={cn("min-w-0 max-w-full flex-[1_1_10rem]", className)}
       >
         <FilterBarInlineInput
           owner={owner}
-          inputRef={inputRef}
+          inputRef={setInputRef}
           aria-label="Add filter"
           placeholder="Filter…"
           disabled={context.disabled}
@@ -238,13 +263,15 @@ export function FilterBarInput({ className, ...props }: Omit<Parameters<typeof F
   );
 }
 
-export function FilterBarClear({ children = "Clear", onClick, ...props }: ButtonProps) {
+export function FilterBarClear({ children = "Clear", onClick, ...props }: FilterBarClearProps) {
   const context = useFilterBarContext();
   if (context.items.length === 0 && !context.draft) return null;
   return (
     <Button
       variant="ghost"
       size="sm"
+      data-control-ui="filter-bar"
+      data-slot="clear"
       aria-label="Clear filters"
       disabled={context.disabled || context.readOnly}
       {...props}

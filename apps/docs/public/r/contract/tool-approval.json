@@ -34,7 +34,7 @@
       "name": "--cui-tool-approval-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-lg)"
+      "defaultValue": "var(--radius-panel)"
     },
     {
       "name": "--cui-tool-approval-shadow",
@@ -70,7 +70,7 @@
       "name": "--cui-tool-approval-body-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-lg)"
+      "defaultValue": "max(\n      0px,\n      calc(var(--cui-tool-approval-radius) - var(--cui-tool-approval-padding) - var(--cui-tool-approval-border-width))\n    )"
     },
     {
       "name": "--cui-tool-approval-body-shadow",
@@ -136,7 +136,7 @@
       "name": "--cui-tool-approval-preview-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-md)"
+      "defaultValue": "max(\n      0px,\n      calc(var(--cui-tool-approval-body-radius) - var(--cui-tool-approval-body-padding) - var(--cui-tool-approval-body-border-width))\n    )"
     },
     {
       "name": "--cui-tool-approval-preview-padding",
@@ -194,6 +194,7 @@
             "values": [
               "approved",
               "denied",
+              "expired",
               "pending"
             ]
           }

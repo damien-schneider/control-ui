@@ -7,9 +7,19 @@ import type { ControlledChoice, OpenChangeEventDetails } from "@/components/cont
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { popupItemFocusProps } from "@/components/control-ui/lib/popup-item-focus";
-import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { skinScopeAttributes } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { type PopupItemTone, popupItemStructureClasses } from "@/components/control-ui/surface-variants";
+
+type ContextMenuPositionerProps = Pick<
+  ComponentProps<typeof ContextMenuPrimitive.Positioner>,
+  "side" | "sideOffset" | "align" | "alignOffset" | "collisionBoundary" | "collisionPadding" | "collisionAvoidance"
+>;
+
+type ContextMenuItemPrimitiveProps = Pick<
+  ComponentProps<typeof ContextMenuPrimitive.Item>,
+  "closeOnClick" | "label" | "nativeButton" | "render"
+>;
 
 export type ContextMenuProps = {
   children?: ReactNode;
@@ -18,36 +28,42 @@ export type ContextMenuProps = {
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
 };
 
-export type ContextMenuTriggerProps = ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle };
+export type ContextMenuTriggerProps = ComponentProps<"div"> &
+  Pick<ComponentProps<typeof ContextMenuPrimitive.Trigger>, "render"> & { style?: CSSProperties & PopupKnobStyle };
 
 export type ContextMenuGroupProps = ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle };
 
-export type ContextMenuContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export type ContextMenuContentProps = Omit<ComponentProps<"div">, "style"> &
+  ContextMenuPositionerProps & { style?: CSSProperties & PopupKnobStyle };
 
-export type ContextMenuItemProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
-  disabled?: boolean;
-  inset?: boolean;
-  tone?: PopupItemTone;
-  onClick?: (event: MouseEvent) => void;
-};
+export type ContextMenuItemProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> &
+  ContextMenuItemPrimitiveProps & { style?: CSSProperties & PopupKnobStyle } & {
+    disabled?: boolean;
+    inset?: boolean;
+    tone?: PopupItemTone;
+    onClick?: (event: MouseEvent) => void;
+  };
 
-export type ContextMenuCheckboxItemProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & {
-  style?: CSSProperties & PopupKnobStyle;
-} & {
-  checked?: boolean;
-  onCheckedChange?: (checked: boolean) => void;
-  disabled?: boolean;
-};
+export type ContextMenuCheckboxItemProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> &
+  ContextMenuItemPrimitiveProps & {
+    style?: CSSProperties & PopupKnobStyle;
+  } & {
+    checked?: boolean;
+    defaultChecked?: boolean;
+    onCheckedChange?: (checked: boolean) => void;
+    disabled?: boolean;
+  };
 
 export type ContextMenuRadioGroupProps<TValue extends string = string> = ComponentProps<"div"> &
   Omit<ControlledChoice<TValue>, "defaultValue"> & { style?: CSSProperties & PopupKnobStyle };
 
-export type ContextMenuRadioItemProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & {
-  style?: CSSProperties & PopupKnobStyle;
-} & {
-  value: string;
-  disabled?: boolean;
-};
+export type ContextMenuRadioItemProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> &
+  ContextMenuItemPrimitiveProps & {
+    style?: CSSProperties & PopupKnobStyle;
+  } & {
+    value: string;
+    disabled?: boolean;
+  };
 
 export type ContextMenuLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
   inset?: boolean;
@@ -64,14 +80,18 @@ export type ContextMenuSubProps = {
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
 };
 
-export type ContextMenuSubTriggerProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & {
-  style?: CSSProperties & PopupKnobStyle;
-} & {
-  disabled?: boolean;
-  inset?: boolean;
-};
+export type ContextMenuSubTriggerProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> &
+  Pick<
+    ComponentProps<typeof ContextMenuPrimitive.SubmenuTrigger>,
+    "label" | "nativeButton" | "render" | "openOnHover" | "delay" | "closeDelay"
+  > & {
+    style?: CSSProperties & PopupKnobStyle;
+  } & {
+    disabled?: boolean;
+    inset?: boolean;
+  };
 
-export type ContextMenuSubContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export type ContextMenuSubContentProps = ContextMenuContentProps;
 
 const popupClasses = "min-w-[10rem]";
 
@@ -112,11 +132,32 @@ export function ContextMenuGroup({ className, ...props }: ContextMenuGroupProps)
   );
 }
 
-export function ContextMenuContent({ className, children, ...props }: ContextMenuContentProps) {
+export function ContextMenuContent({
+  className,
+  children,
+  side,
+  sideOffset,
+  align,
+  alignOffset,
+  collisionBoundary,
+  collisionPadding,
+  collisionAvoidance,
+  ...props
+}: ContextMenuContentProps) {
   const skin = useSkin();
   return (
     <ContextMenuPrimitive.Portal>
-      <ContextMenuPrimitive.Positioner data-skin={skin.id} data-effects={controlEffectsAttribute(skin.effects)} className="z-(--z-popup)">
+      <ContextMenuPrimitive.Positioner
+        {...skinScopeAttributes(skin)}
+        side={side}
+        align={align}
+        sideOffset={sideOffset}
+        alignOffset={alignOffset}
+        collisionBoundary={collisionBoundary}
+        collisionPadding={collisionPadding}
+        collisionAvoidance={collisionAvoidance}
+        className="z-(--z-popup)"
+      >
         <ContextMenuPrimitive.Popup
           data-control-ui="context-menu"
           data-popup-kind="context-menu"
@@ -289,16 +330,31 @@ export function ContextMenuSubTrigger({ className, inset = false, children, ...p
   );
 }
 
-export function ContextMenuSubContent({ className, children, ...props }: ContextMenuSubContentProps) {
+export function ContextMenuSubContent({
+  className,
+  children,
+  side,
+  sideOffset = -4,
+  align,
+  alignOffset = -5,
+  collisionBoundary,
+  collisionPadding,
+  collisionAvoidance,
+  ...props
+}: ContextMenuSubContentProps) {
   const skin = useSkin();
   return (
     <ContextMenuPrimitive.Portal>
       <ContextMenuPrimitive.Positioner
-        data-skin={skin.id}
-        data-effects={controlEffectsAttribute(skin.effects)}
+        {...skinScopeAttributes(skin)}
+        side={side}
+        align={align}
+        sideOffset={sideOffset}
+        alignOffset={alignOffset}
+        collisionBoundary={collisionBoundary}
+        collisionPadding={collisionPadding}
+        collisionAvoidance={collisionAvoidance}
         className="z-(--z-popup)"
-        sideOffset={-4}
-        alignOffset={-5}
       >
         <ContextMenuPrimitive.Popup
           data-control-ui="context-menu"

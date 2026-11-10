@@ -1,6 +1,6 @@
 "use client";
 
-import { type ComponentProps, type CSSProperties, createContext, type JSX, use, useId } from "react";
+import { type ComponentProps, type CSSProperties, createContext, isValidElement, type JSX, type ReactNode, use, useId } from "react";
 import type { MarkdownKnobStyle } from "@/components/control-ui/knob-contracts/markdown-knobs";
 
 import { cn } from "@/components/control-ui/lib/cn";
@@ -39,15 +39,15 @@ export function MarkdownFlow(props: MarkdownRootProps) {
 
 const MarkdownTaskLabelContext = createContext<string | undefined>(undefined);
 
-export function MarkdownInput({ type, checked, className, node: _node, ...props }: MarkdownElementProps<"input">) {
+export function MarkdownInput({ type, checked, className, "aria-label": ariaLabel, node: _node, ...props }: MarkdownElementProps<"input">) {
   const labelId = use(MarkdownTaskLabelContext);
-  if (type !== "checkbox") return <input type={type} checked={checked} className={className} {...props} />;
+  if (type !== "checkbox") return <input type={type} checked={checked} className={className} aria-label={ariaLabel} {...props} />;
   return (
     <Checkbox
       checked={Boolean(checked)}
       readOnly
       className={className}
-      aria-label={labelId ? undefined : "Task item"}
+      aria-label={labelId ? undefined : (ariaLabel ?? "Task item")}
       aria-labelledby={labelId}
     />
   );
@@ -149,8 +149,40 @@ export function MarkdownH6({ className, node: _node, ...props }: MarkdownElement
   );
 }
 
-export function MarkdownP({ className, node: _node, ...props }: MarkdownElementProps<"p">) {
-  return <p data-control-ui="markdown" data-control-family="markdown" data-slot="paragraph" className={className} {...props} />;
+// an image alone on its line sits in the flow as its own block
+function isLoneImage(children: ReactNode): boolean {
+  const filled = (Array.isArray(children) ? children : [children]).filter((child) => child != null && child !== "");
+  const only: unknown = filled.length === 1 ? filled[0] : undefined;
+  return isValidElement<{ node?: { tagName?: string } }>(only) && only.props.node?.tagName === "img";
+}
+
+export function MarkdownP({ className, children, node: _node, ...props }: MarkdownElementProps<"p">) {
+  if (isLoneImage(children)) return children;
+  return (
+    <p data-control-ui="markdown" data-control-family="markdown" data-slot="paragraph" className={className} {...props}>
+      {children}
+    </p>
+  );
+}
+
+export function MarkdownImg({ className, alt, node: _node, ...props }: MarkdownElementProps<"img">) {
+  return (
+    <img data-control-ui="markdown" data-control-family="markdown" data-slot="image" alt={alt ?? ""} className={className} {...props} />
+  );
+}
+
+// the hardening pass swaps a link it refuses for a titled span carrying a palette class
+export function MarkdownSpan({ className, title, node: _node, ...props }: MarkdownElementProps<"span">) {
+  if (!title?.startsWith("Blocked URL: ")) return <span className={className} title={title} {...props} />;
+  return <span data-control-ui="markdown" data-control-family="markdown" data-slot="blocked-link" title={title} {...props} />;
+}
+
+export function MarkdownSup({ className, node: _node, ...props }: MarkdownElementProps<"sup">) {
+  return <sup data-control-ui="markdown" data-control-family="markdown" data-slot="superscript" className={className} {...props} />;
+}
+
+export function MarkdownSub({ className, node: _node, ...props }: MarkdownElementProps<"sub">) {
+  return <sub data-control-ui="markdown" data-control-family="markdown" data-slot="subscript" className={className} {...props} />;
 }
 
 export function MarkdownUl({ className, node: _node, ...props }: MarkdownElementProps<"ul">) {
@@ -193,8 +225,21 @@ export function MarkdownLi({ id, className, node: _node, ...props }: MarkdownEle
   );
 }
 
-export function MarkdownA({ className, node: _node, ...props }: MarkdownElementProps<"a">) {
-  return <a data-control-ui="markdown" data-control-family="markdown" data-slot="link" className={className} {...props} />;
+export function MarkdownA({ className, href, target, rel, node: _node, ...props }: MarkdownElementProps<"a">) {
+  // the hardening pass opens every link in a new tab, in-page and footnote anchors included
+  const isInPage = href?.startsWith("#") ?? false;
+  return (
+    <a
+      data-control-ui="markdown"
+      data-control-family="markdown"
+      data-slot="link"
+      className={className}
+      href={href}
+      target={isInPage ? undefined : target}
+      rel={isInPage ? undefined : rel}
+      {...props}
+    />
+  );
 }
 
 export function MarkdownBlockquote({ className, node: _node, ...props }: MarkdownElementProps<"blockquote">) {
@@ -223,6 +268,18 @@ export function MarkdownTable({ className, children, node: _node, ...props }: Ma
       </ScrollArea>
     </div>
   );
+}
+
+export function MarkdownThead({ className, node: _node, ...props }: MarkdownElementProps<"thead">) {
+  return <thead data-control-ui="markdown" data-control-family="markdown" data-slot="table-head" className={className} {...props} />;
+}
+
+export function MarkdownTbody({ className, node: _node, ...props }: MarkdownElementProps<"tbody">) {
+  return <tbody data-control-ui="markdown" data-control-family="markdown" data-slot="table-body" className={className} {...props} />;
+}
+
+export function MarkdownTr({ className, node: _node, ...props }: MarkdownElementProps<"tr">) {
+  return <tr data-control-ui="markdown" data-control-family="markdown" data-slot="table-row" className={className} {...props} />;
 }
 
 export function MarkdownTh({ className, node: _node, ...props }: MarkdownElementProps<"th">) {

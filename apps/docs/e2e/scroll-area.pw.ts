@@ -95,7 +95,7 @@ test("stable gutters keep their size when overflow changes in both directions", 
   }
 });
 
-test("macOS fades overflow until keyboard focus", async ({ page }) => {
+test("macOS blurs and fades overflow until keyboard focus", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.addInitScript((storageKey) => {
     localStorage.setItem(storageKey, JSON.stringify({ skin: "modern-apple" }));
@@ -105,7 +105,8 @@ test("macOS fades overflow until keyboard focus", async ({ page }) => {
   const scrollArea = viewport.locator("..");
   const endBlur = scrollArea.locator('[data-control-family="progressive-blur"][data-side="inline-end"]');
   await waitForReactHydration(viewport.getByRole("button").first());
-  await expect(endBlur).toHaveCSS("display", "none");
+  await expect(endBlur).toHaveCSS("display", "block");
+  await expect(endBlur.locator('[data-slot="layer"]').last()).toHaveCSS("visibility", "visible");
   await expect(viewport).not.toHaveCSS("mask-image", "none");
   await expect(scrollArea.locator('[data-control-family="progressive-blur"][data-side="top"]')).toHaveCount(0);
   await viewport.getByRole("button").first().focus();

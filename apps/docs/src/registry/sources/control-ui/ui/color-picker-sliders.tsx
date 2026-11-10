@@ -74,7 +74,9 @@ function edgeAlignedTrackStyle(stops: readonly [string, string, ...string[]]): S
     if (index === lastIndex) return `${stop} calc(100% - ${THUMB_HALF_SIZE})`;
     return stop;
   });
-  return { "--_color-picker-slider-track-image": `linear-gradient(to right, ${positionedStops.join(", ")})` };
+  return {
+    "--_color-picker-slider-track-image": `linear-gradient(var(--_color-picker-slider-direction, to right), ${positionedStops.join(", ")})`,
+  };
 }
 
 function ColorPickerSlider({
@@ -92,7 +94,6 @@ function ColorPickerSlider({
       data-control-family="color-picker"
       data-slot="slider"
       format={format}
-      aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? label) : ariaLabel}
       aria-labelledby={ariaLabelledBy}
       value={hsva[axis]}
       min={0}
@@ -101,10 +102,7 @@ function ColorPickerSlider({
       disabled={disabled}
       thumbAlignment="edge"
       onValueChange={(next) => setHsva({ [axis]: next })}
-      className={cn(
-        "relative flex w-full cursor-pointer touch-pan-y select-none items-center data-[disabled]:cursor-not-allowed",
-        className,
-      )}
+      className={cn("relative flex w-full touch-pan-y select-none items-center", className)}
       {...props}
     >
       <SliderPrimitive.Control className="flex h-full w-full items-center">
@@ -116,6 +114,7 @@ function ColorPickerSlider({
           style={edgeAlignedTrackStyle(trackStops(hsva))}
         >
           <SliderPrimitive.Thumb
+            aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? label) : ariaLabel}
             data-control-ui="color-picker"
             data-control-family="color-picker"
             data-slot="slider-thumb"

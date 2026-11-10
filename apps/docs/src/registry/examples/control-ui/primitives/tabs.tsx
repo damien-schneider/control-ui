@@ -70,6 +70,8 @@ function ClosableEditorTabs() {
   );
 }
 
+const releaseChannels = ["Stable", "Release candidate", "Beta", "Canary", "Nightly", "Experimental", "Long-term support"];
+
 export function PrimitiveTabsExample() {
   return (
     <div className="flex w-full max-w-md flex-col gap-7">
@@ -94,6 +96,21 @@ export function PrimitiveTabsExample() {
         </TabsList>
         <TabsPanel value="audio">Microphone and output volume.</TabsPanel>
         <TabsPanel value="video">Camera and recording quality.</TabsPanel>
+      </Tabs>
+
+      <Tabs defaultValue="Stable">
+        <TabsList scrollable aria-label="Release channels">
+          {releaseChannels.map((channel) => (
+            <TabsTab key={channel} value={channel}>
+              {channel}
+            </TabsTab>
+          ))}
+        </TabsList>
+        {releaseChannels.map((channel) => (
+          <TabsPanel key={channel} value={channel}>
+            Builds published to the {channel.toLowerCase()} channel.
+          </TabsPanel>
+        ))}
       </Tabs>
 
       <ClosableEditorTabs />

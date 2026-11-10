@@ -110,9 +110,21 @@
     },
     {
       "name": "--cui-switch-thumb-press-scale",
-      "syntax": "<number>",
+      "syntax": "<number>+",
       "initialValue": "1",
       "defaultValue": "1"
+    },
+    {
+      "name": "--cui-switch-press-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "color-mix(in oklch, var(--cui-switch-background), var(--foreground) 12.8%)"
+    },
+    {
+      "name": "--cui-switch-checked-press-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "color-mix(in oklch, var(--cui-switch-checked-background) 80%, var(--foreground))"
     },
     {
       "name": "--cui-switch-thumb-backdrop-filter",

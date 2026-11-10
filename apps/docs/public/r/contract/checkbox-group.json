@@ -41,6 +41,7 @@
         ]
       },
       "item": {
+        "family": "checkbox-group",
         "registryItems": [
           "checkbox-group"
         ],

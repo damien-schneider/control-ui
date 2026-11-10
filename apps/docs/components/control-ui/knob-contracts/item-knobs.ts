@@ -1,6 +1,7 @@
 // Generated from src/registry/sources/control-ui/recipes/item.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.
 export const itemKnobs = [
   "--cui-item-radius",
+  "--cui-item-media-icon-size",
   "--cui-item-hover-background",
   "--cui-item-current-background",
   "--cui-item-foreground",

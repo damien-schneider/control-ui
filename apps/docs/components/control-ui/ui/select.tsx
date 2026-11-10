@@ -10,7 +10,7 @@ import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/fiel
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { popupItemFocusProps } from "@/components/control-ui/lib/popup-item-focus";
-import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { skinScopeAttributes } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 import { Button } from "@/components/control-ui/ui/button";
@@ -24,6 +24,9 @@ export type SelectProps<TValue extends string = string> = Omit<ControlledChoice<
   disabled?: boolean;
   items?: Record<string, ReactNode> | readonly { value: TValue; label: ReactNode }[];
   name?: string;
+  form?: string;
+  required?: boolean;
+  readOnly?: boolean;
   children?: ReactNode;
 };
 
@@ -36,19 +39,28 @@ export type SelectTriggerProps = Omit<ComponentProps<"button">, "style"> & { sty
   variant?: SelectTriggerVariant;
 };
 
-export type SelectValueProps = {
+export type SelectValueProps = Omit<ComponentProps<"span">, "children"> & {
   placeholder?: ReactNode;
   children?: ReactNode | ((value: string) => ReactNode);
 };
 
 export type SelectContentProps = Omit<ComponentProps<"div">, "style"> &
-  Pick<ComponentProps<typeof SelectPrimitive.Positioner>, "alignItemWithTrigger"> & { style?: CSSProperties & PopupKnobStyle };
+  Pick<
+    ComponentProps<typeof SelectPrimitive.Positioner>,
+    "alignItemWithTrigger" | "side" | "sideOffset" | "align" | "alignOffset" | "collisionBoundary" | "collisionPadding"
+  > & { style?: CSSProperties & PopupKnobStyle };
 
 export type SelectItemProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
   value: string;
   label?: string;
   disabled?: boolean;
 };
+
+export type SelectGroupProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type SelectGroupLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type SelectSeparatorProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
 type RefinedSelectTriggerProps = SelectTriggerProps &
   Pick<ComponentProps<typeof SelectPrimitive.Trigger>, "nativeButton" | "render"> & { style?: CSSProperties & PopupKnobStyle };
@@ -75,16 +87,16 @@ function SelectIcon() {
       data-control-family="popup"
       data-popup-kind="select"
       data-slot="icon"
-      className="relative z-[1]"
+      className="relative z-1"
     >
-      <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
+      <svg viewBox="0 0 12 12" aria-hidden="true" fill="none">
         <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </SelectPrimitive.Icon>
   );
 }
 
-export function SelectTrigger({ size = "sm", variant = "surface", className, children, disabled, ...props }: RefinedSelectTriggerProps) {
+export function SelectTrigger({ size = "md", variant = "surface", className, children, disabled, ...props }: RefinedSelectTriggerProps) {
   if (variant === "ghost") {
     return (
       <SelectPrimitive.Trigger
@@ -124,24 +136,44 @@ export function SelectTrigger({ size = "sm", variant = "surface", className, chi
   );
 }
 
-export function SelectValue({ children, ...props }: SelectValueProps) {
+export function SelectValue({ className, children, ...props }: SelectValueProps) {
   return (
-    <SelectPrimitive.Value className="min-w-0 truncate" {...props}>
+    <SelectPrimitive.Value
+      data-control-ui="select"
+      data-control-family="popup"
+      data-popup-kind="select"
+      data-slot="value-text"
+      className={cn("min-w-0 truncate", className)}
+      {...props}
+    >
       {children}
     </SelectPrimitive.Value>
   );
 }
 
-export function SelectContent({ className, children, alignItemWithTrigger, ...props }: SelectContentProps) {
+export function SelectContent({
+  className,
+  children,
+  alignItemWithTrigger,
+  side = "bottom",
+  sideOffset = 6,
+  align = "start",
+  alignOffset,
+  collisionBoundary,
+  collisionPadding,
+  ...props
+}: SelectContentProps) {
   const skin = useSkin();
   return (
     <SelectPrimitive.Portal>
       <SelectPrimitive.Positioner
-        data-skin={skin.id}
-        data-effects={controlEffectsAttribute(skin.effects)}
-        side="bottom"
-        align="start"
-        sideOffset={6}
+        {...skinScopeAttributes(skin)}
+        side={side}
+        align={align}
+        sideOffset={sideOffset}
+        alignOffset={alignOffset}
+        collisionBoundary={collisionBoundary}
+        collisionPadding={collisionPadding}
         alignItemWithTrigger={alignItemWithTrigger ?? skin.selectAlignItemWithTrigger ?? false}
         className="z-(--z-popup)"
       >
@@ -152,7 +184,7 @@ export function SelectContent({ className, children, alignItemWithTrigger, ...pr
           data-surface="floating"
           data-control-family="popup"
           data-popup-part="list-surface"
-          className={cn("grid max-h-[min(20rem,var(--available-height))] min-w-[var(--anchor-width)] grid-rows-[minmax(0,1fr)]", className)}
+          className={cn("grid min-w-[var(--anchor-width)] grid-rows-[minmax(0,1fr)]", className)}
           {...props}
         >
           <ScrollArea lockAxis="x" viewportProps={{ render: renderListAsScrollViewport }}>
@@ -195,14 +227,55 @@ export function SelectItem({ className, children, disabled, ...props }: SelectIt
         data-control-family="popup"
         data-popup-kind="select"
         data-slot="item-indicator"
-        className="flex size-3.5 shrink-0 items-center justify-center"
+        className="flex shrink-0 items-center justify-center"
       >
         <SelectPrimitive.ItemIndicator>
-          <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
+          <svg viewBox="0 0 12 12" aria-hidden="true" fill="none">
             <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </SelectPrimitive.ItemIndicator>
       </span>
     </SelectPrimitive.Item>
+  );
+}
+
+export function SelectGroup({ className, ...props }: SelectGroupProps) {
+  return (
+    <SelectPrimitive.Group
+      data-control-ui="select"
+      data-control-family="popup"
+      data-popup-kind="select"
+      data-slot="group"
+      className={className}
+      {...props}
+    />
+  );
+}
+
+export function SelectGroupLabel({ className, ...props }: SelectGroupLabelProps) {
+  return (
+    <SelectPrimitive.GroupLabel
+      data-control-ui="select"
+      data-control-family="popup"
+      data-popup-kind="select"
+      data-slot="group-label"
+      data-popup-part="label"
+      className={className}
+      {...props}
+    />
+  );
+}
+
+export function SelectSeparator({ className, ...props }: SelectSeparatorProps) {
+  return (
+    <SelectPrimitive.Separator
+      data-control-ui="select"
+      data-control-family="popup"
+      data-popup-kind="select"
+      data-slot="separator"
+      data-popup-part="separator"
+      className={className}
+      {...props}
+    />
   );
 }

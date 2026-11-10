@@ -14,6 +14,8 @@ export type FieldProps = ComponentProps<"div"> & {
   disabled?: boolean;
   invalid?: boolean;
   validationMode?: "onSubmit" | "onBlur" | "onChange";
+  validate?: FieldPrimitive.Root.Props["validate"];
+  validationDebounceTime?: number;
 } & { style?: CSSProperties & FieldKnobStyle };
 
 export type FieldLabelVariant = "default" | "card";
@@ -27,7 +29,8 @@ export type FieldContentProps = ComponentProps<"div"> & { style?: CSSProperties 
 
 export type FieldTitleProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & FieldKnobStyle };
 
-export type FieldControlProps = Omit<ComponentProps<"input">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+export type FieldControlProps = Omit<ComponentProps<"input">, "style"> &
+  Pick<ComponentProps<typeof FieldPrimitive.Control>, "render"> & { style?: CSSProperties & FieldKnobStyle };
 
 export type FieldDescriptionProps = Omit<ComponentProps<"p">, "style"> & { style?: CSSProperties & FieldKnobStyle };
 
@@ -118,7 +121,7 @@ export function FieldLabel({ className, variant = "default", ...props }: FieldLa
       data-focus-ring={variant === "card" ? "within" : undefined}
       className={cn(
         variant === "card" &&
-          "flex w-full cursor-pointer items-start gap-3 self-stretch has-[[data-disabled]]:cursor-not-allowed [&>[data-control-family=choice]]:mt-[calc((1lh_-_var(--spacing)*4)/2)]",
+          "flex w-full items-start gap-3 self-stretch [&>[data-control-family=choice]]:mt-[calc((1lh_-_var(--cui-choice-size))/2)]",
         className,
       )}
       {...props}
@@ -126,9 +129,7 @@ export function FieldLabel({ className, variant = "default", ...props }: FieldLa
   );
 }
 
-type RefinedFieldControlProps = FieldControlProps & Pick<ComponentProps<typeof FieldPrimitive.Control>, "render">;
-
-export function FieldControl({ className, render, ...props }: RefinedFieldControlProps) {
+export function FieldControl({ className, render, ...props }: FieldControlProps) {
   const classes = cn("w-full", className);
 
   if (render !== undefined) {
@@ -152,6 +153,7 @@ export function FieldControl({ className, render, ...props }: RefinedFieldContro
       data-field-kind="field"
       data-slot="control"
       data-control="true"
+      data-size="md"
       className={classes}
       {...props}
     />
@@ -173,13 +175,7 @@ export function FieldDescription({ className, ...props }: FieldDescriptionProps)
 
 export function FieldError({ className, ...props }: FieldErrorProps) {
   return (
-    <div
-      data-control-ui="field"
-      data-control-family="field"
-      data-field-kind="field"
-      data-slot="error-reserve"
-      className="min-h-[1lh] text-caption"
-    >
+    <div data-control-ui="field" data-control-family="field" data-field-kind="field" data-slot="error-reserve" className="min-h-[1lh]">
       <FieldPrimitive.Error
         data-control-ui="field"
         data-control-family="field"

@@ -1,16 +1,24 @@
 "use client";
 
 import { Combobox as ComboboxPrimitive } from "@base-ui/react/combobox";
+import { mergeProps } from "@base-ui/react/merge-props";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, use, useEffect, useState } from "react";
 import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { popupItemFocusProps } from "@/components/control-ui/lib/popup-item-focus";
+import { skinScopeAttributes } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
-import { InputGroup, InputGroupAddon, type InputGroupProps, useIsInsideInputGroup } from "@/components/control-ui/ui/input-group";
+import {
+  InputGroup,
+  InputGroupAddon,
+  type InputGroupProps,
+  useInputGroupControlRef,
+  useIsInsideInputGroup,
+} from "@/components/control-ui/ui/input-group";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { shouldAcceptComboboxValueChange } from "./combobox-disabled-selection";
 
@@ -31,16 +39,23 @@ export type ComboboxProps<Value = string, Multiple extends boolean | undefined =
   | "readOnly"
   | "required"
   | "name"
+  | "form"
   | "autoHighlight"
   | "itemToStringLabel"
+  | "itemToStringValue"
   | "isItemEqualToValue"
+  | "onItemHighlighted"
+  | "openOnInputClick"
   | "filter"
   | "limit"
+  | "virtualized"
   | "modal"
 > & { items?: readonly Value[] };
 
 export type ComboboxInputProps = Omit<Omit<ComponentProps<"input">, "size">, "style"> & { style?: CSSProperties & FieldKnobStyle } & {
   size?: ControlSize;
+  /** Accessible name of the built-in trigger button. */
+  triggerLabel?: string;
 };
 
 export type ComboboxInputGroupProps = Omit<InputGroupProps, "render">;
@@ -48,10 +63,11 @@ export type ComboboxInputGroupProps = Omit<InputGroupProps, "render">;
 export type ComboboxTriggerProps = ComponentProps<"button"> & { style?: CSSProperties & FieldKnobStyle };
 
 export type ComboboxContentProps = Omit<
-  ComboboxPrimitive.Popup.Props & {
-    sideOffset?: number;
-    anchor?: ComboboxPrimitive.Positioner.Props["anchor"];
-  },
+  ComboboxPrimitive.Popup.Props &
+    Pick<
+      ComboboxPrimitive.Positioner.Props,
+      "side" | "sideOffset" | "align" | "alignOffset" | "anchor" | "collisionBoundary" | "collisionPadding"
+    >,
   "style"
 > & { style?: CSSProperties & PopupKnobStyle };
 
@@ -67,7 +83,7 @@ export type ComboboxItemProps<Value = unknown> = Omit<
   "style"
 > & { style?: CSSProperties & PopupKnobStyle };
 
-export type ComboboxEmptyProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+export type ComboboxEmptyProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & FieldKnobStyle & PopupKnobStyle };
 
 export type ComboboxGroupProps = ComponentProps<"div"> & { style?: CSSProperties & FieldKnobStyle };
 
@@ -116,20 +132,20 @@ export function Combobox<Value = string, Multiple extends boolean | undefined = 
   );
 }
 
-export function ComboboxTrigger({ className, children, ...props }: ComboboxTriggerProps) {
+export function ComboboxTrigger({ className, children, "aria-label": ariaLabel = "Toggle suggestions", ...props }: ComboboxTriggerProps) {
   return (
     <ComboboxPrimitive.Trigger
       data-control-ui="combobox"
       data-control-family="field"
       data-field-kind="combobox"
       data-slot="trigger"
-      aria-label="Toggle suggestions"
-      className={cn("group inline-flex size-6 shrink-0 cursor-pointer items-center justify-center disabled:cursor-not-allowed", className)}
+      aria-label={ariaLabel}
+      className={cn("group inline-flex size-6 shrink-0 items-center justify-center", className)}
       {...props}
     >
       {children ?? (
         <ComboboxPrimitive.Icon data-control-ui="combobox" data-control-family="field" data-field-kind="combobox" data-slot="icon">
-          <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
+          <svg viewBox="0 0 12 12" aria-hidden="true" fill="none">
             <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </ComboboxPrimitive.Icon>
@@ -142,12 +158,14 @@ export function ComboboxInputGroup(props: ComboboxInputGroupProps) {
   return <InputGroup {...props} render={<ComboboxPrimitive.InputGroup />} />;
 }
 
-export function ComboboxInput({ size = "md", className, ...props }: ComboboxInputProps) {
+export function ComboboxInput({ ref, size = "md", className, triggerLabel, ...props }: ComboboxInputProps) {
+  const groupControlRef = useInputGroupControlRef(ref);
   if (useIsInsideInputGroup()) {
     return (
       <>
         <ComboboxPrimitive.Input
           {...props}
+          ref={groupControlRef}
           data-control-ui="input-group"
           data-control-family="field"
           data-field-kind="input-group"
@@ -155,7 +173,7 @@ export function ComboboxInput({ size = "md", className, ...props }: ComboboxInpu
           className={cn("h-full min-w-0 flex-1", className)}
         />
         <InputGroupAddon>
-          <ComboboxTrigger />
+          <ComboboxTrigger aria-label={triggerLabel} />
         </InputGroupAddon>
       </>
     );
@@ -169,21 +187,35 @@ export function ComboboxInput({ size = "md", className, ...props }: ComboboxInpu
       className="relative flex w-full items-center"
     >
       <ComboboxPrimitive.Input
+        ref={ref}
         data-control-ui="combobox"
         data-field-kind="combobox"
         data-slot="input"
         data-control="true"
         data-control-family="field"
         data-size={size}
-        className={cn("w-full min-w-0 disabled:cursor-not-allowed", className)}
+        className={cn("w-full min-w-0", className)}
         {...props}
       />
-      <ComboboxTrigger className="absolute end-1.5 top-1/2 -translate-y-1/2" />
+      <ComboboxTrigger aria-label={triggerLabel} className="absolute end-1.5 top-1/2 -translate-y-1/2" />
     </ComboboxPrimitive.InputGroup>
   );
 }
 
-export function ComboboxContent({ className, children, sideOffset = 6, anchor, ...props }: ComboboxContentProps) {
+const comboboxContentClasses = "w-[var(--anchor-width)]";
+
+export function ComboboxContent({
+  className,
+  children,
+  side = "bottom",
+  sideOffset = 6,
+  align = "start",
+  alignOffset,
+  anchor,
+  collisionBoundary,
+  collisionPadding,
+  ...props
+}: ComboboxContentProps) {
   const skin = useSkin();
   return (
     <ComboboxPrimitive.Portal>
@@ -192,12 +224,14 @@ export function ComboboxContent({ className, children, sideOffset = 6, anchor, .
         data-popup-kind="combobox"
         data-control-family="popup"
         data-slot="positioner"
-        data-skin={skin.id}
-        data-effects={controlEffectsAttribute(skin.effects)}
-        side="bottom"
-        align="start"
+        {...skinScopeAttributes(skin)}
+        side={side}
+        align={align}
         sideOffset={sideOffset}
+        alignOffset={alignOffset}
         anchor={anchor}
+        collisionBoundary={collisionBoundary}
+        collisionPadding={collisionPadding}
         className="z-(--z-popup)"
       >
         <ComboboxPrimitive.Popup
@@ -207,7 +241,11 @@ export function ComboboxContent({ className, children, sideOffset = 6, anchor, .
           data-slot="content"
           data-surface="floating"
           data-popup-part="list-surface"
-          className={cn("w-[var(--anchor-width)] max-w-[var(--available-width)]", className)}
+          className={
+            typeof className === "function"
+              ? (state) => cn(comboboxContentClasses, className(state))
+              : cn(comboboxContentClasses, className)
+          }
           {...props}
         >
           {children}
@@ -219,7 +257,12 @@ export function ComboboxContent({ className, children, sideOffset = 6, anchor, .
 
 export function ComboboxList<Value = unknown>({ className, children, ...props }: ComboboxListProps<Value>) {
   return (
-    <ScrollArea className="w-full" viewportClassName="overscroll-y-contain" maxHeight="min(18rem, var(--available-height))" lockAxis="x">
+    <ScrollArea
+      className="w-full"
+      viewportClassName="overscroll-y-contain"
+      maxHeight="min(var(--cui-popup-list-max-height), var(--available-height))"
+      lockAxis="x"
+    >
       <ComboboxPrimitive.List
         data-control-ui="combobox"
         data-popup-kind="combobox"
@@ -242,7 +285,7 @@ export function ComboboxEmpty({ className, children, ...props }: ComboboxEmptyPr
       data-control-family="popup"
       data-popup-kind="combobox"
       data-slot="empty"
-      className={cn("px-[calc(var(--padding-x)*0.5)] empty:h-0 empty:overflow-hidden empty:p-0", className)}
+      className={cn("empty:h-0 empty:overflow-hidden empty:p-0", className)}
       {...props}
     >
       {children}
@@ -267,7 +310,7 @@ export function ComboboxItem<Value = unknown>({ className, children, disabled, v
       disabled={disabled}
       value={value}
       className={cn(popupItemStructureClasses, className)}
-      {...props}
+      {...mergeProps(popupItemFocusProps, props)}
     >
       <span
         data-control-ui="combobox"
@@ -283,10 +326,10 @@ export function ComboboxItem<Value = unknown>({ className, children, disabled, v
         data-popup-kind="combobox"
         data-control-family="popup"
         data-slot="item-indicator"
-        className="flex size-3.5 shrink-0 items-center justify-center"
+        className="flex shrink-0 items-center justify-center"
       >
         <ComboboxPrimitive.ItemIndicator>
-          <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
+          <svg viewBox="0 0 12 12" aria-hidden="true" fill="none">
             <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </ComboboxPrimitive.ItemIndicator>
@@ -318,7 +361,7 @@ export function ComboboxGroupLabel({ className, children, ...props }: ComboboxGr
       data-slot="group-label"
       data-control-family="popup"
       data-popup-part="label"
-      className={cn("px-[calc(var(--padding-x)*0.5)]", className)}
+      className={className}
       {...props}
     >
       {children}

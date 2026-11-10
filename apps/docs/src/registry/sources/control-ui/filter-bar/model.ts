@@ -1,4 +1,25 @@
-import type { FilterBarField, FilterBarItem, FilterBarOperator, FilterBarOption, FilterBarScalar } from "./types";
+import type { FilterBarField, FilterBarItem, FilterBarLabels, FilterBarOperator, FilterBarOption, FilterBarScalar } from "./types";
+
+export const defaultFilterBarLabels: FilterBarLabels = {
+  fieldSearch: "Filter field",
+  operatorSearch: "Filter operator",
+  valueSearch: (fieldLabel) => `${fieldLabel ?? "Filter"} value`,
+  operatorPlaceholder: "Operator…",
+  valuePlaceholder: "Value…",
+  editSegment: (stage, label) => `Edit ${stage}: ${label}`,
+  removeFilter: (filter) => `Remove filter: ${filter}`,
+  loading: "Loading values…",
+  loadError: "Couldn’t load values.",
+  noOptions: "No matching options.",
+  typeValue: "Type a value.",
+  invalidNumber: "Enter a number, like 42 or 3.5.",
+  customValue: (value) => `Use “${value}”`,
+  apply: "Apply",
+  added: (filter) => `Added filter: ${filter}`,
+  updated: (filter) => `Updated filter: ${filter}`,
+  removed: (filter) => `Removed filter: ${filter}`,
+  cleared: "Cleared all filters",
+};
 
 const booleanOptions = [
   { value: true, label: "True" },
@@ -6,7 +27,10 @@ const booleanOptions = [
 ];
 
 export function fieldOperators(field: FilterBarField, operators: readonly FilterBarOperator[]) {
-  return operators.filter((operator) => !field.operators || field.operators.includes(operator.id));
+  const allowed = field.operators;
+  if (allowed) return operators.filter((operator) => allowed.includes(operator.id));
+  const type = field.type ?? "text";
+  return operators.filter((operator) => !operator.types || operator.types.includes(type));
 }
 
 export function fieldOptions(field: FilterBarField): readonly FilterBarOption[] {

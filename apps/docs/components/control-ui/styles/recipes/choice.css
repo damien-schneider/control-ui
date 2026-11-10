@@ -2,20 +2,27 @@
   :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]),
   :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]) {
     --cui-choice-size: calc(var(--spacing) * 4);
+    --cui-choice-indicator-size: calc(var(--cui-choice-size) * 0.75);
     inline-size: var(--cui-choice-size);
     block-size: var(--cui-choice-size);
     --cui-choice-radius: var(--radius-sm);
-    --cui-choice-shadow: inset 0 0 0 var(--cui-choice-border-width) var(--cui-choice-border-color), var(--shadow-sm);
+    --cui-choice-shadow: var(--shadow-sm);
     --cui-choice-border-color: var(--control-boundary);
     --cui-choice-border-width: var(--control-rim-width);
     --cui-choice-checked-background: var(--primary);
     --cui-choice-checked-border-color: var(--primary);
     --cui-choice-background: var(--control-fill);
     --_choice-background: var(--cui-choice-background);
+    --_choice-border-color: var(--cui-choice-border-color);
+    --_choice-ring: 0 0 transparent;
     border-radius: var(--cui-choice-radius);
     background: var(--_choice-background);
-    box-shadow: var(--cui-choice-shadow);
+    box-shadow:
+      inset 0 0 0 var(--cui-choice-border-width) var(--_choice-border-color),
+      var(--cui-choice-shadow),
+      var(--_choice-ring);
     color: currentColor;
+    cursor: pointer;
     transition-property: background-color, color;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
@@ -23,6 +30,7 @@
 
   :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]) {
     --cui-choice-radius: 9999px;
+    --cui-choice-indicator-size: calc(var(--cui-choice-size) * 0.375);
   }
 
   @media (hover: hover) {
@@ -32,28 +40,27 @@
           [data-choice-kind="radio-group"][data-slot="item"]
         ):hover:not([data-disabled], [data-readonly])
       ) {
-      --cui-choice-border-color: color-mix(in oklch, var(--control-boundary), var(--foreground) 35%);
+      --_choice-border-color: color-mix(in oklch, var(--cui-choice-border-color), var(--foreground) 35%);
     }
   }
 
   :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]:is([data-checked], [data-indeterminate])),
   :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]:is([data-checked], [data-indeterminate])) {
     --_choice-background: var(--cui-choice-checked-background);
-    --cui-choice-border-color: var(--cui-choice-checked-border-color);
+    --_choice-border-color: var(--cui-choice-checked-border-color);
     color: var(--primary-foreground);
   }
 
   :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"][data-disabled]),
   :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"][data-disabled]) {
     opacity: var(--disabled-opacity);
+    cursor: not-allowed;
   }
 
-  :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"][data-invalid]),
-  :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"][data-invalid]) {
-    --cui-choice-border-color: var(--destructive);
-    box-shadow:
-      var(--cui-choice-shadow),
-      0 0 0 1px var(--destructive);
+  :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]:is([data-invalid], [aria-invalid="true"])),
+  :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]:is([data-invalid], [aria-invalid="true"])) {
+    --_choice-border-color: var(--destructive);
+    --_choice-ring: 0 0 0 1px var(--destructive);
   }
 
   :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"] [data-slot="indicator"]),
@@ -66,21 +73,39 @@
     background: var(--primary-foreground);
   }
 
+  :where([data-control-family="checkbox-group"][data-slot="root"]),
   :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="root"]) {
     gap: calc(var(--spacing) * 2);
   }
 
+  :where([data-control-family="checkbox-group"][data-slot="root"][data-orientation="horizontal"]),
   :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="root"][data-orientation="horizontal"]) {
     gap: calc(var(--spacing) * 4);
   }
 
-  :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="indicator"]) {
-    inline-size: calc(var(--spacing) * 1.5);
-    block-size: calc(var(--spacing) * 1.5);
+  :where([data-control-family="checkbox-group"][data-slot="root"][data-track="hover"]),
+  :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="root"][data-track="hover"]) {
+    gap: 0;
   }
 
-  :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="indicator"]) {
-    color: currentcolor;
+  :where([data-control-family="checkbox-group"][data-slot="item"]),
+  :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="label"]) {
+    gap: calc(var(--spacing) * 2.5);
+    padding: calc(var(--spacing) * 2);
+    border-radius: var(--radius-control);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    cursor: pointer;
+  }
+
+  :where([data-control-family="checkbox-group"][data-slot="item"]:has([data-disabled])),
+  :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="label"]:has([data-disabled])) {
+    cursor: not-allowed;
+  }
+
+  :where([data-control-family="choice"][data-slot="indicator"]:is([data-choice-kind="radio-group"], [data-choice-kind="checkbox"])) {
+    inline-size: var(--cui-choice-indicator-size);
+    block-size: var(--cui-choice-indicator-size);
   }
 
   @media (pointer: coarse) {
@@ -88,15 +113,39 @@
     :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"])::after {
       content: "";
       position: absolute;
-      inset: 50%;
+      inset: 50% auto auto 50%;
       translate: -50% -50%;
       inline-size: max(100%, var(--touch-target));
       block-size: max(100%, var(--touch-target));
     }
   }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]:not(:focus-visible)),
+    :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]:not(:focus-visible)) {
+      outline: 1px solid CanvasText;
+      outline-offset: -1px;
+    }
+
+    :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]:is([data-checked], [data-indeterminate])),
+    :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"][data-checked]) {
+      background: Highlight;
+      color: HighlightText;
+    }
+
+    :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="indicator"]) {
+      background: HighlightText;
+    }
+  }
 }
 
 @property --cui-choice-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-choice-indicator-size {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;

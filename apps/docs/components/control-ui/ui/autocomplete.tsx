@@ -1,16 +1,24 @@
 "use client";
 
 import { Autocomplete as AutocompletePrimitive } from "@base-ui/react/autocomplete";
+import { mergeProps } from "@base-ui/react/merge-props";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { popupItemFocusProps } from "@/components/control-ui/lib/popup-item-focus";
+import { skinScopeAttributes } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
-import { InputGroup, InputGroupAddon, type InputGroupProps, useIsInsideInputGroup } from "@/components/control-ui/ui/input-group";
+import {
+  InputGroup,
+  InputGroupAddon,
+  type InputGroupProps,
+  useInputGroupControlRef,
+  useIsInsideInputGroup,
+} from "@/components/control-ui/ui/input-group";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
 export type AutocompleteProps<Value = string> = {
@@ -36,18 +44,19 @@ export type AutocompleteProps<Value = string> = {
 
 export type AutocompleteInputProps = Omit<Omit<ComponentProps<"input">, "size">, "style"> & { style?: CSSProperties & FieldKnobStyle } & {
   size?: ControlSize;
+  /** Accessible name of the built-in clear button. */
+  clearLabel?: string;
 };
 
 export type AutocompleteInputGroupProps = Omit<InputGroupProps, "render">;
 
 export type AutocompleteClearProps = ComponentProps<"button"> & { style?: CSSProperties & FieldKnobStyle };
 
-export type AutocompleteContentProps = Omit<
-  ComponentProps<"div"> & {
-    sideOffset?: number;
-  },
-  "style"
-> & { style?: CSSProperties & PopupKnobStyle };
+export type AutocompleteContentProps = Omit<ComponentProps<"div">, "style"> &
+  Pick<
+    ComponentProps<typeof AutocompletePrimitive.Positioner>,
+    "side" | "sideOffset" | "align" | "alignOffset" | "anchor" | "collisionBoundary" | "collisionPadding"
+  > & { style?: CSSProperties & PopupKnobStyle };
 
 export type AutocompleteListProps<Value = unknown> = Omit<ComponentProps<"div">, "children"> & {
   children?: ReactNode | ((item: Value, index: number) => ReactNode);
@@ -61,7 +70,7 @@ export type AutocompleteItemProps<Value = unknown> = Omit<
   "style"
 > & { style?: CSSProperties & PopupKnobStyle };
 
-export type AutocompleteEmptyProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+export type AutocompleteEmptyProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & FieldKnobStyle & PopupKnobStyle };
 
 export type AutocompleteGroupProps = ComponentProps<"div"> & { style?: CSSProperties & FieldKnobStyle };
 
@@ -75,19 +84,19 @@ export function Autocomplete<Value = string>({ children, autoHighlight = true, .
   );
 }
 
-export function AutocompleteClear({ className, children, ...props }: AutocompleteClearProps) {
+export function AutocompleteClear({ className, children, "aria-label": ariaLabel = "Clear search", ...props }: AutocompleteClearProps) {
   return (
     <AutocompletePrimitive.Clear
       data-control-ui="autocomplete"
       data-control-family="field"
       data-field-kind="autocomplete"
       data-slot="clear"
-      aria-label="Clear search"
-      className={cn("inline-flex size-6 shrink-0 cursor-pointer items-center justify-center disabled:cursor-not-allowed", className)}
+      aria-label={ariaLabel}
+      className={cn("inline-flex size-6 shrink-0 items-center justify-center", className)}
       {...props}
     >
       {children ?? (
-        <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
+        <svg viewBox="0 0 12 12" aria-hidden="true" fill="none">
           <path d="M3 3 9 9M9 3 3 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       )}
@@ -99,12 +108,14 @@ export function AutocompleteInputGroup(props: AutocompleteInputGroupProps) {
   return <InputGroup {...props} render={<AutocompletePrimitive.InputGroup />} />;
 }
 
-export function AutocompleteInput({ size = "md", className, ...props }: AutocompleteInputProps) {
+export function AutocompleteInput({ ref, size = "md", className, clearLabel, ...props }: AutocompleteInputProps) {
+  const groupControlRef = useInputGroupControlRef(ref);
   if (useIsInsideInputGroup()) {
     return (
       <>
         <AutocompletePrimitive.Input
           {...props}
+          ref={groupControlRef}
           data-control-ui="input-group"
           data-control-family="field"
           data-field-kind="input-group"
@@ -112,7 +123,7 @@ export function AutocompleteInput({ size = "md", className, ...props }: Autocomp
           className={cn("h-full min-w-0 flex-1", className)}
         />
         <InputGroupAddon>
-          <AutocompleteClear />
+          <AutocompleteClear aria-label={clearLabel} />
         </InputGroupAddon>
       </>
     );
@@ -120,26 +131,39 @@ export function AutocompleteInput({ size = "md", className, ...props }: Autocomp
   return (
     <AutocompletePrimitive.InputGroup
       data-control-ui="autocomplete"
+      data-control-family="field"
       data-field-kind="autocomplete"
       data-slot="root"
       className="relative flex w-full items-center"
     >
       <AutocompletePrimitive.Input
+        ref={ref}
         data-control-ui="autocomplete"
         data-field-kind="autocomplete"
         data-slot="input"
         data-control="true"
         data-control-family="field"
         data-size={size}
-        className={cn("w-full min-w-0 disabled:cursor-not-allowed", className)}
+        className={cn("w-full min-w-0", className)}
         {...props}
       />
-      <AutocompleteClear className="absolute end-1.5 top-1/2 -translate-y-1/2" />
+      <AutocompleteClear aria-label={clearLabel} className="absolute end-1.5 top-1/2 -translate-y-1/2" />
     </AutocompletePrimitive.InputGroup>
   );
 }
 
-export function AutocompleteContent({ className, children, sideOffset = 6, ...props }: AutocompleteContentProps) {
+export function AutocompleteContent({
+  className,
+  children,
+  side = "bottom",
+  sideOffset = 6,
+  align = "start",
+  alignOffset,
+  anchor,
+  collisionBoundary,
+  collisionPadding,
+  ...props
+}: AutocompleteContentProps) {
   const skin = useSkin();
   return (
     <AutocompletePrimitive.Portal>
@@ -148,11 +172,14 @@ export function AutocompleteContent({ className, children, sideOffset = 6, ...pr
         data-popup-kind="autocomplete"
         data-control-family="popup"
         data-slot="positioner"
-        data-skin={skin.id}
-        data-effects={controlEffectsAttribute(skin.effects)}
-        side="bottom"
-        align="start"
+        {...skinScopeAttributes(skin)}
+        side={side}
+        align={align}
         sideOffset={sideOffset}
+        alignOffset={alignOffset}
+        anchor={anchor}
+        collisionBoundary={collisionBoundary}
+        collisionPadding={collisionPadding}
         className="z-(--z-popup)"
       >
         <AutocompletePrimitive.Popup
@@ -162,7 +189,7 @@ export function AutocompleteContent({ className, children, sideOffset = 6, ...pr
           data-slot="content"
           data-surface="floating"
           data-popup-part="list-surface"
-          className={cn("w-[var(--anchor-width)] max-w-[var(--available-width)]", className)}
+          className={cn("w-[var(--anchor-width)]", className)}
           {...props}
         >
           {children}
@@ -174,7 +201,12 @@ export function AutocompleteContent({ className, children, sideOffset = 6, ...pr
 
 export function AutocompleteList<Value = unknown>({ className, children, ...props }: AutocompleteListProps<Value>) {
   return (
-    <ScrollArea className="w-full" viewportClassName="overscroll-y-contain" maxHeight="min(18rem, var(--available-height))" lockAxis="x">
+    <ScrollArea
+      className="w-full"
+      viewportClassName="overscroll-y-contain"
+      maxHeight="min(var(--cui-popup-list-max-height), var(--available-height))"
+      lockAxis="x"
+    >
       <AutocompletePrimitive.List
         data-control-ui="autocomplete"
         data-popup-kind="autocomplete"
@@ -197,7 +229,7 @@ export function AutocompleteEmpty({ className, children, ...props }: Autocomplet
       data-control-family="popup"
       data-popup-kind="autocomplete"
       data-slot="empty"
-      className={cn("px-[calc(var(--padding-x)*0.5)] empty:h-0 empty:overflow-hidden empty:p-0", className)}
+      className={cn("empty:h-0 empty:overflow-hidden empty:p-0", className)}
       {...props}
     >
       {children}
@@ -215,7 +247,7 @@ export function AutocompleteItem<Value = unknown>({ className, children, disable
       data-popup-part="item"
       disabled={disabled}
       className={cn(popupItemStructureClasses, className)}
-      {...props}
+      {...mergeProps(popupItemFocusProps, props)}
     >
       <span
         data-control-ui="autocomplete"
@@ -253,7 +285,7 @@ export function AutocompleteGroupLabel({ className, children, ...props }: Autoco
       data-slot="group-label"
       data-control-family="popup"
       data-popup-part="label"
-      className={cn("px-[calc(var(--padding-x)*0.5)]", className)}
+      className={className}
       {...props}
     >
       {children}

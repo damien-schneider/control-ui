@@ -44,22 +44,32 @@
   <GuideCode kind="skin-install" />
 
   Import the installed `skin-theme.css` and `skin.css` after core and recipe CSS. Supply the config through the provider
-  in a client module, so configurations containing render functions remain inside the client boundary:
+  in a client module, so configurations containing render functions remain inside the client boundary, and spread
+  `skinScopeAttributes(skin)` on the element that scopes the skin:
 
 ```tsx
 "use client";
 
 import type { ReactNode } from "react";
+import { skinScopeAttributes } from "@/components/control-ui/skin";
 import { SkinProvider } from "@/components/control-ui/skin-provider";
 import { skin } from "@/components/control-ui/skin.config";
 
 export function AppTheme({ children }: { children: ReactNode }) {
-  return <SkinProvider skin={skin}><div data-skin={skin.id}>{children}</div></SkinProvider>;
+  return <SkinProvider skin={skin}><div {...skinScopeAttributes(skin)}>{children}</div></SkinProvider>;
 }
 ```
 
-  The CSS selector and provider id must agree. A portalled popover, dialog, or menu receives that same id.
-  Each provider scopes its own subtree; omitting a provider uses the neutral defaults and root theme.
+  `skinScopeAttributes` writes `data-skin`, plus `data-effects` and `data-motion` when the config declares `effects`
+  or `motion: "reduced"`, so the wrapper never drifts from the config. The CSS selector and provider id must agree.
+  A portalled popover, dialog, or menu receives that same id. Each provider scopes its own subtree; omitting a
+  provider uses the neutral defaults and root theme.
+
+  When the skin is installed on the document instead, with `<html data-skin="acme">`, `SkinProvider` applies `motion`
+  and `colorScheme` to the root itself and there is nothing else to wire. `colorScheme` is root-only: the page mode is
+  the root `dark` class, so a nested scope cannot be light under a dark page. A skin with a fixed `colorScheme` holds
+  that mode for as long as its provider is mounted and overrides the application's theme toggle, so hide the toggle
+  for such a skin.
 
   Set `scrollAreaScrollbarVisibility: "always"` and `scrollAreaScrollbarGutter: "stable"` in the skin config for
   persistent scrollbar tracks that reserve layout space, as in Windows XP. ScrollArea's `scrollbarVisibility` and
@@ -72,6 +82,10 @@ export function AppTheme({ children }: { children: ReactNode }) {
 
   Set `calendarShowOutsideDays: false` to leave days from neighboring months blank, as Linear's date picker does.
   Calendar's `showOutsideDays` prop overrides it per instance; the neutral default shows them.
+
+  Set `indicators` to choose how selection and hover are drawn per family. `sidebar` and `tree` accept a selection
+  indicator; `sidebar`, `button-group`, `toggle-group`, `checkbox-group`, and `radio-group` accept a hover indicator.
+  Each component's own indicator prop overrides the skin default for one instance.
 
   The example packs resolve the required token contract explicitly so each has a complete, independent appearance.
   A consumer theme may inherit defaults and override only the values it needs.
@@ -89,6 +103,13 @@ export function AppTheme({ children }: { children: ReactNode }) {
 
   Every knob's name, syntax, initial value, and recipe default appear in its family's `/r/contract/` file.
   Re-value knobs at family roots so their parts inherit the treatment.
+
+  Paint a state through its state knob, such as `-hover-`, `-active-`, or `-floating-`, declared on the family root.
+  Do not re-value a base knob inside a `:hover` or `[data-state]` selector: the recipe already reads the state knob
+  there, so the override either does nothing or erases the state paint of a variant.
+
+  Shadow knobs are composed into one `box-shadow` list with rings and insets. Remove a shadow with `0 0 transparent`,
+  never `none`: `none` is not a valid list member and discards the whole declaration.
 
   Browser tabs and their connected content share `--cui-tabs-surface-background`, `--cui-tabs-surface-radius`, and the
   tabs border knobs. Use `TabsSurface` around content when wrappers separate the list from its panels, and embed a

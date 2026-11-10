@@ -1,12 +1,15 @@
 /* Control effects: data-driven + CSS-first. Primitives emit stable anatomy plus data-control; a skin or extension root opts in via data-effects="top-shine ripple".
  * No effect injects DOM: top-shine on ::before, ripple on control's own background-image (clipped by border-radius, composes with both).
  * ControlEffectsRoot only feeds click geometry via --aui-ripple-* + retriggers keyframes — streaming DOM updates cost nothing (no observer, nothing to re-sync). */
-[data-effects~="top-shine"] :where([data-control-ui][data-control="true"]),
-[data-effects~="ripple"] :where([data-control-ui][data-control="true"]),
-[data-effects~="hover-circle"] :where([data-control-ui][data-control="true"]) {
-  position: relative;
-  overflow: visible;
-  isolation: isolate;
+/* Lowest author layer: a recipe or utility that already positions or clips a control (absolute modal close button,
+ * overflow-hidden number field) keeps its own value; only unpositioned controls gain a containing block here. */
+@layer base {
+  [data-effects~="top-shine"] :where([data-control-ui][data-control="true"]),
+  [data-effects~="ripple"] :where([data-control-ui][data-control="true"]),
+  [data-effects~="hover-circle"] :where([data-control-ui][data-control="true"]) {
+    position: relative;
+    isolation: isolate;
+  }
 }
 
 [data-effects~="top-shine"] :where([data-control-ui][data-control="true"])::before {
@@ -54,10 +57,10 @@
     oklch(from var(--foreground) l c h / calc(0.14 * var(--cui-ripple-alpha))) 42%,
     transparent 70%
   );
-  animation: aui-ripple-pulse calc(var(--duration-slow) * 2.2) var(--ease-emphasized) forwards;
+  animation: cui-ripple-pulse calc(var(--duration-slow) * 2.2) var(--ease-emphasized) forwards;
 }
 
-@keyframes aui-ripple-pulse {
+@keyframes cui-ripple-pulse {
   0% {
     --cui-ripple-scale: 0;
     --cui-ripple-alpha: 0.45;
@@ -92,7 +95,12 @@
     position: absolute;
     z-index: 2;
     inset: 0;
+    /* Buttons, toolbar items, and pagination links already own ::after as a centred, min-sized hit target; without these resets the disc layer inherits that box and sits half a control up and to the left. */
+    translate: none;
+    inline-size: auto;
+    block-size: auto;
     border-radius: inherit;
+    corner-shape: inherit;
     background-image: radial-gradient(
       circle calc(var(--aui-hover-circle-r, 6rem) * var(--cui-hover-circle-scale)) at var(--aui-hover-circle-x, 50%)
         var(--aui-hover-circle-y, 50%),
@@ -103,9 +111,9 @@
     transition: --cui-hover-circle-scale calc(var(--duration-slow) * 1.6) var(--ease-emphasized);
   }
 
-  /* Same disabled guard as the ripple's JS check — a dead control never lights up. */
+  /* Same disabled guard as the ripple's JS check and the recipes: Base UI stamps a bare data-disabled, so presence is the test. */
   [data-effects~="hover-circle"]
-  :where([data-control-ui][data-control="true"]:hover:not(:disabled, [aria-disabled="true"], [data-disabled="true"]))::after {
+  :where([data-control-ui][data-control="true"]:hover:not(:disabled, [aria-disabled="true"], [data-disabled]))::after {
     --cui-hover-circle-scale: 1;
   }
 }

@@ -25,6 +25,12 @@
       "defaultValue": "var(--border)"
     },
     {
+      "name": "--cui-inline-attachment-error-ring-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--destructive) l c h / 0.45)"
+    },
+    {
       "name": "--cui-inline-attachment-padding",
       "syntax": "<length-percentage>",
       "initialValue": "0px",

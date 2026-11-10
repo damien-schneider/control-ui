@@ -11,6 +11,7 @@ export type CollapsibleProps = Omit<ComponentProps<"div">, "onChange"> & {
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+  disabled?: boolean;
   children?: ReactNode;
 } & { style?: CSSProperties & CollapsibleKnobStyle };
 
@@ -82,7 +83,7 @@ export function CollapsibleTrigger({ render, className, children, ...props }: Co
       data-control-ui="collapsible"
       data-control-family="collapsible"
       data-slot="trigger"
-      className="cursor-pointer"
+      className="cursor-pointer data-[disabled]:cursor-not-allowed"
       {...props}
       render={(triggerProps, state) => (
         <CollapsibleTriggerElement triggerProps={triggerProps} open={state.open} render={render} className={className}>

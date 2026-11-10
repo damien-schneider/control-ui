@@ -101,7 +101,7 @@ function cartesianSetup<TDatum, TColor extends ChartDatumColor<TDatum>>(options:
       options.tooltip === false
         ? (false as const)
         : seriesTooltip(
-            series.map((entry) => entry.label),
+            series.map((entry) => entry.key),
             formatX,
             formatValue,
           ),
@@ -113,14 +113,14 @@ function gradientColors<TDatum>(series: readonly ResolvedChartSeries<TDatum>[]):
   return series.filter((entry) => entry.fill === "gradient").map((entry) => entry.color);
 }
 
-const SERIES_FOCUS_POINT = { id: "focus", key: "id", x: "x", z: "series", r: 4, fillOpacity: 0, strokeOpacity: 0 } as const;
+const SERIES_FOCUS_POINT = { id: "focus", key: "id", x: "x", z: "seriesKey", r: 4, fillOpacity: 0, strokeOpacity: 0 } as const;
 
 export function areaChart<TDatum>(options: AreaChartOptions<TDatum>) {
   const stacked = options.stacked ?? false;
   const { series, rows, formatX, valueScale, tooltip, lastX } = cartesianSetup(options, stacked === "percent");
   const curve = chartCurve(options.curve ?? "smooth");
   const stackedRows = stacked
-    ? stackRowsY(rows, { x: "x", y: "value", z: "series", offset: stacked === "percent" ? "normalize" : undefined })
+    ? stackRowsY(rows, { x: "x", y: "value", z: "seriesKey", offset: stacked === "percent" ? "normalize" : undefined })
     : [];
   const seriesMarks = series.flatMap((entry) => {
     const areaParts: ChartPart[] = entry.fill === "hatched" ? ["area", "area-hatched"] : ["area"];
@@ -134,7 +134,7 @@ export function areaChart<TDatum>(options: AreaChartOptions<TDatum>) {
       curve,
     } as const;
     if (stacked) {
-      const seriesRows = stackedRows.filter((row) => row.series === entry.label);
+      const seriesRows = stackedRows.filter((row) => row.seriesKey === entry.key);
       return [
         decorative(
           chartPart(areaY(seriesRows, { id: `area-${entry.key}`, key: "id", x: "x", y1: "y1", y2: "y2", fill, curve }), ...areaParts),
@@ -142,7 +142,7 @@ export function areaChart<TDatum>(options: AreaChartOptions<TDatum>) {
         decorative(chartPart(lineY(seriesRows, { ...line, y: "y2" }), "line")),
       ];
     }
-    const seriesRows = rows.filter((row) => row.series === entry.label);
+    const seriesRows = rows.filter((row) => row.seriesKey === entry.key);
     return [
       decorative(chartPart(areaY(seriesRows, { id: `area-${entry.key}`, key: "id", x: "x", y: "value", fill, curve }), ...areaParts)),
       decorative(chartPart(lineY(seriesRows, { ...line, y: "value" }), "line")),
@@ -172,7 +172,7 @@ export function lineChart<TDatum>(options: LineChartOptions<TDatum>) {
   const { series, rows, formatX, valueScale, tooltip, lastX } = cartesianSetup(options, false);
   const curve = chartCurve(options.curve ?? "smooth");
   const seriesMarks = series.flatMap((entry) => {
-    const seriesRows = rows.filter((row) => row.series === entry.label);
+    const seriesRows = rows.filter((row) => row.seriesKey === entry.key);
     const line = decorative(
       chartPart(
         lineY(seriesRows, {
@@ -233,7 +233,7 @@ export function barChart<TDatum>(options: BarChartOptions<TDatum>) {
   const shared = {
     id: "bars",
     key: "id",
-    z: "series",
+    z: "seriesKey",
     stroke: (row: (typeof rows)[number]) => chartOutline(row.color, row.fill),
     strokeWidth: 1,
     radius: options.radius ?? { end: 6 },
@@ -310,14 +310,14 @@ function scatterRows<TDatum>(options: ScatterChartOptions<TDatum>): ScatterRow[]
 export function scatterChart<TDatum>(options: ScatterChartOptions<TDatum>) {
   const rows = scatterRows(options);
   const groups = [...new Set(rows.map((row) => row.group))];
-  const maxSize = Math.max(1, ...rows.map((row) => row.size));
+  const maxSize = rows.reduce((largest, row) => Math.max(largest, row.size), 1);
   const formats = chartFormatters(options.locale);
   const formatX = options.formatX ?? formats.value;
   const formatValue = options.formatValue ?? formats.value;
   const xLabel = options.xLabel ?? options.x;
   const yLabel = options.yLabel ?? options.y;
   const sizeKey = options.size;
-  const radius = sizeKey ? (row: ScatterRow) => 3 + 11 * Math.sqrt(row.size / maxSize) : 4;
+  const radius = sizeKey ? (row: ScatterRow) => 3 + 11 * Math.sqrt(Math.max(0, row.size) / maxSize) : 4;
   const dots = groups.map((groupName, groupIndex) => {
     const color = chartColor(options.colors?.[groupName] ?? chartSeriesColor(groupIndex));
     return chartPart(
@@ -339,7 +339,7 @@ export function scatterChart<TDatum>(options: ScatterChartOptions<TDatum>) {
       "dot",
     );
   });
-  const rightmostX = rows.length > 0 ? Math.max(...rows.map((row) => row.x)) : undefined;
+  const rightmostX = rows.length > 0 ? rows.reduce((rightmost, row) => Math.max(rightmost, row.x), Number.NEGATIVE_INFINITY) : undefined;
   return defineChart({
     marks: [...dots, ...chartReferenceMarks(options.references ?? [], "y", rightmostX)],
     scales: {
@@ -385,7 +385,7 @@ export function sparklineChart<TDatum>(options: SparklineChartOptions<TDatum>) {
   const curve = chartCurve(options.curve ?? "smooth");
   const rows = chartSeriesRows(options.data, options.x, resolveChartSeries([{ key: options.y, color, fill }]));
   const values = rows.flatMap((row) => (row.value === null ? [] : row.value));
-  const min = values.length > 0 ? Math.min(...values) : 0;
+  const min = values.length > 0 ? values.reduce((lowest, value) => Math.min(lowest, value), Number.POSITIVE_INFINITY) : 0;
   const shared = {
     guides: false,
     margin: 2,

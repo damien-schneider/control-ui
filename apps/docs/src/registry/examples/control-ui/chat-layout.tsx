@@ -90,7 +90,7 @@ function DockedComposer({ onSend }: { onSend: (question: string) => void }) {
         <ChatComposerTextarea placeholder="Ask anything…" />
         <ChatComposerToolbar>
           <ChatComposerSubmit size="sm" iconOnly aria-label="Send message">
-            <ArrowUp className="size-4" />
+            <ArrowUp />
           </ChatComposerSubmit>
         </ChatComposerToolbar>
       </ChatComposerShell>

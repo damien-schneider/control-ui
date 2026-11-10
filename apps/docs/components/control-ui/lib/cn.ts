@@ -5,11 +5,20 @@ import { type Config, extendTailwindMerge, mergeConfigs } from "tailwind-merge";
 const textScale = ["micro", "caption", "label", "body", "body-lg", "heading-1", "heading-2", "heading-3", "heading-4", "display"];
 
 // unregistered, tw-merge reads these as shadow COLOR and lets them ride alongside later box-shadow util, so skin's override loses by CSS order instead of argument order
-const shadowScale = ["pop", "soft", "modal"];
+const shadowScale = ["pop", "soft", "modal", "overlay", "inset"];
+
+// theme.css maps --control-h* and the role radii into Tailwind's spacing and radius namespaces (h-control-sm, size-control-md, rounded-panel).
+// Unregistered, tw-merge treats them as unknown classes, so caller's `h-10` or `rounded-none` stays beside the default and CSS order picks the winner.
+const controlSpacingScale = ["control", "control-xs", "control-sm", "control-md", "control-lg"];
+const radiusScale = ["control", "field", "panel", "scene"];
 
 export function withControlUiMerge(config: Config<string, string>) {
   return mergeConfigs(config, {
     extend: {
+      theme: {
+        spacing: controlSpacingScale,
+        radius: radiusScale,
+      },
       classGroups: {
         "font-size": [{ text: textScale }],
         shadow: [{ shadow: shadowScale }],

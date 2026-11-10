@@ -1,6 +1,6 @@
 "use client";
 
-import type { KeyboardEvent, ReactNode, RefObject } from "react";
+import type { KeyboardEvent, ReactNode, Ref, RefObject } from "react";
 import { useRef } from "react";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import { Button } from "@/components/control-ui/ui/button";
@@ -16,7 +16,7 @@ import {
 import { Text } from "@/components/control-ui/ui/typography";
 import { type FilterBarContextValue, useFilterBarContext } from "./context";
 import { allowsCustomValue, fieldOperators, fieldOptions, parseCustomValue } from "./model";
-import type { FilterBarDraft, FilterBarField, FilterBarScalar, FilterBarStage } from "./types";
+import type { FilterBarDraft, FilterBarField, FilterBarLabels, FilterBarScalar, FilterBarStage } from "./types";
 
 type FilterChoice = { id: string; label: string; ariaLabel?: string; icon?: ReactNode; value?: FilterBarScalar; disabled?: boolean };
 
@@ -28,7 +28,7 @@ function sameChoice(first: FilterChoice, second: FilterChoice) {
   return first.id === second.id;
 }
 
-function valueChoices(field: FilterBarField, query: string) {
+function valueChoices(field: FilterBarField, query: string, labels: FilterBarLabels) {
   const choices: FilterChoice[] = fieldOptions(field).map((option) => ({
     ...valueChoice(option.value, option.label),
     icon: option.icon,
@@ -36,7 +36,7 @@ function valueChoices(field: FilterBarField, query: string) {
   }));
   const customValue = allowsCustomValue(field) ? parseCustomValue(field, query) : undefined;
   if (customValue !== undefined && !choices.some((choice) => choice.value === customValue))
-    choices.push(valueChoice(customValue, `Use “${customValue}”`));
+    choices.push(valueChoice(customValue, labels.customValue(String(customValue))));
   return choices;
 }
 
@@ -53,13 +53,13 @@ function editorChoices(context: FilterBarContextValue, draft: FilterBarDraft | n
       label: operator.label,
       ariaLabel: operator.ariaLabel,
     }));
-  return valueChoices(field, draft.query);
+  return valueChoices(field, draft.query, context.labels);
 }
 
-function searchLabel(stage: FilterBarStage, field: FilterBarField | undefined) {
-  if (stage === "field") return "Filter field";
-  if (stage === "operator") return "Filter operator";
-  return `${field?.label ?? "Filter"} value`;
+function searchLabel(stage: FilterBarStage, field: FilterBarField | undefined, labels: FilterBarLabels) {
+  if (stage === "field") return labels.fieldSearch;
+  if (stage === "operator") return labels.operatorSearch;
+  return labels.valueSearch(field?.label);
 }
 
 function statusId(owner: string) {
@@ -94,16 +94,28 @@ function handleEditorKeyDown(context: FilterBarContextValue, draft: FilterBarDra
   return true;
 }
 
-function EditorOptions({ field, invalidNumber, owner }: { field?: FilterBarField; invalidNumber: boolean; owner: string }) {
+function emptyMessage(stage: FilterBarStage, field: FilterBarField | undefined, query: string, labels: FilterBarLabels) {
+  if (stage !== "value" || !field || !allowsCustomValue(field) || parseCustomValue(field, query) !== undefined) return labels.noOptions;
+  if (field.type === "number") return labels.invalidNumber;
+  return query.trim() === "" ? labels.typeValue : labels.noOptions;
+}
+
+function statusContent(field: FilterBarField, labels: FilterBarLabels): ReactNode {
+  if (!field.error) return labels.loading;
+  return field.error === true ? labels.loadError : field.error;
+}
+
+function EditorOptions({ field, empty, owner }: { field?: FilterBarField; empty: string; owner: string }) {
+  const { labels } = useFilterBarContext();
   if (field?.loading || field?.error)
     return (
       <Text as="div" size="caption" id={statusId(owner)} className="p-3">
-        {field.error ?? "Loading values…"}
+        {statusContent(field, labels)}
       </Text>
     );
   return (
     <>
-      <ComboboxEmpty>{invalidNumber ? "Enter a number, like 42 or 3.5." : "No matching options."}</ComboboxEmpty>
+      <ComboboxEmpty>{empty}</ComboboxEmpty>
       <ComboboxList<FilterChoice>>
         {(choice) => (
           <ComboboxItem key={choice.id} value={choice} disabled={choice.disabled} aria-label={choice.ariaLabel}>
@@ -144,18 +156,12 @@ function editorView(context: FilterBarContextValue, draft: FilterBarDraft | null
   const selected = (draft?.values ?? []).map(
     (value) => choices.find((choice) => choice.value === value) ?? valueChoice(value, field?.formatValue?.(value) ?? String(value)),
   );
-  const customNumber = field?.type === "number" && allowsCustomValue(field);
-  const invalidNumber =
-    stage === "value" &&
-    Boolean(customNumber) &&
-    query.trim() !== "" &&
-    field !== undefined &&
-    parseCustomValue(field, query) === undefined;
+  const empty = emptyMessage(stage, field, query, context.labels);
   const remote = stage === "value" && field?.optionsMode === "remote";
   const unavailable = stage === "value" && Boolean(field?.loading || field?.error);
-  const label = searchLabel(stage, field);
+  const label = searchLabel(stage, field, context.labels);
   const described = stage === "value" && Boolean(field?.error);
-  return { field, stage, many, query, choices, selected, invalidNumber, remote, unavailable, label, described };
+  return { field, stage, many, query, choices, selected, empty, remote, unavailable, label, described };
 }
 
 export function FilterBarEditor({
@@ -172,7 +178,7 @@ export function FilterBarEditor({
   const context = useFilterBarContext();
   const searchRef = useRef<HTMLInputElement>(null);
   const draft = context.draft?.owner === owner ? context.draft : null;
-  const { field, stage, many, query, choices, selected, invalidNumber, remote, unavailable, label, described } = editorView(context, draft);
+  const { field, stage, many, query, choices, selected, empty, remote, unavailable, label, described } = editorView(context, draft);
 
   const canCommitMany = selected.length > 0 && !unavailable && !context.disabled && !context.readOnly;
 
@@ -222,11 +228,11 @@ export function FilterBarEditor({
             />
           </div>
         )}
-        <EditorOptions field={stage === "value" ? field : undefined} invalidNumber={invalidNumber} owner={owner} />
+        <EditorOptions field={stage === "value" ? field : undefined} empty={empty} owner={owner} />
         {many && (
           <div className="flex justify-end p-2">
             <Button disabled={!canCommitMany} onClick={() => context.commit(draft?.values ?? [])}>
-              Apply
+              {context.labels.apply}
             </Button>
           </div>
         )}
@@ -240,7 +246,7 @@ export function FilterBarInlineInput({
   inputRef,
   className,
   ...props
-}: Omit<ComboboxInputProps, "ref"> & { owner: string; inputRef: RefObject<HTMLInputElement | null> }) {
+}: Omit<ComboboxInputProps, "ref"> & { owner: string; inputRef: Ref<HTMLInputElement> }) {
   const context = useFilterBarContext();
   const draft = context.draft?.owner === owner ? context.draft : null;
   const { label, described } = editorView(context, draft);
@@ -251,7 +257,7 @@ export function FilterBarInlineInput({
     const last = context.items.at(-1);
     if (event.key === "Backspace" && !draft && last) {
       event.preventDefault();
-      context.remove(last);
+      context.remove(last, false);
     } else context.navigate(event);
   }
   return (

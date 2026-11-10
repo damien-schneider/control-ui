@@ -22,6 +22,7 @@
     text-align: start;
     text-wrap: balance;
     font-weight: var(--font-weight-medium);
+    cursor: pointer;
   }
 
   @media (hover: hover) {

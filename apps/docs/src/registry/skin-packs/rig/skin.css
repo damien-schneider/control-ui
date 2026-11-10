@@ -35,12 +35,22 @@
   [data-skin="rig"] [data-control-family="field"][data-control="true"] {
     --cui-field-radius: var(--nest-radius, 0px);
     --cui-field-border-width: 0px;
-    --cui-field-shadow: none;
+    --cui-field-shadow: 0 0 transparent;
+  }
+
+  /* The recipe's invalid ring is an outward box-shadow, which the chamfer clip-path eats (same reason --focus-ring-offset is negative): redraw it inside. */
+  [data-skin="rig"] [data-control-family="field"][data-control="true"]:is([data-invalid], [aria-invalid="true"]),
+  [data-skin="rig"]
+    [data-control-family="field"][data-control-ui="input-group"]:has(
+      [data-control-family="field"][data-slot="input"]:is([data-invalid], [aria-invalid="true"])
+    ) {
+    --cui-field-shadow: inset 0 0 0 2px var(--destructive);
   }
 
   [data-skin="rig"] [data-control-family="pagination"][data-control="true"] {
     --cui-pagination-link-radius: 0px;
-    --cui-pagination-link-shadow: none;
+    --cui-pagination-link-active-border-color: var(--control-rim);
+    --cui-pagination-link-active-shadow: 0 0 transparent;
   }
 
   [data-skin="rig"] [data-control-family="toolbar"][data-control="true"] {
@@ -173,7 +183,7 @@
 
   [data-skin="rig"] [data-control-ui="drawer"][data-popup-part="surface"][data-control-family="popup"],
   [data-skin="rig"] [data-control-ui="sheet"][data-popup-part="surface"][data-control-family="popup"] {
-    --cui-popup-shadow: none;
+    --cui-popup-shadow: 0 0 transparent;
   }
 
   [data-skin="rig"] [data-control-ui="dropdown-menu"][data-slot="item"][data-control-family="popup"],
@@ -216,5 +226,21 @@
     --cui-popup-border-color: oklch(from var(--primary) l c h / 0.5);
     font-family: var(--font-mono);
     letter-spacing: 0.04em;
+  }
+
+  /* The chamfer clip-path also clips the recipe's ::after hit-area expansion, so on touch the box itself carries the target size. */
+  @media (pointer: coarse) {
+    [data-skin="rig"] [data-control-family="button"][data-control="true"],
+    [data-skin="rig"] [data-control-family="field"][data-control="true"],
+    [data-skin="rig"] [data-control-family="pagination"][data-control="true"],
+    [data-skin="rig"] [data-control-family="toolbar"][data-control="true"],
+    [data-skin="rig"] [data-control-family="code-diff"][data-control="true"] {
+      min-block-size: var(--touch-target);
+    }
+
+    [data-skin="rig"] [data-control-family="button"][data-control="true"][data-icon-only="true"],
+    [data-skin="rig"] [data-control-family="code-diff"][data-control="true"] {
+      min-inline-size: var(--touch-target);
+    }
   }
 }

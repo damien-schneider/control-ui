@@ -56,8 +56,13 @@ export type CodingAgentBlockProps = Omit<ComponentProps<"div">, "children"> &
     sidebarTop?: ReactNode;
     navigation?: readonly CodingAgentNavigationItem[];
     projects: readonly CodingAgentProject[];
+    activeNavigationId?: string;
     activeTaskId?: string;
     activeTaskTitle?: string;
+    searchLabel?: string;
+    newTaskLabel?: string;
+    projectsLabel?: string;
+    emptyProjectsLabel?: string;
     onNavigationSelect?: (item: CodingAgentNavigationItem) => void;
     onTaskSelect?: (task: CodingAgentTask, project: CodingAgentProject) => void;
     onNewTask?: () => void;
@@ -74,8 +79,13 @@ export function CodingAgentBlock({
   sidebarTop,
   navigation = [],
   projects,
+  activeNavigationId,
   activeTaskId,
   activeTaskTitle = "New task",
+  searchLabel = "Search tasks",
+  newTaskLabel = "New task",
+  projectsLabel = "Projects",
+  emptyProjectsLabel = "No projects yet",
   onNavigationSelect,
   onTaskSelect,
   onNewTask,
@@ -104,7 +114,12 @@ export function CodingAgentBlock({
         sidebarTop={sidebarTop}
         navigation={navigation}
         projects={projects}
+        activeNavigationId={activeNavigationId}
         activeTaskId={activeTaskId}
+        searchLabel={searchLabel}
+        newTaskLabel={newTaskLabel}
+        projectsLabel={projectsLabel}
+        emptyProjectsLabel={emptyProjectsLabel}
         sidebarFooter={sidebarFooter}
         onNavigationSelect={onNavigationSelect}
         onTaskSelect={onTaskSelect}
@@ -113,7 +128,7 @@ export function CodingAgentBlock({
       />
       <SidebarInset className="h-full min-h-0 min-w-0 overflow-hidden">
         <header className="flex h-12 shrink-0 items-center gap-2 border-b border-border/70 px-3">
-          <SidebarTrigger size="xs" className="lg:hidden" />
+          <SidebarTrigger size="xs" className="sidebar:hidden" />
           <FolderIcon className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
           <Heading
             level={layout === "contained" ? 2 : 1}
@@ -138,7 +153,12 @@ function CodingAgentSidebar({
   sidebarTop,
   navigation,
   projects,
+  activeNavigationId,
   activeTaskId,
+  searchLabel,
+  newTaskLabel,
+  projectsLabel,
+  emptyProjectsLabel,
   sidebarFooter,
   onNavigationSelect,
   onTaskSelect,
@@ -150,7 +170,12 @@ function CodingAgentSidebar({
   sidebarTop?: ReactNode;
   navigation: readonly CodingAgentNavigationItem[];
   projects: readonly CodingAgentProject[];
+  activeNavigationId?: string;
   activeTaskId?: string;
+  searchLabel: string;
+  newTaskLabel: string;
+  projectsLabel: string;
+  emptyProjectsLabel: string;
   sidebarFooter?: ReactNode;
   onNavigationSelect?: (item: CodingAgentNavigationItem) => void;
   onTaskSelect?: (task: CodingAgentTask, project: CodingAgentProject) => void;
@@ -184,19 +209,21 @@ function CodingAgentSidebar({
             </Text>
           </div>
           {onSearch ? (
-            <Button variant="ghost" size="sm" iconOnly aria-label="Search tasks" onClick={onSearch}>
-              <SearchIcon className="size-3.5" aria-hidden="true" />
+            <Button variant="ghost" size="sm" iconOnly aria-label={searchLabel} onClick={onSearch}>
+              <SearchIcon aria-hidden="true" />
             </Button>
           ) : null}
         </div>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton size="sm" onClick={startTask}>
-              <PlusIcon />
-              <span>New task</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        {onNewTask ? (
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton size="sm" onClick={startTask}>
+                <PlusIcon />
+                <span>{newTaskLabel}</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        ) : null}
       </SidebarHeader>
 
       <SidebarContent>
@@ -207,6 +234,7 @@ function CodingAgentSidebar({
                 <SidebarMenuItem key={item.id}>
                   <SidebarMenuButton
                     size="sm"
+                    isActive={item.id === activeNavigationId}
                     onClick={() => {
                       onNavigationSelect?.(item);
                       finishMobileNavigation();
@@ -223,12 +251,17 @@ function CodingAgentSidebar({
         ) : null}
 
         <SidebarGroup className="gap-1">
-          <SidebarGroupLabel>Projects</SidebarGroupLabel>
+          <SidebarGroupLabel>{projectsLabel}</SidebarGroupLabel>
+          {projects.length === 0 ? (
+            <Text size="caption" tone="muted" className="mx-2">
+              {emptyProjectsLabel}
+            </Text>
+          ) : null}
           <div className="grid gap-1">
             {projects.map((project) => (
               <Collapsible key={project.id} defaultOpen={project.open ?? true} className="min-w-0">
                 <CollapsibleTrigger>
-                  <ChevronRightIcon className="size-3.5 shrink-0 text-muted-foreground" aria-hidden="true" />
+                  <ChevronRightIcon className="text-muted-foreground" aria-hidden="true" />
                   <span className="flex shrink-0 items-center text-muted-foreground">
                     {project.icon ?? <FolderIcon className="size-4" aria-hidden="true" />}
                   </span>

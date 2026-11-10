@@ -79,6 +79,8 @@
     }
   },
   "adornments": {},
-  "uncovered": [],
+  "uncovered": [
+    "--cui-breadcrumb-link-hover-foreground"
+  ],
   "contrast": "/r/contract/breadcrumb.contrast.json"
 }

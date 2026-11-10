@@ -21,7 +21,8 @@ for (const skin of ["refined", "mastra"]) {
       await waitForReactHydration(copy);
       await copy.scrollIntoViewIfNeeded();
       const viewport = code.locator("[data-scroll-area-viewport]");
-      const source = await code.locator('[data-slot="line"] > code').allTextContents();
+      const rows = await code.locator('[data-slot="line"] > code').allTextContents();
+      const source = rows.map((row) => (row === "\n" ? "" : row));
       for (const scrollLeft of [0, 200]) {
         await viewport.evaluate((element, left) => {
           element.scrollLeft = left;

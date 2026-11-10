@@ -102,4 +102,74 @@ describe("skin validator", () => {
     expect(error.match(/unknown part button:missing/g)).toHaveLength(2);
     expect(error).toContain("unsupported state value button:root data-variant=definitely-not-real");
   });
+
+  test("rejects none on a shadow knob the recipe composes into a list", () => {
+    const surface = '[data-skin="test"] [data-control-family="popup"][data-popup-part="surface"]';
+    const voided = validate(`@layer components { ${surface} { ${knobPrefix}popup-shadow: none; } }`);
+    expect(voided.exitCode).toBe(1);
+    expect(voided.stderr).toContain(`${knobPrefix}popup-shadow: none voids the box-shadow list`);
+
+    expect(validate(`@layer components { ${surface} { ${knobPrefix}popup-shadow: 0 0 transparent; } }`).exitCode).toBe(0);
+  });
+
+  test("accepts none on a shadow knob the recipe paints alone", () => {
+    const button = '[data-skin="test"] [data-control-family="button"][data-control="true"]';
+    expect(validate(`@layer components { ${button} { ${knobPrefix}button-shadow: none; } }`).exitCode).toBe(0);
+  });
+
+  test("rejects :not(.dark) as a light-only gate, which also matches below the dark element", () => {
+    const button = '[data-control-family="button"][data-control="true"]';
+    const ancestor = validate(
+      `@layer components { :where(:not(.dark)) [data-skin="test"] ${button} { ${knobPrefix}button-radius: 1px; } }`,
+    );
+    expect(ancestor.exitCode).toBe(1);
+    expect(ancestor.stderr).toContain(":not(.dark) also matches in dark mode");
+
+    const scope = validate(`@layer components { [data-skin="test"]:not(.dark) ${button} { ${knobPrefix}button-radius: 1px; } }`);
+    expect(scope.exitCode).toBe(1);
+    expect(scope.stderr).toContain(":not(.dark) also matches in dark mode");
+  });
+
+  test("accepts a light base reset under .dark, and a negation that cannot match below the dark element", () => {
+    const button = '[data-control-family="button"][data-control="true"]';
+    const result = validate(`
+      @layer components {
+        [data-skin="test"] ${button} { ${knobPrefix}button-radius: 1px; }
+        .dark[data-skin="test"] ${button}, .dark [data-skin="test"] ${button} { ${knobPrefix}button-radius: 2px; }
+        :root:not(.dark)[data-skin="test"] ${button} { ${knobPrefix}button-radius: 3px; }
+        [data-skin="test"]:not(.dark, .dark *) ${button} { ${knobPrefix}button-radius: 4px; }
+      }
+    `);
+    expect(result.stderr).toBe("");
+  });
+
+  test("rejects a family no element carries and a popup part its scope never stamps", () => {
+    const result = validate(`
+      @layer components {
+        [data-skin="test"] [data-control-family="buton"] { ${knobPrefix}button-radius: 1px; }
+        [data-skin="test"] [data-control-ui="tooltip"][data-popup-part="list-surface"][data-control-family="popup"] { ${knobPrefix}popup-radius: 1px; }
+      }
+    `);
+    expect(result.exitCode).toBe(1);
+    expect(result.stderr).toContain('[data-control-family="buton"] is stamped on no element');
+    expect(result.stderr).toContain(
+      '[data-control-family="popup"][data-control-ui="tooltip"][data-popup-part="list-surface"] is stamped on no element',
+    );
+  });
+
+  test("accepts popup parts stamped literally, conditionally, and under a negated kind", () => {
+    const result = validate(`
+      @layer components {
+        [data-skin="test"] [data-control-ui="select"][data-popup-part="list-surface"][data-control-family="popup"] { ${knobPrefix}popup-radius: 1px; }
+        [data-skin="test"] [data-control-ui="command"][data-slot="root"][data-control-family="popup"][data-popup-part="surface"] { ${knobPrefix}popup-radius: 1px; }
+        [data-skin="test"] [data-control-family="popup"][data-popup-part="surface"]:not([data-popup-kind="drawer"]) { ${knobPrefix}popup-radius: 1px; }
+      }
+    `);
+    expect(result.stderr).toBe("");
+  });
+
+  test("accepts paint on a part the recipe only names as the ancestor of a knob-painted one", () => {
+    const table = '[data-skin="test"] [data-control-family="table"][data-slot="root"]';
+    expect(validate(`@layer components { ${table} { box-shadow: 0 0 0 1px red; } }`).stderr).toBe("");
+  });
 });

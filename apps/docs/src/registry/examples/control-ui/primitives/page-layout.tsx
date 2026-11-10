@@ -31,7 +31,14 @@ export function PrimitivePageLayoutExample() {
         <PageTitle>Surveys</PageTitle>
         <PageDescription>Every survey in this workspace, newest first.</PageDescription>
         <PageActions>
-          <NativeSelect aria-label="Page width" value={width} onChange={(event) => setWidth(event.target.value as PageWidth)}>
+          <NativeSelect
+            aria-label="Page width"
+            value={width}
+            onChange={(event) => {
+              const next = pageWidths.find((option) => option === event.target.value);
+              if (next) setWidth(next);
+            }}
+          >
             {pageWidths.map((option) => (
               <option key={option} value={option}>
                 {option}

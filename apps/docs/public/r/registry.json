@@ -14,7 +14,8 @@
         "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
-        "https://control-ui.dev/r/core.json"
+        "https://control-ui.dev/r/core.json",
+        "https://control-ui.dev/r/typography.json"
       ],
       "files": [
         {
@@ -128,6 +129,7 @@
         "https://control-ui.dev/r/core.json",
         "https://control-ui.dev/r/live-status.json",
         "https://control-ui.dev/r/sidebar.json",
+        "https://control-ui.dev/r/spinner.json",
         "https://control-ui.dev/r/timeline.json",
         "https://control-ui.dev/r/typography.json"
       ],
@@ -199,6 +201,7 @@
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
         "https://control-ui.dev/r/core.json",
+        "https://control-ui.dev/r/dialog.json",
         "https://control-ui.dev/r/surface-variants.json"
       ],
       "files": [
@@ -1902,7 +1905,8 @@
       "description": "Audio visualization with waveform, line envelope, and frequency bar alternatives. Choose the implementation that fits your audio data.",
       "dependencies": [],
       "registryDependencies": [
-        "https://control-ui.dev/r/core.json"
+        "https://control-ui.dev/r/core.json",
+        "https://control-ui.dev/r/motion.json"
       ],
       "files": [
         {
@@ -1996,6 +2000,7 @@
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
         "https://control-ui.dev/r/input-group.json",
+        "https://control-ui.dev/r/popup-item-focus.json",
         "https://control-ui.dev/r/scroll-area.json",
         "https://control-ui.dev/r/surface-variants.json"
       ],
@@ -2013,6 +2018,11 @@
         {
           "path": "src/registry/sources/control-ui/recipes/field-parts.css",
           "target": "@components/control-ui/styles/recipes/field-parts.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/field-select.css",
+          "target": "@components/control-ui/styles/recipes/field-select.css",
           "type": "registry:file"
         },
         {
@@ -2049,6 +2059,7 @@
       "css": {
         "@import \"../components/control-ui/styles/recipes/field.css\"": {},
         "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/field-select.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
@@ -2344,6 +2355,11 @@
           "type": "registry:component"
         },
         {
+          "path": "src/registry/sources/control-ui/recipes/chart-parts.css",
+          "target": "@components/control-ui/styles/recipes/chart-parts.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/chart.css",
           "target": "@components/control-ui/styles/recipes/chart.css",
           "type": "registry:file"
@@ -2385,7 +2401,8 @@
         }
       ],
       "css": {
-        "@import \"../components/control-ui/styles/recipes/chart.css\"": {}
+        "@import \"../components/control-ui/styles/recipes/chart.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/chart-parts.css\"": {}
       }
     },
     {
@@ -3033,6 +3050,7 @@
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
         "https://control-ui.dev/r/input-group.json",
+        "https://control-ui.dev/r/popup-item-focus.json",
         "https://control-ui.dev/r/scroll-area.json",
         "https://control-ui.dev/r/surface-variants.json"
       ],
@@ -3050,6 +3068,11 @@
         {
           "path": "src/registry/sources/control-ui/recipes/field-parts.css",
           "target": "@components/control-ui/styles/recipes/field-parts.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/field-select.css",
+          "target": "@components/control-ui/styles/recipes/field-select.css",
           "type": "registry:file"
         },
         {
@@ -3091,6 +3114,7 @@
       "css": {
         "@import \"../components/control-ui/styles/recipes/field.css\"": {},
         "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/field-select.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
@@ -3429,7 +3453,8 @@
         "https://control-ui.dev/r/drawer.json",
         "https://control-ui.dev/r/live-status.json",
         "https://control-ui.dev/r/scroll-area.json",
-        "https://control-ui.dev/r/sidebar.json"
+        "https://control-ui.dev/r/sidebar.json",
+        "https://control-ui.dev/r/typography.json"
       ],
       "files": [
         {
@@ -3472,7 +3497,8 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "https://control-ui.dev/r/core.json"
+        "https://control-ui.dev/r/core.json",
+        "https://control-ui.dev/r/dialog.json"
       ],
       "files": [
         {
@@ -3861,6 +3887,11 @@
           "type": "registry:file"
         },
         {
+          "path": "src/registry/sources/control-ui/recipes/field-select.css",
+          "target": "@components/control-ui/styles/recipes/field-select.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/field.css",
           "target": "@components/control-ui/styles/recipes/field.css",
           "type": "registry:file"
@@ -3873,7 +3904,8 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/field.css\"": {},
-        "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {}
+        "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/field-select.css\"": {}
       }
     },
     {
@@ -4272,6 +4304,11 @@
           "type": "registry:file"
         },
         {
+          "path": "src/registry/sources/control-ui/recipes/field-select.css",
+          "target": "@components/control-ui/styles/recipes/field-select.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/field.css",
           "target": "@components/control-ui/styles/recipes/field.css",
           "type": "registry:file"
@@ -4284,7 +4321,8 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/field.css\"": {},
-        "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {}
+        "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/field-select.css\"": {}
       }
     },
     {
@@ -4311,6 +4349,11 @@
           "type": "registry:file"
         },
         {
+          "path": "src/registry/sources/control-ui/recipes/field-select.css",
+          "target": "@components/control-ui/styles/recipes/field-select.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/field.css",
           "target": "@components/control-ui/styles/recipes/field.css",
           "type": "registry:file"
@@ -4323,7 +4366,8 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/field.css\"": {},
-        "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {}
+        "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/field-select.css\"": {}
       }
     },
     {
@@ -4350,6 +4394,11 @@
           "type": "registry:file"
         },
         {
+          "path": "src/registry/sources/control-ui/recipes/field-select.css",
+          "target": "@components/control-ui/styles/recipes/field-select.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/field.css",
           "target": "@components/control-ui/styles/recipes/field.css",
           "type": "registry:file"
@@ -4362,7 +4411,8 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/field.css\"": {},
-        "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {}
+        "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/field-select.css\"": {}
       }
     },
     {
@@ -4692,6 +4742,7 @@
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
+        "https://control-ui.dev/r/popup-item-focus.json",
         "https://control-ui.dev/r/surface-variants.json"
       ],
       "files": [
@@ -4842,6 +4893,11 @@
           "type": "registry:file"
         },
         {
+          "path": "src/registry/sources/control-ui/recipes/field-select.css",
+          "target": "@components/control-ui/styles/recipes/field-select.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/field.css",
           "target": "@components/control-ui/styles/recipes/field.css",
           "type": "registry:file"
@@ -4854,7 +4910,8 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/field.css\"": {},
-        "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {}
+        "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/field-select.css\"": {}
       }
     },
     {
@@ -4976,6 +5033,11 @@
           "type": "registry:file"
         },
         {
+          "path": "src/registry/sources/control-ui/recipes/field-select.css",
+          "target": "@components/control-ui/styles/recipes/field-select.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/field.css",
           "target": "@components/control-ui/styles/recipes/field.css",
           "type": "registry:file"
@@ -4988,7 +5050,8 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/field.css\"": {},
-        "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {}
+        "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/field-select.css\"": {}
       }
     },
     {
@@ -5030,6 +5093,7 @@
       "title": "Pagination",
       "description": "Page navigation for long lists and result sets.",
       "dependencies": [
+        "@base-ui/react@^1.9.0",
         "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
@@ -5230,7 +5294,8 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "https://control-ui.dev/r/core.json"
+        "https://control-ui.dev/r/core.json",
+        "https://control-ui.dev/r/track-highlight.json"
       ],
       "files": [
         {
@@ -5514,6 +5579,11 @@
           "type": "registry:file"
         },
         {
+          "path": "src/registry/sources/control-ui/recipes/field-select.css",
+          "target": "@components/control-ui/styles/recipes/field-select.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/field.css",
           "target": "@components/control-ui/styles/recipes/field.css",
           "type": "registry:file"
@@ -5547,6 +5617,7 @@
       "css": {
         "@import \"../components/control-ui/styles/recipes/field.css\"": {},
         "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/field-select.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
@@ -5873,7 +5944,8 @@
         "metal-fx@^2.0.10"
       ],
       "registryDependencies": [
-        "https://control-ui.dev/r/core.json"
+        "https://control-ui.dev/r/core.json",
+        "https://control-ui.dev/r/motion.json"
       ],
       "files": [
         {
@@ -6193,7 +6265,7 @@
       "name": "slider",
       "type": "registry:ui",
       "title": "Slider",
-      "description": "Single-value range control with branded and plain treatments.",
+      "description": "Single-value or range control with branded and plain treatments.",
       "dependencies": [
         "@base-ui/react@^1.9.0"
       ],
@@ -6207,6 +6279,11 @@
           "type": "registry:component"
         },
         {
+          "path": "src/registry/sources/control-ui/recipes/range-slider.css",
+          "target": "@components/control-ui/styles/recipes/range-slider.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/range.css",
           "target": "@components/control-ui/styles/recipes/range.css",
           "type": "registry:file"
@@ -6218,7 +6295,8 @@
         }
       ],
       "css": {
-        "@import \"../components/control-ui/styles/recipes/range.css\"": {}
+        "@import \"../components/control-ui/styles/recipes/range.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/range-slider.css\"": {}
       }
     },
     {
@@ -6580,6 +6658,11 @@
           "type": "registry:file"
         },
         {
+          "path": "src/registry/sources/control-ui/recipes/field-select.css",
+          "target": "@components/control-ui/styles/recipes/field-select.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/field.css",
           "target": "@components/control-ui/styles/recipes/field.css",
           "type": "registry:file"
@@ -6592,7 +6675,8 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/field.css\"": {},
-        "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {}
+        "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/field-select.css\"": {}
       }
     },
     {
@@ -6616,8 +6700,16 @@
           "path": "src/registry/blocks/control-ui/theme-toggle.tsx",
           "target": "@components/control-ui/blocks/theme-toggle.tsx",
           "type": "registry:block"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/theme-toggle.css",
+          "target": "@components/control-ui/styles/recipes/theme-toggle.css",
+          "type": "registry:file"
         }
-      ]
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/theme-toggle.css\"": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -6697,7 +6789,8 @@
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
         "https://control-ui.dev/r/core.json",
-        "https://control-ui.dev/r/dialog.json"
+        "https://control-ui.dev/r/dialog.json",
+        "https://control-ui.dev/r/spinner.json"
       ],
       "files": [
         {
@@ -7263,6 +7356,7 @@
       "title": "UserAsk",
       "description": "Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.",
       "dependencies": [
+        "@base-ui/react@^1.9.0",
         "lucide-react@^1.47.0"
       ],
       "registryDependencies": [

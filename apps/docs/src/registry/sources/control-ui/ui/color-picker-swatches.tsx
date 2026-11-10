@@ -1,6 +1,6 @@
 "use client";
 
-import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import { type ComponentProps, type CSSProperties, type ReactNode, useId } from "react";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { ColorPickerKnobStyle } from "@/components/control-ui/knob-contracts/color-picker-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -11,6 +11,7 @@ import { useColorPicker } from "@/components/control-ui/ui/color-picker-context"
 export type ColorPickerSwatchesProps = ComponentProps<"div"> & {
   colors?: string[];
   label?: ReactNode;
+  groupProps?: Omit<ComponentProps<"div">, "children">;
 } & { style?: CSSProperties & ColorPickerKnobStyle };
 
 export type ColorPickerSwatchProps = Omit<Omit<ComponentProps<"button">, "color">, "style"> & {
@@ -25,11 +26,18 @@ export type ColorPickerSwatchAddProps = Omit<ComponentProps<"button">, "onClick"
   onAdd?: (value: string) => void;
 };
 
-export function ColorPickerSwatches({ colors, label, className, children, ...props }: ColorPickerSwatchesProps) {
+export function ColorPickerSwatches({ colors, label, groupProps, className, children, ...props }: ColorPickerSwatchesProps) {
+  const labelId = useId();
   return (
-    <div data-control-ui="color-picker" data-control-family="color-picker" data-slot="swatches-group" className="grid">
+    <div
+      {...groupProps}
+      data-control-ui="color-picker"
+      data-control-family="color-picker"
+      data-slot="swatches-group"
+      className={cn("grid", groupProps?.className)}
+    >
       {label ? (
-        <span data-control-ui="color-picker" data-control-family="color-picker" data-slot="swatches-label">
+        <span id={labelId} data-control-ui="color-picker" data-control-family="color-picker" data-slot="swatches-label">
           {label}
         </span>
       ) : null}
@@ -37,11 +45,13 @@ export function ColorPickerSwatches({ colors, label, className, children, ...pro
         data-control-ui="color-picker"
         data-control-family="color-picker"
         data-slot="swatches"
+        {...(label ? ({ role: "group", "aria-labelledby": labelId } as const) : undefined)}
         className={cn("flex flex-wrap", className)}
         {...props}
       >
-        {colors?.map((color) => (
-          <ColorPickerSwatch key={color} color={color} />
+        {colors?.map((color, index) => (
+          // biome-ignore lint/suspicious/noArrayIndexKey: a palette may repeat a color, so the color alone is not a unique key.
+          <ColorPickerSwatch key={`${color}-${index}`} color={color} />
         ))}
         {children}
       </div>
@@ -49,7 +59,14 @@ export function ColorPickerSwatches({ colors, label, className, children, ...pro
   );
 }
 
-export function ColorPickerSwatch({ color, className, "aria-label": ariaLabel, ...props }: ColorPickerSwatchProps) {
+export function ColorPickerSwatch({
+  color,
+  className,
+  "aria-label": ariaLabel,
+  onClick,
+  disabled: disabledProp,
+  ...props
+}: ColorPickerSwatchProps) {
   const { setFromString, valueString, disabled } = useColorPicker();
   const selected = sameColor(valueString, color);
   return (
@@ -62,9 +79,12 @@ export function ColorPickerSwatch({ color, className, "aria-label": ariaLabel, .
       aria-pressed={selected}
       aria-label={ariaLabel ?? `Set color ${color}`}
       title={color}
-      disabled={disabled}
-      onClick={() => setFromString(color)}
-      className={cn("relative shrink-0 cursor-pointer overflow-hidden disabled:cursor-not-allowed", className)}
+      disabled={disabled || disabledProp}
+      onClick={(event) => {
+        onClick?.(event);
+        if (!event.defaultPrevented) setFromString(color);
+      }}
+      className={cn("relative shrink-0 overflow-hidden", className)}
       {...props}
     >
       <span
@@ -86,7 +106,7 @@ export function ColorPickerSwatch({ color, className, "aria-label": ariaLabel, .
   );
 }
 
-export function ColorPickerSwatchAdd({ onAdd, children, ...props }: ColorPickerSwatchAddProps) {
+export function ColorPickerSwatchAdd({ onAdd, children, disabled: disabledProp, ...props }: ColorPickerSwatchAddProps) {
   const { valueString, disabled } = useColorPicker();
   return (
     <Button
@@ -95,7 +115,7 @@ export function ColorPickerSwatchAdd({ onAdd, children, ...props }: ColorPickerS
       iconOnly
       data-color-picker-swatch-add="true"
       aria-label="Add current color"
-      disabled={disabled}
+      disabled={disabled || disabledProp}
       onClick={() => onAdd?.(valueString)}
       {...props}
     >

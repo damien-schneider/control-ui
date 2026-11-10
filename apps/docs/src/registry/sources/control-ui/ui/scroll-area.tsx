@@ -42,12 +42,10 @@ function Scrollbar({
   orientation,
   visibility,
   gutter,
-  thumbStyle,
 }: {
   orientation: "vertical" | "horizontal";
   visibility: ScrollAreaProps["scrollbarVisibility"];
   gutter: ScrollAreaScrollbarGutter;
-  thumbStyle?: CSSProperties & ScrollAreaKnobStyle;
 }) {
   return (
     <ScrollAreaPrimitive.Scrollbar
@@ -65,7 +63,6 @@ function Scrollbar({
         data-control-family="scroll-area"
         data-slot="thumb"
         className={cn("flex-1", orientation === "vertical" ? "w-full" : "h-full")}
-        style={thumbStyle}
       />
     </ScrollAreaPrimitive.Scrollbar>
   );
@@ -129,8 +126,6 @@ export function ScrollArea({
   const lockY = lockAxis === "y" || lockAxis === "both";
   const { style: viewportPropsStyle, ...resolvedViewportProps } = viewportProps ?? {};
   const mergedViewportStyle = viewportStyle(viewportPropsStyle, maxHeight, lockX, lockY);
-  const thumbStyle = style;
-  const cornerStyle = style;
 
   return (
     <ScrollAreaPrimitive.Root
@@ -167,14 +162,14 @@ export function ScrollArea({
         </ScrollAreaPrimitive.Content>
       </ScrollAreaPrimitive.Viewport>
       {resolvedBlur && <EdgeBlurs blurProps={blurProps} lockX={lockX} lockY={lockY} />}
-      {!lockY && <Scrollbar orientation="vertical" visibility={resolvedVisibility} gutter={resolvedGutter} thumbStyle={thumbStyle} />}
-      {!lockX && <Scrollbar orientation="horizontal" visibility={resolvedVisibility} gutter={resolvedGutter} thumbStyle={thumbStyle} />}
+      {!lockY && <Scrollbar orientation="vertical" visibility={resolvedVisibility} gutter={resolvedGutter} />}
+      {!lockX && <Scrollbar orientation="horizontal" visibility={resolvedVisibility} gutter={resolvedGutter} />}
       {!lockX && !lockY && (
         <ScrollAreaPrimitive.Corner
           data-control-ui="scroll-area"
           data-control-family="scroll-area"
           data-slot="corner"
-          style={resolvedGutter === "stable" ? { ...cornerStyle, position: "relative", inset: "auto" } : cornerStyle}
+          style={resolvedGutter === "stable" ? { position: "relative", inset: "auto" } : undefined}
         />
       )}
     </ScrollAreaPrimitive.Root>

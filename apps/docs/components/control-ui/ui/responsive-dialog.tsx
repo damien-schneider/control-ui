@@ -38,7 +38,8 @@ export type ResponsiveDialogContentProps = DialogContentProps & {
   drawerClassName?: string;
 };
 
-const MOBILE_QUERY = "(max-width: 767px)";
+// Same boundary as the `sm:` footer and header rules, so the drawer and its stacked layout switch together.
+const MOBILE_QUERY = "(width < 40rem)";
 const ResponsiveDialogContext = createContext<boolean | null>(null);
 
 function subscribeToMobileDialog(onStoreChange: () => void) {
@@ -61,7 +62,15 @@ function useResponsiveDialogContext() {
   return isMobile;
 }
 
-export function ResponsiveDialog({ open: controlledOpen, defaultOpen = false, onOpenChange, children }: ResponsiveDialogProps) {
+export function ResponsiveDialog({
+  open: controlledOpen,
+  defaultOpen = false,
+  onOpenChange,
+  onOpenChangeComplete,
+  modal,
+  disablePointerDismissal,
+  children,
+}: ResponsiveDialogProps) {
   const isMobile = useSyncExternalStore(subscribeToMobileDialog, getMobileDialogSnapshot, getMobileDialogServerSnapshot);
   const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
   const open = controlledOpen ?? uncontrolledOpen;
@@ -74,11 +83,24 @@ export function ResponsiveDialog({ open: controlledOpen, defaultOpen = false, on
   return (
     <ResponsiveDialogContext.Provider value={isMobile}>
       {isMobile ? (
-        <Drawer open={open} onOpenChange={handleOpenChange} side="bottom">
+        <Drawer
+          open={open}
+          onOpenChange={handleOpenChange}
+          onOpenChangeComplete={onOpenChangeComplete}
+          modal={modal}
+          disablePointerDismissal={disablePointerDismissal}
+          side="bottom"
+        >
           {children}
         </Drawer>
       ) : (
-        <Dialog open={open} onOpenChange={handleOpenChange}>
+        <Dialog
+          open={open}
+          onOpenChange={handleOpenChange}
+          onOpenChangeComplete={onOpenChangeComplete}
+          modal={modal}
+          disablePointerDismissal={disablePointerDismissal}
+        >
           {children}
         </Dialog>
       )}

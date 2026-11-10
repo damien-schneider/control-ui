@@ -3,6 +3,12 @@
     --cui-separator-root-background: var(--border);
     background-color: var(--cui-separator-root-background);
   }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="separator"][data-slot="root"]) {
+      background-color: CanvasText;
+    }
+  }
 }
 
 @property --cui-separator-root-background {

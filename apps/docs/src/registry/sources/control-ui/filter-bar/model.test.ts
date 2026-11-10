@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { describeFilter, formatFilterValue, parseCustomValue } from "./model";
+import { describeFilter, fieldOperators, formatFilterValue, parseCustomValue } from "./model";
 import type { FilterBarField, FilterBarItem } from "./types";
 
 const numericField: FilterBarField = { id: "votes", label: "Votes", type: "number" };
@@ -35,6 +35,24 @@ describe("filter value input", () => {
     expect(formatFilterValue(item, numericField)).toBe("0");
     expect(formatFilterValue({ ...item, value: false }, { id: "featured", label: "Featured", type: "boolean" })).toBe("False");
     expect(formatFilterValue({ ...item, value: null }, numericField)).toBe("");
+  });
+});
+
+describe("fieldOperators", () => {
+  const operators = [
+    { id: "is", label: "is" },
+    { id: "contains", label: "contains", types: ["text"] as const },
+    { id: "gt", label: ">", types: ["number"] as const },
+  ];
+  const ids = (field: FilterBarField) => fieldOperators(field, operators).map((operator) => operator.id);
+
+  test("offers a field only the operators that fit its type", () => {
+    expect(ids(numericField)).toEqual(["is", "gt"]);
+    expect(ids({ id: "title", label: "Title" })).toEqual(["is", "contains"]);
+    expect(ids({ id: "featured", label: "Featured", type: "boolean" })).toEqual(["is"]);
+  });
+  test("lets a field's own operator list override the type match", () => {
+    expect(ids({ id: "title", label: "Title", operators: ["gt"] })).toEqual(["gt"]);
   });
 });
 

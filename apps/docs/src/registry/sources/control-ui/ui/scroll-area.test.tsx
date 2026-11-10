@@ -37,3 +37,15 @@ test("skins can reserve visible tracks and instances can override either default
   expect(overrideGutter).toContain('data-scrollbar-gutter="auto"');
   expect(overrideGutter).not.toContain('data-slot="scrollbar"');
 });
+
+test("root style stays on the root so it cannot override the computed thumb size", () => {
+  const html = renderToStaticMarkup(
+    <ScrollArea scrollbarGutter="stable" style={{ height: 240 }}>
+      Content
+    </ScrollArea>,
+  );
+  const thumbs = html.match(/<div[^>]*data-slot="thumb"[^>]*>/g) ?? [];
+  expect(html.match(/<div[^>]*data-slot="root"[^>]*>/)?.[0]).toContain("height:240px");
+  expect(thumbs).toHaveLength(2);
+  for (const thumb of thumbs) expect(thumb).not.toContain("240px");
+});

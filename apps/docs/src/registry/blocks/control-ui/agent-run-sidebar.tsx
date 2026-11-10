@@ -1,15 +1,6 @@
 "use client";
 
-import {
-  BotIcon,
-  CheckIcon,
-  CircleAlertIcon,
-  CircleDashedIcon,
-  CirclePauseIcon,
-  CircleSlashIcon,
-  LoaderCircleIcon,
-  PlusIcon,
-} from "lucide-react";
+import { BotIcon, CheckIcon, CircleAlertIcon, CircleDashedIcon, CirclePauseIcon, CircleSlashIcon, PlusIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import {
   Sidebar,
@@ -24,16 +15,17 @@ import {
   SidebarRail,
   useSidebar,
 } from "@/components/control-ui/ui/sidebar";
+import { Spinner } from "@/components/control-ui/ui/spinner";
 import { Text } from "@/components/control-ui/ui/typography";
-import { type AgentRunStatus, type AgentRunSummary, agentRunStatusLabels } from "./agent-run-status";
+import type { AgentRunStatus, AgentRunSummary } from "./agent-run-status";
 
 const runStatusIcons = {
-  running: <LoaderCircleIcon className="size-3.5 shrink-0 motion-safe:animate-spin" aria-hidden="true" />,
-  waiting: <CirclePauseIcon className="size-3.5 shrink-0 text-warning-text" aria-hidden="true" />,
-  success: <CheckIcon className="size-3.5 shrink-0 text-success-text" aria-hidden="true" />,
-  error: <CircleAlertIcon className="size-3.5 shrink-0 text-destructive-text" aria-hidden="true" />,
-  cancelled: <CircleSlashIcon className="size-3.5 shrink-0 text-muted-foreground" aria-hidden="true" />,
-  pending: <CircleDashedIcon className="size-3.5 shrink-0 text-muted-foreground" aria-hidden="true" />,
+  running: <Spinner aria-hidden="true" />,
+  waiting: <CirclePauseIcon className="text-warning-text" aria-hidden="true" />,
+  success: <CheckIcon className="text-success-text" aria-hidden="true" />,
+  error: <CircleAlertIcon className="text-destructive-text" aria-hidden="true" />,
+  cancelled: <CircleSlashIcon className="text-muted-foreground" aria-hidden="true" />,
+  pending: <CircleDashedIcon className="text-muted-foreground" aria-hidden="true" />,
 } satisfies Record<AgentRunStatus, ReactNode>;
 
 export function AgentRunSidebar({
@@ -42,6 +34,10 @@ export function AgentRunSidebar({
   runs,
   activeRunId,
   sidebarFooter,
+  newRunLabel,
+  runsLabel,
+  emptyRunsLabel,
+  statusLabels,
   onRunSelect,
   onNewRun,
 }: {
@@ -50,6 +46,10 @@ export function AgentRunSidebar({
   runs: readonly AgentRunSummary[];
   activeRunId?: string;
   sidebarFooter?: ReactNode;
+  newRunLabel: string;
+  runsLabel: string;
+  emptyRunsLabel: string;
+  statusLabels: Record<AgentRunStatus, string>;
   onRunSelect?: (run: AgentRunSummary) => void;
   onNewRun?: () => void;
 }) {
@@ -79,7 +79,7 @@ export function AgentRunSidebar({
                 }}
               >
                 <PlusIcon />
-                <span>New run</span>
+                <span>{newRunLabel}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -88,10 +88,10 @@ export function AgentRunSidebar({
 
       <SidebarContent>
         <SidebarGroup className="gap-1">
-          <SidebarGroupLabel>Runs</SidebarGroupLabel>
+          <SidebarGroupLabel>{runsLabel}</SidebarGroupLabel>
           {runs.length === 0 ? (
             <Text size="caption" tone="muted" className="mx-2">
-              No runs yet
+              {emptyRunsLabel}
             </Text>
           ) : (
             <SidebarMenu>
@@ -107,7 +107,7 @@ export function AgentRunSidebar({
                   >
                     {runStatusIcons[run.status]}
                     <span className="truncate">{run.title}</span>
-                    <span className="sr-only">, {agentRunStatusLabels[run.status]}</span>
+                    <span className="sr-only">, {statusLabels[run.status]}</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

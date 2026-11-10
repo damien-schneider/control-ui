@@ -4,6 +4,7 @@ export type AudioRecorderState = "idle" | "requesting" | "recording" | "recorded
 
 export type AudioRecording = {
   blob: Blob;
+  /** Object URL owned by the recorder: revoked on the next start, on cancel, and on unmount. Keep `blob` for anything that outlives it. */
   url: string;
   durationMs: number;
   mimeType: string;
@@ -96,6 +97,8 @@ export type AudioRecorderControllerEnvironment<TStream extends AudioRecorderStre
   cancelAnimationFrame?: (handle: number) => void;
   createObjectURL?: (blob: Blob) => string;
   revokeObjectURL?: (url: string) => void;
+  /** Returns its own cancel function; the time limit relies on it while animation frames are paused in a background tab. */
+  scheduleTimeout?: (callback: () => void, delayMs: number) => () => void;
   now?: () => number;
 };
 
@@ -112,6 +115,8 @@ const MIME_TYPE_CANDIDATES = ["audio/webm;codecs=opus", "audio/mp4"] as const;
 const CALM_LEVEL = 0.1;
 const LEVEL_COMPRESSION = 2.2;
 const PEAK_BLEND = 0.35;
+// longest delay a host timer accepts before it overflows and fires immediately
+const MAX_TIMER_DELAY_MS = 2_147_483_647;
 
 export function preferredAudioMimeType(MediaRecorderImpl?: { isTypeSupported?: (mimeType: string) => boolean }) {
   if (!MediaRecorderImpl?.isTypeSupported) return undefined;
@@ -141,51 +146,68 @@ async function enumerateAudioInputDevices() {
   return devices.filter((device) => device.kind === "audioinput");
 }
 
+// the recorder and the device list are separate hooks; a grant obtained by either must relabel the list in browsers without `permissions.change`
+const microphoneGrantListeners = new Set<() => void>();
+
 export function useAudioInputDevices(): UseAudioInputDevicesResult {
   const [devices, setDevices] = useState<MediaDeviceInfo[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const [permission, setPermission] = useState<"granted" | "prompt" | "denied">("prompt");
+  const latestRequest = useRef(0);
 
   async function refresh() {
+    latestRequest.current += 1;
+    const request = latestRequest.current;
     setLoading(true);
     setError(null);
 
     try {
       const nextDevices = await enumerateAudioInputDevices();
+      if (request !== latestRequest.current) return;
       setDevices(nextDevices);
       if (nextDevices.some((device) => device.label)) setPermission("granted");
     } catch (nextError) {
-      setError(asError(nextError));
+      if (request === latestRequest.current) setError(asError(nextError));
     } finally {
-      setLoading(false);
+      if (request === latestRequest.current) setLoading(false);
     }
   }
 
   async function requestPermission() {
-    if (typeof navigator === "undefined" || !navigator.mediaDevices?.getUserMedia) {
-      setError(unsupportedRecordingError());
-      return;
-    }
-
+    latestRequest.current += 1;
+    const request = latestRequest.current;
     setLoading(true);
     setError(null);
 
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      for (const track of stream.getTracks()) track.stop();
+      await requestMicrophoneGrant();
       setPermission("granted");
-      setDevices(await enumerateAudioInputDevices());
+      const nextDevices = await enumerateAudioInputDevices();
+      if (request === latestRequest.current) setDevices(nextDevices);
     } catch (nextError) {
-      const failure = asError(nextError);
-      if (failure.name === "NotAllowedError" || failure.name === "SecurityError") setPermission("denied");
-      setError(microphoneError(nextError));
+      const failure = microphoneError(nextError);
+      if (failure.name === "NotAllowedError") setPermission("denied");
+      if (request === latestRequest.current) setError(failure);
     } finally {
-      setLoading(false);
+      if (request === latestRequest.current) setLoading(false);
     }
   }
 
   const refreshFromEffect = useEffectEvent(refresh);
+  const refreshAfterGrant = useEffectEvent(() => {
+    if (permission === "granted") return;
+    setPermission("granted");
+    void refresh();
+  });
+
+  useEffect(() => {
+    const listener = () => refreshAfterGrant();
+    microphoneGrantListeners.add(listener);
+    return () => {
+      microphoneGrantListeners.delete(listener);
+    };
+  }, []);
 
   useEffect(() => {
     queueMicrotask(() => void refreshFromEffect());
@@ -231,13 +253,25 @@ export function useAudioInputDevices(): UseAudioInputDevicesResult {
   return { devices, loading, error, hasPermission: permission === "granted", permission, refresh, requestPermission };
 }
 
+function browserMediaDevices(): AudioRecorderControllerEnvironment<MediaStream>["mediaDevices"] {
+  if (typeof navigator === "undefined" || !navigator.mediaDevices?.getUserMedia) return undefined;
+  const mediaDevices = navigator.mediaDevices;
+  return {
+    getUserMedia: async (constraints) => {
+      const stream = await mediaDevices.getUserMedia(constraints);
+      for (const listener of microphoneGrantListeners) listener();
+      return stream;
+    },
+  };
+}
+
 function browserEnvironment(): AudioRecorderControllerEnvironment<MediaStream> {
   // structural view of globalThis: Safari's prefixed webkitAudioContext is not declared in lib.dom
   const scope: { AudioContext?: AudioContextConstructor<MediaStream>; webkitAudioContext?: AudioContextConstructor<MediaStream> } =
     globalThis;
 
   return {
-    mediaDevices: typeof navigator !== "undefined" ? navigator.mediaDevices : undefined,
+    mediaDevices: browserMediaDevices(),
     MediaRecorder: typeof MediaRecorder !== "undefined" ? MediaRecorder : undefined,
     AudioContext: typeof AudioContext !== "undefined" ? AudioContext : scope.webkitAudioContext,
     // wrapped so host fns aren't called with env object as `this` ("Illegal invocation")
@@ -246,6 +280,10 @@ function browserEnvironment(): AudioRecorderControllerEnvironment<MediaStream> {
     cancelAnimationFrame: typeof cancelAnimationFrame !== "undefined" ? (handle: number) => cancelAnimationFrame(handle) : undefined,
     createObjectURL: typeof URL !== "undefined" ? URL.createObjectURL?.bind(URL) : undefined,
     revokeObjectURL: typeof URL !== "undefined" ? URL.revokeObjectURL?.bind(URL) : undefined,
+    scheduleTimeout: (callback: () => void, delayMs: number) => {
+      const handle = setTimeout(callback, delayMs);
+      return () => clearTimeout(handle);
+    },
     now: typeof performance !== "undefined" ? () => performance.now() : () => Date.now(),
   };
 }
@@ -327,6 +365,12 @@ function stopMediaStream(mediaStream: AudioRecorderStreamLike) {
   for (const track of mediaStream.getTracks()) track.stop();
 }
 
+/** The grant is what unlocks device labels, so the stream is released as soon as the browser hands it over. */
+async function requestMicrophoneGrant() {
+  if (typeof navigator === "undefined" || !navigator.mediaDevices?.getUserMedia) throw unsupportedRecordingError();
+  stopMediaStream(await navigator.mediaDevices.getUserMedia({ audio: true }));
+}
+
 export function createAudioRecorderController<TStream extends AudioRecorderStreamLike = AudioRecorderStreamLike>(
   initialOptions: UseAudioRecorderOptions = {},
   environment?: AudioRecorderControllerEnvironment<TStream>,
@@ -357,6 +401,7 @@ function createControllerForEnvironment<TStream extends AudioRecorderStreamLike>
   let analyser: AnalyserLike | null = null;
   let audioSamples: Uint8Array<ArrayBuffer> | null = null;
   let animationFrame: number | null = null;
+  let cancelMaxDurationTimer: (() => void) | null = null;
   let startedAt = 0;
   let selectedMimeType = "";
   let activeRecording: AudioRecording | undefined;
@@ -413,6 +458,8 @@ function createControllerForEnvironment<TStream extends AudioRecorderStreamLike>
       environment.cancelAnimationFrame?.(animationFrame);
       animationFrame = null;
     }
+    cancelMaxDurationTimer?.();
+    cancelMaxDurationTimer = null;
 
     try {
       audioSource?.disconnect();
@@ -471,26 +518,47 @@ function createControllerForEnvironment<TStream extends AudioRecorderStreamLike>
     const durationMs = Math.max(snapshot.durationMs, stoppedAt - startedAt);
     const mimeType = recorder?.mimeType || selectedMimeType || "audio/webm";
     const blob = new Blob(chunks, { type: mimeType });
-    clearActiveRecording();
-    activeRecording = {
+    const recording: AudioRecording = {
       blob,
-      url: environment.createObjectURL?.(blob) ?? "",
+      url: destroyed ? "" : (environment.createObjectURL?.(blob) ?? ""),
       durationMs,
       mimeType: blob.type || mimeType,
     };
     releaseRecorder();
+
+    if (destroyed) {
+      resetToIdle();
+      finishStop(recording);
+      return;
+    }
+
+    clearActiveRecording();
+    activeRecording = recording;
     setSnapshot({
       state: "recorded",
       durationMs,
-      recording: activeRecording,
+      recording,
       error: null,
     });
-    finishStop(activeRecording);
+    finishStop(recording);
   }
 
   function scheduleFrame() {
     if (!environment.requestAnimationFrame || animationFrame !== null || snapshot.state !== "recording") return;
     animationFrame = environment.requestAnimationFrame(readFrame);
+  }
+
+  function scheduleMaxDurationStop() {
+    cancelMaxDurationTimer?.();
+    cancelMaxDurationTimer = null;
+    if (!options.maxDurationMs || !environment.scheduleTimeout || snapshot.state !== "recording") return;
+
+    const remainingMs = Math.max(0, options.maxDurationMs - (now() - startedAt));
+    if (remainingMs > MAX_TIMER_DELAY_MS) return;
+    cancelMaxDurationTimer = environment.scheduleTimeout(() => {
+      cancelMaxDurationTimer = null;
+      if (snapshot.state === "recording") void stop();
+    }, remainingMs);
   }
 
   function readAudioLevel() {
@@ -571,6 +639,8 @@ function createControllerForEnvironment<TStream extends AudioRecorderStreamLike>
     const MediaRecorderImpl = environment.MediaRecorder;
     if (!MediaRecorderImpl) throw unsupportedRecordingError();
 
+    // owned before the recorder exists so a constructor failure still releases the microphone
+    stream = nextStream;
     selectedMimeType = preferredAudioMimeType(MediaRecorderImpl) ?? "";
     const nextRecorder = new MediaRecorderImpl(nextStream, selectedMimeType ? { mimeType: selectedMimeType } : undefined);
 
@@ -580,7 +650,6 @@ function createControllerForEnvironment<TStream extends AudioRecorderStreamLike>
     };
     nextRecorder.onstop = finalizeRecording;
 
-    stream = nextStream;
     recorder = nextRecorder;
     attachAnalyser(nextStream);
     startedAt = now();
@@ -588,10 +657,13 @@ function createControllerForEnvironment<TStream extends AudioRecorderStreamLike>
     nextRecorder.start(Math.min(1000, Math.max(250, resolvedBarDurationMs())));
     setSnapshot({ state: "recording", durationMs: 0, levels: [], error: null });
     scheduleFrame();
+    scheduleMaxDurationStop();
   }
 
   async function start() {
-    if (options.disabled || snapshot.state === "requesting" || snapshot.state === "recording") return false;
+    if (options.disabled || snapshot.state === "requesting" || snapshot.state === "recording" || snapshot.state === "submitting") {
+      return false;
+    }
 
     clearActiveRecording();
     requestId += 1;
@@ -621,6 +693,7 @@ function createControllerForEnvironment<TStream extends AudioRecorderStreamLike>
       beginRecording(nextStream);
       return true;
     } catch (error) {
+      if (currentRequest !== requestId) return false;
       stopLiveInput();
       releaseRecorder();
       setSnapshot({ state: "error", error: microphoneError(error), recording: undefined });
@@ -655,15 +728,17 @@ function createControllerForEnvironment<TStream extends AudioRecorderStreamLike>
     requestId += 1;
     clearActiveRecording();
 
-    if (recorder && recorder.state !== "inactive") {
-      discardOnStop = true;
+    if (recorder) {
+      // an inactive recorder still owes its `stop` event; resetting under it would let that event resurrect the take
+      const stopRequested = recorder.state === "inactive";
+      if (!stopRequested || !destroyed) discardOnStop = true;
       if (!stopPromise) {
         stopPromise = new Promise<AudioRecording | null>((resolve) => {
           resolveStop = resolve;
         });
       }
       stopLiveInput();
-      recorder.stop();
+      if (!stopRequested) recorder.stop();
     } else {
       stopLiveInput();
       releaseRecorder();
@@ -674,6 +749,7 @@ function createControllerForEnvironment<TStream extends AudioRecorderStreamLike>
   }
 
   function cancel() {
+    if (snapshot.state === "submitting") return;
     cancelInternal(true);
   }
 
@@ -714,9 +790,14 @@ function createControllerForEnvironment<TStream extends AudioRecorderStreamLike>
     listeners.clear();
   }
 
+  function restore() {
+    destroyed = false;
+  }
+
   function setOptions(nextOptions: UseAudioRecorderOptions) {
     const nextBarCount = nextOptions.barCount ?? DEFAULT_LEVEL_COUNT;
     const currentBarCount = options.barCount ?? DEFAULT_LEVEL_COUNT;
+    const maxDurationChanged = nextOptions.maxDurationMs !== options.maxDurationMs;
     options = { ...nextOptions };
 
     if (nextBarCount !== currentBarCount && snapshot.state === "idle") {
@@ -725,6 +806,8 @@ function createControllerForEnvironment<TStream extends AudioRecorderStreamLike>
 
     if (options.disabled && (snapshot.state === "requesting" || snapshot.state === "recording")) {
       cancelInternal(false);
+    } else if (maxDurationChanged) {
+      scheduleMaxDurationStop();
     }
   }
 
@@ -760,6 +843,7 @@ function createControllerForEnvironment<TStream extends AudioRecorderStreamLike>
     cancel,
     submit,
     destroy,
+    restore,
   };
 }
 
@@ -772,6 +856,8 @@ export function useAudioRecorder(options: UseAudioRecorderOptions = {}): UseAudi
   useEffect(() => {
     const mount = Symbol("audio-recorder-mount");
     activeMount.current = mount;
+    // a preserved component (Activity shown again) re-runs this effect after its previous cleanup destroyed the controller
+    controller.restore();
     return () => {
       queueMicrotask(() => {
         if (activeMount.current === mount) controller.destroy();

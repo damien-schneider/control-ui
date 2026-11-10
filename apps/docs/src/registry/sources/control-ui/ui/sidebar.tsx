@@ -33,6 +33,7 @@ export {
   type SidebarGroupContentProps,
   SidebarGroupLabel,
   type SidebarGroupLabelProps,
+  type SidebarGroupProps,
   SidebarMenu,
   SidebarMenuAction,
   type SidebarMenuActionProps,
@@ -43,7 +44,10 @@ export {
   type SidebarMenuButtonSize,
   type SidebarMenuButtonVariant,
   SidebarMenuItem,
+  type SidebarMenuItemProps,
+  type SidebarMenuProps,
   SidebarMenuSub,
+  type SidebarMenuSubProps,
   type SidebarSelectionIndicator,
   sidebarMenuButtonSizes,
   sidebarMenuButtonVariants,
@@ -80,6 +84,11 @@ export type SidebarPanelLayer = "sidebar" | "raised" | "content";
 export type SidebarIconRailProps = Omit<ComponentProps<"div">, "style"> & { layer?: SidebarIconRailLayer; style?: SidebarSurfaceStyle };
 export type SidebarPanelProps = Omit<ComponentProps<"div">, "style"> & { layer?: SidebarPanelLayer; style?: SidebarSurfaceStyle };
 
+export type SidebarTriggerProps = ComponentProps<typeof Button> & { label?: string };
+export type SidebarHeaderProps = ComponentProps<"div"> & { divider?: boolean; style?: CSSProperties & SidebarKnobStyle };
+export type SidebarFooterProps = ComponentProps<"div"> & { style?: CSSProperties & SidebarKnobStyle };
+export type SidebarContentProps = ComponentProps<"div">;
+
 const SIDEBAR_WIDTH_MOBILE = "18rem";
 const sidebarTriggerWidth = {
   xs: "w-[var(--control-h-xs)]",
@@ -93,7 +102,9 @@ export type SidebarProps = Omit<ComponentProps<"div">, "style"> & {
   variant?: SidebarLayout;
   collapsible?: "offcanvas" | "icon" | "none";
   mobileVariant?: "sheet" | "drawer";
+  /** Names the desktop landmark and titles the mobile sheet or drawer. */
   label?: string;
+  closeLabel?: string;
   style?: SidebarSurfaceStyle;
 };
 
@@ -110,6 +121,7 @@ function SidebarSurface({
   variant,
   mobileVariant = "sheet",
   label = "Navigation",
+  closeLabel = "Close menu",
   ref,
   className,
   children,
@@ -123,12 +135,15 @@ function SidebarSurface({
   const { isMobile, state, layout, sidebarId } = useSidebar();
   const resolvedVariant = variant ?? skin.sidebarLayout ?? "sidebar";
   const padded = resolvedVariant === "floating" || resolvedVariant === "inset";
+  const landmark = layout === "contained" ? undefined : ({ role: "complementary", "aria-label": label } as const);
+  const collapsedMode = state === "collapsed" ? collapsible : "";
 
   const container = useRender({
     defaultTagName: "div",
     ref: collapsible === "offcanvas" ? [ref ?? null, offcanvasRef] : ref,
     props: {
       id: sidebarId,
+      ...landmark,
       ...props,
       "data-control-ui": "sidebar",
       "data-control-family": "sidebar",
@@ -136,7 +151,7 @@ function SidebarSurface({
       tabIndex: -1,
       className: cn(
         layout === "contained" ? "absolute h-full" : "fixed h-svh",
-        "inset-y-0 z-10 hidden w-(--sidebar-width) sidebar:flex",
+        "inset-y-0 z-(--z-raised) hidden w-(--sidebar-width) sidebar:flex",
         side === "left" ? "start-0" : "end-0",
         padded
           ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
@@ -150,7 +165,7 @@ function SidebarSurface({
             data-control-family="sidebar"
             data-slot="inner"
             className="flex h-full w-full"
-            inert={state === "collapsed" && collapsible === "offcanvas"}
+            inert={collapsedMode === "offcanvas"}
           >
             {children}
           </div>
@@ -167,6 +182,7 @@ function SidebarSurface({
         ref={ref}
         mobileVariant={mobileVariant}
         label={label}
+        closeLabel={closeLabel}
         variant={resolvedVariant}
         className={className}
         style={style}
@@ -180,6 +196,8 @@ function SidebarSurface({
     return (
       <div
         ref={ref}
+        id={sidebarId}
+        {...landmark}
         data-control-ui="sidebar"
         data-control-family="sidebar"
         data-slot="root"
@@ -204,7 +222,7 @@ function SidebarSurface({
       data-slot="root"
       data-surface="panel"
       data-state={state}
-      data-collapsible={state === "collapsed" ? collapsible : ""}
+      data-collapsible={collapsedMode}
       data-variant={resolvedVariant}
       data-side={side}
       style={style}
@@ -226,7 +244,7 @@ function SidebarSurface({
   );
 }
 
-function SidebarMobileSurface({ mobileVariant, label, variant, ref, className, children, style, ...props }: SidebarProps) {
+function SidebarMobileSurface({ mobileVariant, label, closeLabel, variant, ref, className, children, style, ...props }: SidebarProps) {
   const { side } = useSidebarSurface();
   const { openMobile, setOpenMobile, sidebarId } = useSidebar();
   const { activeTriggerRef, triggerRef, insetRef } = useSidebarElements();
@@ -266,7 +284,7 @@ function SidebarMobileSurface({ mobileVariant, label, variant, ref, className, c
           </DrawerHeader>
           <DrawerBody padding="none">{mobileContent}</DrawerBody>
           <DrawerFooter>
-            <DrawerClose render={<Button variant="surface" size="lg" />}>Close menu</DrawerClose>
+            <DrawerClose render={<Button variant="surface" size="lg" />}>{closeLabel}</DrawerClose>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
@@ -290,17 +308,18 @@ export function SidebarTrigger({
   className,
   onClick,
   size = "sm",
+  variant = "ghost",
   label = "Toggle sidebar",
   ref,
   ...props
-}: ComponentProps<typeof Button> & { label?: string }) {
+}: SidebarTriggerProps) {
   const { toggleSidebar, isMobile, openMobile, open, keyboardShortcut, sidebarId } = useSidebar();
   const { triggerRef, activeTriggerRef, railRef } = useSidebarElements();
   const shortcutKey = keyboardShortcut?.toUpperCase();
 
   return useRender({
     defaultTagName: "button",
-    render: <Button variant="ghost" size={size} />,
+    render: <Button variant={variant} size={size} />,
     ref: [ref ?? null, triggerRef],
     props: {
       ...props,
@@ -370,7 +389,7 @@ function SidebarToggleRail({
       },
       title: props.title ?? "Toggle sidebar",
       className: cn(
-        "absolute inset-y-0 z-20 hidden -translate-x-1/2 rtl:translate-x-1/2 group-data-[side=left]:-end-4 group-data-[side=right]:start-0 sidebar:flex",
+        "absolute inset-y-0 z-(--z-sticky) hidden -translate-x-1/2 rtl:translate-x-1/2 group-data-[side=left]:-end-4 group-data-[side=right]:start-0 sidebar:flex",
         "in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize",
         "[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize",
         "group-data-[collapsible=offcanvas]:translate-x-0",
@@ -399,11 +418,7 @@ export function SidebarInset({ className, render, ref, ...props }: SidebarInsetP
   });
 }
 
-export function SidebarHeader({
-  className,
-  divider = false,
-  ...props
-}: ComponentProps<"div"> & { divider?: boolean; style?: CSSProperties & SidebarKnobStyle }) {
+export function SidebarHeader({ className, divider = false, ...props }: SidebarHeaderProps) {
   return (
     <div
       data-control-ui="sidebar"
@@ -416,7 +431,7 @@ export function SidebarHeader({
   );
 }
 
-export function SidebarFooter({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & SidebarKnobStyle }) {
+export function SidebarFooter({ className, ...props }: SidebarFooterProps) {
   return (
     <div data-control-ui="sidebar" data-control-family="sidebar" data-slot="footer" className={cn("flex flex-col", className)} {...props} />
   );
@@ -454,7 +469,7 @@ export function SidebarPanel({ layer = "sidebar", className, ...props }: Sidebar
   );
 }
 
-export function SidebarContent({ className, children, ...props }: ComponentProps<"div">) {
+export function SidebarContent({ className, children, ...props }: SidebarContentProps) {
   const iconOnly = useSidebarIconOnly();
   return (
     <ScrollArea

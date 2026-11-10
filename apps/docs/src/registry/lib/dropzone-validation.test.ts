@@ -153,10 +153,17 @@ describe("dropzone validation", () => {
     expect(formatDropzoneFileSize(Number.NaN)).toBe("0 B");
     expect(formatDropzoneFileSize(-10)).toBe("0 B");
     expect(formatDropzoneFileSize(0)).toBe("0 B");
+    expect(formatDropzoneFileSize(0.5)).toBe("0.5 B");
     expect(formatDropzoneFileSize(1023)).toBe("1023 B");
     expect(formatDropzoneFileSize(1024)).toBe("1 KB");
     expect(formatDropzoneFileSize(1536)).toBe("1.5 KB");
     expect(formatDropzoneFileSize(1024 ** 4)).toBe("1 TB");
+  });
+
+  test("rolls over to the next unit instead of printing 1024 of the smaller one", () => {
+    expect(formatDropzoneFileSize(1023.96)).toBe("1 KB");
+    expect(formatDropzoneFileSize(1024 ** 2 - 1)).toBe("1 MB");
+    expect(formatDropzoneFileSize(1024 ** 5 - 1)).toBe("1024 TB");
   });
 });
 

@@ -6,6 +6,7 @@ import { type ComponentProps, useContext } from "react";
 import type { ControlledMultiChoice, HoverIndicator } from "@/components/control-ui/control-props";
 import { TrackHighlight } from "@/components/control-ui/extensions/track-highlight";
 import { cn } from "@/components/control-ui/lib/cn";
+import { skinAdornment } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 
 import type { ButtonProps } from "@/components/control-ui/ui/button";
@@ -16,7 +17,7 @@ import {
   buttonTrackStructureClasses,
 } from "@/components/control-ui/ui/button";
 
-export type ToggleProps = Omit<ButtonProps, "render" | "nativeButton" | "value"> & {
+export type ToggleProps = Omit<ButtonProps, "render" | "nativeButton" | "value" | "focusableWhenDisabled"> & {
   pressed?: boolean;
   defaultPressed?: boolean;
   onPressedChange?: (pressed: boolean) => void;
@@ -38,6 +39,7 @@ export function Toggle({
   tone = "neutral",
   active,
   iconOnly = false,
+  shape = "default",
   layout = "inline",
   showCheck = false,
   className,
@@ -49,6 +51,8 @@ export function Toggle({
   children,
   ...props
 }: ToggleProps) {
+  const skin = useSkin();
+  const layer = skinAdornment(skin, "button", "layer", { variant, tone });
   const tracksHover = useContext(ButtonTrackContext);
   return (
     <TogglePrimitive
@@ -73,9 +77,11 @@ export function Toggle({
             data-tone={tone}
             data-size={size}
             data-icon-only={iconOnly ? "true" : undefined}
+            data-shape={shape}
             data-layout={layout}
             className={cn(buttonStructureClasses, renderProps.className, className)}
           >
+            {layer}
             <span data-control-ui="toggle" data-control-family="button" data-slot="content" className={buttonContentClasses}>
               {showCheck ? (
                 <span data-control-ui="toggle" data-slot="check" className="flex size-3.5 shrink-0 items-center justify-center">

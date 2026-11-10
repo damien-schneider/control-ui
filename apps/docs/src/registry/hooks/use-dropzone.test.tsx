@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import type { ClipboardEvent as ReactClipboardEvent } from "react";
+import type { ClipboardEvent as ReactClipboardEvent, DragEvent as ReactDragEvent } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 
 import { defaultGetFilesFromEvent, type UseDropzoneOptions, type UseDropzoneReturn, useDropzone } from "./use-dropzone";
@@ -71,6 +71,41 @@ describe("dropzone paste intake", () => {
 
   test("declines every paste while disabled", () => {
     expect(pasteInto({ disabled: true }, clipboardEvent({ types: ["Files"], files: [screenshot] }))).toBe(false);
+  });
+});
+
+function dragFilesOver(options: UseDropzoneOptions) {
+  const dataTransfer = { types: ["Files"], files: [], items: [], dropEffect: "copy" };
+  let prevented = false;
+  const event = {
+    dataTransfer,
+    defaultPrevented: false,
+    preventDefault: () => {
+      prevented = true;
+    },
+    stopPropagation: () => {},
+  };
+  renderDropzone(options)
+    .getRootProps()
+    .onDragOver?.(event as unknown as ReactDragEvent<HTMLDivElement>);
+  return { claimed: prevented, dropEffect: dataTransfer.dropEffect };
+}
+
+describe("dropzone drag guard", () => {
+  test("offers a copy drop while enabled", () => {
+    expect(dragFilesOver({})).toEqual({ claimed: true, dropEffect: "copy" });
+  });
+
+  test("refuses the drop while disabled so the browser does not open the file", () => {
+    expect(dragFilesOver({ disabled: true })).toEqual({ claimed: true, dropEffect: "none" });
+  });
+
+  test("refuses the drop once drag intake is switched off", () => {
+    expect(dragFilesOver({ drag: false })).toEqual({ claimed: true, dropEffect: "none" });
+  });
+
+  test("leaves the browser default alone when document drops are not guarded", () => {
+    expect(dragFilesOver({ disabled: true, preventDropOnDocument: false })).toEqual({ claimed: false, dropEffect: "copy" });
   });
 });
 

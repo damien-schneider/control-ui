@@ -1,7 +1,7 @@
 @layer components {
   :where([data-control-family="activity"][data-slot="root"]) {
     --cui-activity-row-foreground: var(--muted-foreground);
-    --cui-activity-trigger-hover-background: oklch(from var(--muted) l c h / 0.45);
+    --cui-activity-trigger-hover-background: var(--hover-fill);
     --cui-activity-trigger-radius: var(--radius-control);
     --cui-activity-code-background: oklch(from var(--muted) l c h / 0.5);
     --cui-activity-code-radius: var(--radius-control);
@@ -11,7 +11,7 @@
 
   :where([data-control-family="activity"][data-slot="row"]),
   :where([data-control-family="activity"][data-slot="trigger"]) {
-    min-block-size: calc(var(--spacing) * 8);
+    min-block-size: var(--control-h-sm);
     gap: calc(var(--spacing) * 2);
     padding-inline: calc(var(--spacing) * 1.5);
     padding-block: calc(var(--spacing) * 1);
@@ -23,7 +23,7 @@
   }
 
   @media (hover: hover) {
-    :where([data-control-family="activity"][data-slot="trigger"]:hover) {
+    :where([data-control-family="activity"][data-slot="trigger"]:not(:disabled, [data-disabled]):hover) {
       background: var(--cui-activity-trigger-hover-background);
       color: var(--foreground);
     }
@@ -33,10 +33,14 @@
     background: var(--cui-activity-trigger-hover-background);
   }
 
+  :where([data-control-family="activity"][data-slot="trigger"]:is(:disabled, [data-disabled])) {
+    opacity: var(--disabled-opacity);
+  }
+
   :where([data-control-family="activity"][data-slot="chevron"]) {
     inline-size: calc(var(--spacing) * 3.5);
     block-size: calc(var(--spacing) * 3.5);
-    color: oklch(from var(--muted-foreground) l c h / 0.75);
+    color: oklch(from var(--cui-activity-row-foreground) l c h / 0.75);
     transition: rotate var(--duration-base) var(--ease-standard);
   }
 
@@ -44,10 +48,19 @@
     rotate: 90deg;
   }
 
+  :where([data-control-family="activity"][data-slot="trigger"][data-state="open"] [data-slot="chevron"]:dir(rtl)) {
+    rotate: -90deg;
+  }
+
   :where([data-control-family="activity"][data-slot="icon"]) {
     inline-size: calc(var(--spacing) * 4);
     block-size: calc(var(--spacing) * 4);
-    color: var(--muted-foreground);
+    color: var(--cui-activity-row-foreground);
+  }
+
+  :where([data-control-family="activity"][data-slot="icon"] svg) {
+    inline-size: 100%;
+    block-size: 100%;
   }
 
   :where([data-control-family="activity"][data-slot="content-grid"]) {
@@ -83,7 +96,7 @@
   }
 
   :where([data-control-family="activity"][data-slot="status"]) {
-    color: var(--muted-foreground);
+    color: var(--cui-activity-row-foreground);
     font-size: var(--text-caption);
   }
 
@@ -96,10 +109,11 @@
   }
 
   :where([data-control-family="activity"][data-slot="detail-label"]) {
-    color: var(--muted-foreground);
+    color: var(--cui-activity-row-foreground);
     font-size: var(--text-micro);
     font-weight: var(--font-weight-medium);
     letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   :where([data-control-family="activity"][data-slot="detail-content"]) {
@@ -109,7 +123,7 @@
     font-family: var(--font-mono);
   }
 
-  :where([data-control-family="activity"][data-slot="detail-content"][data-tone="destructive"]) {
+  :where([data-control-family="activity"][data-slot="detail-content"][data-tone="danger"]) {
     color: var(--destructive-text);
   }
 

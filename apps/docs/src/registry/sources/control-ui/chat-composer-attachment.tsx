@@ -29,6 +29,8 @@ type ChatComposerAttachmentContextValue = {
   onRemove?: () => void;
   removeLabel?: string;
   errorLabel: string;
+  uploadingLabel: (name: string) => string;
+  uploadingDescription: (progress: number | undefined) => string;
 };
 
 const ChatComposerAttachmentContext = createContext<ChatComposerAttachmentContextValue | null>(null);
@@ -110,11 +112,18 @@ function fallbackLabel(kind: ChatComposerAttachmentKind, extension: string) {
 }
 
 function defaultDescription(context: ChatComposerAttachmentContextValue) {
-  const { progress } = context;
   if (context.description) return context.description;
-  if (context.status === "uploading") return progress === undefined ? "Uploading…" : `Uploading ${Math.round(progress)}%`;
+  if (context.status === "uploading") return context.uploadingDescription(context.progress);
   if (context.status === "error") return context.errorLabel;
   return fallbackLabel(context.kind, context.extension);
+}
+
+function defaultUploadingLabel(name: string) {
+  return `Uploading ${name}`;
+}
+
+function defaultUploadingDescription(progress: number | undefined) {
+  return progress === undefined ? "Uploading…" : `Uploading ${Math.round(progress)}%`;
 }
 
 function defaultUploadedLabel(name: string) {
@@ -202,6 +211,10 @@ export type ChatComposerAttachmentProps = Omit<ComponentProps<"li">, "style"> &
     onRemove?: () => void;
     removeLabel?: string;
     errorLabel?: string;
+    /** Accessible name of the upload progress bar. */
+    uploadingLabel?: (name: string) => string;
+    /** Description line shown while uploading; `progress` is 0–100, or undefined when indeterminate. */
+    uploadingDescription?: (progress: number | undefined) => string;
     uploadedLabel?: (name: string) => string;
     uploadFailedLabel?: (name: string) => string;
     style?: CSSProperties & ChatComposerAttachmentKnobStyle;
@@ -220,6 +233,8 @@ export function ChatComposerAttachment({
   onRemove,
   removeLabel,
   errorLabel = "Couldn't upload. Remove and try again.",
+  uploadingLabel = defaultUploadingLabel,
+  uploadingDescription = defaultUploadingDescription,
   uploadedLabel = defaultUploadedLabel,
   uploadFailedLabel = defaultUploadFailedLabel,
   className,
@@ -252,6 +267,8 @@ export function ChatComposerAttachment({
         onRemove,
         removeLabel,
         errorLabel,
+        uploadingLabel,
+        uploadingDescription,
       }}
     >
       <li
@@ -412,11 +429,11 @@ export function ChatComposerAttachmentRemove({
       aria-label={ariaLabel ?? removeLabel ?? `Remove ${name}`}
       size="xs"
       variant="solid"
-      className={cn("absolute end-1 top-1 z-10", className)}
+      className={cn("absolute end-1 top-1 z-2", className)}
       onClick={handleClick}
       {...props}
     >
-      {children ?? <XIcon aria-hidden="true" className="size-3" />}
+      {children ?? <XIcon aria-hidden="true" />}
     </Button>
   );
 }
@@ -426,14 +443,14 @@ export type ChatComposerAttachmentProgressProps = Omit<ComponentProps<"div">, "s
 };
 
 export function ChatComposerAttachmentProgress({ className, children, ...props }: ChatComposerAttachmentProgressProps) {
-  const { name, status, progress } = useChatComposerAttachmentContext();
+  const { name, status, progress, uploadingLabel } = useChatComposerAttachmentContext();
 
   if (status !== "uploading") return null;
 
   return (
     <div
       role="progressbar"
-      aria-label={`Uploading ${name}`}
+      aria-label={uploadingLabel(name)}
       aria-valuemin={0}
       aria-valuemax={100}
       aria-valuenow={progress}

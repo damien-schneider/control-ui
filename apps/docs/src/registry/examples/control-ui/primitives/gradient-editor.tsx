@@ -14,6 +14,7 @@ import {
   GradientEditorTypeSelect,
   type GradientValue,
 } from "@/components/control-ui/ui/color-picker";
+import { Toggle, ToggleGroup } from "@/components/control-ui/ui/toggle";
 import { Text } from "@/components/control-ui/ui/typography";
 
 const BLUE_TO_YELLOW: GradientValue = {
@@ -28,10 +29,28 @@ const BLUE_TO_YELLOW: GradientValue = {
 
 export function PrimitiveGradientEditorExample() {
   const [gradient, setGradient] = useState(BLUE_TO_YELLOW);
+  const [mode, setMode] = useState<string[]>(["editable"]);
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-4">
-      <GradientEditor value={gradient} onValueChange={setGradient}>
+      <ToggleGroup
+        value={mode}
+        onValueChange={(nextMode) => {
+          if (nextMode.length > 0) setMode(nextMode);
+        }}
+        aria-label="Editor state"
+        className="self-start"
+      >
+        <Toggle value="editable">Editable</Toggle>
+        <Toggle value="read-only">Read-only</Toggle>
+        <Toggle value="disabled">Disabled</Toggle>
+      </ToggleGroup>
+      <GradientEditor
+        value={gradient}
+        onValueChange={setGradient}
+        readOnly={mode.includes("read-only")}
+        disabled={mode.includes("disabled")}
+      >
         <GradientEditorPreview />
         <GradientEditorTrack />
         <div className="flex items-center gap-2">

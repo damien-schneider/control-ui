@@ -1,19 +1,41 @@
 "use client";
 
-import type { ComponentProps, CSSProperties, KeyboardEvent as ReactKeyboardEvent } from "react";
+import type { ComponentProps, CSSProperties, KeyboardEvent as ReactKeyboardEvent, Ref } from "react";
 import { useColorArea } from "@/components/control-ui/hooks/use-color-area";
 import type { ColorPickerKnobStyle } from "@/components/control-ui/knob-contracts/color-picker-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { pointToHueSat, pointToSaturationValue } from "@/components/control-ui/lib/color";
 import { useColorPicker } from "@/components/control-ui/ui/color-picker-context";
 
-export type ColorPickerAreaProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ColorPickerKnobStyle };
+export type ColorPickerAreaProps = Omit<ComponentProps<"div">, "style"> & {
+  style?: CSSProperties & ColorPickerKnobStyle;
+  saturationLabel?: string;
+  brightnessLabel?: string;
+};
 
 export type ColorPickerAreaThumbProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ColorPickerKnobStyle };
 
-export type ColorPickerWheelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ColorPickerKnobStyle };
+export type ColorPickerWheelProps = Omit<ComponentProps<"div">, "style"> & {
+  style?: CSSProperties & ColorPickerKnobStyle;
+  hueLabel?: string;
+  saturationLabel?: string;
+};
 
-export function ColorPickerArea({ className, style, children, ...props }: ColorPickerAreaProps) {
+function assignRef(ref: Ref<HTMLDivElement> | undefined, node: HTMLDivElement | null) {
+  if (typeof ref === "function") return ref(node);
+  if (ref) ref.current = node;
+}
+
+export function ColorPickerArea({
+  className,
+  style,
+  children,
+  ref,
+  saturationLabel = "Saturation",
+  brightnessLabel = "Brightness",
+  onPointerDown: onPointerDownProp,
+  ...props
+}: ColorPickerAreaProps) {
   const { hsva, setHsva, disabled } = useColorPicker();
   const { areaRef, onPointerDown, dragging } = useColorArea((offset, rect) => {
     if (disabled) return;
@@ -37,7 +59,10 @@ export function ColorPickerArea({ className, style, children, ...props }: ColorP
     // biome-ignore lint/a11y/useSemanticElements: a 2D color surface is a labelled slider group, not a fieldset form group.
     <div
       data-focus-ring="within"
-      ref={areaRef}
+      ref={(node) => {
+        areaRef.current = node;
+        return assignRef(ref, node);
+      }}
       data-control-ui="color-picker"
       data-control-family="color-picker"
       data-slot="area"
@@ -45,12 +70,11 @@ export function ColorPickerArea({ className, style, children, ...props }: ColorP
       data-dragging={dragging ? "true" : undefined}
       role="group"
       aria-label="Saturation and brightness"
-      onPointerDown={disabled ? undefined : onPointerDown}
-      className={cn(
-        "group relative w-full touch-none select-none overflow-hidden",
-        disabled ? "cursor-not-allowed" : "cursor-crosshair",
-        className,
-      )}
+      onPointerDown={(event) => {
+        onPointerDownProp?.(event);
+        if (!disabled && !event.defaultPrevented) onPointerDown(event);
+      }}
+      className={cn("group relative w-full touch-none select-none overflow-hidden", className)}
       style={{ ...style, backgroundColor: `hsl(${hsva.h} 100% 50%)` }}
       {...props}
     >
@@ -70,7 +94,9 @@ export function ColorPickerArea({ className, style, children, ...props }: ColorP
       />
       <input
         type="range"
-        aria-label="Saturation"
+        aria-label={saturationLabel}
+        aria-valuetext={`${Math.round(hsva.s)}%`}
+        dir="ltr"
         className="sr-only"
         min={0}
         max={100}
@@ -82,7 +108,9 @@ export function ColorPickerArea({ className, style, children, ...props }: ColorP
       />
       <input
         type="range"
-        aria-label="Brightness"
+        aria-label={brightnessLabel}
+        aria-valuetext={`${Math.round(hsva.v)}%`}
+        dir="ltr"
         className="sr-only"
         min={0}
         max={100}
@@ -112,7 +140,15 @@ export function ColorPickerAreaThumb({ className, style, ...props }: ColorPicker
   );
 }
 
-export function ColorPickerWheel({ className, style, ...props }: ColorPickerWheelProps) {
+export function ColorPickerWheel({
+  className,
+  style,
+  ref,
+  hueLabel = "Wheel hue",
+  saturationLabel = "Wheel saturation",
+  onPointerDown: onPointerDownProp,
+  ...props
+}: ColorPickerWheelProps) {
   const { hsva, setHsva, disabled } = useColorPicker();
   const { areaRef, onPointerDown, dragging } = useColorArea((offset, rect) => {
     if (disabled) return;
@@ -131,7 +167,10 @@ export function ColorPickerWheel({ className, style, ...props }: ColorPickerWhee
     // biome-ignore lint/a11y/useSemanticElements: a 2D color surface is a labelled slider group, not a fieldset form group.
     <div
       data-focus-ring="within"
-      ref={areaRef}
+      ref={(node) => {
+        areaRef.current = node;
+        return assignRef(ref, node);
+      }}
       data-control-ui="color-picker"
       data-control-family="color-picker"
       data-slot="wheel"
@@ -139,12 +178,11 @@ export function ColorPickerWheel({ className, style, ...props }: ColorPickerWhee
       data-dragging={dragging ? "true" : undefined}
       role="group"
       aria-label="Color wheel"
-      onPointerDown={disabled ? undefined : onPointerDown}
-      className={cn(
-        "group relative aspect-square w-full touch-none select-none",
-        disabled ? "cursor-not-allowed" : "cursor-crosshair",
-        className,
-      )}
+      onPointerDown={(event) => {
+        onPointerDownProp?.(event);
+        if (!disabled && !event.defaultPrevented) onPointerDown(event);
+      }}
+      className={cn("group relative aspect-square w-full touch-none select-none", className)}
       style={wheelStyle}
       {...props}
     >
@@ -158,7 +196,8 @@ export function ColorPickerWheel({ className, style, ...props }: ColorPickerWhee
       />
       <input
         type="range"
-        aria-label="Wheel hue"
+        aria-label={hueLabel}
+        aria-valuetext={`${Math.round(hsva.h)}°`}
         className="sr-only"
         min={0}
         max={360}
@@ -169,7 +208,8 @@ export function ColorPickerWheel({ className, style, ...props }: ColorPickerWhee
       />
       <input
         type="range"
-        aria-label="Wheel saturation"
+        aria-label={saturationLabel}
+        aria-valuetext={`${Math.round(hsva.s)}%`}
         className="sr-only"
         min={0}
         max={100}

@@ -1,7 +1,7 @@
 @layer components {
   :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="root"]) {
     --cui-popup-title-font-size: var(--text-body);
-    --cui-popup-title-line-height: 1.35;
+    --cui-popup-title-line-height: var(--leading-snug);
     --cui-popup-status-success-foreground: var(--success-text);
     --cui-popup-status-warning-foreground: var(--warning-text);
     --cui-popup-status-info-foreground: var(--info-text);
@@ -64,6 +64,7 @@
 
   :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="content"] > div) {
     gap: calc(var(--spacing) * 0.5);
+    overflow-wrap: anywhere;
   }
 
   :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="content"][data-behind]) {
@@ -80,6 +81,11 @@
     block-size: 1lh;
     font-size: var(--cui-popup-title-font-size);
     line-height: var(--cui-popup-title-line-height);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="indicator"] > svg) {
+    inline-size: calc(var(--spacing) * 4);
+    block-size: calc(var(--spacing) * 4);
   }
 
   :where([data-control-family="popup"][data-popup-kind="toast"][data-type="success"] [data-slot="indicator"]) {

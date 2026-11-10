@@ -21,7 +21,7 @@
     position: fixed;
     inset-block-end: 0;
     inset-inline: 0;
-    z-index: 30;
+    z-index: var(--z-nav);
     min-block-size: var(--_sidebar-nav-space);
     gap: calc(var(--spacing) * 1);
     padding: calc(var(--spacing) * 1) max(calc(var(--spacing) * 2), env(safe-area-inset-right, 0px))
@@ -74,8 +74,12 @@
   }
 
   :where([data-control-family="sidebar"][data-slot="mobile-nav"] [data-mobile-nav-item]:is(:disabled, [aria-disabled="true"])) {
+    opacity: var(--disabled-opacity);
+    cursor: not-allowed;
+  }
+
+  :where([data-control-family="sidebar"][data-slot="mobile-nav"] [data-mobile-nav-item][aria-disabled="true"]) {
     pointer-events: none;
-    opacity: 0.5;
   }
 
   :where([data-control-family="sidebar"][data-slot="mobile-nav-container"][data-variant="floating"]) {
@@ -89,8 +93,15 @@
     min-block-size: 0;
     padding: calc(var(--spacing) * 1);
     border: var(--cui-sidebar-nav-border-width) solid var(--cui-sidebar-nav-border-color);
-    border-radius: var(--cui-sidebar-nav-item-radius);
+    border-radius: calc(
+      var(--cui-sidebar-nav-item-radius) +
+      clamp(0px, calc(var(--cui-sidebar-nav-item-radius) * 1000), calc(var(--spacing) * 1 + var(--cui-sidebar-nav-border-width)))
+    );
     box-shadow: var(--cui-sidebar-nav-shadow);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="mobile-nav"][data-variant="floating"]:dir(rtl)) {
+    inset-inline-end: max(var(--cui-sidebar-nav-gap), env(safe-area-inset-left, 0px));
   }
 
   @variant max-sidebar {
@@ -104,7 +115,10 @@
   }
 
   @media (hover: hover) {
-    :where([data-control-family="sidebar"][data-slot="mobile-nav"] [data-mobile-nav-item]:hover) {
+    :where(
+        [data-control-family="sidebar"][data-slot="mobile-nav"]
+          [data-mobile-nav-item]:hover:not(:disabled, [data-disabled], [aria-disabled="true"])
+      ) {
       background-color: var(--cui-sidebar-nav-item-active-background);
       color: var(--cui-sidebar-nav-item-active-foreground);
     }

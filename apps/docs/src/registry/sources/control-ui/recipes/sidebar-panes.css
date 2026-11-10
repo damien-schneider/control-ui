@@ -11,7 +11,7 @@
 
   :where([data-control-family="sidebar"][data-slot="root"]:is([data-variant="page"], [data-variant="inset"])[data-state]),
   :where([data-control-family="sidebar"][data-slot="root"][data-state="collapsed"]) {
-    --cui-sidebar-icon-rail-border-width: 0px;
+    --_sidebar-icon-rail-border-width: 0px;
   }
 
   :where(
@@ -19,7 +19,7 @@
       [data-control-family="sidebar"][data-slot="panel"][data-layer="content"]
     )
   ) {
-    --cui-sidebar-container-border-width: 0px;
+    --_sidebar-container-border-width: 0px;
   }
 
   :where([data-control-family="sidebar"]:is([data-slot="root"], [data-slot="inner"])) {
@@ -44,11 +44,11 @@
   }
 
   :where([data-control-family="sidebar"][data-slot="root"][data-side="left"] [data-control-family="sidebar"][data-slot="icon-rail"]) {
-    border-inline-end: var(--cui-sidebar-icon-rail-border-width) solid var(--cui-sidebar-icon-rail-border-color);
+    border-inline-end: var(--_sidebar-icon-rail-border-width) solid var(--cui-sidebar-icon-rail-border-color);
   }
 
   :where([data-control-family="sidebar"][data-slot="root"][data-side="right"] [data-control-family="sidebar"][data-slot="icon-rail"]) {
-    border-inline-start: var(--cui-sidebar-icon-rail-border-width) solid var(--cui-sidebar-icon-rail-border-color);
+    border-inline-start: var(--_sidebar-icon-rail-border-width) solid var(--cui-sidebar-icon-rail-border-color);
   }
 
   :where([data-control-family="sidebar"][data-slot="panel"]) {
@@ -61,11 +61,11 @@
 
   :where([data-control-family="sidebar"][data-slot="icon-rail"][data-layer="raised"]),
   :where([data-control-family="sidebar"][data-slot="panel"][data-layer="raised"]) {
-    background-color: var(--cui-sidebar-raised-background);
+    background-color: var(--_sidebar-raised-background);
   }
 
   :where([data-control-family="sidebar"][data-slot="panel"][data-layer="content"]) {
-    background-color: var(--cui-sidebar-inset-background);
+    background-color: var(--_sidebar-inset-background);
     background-image: var(--cui-sidebar-inset-background-image);
   }
 
@@ -187,6 +187,46 @@
 }
 
 @property --cui-sidebar-raised-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-sidebar-inner-floating-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-sidebar-inner-floating-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-sidebar-inner-floating-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-sidebar-skip-link-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-sidebar-skip-link-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-sidebar-skip-link-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-sidebar-skip-link-shadow {
   syntax: "*";
   inherits: true;
 }

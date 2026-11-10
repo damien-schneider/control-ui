@@ -10,7 +10,7 @@
       "name": "--cui-empty-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-lg)"
+      "defaultValue": "var(--radius-panel)"
     },
     {
       "name": "--cui-empty-background",
@@ -40,7 +40,7 @@
       "name": "--cui-empty-media-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-lg)"
+      "defaultValue": "var(--radius-control)"
     },
     {
       "name": "--cui-empty-media-background",

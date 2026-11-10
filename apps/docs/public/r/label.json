@@ -19,7 +19,7 @@
       "path": "src/registry/sources/control-ui/recipes/label.css",
       "target": "@components/control-ui/styles/recipes/label.css",
       "type": "registry:file",
-      "content": "@layer components {\n  :where([data-control-family=\"label\"][data-slot=\"root\"]) {\n    --cui-label-root-foreground: var(--foreground);\n    color: var(--cui-label-root-foreground);\n    font-size: var(--text-label);\n    font-weight: var(--font-weight-medium);\n  }\n\n  :where([data-control-family=\"label\"][data-slot=\"root\"]:has(:disabled, [data-disabled])) {\n    cursor: not-allowed;\n    opacity: var(--disabled-opacity);\n  }\n}\n\n@property --cui-label-root-foreground {\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: transparent;\n}\n"
+      "content": "@layer components {\n  :where([data-control-family=\"label\"][data-slot=\"root\"]) {\n    --cui-label-root-foreground: var(--foreground);\n    color: var(--cui-label-root-foreground);\n    font-size: var(--text-label);\n    font-weight: var(--font-weight-medium);\n  }\n\n  :where([data-control-family=\"label\"][data-slot=\"root\"]:is([data-disabled], :has(:disabled, [data-disabled]))) {\n    cursor: not-allowed;\n    opacity: var(--disabled-opacity);\n  }\n}\n\n@property --cui-label-root-foreground {\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: transparent;\n}\n"
     },
     {
       "path": "src/registry/sources/control-ui/ui/label.tsx",

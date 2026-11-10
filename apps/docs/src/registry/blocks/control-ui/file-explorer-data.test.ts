@@ -32,6 +32,24 @@ describe("file explorer data", () => {
     expect(result.validPath).toEqual(["src", "components", "button"]);
   });
 
+  test("keeps column ids unique when a nested folder reuses an ancestor id", () => {
+    const nested: FileExplorerLocation = {
+      id: "workspace",
+      label: "Workspace",
+      entries: [
+        {
+          id: "docs",
+          name: "docs",
+          kind: "folder",
+          children: [{ id: "docs", name: "docs", kind: "folder", children: [{ id: "intro", name: "intro.md", kind: "file" }] }],
+        },
+      ],
+    };
+    const ids = resolveFileExplorer(nested, ["docs", "docs", "intro"]).columns.map((column) => column.id);
+
+    expect(ids).toEqual(["location:workspace", "folder:docs", "folder:docs/docs"]);
+  });
+
   test("returns nested search results with their selectable path", () => {
     const results = searchFileExplorer(location, "button");
 

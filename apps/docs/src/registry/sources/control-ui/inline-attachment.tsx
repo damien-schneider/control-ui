@@ -1,14 +1,19 @@
 "use client";
 
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
-import { createContext, useContext, useId } from "react";
+import { createContext, useContext, useEffect, useId, useState } from "react";
 
 import type { InlineAttachmentKnobStyle } from "@/components/control-ui/knob-contracts/inline-attachment-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
 export type InlineAttachmentState = "ready" | "pending" | "error";
 
-type InlineAttachmentContextValue = { name: string; state: InlineAttachmentState; descriptionId: string };
+type InlineAttachmentContextValue = {
+  name: string;
+  state: InlineAttachmentState;
+  descriptionId: string;
+  registerDescription: () => () => void;
+};
 
 type InlineAttachmentStyle = CSSProperties & InlineAttachmentKnobStyle;
 type InlineAttachmentStyleProps<Props, Style> = Omit<Props, "style"> & { style?: CSSProperties & Style };
@@ -54,16 +59,23 @@ export function InlineAttachment({
 }: InlineAttachmentProps) {
   const attachmentStyle = { aspectRatio: aspect, ...style } satisfies InlineAttachmentStyle;
   const descriptionId = useId();
+  // Unknown until effects run, so server markup keeps the reference and a described attachment is announced before hydration.
+  const [descriptionCount, setDescriptionCount] = useState<number>();
+  const [registerDescription] = useState(() => () => {
+    setDescriptionCount((count) => (count ?? 0) + 1);
+    return () => setDescriptionCount((count) => (count ?? 0) - 1);
+  });
+  useEffect(() => setDescriptionCount((count) => count ?? 0), []);
   const pending = state === "pending";
   const labelFor: Record<InlineAttachmentState, AttachmentLabel> = { ready: openLabel, pending: pendingLabel, error: errorLabel };
   const defaultLabel = labelFor[state](name);
 
   return (
-    <InlineAttachmentContext.Provider value={{ name, state, descriptionId }}>
+    <InlineAttachmentContext.Provider value={{ name, state, descriptionId, registerDescription }}>
       <button
         type="button"
         aria-label={ariaLabel ?? defaultLabel}
-        aria-describedby={descriptionId}
+        aria-describedby={descriptionCount === 0 ? undefined : descriptionId}
         aria-busy={pending || undefined}
         aria-disabled={pending || undefined}
         disabled={disabled}
@@ -79,10 +91,7 @@ export function InlineAttachment({
         data-slot="root"
         data-surface="panel"
         data-state={state}
-        className={cn(
-          "group relative w-full max-w-72 cursor-pointer overflow-hidden disabled:cursor-default aria-disabled:cursor-default",
-          className,
-        )}
+        className={cn("group relative w-full max-w-72 overflow-hidden", className)}
         style={attachmentStyle}
         {...props}
       >
@@ -92,41 +101,54 @@ export function InlineAttachment({
   );
 }
 
-export type InlineAttachmentMediaProps = ComponentProps<"div"> & {
+export type InlineAttachmentMediaProps = ComponentProps<"span"> & {
   src?: string;
   alt?: string;
 } & { style?: CSSProperties & InlineAttachmentKnobStyle };
 
 function GeneratingPlaceholder() {
   return (
-    <div
+    <span
       aria-hidden="true"
       data-control-ui="inline-attachment"
       data-control-family="inline-attachment"
       data-slot="placeholder"
-      className="size-full halftone"
+      className="block size-full halftone"
     />
   );
 }
 
 function DocumentPlaceholder() {
   return (
-    <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document" className="size-full">
-      <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-sheet" className="h-full">
-        <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-heading" />
-        <div className="grid">
-          <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-line" data-width="long" />
-          <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-line" data-width="medium" />
-          <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-line" data-width="longest" />
-          <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-line" data-width="short" />
-        </div>
-        <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-stamp" />
-      </div>
-    </div>
+    <span data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document" className="block size-full">
+      <span data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-sheet" className="block h-full">
+        <span data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-heading" className="block" />
+        <span className="grid">
+          <span data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-line" data-width="long" />
+          <span data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-line" data-width="medium" />
+          <span
+            data-control-ui="inline-attachment"
+            data-control-family="inline-attachment"
+            data-slot="document-line"
+            data-width="longest"
+          />
+          <span data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-line" data-width="short" />
+        </span>
+        <span data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-stamp" className="block" />
+      </span>
+    </span>
   );
 }
 
-function mediaContent({ state, src, alt, children }: { state: InlineAttachmentState; src?: string; alt: string; children?: ReactNode }) {
+type MediaContentOptions = {
+  state: InlineAttachmentState;
+  src?: string;
+  alt: string;
+  children?: ReactNode;
+  onError: () => void;
+};
+
+function mediaContent({ state, src, alt, children, onError }: MediaContentOptions) {
   if (state === "pending") return <GeneratingPlaceholder />;
   if (src) {
     return (
@@ -135,6 +157,7 @@ function mediaContent({ state, src, alt, children }: { state: InlineAttachmentSt
         alt={alt}
         loading="lazy"
         decoding="async"
+        onError={onError}
         data-control-ui="inline-attachment"
         data-control-family="inline-attachment"
         data-slot="media-image"
@@ -147,25 +170,33 @@ function mediaContent({ state, src, alt, children }: { state: InlineAttachmentSt
 
 export function InlineAttachmentMedia({ src, alt, className, children, ...props }: InlineAttachmentMediaProps) {
   const { name, state } = useInlineAttachmentContext();
+  // A broken image would leave an empty box with the browser's broken-image glyph; a new src gets a fresh attempt.
+  const [failedSrc, setFailedSrc] = useState<string>();
 
   return (
-    <div
+    <span
       data-control-ui="inline-attachment"
       data-control-family="inline-attachment"
       data-slot="image"
-      className={cn("size-full", className)}
+      className={cn("block size-full", className)}
       {...props}
     >
-      {mediaContent({ state, src, alt: alt ?? name, children })}
-    </div>
+      {mediaContent({
+        state,
+        src: src === failedSrc ? undefined : src,
+        alt: alt ?? name,
+        children,
+        onError: () => setFailedSrc(src),
+      })}
+    </span>
   );
 }
 
-export type InlineAttachmentContentProps = InlineAttachmentStyleProps<ComponentProps<"div">, InlineAttachmentKnobStyle>;
+export type InlineAttachmentContentProps = InlineAttachmentStyleProps<ComponentProps<"span">, InlineAttachmentKnobStyle>;
 
 export function InlineAttachmentContent({ className, ...props }: InlineAttachmentContentProps) {
   return (
-    <div
+    <span
       data-control-ui="inline-attachment"
       data-control-family="inline-attachment"
       data-slot="content"
@@ -175,50 +206,52 @@ export function InlineAttachmentContent({ className, ...props }: InlineAttachmen
   );
 }
 
-export type InlineAttachmentTitleProps = ComponentProps<"div"> & { style?: CSSProperties & InlineAttachmentKnobStyle };
+export type InlineAttachmentTitleProps = ComponentProps<"span"> & { style?: CSSProperties & InlineAttachmentKnobStyle };
 
 export function InlineAttachmentTitle({ children, className, ...props }: InlineAttachmentTitleProps) {
   const { name } = useInlineAttachmentContext();
   const label = children ?? name;
 
   return (
-    <div
+    <span
       data-control-ui="inline-attachment"
       data-control-family="inline-attachment"
       data-slot="title"
       title={typeof label === "string" ? label : undefined}
-      className={cn("truncate", className)}
+      className={cn("block truncate", className)}
       {...props}
     >
       {label}
-    </div>
+    </span>
   );
 }
 
-export type InlineAttachmentDescriptionProps = InlineAttachmentStyleProps<ComponentProps<"div">, InlineAttachmentKnobStyle>;
+export type InlineAttachmentDescriptionProps = InlineAttachmentStyleProps<ComponentProps<"span">, InlineAttachmentKnobStyle>;
 
 export function InlineAttachmentDescription({ className, children, ...props }: InlineAttachmentDescriptionProps) {
-  const { descriptionId } = useInlineAttachmentContext();
+  const { descriptionId, registerDescription } = useInlineAttachmentContext();
+  useEffect(() => registerDescription(), [registerDescription]);
+
   return (
-    <div
+    <span
       id={descriptionId}
       data-control-ui="inline-attachment"
       data-control-family="inline-attachment"
       data-slot="description"
       title={typeof children === "string" ? children : undefined}
-      className={cn("truncate", className)}
+      className={cn("block truncate", className)}
       {...props}
     >
       {children}
-    </div>
+    </span>
   );
 }
 
-export type InlineAttachmentActionsProps = ComponentProps<"div"> & { style?: CSSProperties & InlineAttachmentKnobStyle };
+export type InlineAttachmentActionsProps = ComponentProps<"span"> & { style?: CSSProperties & InlineAttachmentKnobStyle };
 
 export function InlineAttachmentActions({ className, ...props }: InlineAttachmentActionsProps) {
   return (
-    <div
+    <span
       data-control-ui="inline-attachment"
       data-control-family="inline-attachment"
       data-slot="actions"

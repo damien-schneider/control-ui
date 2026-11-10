@@ -1,5 +1,6 @@
 "use client";
 
+import type { Editor } from "@tiptap/core";
 import { closeHistory } from "@tiptap/pm/history";
 import { NodeSelection } from "@tiptap/pm/state";
 import { GripVerticalIcon } from "lucide-react";
@@ -11,8 +12,20 @@ import { createDragPreview } from "./drag-preview";
 
 type BlockHandle = { position: number; top: number };
 
+/** The gutter sits outside every block, so the pointer's x is clamped into the text column before the hit test. */
+function blockPositionAt(view: Editor["view"], event: MouseEvent): number | null {
+  const rect = view.dom.getBoundingClientRect();
+  const style = getComputedStyle(view.dom);
+  const gutter = Number.parseFloat(style.paddingInlineStart);
+  const left = style.direction === "rtl" ? Math.min(event.clientX, rect.right - gutter) : Math.max(event.clientX, rect.left + gutter);
+  const hit = view.posAtCoords({ left, top: event.clientY });
+  if (!hit) return null;
+  const resolved = view.state.doc.resolve(hit.pos);
+  return resolved.depth > 0 ? resolved.before(1) : hit.pos;
+}
+
 export function MarkdownEditorDragHandle({ container }: { container: RefObject<HTMLDivElement | null> }) {
-  const { editor, disabled, source } = useMarkdownEditor();
+  const { editor, editable, labels } = useMarkdownEditor();
   const [block, setBlock] = useState<BlockHandle | null>(null);
   const [announcement, setAnnouncement] = useState("");
   const button = useRef<HTMLButtonElement>(null);
@@ -22,7 +35,7 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
 
   useEffect(() => {
     const surface = container.current;
-    if (!editor || editor.isDestroyed || !surface || disabled || source) return;
+    if (!editor || editor.isDestroyed || !surface || !editable) return;
     const view = editor.view;
     let frame = 0;
     let latestEvent: MouseEvent | null = null;
@@ -35,12 +48,8 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
     }
     function updateHandle(event: MouseEvent) {
       if (!editor || dragging.current || button.current?.contains(event.target instanceof Node ? event.target : null)) return;
-      const rect = editor.view.dom.getBoundingClientRect();
-      const padding = Number.parseFloat(getComputedStyle(editor.view.dom).paddingInlineStart);
-      const hit = editor.view.posAtCoords({ left: Math.max(event.clientX, rect.left + padding), top: event.clientY });
-      if (!hit) return;
-      const resolved = editor.state.doc.resolve(hit.pos);
-      show(resolved.depth > 0 ? resolved.before(1) : hit.pos);
+      const blockPosition = blockPositionAt(editor.view, event);
+      if (blockPosition !== null) show(blockPosition);
     }
     function track(event: MouseEvent) {
       latestEvent = event;
@@ -75,9 +84,9 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
       preparedDrag.current = null;
       dragging.current = false;
     };
-  }, [editor, container, disabled, source]);
+  }, [editor, container, editable]);
 
-  if (!editor || disabled || source) return null;
+  if (!editor || !editable) return null;
   const selected = editor.state.selection.$from;
   const position = block?.position ?? (selected.depth > 0 ? selected.before(1) : selected.pos);
 
@@ -108,7 +117,7 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
     tr.delete(position, position + node.nodeSize).insert(target, node);
     tr.setSelection(NodeSelection.create(tr.doc, target));
     editor.view.dispatch(closeHistory(tr).scrollIntoView());
-    setAnnouncement(`Block moved ${direction === -1 ? "up" : "down"}.`);
+    setAnnouncement(labels.blockMoved(direction === -1 ? "up" : "down"));
   }
 
   return (
@@ -121,17 +130,17 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
         iconOnly
         data-markdown-drag-handle=""
         data-visible={block ? "" : undefined}
-        aria-label="Drag to reorder block"
-        aria-description="Drag this block, or use Alt+ArrowUp and Alt+ArrowDown to move it."
-        title="Drag to reorder · Alt+↑/↓ to move"
+        aria-label={labels.dragHandle}
+        aria-description={labels.dragHandleDescription}
+        title={labels.dragHandleHint}
         draggable
         style={{
-          top: block?.top,
+          insetBlockStart: block?.top,
           "--cui-button-background": "transparent",
           "--cui-button-hover-background": "transparent",
           "--cui-button-press-background": "transparent",
-          "--cui-button-shadow": "none",
-          "--cui-button-hover-shadow": "none",
+          "--cui-button-shadow": "0 0 transparent",
+          "--cui-button-hover-shadow": "0 0 transparent",
         }}
         onClick={() => editor.commands.setNodeSelection(position)}
         onPointerDown={() => {

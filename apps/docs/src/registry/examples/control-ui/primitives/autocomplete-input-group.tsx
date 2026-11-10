@@ -21,7 +21,7 @@ export function PrimitiveAutocompleteInputGroupExample() {
       <Autocomplete items={PAGES}>
         <AutocompleteInputGroup>
           <InputGroupAddon>
-            <SearchIcon className="size-3.5" aria-hidden="true" />
+            <SearchIcon aria-hidden="true" />
           </InputGroupAddon>
           <AutocompleteInput placeholder="Search components…" aria-label="Search components" />
         </AutocompleteInputGroup>

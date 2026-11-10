@@ -9,6 +9,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/control-ui/ui/breadcrumb";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
 
 export function PrimitiveBreadcrumbExample() {
   return (
@@ -35,7 +36,16 @@ export function PrimitiveBreadcrumbExample() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbEllipsis />
+            <DropdownMenu>
+              <DropdownMenuTrigger render={<BreadcrumbLink render={<button type="button" />} />}>
+                <BreadcrumbEllipsis />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start">
+                <DropdownMenuItem>src</DropdownMenuItem>
+                <DropdownMenuItem>components</DropdownMenuItem>
+                <DropdownMenuItem>ui</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>

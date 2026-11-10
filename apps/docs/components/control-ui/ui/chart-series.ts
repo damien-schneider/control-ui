@@ -35,6 +35,7 @@ export type ChartSeriesRow<TDatum = unknown> = {
   x: ChartXValue;
   value: number | null;
   series: string;
+  seriesKey: string;
   color: ChartColor;
   fill: ChartFill;
   datum: TDatum;
@@ -72,12 +73,19 @@ export function chartSeriesRows<TDatum>(
         x: xValue,
         value: typeof value === "number" && Number.isFinite(value) ? value : null,
         series: entry.label,
+        seriesKey: entry.key,
         color: typeof entry.color === "function" ? entry.color(datum) : entry.color,
         fill: entry.fill,
         datum,
       };
     }),
   );
+}
+
+export function chartOccurrenceKey(seen: Map<string, number>, label: string): string {
+  const occurrence = (seen.get(label) ?? 0) + 1;
+  seen.set(label, occurrence);
+  return occurrence === 1 ? label : `${label}#${occurrence}`;
 }
 
 export type ChartFormatters = {

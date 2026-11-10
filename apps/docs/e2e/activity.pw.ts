@@ -10,7 +10,7 @@ test("activity disclosure bounds and scrolls a long trace", async ({ page }) => 
   await expect(trigger.locator('[data-control-ui="activity"][data-slot="icon"] svg')).toHaveCSS("animation-name", "none");
   await expect(page.locator('[data-control-ui="timeline"][data-slot="item"][data-state="running"] svg')).toHaveCSS(
     "animation-name",
-    "spin",
+    "cui-spin",
   );
 
   const activity = trigger.locator("..");

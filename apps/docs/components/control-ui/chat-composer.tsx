@@ -65,7 +65,7 @@ export function ChatComposer({
         {...props}
       >
         {sendLayer !== undefined && sendLayer !== null ? (
-          <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-clip contain-paint">
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-1 overflow-clip contain-paint">
             {sendLayer}
           </div>
         ) : null}
@@ -170,7 +170,7 @@ export function ChatComposerTextarea({
       aria-busy={input.isLocked || undefined}
       rows={rows ?? input.rows}
       className={cn(
-        "field-sizing-content min-h-16 max-h-[40dvh] w-full resize-none px-[var(--padding-x)] py-[var(--padding-y)] disabled:cursor-not-allowed",
+        "field-sizing-content min-h-16 max-h-[40dvh] w-full resize-none px-[var(--padding-x)] py-[var(--padding-y)]",
         className,
       )}
     />
@@ -234,6 +234,7 @@ export function ChatComposerSubmit({
   const input = useChatComposerContext();
   const isStop = input.isLocked && onStop !== undefined;
   const isBusy = input.isLocked && !isStop;
+  const stopName = iconOnly ? stopLabel : undefined;
 
   function handleClick(event: MouseEvent<HTMLButtonElement>) {
     onClick?.(event);
@@ -263,8 +264,9 @@ export function ChatComposerSubmit({
       size="xs"
       iconOnly={iconOnly}
       disabled={isStop ? disabled : disabled || !input.canSubmit}
+      focusableWhenDisabled={isBusy}
       aria-busy={isBusy || undefined}
-      aria-label={isStop && iconOnly ? stopLabel : ariaLabel}
+      aria-label={isStop ? stopName : ariaLabel}
       onClick={handleClick}
       className={className}
       {...props}
