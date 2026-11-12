@@ -26,6 +26,12 @@
 - Manifests, `apps/docs/public/r`, the installed fixture in `apps/docs/components/control-ui`, and `packages/components/src` are generated. Change their source and regenerate; never edit the copies.
 - Run `bun run sync` after registry source, catalog, or skin changes, and include the generated outputs with the source change. Keep this file hand-maintained; consumer catalogs and detailed authoring instructions belong in the docs.
 
+## Publishing `@ctrl-ui/react`
+
+- `~/.npmrc` holds a granular npm token (write access to `@ctrl-ui/*`, bypasses 2FA, expires 2027-02-10). Agents publish without asking; `npm whoami` must print `damien-schneider`. On 401/403, ask the user for a new token. Never commit the token or add a repo `.npmrc` with an `_authToken` line.
+- Release: bump `version` in `packages/components/package.json` (patch for fixes; minor for any API or contract break while 0.x), commit `chore(release): <version>`, push, then `cd packages/components && bun run build && npm publish`.
+- A patch must not include unreleased breaking changes from `main`. Branch from the last release commit, cherry-pick the fix, and publish from there.
+
 ## References and checks
 
 - [CONTRIBUTING.md](CONTRIBUTING.md) lists setup and required checks; use focused behavior tests for the affected code and browser checks when the result depends on rendering.
