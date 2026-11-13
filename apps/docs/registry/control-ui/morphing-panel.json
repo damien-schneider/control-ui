@@ -14,6 +14,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/morphing-panel.md",
+      "target": "@components/control-ui/docs/morphing-panel.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/morphing-panel-knobs.ts",
       "target": "@components/control-ui/knob-contracts/morphing-panel-knobs.ts",
       "type": "registry:component"

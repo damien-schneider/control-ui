@@ -12,6 +12,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/reveal.md",
+      "target": "@components/control-ui/docs/reveal.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/reveal-knobs.ts",
       "target": "@components/control-ui/knob-contracts/reveal-knobs.ts",
       "type": "registry:component"

@@ -18,6 +18,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/chat-layout.md",
+      "target": "@components/control-ui/docs/chat-layout.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/hooks/use-chat-thread-scroll.ts",
       "target": "@components/control-ui/hooks/use-chat-thread-scroll.ts",
       "type": "registry:hook"

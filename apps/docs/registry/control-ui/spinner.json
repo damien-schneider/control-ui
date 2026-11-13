@@ -13,6 +13,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/spinner.md",
+      "target": "@components/control-ui/docs/spinner.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/spinner-knobs.ts",
       "target": "@components/control-ui/knob-contracts/spinner-knobs.ts",
       "type": "registry:component"

@@ -28,6 +28,7 @@ Control UI reaches a repository one of two ways. Installed source: the component
 ## Building screens
 
 - Import components from one place: the installed control-ui directory through this app's alias, or \`@ctrl-ui/react/<path>\` for the package. Never mix both in one repository.
+- Before using or changing a component, read its installed doc: docs/<id>.md in the installed control-ui directory (components/control-ui/docs/<id>.md by default), or node_modules/@ctrl-ui/react/dist/docs/<id>.md for the package. It lists the exports, composition, usage example, anatomy, and knobs of exactly the installed version; online docs follow the latest release and may describe props this install lacks.
 - Props follow one convention: variant, tone, size, iconOnly; composition uses render instead of asChild. Read the exported prop types of the installed component before mapping a call site from another library, and treat a variant with no counterpart as a question, not a guess.
 - When adding or migrating control icons, verify their rendered SVG dimensions against the component recipe's size knob; icon libraries can supply oversized defaults, so default sizing belongs in the shared recipe rather than repeated call-site utilities.
 - Never add overflow-hidden or overflow: clip to a layout container without a concrete clipping requirement. Rounded surfaces do not need clipping; it cuts off child shadows and focus rings. Folding panels clip only while animating and leave settled content visible.

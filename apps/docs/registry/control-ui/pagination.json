@@ -13,6 +13,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/pagination.md",
+      "target": "@components/control-ui/docs/pagination.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/pagination-knobs.ts",
       "target": "@components/control-ui/knob-contracts/pagination-knobs.ts",
       "type": "registry:component"

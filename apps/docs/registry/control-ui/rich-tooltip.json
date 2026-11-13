@@ -16,6 +16,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/rich-tooltip.md",
+      "target": "@components/control-ui/docs/rich-tooltip.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/popup-knobs.ts",
       "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
       "type": "registry:component"

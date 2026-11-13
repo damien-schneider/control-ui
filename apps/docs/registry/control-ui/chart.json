@@ -13,6 +13,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/chart.md",
+      "target": "@components/control-ui/docs/chart.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/chart-knobs.ts",
       "target": "@components/control-ui/knob-contracts/chart-knobs.ts",
       "type": "registry:component"

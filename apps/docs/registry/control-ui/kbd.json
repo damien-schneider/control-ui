@@ -10,6 +10,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/kbd.md",
+      "target": "@components/control-ui/docs/kbd.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/kbd-knobs.ts",
       "target": "@components/control-ui/knob-contracts/kbd-knobs.ts",
       "type": "registry:component"

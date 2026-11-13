@@ -2,6 +2,7 @@ import { type CatalogRegistryKind, type CatalogSourceFile, includesString, regis
 import { source } from "@/app/(features)/model/data-source";
 import { registryMetadata } from "@/app/(features)/model/generated-registry";
 import type { SourceFile } from "@/app/(features)/model/types";
+import { isComponentDocSource } from "@/scripts/component-docs";
 import { knobContractsDir, recipesDir } from "@/scripts/knob-contracts/collect";
 
 type RegistryMetadataFile = {
@@ -63,7 +64,7 @@ function collectRegistryFiles(registryKind: string, shouldVisitDependency: (depe
     visitedItems.add(itemId);
 
     const item = registryItem(itemId);
-    for (const file of item.files) addFile(file);
+    for (const file of item.files) if (!isComponentDocSource(file.path)) addFile(file);
 
     for (const dependency of item.registryDependencies) {
       if (shouldVisitDependency(dependency)) visit(dependency);

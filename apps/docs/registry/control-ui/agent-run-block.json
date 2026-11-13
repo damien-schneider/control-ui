@@ -38,6 +38,11 @@
       "path": "src/registry/blocks/control-ui/agent-run.tsx",
       "target": "@components/control-ui/blocks/agent-run.tsx",
       "type": "registry:block"
+    },
+    {
+      "path": "src/registry/docs/agent-run-block.md",
+      "target": "@components/control-ui/docs/agent-run-block.md",
+      "type": "registry:file"
     }
   ],
   "meta": {

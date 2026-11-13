@@ -12,6 +12,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/input-otp.md",
+      "target": "@components/control-ui/docs/input-otp.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/field-knobs.ts",
       "target": "@components/control-ui/knob-contracts/field-knobs.ts",
       "type": "registry:component"

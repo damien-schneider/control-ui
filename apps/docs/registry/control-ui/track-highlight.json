@@ -10,6 +10,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/track-highlight.md",
+      "target": "@components/control-ui/docs/track-highlight.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/track-highlight-knobs.ts",
       "target": "@components/control-ui/knob-contracts/track-highlight-knobs.ts",
       "type": "registry:component"

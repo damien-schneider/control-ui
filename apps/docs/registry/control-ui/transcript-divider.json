@@ -10,6 +10,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/transcript-divider.md",
+      "target": "@components/control-ui/docs/transcript-divider.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/transcript-divider-knobs.ts",
       "target": "@components/control-ui/knob-contracts/transcript-divider-knobs.ts",
       "type": "registry:component"

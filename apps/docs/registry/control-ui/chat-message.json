@@ -13,6 +13,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/chat-message.md",
+      "target": "@components/control-ui/docs/chat-message.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/hooks/use-chat-message.ts",
       "target": "@components/control-ui/hooks/use-chat-message.ts",
       "type": "registry:hook"

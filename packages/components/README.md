@@ -14,6 +14,7 @@ Requires React 19 and Tailwind CSS v4. Wire the styles once in your global CSS:
 @import "tailwindcss";
 @import "@ctrl-ui/react/styles/index.css";
 @source "../node_modules/@ctrl-ui/react/dist";
+@source not "../node_modules/@ctrl-ui/react/dist/docs";
 ```
 
 ## Use
@@ -25,6 +26,8 @@ import { Button } from "@ctrl-ui/react/ui/button";
 ```
 
 Import paths mirror the registry tree. To ship less CSS, import `styles/theme.css` and only the recipes and effects your components use.
+
+Each component's docs ship at `dist/docs/<id>.md` (exports, composition, usage example, anatomy, knobs) and match the installed version, so read them before the online docs, which follow the latest release.
 
 ## Text and class names
 

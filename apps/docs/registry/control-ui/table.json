@@ -13,6 +13,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/table.md",
+      "target": "@components/control-ui/docs/table.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/table-knobs.ts",
       "target": "@components/control-ui/knob-contracts/table-knobs.ts",
       "type": "registry:component"

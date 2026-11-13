@@ -11,6 +11,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/audio-visualizer.md",
+      "target": "@components/control-ui/docs/audio-visualizer.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/audio-visualizer-knobs.ts",
       "target": "@components/control-ui/knob-contracts/audio-visualizer-knobs.ts",
       "type": "registry:component"

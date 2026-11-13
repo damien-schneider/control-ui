@@ -8,6 +8,7 @@ import { kitEntries } from "@/app/(features)/catalog/kits";
 import { includesString } from "@/app/(features)/catalog/shared";
 import { skinMetas } from "@/app/(features)/catalog/skins";
 import { siteConfig } from "@/lib/site-config";
+import { componentDocSource, componentDocsDir, isComponentDocSource } from "./component-docs";
 import { importSpecifiers } from "./module-imports";
 
 export type RegistryFileType =
@@ -124,7 +125,7 @@ const styleUtilities = styleUtilityNames("utility");
 const styleUtilityIdentifiers = [...styleUtilities, ...styleUtilityNames("keyframes")];
 
 function referencedNames(candidates: string[], source: string) {
-  if (source === styleUtilitySource) return [];
+  if (source === styleUtilitySource || isComponentDocSource(source)) return [];
   const code = sourceCode(source);
   return candidates.filter((name) => new RegExp(`(^|[^\\w-])${name}([^\\w-]|$)`).test(code));
 }
@@ -182,6 +183,15 @@ const internalDefinitions: Definition[] = [
     description: "Direct focus handoff between nested item targets in popup lists.",
     seeds: ["src/registry/lib/popup-item-focus.ts"],
     primary: ["src/registry/lib/popup-item-focus.ts"],
+    internal: true,
+  },
+  {
+    id: "listbox-name",
+    type: "registry:item",
+    title: "Listbox name",
+    description: "Names popup listboxes after the combobox that controls them.",
+    seeds: ["src/registry/lib/listbox-name.ts"],
+    primary: ["src/registry/lib/listbox-name.ts"],
     internal: true,
   },
   {
@@ -276,8 +286,8 @@ function kitDefinitions(): Definition[] {
       type: "registry:component",
       title: entry.name,
       description: entry.summary,
-      seeds: files,
-      primary: [entry.paths.source.path],
+      seeds: [...files, componentDocSource(entry.id)],
+      primary: [entry.paths.source.path, componentDocSource(entry.id)],
     };
   });
 
@@ -290,8 +300,8 @@ function kitDefinitions(): Definition[] {
         type: "registry:component",
         title: `${entry.name} — ${alternative.label}`,
         description: alternative.description,
-        seeds: [alternative.paths.source.path, ...supportFilePaths(alternative.paths)],
-        primary: [alternative.paths.source.path],
+        seeds: [alternative.paths.source.path, ...supportFilePaths(alternative.paths), componentDocSource(alternative.registryKind)],
+        primary: [alternative.paths.source.path, componentDocSource(alternative.registryKind)],
       });
     }
   }
@@ -305,8 +315,8 @@ function componentDefinitions(): Definition[] {
     type: "registry:ui",
     title: entry.name,
     description: entry.summary,
-    seeds: [entry.paths.registry.source.path, ...supportFilePaths(entry.paths.registry)],
-    primary: [entry.paths.registry.source.path],
+    seeds: [entry.paths.registry.source.path, ...supportFilePaths(entry.paths.registry), componentDocSource(entry.id)],
+    primary: [entry.paths.registry.source.path, componentDocSource(entry.id)],
   }));
 }
 
@@ -316,8 +326,8 @@ function blockDefinitions(): Definition[] {
     type: "registry:block",
     title: entry.name,
     description: entry.summary,
-    seeds: entry.paths.files.map(sourcePath),
-    primary: [entry.paths.files[0].path],
+    seeds: [...entry.paths.files.map(sourcePath), componentDocSource(entry.registryKind)],
+    primary: [entry.paths.files[0].path, componentDocSource(entry.registryKind)],
   }));
 }
 
@@ -469,6 +479,7 @@ const directSourceTargets = new Map([
 ]);
 
 const sourceTargetRoots = [
+  [`${componentDocsDir}/`, `${componentRoot}/docs/`],
   ["src/registry/knob-contracts/", `${componentRoot}/knob-contracts/`],
   ["src/registry/hooks/", `${componentRoot}/hooks/`],
   ["src/registry/lib/", `${componentRoot}/lib/`],
@@ -637,7 +648,9 @@ function collectDefinitionSources(definition: Definition, context: RegistryBuild
   while (queue.length > 0) {
     const source = queue.shift();
     if (!source || owned.has(source)) continue;
-    if (!existsSync(path.join(root, source))) throw new Error(`${definition.id} references missing ${source}`);
+    if (!isComponentDocSource(source) && !existsSync(path.join(root, source))) {
+      throw new Error(`${definition.id} references missing ${source}`);
+    }
 
     if (isKnobContractSource(source)) {
       owned.add(source);

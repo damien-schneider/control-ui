@@ -12,6 +12,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/stepper.md",
+      "target": "@components/control-ui/docs/stepper.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/stepper-knobs.ts",
       "target": "@components/control-ui/knob-contracts/stepper-knobs.ts",
       "type": "registry:component"

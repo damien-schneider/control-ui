@@ -12,6 +12,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/slider.md",
+      "target": "@components/control-ui/docs/slider.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/range-knobs.ts",
       "target": "@components/control-ui/knob-contracts/range-knobs.ts",
       "type": "registry:component"

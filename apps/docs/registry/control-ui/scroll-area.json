@@ -13,6 +13,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/scroll-area.md",
+      "target": "@components/control-ui/docs/scroll-area.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/scroll-area-knobs.ts",
       "target": "@components/control-ui/knob-contracts/scroll-area-knobs.ts",
       "type": "registry:component"

@@ -15,6 +15,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/code-diff.md",
+      "target": "@components/control-ui/docs/code-diff.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/code-diff-knobs.ts",
       "target": "@components/control-ui/knob-contracts/code-diff-knobs.ts",
       "type": "registry:component"

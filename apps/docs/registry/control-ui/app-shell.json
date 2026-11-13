@@ -12,6 +12,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/app-shell.md",
+      "target": "@components/control-ui/docs/app-shell.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/app-shell-header-knobs.ts",
       "target": "@components/control-ui/knob-contracts/app-shell-header-knobs.ts",
       "type": "registry:component"

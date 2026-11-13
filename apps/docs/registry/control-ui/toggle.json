@@ -14,6 +14,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/toggle.md",
+      "target": "@components/control-ui/docs/toggle.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/button-states.css",
       "target": "@components/control-ui/styles/recipes/button-states.css",
       "type": "registry:file"

@@ -14,6 +14,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/source-badge.md",
+      "target": "@components/control-ui/docs/source-badge.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/badge-knobs.ts",
       "target": "@components/control-ui/knob-contracts/badge-knobs.ts",
       "type": "registry:component"

@@ -131,7 +131,7 @@ function knobFamiliesOwnedBy(itemIds: Set<string>): Record<string, ContractKnob[
   );
 }
 
-function anatomyFor(itemId: string): RegistryAnatomySlice | undefined {
+export function anatomyFor(itemId: string): RegistryAnatomySlice | undefined {
   const ownScopes = scopesOwnedBy(new Set([itemId]));
   const installedScopes = scopesOwnedBy(installedRegistryItems(itemId));
   if (Object.keys(installedScopes).length === 0) return undefined;

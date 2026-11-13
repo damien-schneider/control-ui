@@ -16,6 +16,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/infinite-canvas.md",
+      "target": "@components/control-ui/docs/infinite-canvas.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/infinite-canvas-knobs.ts",
       "target": "@components/control-ui/knob-contracts/infinite-canvas-knobs.ts",
       "type": "registry:component"

@@ -30,6 +30,11 @@
       "path": "src/registry/blocks/control-ui/settings.tsx",
       "target": "@components/control-ui/blocks/settings.tsx",
       "type": "registry:block"
+    },
+    {
+      "path": "src/registry/docs/settings-block.md",
+      "target": "@components/control-ui/docs/settings-block.md",
+      "type": "registry:file"
     }
   ],
   "meta": {

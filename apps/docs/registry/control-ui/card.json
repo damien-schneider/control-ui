@@ -12,6 +12,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/card.md",
+      "target": "@components/control-ui/docs/card.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/card-knobs.ts",
       "target": "@components/control-ui/knob-contracts/card-knobs.ts",
       "type": "registry:component"

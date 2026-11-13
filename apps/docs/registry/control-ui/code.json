@@ -20,6 +20,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/code.md",
+      "target": "@components/control-ui/docs/code.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/code-knobs.ts",
       "target": "@components/control-ui/knob-contracts/code-knobs.ts",
       "type": "registry:component"

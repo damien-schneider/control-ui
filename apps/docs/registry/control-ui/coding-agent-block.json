@@ -21,6 +21,11 @@
       "path": "src/registry/blocks/control-ui/coding-agent.tsx",
       "target": "@components/control-ui/blocks/coding-agent.tsx",
       "type": "registry:block"
+    },
+    {
+      "path": "src/registry/docs/coding-agent-block.md",
+      "target": "@components/control-ui/docs/coding-agent-block.md",
+      "type": "registry:file"
     }
   ],
   "meta": {

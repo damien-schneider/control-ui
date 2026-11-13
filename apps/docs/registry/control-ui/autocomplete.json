@@ -10,11 +10,17 @@
   "registryDependencies": [
     "core",
     "input-group",
+    "listbox-name",
     "popup-item-focus",
     "scroll-area",
     "surface-variants"
   ],
   "files": [
+    {
+      "path": "src/registry/docs/autocomplete.md",
+      "target": "@components/control-ui/docs/autocomplete.md",
+      "type": "registry:file"
+    },
     {
       "path": "src/registry/knob-contracts/field-knobs.ts",
       "target": "@components/control-ui/knob-contracts/field-knobs.ts",

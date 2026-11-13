@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "listbox-name",
+  "type": "registry:item",
+  "title": "Listbox name",
+  "description": "Names popup listboxes after the combobox that controls them.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/listbox-name.ts",
+      "target": "@components/control-ui/lib/listbox-name.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "meta": {
+    "internal": true,
+    "sourceManifestPath": "registry/control-ui/listbox-name.json"
+  }
+}

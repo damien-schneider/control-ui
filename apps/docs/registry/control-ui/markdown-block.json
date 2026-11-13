@@ -14,6 +14,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/markdown-block.md",
+      "target": "@components/control-ui/docs/markdown-block.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/markdown-block-knobs.ts",
       "target": "@components/control-ui/knob-contracts/markdown-block-knobs.ts",
       "type": "registry:component"

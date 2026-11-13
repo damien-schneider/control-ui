@@ -18,6 +18,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/filter-bar.md",
+      "target": "@components/control-ui/docs/filter-bar.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/filter-bar-knobs.ts",
       "target": "@components/control-ui/knob-contracts/filter-bar-knobs.ts",
       "type": "registry:component"

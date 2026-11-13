@@ -12,6 +12,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/separator.md",
+      "target": "@components/control-ui/docs/separator.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/separator-knobs.ts",
       "target": "@components/control-ui/knob-contracts/separator-knobs.ts",
       "type": "registry:component"

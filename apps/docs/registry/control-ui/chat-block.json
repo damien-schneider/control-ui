@@ -14,6 +14,11 @@
       "path": "src/registry/blocks/chat.tsx",
       "target": "@components/control-ui/blocks/chat.tsx",
       "type": "registry:block"
+    },
+    {
+      "path": "src/registry/docs/chat-block.md",
+      "target": "@components/control-ui/docs/chat-block.md",
+      "type": "registry:file"
     }
   ],
   "meta": {

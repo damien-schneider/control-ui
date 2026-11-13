@@ -19,6 +19,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/emoji-picker.md",
+      "target": "@components/control-ui/docs/emoji-picker.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/emoji-picker-knobs.ts",
       "target": "@components/control-ui/knob-contracts/emoji-picker-knobs.ts",
       "type": "registry:component"

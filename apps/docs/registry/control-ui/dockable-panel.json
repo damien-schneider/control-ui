@@ -16,6 +16,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/dockable-panel.md",
+      "target": "@components/control-ui/docs/dockable-panel.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/button-knobs.ts",
       "target": "@components/control-ui/knob-contracts/button-knobs.ts",
       "type": "registry:component"

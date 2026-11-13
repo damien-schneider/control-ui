@@ -11,6 +11,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/inline-attachment.md",
+      "target": "@components/control-ui/docs/inline-attachment.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/inline-attachment-knobs.ts",
       "target": "@components/control-ui/knob-contracts/inline-attachment-knobs.ts",
       "type": "registry:component"

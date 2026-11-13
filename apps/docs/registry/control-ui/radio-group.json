@@ -13,6 +13,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/radio-group.md",
+      "target": "@components/control-ui/docs/radio-group.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/choice-knobs.ts",
       "target": "@components/control-ui/knob-contracts/choice-knobs.ts",
       "type": "registry:component"

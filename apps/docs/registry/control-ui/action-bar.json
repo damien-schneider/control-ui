@@ -17,6 +17,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/action-bar.md",
+      "target": "@components/control-ui/docs/action-bar.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/action-bar-knobs.ts",
       "target": "@components/control-ui/knob-contracts/action-bar-knobs.ts",
       "type": "registry:component"

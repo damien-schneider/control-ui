@@ -2,6 +2,7 @@
 
 import { XIcon } from "lucide-react";
 import { useState } from "react";
+import { flushSync } from "react-dom";
 import { Button } from "@/components/control-ui/ui/button";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/control-ui/ui/tabs";
 
@@ -39,19 +40,29 @@ function ClosableEditorTabs() {
 
   return (
     <Tabs value={activeFile} onValueChange={setActiveFile}>
-      <TabsList variant="browser">
+      <TabsList variant="browser" aria-label="Open files">
         {openFiles.map((file) => (
           <span key={file.name} className="relative inline-flex items-center">
             <TabsTab
               value={file.name}
+              aria-keyshortcuts="Delete"
+              onKeyDown={(event) => {
+                if (event.key !== "Delete" && event.key !== "Backspace") return;
+                const list = event.currentTarget.closest('[role="tablist"]');
+                flushSync(() => closeFile(file.name));
+                list?.querySelector<HTMLElement>('[role="tab"][aria-selected="true"]')?.focus();
+              }}
               style={{ "--cui-tabs-trigger-padding-inline-end": "calc(var(--control-h-xs) + var(--spacing) * 2)" }}
             >
               {file.name}
             </TabsTab>
+            {/* A tablist may only own tabs: keyboard and screen reader users close the focused tab with Delete instead. */}
             <Button
               variant="ghost"
               size="xs"
               iconOnly
+              aria-hidden
+              tabIndex={-1}
               aria-label={`Close ${file.name}`}
               className="absolute end-1 z-10"
               onClick={() => closeFile(file.name)}
@@ -76,7 +87,7 @@ export function PrimitiveTabsExample() {
   return (
     <div className="flex w-full max-w-md flex-col gap-7">
       <Tabs defaultValue="preview">
-        <TabsList>
+        <TabsList aria-label="Document view">
           <TabsTab value="preview">Preview</TabsTab>
           <TabsTab value="code">Code</TabsTab>
           <TabsTab value="usage">Usage</TabsTab>

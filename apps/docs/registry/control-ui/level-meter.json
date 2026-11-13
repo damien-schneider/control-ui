@@ -12,6 +12,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/level-meter.md",
+      "target": "@components/control-ui/docs/level-meter.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/range-knobs.ts",
       "target": "@components/control-ui/knob-contracts/range-knobs.ts",
       "type": "registry:component"

@@ -10,6 +10,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/aspect-ratio.md",
+      "target": "@components/control-ui/docs/aspect-ratio.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/aspect-ratio.tsx",
       "target": "@components/control-ui/ui/aspect-ratio.tsx",
       "type": "registry:ui"

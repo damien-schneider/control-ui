@@ -12,6 +12,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/toolbar.md",
+      "target": "@components/control-ui/docs/toolbar.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/toolbar-knobs.ts",
       "target": "@components/control-ui/knob-contracts/toolbar-knobs.ts",
       "type": "registry:component"

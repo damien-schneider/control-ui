@@ -10,11 +10,17 @@
   "registryDependencies": [
     "button",
     "core",
+    "listbox-name",
     "popup-item-focus",
     "scroll-area",
     "surface-variants"
   ],
   "files": [
+    {
+      "path": "src/registry/docs/select.md",
+      "target": "@components/control-ui/docs/select.md",
+      "type": "registry:file"
+    },
     {
       "path": "src/registry/knob-contracts/button-knobs.ts",
       "target": "@components/control-ui/knob-contracts/button-knobs.ts",

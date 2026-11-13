@@ -5,6 +5,7 @@ import { getRegistryItem, isRegistryError, type RegistryItemData } from "@/app/(
 import { registryItemIdFor } from "@/app/(features)/registry-api/registry-index";
 import { absoluteSiteUrl } from "@/lib/site-config";
 import { guideMarkdown } from "./guide-markdown";
+import { dependencySections, installSection } from "./registry-sections";
 
 function skillBody(skill: DocsSkill) {
   return [
@@ -18,12 +19,9 @@ function skillBody(skill: DocsSkill) {
 }
 
 function registryItemBody(item: RegistryItemData) {
-  const deps = item.deps?.dependencies ?? [];
-  const registryDeps = item.deps?.registryDependencies ?? [];
   return [
-    `## Install\n\n${item.install.map((command) => `\`\`\`bash\n${command.value}\n\`\`\``).join("\n\n")}`,
-    deps.length > 0 ? `## npm dependencies\n\n${deps.map((dep) => `- \`${dep}\``).join("\n")}` : "",
-    registryDeps.length > 0 ? `## Registry dependencies\n\n${registryDeps.map((dep) => `- \`${dep}\``).join("\n")}` : "",
+    installSection(item.install.map((command) => command.value)),
+    ...dependencySections(item.deps ?? { dependencies: [], registryDependencies: [] }),
     item.files.length > 0 ? `## Installed source\n\n${item.files.map((file) => `- ${file.label} — \`${file.path}\``).join("\n")}` : "",
     item.anatomy
       ? `## Skin anatomy\n\n- Contract slice: ${item.anatomy.contractUrl}\n- Selector pattern: \`${item.anatomy.selectorPattern}\``

@@ -17,7 +17,7 @@ export type CommandProps = Omit<ComponentProps<typeof CommandPrimitive>, "style"
   style?: CSSProperties & PopupKnobStyle;
 };
 
-export function Command({ chrome = "standalone", className, ...props }: CommandProps) {
+export function Command({ chrome = "standalone", label = "Command menu", className, ...props }: CommandProps) {
   return (
     <CommandPrimitive
       data-control-ui="command"
@@ -28,6 +28,7 @@ export function Command({ chrome = "standalone", className, ...props }: CommandP
       data-popup-static=""
       data-chrome={chrome}
       data-surface={chrome === "standalone" ? "panel" : undefined}
+      label={label}
       className={cn("flex h-full w-full flex-col", className)}
       {...props}
     />

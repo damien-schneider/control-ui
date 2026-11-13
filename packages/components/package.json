@@ -46,6 +46,7 @@
   "exports": {
     "./package.json": "./package.json",
     "./styles/*": "./dist/styles/*",
+    "./docs/*": "./dist/docs/*",
     "./eslint-plugin": "./lint/eslint-plugin.mjs",
     "./biome": "./lint/biome-preset.json",
     "./*": {

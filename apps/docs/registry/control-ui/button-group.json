@@ -12,6 +12,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/button-group.md",
+      "target": "@components/control-ui/docs/button-group.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/button-group-knobs.ts",
       "target": "@components/control-ui/knob-contracts/button-group-knobs.ts",
       "type": "registry:component"

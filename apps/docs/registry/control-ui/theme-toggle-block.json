@@ -21,6 +21,11 @@
       "type": "registry:block"
     },
     {
+      "path": "src/registry/docs/theme-toggle-block.md",
+      "target": "@components/control-ui/docs/theme-toggle-block.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/theme-toggle.css",
       "target": "@components/control-ui/styles/recipes/theme-toggle.css",
       "type": "registry:file"

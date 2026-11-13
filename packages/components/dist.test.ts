@@ -76,6 +76,12 @@ test("the stylesheet entry imports every shipped stylesheet, without a skin", ()
   for (const sheet of sheets) expect(existsSync(path.join(dist, sheet))).toBe(true);
 });
 
+test("every component doc ships beside the source it documents", () => {
+  const docs = [...files].filter(([name]) => name.startsWith("docs/"));
+  expect(docs.length).toBeGreaterThan(100);
+  for (const [name, source] of docs) expect(read(name)).toBe(readFileSync(source, "utf8"));
+});
+
 test("peer dependencies mirror the closure manifests, plus the optional Biome floor for the lint preset", () => {
   const lintPeer = "@biomejs/biome";
   expect(Object.keys(pkg.peerDependencies).sort()).toEqual([...dependencies.keys(), "react", "react-dom", lintPeer].sort());

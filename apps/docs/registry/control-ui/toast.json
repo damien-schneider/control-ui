@@ -16,6 +16,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/toast.md",
+      "target": "@components/control-ui/docs/toast.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/popup-knobs.ts",
       "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
       "type": "registry:component"

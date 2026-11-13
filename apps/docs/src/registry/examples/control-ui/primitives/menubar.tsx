@@ -30,7 +30,7 @@ export function PrimitiveMenubarExample() {
 
   return (
     <div className="flex max-w-xl flex-col gap-6">
-      <Menubar>
+      <Menubar aria-label="Editor">
         <MenubarMenu>
           <MenubarTrigger>File</MenubarTrigger>
           <MenubarContent>

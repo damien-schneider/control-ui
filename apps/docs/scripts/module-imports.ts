@@ -61,3 +61,40 @@ export function importSpecifiers(filePath: string, source: string) {
   });
   return specifiers;
 }
+
+export type ExportedBinding = { name: string; typeOnly: boolean };
+
+type NamedExport = Extract<ReturnType<typeof parse>["program"]["body"][number], { type: "ExportNamedDeclaration" }>;
+
+function declarationBindings(declaration: NamedExport["declaration"], typeOnly: boolean): ExportedBinding[] {
+  if (!declaration) return [];
+  if (declaration.type === "VariableDeclaration") {
+    return declaration.declarations.flatMap((declarator) =>
+      declarator.id.type === "Identifier" ? [{ name: declarator.id.name, typeOnly }] : [],
+    );
+  }
+  if (!("id" in declaration) || declaration.id?.type !== "Identifier") return [];
+  const isTypeDeclaration = declaration.type === "TSTypeAliasDeclaration" || declaration.type === "TSInterfaceDeclaration";
+  return [{ name: declaration.id.name, typeOnly: typeOnly || isTypeDeclaration }];
+}
+
+function specifierBindings(specifiers: NamedExport["specifiers"], typeOnly: boolean): ExportedBinding[] {
+  return specifiers.flatMap((specifier) => {
+    if (specifier.type !== "ExportSpecifier") return [];
+    const name = specifier.exported.type === "Identifier" ? specifier.exported.name : specifier.exported.value;
+    return [{ name, typeOnly: typeOnly || specifier.exportKind === "type" }];
+  });
+}
+
+export function exportedBindings(filePath: string, source: string): ExportedBinding[] {
+  const ast = parse(source, {
+    sourceType: "module",
+    plugins: filePath.endsWith(".tsx") ? ["typescript", "jsx"] : ["typescript"],
+  });
+  return ast.program.body.flatMap((statement) => {
+    if (statement.type === "ExportDefaultDeclaration") return [{ name: "default", typeOnly: false }];
+    if (statement.type !== "ExportNamedDeclaration") return [];
+    const typeOnly = statement.exportKind === "type";
+    return [...declarationBindings(statement.declaration, typeOnly), ...specifierBindings(statement.specifiers, typeOnly)];
+  });
+}

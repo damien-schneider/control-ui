@@ -178,6 +178,7 @@ Run `bun run sync` after changing registry source, catalog metadata, or skin pac
 | `apps/docs/app/(features)/catalog` | Public product and documentation metadata |
 | `apps/docs/scripts/registry-model.ts` | Install graph, targets, ownership, and dependency derivation |
 | `apps/docs/registry` | Generated source manifests |
+| `apps/docs/src/registry/docs` | Generated per-item Markdown docs, installed beside each component's source |
 | `apps/docs/public/r` | Generated shadcn payloads served to consumers |
 | `apps/docs/components/control-ui` | Generated installed fixture used by the docs app |
 | `packages/components` | `@ctrl-ui/react`, the skin-free `all` install set as an npm package; its `src/` is generated |

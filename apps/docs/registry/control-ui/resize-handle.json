@@ -10,6 +10,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/resize-handle.md",
+      "target": "@components/control-ui/docs/resize-handle.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/resize-handle-knobs.ts",
       "target": "@components/control-ui/knob-contracts/resize-handle-knobs.ts",
       "type": "registry:component"

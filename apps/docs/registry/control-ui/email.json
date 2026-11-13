@@ -12,6 +12,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/email.md",
+      "target": "@components/control-ui/docs/email.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/email/README.md",
       "target": "@components/control-ui/email/README.md",
       "type": "registry:file"

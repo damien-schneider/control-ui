@@ -19,6 +19,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/sidebar.md",
+      "target": "@components/control-ui/docs/sidebar.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/hooks/use-mobile.ts",
       "target": "@components/control-ui/hooks/use-mobile.ts",
       "type": "registry:hook"

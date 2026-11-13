@@ -12,6 +12,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/calendar.md",
+      "target": "@components/control-ui/docs/calendar.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/calendar-knobs.ts",
       "target": "@components/control-ui/knob-contracts/calendar-knobs.ts",
       "type": "registry:component"

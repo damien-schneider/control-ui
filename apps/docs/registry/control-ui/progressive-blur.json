@@ -10,6 +10,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/progressive-blur.md",
+      "target": "@components/control-ui/docs/progressive-blur.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/progressive-blur-knobs.ts",
       "target": "@components/control-ui/knob-contracts/progressive-blur-knobs.ts",
       "type": "registry:component"

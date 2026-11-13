@@ -12,6 +12,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/checkbox.md",
+      "target": "@components/control-ui/docs/checkbox.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/choice-knobs.ts",
       "target": "@components/control-ui/knob-contracts/choice-knobs.ts",
       "type": "registry:component"

@@ -17,6 +17,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/color-picker.md",
+      "target": "@components/control-ui/docs/color-picker.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/hooks/use-color-area.ts",
       "target": "@components/control-ui/hooks/use-color-area.ts",
       "type": "registry:hook"

@@ -27,6 +27,11 @@
       "path": "src/registry/blocks/control-ui/discussion.tsx",
       "target": "@components/control-ui/blocks/discussion.tsx",
       "type": "registry:block"
+    },
+    {
+      "path": "src/registry/docs/discussion-block.md",
+      "target": "@components/control-ui/docs/discussion-block.md",
+      "type": "registry:file"
     }
   ],
   "meta": {

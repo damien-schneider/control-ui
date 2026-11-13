@@ -9,6 +9,7 @@ import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/but
 import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { listboxNameRef } from "@/components/control-ui/lib/listbox-name";
 import { popupItemFocusProps } from "@/components/control-ui/lib/popup-item-focus";
 import { skinScopeAttributes } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
@@ -161,9 +162,11 @@ export function SelectContent({
   alignOffset,
   collisionBoundary,
   collisionPadding,
+  ref,
   ...props
 }: SelectContentProps) {
   const skin = useSkin();
+  const popupRef = listboxNameRef(ref);
   return (
     <SelectPrimitive.Portal>
       <SelectPrimitive.Positioner
@@ -186,6 +189,7 @@ export function SelectContent({
           data-popup-part="list-surface"
           className={cn("grid min-w-[var(--anchor-width)] grid-rows-[minmax(0,1fr)]", className)}
           {...props}
+          ref={popupRef}
         >
           <ScrollArea lockAxis="x" viewportProps={{ render: renderListAsScrollViewport }}>
             {children}

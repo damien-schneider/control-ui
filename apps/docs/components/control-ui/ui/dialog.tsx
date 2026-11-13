@@ -1,7 +1,7 @@
 "use client";
 
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
-import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import { type ComponentProps, type CSSProperties, createContext, type ReactNode, useContext } from "react";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -28,8 +28,16 @@ export type DialogContentProps = Omit<ComponentProps<"div">, "style"> &
     closeLabel?: string;
   };
 
+// APG marks a modal dialog with aria-modal, which Base UI's popup omits. "trap-focus" keeps the page
+// behind it interactive, so that dialog isn't modal.
+const DialogModalContext = createContext(true);
+
 export function Dialog(props: DialogProps) {
-  return <DialogPrimitive.Root {...props} />;
+  return (
+    <DialogModalContext value={(props.modal ?? true) === true}>
+      <DialogPrimitive.Root {...props} />
+    </DialogModalContext>
+  );
 }
 
 export function DialogTrigger({
@@ -74,6 +82,7 @@ export function DialogClose({
 export function DialogContent({ className, children, showCloseButton = true, closeLabel = "Close", style, ...props }: DialogContentProps) {
   const skin = useSkin();
   const backdropStyle = popupBackdropStyle(style);
+  const modal = useContext(DialogModalContext);
   return (
     <DialogPrimitive.Portal {...skinScopeAttributes(skin)}>
       <DialogPrimitive.Backdrop
@@ -86,6 +95,7 @@ export function DialogContent({ className, children, showCloseButton = true, clo
         style={backdropStyle}
       />
       <DialogPrimitive.Popup
+        aria-modal={modal || undefined}
         data-control-ui="dialog"
         data-popup-kind="dialog"
         data-slot="content"

@@ -6,5 +6,8 @@ export default defineConfig({
   platform: "neutral",
   unbundle: true,
   dts: true,
-  copy: [{ from: "src/styles", to: "dist" }],
+  copy: [
+    { from: "src/styles", to: "dist" },
+    { from: "src/docs", to: "dist" },
+  ],
 });

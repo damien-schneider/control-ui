@@ -12,6 +12,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/empty.md",
+      "target": "@components/control-ui/docs/empty.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/empty-knobs.ts",
       "target": "@components/control-ui/knob-contracts/empty-knobs.ts",
       "type": "registry:component"

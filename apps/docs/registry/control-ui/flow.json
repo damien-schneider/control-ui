@@ -16,6 +16,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/flow.md",
+      "target": "@components/control-ui/docs/flow.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/flow-knobs.ts",
       "target": "@components/control-ui/knob-contracts/flow-knobs.ts",
       "type": "registry:component"

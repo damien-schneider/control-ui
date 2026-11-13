@@ -12,6 +12,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/avatar.md",
+      "target": "@components/control-ui/docs/avatar.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/avatar-knobs.ts",
       "target": "@components/control-ui/knob-contracts/avatar-knobs.ts",
       "type": "registry:component"

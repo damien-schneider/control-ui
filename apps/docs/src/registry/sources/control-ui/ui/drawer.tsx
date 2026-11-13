@@ -150,6 +150,7 @@ export function DrawerContent({
         className={cn("fixed inset-0 z-(--z-modal) flex", place.viewport, !modal && "pointer-events-none")}
       >
         <DrawerPrimitive.Popup
+          aria-modal={modal || undefined}
           data-control-ui="drawer"
           data-control-family="popup"
           data-popup-kind="drawer"

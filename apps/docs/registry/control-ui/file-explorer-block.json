@@ -32,6 +32,11 @@
       "path": "src/registry/blocks/control-ui/file-explorer.tsx",
       "target": "@components/control-ui/blocks/file-explorer.tsx",
       "type": "registry:block"
+    },
+    {
+      "path": "src/registry/docs/file-explorer-block.md",
+      "target": "@components/control-ui/docs/file-explorer-block.md",
+      "type": "registry:file"
     }
   ],
   "meta": {

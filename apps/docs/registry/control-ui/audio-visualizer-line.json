@@ -11,6 +11,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/audio-visualizer-line.md",
+      "target": "@components/control-ui/docs/audio-visualizer-line.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/audio-visualizer-line.tsx",
       "target": "@components/control-ui/audio-visualizer-line.tsx",
       "type": "registry:component"

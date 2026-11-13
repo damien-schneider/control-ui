@@ -10,6 +10,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/live-status.md",
+      "target": "@components/control-ui/docs/live-status.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/live-status.tsx",
       "target": "@components/control-ui/ui/live-status.tsx",
       "type": "registry:ui"

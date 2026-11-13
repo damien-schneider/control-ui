@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "listbox-name",
+  "type": "registry:item",
+  "title": "Listbox name",
+  "description": "Names popup listboxes after the combobox that controls them.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://control-ui.dev/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/listbox-name.ts",
+      "target": "@components/control-ui/lib/listbox-name.ts",
+      "type": "registry:lib",
+      "content": "import type { Ref } from \"react\";\n\nconst MAX_FRAMES = 30;\n\n/** Names the listbox once Base UI has given it an id and pointed its owner's aria-controls at it, a few renders after mount. */\nfunction nameListboxAfterOwner(node: HTMLElement) {\n  let frame = 0;\n  let attempts = 0;\n  const attempt = () => {\n    const list = node.matches('[role=\"listbox\"]') ? node : node.querySelector<HTMLElement>('[role=\"listbox\"]');\n    const owner = list?.id ? list.ownerDocument.querySelector<HTMLElement>(`[aria-controls~=\"${CSS.escape(list.id)}\"]`) : null;\n    if (list && owner) nameListbox(list, owner);\n    else if (++attempts < MAX_FRAMES) frame = requestAnimationFrame(attempt);\n  };\n  frame = requestAnimationFrame(attempt);\n  return () => cancelAnimationFrame(frame);\n}\n\nfunction nameListbox(list: HTMLElement, owner: HTMLElement) {\n  if (list.hasAttribute(\"aria-label\") || list.hasAttribute(\"aria-labelledby\")) return;\n  const label = owner.getAttribute(\"aria-label\");\n  if (label) {\n    list.setAttribute(\"aria-label\", label);\n    return;\n  }\n  const labelledBy = owner.getAttribute(\"aria-labelledby\");\n  if (labelledBy) {\n    list.setAttribute(\"aria-labelledby\", labelledBy);\n    return;\n  }\n  const [labelElement] = (owner as HTMLInputElement).labels ?? [];\n  if (!labelElement) return;\n  labelElement.id ||= `${list.id}-label`;\n  list.setAttribute(\"aria-labelledby\", labelElement.id);\n}\n\n/**\n * Base UI leaves popup listboxes unnamed, while ARIA requires a name. The returned ref names the listbox at or inside\n * its node after the combobox that controls it, unless the listbox already has a name, and forwards the node to `ref`.\n */\nexport function listboxNameRef<T extends HTMLElement>(ref: Ref<T> | undefined) {\n  return (node: T | null) => {\n    if (!node) return;\n    const stop = nameListboxAfterOwner(node);\n    const release = typeof ref === \"function\" ? ref(node) : undefined;\n    if (ref && typeof ref !== \"function\") ref.current = node;\n    return () => {\n      stop();\n      if (typeof release === \"function\") release();\n      else if (typeof ref === \"function\") ref(null);\n      else if (ref) ref.current = null;\n    };\n  };\n}\n"
+    }
+  ],
+  "meta": {
+    "internal": true
+  }
+}

@@ -12,6 +12,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/alert.md",
+      "target": "@components/control-ui/docs/alert.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/alert-knobs.ts",
       "target": "@components/control-ui/knob-contracts/alert-knobs.ts",
       "type": "registry:component"

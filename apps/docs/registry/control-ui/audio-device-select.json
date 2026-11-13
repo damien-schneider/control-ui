@@ -15,6 +15,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/audio-device-select.md",
+      "target": "@components/control-ui/docs/audio-device-select.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/audio-device-select-knobs.ts",
       "target": "@components/control-ui/knob-contracts/audio-device-select-knobs.ts",
       "type": "registry:component"

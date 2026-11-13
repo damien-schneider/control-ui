@@ -8,6 +8,7 @@ import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { listboxNameRef } from "@/components/control-ui/lib/listbox-name";
 import { popupItemFocusProps } from "@/components/control-ui/lib/popup-item-focus";
 import { skinScopeAttributes } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
@@ -199,7 +200,8 @@ export function AutocompleteContent({
   );
 }
 
-export function AutocompleteList<Value = unknown>({ className, children, ...props }: AutocompleteListProps<Value>) {
+export function AutocompleteList<Value = unknown>({ className, children, ref, ...props }: AutocompleteListProps<Value>) {
+  const listRef = listboxNameRef(ref);
   return (
     <ScrollArea
       className="w-full"
@@ -215,6 +217,7 @@ export function AutocompleteList<Value = unknown>({ className, children, ...prop
         data-popup-part="list-content"
         className={className}
         {...props}
+        ref={listRef}
       >
         {children}
       </AutocompletePrimitive.List>

@@ -13,6 +13,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/breadcrumb.md",
+      "target": "@components/control-ui/docs/breadcrumb.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/breadcrumb-knobs.ts",
       "target": "@components/control-ui/knob-contracts/breadcrumb-knobs.ts",
       "type": "registry:component"

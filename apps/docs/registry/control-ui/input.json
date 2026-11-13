@@ -13,6 +13,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/input.md",
+      "target": "@components/control-ui/docs/input.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/field-knobs.ts",
       "target": "@components/control-ui/knob-contracts/field-knobs.ts",
       "type": "registry:component"

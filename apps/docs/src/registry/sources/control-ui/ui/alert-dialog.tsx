@@ -90,6 +90,7 @@ export function AlertDialogContent({ className, children, style, ...props }: Ale
         style={backdropStyle}
       />
       <AlertDialogPrimitive.Popup
+        aria-modal
         data-control-ui="alert-dialog"
         data-popup-kind="alert-dialog"
         data-slot="content"

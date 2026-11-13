@@ -17,6 +17,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/tool-approval.md",
+      "target": "@components/control-ui/docs/tool-approval.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/tool-approval-knobs.ts",
       "target": "@components/control-ui/knob-contracts/tool-approval-knobs.ts",
       "type": "registry:component"

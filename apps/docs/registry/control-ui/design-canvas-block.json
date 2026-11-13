@@ -39,6 +39,11 @@
       "path": "src/registry/blocks/control-ui/design-canvas.tsx",
       "target": "@components/control-ui/blocks/design-canvas.tsx",
       "type": "registry:block"
+    },
+    {
+      "path": "src/registry/docs/design-canvas-block.md",
+      "target": "@components/control-ui/docs/design-canvas-block.md",
+      "type": "registry:file"
     }
   ],
   "meta": {

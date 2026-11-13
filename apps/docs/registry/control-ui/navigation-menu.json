@@ -12,6 +12,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/navigation-menu.md",
+      "target": "@components/control-ui/docs/navigation-menu.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/button-knobs.ts",
       "target": "@components/control-ui/knob-contracts/button-knobs.ts",
       "type": "registry:component"

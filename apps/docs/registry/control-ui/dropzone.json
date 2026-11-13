@@ -15,6 +15,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/dropzone.md",
+      "target": "@components/control-ui/docs/dropzone.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/hooks/use-dropzone.ts",
       "target": "@components/control-ui/hooks/use-dropzone.ts",
       "type": "registry:hook"

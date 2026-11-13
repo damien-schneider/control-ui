@@ -15,6 +15,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/task-list.md",
+      "target": "@components/control-ui/docs/task-list.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/task-list-knobs.ts",
       "target": "@components/control-ui/knob-contracts/task-list-knobs.ts",
       "type": "registry:component"

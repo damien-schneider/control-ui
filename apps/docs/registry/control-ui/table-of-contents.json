@@ -10,6 +10,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/table-of-contents.md",
+      "target": "@components/control-ui/docs/table-of-contents.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/knob-contracts/table-of-contents-knobs.ts",
       "target": "@components/control-ui/knob-contracts/table-of-contents-knobs.ts",
       "type": "registry:component"

@@ -16,6 +16,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/docs/user-ask.md",
+      "target": "@components/control-ui/docs/user-ask.md",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/hooks/use-user-ask.ts",
       "target": "@components/control-ui/hooks/use-user-ask.ts",
       "type": "registry:hook"
