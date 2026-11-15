@@ -4,18 +4,9 @@ import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { useState } from "react";
-import type { CatalogOverviewId } from "@/app/(features)/catalog/overviews";
-import { skinsOverviewId } from "@/app/(features)/catalog/skins";
-import type {
-  ActivePageId,
-  DocsShellData,
-  GuidePage,
-  IntegrationId,
-  SearchItem,
-  SetupPreferenceUpdate,
-} from "@/app/(features)/model/types";
+import type { DocsShellData } from "@/app/(features)/model/shell-data";
+import type { ActivePageId, IntegrationId, SearchItem, SetupPreferenceUpdate } from "@/app/(features)/model/types";
 import { DocsPageIntegrationProvider } from "@/app/(features)/page-templates/integration";
-import { buildSearchItems } from "@/app/(features)/registry-api/search";
 import {
   DOCS_SIDEBAR_MAX_WIDTH,
   DOCS_SIDEBAR_MIN_WIDTH,
@@ -28,12 +19,12 @@ import { DocsSidebarContent } from "@/app/(features)/sidebar/sidebar";
 import { ControlEffectsRuntime } from "@/components/control-ui/extensions/control-effects-root";
 import { cn } from "@/components/control-ui/lib/cn";
 import { AppShell, AppShellContent } from "@/components/control-ui/ui/app-shell";
-import { PageActions, PageBody, PageHeader, PageLayout, type PageWidth, usePageScroll } from "@/components/control-ui/ui/page-layout";
+import { PageActions, PageBody, PageHeader, PageLayout, usePageScroll } from "@/components/control-ui/ui/page-layout";
 import { SidebarMobileNav, SidebarMobileTrigger, SidebarTrigger, useSidebar } from "@/components/control-ui/ui/sidebar";
 import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
 import { isThemeCategoryPath, SKIN_CATEGORY, THEME_EDITOR_PATH, themeCategoryForPath } from "@/components/theme-drawer/theme-categories";
 import { DocsGithubLink } from "./github-link";
-import { pageLinks } from "./page-links";
+import type { PageOutline } from "./page-links";
 import { updateDocsSetupPreference, useDocsSetupIntegration } from "./setup-preference";
 
 const ThemeEditorAside = dynamic(() => import("@/components/theme-drawer/theme-editor-aside").then((module) => module.ThemeEditorAside));
@@ -67,49 +58,7 @@ function activePageForPathname(pathname: string, searchItems: SearchItem[]): Act
   return searchItems.find((item) => normalizePathname(item.href) === currentPath)?.id;
 }
 
-type ActivePageCatalog = Pick<
-  DocsShellData,
-  "guides" | "skills" | "kits" | "blocks" | "components" | "hooks" | "utils" | "extensions" | "skinPages"
->;
-
-function guidePageWidth(guideLayout: GuidePage["layout"], catalogOverview: CatalogOverviewId | undefined): PageWidth {
-  if (guideLayout === "wide" || catalogOverview) return "wide";
-  return "prose";
-}
-
-function resolveActivePage(activePage: ActivePageId | undefined, catalog: ActivePageCatalog) {
-  const { guides, skills, kits, blocks, components, hooks, utils, extensions, skinPages } = catalog;
-  const activeGuide = guides.find((item) => item.id === activePage);
-  const activeSkill = skills.find((item) => item.id === activePage);
-  const activeTemplate = blocks.find((item) => item.id === activePage);
-  const activeComponent = components.find((item) => item.id === activePage);
-  const activeReference = hooks.find((item) => item.id === activePage) ?? utils.find((item) => item.id === activePage);
-  const activeExtension = extensions.find((item) => item.id === activePage);
-  const activeCatalogOverview = activePage === "kits" || activePage === "components" || activePage === "templates" ? activePage : undefined;
-  const activeSkinsOverview = activePage === skinsOverviewId;
-  const activeSkinPage = skinPages.find((item) => item.id === activePage);
-  const matchedElsewhere =
-    activeGuide ?? activeSkill ?? activeTemplate ?? activeComponent ?? activeReference ?? activeExtension ?? activeCatalogOverview;
-  const kit = matchedElsewhere || activeSkinsOverview || activeSkinPage ? undefined : kits.find((item) => item.id === activePage);
-
-  return {
-    pageWidth: activeSkinPage || !activePage ? "wide" : guidePageWidth(activeGuide?.layout, activeCatalogOverview),
-    links: pageLinks({
-      activeGuide,
-      activeSkill,
-      activeTemplate,
-      activeComponent,
-      activeReference,
-      activeExtension,
-      activeSkinPage,
-      activeSkinsOverview,
-      activeCatalogOverview,
-      kit,
-      components,
-      extensions,
-    }),
-  };
-}
+const unlistedPageOutline: PageOutline = { width: "wide", links: [] };
 
 function DocsSidebarTrigger({ scrollsPage }: { scrollsPage: boolean }) {
   const { state } = useSidebar();
@@ -156,16 +105,9 @@ export function DocsShell(props: DocsShellViewProps) {
 function DocsShellContent({
   children,
   githubStars,
-  guides,
-  skills,
-  skillConcerns,
-  kits,
-  blocks,
-  components,
-  hooks,
-  utils,
-  extensions,
-  skinPages,
+  nav,
+  searchItems,
+  pageOutlines,
   integration,
   onSidebarOpenChange,
   sidebarOpen,
@@ -178,21 +120,9 @@ function DocsShellContent({
   // Page and inset scroll mount different PageLayout trees; home pins one so a skin switch keeps its place and state.
   const scroll = normalizePathname(pathname) === "/" ? "page" : skinScroll;
   const scrollsPage = scroll === "page";
-  const searchItems = buildSearchItems({ guides, skills, kits, blocks, components, hooks, utils, extensions, skinPages });
   const activePage = activePageForPathname(pathname, searchItems);
   const themeEditorCategory = activePage === "theme-editor" ? themeCategoryForPath(normalizePathname(pathname)) : null;
-
-  const { links, pageWidth } = resolveActivePage(activePage, {
-    guides,
-    skills,
-    kits,
-    blocks,
-    components,
-    hooks,
-    utils,
-    extensions,
-    skinPages,
-  });
+  const outline = activePage ? pageOutlines[activePage] : unlistedPageOutline;
   const pageContent = (
     <DocsPageIntegrationProvider
       integration={integration}
@@ -214,20 +144,7 @@ function DocsShellContent({
       maxWidth={DOCS_SIDEBAR_MAX_WIDTH}
     >
       <DocsSidebarSearchProvider items={searchItems}>
-        <DocsSidebarContent
-          active={activePage}
-          guides={guides}
-          skills={skills}
-          skillConcerns={skillConcerns}
-          kits={kits}
-          blocks={blocks}
-          components={components}
-          hooks={hooks}
-          utils={utils}
-          extensions={extensions}
-          skinPages={skinPages}
-          searchItems={searchItems}
-        />
+        <DocsSidebarContent active={activePage} searchItems={searchItems} {...nav} />
         <AppShellContent data-docs-inset="" className="min-h-0">
           <div
             data-docs-content=""
@@ -235,7 +152,7 @@ function DocsShellContent({
             className={cn("relative flex min-h-0 flex-1 flex-col", !scrollsPage && "overflow-hidden")}
           >
             <DocsSidebarTrigger scrollsPage={scrollsPage} />
-            <PageLayout width={pageWidth}>
+            <PageLayout width={outline.width}>
               <PageHeader variant="floating">
                 <PageActions>
                   <DocsGithubLink stars={githubStars} />
@@ -249,7 +166,7 @@ function DocsShellContent({
                       {themeEditorCategory ? (
                         <ThemeEditorAside category={themeEditorCategory} />
                       ) : (
-                        <TableOfContents items={links} className="top-12" />
+                        <TableOfContents items={outline.links} className="top-12" />
                       )}
                     </div>
                   }

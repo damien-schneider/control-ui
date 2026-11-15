@@ -2,19 +2,8 @@ import { templateKinds } from "@/app/(features)/catalog/blocks";
 import { catalogCategories } from "@/app/(features)/catalog/categories";
 import { type GuideGroupId, guideGroups, referenceOverview } from "@/app/(features)/catalog/guides";
 import { skinsOverview } from "@/app/(features)/catalog/skins";
-import type {
-  ActivePageId,
-  DocsBlock,
-  DocsComponent,
-  DocsExtension,
-  DocsHook,
-  DocsKit,
-  DocsStatus,
-  DocsUtil,
-  GuidePage,
-  SearchItem,
-} from "@/app/(features)/model/types";
-import type { CatalogNavGroupId, DocsNavItem, SidebarPane } from "./types";
+import type { ActivePageId, DocsStatus, SearchItem } from "@/app/(features)/model/types";
+import type { CatalogNavGroupId, DocsNavCatalog, DocsNavItem, SidebarPane } from "./types";
 
 const navCollator = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
 
@@ -61,7 +50,7 @@ export type GuideNavGroup = {
   items: DocsNavItem[];
 };
 
-export function guideNavSections(guides: GuidePage[]): { top: GuideNavGroup[]; reference: GuideNavGroup[] } {
+export function guideNavSections(guides: DocsNavCatalog["guides"]): { top: GuideNavGroup[]; reference: GuideNavGroup[] } {
   const groups = guideGroups.map((group) => ({
     ...group,
     items: [
@@ -78,7 +67,7 @@ export function guideNavSections(guides: GuidePage[]): { top: GuideNavGroup[]; r
   };
 }
 
-export function getTemplateNavGroups(blocks: readonly Pick<DocsBlock, "id" | "templateKind" | "name" | "status">[]) {
+export function getTemplateNavGroups(blocks: DocsNavCatalog["blocks"]) {
   return templateKinds.map((kind) => ({
     id: kind.slug,
     kind: kind.id,
@@ -106,13 +95,7 @@ export type CatalogNavGroup = {
   items: DocsNavItem[];
 };
 
-type CatalogNavSource = {
-  kits: readonly Pick<DocsKit, "id" | "category" | "name" | "status">[];
-  components: readonly Pick<DocsComponent, "id" | "category" | "name" | "status">[];
-  hooks: readonly Pick<DocsHook, "id" | "name">[];
-  utils: readonly Pick<DocsUtil, "id" | "name">[];
-  extensions: readonly Pick<DocsExtension, "id" | "name" | "status">[];
-};
+type CatalogNavSource = Pick<DocsNavCatalog, "kits" | "components" | "hooks" | "utils" | "extensions">;
 
 function navItem(section: string) {
   return (entry: { id: string; name: string; status?: DocsStatus }): DocsNavItem => ({

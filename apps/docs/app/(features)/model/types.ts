@@ -247,7 +247,7 @@ export type DocsBlock = {
   composition: Composition;
 };
 
-export type DocsShellData = {
+export type DocsData = {
   guides: GuidePage[];
   skills: readonly DocsSkill[];
   skillConcerns: readonly DocsSkillConcern[];

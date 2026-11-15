@@ -3,10 +3,13 @@ import { categoriesWithEntries } from "@/app/(features)/catalog/categories";
 import { componentEntries } from "@/app/(features)/catalog/components";
 import { kitEntries } from "@/app/(features)/catalog/kits";
 import type { CatalogOverviewId } from "@/app/(features)/catalog/overviews";
+import { skinsOverviewId } from "@/app/(features)/catalog/skins";
 import { installedDependencyFiles, supportFilesFor } from "@/app/(features)/model/registry";
 import type {
+  ActivePageId,
   DocsBlock,
   DocsComponent,
+  DocsData,
   DocsExtension,
   DocsHook,
   DocsKit,
@@ -16,8 +19,11 @@ import type {
   GuidePage as GuidePageData,
 } from "@/app/(features)/model/types";
 import { hasExtensionDemo } from "@/app/(features)/page-templates/extension-demo-ids";
+import type { PageWidth } from "@/components/control-ui/ui/page-layout";
 
 type PageLink = { href: string; label: string };
+
+export type PageOutline = { width: PageWidth; links: PageLink[] };
 
 function componentPageLinks(activeComponent: DocsComponent, extensions: DocsExtension[]) {
   return [
@@ -157,4 +163,43 @@ export function pageLinks({
   if (activeComponent) return componentPageLinks(activeComponent, extensions);
 
   return kit ? kitPageLinks(kit, extensions) : [];
+}
+
+function guidePageWidth(guideLayout: GuidePageData["layout"], catalogOverview: CatalogOverviewId | undefined): PageWidth {
+  if (guideLayout === "wide" || catalogOverview) return "wide";
+  return "prose";
+}
+
+export function pageOutline(activePage: ActivePageId, catalog: DocsData): PageOutline {
+  const { guides, skills, kits, blocks, components, hooks, utils, extensions, skinPages } = catalog;
+  const activeGuide = guides.find((item) => item.id === activePage);
+  const activeSkill = skills.find((item) => item.id === activePage);
+  const activeTemplate = blocks.find((item) => item.id === activePage);
+  const activeComponent = components.find((item) => item.id === activePage);
+  const activeReference = hooks.find((item) => item.id === activePage) ?? utils.find((item) => item.id === activePage);
+  const activeExtension = extensions.find((item) => item.id === activePage);
+  const activeCatalogOverview = activePage === "kits" || activePage === "components" || activePage === "templates" ? activePage : undefined;
+  const activeSkinsOverview = activePage === skinsOverviewId;
+  const activeSkinPage = skinPages.find((item) => item.id === activePage);
+  const matchedElsewhere =
+    activeGuide ?? activeSkill ?? activeTemplate ?? activeComponent ?? activeReference ?? activeExtension ?? activeCatalogOverview;
+  const kit = matchedElsewhere || activeSkinsOverview || activeSkinPage ? undefined : kits.find((item) => item.id === activePage);
+
+  return {
+    width: activeSkinPage ? "wide" : guidePageWidth(activeGuide?.layout, activeCatalogOverview),
+    links: pageLinks({
+      activeGuide,
+      activeSkill,
+      activeTemplate,
+      activeComponent,
+      activeReference,
+      activeExtension,
+      activeSkinPage,
+      activeSkinsOverview,
+      activeCatalogOverview,
+      kit,
+      components,
+      extensions,
+    }),
+  };
 }

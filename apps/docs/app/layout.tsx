@@ -5,7 +5,7 @@ import { WebMcpTools } from "@/app/(features)/agent-discovery/webmcp-tools";
 import { DocsShell } from "@/app/(features)/client/client";
 import { getControlUiGitHubStars } from "@/app/(features)/client/github-stars";
 import { DocsFeedback } from "@/app/(features)/feedback/docs-feedback";
-import { getDocsShellData } from "@/app/(features)/model/data";
+import { getDocsShellData } from "@/app/(features)/model/shell-data";
 import { SiteStructuredData, siteMetadata } from "@/app/(features)/seo/seo";
 import { sidebarFirstPaintScript } from "@/app/(features)/sidebar/persistence";
 import { ThemeFavicon } from "@/app/(features)/theme/favicon-client";

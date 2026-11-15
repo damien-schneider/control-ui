@@ -6,12 +6,12 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { StatusBadge } from "@/app/(features)/components/status";
-import type { ActivePageId, DocsSkill, DocsSkillConcern } from "@/app/(features)/model/types";
+import type { ActivePageId } from "@/app/(features)/model/types";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/control-ui/ui/sidebar";
 import { skillConcernSidebarIcons } from "./icons";
 import { humanizeNavName } from "./nav-items";
-import type { DocsNavItem, SidebarDoor } from "./types";
+import type { DocsNavCatalog, DocsNavItem, SidebarDoor } from "./types";
 
 export function NavMenu({ items, active, onNavigate }: { items: DocsNavItem[]; active: ActivePageId | undefined; onNavigate: () => void }) {
   return (
@@ -127,8 +127,8 @@ export function SkillConcernNavGroups({
   active,
   onNavigate,
 }: {
-  concerns: readonly DocsSkillConcern[];
-  skills: readonly DocsSkill[];
+  concerns: DocsNavCatalog["skillConcerns"];
+  skills: DocsNavCatalog["skills"];
   active: ActivePageId | undefined;
   onNavigate: () => void;
 }) {

@@ -9,25 +9,26 @@ import type {
   DocsKit,
   DocsSkill,
   DocsSkillConcern,
-  DocsSkinPage,
   DocsStatus,
   DocsUtil,
   GuidePage,
   SearchItem,
 } from "@/app/(features)/model/types";
 
-export type DocsSidebarContentProps = {
-  active: ActivePageId | undefined;
-  guides: GuidePage[];
-  skills: readonly DocsSkill[];
+export type DocsNavCatalog = {
+  guides: readonly Pick<GuidePage, "id" | "name" | "group" | "hiddenFromNav">[];
+  skills: readonly Pick<DocsSkill, "id" | "title" | "concern">[];
   skillConcerns: readonly DocsSkillConcern[];
-  kits: DocsKit[];
-  blocks: DocsBlock[];
-  components: DocsComponent[];
-  hooks: DocsHook[];
-  utils: DocsUtil[];
-  extensions: DocsExtension[];
-  skinPages: DocsSkinPage[];
+  kits: readonly Pick<DocsKit, "id" | "category" | "name" | "status">[];
+  blocks: readonly Pick<DocsBlock, "id" | "templateKind" | "name" | "status">[];
+  components: readonly Pick<DocsComponent, "id" | "category" | "name" | "status">[];
+  hooks: readonly Pick<DocsHook, "id" | "name">[];
+  utils: readonly Pick<DocsUtil, "id" | "name">[];
+  extensions: readonly Pick<DocsExtension, "id" | "name" | "status">[];
+};
+
+export type DocsSidebarContentProps = DocsNavCatalog & {
+  active: ActivePageId | undefined;
   searchItems: SearchItem[];
 };
 

@@ -15,6 +15,7 @@ import type {
   Composition,
   DocsBlock,
   DocsComponent,
+  DocsData,
   DocsExtension,
   DocsHook,
   DocsKit,
@@ -22,7 +23,6 @@ import type {
   DocsKitVariant,
   DocsKnobFamily,
   DocsRegistryDependency,
-  DocsShellData,
   DocsSkill,
   DocsSkillConcern,
   DocsSkinPage,
@@ -105,15 +105,6 @@ function knobFamilies(files: SourceFile[], registryKind: string): DocsKnobFamily
     const page = family.id === registryKind ? undefined : docsPageFor(family.id);
     return page ? { ...family, href: page.href } : family;
   });
-}
-
-function sourceOutline(file: SourceFile): SourceFile {
-  const functions = [...file.code.matchAll(/export\s+function\s+([A-Z][A-Za-z0-9]*)/g)].map((match) => `export function ${match[1]}() {}`);
-  const constants = [...file.code.matchAll(/export\s+const\s+([A-Z][A-Za-z0-9]*)\s*=/g)].map(
-    (match) => `export const ${match[1]} = undefined;`,
-  );
-
-  return { ...file, code: [...functions, ...constants].join("\n") };
 }
 
 function sourceRequiredRecord<T extends string>(keys: readonly T[], record: Readonly<Record<T, CatalogSourceFile>>): Record<T, SourceFile> {
@@ -360,10 +351,9 @@ function getSkinPages(): DocsSkinPage[] {
   });
 }
 
-let docsData: DocsShellData | undefined;
-let docsShellData: DocsShellData | undefined;
+let docsData: DocsData | undefined;
 
-export function getDocsData(): DocsShellData {
+export function getDocsData(): DocsData {
   docsData ??= {
     guides: getGuides(),
     skills: getSkills(),
@@ -378,67 +368,4 @@ export function getDocsData(): DocsShellData {
   };
 
   return docsData;
-}
-
-// persistent client shell needs navigation metadata and source anatomy, not every file body.
-// Route pages receive one full item they render, keeping initial payload proportional to current page.
-export function getDocsShellData(): DocsShellData {
-  if (docsShellData) return docsShellData;
-
-  const data = getDocsData();
-  docsShellData = {
-    guides: data.guides,
-    skills: data.skills,
-    skillConcerns: data.skillConcerns,
-    kits: data.kits.map((kit) => ({
-      ...kit,
-      example: sourceOutline(kit.example),
-      examples: kit.examples?.map((example) => ({ ...example, source: sourceOutline(example.source) })),
-      usage: objectFromEntries(integrationIds.map((id) => [id, sourceOutline(kit.usage[id])] as const)),
-      hook: kit.hook ? sourceOutline(kit.hook) : undefined,
-      supportFiles: kit.supportFiles?.map(sourceOutline),
-      source: sourceOutline(kit.source),
-      knobs: [],
-      alternatives: kit.alternatives?.map((alternative) => ({
-        ...alternative,
-        example: sourceOutline(alternative.example),
-        usage: objectFromEntries(integrationIds.map((id) => [id, sourceOutline(alternative.usage[id])] as const)),
-        source: sourceOutline(alternative.source),
-        supportFiles: alternative.supportFiles.map(sourceOutline),
-        knobs: [],
-      })),
-      variants: kit.variants?.map((variant) => ({
-        ...variant,
-        example: sourceOutline(variant.example),
-        usage: objectFromEntries(integrationIds.map((id) => [id, sourceOutline(variant.usage[id])] as const)),
-      })),
-    })),
-    blocks: data.blocks.map((block) => ({
-      ...block,
-      example: sourceOutline(block.example),
-      usage: objectFromEntries(integrationIds.map((id) => [id, sourceOutline(block.usage[id])] as const)),
-      files: block.files.map(sourceOutline),
-    })),
-    components: data.components.map((component) => ({
-      ...component,
-      registry: {
-        ...component.registry,
-        example: sourceOutline(component.registry.example),
-        examples: component.registry.examples?.map((example) => ({ ...example, source: sourceOutline(example.source) })),
-        source: sourceOutline(component.registry.source),
-        supportFiles: component.registry.supportFiles?.map(sourceOutline),
-        knobs: [],
-      },
-    })),
-    hooks: data.hooks.map((hook) => ({ ...hook, source: sourceOutline(hook.source) })),
-    utils: data.utils.map((util) => ({ ...util, source: sourceOutline(util.source) })),
-    extensions: data.extensions.map((extension) => ({
-      ...extension,
-      source: sourceOutline(extension.source),
-      supportFiles: extension.supportFiles?.map(sourceOutline),
-    })),
-    skinPages: data.skinPages.map((skin) => ({ ...skin, files: skin.files.map(sourceOutline) })),
-  };
-
-  return docsShellData;
 }
