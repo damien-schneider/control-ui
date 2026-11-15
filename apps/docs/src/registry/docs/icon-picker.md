@@ -35,7 +35,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ### Icon grid
 
-The app supplies icons, search keywords, and color choices. IconPickerColors controls a separate color value; apply it through --cui-icon-picker-foreground.
+The app supplies icons, search keywords, and color choices. IconPickerColors controls a separate color value; pass it to IconPicker as iconColor to tint the grid.
 
 ```tsx
 <IconPicker>
@@ -61,12 +61,7 @@ export function PrimitiveIconPickerExample() {
   if (!color) throw new Error(`Unknown icon color: ${colorValue}`);
 
   return (
-    <IconPicker
-      items={pickerIcons}
-      value={selectedIcon}
-      onValueChange={setSelectedIcon}
-      style={{ "--cui-icon-picker-foreground": color.color }}
-    >
+    <IconPicker items={pickerIcons} value={selectedIcon} onValueChange={setSelectedIcon} iconColor={color.color}>
       <IconPickerSearch />
       <IconPickerColors colors={pickerColors} value={colorValue} onValueChange={setColorValue} />
       <IconPickerContent />

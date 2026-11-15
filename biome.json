@@ -202,6 +202,12 @@
         },
         {
           "path": "./packages/components/lint/no-component-style-props.grit"
+        },
+        {
+          "path": "./lint/no-docs-knob-overrides.grit"
+        },
+        {
+          "path": "./lint/no-docs-icon-overrides.grit"
         }
       ]
     },

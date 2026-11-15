@@ -95,7 +95,7 @@ test("closable browser tabs keep the label clear of the close button and select 
     .locator('[data-control-ui="tabs"][data-slot="list"][data-variant="browser"]')
     .filter({ has: page.getByRole("tab", { name: "index.tsx", exact: true }) });
   const tabsTab = list.getByRole("tab", { name: "tabs.tsx", exact: true });
-  const closeTabs = list.getByRole("button", { name: "Close tabs.tsx" });
+  const closeTabs = list.locator('[data-tabs-close="true"][aria-label="Close tabs.tsx"]');
   await waitForReactHydration(list);
   await list.scrollIntoViewIfNeeded();
 
@@ -116,4 +116,10 @@ test("closable browser tabs keep the label clear of the close button and select 
   await closeTabs.click();
   await expect(list.getByRole("tab", { name: "tabs.tsx", exact: true })).toHaveCount(0);
   await expect(list.getByRole("tab", { name: "theme.css", exact: true })).toHaveAttribute("aria-selected", "true");
+
+  const themeTab = list.getByRole("tab", { name: "theme.css", exact: true });
+  await themeTab.focus();
+  await page.keyboard.press("Delete");
+  await expect(themeTab).toHaveCount(0);
+  await expect(list.getByRole("tab", { name: "index.tsx", exact: true })).toBeFocused();
 });

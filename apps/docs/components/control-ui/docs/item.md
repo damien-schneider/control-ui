@@ -136,7 +136,6 @@ function LayersList() {
           data-layer={layer.id}
           data-dragging={layer.id === draggingId || undefined}
           data-drop-target={(layer.id === dropTargetId && layer.id !== draggingId) || undefined}
-          style={{ "--cui-item-padding-block": "calc(var(--spacing) * 1.5)" }}
           onClick={() => setSelectedId(layer.id)}
           onKeyDown={(event) => moveSelection(event, index)}
           onDragStart={() => setDraggingId(layer.id)}
@@ -186,7 +185,7 @@ export function PrimitiveItemExample() {
           <ItemDescription>Members, billing and API keys.</ItemDescription>
         </ItemContent>
         <ItemActions>
-          <ChevronRightIcon className="size-4 text-muted-foreground" />
+          <ChevronRightIcon />
         </ItemActions>
       </Item>
 

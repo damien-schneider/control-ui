@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 
-import { cn } from "@/components/control-ui/lib/cn";
+import { Badge } from "@/components/control-ui/ui/badge";
 import { Button } from "@/components/control-ui/ui/button";
+import { Card } from "@/components/control-ui/ui/card";
+import { Item, ItemActions, ItemContent, ItemGroup, ItemMedia, ItemTitle } from "@/components/control-ui/ui/item";
 import { Text } from "@/components/control-ui/ui/typography";
 import { TARGET_RATIO, type WcagLevel, type WcagLevels } from "./color-math";
 import { rgbToHex } from "./color-utils";
@@ -11,22 +13,13 @@ import { analyzeContrast, type ContrastRow, fixTextForeground, maxForegroundRati
 import { VarTag } from "./controls";
 import type { ThemeState } from "./types";
 
-// fixed hues on purpose: pass/fail is status, not theme
+const LEVEL_BADGE_COLOR = { pass: "green", fail: "red", unknown: "neutral" } as const;
+
 function LevelBadge({ level, state }: { level: WcagLevel; state: "pass" | "fail" | "unknown" }) {
   return (
-    <span
-      title={level === "AA" ? "WCAG AA · 4.5:1" : "WCAG AAA · 7:1"}
-      className={cn(
-        "inline-flex shrink-0 rounded-full px-1.5 py-0.5 uppercase tracking-wide",
-        state === "pass" && "bg-emerald-500/15 text-emerald-700 dark:text-emerald-400",
-        state === "fail" && "bg-red-500/15 text-red-700 dark:text-red-400",
-        state === "unknown" && "bg-muted",
-      )}
-    >
-      <Text size="micro" weight="semibold" tone={state === "unknown" ? "muted" : "default"} numeric>
-        {level}
-      </Text>
-    </span>
+    <Badge size="sm" color={LEVEL_BADGE_COLOR[state]} title={level === "AA" ? "WCAG AA · 4.5:1" : "WCAG AAA · 7:1"}>
+      {level}
+    </Badge>
   );
 }
 
@@ -106,35 +99,39 @@ export function ContrastPanel({ t, onFix }: { t: ThemeState; onFix: (textFixes: 
         </Text>
         <VarTag>WCAG AA 4.5 · AAA 7</VarTag>
       </span>
-      <div className="flex flex-col gap-1 rounded-[8px] border border-border p-1.5">
-        {rows.map((r) => {
-          const fixLevel = rowFixLevel(r);
-          return (
-            <div key={r.label} className="flex items-center gap-2.5 rounded-[6px] px-2 py-1.5">
-              <span
-                aria-hidden
-                className="grid size-8 shrink-0 place-items-center rounded-[5px] border border-border"
-                style={{ color: `var(${r.fg})`, background: `var(${r.bg})` }}
-              >
-                <Text size="caption" weight="semibold">
-                  Aa
-                </Text>
-              </span>
-              <Text size="label" tone="foreground" className="min-w-0 flex-1 truncate">
-                {r.label}
-              </Text>
-              <Text size="caption" tone="muted" mono numeric>
-                {r.ratio === null ? "—" : `${r.ratio.toFixed(2)}:1`}
-              </Text>
-              <span className="flex shrink-0 items-center gap-1.5">
-                <LevelBadge level="AA" state={levelState(r.levels, r.ratio, "AA")} />
-                <LevelBadge level="AAA" state={levelState(r.levels, r.ratio, "AAA")} />
-                {fixLevel ? <FixChip level={fixLevel} onClick={() => applyFix(r, fixLevel)} /> : null}
-              </span>
-            </div>
-          );
-        })}
-      </div>
+      <Card size="sm">
+        <ItemGroup>
+          {rows.map((r) => {
+            const fixLevel = rowFixLevel(r);
+            return (
+              <Item key={r.label}>
+                <ItemMedia>
+                  <span
+                    aria-hidden
+                    className="grid size-8 shrink-0 place-items-center rounded-[5px] border border-border"
+                    style={{ color: `var(${r.fg})`, background: `var(${r.bg})` }}
+                  >
+                    <Text size="caption" weight="semibold">
+                      Aa
+                    </Text>
+                  </span>
+                </ItemMedia>
+                <ItemContent>
+                  <ItemTitle>{r.label}</ItemTitle>
+                </ItemContent>
+                <ItemActions>
+                  <Text size="caption" tone="muted" mono numeric>
+                    {r.ratio === null ? "—" : `${r.ratio.toFixed(2)}:1`}
+                  </Text>
+                  <LevelBadge level="AA" state={levelState(r.levels, r.ratio, "AA")} />
+                  <LevelBadge level="AAA" state={levelState(r.levels, r.ratio, "AAA")} />
+                  {fixLevel ? <FixChip level={fixLevel} onClick={() => applyFix(r, fixLevel)} /> : null}
+                </ItemActions>
+              </Item>
+            );
+          })}
+        </ItemGroup>
+      </Card>
       <Text size="micro" tone="muted">
         {hint}
       </Text>

@@ -43,6 +43,7 @@ export {
   type SidebarMenuButtonProps,
   type SidebarMenuButtonSize,
   type SidebarMenuButtonVariant,
+  type SidebarMenuIconTone,
   SidebarMenuItem,
   type SidebarMenuItemProps,
   type SidebarMenuProps,
@@ -51,6 +52,7 @@ export {
   type SidebarSelectionIndicator,
   sidebarMenuButtonSizes,
   sidebarMenuButtonVariants,
+  sidebarMenuIconTones,
 } from "@/components/control-ui/ui/sidebar-menu";
 export {
   SidebarMobileNav,

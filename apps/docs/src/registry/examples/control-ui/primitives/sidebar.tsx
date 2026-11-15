@@ -4,8 +4,10 @@ import { ChevronRightIcon, FolderIcon, HashIcon, LayersIcon, MoreHorizontalIcon,
 import { useId, useState } from "react";
 import type { SidebarLayout } from "@/components/control-ui/skin";
 import { Avatar, AvatarFallback } from "@/components/control-ui/ui/avatar";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/control-ui/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
+import { Label } from "@/components/control-ui/ui/label";
 import { NativeSelect } from "@/components/control-ui/ui/native-select";
 import {
   Sidebar,
@@ -28,6 +30,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/control-ui/ui/sidebar";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/control-ui/ui/table";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
 
 const workspaceItems = [
@@ -167,15 +170,10 @@ function Workspace({
       <Sidebar variant={variant} side={side} collapsible={resizable ? "offcanvas" : collapsible} className="h-full">
         <SidebarHeader>
           <SidebarMenuButton size="lg" tooltip="Acme workspace" onClick={() => navigate("Overview")}>
-            <span
-              aria-hidden="true"
-              className="flex size-7 shrink-0 items-center justify-center rounded-(--radius-control) bg-primary text-primary-foreground"
-            >
-              <Text size="label" weight="semibold">
-                A
-              </Text>
-            </span>
-            <Text weight="medium">Acme workspace</Text>
+            <Avatar aria-hidden="true" size="sm">
+              <AvatarFallback>A</AvatarFallback>
+            </Avatar>
+            <span>Acme workspace</span>
           </SidebarMenuButton>
         </SidebarHeader>
         <WorkspaceNavigation active={active} onNavigate={navigate} indicator={indicator} nested={nested} />
@@ -211,34 +209,30 @@ function Workspace({
               {active}
             </Heading>
           </div>
-          <div className="rounded-(--radius-panel) border border-border p-4">
-            <Text as="p" size="label" weight="medium">
-              Your workspace, at a glance
-            </Text>
-            <Text as="p" size="label" tone="muted" className="mt-1">
-              Browse your team’s agents, workflows, and projects from the sidebar.
-            </Text>
-          </div>
-          <div className="min-h-0 overflow-x-auto rounded-(--radius-panel) border border-border">
-            <div className="min-w-96 divide-y divide-border">
-              <div className="flex justify-between gap-8 px-4 py-3">
-                <Text size="label" tone="muted">
-                  Project
-                </Text>
-                <Text size="label" tone="muted">
-                  Last updated
-                </Text>
-              </div>
-              <div className="flex justify-between gap-8 px-4 py-3">
-                <Text size="label">Customer support</Text>
-                <Text size="label">Today</Text>
-              </div>
-              <div className="flex justify-between gap-8 px-4 py-3">
-                <Text size="label">Research assistant</Text>
-                <Text size="label">Yesterday</Text>
-              </div>
-            </div>
-          </div>
+          <Card size="sm">
+            <CardHeader>
+              <CardTitle>Your workspace, at a glance</CardTitle>
+              <CardDescription>Browse your team’s agents, workflows, and projects from the sidebar.</CardDescription>
+            </CardHeader>
+          </Card>
+          <Table aria-label="Projects">
+            <TableHeader>
+              <TableRow>
+                <TableHead>Project</TableHead>
+                <TableHead className="text-end">Last updated</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                <TableCell>Customer support</TableCell>
+                <TableCell className="text-end">Today</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Research assistant</TableCell>
+                <TableCell className="text-end">Yesterday</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
         </div>
       </SidebarInset>
     </>
@@ -273,10 +267,10 @@ function SidebarExample({
   return (
     <fieldset aria-label={label} className="w-full min-w-0">
       {controls ? (
-        <Text as="div" size="caption" tone="muted" className="mb-3 flex flex-wrap items-center justify-end gap-2">
-          <label htmlFor={layoutId} className="shrink-0">
+        <div className="mb-3 flex flex-wrap items-center justify-end gap-2">
+          <Label htmlFor={layoutId} className="shrink-0">
             Layout
-          </label>
+          </Label>
           <NativeSelect
             id={layoutId}
             className="w-32"
@@ -291,9 +285,9 @@ function SidebarExample({
             <option value="inset">Inset</option>
             <option value="page">Page</option>
           </NativeSelect>
-          <label htmlFor={highlightId} className="shrink-0">
+          <Label htmlFor={highlightId} className="shrink-0">
             Menu highlight
-          </label>
+          </Label>
           <NativeSelect
             id={highlightId}
             className="w-40"
@@ -309,7 +303,7 @@ function SidebarExample({
             <option value="slide">Sliding selection</option>
             <option value="hover">Fluid hover</option>
           </NativeSelect>
-          <label htmlFor={sideId}>Side</label>
+          <Label htmlFor={sideId}>Side</Label>
           <NativeSelect
             id={sideId}
             className="w-24"
@@ -322,7 +316,7 @@ function SidebarExample({
             <option value="left">Left</option>
             <option value="right">Right</option>
           </NativeSelect>
-          <label htmlFor={collapseId}>Collapse</label>
+          <Label htmlFor={collapseId}>Collapse</Label>
           <NativeSelect
             id={collapseId}
             className="w-32"
@@ -336,7 +330,7 @@ function SidebarExample({
             <option value="offcanvas">Off-canvas</option>
             <option value="none">Fixed</option>
           </NativeSelect>
-        </Text>
+        </div>
       ) : null}
       <div className="relative isolate h-[30rem] w-full overflow-hidden rounded-(--radius-panel) border border-border bg-canvas [transform:translateZ(0)]">
         <SidebarProvider
@@ -345,7 +339,7 @@ function SidebarExample({
           width={resizable && side === "right" ? width : undefined}
           onWidthChange={resizable && side === "right" ? setWidth : undefined}
           layout="contained"
-          style={{ "--sidebar-width": "14rem" }}
+          defaultWidth={224}
         >
           <Workspace
             variant={layout ?? variant}

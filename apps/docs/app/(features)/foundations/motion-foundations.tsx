@@ -3,6 +3,7 @@
 import { PlayIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/control-ui/ui/button";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
 import { Text } from "@/components/control-ui/ui/typography";
 import { contractTokenNames, SpecimenGroup, TokenValueList } from "./specimen/specimen";
 
@@ -36,21 +37,23 @@ export function MotionFoundations() {
   return (
     <div className="grid min-w-0">
       <SpecimenGroup title="Tempo × curve">
-        <div className="docs-panel grid gap-4 p-4">
-          <div>
-            <Button onClick={() => setArrived((current) => !current)}>
-              <PlayIcon />
-              Play
-            </Button>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {EASINGS.flatMap((easing) =>
-              DURATIONS.map((duration) => (
-                <MotionTrack key={`${easing}${duration}`} duration={duration} easing={easing} arrived={arrived} />
-              )),
-            )}
-          </div>
-        </div>
+        <Card size="sm">
+          <CardContent className="grid gap-4">
+            <div>
+              <Button onClick={() => setArrived((current) => !current)}>
+                <PlayIcon />
+                Play
+              </Button>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {EASINGS.flatMap((easing) =>
+                DURATIONS.map((duration) => (
+                  <MotionTrack key={`${easing}${duration}`} duration={duration} easing={easing} arrived={arrived} />
+                )),
+              )}
+            </div>
+          </CardContent>
+        </Card>
       </SpecimenGroup>
       <SpecimenGroup title="Values">
         <TokenValueList names={MOTION_TOKENS} />

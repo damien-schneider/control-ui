@@ -268,6 +268,7 @@
   --text-display--line-height: 1.1;
   --text-display--font-weight: 600;
   --text-display--letter-spacing: -0.026em;
+  --text-hero: clamp(var(--text-display), 10cqi, calc(var(--text-display) * 2.4));
 
   --radius: 0px;
   --radius-control: calc(var(--radius) * 2);
@@ -519,6 +520,10 @@
   --text-display--line-height: var(--text-display--line-height);
   --text-display--font-weight: var(--text-display--font-weight);
   --text-display--letter-spacing: var(--text-display--letter-spacing);
+  --text-hero: var(--text-hero);
+  --text-hero--line-height: var(--text-display--line-height);
+  --text-hero--font-weight: var(--text-display--font-weight);
+  --text-hero--letter-spacing: var(--text-display--letter-spacing);
 
   --font-body: var(--font-body);
   --font-display: var(--font-display);
@@ -618,6 +623,11 @@
 
   --default-transition-duration: var(--duration-fast);
   --default-transition-timing-function: var(--ease-standard);
+}
+
+@utility text-hero {
+  font-family: var(--font-display);
+  text-wrap: balance;
 }
 
 @utility text-display {

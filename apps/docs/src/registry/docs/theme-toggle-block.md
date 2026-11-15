@@ -77,6 +77,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 import { type ReactNode, useState } from "react";
 import { ThemeDropdown, type ThemeMode, ThemeSegmentedSwitch, ThemeSwitch, ThemeToggle } from "@/components/control-ui/blocks/theme-toggle";
+import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from "@/components/control-ui/ui/item";
 import { Text } from "@/components/control-ui/ui/typography";
 
 const themeLabels: Record<ThemeMode, string> = {
@@ -93,17 +94,13 @@ const themeStatus: Record<ThemeMode, string> = {
 
 function ControlRow({ label, detail, children }: { label: string; detail: string; children: ReactNode }) {
   return (
-    <div className="flex min-h-12 flex-wrap items-center justify-between gap-3 rounded-[var(--radius-panel)] border border-border bg-card px-3 py-2 text-card-foreground">
-      <div className="min-w-0">
-        <Text as="div" weight="medium">
-          {label}
-        </Text>
-        <Text as="div" size="label" tone="muted">
-          {detail}
-        </Text>
-      </div>
-      {children}
-    </div>
+    <Item variant="outline">
+      <ItemContent>
+        <ItemTitle>{label}</ItemTitle>
+        <ItemDescription>{detail}</ItemDescription>
+      </ItemContent>
+      <ItemActions>{children}</ItemActions>
+    </Item>
   );
 }
 

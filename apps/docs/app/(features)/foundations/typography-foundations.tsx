@@ -1,5 +1,6 @@
 "use client";
 
+import { Card, CardContent } from "@/components/control-ui/ui/card";
 import { Text } from "@/components/control-ui/ui/typography";
 import { contractDescription, contractTokenNames, contractTokensNamed, Specimen, SpecimenGroup } from "./specimen/specimen";
 import { formatPx, useComputedReadout } from "./specimen/theme-readouts";
@@ -70,11 +71,13 @@ export function TypographyFoundations() {
         </div>
       </SpecimenGroup>
       <SpecimenGroup title="Type scale">
-        <div className="docs-panel grid gap-5 p-4">
-          {TYPE_RUNGS.map((rung) => (
-            <TypeRung key={rung} rung={rung} />
-          ))}
-        </div>
+        <Card size="sm">
+          <CardContent className="grid gap-5">
+            {TYPE_RUNGS.map((rung) => (
+              <TypeRung key={rung} rung={rung} />
+            ))}
+          </CardContent>
+        </Card>
       </SpecimenGroup>
     </div>
   );

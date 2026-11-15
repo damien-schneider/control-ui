@@ -154,6 +154,12 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token("--text-display--line-height", "typography", "derived", "Line-height paired onto text-display."),
   token("--text-display--font-weight", "typography", "derived", "Weight paired onto text-display."),
   token("--text-display--letter-spacing", "typography", "derived", "Tracking paired onto text-display."),
+  token(
+    "--text-hero",
+    "typography",
+    "derived",
+    "Fluid hero rung: grows with its container from display up to 2.4× display (landing headlines).",
+  ),
 
   token("--radius", "radius", "core", "THE single radius knob; the whole scale multiplies from it."),
   token("--radius-control", "radius", "advanced", "Shared control corner (button, trigger, field, chip); ×2 from --radius."),

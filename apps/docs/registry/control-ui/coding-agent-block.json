@@ -8,10 +8,13 @@
     "lucide-react@^1.47.0"
   ],
   "registryDependencies": [
+    "app-shell",
+    "avatar",
     "button",
     "chat-layout",
     "collapsible",
     "core",
+    "empty",
     "item",
     "sidebar",
     "typography"

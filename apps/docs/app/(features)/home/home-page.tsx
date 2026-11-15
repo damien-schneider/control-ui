@@ -5,16 +5,15 @@ import type { CatalogGalleryItem } from "@/app/(features)/model/catalog-gallery"
 import { fullInstallCommand } from "@/app/(features)/model/registry";
 import { cn } from "@/components/control-ui/lib/cn";
 import { ButtonLink } from "@/components/control-ui/ui/button";
-import { Heading, Text } from "@/components/control-ui/ui/typography";
+import { Card, CardContent, CardLink } from "@/components/control-ui/ui/card";
+import { Heading, Text, TextLink } from "@/components/control-ui/ui/typography";
 import { HowItWorks } from "./how-it-works";
-import landingType from "./landing-type.module.css";
 import { SceneStage } from "./scene-stage";
 import {
   catalogIndex,
   chatGroup,
   chatKits,
   componentsMissingFromShadcn,
-  inlineLinkClassName,
   landingWidthClassName,
   missingFromShadcnGuide,
   shadcnComparisonGuide,
@@ -43,10 +42,10 @@ function LandingSection({ id, title, lead, children }: { id: string; title: stri
   return (
     <section id={id} aria-labelledby={titleId} className={cn(landingWidthClassName, "grid min-w-0 scroll-mt-32 gap-12")}>
       <div className="mx-auto grid max-w-2xl justify-items-center gap-4 text-center">
-        <Heading level={2} id={titleId} size="display" tone="foreground" className={landingType.sectionTitle}>
+        <Heading level={2} id={titleId} size="display" tone="foreground">
           {title}
         </Heading>
-        <Text as="p" size="body-lg" tone="muted" className={cn("text-pretty", landingType.lead)}>
+        <Text as="p" size="body-lg" tone="muted" className="text-pretty">
           {lead}
         </Text>
       </div>
@@ -60,10 +59,10 @@ function Hero() {
 
   return (
     <header className={cn(landingWidthClassName, "grid justify-items-center gap-8 pt-20 text-center @3xl/home:pt-28")}>
-      <Heading level={1} size="display" tone="foreground" className={cn("max-w-4xl", landingType.title)}>
+      <Heading level={1} size="hero" tone="foreground" className="max-w-4xl">
         App components for shadcn/ui, in any skin
       </Heading>
-      <Text as="p" size="body-lg" tone="muted" className={cn("max-w-2xl text-pretty", landingType.lead)}>
+      <Text as="p" size="body-lg" tone="muted" className="max-w-2xl text-pretty">
         Pickers, trees, editors, AI chat, and whole app screens, installed with the shadcn CLI as source you own. Switch the skin at the
         bottom of the screen and the whole page repaints.
       </Text>
@@ -91,31 +90,29 @@ function CatalogClosing() {
   return (
     <section aria-labelledby="catalog-title" className={cn(landingWidthClassName, "grid justify-items-center gap-12 text-center")}>
       <div className="grid max-w-2xl justify-items-center gap-4">
-        <Heading level={2} id="catalog-title" size="display" tone="foreground" className={landingType.sectionTitle}>
+        <Heading level={2} id="catalog-title" size="display" tone="foreground">
           The whole catalog
         </Heading>
-        <Text as="p" size="body-lg" tone="muted" className={cn("text-pretty", landingType.lead)}>
+        <Text as="p" size="body-lg" tone="muted" className="text-pretty">
           Coming from shadcn/ui? Read{" "}
-          <Link href={`/${shadcnComparisonGuide.id}`} className={inlineLinkClassName}>
-            {shadcnComparisonGuide.name}
-          </Link>
-          .
+          <TextLink render={<Link href={`/${shadcnComparisonGuide.id}`} />}>{shadcnComparisonGuide.name}</TextLink>.
         </Text>
       </div>
       <ul className="grid w-full min-w-0 grid-cols-2 gap-3 @3xl/home:grid-cols-4">
         {catalogIndex.map((entry) => (
           <li key={entry.href} className="grid">
-            <Link
-              href={entry.href}
-              className="grid gap-1 rounded-[var(--radius-panel)] border border-border/70 bg-card px-5 py-6 outline-none transition-[border-color,background-color] duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:border-foreground/20 hover:bg-muted/35 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
-            >
-              <Text size="display" tone="foreground" numeric>
-                {entry.count}
-              </Text>
-              <Text size="label" tone="muted">
-                {entry.name}
-              </Text>
-            </Link>
+            <Card>
+              <CardContent>
+                <CardLink render={<Link href={entry.href} />} className="grid gap-1">
+                  <Text size="display" tone="foreground" numeric>
+                    {entry.count}
+                  </Text>
+                  <Text size="label" tone="muted">
+                    {entry.name}
+                  </Text>
+                </CardLink>
+              </CardContent>
+            </Card>
           </li>
         ))}
       </ul>
@@ -127,7 +124,7 @@ function CatalogClosing() {
 export function HomePage() {
   return (
     <div className="@container/home">
-      <div className={cn("grid gap-32 pb-32", landingType.scale)}>
+      <div className="grid gap-32 pb-32">
         <div className="grid gap-16">
           <Hero />
           <SceneStage />
@@ -138,10 +135,7 @@ export function HomePage() {
           lead={
             <>
               The pickers, trees, and viewers you would otherwise build yourself.{" "}
-              <Link href={`/${missingFromShadcnGuide.id}`} className={inlineLinkClassName}>
-                See the full list
-              </Link>
-              .
+              <TextLink render={<Link href={`/${missingFromShadcnGuide.id}`} />}>See the full list</TextLink>.
             </>
           }
         >
@@ -152,11 +146,7 @@ export function HomePage() {
           title={chatGroup.title}
           lead={
             <>
-              {chatGroup.summary}{" "}
-              <Link href={`/kits#${chatGroup.id}`} className={inlineLinkClassName}>
-                Browse all {chatGroup.items.length}
-              </Link>
-              .
+              {chatGroup.summary} <TextLink render={<Link href={`/kits#${chatGroup.id}`} />}>Browse all {chatGroup.items.length}</TextLink>.
             </>
           }
         >

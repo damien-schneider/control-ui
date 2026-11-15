@@ -23,7 +23,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ## Exports
 
-- `@/components/control-ui/hooks/use-chat-message`: `chatAuthorLabels`, `chatMessageStatusLabels`, `ChatThreadAnnounceContext`, `useChatThreadAnnounce`, `ChatMessageStateProvider`, `useChatMessageContext`, `chatMessageTransition`, `useChatMessage`, types `ChatRole`, `ChatDensity`, `ChatState`, `ChatMessageLayout`, `ChatMessageStatusLabels`, `ChatMessageProps`, `ChatMessageContext`
+- `@/components/control-ui/hooks/use-chat-message`: `chatAuthorLabels`, `chatMessageStatusLabels`, `ChatThreadAnnounceContext`, `useChatThreadAnnounce`, `ChatThreadDockContext`, `useChatThreadDockSend`, `ChatMessageStateProvider`, `useChatMessageContext`, `chatMessageTransition`, `useChatMessage`, types `ChatRole`, `ChatDensity`, `ChatState`, `ChatMessageLayout`, `ChatMessageStatusLabels`, `ChatMessageProps`, `ChatMessageContext`
 - `@/components/control-ui/knob-contracts/chat-message-knobs`: `chatMessageKnobs`, types `ChatMessageKnobStyle`
 - `@/components/control-ui/chat-message`: `ChatMessageReaction`, `ChatMessageReactions`, `ChatMessageReplies`, `ChatMessageReplySummary`, `ChatTypingIndicator`, `ChatMessage`, `ChatMessageRow`, `ChatMessageAvatar`, `ChatMessageBody`, `ChatMessageHeader`, `ChatMessageAuthor`, `ChatMessageTime`, `ChatMessageContent`, `ChatMessageEditable`, `ChatMessagePending`, `ChatMessageFooter`, `ChatMessageActions`, types `ChatMessageReactionProps`, `ChatMessageReactionsProps`, `ChatMessageRepliesProps`, `ChatMessageReplySummaryProps`, `ChatTypingIndicatorProps`, `ChatMessagePartProps`, `ChatMessageRowProps`, `ChatMessageAvatarProps`, `ChatMessageBodyProps`, `ChatMessageHeaderProps`, `ChatMessageAuthorProps`, `ChatMessageTimeProps`, `ChatMessageContentProps`, `ChatMessageEditableProps`, `ChatMessagePendingProps`, `ChatMessageFooterProps`, `ChatMessageActionsProps`
 - `@/components/control-ui/chat-message/social`: `ChatMessageReactions`, `ChatMessageReaction`, `ChatMessageReplySummary`, `ChatMessageReplies`, `ChatTypingIndicator`, types `ChatMessageReactionsProps`, `ChatMessageReactionProps`, `ChatMessageReplySummaryProps`, `ChatMessageRepliesProps`, `ChatTypingIndicatorProps`
@@ -118,7 +118,6 @@ import {
   ActivityDetailContent,
   ActivityDetailLabel,
   ActivityIcon,
-  ActivityStatus,
   ActivityTitle,
   ActivityTrigger,
 } from "@/components/control-ui/activity";
@@ -153,7 +152,6 @@ export function ChatMessageExample() {
               <ActivityTrigger>
                 <ActivityIcon />
                 <ActivityTitle>Active setup</ActivityTitle>
-                <ActivityStatus className="sr-only" />
               </ActivityTrigger>
               <ActivityContent>
                 <ActivityDetail>

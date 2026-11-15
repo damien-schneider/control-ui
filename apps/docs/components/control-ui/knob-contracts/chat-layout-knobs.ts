@@ -5,6 +5,10 @@ export const chatLayoutKnobs = [
   "--cui-chat-layout-border-color",
   "--cui-chat-layout-border-width",
   "--cui-chat-layout-shadow",
+  "--cui-chat-layout-gutter-size",
+  "--cui-chat-layout-column-max-inline-size",
+  "--cui-chat-layout-veil-background",
+  "--cui-chat-layout-veil-backdrop-filter",
   "--cui-chat-layout-scroll-button-gap",
   "--cui-chat-layout-turn-gap",
 ] as const;

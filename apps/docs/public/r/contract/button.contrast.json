@@ -714,6 +714,34 @@
           "data-control-ui": "audio-recorder",
           "data-icon-only": "true",
           "data-layout": "inline",
+          "data-recorder-state": "error",
+          "data-shape": "circle",
+          "data-size": "sm",
+          "data-slot": "trigger",
+          "data-tone": "danger",
+          "data-variant": "quiet",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "audio-recorder",
+          "data-icon-only": "true",
+          "data-layout": "inline",
           "data-recorder-state": "idle",
           "data-shape": "circle",
           "data-size": "sm",
@@ -1553,7 +1581,8 @@
           "data-size": "xs",
           "data-slot": "root",
           "data-tone": "neutral",
-          "data-variant": "ghost"
+          "data-variant": "ghost",
+          "tabindex": "-1"
         }
       }
     ],
@@ -1590,7 +1619,8 @@
           "data-size": "xs",
           "data-slot": "root",
           "data-tone": "neutral",
-          "data-variant": "ghost"
+          "data-variant": "ghost",
+          "tabindex": "-1"
         }
       }
     ],
@@ -2271,12 +2301,71 @@
         "attributes": {
           "data-control": "true",
           "data-control-family": "button",
-          "data-control-ui": "chat-composer",
-          "data-disabled": "",
-          "data-icon-only": "true",
+          "data-control-ui": "button",
           "data-layout": "inline",
           "data-shape": "default",
-          "data-size": "sm",
+          "data-size": "xs",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "ghost",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-role": "assistant",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "compact",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "chat-composer",
+          "data-disabled": "",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "xs",
           "data-slot": "submit",
           "data-tone": "primary",
           "data-variant": "solid",
@@ -2461,6 +2550,57 @@
           "data-control": "true",
           "data-control-family": "button",
           "data-control-ui": "button",
+          "data-icon-only": "true",
+          "data-layout": "inline",
+          "data-shape": "circle",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "surface",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-role": "assistant",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-block",
+          "data-control-ui": "markdown-block",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
           "data-layout": "inline",
           "data-shape": "default",
           "data-size": "xs",
@@ -2481,6 +2621,111 @@
           "data-slot": "root",
           "data-tone": "neutral",
           "data-variant": "quiet",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-role": "assistant",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
+          "data-icon-only": "true",
+          "data-layout": "inline",
+          "data-shape": "circle",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "surface",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-role": "user",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "compact",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "chat-composer",
+          "data-disabled": "",
+          "data-icon-only": "true",
+          "data-layout": "inline",
+          "data-shape": "default",
+          "data-size": "sm",
+          "data-slot": "submit",
+          "data-tone": "primary",
+          "data-variant": "solid",
           "tabindex": "0"
         }
       }
@@ -9519,7 +9764,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 22,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -9564,7 +9809,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 27,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -9582,7 +9827,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 29,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -9627,7 +9872,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 34,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -9645,7 +9890,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 36,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -9699,7 +9944,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 42,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -9708,7 +9953,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 43,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -9780,7 +10025,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 51,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -9816,7 +10061,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 55,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -9834,7 +10079,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 57,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -9888,7 +10133,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 63,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -9906,15 +10151,6 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 65,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
-      },
-      "anatomy": 66,
       "rendersText": true,
       "state": false
     },
@@ -9923,8 +10159,17 @@
         "fill": "--cui-button-background",
         "text": "--cui-button-foreground"
       },
-      "anatomy": 67,
+      "anatomy": 66,
       "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-background",
+        "text": "--cui-button-foreground"
+      },
+      "anatomy": 67,
+      "rendersText": true,
       "state": false
     },
     {
@@ -9951,7 +10196,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 70,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -9960,7 +10205,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 71,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10005,7 +10250,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 76,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10059,7 +10304,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 82,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10068,7 +10313,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 83,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10077,7 +10322,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 84,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10086,7 +10331,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 85,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10104,7 +10349,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 87,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10113,7 +10358,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 88,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10131,7 +10376,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 90,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10140,7 +10385,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 91,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10167,7 +10412,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 94,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10176,7 +10421,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 95,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10185,7 +10430,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 96,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10194,7 +10439,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 97,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10203,7 +10448,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 98,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10212,7 +10457,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 99,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10311,7 +10556,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 110,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10320,7 +10565,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 111,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10329,7 +10574,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 112,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10338,7 +10583,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 113,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10356,7 +10601,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 115,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10374,7 +10619,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 117,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10383,7 +10628,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 118,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10392,7 +10637,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 119,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10401,7 +10646,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 120,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10410,7 +10655,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 121,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10428,7 +10673,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 123,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10455,7 +10700,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 126,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10464,7 +10709,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 127,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10491,7 +10736,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 130,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10527,7 +10772,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 134,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10554,7 +10799,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 137,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10563,7 +10808,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 138,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10590,7 +10835,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 141,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10716,7 +10961,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 155,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10770,7 +11015,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 161,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10815,7 +11060,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 166,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10851,7 +11096,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 170,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10860,7 +11105,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 171,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10869,7 +11114,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 172,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10878,7 +11123,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 173,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10887,7 +11132,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 174,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10896,7 +11141,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 175,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -10959,7 +11204,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 182,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10968,7 +11213,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 183,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10977,7 +11222,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 184,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10986,7 +11231,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 185,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -10995,7 +11240,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 186,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -11175,7 +11420,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 206,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -11184,7 +11429,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 207,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -11193,7 +11438,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 208,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -11202,7 +11447,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 209,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -11211,7 +11456,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 210,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -11220,7 +11465,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 211,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -11256,7 +11501,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 215,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -11265,7 +11510,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 216,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -11283,7 +11528,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 218,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -11292,7 +11537,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 219,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -11310,7 +11555,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 221,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -11319,7 +11564,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 222,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -11418,7 +11663,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 233,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -11427,7 +11672,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 234,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -11441,9 +11686,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground",
-        "boundary": "--cui-button-open-border-color"
+        "fill": "--cui-button-background",
+        "text": "--cui-button-foreground"
       },
       "anatomy": 236,
       "rendersText": true,
@@ -11451,9 +11695,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground",
-        "boundary": "--cui-button-open-border-color"
+        "fill": "--cui-button-background",
+        "text": "--cui-button-foreground"
       },
       "anatomy": 237,
       "rendersText": true,
@@ -11461,29 +11704,26 @@
     },
     {
       "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground",
-        "boundary": "--cui-button-open-border-color"
+        "fill": "--cui-button-background",
+        "text": "--cui-button-foreground"
       },
       "anatomy": 238,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground",
-        "boundary": "--cui-button-open-border-color"
+        "fill": "--cui-button-background",
+        "text": "--cui-button-foreground"
       },
       "anatomy": 239,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground",
-        "boundary": "--cui-button-open-border-color"
+        "fill": "--cui-button-background",
+        "text": "--cui-button-foreground"
       },
       "anatomy": 240,
       "rendersText": true,
@@ -11496,7 +11736,7 @@
         "boundary": "--cui-button-open-border-color"
       },
       "anatomy": 241,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -11506,7 +11746,7 @@
         "boundary": "--cui-button-open-border-color"
       },
       "anatomy": 242,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -11546,7 +11786,7 @@
         "boundary": "--cui-button-open-border-color"
       },
       "anatomy": 246,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -11566,7 +11806,7 @@
         "boundary": "--cui-button-open-border-color"
       },
       "anatomy": 248,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -11606,7 +11846,7 @@
         "boundary": "--cui-button-open-border-color"
       },
       "anatomy": 252,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -11626,6 +11866,56 @@
         "boundary": "--cui-button-open-border-color"
       },
       "anatomy": 254,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground",
+        "boundary": "--cui-button-open-border-color"
+      },
+      "anatomy": 255,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground",
+        "boundary": "--cui-button-open-border-color"
+      },
+      "anatomy": 256,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground",
+        "boundary": "--cui-button-open-border-color"
+      },
+      "anatomy": 257,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground",
+        "boundary": "--cui-button-open-border-color"
+      },
+      "anatomy": 258,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground",
+        "boundary": "--cui-button-open-border-color"
+      },
+      "anatomy": 259,
       "rendersText": false,
       "state": false
     }

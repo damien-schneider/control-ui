@@ -139,6 +139,8 @@
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/activity.json",
+        "https://control-ui.dev/r/app-shell.json",
+        "https://control-ui.dev/r/avatar.json",
         "https://control-ui.dev/r/badge.json",
         "https://control-ui.dev/r/card.json",
         "https://control-ui.dev/r/core.json",
@@ -2995,10 +2997,13 @@
         "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
+        "https://control-ui.dev/r/app-shell.json",
+        "https://control-ui.dev/r/avatar.json",
         "https://control-ui.dev/r/button.json",
         "https://control-ui.dev/r/chat-layout.json",
         "https://control-ui.dev/r/collapsible.json",
         "https://control-ui.dev/r/core.json",
+        "https://control-ui.dev/r/empty.json",
         "https://control-ui.dev/r/item.json",
         "https://control-ui.dev/r/sidebar.json",
         "https://control-ui.dev/r/typography.json"
@@ -3514,6 +3519,7 @@
         "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
+        "https://control-ui.dev/r/badge.json",
         "https://control-ui.dev/r/button.json",
         "https://control-ui.dev/r/color-picker.json",
         "https://control-ui.dev/r/core.json",
@@ -4183,6 +4189,7 @@
         "https://control-ui.dev/r/empty.json",
         "https://control-ui.dev/r/input.json",
         "https://control-ui.dev/r/input-group.json",
+        "https://control-ui.dev/r/item.json",
         "https://control-ui.dev/r/live-status.json",
         "https://control-ui.dev/r/resizable.json",
         "https://control-ui.dev/r/scroll-area.json",
@@ -7060,9 +7067,11 @@
       "title": "Tabs",
       "description": "Segmented and browser-style navigation with a stable active indicator.",
       "dependencies": [
-        "@base-ui/react@^1.9.0"
+        "@base-ui/react@^1.9.0",
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
+        "https://control-ui.dev/r/button.json",
         "https://control-ui.dev/r/core.json"
       ],
       "files": [
@@ -7075,6 +7084,11 @@
           "path": "src/registry/knob-contracts/tabs-knobs.ts",
           "target": "@components/control-ui/knob-contracts/tabs-knobs.ts",
           "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/tabs-browser.css",
+          "target": "@components/control-ui/styles/recipes/tabs-browser.css",
+          "type": "registry:file"
         },
         {
           "path": "src/registry/sources/control-ui/recipes/tabs-motion.css",
@@ -7094,6 +7108,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/tabs.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/tabs-browser.css\"": {},
         "@import \"../components/control-ui/styles/recipes/tabs-motion.css\"": {}
       }
     },
@@ -7793,7 +7808,7 @@
       "name": "typography",
       "type": "registry:ui",
       "title": "Typography",
-      "description": "Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role, className stays layout-only. A bare text-* rung is for HTML React doesn't render as components, such as email HTML; MDX maps its tags to Heading and Text.",
+      "description": "Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role, className stays layout-only. TextLink is the underlined link inside prose. A bare text-* rung is for HTML React doesn't render as components, such as email HTML; MDX maps its tags to Heading and Text.",
       "dependencies": [],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"

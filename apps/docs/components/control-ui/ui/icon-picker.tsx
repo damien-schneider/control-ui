@@ -44,11 +44,14 @@ export type IconPickerProps = Omit<ComponentProps<"div">, "style" | "defaultValu
   ControlledChoice & {
     items: readonly IconPickerItem[];
     columns?: number;
+    /** CSS colour that tints the icon grid, e.g. the value picked in IconPickerColors. */
+    iconColor?: string;
   };
 
 export function IconPicker({
   items,
   columns = 8,
+  iconColor,
   value,
   defaultValue,
   onValueChange,
@@ -63,7 +66,11 @@ export function IconPicker({
     if (value === undefined) setUncontrolledValue(selectedValue);
     onValueChange?.(selectedValue);
   };
-  const pickerStyle = { "--_icon-picker-columns": columns, ...style } satisfies CSSProperties & { "--_icon-picker-columns": number };
+  const pickerStyle = {
+    "--_icon-picker-columns": columns,
+    "--cui-icon-picker-foreground": iconColor,
+    ...style,
+  } satisfies CSSProperties & IconPickerKnobStyle & { "--_icon-picker-columns": number };
 
   return (
     <IconPickerContext.Provider value={{ items, columns, selectedValue: value ?? uncontrolledValue, selectIcon, search, setSearch }}>

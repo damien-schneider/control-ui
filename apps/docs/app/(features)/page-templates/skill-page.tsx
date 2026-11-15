@@ -1,7 +1,8 @@
 "use client";
 
 import type { DocsSkill, DocsSkillConcern } from "@/app/(features)/model/types";
-import { Card, CardContent } from "@/components/control-ui/ui/card";
+import { Badge } from "@/components/control-ui/ui/badge";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/control-ui/ui/card";
 import { Text } from "@/components/control-ui/ui/typography";
 import { AgentActions } from "./agent-actions";
 import { PageHeader, SectionTitle } from "./shared";
@@ -38,14 +39,16 @@ export function SkillPage({ skill, concern }: { skill: DocsSkill; concern?: Docs
               title="Source"
               description="Imported as local Control UI skill guidance, with this repo owning the final wording."
             />
-            <div className="rounded-xl border bg-background p-5">
-              <Text as="div" weight="medium" tone="foreground">
-                {skill.source.label}
-              </Text>
-              <Text as="code" size="label" tone="muted" className="mt-2 block overflow-hidden text-ellipsis whitespace-nowrap">
-                {skill.source.path}
-              </Text>
-            </div>
+            <Card className="min-w-0">
+              <CardHeader>
+                <CardTitle>{skill.source.label}</CardTitle>
+                <CardDescription>
+                  <Text as="code" mono className="block truncate">
+                    {skill.source.path}
+                  </Text>
+                </CardDescription>
+              </CardHeader>
+            </Card>
           </section>
         ) : null}
       </div>
@@ -61,11 +64,9 @@ function SkillRuleList({ id, title, items, muted = false }: { id: string; title:
         {items.map((item, index) => (
           <Card key={item} size="sm">
             <CardContent className="flex gap-3">
-              <span className="mt-px flex size-5 shrink-0 items-center justify-center rounded-full border bg-background">
-                <Text size="caption" weight="medium" tone="muted">
-                  {index + 1}
-                </Text>
-              </span>
+              <Badge variant="outline" size="sm" className="mt-px">
+                {index + 1}
+              </Badge>
               <Text tone={muted ? "muted" : "foreground"}>{item}</Text>
             </CardContent>
           </Card>

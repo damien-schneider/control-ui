@@ -33,13 +33,13 @@ export function PrimitiveToggleExample() {
       <Row label="Multi-select group">
         <ToggleGroup multiple value={format} onValueChange={setFormat} aria-label="Text formatting">
           <Toggle value="bold" aria-label="Bold">
-            <BoldIcon className="size-3.5" />
+            <BoldIcon />
           </Toggle>
           <Toggle value="italic" aria-label="Italic">
-            <ItalicIcon className="size-3.5" />
+            <ItalicIcon />
           </Toggle>
           <Toggle value="underline" aria-label="Underline">
-            <UnderlineIcon className="size-3.5" />
+            <UnderlineIcon />
           </Toggle>
         </ToggleGroup>
       </Row>

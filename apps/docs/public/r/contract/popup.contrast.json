@@ -707,32 +707,6 @@
         "attributes": {
           "data-align": "start",
           "data-control-family": "popup",
-          "data-control-ui": "combobox",
-          "data-open": "",
-          "data-popup-kind": "combobox",
-          "data-popup-part": "list-surface",
-          "data-side": "top",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "presentation",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "start",
-          "data-control-family": "popup",
           "data-control-ui": "dropdown-menu",
           "data-open": "",
           "data-popup-part": "list-surface",
@@ -3698,6 +3672,44 @@
           "data-open": "",
           "data-popup-kind": "select",
           "data-popup-part": "list-surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "presentation",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-selected": "false",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-popup-kind": "select",
+          "data-popup-part": "item",
+          "data-slot": "item",
+          "role": "option",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "audio-device-select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
           "data-side": "top",
           "data-slot": "content",
           "data-surface": "floating",
@@ -3777,43 +3789,6 @@
           "data-popup-kind": "combobox",
           "data-popup-part": "list-surface",
           "data-side": "bottom",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "presentation",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "aria-selected": "false",
-          "data-control-family": "popup",
-          "data-control-ui": "combobox",
-          "data-popup-kind": "combobox",
-          "data-popup-part": "item",
-          "data-slot": "item",
-          "role": "option"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "start",
-          "data-control-family": "popup",
-          "data-control-ui": "combobox",
-          "data-open": "",
-          "data-popup-kind": "combobox",
-          "data-popup-part": "list-surface",
-          "data-side": "top",
           "data-slot": "content",
           "data-surface": "floating",
           "role": "presentation",
@@ -5241,51 +5216,6 @@
           "data-slot": "item",
           "data-tone": "neutral",
           "role": "menuitem",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "audio-visualizer",
-          "data-control-ui": "audio-visualizer",
-          "data-slot": "bar"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "start",
-          "data-control-family": "popup",
-          "data-control-ui": "audio-device-select",
-          "data-open": "",
-          "data-popup-kind": "select",
-          "data-popup-part": "list-surface",
-          "data-side": "bottom",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "presentation",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "aria-selected": "false",
-          "data-control-family": "popup",
-          "data-control-ui": "select",
-          "data-popup-kind": "select",
-          "data-popup-part": "item",
-          "data-slot": "item",
-          "role": "option",
           "tabindex": "-1"
         }
       }
@@ -7027,7 +6957,7 @@
         "text": "--cui-popup-foreground"
       },
       "anatomy": 31,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7036,7 +6966,7 @@
         "text": "--cui-popup-foreground"
       },
       "anatomy": 32,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -7135,7 +7065,7 @@
         "text": "--cui-popup-foreground"
       },
       "anatomy": 43,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7144,7 +7074,7 @@
         "text": "--cui-popup-foreground"
       },
       "anatomy": 44,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -7311,8 +7241,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-popup-background",
-        "text": "--cui-popup-foreground"
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
       },
       "anatomy": 63,
       "rendersText": true,
@@ -7419,20 +7349,19 @@
     },
     {
       "knobs": {
-        "fill": "--cui-popup-item-highlight-background",
-        "text": "--cui-popup-item-highlight-foreground"
+        "fill": "--cui-popup-item-highlight-background"
       },
       "anatomy": 75,
       "rendersText": true,
-      "state": false
+      "state": true
     },
     {
       "knobs": {
-        "fill": "--cui-popup-item-highlight-background"
+        "fill": "--cui-popup-separator-color"
       },
       "anatomy": 76,
-      "rendersText": true,
-      "state": true
+      "rendersText": false,
+      "state": false
     },
     {
       "knobs": {
@@ -7468,10 +7397,10 @@
     },
     {
       "knobs": {
-        "fill": "--cui-popup-separator-color"
+        "text": "--cui-popup-description-foreground"
       },
       "anatomy": 81,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -7516,7 +7445,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-description-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 87,
       "rendersText": true,
@@ -7990,6 +7919,14 @@
       "knobs": {
         "text": "--cui-popup-item-foreground"
       },
+      "anatomy": 75,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-item-foreground"
+      },
       "anatomy": 146,
       "rendersText": true,
       "state": false
@@ -7999,14 +7936,6 @@
         "text": "--cui-popup-item-foreground"
       },
       "anatomy": 147,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-popup-item-foreground"
-      },
-      "anatomy": 76,
       "rendersText": true,
       "state": false
     },
@@ -8100,7 +8029,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-item-foreground"
+        "text": "--cui-popup-title-foreground"
       },
       "anatomy": 159,
       "rendersText": true,
@@ -8108,7 +8037,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-item-foreground"
+        "text": "--cui-popup-title-foreground"
       },
       "anatomy": 160,
       "rendersText": true,
@@ -8167,22 +8096,6 @@
         "text": "--cui-popup-title-foreground"
       },
       "anatomy": 167,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-popup-title-foreground"
-      },
-      "anatomy": 168,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-popup-title-foreground"
-      },
-      "anatomy": 169,
       "rendersText": true,
       "state": false
     }

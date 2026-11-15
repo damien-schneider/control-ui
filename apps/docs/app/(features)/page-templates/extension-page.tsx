@@ -4,6 +4,7 @@ import { SourceTabs } from "@/app/(features)/components/source";
 import { registryInstallCommands } from "@/app/(features)/model/registry";
 import type { DocsExtension } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
 import { Text } from "@/components/control-ui/ui/typography";
 import { AgentActions } from "./agent-actions";
 import { hasExtensionDemo } from "./extension-demo-ids";
@@ -33,30 +34,34 @@ export function ExtensionPage({ extension }: { extension: DocsExtension }) {
               title="Preview"
               description="Local demo scoped to this frame — real activation is skin-level, see Activation below."
             />
-            <div className="min-w-0 rounded-xl border bg-background p-5">
-              <ExtensionDemo extensionId={extension.id} />
-            </div>
+            <Card className="min-w-0">
+              <CardContent>
+                <ExtensionDemo extensionId={extension.id} />
+              </CardContent>
+            </Card>
           </section>
         ) : null}
-        <div id="attach" className="min-w-0 scroll-mt-20 rounded-xl border bg-background p-5">
-          <Text as="p" tone="muted">
-            <Badge variant="outline" size="sm" className="mr-2">
-              {extension.attach === "anchored" ? "Anchored" : "Root-mounted"}
-            </Badge>
-            {extension.attach === "anchored" ? (
-              <>
-                Fills the <code>{extension.anchor}</code> anchor: the component owns the positioned wrapper (aria-hidden,
-                pointer-events-none, paint-contained) and renders zero DOM until a skin.config fills it — install the item, activate it from
-                skin.config, pay nothing anywhere else.
-              </>
-            ) : (
-              <>
-                Mounted once above its targets and attached through the emitted anatomy — no component imports it, and removing the item
-                removes every byte. Not installed means no import, no listener, no cost.
-              </>
-            )}
-          </Text>
-        </div>
+        <Card id="attach" className="min-w-0 scroll-mt-20">
+          <CardContent>
+            <Text as="p" tone="muted">
+              <Badge variant="outline" size="sm" className="mr-2">
+                {extension.attach === "anchored" ? "Anchored" : "Root-mounted"}
+              </Badge>
+              {extension.attach === "anchored" ? (
+                <>
+                  Fills the <code>{extension.anchor}</code> anchor: the component owns the positioned wrapper (aria-hidden,
+                  pointer-events-none, paint-contained) and renders zero DOM until a skin.config fills it — install the item, activate it
+                  from skin.config, pay nothing anywhere else.
+                </>
+              ) : (
+                <>
+                  Mounted once above its targets and attached through the emitted anatomy — no component imports it, and removing the item
+                  removes every byte. Not installed means no import, no listener, no cost.
+                </>
+              )}
+            </Text>
+          </CardContent>
+        </Card>
         <InstallPanel commands={commands} manifestHref={`/r/${extension.registryKind}.json`}>
           Installs to <code>{extension.target}</code>. Extensions are optional items layered on the library — no component bundle carries
           them.

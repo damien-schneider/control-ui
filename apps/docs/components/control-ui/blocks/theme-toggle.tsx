@@ -189,7 +189,7 @@ export function ThemeSegmentedSwitch({
                 if (event.currentTarget.checked) onValueChange(option.value);
               }}
             />
-            <Icon className="size-3.5" aria-hidden />
+            <Icon aria-hidden />
             {showLabels ? (
               <Text size="label" weight="medium">
                 {option.label}
@@ -220,7 +220,7 @@ export function ThemeToggle({
     <Button
       variant="surface"
       size="sm"
-      className={cn("gap-2", className)}
+      className={className}
       aria-label={ariaLabel ?? `Theme: ${current.label}`}
       onClick={(event) => {
         onClick?.(event);
@@ -249,10 +249,10 @@ export function ThemeDropdown({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger aria-label={ariaLabel ?? `${label}: ${current.label}`} className={cn("min-w-36 gap-2", className)} {...props}>
+      <DropdownMenuTrigger aria-label={ariaLabel ?? `${label}: ${current.label}`} className={cn("min-w-36", className)} {...props}>
         <CurrentIcon aria-hidden />
         <span className="min-w-0 truncate">{current.label}</span>
-        <ChevronDownIcon className="text-muted-foreground" aria-hidden />
+        <ChevronDownIcon aria-hidden />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="min-w-40">
         <DropdownMenuRadioGroup value={value} onValueChange={onValueChange}>
@@ -262,7 +262,7 @@ export function ThemeDropdown({
 
             return (
               <DropdownMenuRadioItem key={option.value} value={option.value} disabled={option.disabled}>
-                <Icon className="size-3.5" aria-hidden />
+                <Icon aria-hidden />
                 <span className="min-w-0 flex-1 truncate">{option.label}</span>
               </DropdownMenuRadioItem>
             );

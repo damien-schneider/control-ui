@@ -16,6 +16,57 @@
         "attributes": {
           "data-control-family": "audio-recorder",
           "data-control-ui": "audio-recorder",
+          "data-error": "true",
+          "data-slot": "root",
+          "data-state": "error",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "audio-recorder",
+          "data-control-ui": "audio-recorder",
+          "data-slot": "status",
+          "data-tone": "error",
+          "data-visible": "true"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "audio-recorder",
+          "data-control-ui": "audio-recorder",
+          "data-error": "true",
+          "data-slot": "root",
+          "data-state": "error",
+          "role": "group"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "audio-recorder",
+          "data-control-ui": "audio-recorder",
           "data-slot": "root",
           "data-state": "idle",
           "role": "group"
@@ -75,7 +126,7 @@
   "probes": [
     {
       "knobs": {
-        "text": "--cui-audio-recorder-foreground"
+        "text": "--cui-audio-recorder-error-foreground"
       },
       "anatomy": 0,
       "rendersText": true,
@@ -91,9 +142,25 @@
     },
     {
       "knobs": {
-        "text": "--cui-audio-recorder-meta-foreground"
+        "text": "--cui-audio-recorder-foreground"
       },
       "anatomy": 2,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-audio-recorder-foreground"
+      },
+      "anatomy": 3,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-audio-recorder-meta-foreground"
+      },
+      "anatomy": 4,
       "rendersText": true,
       "state": false
     }

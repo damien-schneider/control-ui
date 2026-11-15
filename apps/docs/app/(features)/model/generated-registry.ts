@@ -83,7 +83,19 @@ export const registryMetadata = {
   },
   "agent-run-block": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["activity", "badge", "card", "core", "live-status", "sidebar", "spinner", "timeline", "typography"],
+    registryDependencies: [
+      "activity",
+      "app-shell",
+      "avatar",
+      "badge",
+      "card",
+      "core",
+      "live-status",
+      "sidebar",
+      "spinner",
+      "timeline",
+      "typography",
+    ],
     sourceManifestPath: "registry/control-ui/agent-run-block.json",
     files: [
       {
@@ -2479,7 +2491,7 @@ export const registryMetadata = {
   },
   "coding-agent-block": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["button", "chat-layout", "collapsible", "core", "item", "sidebar", "typography"],
+    registryDependencies: ["app-shell", "avatar", "button", "chat-layout", "collapsible", "core", "empty", "item", "sidebar", "typography"],
     sourceManifestPath: "registry/control-ui/coding-agent-block.json",
     files: [
       {
@@ -2940,6 +2952,7 @@ export const registryMetadata = {
   "design-canvas-block": {
     dependencies: ["lucide-react@^1.47.0"],
     registryDependencies: [
+      "badge",
       "button",
       "color-picker",
       "core",
@@ -3455,6 +3468,7 @@ export const registryMetadata = {
       "empty",
       "input",
       "input-group",
+      "item",
       "live-status",
       "resizable",
       "scroll-area",
@@ -5118,7 +5132,7 @@ export const registryMetadata = {
   },
   "sidebar-layout-block": {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["app-shell", "core", "page-layout", "sidebar", "typography"],
+    registryDependencies: ["app-shell", "avatar", "core", "page-layout", "sidebar", "typography"],
     sourceManifestPath: "registry/control-ui/sidebar-layout-block.json",
     files: [
       {
@@ -5699,8 +5713,8 @@ export const registryMetadata = {
     ],
   },
   tabs: {
-    dependencies: ["@base-ui/react@^1.9.0"],
-    registryDependencies: ["core"],
+    dependencies: ["@base-ui/react@^1.9.0", "lucide-react@^1.47.0"],
+    registryDependencies: ["button", "core"],
     sourceManifestPath: "registry/control-ui/tabs.json",
     files: [
       {
@@ -5712,6 +5726,11 @@ export const registryMetadata = {
         path: "src/registry/knob-contracts/tabs-knobs.ts",
         target: "@components/control-ui/knob-contracts/tabs-knobs.ts",
         type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/tabs-browser.css",
+        target: "@components/control-ui/styles/recipes/tabs-browser.css",
+        type: "registry:file",
       },
       {
         path: "src/registry/sources/control-ui/recipes/tabs-motion.css",

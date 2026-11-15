@@ -1,6 +1,7 @@
 import type { ComponentProps, ReactNode } from "react";
 
 import { cn } from "@/components/control-ui/lib/cn";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/control-ui/ui/card";
 import { Text } from "@/components/control-ui/ui/typography";
 
 export function GuideVisual({
@@ -15,19 +16,13 @@ export function GuideVisual({
   className?: string;
 }) {
   return (
-    <figure className={cn("overflow-hidden rounded-xl border border-border/80 bg-card/45 text-foreground", className)}>
-      <figcaption className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-border/70 border-b px-4 py-3">
-        <Text size="label" weight="medium">
-          {title}
-        </Text>
-        {description ? (
-          <Text size="caption" tone="muted">
-            {description}
-          </Text>
-        ) : null}
-      </figcaption>
-      <div className="p-4 sm:p-5">{children}</div>
-    </figure>
+    <Card variant="sectioned" size="sm" role="figure" aria-label={title} className={className}>
+      <CardHeader>
+        <CardTitle>{title}</CardTitle>
+        {description ? <CardDescription>{description}</CardDescription> : null}
+      </CardHeader>
+      <CardContent>{children}</CardContent>
+    </Card>
   );
 }
 

@@ -73,9 +73,8 @@ const placement: Record<DrawerContentVariant, Record<DrawerSide, { viewport: str
   },
 };
 
-// Base UI leaves the backdrop pointer-capturing even when the drawer is not modal, and the viewport is a
-// full-screen positioning layer either way. A non-modal drawer that silently ate every click on the page
-// behind it would be worse than no drawer, so the content layers read the root's own modal flag.
+// Base UI's viewport is a full-screen layer even when the drawer is not modal; a non-modal drawer drops the
+// backdrop and lets clicks through to the page, so the content layers read the root's own modal flag.
 const DrawerModalContext = createContext(true);
 
 // The content sits on the edge the root swipes toward unless it names its own side.
@@ -131,15 +130,17 @@ export function DrawerContent({
   const backdropStyle = popupBackdropStyle(style);
   return (
     <DrawerPrimitive.Portal {...skinScopeAttributes(skin)}>
-      <DrawerPrimitive.Backdrop
-        data-control-ui="drawer"
-        data-control-family="popup"
-        data-popup-kind="drawer"
-        data-popup-part="backdrop"
-        data-slot="backdrop"
-        className={cn("fixed inset-0 z-(--z-overlay)", !modal && "pointer-events-none")}
-        style={backdropStyle}
-      />
+      {modal ? (
+        <DrawerPrimitive.Backdrop
+          data-control-ui="drawer"
+          data-control-family="popup"
+          data-popup-kind="drawer"
+          data-popup-part="backdrop"
+          data-slot="backdrop"
+          className="fixed inset-0 z-(--z-overlay)"
+          style={backdropStyle}
+        />
+      ) : null}
       <DrawerPrimitive.Viewport
         data-control-ui="drawer"
         data-control-family="popup"

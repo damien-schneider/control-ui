@@ -17,9 +17,11 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 ## npm dependencies
 
 - `@base-ui/react@^1.9.0`
+- `lucide-react@^1.47.0`
 
 ## Registry dependencies
 
+- `button`
 - `core`
 
 ## Exports
@@ -55,15 +57,12 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ### Closable tab
 
-A close button can't sit inside the tab's own button: wrap each TabsTab and its icon-only Button in a relative span, place the Button absolutely at the end, and reserve its room with --cui-tabs-trigger-padding-inline-end on the TabsTab.
+Pass onClose to a TabsTab to render its close button inside the tab, and closeLabel to name it, as in closeLabel="Close README".
 
 ```tsx
 <Tabs>
   <TabsList>
-    <span>
-      <TabsTab />
-      <Button />
-    </span>
+    <TabsTab />
   </TabsList>
   <TabsPanel />
 </Tabs>
@@ -74,9 +73,7 @@ A close button can't sit inside the tab's own button: wrap each TabsTab and its 
 ```tsx
 "use client";
 
-import { XIcon } from "lucide-react";
 import { useState } from "react";
-import { flushSync } from "react-dom";
 import { Button } from "@/components/control-ui/ui/button";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/control-ui/ui/tabs";
 
@@ -116,34 +113,9 @@ function ClosableEditorTabs() {
     <Tabs value={activeFile} onValueChange={setActiveFile}>
       <TabsList variant="browser" aria-label="Open files">
         {openFiles.map((file) => (
-          <span key={file.name} className="relative inline-flex items-center">
-            <TabsTab
-              value={file.name}
-              aria-keyshortcuts="Delete"
-              onKeyDown={(event) => {
-                if (event.key !== "Delete" && event.key !== "Backspace") return;
-                const list = event.currentTarget.closest('[role="tablist"]');
-                flushSync(() => closeFile(file.name));
-                list?.querySelector<HTMLElement>('[role="tab"][aria-selected="true"]')?.focus();
-              }}
-              style={{ "--cui-tabs-trigger-padding-inline-end": "calc(var(--control-h-xs) + var(--spacing) * 2)" }}
-            >
-              {file.name}
-            </TabsTab>
-            {/* A tablist may only own tabs: keyboard and screen reader users close the focused tab with Delete instead. */}
-            <Button
-              variant="ghost"
-              size="xs"
-              iconOnly
-              aria-hidden
-              tabIndex={-1}
-              aria-label={`Close ${file.name}`}
-              className="absolute end-1 z-10"
-              onClick={() => closeFile(file.name)}
-            >
-              <XIcon />
-            </Button>
-          </span>
+          <TabsTab key={file.name} value={file.name} onClose={() => closeFile(file.name)} closeLabel={`Close ${file.name}`}>
+            {file.name}
+          </TabsTab>
         ))}
       </TabsList>
       {openFiles.map((file) => (
@@ -214,7 +186,8 @@ Scopes, their parts, and the state attributes each part carries. Selector patter
   - `panel`: `data-activation-direction` (`down` | `left` | `none` | `right` | `up`), `data-ending-style`, `data-hidden`, `data-index`, `data-orientation` (`horizontal` | `vertical`), `data-slide` (`panel`), `data-slide-exiting`, `data-starting-style`
   - `root`: `data-activation-direction` (`down` | `left` | `none` | `right` | `up`), `data-orientation` (`horizontal` | `vertical`), `data-slide` (`scope`)
   - `surface`
-  - `tab`: `aria-selected` (`false` | `true`), `data-activation-direction` (`down` | `left` | `none` | `right` | `up`), `data-active`, `data-disabled`, `data-orientation` (`horizontal` | `vertical`)
+  - `tab`: `aria-selected` (`false` | `true`), `data-activation-direction` (`down` | `left` | `none` | `right` | `up`), `data-active`, `data-closable`, `data-disabled`, `data-orientation` (`horizontal` | `vertical`)
+  - `tab-frame`
 
 ## Knobs
 

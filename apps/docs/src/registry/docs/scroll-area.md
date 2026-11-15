@@ -45,7 +45,9 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 import { useState } from "react";
 import { Button } from "@/components/control-ui/ui/button";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
+import { Toggle } from "@/components/control-ui/ui/toggle";
 import { Text } from "@/components/control-ui/ui/typography";
 
 const changelog = [
@@ -70,26 +72,32 @@ export function PrimitiveScrollAreaExample() {
         <ol className="flex flex-col gap-2 p-4">
           {changelog.map((line, index) => (
             <Text as="li" key={line} tone="muted" className="flex gap-2">
-              <span className="shrink-0 tabular-nums text-foreground/40">{String(index + 1).padStart(2, "0")}</span>
+              <Text tone="muted" numeric className="shrink-0">
+                {String(index + 1).padStart(2, "0")}
+              </Text>
               {line}
             </Text>
           ))}
         </ol>
       </ScrollArea>
-      <ScrollArea lockAxis="y" viewportClassName="pb-3" viewportProps={{ "aria-label": "Horizontal roadmap" }}>
+      <ScrollArea lockAxis="y" scrollbarGutter="stable" viewportProps={{ "aria-label": "Horizontal roadmap" }}>
         <ol aria-label="Roadmap columns" className="flex w-max gap-4">
           {["Backlog", "Planned", "In progress", "Done"].map((status) => (
-            <li key={status} className="w-48 shrink-0 rounded-xl bg-muted p-4">
-              <Button className="w-full justify-start" variant="surface">
-                {status}
-              </Button>
+            <li key={status} className="w-48 shrink-0">
+              <Card size="sm">
+                <CardContent>
+                  <Button className="w-full justify-start" variant="surface">
+                    {status}
+                  </Button>
+                </CardContent>
+              </Card>
             </li>
           ))}
         </ol>
       </ScrollArea>
       <Text as="p" size="label" tone="muted">
-        viewportClassName controls viewport padding and scrolling. Put flex or grid on a child container: the viewport contains an internal
-        content wrapper. lockAxis="y" prevents vertical scrolling.
+        scrollbarGutter="stable" reserves room for the scrollbar so it never covers content. Put flex or grid on a child container: the
+        viewport contains an internal content wrapper. lockAxis="y" prevents vertical scrolling.
       </Text>
     </div>
   );
@@ -100,9 +108,9 @@ export function ScrollAreaGutterExample() {
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-4">
-      <Button variant="surface" aria-pressed={overflow} onClick={() => setOverflow((value) => !value)}>
+      <Toggle pressed={overflow} onPressedChange={setOverflow}>
         Overflow content
-      </Button>
+      </Toggle>
       <ScrollArea aria-label="Stable scrollbar gutter" className="h-48" scrollbarVisibility="always" scrollbarGutter="stable" mask={false}>
         <div className={overflow ? "h-96 w-[36rem] p-4" : "p-4"}>
           <Text as="p" tone="muted">

@@ -5,6 +5,16 @@
     [
       {
         "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
           "data-scroll": "page",
@@ -37,11 +47,61 @@
     [
       {
         "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
           "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "content"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-scroll": "inset",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
         }
       },
       {
@@ -67,11 +127,31 @@
     [
       {
         "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
           "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-scroll": "inset",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
         }
       },
       {
@@ -97,11 +177,31 @@
     [
       {
         "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
           "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "contained",
+          "data-scroll": "inset",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
         }
       },
       {
@@ -117,6 +217,16 @@
     [
       {
         "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
           "data-scroll": "page",
@@ -128,6 +238,16 @@
     [
       {
         "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "page-layout",
           "data-control-ui": "page-layout",
           "data-scroll": "page",
@@ -137,6 +257,16 @@
       }
     ],
     [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-layout": "viewport",
+          "data-scroll": "page",
+          "data-slot": "wrapper",
+          "data-surface": "transparent"
+        }
+      },
       {
         "attributes": {
           "data-control-family": "page-layout",
@@ -228,9 +358,17 @@
     },
     {
       "knobs": {
-        "fill": "--cui-page-layout-sticky-header-background"
+        "fill": "--cui-page-layout-background"
       },
       "anatomy": 6,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-page-layout-sticky-header-background"
+      },
+      "anatomy": 7,
       "rendersText": true,
       "state": false
     }

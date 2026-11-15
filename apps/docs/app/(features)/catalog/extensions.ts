@@ -55,12 +55,7 @@ finishPageViewTransition(); // once the new view is on screen (e.g. a pathname e
 const { morph, triggerProps, surfaceProps } = useMorphTransition({ open });
 
 <Dialog open={open} onOpenChange={(next) => morph(() => setOpen(next))}>
-  {/* drop data-[popup-open]:opacity-0 to keep trigger on page while dialog is open */}
-  <DialogTrigger
-    {...triggerProps}
-    className={cn(triggerProps.className, "data-[popup-open]:opacity-0")}
-    render={<Button />}
-  >
+  <DialogTrigger {...triggerProps} render={<Button />}>
     Open
   </DialogTrigger>
   <DialogContent {...surfaceProps}>…</DialogContent>

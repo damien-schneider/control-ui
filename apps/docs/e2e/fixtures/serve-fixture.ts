@@ -24,11 +24,13 @@ const stylesheetBuilds = {
   },
   "tabs-motion": async () => {
     const sources = path.join(DOCS_ROOT, "src/registry/sources/control-ui");
-    const [theme, tabs, tabsMotion] = await Promise.all(
-      ["theme.css", "recipes/tabs.css", "recipes/tabs-motion.css"].map((file) => readFile(path.join(sources, file), "utf8")),
+    const recipes = await Promise.all(
+      ["theme.css", "recipes/tabs.css", "recipes/tabs-browser.css", "recipes/tabs-motion.css"].map((file) =>
+        readFile(path.join(sources, file), "utf8"),
+      ),
     );
     const result = await postcss([tailwind()]).process(
-      `@import "tailwindcss"; @source "../src/registry/sources/control-ui/ui/tabs.tsx"; @source "./fixtures/tabs-transition.tsx"; ${theme}\n${tabs}\n${tabsMotion}`,
+      `@import "tailwindcss"; @source "../src/registry/sources/control-ui/ui/tabs.tsx"; @source "./fixtures/tabs-transition.tsx"; ${recipes.join("\n")}`,
       { from: path.join(DOCS_ROOT, "e2e/tabs-transition.css") },
     );
     return result.css;

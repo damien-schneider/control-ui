@@ -2,7 +2,7 @@
 
 # Typography
 
-> Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role, className stays layout-only. A bare text-* rung is for HTML React doesn't render as components, such as email HTML; MDX maps its tags to Heading and Text.
+> Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role, className stays layout-only. TextLink is the underlined link inside prose. A bare text-* rung is for HTML React doesn't render as components, such as email HTML; MDX maps its tags to Heading and Text.
 
 This file matches the installed `typography` source. The online docs follow the latest release and may describe a newer version.
 
@@ -21,7 +21,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 ## Exports
 
 - `@/components/control-ui/ui/markdown-heading`: `markdownHeadingAttributes`
-- `@/components/control-ui/ui/typography`: `headingClassName`, `Heading`, `Text`, types `TypeSize`, `TypeTone`, `TextWeight`, `HeadingLevel`, `HeadingProps`, `TextTag`, `TextProps`
+- `@/components/control-ui/ui/typography`: `headingClassName`, `Heading`, `Text`, `TextLink`, types `TypeSize`, `TypeTone`, `TextWeight`, `HeadingLevel`, `HeadingProps`, `TextTag`, `TextProps`, `TextLinkProps`
 
 ## Composition
 
@@ -33,6 +33,16 @@ Heading takes level (the document outline) and size (the rung); they are decoupl
 page section
   <Heading />
   <Text />
+```
+
+### Inline link
+
+TextLink styles one link inside running text and stays inline so it wraps with the sentence. Pass render={<Link />} to keep your router.
+
+```tsx
+<Text>
+  <TextLink />
+</Text>
 ```
 
 ### Native tag
@@ -50,11 +60,14 @@ one rung on the element
 ```tsx
 "use client";
 
-import { Heading, Text } from "@/components/control-ui/ui/typography";
+import { Heading, Text, TextLink } from "@/components/control-ui/ui/typography";
 
 export function TypographyTokensExample() {
   return (
     <div className="flex w-full max-w-2xl flex-col gap-6">
+      <Text as="p" size="hero">
+        Hero — fluid landing headlines
+      </Text>
       <Text as="p" size="display">
         Display — page titles &amp; heroes
       </Text>
@@ -77,6 +90,9 @@ export function TypographyTokensExample() {
         Weight: <Text weight="normal">normal</Text>, <Text weight="medium">medium</Text>, <Text weight="semibold">semibold</Text>,{" "}
         <Text weight="bold">bold</Text> for figures and overlays that must read at a glance.
       </Text>
+      <Text as="p" tone="muted">
+        A <TextLink href="#typography">text link</TextLink> sits inside prose: it inherits the size and stays underlined at rest.
+      </Text>
       <Text as="p" size="label" tone="muted">
         Label — form labels and small chrome.
       </Text>
@@ -97,6 +113,7 @@ Scopes, their parts, and the state attributes each part carries. Selector patter
 
 - `typography`
   - `heading`
+  - `link`
   - `text`
 
 ## Links

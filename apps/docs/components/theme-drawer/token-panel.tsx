@@ -1,9 +1,11 @@
 "use client";
 
-import { ChevronDownIcon } from "lucide-react";
+import { ChevronRightIcon } from "lucide-react";
 import { type ReactNode, useId } from "react";
 import { Badge } from "@/components/control-ui/ui/badge";
+import { Button } from "@/components/control-ui/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
+import { Separator } from "@/components/control-ui/ui/separator";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
 import type { ThemeContractToken } from "@/src/registry/lib/theme-contract";
 import { MiniColorSwatch, TokenControl } from "./controls";
@@ -68,29 +70,31 @@ function BadgePaletteRows({ values, overridden, changedBySkin, onChange, onReset
     <div className="flex flex-col gap-1.5">
       <Text as="div" size="micro" weight="medium" tone="muted" className="mx-0.5 flex items-center gap-2">
         <span className="flex-1" />
-        <span className="w-6 text-center">Fill</span>
-        <span className="w-6 text-center">Text</span>
-        <span className="w-6 text-center">Line</span>
-        <span className="w-6 text-center">Hover</span>
+        <span className="w-(--control-h-sm) text-center">Fill</span>
+        <span className="w-(--control-h-sm) text-center">Text</span>
+        <span className="w-(--control-h-sm) text-center">Line</span>
+        <span className="w-(--control-h-sm) text-center">Hover</span>
       </Text>
       {BADGE_TOKEN_ROWS.map((row) => {
         const touched = row.tokens.some((token) => overridden.has(token.name));
         return (
           <div key={row.color} className="flex items-center gap-2 px-0.5">
-            <Text size="caption" weight="medium" tone="muted" className="min-w-0 flex-1 truncate">
-              {row.color}
+            <span className="flex min-w-0 flex-1 items-center gap-1.5">
+              <Text size="caption" weight="medium" tone="muted" className="min-w-0 truncate">
+                {row.color}
+              </Text>
               {touched ? (
-                <button
-                  type="button"
+                <Button
+                  variant="link"
+                  size="xs"
                   onClick={() => {
                     for (const token of row.tokens) onReset(token.name);
                   }}
-                  className="ml-1.5 cursor-pointer text-primary underline-offset-2 hover:underline"
                 >
-                  <Text size="micro">reset</Text>
-                </button>
+                  reset
+                </Button>
               ) : null}
-            </Text>
+            </span>
             {row.tokens.map((token) => (
               <MiniColorSwatch
                 key={token.name}
@@ -153,13 +157,11 @@ export function TokenPanel({
       {afterCore}
 
       {advancedTotal > 0 ? (
-        <div className="border-border/70 border-t pt-3">
+        <>
+          <Separator />
           <Collapsible>
             <CollapsibleTrigger>
-              <ChevronDownIcon
-                aria-hidden
-                className="size-3 text-muted-foreground transition-transform in-data-[state=open]:rotate-180 motion-reduce:transition-none"
-              />
+              <ChevronRightIcon aria-hidden />
               <Text size="caption" weight="semibold" tone="foreground">
                 Advanced
               </Text>
@@ -190,7 +192,7 @@ export function TokenPanel({
               </div>
             </CollapsibleContent>
           </Collapsible>
-        </div>
+        </>
       ) : null}
     </section>
   );

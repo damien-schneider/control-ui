@@ -4,10 +4,10 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { CodeBlock, CodeSnippet } from "@/app/(features)/components/source";
 import { packInstallCommand, registryInstallCommand } from "@/app/(features)/model/registry";
-import { Heading, Text } from "@/components/control-ui/ui/typography";
+import { Heading, Text, TextLink } from "@/components/control-ui/ui/typography";
 import { SKIN_META_BY_ID } from "@/components/theme-drawer/presets";
 import { useThemeRuntime } from "@/components/theme-drawer/theme-runtime-context";
-import { createASkinGuide, inlineLinkClassName } from "./showcase";
+import { createASkinGuide } from "./showcase";
 
 const colorPickerUsage = `<ColorPicker value={color} onValueChange={setColor}>
   <ColorPickerTrigger />
@@ -29,7 +29,9 @@ function Step({ number, title, children, code }: { number: number; title: string
     <li className="grid min-w-0 gap-4 border-border/70 border-t pt-6 @3xl/home:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] @3xl/home:gap-8">
       <div className="grid content-start gap-1.5">
         <Heading level={3} size="heading-3" tone="foreground" className="flex items-baseline gap-3">
-          <span className="text-muted-foreground tabular-nums">{number}</span>
+          <Text size="heading-3" tone="muted" numeric>
+            {number}
+          </Text>
           {title}
         </Heading>
         <Text as="p" tone="muted" className="text-pretty">
@@ -57,11 +59,7 @@ function SkinStep() {
   return (
     <Step number={3} title={`Add the ${skin.label} skin`} code={<CodeSnippet code={installCommand} />}>
       Adds its tokens, component CSS, and config. Pass the config to <code>SkinProvider</code> and set its id as <code>data-skin</code> on
-      your theme boundary.{" "}
-      <Link href={`/${createASkinGuide.id}`} className={inlineLinkClassName}>
-        Or make your own
-      </Link>
-      .
+      your theme boundary. <TextLink render={<Link href={`/${createASkinGuide.id}`} />}>Or make your own</TextLink>.
     </Step>
   );
 }

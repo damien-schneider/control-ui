@@ -99,7 +99,7 @@ export function ChatMessageRow({ className, children, ...props }: ChatMessageRow
       data-layout={message.layout}
       data-density={message.density}
       data-continuation={message.continuation ? "" : undefined}
-      className={cn("relative flex w-full", message.isEndAligned ? "justify-end" : "justify-start", className)}
+      className={cn("relative flex", message.isEndAligned ? "justify-end" : "justify-start", className)}
       {...props}
     >
       {children}

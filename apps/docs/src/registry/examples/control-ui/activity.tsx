@@ -49,7 +49,6 @@ export function ActivityExample() {
             <Search />
           </ActivityIcon>
           <ActivityTitle>Read files, searched the web</ActivityTitle>
-          <ActivityStatus className="sr-only" />
         </ActivityRow>
       </Activity>
 
@@ -69,7 +68,6 @@ export function ActivityExample() {
             <BookOpen />
           </ActivityIcon>
           <ActivityTitle>Thinking</ActivityTitle>
-          <ActivityStatus className="sr-only" />
         </ActivityTrigger>
         <ActivityContent maxHeight="12rem">
           <Timeline>
@@ -92,7 +90,6 @@ export function ActivityExample() {
             <Search />
           </ActivityIcon>
           <ActivityTitle>Searched the web for Base UI disclosure patterns</ActivityTitle>
-          <ActivityStatus className="sr-only" />
         </ActivityTrigger>
         <ActivityContent>
           <div className="flex flex-wrap gap-1.5">
@@ -119,7 +116,6 @@ export function ActivityExample() {
             <BookOpen />
           </ActivityIcon>
           <ActivityTitle>Read registry files</ActivityTitle>
-          <ActivityStatus className="sr-only" />
         </ActivityTrigger>
         <ActivityContent>
           <ActivityDetail>

@@ -18,6 +18,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/compon
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/control-ui/ui/empty";
 import { Input } from "@/components/control-ui/ui/input";
 import { InputGroup, InputGroupAddon } from "@/components/control-ui/ui/input-group";
+import { Item, ItemContent, ItemDescription, ItemFooter, ItemGroup, ItemMedia, ItemTitle } from "@/components/control-ui/ui/item";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/control-ui/ui/resizable";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
@@ -35,7 +36,6 @@ import {
   SidebarProvider,
   type SidebarProviderProps,
   SidebarRail,
-  type SidebarStyle,
   SidebarTrigger,
   useSidebar,
 } from "@/components/control-ui/ui/sidebar";
@@ -210,16 +210,15 @@ export function FileExplorerBlock({
     onOpenEntry?.(entry, path);
   }
 
-  const providerStyle: SidebarStyle = { "--sidebar-width": "14.5rem", ...style };
-
   return (
     <SidebarProvider
       layout={layout}
       persistOpen={persistOpen}
       keyboardShortcut={keyboardShortcut}
       surface="background"
+      defaultWidth={232}
       className={cn(!contained && "h-svh overflow-hidden", className)}
-      style={providerStyle}
+      style={style}
       {...props}
     >
       <FileExplorerSidebar
@@ -298,19 +297,17 @@ function FileExplorerUnavailable({
   emptyDescription,
   className,
   ...props
-}: ComponentProps<"div"> & { emptyTitle: string; emptyDescription: string }) {
+}: ComponentProps<typeof Empty> & { emptyTitle: string; emptyDescription: string }) {
   return (
-    <div className={cn("flex min-h-96 items-center justify-center border bg-background", className)} {...props}>
-      <Empty>
-        <EmptyHeader>
-          <EmptyMedia>
-            <FolderIcon />
-          </EmptyMedia>
-          <EmptyTitle>{emptyTitle}</EmptyTitle>
-          <EmptyDescription>{emptyDescription}</EmptyDescription>
-        </EmptyHeader>
-      </Empty>
-    </div>
+    <Empty className={cn("min-h-96", className)} {...props}>
+      <EmptyHeader>
+        <EmptyMedia>
+          <FolderIcon />
+        </EmptyMedia>
+        <EmptyTitle>{emptyTitle}</EmptyTitle>
+        <EmptyDescription>{emptyDescription}</EmptyDescription>
+      </EmptyHeader>
+    </Empty>
   );
 }
 
@@ -640,17 +637,7 @@ function FileExplorerColumns({
                     <DrawerBody>
                       <FileExplorerPreviewContent
                         entry={selectedEntry}
-                        title={
-                          <DrawerTitle
-                            className="mt-4 max-w-full truncate"
-                            style={{
-                              "--cui-popup-title-font-size": "var(--text-heading-4)",
-                              "--cui-popup-title-line-height": "var(--text-heading-4--line-height)",
-                            }}
-                          >
-                            {selectedEntry.name}
-                          </DrawerTitle>
-                        }
+                        title={<DrawerTitle className="max-w-full truncate">{selectedEntry.name}</DrawerTitle>}
                       />
                     </DrawerBody>
                   ) : null}
@@ -709,7 +696,7 @@ function FileExplorerPanel({ children, ...props }: ComponentProps<typeof Resizab
 }
 
 function FileExplorerEntryIcon({ entry }: { entry: FileExplorerEntry }) {
-  return entry.icon ?? (entry.kind === "folder" ? <FolderIcon /> : <FileIcon className="text-muted-foreground" />);
+  return entry.icon ?? (entry.kind === "folder" ? <FolderIcon /> : <FileIcon />);
 }
 
 function FileExplorerColumnView({
@@ -735,7 +722,7 @@ function FileExplorerColumnView({
 
   if (column.entries.length === 0) {
     return (
-      <Empty className="h-full" style={{ "--cui-empty-radius": "0px" }}>
+      <Empty className="h-full">
         <EmptyHeader>
           <EmptyMedia>
             <FolderIcon />
@@ -764,19 +751,15 @@ function FileExplorerColumnView({
                 variant="quiet"
                 size="sm"
                 active={isSelected}
-                className="w-full justify-start gap-2 text-start"
+                className="w-full justify-start text-start"
                 title={entry.name}
                 onClick={() => onSelect(entry)}
                 onDoubleClick={() => onOpen(entry)}
                 onKeyDown={(event) => onOptionKeyDown(event, entry)}
               >
-                <span className="flex size-4 shrink-0 items-center justify-center text-info-text [&>svg]:size-4">
-                  <FileExplorerEntryIcon entry={entry} />
-                </span>
+                <FileExplorerEntryIcon entry={entry} />
                 <span className="min-w-0 flex-1 truncate">{entry.name}</span>
-                {entry.kind === "folder" ? (
-                  <ChevronRightIcon className="size-3.5 shrink-0 text-muted-foreground" data-icon-dir="inline" />
-                ) : null}
+                {entry.kind === "folder" ? <ChevronRightIcon data-icon-dir="inline" /> : null}
               </Button>
             );
           });
@@ -812,7 +795,7 @@ function FileExplorerPreview({
 }) {
   if (!entry) {
     return (
-      <Empty className="h-full" style={{ "--cui-empty-radius": "0px" }}>
+      <Empty className="h-full">
         <EmptyHeader>
           <EmptyMedia>
             <FileIcon />
@@ -826,47 +809,52 @@ function FileExplorerPreview({
 
   return (
     <ScrollArea className="h-full" lockAxis="x">
-      <FileExplorerPreviewContent
-        entry={entry}
-        className="px-6 py-10"
-        title={
-          <Heading level={headingLevel} size="heading-4" className="mt-4 max-w-full truncate" title={entry.name}>
-            {entry.name}
-          </Heading>
-        }
-      />
+      <div className="px-4 py-8">
+        <FileExplorerPreviewContent
+          entry={entry}
+          title={
+            <Heading level={headingLevel} size="heading-4" className="max-w-full truncate" title={entry.name}>
+              {entry.name}
+            </Heading>
+          }
+        />
+      </div>
     </ScrollArea>
   );
 }
 
-function FileExplorerPreviewContent({ entry, title, className }: { entry: FileExplorerEntry; title: ReactNode; className?: string }) {
+function FileExplorerPreviewContent({ entry, title }: { entry: FileExplorerEntry; title: ReactNode }) {
   return (
-    <div className={cn("mx-auto flex w-full max-w-lg flex-col items-center text-center", className)}>
-      <div className="flex size-16 items-center justify-center rounded-[var(--radius-panel)] bg-foreground/6 text-info-text shadow-sm ring-1 ring-foreground/8 [&>svg]:size-8">
+    <Item className="mx-auto w-full max-w-lg">
+      <ItemMedia>
         <FileExplorerEntryIcon entry={entry} />
-      </div>
-      {title}
-      {entry.description ? (
-        <Text as="div" size="caption" tone="muted" className="mt-1">
-          {entry.description}
-        </Text>
-      ) : null}
+      </ItemMedia>
+      <ItemContent>
+        {title}
+        {entry.description ? <ItemDescription>{entry.description}</ItemDescription> : null}
+      </ItemContent>
       {entry.details && entry.details.length > 0 ? (
-        <dl className="mt-6 grid w-full grid-cols-[auto_1fr] gap-x-4 gap-y-2 border-t border-border/70 pt-4 text-start">
-          {entry.details.map((detail) => (
-            <div key={detail.label} className="contents">
-              <Text as="dt" size="caption" tone="muted">
-                {detail.label}
-              </Text>
-              <Text as="dd" size="caption" tone="foreground" className="min-w-0 truncate text-end">
-                {detail.value}
-              </Text>
-            </div>
-          ))}
-        </dl>
+        <ItemFooter>
+          <dl className="grid w-full grid-cols-[auto_1fr] gap-x-4 gap-y-2">
+            {entry.details.map((detail) => (
+              <div key={detail.label} className="contents">
+                <Text as="dt" size="caption" tone="muted">
+                  {detail.label}
+                </Text>
+                <Text as="dd" size="caption" tone="foreground" className="min-w-0 truncate text-end">
+                  {detail.value}
+                </Text>
+              </div>
+            ))}
+          </dl>
+        </ItemFooter>
       ) : null}
-      {entry.preview ? <div className="mt-6 w-full text-start">{entry.preview}</div> : null}
-    </div>
+      {entry.preview ? (
+        <ItemFooter>
+          <div className="w-full">{entry.preview}</div>
+        </ItemFooter>
+      ) : null}
+    </Item>
   );
 }
 
@@ -897,7 +885,7 @@ function FileExplorerSearchResults({
 
   if (results.length === 0) {
     return (
-      <Empty className="h-full" style={{ "--cui-empty-radius": "0px" }}>
+      <Empty className="h-full">
         <EmptyHeader>
           <EmptyMedia>
             <SearchIcon />
@@ -934,9 +922,9 @@ function FileExplorerSearchResults({
         <Text as="div" size="caption" tone="muted" numeric className="mx-2 mb-2">
           {status}
         </Text>
-        <div role="listbox" aria-label={label} className="grid gap-1">
+        <ItemGroup role="listbox" aria-label={label} className="gap-1">
           {results.map((result, index) => (
-            <Button
+            <Item
               key={result.path.join("/")}
               ref={(element) => {
                 optionElements.current[index] = element;
@@ -944,28 +932,23 @@ function FileExplorerSearchResults({
               role="option"
               aria-selected={index === tabStop}
               tabIndex={index === tabStop ? 0 : -1}
-              variant="quiet"
-              size="lg"
-              className="h-auto min-h-12 w-full justify-start gap-3 text-start"
+              render={<button type="button" />}
+              className="w-full text-start"
               onClick={() => onSelect(result)}
               onDoubleClick={() => onOpen(result.entry, result.path)}
               onFocus={() => setActiveIndex(index)}
               onKeyDown={(event) => handleKeyDown(event, index, result)}
             >
-              <span className="flex size-8 shrink-0 items-center justify-center rounded-[var(--radius-control)] bg-foreground/6 text-info-text [&>svg]:size-4">
+              <ItemMedia>
                 <FileExplorerEntryIcon entry={result.entry} />
-              </span>
-              <span className="min-w-0 flex-1">
-                <Text size="label" tone="foreground" className="block truncate">
-                  {result.entry.name}
-                </Text>
-                <Text size="caption" tone="muted" className="block truncate">
-                  {result.parents.join(" / ") || topLevelLabel}
-                </Text>
-              </span>
-            </Button>
+              </ItemMedia>
+              <ItemContent>
+                <ItemTitle>{result.entry.name}</ItemTitle>
+                <ItemDescription>{result.parents.join(" / ") || topLevelLabel}</ItemDescription>
+              </ItemContent>
+            </Item>
           ))}
-        </div>
+        </ItemGroup>
       </div>
     </ScrollArea>
   );

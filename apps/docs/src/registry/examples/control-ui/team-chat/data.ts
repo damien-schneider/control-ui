@@ -105,7 +105,14 @@ const fullTime = new Intl.DateTimeFormat("en-US", { dateStyle: "full", timeStyle
 const dayLabel = new Intl.DateTimeFormat("en-US", { weekday: "long", month: "long", day: "numeric", timeZone: "UTC" });
 
 export function formatMessageTime(sentAt: string) {
-  return { short: shortTime.format(new Date(sentAt)), full: fullTime.format(new Date(sentAt)) };
+  const date = new Date(sentAt);
+  const clock = shortTime
+    .formatToParts(date)
+    .filter((part) => part.type !== "dayPeriod")
+    .map((part) => part.value)
+    .join("")
+    .trim();
+  return { short: shortTime.format(date), clock, full: fullTime.format(date) };
 }
 
 const CONTINUATION_WINDOW_MS = 5 * 60 * 1000;

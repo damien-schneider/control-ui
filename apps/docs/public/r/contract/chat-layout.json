@@ -37,6 +37,30 @@
       "defaultValue": "var(--shadow-md)"
     },
     {
+      "name": "--cui-chat-layout-gutter-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 4)"
+    },
+    {
+      "name": "--cui-chat-layout-column-max-inline-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "48rem"
+    },
+    {
+      "name": "--cui-chat-layout-veil-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--cui-chat-layout-background)"
+    },
+    {
+      "name": "--cui-chat-layout-veil-backdrop-filter",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
+    },
+    {
       "name": "--cui-chat-layout-scroll-button-gap",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
@@ -147,6 +171,13 @@
           "chat-layout"
         ],
         "states": []
+      },
+      "track": {
+        "family": "chat-layout",
+        "registryItems": [
+          "chat-layout"
+        ],
+        "states": []
       }
     },
     "chat-turn": {
@@ -170,6 +201,8 @@
     }
   },
   "adornments": {},
-  "uncovered": [],
+  "uncovered": [
+    "--cui-chat-layout-veil-background"
+  ],
   "contrast": "/r/contract/chat-layout.contrast.json"
 }

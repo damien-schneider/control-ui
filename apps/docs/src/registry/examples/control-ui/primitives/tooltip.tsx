@@ -10,20 +10,20 @@ export function PrimitiveTooltipExample() {
       <div className="flex flex-wrap items-center justify-center gap-4 p-8">
         <Tooltip>
           <TooltipTrigger render={<Button variant="surface" />}>
-            <InfoIcon className="size-4" />
+            <InfoIcon />
             Details
           </TooltipTrigger>
           <TooltipContent side="top">Agent run metadata</TooltipContent>
         </Tooltip>
         <Tooltip>
           <TooltipTrigger render={<Button variant="surface" iconOnly aria-label="Save changes" />}>
-            <SaveIcon className="size-4" />
+            <SaveIcon />
           </TooltipTrigger>
           <TooltipContent side="right">Save changes</TooltipContent>
         </Tooltip>
         <Tooltip>
           <TooltipTrigger render={<Button variant="surface" />}>
-            <RadiusIcon className="size-4" />
+            <RadiusIcon />
             No arrow
           </TooltipTrigger>
           <TooltipContent arrow={false} side="bottom">

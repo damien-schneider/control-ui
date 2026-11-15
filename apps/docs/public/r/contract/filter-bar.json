@@ -71,6 +71,12 @@
       "syntax": "<length>",
       "initialValue": "0px",
       "defaultValue": "calc(var(--spacing) * 3)"
+    },
+    {
+      "name": "--cui-filter-bar-icon",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3.5)"
     }
   ],
   "parts": {

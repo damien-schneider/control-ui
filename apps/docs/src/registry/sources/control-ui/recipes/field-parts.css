@@ -242,7 +242,10 @@
 
   :where([data-control-family="field"][data-field-kind="field"][data-slot="set"]) {
     gap: calc(var(--spacing) * 4);
+    min-inline-size: 0;
+    margin: 0;
     border-width: 0px;
+    padding: 0;
   }
 
   :where([data-control-family="field"][data-field-kind="field"]) {

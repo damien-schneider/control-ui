@@ -39,11 +39,7 @@ export function PrimitiveEmojiIconPickerExample() {
     <div className="flex items-center gap-3">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger render={<Button variant="surface" aria-label="Choose item emoji or icon" />}>
-          <span
-            className="flex size-5 items-center justify-center [&_svg]:size-5"
-            style={{ color: symbol.kind === "icon" ? symbol.color : undefined }}
-            aria-hidden="true"
-          >
+          <span aria-hidden="true" style={{ color: symbol.kind === "icon" ? symbol.color : undefined }}>
             {symbol.kind === "emoji" ? symbol.emoji.emoji : selectedIcon?.icon}
           </span>
           Project notes
@@ -61,7 +57,7 @@ export function PrimitiveEmojiIconPickerExample() {
             <EmojiIconPickerIcons
               items={pickerIcons}
               value={symbol.kind === "icon" ? symbol.value : undefined}
-              style={{ "--cui-icon-picker-foreground": color.color }}
+              iconColor={color.color}
               onValueChange={(value) => {
                 setSymbol({ kind: "icon", value, color: color.color });
                 setOpen(false);

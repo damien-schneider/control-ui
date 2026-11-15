@@ -1,0 +1,16 @@
+language js(typescript, jsx)
+
+or {
+  JsxAttribute(name=`style`) as $attr where {
+    $attr <: contains JsPropertyObjectMember(name=$key) where { $key <: r"[\"']--cui-[\w-]+[\"']" }
+  },
+  JsxAttribute(name=`className`) as $attr where {
+    $attr <: contains or {
+      JsStringLiteralExpression(),
+      JsxString(),
+      JsTemplateChunkElement()
+    } as $classes where { $classes <: r"(?s).*\[--cui-[\w-]+:.*" }
+  }
+} where {
+  register_diagnostic(span=$attr, message="Docs retune a component knob: the docs, examples and blocks show components as installed. A needed change means a missing prop, variant, default or skin value; add it to the component instead.", severity="error")
+}

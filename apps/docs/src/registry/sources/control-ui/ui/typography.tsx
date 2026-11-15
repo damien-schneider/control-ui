@@ -1,8 +1,10 @@
-import type { ComponentProps, HTMLAttributes, Ref } from "react";
+import type { ComponentProps, HTMLAttributes, ReactElement, Ref } from "react";
+import { cloneElement } from "react";
 
 import { cn } from "@/components/control-ui/lib/cn";
 
 const sizeClassNames = {
+  hero: "text-hero",
   display: "text-display",
   "heading-1": "text-heading-1",
   "heading-2": "text-heading-2",
@@ -139,4 +141,19 @@ export function Text({ as: Tag = "span", size = "body", weight, tone = "default"
       {...props}
     />
   );
+}
+
+export type TextLinkProps = ComponentProps<"a"> & { render?: ReactElement<ComponentProps<"a">> };
+
+const textLinkClassName = "font-medium text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground";
+
+export function TextLink({ render, className, ...props }: TextLinkProps) {
+  const linkProps = {
+    "data-control-ui": "typography",
+    "data-control-family": "typography",
+    "data-slot": "link",
+    ...props,
+    className: cn(textLinkClassName, render?.props.className, className),
+  };
+  return render ? cloneElement(render, linkProps) : <a {...linkProps} />;
 }

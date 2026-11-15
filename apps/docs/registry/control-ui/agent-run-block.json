@@ -9,6 +9,8 @@
   ],
   "registryDependencies": [
     "activity",
+    "app-shell",
+    "avatar",
     "badge",
     "card",
     "core",

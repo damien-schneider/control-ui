@@ -33,7 +33,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ### Labeled control
 
-FieldLegend names the set: a label-size semibold title by default, or variant="section" for a list title. Re-value --cui-field-legend-foreground, --cui-field-legend-font-size, and --cui-field-legend-font-weight through its style prop for a muted caption legend.
+FieldLegend names the set: a label-size semibold title by default, or variant="section" for a list title.
 
 ```tsx
 <FieldSet>

@@ -17,6 +17,7 @@ import {
   ToolApprovalStatus,
   ToolApprovalTitle,
 } from "@/components/control-ui/tool-approval";
+import { Code, CodeContent } from "@/components/control-ui/ui/code";
 
 export function Example({ agentId, toolCallId, toolName, args }: { agentId: string; toolCallId: string; toolName: string; args: unknown }) {
   const { approveToolCall, declineToolCall, toolCallApprovals } = useChat({ agentId });
@@ -37,7 +38,9 @@ export function Example({ agentId, toolCallId, toolName, args }: { agentId: stri
         </ToolApprovalHeader>
         <ToolApprovalPreview>
           <ToolApprovalField label="Input">
-            <div className="whitespace-pre-wrap wrap-anywhere">{JSON.stringify(args, null, 2)}</div>
+            <Code overflow="wrap">
+              <CodeContent code={JSON.stringify(args, null, 2)} lang="json" />
+            </Code>
           </ToolApprovalField>
         </ToolApprovalPreview>
       </ToolApprovalBody>

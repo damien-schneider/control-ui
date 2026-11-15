@@ -11,12 +11,7 @@ export function PrimitiveIconPickerExample() {
   if (!color) throw new Error(`Unknown icon color: ${colorValue}`);
 
   return (
-    <IconPicker
-      items={pickerIcons}
-      value={selectedIcon}
-      onValueChange={setSelectedIcon}
-      style={{ "--cui-icon-picker-foreground": color.color }}
-    >
+    <IconPicker items={pickerIcons} value={selectedIcon} onValueChange={setSelectedIcon} iconColor={color.color}>
       <IconPickerSearch />
       <IconPickerColors colors={pickerColors} value={colorValue} onValueChange={setColorValue} />
       <IconPickerContent />

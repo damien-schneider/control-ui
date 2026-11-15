@@ -33,7 +33,7 @@ function DeleteCustomSkinButton({ name, disabled, onDelete }: { name: string; di
         disabled={disabled}
         render={
           <Button variant="quiet" size="sm" iconOnly aria-label={`Delete ${name}`} title="Delete skin">
-            <Trash2Icon aria-hidden className="size-4" />
+            <Trash2Icon aria-hidden />
           </Button>
         }
       />
@@ -59,19 +59,11 @@ export function ThemeGeneratorDrawer() {
   const { isOpen, isRunning, activeCustomSkin, generations, startNewTheme, deleteActiveCustomSkin } = useThemeConversation();
 
   return (
-    // The whole point is watching tokens land in the editor, so this drawer never dims the page behind it
-    // — the scrim reads --overlay-opacity and --backdrop-blur-overlay, both of which a generated theme
-    // rewrites — and editing a token must not dismiss it: Base UI closes a non-modal drawer on any outside
-    // press or focus move, which would unmount a generation mid-stream and take the log with it.
+    // Non-modal so tokens can be watched landing in the editor. Pointer dismissal is off because Base UI closes a non-modal
+    // drawer on any outside press, which would unmount a generation mid-stream and take the log with it.
     // Open state lives in the store because selecting a page-scrolled skin remounts this whole subtree.
     <Drawer side="right" modal={false} disablePointerDismissal open={isOpen} onOpenChange={setDrawerOpen}>
-      <DrawerContent
-        side="right"
-        variant="floating"
-        surface="card"
-        className="w-full max-w-md"
-        style={{ "--cui-popup-backdrop-background": "transparent", "--cui-popup-backdrop-blur": "none" }}
-      >
+      <DrawerContent side="right" variant="floating" surface="card" className="w-full max-w-md">
         <DrawerHeader className="flex flex-row items-start justify-between gap-3">
           <div className="min-w-0">
             <DrawerTitle>{activeCustomSkin?.name ?? "Generate a theme"}</DrawerTitle>
@@ -89,7 +81,7 @@ export function ThemeGeneratorDrawer() {
               disabled={isRunning || generations.length === 0}
               onClick={startNewTheme}
             >
-              <PlusIcon aria-hidden className="size-4" />
+              <PlusIcon aria-hidden />
             </Button>
             {activeCustomSkin ? (
               <DeleteCustomSkinButton name={activeCustomSkin.name} disabled={isRunning} onDelete={deleteActiveCustomSkin} />
@@ -97,7 +89,7 @@ export function ThemeGeneratorDrawer() {
             <DrawerClose
               render={
                 <Button variant="quiet" size="sm" aria-label="Close">
-                  <XIcon aria-hidden className="size-4" />
+                  <XIcon aria-hidden />
                 </Button>
               }
             />

@@ -159,6 +159,15 @@
             "source": "control-ui",
             "valueKind": "presence",
             "values": []
+          },
+          {
+            "attribute": "data-aside-width",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "narrow",
+              "wide"
+            ]
           }
         ]
       },

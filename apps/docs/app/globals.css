@@ -13,6 +13,7 @@
 @import "../src/registry/sources/control-ui/recipes/popup-motion.css";
 @import "../src/registry/sources/control-ui/recipes/card.css";
 @import "../src/registry/sources/control-ui/recipes/tabs.css";
+@import "../src/registry/sources/control-ui/recipes/tabs-browser.css";
 @import "../src/registry/sources/control-ui/recipes/tabs-motion.css";
 @import "../src/registry/sources/control-ui/recipes/choice.css";
 @import "../src/registry/sources/control-ui/recipes/switch.css";
@@ -143,14 +144,6 @@
   padding-block: 3rem;
 }
 
-@utility docs-panel {
-  min-width: 0;
-  border: 1px solid var(--docs-panel-border, var(--border));
-  border-radius: var(--radius-panel);
-  background: var(--docs-panel-background, var(--background));
-  box-shadow: var(--docs-panel-shadow, none);
-}
-
 @layer base {
   :root {
     color-scheme: light;
@@ -165,33 +158,5 @@
     background: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
-  }
-
-  button,
-  textarea {
-    font: inherit;
-  }
-
-  input[type="color"] {
-    appearance: none;
-    -webkit-appearance: none;
-    padding: 0;
-    border: none;
-    background: none;
-  }
-
-  input[type="color"]::-webkit-color-swatch-wrapper {
-    padding: 0;
-    border-radius: inherit;
-  }
-
-  input[type="color"]::-webkit-color-swatch {
-    border: none;
-    border-radius: inherit;
-  }
-
-  input[type="color"]::-moz-color-swatch {
-    border: none;
-    border-radius: inherit;
   }
 }

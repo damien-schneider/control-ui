@@ -91,6 +91,10 @@
   view-transition-class: aui-morph;
 }
 
+.morph-trigger-hidden {
+  opacity: 0;
+}
+
 /* A morph is element-scoped: the page body must not be captured alongside it or view-page-rise replays behind
  * the morphing box. Driver sets the attribute before the old snapshot and clears it once the transition settles. */
 :root[data-view-transition="morph"] .view-page {

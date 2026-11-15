@@ -12,7 +12,6 @@ import {
   ChatMessageAvatar,
   ChatMessageBody,
   ChatMessageContent,
-  ChatMessageFooter,
   ChatMessageHeader,
   ChatMessageReaction,
   ChatMessageReactions,
@@ -76,9 +75,9 @@ export function EmojiPickerPopover({ trigger, onPick }: { trigger: ReactElement;
   );
 }
 
-export function PersonAvatar({ person, size, className }: { person: TeamPerson; size?: "xs"; className?: string }) {
+export function PersonAvatar({ person, size }: { person: TeamPerson; size?: "xs" }) {
   return (
-    <Avatar size={size} className={className}>
+    <Avatar size={size}>
       <AvatarFallback>{person.initials}</AvatarFallback>
       <AvatarBadge status={person.status} label={person.status} />
     </Avatar>
@@ -120,10 +119,10 @@ export function TeamChatMessage({ message, continuation, onToggleReaction, onOpe
         <ChatMessageAvatar>
           {continuation ? (
             <ChatMessageTime dateTime={message.sentAt} title={time.full}>
-              {time.short}
+              {time.clock}
             </ChatMessageTime>
           ) : (
-            <PersonAvatar person={author} className="size-full" />
+            <PersonAvatar person={author} />
           )}
         </ChatMessageAvatar>
         <ChatMessageBody>
@@ -135,8 +134,17 @@ export function TeamChatMessage({ message, continuation, onToggleReaction, onOpe
               </ChatMessageTime>
             </ChatMessageHeader>
           )}
-          <ChatMessageContent className="whitespace-pre-wrap">{message.text}</ChatMessageContent>
-          {message.edited ? <ChatMessageFooter>(edited)</ChatMessageFooter> : null}
+          <ChatMessageContent className="whitespace-pre-wrap">
+            {message.text}
+            {message.edited ? (
+              <>
+                {" "}
+                <Text size="caption" tone="muted">
+                  (edited)
+                </Text>
+              </>
+            ) : null}
+          </ChatMessageContent>
           {message.reactions.length > 0 ? (
             <ChatMessageReactions>
               {message.reactions.map((reaction) => (
@@ -161,7 +169,7 @@ export function TeamChatMessage({ message, continuation, onToggleReaction, onOpe
           ) : null}
           {onOpenThread && message.replies.length > 0 ? (
             <ChatMessageReplySummary onClick={(event) => onOpenThread(event.currentTarget)}>
-              <AvatarGroup aria-hidden="true" className="-space-x-1.5">
+              <AvatarGroup aria-hidden="true">
                 {repliers.map((person) => (
                   <Avatar key={person.id} size="xs">
                     <AvatarFallback>{person.initials}</AvatarFallback>

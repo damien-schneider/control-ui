@@ -24,10 +24,19 @@
     color: var(--cui-sidebar-menu-button-foreground);
   }
 
+  :where([data-control-family="sidebar"]:is([data-slot="menu-button"], [data-slot="group-label"], [data-slot="menu-action"])) {
+    --_sidebar-icon-size: calc(var(--spacing) * 4);
+  }
+
   :where([data-control-family="sidebar"]:is([data-slot="menu-button"], [data-slot="group-label"], [data-slot="menu-action"]) > svg) {
     flex-shrink: 0;
-    inline-size: calc(var(--spacing) * 4);
-    block-size: calc(var(--spacing) * 4);
+    inline-size: var(--_sidebar-icon-size);
+    block-size: var(--_sidebar-icon-size);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="menu-button"] > [data-control-family="avatar"][data-slot="root"][data-size="xs"]) {
+    flex-shrink: 0;
+    margin-inline: calc((var(--_sidebar-icon-size) - var(--cui-avatar-size)) / 2);
   }
 
   :where([data-control-family="sidebar"]:is([data-slot="menu-button"], [data-slot="group-label"]) > svg:first-child) {
@@ -36,6 +45,22 @@
 
   :where([data-control-family="sidebar"][data-slot="menu-button"][data-active] > svg:first-child) {
     color: var(--cui-sidebar-menu-button-active-icon-foreground);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="menu-button"][data-icon-tone="muted"] > svg:first-child) {
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="menu-button"][data-icon-tone="success"] > svg:first-child) {
+    color: var(--success-text);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="menu-button"][data-icon-tone="warning"] > svg:first-child) {
+    color: var(--warning-text);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="menu-button"][data-icon-tone="danger"] > svg:first-child) {
+    color: var(--destructive-text);
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-button"][data-size="sm"]) {

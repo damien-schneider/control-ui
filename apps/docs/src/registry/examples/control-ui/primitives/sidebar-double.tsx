@@ -4,6 +4,7 @@ import { BriefcaseIcon, InboxIcon, SettingsIcon, UsersIcon, WorkflowIcon } from 
 import { useId, useState } from "react";
 import type { SidebarLayout } from "@/components/control-ui/skin";
 import { Avatar, AvatarFallback } from "@/components/control-ui/ui/avatar";
+import { Label } from "@/components/control-ui/ui/label";
 import { NativeSelect } from "@/components/control-ui/ui/native-select";
 import {
   Sidebar,
@@ -134,14 +135,9 @@ function DoubleSidebarWorkspace({
         <SidebarIconRail layer={railLayer}>
           <SidebarHeader>
             <SidebarMenuButton size="lg" tooltip="Acme workspace">
-              <span
-                aria-hidden="true"
-                className="flex size-7 shrink-0 items-center justify-center rounded-(--radius-control) bg-primary text-primary-foreground"
-              >
-                <Text size="label" weight="semibold">
-                  A
-                </Text>
-              </span>
+              <Avatar aria-hidden="true" size="sm">
+                <AvatarFallback>A</AvatarFallback>
+              </Avatar>
               <span>Acme workspace</span>
             </SidebarMenuButton>
           </SidebarHeader>
@@ -239,9 +235,9 @@ function LayerSelect<Value extends string>({
   const id = useId();
   return (
     <>
-      <label htmlFor={id} className="shrink-0">
+      <Label htmlFor={id} className="shrink-0">
         {label}
-      </label>
+      </Label>
       <NativeSelect
         id={id}
         className="w-28"
@@ -290,16 +286,16 @@ function DoubleSidebarExample({
   return (
     <fieldset aria-label={label} className="w-full min-w-0">
       {controls ? (
-        <Text as="div" size="caption" tone="muted" className="mb-3 flex flex-wrap items-center justify-end gap-2">
+        <div className="mb-3 flex flex-wrap items-center justify-end gap-2">
           <LayerSelect label="Layout" value={variant} options={layouts} onChange={setVariant} />
           <LayerSelect label="Rail layer" value={railLayer} options={railLayers} onChange={setRailLayer} />
           <LayerSelect label="Panel layer" value={panelLayer} options={panelLayers} onChange={setPanelLayer} />
           <LayerSelect label="Side" value={side} options={sides} onChange={setSide} />
           <LayerSelect label="Collapse" value={collapsible} options={collapseModes} onChange={setCollapsible} />
-        </Text>
+        </div>
       ) : null}
       <div className="relative isolate h-[30rem] w-full overflow-hidden rounded-(--radius-panel) border border-border bg-canvas [transform:translateZ(0)]">
-        <SidebarProvider persistOpen={false} keyboardShortcut={null} layout="contained" style={{ "--sidebar-width": "17rem" }}>
+        <SidebarProvider persistOpen={false} keyboardShortcut={null} layout="contained" defaultWidth={272}>
           <DoubleSidebarWorkspace
             variant={variant}
             side={side}

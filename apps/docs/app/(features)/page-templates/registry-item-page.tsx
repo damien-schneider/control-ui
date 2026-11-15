@@ -6,7 +6,10 @@ import type { PreviewLayout } from "@/app/(features)/catalog/shared";
 
 import { PreviewTabs, SourceTabs } from "@/app/(features)/components/source";
 import type { Composition, DocsKnobFamily, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
-import { Text } from "@/components/control-ui/ui/typography";
+import { ButtonLink } from "@/components/control-ui/ui/button";
+import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/control-ui/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/control-ui/ui/table";
+import { Text, TextLink } from "@/components/control-ui/ui/typography";
 import { AgentActions } from "./agent-actions";
 import { CompositionSection, DependencySection, InstallPanel, PageHeader, SectionCode, SectionStack, SectionTitle } from "./shared";
 
@@ -163,17 +166,13 @@ function RegistryItemSource({ files, title = "Raw code", description = "Primary 
 
 function KnobFamilyName({ id, href }: { id: string; href?: string }) {
   const name = (
-    <Text as="code" size="caption" weight="medium" tone="foreground">
+    <Text as="code" mono>
       --cui-{id}-*
     </Text>
   );
   if (!href) return name;
 
-  return (
-    <Link href={href} className="underline underline-offset-4 hover:text-foreground">
-      {name}
-    </Link>
-  );
+  return <TextLink render={<Link href={href} />}>{name}</TextLink>;
 }
 
 function KnobsSection({ families }: { families: DocsKnobFamily[] }) {
@@ -187,33 +186,53 @@ function KnobsSection({ families }: { families: DocsKnobFamily[] }) {
       />
       <div className="grid min-w-0 gap-4">
         {families.map((family) => (
-          <div key={family.id} className="docs-panel overflow-hidden">
-            <div className="border-b border-border bg-muted/30 px-4 py-2">
-              <Text as="div" size="caption" tone="muted" className="flex items-baseline justify-between gap-3">
-                <span>
-                  <KnobFamilyName id={family.id} href={family.href} /> · <span className="tabular-nums">{family.knobs.length}</span> knobs
-                </span>
-                <Link href="/skins#component-knobs" className="shrink-0 underline underline-offset-4 hover:text-foreground">
+          <Card key={family.id} size="sm" className="min-w-0">
+            <CardHeader>
+              <CardTitle>
+                <KnobFamilyName id={family.id} href={family.href} />
+              </CardTitle>
+              <CardDescription>
+                <Text numeric>{family.knobs.length}</Text> knobs
+              </CardDescription>
+              <CardAction>
+                <ButtonLink render={<Link href="/skins#component-knobs" />} variant="link" size="xs">
                   How the cascade resolves
-                </Link>
-              </Text>
-            </div>
-            <div className="divide-y divide-border">
-              {family.knobs.map((knob) => (
-                <div key={knob.name} className="flex min-w-0 flex-col gap-0.5 px-4 py-2 sm:flex-row sm:items-baseline sm:gap-3">
-                  <Text as="code" size="label" tone="foreground" mono className="min-w-0 break-all sm:w-72 sm:shrink-0">
-                    {knob.name}
-                  </Text>
-                  <Text as="code" size="caption" tone="muted" mono className="shrink-0 sm:w-40">
-                    {knob.syntax}
-                  </Text>
-                  <Text as="code" size="caption" tone="muted" mono className="min-w-0 break-all">
-                    {knob.defaultValue}
-                  </Text>
-                </div>
-              ))}
-            </div>
-          </div>
+                </ButtonLink>
+              </CardAction>
+            </CardHeader>
+            <CardContent>
+              <Table aria-label={`--cui-${family.id}-* knobs`}>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Knob</TableHead>
+                    <TableHead>Syntax</TableHead>
+                    <TableHead>Default</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {family.knobs.map((knob) => (
+                    <TableRow key={knob.name}>
+                      <TableCell>
+                        <Text as="code" size="label" mono>
+                          {knob.name}
+                        </Text>
+                      </TableCell>
+                      <TableCell>
+                        <Text as="code" size="caption" tone="muted" mono>
+                          {knob.syntax}
+                        </Text>
+                      </TableCell>
+                      <TableCell>
+                        <Text as="code" size="caption" tone="muted" mono>
+                          {knob.defaultValue}
+                        </Text>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
         ))}
       </div>
     </section>

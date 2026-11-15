@@ -5,6 +5,7 @@ import { MarkdownEditor, MarkdownEditorContent } from "@/components/control-ui/m
 import { MarkdownEditorBubbleMenu } from "@/components/control-ui/markdown-editor/bubble-menu";
 import { MarkdownEditorSuggestions } from "@/components/control-ui/markdown-editor/suggestions";
 import { MarkdownEditorToolbar, MarkdownEditorUploads } from "@/components/control-ui/markdown-editor/toolbar";
+import { Label } from "@/components/control-ui/ui/label";
 import { Markdown } from "@/components/control-ui/ui/markdown";
 import { Switch } from "@/components/control-ui/ui/switch";
 import { Text } from "@/components/control-ui/ui/typography";
@@ -61,10 +62,10 @@ export function MarkdownEditorReadOnlyExample() {
   const lockId = useId();
   return (
     <div className="grid gap-4">
-      <Text as="div" size="label" className="flex items-center gap-2 justify-self-start">
+      <div className="flex items-center gap-2 justify-self-start">
         <Switch id={lockId} checked={locked} onCheckedChange={setLocked} />
-        <label htmlFor={lockId}>Lock while in review</label>
-      </Text>
+        <Label htmlFor={lockId}>Lock while in review</Label>
+      </div>
       <MarkdownEditor value={value} onValueChange={setValue} readOnly={locked}>
         <MarkdownEditorToolbar />
         <MarkdownEditorContent label="Description in review" placeholder="Describe your project…" />

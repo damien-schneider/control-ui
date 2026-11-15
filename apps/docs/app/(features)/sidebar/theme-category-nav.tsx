@@ -6,8 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { Button } from "@/components/control-ui/ui/button";
 import { Separator } from "@/components/control-ui/ui/separator";
-import { SidebarGroup, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/control-ui/ui/sidebar";
-import { Text } from "@/components/control-ui/ui/typography";
+import { SidebarGroup, SidebarMenu, SidebarMenuBadge, SidebarMenuButton, SidebarMenuItem } from "@/components/control-ui/ui/sidebar";
 import { setDrawerOpen } from "@/components/theme-drawer/generation-store";
 import { THEME_CATEGORIES, themeCategoryForPath } from "@/components/theme-drawer/theme-categories";
 import { useThemeRuntime } from "@/components/theme-drawer/theme-runtime-context";
@@ -45,7 +44,7 @@ function ThemeCategoryNavContent({ onNavigate }: { onNavigate: () => void }) {
             onNavigate();
           }}
         >
-          <WandSparklesIcon aria-hidden className="size-3.5" />
+          <WandSparklesIcon aria-hidden />
           Generate a theme
         </Button>
         <SidebarMenu indicator="hover">
@@ -68,12 +67,8 @@ function ThemeCategoryNavContent({ onNavigate }: { onNavigate: () => void }) {
                   size="sm"
                 >
                   <span className="min-w-0 truncate">{category.title}</span>
-                  {editCount > 0 ? (
-                    <Text aria-hidden size="caption" tone="muted" className="ml-auto">
-                      {editCount}
-                    </Text>
-                  ) : null}
                 </SidebarMenuButton>
+                {editCount > 0 ? <SidebarMenuBadge aria-hidden>{editCount}</SidebarMenuBadge> : null}
               </SidebarMenuItem>
             );
           })}
@@ -88,7 +83,7 @@ function ThemeCategoryNavContent({ onNavigate }: { onNavigate: () => void }) {
               isActive={sourceActive}
               size="sm"
             >
-              <CodeXmlIcon aria-hidden className="size-4" />
+              <CodeXmlIcon aria-hidden />
               Source & export
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -98,7 +93,7 @@ function ThemeCategoryNavContent({ onNavigate }: { onNavigate: () => void }) {
               isActive={auditActive}
               size="sm"
             >
-              <ShieldCheckIcon aria-hidden className="size-4" />
+              <ShieldCheckIcon aria-hidden />
               Accessibility audit
             </SidebarMenuButton>
           </SidebarMenuItem>

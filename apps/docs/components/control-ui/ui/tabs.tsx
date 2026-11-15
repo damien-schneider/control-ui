@@ -1,12 +1,15 @@
 "use client";
 
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
+import { XIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode, Ref } from "react";
 import { Children, createContext, Fragment, isValidElement, useContext, useEffect, useImperativeHandle, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import type { ControlledChoice, RenderProp } from "@/components/control-ui/control-props";
 import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { TabsKnobStyle } from "@/components/control-ui/knob-contracts/tabs-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { Button } from "@/components/control-ui/ui/button";
 
 export type TabsProps<TValue extends string = string> = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> &
   ControlledChoice<TValue> & { orientation?: "horizontal" | "vertical"; style?: CSSProperties & TabsKnobStyle };
@@ -26,6 +29,9 @@ export type TabsTabProps = Omit<Omit<ComponentProps<"button">, "value">, "style"
   value: string;
   render?: RenderProp<ComponentProps<"button">, { active: boolean; disabled: boolean }>;
   nativeButton?: boolean;
+  /** Adds a pointer close button; the focused tab also closes with Delete or Backspace. */
+  onClose?: () => void;
+  closeLabel?: string;
 };
 
 export type TabsPanelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & TabsKnobStyle } & {
@@ -45,7 +51,7 @@ type RegisterTabsPanel = (value: string, node: HTMLDivElement | null) => (() => 
 
 type ActiveTabsPanel = { value: string; node: HTMLDivElement; height: number };
 
-type TabsPanelsContextValue = { registerPanel: RegisterTabsPanel; exitingValue: string | null };
+type TabsContextValue = { registerPanel: RegisterTabsPanel; exitingValue: string | null; tabElements: Set<HTMLElement> };
 
 function refreshTabsPanelHeight(panel: ActiveTabsPanel) {
   if (panel.node.inert || panel.node.hidden) return;
@@ -56,11 +62,11 @@ function setTabsPanelsStarting(panels: HTMLDivElement[], starting: boolean) {
   for (const panel of panels) panel.toggleAttribute("data-slide-starting", starting);
 }
 
-const TabsPanelsContext = createContext<TabsPanelsContextValue | null>(null);
+const TabsContext = createContext<TabsContextValue | null>(null);
 
-function useTabsPanels() {
-  const context = useContext(TabsPanelsContext);
-  if (!context) throw new Error("TabsPanel must be rendered inside <Tabs>.");
+function useTabsContext() {
+  const context = useContext(TabsContext);
+  if (!context) throw new Error("Tabs parts must be rendered inside <Tabs>.");
   return context;
 }
 
@@ -80,6 +86,7 @@ export function Tabs<TValue extends string = string>({ className, onValueChange,
   const previousHeightRef = useRef<string | null>(null);
   const clearPreviousHeightFrame = useRef(0);
   const [exitingValue, setExitingValue] = useState<string | null>(null);
+  const [tabElements] = useState(() => new Set<HTMLElement>());
   const [holdPreviousHeight] = useState(() => (height: string) => {
     const root = rootRef.current;
     if (!root) return;
@@ -135,7 +142,7 @@ export function Tabs<TValue extends string = string>({ className, onValueChange,
   };
 
   return (
-    <TabsPanelsContext.Provider value={{ registerPanel, exitingValue }}>
+    <TabsContext.Provider value={{ registerPanel, exitingValue, tabElements }}>
       <TabsPrimitive.Root
         data-control-ui="tabs"
         data-control-family="tabs"
@@ -148,7 +155,7 @@ export function Tabs<TValue extends string = string>({ className, onValueChange,
       >
         {children}
       </TabsPrimitive.Root>
-    </TabsPanelsContext.Provider>
+    </TabsContext.Provider>
   );
 }
 
@@ -193,12 +200,61 @@ export function TabsList({ size = "sm", variant = "default", scrollable, classNa
   );
 }
 
-export function TabsTab({ className, ...props }: TabsTabProps) {
-  return <TabsPrimitive.Tab data-control-ui="tabs" data-control-family="tabs" data-slot="tab" className={className} {...props} />;
+export function TabsTab({ className, onClose, closeLabel = "Close tab", onKeyDown, ref, ...props }: TabsTabProps) {
+  const tabElements = useContext(TabsContext)?.tabElements;
+  const tabRef = (node: HTMLButtonElement | null) => {
+    const cleanup = setRef(ref, node);
+    if (!node) return;
+    tabElements?.add(node);
+    return () => {
+      tabElements?.delete(node);
+      if (typeof cleanup === "function") cleanup();
+      else setRef(ref, null);
+    };
+  };
+  const tab = (
+    <TabsPrimitive.Tab
+      ref={tabRef}
+      data-control-ui="tabs"
+      data-control-family="tabs"
+      data-slot="tab"
+      data-closable={onClose ? "true" : undefined}
+      aria-keyshortcuts={onClose ? "Delete" : undefined}
+      className={className}
+      onKeyDown={(event) => {
+        onKeyDown?.(event);
+        if (!onClose || event.defaultPrevented || (event.key !== "Delete" && event.key !== "Backspace")) return;
+        flushSync(onClose);
+        [...(tabElements ?? [])].find((element) => element.getAttribute("aria-selected") === "true")?.focus();
+      }}
+      {...props}
+    />
+  );
+  if (!onClose) return tab;
+
+  return (
+    <span data-control-ui="tabs" data-control-family="tabs" data-slot="tab-frame" className="relative inline-flex items-center">
+      {tab}
+      {/* a tablist may only own tabs, so the button stays pointer-only and Delete closes from the keyboard */}
+      <Button
+        variant="ghost"
+        size="xs"
+        iconOnly
+        aria-hidden
+        tabIndex={-1}
+        aria-label={closeLabel}
+        data-tabs-close="true"
+        className="absolute z-10"
+        onClick={onClose}
+      >
+        <XIcon />
+      </Button>
+    </span>
+  );
 }
 
 export function TabsPanel({ className, value, ref, ...props }: TabsPanelProps) {
-  const { registerPanel, exitingValue } = useTabsPanels();
+  const { registerPanel, exitingValue } = useTabsContext();
   const panelRef = (node: HTMLDivElement | null) => {
     const unregister = registerPanel(value, node);
     const cleanup = setRef(ref, node);

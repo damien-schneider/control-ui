@@ -48,6 +48,7 @@ import { Label } from "@/components/control-ui/ui/label";
 import { ProgressiveBlur, type ProgressiveBlurSide } from "@/components/control-ui/ui/progressive-blur";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Switch } from "@/components/control-ui/ui/switch";
+import { Toggle, ToggleGroup } from "@/components/control-ui/ui/toggle";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
 
 const blurSides: { side: ProgressiveBlurSide; label: string }[] = [
@@ -80,19 +81,20 @@ export function PrimitiveProgressiveBlurExample() {
   return (
     <div className="flex w-full max-w-md flex-col gap-4">
       <div className="flex flex-wrap items-center gap-2">
-        <fieldset className="flex gap-1">
-          <legend className="sr-only">Blur edge</legend>
+        <ToggleGroup
+          value={[side]}
+          onValueChange={(next) => {
+            const [nextSide] = next;
+            if (nextSide) setSide(nextSide);
+          }}
+          aria-label="Blur edge"
+        >
           {blurSides.map((option) => (
-            <Button
-              key={option.side}
-              active={side === option.side}
-              aria-pressed={side === option.side}
-              onClick={() => setSide(option.side)}
-            >
+            <Toggle key={option.side} value={option.side}>
               {option.label}
-            </Button>
+            </Toggle>
           ))}
-        </fieldset>
+        </ToggleGroup>
         <Label htmlFor={visibilityId} className="flex items-center gap-2">
           <Switch id={visibilityId} checked={visible} onCheckedChange={setVisible} aria-label="Show blur" />
           Blur
@@ -112,7 +114,7 @@ export function PrimitiveProgressiveBlurExample() {
             Soft light. Sharp details. Room to breathe.
           </Text>
         </div>
-        <ProgressiveBlur side={side} visible={visible} style={{ "--cui-progressive-blur-size": "50%" }} />
+        <ProgressiveBlur side={side} visible={visible} />
       </div>
     </div>
   );
@@ -141,7 +143,9 @@ export function ProgressiveBlurScrollExample() {
           {destinations.map((destination, index) => (
             <li key={destination}>
               <Button className="w-full justify-start gap-3" variant="ghost">
-                <span className="tabular-nums text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
+                <Text tone="muted" numeric>
+                  {String(index + 1).padStart(2, "0")}
+                </Text>
                 {destination}
               </Button>
             </li>

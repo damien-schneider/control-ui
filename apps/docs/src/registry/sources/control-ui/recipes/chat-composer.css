@@ -18,23 +18,6 @@
     padding-inline: var(--composer-padding);
     padding-block: calc(var(--spacing) * 1) var(--composer-padding);
     background: var(--cui-chat-composer-root-background);
-    opacity: 1;
-    filter: none;
-    translate: 0 0;
-    scale: 1;
-    transition:
-      opacity var(--duration-slow) var(--ease-emphasized),
-      filter var(--duration-slow) var(--ease-emphasized),
-      translate var(--duration-slow) var(--ease-emphasized),
-      scale var(--duration-slow) var(--ease-emphasized);
-  }
-
-  @starting-style {
-    :where([data-control-family="chat-composer"][data-slot="root"]) {
-      opacity: 0;
-      filter: blur(10px);
-      translate: 0 0.75rem;
-    }
   }
 
   :where([data-control-family="chat-composer"][data-slot="shell"]) {
@@ -110,7 +93,7 @@
     gap: calc(var(--spacing) * 1.5);
   }
 
-  :where([data-control-family="chat-composer"]:is([data-slot="tools"], [data-slot="footer"])) {
+  :where([data-control-family="chat-composer"]:is([data-slot="header"], [data-slot="tools"], [data-slot="footer"])) {
     color: var(--muted-foreground);
   }
 
@@ -118,6 +101,20 @@
     padding-inline: calc(var(--spacing) * 3);
     padding-block-end: calc(var(--spacing) * 2);
     font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="chat-composer"][data-slot="header"]) {
+    gap: calc(var(--spacing) * 3);
+    padding-inline: calc(var(--spacing) * 3);
+    padding-block: calc(var(--spacing) * 2);
+    border-block-end: var(--cui-chat-composer-shell-border-width) solid var(--cui-chat-composer-shell-border-color);
+    font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="chat-composer"][data-slot="header"] svg:not([data-control-family="button"] > svg)) {
+    inline-size: calc(var(--spacing) * 3.5);
+    block-size: calc(var(--spacing) * 3.5);
+    flex-shrink: 0;
   }
 
   :where([data-control-family="chat-composer"][data-slot="mention"]) {

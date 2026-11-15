@@ -22,10 +22,13 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ## Registry dependencies
 
+- `app-shell`
+- `avatar`
 - `button`
 - `chat-layout`
 - `collapsible`
 - `core`
+- `empty`
 - `item`
 - `sidebar`
 - `typography`
@@ -82,7 +85,7 @@ import {
   WrenchIcon,
 } from "lucide-react";
 import { useState } from "react";
-import { Activity, ActivityIcon, ActivityRow, ActivityStatus, ActivityTitle } from "@/components/control-ui/activity";
+import { Activity, ActivityIcon, ActivityRow, ActivityTitle } from "@/components/control-ui/activity";
 import {
   CodingAgentBlock,
   CodingAgentConversation,
@@ -94,6 +97,7 @@ import {
 } from "@/components/control-ui/blocks/coding-agent";
 import {
   ChatComposer,
+  ChatComposerHeader,
   ChatComposerShell,
   ChatComposerSubmit,
   ChatComposerTextarea,
@@ -103,8 +107,8 @@ import {
 import { ChatTurn } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
 import { ModelSwitcher } from "@/components/control-ui/model-switcher";
+import { Badge } from "@/components/control-ui/ui/badge";
 import { Spinner } from "@/components/control-ui/ui/spinner";
-import { Text } from "@/components/control-ui/ui/typography";
 
 const navigation: readonly CodingAgentNavigationItem[] = [
   { id: "pull-requests", label: "Pull requests", icon: <GitPullRequestIcon /> },
@@ -113,10 +117,9 @@ const navigation: readonly CodingAgentNavigationItem[] = [
     label: "Scheduled",
     icon: <Clock3Icon />,
     trailing: (
-      <span className="flex items-center">
-        <span className="size-1.5 rounded-full bg-[oklch(0.72_0.14_240)]" aria-hidden="true" />
-        <span className="sr-only">New activity</span>
-      </span>
+      <Badge color="blue" size="sm">
+        New
+      </Badge>
     ),
   },
   { id: "plugins", label: "Plugins", icon: <BlocksIcon /> },
@@ -140,10 +143,10 @@ const projects: readonly CodingAgentProject[] = [
         id: "code-diff-defaults",
         title: "Improve code diff defaults",
         trailing: (
-          <span className="flex items-center">
-            <GitBranchIcon className="size-3.5 text-[oklch(0.68_0.16_300)]" aria-hidden="true" />
+          <Badge color="purple" size="sm">
+            <GitBranchIcon aria-hidden="true" />
             <span className="sr-only">Branch active</span>
-          </span>
+          </Badge>
         ),
       },
       { id: "tool-states", title: "Unify tool call states" },
@@ -164,25 +167,25 @@ const suggestions: readonly CodingAgentSuggestion[] = [
   {
     id: "explore",
     title: "Explore and understand code",
-    icon: <TelescopeIcon className="size-4" />,
+    icon: <TelescopeIcon />,
     prompt: "Map the registry architecture and explain how blocks are installed.",
   },
   {
     id: "build",
     title: "Build a new feature, app, or tool",
-    icon: <HammerIcon className="size-4" />,
+    icon: <HammerIcon />,
     prompt: "Build a polished coding-agent workspace from our existing components.",
   },
   {
     id: "review",
     title: "Review code and suggest changes",
-    icon: <ScanSearchIcon className="size-4" />,
+    icon: <ScanSearchIcon />,
     prompt: "Review the current branch and suggest focused improvements.",
   },
   {
     id: "fix",
     title: "Fix issues and failures",
-    icon: <WrenchIcon className="size-4" />,
+    icon: <WrenchIcon />,
     prompt: "Find the failing checks, fix the root cause, and verify the result.",
   },
 ];
@@ -259,36 +262,27 @@ export function CodingAgentExample() {
       onSubmit={submitPrompt}
     >
       <ChatComposerShell>
-        <div className="border-b border-border/60 px-3 py-2">
-          <Text as="div" size="caption" tone="muted" className="flex min-w-0 items-center gap-3">
-            <span className="flex min-w-0 items-center gap-1.5">
-              <FolderIcon className="size-3.5 shrink-0" aria-hidden="true" />
-              <span className="truncate">control-ui</span>
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CodeXmlIcon className="size-3.5" aria-hidden="true" />
-              Local
-            </span>
-            <span className="flex min-w-0 items-center gap-1.5">
-              <GitBranchIcon className="size-3.5 shrink-0" aria-hidden="true" />
-              <span className="truncate">feat/coding-agent-block</span>
-            </span>
-          </Text>
-        </div>
-        <ChatComposerTextarea className="min-h-18" placeholder="Do anything" />
+        <ChatComposerHeader>
+          <span className="flex min-w-0 items-center gap-1.5">
+            <FolderIcon aria-hidden="true" />
+            <span className="truncate">control-ui</span>
+          </span>
+          <span className="flex items-center gap-1.5">
+            <CodeXmlIcon aria-hidden="true" />
+            Local
+          </span>
+          <span className="flex min-w-0 items-center gap-1.5">
+            <GitBranchIcon aria-hidden="true" />
+            <span className="truncate">feat/coding-agent-block</span>
+          </span>
+        </ChatComposerHeader>
+        <ChatComposerTextarea placeholder="Do anything" />
         <ChatComposerToolbar>
           <ChatComposerTools>
             <ModelSwitcher models={models} value={model} onValueChange={setModel} size="xs" variant="ghost" />
           </ChatComposerTools>
           <div className="flex min-w-0 items-center gap-1">
-            <ChatComposerSubmit
-              size="sm"
-              iconOnly
-              shape="circle"
-              aria-label="Send message"
-              onStop={() => setIsRunning(false)}
-              stopIcon={<span aria-hidden="true" className="size-2 rounded-[2px] bg-current" />}
-            >
+            <ChatComposerSubmit size="sm" iconOnly shape="circle" aria-label="Send message" onStop={() => setIsRunning(false)}>
               <ArrowUpIcon />
             </ChatComposerSubmit>
           </div>
@@ -348,7 +342,6 @@ function ActiveTask({ prompt, isRunning }: { prompt: string; isRunning: boolean 
           <ActivityRow>
             <ActivityIcon />
             <ActivityTitle>{isRunning ? "Thinking" : "Ready"}</ActivityTitle>
-            <ActivityStatus className="sr-only" />
           </ActivityRow>
         </Activity>
         {!isRunning ? (

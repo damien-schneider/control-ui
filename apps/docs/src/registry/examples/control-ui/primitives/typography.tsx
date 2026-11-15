@@ -1,10 +1,13 @@
 "use client";
 
-import { Heading, Text } from "@/components/control-ui/ui/typography";
+import { Heading, Text, TextLink } from "@/components/control-ui/ui/typography";
 
 export function TypographyTokensExample() {
   return (
     <div className="flex w-full max-w-2xl flex-col gap-6">
+      <Text as="p" size="hero">
+        Hero — fluid landing headlines
+      </Text>
       <Text as="p" size="display">
         Display — page titles &amp; heroes
       </Text>
@@ -26,6 +29,9 @@ export function TypographyTokensExample() {
       <Text as="p">
         Weight: <Text weight="normal">normal</Text>, <Text weight="medium">medium</Text>, <Text weight="semibold">semibold</Text>,{" "}
         <Text weight="bold">bold</Text> for figures and overlays that must read at a glance.
+      </Text>
+      <Text as="p" tone="muted">
+        A <TextLink href="#typography">text link</TextLink> sits inside prose: it inherits the size and stays underlined at rest.
       </Text>
       <Text as="p" size="label" tone="muted">
         Label — form labels and small chrome.

@@ -104,7 +104,7 @@ test("nested pages navigate and remain selected after folding their parent", asy
   await expect
     .poll(async () => {
       const overviewBounds = await overview.boundingBox();
-      const sidebarBounds = await example.locator('[data-slot="container"]').boundingBox();
+      const sidebarBounds = await example.locator('[data-control-ui="sidebar"][data-slot="container"]').boundingBox();
       if (!overviewBounds || !sidebarBounds) throw new Error("Nested navigation is not laid out");
       return overviewBounds.x + overviewBounds.width - sidebarBounds.x - sidebarBounds.width;
     })

@@ -35,13 +35,7 @@ export function SkinPicker() {
               <Tooltip key={id}>
                 <TooltipTrigger
                   render={
-                    <ToolbarButton
-                      iconOnly
-                      aria-label={SKIN_META_BY_ID[id].label}
-                      aria-pressed={pressed}
-                      data-pressed={pressed ? "" : undefined}
-                      onClick={() => applySkin(id)}
-                    />
+                    <ToolbarButton iconOnly aria-label={SKIN_META_BY_ID[id].label} aria-pressed={pressed} onClick={() => applySkin(id)} />
                   }
                 >
                   <SkinLogo id={id} size="sm" />

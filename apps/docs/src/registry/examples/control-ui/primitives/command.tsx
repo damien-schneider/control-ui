@@ -13,6 +13,7 @@ import {
   CommandShortcut,
 } from "@/components/control-ui/ui/command";
 import { Kbd, KbdGroup } from "@/components/control-ui/ui/kbd";
+import { Text } from "@/components/control-ui/ui/typography";
 
 export function PrimitiveCommandExample() {
   return (
@@ -37,8 +38,8 @@ export function PrimitiveCommandExample() {
           <CommandSeparator />
           <CommandGroup heading="Pages">
             <CommandItem value="settings profile">
-              <span className="text-muted-foreground">Settings</span>
-              <ChevronRightIcon aria-hidden="true" className="size-3.5 shrink-0 text-muted-foreground/60" />
+              <Text tone="muted">Settings</Text>
+              <ChevronRightIcon aria-hidden="true" />
               <span>Profile</span>
               <CommandShortcut>
                 <KbdGroup>
@@ -48,17 +49,17 @@ export function PrimitiveCommandExample() {
               </CommandShortcut>
             </CommandItem>
             <CommandItem value="settings workspace members">
-              <span className="text-muted-foreground">Settings</span>
-              <ChevronRightIcon aria-hidden="true" className="size-3.5 shrink-0 text-muted-foreground/60" />
-              <span className="text-muted-foreground">Workspace</span>
-              <ChevronRightIcon aria-hidden="true" className="size-3.5 shrink-0 text-muted-foreground/60" />
+              <Text tone="muted">Settings</Text>
+              <ChevronRightIcon aria-hidden="true" />
+              <Text tone="muted">Workspace</Text>
+              <ChevronRightIcon aria-hidden="true" />
               <span>Members</span>
             </CommandItem>
             <CommandItem value="settings billing invoices">
-              <span className="text-muted-foreground">Settings</span>
-              <ChevronRightIcon aria-hidden="true" className="size-3.5 shrink-0 text-muted-foreground/60" />
-              <span className="text-muted-foreground">Billing</span>
-              <ChevronRightIcon aria-hidden="true" className="size-3.5 shrink-0 text-muted-foreground/60" />
+              <Text tone="muted">Settings</Text>
+              <ChevronRightIcon aria-hidden="true" />
+              <Text tone="muted">Billing</Text>
+              <ChevronRightIcon aria-hidden="true" />
               <span>Invoices</span>
             </CommandItem>
           </CommandGroup>

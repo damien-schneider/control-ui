@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import type { ComponentProps, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { CodeBlock } from "@/app/(features)/components/source";
 import { guideCodeForKind, languageForGuideCode } from "@/app/(features)/model/registry";
 import type { GuideSection as GuideSectionData, IntegrationId } from "@/app/(features)/model/types";
-import { cn } from "@/components/control-ui/lib/cn";
+import { ButtonLink } from "@/components/control-ui/ui/button";
 import { Card, CardContent } from "@/components/control-ui/ui/card";
+import { Item, ItemContent, ItemGroup } from "@/components/control-ui/ui/item";
 import { MarkdownFlow } from "@/components/control-ui/ui/markdown-elements";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
 import { IntegrationSelect, integrationChangesCode } from "./integration";
@@ -35,9 +36,9 @@ export function GuideSection({ id, title, children }: { id: string; title: strin
   return (
     <section id={id} className="min-w-0 scroll-mt-20">
       <Heading level={2}>{title}</Heading>
-      <Text as="div" tone="muted" className="mt-2">
+      <div className="mt-2">
         <MarkdownFlow>{children}</MarkdownFlow>
-      </Text>
+      </div>
     </section>
   );
 }
@@ -67,19 +68,23 @@ export type InstallPathId = keyof typeof installPaths;
 export function InstallPaths({ current }: { current: InstallPathId }) {
   return (
     <nav aria-label="Install path">
-      <ul className="flex flex-wrap items-end gap-6 border-border/70 border-b">
-        {Object.entries(installPaths).map(([id, path]) => (
-          <li key={id}>
-            <Link
-              href={path.href}
-              aria-current={id === current ? "page" : undefined}
-              className="-mb-px block border-transparent border-b-2 pb-2 text-muted-foreground transition-colors hover:text-foreground aria-[current=page]:border-primary aria-[current=page]:text-foreground"
+      <div className="flex flex-wrap gap-2">
+        {Object.entries(installPaths).map(([id, path]) => {
+          const isCurrent = id === current;
+          return (
+            <ButtonLink
+              key={id}
+              variant="quiet"
+              size="sm"
+              active={isCurrent}
+              aria-current={isCurrent ? "page" : undefined}
+              render={<Link href={path.href} />}
             >
-              <Text size="heading-3">{path.label}</Text>
-            </Link>
-          </li>
-        ))}
-      </ul>
+              {path.label}
+            </ButtonLink>
+          );
+        })}
+      </div>
       <Text as="p" tone="muted" className="mt-3">
         {installPaths[current].description}
       </Text>
@@ -103,19 +108,15 @@ export function GuideCheck({ children }: { children: ReactNode }) {
 }
 
 export function GuidePoints({ children }: { children: ReactNode }) {
-  return <div className="grid divide-y divide-border/60 border-border/70 border-y">{children}</div>;
+  return <ItemGroup>{children}</ItemGroup>;
 }
 
-export function GuidePoint({ className, children, ...props }: ComponentProps<"div">) {
+export function GuidePoint({ children }: { children: ReactNode }) {
   return (
-    <div
-      className={cn(
-        "relative py-3 pr-2 pl-5 before:absolute before:top-5 before:left-0 before:size-1.5 before:rounded-full before:bg-primary/70",
-        className,
-      )}
-      {...props}
-    >
-      <Text as="div">{children}</Text>
-    </div>
+    <Item>
+      <ItemContent>
+        <Text as="div">{children}</Text>
+      </ItemContent>
+    </Item>
   );
 }

@@ -1,7 +1,7 @@
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { useState } from "react";
 import type { FormSubmitEvent } from "@/components/control-ui/control-props";
-import type { ChatDensity } from "@/components/control-ui/hooks/use-chat-message";
+import { type ChatDensity, useChatThreadDockSend } from "@/components/control-ui/hooks/use-chat-message";
 import { isComposingKey } from "@/components/control-ui/hooks/use-trigger-menu";
 import type { ChatComposerKnobStyle } from "@/components/control-ui/knob-contracts/chat-composer-knobs";
 
@@ -102,6 +102,7 @@ export function useChatComposer({
 }): ChatComposerController {
   const [inputValue, setInputValue] = useControllableText({ value, defaultValue, onValueChange });
   const [sendCount, setSendCount] = useState(0);
+  const followThread = useChatThreadDockSend();
   const [insertion] = useState(() => {
     let target: InsertText | null = null;
     const register: RegisterInsertionTarget = (insert) => {
@@ -126,6 +127,7 @@ export function useChatComposer({
   function submit(extra?: Partial<ChatComposerSubmitPayload>) {
     if (!canSubmit) return;
     if (trackSends) setSendCount((count) => count + 1);
+    followThread();
     // onSubmit may return Promise; surface rejected send without unhandled rejection
     Promise.resolve(onSubmit?.({ value: normalizedValue, clear, ...extra })).catch(reportError);
   }

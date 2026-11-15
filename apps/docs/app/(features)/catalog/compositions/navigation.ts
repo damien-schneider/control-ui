@@ -11,8 +11,8 @@ export const navigationCompositions = {
     example("Connected surface", part("Tabs", part("TabsList", part("TabsTab")), part("TabsSurface", part("TabsPanel")))),
     example(
       "Closable tab",
-      part("Tabs", part("TabsList", part("span", part("TabsTab"), part("Button"))), part("TabsPanel")),
-      "A close button can't sit inside the tab's own button: wrap each TabsTab and its icon-only Button in a relative span, place the Button absolutely at the end, and reserve its room with --cui-tabs-trigger-padding-inline-end on the TabsTab.",
+      part("Tabs", part("TabsList", part("TabsTab")), part("TabsPanel")),
+      'Pass onClose to a TabsTab to render its close button inside the tab, and closeLabel to name it, as in closeLabel="Close README".',
     ),
   ],
   "track-highlight": [

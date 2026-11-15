@@ -1,4 +1,5 @@
 import { ButtonLink } from "@/components/control-ui/ui/button";
+import { Separator } from "@/components/control-ui/ui/separator";
 import { Text } from "@/components/control-ui/ui/typography";
 import { siteConfig } from "@/lib/site-config";
 
@@ -14,7 +15,7 @@ function GithubMark() {
 
 function StarMark() {
   return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" className="size-3.5 -translate-y-px">
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="-translate-y-px">
       <defs>
         <linearGradient id="docs-github-star-fill" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="oklch(0.95 0.13 100)" />
@@ -66,12 +67,15 @@ export function DocsGithubLink({ stars }: { stars: number | null }) {
       <GithubMark />
       <span>GitHub</span>
       {formattedStars == null ? null : (
-        <span className="inline-flex items-center gap-1 border-current/30 border-s ps-2">
-          <Text size="caption" mono numeric>
-            {formattedStars}
-          </Text>
-          <StarMark />
-        </span>
+        <>
+          <Separator orientation="vertical" />
+          <span className="inline-flex items-center gap-1">
+            <Text size="caption" mono numeric>
+              {formattedStars}
+            </Text>
+            <StarMark />
+          </span>
+        </>
       )}
     </ButtonLink>
   );

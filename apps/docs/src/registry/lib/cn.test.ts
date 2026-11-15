@@ -25,6 +25,21 @@ describe("cn", () => {
   test("a type rung is a size, so it keeps its color and leading and yields to another size", () => {
     expect(cn("text-body text-muted-foreground", "leading-6")).toBe("text-body text-muted-foreground leading-6");
     expect(cn("text-body", "text-label")).toBe("text-label");
+    for (const rung of [
+      "micro",
+      "caption",
+      "label",
+      "body",
+      "body-lg",
+      "heading-4",
+      "heading-3",
+      "heading-2",
+      "heading-1",
+      "display",
+      "hero",
+    ]) {
+      expect(cn(`text-${rung}`, "text-foreground")).toBe(`text-${rung} text-foreground`);
+    }
   });
 
   test("a shadow tier keeps a shadow color beside it", () => {

@@ -15,6 +15,13 @@
         ],
         "states": []
       },
+      "link": {
+        "family": "typography",
+        "registryItems": [
+          "typography"
+        ],
+        "states": []
+      },
       "text": {
         "family": "typography",
         "registryItems": [

@@ -11,7 +11,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { type CodeTokenLines, highlightToTokens } from "@/components/control-ui/lib/code-tokens";
 import { Button } from "@/components/control-ui/ui/button";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
-import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
+import { ScrollArea, type ScrollAreaLockAxis } from "@/components/control-ui/ui/scroll-area";
 import { Swap, SwapItem } from "@/components/control-ui/ui/swap";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
 
@@ -43,6 +43,12 @@ function useCodeContext(): CodeContextValue {
   const context = useContext(CodeContext);
   if (!context) throw new Error("Code compound parts must be rendered inside <Code>.");
   return context;
+}
+
+function codeScrollLock(overflow: CodeOverflow, lineCount: number): ScrollAreaLockAxis | undefined {
+  const wraps = overflow === "wrap";
+  if (lineCount > 1) return wraps ? "x" : undefined;
+  return wraps ? "both" : "y";
 }
 
 export type CodeProps = Omit<ComponentProps<"figure">, "style"> & {
@@ -339,6 +345,21 @@ export type CodeContentProps = Omit<ComponentProps<"div">, "children" | "style">
   style?: CSSProperties & CodeKnobStyle;
 };
 
+function codeRegionLabel({
+  ariaLabel,
+  ariaLabelledby,
+  fileName,
+  lang,
+}: {
+  ariaLabel?: string;
+  ariaLabelledby?: string;
+  fileName?: string;
+  lang?: string;
+}) {
+  if (ariaLabelledby) return ariaLabel;
+  return ariaLabel ?? fileName ?? (lang ? `${lang} code` : "Code");
+}
+
 export function CodeContent({
   code,
   lang,
@@ -361,7 +382,7 @@ export function CodeContent({
   ...props
 }: CodeContentProps) {
   const { density, overflow, hasHeader, copy } = useCodeContext();
-  const regionLabel = ariaLabelledby ? ariaLabel : (ariaLabel ?? fileName ?? (lang ? `${lang} code` : "Code"));
+  const regionLabel = codeRegionLabel({ ariaLabel, ariaLabelledby, fileName, lang });
   const resolvedTokens = useCodeTokens({ code, lang, tokens, highlight });
   const plainLines = useMemo(() => code.split(/\r?\n/), [code]);
   const highlightedLineNumbers = new Set(highlightLines);
@@ -446,11 +467,14 @@ export function CodeContent({
     </div>
   );
 
+  const hasInlineCopy = copy && !hasHeader && plainLines.length === 1;
   const content = (
     <ScrollArea
       maxHeight={maxHeight}
+      lockAxis={codeScrollLock(overflow, plainLines.length)}
       aria-label={regionLabel}
       aria-labelledby={ariaLabelledby}
+      className={hasInlineCopy ? "min-w-0 flex-1" : undefined}
       viewportClassName={className}
       viewportProps={{
         ...props,
@@ -464,6 +488,15 @@ export function CodeContent({
       {grid}
     </ScrollArea>
   );
+
+  if (hasInlineCopy) {
+    return (
+      <div data-control-ui="code" data-control-family="code" data-slot="inline-frame" className="flex items-center">
+        {content}
+        <CodeCopy value={code} aria-label={copyLabel} copiedAriaLabel={copiedLabel} copyFailedLabel={copyFailedLabel} />
+      </div>
+    );
+  }
 
   if (hasHeader || !copy) return content;
 

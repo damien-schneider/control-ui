@@ -1,11 +1,14 @@
 "use client";
 
-import { BotIcon, ChevronRightIcon, CircleIcon, FolderIcon, PlusIcon, SearchIcon } from "lucide-react";
+import { BotIcon, ChevronRightIcon, FolderIcon, PlusIcon, SearchIcon } from "lucide-react";
 import type { ComponentProps, ReactNode } from "react";
-import { ChatLayout, ChatThread } from "@/components/control-ui/chat-layout";
+import { ChatLayout, ChatThread, ChatThreadScrollButton } from "@/components/control-ui/chat-layout";
 import { cn } from "@/components/control-ui/lib/cn";
+import { AppShellHeader } from "@/components/control-ui/ui/app-shell";
+import { Avatar, AvatarFallback } from "@/components/control-ui/ui/avatar";
 import { Button } from "@/components/control-ui/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
+import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/control-ui/ui/empty";
 import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "@/components/control-ui/ui/item";
 import {
   Sidebar,
@@ -22,7 +25,6 @@ import {
   SidebarProvider,
   type SidebarProviderProps,
   SidebarRail,
-  type SidebarStyle,
   SidebarTrigger,
   useSidebar,
 } from "@/components/control-ui/ui/sidebar";
@@ -98,14 +100,13 @@ export function CodingAgentBlock({
   style,
   ...props
 }: CodingAgentBlockProps) {
-  const providerStyle: SidebarStyle = { "--sidebar-width": "17.5rem", ...style };
-
   return (
     <SidebarProvider
       layout={layout}
       surface="background"
+      defaultWidth={280}
       className={cn(layout === "viewport" && "h-svh overflow-hidden", className)}
-      style={providerStyle}
+      style={style}
       {...props}
     >
       <CodingAgentSidebar
@@ -127,9 +128,8 @@ export function CodingAgentBlock({
         onSearch={onSearch}
       />
       <SidebarInset className="h-full min-h-0 min-w-0 overflow-hidden">
-        <header className="flex h-12 shrink-0 items-center gap-2 border-b border-border/70 px-3">
+        <AppShellHeader>
           <SidebarTrigger size="xs" className="sidebar:hidden" />
-          <FolderIcon className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
           <Heading
             level={layout === "contained" ? 2 : 1}
             size="label"
@@ -140,7 +140,7 @@ export function CodingAgentBlock({
             {activeTaskTitle}
           </Heading>
           {headerActions ? <div className="flex shrink-0 items-center gap-1">{headerActions}</div> : null}
-        </header>
+        </AppShellHeader>
         <div className="min-h-0 flex-1 overflow-hidden">{children}</div>
       </SidebarInset>
     </SidebarProvider>
@@ -200,9 +200,9 @@ function CodingAgentSidebar({
         <div className="flex min-w-0 items-center gap-2 px-1 py-1">
           <div className="flex min-w-0 flex-1 items-center gap-2">
             {brand ?? (
-              <span className="flex size-6 shrink-0 items-center justify-center rounded-md bg-foreground text-background">
-                <BotIcon className="size-3.5" aria-hidden="true" />
-              </span>
+              <Avatar size="xs" aria-hidden="true">
+                <AvatarFallback>{appName.charAt(0)}</AvatarFallback>
+              </Avatar>
             )}
             <Text size="label" weight="semibold" className="truncate" title={appName}>
               {appName}
@@ -261,10 +261,8 @@ function CodingAgentSidebar({
             {projects.map((project) => (
               <Collapsible key={project.id} defaultOpen={project.open ?? true} className="min-w-0">
                 <CollapsibleTrigger>
-                  <ChevronRightIcon className="text-muted-foreground" aria-hidden="true" />
-                  <span className="flex shrink-0 items-center text-muted-foreground">
-                    {project.icon ?? <FolderIcon className="size-4" aria-hidden="true" />}
-                  </span>
+                  <ChevronRightIcon aria-hidden="true" />
+                  {project.icon ?? <FolderIcon aria-hidden="true" />}
                   <span className="truncate">{project.name}</span>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
@@ -279,7 +277,6 @@ function CodingAgentSidebar({
                             finishMobileNavigation();
                           }}
                         >
-                          <CircleIcon className="size-1.5 fill-current opacity-35" aria-hidden="true" />
                           <span>{task.title}</span>
                           {task.trailing ? <span className="ms-auto shrink-0">{task.trailing}</span> : null}
                         </SidebarMenuButton>
@@ -307,8 +304,15 @@ export type CodingAgentConversationProps = Omit<ComponentProps<typeof ChatLayout
 export function CodingAgentConversation({ children, composer, className, ...props }: CodingAgentConversationProps) {
   return (
     <ChatLayout chrome="embedded" className={className} {...props}>
-      <ChatThread composer={<div className="mx-auto w-full max-w-3xl px-2 sm:px-6">{composer}</div>}>
-        <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-8">{children}</div>
+      <ChatThread
+        composer={
+          <>
+            <ChatThreadScrollButton />
+            {composer}
+          </>
+        }
+      >
+        {children}
       </ChatThread>
     </ChatLayout>
   );
@@ -322,7 +326,7 @@ export type CodingAgentSuggestion = {
   prompt?: string;
 };
 
-export type CodingAgentEmptyStateProps = Omit<ComponentProps<"section">, "title"> & {
+export type CodingAgentEmptyStateProps = Omit<ComponentProps<typeof Empty>, "title"> & {
   title?: ReactNode;
   description?: ReactNode;
   icon?: ReactNode;
@@ -340,25 +344,20 @@ export function CodingAgentEmptyState({
   ...props
 }: CodingAgentEmptyStateProps) {
   return (
-    <section className={cn("my-auto flex w-full flex-col items-center py-10 text-center", className)} {...props}>
-      <div className="mb-5 flex size-11 items-center justify-center rounded-2xl border bg-card text-muted-foreground shadow-sm">
-        {icon ?? <BotIcon className="size-5" aria-hidden="true" />}
-      </div>
-      <Heading level={2}>{title}</Heading>
-      {description ? (
-        <Text as="p" tone="muted" className="mt-2 max-w-xl text-pretty">
-          {description}
-        </Text>
-      ) : null}
+    <Empty className={cn("my-auto w-full", className)} {...props}>
+      <EmptyHeader>
+        <EmptyMedia>{icon ?? <BotIcon aria-hidden="true" />}</EmptyMedia>
+        <EmptyTitle render={(titleProps) => <h2 {...titleProps} />}>{title}</EmptyTitle>
+        {description ? <EmptyDescription>{description}</EmptyDescription> : null}
+      </EmptyHeader>
       {suggestions.length > 0 ? (
-        <div className="mt-8 grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {suggestions.map((suggestion) => (
             <Item
               key={suggestion.id}
               variant="outline"
               render={<button type="button" onClick={() => onSuggestionSelect?.(suggestion.prompt ?? suggestion.title, suggestion)} />}
               className="min-h-28 w-full flex-col items-start text-start"
-              style={{ "--cui-item-media-foreground": "var(--primary-text)" }}
             >
               <ItemMedia>{suggestion.icon}</ItemMedia>
               <ItemContent>
@@ -369,6 +368,6 @@ export function CodingAgentEmptyState({
           ))}
         </div>
       ) : null}
-    </section>
+    </Empty>
   );
 }

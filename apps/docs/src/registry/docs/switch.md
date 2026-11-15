@@ -44,15 +44,15 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 import { CheckIcon, MoonIcon, SunIcon, XIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { useState } from "react";
+import { Label } from "@/components/control-ui/ui/label";
 import { Switch } from "@/components/control-ui/ui/switch";
-import { Text } from "@/components/control-ui/ui/typography";
 
 function Row({ htmlFor, label, children }: { htmlFor: string; label: string; children: ReactNode }) {
   return (
-    <Text as="div" weight="medium" tone="foreground" className="flex items-center justify-between gap-4">
-      <label htmlFor={htmlFor}>{label}</label>
+    <div className="flex items-center justify-between gap-4">
+      <Label htmlFor={htmlFor}>{label}</Label>
       {children}
-    </Text>
+    </div>
   );
 }
 

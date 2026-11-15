@@ -1,5 +1,8 @@
 "use client";
 
+import { Accordion, AccordionItem, AccordionPanel, AccordionTrigger } from "@/components/control-ui/ui/accordion";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/control-ui/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/control-ui/ui/table";
 import { Text } from "@/components/control-ui/ui/typography";
 import { THEME_CONTRACT, type ThemeContractGroup, type ThemeContractToken } from "@/src/registry/lib/theme-contract";
 
@@ -32,78 +35,92 @@ const advancedGroups = GROUP_ORDER.flatMap((group) => {
 
 const derivedTokens = GROUP_ORDER.flatMap((group) => THEME_CONTRACT.filter((token) => token.tier === "derived" && token.group === group));
 
-function TokenRow({ token }: { token: ThemeContractToken }) {
+function TokenTable({ label, tokens }: { label: string; tokens: ThemeContractToken[] }) {
   return (
-    <div className="flex min-w-0 flex-col gap-0.5 px-4 py-2 sm:flex-row sm:items-baseline sm:gap-3">
-      <Text as="code" size="label" tone="foreground" mono className="shrink-0 sm:w-56">
-        {token.name}
-      </Text>
-      <Text size="caption" tone="muted" className="hidden shrink-0 sm:inline sm:w-20">
-        {GROUP_LABELS[token.group]}
-      </Text>
-      <Text size="label" tone="muted" className="min-w-0">
-        {token.description}
-      </Text>
-    </div>
+    <Table aria-label={label}>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Token</TableHead>
+          <TableHead>Group</TableHead>
+          <TableHead>Description</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {tokens.map((token) => (
+          <TableRow key={token.name}>
+            <TableCell>
+              <Text as="code" size="label" mono>
+                {token.name}
+              </Text>
+            </TableCell>
+            <TableCell>
+              <Text size="caption" tone="muted">
+                {GROUP_LABELS[token.group]}
+              </Text>
+            </TableCell>
+            <TableCell>
+              <span className="block min-w-64 whitespace-normal">
+                <Text size="label" tone="muted">
+                  {token.description}
+                </Text>
+              </span>
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
   );
 }
 
 export function TokenContractTable() {
   return (
     <div className="grid min-w-0 gap-4">
-      <div className="docs-panel overflow-hidden">
-        <div className="border-b border-border bg-muted/30 px-4 py-2">
-          <Text as="div" size="caption" weight="medium" tone="muted">
-            Core — the <span className="tabular-nums">{coreTokens.length}</span> tokens a skin typically re-values first
-          </Text>
-        </div>
-        <div className="divide-y divide-border">
-          {coreTokens.map((token) => (
-            <TokenRow key={token.name} token={token} />
-          ))}
-        </div>
-      </div>
+      <Card size="sm" className="min-w-0">
+        <CardHeader>
+          <CardTitle>Core</CardTitle>
+          <CardDescription>
+            The <Text numeric>{coreTokens.length}</Text> tokens a skin typically re-values first
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <TokenTable label="Core tokens" tokens={coreTokens} />
+        </CardContent>
+      </Card>
 
-      <details className="docs-panel group overflow-hidden">
-        <summary className="flex cursor-pointer list-none items-baseline gap-2 px-4 py-2 [&::-webkit-details-marker]:hidden">
-          <Text weight="medium">Derived — optional overrides</Text>
-          <Text size="caption" tone="muted">
-            <span className="tabular-nums">{derivedTokens.length}</span> tokens with a core default; re-value one in theme.css only to
-            diverge
-          </Text>
-          <span aria-hidden className="ml-auto transition-transform group-open:rotate-90">
-            <Text size="caption" tone="muted">
-              ›
-            </Text>
-          </span>
-        </summary>
-        <div className="divide-y divide-border border-t border-border">
-          {derivedTokens.map((token) => (
-            <TokenRow key={token.name} token={token} />
-          ))}
-        </div>
-      </details>
-
-      {advancedGroups.map(({ group, tokens }) => (
-        <details key={group} className="docs-panel group overflow-hidden">
-          <summary className="flex cursor-pointer list-none items-baseline gap-2 px-4 py-2 [&::-webkit-details-marker]:hidden">
-            <Text weight="medium">Advanced — {GROUP_LABELS[group]}</Text>
-            <Text size="caption" tone="muted">
-              <span className="tabular-nums">{tokens.length}</span> {tokens.length === 1 ? "token" : "tokens"}
-            </Text>
-            <span aria-hidden className="ml-auto transition-transform group-open:rotate-90">
-              <Text size="caption" tone="muted">
-                ›
-              </Text>
-            </span>
-          </summary>
-          <div className="divide-y divide-border border-t border-border">
-            {tokens.map((token) => (
-              <TokenRow key={token.name} token={token} />
+      <Card size="sm" className="min-w-0">
+        <CardContent>
+          <Accordion multiple>
+            <AccordionItem value="derived">
+              <AccordionTrigger>
+                <span className="flex flex-wrap items-baseline gap-x-2">
+                  Derived — optional overrides
+                  <Text size="caption" tone="muted" numeric>
+                    {derivedTokens.length} tokens with a core default; re-value one in theme.css only to diverge
+                  </Text>
+                </span>
+              </AccordionTrigger>
+              <AccordionPanel>
+                <TokenTable label="Derived tokens" tokens={derivedTokens} />
+              </AccordionPanel>
+            </AccordionItem>
+            {advancedGroups.map(({ group, tokens }) => (
+              <AccordionItem key={group} value={group}>
+                <AccordionTrigger>
+                  <span className="flex flex-wrap items-baseline gap-x-2">
+                    Advanced — {GROUP_LABELS[group]}
+                    <Text size="caption" tone="muted" numeric>
+                      {tokens.length} {tokens.length === 1 ? "token" : "tokens"}
+                    </Text>
+                  </span>
+                </AccordionTrigger>
+                <AccordionPanel>
+                  <TokenTable label={`Advanced ${GROUP_LABELS[group]} tokens`} tokens={tokens} />
+                </AccordionPanel>
+              </AccordionItem>
             ))}
-          </div>
-        </details>
-      ))}
+          </Accordion>
+        </CardContent>
+      </Card>
     </div>
   );
 }

@@ -31,21 +31,10 @@ export function CodeBlock({ code, lang = "tsx" }: { code: string; lang?: string 
   );
 }
 
-export function CodeSnippet({
-  code,
-  lang = "bash",
-  highlight,
-  children,
-}: {
-  code: string;
-  lang?: string;
-  highlight?: CodeHighlight;
-  children?: ReactNode;
-}) {
+export function CodeSnippet({ code, lang = "bash", highlight }: { code: string; lang?: string; highlight?: CodeHighlight }) {
   return (
-    <Code copy={false} density="compact" overflow="wrap" className="flex items-center gap-1">
-      <CodeContent code={code} lang={lang} highlight={highlight} className="min-w-0 flex-1" />
-      {children ?? <CodeCopy value={code} />}
+    <Code overflow="wrap">
+      <CodeContent code={code} lang={lang} highlight={highlight} />
     </Code>
   );
 }
@@ -82,18 +71,6 @@ function languageForPath(path: string) {
   return undefined;
 }
 
-function SourcePath({ path }: { path: string }) {
-  const name = sourceFileName(path);
-  const directory = path.slice(0, path.length - name.length);
-
-  return (
-    <CodeTitle title={path} className="flex min-w-0">
-      <span className="truncate text-muted-foreground">{directory}</span>
-      <span className="shrink-0 text-foreground">{name}</span>
-    </CodeTitle>
-  );
-}
-
 export function SourceTabs({ files, overflow }: { files: SourceFile[]; overflow?: CodeOverflow }) {
   const [activePath, setActivePath] = useState(files[0]?.path ?? "");
   const scrollsPage = usePageScroll() === "page";
@@ -106,7 +83,7 @@ export function SourceTabs({ files, overflow }: { files: SourceFile[]; overflow?
   const content = (
     <Code overflow={overflow} chrome={connected ? "embedded" : "standalone"}>
       <CodeHeader>
-        <SourcePath path={activeFile.path} />
+        <CodeTitle>{activeFile.path}</CodeTitle>
         <CodeActions>
           <CodeCopy value={activeFile.code} />
         </CodeActions>
@@ -125,7 +102,6 @@ export function SourceTabs({ files, overflow }: { files: SourceFile[]; overflow?
             aria-label="Source files"
             variant={scrollsPage ? "default" : "browser"}
             className={scrollsPage ? "mb-3 w-fit" : "w-full"}
-            style={scrollsPage ? undefined : { "--cui-tabs-list-shadow": "none" }}
           >
             {files.map((file) => (
               <TabsTab key={file.path} value={file.path}>
@@ -140,7 +116,7 @@ export function SourceTabs({ files, overflow }: { files: SourceFile[]; overflow?
           </TabsList>
         </ScrollArea>
       ) : null}
-      {connected ? <TabsSurface className="-mt-px overflow-hidden">{content}</TabsSurface> : content}
+      {connected ? <TabsSurface>{content}</TabsSurface> : content}
     </Tabs>
   );
 }
@@ -185,11 +161,7 @@ export function PreviewTabs({
         }}
       >
         <div className={cn("flex flex-wrap items-center gap-x-3 gap-y-2", scrollsPage && "mb-3")}>
-          <TabsList
-            variant={scrollsPage ? "default" : "browser"}
-            className={scrollsPage ? "w-fit" : "min-w-0 flex-1"}
-            style={scrollsPage ? undefined : { "--cui-tabs-list-shadow": "none" }}
-          >
+          <TabsList variant={scrollsPage ? "default" : "browser"} className={scrollsPage ? "w-fit" : "min-w-0 flex-1"}>
             <TabsTab value="preview">Preview</TabsTab>
             <TabsTab value="code">Code</TabsTab>
           </TabsList>
@@ -198,7 +170,7 @@ export function PreviewTabs({
             {tab === "code" ? <CodeCopy value={code} /> : null}
           </div>
         </div>
-        <Surface className={cn(!scrollsPage && "-mt-px", showPanelFrame && "overflow-hidden")}>
+        <Surface>
           <TabsPanel value="preview" keepMounted>
             <div className={cn("flex min-h-[280px] items-center justify-center p-6", previewClassName)}>
               <PreviewFrame layout={previewLayout}>{children}</PreviewFrame>

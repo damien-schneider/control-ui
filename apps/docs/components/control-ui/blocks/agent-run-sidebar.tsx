@@ -1,7 +1,8 @@
 "use client";
 
-import { BotIcon, CheckIcon, CircleAlertIcon, CircleDashedIcon, CirclePauseIcon, CircleSlashIcon, PlusIcon } from "lucide-react";
+import { CheckIcon, CircleAlertIcon, CircleDashedIcon, CirclePauseIcon, CircleSlashIcon, PlusIcon } from "lucide-react";
 import type { ReactNode } from "react";
+import { Avatar, AvatarFallback } from "@/components/control-ui/ui/avatar";
 import {
   Sidebar,
   SidebarContent,
@@ -11,6 +12,7 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
+  type SidebarMenuIconTone,
   SidebarMenuItem,
   SidebarRail,
   useSidebar,
@@ -21,12 +23,21 @@ import type { AgentRunStatus, AgentRunSummary } from "./agent-run-status";
 
 const runStatusIcons = {
   running: <Spinner aria-hidden="true" />,
-  waiting: <CirclePauseIcon className="text-warning-text" aria-hidden="true" />,
-  success: <CheckIcon className="text-success-text" aria-hidden="true" />,
-  error: <CircleAlertIcon className="text-destructive-text" aria-hidden="true" />,
-  cancelled: <CircleSlashIcon className="text-muted-foreground" aria-hidden="true" />,
-  pending: <CircleDashedIcon className="text-muted-foreground" aria-hidden="true" />,
+  waiting: <CirclePauseIcon aria-hidden="true" />,
+  success: <CheckIcon aria-hidden="true" />,
+  error: <CircleAlertIcon aria-hidden="true" />,
+  cancelled: <CircleSlashIcon aria-hidden="true" />,
+  pending: <CircleDashedIcon aria-hidden="true" />,
 } satisfies Record<AgentRunStatus, ReactNode>;
+
+const runStatusIconTones = {
+  running: "default",
+  waiting: "warning",
+  success: "success",
+  error: "danger",
+  cancelled: "muted",
+  pending: "muted",
+} satisfies Record<AgentRunStatus, SidebarMenuIconTone>;
 
 export function AgentRunSidebar({
   appName,
@@ -60,9 +71,9 @@ export function AgentRunSidebar({
       <SidebarHeader divider className="gap-1.5">
         <div className="flex min-w-0 items-center gap-2 px-1 py-1">
           {brand ?? (
-            <span className="flex size-6 shrink-0 items-center justify-center rounded-md bg-foreground text-background">
-              <BotIcon className="size-3.5" aria-hidden="true" />
-            </span>
+            <Avatar size="xs" aria-hidden="true">
+              <AvatarFallback>{appName.charAt(0)}</AvatarFallback>
+            </Avatar>
           )}
           <Text size="label" weight="semibold" className="truncate" title={appName}>
             {appName}
@@ -99,6 +110,7 @@ export function AgentRunSidebar({
                 <SidebarMenuItem key={run.id}>
                   <SidebarMenuButton
                     size="sm"
+                    iconTone={runStatusIconTones[run.status]}
                     isActive={run.id === activeRunId}
                     onClick={() => {
                       onRunSelect?.(run);

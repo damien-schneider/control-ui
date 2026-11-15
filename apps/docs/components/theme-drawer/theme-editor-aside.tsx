@@ -1,9 +1,10 @@
 "use client";
 
 import { type ReactNode, useMemo } from "react";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
+import { Item, ItemActions, ItemContent, ItemTitle } from "@/components/control-ui/ui/item";
 import { Switch } from "@/components/control-ui/ui/switch";
 import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
-import { Toggle } from "@/components/control-ui/ui/toggle";
 import { Text } from "@/components/control-ui/ui/typography";
 import { BASE_SKIN_ID } from "@/components/theme";
 import type { ThemeContractGroup } from "@/src/registry/lib/theme-contract";
@@ -38,51 +39,46 @@ export function ThemeTokenPanel({ group }: { group: ThemeContractGroup }) {
   };
 
   const reduceMotionRow = (
-    <div className="flex items-center justify-between gap-3 rounded-[var(--radius-control)] bg-foreground/5 px-3 py-2.5">
-      <span className="flex min-w-0 flex-col">
-        <Text size="caption" weight="medium" tone="foreground">
-          Reduce motion
-        </Text>
+    <Item variant="muted">
+      <ItemContent>
+        <ItemTitle>Reduce motion</ItemTitle>
         <VarTag>data-motion</VarTag>
-      </span>
-      <Toggle
-        aria-label="Reduce motion"
-        variant="surface"
-        size="xs"
-        className="min-w-[3rem]"
-        pressed={theme.reduceMotion}
-        onPressedChange={(pressed) => patch({ reduceMotion: pressed })}
-      >
-        {theme.reduceMotion ? "On" : "Off"}
-      </Toggle>
-    </div>
+      </ItemContent>
+      <ItemActions>
+        <Switch aria-label="Reduce motion" checked={theme.reduceMotion} onCheckedChange={(checked) => patch({ reduceMotion: checked })} />
+      </ItemActions>
+    </Item>
   );
   const panelIntroByGroup: Partial<Record<ThemeContractGroup, ReactNode>> = { motion: reduceMotionRow };
   const tokenCategory = TOKEN_CATEGORIES.find((item) => item.group === group);
   if (!tokenCategory) return null;
 
   return (
-    <section
+    <Card
+      size="sm"
+      role="region"
       aria-label="Theme variables"
-      className="min-w-0 rounded-[var(--radius-panel)] border border-border/70 bg-card p-3 @min-[55rem]/page-layout:sticky @min-[55rem]/page-layout:top-12 @min-[55rem]/page-layout:max-h-[calc(100svh-4rem)] @min-[55rem]/page-layout:overflow-y-auto"
+      className="min-w-0 @min-[55rem]/page-layout:sticky @min-[55rem]/page-layout:top-12 @min-[55rem]/page-layout:max-h-[calc(100svh-4rem)] @min-[55rem]/page-layout:overflow-y-auto"
     >
-      <TokenPanel
-        category={tokenCategory}
-        editor={editor}
-        headerAction={
-          <Text size="micro" tone="muted" className="flex items-center gap-2">
-            CSS names
-            <Switch
-              aria-label="Caption every control with its CSS variable name"
-              checked={theme.labelMode === "css"}
-              onCheckedChange={(checked) => patch({ labelMode: checked ? "css" : "friendly" })}
-            />
-          </Text>
-        }
-        beforeTokens={panelIntroByGroup[group] ?? null}
-        afterCore={group === "color" ? <ContrastPanel t={theme} onFix={(textFixes) => patch({ textFixes })} /> : null}
-      />
-    </section>
+      <CardContent>
+        <TokenPanel
+          category={tokenCategory}
+          editor={editor}
+          headerAction={
+            <Text size="micro" tone="muted" className="flex items-center gap-2">
+              CSS names
+              <Switch
+                aria-label="Caption every control with its CSS variable name"
+                checked={theme.labelMode === "css"}
+                onCheckedChange={(checked) => patch({ labelMode: checked ? "css" : "friendly" })}
+              />
+            </Text>
+          }
+          beforeTokens={panelIntroByGroup[group] ?? null}
+          afterCore={group === "color" ? <ContrastPanel t={theme} onFix={(textFixes) => patch({ textFixes })} /> : null}
+        />
+      </CardContent>
+    </Card>
   );
 }
 

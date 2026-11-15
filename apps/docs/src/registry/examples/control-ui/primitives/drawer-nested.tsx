@@ -1,5 +1,6 @@
 "use client";
 
+import { Alert, AlertDescription } from "@/components/control-ui/ui/alert";
 import { Button } from "@/components/control-ui/ui/button";
 import {
   Drawer,
@@ -64,10 +65,7 @@ export function PrimitiveNestedDrawerExample() {
               <DrawerBody>
                 <dl className="grid gap-1">
                   {accessRows.map(([label, value]) => (
-                    <div
-                      key={label}
-                      className="flex items-center justify-between rounded-[var(--radius-control)] bg-foreground/4 px-3 py-2.5"
-                    >
+                    <div key={label} className="flex items-center justify-between px-3 py-2">
                       <Text as="dt" tone="foreground">
                         {label}
                       </Text>
@@ -90,11 +88,11 @@ export function PrimitiveNestedDrawerExample() {
                     </DrawerHeader>
 
                     <DrawerBody>
-                      <div className="rounded-[var(--radius-panel)] bg-primary/8 p-4 ring-1 ring-inset ring-primary/20">
-                        <Text as="p" tone="foreground">
+                      <Alert tone="info">
+                        <AlertDescription>
                           Production will receive the latest commit from main. Existing deployments stay available during the rollout.
-                        </Text>
-                      </div>
+                        </AlertDescription>
+                      </Alert>
                     </DrawerBody>
 
                     <DrawerFooter>

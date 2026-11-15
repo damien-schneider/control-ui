@@ -1046,6 +1046,16 @@
       "syntax": "<length>"
     },
     {
+      "name": "--cui-chat-layout-column-max-inline-size",
+      "description": "Control UI chat-layout knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-chat-layout-gutter-size",
+      "description": "Control UI chat-layout knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
       "name": "--cui-chat-layout-radius",
       "description": "Control UI chat-layout knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
@@ -1063,6 +1073,15 @@
       "name": "--cui-chat-layout-turn-gap",
       "description": "Control UI chat-layout knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-chat-layout-veil-backdrop-filter",
+      "description": "Control UI chat-layout knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
+      "name": "--cui-chat-layout-veil-background",
+      "description": "Control UI chat-layout knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
     },
     {
       "name": "--cui-chat-message-avatar-background",
@@ -2046,6 +2065,11 @@
       "name": "--cui-filter-bar-hover-background",
       "description": "Control UI filter-bar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-filter-bar-icon",
+      "description": "Control UI filter-bar knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
     },
     {
       "name": "--cui-filter-bar-padding-inline",

@@ -178,6 +178,15 @@
     display: none;
   }
 
+  :where([data-control-family="page-layout"][data-slot="body"][data-aside-width="wide"]),
+  :where(
+    [data-control-family="page-layout"][data-slot="header"]:has(
+      + [data-control-family="page-layout"][data-slot="body"][data-aside-width="wide"]
+    )
+  ) {
+    --cui-page-layout-aside-size: 21rem;
+  }
+
   /* 55rem = default prose article + column gap + aside + inline padding; container queries cannot read var(). */
   @container page-layout (width >= 55rem) {
     :where([data-control-family="page-layout"][data-slot="body"][data-aside]),

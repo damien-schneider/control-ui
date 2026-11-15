@@ -23,6 +23,8 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 ## Registry dependencies
 
 - `activity`
+- `app-shell`
+- `avatar`
 - `badge`
 - `card`
 - `core`

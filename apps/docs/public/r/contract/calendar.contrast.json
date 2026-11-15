@@ -211,9 +211,63 @@
         "attributes": {
           "data-control-family": "calendar",
           "data-control-ui": "calendar",
+          "data-slot": "day-cell",
+          "data-today": "true",
+          "data-weekend": "true",
+          "role": "gridcell"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "calendar",
+          "data-control-ui": "calendar",
           "data-slot": "day",
           "data-today": "true",
           "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "calendar",
+          "data-control-ui": "calendar",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "calendar",
+          "data-control-ui": "calendar",
+          "data-slot": "day-cell",
+          "data-today": "true",
+          "data-weekend": "true",
+          "role": "gridcell"
         }
       }
     ],
@@ -548,7 +602,8 @@
     },
     {
       "knobs": {
-        "text": "--cui-calendar-outside-foreground"
+        "fill": "--cui-calendar-weekend-background",
+        "text": "--cui-calendar-weekend-foreground"
       },
       "anatomy": 10,
       "rendersText": true,
@@ -575,6 +630,14 @@
         "text": "--cui-calendar-outside-foreground"
       },
       "anatomy": 13,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-calendar-outside-foreground"
+      },
+      "anatomy": 14,
       "rendersText": true,
       "state": false
     }

@@ -758,6 +758,12 @@
       "description": "Tracking paired onto text-display."
     },
     {
+      "name": "--text-hero",
+      "group": "typography",
+      "tier": "derived",
+      "description": "Fluid hero rung: grows with its container from display up to 2.4× display (landing headlines)."
+    },
+    {
       "name": "--radius",
       "group": "radius",
       "tier": "core",

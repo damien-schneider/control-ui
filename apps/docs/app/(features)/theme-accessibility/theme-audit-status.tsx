@@ -1,9 +1,10 @@
 "use client";
 
-import { AlertTriangleIcon, CheckCircle2Icon } from "lucide-react";
+import { AlertTriangleIcon, CheckCircle2Icon, ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
-import { cn } from "@/components/control-ui/lib/cn";
-import { Text } from "@/components/control-ui/ui/typography";
+import { Alert, AlertDescription, AlertTitle } from "@/components/control-ui/ui/alert";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
+import { Text, TextLink } from "@/components/control-ui/ui/typography";
 import { useThemeAudit } from "./use-theme-audit";
 
 export function ThemeAuditStatus({ root, className }: { root: HTMLElement | null; className?: string }) {
@@ -19,49 +20,42 @@ export function ThemeAuditStatus({ root, className }: { root: HTMLElement | null
       </Text>
     );
 
+  const failing = errors.length > 0;
   return (
-    <div className={cn("grid gap-2", className)} aria-live="polite">
-      <p
-        className={cn(
-          "flex items-start gap-2",
-          errors.length > 0 ? "text-red-700 dark:text-red-400" : "text-emerald-700 dark:text-emerald-400",
-        )}
-      >
-        {errors.length > 0 ? (
-          <AlertTriangleIcon aria-hidden className="mt-0.5 size-3.5 shrink-0" />
-        ) : (
-          <CheckCircle2Icon aria-hidden className="mt-0.5 size-3.5 shrink-0" />
-        )}
-        <Text size="caption" numeric>
-          {errors.length > 0
-            ? `${errors.length} required contrast ${errors.length === 1 ? "check fails" : "checks fail"} WCAG AA in this preview.`
-            : `${requiredCount} required contrast checks clear WCAG AA in this preview.`}
-          {warnings.length > 0
-            ? ` ${warnings.length} focus or boundary ${warnings.length === 1 ? "warning remains" : "warnings remain"}.`
-            : ""}
-        </Text>
-      </p>
-      {errors.length > 0 ? (
-        <details>
-          <summary className="cursor-pointer">
-            <Text size="caption" weight="medium" tone="foreground">
-              Show failing checks
-            </Text>
-          </summary>
-          <ul className="mt-1.5 grid list-disc gap-1 pl-5">
-            {errors.map((result) => (
-              <Text as="li" size="caption" tone="muted" key={result.id}>
-                {result.label}: {result.ratio === null ? "unresolved" : `${result.ratio.toFixed(2)}:1`}
+    <Alert tone={failing ? "danger" : "success"} className={className}>
+      {failing ? <AlertTriangleIcon aria-hidden /> : <CheckCircle2Icon aria-hidden />}
+      <AlertTitle>
+        {failing
+          ? `${errors.length} required contrast ${errors.length === 1 ? "check fails" : "checks fail"} WCAG AA in this preview.`
+          : `${requiredCount} required contrast checks clear WCAG AA in this preview.`}
+        {warnings.length > 0
+          ? ` ${warnings.length} focus or boundary ${warnings.length === 1 ? "warning remains" : "warnings remain"}.`
+          : ""}
+      </AlertTitle>
+      <AlertDescription>
+        {failing ? (
+          <Collapsible>
+            <CollapsibleTrigger>
+              <ChevronRightIcon aria-hidden />
+              <Text size="caption" weight="medium" tone="foreground">
+                Show failing checks
               </Text>
-            ))}
-          </ul>
-        </details>
-      ) : null}
-      <Link href="/theme-accessibility" className="w-fit underline underline-offset-4">
-        <Text size="caption" weight="medium" tone="primary">
-          Open the active theme audit
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <ul className="mt-1.5 grid list-disc gap-1 pl-5">
+                {errors.map((result) => (
+                  <Text as="li" size="caption" tone="muted" key={result.id}>
+                    {result.label}: {result.ratio === null ? "unresolved" : `${result.ratio.toFixed(2)}:1`}
+                  </Text>
+                ))}
+              </ul>
+            </CollapsibleContent>
+          </Collapsible>
+        ) : null}
+        <Text as="p" size="caption">
+          <TextLink render={<Link href="/theme-accessibility" />}>Open the active theme audit</TextLink>
         </Text>
-      </Link>
-    </div>
+      </AlertDescription>
+    </Alert>
   );
 }

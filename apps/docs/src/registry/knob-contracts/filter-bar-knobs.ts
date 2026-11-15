@@ -11,5 +11,6 @@ export const filterBarKnobs = [
   "--cui-filter-bar-font-size",
   "--cui-filter-bar-hover-background",
   "--cui-filter-bar-remove-icon",
+  "--cui-filter-bar-icon",
 ] as const;
 export type FilterBarKnobStyle = Partial<Record<(typeof filterBarKnobs)[number], string>>;

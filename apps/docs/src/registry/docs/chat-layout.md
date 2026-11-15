@@ -285,6 +285,7 @@ Scopes, their parts, and the state attributes each part carries. Selector patter
   - `root`: `data-at-bottom`, `data-chat-layout-kind` (`thread`)
   - `scroll-anchor`: `data-hidden`
   - `thread-content`
+  - `track`
 - `chat-turn`
   - `turn`: `data-from` (`assistant` | `user`)
 
@@ -299,6 +300,10 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 - `--cui-chat-layout-border-color`: `var(--border)`
 - `--cui-chat-layout-border-width`: `var(--control-rim-width)`
 - `--cui-chat-layout-shadow`: `var(--shadow-md)`
+- `--cui-chat-layout-gutter-size`: `calc(var(--spacing) * 4)`
+- `--cui-chat-layout-column-max-inline-size`: `48rem`
+- `--cui-chat-layout-veil-background`: `var(--cui-chat-layout-background)`
+- `--cui-chat-layout-veil-backdrop-filter`: `none`
 - `--cui-chat-layout-scroll-button-gap`: `calc(var(--spacing) * 3)`
 - `--cui-chat-layout-turn-gap`: `calc(var(--spacing) * 2)`
 

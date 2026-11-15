@@ -9,6 +9,7 @@
   ],
   "registryDependencies": [
     "app-shell",
+    "avatar",
     "core",
     "page-layout",
     "sidebar",

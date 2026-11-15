@@ -60,6 +60,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 import { useState } from "react";
 import { Button } from "@/components/control-ui/ui/button";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
 import {
   InfiniteCanvas,
   InfiniteCanvasContent,
@@ -132,9 +133,11 @@ export function PrimitiveInfiniteCanvasExample() {
                   {card.title}
                 </Text>
               </div>
-              <div className="rounded-[var(--radius-panel)] bg-card p-4 text-card-foreground shadow-sm ring-1 ring-border">
-                <CardPreview kind={card.id} />
-              </div>
+              <Card size="sm">
+                <CardContent>
+                  <CardPreview kind={card.id} />
+                </CardContent>
+              </Card>
             </InfiniteCanvasItem>
           ))}
         </InfiniteCanvasContent>

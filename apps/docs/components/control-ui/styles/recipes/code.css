@@ -54,6 +54,11 @@
     --nest-radius: var(--_code-nest-radius);
   }
 
+  :where([data-control-family="code"][data-slot="inline-frame"]) {
+    --nest-radius: var(--_code-nest-radius);
+    padding-inline-end: var(--_code-corner-inset);
+  }
+
   :where([data-control-family="code"][data-slot="actions"]) {
     gap: calc(var(--spacing) * 1);
     margin-inline-start: auto;

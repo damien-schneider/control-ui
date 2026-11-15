@@ -1,10 +1,8 @@
 import type { CompositionNode } from "@/app/(features)/catalog/compositions/types";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
 import { Text } from "@/components/control-ui/ui/typography";
 
-const TREE_HOVER =
-  "[&:has(span[data-tag]:hover)_li:not(:has(>span[data-tag]:hover))>span[data-tag]]:opacity-30 [&_span[data-tag]]:transition-[opacity,background-color] [&_span[data-tag]]:duration-[var(--duration-fast)]";
-const ROW_PAIR = "has-[>span[data-tag]:hover]:[&>span[data-tag]]:bg-foreground/10";
-const TAG = "-mx-1 w-fit rounded px-1 leading-7";
+const TAG = "w-fit leading-7";
 const NESTED_ROW =
   "relative grid pl-3 before:absolute before:top-0 before:bottom-0 before:left-0 before:w-px before:bg-border last:before:bottom-auto last:before:h-[0.95rem] after:absolute after:top-[0.95rem] after:left-0 after:w-3 after:border-border after:border-t";
 
@@ -12,16 +10,20 @@ export function CompositionTree({ tree, ownParts }: { tree: CompositionNode; own
   const owned = new Set(ownParts ?? []);
 
   return (
-    <section
-      aria-label="Composition tree"
-      // biome-ignore lint/a11y/noNoninteractiveTabindex: Overflowing trees must support keyboard scrolling.
-      tabIndex={0}
-      className={`docs-panel overflow-x-auto px-5 py-4 font-mono ${TREE_HOVER}`}
-    >
-      <ul className="grid min-w-max">
-        <TreeNode node={tree} owned={owned} />
-      </ul>
-    </section>
+    <Card size="sm" className="min-w-0">
+      <CardContent>
+        <section
+          aria-label="Composition tree"
+          // biome-ignore lint/a11y/noNoninteractiveTabindex: Overflowing trees must support keyboard scrolling.
+          tabIndex={0}
+          className="overflow-x-auto"
+        >
+          <ul className="grid min-w-max">
+            <TreeNode node={tree} owned={owned} />
+          </ul>
+        </section>
+      </CardContent>
+    </Card>
   );
 }
 
@@ -30,20 +32,20 @@ function TreeNode({ node, owned, nested = false }: { node: CompositionNode; owne
   const isOwned = owned.size === 0 || owned.has(node.name);
 
   return (
-    <li className={nested ? `${NESTED_ROW} ${ROW_PAIR}` : `grid ${ROW_PAIR}`}>
+    <li className={nested ? NESTED_ROW : "grid"}>
       {node.kind === "part" ? (
         <span data-tag="open" className={TAG}>
-          <Text size="label" tone="muted">
-            <span className="opacity-60">&lt;</span>
-            <Text size="label" tone={isOwned ? "foreground" : "muted"}>
+          <Text size="label" tone="muted" mono>
+            &lt;
+            <Text size="label" tone={isOwned ? "foreground" : "muted"} mono>
               {node.name}
             </Text>
-            <span className="opacity-60">{hasChildren ? ">" : " />"}</span>
+            {hasChildren ? ">" : " />"}
           </Text>
         </span>
       ) : (
         <span className={TAG}>
-          <Text size="label" tone="muted">
+          <Text size="label" tone="muted" mono>
             {node.name}
           </Text>
         </span>
@@ -57,7 +59,7 @@ function TreeNode({ node, owned, nested = false }: { node: CompositionNode; owne
           </ul>
           {node.kind === "part" ? (
             <span data-tag="close" className={TAG}>
-              <Text size="label" tone="muted">{`</${node.name}>`}</Text>
+              <Text size="label" tone="muted" mono>{`</${node.name}>`}</Text>
             </span>
           ) : null}
         </>

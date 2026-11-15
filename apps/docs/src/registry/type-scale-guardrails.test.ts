@@ -18,9 +18,9 @@ const componentSourceRoot = "src/registry/sources/control-ui/";
 const typographyModule = /\/control-ui\/ui\/typography$/;
 
 const tailwindFontSize = /(?<![\w-])text-(?:xs|sm|base|lg|xl|[2-9]xl|\[[\d.]+(?:px|rem|em)\])(?![\w-])/;
-const headingRung = /(?<![\w-])text-(?:heading-[1-4]|display)(?![\w-])/;
+const headingRung = /(?<![\w-])text-(?:heading-[1-4]|display|hero)(?![\w-])/;
 const headingOverride = /(?<![\w-])(?:font-[\w-]+|leading-[\w.[\]-]+|tracking-[\w.[\]-]+|text-balance|text-pretty)(?![\w-])/;
-const rungClass = /^text-(?:display|heading-[1-4]|body-lg|body|label|caption|micro)$/;
+const rungClass = /^text-(?:hero|display|heading-[1-4]|body-lg|body|label|caption|micro)$/;
 const toneClass = /^text-(?:foreground|muted-foreground|primary-text|destructive-text)$/;
 const weightClass = /^font-(?:normal|medium|semibold)$/;
 const textTags = new Set(["p", "span", "div", "small", "strong", "em", "code", "li", "dt", "dd", "figcaption", "legend", "blockquote"]);

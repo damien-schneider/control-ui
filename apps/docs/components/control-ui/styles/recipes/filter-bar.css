@@ -11,6 +11,7 @@
     --cui-filter-bar-font-size: var(--text-label);
     --cui-filter-bar-hover-background: var(--hover-fill);
     --cui-filter-bar-remove-icon: calc(var(--spacing) * 3);
+    --cui-filter-bar-icon: calc(var(--spacing) * 3.5);
     --_filter-bar-inline-sign: 1;
     gap: var(--cui-filter-bar-gap);
     border: 0;
@@ -66,6 +67,12 @@
     flex-shrink: 0;
     inline-size: var(--cui-filter-bar-remove-icon);
     block-size: var(--cui-filter-bar-remove-icon);
+  }
+
+  :where([data-control-family="filter-bar"][data-slot="segment"] svg) {
+    flex-shrink: 0;
+    inline-size: var(--cui-filter-bar-icon);
+    block-size: var(--cui-filter-bar-icon);
   }
 
   :where([data-control-family="filter-bar"][data-slot="root"] [data-control-family="button"][data-slot="add-button"]) {
@@ -213,6 +220,12 @@
 }
 
 @property --cui-filter-bar-remove-icon {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-filter-bar-icon {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;

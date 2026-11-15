@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import type { EmailVariant } from "@/components/control-ui/email/email";
+import { Alert, AlertAction, AlertDescription } from "@/components/control-ui/ui/alert";
 import { Button } from "@/components/control-ui/ui/button";
 import { Skeleton } from "@/components/control-ui/ui/skeleton";
+import { Toggle, ToggleGroup } from "@/components/control-ui/ui/toggle";
 import { Text } from "@/components/control-ui/ui/typography";
 import { downloadFile } from "@/components/theme-drawer/download";
 import { useThemeRuntime } from "@/components/theme-drawer/theme-runtime-context";
@@ -92,12 +94,14 @@ function RenderedEmail({
         </div>
       )}
       {state.status === "error" && (
-        <div role="alert" className="min-h-40 space-y-3 rounded-lg border border-border p-6">
-          <Text as="p">{state.message}</Text>
-          <Button size="sm" onClick={onRetry}>
-            Retry preview
-          </Button>
-        </div>
+        <Alert tone="danger">
+          <AlertDescription>{state.message}</AlertDescription>
+          <AlertAction>
+            <Button size="sm" onClick={onRetry}>
+              Retry preview
+            </Button>
+          </AlertAction>
+        </Alert>
       )}
       {state.status === "ready" && (
         <iframe
@@ -132,27 +136,31 @@ export function EmailPreview({ layout }: { layout: EmailLayoutId }) {
           React Email · current Control UI theme
         </Text>
         <div className="flex flex-wrap items-center gap-3">
-          <fieldset className="flex gap-1" aria-label={`${layout} preview surface`}>
+          <ToggleGroup<EmailVariant>
+            aria-label={`${layout} preview surface`}
+            value={[variant]}
+            onValueChange={(value) => {
+              const next = value[0];
+              if (next) setVariant(next);
+            }}
+          >
             {emailVariants.map((option) => (
-              <Button
-                key={option.id}
-                size="sm"
-                variant={variant === option.id ? "surface" : "ghost"}
-                aria-pressed={variant === option.id}
-                onClick={() => setVariant(option.id)}
-              >
+              <Toggle key={option.id} value={option.id}>
                 {option.label}
-              </Button>
+              </Toggle>
             ))}
-          </fieldset>
-          <fieldset className="flex gap-1" aria-label={`${layout} preview width`}>
-            <Button size="sm" variant={!mobile ? "surface" : "ghost"} aria-pressed={!mobile} onClick={() => setMobile(false)}>
-              Desktop
-            </Button>
-            <Button size="sm" variant={mobile ? "surface" : "ghost"} aria-pressed={mobile} onClick={() => setMobile(true)}>
-              Mobile
-            </Button>
-          </fieldset>
+          </ToggleGroup>
+          <ToggleGroup
+            aria-label={`${layout} preview width`}
+            value={[mobile ? "mobile" : "desktop"]}
+            onValueChange={(value) => {
+              const next = value[0];
+              if (next) setMobile(next === "mobile");
+            }}
+          >
+            <Toggle value="desktop">Desktop</Toggle>
+            <Toggle value="mobile">Mobile</Toggle>
+          </ToggleGroup>
         </div>
       </div>
       <RenderedEmail

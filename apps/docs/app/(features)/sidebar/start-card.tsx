@@ -7,7 +7,6 @@ import type { ActivePageId } from "@/app/(features)/model/types";
 import { Card, CardContent } from "@/components/control-ui/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
 import { SidebarGroup, SidebarGroupLabel } from "@/components/control-ui/ui/sidebar";
-import { Text } from "@/components/control-ui/ui/typography";
 import { NavMenu } from "./nav-groups";
 import type { GuideNavGroup } from "./nav-items";
 
@@ -29,11 +28,6 @@ function writeStoredMinimized(minimized: boolean) {
     // private mode or quota — the choice will not persist
   }
 }
-
-const startCardInset = {
-  "--cui-card-padding-block": "var(--spacing)",
-  "--cui-card-padding-inline": "var(--spacing)",
-};
 
 export function StartCard({
   steps,
@@ -59,10 +53,8 @@ export function StartCard({
   return (
     <SidebarGroup className={className}>
       <Collapsible open={!minimized} onOpenChange={changeOpen}>
-        <SidebarGroupLabel render={<CollapsibleTrigger />} className="w-full cursor-pointer gap-2">
-          <Text size="label" className="min-w-0 truncate">
-            Getting started
-          </Text>
+        <SidebarGroupLabel render={<CollapsibleTrigger />} className="w-full gap-2">
+          <span className="min-w-0 truncate">Getting started</span>
           <HugeiconsIcon
             aria-hidden
             icon={minimized ? PlusSignIcon : MinusSignIcon}
@@ -72,7 +64,7 @@ export function StartCard({
           />
         </SidebarGroupLabel>
         <CollapsibleContent>
-          <Card style={startCardInset}>
+          <Card size="sm">
             <CardContent>
               <NavMenu items={steps.items} active={active} onNavigate={onNavigate} />
             </CardContent>

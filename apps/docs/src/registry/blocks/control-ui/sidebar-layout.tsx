@@ -3,6 +3,7 @@
 import { BotIcon, LayoutDashboardIcon, SettingsIcon, SquareTerminalIcon, WorkflowIcon } from "lucide-react";
 import type { ComponentType, ReactNode } from "react";
 import { AppShell, AppShellContent, AppShellHeader } from "@/components/control-ui/ui/app-shell";
+import { Avatar, AvatarFallback } from "@/components/control-ui/ui/avatar";
 import { PageLayout } from "@/components/control-ui/ui/page-layout";
 import {
   Sidebar,
@@ -56,14 +57,9 @@ export function AppSidebar({ active = "Playground" }: { active?: string }) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" render={<a href="/" />}>
-              <span
-                aria-hidden="true"
-                className="flex size-6 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground"
-              >
-                <Text size="label" weight="semibold">
-                  A
-                </Text>
-              </span>
+              <Avatar size="xs" aria-hidden="true">
+                <AvatarFallback>A</AvatarFallback>
+              </Avatar>
               <Text weight="semibold">Acme Studio</Text>
             </SidebarMenuButton>
           </SidebarMenuItem>

@@ -7,7 +7,6 @@ import {
   ActivityDetailContent,
   ActivityDetailLabel,
   ActivityIcon,
-  ActivityStatus,
   ActivityTitle,
   ActivityTrigger,
 } from "@/components/control-ui/activity";
@@ -19,6 +18,9 @@ import {
   InlineAttachmentTitle,
 } from "@/components/control-ui/inline-attachment";
 import { SourceBadge } from "@/components/control-ui/source-badge";
+import { Code, CodeContent } from "@/components/control-ui/ui/code";
+import { Separator } from "@/components/control-ui/ui/separator";
+import { TextLink } from "@/components/control-ui/ui/typography";
 
 function renderJson(value: unknown) {
   return typeof value === "string" ? value : JSON.stringify(value, null, 2);
@@ -44,7 +46,6 @@ function renderTool(part: ToolUIPart | DynamicToolUIPart, key: string) {
       <ActivityTrigger>
         <ActivityIcon />
         <ActivityTitle />
-        <ActivityStatus className="sr-only" />
       </ActivityTrigger>
       <ActivityContent>
         {part.input !== undefined ? (
@@ -77,7 +78,12 @@ function renderPart(part: UIMessage["parts"][number], index: number) {
   const key = partKey(part, index);
 
   if (isToolUIPart(part) || isDynamicToolUIPart(part)) return renderTool(part, key);
-  if (isDataUIPart(part)) return <pre key={key}>{renderJson(part.data)}</pre>;
+  if (isDataUIPart(part))
+    return (
+      <Code key={key} overflow="wrap">
+        <CodeContent code={renderJson(part.data)} lang="json" />
+      </Code>
+    );
 
   switch (part.type) {
     case "text":
@@ -112,12 +118,12 @@ function renderPart(part: UIMessage["parts"][number], index: number) {
     case "source-document":
       return <span key={key}>{part.title}</span>;
     case "step-start":
-      return <hr key={key} />;
+      return <Separator key={key} />;
     case "reasoning-file":
       return (
-        <a key={key} href={part.url}>
+        <TextLink key={key} href={part.url}>
           Reasoning file
-        </a>
+        </TextLink>
       );
     case "custom":
       return <span key={key}>Custom provider content: {part.kind}</span>;

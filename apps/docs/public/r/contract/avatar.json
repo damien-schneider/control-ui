@@ -22,7 +22,7 @@
       "name": "--cui-avatar-group-gap",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "calc(var(--spacing) * -2)"
+      "defaultValue": "calc(var(--cui-avatar-group-ring-size) - var(--cui-avatar-size) * 0.2)"
     },
     {
       "name": "--cui-avatar-group-ring-size",

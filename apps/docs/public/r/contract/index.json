@@ -23,7 +23,7 @@
         "activity"
       ],
       "knobs": 5,
-      "probes": 44
+      "probes": 43
     },
     "alert": {
       "registryItems": [
@@ -58,7 +58,7 @@
         "audio-recorder"
       ],
       "knobs": 6,
-      "probes": 3
+      "probes": 5
     },
     "audio-visualizer": {
       "registryItems": [
@@ -100,7 +100,7 @@
         "toggle"
       ],
       "knobs": 33,
-      "probes": 255
+      "probes": 260
     },
     "button-group": {
       "registryItems": [
@@ -114,7 +114,7 @@
         "calendar"
       ],
       "knobs": 16,
-      "probes": 14
+      "probes": 15
     },
     "card": {
       "registryItems": [
@@ -142,7 +142,7 @@
         "chat-composer"
       ],
       "knobs": 15,
-      "probes": 21
+      "probes": 24
     },
     "chat-composer-attachment": {
       "registryItems": [
@@ -155,7 +155,7 @@
       "registryItems": [
         "chat-layout"
       ],
-      "knobs": 7,
+      "knobs": 11,
       "probes": 1
     },
     "chat-message": {
@@ -265,13 +265,13 @@
         "textarea"
       ],
       "knobs": 41,
-      "probes": 103
+      "probes": 102
     },
     "filter-bar": {
       "registryItems": [
         "filter-bar"
       ],
-      "knobs": 11,
+      "knobs": 12,
       "probes": 1
     },
     "flow": {
@@ -377,7 +377,7 @@
         "page-layout"
       ],
       "knobs": 16,
-      "probes": 7
+      "probes": 8
     },
     "pagination": {
       "registryItems": [
@@ -420,7 +420,7 @@
         "trigger-menu"
       ],
       "knobs": 59,
-      "probes": 171
+      "probes": 169
     },
     "progressive-blur": {
       "registryItems": [

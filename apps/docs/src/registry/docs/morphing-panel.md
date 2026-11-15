@@ -88,6 +88,7 @@ import {
 import { Slider } from "@/components/control-ui/ui/slider";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/control-ui/ui/tabs";
 import { Textarea } from "@/components/control-ui/ui/textarea";
+import { Toggle, ToggleGroup } from "@/components/control-ui/ui/toggle";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
 
 const sections = {
@@ -134,11 +135,11 @@ export function PrimitiveMorphingPanelExample() {
     >
       <MorphingPanelTrigger render={<Button variant="quiet" />} aria-label={open ? "Close style settings" : "Open style settings"}>
         {open ? (
-          <XIcon aria-hidden="true" className="size-4" />
+          <XIcon aria-hidden="true" />
         ) : (
           <>
             <span>Add style</span>
-            <PlusIcon aria-hidden="true" className="size-4" />
+            <PlusIcon aria-hidden="true" />
           </>
         )}
       </MorphingPanelTrigger>
@@ -209,29 +210,28 @@ export function PrimitiveMorphingPanelExample() {
             </TabsPanel>
             <TabsPanel value="aspect-ratio" className="min-h-0 flex-1 overflow-y-auto">
               <div className="p-4">
-                <div className="grid grid-cols-[repeat(auto-fit,minmax(5rem,1fr))] gap-1">
+                <ToggleGroup
+                  aria-label="Aspect ratio"
+                  value={[ratio]}
+                  onValueChange={(value) => {
+                    const next = value[0];
+                    if (!next) return;
+                    setRatio(next);
+                    setSaved(false);
+                  }}
+                  className="grid grid-cols-[repeat(auto-fit,minmax(5rem,1fr))] gap-1"
+                >
                   {ratios.map((item) => (
-                    <Button
-                      key={item.label}
-                      variant="quiet"
-                      size="sm"
-                      active={ratio === item.label}
-                      aria-pressed={ratio === item.label}
-                      onClick={() => {
-                        setRatio(item.label);
-                        setSaved(false);
-                      }}
-                      className="justify-start gap-2"
-                    >
+                    <Toggle key={item.label} value={item.label} variant="quiet" className="justify-start">
                       <span
                         aria-hidden="true"
                         style={{ aspectRatio: item.value }}
                         className="w-3.5 rounded-[var(--radius-sm)] border border-current bg-current/8"
                       />
                       {item.label}
-                    </Button>
+                    </Toggle>
                   ))}
-                </div>
+                </ToggleGroup>
               </div>
             </TabsPanel>
             <TabsPanel value="prompt" className="min-h-0 flex-1 overflow-y-auto">
@@ -255,7 +255,7 @@ export function PrimitiveMorphingPanelExample() {
             {saved ? "Saved" : "Edited"}
           </Text>
           <MorphingPanelClose variant="solid" tone="primary" size="sm" onClick={() => setSaved(true)}>
-            <CheckIcon aria-hidden="true" className="size-3.5" />
+            <CheckIcon aria-hidden="true" />
             Apply
           </MorphingPanelClose>
         </MorphingPanelFooter>
@@ -295,10 +295,10 @@ export function PrimitiveMorphingPanelMenuExample() {
         >
           <MorphingPanelTrigger render={<Button variant="quiet" />} aria-label={open ? "Close workspace menu" : "Open workspace menu"}>
             {open ? (
-              <XIcon aria-hidden="true" className="size-4" />
+              <XIcon aria-hidden="true" />
             ) : (
               <>
-                <LayoutGridIcon aria-hidden="true" className="size-4" />
+                <LayoutGridIcon aria-hidden="true" />
                 <span>Workspace</span>
               </>
             )}
@@ -320,7 +320,7 @@ export function PrimitiveMorphingPanelMenuExample() {
                     aria-current={active === label ? "page" : undefined}
                     onClick={() => setActive(label)}
                   >
-                    <Icon aria-hidden="true" className="size-4" />
+                    <Icon aria-hidden="true" />
                     {label}
                   </MorphingPanelClose>
                 ))}
@@ -370,11 +370,11 @@ export function PrimitiveMorphingPanelConfirmationExample() {
             aria-haspopup="dialog"
           >
             {open ? (
-              <XIcon aria-hidden="true" className="size-4" />
+              <XIcon aria-hidden="true" />
             ) : (
               <>
                 <span>{saved ? "Saved" : "Save"}</span>
-                {saved ? <CheckIcon aria-hidden="true" className="size-4" /> : <SaveIcon aria-hidden="true" className="size-4" />}
+                {saved ? <CheckIcon aria-hidden="true" /> : <SaveIcon aria-hidden="true" />}
               </>
             )}
           </MorphingPanelTrigger>
@@ -399,7 +399,7 @@ export function PrimitiveMorphingPanelConfirmationExample() {
             <MorphingPanelFooter>
               <MorphingPanelClose variant="quiet">Cancel</MorphingPanelClose>
               <MorphingPanelClose variant="solid" tone="primary" onClick={() => setSaved(true)}>
-                <CheckIcon aria-hidden="true" className="size-4" />
+                <CheckIcon aria-hidden="true" />
                 Confirm save
               </MorphingPanelClose>
             </MorphingPanelFooter>

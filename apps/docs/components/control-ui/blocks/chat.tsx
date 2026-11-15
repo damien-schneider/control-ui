@@ -1,6 +1,6 @@
 import type { ComponentProps, ReactNode } from "react";
 
-import { ChatLayout, ChatThread } from "@/components/control-ui/chat-layout";
+import { ChatLayout, ChatThread, ChatThreadScrollButton } from "@/components/control-ui/chat-layout";
 
 export type ChatBlockProps = Omit<ComponentProps<typeof ChatLayout>, "children"> & {
   children: ReactNode;
@@ -10,7 +10,16 @@ export type ChatBlockProps = Omit<ComponentProps<typeof ChatLayout>, "children">
 export function ChatBlock({ children, composer, className, ...props }: ChatBlockProps) {
   return (
     <ChatLayout className={className} {...props}>
-      <ChatThread composer={composer}>{children}</ChatThread>
+      <ChatThread
+        composer={
+          <>
+            <ChatThreadScrollButton />
+            {composer}
+          </>
+        }
+      >
+        {children}
+      </ChatThread>
     </ChatLayout>
   );
 }

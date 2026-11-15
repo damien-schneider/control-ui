@@ -163,6 +163,7 @@ Scopes, their parts, and the state attributes each part carries. Selector patter
   - `grid`: `data-density` (`compact` | `default`)
   - `gutter`
   - `header`
+  - `inline-frame`
   - `line`: `data-highlighted`, `data-index` (any value)
   - `root`: `data-chrome` (`embedded` | `standalone`), `data-density` (`compact` | `default`), `data-header`
   - `title`

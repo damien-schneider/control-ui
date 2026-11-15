@@ -1,10 +1,18 @@
 "use client";
 
 import { RotateCcwIcon } from "lucide-react";
-import { type ReactNode, useRef, useState } from "react";
+import { type ReactNode, useState } from "react";
 
 import { cn } from "@/components/control-ui/lib/cn";
+import { Badge } from "@/components/control-ui/ui/badge";
 import { Button } from "@/components/control-ui/ui/button";
+import {
+  ColorPicker,
+  ColorPickerArea,
+  ColorPickerContent,
+  ColorPickerHue,
+  ColorPickerTrigger,
+} from "@/components/control-ui/ui/color-picker";
 import { Input } from "@/components/control-ui/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/control-ui/ui/select";
 import { Slider as RangeSlider } from "@/components/control-ui/ui/slider";
@@ -17,11 +25,11 @@ import type { LabelMode } from "./types";
 
 export function VarTag({ children }: { children: ReactNode }) {
   return (
-    <code className="inline-flex max-w-full items-center rounded-[var(--radius-sm)] bg-foreground/5 px-1.5 py-0.5 leading-none ring-1 ring-inset ring-border/70">
-      <Text size="micro" tone="muted" mono className="min-w-0 break-all">
+    <Badge variant="outline" size="sm" render={<code />}>
+      <Text size="micro" mono>
         {children}
       </Text>
-    </code>
+    </Badge>
   );
 }
 
@@ -110,46 +118,50 @@ function TextTokenField(props: TokenFieldProps) {
             e.currentTarget.blur();
           }
         }}
-        style={{ "--cui-field-font-family": "var(--font-mono)" }}
       />
     </div>
   );
 }
 
+function TokenColorPicker({
+  hex,
+  label,
+  onChange,
+  children,
+}: {
+  hex: string | null;
+  label: string;
+  onChange: (value: string) => void;
+  children: ReactNode;
+}) {
+  return (
+    <ColorPicker value={hex ?? undefined} alpha={false} defaultFormat="hex" onValueChange={(next) => onChange(hexToOklchColor(next))}>
+      {children}
+      <ColorPickerContent aria-label={label}>
+        <ColorPickerArea />
+        <ColorPickerHue />
+      </ColorPickerContent>
+    </ColorPicker>
+  );
+}
+
 function ColorTokenField(props: TokenFieldProps) {
   const { token, value, labelMode, onChange } = props;
-  const inputRef = useRef<HTMLInputElement>(null);
   // picker speaks #rrggbb while live token can be anything, so round-trip goes through DOM
   const hex = value ? cssColorToHexDom(value) : null;
   if (value !== undefined && hex === null) return <TextTokenField {...props} />;
+  const label = displayLabel(token, labelMode);
   return (
     <div className="flex flex-col gap-1.5">
       <TokenHead {...props} />
-      <Button
-        variant="ghost"
-        size="md"
-        aria-label={displayLabel(token, labelMode)}
-        className="w-full justify-start"
-        onClick={() => inputRef.current?.click()}
-      >
-        <span
-          aria-hidden
-          className="size-5 shrink-0 rounded-[var(--radius-sm)] shadow-[inset_0_0_0_1px_oklch(from_var(--foreground)_l_c_h_/_0.16)]"
-          style={{ backgroundColor: hex ?? "transparent" }}
-        />
-        <Text size="micro" tone="muted" mono className="min-w-0 truncate">
-          {hex ?? "unset"}
-        </Text>
-      </Button>
-      <input
-        ref={inputRef}
-        type="color"
-        aria-label={displayLabel(token, labelMode)}
-        tabIndex={-1}
-        value={hex ?? "#000000"}
-        onChange={(e) => onChange(hexToOklchColor(e.target.value))}
-        className="sr-only"
-      />
+      <TokenColorPicker hex={hex} label={label} onChange={onChange}>
+        <span className="flex min-w-0 items-center gap-2">
+          <ColorPickerTrigger aria-label={label} />
+          <Text size="micro" tone="muted" mono className="min-w-0 truncate">
+            {hex ?? "unset"}
+          </Text>
+        </span>
+      </TokenColorPicker>
     </div>
   );
 }
@@ -226,19 +238,10 @@ export function MiniColorSwatch({ token, value, overridden, changedBySkin, onCha
   const hex = value ? cssColorToHexDom(value) : null;
   return (
     <span className="relative inline-flex" title={`${token.name} — ${token.description}`}>
-      <span
-        aria-hidden
-        className="size-6 rounded-[var(--radius-sm)] shadow-[inset_0_0_0_1px_oklch(from_var(--foreground)_l_c_h_/_0.16)]"
-        style={{ backgroundColor: hex ?? "transparent" }}
-      />
+      <TokenColorPicker hex={hex} label={token.name} onChange={onChange}>
+        <ColorPickerTrigger aria-label={token.name} />
+      </TokenColorPicker>
       {(overridden || changedBySkin) && <ChangeDot tone={overridden ? "edit" : "skin"} className="absolute -top-0.5 -right-0.5" />}
-      <input
-        type="color"
-        aria-label={token.name}
-        value={hex ?? "#000000"}
-        onChange={(e) => onChange(hexToOklchColor(e.target.value))}
-        className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-      />
     </span>
   );
 }

@@ -136,16 +136,16 @@ export function PrimitiveButtonExample() {
       </Row>
       <Row label="Icon only">
         <Button variant="surface" size="xs" iconOnly aria-label="Extra small icon button">
-          <PlusIcon className="size-3" />
+          <PlusIcon />
         </Button>
         <Button variant="surface" size="sm" iconOnly aria-label="Small icon button">
-          <PlusIcon className="size-3.5" />
+          <PlusIcon />
         </Button>
         <Button variant="surface" size="md" iconOnly aria-label="Medium icon button">
-          <PlusIcon className="size-4" />
+          <PlusIcon />
         </Button>
         <Button variant="surface" size="lg" iconOnly aria-label="Large icon button">
-          <PlusIcon className="size-4" />
+          <PlusIcon />
         </Button>
       </Row>
       <Row label="State">
@@ -156,24 +156,24 @@ export function PrimitiveButtonExample() {
           Disabled
         </Button>
         <Button variant="surface">
-          <CheckIcon className="size-3.5" />
+          <CheckIcon />
           With icon
         </Button>
       </Row>
       <Row label="Tile">
         <Button variant="surface" layout="tile" aria-pressed={false}>
-          <MonitorIcon className="size-4" />
+          <MonitorIcon />
           Desktop
         </Button>
         <Button variant="surface" layout="tile" active aria-pressed>
-          <SmartphoneIcon className="size-4" />
+          <SmartphoneIcon />
           Mobile
         </Button>
       </Row>
       <Row label="Link">
         <ButtonLink href="#preview" variant="ghost">
           Render as link
-          <ArrowUpRightIcon className="size-3.5" />
+          <ArrowUpRightIcon />
         </ButtonLink>
       </Row>
     </div>

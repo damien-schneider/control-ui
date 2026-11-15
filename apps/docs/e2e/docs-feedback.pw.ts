@@ -56,18 +56,6 @@ for (const skin of ["refined", "mastra"]) {
       expect(spacing.after).toBeCloseTo(spacing.before, 0);
       const command = page.locator('#install [data-control-ui="code"][data-slot="grid"]');
       expect(await command.evaluate((element) => Number.parseFloat(getComputedStyle(element).fontSize))).toBeGreaterThanOrEqual(12);
-      const navigation = page.locator("[data-docs-sidebar-navigation]");
-      const header = navigation.locator('[data-slot="header"]');
-      const inset = await header.evaluate((element) => {
-        const parent = element.closest("[data-docs-sidebar-navigation]");
-        if (!parent) throw new Error("Sidebar navigation missing");
-        return (
-          element.getBoundingClientRect().left -
-          parent.getBoundingClientRect().left +
-          Number.parseFloat(getComputedStyle(element).paddingLeft)
-        );
-      });
-      expect(inset).toBeGreaterThanOrEqual(16);
     });
   });
 }

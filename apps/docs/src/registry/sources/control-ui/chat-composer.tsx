@@ -108,6 +108,20 @@ export function ChatComposerAccent({ className, ...props }: ChatComposerAccentPr
   );
 }
 
+export type ChatComposerHeaderProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ChatComposerKnobStyle };
+
+export function ChatComposerHeader({ className, ...props }: ChatComposerHeaderProps) {
+  return (
+    <div
+      data-control-ui="chat-composer"
+      data-control-family="chat-composer"
+      data-slot="header"
+      className={cn("flex min-w-0 items-center", className)}
+      {...props}
+    />
+  );
+}
+
 export type ChatComposerTextareaProps = Omit<ComponentProps<"textarea">, "style"> & {
   style?: CSSProperties & ChatComposerKnobStyle;
 };
@@ -268,7 +282,7 @@ export function ChatComposerSubmit({
       aria-busy={isBusy || undefined}
       aria-label={isStop ? stopName : ariaLabel}
       onClick={handleClick}
-      className={className}
+      className={cn("ms-auto", className)}
       {...props}
     >
       {content()}

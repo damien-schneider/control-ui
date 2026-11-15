@@ -8,7 +8,6 @@ import {
   ActivityDetailContent,
   ActivityDetailLabel,
   ActivityIcon,
-  ActivityStatus,
   ActivityTitle,
   ActivityTrigger,
 } from "@/components/control-ui/activity";
@@ -43,7 +42,6 @@ export function ChatMessageExample() {
               <ActivityTrigger>
                 <ActivityIcon />
                 <ActivityTitle>Active setup</ActivityTitle>
-                <ActivityStatus className="sr-only" />
               </ActivityTrigger>
               <ActivityContent>
                 <ActivityDetail>

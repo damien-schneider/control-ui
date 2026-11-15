@@ -54,7 +54,7 @@
     --cui-sidebar-group-label-font-weight: var(--font-weight-medium);
     --cui-sidebar-group-label-letter-spacing: 0em;
     --cui-sidebar-group-label-text-transform: none;
-    --cui-sidebar-group-label-padding: 0px calc(var(--spacing) * 2);
+    --cui-sidebar-group-label-padding: 0px var(--cui-sidebar-menu-button-padding-inline);
     --cui-sidebar-menu-button-height: var(--control-h-md);
     --cui-sidebar-menu-button-padding-block: 0px;
     --cui-sidebar-menu-button-padding-inline: calc(var(--sidebar-width-icon) / 2 - var(--spacing) * 4);

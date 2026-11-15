@@ -9,7 +9,7 @@ const registry = path.resolve("src/registry");
 const packs = readdirSync(path.join(registry, "skin-packs"), { withFileTypes: true })
   .filter((entry) => entry.isDirectory())
   .map((entry) => entry.name);
-const coreCss = ["theme.css", ...["tabs", "code", "chat-composer", "button", "field"].map((name) => `recipes/${name}.css`)]
+const coreCss = ["theme.css", ...["tabs", "tabs-browser", "code", "chat-composer", "button", "field"].map((name) => `recipes/${name}.css`)]
   .map((file) => readFileSync(path.join(registry, "sources/control-ui", file), "utf8"))
   .join("\n");
 

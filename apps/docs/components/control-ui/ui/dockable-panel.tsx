@@ -517,7 +517,7 @@ export function DockablePanelClose({
 
 export function DockablePanelContent({ padding = "default", className, ...props }: DockablePanelContentProps) {
   return (
-    <ScrollArea className="flex min-h-0 flex-1 flex-col" viewportClassName="min-h-0 flex-1" lockAxis="x">
+    <ScrollArea className="min-h-0 flex-1" lockAxis="x">
       <div
         data-control-ui="dockable-panel"
         data-control-family="dockable-panel"

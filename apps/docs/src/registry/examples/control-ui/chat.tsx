@@ -76,7 +76,7 @@ function renderMastraTurn(from: "user" | "assistant", children: ReactNode, state
       <ChatMessage from={from} density="compact" state={state}>
         <ChatMessageRow>
           <ChatMessageBody className={from === "assistant" ? "max-w-full flex-1" : undefined}>
-            <ChatMessageContent className={from === "assistant" ? "overflow-visible" : undefined}>{children}</ChatMessageContent>
+            <ChatMessageContent>{children}</ChatMessageContent>
           </ChatMessageBody>
         </ChatMessageRow>
       </ChatMessage>
@@ -129,7 +129,7 @@ function PreviewConversation() {
         <ChatMessage from="assistant" density="compact">
           <ChatMessageRow>
             <ChatMessageBody className="max-w-full flex-1">
-              <ChatMessageContent className="overflow-visible">
+              <ChatMessageContent>
                 <p>{assistantLead}</p>
                 <MarkdownBlock code={noteMarkdown}>
                   <MarkdownBlockHeader>

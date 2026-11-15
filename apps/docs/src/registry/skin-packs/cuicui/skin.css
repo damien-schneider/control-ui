@@ -431,6 +431,10 @@
     backdrop-filter: blur(var(--backdrop-blur-popover));
   }
 
+  [data-skin="cuicui"] :where([data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"]) {
+    --cui-chat-layout-veil-backdrop-filter: blur(var(--backdrop-blur-popover));
+  }
+
   [data-skin="cuicui"] :where([data-slot="root"][data-control-family="chat-message"]) {
     --cui-chat-message-avatar-radius: 9999px;
     --cui-chat-message-avatar-background: var(--cuicui-control-bg);
@@ -440,6 +444,7 @@
 
   [data-skin="cuicui"] :where([data-control-ui="chat-composer"][data-slot="root"][data-control-family="chat-composer"]) {
     --cui-chat-composer-shell-background: var(--control-fill);
+    --cui-chat-composer-shell-backdrop-filter: blur(var(--backdrop-blur-popover));
     --cui-chat-composer-shell-border-color: var(--input);
     --cui-chat-composer-shell-shadow: var(--cuicui-control-shadow);
     --cui-chat-composer-input-foreground: var(--foreground);

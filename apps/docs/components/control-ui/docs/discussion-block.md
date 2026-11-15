@@ -214,7 +214,7 @@ export function DiscussionExample() {
 
   return (
     <section aria-labelledby="discussion-heading" className="mx-auto flex w-full max-w-2xl flex-col gap-4">
-      <Heading level={2} id="discussion-heading" size="label" weight="semibold">
+      <Heading level={2} id="discussion-heading" size="label" weight="semibold" className="mx-(--composer-padding)">
         Discussion{" "}
         <Text size="label" weight="normal" tone="muted">
           ({countComments(comments)})

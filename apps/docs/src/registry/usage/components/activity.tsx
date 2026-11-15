@@ -1,6 +1,6 @@
 import { BookOpen, Search, SquareTerminal } from "lucide-react";
 
-import { Activity, ActivityContent, ActivityIcon, ActivityStatus, ActivityTitle, ActivityTrigger } from "@/components/control-ui/activity";
+import { Activity, ActivityContent, ActivityIcon, ActivityTitle, ActivityTrigger } from "@/components/control-ui/activity";
 import {
   Timeline,
   TimelineContent,
@@ -18,7 +18,6 @@ export function Example() {
           <BookOpen />
         </ActivityIcon>
         <ActivityTitle>Thinking</ActivityTitle>
-        <ActivityStatus className="sr-only" />
       </ActivityTrigger>
       <ActivityContent>
         <Timeline>

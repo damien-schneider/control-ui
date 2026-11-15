@@ -45,6 +45,7 @@ export const displayCompositions = {
         ),
         part("SidebarInset", part("SidebarTrigger")),
       ),
+      "SidebarMenuButton styles its first icon; iconTone colors that icon muted, success, warning, or danger for a status such as a run result.",
     ),
     example(
       "Collapsible navigation group",
@@ -123,7 +124,7 @@ export const displayCompositions = {
     example(
       "Reading page with a rail",
       part("PageLayout", part("PageBody", content("article"), content("aside prop", part("TableOfContents")))),
-      "Pass aside to add a secondary column; it widens the measure and hides when the layout is too narrow for both columns.",
+      'Pass aside to add a secondary column; it widens the measure and hides when the layout is too narrow for both columns. The default narrow aside fits a table of contents; asideWidth="wide" fits a control panel such as an editor.',
     ),
   ],
   "scroll-area": [example("Scrollable content", part("ScrollArea", content("scrollable content")))],
@@ -354,6 +355,11 @@ export const displayCompositions = {
       "Heading and Text",
       content("page section", part("Heading"), part("Text")),
       "Heading takes level (the document outline) and size (the rung); they are decoupled on purpose, so an h3 may wear heading-2. Text takes as, size, weight, and tone. className is for layout only: size, weight, face, and color come from props.",
+    ),
+    example(
+      "Inline link",
+      part("Text", part("TextLink")),
+      "TextLink styles one link inside running text and stays inline so it wraps with the sentence. Pass render={<Link />} to keep your router.",
     ),
     example(
       "Native tag",

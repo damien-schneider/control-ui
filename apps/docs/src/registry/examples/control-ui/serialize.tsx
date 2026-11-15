@@ -7,6 +7,7 @@ import { ChatComposerEditor } from "@/components/control-ui/chat-composer-editor
 import { mentionExtension } from "@/components/control-ui/chat-composer-editor/extensions/mention";
 import type { ChatComposerSubmitPayload, MentionItem } from "@/components/control-ui/hooks/use-chat-composer";
 import type { TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/hooks/use-trigger-menu";
+import { Code, CodeContent } from "@/components/control-ui/ui/code";
 import { Text } from "@/components/control-ui/ui/typography";
 
 // Preview for `serializeDoc`: editor pushes serialized plain-text to ChatComposer value live; pressing
@@ -49,21 +50,20 @@ export function SerializeExample() {
           <Text as="figcaption" size="micro" tone="muted">
             Live serialized text (editor value)
           </Text>
-          <pre className="min-h-16 overflow-x-auto rounded-lg border bg-muted/40 p-3">
-            <Text as="code" size="label" className="block">
-              {value || "…"}
-            </Text>
-          </pre>
+          <Code overflow="wrap">
+            <CodeContent code={value || "…"} />
+          </Code>
         </figure>
         <figure className="grid gap-1">
           <Text as="figcaption" size="micro" tone="muted">
             Last submitted payload
           </Text>
-          <pre className="min-h-16 overflow-x-auto rounded-lg border bg-muted/40 p-3">
-            <Text as="code" size="label" className="block">
-              {submitted ? JSON.stringify(submitted, null, 2) : "Press Serialize to capture { text, mentions }"}
-            </Text>
-          </pre>
+          <Code overflow="wrap">
+            <CodeContent
+              code={submitted ? JSON.stringify(submitted, null, 2) : "Press Serialize to capture { text, mentions }"}
+              lang={submitted ? "json" : undefined}
+            />
+          </Code>
         </figure>
       </div>
     </div>

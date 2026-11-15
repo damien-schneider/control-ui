@@ -2,6 +2,7 @@
 
 import { BotIcon, LayoutDashboardIcon, SettingsIcon, SquareTerminalIcon, WorkflowIcon } from "lucide-react";
 import { useState } from "react";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
 import {
   Sidebar,
   SidebarContent,
@@ -101,11 +102,13 @@ function MobileWorkspace({ floating }: { floating: boolean }) {
               : "Use the bottom bar for your main destinations and Menu for the complete navigation."}
           </Text>
           {activity.map((entry) => (
-            <div key={entry} className="shrink-0 rounded-(--radius-panel) border border-border p-4">
-              <Text as="p" size="label">
-                {entry}
-              </Text>
-            </div>
+            <Card key={entry} size="sm" className="shrink-0">
+              <CardContent>
+                <Text as="p" size="label">
+                  {entry}
+                </Text>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </SidebarInset>
@@ -124,7 +127,7 @@ function MobileSidebarExample({ floating = false }: { floating?: boolean }) {
   return (
     <fieldset aria-label={floating ? "Floating mobile menu" : "Bottom navigation"} className="w-full min-w-0">
       <div className="h-[30rem] overflow-hidden rounded-(--radius-panel) border border-border">
-        <SidebarProvider layout="contained" persistOpen={false} keyboardShortcut={null} style={{ "--sidebar-width": "14rem" }}>
+        <SidebarProvider layout="contained" persistOpen={false} keyboardShortcut={null} defaultWidth={224}>
           <MobileWorkspace floating={floating} />
         </SidebarProvider>
       </div>

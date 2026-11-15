@@ -34,6 +34,12 @@
     transition: color var(--duration-fast) var(--ease-standard);
   }
 
+  :where([data-control-family="theme-toggle"][data-slot="option"] > svg) {
+    inline-size: calc(var(--spacing) * 3.5);
+    block-size: calc(var(--spacing) * 3.5);
+    flex-shrink: 0;
+  }
+
   :where([data-control-family="theme-toggle"][data-slot="option"][data-selected]) {
     color: var(--foreground);
   }

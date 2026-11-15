@@ -1,3 +1,4 @@
+import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 import { skinsOverview } from "@/app/(features)/catalog/skins";
 import { CodeBlock, SourceTabs } from "@/app/(features)/components/source";
@@ -7,8 +8,10 @@ import type { DocsSkinPage } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { ButtonLink } from "@/components/control-ui/ui/button";
 import { Card, CardContent } from "@/components/control-ui/ui/card";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
+import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/control-ui/ui/empty";
 import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from "@/components/control-ui/ui/item";
-import { Text } from "@/components/control-ui/ui/typography";
+import { Text, TextLink } from "@/components/control-ui/ui/typography";
 import { SkinSourceGuide } from "@/components/theme-drawer/skin-source-view";
 import { AgentActions } from "./agent-actions";
 import { InstallPanel, PageHeader, SectionStack, SectionTitle } from "./shared";
@@ -57,15 +60,15 @@ export function SkinPage({ skin }: { skin: DocsSkinPage }) {
           </section>
         ) : null}
         {unavailable ? (
-          <div id="install" className="min-w-0 scroll-mt-20 rounded-xl border border-dashed bg-muted/20 p-6">
-            <Badge variant="outline" size="sm">
-              Docs demonstration
-            </Badge>
-            <Text as="p" tone="muted" className="mt-3">
-              {skin.label} is demonstrated live in these docs through the theme editor, but is not shipped as an installable pack — so there
-              is no pack source to install here. Open the theme editor (paintbrush, top-right) to preview it over any page.
-            </Text>
-          </div>
+          <Empty id="install" variant="outline" className="scroll-mt-20">
+            <EmptyHeader>
+              <EmptyTitle>Docs demonstration</EmptyTitle>
+              <EmptyDescription>
+                {skin.label} is demonstrated live in these docs through the theme editor, but is not shipped as an installable pack — so
+                there is no pack source to install here. Open the theme editor (paintbrush, top-right) to preview it over any page.
+              </EmptyDescription>
+            </EmptyHeader>
+          </Empty>
         ) : null}
         {!unavailable && install && fullInstall && manifestHref ? (
           <InstallPanel
@@ -149,11 +152,9 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
       <SectionStack>
         <Text as="p" tone="muted" className="text-pretty">
           Not sure a skin is even the right tool? The{" "}
-          <Link href="/architecture#customization-ladder" className="font-medium text-foreground underline underline-offset-4">
-            customization ladder
-          </Link>{" "}
-          in the Architecture guide places every “make it different” request on one of eight rungs — with what each rung costs an app that
-          never uses it. This page picks up once the answer is a skin.
+          <TextLink render={<Link href="/architecture#customization-ladder" />}>customization ladder</TextLink> in the Architecture guide
+          places every “make it different” request on one of eight rungs — with what each rung costs an app that never uses it. This page
+          picks up once the answer is a skin.
         </Text>
 
         <section id="skin-values" className="min-w-0 scroll-mt-20">
@@ -189,32 +190,35 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
             Copy a selector as{" "}
             <code>[data-skin=&quot;brand&quot;] [data-slot=&quot;shell&quot;][data-control-family=&quot;chat-composer&quot;]</code>.
             Optional adornment anchors are listed separately in the{" "}
-            <Link href="/r/contract/index.json" className="font-medium text-foreground underline underline-offset-4">
-              machine-readable contract, one slice per paint family
-            </Link>
-            , so they cannot be mistaken for DOM parts.
+            <TextLink href="/r/contract/index.json">machine-readable contract, one slice per paint family</TextLink>, so they cannot be
+            mistaken for DOM parts.
           </Text>
           <div className="grid gap-2">
             {Object.entries(generatedSkinContract.scopes).map(([scope, anatomy]) => (
               <Card key={scope} size="sm">
                 <CardContent>
-                  <details>
-                    <summary className="cursor-pointer">
-                      <Text size="label" weight="medium" mono>
-                        {scope}{" "}
-                        <Text size="label" tone="muted">
-                          ({Object.keys(anatomy.parts).length})
-                        </Text>
+                  <Collapsible>
+                    <CollapsibleTrigger>
+                      <ChevronRightIcon aria-hidden />
+                      <Text size="label" mono>
+                        {scope}
                       </Text>
-                    </summary>
-                    <div className="mt-3 flex flex-wrap gap-1.5">
-                      {Object.keys(anatomy.parts).map((part) => (
-                        <code key={part} className="rounded-md border bg-background px-1.5 py-0.5">
-                          <Text size="caption">{part}</Text>
-                        </code>
-                      ))}
-                    </div>
-                  </details>
+                      <Text size="label" tone="muted" numeric>
+                        ({Object.keys(anatomy.parts).length})
+                      </Text>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="flex flex-wrap gap-1.5 pt-3">
+                        {Object.keys(anatomy.parts).map((part) => (
+                          <Badge key={part} variant="outline">
+                            <Text size="caption" mono>
+                              {part}
+                            </Text>
+                          </Badge>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
                 </CardContent>
               </Card>
             ))}

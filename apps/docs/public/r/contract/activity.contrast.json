@@ -1359,49 +1359,6 @@
       },
       {
         "attributes": {
-          "aria-expanded": "true",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-open": "",
-          "data-panel-open": "",
-          "data-slot": "trigger",
-          "data-state": "open",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "panel",
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-activity-kind": "reasoning",
-          "data-activity-state": "success",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-open": "",
-          "data-slot": "root",
-          "data-state": "open"
-        }
-      },
-      {
-        "attributes": {
           "data-control-family": "activity",
           "data-control-ui": "activity",
           "data-slot": "icon",
@@ -1752,14 +1709,6 @@
         "text": "--cui-activity-row-foreground"
       },
       "anatomy": 42,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-activity-row-foreground"
-      },
-      "anatomy": 43,
       "rendersText": false,
       "state": false
     }

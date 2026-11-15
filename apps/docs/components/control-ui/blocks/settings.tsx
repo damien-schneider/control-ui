@@ -25,7 +25,6 @@ import {
   SidebarProvider,
   type SidebarProviderProps,
   SidebarRail,
-  type SidebarStyle,
   SidebarTrigger,
   useSidebar,
 } from "@/components/control-ui/ui/sidebar";
@@ -101,14 +100,13 @@ export function SettingsBlock({
     onActivePageChange?.(pageId);
   }
 
-  const providerStyle: SidebarStyle = { "--sidebar-width": "15.5rem", ...style };
-
   return (
     <SidebarProvider
       layout={layout}
       surface="background"
+      defaultWidth={248}
       className={cn(layout === "viewport" && "h-svh overflow-hidden", className)}
-      style={providerStyle}
+      style={style}
       {...props}
     >
       <SettingsShell
@@ -463,7 +461,7 @@ export function SettingsBackAction({
   ...props
 }: Omit<ComponentProps<typeof Button>, "children"> & { children?: ReactNode }) {
   return (
-    <Button variant="quiet" size="sm" className={cn("-ms-1 justify-start gap-2", className)} {...props}>
+    <Button variant="quiet" size="sm" className={cn("-ms-1 justify-start", className)} {...props}>
       <ArrowLeftIcon data-icon-dir="inline" aria-hidden="true" />
       {children}
     </Button>

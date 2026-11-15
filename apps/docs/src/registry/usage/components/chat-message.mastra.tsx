@@ -17,7 +17,6 @@ import {
   ActivityDetailContent,
   ActivityDetailLabel,
   ActivityIcon,
-  ActivityStatus,
   ActivityTitle,
   ActivityTrigger,
 } from "@/components/control-ui/activity";
@@ -30,6 +29,8 @@ import {
   InlineAttachmentTitle,
 } from "@/components/control-ui/inline-attachment";
 import { SourceBadge } from "@/components/control-ui/source-badge";
+import { Code, CodeContent } from "@/components/control-ui/ui/code";
+import { Separator } from "@/components/control-ui/ui/separator";
 import { Text } from "@/components/control-ui/ui/typography";
 
 function renderJson(value: unknown) {
@@ -97,7 +98,6 @@ function renderToolInvocation(part: ToolInvocationPart, pendingApprovals: readon
       <ActivityTrigger>
         <ActivityIcon />
         <ActivityTitle />
-        <ActivityStatus className="sr-only" />
       </ActivityTrigger>
       <ActivityContent>
         <ActivityDetail>
@@ -125,7 +125,6 @@ function renderDynamicTool(part: DynamicToolPart) {
       <ActivityTrigger>
         <ActivityIcon />
         <ActivityTitle />
-        <ActivityStatus className="sr-only" />
       </ActivityTrigger>
       <ActivityContent>
         {part.input !== undefined ? (
@@ -194,12 +193,16 @@ export function Example({ message }: { message: MastraDBMessage }) {
         </Activity>
       )}
       File={renderFile}
-      StepStart={() => <hr />}
+      StepStart={() => <Separator />}
       ToolInvocation={(part) => renderToolInvocation(part, pendingApprovals)}
       DynamicTool={renderDynamicTool}
       SourceUrl={({ title, url }) => <SourceBadge href={url}>{title}</SourceBadge>}
       SourceDocument={({ title }) => <span>{title}</span>}
-      Data={({ data }) => <pre>{renderJson(data)}</pre>}
+      Data={({ data }) => (
+        <Code overflow="wrap">
+          <CodeContent code={renderJson(data)} lang="json" />
+        </Code>
+      )}
       fallback={(part) => <span>Unsupported message part: {part.type}</span>}
     />
   );

@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { formatGradient } from "@/components/control-ui/lib/gradient";
+import { Code, CodeContent } from "@/components/control-ui/ui/code";
 import {
   GradientEditor,
   GradientEditorAngle,
@@ -15,7 +16,6 @@ import {
   type GradientValue,
 } from "@/components/control-ui/ui/color-picker";
 import { Toggle, ToggleGroup } from "@/components/control-ui/ui/toggle";
-import { Text } from "@/components/control-ui/ui/typography";
 
 const BLUE_TO_YELLOW: GradientValue = {
   type: "linear",
@@ -61,11 +61,9 @@ export function PrimitiveGradientEditorExample() {
           <GradientEditorStopAdd />
         </div>
       </GradientEditor>
-      <div className="rounded-[var(--radius-sm)] bg-foreground/4 px-2 py-1">
-        <Text as="code" size="micro" tone="muted" mono className="block truncate">
-          {formatGradient(gradient)}
-        </Text>
-      </div>
+      <Code>
+        <CodeContent code={formatGradient(gradient)} lang="css" />
+      </Code>
     </div>
   );
 }

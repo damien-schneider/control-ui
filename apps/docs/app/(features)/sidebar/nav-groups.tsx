@@ -75,7 +75,7 @@ export function SidebarDoorMenu({ doors, onNavigate }: { doors: readonly Sidebar
             <SidebarMenuButton render={<Link href={door.href} onClick={onNavigate} />} size="sm">
               <HugeiconsIcon aria-hidden icon={door.icon} size={16} strokeWidth={1.7} />
               <span className="min-w-0 truncate">{door.title}</span>
-              <HugeiconsIcon aria-hidden icon={ArrowRight01Icon} size={14} strokeWidth={1.7} className="ml-auto text-muted-foreground" />
+              <HugeiconsIcon aria-hidden icon={ArrowRight01Icon} size={14} strokeWidth={1.7} className="ml-auto" />
             </SidebarMenuButton>
           </SidebarMenuItem>
         ))}
@@ -103,8 +103,8 @@ export function SidebarDoorPane({
         <SidebarMenu indicator="hover">
           <SidebarMenuItem>
             <SidebarMenuButton onClick={onBack} size="sm" aria-label={`Leave ${door.title}`}>
-              <HugeiconsIcon aria-hidden icon={ArrowLeft01Icon} size={14} strokeWidth={1.7} className="text-muted-foreground" />
-              <span className="min-w-0 truncate font-medium">{door.title}</span>
+              <HugeiconsIcon aria-hidden icon={ArrowLeft01Icon} size={14} strokeWidth={1.7} />
+              <span className="min-w-0 truncate">{door.title}</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

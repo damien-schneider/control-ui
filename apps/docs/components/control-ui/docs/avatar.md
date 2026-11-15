@@ -93,7 +93,7 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 
 - `--cui-avatar-size`: `calc(var(--spacing) * 9)`
 - `--cui-avatar-radius`: `9999px`
-- `--cui-avatar-group-gap`: `calc(var(--spacing) * -2)`
+- `--cui-avatar-group-gap`: `calc(var(--cui-avatar-group-ring-size) - var(--cui-avatar-size) * 0.2)`
 - `--cui-avatar-group-ring-size`: `2px`
 - `--cui-avatar-group-ring-color`: `var(--background)`
 - `--cui-avatar-fallback-background`: `var(--muted)`

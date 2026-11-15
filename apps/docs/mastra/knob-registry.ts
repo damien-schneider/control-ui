@@ -411,7 +411,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-avatar-group-gap",
         syntax: "<length-percentage>",
-        defaultValue: "calc(var(--spacing) * -2)",
+        defaultValue: "calc(var(--cui-avatar-group-ring-size) - var(--cui-avatar-size) * 0.2)",
         selector: ':where([data-control-family="avatar"][data-slot="root"])',
       },
       {
@@ -1283,6 +1283,18 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="chat-layout"][data-slot="root"][data-chrome])',
       },
       {
+        name: "--cui-chat-layout-column-max-inline-size",
+        syntax: "<length-percentage>",
+        defaultValue: "48rem",
+        selector: ':where([data-control-family="chat-layout"][data-slot="root"][data-chrome])',
+      },
+      {
+        name: "--cui-chat-layout-gutter-size",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 4)",
+        selector: ':where([data-control-family="chat-layout"][data-slot="root"][data-chrome])',
+      },
+      {
         name: "--cui-chat-layout-radius",
         syntax: "<length-percentage>",
         defaultValue: "var(--radius-scene)",
@@ -1304,6 +1316,18 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-chat-layout-turn-gap",
         syntax: "<length-percentage>",
         defaultValue: "calc(var(--spacing) * 2)",
+        selector: ':where([data-control-family="chat-layout"][data-slot="root"][data-chrome])',
+      },
+      {
+        name: "--cui-chat-layout-veil-backdrop-filter",
+        syntax: "*",
+        defaultValue: "none",
+        selector: ':where([data-control-family="chat-layout"][data-slot="root"][data-chrome])',
+      },
+      {
+        name: "--cui-chat-layout-veil-background",
+        syntax: "<color>",
+        defaultValue: "var(--cui-chat-layout-background)",
         selector: ':where([data-control-family="chat-layout"][data-slot="root"][data-chrome])',
       },
     ],
@@ -2621,6 +2645,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-filter-bar-hover-background",
         syntax: "<color>",
         defaultValue: "var(--hover-fill)",
+        selector: ':where([data-control-family="filter-bar"][data-slot="root"])',
+      },
+      {
+        name: "--cui-filter-bar-icon",
+        syntax: "<length>",
+        defaultValue: "calc(var(--spacing) * 3.5)",
         selector: ':where([data-control-family="filter-bar"][data-slot="root"])',
       },
       {
@@ -4701,7 +4731,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-sidebar-group-label-padding",
         syntax: "<length-percentage>+",
-        defaultValue: "0px calc(var(--spacing) * 2)",
+        defaultValue: "0px var(--cui-sidebar-menu-button-padding-inline)",
         selector: ':where([data-control-family="sidebar"][data-slot="root"])',
       },
       {

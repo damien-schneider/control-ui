@@ -7,6 +7,7 @@ import { CatalogGalleryItemPreview } from "@/app/(features)/components/previews"
 import { StatusBadge } from "@/app/(features)/components/status";
 import type { CatalogGalleryGroup, CatalogGalleryItem } from "@/app/(features)/model/catalog-gallery";
 import { useDocsIntegration } from "@/app/(features)/page-templates/integration";
+import { Card, CardAction, CardContent, CardDescription, CardHeader, CardLink, CardTitle } from "@/components/control-ui/ui/card";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
 import { PageHeader } from "./shared";
 
@@ -54,37 +55,26 @@ function CatalogPreviewCard({
   item: CatalogGalleryItem;
   integration: Parameters<typeof CatalogGalleryItemPreview>[0]["integration"];
 }) {
-  const nameId = `gallery-${item.kind}-${item.id}-name`;
-  const summaryId = `gallery-${item.kind}-${item.id}-summary`;
-
   return (
-    <article
-      data-gallery-card={item.kind}
-      data-gallery-item-id={item.id}
-      className="group relative min-w-0 rounded-[var(--radius-panel)] focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-card"
-    >
-      <Link
-        href={item.href}
-        aria-labelledby={nameId}
-        aria-describedby={summaryId}
-        className="absolute inset-0 z-10 rounded-[inherit] outline-none"
-      />
-      <div className="relative grid h-60 min-w-0 place-items-center overflow-hidden rounded-[inherit] border border-border/70 bg-canvas transition-[border-color,background-color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-hover:border-foreground/20 group-hover:bg-muted/35 group-focus-within:border-ring/60">
+    <Card data-gallery-card={item.kind} data-gallery-item-id={item.id} className="min-w-0">
+      <CardContent className="grid h-60 min-w-0 place-items-center overflow-hidden">
         <DeferredPreview className={item.previewClassName}>
           <PreviewFrame layout={item.previewLayout}>
             <CatalogGalleryItemPreview item={item} integration={integration} />
           </PreviewFrame>
         </DeferredPreview>
-      </div>
-      <div className="mt-3 flex min-w-0 items-center gap-2 px-0.5">
-        <Heading level={3} id={nameId} size="heading-4" tone="foreground" className="min-w-0 truncate">
-          {item.name}
-        </Heading>
-        {item.status ? <StatusBadge status={item.status} compact className="shrink-0" /> : null}
-      </div>
-      <Text as="p" id={summaryId} className="sr-only">
-        {item.summary}
-      </Text>
-    </article>
+      </CardContent>
+      <CardHeader>
+        <CardTitle render={(props) => <h3 {...props} />}>
+          <CardLink render={<Link href={item.href} />}>{item.name}</CardLink>
+        </CardTitle>
+        <CardDescription>{item.summary}</CardDescription>
+        {item.status ? (
+          <CardAction>
+            <StatusBadge status={item.status} compact />
+          </CardAction>
+        ) : null}
+      </CardHeader>
+    </Card>
   );
 }

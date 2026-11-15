@@ -54,6 +54,7 @@ When the hover target is not a React element, such as a decoration inside a rich
 ```tsx
 "use client";
 
+import { Avatar, AvatarFallback } from "@/components/control-ui/ui/avatar";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/control-ui/ui/hover-card";
 import { Text } from "@/components/control-ui/ui/typography";
 
@@ -65,9 +66,9 @@ export function PrimitiveHoverCardExample() {
         <HoverCardTrigger href="#">@ada</HoverCardTrigger> and the platform team.
         <HoverCardContent align="start">
           <div className="flex gap-3">
-            <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
-              <Text weight="semibold">AL</Text>
-            </div>
+            <Avatar size="lg" className="shrink-0">
+              <AvatarFallback>AL</AvatarFallback>
+            </Avatar>
             <div className="min-w-0">
               <Text as="p" weight="semibold">
                 Ada Lovelace

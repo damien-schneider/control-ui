@@ -12,21 +12,15 @@ import {
   ActivityDetailLabel,
   ActivityIcon,
   ActivityRow,
-  ActivityStatus,
   ActivityTitle,
   ActivityTrigger,
 } from "@/components/control-ui/activity";
 import { cn } from "@/components/control-ui/lib/cn";
+import { AppShellHeader } from "@/components/control-ui/ui/app-shell";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Card, CardAction, CardContent, CardHeader } from "@/components/control-ui/ui/card";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
-import {
-  SidebarInset,
-  SidebarProvider,
-  type SidebarProviderProps,
-  type SidebarStyle,
-  SidebarTrigger,
-} from "@/components/control-ui/ui/sidebar";
+import { SidebarInset, SidebarProvider, type SidebarProviderProps, SidebarTrigger } from "@/components/control-ui/ui/sidebar";
 import { Spinner } from "@/components/control-ui/ui/spinner";
 import type { TimelineItemProps, TimelineState } from "@/components/control-ui/ui/timeline";
 import {
@@ -96,14 +90,13 @@ export function AgentRunBlock({
   style,
   ...props
 }: AgentRunBlockProps) {
-  const providerStyle: SidebarStyle = { "--sidebar-width": "16rem", ...style };
-
   return (
     <SidebarProvider
       layout={layout}
       surface="background"
+      defaultWidth={256}
       className={cn(layout === "viewport" && "h-svh overflow-hidden", className)}
-      style={providerStyle}
+      style={style}
       {...props}
     >
       <AgentRunSidebar
@@ -168,7 +161,7 @@ export function AgentRunHeader({
   const levels = useHeadingLevels();
 
   return (
-    <header className={cn("flex h-12 shrink-0 items-center gap-2 border-b border-border/70 px-3", className)} {...props}>
+    <AppShellHeader className={className} {...props}>
       <SidebarTrigger size="xs" className="sidebar:hidden" />
       <Heading level={levels.title} size="label" weight="medium" className="min-w-0 truncate" title={title}>
         {title}
@@ -179,7 +172,7 @@ export function AgentRunHeader({
       {startedAt === undefined ? null : <AgentRunElapsed startedAt={startedAt} endedAt={endedAt} size="body" />}
       <div className="ms-auto flex shrink-0 items-center gap-1">{actions}</div>
       <LiveStatus message={`${title}: ${statusLabel}`} />
-    </header>
+    </AppShellHeader>
   );
 }
 
@@ -312,10 +305,14 @@ export function AgentRunToolCall({
         {icon ? <ActivityIcon>{icon}</ActivityIcon> : <ActivityIcon />}
         <ActivityTitle>
           {name}
-          {summary ? <span className="text-muted-foreground"> · {summary}</span> : null}
+          {summary ? (
+            <Text size="label" tone="muted">
+              {" "}
+              · {summary}
+            </Text>
+          ) : null}
         </ActivityTitle>
         {startedAt === undefined ? null : <AgentRunElapsed startedAt={startedAt} endedAt={endedAt} className="ms-2" />}
-        <ActivityStatus className="sr-only" />
       </Row>
       {hasDetails ? (
         <ActivityContent>

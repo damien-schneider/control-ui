@@ -229,7 +229,7 @@ export function GradientEditorTrack({
       disabled={disabled}
       aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? "Gradient stops") : ariaLabel}
       aria-labelledby={ariaLabelledBy}
-      className={cn("relative m-0 min-w-0 w-full touch-pan-y p-0", className)}
+      className={cn("relative w-full touch-pan-y", className)}
       style={imageStyle}
       onPointerDown={(event) => {
         onPointerDown?.(event);

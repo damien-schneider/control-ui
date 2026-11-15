@@ -29,6 +29,7 @@ import {
   ToolApprovalTitle,
 } from "@/components/control-ui/tool-approval";
 import { Button } from "@/components/control-ui/ui/button";
+import { Code, CodeContent } from "@/components/control-ui/ui/code";
 import type { TimelineState } from "@/components/control-ui/ui/timeline";
 
 type RunDetails = { id: string; title: string; startedAt: number; endedAt?: number };
@@ -162,7 +163,9 @@ function renderTool(part: ToolInvocationPart, approvals: ToolCallApprovals) {
           </ToolApprovalHeader>
           <ToolApprovalPreview>
             <ToolApprovalField label="Input">
-              <div className="whitespace-pre-wrap wrap-anywhere">{JSON.stringify(invocation.args, null, 2)}</div>
+              <Code overflow="wrap">
+                <CodeContent code={JSON.stringify(invocation.args, null, 2)} lang="json" />
+              </Code>
             </ToolApprovalField>
           </ToolApprovalPreview>
         </ToolApprovalBody>

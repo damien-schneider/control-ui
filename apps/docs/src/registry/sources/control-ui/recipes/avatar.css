@@ -1,7 +1,7 @@
 @layer components {
   :where([data-control-family="avatar"][data-slot="root"]) {
     --cui-avatar-size: calc(var(--spacing) * 9);
-    --cui-avatar-group-gap: calc(var(--spacing) * -2);
+    --cui-avatar-group-gap: calc(var(--cui-avatar-group-ring-size) - var(--cui-avatar-size) * 0.2);
     --cui-avatar-image-outline-color: var(--image-outline);
     --cui-avatar-badge-size: max(0.5rem, 30%);
     --cui-avatar-badge-radius: 9999px;
@@ -28,6 +28,10 @@
 
   :where([data-control-family="avatar"][data-slot="root"][data-size="lg"]) {
     --cui-avatar-size: calc(var(--spacing) * 12);
+  }
+
+  :where([data-control-family="chat-message"][data-slot="avatar"] > [data-control-family="avatar"][data-slot="root"]) {
+    --cui-avatar-size: 100%;
   }
 
   :where([data-control-family="avatar"][data-slot="root"]),
@@ -66,8 +70,8 @@
   :where([data-control-family="avatar"][data-slot="badge"]) {
     --_avatar-badge-background: var(--cui-avatar-badge-background);
     z-index: 1;
-    inset-block-end: 0;
-    inset-inline-end: 0;
+    inset-block-end: min(0px, calc(14.6% - var(--cui-avatar-badge-size) / 2));
+    inset-inline-end: min(0px, calc(14.6% - var(--cui-avatar-badge-size) / 2));
     inline-size: var(--cui-avatar-badge-size);
     aspect-ratio: 1;
     border-radius: var(--cui-avatar-badge-radius);
@@ -106,7 +110,7 @@
     border-radius: inherit;
     background: var(--cui-avatar-fallback-background);
     color: var(--cui-avatar-fallback-foreground);
-    font-size: max(var(--text-micro), 37.5cqi);
+    font-size: max(0.5rem, 37.5cqi);
     font-weight: var(--font-weight-medium);
   }
 

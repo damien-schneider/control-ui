@@ -42,7 +42,7 @@ import type { InfiniteCanvasChrome } from "../../src/registry/sources/control-ui
 import type { KbdVariant } from "../../src/registry/sources/control-ui/ui/kbd";
 import type { LevelMeterOrientation } from "../../src/registry/sources/control-ui/ui/level-meter";
 import type { MorphingPanelAnchor, MorphingPanelBodyPadding } from "../../src/registry/sources/control-ui/ui/morphing-panel";
-import type { PageHeaderVariant, PageScrollMode, PageWidth } from "../../src/registry/sources/control-ui/ui/page-layout";
+import type { PageAsideWidth, PageHeaderVariant, PageScrollMode, PageWidth } from "../../src/registry/sources/control-ui/ui/page-layout";
 import type { PopoverContentPadding } from "../../src/registry/sources/control-ui/ui/popover";
 import type { ProgressiveBlurSide } from "../../src/registry/sources/control-ui/ui/progressive-blur";
 import type {
@@ -64,6 +64,7 @@ import type {
   SidebarLayoutMode,
   SidebarMenuButtonSize,
   SidebarMenuButtonVariant,
+  SidebarMenuIconTone,
   SidebarPanelLayer,
   SidebarSelectionIndicator,
 } from "../../src/registry/sources/control-ui/ui/sidebar";
@@ -304,10 +305,12 @@ export type EmittedStateContract = {
   "sidebar:menu-action:data-show-on-hover": true;
   "sidebar:menu-button:data-size": SidebarMenuButtonSize;
   "sidebar:menu-button:data-variant": SidebarMenuButtonVariant;
+  "sidebar:menu-button:data-icon-tone": SidebarMenuIconTone;
   "page-layout:root:data-scroll": PageScrollMode;
   "page-layout:root:data-width": PageWidth;
   "page-layout:header:data-variant": PageHeaderVariant;
   "page-layout:body:data-aside": true;
+  "page-layout:body:data-aside-width": PageAsideWidth;
   "skeleton:root:data-variant": SkeletonVariant;
   "skeleton:root:data-shape": SkeletonShape;
   "slider:root:data-labeled": "true";

@@ -61,7 +61,9 @@ return true;
 const apply=()=>{
 sidebarPatched||=patchSidebar();
 if(!sidebarPatched||!collapsed)return sidebarPatched;
+const wrappers=document.querySelectorAll("[data-docs-sidebar-trigger]");
 const triggers=document.querySelectorAll("[data-docs-sidebar-trigger] [data-sidebar-trigger]");
+for(const wrapper of wrappers)wrapper.classList.remove("sidebar:hidden");
 for(const trigger of triggers)trigger.setAttribute("aria-expanded","false");
 return triggers.length>0;
 };

@@ -81,8 +81,6 @@ const sections = [
   },
 ] satisfies ExampleSection[];
 
-const tocKnobs = { "--cui-table-of-contents-padding": "calc(var(--spacing) * 3)" };
-
 export function PrimitiveTableOfContentsExample() {
   return (
     <div className="@container w-full max-w-4xl">
@@ -92,14 +90,13 @@ export function PrimitiveTableOfContentsExample() {
             <PreviewSection key={section.href} section={section} />
           ))}
         </article>
-        <TableOfContents items={sections} label="Range" className="static h-fit @max-xl:hidden" style={tocKnobs} />
+        <TableOfContents items={sections} label="Range" className="static h-fit @max-xl:hidden" />
         <TableOfContents
           items={sections}
           label="Progress"
           variant="progress"
           indicator={<span className="size-2.5 rounded-full border-2 border-current bg-background" />}
           className="static h-fit min-w-0"
-          style={tocKnobs}
         />
       </div>
     </div>

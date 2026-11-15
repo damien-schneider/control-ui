@@ -454,7 +454,7 @@
       "name": "--cui-sidebar-group-label-padding",
       "syntax": "<length-percentage>+",
       "initialValue": "0px",
-      "defaultValue": "0px calc(var(--spacing) * 2)"
+      "defaultValue": "0px var(--cui-sidebar-menu-button-padding-inline)"
     }
   ],
   "parts": {
@@ -666,6 +666,18 @@
             "source": "control-ui",
             "valueKind": "presence",
             "values": []
+          },
+          {
+            "attribute": "data-icon-tone",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "danger",
+              "default",
+              "muted",
+              "success",
+              "warning"
+            ]
           },
           {
             "attribute": "data-indicator",

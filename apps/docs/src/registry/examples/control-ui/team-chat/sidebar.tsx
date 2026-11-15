@@ -1,7 +1,6 @@
 "use client";
 
-import { BellOffIcon, HashIcon, MoreHorizontalIcon, PenSquareIcon } from "lucide-react";
-import { Button } from "@/components/control-ui/ui/button";
+import { BellOffIcon, ChevronDownIcon, HashIcon, MoreHorizontalIcon, PenSquareIcon } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
 import {
   Sidebar,
@@ -27,13 +26,26 @@ function unreadLabel(count: number) {
 export function TeamChatSidebar({ activeId, onSelect }: { activeId: string; onSelect: (id: string) => void }) {
   return (
     <Sidebar collapsible="offcanvas">
-      <SidebarHeader divider className="flex-row items-center justify-between gap-2">
-        <Text size="label" weight="semibold" className="truncate">
-          Northwind
-        </Text>
-        <Button variant="ghost" size="xs" iconOnly aria-label="New message">
-          <PenSquareIcon aria-hidden="true" />
-        </Button>
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger render={<SidebarMenuButton />}>
+                <Text weight="semibold" className="truncate">
+                  Northwind
+                </Text>
+                <ChevronDownIcon aria-hidden="true" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start">
+                <DropdownMenuItem>Invite people</DropdownMenuItem>
+                <DropdownMenuItem>Workspace settings</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <SidebarMenuAction aria-label="New message">
+              <PenSquareIcon aria-hidden="true" />
+            </SidebarMenuAction>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
@@ -43,7 +55,7 @@ export function TeamChatSidebar({ activeId, onSelect }: { activeId: string; onSe
               <SidebarMenuItem key={channel.id}>
                 <SidebarMenuButton isActive={channel.id === activeId} onClick={() => onSelect(channel.id)}>
                   <HashIcon aria-hidden="true" />
-                  <span className={channel.unread > 0 ? "font-semibold text-sidebar-foreground" : undefined}>{channel.name}</span>
+                  <span>{channel.unread > 0 ? <b>{channel.name}</b> : channel.name}</span>
                 </SidebarMenuButton>
                 {channel.unread > 0 ? (
                   <SidebarMenuBadge>
@@ -82,7 +94,7 @@ export function TeamChatSidebar({ activeId, onSelect }: { activeId: string; onSe
                 <SidebarMenuItem key={personId}>
                   <SidebarMenuButton isActive={personId === activeId} onClick={() => onSelect(personId)}>
                     <PersonAvatar person={person} size="xs" />
-                    <span className={unread > 0 ? "font-semibold text-sidebar-foreground" : undefined}>{person.name}</span>
+                    <span>{unread > 0 ? <b>{person.name}</b> : person.name}</span>
                   </SidebarMenuButton>
                   {unread > 0 ? (
                     <SidebarMenuBadge>

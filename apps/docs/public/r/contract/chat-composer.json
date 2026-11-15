@@ -140,6 +140,13 @@
         ],
         "states": []
       },
+      "header": {
+        "family": "chat-composer",
+        "registryItems": [
+          "chat-composer"
+        ],
+        "states": []
+      },
       "mention": {
         "family": "chat-composer",
         "registryItems": [

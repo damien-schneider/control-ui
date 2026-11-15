@@ -504,6 +504,35 @@
           "data-control-ui": "scroll-area",
           "data-has-overflow-y": "",
           "data-lock-axis": "x",
+          "data-overflow-y-start": "",
+          "data-scrollbar-gutter": "auto",
+          "data-scrolling": "",
+          "data-slot": "root",
+          "role": "presentation"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-role": "assistant",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-block",
+          "data-control-ui": "markdown-block",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-has-overflow-y": "",
+          "data-mask": "true",
           "data-overflow-y-end": "",
           "data-scrollbar-gutter": "auto",
           "data-slot": "root",
@@ -546,17 +575,9 @@
           "data-lock-axis": "x",
           "data-overflow-y-start": "",
           "data-scrollbar-gutter": "auto",
+          "data-scrolling": "",
           "data-slot": "root",
           "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-density": "compact",
-          "data-slot": "root",
-          "data-state": "idle"
         }
       },
       {
@@ -564,6 +585,7 @@
           "data-control-family": "scroll-area",
           "data-control-ui": "scroll-area",
           "data-orientation": "vertical",
+          "data-scrolling": "",
           "data-slot": "thumb"
         }
       }

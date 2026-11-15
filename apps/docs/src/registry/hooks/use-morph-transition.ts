@@ -8,8 +8,7 @@ import { startMorphViewTransition } from "@/components/control-ui/extensions/vie
 // trigger wears shared name while closed, surface while open. That alternation is whole contract:
 // View Transitions API aborts outright when two live elements claim one name at capture, which is exactly what a
 // portalled popup mounting over still-present trigger would do. Matching is by name, not tree position, so it
-// crosses portals and top layer. unnamed trigger stays uncaptured and keeps painting under overlay —
-// hide it with data-[popup-open]:opacity-0 when it should BECOME surface instead.
+// crosses portals and top layer. While open the trigger stays laid out but transparent: it BECAME the surface.
 export type UseMorphTransitionOptions = {
   /** Open state of surface — decides which end of pair currently owns shared name. */
   open: boolean;
@@ -32,6 +31,7 @@ export type UseMorphTransitionResult = {
 type MorphStyle = CSSProperties & Record<"--morph-name", string>;
 
 const MORPH_CLASS = "morph-surface";
+const HIDDEN_TRIGGER: MorphAnchorProps = { className: "morph-trigger-hidden", style: undefined };
 const INERT_ANCHOR: MorphAnchorProps = { className: undefined, style: undefined };
 
 // view-transition-name takes custom-ident; useId ships delimiters (:r1:, «r1») that are not valid idents.
@@ -53,7 +53,7 @@ export function useMorphTransition({ open, name }: UseMorphTransitionOptions): U
 
   return {
     morph,
-    triggerProps: open ? INERT_ANCHOR : anchor,
+    triggerProps: open ? HIDDEN_TRIGGER : anchor,
     surfaceProps: open ? anchor : INERT_ANCHOR,
   };
 }

@@ -24,7 +24,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 ## Exports
 
 - `@/components/control-ui/knob-contracts/page-layout-knobs`: `pageLayoutKnobs`, types `PageLayoutKnobStyle`
-- `@/components/control-ui/ui/page-layout`: `pageWidths`, `pageScrollModes`, `pageHeaderVariants`, `PageScrollContext`, `usePageScroll`, `PageLayout`, `PageHeader`, `PageTitle`, `PageDescription`, `PageActions`, `PageBody`, types `PageWidth`, `PageScrollMode`, `PageScroll`, `PageHeaderVariant`, `PageLayoutProps`, `PageHeaderProps`, `PageTitleProps`, `PageDescriptionProps`, `PageActionsProps`, `PageBodyProps`
+- `@/components/control-ui/ui/page-layout`: `pageWidths`, `pageScrollModes`, `pageHeaderVariants`, `pageAsideWidths`, `PageScrollContext`, `usePageScroll`, `PageLayout`, `PageHeader`, `PageTitle`, `PageDescription`, `PageActions`, `PageBody`, types `PageWidth`, `PageScrollMode`, `PageScroll`, `PageHeaderVariant`, `PageAsideWidth`, `PageLayoutProps`, `PageHeaderProps`, `PageTitleProps`, `PageDescriptionProps`, `PageActionsProps`, `PageBodyProps`
 
 ## Composition
 
@@ -47,7 +47,7 @@ PageLayout owns the scroll container and the shared measure; the header and body
 
 ### Reading page with a rail
 
-Pass aside to add a secondary column; it widens the measure and hides when the layout is too narrow for both columns.
+Pass aside to add a secondary column; it widens the measure and hides when the layout is too narrow for both columns. The default narrow aside fits a table of contents; asideWidth="wide" fits a control panel such as an editor.
 
 ```tsx
 <PageLayout>
@@ -137,7 +137,7 @@ Scopes, their parts, and the state attributes each part carries. Selector patter
 - `page-layout`
   - `actions`
   - `aside`
-  - `body`: `data-aside`
+  - `body`: `data-aside`, `data-aside-width` (`narrow` | `wide`)
   - `content`
   - `description`
   - `header`: `data-variant` (`floating` | `flow` | `sticky`)

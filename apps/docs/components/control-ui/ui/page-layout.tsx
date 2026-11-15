@@ -17,6 +17,9 @@ export type PageScroll = PageScrollMode | "auto";
 export const pageHeaderVariants = ["flow", "sticky", "floating"] as const;
 export type PageHeaderVariant = (typeof pageHeaderVariants)[number];
 
+export const pageAsideWidths = ["narrow", "wide"] as const;
+export type PageAsideWidth = (typeof pageAsideWidths)[number];
+
 type PageStyle = CSSProperties & PageLayoutKnobStyle;
 
 export const PageScrollContext = createContext<PageScrollMode | null>(null);
@@ -112,17 +115,19 @@ export function PageActions({ className, ...props }: PageActionsProps) {
 
 export type PageBodyProps = Omit<ComponentProps<"div">, "style"> & {
   aside?: ReactNode;
+  asideWidth?: PageAsideWidth;
   contentClassName?: string;
   style?: PageStyle;
 };
 
-export function PageBody({ aside, contentClassName, children, className, ...props }: PageBodyProps) {
+export function PageBody({ aside, asideWidth = "narrow", contentClassName, children, className, ...props }: PageBodyProps) {
   return (
     <div
       data-control-ui="page-layout"
       data-control-family="page-layout"
       data-slot="body"
       data-aside={aside ? "" : undefined}
+      data-aside-width={aside ? asideWidth : undefined}
       className={className}
       {...props}
     >

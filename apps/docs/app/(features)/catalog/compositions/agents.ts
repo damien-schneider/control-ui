@@ -93,6 +93,7 @@ export const agentsCompositions = {
         part(
           "ChatComposerShell",
           part("ChatComposerAccent"),
+          part("ChatComposerHeader"),
           part("ChatComposerTextarea"),
           part("ChatComposerToolbar", part("ChatComposerTools"), part("ChatComposerSubmit")),
           part("ChatComposerFooter"),

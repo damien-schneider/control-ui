@@ -170,6 +170,13 @@
         ],
         "states": []
       },
+      "inline-frame": {
+        "family": "code",
+        "registryItems": [
+          "code"
+        ],
+        "states": []
+      },
       "line": {
         "family": "code",
         "registryItems": [

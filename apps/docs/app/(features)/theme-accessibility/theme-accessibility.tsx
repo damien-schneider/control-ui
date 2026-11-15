@@ -3,13 +3,15 @@
 import { AlertTriangleIcon, CheckCircle2Icon, CircleHelpIcon, PaintbrushIcon, ShieldCheckIcon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
-import { cn } from "@/components/control-ui/lib/cn";
+import { Alert, AlertAction, AlertDescription, AlertTitle } from "@/components/control-ui/ui/alert";
+import { Badge } from "@/components/control-ui/ui/badge";
 import { Button, ButtonLink } from "@/components/control-ui/ui/button";
+import { Code, CodeContent } from "@/components/control-ui/ui/code";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/control-ui/ui/empty";
+import { Separator } from "@/components/control-ui/ui/separator";
 import { Skeleton } from "@/components/control-ui/ui/skeleton";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/control-ui/ui/table";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
-import { CopySwap } from "@/components/copy-swap";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
 import { THEME_AUDIT_CATEGORIES, type ThemeAuditCategory, type ThemeAuditResult, type ThemeAuditStatus } from "./audit-contract";
 import { useThemeAudit } from "./use-theme-audit";
@@ -22,21 +24,14 @@ function AuditOutcome({ result }: { result: ThemeAuditResult }) {
     fail: result.severity === "warning" ? "Warn" : "Fail",
     unresolved: "Missing",
   };
+  let color: "green" | "red" | "yellow" | "neutral" = "neutral";
+  if (result.status === "pass") color = "green";
+  else if (result.status === "fail") color = result.severity === "warning" ? "yellow" : "red";
 
   return (
-    <span
-      className={cn(
-        "inline-flex min-w-14 justify-center rounded-full px-2 py-1",
-        result.status === "pass" && "bg-emerald-500/15 text-emerald-700 dark:text-emerald-400",
-        result.status === "fail" && result.severity === "error" && "bg-red-500/15 text-red-700 dark:text-red-400",
-        result.status === "fail" && result.severity === "warning" && "bg-amber-500/15 text-amber-800 dark:text-amber-300",
-        result.status === "unresolved" && "bg-muted",
-      )}
-    >
-      <Text size="micro" weight="semibold" tone={result.status === "unresolved" ? "muted" : "default"} numeric>
-        {statusLabel[result.status]}
-      </Text>
-    </span>
+    <Badge size="sm" color={color}>
+      {statusLabel[result.status]}
+    </Badge>
   );
 }
 
@@ -66,7 +61,7 @@ function AuditTable({ category, results }: { category: ThemeAuditCategory; resul
   const issueCount = results.filter((result) => result.status !== "pass").length;
 
   return (
-    <section className="grid gap-3" aria-labelledby={`audit-${category.replaceAll(" ", "-").toLowerCase()}`}>
+    <section className="grid grid-cols-1 gap-3" aria-labelledby={`audit-${category.replaceAll(" ", "-").toLowerCase()}`}>
       <header className="flex flex-wrap items-baseline justify-between gap-2">
         <Heading level={2} size="heading-4" id={`audit-${category.replaceAll(" ", "-").toLowerCase()}`}>
           {category}
@@ -75,63 +70,58 @@ function AuditTable({ category, results }: { category: ThemeAuditCategory; resul
           {issueCount === 0 ? `${results.length} passed` : `${issueCount} ${issueCount === 1 ? "issue" : "issues"}`}
         </Text>
       </header>
-      <div className="overflow-x-auto border-y border-border">
-        <Text as="div" size="caption">
-          <table className="w-full min-w-3xl border-collapse text-left">
-            <caption className="sr-only">{category} theme contrast results</caption>
-            <thead className="text-muted-foreground">
-              <tr className="border-b border-border">
-                <th scope="col" className="w-14 py-2 pr-3 font-medium">
-                  Sample
-                </th>
-                <th scope="col" className="py-2 pr-4 font-medium">
-                  Pairing
-                </th>
-                <th scope="col" className="py-2 pr-4 font-medium">
-                  Tokens
-                </th>
-                <th scope="col" className="py-2 pr-4 text-right font-medium">
-                  Ratio
-                </th>
-                <th scope="col" className="py-2 text-right font-medium">
-                  Result
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {results.map((result) => (
-                <tr key={result.id} className="border-b border-border/60 last:border-b-0">
-                  <td className="py-2.5 pr-3">
-                    <ContrastSample result={result} />
-                  </td>
-                  <th scope="row" className="py-2.5 pr-4 font-medium text-foreground">
-                    {result.label}
-                    <Text size="caption" weight="normal" tone="muted" className="mt-0.5 block">
-                      {result.severity === "warning" ? "Advisory" : "Required"} {result.threshold >= 4.5 ? "text" : "non-text"} contrast
-                    </Text>
-                  </th>
-                  <td className="py-2.5 pr-4">
-                    <Text size="micro" tone="muted" mono>
-                      <code>{result.foreground}</code>
-                      <span aria-hidden> / </span>
-                      <code>{result.background}</code>
-                    </Text>
-                  </td>
-                  <td className="py-2.5 pr-4 text-right font-mono tabular-nums text-foreground">
-                    {result.ratio === null ? "—" : `${result.ratio.toFixed(2)}:1`}
-                    <Text size="micro" tone="muted" className="mt-0.5 block">
-                      min {result.threshold}:1
-                    </Text>
-                  </td>
-                  <td className="py-2.5 text-right">
-                    <AuditOutcome result={result} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </Text>
-      </div>
+      <Table aria-label={`${category} theme contrast results`} className="min-w-3xl">
+        <TableHeader>
+          <TableRow>
+            <TableHead scope="col" className="w-14">
+              Sample
+            </TableHead>
+            <TableHead scope="col">Pairing</TableHead>
+            <TableHead scope="col">Tokens</TableHead>
+            <TableHead scope="col" className="text-right">
+              Ratio
+            </TableHead>
+            <TableHead scope="col" className="text-right">
+              Result
+            </TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {results.map((result) => (
+            <TableRow key={result.id}>
+              <TableCell>
+                <ContrastSample result={result} />
+              </TableCell>
+              <TableCell className="whitespace-normal">
+                <Text as="div" size="caption" weight="medium" tone="foreground">
+                  {result.label}
+                </Text>
+                <Text as="div" size="caption" tone="muted" className="mt-0.5">
+                  {result.severity === "warning" ? "Advisory" : "Required"} {result.threshold >= 4.5 ? "text" : "non-text"} contrast
+                </Text>
+              </TableCell>
+              <TableCell className="whitespace-normal">
+                <Text size="micro" tone="muted" mono>
+                  <code>{result.foreground}</code>
+                  <span aria-hidden> / </span>
+                  <code>{result.background}</code>
+                </Text>
+              </TableCell>
+              <TableCell className="text-right">
+                <Text as="div" size="caption" mono numeric>
+                  {result.ratio === null ? "—" : `${result.ratio.toFixed(2)}:1`}
+                </Text>
+                <Text as="div" size="micro" tone="muted" className="mt-0.5">
+                  min {result.threshold}:1
+                </Text>
+              </TableCell>
+              <TableCell className="text-right">
+                <AuditOutcome result={result} />
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </section>
   );
 }
@@ -148,7 +138,7 @@ function AuditResultsSkeleton() {
             <Skeleton className="h-5 w-44" />
             <Skeleton className="h-3.5 w-16" />
           </div>
-          <div className="grid gap-2 border-y border-border py-2.5">
+          <div className="grid gap-2">
             <Skeleton className="h-4 w-full" />
             {[0, 1, 2, 3].map((row) => (
               <Skeleton key={row} className="h-10 w-full" />
@@ -167,7 +157,7 @@ function AuditResults({ loading, results }: { loading: boolean; results: ThemeAu
       <Empty variant="outline">
         <EmptyHeader>
           <EmptyMedia>
-            <CheckCircle2Icon aria-hidden className="text-emerald-600 dark:text-emerald-400" />
+            <CheckCircle2Icon aria-hidden />
           </EmptyMedia>
           <EmptyTitle>No contrast issues in this mode</EmptyTitle>
           <EmptyDescription>
@@ -176,14 +166,14 @@ function AuditResults({ loading, results }: { loading: boolean; results: ThemeAu
         </EmptyHeader>
         <EmptyContent>
           <ButtonLink variant="surface" size="sm" render={<Link href="/theme-editor" />}>
-            <PaintbrushIcon aria-hidden className="size-3.5" /> Open the token editor
+            <PaintbrushIcon aria-hidden /> Open the token editor
           </ButtonLink>
         </EmptyContent>
       </Empty>
     );
   }
   return (
-    <div className="grid gap-9">
+    <div className="grid grid-cols-1 gap-9">
       {THEME_AUDIT_CATEGORIES.map((category) => {
         const categoryResults = results.filter((result) => result.category === category);
         return categoryResults.length > 0 ? <AuditTable key={category} category={category} results={categoryResults} /> : null;
@@ -195,9 +185,9 @@ function AuditResults({ loading, results }: { loading: boolean; results: ThemeAu
 export function ThemeAccessibility() {
   const results = useThemeAudit();
   const [issuesOnly, setIssuesOnly] = useState(false);
-  const commandCopy = useCopyToClipboard({ text: CLI_COMMAND });
   const requiredResults = results.filter((result) => result.severity === "error");
   const requiredFailures = requiredResults.filter((result) => result.status !== "pass");
+  const failing = requiredFailures.length > 0;
   const advisoryWarnings = results.filter((result) => result.severity === "warning" && result.status !== "pass");
   const displayedResults = issuesOnly ? results.filter((result) => result.status !== "pass") : results;
   const failureNoun = requiredFailures.length === 1 ? "failure" : "failures";
@@ -211,41 +201,22 @@ export function ThemeAccessibility() {
       : "Boundaries, indicators and every harvested part clear their ratio too.";
 
   return (
-    <div className="grid gap-10" data-testid="theme-accessibility-audit">
-      <section className="grid gap-5" aria-labelledby="active-theme-audit">
-        <div className="flex flex-wrap items-start justify-between gap-4 border-y border-border py-4">
-          <div className="flex min-w-0 items-start gap-3">
-            <span
-              className={cn(
-                "mt-0.5 grid size-9 shrink-0 place-items-center rounded-full",
-                requiredFailures.length > 0
-                  ? "bg-red-500/15 text-red-700 dark:text-red-400"
-                  : "bg-emerald-500/15 text-emerald-700 dark:text-emerald-400",
-              )}
-            >
-              {requiredFailures.length > 0 ? (
-                <AlertTriangleIcon aria-hidden className="size-4" />
-              ) : (
-                <ShieldCheckIcon aria-hidden className="size-4" />
-              )}
-            </span>
-            <div>
-              <Heading level={2} size="heading-4" id="active-theme-audit" numeric>
-                {auditSummary}
-              </Heading>
-              <Text as="p" size="caption" tone="muted" className="mt-1 max-w-2xl text-pretty">
-                Resolves contract colors and rendered active-tab paint, including alpha layers and sampled gradient stops. Switch modes to
-                inspect light and dark independently.
-              </Text>
-            </div>
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
+    <div className="grid grid-cols-1 gap-10" data-testid="theme-accessibility-audit">
+      <section className="grid grid-cols-1 gap-5" aria-labelledby="active-theme-audit">
+        <Alert tone={failing ? "danger" : "success"}>
+          {failing ? <AlertTriangleIcon aria-hidden /> : <ShieldCheckIcon aria-hidden />}
+          <AlertTitle render={(props) => <h2 {...props} id="active-theme-audit" />}>{auditSummary}</AlertTitle>
+          <AlertDescription>
+            Resolves contract colors and rendered active-tab paint, including alpha layers and sampled gradient stops. Switch modes to
+            inspect light and dark independently.
+          </AlertDescription>
+          <AlertAction className="flex-wrap gap-2">
             <ThemeModeSwitch />
             <ButtonLink variant="surface" size="sm" render={<Link href="/theme-editor" />}>
-              <PaintbrushIcon aria-hidden className="size-3.5" /> Edit theme
+              <PaintbrushIcon aria-hidden /> Edit theme
             </ButtonLink>
-          </div>
-        </div>
+          </AlertAction>
+        </Alert>
 
         <div className="flex flex-wrap items-center justify-between gap-3">
           <Text as="p" size="caption" tone="muted" numeric>
@@ -259,7 +230,9 @@ export function ThemeAccessibility() {
 
       <AuditResults loading={results.length === 0} results={displayedResults} />
 
-      <section className="grid gap-4 border-t border-border pt-8" aria-labelledby="optional-cli-check">
+      <Separator />
+
+      <section className="grid gap-4" aria-labelledby="optional-cli-check">
         <div className="max-w-2xl">
           <Heading level={2} size="heading-4" id="optional-cli-check">
             Optional CLI check
@@ -269,17 +242,12 @@ export function ThemeAccessibility() {
             from <code>skin.config</code> remain a live-preview check. Required failures or unresolved paints exit non-zero.
           </Text>
         </div>
-        <div className="flex max-w-2xl flex-wrap items-center gap-2 border-y border-border py-3">
-          <Text as="code" size="caption" tone="foreground" mono className="min-w-0 flex-1 overflow-x-auto">
-            {CLI_COMMAND}
-          </Text>
-          <Button variant="surface" size="sm" onClick={commandCopy.handleCopy}>
-            <CopySwap copied={commandCopy.status === "copied"} idleLabel="Copy command" copiedLabel="Copied" />
-          </Button>
-        </div>
+        <Code className="max-w-2xl">
+          <CodeContent code={CLI_COMMAND} lang="bash" copyLabel="Copy command" />
+        </Code>
         <Text as="p" size="caption" tone="muted" className="flex max-w-2xl items-start gap-2">
           <CircleHelpIcon aria-hidden className="mt-0.5 size-3.5 shrink-0" /> Run without a path to audit every built-in skin pack. Add
-          <code className="font-mono"> --json</code> for machine-readable output in an agent or CI workflow.
+          <code> --json</code> for machine-readable output in an agent or CI workflow.
         </Text>
       </section>
     </div>

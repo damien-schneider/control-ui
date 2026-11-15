@@ -11,7 +11,7 @@ import type { ActivePageId } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { ButtonLink } from "@/components/control-ui/ui/button";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@/components/control-ui/ui/sidebar";
-import { Text } from "@/components/control-ui/ui/typography";
+import { Text, TextLink } from "@/components/control-ui/ui/typography";
 import { SkinPresetControls } from "@/components/theme-drawer/skin-preset-controls";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/site-config";
@@ -102,91 +102,84 @@ export function DocsSidebarContent({
   }
 
   return (
-    <Sidebar mobileVariant="drawer" collapsible={DOCS_SIDEBAR_COLLAPSIBLE}>
-      <div data-docs-sidebar-navigation="" className="flex min-h-0 flex-1 flex-col p-2">
-        <SidebarHeader className="gap-2">
-          <div className="flex items-center justify-between gap-2">
-            <div className="relative flex min-w-0 items-center">
-              <Link href="/" onClick={closeSidebar} className="flex min-w-0 items-center gap-1.5">
-                <ControlUiLogo />
-                <Text size="heading-4" className="block truncate">
-                  {siteConfig.name}
-                </Text>
-              </Link>
-              <Badge size="sm" className="absolute -top-0.5 left-full ml-1">
-                alpha
-              </Badge>
-            </div>
-            <DocsSearchTrigger />
+    <Sidebar data-docs-sidebar-navigation="" mobileVariant="drawer" collapsible={DOCS_SIDEBAR_COLLAPSIBLE}>
+      <SidebarHeader>
+        <div className="flex items-center justify-between gap-2">
+          <div className="relative flex min-w-0 items-center">
+            <Link href="/" onClick={closeSidebar} className="flex min-w-0 items-center gap-1.5">
+              <ControlUiLogo />
+              <Text size="heading-4" className="block truncate">
+                {siteConfig.name}
+              </Text>
+            </Link>
+            <Badge size="sm" className="absolute -top-0.5 left-full ml-1">
+              alpha
+            </Badge>
           </div>
-          {/* biome-ignore lint/a11y/useSemanticElements: a labelled row of sidebar controls, not a form fieldset. */}
-          <div role="group" aria-label="Documentation controls" className="flex items-center gap-1.5">
-            <SkinPresetControls className="min-w-0 flex-1 justify-between" onNavigate={openThemeEditor} />
-            <ButtonLink
-              render={<Link href="/theme-editor" onClick={openThemeEditor} />}
-              variant="surface"
-              size="sm"
-              iconOnly
-              aria-label="Edit theme"
-              title="Edit theme"
-              aria-current={active === "theme-editor" ? "page" : undefined}
-            >
-              <HugeiconsIcon aria-hidden icon={CustomizeIcon} size={16} strokeWidth={1.7} />
-            </ButtonLink>
-          </div>
-        </SidebarHeader>
-        <SidebarContent>
-          {openDoor ? (
-            <SidebarDoorPane
-              door={openDoor}
+          <DocsSearchTrigger />
+        </div>
+        {/* biome-ignore lint/a11y/useSemanticElements: a labelled row of sidebar controls, not a form fieldset. */}
+        <div role="group" aria-label="Documentation controls" className="flex items-center gap-1.5">
+          <SkinPresetControls className="min-w-0 flex-1 justify-between" onNavigate={openThemeEditor} />
+          <ButtonLink
+            render={<Link href="/theme-editor" onClick={openThemeEditor} />}
+            variant="surface"
+            size="sm"
+            iconOnly
+            aria-label="Edit theme"
+            title="Edit theme"
+            aria-current={active === "theme-editor" ? "page" : undefined}
+          >
+            <HugeiconsIcon aria-hidden icon={CustomizeIcon} size={16} strokeWidth={1.7} />
+          </ButtonLink>
+        </div>
+      </SidebarHeader>
+      <SidebarContent>
+        {openDoor ? (
+          <SidebarDoorPane
+            door={openDoor}
+            active={active}
+            onNavigate={closeSidebar}
+            onBack={() => setNavigation({ pathname, showRoot: true })}
+          >
+            <DoorNavGroups
+              doorId={openDoor.id}
+              referenceGroups={guideSections.reference}
+              blocks={blocks}
+              skills={skills}
+              skillConcerns={skillConcerns}
               active={active}
               onNavigate={closeSidebar}
-              onBack={() => setNavigation({ pathname, showRoot: true })}
-            >
-              <DoorNavGroups
-                doorId={openDoor.id}
-                referenceGroups={guideSections.reference}
-                blocks={blocks}
-                skills={skills}
-                skillConcerns={skillConcerns}
-                active={active}
-                onNavigate={closeSidebar}
-              />
-            </SidebarDoorPane>
-          ) : (
-            <>
-              {startGroup ? <StartCard steps={startGroup} active={active} onNavigate={closeSidebar} /> : null}
-              <SidebarDoorMenu doors={sidebarDoors} onNavigate={closeSidebar} />
-              <CatalogNavGroups
-                active={active}
-                onNavigate={closeSidebar}
-                kits={kits}
-                components={components}
-                hooks={hooks}
-                utils={utils}
-                extensions={extensions}
-              />
-            </>
-          )}
-        </SidebarContent>
+            />
+          </SidebarDoorPane>
+        ) : (
+          <>
+            {startGroup ? <StartCard steps={startGroup} active={active} onNavigate={closeSidebar} /> : null}
+            <SidebarDoorMenu doors={sidebarDoors} onNavigate={closeSidebar} />
+            <CatalogNavGroups
+              active={active}
+              onNavigate={closeSidebar}
+              kits={kits}
+              components={components}
+              hooks={hooks}
+              utils={utils}
+              extensions={extensions}
+            />
+          </>
+        )}
+      </SidebarContent>
 
-        <SidebarFooter>
-          <div className="flex items-center justify-between gap-2">
-            <ThemeModeSwitch />
-            <Text as="p" size="micro" tone="muted" className="text-right">
-              by{" "}
-              <a
-                href={siteConfig.author.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="whitespace-nowrap underline decoration-sidebar-foreground/30 underline-offset-2 hover:text-sidebar-foreground"
-              >
-                {siteConfig.author.name}
-              </a>
-            </Text>
-          </div>
-        </SidebarFooter>
-      </div>
+      <SidebarFooter>
+        <div className="flex items-center justify-between gap-2">
+          <ThemeModeSwitch />
+          <Text as="p" size="micro" tone="muted" className="text-right">
+            by{" "}
+            <TextLink href={siteConfig.author.href} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap">
+              {siteConfig.author.name}
+            </TextLink>
+          </Text>
+        </div>
+      </SidebarFooter>
 
       <SidebarRail />
     </Sidebar>

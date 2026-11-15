@@ -44,7 +44,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 - `@/components/control-ui/chat-composer-editor/schema`: `createEditorSchema`
 - `@/components/control-ui/chat-composer-editor/serialize`: `serializeDoc`, `docFromText`, `sliceFromText`, `serializeSlice`
 - `@/components/control-ui/chat-composer-editor/types`: types `ChatComposerEditorApi`, `ChatComposerEditorOverlayProps`, `ChatComposerEditorExtension`, `ChatComposerEditorProps`
-- `@/components/control-ui/chat-composer`: `useChatComposerContext`, `ChatComposer`, `ChatComposerShell`, `ChatComposerAccent`, `ChatComposerTextarea`, `ChatComposerToolbar`, `ChatComposerTools`, `ChatComposerFooter`, `ChatComposerSubmit`, types `ChatComposerShellProps`, `ChatComposerAccentProps`, `ChatComposerTextareaProps`, `ChatComposerToolbarProps`, `ChatComposerToolsProps`, `ChatComposerFooterProps`, `ChatComposerSubmitProps`
+- `@/components/control-ui/chat-composer`: `useChatComposerContext`, `ChatComposer`, `ChatComposerShell`, `ChatComposerAccent`, `ChatComposerHeader`, `ChatComposerTextarea`, `ChatComposerToolbar`, `ChatComposerTools`, `ChatComposerFooter`, `ChatComposerSubmit`, types `ChatComposerShellProps`, `ChatComposerAccentProps`, `ChatComposerHeaderProps`, `ChatComposerTextareaProps`, `ChatComposerToolbarProps`, `ChatComposerToolsProps`, `ChatComposerFooterProps`, `ChatComposerSubmitProps`
 
 ## Composition
 
@@ -54,6 +54,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 <ChatComposer>
   <ChatComposerShell>
     <ChatComposerAccent />
+    <ChatComposerHeader />
     <ChatComposerTextarea />
     <ChatComposerToolbar>
       <ChatComposerTools />
@@ -158,6 +159,7 @@ Scopes, their parts, and the state attributes each part carries. Selector patter
 - `chat-composer`
   - `accent`
   - `footer`
+  - `header`
   - `mention`: `data-icon` (any value), `data-id` (any value), `data-mention` (any value)
   - `mention-description`
   - `mention-icon`

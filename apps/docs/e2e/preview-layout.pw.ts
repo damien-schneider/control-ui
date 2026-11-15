@@ -93,8 +93,8 @@ for (const width of [390, 1440]) {
   test(`aspect ratio stays sized and interactive at ${width}px without presentation wrappers in its code`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/components/aspect-ratio");
-    const widescreen = page.locator("#preview").getByText("aspect-video", { exact: true });
-    const square = page.locator("#preview").getByText("aspect-square", { exact: true });
+    const widescreen = page.locator("#preview").getByText("aspect-video", { exact: true }).locator("..");
+    const square = page.locator("#preview").getByText("aspect-square", { exact: true }).locator("..");
     await waitForReactHydration(widescreen);
     await expect
       .poll(async () => {
@@ -115,7 +115,7 @@ for (const width of [390, 1440]) {
     await slider.focus();
     await slider.press("Home");
     await expect(slider).toHaveAttribute("aria-valuenow", "1");
-    const surface = example.getByText("1.00 / 1", { exact: true });
+    const surface = example.getByText("1.00 / 1", { exact: true }).locator("..");
     await expect(surface).toBeVisible();
     const bounds = await surface.boundingBox();
     if (!bounds) throw new Error("Runtime aspect ratio is not measurable");

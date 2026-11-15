@@ -5,7 +5,7 @@ import { ArrowDown } from "lucide-react";
 import type { ComponentProps, CSSProperties, MouseEvent, ReactNode, RefObject } from "react";
 import { createContext, useContext, useState } from "react";
 import type { RenderProp } from "@/components/control-ui/control-props";
-import { ChatThreadAnnounceContext } from "@/components/control-ui/hooks/use-chat-message";
+import { ChatThreadAnnounceContext, ChatThreadDockContext } from "@/components/control-ui/hooks/use-chat-message";
 import { useChatThreadScroll } from "@/components/control-ui/hooks/use-chat-thread-scroll";
 import type { ChatLayoutKnobStyle } from "@/components/control-ui/knob-contracts/chat-layout-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -132,7 +132,7 @@ export function ChatThread({
   "aria-labelledby": ariaLabelledby,
   ...props
 }: ChatThreadProps) {
-  const { viewportRef, contentRef, atBottom, scrollToBottom } = useChatThreadScroll();
+  const { viewportRef, contentRef, dockRef, atBottom, scrollToBottom, followFromDock } = useChatThreadScroll();
   const [announcement, setAnnouncement] = useState("");
   const [announce] = useState(() => (message: string) => {
     // A trailing no-break space makes a repeated message a real text change, so it is read again.
@@ -155,15 +155,20 @@ export function ChatThread({
           <ScrollArea
             aria-label={ariaLabel ?? (ariaLabelledby ? undefined : "Conversation")}
             aria-labelledby={ariaLabelledby}
-            className="flex min-h-0 flex-1 flex-col"
-            viewportClassName="min-h-0 flex-1"
+            className="min-h-0 flex-1"
             contentClassName="flex min-h-full flex-col"
             viewportRef={viewportRef}
             lockAxis="x"
             mask={false}
             blur={false}
           >
-            <div ref={contentRef} className="relative flex min-w-0 flex-1 flex-col">
+            <div
+              ref={contentRef}
+              data-control-ui="chat-thread"
+              data-control-family="chat-layout"
+              data-slot="track"
+              className="relative flex min-w-0 flex-1 flex-col"
+            >
               <div
                 data-control-ui="chat-thread"
                 data-control-family="chat-layout"
@@ -174,12 +179,13 @@ export function ChatThread({
               </div>
               {composer ? (
                 <div
+                  ref={dockRef}
                   data-control-ui="chat-thread"
                   data-control-family="chat-layout"
                   data-slot="dock"
                   className="sticky bottom-0 z-1 shrink-0"
                 >
-                  {composer}
+                  <ChatThreadDockContext.Provider value={followFromDock}>{composer}</ChatThreadDockContext.Provider>
                 </div>
               ) : null}
             </div>

@@ -110,7 +110,7 @@ const fields: readonly FilterBarField[] = [
   {
     id: "status",
     label: "Status",
-    icon: <CircleIcon className="size-3.5" aria-hidden="true" />,
+    icon: <CircleIcon aria-hidden="true" />,
     operators: ["is", "is-not", "in"],
     options: [
       { value: "open", label: "Open" },
@@ -118,19 +118,19 @@ const fields: readonly FilterBarField[] = [
       { value: "done", label: "Done" },
     ],
   },
-  { id: "title", label: "Title", icon: <TypeIcon className="size-3.5" aria-hidden="true" />, operators: ["contains"] },
+  { id: "title", label: "Title", icon: <TypeIcon aria-hidden="true" />, operators: ["contains"] },
   {
     id: "votes",
     label: "Votes",
-    icon: <HashIcon className="size-3.5" aria-hidden="true" />,
+    icon: <HashIcon aria-hidden="true" />,
     type: "number",
     operators: ["is", "gt", "gte", "lt", "lte"],
   },
-  { id: "featured", label: "Featured", icon: <StarIcon className="size-3.5" aria-hidden="true" />, type: "boolean", operators: ["is"] },
+  { id: "featured", label: "Featured", icon: <StarIcon aria-hidden="true" />, type: "boolean", operators: ["is"] },
   {
     id: "labels",
     label: "Labels",
-    icon: <TagIcon className="size-3.5" aria-hidden="true" />,
+    icon: <TagIcon aria-hidden="true" />,
     operators: ["in", "is-empty", "is-not-empty"],
     options: [
       { value: "design", label: "Design" },
@@ -299,6 +299,7 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 - `--cui-filter-bar-font-size`: `var(--text-label)`
 - `--cui-filter-bar-hover-background`: `var(--hover-fill)`
 - `--cui-filter-bar-remove-icon`: `calc(var(--spacing) * 3)`
+- `--cui-filter-bar-icon`: `calc(var(--spacing) * 3.5)`
 
 ## Links
 

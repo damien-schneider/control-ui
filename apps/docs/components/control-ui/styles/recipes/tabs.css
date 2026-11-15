@@ -128,6 +128,12 @@
     font-weight: var(--cui-tabs-font-weight);
   }
 
+  :where([data-control-family="tabs"][data-slot="tab"] > svg) {
+    inline-size: calc(var(--spacing) * 4);
+    block-size: calc(var(--spacing) * 4);
+    flex-shrink: 0;
+  }
+
   :where([data-control-family="tabs"][data-slot="list"]:not([data-orientation="vertical"], [data-variant="browser"]) [data-slot="tab"]) {
     flex-grow: 1;
   }
@@ -157,60 +163,6 @@
       outline: var(--focus-ring-width) solid Highlight;
       outline-offset: calc(var(--focus-ring-width) * -1);
     }
-  }
-
-  :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"]) {
-    --_tabs-browser-corner-double: calc(var(--_tabs-trigger-radius-fit) + var(--_tabs-trigger-radius-fit));
-    --_tabs-browser-inset: calc(var(--_tabs-trigger-radius-fit) + var(--cui-tabs-surface-radius));
-    min-block-size: calc(var(--cui-tabs-trigger-height) + var(--cui-tabs-list-padding));
-    inline-size: auto;
-    align-items: flex-end;
-    isolation: isolate;
-    z-index: 1;
-    --cui-tabs-list-background: transparent;
-    --cui-tabs-list-shadow: inset 0 calc(-1 * var(--cui-tabs-border-width)) 0 var(--cui-tabs-border-color);
-    --cui-tabs-active-foreground: var(--foreground);
-    border-radius: var(--cui-tabs-list-radius) var(--cui-tabs-list-radius) 0 0;
-  }
-
-  :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"] [data-slot="indicator"]) {
-    --_tabs-browser-indicator-width: calc(var(--active-tab-width) + var(--_tabs-browser-corner-double));
-    --_tabs-browser-indicator-x: calc(var(--active-tab-left) - var(--_tabs-trigger-radius-fit));
-    background: none;
-    box-shadow: none;
-  }
-
-  :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"] [data-slot="indicator"])::before {
-    content: "";
-    position: absolute;
-    inset: 0 var(--_tabs-trigger-radius-fit);
-    border: var(--cui-tabs-border-width) solid var(--cui-tabs-border-color);
-    border-bottom: none;
-    border-radius: var(--_tabs-trigger-radius-fit) var(--_tabs-trigger-radius-fit) 0 0;
-    background: var(--cui-tabs-surface-background);
-  }
-
-  :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"] [data-slot="indicator"])::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0;
-    block-size: var(--_tabs-trigger-radius-fit);
-    background:
-      radial-gradient(
-        circle at 0 -1px,
-        transparent calc(var(--_tabs-trigger-radius-fit) - 0.5px),
-        var(--cui-tabs-border-color) var(--_tabs-trigger-radius-fit) calc(var(--_tabs-trigger-radius-fit) + 0.5px),
-        var(--cui-tabs-surface-background) calc(var(--_tabs-trigger-radius-fit) + 1px)
-      )
-      left / calc(var(--_tabs-trigger-radius-fit) + 1px) 100% no-repeat,
-      radial-gradient(
-        circle at 100% -1px,
-        transparent calc(var(--_tabs-trigger-radius-fit) - 0.5px),
-        var(--cui-tabs-border-color) var(--_tabs-trigger-radius-fit) calc(var(--_tabs-trigger-radius-fit) + 0.5px),
-        var(--cui-tabs-surface-background) calc(var(--_tabs-trigger-radius-fit) + 1px)
-      )
-      right / calc(var(--_tabs-trigger-radius-fit) + 1px) 100% no-repeat,
-      linear-gradient(var(--cui-tabs-surface-background) 0 0) center / calc(100% - var(--_tabs-browser-corner-double)) 100% no-repeat;
   }
 
   :where([data-control-family="tabs"][data-slot="list"][data-single="true"]) {
@@ -245,14 +197,6 @@
     margin-block-start: calc(var(--spacing) * 3);
   }
 
-  :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"] ~ [data-slot="panel"]) {
-    border: var(--cui-tabs-border-width) solid var(--cui-tabs-border-color);
-    border-top: none;
-    border-radius: 0 0 var(--cui-tabs-surface-radius) var(--cui-tabs-surface-radius);
-    background: var(--cui-tabs-surface-background);
-    padding: calc(var(--spacing) * 4);
-  }
-
   :where([data-control-family="tabs"][data-slot="surface"]) {
     min-inline-size: 0;
     border: var(--cui-tabs-border-width) solid var(--cui-tabs-border-color);
@@ -260,11 +204,18 @@
     background: var(--cui-tabs-surface-background);
   }
 
-  :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"] [data-control-family="tabs"][data-slot="tab"]) {
-    border-start-start-radius: var(--_tabs-trigger-radius-fit);
-    border-start-end-radius: var(--_tabs-trigger-radius-fit);
-    border-end-end-radius: 0;
-    border-end-start-radius: 0;
+  :where([data-control-family="tabs"][data-slot="tab"][data-closable="true"]) {
+    padding-inline-end: calc(var(--cui-tabs-trigger-padding-inline-end) + var(--control-h-xs));
+  }
+
+  :where([data-control-family="tabs"][data-slot="tab-frame"] > [data-tabs-close="true"]) {
+    inset-inline-end: var(--spacing);
+  }
+
+  :where(
+    [data-control-family="tabs"][data-slot="list"]:not([data-orientation="vertical"], [data-variant="browser"]) [data-slot="tab-frame"]
+  ) {
+    flex-grow: 1;
   }
 
   @media (pointer: coarse) {

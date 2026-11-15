@@ -5,7 +5,9 @@ import type { ReactNode } from "react";
 import { CodeBlock, CommandBlock } from "@/app/(features)/components/source";
 import { StatusBadge } from "@/app/(features)/components/status";
 import type { Composition, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
+import { Badge } from "@/components/control-ui/ui/badge";
 import { ButtonLink } from "@/components/control-ui/ui/button";
+import { Item, ItemActions, ItemContent, ItemDescription, ItemGroup, ItemTitle } from "@/components/control-ui/ui/item";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
 
 import { CompositionTree } from "./composition-tree";
@@ -144,7 +146,7 @@ export function DependencySection({
   return (
     <section id={id} className="min-w-0 scroll-mt-20">
       <SectionTitle title={title} description={description} />
-      <div className="docs-panel divide-y divide-border overflow-hidden">
+      <ItemGroup role="group" className="gap-2">
         {files.map((file) => (
           <DependencyRow key={file.path} name={file.label} detail={file.path} kind={supportFileLabel(file)} />
         ))}
@@ -157,7 +159,7 @@ export function DependencySection({
             href={dependency.href}
           />
         ))}
-      </div>
+      </ItemGroup>
       {installCommand ? (
         <div className="mt-3 grid min-w-0 gap-2">
           <CommandBlock label="Registry command" command={installCommand} />
@@ -180,27 +182,22 @@ export function RegistryDependencyReferences({ dependencies }: { dependencies: D
 }
 
 function DependencyRow({ name, detail, kind, href }: { name: string; detail: string; kind: string; href?: string }) {
-  const content = (
-    <>
-      <span className="flex min-w-0 items-baseline gap-2">
-        <Text weight="medium">{name}</Text>
-        <Text as="code" size="label" tone="muted" className="min-w-0 truncate">
-          {detail}
-        </Text>
-      </span>
-      <Text size="caption" tone="muted" className="shrink-0">
-        {kind}
-      </Text>
-    </>
-  );
-  const className = "flex min-w-0 items-baseline justify-between gap-4 px-4 py-2.5";
-
-  if (!href) return <div className={className}>{content}</div>;
-
   return (
-    <Link href={href} className={`${className} hover:bg-muted/40`}>
-      {content}
-    </Link>
+    <Item variant="outline" render={href ? <Link href={href} /> : undefined} className="min-w-0">
+      <ItemContent>
+        <ItemTitle>{name}</ItemTitle>
+        <ItemDescription>
+          <Text as="code" mono>
+            {detail}
+          </Text>
+        </ItemDescription>
+      </ItemContent>
+      <ItemActions>
+        <Badge variant="outline" size="sm">
+          {kind}
+        </Badge>
+      </ItemActions>
+    </Item>
   );
 }
 

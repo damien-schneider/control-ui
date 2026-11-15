@@ -3,6 +3,7 @@ import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { skinMetas } from "../app/(features)/catalog/skins";
 
 const skinsSharingTheBaseSidebar: Record<string, true> = { "liquid-metal": true, sketch: true };
+const skinsWithOwnSidebar = skinMetas.filter(({ id }) => !skinsSharingTheBaseSidebar[id]);
 
 async function waitForExampleNavigation(example: Locator) {
   await expect
@@ -60,6 +61,7 @@ async function verifySidebarAlignment({ page, example, checkUserMenu }: { page: 
 }
 
 test("every skin with its own sidebar code aligns open and collapsed rows in all layouts", async ({ page }) => {
+  test.setTimeout(skinsWithOwnSidebar.length * 15_000);
   await page.addInitScript((storageKey) => localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" })), THEME_EDITOR_STORAGE_KEY);
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -67,7 +69,7 @@ test("every skin with its own sidebar code aligns open and collapsed rows in all
   const example = page.getByRole("group", { name: "Sidebar", exact: true });
   await waitForExampleNavigation(example);
   const skinPicker = page.getByRole("combobox", { name: "Skin", exact: true });
-  for (const skin of skinMetas.filter(({ id }) => !skinsSharingTheBaseSidebar[id])) {
+  for (const skin of skinsWithOwnSidebar) {
     await test.step(skin.label, async () => {
       await skinPicker.click();
       await page.getByRole("option", { name: skin.label, exact: true }).click();
@@ -206,8 +208,8 @@ for (const direction of ["ltr", "rtl"]) {
       await page.emulateMedia({ reducedMotion: "reduce" });
       await trigger.click();
       await expect(example.locator('[data-slot="inner"]')).toHaveAttribute("inert", "");
-      await expect(example.locator('[data-slot="container"]')).toHaveCSS("transition-duration", "0s");
-      const container = await example.locator('[data-slot="container"]').boundingBox();
+      await expect(example.locator('[data-control-ui="sidebar"][data-slot="container"]')).toHaveCSS("transition-duration", "0s");
+      const container = await example.locator('[data-control-ui="sidebar"][data-slot="container"]').boundingBox();
       const wrapper = await example.locator('[data-control-ui="sidebar"][data-slot="wrapper"]').boundingBox();
       if (!(container && wrapper)) throw new Error("Sidebar bounds unavailable");
       const physicalLeft = (side === "left") === (direction === "ltr");

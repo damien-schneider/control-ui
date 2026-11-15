@@ -4,6 +4,7 @@ import { CircleIcon, FrameIcon, HandIcon, LayersIcon, MousePointer2Icon, Sliders
 import type { ComponentProps, KeyboardEvent, PointerEvent, ReactNode } from "react";
 import { useRef, useState } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
+import { Badge } from "@/components/control-ui/ui/badge";
 import { Button } from "@/components/control-ui/ui/button";
 import { Drawer, DrawerContent, DrawerTitle } from "@/components/control-ui/ui/drawer";
 import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/control-ui/ui/empty";
@@ -66,10 +67,10 @@ const TOOLS: readonly { tool: DesignCanvasTool; label: string; shortcut: string;
 ];
 
 const LAYER_ICONS: Record<DesignCanvasLayerKind, ReactNode> = {
-  frame: <FrameIcon className="text-muted-foreground" />,
-  rectangle: <SquareIcon className="text-muted-foreground" />,
-  ellipse: <CircleIcon className="text-muted-foreground" />,
-  text: <TypeIcon className="text-muted-foreground" />,
+  frame: <FrameIcon />,
+  rectangle: <SquareIcon />,
+  ellipse: <CircleIcon />,
+  text: <TypeIcon />,
 };
 
 const NUDGE_DIRECTIONS: Partial<Record<string, { x: number; y: number }>> = {
@@ -279,7 +280,6 @@ export function DesignCanvasBlock({
         panOnDrag={tool === "hand" ? "anywhere" : "background"}
         chrome="embedded"
         className={cn("size-full", drawingKind && "cursor-crosshair")}
-        style={{ "--cui-infinite-canvas-background": "var(--muted)" }}
         onPointerDown={beginDrawOrDeselect}
         onPointerMove={resizeDraft}
         onPointerUp={commitDraft}
@@ -392,11 +392,7 @@ function DesignCanvasPanel({ label, title, inDrawer = false, children }: DesignC
     <aside aria-label={label} className="flex min-h-0 flex-1 flex-col">
       <div className="flex h-11 shrink-0 items-center border-b px-3">
         {inDrawer ? (
-          <DrawerTitle
-            className="truncate"
-            title={title}
-            style={{ "--cui-popup-title-font-size": "var(--text-caption)", "--cui-popup-title-font-weight": "var(--font-weight-medium)" }}
-          >
+          <DrawerTitle className="truncate" title={title}>
             {title}
           </DrawerTitle>
         ) : (
@@ -440,7 +436,6 @@ function DesignCanvasLayerList({ layers, selectedLayerId, emptyTitle, emptyDescr
             active={layer.id === selectedLayerId}
             aria-pressed={layer.id === selectedLayerId}
             className="w-full justify-start"
-            style={{ "--cui-button-icon": "calc(var(--spacing) * 3.5)" }}
             onClick={() => onSelect(layer.id)}
           >
             {LAYER_ICONS[layer.kind]}
@@ -504,11 +499,9 @@ function DesignCanvasLayerNode({ layer, selected, onSelect, onKeyDown, onLayerCh
       {selected ? (
         <>
           <span aria-hidden="true" className="absolute inset-0 outline-2 outline-primary" />
-          <span className="absolute inset-x-0 top-full mx-auto mt-1.5 flex w-max rounded-sm bg-primary px-1 whitespace-nowrap text-primary-foreground">
-            <Text size="micro" numeric>
-              {layer.width} × {layer.height}
-            </Text>
-          </span>
+          <Badge size="sm" color="primary" className="absolute inset-x-0 top-full mx-auto mt-1.5">
+            {layer.width} × {layer.height}
+          </Badge>
         </>
       ) : null}
     </InfiniteCanvasItem>

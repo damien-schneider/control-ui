@@ -45,7 +45,7 @@ export function PrimitiveDropzoneExample() {
       <div className="mt-3">
         <DropzoneClear />
       </div>
-      <DropzoneStatus className="sr-only" />
+      <DropzoneStatus />
     </Dropzone>
   );
 }

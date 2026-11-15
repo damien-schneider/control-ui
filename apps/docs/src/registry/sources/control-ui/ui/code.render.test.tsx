@@ -79,10 +79,16 @@ describe("Code renders", () => {
     expect(html).toContain("const answer = 42;");
   });
 
-  test("a headerless surface overlays copy by default and drops it on request", () => {
-    const withCopy = renderToString(
+  test("a headerless surface offers copy by default and drops it on request", () => {
+    const installAndRun = "bun install\nbun run dev";
+    const oneLine = renderToString(
       <Code chrome="embedded">
         <CodeContent code="bun run dev" highlight="none" />
+      </Code>,
+    );
+    const multiLine = renderToString(
+      <Code chrome="embedded">
+        <CodeContent code={installAndRun} highlight="none" />
       </Code>,
     );
     const withoutCopy = renderToString(
@@ -91,8 +97,10 @@ describe("Code renders", () => {
       </Code>,
     );
 
-    expect(withCopy).toContain('data-code-floating="true"');
-    expect(withoutCopy).not.toContain('data-code-floating="true"');
+    expect(oneLine).toContain('aria-label="Copy code"');
+    expect(oneLine).not.toContain('data-code-floating="true"');
+    expect(multiLine).toContain('data-code-floating="true"');
+    expect(withoutCopy).not.toContain('aria-label="Copy code"');
   });
 
   test("CRLF sources render one row per line without the carriage return", () => {

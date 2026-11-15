@@ -5,6 +5,7 @@ import { CodeBlock, CommandBlock } from "@/app/(features)/components/source";
 import { registryInstallCommand } from "@/app/(features)/model/registry";
 import type { ComponentId, DocsExtension, KitId } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
+import { ButtonLink } from "@/components/control-ui/ui/button";
 import { Card, CardContent } from "@/components/control-ui/ui/card";
 import { Text } from "@/components/control-ui/ui/typography";
 import { hasExtensionDemo } from "./extension-demo-ids";
@@ -29,9 +30,9 @@ export function AvailableExtensions({ hostId, extensions }: { hostId: KitId | Co
           <Card key={extension.id} size="sm" className="min-w-0">
             <CardContent>
               <div className="mb-1 flex items-center gap-2">
-                <Link href={`/extensions/${extension.id}`} className="font-medium hover:underline">
+                <ButtonLink render={<Link href={`/extensions/${extension.id}`} />} variant="link">
                   {extension.name}
-                </Link>
+                </ButtonLink>
                 <Badge variant="outline" size="sm">
                   {extension.attach === "anchored" ? "Anchored" : "Root-mounted"}
                 </Badge>

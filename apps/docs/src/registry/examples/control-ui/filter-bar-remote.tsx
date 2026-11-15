@@ -69,7 +69,7 @@ export function FilterBarRemoteExample() {
     {
       id: "assignee",
       label: "Assignee",
-      icon: <UserIcon className="size-3.5" aria-hidden="true" />,
+      icon: <UserIcon aria-hidden="true" />,
       operators: ["is", "in"],
       optionsMode: "remote",
       options: search.options,

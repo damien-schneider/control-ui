@@ -11,6 +11,11 @@
     transition-timing-function: var(--ease-standard);
   }
 
+  :where([data-control-family="chat-message"][data-slot="actions"] > [data-control-family="action-bar"][data-slot="root"]) {
+    margin-block-start: 0;
+    min-block-size: auto;
+  }
+
   @media (hover: hover) and (pointer: fine) {
     :where(
         :is([data-control-family="chat-layout"][data-slot="turn"], [data-control-family="chat-message"][data-slot="editable"])

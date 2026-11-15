@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { ComponentPreview } from "@/app/(features)/components/previews";
 import type { ExtensionId } from "@/app/(features)/model/types";
 import { ControlEffectsRoot } from "@/components/control-ui/extensions/control-effects-root";
 import type { ControlEffect } from "@/components/control-ui/skin";
-import { Button } from "@/components/control-ui/ui/button";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
+import { Toggle, ToggleGroup } from "@/components/control-ui/ui/toggle";
 import { Text } from "@/components/control-ui/ui/typography";
 import { controlEffectsDemoComponentId } from "./extension-demo-ids";
 
@@ -24,39 +25,28 @@ const controlEffectPresets = [
 // demo chrome never wears effects it switches.
 function ControlEffectsDemo() {
   const [effects, setEffects] = useState<ControlEffect[]>(["top-shine", "ripple", "hover-circle"]);
-
-  function toggleEffect(effect: ControlEffect) {
-    setEffects((current) => (current.includes(effect) ? current.filter((item) => item !== effect) : [...current, effect]));
-  }
+  const labelId = useId();
 
   return (
     <div className="grid min-w-0 gap-3">
       <div className="flex flex-wrap items-center gap-1.5">
-        <Text size="caption" weight="medium" tone="muted">
+        <Text id={labelId} size="caption" weight="medium" tone="muted">
           Effects
         </Text>
-        {controlEffectPresets.map((preset) => {
-          const active = effects.includes(preset.id);
-
-          return (
-            <Button
-              key={preset.id}
-              type="button"
-              variant={active ? "surface" : "quiet"}
-              size="xs"
-              active={active}
-              aria-pressed={active}
-              onClick={() => toggleEffect(preset.id)}
-            >
+        <ToggleGroup multiple value={effects} onValueChange={setEffects} aria-labelledby={labelId} className="flex-wrap">
+          {controlEffectPresets.map((preset) => (
+            <Toggle key={preset.id} value={preset.id} size="xs">
               {preset.label}
-            </Button>
-          );
-        })}
+            </Toggle>
+          ))}
+        </ToggleGroup>
       </div>
       <ControlEffectsRoot effects={effects}>
-        <div className="flex w-full justify-center rounded-lg border border-border/70 bg-background px-4 py-6">
-          <ComponentPreview componentId={controlEffectsDemoComponentId} />
-        </div>
+        <Card size="sm">
+          <CardContent className="flex justify-center">
+            <ComponentPreview componentId={controlEffectsDemoComponentId} />
+          </CardContent>
+        </Card>
       </ControlEffectsRoot>
     </div>
   );

@@ -155,7 +155,7 @@
     min-block-size: var(--cui-popup-item-min-height);
   }
 
-  :where([data-control-family="popup"][data-popup-part="item"] > svg) {
+  :where([data-control-family="popup"]:is([data-popup-part="item"], [data-slot="item-text"]) > svg) {
     inline-size: var(--cui-popup-item-icon-size);
     block-size: var(--cui-popup-item-icon-size);
     flex-shrink: 0;

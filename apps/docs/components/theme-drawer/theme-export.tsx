@@ -1,9 +1,12 @@
 "use client";
 
+import { ChevronRightIcon } from "lucide-react";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import { Button } from "@/components/control-ui/ui/button";
+import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/control-ui/ui/card";
 import { Code, CodeContent } from "@/components/control-ui/ui/code";
-import { Heading, Text } from "@/components/control-ui/ui/typography";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
+import { Text } from "@/components/control-ui/ui/typography";
 import { CopySwap } from "@/components/copy-swap";
 import { siteConfig } from "@/lib/site-config";
 import { SKIN_META_BY_ID } from "./presets";
@@ -30,39 +33,40 @@ Explain the proposed changes before editing, then verify the theme in the applic
   const promptCopy = useCopyToClipboard({ text: prompt });
 
   return (
-    <section aria-label="Use this theme" className="rounded-(--radius-panel) border border-border bg-muted/30 p-4">
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <div className="min-w-0 max-w-xl">
-          <Heading level={2} size="heading-4">
-            Use this theme
-          </Heading>
-          <Text as="p" size="caption" tone="muted" className="mt-1 text-pretty">
-            Copy a prompt with the {skin.label} skin and your current edits to paste into your coding agent, or export just your CSS
-            overrides.
-          </Text>
-        </div>
-        <div className="flex flex-wrap gap-2">
+    <Card size="sm" role="region" aria-label="Use this theme">
+      <CardHeader>
+        <CardTitle render={(props) => <h2 {...props} />}>Use this theme</CardTitle>
+        <CardDescription>
+          Copy a prompt with the {skin.label} skin and your current edits to paste into your coding agent, or export just your CSS
+          overrides.
+        </CardDescription>
+        <CardAction className="flex flex-wrap gap-2">
           <Button variant="quiet" size="sm" onClick={cssCopy.handleCopy}>
             <CopySwap copied={cssCopy.status === "copied"} idleLabel="Copy CSS overrides" copiedLabel="CSS copied" />
           </Button>
           <Button variant="surface" size="sm" onClick={promptCopy.handleCopy}>
             <CopySwap copied={promptCopy.status === "copied"} idleLabel="Copy theme prompt" copiedLabel="Prompt copied" />
           </Button>
-        </div>
-      </div>
-      {cssCopy.status === "failed" || promptCopy.status === "failed" ? (
-        <Text role="alert" as="p" size="caption" tone="danger" className="mt-3">
-          Could not copy {cssCopy.status === "failed" ? "CSS overrides" : "the theme prompt"}. Try again or allow clipboard access.
-        </Text>
-      ) : null}
-      <details className="mt-3">
-        <summary className="cursor-pointer text-muted-foreground">
-          <Text size="caption">Preview agent prompt</Text>
-        </summary>
-        <Code className="mt-3" overflow="wrap">
-          <CodeContent code={prompt} lang="markdown" />
-        </Code>
-      </details>
-    </section>
+        </CardAction>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-3">
+        {cssCopy.status === "failed" || promptCopy.status === "failed" ? (
+          <Text role="alert" as="p" size="caption" tone="danger">
+            Could not copy {cssCopy.status === "failed" ? "CSS overrides" : "the theme prompt"}. Try again or allow clipboard access.
+          </Text>
+        ) : null}
+        <Collapsible>
+          <CollapsibleTrigger>
+            <ChevronRightIcon aria-hidden />
+            <Text size="caption">Preview agent prompt</Text>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <Code className="mt-3" overflow="wrap">
+              <CodeContent code={prompt} lang="markdown" />
+            </Code>
+          </CollapsibleContent>
+        </Collapsible>
+      </CardContent>
+    </Card>
   );
 }

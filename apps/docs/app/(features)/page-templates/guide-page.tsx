@@ -143,7 +143,7 @@ export function GuidePage({
         actions={isThemeEditor ? undefined : <AgentActions name={page.name} />}
       />
 
-      <div className="grid min-w-0 gap-12">
+      <div className="grid min-w-0 grid-cols-1 gap-12">
         <GuidePageContent page={page} integration={integration} themeCategory={themeCategory} />
         {page.faqs && page.faqs.length > 0 ? (
           <section id="faq" className="min-w-0 scroll-mt-20">

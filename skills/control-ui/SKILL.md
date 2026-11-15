@@ -203,6 +203,7 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --text-display--line-height [shared] Line-height paired onto text-display.
 - --text-display--font-weight [shared] Weight paired onto text-display.
 - --text-display--letter-spacing [shared] Tracking paired onto text-display.
+- --text-hero [shared] Fluid hero rung: grows with its container from display up to 2.4× display (landing headlines).
 - --radius [shared] THE single radius knob; the whole scale multiplies from it.
 - --radius-control [shared] Shared control corner (button, trigger, field, chip); ×2 from --radius.
 - --radius-sm [shared] Scale rung: --radius × 0.6.

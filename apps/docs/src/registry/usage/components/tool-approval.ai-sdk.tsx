@@ -18,6 +18,7 @@ import {
   ToolApprovalStatus,
   ToolApprovalTitle,
 } from "@/components/control-ui/tool-approval";
+import { Code, CodeContent } from "@/components/control-ui/ui/code";
 
 export function Example({ part }: { part: ToolUIPart | DynamicToolUIPart }) {
   const { addToolApprovalResponse } = useChat();
@@ -44,7 +45,9 @@ export function Example({ part }: { part: ToolUIPart | DynamicToolUIPart }) {
         </ToolApprovalHeader>
         <ToolApprovalPreview>
           <ToolApprovalField label="Input">
-            <div className="whitespace-pre-wrap wrap-anywhere">{JSON.stringify(part.input, null, 2)}</div>
+            <Code overflow="wrap">
+              <CodeContent code={JSON.stringify(part.input, null, 2)} lang="json" />
+            </Code>
           </ToolApprovalField>
         </ToolApprovalPreview>
       </ToolApprovalBody>

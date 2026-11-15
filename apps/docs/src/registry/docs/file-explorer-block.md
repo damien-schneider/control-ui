@@ -30,6 +30,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 - `empty`
 - `input`
 - `input-group`
+- `item`
 - `live-status`
 - `resizable`
 - `scroll-area`
@@ -101,6 +102,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
 } from "@/components/control-ui/ui/dropdown-menu";
+import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/control-ui/ui/sidebar";
 import { Toggle, ToggleGroup } from "@/components/control-ui/ui/toggle";
 
 const readmeSource = `# Control UI
@@ -116,7 +118,7 @@ const projectFiles = [
     id: "readme",
     name: "README.md",
     kind: "file" as const,
-    icon: <FileTextIcon className="text-info-text" />,
+    icon: <FileTextIcon />,
     description: "Markdown document",
     details: [
       { label: "Size", value: "8 KB" },
@@ -158,7 +160,7 @@ const projectFiles = [
     id: "package-json",
     name: "package.json",
     kind: "file" as const,
-    icon: <FileJsonIcon className="text-[oklch(0.76_0.16_75)]" />,
+    icon: <FileJsonIcon />,
     description: "JSON document",
     details: [
       { label: "Size", value: "2 KB" },
@@ -169,7 +171,7 @@ const projectFiles = [
     id: "biome",
     name: "biome.json",
     kind: "file" as const,
-    icon: <FileCode2Icon className="text-[oklch(0.73_0.16_300)]" />,
+    icon: <FileCode2Icon />,
     description: "Configuration file",
   },
 ];
@@ -282,10 +284,14 @@ export function FileExplorerExample() {
         headerActions={<FinderActions />}
         headerMenuItems={<FinderMenuItems />}
         sidebarFooter={
-          <Button variant="ghost" size="sm" className="w-full justify-start">
-            <Trash2Icon className="size-4" />
-            Trash
-          </Button>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton size="sm">
+                <Trash2Icon />
+                <span>Trash</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
         }
       />
     </div>
@@ -297,23 +303,23 @@ function FinderActions() {
     <>
       <ToggleGroup aria-label="View mode" value={["columns"]}>
         <Toggle value="grid" variant="quiet" size="sm" iconOnly aria-label="Grid view" disabled>
-          <Grid2X2Icon className="size-3.5" />
+          <Grid2X2Icon />
         </Toggle>
         <Toggle value="list" variant="quiet" size="sm" iconOnly aria-label="List view" disabled>
-          <ListIcon className="size-3.5" />
+          <ListIcon />
         </Toggle>
         <Toggle value="columns" variant="quiet" size="sm" iconOnly aria-label="Column view">
-          <Columns3Icon className="size-3.5" />
+          <Columns3Icon />
         </Toggle>
       </ToggleGroup>
       <Button variant="ghost" size="sm" iconOnly aria-label="Share" disabled>
-        <Share2Icon className="size-3.5" />
+        <Share2Icon />
       </Button>
       <Button variant="ghost" size="sm" iconOnly aria-label="Tags" disabled>
-        <TagIcon className="size-3.5" />
+        <TagIcon />
       </Button>
       <Button variant="ghost" size="sm" iconOnly aria-label="More actions" disabled>
-        <MoreHorizontalIcon className="size-3.5" />
+        <MoreHorizontalIcon />
       </Button>
     </>
   );

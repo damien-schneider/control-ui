@@ -75,7 +75,7 @@
     }
   }
 
-  :where([data-control-family="collapsible"][data-slot="trigger"][data-state="open"] > svg) {
+  :where([data-control-family="collapsible"][data-slot="trigger"][data-state="open"] > svg:is(:first-child, :last-child)) {
     rotate: 90deg;
   }
 }

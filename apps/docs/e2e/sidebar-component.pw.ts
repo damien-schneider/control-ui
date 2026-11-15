@@ -13,10 +13,12 @@ for (const side of ["left", "right"] as const) {
     await rail.focus();
     await rail.press("End");
     await expect(rail).toHaveAttribute("aria-valuenow", "420");
-    await expect(preview.locator('[data-slot="container"]')).toHaveCSS("transition-duration", "0s, 0s");
+    await expect(preview.locator('[data-control-ui="sidebar"][data-slot="container"]')).toHaveCSS("transition-duration", "0s, 0s");
     await expect(preview.locator('[data-slot="gap"]')).toHaveCSS("transition-duration", "0s");
     await expect(preview.locator('[data-slot="inner"]')).toHaveCSS("transition-duration", "0s");
-    const containerWidth = await preview.locator('[data-slot="container"]').evaluate((element) => element.getBoundingClientRect().width);
+    const containerWidth = await preview
+      .locator('[data-control-ui="sidebar"][data-slot="container"]')
+      .evaluate((element) => element.getBoundingClientRect().width);
     expect(containerWidth).toBe(420);
     await rail.press(side === "left" ? "ArrowLeft" : "ArrowRight");
     await expect(rail).toHaveAttribute("aria-valuenow", "410");
@@ -78,7 +80,7 @@ test("collapsed navigation stays outside keyboard navigation and respects reduce
   await page.goto("/components/sidebar");
   const preview = page.getByRole("group", { name: "Resizable", exact: true });
   const rail = preview.getByRole("separator", { name: "Resize sidebar", exact: true });
-  const container = preview.locator('[data-slot="container"]');
+  const container = preview.locator('[data-control-ui="sidebar"][data-slot="container"]');
   await expect(rail).toHaveAttribute("data-resize-ready", "");
   await rail.press("Enter");
   await expect(container).toHaveCSS("transition-duration", "0s");

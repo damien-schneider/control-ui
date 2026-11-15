@@ -63,11 +63,13 @@ AppShell includes SidebarProvider. Set scroll once: page uses the document, inse
 import { InboxIcon, SettingsIcon } from "lucide-react";
 import { useState } from "react";
 import { AppShell, AppShellContent, AppShellHeader } from "@/components/control-ui/ui/app-shell";
+import { Avatar, AvatarFallback } from "@/components/control-ui/ui/avatar";
 import { Button } from "@/components/control-ui/ui/button";
 import { PageBody, PageHeader, PageLayout, PageTitle } from "@/components/control-ui/ui/page-layout";
 import {
   Sidebar,
   SidebarContent,
+  SidebarGroup,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -84,25 +86,34 @@ export function PrimitiveAppShellExample() {
     <AppShell layout="contained" scroll="inset" persistOpen={false} keyboardShortcut={null}>
       <Sidebar collapsible="icon">
         <SidebarHeader>
-          <div className="truncate p-2 group-data-[collapsible=icon]:hidden">
-            <Text weight="medium">Sidebar</Text>
-          </div>
-        </SidebarHeader>
-        <SidebarContent>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton isActive tooltip="Inbox">
-                <InboxIcon />
-                <span>Inbox</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton tooltip="Settings">
-                <SettingsIcon />
-                <span>Settings</span>
+              <SidebarMenuButton size="lg" tooltip="Acme" render={<a href="/" />}>
+                <Avatar size="xs" aria-hidden="true">
+                  <AvatarFallback>A</AvatarFallback>
+                </Avatar>
+                <span>Acme</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
+        </SidebarHeader>
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton isActive tooltip="Inbox">
+                  <InboxIcon />
+                  <span>Inbox</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Settings">
+                  <SettingsIcon />
+                  <span>Settings</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroup>
         </SidebarContent>
         <SidebarRail />
       </Sidebar>

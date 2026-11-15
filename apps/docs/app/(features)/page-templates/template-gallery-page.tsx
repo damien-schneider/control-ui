@@ -7,6 +7,7 @@ import { StatusBadge } from "@/app/(features)/components/status";
 import type { TemplateGalleryGroup, TemplateGalleryItem } from "@/app/(features)/model/catalog-gallery";
 import type { IntegrationId } from "@/app/(features)/model/types";
 import { useDocsIntegration } from "@/app/(features)/page-templates/integration";
+import { Card, CardAction, CardContent, CardDescription, CardHeader, CardLink, CardTitle } from "@/components/control-ui/ui/card";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
 import { PageHeader } from "./shared";
 
@@ -54,59 +55,34 @@ export function TemplateGalleryPage({
 }
 
 function TemplatePreviewCard({ item, integration }: { item: TemplateGalleryItem; integration: IntegrationId }) {
-  const nameId = `template-${item.id}-name`;
-  const summaryId = `template-${item.id}-summary`;
-
   return (
-    <article
-      data-template-card={item.id}
-      data-template-kind={item.kind}
-      className="group relative min-w-0 rounded-[var(--radius-panel)] focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-card"
-    >
-      <Link
-        href={item.href}
-        aria-labelledby={nameId}
-        aria-describedby={summaryId}
-        className="absolute inset-0 z-10 rounded-[inherit] outline-none"
-      />
+    <Card data-template-card={item.id} data-template-kind={item.kind} className="min-w-0">
       {item.kind === "screen" ? (
-        <ScreenPreview item={item} integration={integration} />
+        <CardContent className="@container/template-card relative aspect-3/2 min-w-0 overflow-hidden">
+          <DeferredPreview className="absolute inset-0 p-0">
+            <div className="absolute top-0 left-1/2 h-160 w-240 origin-top -translate-x-1/2 scale-32 @sm/template-card:scale-40 @md/template-card:scale-46 @lg/template-card:scale-53 @xl/template-card:scale-60 @2xl/template-card:scale-70 @3xl/template-card:scale-80">
+              <BlockPreview blockId={item.id} integration={integration} />
+            </div>
+          </DeferredPreview>
+        </CardContent>
       ) : (
-        <PatternPreview item={item} integration={integration} />
+        <CardContent className="grid h-60 min-w-0 place-items-center overflow-hidden">
+          <DeferredPreview>
+            <BlockPreview blockId={item.id} integration={integration} />
+          </DeferredPreview>
+        </CardContent>
       )}
-      <div className="mt-3 grid min-w-0 gap-1 px-0.5">
-        <div className="flex min-w-0 items-center gap-2">
-          <Heading level={3} id={nameId} size="heading-4" tone="foreground" className="min-w-0 truncate">
-            {item.name}
-          </Heading>
-          {item.status ? <StatusBadge status={item.status} compact className="shrink-0" /> : null}
-        </div>
-        <Text as="p" id={summaryId} tone="muted">
-          {item.summary}
-        </Text>
-      </div>
-    </article>
-  );
-}
-
-function ScreenPreview({ item, integration }: { item: TemplateGalleryItem; integration: IntegrationId }) {
-  return (
-    <div className="@container/template-card relative aspect-3/2 min-w-0 overflow-hidden rounded-[inherit] border border-border/70 bg-canvas transition-[border-color,background-color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-hover:border-foreground/20 group-hover:bg-muted/35 group-focus-within:border-ring/60">
-      <DeferredPreview className="absolute inset-0 p-0">
-        <div className="absolute top-0 left-1/2 h-160 w-240 origin-top -translate-x-1/2 scale-32 @sm/template-card:scale-40 @md/template-card:scale-46 @lg/template-card:scale-53 @xl/template-card:scale-60 @2xl/template-card:scale-70 @3xl/template-card:scale-80">
-          <BlockPreview blockId={item.id} integration={integration} />
-        </div>
-      </DeferredPreview>
-    </div>
-  );
-}
-
-function PatternPreview({ item, integration }: { item: TemplateGalleryItem; integration: IntegrationId }) {
-  return (
-    <div className="relative grid h-60 min-w-0 place-items-center overflow-hidden rounded-[inherit] border border-border/70 bg-canvas transition-[border-color,background-color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-hover:border-foreground/20 group-hover:bg-muted/35 group-focus-within:border-ring/60">
-      <DeferredPreview>
-        <BlockPreview blockId={item.id} integration={integration} />
-      </DeferredPreview>
-    </div>
+      <CardHeader>
+        <CardTitle render={(props) => <h3 {...props} />}>
+          <CardLink render={<Link href={item.href} />}>{item.name}</CardLink>
+        </CardTitle>
+        <CardDescription>{item.summary}</CardDescription>
+        {item.status ? (
+          <CardAction>
+            <StatusBadge status={item.status} compact />
+          </CardAction>
+        ) : null}
+      </CardHeader>
+    </Card>
   );
 }

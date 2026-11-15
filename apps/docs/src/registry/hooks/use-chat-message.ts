@@ -64,6 +64,13 @@ export function useChatThreadAnnounce() {
   return useContext(ChatThreadAnnounceContext);
 }
 
+export const ChatThreadDockContext = createContext<() => void>(() => {});
+
+/** Brings the reader back to the newest message when they send from the thread's dock; a no-op anywhere else. */
+export function useChatThreadDockSend() {
+  return useContext(ChatThreadDockContext);
+}
+
 const ChatMessageStateContext = createContext<ChatMessageContext | null>(null);
 
 export const ChatMessageStateProvider = ChatMessageStateContext.Provider;

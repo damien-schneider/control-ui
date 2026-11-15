@@ -27,11 +27,12 @@ describe("useMorphTransition", () => {
     expect(html).toMatch(/data-testid="trigger"[^>]*--morph-name:aui-morph-probe/);
   });
 
-  test("hands the shared name to the surface while open", () => {
+  test("hands the shared name to the surface while open and hides the trigger it became", () => {
     const html = renderToString(<Probe open name="aui-morph-probe" />);
 
     expect(morphNames(html)).toHaveLength(1);
     expect(html).toMatch(/data-testid="surface"[^>]*--morph-name:aui-morph-probe/);
+    expect(html).toMatch(/data-testid="trigger" class="morph-trigger-hidden"/);
   });
 
   test("only the end that owns the name wears the preset class", () => {

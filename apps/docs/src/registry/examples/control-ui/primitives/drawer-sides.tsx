@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/control-ui/ui/button";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
 import {
   Drawer,
   DrawerBody,
@@ -33,11 +34,13 @@ export function PrimitiveDrawerSidesExample() {
               <DrawerDescription>Swipe toward the {side} edge or use the close action to dismiss.</DrawerDescription>
             </DrawerHeader>
             <DrawerBody className="min-h-24 items-center justify-center">
-              <div className="w-full rounded-[var(--radius-panel)] bg-foreground/4 p-4 text-center ring-1 ring-inset ring-border">
-                <Text as="p" tone="muted">
-                  Edge-aligned content
-                </Text>
-              </div>
+              <Card size="sm" className="w-full">
+                <CardContent>
+                  <Text as="p" tone="muted" className="text-center">
+                    Edge-aligned content
+                  </Text>
+                </CardContent>
+              </Card>
             </DrawerBody>
             <DrawerFooter>
               <DrawerClose render={<Button variant="surface" />}>Close</DrawerClose>

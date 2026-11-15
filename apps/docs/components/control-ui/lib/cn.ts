@@ -2,7 +2,7 @@ import { type ClassValue, clsx } from "clsx";
 import { type Config, extendTailwindMerge, mergeConfigs } from "tailwind-merge";
 
 // tw-merge only knows stock sizes and misreads these as text COLOR group, so size and color in one cn() collide and one is dropped.
-const textScale = ["micro", "caption", "label", "body", "body-lg", "heading-1", "heading-2", "heading-3", "heading-4", "display"];
+const textScale = ["micro", "caption", "label", "body", "body-lg", "heading-1", "heading-2", "heading-3", "heading-4", "display", "hero"];
 
 // unregistered, tw-merge reads these as shadow COLOR and lets them ride alongside later box-shadow util, so skin's override loses by CSS order instead of argument order
 const shadowScale = ["pop", "soft", "modal", "overlay", "inset"];

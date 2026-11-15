@@ -386,6 +386,12 @@
             "values": []
           },
           {
+            "attribute": "data-closable",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-disabled",
             "source": "external",
             "valueKind": "presence",
@@ -401,6 +407,13 @@
             ]
           }
         ]
+      },
+      "tab-frame": {
+        "family": "tabs",
+        "registryItems": [
+          "tabs"
+        ],
+        "states": []
       }
     }
   },

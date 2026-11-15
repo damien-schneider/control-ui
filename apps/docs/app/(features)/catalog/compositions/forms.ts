@@ -119,7 +119,7 @@ export const formsCompositions = {
           part("FieldSeparator"),
         ),
       ),
-      'FieldLegend names the set: a label-size semibold title by default, or variant="section" for a list title. Re-value --cui-field-legend-foreground, --cui-field-legend-font-size, and --cui-field-legend-font-weight through its style prop for a muted caption legend.',
+      'FieldLegend names the set: a label-size semibold title by default, or variant="section" for a list title.',
     ),
     example(
       "Choice card",
@@ -261,7 +261,7 @@ export const formsCompositions = {
     example(
       "Icon grid",
       part("IconPicker", part("IconPickerSearch"), part("IconPickerColors"), part("IconPickerContent")),
-      "The app supplies icons, search keywords, and color choices. IconPickerColors controls a separate color value; apply it through --cui-icon-picker-foreground.",
+      "The app supplies icons, search keywords, and color choices. IconPickerColors controls a separate color value; pass it to IconPicker as iconColor to tint the grid.",
     ),
   ],
   "color-picker": [

@@ -20,6 +20,10 @@ export const sidebarMenuButtonSizes = ["default", "sm", "lg"] as const;
 
 export type SidebarMenuButtonSize = (typeof sidebarMenuButtonSizes)[number];
 
+export const sidebarMenuIconTones = ["default", "muted", "success", "warning", "danger"] as const;
+
+export type SidebarMenuIconTone = (typeof sidebarMenuIconTones)[number];
+
 export type SidebarGroupLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & SidebarKnobStyle } & {
   render?: RenderProp<ComponentProps<"div">>;
 };
@@ -65,6 +69,7 @@ export type SidebarMenuButtonProps = Omit<ComponentProps<"button">, "style"> & {
   tooltip?: ReactNode;
   variant?: SidebarMenuButtonVariant;
   size?: SidebarMenuButtonSize;
+  iconTone?: SidebarMenuIconTone;
 };
 
 export type SidebarGroupProps = ComponentProps<"div"> & { style?: CSSProperties & SidebarKnobStyle };
@@ -202,6 +207,7 @@ export function SidebarMenuButton({
   isActive = false,
   variant = "default",
   size = "default",
+  iconTone = "default",
   tooltip,
   className,
   children,
@@ -228,6 +234,7 @@ export function SidebarMenuButton({
       "data-slot": "menu-button",
       "data-size": size,
       "data-variant": variant,
+      "data-icon-tone": iconTone,
       "data-active": isActive || undefined,
       "data-indicator": indicator,
       "data-track-item": indicator === "slide" ? "" : undefined,

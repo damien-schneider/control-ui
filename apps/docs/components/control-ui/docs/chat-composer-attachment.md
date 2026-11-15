@@ -185,7 +185,7 @@ function AttachmentComposer() {
                   onRemove={() => removeSeeded(attachment.id)}
                 >
                   <ChatComposerAttachmentPreview>
-                    <div className="h-full w-auto aspect-square bg-[radial-gradient(circle_at_35%_34%,oklch(0.95_0.02_80),oklch(0.62_0.09_260)_22%,oklch(0.14_0.02_260)_68%,oklch(0.06_0.01_260))]" />
+                    <div className="aspect-square h-full w-auto bg-radial-[circle_at_35%_34%] from-accent via-primary to-foreground" />
                   </ChatComposerAttachmentPreview>
                   <ChatComposerAttachmentRemove />
                   <ChatComposerAttachmentProgress />

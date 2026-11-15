@@ -33,6 +33,7 @@ const cardRecipeFile = sourceFile(
 );
 const tabsRecipeFiles = [
   sourceFile("Tabs recipe — paint + @property knobs", "src/registry/sources/control-ui/recipes/tabs.css", "recipe-css"),
+  sourceFile("Tabs recipe — browser variant", "src/registry/sources/control-ui/recipes/tabs-browser.css", "recipe-css"),
   sourceFile("Tabs recipe — panel motion", "src/registry/sources/control-ui/recipes/tabs-motion.css", "recipe-css"),
 ] as const;
 const choiceRecipeFile = sourceFile(
@@ -512,7 +513,7 @@ export const componentEntries = [
         title: "Double sidebar",
         previewClassName: "min-h-0",
         description:
-          'Compose SidebarIconRail and SidebarPanel inside one Sidebar for an icon rail beside a secondary navigation panel. Both share one collapse state, landmark, and mobile sheet: collapsible="icon" keeps the rail and hides the panel. The rail always shows icons with tooltips. layer="raised" lifts a pane onto its own card at the content level; in the inset layout it takes the content card\'s radius, border, and shadow. --sidebar-width sets the combined width.',
+          'Compose SidebarIconRail and SidebarPanel inside one Sidebar for an icon rail beside a secondary navigation panel. Both share one collapse state, landmark, and mobile sheet: collapsible="icon" keeps the rail and hides the panel. The rail always shows icons with tooltips. layer="raised" lifts a pane onto its own card at the content level; in the inset layout it takes the content card\'s radius, border, and shadow. SidebarProvider defaultWidth sets the combined width in pixels.',
         source: sourceFile("Double sidebar", "src/registry/examples/control-ui/primitives/sidebar-double.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/sidebar-double").then((mod) => ({
@@ -2793,7 +2794,7 @@ export const componentEntries = [
     kind: "Component",
     name: "Typography",
     summary:
-      "Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role, className stays layout-only. A bare text-* rung is for HTML React doesn't render as components, such as email HTML; MDX maps its tags to Heading and Text.",
+      "Heading and Text over the token-driven type scale: level is the document outline, size is the rung, tone is the color role, className stays layout-only. TextLink is the underlined link inside prose. A bare text-* rung is for HTML React doesn't render as components, such as email HTML; MDX maps its tags to Heading and Text.",
     shadcnDocsUrl: "https://ui.shadcn.com/docs/components/typography",
     paths: {
       registry: {

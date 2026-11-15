@@ -165,59 +165,6 @@
           "data-control-ui": "combobox",
           "data-field-kind": "combobox",
           "data-placeholder": "",
-          "data-popup-open": "",
-          "data-popup-side": "top",
-          "data-pressed": "",
-          "data-slot": "input-group",
-          "role": "group"
-        }
-      },
-      {
-        "attributes": {
-          "aria-expanded": "true",
-          "data-control": "true",
-          "data-control-family": "field",
-          "data-control-ui": "combobox",
-          "data-field-kind": "combobox",
-          "data-popup-open": "",
-          "data-popup-side": "top",
-          "data-pressed": "",
-          "data-size": "sm",
-          "data-slot": "input",
-          "role": "combobox"
-        }
-      },
-      {
-        "attributes": {
-          "aria-expanded": "true",
-          "data-control-family": "field",
-          "data-control-ui": "combobox",
-          "data-field-kind": "combobox",
-          "data-placeholder": "",
-          "data-popup-open": "",
-          "data-popup-side": "top",
-          "data-pressed": "",
-          "data-slot": "trigger",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "field",
-          "data-control-ui": "combobox",
-          "data-field-kind": "combobox",
-          "data-placeholder": "",
           "data-slot": "input-group",
           "role": "group"
         }
@@ -1063,7 +1010,7 @@
           "data-control-ui": "combobox",
           "data-field-kind": "combobox",
           "data-popup-open": "",
-          "data-popup-side": "top",
+          "data-popup-side": "bottom",
           "data-pressed": "",
           "data-size": "sm",
           "data-slot": "input",
@@ -3441,11 +3388,11 @@
     },
     {
       "knobs": {
-        "fill": "--cui-field-affordance-background",
-        "text": "--cui-field-affordance-foreground"
+        "fill": "--cui-field-background",
+        "text": "--cui-field-foreground"
       },
       "anatomy": 14,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3508,7 +3455,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 21,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3535,7 +3482,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 24,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3562,7 +3509,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 27,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3580,7 +3527,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 29,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3589,15 +3536,6 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 30,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-field-background",
-        "text": "--cui-field-foreground"
-      },
-      "anatomy": 31,
       "rendersText": false,
       "state": false
     },
@@ -3606,8 +3544,17 @@
         "fill": "--cui-field-background",
         "text": "--cui-field-foreground"
       },
-      "anatomy": 32,
+      "anatomy": 31,
       "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-field-background",
+        "text": "--cui-field-foreground"
+      },
+      "anatomy": 32,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3634,7 +3581,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 35,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3652,7 +3599,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 37,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3679,7 +3626,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 40,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3706,15 +3653,6 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 43,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-field-background",
-        "text": "--cui-field-foreground"
-      },
-      "anatomy": 44,
       "rendersText": false,
       "state": false
     },
@@ -3723,8 +3661,17 @@
         "fill": "--cui-field-background",
         "text": "--cui-field-foreground"
       },
-      "anatomy": 45,
+      "anatomy": 44,
       "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-field-background",
+        "text": "--cui-field-foreground"
+      },
+      "anatomy": 45,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3796,7 +3743,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 53,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3814,7 +3761,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 55,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3868,7 +3815,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 61,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3886,7 +3833,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 63,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3904,7 +3851,7 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 65,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3922,15 +3869,6 @@
         "text": "--cui-field-foreground"
       },
       "anatomy": 67,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-field-background",
-        "text": "--cui-field-foreground"
-      },
-      "anatomy": 68,
       "rendersText": false,
       "state": false
     },
@@ -3939,7 +3877,7 @@
         "fill": "--cui-field-background",
         "text": "--cui-field-foreground"
       },
-      "anatomy": 69,
+      "anatomy": 68,
       "rendersText": true,
       "state": false
     },
@@ -3947,7 +3885,15 @@
       "knobs": {
         "fill": "--cui-field-background"
       },
-      "anatomy": 53,
+      "anatomy": 52,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-field-background"
+      },
+      "anatomy": 63,
       "rendersText": false,
       "state": true
     },
@@ -3961,17 +3907,9 @@
     },
     {
       "knobs": {
-        "fill": "--cui-field-background"
-      },
-      "anatomy": 65,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
         "fill": "--cui-field-group-background"
       },
-      "anatomy": 70,
+      "anatomy": 69,
       "rendersText": true,
       "state": false
     },
@@ -3979,7 +3917,7 @@
       "knobs": {
         "fill": "--cui-field-label-background"
       },
-      "anatomy": 71,
+      "anatomy": 70,
       "rendersText": true,
       "state": false
     },
@@ -3998,6 +3936,14 @@
       "anatomy": 0,
       "rendersText": true,
       "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-field-affordance-foreground"
+      },
+      "anatomy": 71,
+      "rendersText": false,
+      "state": false
     },
     {
       "knobs": {
@@ -4185,17 +4131,9 @@
     },
     {
       "knobs": {
-        "text": "--cui-field-affordance-foreground"
-      },
-      "anatomy": 95,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
         "text": "--cui-field-legend-foreground"
       },
-      "anatomy": 96,
+      "anatomy": 95,
       "rendersText": true,
       "state": false
     },
@@ -4203,7 +4141,7 @@
       "knobs": {
         "text": "--cui-field-legend-foreground"
       },
-      "anatomy": 97,
+      "anatomy": 96,
       "rendersText": true,
       "state": false
     }

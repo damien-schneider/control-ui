@@ -1,13 +1,13 @@
 "use client";
 
 import { Badge } from "@/components/control-ui/ui/badge";
+import { Card, CardAction, CardDescription, CardHeader, CardTitle } from "@/components/control-ui/ui/card";
 import {
   InfiniteCanvas,
   InfiniteCanvasContent,
   InfiniteCanvasControls,
   InfiniteCanvasItem,
 } from "@/components/control-ui/ui/infinite-canvas";
-import { Text } from "@/components/control-ui/ui/typography";
 
 const pipelineSteps = [
   { id: "install", title: "Install dependencies", detail: "bun install, 14s", x: 0, y: 0 },
@@ -17,11 +17,13 @@ const pipelineSteps = [
 
 export function PrimitiveInfiniteCanvasEmbeddedExample() {
   return (
-    <div className="flex w-full max-w-3xl flex-col overflow-hidden rounded-(--radius-panel) border border-border bg-card">
-      <div className="flex items-center justify-between gap-3 border-border border-b px-4 py-3">
-        <Text weight="medium">Release pipeline</Text>
-        <Badge>3 steps</Badge>
-      </div>
+    <Card className="w-full max-w-3xl overflow-hidden">
+      <CardHeader>
+        <CardTitle>Release pipeline</CardTitle>
+        <CardAction>
+          <Badge>3 steps</Badge>
+        </CardAction>
+      </CardHeader>
       <InfiniteCanvas
         chrome="embedded"
         aria-label="Release pipeline canvas"
@@ -31,17 +33,17 @@ export function PrimitiveInfiniteCanvasEmbeddedExample() {
         <InfiniteCanvasContent>
           {pipelineSteps.map((step) => (
             <InfiniteCanvasItem key={step.id} x={step.x} y={step.y} className="w-52">
-              <div className="flex flex-col gap-1 rounded-(--radius-panel) bg-background p-3 ring-1 ring-border">
-                <Text weight="medium">{step.title}</Text>
-                <Text size="caption" tone="muted">
-                  {step.detail}
-                </Text>
-              </div>
+              <Card size="sm">
+                <CardHeader>
+                  <CardTitle>{step.title}</CardTitle>
+                  <CardDescription>{step.detail}</CardDescription>
+                </CardHeader>
+              </Card>
             </InfiniteCanvasItem>
           ))}
         </InfiniteCanvasContent>
         <InfiniteCanvasControls />
       </InfiniteCanvas>
-    </div>
+    </Card>
   );
 }

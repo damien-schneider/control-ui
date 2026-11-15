@@ -28,17 +28,8 @@ import { DocsSidebarContent } from "@/app/(features)/sidebar/sidebar";
 import { ControlEffectsRuntime } from "@/components/control-ui/extensions/control-effects-root";
 import { cn } from "@/components/control-ui/lib/cn";
 import { AppShell, AppShellContent } from "@/components/control-ui/ui/app-shell";
-import {
-  PageActions,
-  PageBody,
-  PageHeader,
-  PageLayout,
-  type PageLayoutProps,
-  type PageScrollMode,
-  type PageWidth,
-  usePageScroll,
-} from "@/components/control-ui/ui/page-layout";
-import { SidebarMobileNav, SidebarMobileTrigger, SidebarTrigger } from "@/components/control-ui/ui/sidebar";
+import { PageActions, PageBody, PageHeader, PageLayout, type PageWidth, usePageScroll } from "@/components/control-ui/ui/page-layout";
+import { SidebarMobileNav, SidebarMobileTrigger, SidebarTrigger, useSidebar } from "@/components/control-ui/ui/sidebar";
 import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
 import { isThemeCategoryPath, SKIN_CATEGORY, THEME_EDITOR_PATH, themeCategoryForPath } from "@/components/theme-drawer/theme-categories";
 import { DocsGithubLink } from "./github-link";
@@ -68,15 +59,6 @@ type DocsShellContentProps = DocsShellViewProps &
 function normalizePathname(pathname: string) {
   const withoutTrailingSlash = pathname.replace(/\/+$/, "");
   return withoutTrailingSlash || "/";
-}
-
-const contentLeadBelowShellButtons = "calc(var(--control-h-sm) + 1rem)";
-
-function docsPageStyle(skinScroll: PageScrollMode, widensAside: boolean): PageLayoutProps["style"] {
-  return {
-    "--cui-page-layout-padding-block": `${skinScroll === "page" ? "4rem" : contentLeadBelowShellButtons} 6rem`,
-    ...(widensAside ? { "--cui-page-layout-aside-size": "21rem" } : {}),
-  };
 }
 
 function activePageForPathname(pathname: string, searchItems: SearchItem[]): ActivePageId | undefined {
@@ -127,6 +109,22 @@ function resolveActivePage(activePage: ActivePageId | undefined, catalog: Active
       extensions,
     }),
   };
+}
+
+function DocsSidebarTrigger({ scrollsPage }: { scrollsPage: boolean }) {
+  const { state } = useSidebar();
+  return (
+    <div
+      data-docs-sidebar-trigger=""
+      className={cn(
+        "pointer-events-none inset-x-0 top-0 z-20 mx-auto flex w-full max-w-7xl justify-start px-2 pt-3",
+        state === "expanded" && "sidebar:hidden",
+        scrollsPage ? "fixed" : "absolute",
+      )}
+    >
+      <SidebarTrigger className="pointer-events-auto" />
+    </div>
+  );
 }
 
 export function DocsShell(props: DocsShellViewProps) {
@@ -236,19 +234,8 @@ function DocsShellContent({
             data-surface="panel"
             className={cn("relative flex min-h-0 flex-1 flex-col", !scrollsPage && "overflow-hidden")}
           >
-            <div
-              data-docs-sidebar-trigger=""
-              className={cn(
-                "pointer-events-none inset-x-0 top-0 z-20 mx-auto w-full max-w-7xl justify-start px-2 pt-3",
-                scrollsPage ? "fixed" : "absolute",
-              )}
-            >
-              <SidebarTrigger className="pointer-events-auto" />
-            </div>
-            <PageLayout
-              width={pageWidth}
-              style={docsPageStyle(skinScroll, Boolean(themeEditorCategory && themeEditorCategory !== SKIN_CATEGORY))}
-            >
+            <DocsSidebarTrigger scrollsPage={scrollsPage} />
+            <PageLayout width={pageWidth}>
               <PageHeader variant="floating">
                 <PageActions>
                   <DocsGithubLink stars={githubStars} />
@@ -256,6 +243,7 @@ function DocsShellContent({
               </PageHeader>
               {activePage ? (
                 <PageBody
+                  asideWidth={themeEditorCategory && themeEditorCategory !== SKIN_CATEGORY ? "wide" : "narrow"}
                   aside={
                     <div className="h-full py-12">
                       {themeEditorCategory ? (

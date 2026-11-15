@@ -249,7 +249,7 @@ export function FieldSet({ className, ...props }: FieldSetProps) {
       data-control-family="field"
       data-field-kind="field"
       data-slot="set"
-      className={cn("m-0 flex min-w-0 flex-col p-0", className)}
+      className={cn("flex flex-col", className)}
       {...props}
     />
   );

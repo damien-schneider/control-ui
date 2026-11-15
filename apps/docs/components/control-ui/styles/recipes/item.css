@@ -43,6 +43,13 @@
     gap: calc(var(--spacing) * 1.5);
   }
 
+  :where([data-control-family="item"][data-slot="actions"] > svg) {
+    inline-size: calc(var(--spacing) * 4);
+    block-size: calc(var(--spacing) * 4);
+    flex-shrink: 0;
+    color: var(--muted-foreground);
+  }
+
   @media (hover: hover) and (pointer: fine) {
     :where([data-control-family="item"][data-slot="actions"][data-show-on-hover]) {
       opacity: 0;

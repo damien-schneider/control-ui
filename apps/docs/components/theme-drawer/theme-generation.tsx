@@ -81,7 +81,7 @@ function ReasoningTrace({ generation }: { generation: Generation }) {
       </ActivityTrigger>
       <ActivityContent>
         <ActivityDetail>
-          <ActivityDetailContent className="whitespace-pre-wrap">{generation.reasoning}</ActivityDetailContent>
+          <ActivityDetailContent>{generation.reasoning}</ActivityDetailContent>
         </ActivityDetail>
       </ActivityContent>
     </Activity>

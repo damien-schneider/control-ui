@@ -1968,6 +1968,11 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["chat-composer"],
           states: [],
         },
+        header: {
+          family: "chat-composer",
+          registryItems: ["chat-composer"],
+          states: [],
+        },
         mention: {
           family: "chat-composer",
           registryItems: ["chat-composer"],
@@ -2570,6 +2575,11 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["chat-layout"],
           states: [],
         },
+        track: {
+          family: "chat-layout",
+          registryItems: ["chat-layout"],
+          states: [],
+        },
       },
       registryItems: ["chat-layout"],
     },
@@ -2892,6 +2902,11 @@ export const generatedSkinContract: SkinContract = {
           states: [],
         },
         header: {
+          family: "code",
+          registryItems: ["code"],
+          states: [],
+        },
+        "inline-frame": {
           family: "code",
           registryItems: ["code"],
           states: [],
@@ -9925,6 +9940,12 @@ export const generatedSkinContract: SkinContract = {
               valueKind: "presence",
               values: [],
             },
+            {
+              attribute: "data-aside-width",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["narrow", "wide"],
+            },
           ],
         },
         content: {
@@ -12042,6 +12063,12 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
+              attribute: "data-icon-tone",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["danger", "default", "muted", "success", "warning"],
+            },
+            {
               attribute: "data-indicator",
               source: "control-ui",
               valueKind: "open",
@@ -13476,6 +13503,12 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
+              attribute: "data-closable",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-disabled",
               source: "external",
               valueKind: "presence",
@@ -13488,6 +13521,11 @@ export const generatedSkinContract: SkinContract = {
               values: ["horizontal", "vertical"],
             },
           ],
+        },
+        "tab-frame": {
+          family: "tabs",
+          registryItems: ["tabs"],
+          states: [],
         },
       },
       registryItems: ["tabs"],
@@ -14762,6 +14800,11 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["typography"],
           states: [],
         },
+        link: {
+          family: "typography",
+          registryItems: ["typography"],
+          states: [],
+        },
         text: {
           family: "typography",
           registryItems: ["typography"],
@@ -15235,7 +15278,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-avatar-group-gap",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue: "calc(var(--spacing) * -2)",
+        defaultValue: "calc(var(--cui-avatar-group-ring-size) - var(--cui-avatar-size) * 0.2)",
       },
       {
         name: "--cui-avatar-group-ring-size",
@@ -16140,6 +16183,30 @@ export const generatedSkinContract: SkinContract = {
         syntax: "*",
         initialValue: "",
         defaultValue: "var(--shadow-md)",
+      },
+      {
+        name: "--cui-chat-layout-gutter-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 4)",
+      },
+      {
+        name: "--cui-chat-layout-column-max-inline-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "48rem",
+      },
+      {
+        name: "--cui-chat-layout-veil-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--cui-chat-layout-background)",
+      },
+      {
+        name: "--cui-chat-layout-veil-backdrop-filter",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "none",
       },
       {
         name: "--cui-chat-layout-scroll-button-gap",
@@ -17408,6 +17475,12 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length>",
         initialValue: "0px",
         defaultValue: "calc(var(--spacing) * 3)",
+      },
+      {
+        name: "--cui-filter-bar-icon",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 3.5)",
       },
     ],
     flow: [
@@ -19727,7 +19800,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-sidebar-group-label-padding",
         syntax: "<length-percentage>+",
         initialValue: "0px",
-        defaultValue: "0px calc(var(--spacing) * 2)",
+        defaultValue: "0px var(--cui-sidebar-menu-button-padding-inline)",
       },
     ],
     skeleton: [

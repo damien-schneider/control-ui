@@ -1,13 +1,16 @@
 "use client";
 
-import { BookOpenIcon, CodeXmlIcon, DownloadIcon, EyeIcon, FileCodeIcon, PaletteIcon, WrapTextIcon } from "lucide-react";
+import { BookOpenIcon, ChevronRightIcon, CodeXmlIcon, DownloadIcon, EyeIcon, FileCodeIcon, PaletteIcon, WrapTextIcon } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { type ReactNode, Suspense, useState } from "react";
 import type { SourceFile } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Button, ButtonLink } from "@/components/control-ui/ui/button";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
 import { Code, CodeActions, CodeContent, CodeCopy, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
+import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia } from "@/components/control-ui/ui/empty";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Spinner } from "@/components/control-ui/ui/spinner";
 import { Tabs, TabsList, TabsPanel, TabsSurface, TabsTab } from "@/components/control-ui/ui/tabs";
@@ -37,13 +40,13 @@ function SkinSourceBrowser({ files }: { files: SourceFile[] }) {
         <TabsList aria-label="Source files" variant="browser" className="w-full">
           {files.map((item) => (
             <TabsTab key={item.path} value={item.path}>
-              <FileCodeIcon aria-hidden className="size-3.5 shrink-0" />
+              <FileCodeIcon aria-hidden />
               {item.path.split("/").at(-1)}
             </TabsTab>
           ))}
         </TabsList>
       </ScrollArea>
-      <TabsSurface className="-mt-px min-w-0">
+      <TabsSurface className="min-w-0">
         <Code overflow={wrap ? "wrap" : "scroll"} chrome="embedded">
           <CodeHeader className="flex-wrap gap-2">
             <CodeTitle title={file.path} className="min-w-0 flex-1">
@@ -72,14 +75,14 @@ function SkinSourceBrowser({ files }: { files: SourceFile[] }) {
           </TabsPanel>
         </Code>
       </TabsSurface>
-      <Text as="div" size="micro" tone="muted" className="flex min-w-0 flex-wrap items-center justify-between gap-x-4 gap-y-1 mx-1 mt-2">
-        <span className="min-w-0 truncate font-mono" title={file.path}>
+      <div className="mx-1 mt-2 flex min-w-0 flex-wrap items-center justify-between gap-x-4 gap-y-1">
+        <Text size="micro" tone="muted" mono className="min-w-0 truncate" title={file.path}>
           {file.path}
-        </span>
-        <span className="shrink-0">
+        </Text>
+        <Text size="micro" tone="muted" numeric className="shrink-0">
           {language.toUpperCase()} · {lineCount.toLocaleString()} lines
-        </span>
-      </Text>
+        </Text>
+      </div>
     </Tabs>
   );
 }
@@ -89,28 +92,31 @@ function SkinSourceFiles({ label, source, onRetry }: { label: string; source: Sk
 
   if (source.status === "error") {
     return (
-      <div
-        role="alert"
-        className="flex min-h-80 flex-col items-center justify-center gap-3 rounded-(--radius-panel) border border-border bg-card px-6 text-center"
-      >
-        <FileCodeIcon aria-hidden className="size-6 text-muted-foreground" />
-        <Text as="p" size="label" tone="muted">
-          The {label} source could not be loaded.
-        </Text>
-        <Button variant="surface" size="sm" onClick={onRetry}>
-          Try again
-        </Button>
-      </div>
+      <Empty variant="outline" role="alert" className="min-h-80">
+        <EmptyHeader>
+          <EmptyMedia>
+            <FileCodeIcon aria-hidden />
+          </EmptyMedia>
+          <EmptyDescription>The {label} source could not be loaded.</EmptyDescription>
+        </EmptyHeader>
+        <EmptyContent>
+          <Button variant="surface" size="sm" onClick={onRetry}>
+            Try again
+          </Button>
+        </EmptyContent>
+      </Empty>
     );
   }
 
   return (
-    <div role="status" className="flex min-h-80 items-center justify-center gap-2 rounded-(--radius-panel) border border-border bg-card">
-      <Spinner />
-      <Text size="label" tone="muted">
-        Loading {label} source
-      </Text>
-    </div>
+    <Empty variant="outline" role="status" className="min-h-80">
+      <EmptyHeader>
+        <EmptyMedia>
+          <Spinner />
+        </EmptyMedia>
+        <EmptyDescription>Loading {label} source</EmptyDescription>
+      </EmptyHeader>
+    </Empty>
   );
 }
 
@@ -118,33 +124,38 @@ export function SkinSourceGuide({ files }: { files: readonly Pick<SourceFile, "l
   const packFiles = files.filter((file) => file.slot === "theme" || file.slot === "skin" || file.slot === "config");
 
   return (
-    <details className="rounded-(--radius-panel) border border-border bg-muted/30 px-4 py-3">
-      <summary className="cursor-pointer">
-        <Text size="caption" weight="medium" tone="foreground">
-          About the skin files
-        </Text>
-      </summary>
-      <dl className="mt-4 grid gap-4 @2xl/source:grid-cols-3">
-        {packFiles.map((file) => {
-          const [name, role] = file.label.split(" — ");
-          return (
-            <div key={file.path} className="min-w-0">
-              <Text as="dt" size="caption" weight="medium" tone="foreground" mono>
-                {name}
-              </Text>
-              <Text as="dd" size="caption" tone="muted" className="mt-1 text-pretty">
-                {role}
-              </Text>
-            </div>
-          );
-        })}
-      </dl>
-      <Link href="/architecture" className="mt-4 inline-block text-primary-text underline underline-offset-4">
-        <Text size="caption" className="block">
-          How skin layers resolve
-        </Text>
-      </Link>
-    </details>
+    <Card size="sm">
+      <CardContent>
+        <Collapsible>
+          <CollapsibleTrigger>
+            <ChevronRightIcon aria-hidden />
+            <Text size="caption" weight="medium" tone="foreground">
+              About the skin files
+            </Text>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <dl className="mt-4 grid gap-4 @2xl/source:grid-cols-3">
+              {packFiles.map((file) => {
+                const [name, role] = file.label.split(" — ");
+                return (
+                  <div key={file.path} className="min-w-0">
+                    <Text as="dt" size="caption" weight="medium" tone="foreground" mono>
+                      {name}
+                    </Text>
+                    <Text as="dd" size="caption" tone="muted" className="mt-1 text-pretty">
+                      {role}
+                    </Text>
+                  </div>
+                );
+              })}
+            </dl>
+            <ButtonLink variant="link" size="xs" render={<Link href="/architecture" />} className="mt-4">
+              How skin layers resolve
+            </ButtonLink>
+          </CollapsibleContent>
+        </Collapsible>
+      </CardContent>
+    </Card>
   );
 }
 
@@ -225,11 +236,11 @@ function SkinWorkspaceContent({ skin, source, onRetry, children }: SkinWorkspace
         <div className="flex flex-wrap items-center justify-between gap-3">
           <TabsList aria-label="Skin views">
             <TabsTab value="preview">
-              <EyeIcon aria-hidden className="size-4" />
+              <EyeIcon aria-hidden />
               Preview
             </TabsTab>
             <TabsTab value="source">
-              <CodeXmlIcon aria-hidden className="size-4" />
+              <CodeXmlIcon aria-hidden />
               Source
             </TabsTab>
           </TabsList>

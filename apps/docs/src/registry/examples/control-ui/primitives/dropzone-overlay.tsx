@@ -1,7 +1,7 @@
 "use client";
 
-import { BracesIcon, FileCode2Icon } from "lucide-react";
 import { useState } from "react";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/control-ui/ui/card";
 import {
   Dropzone,
   DropzoneArea,
@@ -54,19 +54,13 @@ export function PrimitiveDropzoneOverlayExample() {
     >
       <DropzoneInput />
       <DropzoneArea>
-        <div className="relative min-h-64 overflow-hidden rounded-[var(--radius-panel)] border border-border bg-card p-5">
-          <div className="flex items-center gap-2 border-b border-border pb-3">
-            <BracesIcon className="size-4 text-muted-foreground" aria-hidden="true" />
-            <Text weight="medium" tone="foreground">
-              Configuration workspace
-            </Text>
-          </div>
-          <Text as="div" tone="muted" className="mt-4 flex items-center gap-2">
-            <FileCode2Icon className="size-4" aria-hidden="true" />
-            Drop JSON or CSS anywhere on this workspace.
-          </Text>
+        <Card className="relative min-h-64 overflow-hidden">
+          <CardHeader>
+            <CardTitle>Configuration workspace</CardTitle>
+            <CardDescription>Drop JSON or CSS anywhere on this workspace.</CardDescription>
+          </CardHeader>
           <DropzoneOverlay scope="global" />
-        </div>
+        </Card>
       </DropzoneArea>
       <DropzoneFileList />
       <DropzoneRejectionList />
@@ -75,7 +69,7 @@ export function PrimitiveDropzoneOverlayExample() {
           {intakeError}
         </Text>
       ) : null}
-      <DropzoneStatus className="sr-only" />
+      <DropzoneStatus />
     </Dropzone>
   );
 }

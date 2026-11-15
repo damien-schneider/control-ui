@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/control-ui/ui/button";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
 import { Input } from "@/components/control-ui/ui/input";
 import { Text } from "@/components/control-ui/ui/typography";
 import { THEME_CONTRACT } from "@/src/registry/lib/theme-contract";
@@ -12,23 +13,25 @@ export function FocusFoundations() {
   return (
     <div className="grid min-w-0">
       <SpecimenGroup title="Indicator">
-        <div className="docs-panel grid gap-6 p-6 sm:grid-cols-[auto_1fr] sm:items-center">
-          <div
-            className="grid h-12 w-40 place-items-center rounded-[var(--radius-control)] bg-card text-card-foreground ring-1 ring-inset ring-border"
-            style={{
-              outline: "var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring)",
-              outlineOffset: "var(--focus-ring-offset)",
-            }}
-          >
-            <Text size="label">Focused</Text>
-          </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="w-56">
-              <Input aria-label="Tab into this field" placeholder="Tab into me" />
+        <Card>
+          <CardContent className="grid gap-6 sm:grid-cols-[auto_1fr] sm:items-center">
+            <div
+              className="grid h-12 w-40 place-items-center rounded-[var(--radius-control)] bg-card text-card-foreground ring-1 ring-inset ring-border"
+              style={{
+                outline: "var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring)",
+                outlineOffset: "var(--focus-ring-offset)",
+              }}
+            >
+              <Text size="label">Focused</Text>
             </div>
-            <Button variant="surface">Then me</Button>
-          </div>
-        </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="w-56">
+                <Input aria-label="Tab into this field" placeholder="Tab into me" />
+              </div>
+              <Button variant="surface">Then me</Button>
+            </div>
+          </CardContent>
+        </Card>
       </SpecimenGroup>
       <SpecimenGroup title="Values">
         <TokenValueList names={FOCUS_RING_TOKENS} />

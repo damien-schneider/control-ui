@@ -17,7 +17,6 @@ import {
   ActivityDetailContent,
   ActivityDetailLabel,
   ActivityIcon,
-  ActivityStatus,
   ActivityTitle,
   ActivityTrigger,
 } from "@/components/control-ui/activity";
@@ -49,6 +48,7 @@ import {
   ToolApprovalTitle,
 } from "@/components/control-ui/tool-approval";
 import { Button } from "@/components/control-ui/ui/button";
+import { Code, CodeContent } from "@/components/control-ui/ui/code";
 
 function activityState(state: string): ActivityState {
   if (state === "result" || state === "output-available") return "success";
@@ -110,7 +110,6 @@ function renderToolInvocation(part: ToolInvocationPart, approvals: ToolCallAppro
         <ActivityTrigger>
           <ActivityIcon />
           <ActivityTitle />
-          <ActivityStatus className="sr-only" />
         </ActivityTrigger>
         <ActivityContent>
           <ActivityDetail>
@@ -142,7 +141,9 @@ function renderToolInvocation(part: ToolInvocationPart, approvals: ToolCallAppro
             </ToolApprovalHeader>
             <ToolApprovalPreview>
               <ToolApprovalField label="Input">
-                <div className="whitespace-pre-wrap wrap-anywhere">{JSON.stringify(args, null, 2)}</div>
+                <Code overflow="wrap">
+                  <CodeContent code={JSON.stringify(args, null, 2)} lang="json" />
+                </Code>
               </ToolApprovalField>
             </ToolApprovalPreview>
           </ToolApprovalBody>

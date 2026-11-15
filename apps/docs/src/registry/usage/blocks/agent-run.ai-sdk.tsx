@@ -30,6 +30,7 @@ import {
   ToolApprovalTitle,
 } from "@/components/control-ui/tool-approval";
 import { Button } from "@/components/control-ui/ui/button";
+import { Code, CodeContent } from "@/components/control-ui/ui/code";
 import type { TimelineState } from "@/components/control-ui/ui/timeline";
 
 type ToolPart = ToolUIPart | DynamicToolUIPart;
@@ -120,7 +121,9 @@ function renderTool(part: ToolPart, onApprovalResponse: ApprovalResponse) {
           </ToolApprovalHeader>
           <ToolApprovalPreview>
             <ToolApprovalField label="Input">
-              <div className="whitespace-pre-wrap wrap-anywhere">{JSON.stringify(part.input, null, 2)}</div>
+              <Code overflow="wrap">
+                <CodeContent code={JSON.stringify(part.input, null, 2)} lang="json" />
+              </Code>
             </ToolApprovalField>
           </ToolApprovalPreview>
         </ToolApprovalBody>

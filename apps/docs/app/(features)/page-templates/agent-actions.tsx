@@ -39,12 +39,12 @@ export function AgentActions({ name, installCommand }: { name: string; installCo
         >
           <Swap value={copyState} aria-live="polite">
             <SwapItem value="idle">
-              <SparklesIcon aria-hidden className="size-3.5" />
+              <SparklesIcon aria-hidden />
               Copy prompt
             </SwapItem>
             {Object.entries(copiedLabels).map(([target, label]) => (
               <SwapItem key={target} value={target}>
-                <CheckCircle2Icon aria-hidden className="size-3.5" />
+                <CheckCircle2Icon aria-hidden />
                 {label}
               </SwapItem>
             ))}

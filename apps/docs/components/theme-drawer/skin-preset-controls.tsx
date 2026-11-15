@@ -24,7 +24,7 @@ function SkinOption({ icon, label }: { icon: ReactNode; label: string }) {
   );
 }
 
-const customSkinIcon = <WandSparklesIcon aria-hidden className="size-4 shrink-0" />;
+const customSkinIcon = <WandSparklesIcon aria-hidden />;
 
 export function SkinPresetControls({
   className,
@@ -87,7 +87,7 @@ export function SkinPresetControls({
           </SelectItem>
         ))}
         <SelectItem value={CREATE_SKIN_VALUE} label="Create skin">
-          <PlusIcon aria-hidden className="size-4 shrink-0" />
+          <PlusIcon aria-hidden />
           Create skin
         </SelectItem>
       </SelectContent>
