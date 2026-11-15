@@ -1,7 +1,7 @@
+import { docsPageManifest } from "@/app/(features)/catalog/pages";
 import { type PageOutline, pageOutline } from "@/app/(features)/client/page-links";
 import { getDocsData } from "@/app/(features)/model/data";
 import type { ActivePageId, SearchItem } from "@/app/(features)/model/types";
-import { buildSearchItems } from "@/app/(features)/registry-api/search";
 import type { DocsNavCatalog } from "@/app/(features)/sidebar/types";
 import { objectFromEntries } from "@/lib/typed-object";
 
@@ -17,7 +17,6 @@ export function getDocsShellData(): DocsShellData {
   if (docsShellData) return docsShellData;
 
   const data = getDocsData();
-  const searchItems = buildSearchItems(data);
   docsShellData = {
     nav: {
       guides: data.guides.map(({ id, name, group, hiddenFromNav }) => ({ id, name, group, hiddenFromNav })),
@@ -30,8 +29,8 @@ export function getDocsShellData(): DocsShellData {
       utils: data.utils.map(({ id, name }) => ({ id, name })),
       extensions: data.extensions.map(({ id, name, status }) => ({ id, name, status })),
     },
-    searchItems,
-    pageOutlines: objectFromEntries(searchItems.map((item) => [item.id, pageOutline(item.id, data)] as const)),
+    searchItems: docsPageManifest,
+    pageOutlines: objectFromEntries(docsPageManifest.map((item) => [item.id, pageOutline(item.id, data)] as const)),
   };
 
   return docsShellData;
