@@ -11,7 +11,7 @@ function stargazersCountFrom(value: unknown) {
 
 export async function getControlUiGitHubStars(): Promise<number | null> {
   "use cache";
-  cacheLife("hours");
+  cacheLife("max");
 
   try {
     const response = await fetch(controlUiRepositoryApiUrl, {
