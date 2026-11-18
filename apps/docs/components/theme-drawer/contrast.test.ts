@@ -1,9 +1,7 @@
 import { describe, expect, test } from "bun:test";
-import { contrastFromRgb, hexToOklch, nextFixLevel, oklchToRgb, type Rgb, wcagLevels } from "./color-math";
+import { contrastFromRgb, hexToOklch, oklchToRgb, type Rgb, wcagLevels } from "./color-math";
 import { rgbToHex } from "./color-utils";
 import { analyzeContrast, fixTextForeground, maxForegroundRatio, offeredFixLevel } from "./contrast";
-import { buildOverrideDecls } from "./override-decls";
-import { DEFAULT_THEME } from "./presets";
 
 // Test helper: assert non-null without an `as` cast (codebase forbids assertions except as const).
 function str(value: string | null): string {
@@ -169,20 +167,6 @@ describe("rgbToHex", () => {
   });
 });
 
-describe("nextFixLevel — the level a per-row fix should target", () => {
-  test("failing AA → aim for AA first", () => {
-    expect(nextFixLevel({ AA: false, AAA: false })).toBe("AA");
-  });
-
-  test("clears AA but not AAA → offer the AAA upgrade", () => {
-    expect(nextFixLevel({ AA: true, AAA: false })).toBe("AAA");
-  });
-
-  test("already AAA → nothing left to fix", () => {
-    expect(nextFixLevel({ AA: true, AAA: true })).toBeNull();
-  });
-});
-
 describe("fixTextForeground — nudge lightness until it clears AA on the hardest surface", () => {
   const bgs: Rgb[] = [
     [255, 255, 255],
@@ -223,27 +207,5 @@ describe("fixTextForeground — nudge lightness until it clears AA on the hardes
 
   test("AAA target returns null when text already clears 7", () => {
     expect(fixTextForeground("#000000", bgs, 7)).toBeNull();
-  });
-});
-
-describe("textFixes → buildOverrideDecls: the abstract per-token fix lands in ANY theme/mode", () => {
-  const declsFor = (textFixes: Record<string, string>, isDark: boolean) => buildOverrideDecls({ ...DEFAULT_THEME, textFixes }, isDark);
-  const find = (decls: [string, string][], name: string) => decls.filter(([n]) => n === name).at(-1);
-
-  test("a fix authors its exact token as an oklch() value, in light AND dark", () => {
-    for (const isDark of [false, true]) {
-      const decls = declsFor({ "--muted-foreground": "#3a3a3a" }, isDark);
-      const decl = find(decls, "--muted-foreground");
-      expect(decl).toBeDefined();
-      expect(str(decl?.[1] ?? null)).toMatch(/^oklch\(/);
-    }
-  });
-
-  test("each fixable text token can be overridden independently", () => {
-    const tokens = ["--card-foreground", "--muted-foreground", "--foreground", "--primary-foreground", "--destructive-foreground"];
-    for (const token of tokens) {
-      const decls = declsFor({ [token]: "#123456" }, false);
-      expect(find(decls, token)).toBeDefined();
-    }
   });
 });

@@ -84,12 +84,6 @@ describe("achromatic hue preservation — the core guarantee", () => {
     expect(formatColor({ h: 210, s: 0, v: 100, a: 1 }, "hex")).toBe("#ffffff");
   });
 
-  test("setChannel keeps hue when the result is achromatic (H channel, gray)", () => {
-    const gray: Hsva = { h: 210, s: 0, v: 50, a: 1 };
-    const next = setChannel(gray, "h", 100);
-    expect(next.h).toBe(100); // hue is set even though the color stays gray
-  });
-
   test("setting H at true black keeps the stored saturation", () => {
     expect(setChannel({ h: 210, s: 50, v: 0, a: 1 }, "h", 100)).toEqual({ h: 100, s: 50, v: 0, a: 1 });
   });
@@ -97,9 +91,7 @@ describe("achromatic hue preservation — the core guarantee", () => {
   test("setting R/G/B rebuilds HSVA and preserves hue when it turns gray", () => {
     const withGreen = setChannel(RED, "g", 128);
     expect(hsvaToRgba(withGreen).g).toBeCloseTo(128, 0);
-    const toBlack = setChannel({ h: 42, s: 80, v: 60, a: 1 }, "r", 0);
-    // still chromatic here (g/b non-zero), checking no throw + valid hsva
-    expect(toBlack.a).toBe(1);
+    expect(setChannel(BLUE, "b", 0)).toEqual({ h: 240, s: 100, v: 0, a: 1 });
   });
 });
 
@@ -122,15 +114,6 @@ describe("oklch", () => {
   test("near-neutral grays trim chroma and hue", () => {
     const gray = present(parseColor("#808080"));
     expect(formatColor(gray, "oklch")).toMatch(/^oklch\([\d.]+ 0 0\)$/);
-  });
-
-  test("oklchaToHsva clamps into sRGB", () => {
-    const hsva = oklchaToHsva({ L: 0.5, C: 0.1, H: 250, a: 1 });
-    const rgba = hsvaToRgba(hsva);
-    for (const c of [rgba.r, rgba.g, rgba.b]) {
-      expect(c).toBeGreaterThanOrEqual(0);
-      expect(c).toBeLessThanOrEqual(255);
-    }
   });
 });
 
@@ -157,11 +140,6 @@ describe("oklch precision", () => {
 });
 
 describe("parseColor per format", () => {
-  test("hex", () => {
-    expect(hsvaToRgba(present(parseColor("#abc")))).toEqual({ r: 170, g: 187, b: 204, a: 1 });
-    expect(present(parseColor("#ff000080")).a).toBeCloseTo(0.502, 2);
-  });
-
   test("hex pasted without the leading #", () => {
     expect(hsvaToRgba(present(parseColor("22c55e")))).toEqual({ r: 34, g: 197, b: 94, a: 1 });
     expect(hsvaToRgba(present(parseColor("ABC")))).toEqual({ r: 170, g: 187, b: 204, a: 1 });

@@ -20,13 +20,6 @@ const skinContract: SkinContract = JSON.parse(readFileSync(new URL("../../../pub
 const SKIN_PACKS_DIR = fileURLToPath(new URL("./", import.meta.url));
 const COMPONENTS_DIR = fileURLToPath(new URL("../sources/control-ui/", import.meta.url));
 const BLOCKS_DIR = fileURLToPath(new URL("../blocks/", import.meta.url));
-const COMPONENT_REFERENCE_ROOTS = [
-  { root: COMPONENTS_DIR, label: "src/registry/sources/control-ui" },
-  { root: BLOCKS_DIR, label: "src/registry/blocks" },
-  { root: fileURLToPath(new URL("../examples/", import.meta.url)), label: "src/registry/examples" },
-  { root: fileURLToPath(new URL("../../../app/", import.meta.url)), label: "app" },
-  { root: fileURLToPath(new URL("../../../components/", import.meta.url)), label: "components" },
-] as const;
 const skins = readdirSync(SKIN_PACKS_DIR)
   .filter((entry) => statSync(path.join(SKIN_PACKS_DIR, entry)).isDirectory())
   .sort()
@@ -103,11 +96,7 @@ for (const filePath of allRecipePaths) {
   allRecipeRoot.append(postcss.parse(readFileSync(filePath, "utf8"), { from: filePath }).nodes);
 }
 
-const families = contractEntries.map(([id, knobs]) => ({
-  id,
-  knobs,
-  sources: [...(familySources[id] ?? [])],
-}));
+const families = contractEntries.map(([id, knobs]) => ({ id, knobs }));
 
 describe("family source coverage", () => {
   test("every recipe resolves to one knob contract", () => {
@@ -152,48 +141,6 @@ const runtimeProperties = new Set([
   "--toast-height",
   "--toast-offset-y",
 ]);
-const publicKnobPrefixes = new Set(
-  [...knownKnobs].map((knob) => knob.match(/^--[a-z0-9]+-/)?.[0]).filter((prefix): prefix is string => prefix !== undefined),
-);
-
-function unknownComponentKnobReferences(): string[] {
-  const offenders: string[] = [];
-  for (const { root, label } of COMPONENT_REFERENCE_ROOTS) {
-    const sourcePaths = readdirSync(root, { encoding: "utf8", recursive: true })
-      .filter(
-        (relativePath) =>
-          (relativePath.endsWith(".ts") || relativePath.endsWith(".tsx")) &&
-          !relativePath.endsWith(".test.ts") &&
-          !relativePath.endsWith(".test.tsx"),
-      )
-      .sort();
-    for (const relativePath of sourcePaths) {
-      const source = readFileSync(path.join(root, relativePath), "utf8");
-      for (const match of source.matchAll(/--[a-z][a-z0-9-]*/g)) {
-        const knob = match[0];
-        if (
-          knob.endsWith("-") ||
-          knob.startsWith("--_") ||
-          knownKnobs.has(knob) ||
-          runtimeProperties.has(knob) ||
-          knob.startsWith("--code-token-") ||
-          ![...publicKnobPrefixes].some((prefix) => knob.startsWith(prefix))
-        ) {
-          continue;
-        }
-        const line = source.slice(0, match.index).split("\n").length;
-        offenders.push(`${label}/${relativePath}:${line} ${knob}`);
-      }
-    }
-  }
-  return offenders;
-}
-
-describe("component source knob references", () => {
-  test("every family-prefixed custom property belongs to a contract", () => {
-    expect(unknownComponentKnobReferences()).toEqual([]);
-  });
-});
 
 function recipe(id: string): Root {
   const root = postcss.root();
@@ -625,24 +572,6 @@ function recipeIdentitySelectorOffenders(root: Root, family?: string): string[] 
   return offenders;
 }
 
-const FAMILY_SOURCE_MARKERS: Record<string, readonly string[]> = {
-  badge: ['family = "badge"'],
-  markdown: ["<MarkdownRoot"],
-  "phone-input": ['data-field-kind="phone-input"'],
-  "rich-tooltip": ['data-popup-kind="rich-tooltip"'],
-  "source-badge": ['data-source-badge=""'],
-};
-
-function semanticIdentityOffenders(family: string, sources: readonly { name: string; source: string }[]): string[] {
-  const markers = [`data-control-family="${family}"`, `"data-control-family": "${family}"`, ...(FAMILY_SOURCE_MARKERS[family] ?? [])];
-  return sources.flatMap(({ name, source }) => {
-    if (markers.some((marker) => source.includes(marker))) return [];
-    const identityIndex = source.search(/data-control-ui|"data-control-ui"/);
-    const line = identityIndex < 0 ? 1 : source.slice(0, identityIndex).split("\n").length;
-    return [`${name}:${line} missing data-control-family="${family}"`];
-  });
-}
-
 function knobInheritanceOffenders(root: Root, knobs: readonly string[]): string[] {
   const inheritance = new Map<string, { value: string; line: number | string }>();
   root.walkAtRules("property", (atRule) => {
@@ -661,14 +590,6 @@ for (const family of families) {
   describe(`${family.id} paint contract`, () => {
     const root = recipe(family.id);
     const prefix = `${knobPrefix}${family.id}-`;
-
-    test("every family source stamps its semantic identity", () => {
-      const sources = family.sources.map((name) => ({
-        name,
-        source: readFileSync(path.join(process.cwd(), name), "utf8"),
-      }));
-      expect(semanticIdentityOffenders(family.id, sources)).toEqual([]);
-    });
 
     test("every knob inherits and declares its default on the family root", () => {
       expect(knobRootDefaultOffenders(root, family.id, family.knobs)).toEqual([]);

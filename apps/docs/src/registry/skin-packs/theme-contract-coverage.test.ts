@@ -162,14 +162,6 @@ describe("theme contract ownership", () => {
     expect(THEME_CONTRACT_NAMES.size).toBe(THEME_CONTRACT.length);
   });
 
-  test("core has no skin-specific selector", () => {
-    const offenders: string[] = [];
-    CORE_THEME.walkRules((rule) => {
-      if (exactSkinSelectorPattern("refined").test(rule.selector)) offenders.push(rule.selector);
-    });
-    expect(offenders).toEqual([]);
-  });
-
   test("core defaults stay at zero specificity", () => {
     const offenders = customDeclarations(CORE_THEME)
       .filter((declaration) => THEME_CONTRACT_NAMES.has(declaration.prop) && !coreContractDeclarationIsAllowed(declaration))

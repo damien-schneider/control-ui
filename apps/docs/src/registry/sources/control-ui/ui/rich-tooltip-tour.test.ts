@@ -13,7 +13,7 @@ describe("tourPosition", () => {
     expect(tourPosition(steps, "sites").isLast).toBe(true);
   });
 
-  test("a finished tour is neither first nor last", () => {
+  test("a finished tour keeps back disabled and is never on its last step", () => {
     expect(tourPosition(steps, null)).toEqual({ index: -1, total: 3, isFirst: true, isLast: false });
   });
 

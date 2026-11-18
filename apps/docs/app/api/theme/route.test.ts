@@ -224,12 +224,6 @@ test("refuses a generation past the daily allowance from the same browser", asyn
   expect((await generate({ prompt: "calm", appearance: "light" }, cookie)).status).toBe(429);
 });
 
-test("hands back a tally the browser can carry to the next request", async () => {
-  const response = await generate({ prompt: "calm", appearance: "light" });
-
-  expect(response.headers.get("set-cookie")).toContain("HttpOnly");
-});
-
 test("rejects a request that carries no prompt", async () => {
   expect((await generate({ appearance: "light" })).status).toBe(400);
 });

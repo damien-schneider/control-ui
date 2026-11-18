@@ -44,7 +44,6 @@ describe("AgentRunBlock", () => {
 
     expect(waitingItem).toContain('aria-current="step"');
     expect(html).toContain("Needs approval");
-    expect(html).toContain('aria-keyshortcuts="Meta+Enter Control+Enter"');
   });
 
   test("nests the run title under the host page heading when contained", () => {

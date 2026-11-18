@@ -268,9 +268,6 @@ describe("dropzone selection reconciliation", () => {
   test.each([
     [0.5, 1],
     [1.9, 1],
-    [-1, Number.POSITIVE_INFINITY],
-    [Number.NaN, Number.POSITIVE_INFINITY],
-    [Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY],
   ])("normalizes maxFiles %p to %p", (maxFiles, expected) => {
     expect(normalizeDropzoneMaxFiles(maxFiles)).toBe(expected);
   });

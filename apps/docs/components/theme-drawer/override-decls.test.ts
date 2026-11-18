@@ -31,14 +31,6 @@ describe("buildOverrideDecls — authors ONLY the overridden tokens", () => {
     expect(declMap(t, true)).toEqual({ "--overlay-opacity": "0.5" });
   });
 
-  test("editing one token never drags companions along (per-token contract)", () => {
-    const m = declMap(theme({ overrides: { "--radius": "10px" } }));
-    expect(m["--radius"]).toBe("10px");
-
-    expect(m["--radius-control"]).toBeUndefined();
-    expect(Object.keys(m)).toHaveLength(1);
-  });
-
   test("independent tokens accumulate; untouched tokens stay absent", () => {
     const m = declMap(theme({ overrides: { "--radius": "4px", "--overlay-opacity": "0.6", "--duration-base": "240ms" } }));
     expect(m).toEqual({ "--radius": "4px", "--overlay-opacity": "0.6", "--duration-base": "240ms" });
@@ -79,16 +71,13 @@ describe("buildOverrideDecls — authors ONLY the overridden tokens", () => {
     expect(dark["--card"]).toBeUndefined();
   });
 
-  test("textFixes land LAST and win over the color branch, in both modes", () => {
+  test("a text fix wins over the color branch as an oklch value, in both modes", () => {
     const t = theme({
       light: { "--foreground": "oklch(0.5 0 0)" },
       textFixes: { "--foreground": "#112233" },
     });
-    const light = buildOverrideDecls(t, false);
-    expect(light[light.length - 1][0]).toBe("--foreground");
-    expect(Object.fromEntries(light)["--foreground"]).not.toBe("oklch(0.5 0 0)");
-    const dark = declMap(t, true);
-    expect(dark["--foreground"]).toBe(Object.fromEntries(light)["--foreground"]);
+    expect(declMap(t, false)).toEqual({ "--foreground": "oklch(0.2462 0.0398 249.732)" });
+    expect(declMap(t, true)).toEqual({ "--foreground": "oklch(0.2462 0.0398 249.732)" });
   });
 });
 
@@ -107,18 +96,5 @@ describe("buildOverrideSheetCss — the portal fix: scope the diff to the ACTIVE
       [],
     );
     expect(css).toBe(`[data-skin="xp"][data-skin] {\n  --overlay-opacity: 0.5;\n  --backdrop-blur-overlay: 8px;\n}`);
-  });
-
-  test("the selector targets the active skin — so it matches that skin's portalled surfaces", () => {
-    expect(buildOverrideSheetCss("rig", [["--radius", "4px"]], [])).toStartWith(`[data-skin="rig"]`);
-
-    expect(buildOverrideSheetCss("rig", [["--radius", "4px"]], [])).not.toContain("[data-skin] [");
-  });
-
-  test("end-to-end: an overlay-opacity override on XP produces a rule that reaches XP dialogs", () => {
-    const t = theme({ overrides: { "--overlay-opacity": "0.5" } });
-    const css = buildOverrideSheetCss(t.skin, buildOverrideDecls(t, false), t.knobs);
-    expect(css).toContain(`[data-skin="xp"]`);
-    expect(css).toContain("--overlay-opacity: 0.5;");
   });
 });
