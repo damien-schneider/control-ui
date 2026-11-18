@@ -1,12 +1,9 @@
-import { skinMetas } from "@/app/(features)/catalog/skins";
-
 export type Theme = "light" | "dark";
 
 export const THEME_STORAGE_KEY = "control-ui:theme:v1";
 
 export const DEFAULT_SKIN_ID = "refined";
 export const BASE_SKIN_ID = "none";
-export const THEME_INIT_SKIN_IDS = skinMetas.map((skin) => skin.id);
 
 export const THEME_EDITOR_STORAGE_KEY = "control-ui:theme-editor:v2";
 

@@ -1,21 +1,8 @@
 import { describe, expect, test } from "bun:test";
 import { DEFAULT_SKIN_ID } from "@/components/theme";
 import { DEFAULT_THEME } from "./presets";
-import { parseThemeArtifact, serializeThemeArtifact, themeArtifactBrief, themeArtifactCss, validateThemeArtifact } from "./theme-artifact";
-import type { ControlUiThemeArtifactV1 } from "./types";
+import { themeArtifactBrief } from "./theme-artifact";
 import { toCss } from "./write-vars";
-
-const ARTIFACT: ControlUiThemeArtifactV1 = {
-  format: "control-ui-theme/v1",
-  name: "Field Notes",
-  baseSkin: "refined",
-  reduceMotion: false,
-  tokens: {
-    shared: { "--radius-control": "10px" },
-    light: { "--background": "oklch(0.98 0.01 95)" },
-    dark: { "--background": "oklch(0.2 0.01 95)" },
-  },
-};
 
 describe("theme artifact brief", () => {
   test("asks a coding agent to discover the direction and references before writing a portable file", () => {
@@ -48,77 +35,7 @@ describe("theme artifact brief", () => {
   });
 });
 
-describe("theme artifact parsing and validation", () => {
-  test("accepts raw JSON, a fence, and a complete reply containing one fence", () => {
-    const raw = serializeThemeArtifact(ARTIFACT);
-    expect(parseThemeArtifact(raw)).toEqual({ ok: true, artifact: ARTIFACT });
-    expect(parseThemeArtifact(`\`\`\`json\n${raw}\`\`\``)).toEqual({ ok: true, artifact: ARTIFACT });
-    expect(parseThemeArtifact(`Here is the result.\n\n\`\`\`control-ui-theme\n${raw}\`\`\`\n`)).toEqual({ ok: true, artifact: ARTIFACT });
-  });
-
-  test("reports malformed JSON and unsupported versions", () => {
-    expect(parseThemeArtifact("not json")).toEqual({ ok: false, errors: ["No valid JSON object was found in the response."] });
-    const result = validateThemeArtifact({ ...ARTIFACT, format: "control-ui-theme/v2" });
-    expect(result.ok).toBe(false);
-    if (!result.ok) expect(result.errors).toContain('format must be "control-ui-theme/v1".');
-  });
-
-  test("keeps a mismatched base unapplied", () => {
-    const result = validateThemeArtifact({ ...ARTIFACT, baseSkin: "xp" }, "refined");
-    expect(result.ok).toBe(false);
-    if (!result.ok) expect(result.errors).toContain("baseSkin is xp; select that skin before previewing this theme.");
-  });
-
-  test("rejects unknown and misbucketed tokens with token-specific errors", () => {
-    const result = validateThemeArtifact({
-      ...ARTIFACT,
-      tokens: {
-        shared: { "--background": "red", "--unknown": "1px" },
-        light: { "--radius": "8px" },
-        dark: ARTIFACT.tokens.dark,
-      },
-    });
-    expect(result.ok).toBe(false);
-    if (!result.ok) {
-      expect(result.errors).toContain("tokens.shared.--background belongs in light and dark.");
-      expect(result.errors).toContain("tokens.shared.--unknown is not part of the theme contract.");
-      expect(result.errors).toContain("tokens.light.--radius belongs in shared.");
-    }
-  });
-
-  test("rejects empty, malformed, declaration-breaking, and remote-loading values", () => {
-    const result = validateThemeArtifact({
-      ...ARTIFACT,
-      tokens: {
-        shared: {
-          "--radius": "oklch(",
-          "--radius-control": "8px; color: red",
-          "--font-sans": "url(https://example.com/font.woff2)",
-          "--duration-fast": "",
-        },
-        light: ARTIFACT.tokens.light,
-        dark: ARTIFACT.tokens.dark,
-      },
-    });
-    expect(result.ok).toBe(false);
-    if (!result.ok) {
-      expect(result.errors).toContain("tokens.shared.--radius has unbalanced CSS syntax.");
-      expect(result.errors).toContain("tokens.shared.--radius-control contains declaration-breaking characters.");
-      expect(result.errors).toContain("tokens.shared.--font-sans contains unsafe CSS syntax.");
-      expect(result.errors).toContain("tokens.shared.--duration-fast must not be empty.");
-    }
-  });
-});
-
-test("none-skin artifacts export root CSS without a skin dependency", () => {
-  const result = validateThemeArtifact({ ...ARTIFACT, baseSkin: "none" });
-  expect(result.ok).toBe(true);
-  if (!result.ok) throw new Error(result.errors.join("; "));
-  expect(result.artifact.tokens).toEqual(ARTIFACT.tokens);
-  const css = themeArtifactCss(result.artifact);
-  expect(css).toContain(":root {");
-  expect(css).toContain(".dark:root {");
-  expect(css).not.toContain("[data-skin");
+test("the drawer copies a none-skin theme as root CSS without a skin dependency", () => {
   const copied = toCss({ ...DEFAULT_THEME, skin: "none", overrides: { "--radius": "4px" } });
   expect(copied).toContain(":root {");
   expect(copied).not.toContain("[data-skin");

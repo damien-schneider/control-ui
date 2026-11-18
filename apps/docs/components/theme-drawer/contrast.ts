@@ -62,11 +62,6 @@ export function analyzeContrast(read: (name: string) => Rgb | null): ContrastRow
   });
 }
 
-// null ratio is unreadable token, not actionable failure
-export function textFailsAA(rows: ContrastRow[]): boolean {
-  return rows.some((r) => r.ratio !== null && r.ratio < AA_RATIO);
-}
-
 // Hex-facing wrapper over the shared OKLCH lightness search; null when the colour already clears target.
 export function fixTextForeground(fgHex: string, backgrounds: Rgb[], target: number = AA_RATIO): string | null {
   const fg = hexToOklch(fgHex);

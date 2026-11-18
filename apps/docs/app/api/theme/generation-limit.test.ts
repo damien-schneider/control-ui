@@ -1,6 +1,18 @@
 import { beforeEach, describe, expect, test } from "bun:test";
 
-import { PER_VISITOR_GENERATIONS, resetGenerationLimits, takeGeneration } from "./generation-limit";
+import { PER_VISITOR_GENERATIONS } from "./generation-limit";
+
+type Limiter = typeof import("./generation-limit");
+
+// The per-instance burst counter is module state, so every test loads its own copy of the module.
+let instance = 0;
+let takeGeneration: Limiter["takeGeneration"];
+
+beforeEach(async () => {
+  instance += 1;
+  const limiter: Limiter = await import(`./generation-limit?instance=${instance}`);
+  takeGeneration = limiter.takeGeneration;
+});
 
 const withCookie = (cookie?: string) =>
   new Request("http://localhost/api/theme", {
@@ -11,8 +23,6 @@ const withCookie = (cookie?: string) =>
 const cookieValue = (setCookie: string) => setCookie.split(";")[0] ?? "";
 
 describe("takeGeneration", () => {
-  beforeEach(resetGenerationLimits);
-
   test("walks a visitor through the daily allowance, then refuses", () => {
     let cookie: string | undefined;
 

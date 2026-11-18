@@ -4,7 +4,7 @@ import { Agent } from "@mastra/core/agent";
 import { simulateReadableStream } from "ai";
 
 import { generatedThemeSchema } from "@/mastra/theme-generator-contract";
-import { PER_VISITOR_GENERATIONS, resetGenerationLimits } from "./generation-limit";
+import { PER_VISITOR_GENERATIONS } from "./generation-limit";
 
 const palette = {
   name: "Ember Terminal",
@@ -73,6 +73,7 @@ const cannedModel: MastraLanguageModel = {
 };
 
 const realModules = {
+  "./generation-limit": { ...(await import("./generation-limit")) },
   "@/mastra/theme-generator-agent": { ...(await import("@/mastra/theme-generator-agent")) },
   "@/mastra/theme-image-brief": { ...(await import("@/mastra/theme-image-brief")) },
   "@/mastra/theme-repair-agent": { ...(await import("@/mastra/theme-repair-agent")) },
@@ -116,6 +117,15 @@ mock.module("@/mastra/theme-image-brief", () => ({
 mock.module("@/mastra/theme-repair-agent", () => ({ repairContrast: async (theme: unknown) => theme }));
 mock.module("@/mastra/theme-knob-agent", () => ({ refineKnobs: async () => [] }));
 
+// The limiter's per-instance burst counter is module state, so each test hands the route a fresh copy of it.
+type Limiter = typeof import("./generation-limit");
+let limiterInstance = 0;
+let limiter: Limiter = await import(`./generation-limit?route-test=${limiterInstance}`);
+mock.module("./generation-limit", () => ({
+  ...realModules["./generation-limit"],
+  takeGeneration: (request: Request) => limiter.takeGeneration(request),
+}));
+
 // Static import would bind the real agent before mock.module replaces it.
 const { POST } = await import("./route");
 
@@ -150,8 +160,9 @@ async function readLines(response: Response): Promise<StreamLine[]> {
     .map((line) => JSON.parse(line));
 }
 
-beforeEach(() => {
-  resetGenerationLimits();
+beforeEach(async () => {
+  limiterInstance += 1;
+  limiter = await import(`./generation-limit?route-test=${limiterInstance}`);
   process.env.DEEPSEEK_API_KEY = "test-key";
 });
 

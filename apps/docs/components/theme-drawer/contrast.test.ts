@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { contrastFromRgb, hexToOklch, nextFixLevel, oklchToRgb, type Rgb, wcagLevels } from "./color-math";
 import { rgbToHex } from "./color-utils";
-import { analyzeContrast, fixTextForeground, maxForegroundRatio, offeredFixLevel, textFailsAA } from "./contrast";
+import { analyzeContrast, fixTextForeground, maxForegroundRatio, offeredFixLevel } from "./contrast";
 import { buildOverrideDecls } from "./override-decls";
 import { DEFAULT_THEME } from "./presets";
 
@@ -108,56 +108,6 @@ describe("analyzeContrast — the live readout, over an injected token reader", 
       expect(r.ratio).toBeNull();
       expect(r.levels).toEqual({ AA: false, AAA: false });
     }
-  });
-});
-
-describe("textFailsAA — true when ANY fixable row fails AA (every row now has a fix)", () => {
-  test("no rows failing → false", () => {
-    expect(textFailsAA(analyzeContrast(readRefined))).toBe(false);
-  });
-
-  test("a foreground row below 4.5 → true", () => {
-    const rows = analyzeContrast((name) => {
-      if (name === "--card-foreground") return [170, 170, 170];
-      if (name === "--card") return [255, 255, 255];
-      return readRefined(name);
-    });
-    expect(rows.find((r) => r.label === "Body text")?.levels.AA).toBe(false);
-    expect(textFailsAA(rows)).toBe(true);
-  });
-
-  test("the Brand row failing counts (fixable via the Brand knob)", () => {
-    const rows = analyzeContrast((name) => {
-      if (name === "--primary-foreground") return [130, 130, 130];
-      if (name === "--primary") return [140, 140, 140];
-      return readRefined(name);
-    });
-    expect(rows.find((r) => r.label === "Brand button")?.levels.AA).toBe(false);
-    expect(textFailsAA(rows)).toBe(true);
-  });
-
-  test("the Destructive row failing counts", () => {
-    const rows = analyzeContrast((name) => {
-      if (name === "--destructive-foreground") return [180, 180, 180];
-      if (name === "--destructive") return [190, 190, 190];
-      return readRefined(name);
-    });
-    expect(rows.find((r) => r.label === "Destructive button")?.levels.AA).toBe(false);
-    expect(textFailsAA(rows)).toBe(true);
-  });
-
-  test("Muted failing counts too (fixable via the accessibility auto-fix)", () => {
-    const rows = analyzeContrast((name) => {
-      if (name === "--muted-foreground") return [180, 180, 180];
-      if (name === "--card") return [255, 255, 255];
-      return readRefined(name);
-    });
-    expect(rows.find((r) => r.label === "Muted text")?.levels.AA).toBe(false);
-    expect(textFailsAA(rows)).toBe(true);
-  });
-
-  test("null ratios never count as failing (can't fix what we can't read)", () => {
-    expect(textFailsAA(analyzeContrast(() => null))).toBe(false);
   });
 });
 

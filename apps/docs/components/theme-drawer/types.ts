@@ -37,18 +37,6 @@ export type ThemeState = {
   customSkinId: string | null;
 };
 
-export type ControlUiThemeArtifactV1 = {
-  format: "control-ui-theme/v1";
-  name: string;
-  baseSkin: SkinId;
-  reduceMotion: boolean;
-  tokens: {
-    shared: TokenValues;
-    light: TokenValues;
-    dark: TokenValues;
-  };
-};
-
 // select authors raw CSS value; these are only curated choices offered
 export const EASE = {
   standard: "cubic-bezier(0.2, 0, 0, 1)",

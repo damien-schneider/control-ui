@@ -50,7 +50,3 @@ export function takeGeneration(request: Request): GenerationGrant {
   burst.count += 1;
   return { granted: true, cookie: serializeTally({ count: tally.count + 1, resetAt: tally.resetAt }, now) };
 }
-
-export function resetGenerationLimits() {
-  burst = { count: 0, resetAt: 0 };
-}

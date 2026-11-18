@@ -1,5 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { gzipSync } from "node:zlib";
+import { skinMetas } from "@/app/(features)/catalog/skins";
 import themeInitScript from "@/app/(features)/theme/generated-theme-init.json";
 import {
   COLOR_SCHEME_LOCK_ATTR,
@@ -7,7 +8,6 @@ import {
   MODE_LOCKED_SKINS,
   PAGE_LAYOUT_SKINS,
   THEME_EDITOR_STORAGE_KEY,
-  THEME_INIT_SKIN_IDS,
   THEME_STORAGE_KEY,
 } from "@/components/theme";
 
@@ -111,7 +111,8 @@ test("pre-paint restoration stays below 6 KiB compressed", () => {
 });
 
 describe("pre-paint theme restoration", () => {
-  for (const skin of THEME_INIT_SKIN_IDS) {
+  // build-theme-init inlines exactly these ids into the script.
+  for (const { id: skin } of skinMetas) {
     test(`${skin} restores its saved edits, mode, motion, and layout`, () => {
       const { html } = runThemeInit({
         stored: {
