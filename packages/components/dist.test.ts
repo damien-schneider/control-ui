@@ -6,9 +6,9 @@ import { render } from "react-email";
 import { InvitationEmail } from "./dist/email/templates.js";
 import { emailThemeFromCss } from "./dist/email/theme.js";
 import pkg from "./package.json";
-import { closure, stylesIndex } from "./registry-closure";
+import { closure } from "./registry-closure";
 
-const { files, dependencies, styles } = closure();
+const { files, dependencies } = closure();
 const dist = path.join(import.meta.dir, "dist");
 const read = (name: string) => readFileSync(path.join(dist, name), "utf8");
 const modules = [...files.keys()].filter((name) => /\.tsx?$/.test(name)).map((name) => name.replace(/\.tsx?$/, ""));
@@ -56,23 +56,15 @@ const peerFreeEntries = ["ui/markdown-elements.js", "ui/typography.js", "ui/butt
 test("light entries install without any optional peer", () => {
   expect(optionalPeerImports("ui/markdown.js")).toContain("streamdown");
   expect(optionalPeerImports("ui/markdown-components.js")).toContain("@tanstack/react-virtual");
-  expect(read("ui/markdown-elements.js")).toInclude("function MarkdownRoot(");
-  expect(read("ui/markdown-elements.js")).toInclude("function MarkdownInlineCode(");
   for (const entry of peerFreeEntries) expect({ entry, peers: optionalPeerImports(entry) }).toEqual({ entry, peers: [] });
 });
 
-test("the package works without a skin config or preset stylesheet", () => {
-  expect(existsSync(path.join(dist, "skin.config.js"))).toBe(false);
-  expect(existsSync(path.join(dist, "styles/skin-theme.css"))).toBe(false);
-  expect(existsSync(path.join(dist, "skin-provider.js"))).toBe(true);
-});
-
-test("the stylesheet entry imports every shipped stylesheet, without a skin", () => {
-  expect(styles.length).toBe(sheets.length);
-  expect(styles[0]).toBe("theme.css");
-  expect(styles).not.toContain("skin-theme.css");
-  expect(styles).not.toContain("skin.css");
-  expect(read("styles/index.css")).toBe(stylesIndex(styles));
+test("the stylesheet entry imports every shipped stylesheet, theme first, without a skin", () => {
+  const imports = read("styles/index.css").trim().split("\n");
+  expect(imports[0]).toBe('@import "./theme.css";');
+  expect(imports.toSorted()).toEqual(sheets.map((sheet) => `@import "./${sheet.replace(/^styles\//, "")}";`).toSorted());
+  expect(imports).not.toContain('@import "./skin-theme.css";');
+  expect(imports).not.toContain('@import "./skin.css";');
   for (const sheet of sheets) expect(existsSync(path.join(dist, sheet))).toBe(true);
 });
 

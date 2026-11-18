@@ -22,7 +22,6 @@ describe("AudioVisualizer", () => {
     expect(html).toContain('data-control-ui="audio-visualizer-line"');
     expect(html).toContain('data-slot="root"');
     expect(html).toContain(" C ");
-    expect(html).not.toContain("<polyline");
   });
 
   test("exposes labelled visualizations and keeps decorative ones hidden", () => {

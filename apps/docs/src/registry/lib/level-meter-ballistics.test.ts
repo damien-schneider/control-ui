@@ -1,11 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import {
-  advanceLevelMeterReading,
-  LEVEL_METER_PEAK_HOLD_MS,
-  LEVEL_METER_RELEASE_DB_PER_SECOND,
-  levelMeterFraction,
-  levelMeterReadingSettled,
-} from "./level-meter-ballistics";
+import { advanceLevelMeterReading, levelMeterFraction, levelMeterReadingSettled } from "./level-meter-ballistics";
 
 const scale = { minDb: -60, maxDb: 0 };
 const silence = { levelDb: -60, peakDb: -60, peakHeldUntilMs: 0 };
@@ -24,17 +18,17 @@ describe("level meter ballistics", () => {
     expect(loud.levelDb).toBe(-6);
 
     const halfSecondLater = advanceLevelMeterReading(loud, Number.NEGATIVE_INFINITY, 500, 500, scale);
-    expect(halfSecondLater.levelDb).toBe(-6 - LEVEL_METER_RELEASE_DB_PER_SECOND / 2);
+    expect(halfSecondLater.levelDb).toBe(-18);
   });
 
   test("holds the peak while the level falls, then releases it down to the level", () => {
     const loud = advanceLevelMeterReading(silence, -6, 16, 0, scale);
-    const holding = advanceLevelMeterReading(loud, -40, 500, LEVEL_METER_PEAK_HOLD_MS - 1, scale);
+    const holding = advanceLevelMeterReading(loud, -40, 500, 999, scale);
     expect(holding.peakDb).toBe(-6);
     expect(holding.levelDb).toBeLessThan(-6);
 
-    const released = advanceLevelMeterReading(holding, -40, 500, LEVEL_METER_PEAK_HOLD_MS + 500, scale);
-    expect(released.peakDb).toBe(-6 - LEVEL_METER_RELEASE_DB_PER_SECOND / 2);
+    const released = advanceLevelMeterReading(holding, -40, 500, 1500, scale);
+    expect(released.peakDb).toBe(-18);
   });
 
   test("settles only once the level reaches its target and the peak has merged into it", () => {
@@ -47,6 +41,6 @@ describe("level meter ballistics", () => {
       reading = advanceLevelMeterReading(reading, Number.NEGATIVE_INFINITY, 16, nowMs, scale);
     }
     expect(reading).toMatchObject({ levelDb: -60, peakDb: -60 });
-    expect(nowMs).toBeGreaterThan(LEVEL_METER_PEAK_HOLD_MS);
+    expect(nowMs).toBeGreaterThan(1000);
   });
 });

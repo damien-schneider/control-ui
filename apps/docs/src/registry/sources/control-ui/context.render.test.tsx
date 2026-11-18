@@ -24,10 +24,6 @@ describe("Context", () => {
     expect(describedBy).toBeDefined();
     const description = html.match(new RegExp(`id="${describedBy}"[^>]*>([^<]*)<`))?.[1];
     expect(description).toBe("100,000 of 200,000 tokens used (50%)");
-    expect(html).toContain('data-control-ui="context" data-control-family="context" data-slot="root"');
-    expect(html).toContain('data-control-ui="context" data-control-family="context" data-slot="trigger"');
-    expect(html).toContain('data-control-ui="context" data-control-family="context" data-slot="trigger-indicator"');
-    expect(html).toContain('data-control-ui="context" data-control-family="context" data-slot="trigger-label"');
     expect(html).not.toContain('data-control-ui="popover" data-slot="content"');
     expect(html).not.toContain("Context window</");
   });

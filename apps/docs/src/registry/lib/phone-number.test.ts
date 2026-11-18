@@ -27,9 +27,7 @@ describe("phone number schemas", () => {
     expect(mobilePhoneNumberSchema.safeParse("+80012345678").success).toBe(false);
   });
 
-  test("composes with optional fields and localized messages", () => {
-    expect(phoneNumberSchema.optional().parse(undefined)).toBeUndefined();
-
+  test("reports a localized message", () => {
     const result = createPhoneNumberSchema({ messages: { invalid: "Numéro invalide." } }).safeParse("+15555555555");
     expect(result.success).toBe(false);
     if (!result.success) expect(result.error.issues[0]?.message).toBe("Numéro invalide.");

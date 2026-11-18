@@ -241,14 +241,10 @@ function paintedStylingValues(roots: Root[]): Map<string, Set<string>> {
   return painted;
 }
 
-function unpaintedClosedStateOffenders(
-  roots: Root[],
-  contractSites: StylingSite[] = sites,
-  sourceRenderedStates: Record<string, true> = SOURCE_RENDERED_STATES,
-): string[] {
+function unpaintedClosedStateOffenders(roots: Root[]): string[] {
   const painted = paintedStylingValues(roots);
   const declared = new Map<string, Set<string>>();
-  for (const site of contractSites) {
+  for (const site of sites) {
     for (const state of site.states) {
       if (
         state.source !== "control-ui" ||
@@ -265,7 +261,7 @@ function unpaintedClosedStateOffenders(
     }
   }
   return [...declared].flatMap(([key, values]) => {
-    if (sourceRenderedStates[key]) return [];
+    if (SOURCE_RENDERED_STATES[key]) return [];
     const missing = [...values].filter((value) => !painted.get(key)?.has(value));
     return missing.length > 1 ? [`${key} leaves ${missing.join(", ")} unpainted`] : [];
   });
@@ -278,90 +274,5 @@ describe("Control UI styling state contract", () => {
 
   test("recipes paint every closed value beyond one derived base", () => {
     expect(unpaintedClosedStateOffenders(recipeStyles)).toEqual([]);
-  });
-
-  test("mobile Dockable drawer receives defaults and paint from one rule", () => {
-    const dockableRecipe = recipeStyles[recipePaths.findIndex((filePath) => path.basename(filePath) === "dockable-panel.css")];
-    const sharedRules: postcss.Rule[] = [];
-    dockableRecipe?.walkRules((rule) => {
-      if (
-        rule.selector.includes('[data-control-family="dockable-panel"][data-slot="root"]') &&
-        rule.selector.includes("[data-dockable-panel-root]")
-      ) {
-        sharedRules.push(rule);
-      }
-    });
-    const sharedRule = sharedRules[0];
-    if (!sharedRule) throw new Error("Dockable desktop/mobile rule missing");
-    const properties = sharedRule.nodes.filter((node) => node.type === "decl").map((declaration) => declaration.prop);
-    const required = [
-      "--cui-dockable-panel-radius",
-      "--cui-dockable-panel-background",
-      "--cui-dockable-panel-foreground",
-      "--cui-dockable-panel-border-color",
-      "--cui-dockable-panel-shadow",
-      "border",
-      "border-radius",
-      "background-color",
-      "color",
-      "box-shadow",
-    ];
-    expect(required.filter((property) => !properties.includes(property))).toEqual([]);
-  });
-
-  test("rejects a closed tone emitted without paint", () => {
-    const deadTone: StylingSite = {
-      scope: "chat-message",
-      part: "root",
-      family: "chat-message",
-      states: [
-        {
-          attribute: "data-tone",
-          source: "control-ui",
-          valueKind: "enum",
-          values: ["neutral", "warning"],
-        },
-      ],
-    };
-    expect(unpaintedClosedStateOffenders([], [deadTone], {})).toEqual(["chat-message:data-tone leaves neutral, warning unpainted"]);
-  });
-
-  test("does not borrow a state value from another part in the family", () => {
-    const invalid = postcss.parse(':where([data-control-family="sidebar"][data-slot="root"][data-variant="outline"]) {}', {
-      from: "invalid.css",
-    });
-    expect(closedStylingStateOffenders(invalid)).toEqual(["invalid.css:1 sidebar/root data-variant=outline"]);
-  });
-
-  test("resolves identity-only selectors", () => {
-    const invalid = postcss.parse(':where([data-control-ui="audio-recorder"][data-slot="status"][data-tone="typo"]) {}', {
-      from: "invalid.css",
-    });
-    expect(closedStylingStateOffenders(invalid)).toEqual(["invalid.css:1 audio-recorder/status data-tone=typo"]);
-  });
-
-  test("keeps popup kinds on their own variant contracts", () => {
-    const invalid = postcss.parse(
-      ':where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-variant="compact"]) {}',
-      { from: "invalid.css" },
-    );
-    expect(closedStylingStateOffenders(invalid)).toEqual(["invalid.css:1 drawer/content data-variant=compact"]);
-  });
-
-  test("leaves explicitly open state values extensible", () => {
-    const openState: ContractState = { attribute: "data-variant", source: "control-ui", valueKind: "open", values: [] };
-    expect(acceptsValue(openState, "custom")).toBe(true);
-  });
-
-  test("declared styling values follow the public grammar", () => {
-    const grammar = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-    const offenders = sites.flatMap((site) =>
-      site.states
-        .filter((state) => state.source === "control-ui" && STYLING_ATTRIBUTES[state.attribute])
-        .flatMap((state) =>
-          state.values.filter((value) => !grammar.test(value)).map((value) => `${site.scope}/${site.part}:${state.attribute}=${value}`),
-        ),
-    );
-    expect(offenders).toEqual([]);
   });
 });

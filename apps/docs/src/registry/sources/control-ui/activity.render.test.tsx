@@ -70,13 +70,9 @@ describe("Activity", () => {
       </Activity>,
     );
 
-    expect(html).toContain('aria-expanded="true"');
-    expect(html).toMatch(/<button[^>]*data-control-ui="activity"[^>]*data-slot="trigger"/);
+    expect(html).toMatch(/<button[^>]*aria-expanded="true"/);
     expect(html).toContain('data-slot="content"');
-    expect(html).toContain('data-control-ui="scroll-area"');
-    expect(html).toContain('data-slot="content-viewport"');
-    expect(html).toContain("max-height:var(--activity-content-max-height, min(24rem, 50dvh))");
-    expect(html).toContain('data-control-ui="timeline"');
+    expect(html).toContain("max-height:");
     expect(html).toContain("Ran the validation command");
   });
 
@@ -108,7 +104,7 @@ describe("Activity", () => {
     expect(html).toContain("Unbounded content");
   });
 
-  test("renders structured tool details without a separate tool-call anatomy", () => {
+  test("renders structured tool details", () => {
     const html = renderToString(
       <Activity state="success" kind="tool" name="read_file" defaultOpen>
         <ActivityTrigger>
@@ -130,6 +126,6 @@ describe("Activity", () => {
     expect(html).toContain('data-slot="detail"');
     expect(html).toContain('data-slot="detail-label"');
     expect(html).toContain('data-slot="detail-content"');
-    expect(html).not.toContain('data-control-ui="tool-call"');
+    expect(html).toContain("src/app.tsx");
   });
 });

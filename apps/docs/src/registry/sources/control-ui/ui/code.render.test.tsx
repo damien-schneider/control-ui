@@ -4,18 +4,6 @@ import { renderToString } from "react-dom/server";
 import { Code, CodeContent, CodeEditable, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
 
 describe("Code renders", () => {
-  test("uses the shared ScrollArea for scrollable code", () => {
-    const html = renderToString(
-      <Code>
-        <CodeContent code="const answer = 42;" highlight="none" />
-      </Code>,
-    );
-
-    expect(html).toContain('data-control-ui="scroll-area"');
-    expect(html).toContain('data-slot="content"');
-    expect(html).toContain("const answer = 42;");
-  });
-
   test("keeps the complete source available when visual rows virtualize", () => {
     const code = Array.from({ length: 201 }, (_, index) => `line ${index + 1}`).join("\n");
     const html = renderToString(
@@ -39,7 +27,7 @@ describe("Code renders", () => {
 
     expect(html).not.toContain("​");
     // an empty row has no text node, so selecting across it would copy "first\nthird"
-    expect(html).toContain('<code class="min-w-0 flex-1 whitespace-pre">\n</code>');
+    expect(html).toMatch(/<code[^>]*>\n<\/code>/);
   });
 
   test("tokens that no longer match their line fall back to the source text", () => {

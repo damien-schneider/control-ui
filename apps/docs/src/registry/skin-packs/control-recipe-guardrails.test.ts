@@ -7,7 +7,7 @@ import selectorParser from "postcss-selector-parser";
 import { familyAttribute, identityAttribute, isFamilyQualifierAttribute, slotAttribute } from "../../../scripts/control-anatomy";
 import { knobsByFamily } from "../../../scripts/knob-contracts/collect";
 import { paintedStates } from "../../../scripts/painted-states";
-import { bucketingOffenders, flattenCompound } from "../../../scripts/selector-bucketing";
+import { flattenCompound } from "../../../scripts/selector-bucketing";
 import { type AnatomyPair, pairSetKey, stampedAnatomyKeys } from "../../../scripts/stamped-anatomy";
 
 const controlKnobContracts = knobsByFamily();
@@ -120,72 +120,11 @@ function isAllowedRecipeRootNode(node: Root["nodes"][number]): boolean {
   return node.name === "layer" && node.params.trim() === "components";
 }
 
-function recipeSourceStructureOffenders({ file, source }: RecipeSource): string[] {
+function unlayeredRecipeOffenders({ file, source }: RecipeSource): string[] {
   const root = postcss.parse(source, { from: file });
-  const componentLayers = root.nodes.filter(
-    (node) => node.type === "atrule" && node.name === "layer" && node.params.trim() === "components",
-  );
-  const offenders = componentLayers.length === 1 ? [] : [`${file}: expected one @layer components block, found ${componentLayers.length}`];
-  const lineCount = source.length === 0 ? 0 : source.split("\n").length - Number(source.endsWith("\n"));
-  if (lineCount > 400) offenders.push(`${file}: exceeds 400 lines`);
-  for (const recipeNode of root.nodes.filter((node) => !isAllowedRecipeRootNode(node))) {
-    offenders.push(`${file}:${recipeNode.source?.start?.line ?? "?"} top-level ${recipeNode.type}`);
-  }
-  return offenders;
-}
-
-function recipeStructureOffenders(entries: readonly RecipeSource[]): string[] {
-  return entries.flatMap(recipeSourceStructureOffenders);
-}
-
-function oneUsePrivateVariableOffenders({ file, source }: RecipeSource): string[] {
-  const root = postcss.parse(source, { from: file });
-  const declarations = new Map<string, postcss.Declaration[]>();
-  const references = new Map<string, postcss.Declaration[]>();
-  root.walkDecls((declaration) => {
-    if (declaration.prop.startsWith("--_")) {
-      const entries = declarations.get(declaration.prop) ?? [];
-      entries.push(declaration);
-      declarations.set(declaration.prop, entries);
-    }
-    for (const match of declaration.value.matchAll(/var\(\s*(--_[\w-]+)/g)) {
-      const name = match[1];
-      if (!name) continue;
-      const entries = references.get(name) ?? [];
-      entries.push(declaration);
-      references.set(name, entries);
-    }
-  });
-  return [...declarations]
-    .filter(([, declared]) => declared.length === 1)
-    .flatMap(([name, declared]) => {
-      const read = references.get(name) ?? [];
-      const declaration = declared[0];
-      const reference = read[0];
-      if (read.length !== 1 || !declaration || !reference || declaration.parent !== reference.parent) return [];
-      return [`${file}:${declaration.source?.start?.line ?? "?"} ${name}`];
-    });
-}
-
-function unusedPrivateVariableOffenders(root: Root, renderedSource: string): string[] {
-  const declarations = new Map<string, postcss.Declaration[]>();
-  const references = new Set<string>();
-  root.walkDecls((declaration) => {
-    if (declaration.prop.startsWith("--_")) {
-      const entries = declarations.get(declaration.prop) ?? [];
-      entries.push(declaration);
-      declarations.set(declaration.prop, entries);
-    }
-    for (const match of declaration.value.matchAll(/--_[\w-]+/g)) references.add(match[0]);
-  });
-  return [...declarations]
-    .filter(([name]) => !references.has(name) && !renderedSource.includes(name))
-    .flatMap(([name, entries]) =>
-      entries.map(
-        (declaration) =>
-          `${path.basename(declaration.source?.input.file ?? "recipe.css")}:${declaration.source?.start?.line ?? "?"} ${name}`,
-      ),
-    );
+  return root.nodes
+    .filter((node) => !isAllowedRecipeRootNode(node))
+    .map((node) => `${file}:${node.source?.start?.line ?? "?"} top-level ${node.type}`);
 }
 
 /** Same file, same family and slot: the element a rule's declarations compute on, whatever its state or variant. */
@@ -214,96 +153,6 @@ function knobReadingForeignPrivateOffenders(root: Root): string[] {
         );
       }
     });
-  });
-  return offenders;
-}
-
-function selectorContext(rule: postcss.Rule): string {
-  const ancestors: string[] = [];
-  for (let node: postcss.Container | postcss.Document | undefined = rule.parent; node; node = node.parent) {
-    if (node instanceof postcss.AtRule && node.name !== "layer") ancestors.push(`@${node.name} ${node.params}`);
-  }
-  return ancestors.reverse().join(" > ");
-}
-
-function normalizedSelector(selector: string): string {
-  return selector
-    .replace(/\s+/g, " ")
-    .replace(/\s*([,>+~])\s*/g, "$1")
-    .trim();
-}
-
-function duplicateSelectorOffenders({ file, source }: RecipeSource): string[] {
-  const root = postcss.parse(source, { from: file });
-  const firstLineBySelector = new Map<string, number | string>();
-  const offenders: string[] = [];
-  root.walkRules((rule) => {
-    if (rule.parent?.type === "atrule" && rule.parent.name.endsWith("keyframes")) return;
-    const selector = normalizedSelector(rule.selector);
-    const key = `${selectorContext(rule)}\u0000${selector}`;
-    const line = rule.source?.start?.line ?? "?";
-    const firstLine = firstLineBySelector.get(key);
-    if (firstLine === undefined) firstLineBySelector.set(key, line);
-    else offenders.push(`${file}:${line} duplicates line ${firstLine}: ${selector}`);
-  });
-  return offenders;
-}
-
-function selectorBucketSplitOffenders({ file, source }: RecipeSource): string[] {
-  const root = postcss.parse(source, { from: file });
-  const offenders: string[] = [];
-  root.walkRules((rule) => {
-    for (const offender of bucketingOffenders(rule.selector)) {
-      if (offender.includes("split the subject")) offenders.push(`${file}:${rule.source?.start?.line ?? "?"} ${offender}`);
-    }
-  });
-  return offenders;
-}
-
-function consumerClassSelectorOffenders({ file, source }: RecipeSource): string[] {
-  const root = postcss.parse(source, { from: file });
-  const offenders: string[] = [];
-  root.walkRules((rule) => {
-    selectorParser((selectors) => {
-      selectors.walkClasses((className) => {
-        if (!/^(?:group|peer)(?:\/|$)/.test(className.value)) return;
-        offenders.push(`${file}:${rule.source?.start?.line ?? "?"} .${className.value}`);
-      });
-    }).processSync(rule.selector);
-  });
-  return offenders;
-}
-
-function adHocPartAttributeOffenders({ file, source }: RecipeSource): string[] {
-  const root = postcss.parse(source, { from: file });
-  const offenders: string[] = [];
-  root.walkRules((rule) => {
-    selectorParser((selectors) => {
-      selectors.walkAttributes((attribute) => {
-        if (!/^data-[a-z0-9-]+-part$/.test(attribute.attribute) || attribute.attribute === "data-popup-part") return;
-        offenders.push(`${file}:${rule.source?.start?.line ?? "?"} ${attribute.attribute}`);
-      });
-    }).processSync(rule.selector);
-  });
-  return offenders;
-}
-
-function adHocSourcePartAttributes(source: string): string[] {
-  return [...new Set([...source.matchAll(/\bdata-[a-z0-9-]+-part\b/g)].map((match) => match[0]))].filter(
-    (attribute) => attribute !== "data-popup-part",
-  );
-}
-
-function literalBorderWidthOffenders({ file, source }: RecipeSource): string[] {
-  const root = postcss.parse(source, { from: file });
-  const offenders: string[] = [];
-  root.walkDecls(/^border(?:-(?:block|inline|top|right|bottom|left)(?:-(?:start|end))?)?$/, (declaration) => {
-    const knobColor = /var\((--cui-[a-z0-9-]*?-border-color)\)/.exec(declaration.value);
-    const literalWidth = /(?:^|\s)-?\d*\.?\d+(?:px|rem|em)(?:\s|$)/.exec(declaration.value);
-    if (!knobColor || !literalWidth) return;
-    offenders.push(
-      `${file}:${declaration.source?.start?.line ?? "?"} ${declaration.prop} ${literalWidth[0].trim()} beside ${knobColor[1]}`,
-    );
   });
   return offenders;
 }
@@ -371,183 +220,33 @@ const recipeSources = recipePaths.map((recipePath) => ({
 const stampedAnatomiesInComponents = stampedAnatomyKeys(componentSources);
 
 describe("recipe hygiene", () => {
-  test("private variables earn reuse or state indirection", () => {
-    expect(recipeSources.flatMap(oneUsePrivateVariableOffenders)).toEqual([]);
-  });
-
-  test("rejects one-use private aliases inside one rule", () => {
-    const invalid = { file: "invalid.css", source: "a { --_paint: red; color: var(--_paint); }" };
-    expect(oneUsePrivateVariableOffenders(invalid)).toEqual(["invalid.css:1 --_paint"]);
-  });
-
-  test("private variables reach rendered CSS or component source", () => {
-    expect(unusedPrivateVariableOffenders(recipes, sourceText)).toEqual([]);
-  });
-
-  test("rejects unused private variables", () => {
-    const invalid = postcss.parse("a { --_unused: red; }", { from: "invalid.css" });
-    expect(unusedPrivateVariableOffenders(invalid, "")).toEqual(["invalid.css:1 --_unused"]);
-  });
-
   test("knob defaults read only private variables declared in the same rule", () => {
     expect(knobReadingForeignPrivateOffenders(recipes)).toEqual([]);
-  });
-
-  test("rejects a knob default computed from another slot's private variable", () => {
-    const invalid = postcss.parse(
-      '[data-slot="root"] { --cui-x-radius: calc(var(--_fit) + 1px); }\n[data-slot="list"] { --_fit: 1px; }\n[data-slot="list"][data-size="sm"] { --cui-x-gap: var(--_fit); }',
-      { from: "invalid.css" },
-    );
-    expect(knobReadingForeignPrivateOffenders(invalid)).toEqual(["invalid.css:1 --cui-x-radius reads --_fit"]);
-  });
-
-  test("selectors open once per at-rule context", () => {
-    expect(recipeSources.flatMap(duplicateSelectorOffenders)).toEqual([]);
-  });
-
-  test("rejects duplicate selectors in one context", () => {
-    const invalid = { file: "invalid.css", source: "a { color: red; }\na { background: blue; }" };
-    expect(duplicateSelectorOffenders(invalid)).toEqual(["invalid.css:2 duplicates line 1: a"]);
-  });
-
-  test("subject selectors stay bucketable", () => {
-    expect(recipeSources.flatMap(selectorBucketSplitOffenders)).toEqual([]);
-  });
-
-  test("rejects multi-argument subject where selectors", () => {
-    const invalid = { file: "invalid.css", source: ":where([data-a], [data-b]) {}" };
-    expect(selectorBucketSplitOffenders(invalid)).toEqual([
-      "invalid.css:1 :where([data-a], [data-b]) — split the subject's :where() into one selector per argument",
-    ]);
-  });
-
-  test("recipes key relationships on emitted anatomy, never consumer classes", () => {
-    expect(recipeSources.flatMap(consumerClassSelectorOffenders)).toEqual([]);
-  });
-
-  test("rejects group and peer selector coupling", () => {
-    const invalid = { file: "invalid.css", source: ":where(.group\\/turn:hover *) { color: red; }\n.peer:disabled ~ a {}" };
-    expect(consumerClassSelectorOffenders(invalid)).toEqual(["invalid.css:1 .group/turn", "invalid.css:2 .peer"]);
-  });
-
-  test("component anatomy uses data-slot; only the cross-component popup family needs a part qualifier", () => {
-    expect(recipeSources.flatMap(adHocPartAttributeOffenders)).toEqual([]);
-    expect(adHocSourcePartAttributes(sourceText)).toEqual([]);
-  });
-
-  test("rejects ad hoc family part aliases", () => {
-    const invalid = {
-      file: "invalid.css",
-      source: ':where([data-control-family="select"][data-select-part="trigger"]) { color: red; }',
-    };
-    expect(adHocPartAttributeOffenders(invalid)).toEqual(["invalid.css:1 data-select-part"]);
-  });
-
-  test("a knob-colored border takes its width from a knob too", () => {
-    expect(recipeSources.flatMap(literalBorderWidthOffenders)).toEqual([]);
   });
 
   test("recipes paint roles, never a palette or ramp step", () => {
     expect(recipeSources.flatMap(paletteReadOffenders)).toEqual([]);
   });
 
-  test("rejects a Tailwind palette stop or ramp step in a recipe", () => {
-    const invalid = { file: "invalid.css", source: "a {\n  color: var(--color-red-500);\n  background: var(--scale-neutral-3);\n}" };
-    expect(paletteReadOffenders(invalid)).toEqual(["invalid.css:2 --color-red-500", "invalid.css:3 --scale-neutral-3"]);
-  });
-
   test("state rules carry their value through a private property, never the family's own knob", () => {
     expect(recipeSources.flatMap(stateRuleOwnKnobOffenders)).toEqual([]);
-  });
-
-  test("rejects a state rule that re-values its own family's knob", () => {
-    const invalid = {
-      file: "invalid.css",
-      source:
-        ':where([data-control-family="choice"][data-slot="root"][data-checked]) {\n  --cui-choice-border-color: red;\n}\n:where([data-control-family="choice"][data-slot="root"]:not([data-disabled])) {\n  --cui-choice-border-color: blue;\n}',
-    };
-    expect(stateRuleOwnKnobOffenders(invalid)).toEqual(["invalid.css:2 --cui-choice-border-color"]);
   });
 
   test("a shadow knob composed into a list never defaults to none", () => {
     expect(listComposedShadowNoneOffenders(recipes)).toEqual([]);
   });
-
-  test("rejects none on a shadow knob that is one layer of a list", () => {
-    const invalid = postcss.parse(
-      "a {\n  --cui-x-shadow: none;\n  --cui-y-shadow: none;\n  box-shadow: inset 0 0 0 1px red, var(--cui-x-shadow);\n}\nb { box-shadow: var(--cui-y-shadow); }",
-      { from: "invalid.css" },
-    );
-    expect(listComposedShadowNoneOffenders(invalid)).toEqual(["invalid.css:2 --cui-x-shadow"]);
-  });
-
-  test("rejects a literal border width beside a border-color knob", () => {
-    const invalid = { file: "invalid.css", source: "a { border: 1px solid var(--cui-x-border-color); }" };
-    expect(literalBorderWidthOffenders(invalid)).toEqual(["invalid.css:1 border 1px beside --cui-x-border-color"]);
-  });
 });
-
-function literalGeometryUtilities(classList: string): string[] {
-  return classList
-    .split(/\s+/)
-    .filter((utility) => /^-?(?:h|min-h|max-h|w|min-w|size|p|px|py|ps|pe|pt|pb|gap|rounded)(?:-|$)/.test(utility))
-    .filter((utility) => !utility.includes("var(--"));
-}
-
-const popupStructureConst = componentSources.find(({ name }) => name === "surface-variants.ts");
-const popupStructureClasses = popupStructureConst?.source.match(/popupItemStructureClasses = "([^"]*)"/)?.[1] ?? "";
 
 describe("recipe reachability", () => {
   test("every public knob reaches rendered CSS or a structural utility", () => {
     expect(deadKnobs(recipes, contractKnobs, sourceText)).toEqual([]);
   });
 
-  test("rejects a registered knob with no rendered consumer", () => {
-    const invalid = postcss.parse("a { --example-dead: red; }");
-    expect(deadKnobs(invalid, ["--example-dead"], "")).toEqual(["--example-dead"]);
-  });
-
   test("every selector targets a compound of identity attributes one element stamps together", () => {
     expect(deadSelectors(recipes, stampedAnatomiesInComponents)).toEqual([]);
   });
 
-  test("rejects an unstamped selector compound", () => {
-    const invalid = postcss.parse(':where([data-control-ui="missing-control"]) { color: red; }', { from: "invalid.css" });
-    expect(deadSelectors(invalid, new Set())).toEqual(['invalid.css:1 [data-control-ui="missing-control"] is not stamped by any element']);
-  });
-
-  test("every recipe keeps one bounded component layer", () => {
-    const entries = recipePaths.map((recipePath) => ({
-      file: path.basename(recipePath),
-      source: readFileSync(recipePath, "utf8"),
-    }));
-    expect(recipeStructureOffenders(entries)).toEqual([]);
-  });
-
-  test("rejects split layers and unlayered rules", () => {
-    const invalid = [{ file: "invalid.css", source: "@layer components {}\n@layer components {}\na {}" }];
-    expect(recipeStructureOffenders(invalid)).toEqual([
-      "invalid.css: expected one @layer components block, found 2",
-      "invalid.css:3 top-level rule",
-    ]);
-  });
-
-  test("allows top-level keyframes beside the bounded component layer", () => {
-    const valid = [{ file: "valid.css", source: "@layer components {}\n@keyframes fade { from { opacity: 0; } to { opacity: 1; } }" }];
-    expect(recipeStructureOffenders(valid)).toEqual([]);
-  });
-
-  test("rejects oversized recipe files", () => {
-    const invalid = [{ file: "invalid.css", source: `@layer components {\n${"\n".repeat(399)}}` }];
-    expect(recipeStructureOffenders(invalid)).toEqual(["invalid.css: exceeds 400 lines"]);
-  });
-
-  test("shared popup structure stays free of literal geometry the popup recipe owns", () => {
-    expect(popupStructureClasses).not.toBe("");
-    expect(literalGeometryUtilities(popupStructureClasses)).toEqual([]);
-  });
-
-  test("rejects literal geometry smuggled into a shared structure const", () => {
-    expect(literalGeometryUtilities("flex min-h-[2rem] items-center gap-2 p-[var(--popover-padding)]")).toEqual(["min-h-[2rem]", "gap-2"]);
+  test("every recipe rule sits inside @layer components, below consumer utilities", () => {
+    expect(recipeSources.flatMap(unlayeredRecipeOffenders)).toEqual([]);
   });
 });

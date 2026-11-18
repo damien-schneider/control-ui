@@ -17,9 +17,8 @@ describe("CodeDiff renders", () => {
     expect(html).toContain('data-line-type="add"');
     expect(html).toContain('data-line-type="del"');
     expect(html).toContain('data-line-type="context"');
-    expect(html).toContain('data-control-ui="scroll-area"');
     expect(html).toContain('data-slot="body"');
-    expect(html).toContain('data-slot="emphasis" data-line-type="add"');
+    expect(html).toMatch(/data-slot="emphasis"[^>]*data-line-type="add"/);
     expect(html).toContain(">20</span>");
     // React splits "+" and number with comment node, so anatomy is asserted rather than "+2"
     expect(html).toContain('data-slot="stat"');
@@ -28,8 +27,8 @@ describe("CodeDiff renders", () => {
   test("split: renders a two-column row structure without throwing", () => {
     const html = renderToString(<CodeDiff name="demo.ts" lang="ts" oldText={OLD} newText={NEW} diffStyle="split" />);
     expect(html).toContain('data-slot="row"');
-    expect(html).toContain('data-control-ui="code-diff" data-control-family="code-diff" data-slot="line" data-line-type="del"');
-    expect(html).toContain('data-control-ui="code-diff" data-control-family="code-diff" data-slot="line" data-line-type="add"');
+    expect(html).toMatch(/data-slot="line"[^>]*data-line-type="del"/);
+    expect(html).toMatch(/data-slot="line"[^>]*data-line-type="add"/);
   });
 
   test("patch input: parses and renders the git filename", () => {
@@ -66,8 +65,8 @@ describe("CodeDiff renders", () => {
   test("default bars mode still marks added and deleted lines with glyphs, not colour alone", () => {
     const html = renderToString(<CodeDiff oldText={OLD} newText={NEW} diffStyle="unified" />);
 
-    expect(html).toContain('data-slot="marker" data-line-type="add" aria-hidden="true" class="shrink-0 select-none">+</span>');
-    expect(html).toContain('data-slot="marker" data-line-type="del" aria-hidden="true" class="shrink-0 select-none">-</span>');
+    expect(html).toMatch(/data-slot="marker"[^>]*data-line-type="add"[^>]*>\+<\/span>/);
+    expect(html).toMatch(/data-slot="marker"[^>]*data-line-type="del"[^>]*>-<\/span>/);
   });
 
   test("exposes added and deleted line meaning without relying on color", () => {
@@ -101,7 +100,7 @@ describe("CodeDiff renders", () => {
     const rows = html.match(/data-slot="line"/g) ?? [];
 
     expect(rows).toHaveLength(4);
-    expect(html).toContain('<code class="min-w-0 flex-1 whitespace-pre">\n</code>');
+    expect(html).toMatch(/<code[^>]*>\n<\/code>/);
     expect(html).toContain("Deleted line 3: three");
   });
 

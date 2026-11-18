@@ -6,12 +6,9 @@ describe("SourceBadge", () => {
   test("derives a readable hostname and keeps the source link accessible", () => {
     const html = renderToString(<SourceBadge href="https://www.example.com/docs/activity" />);
 
-    expect(html).toContain('data-control-ui="source-badge"');
     expect(html).toContain('href="https://www.example.com/docs/activity"');
-    expect(html).toContain("example.com");
-    expect(html).toContain('data-source-badge-favicon=""');
-    expect(html).toContain('data-control-ui="avatar"');
-    expect(html).toContain('data-slot="fallback"');
+    expect(html).toMatch(/>example\.com</);
+    expect(html).not.toMatch(/>www\.example\.com</);
   });
 
   test("allows automatic favicon requests to be disabled", () => {

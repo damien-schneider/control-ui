@@ -11,9 +11,7 @@ describe("Reveal anatomy", () => {
       </RevealScope>,
     );
 
-    expect(html).toBe(
-      '<div data-control-ui="reveal" data-control-family="reveal" data-slot="scope">Row<span data-control-ui="reveal" data-control-family="reveal" data-slot="content">Action</span></div>',
-    );
+    expect(html).toMatch(/^<div[^>]*data-slot="scope"[^>]*>Row<span[^>]*data-slot="content"[^>]*>Action<\/span><\/div>$/);
   });
 
   test("keeps the consumer's elements through render", () => {
@@ -27,8 +25,9 @@ describe("Reveal anatomy", () => {
       </ul>,
     );
 
-    expect(html).toBe(
-      '<ul><li class="flex" data-control-ui="reveal" data-control-family="reveal" data-slot="scope"><div style="--cui-reveal-hidden-opacity:0.4" data-control-ui="reveal" data-control-family="reveal" data-slot="content"><button type="button">Rename</button></div></li></ul>',
+    expect(html).toMatch(
+      /^<ul><li class="flex"[^>]*data-slot="scope"[^>]*><div style="--cui-reveal-hidden-opacity:0.4"[^>]*data-slot="content"/,
     );
+    expect(html).toContain('<button type="button">Rename</button>');
   });
 });

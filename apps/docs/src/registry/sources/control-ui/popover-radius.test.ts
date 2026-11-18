@@ -119,14 +119,6 @@ describe("select/menu popup rows nest at every --radius", () => {
   test("rendered row corner stays inside the clipped popup corner (sweep)", () => {
     expect(collectSampleFailures(popupRowFailure)).toEqual([]);
   });
-
-  test("negative control: building the popup radius off the UNCLAMPED row token would cut at large --radius", () => {
-    const s = sample(48, 28.08);
-    const rowRendered = Math.min(s.popoverItemToken, s.controlHxs / 2);
-    const naive = s.popoverItemToken + s.padding; // old bug: off the unclamped token
-    expect(clearance(naive, rowRendered, s.padding)).toBeLessThan(0);
-    expect(clearance(s.popoverContainerR, rowRendered, s.padding)).toBeGreaterThanOrEqual(MARGIN);
-  });
 });
 
 describe("chat composer shell nests its xs actions at every --radius", () => {

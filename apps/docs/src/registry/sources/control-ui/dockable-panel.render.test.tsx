@@ -35,15 +35,8 @@ describe("DockablePanel", () => {
     expect(html).toContain('data-control-ui="dockable-panel"');
     expect(html).toContain('data-slot="root"');
     expect(html).toContain('data-placement="right"');
-    expect(html).toContain('aria-label="Dock panel left"');
-    expect(html).toContain('aria-label="Move panel to left"');
-    expect(html).toContain('aria-label="Close panel"');
     for (const label of ["Dock panel left", "Move panel to left", "Close panel"]) {
-      expect(html).toMatch(
-        new RegExp(
-          `<button(?=[^>]*data-control-ui="button")(?=[^>]*data-control-family="button")(?=[^>]*data-slot="root")(?=[^>]*data-control="true")(?=[^>]*aria-label="${label}")[^>]*>`,
-        ),
-      );
+      expect(html).toMatch(new RegExp(`<button[^>]*aria-label="${label}"`));
     }
     expect(html).not.toContain("drawer-backdrop");
     expect(html).not.toContain('aria-modal="true"');

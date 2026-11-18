@@ -59,11 +59,17 @@ describe("phone input registry contract", () => {
   });
 
   test("owns its domain helper and references shared primitives", () => {
-    expect(MANIFEST.files.map((file) => file.path).sort()).toEqual([
-      "src/registry/knob-contracts/phone-input-knobs.ts",
-      "src/registry/lib/phone-input-format.ts",
-      "src/registry/lib/phone-number.ts",
-      "src/registry/sources/control-ui/recipes/phone-input.css",
+    const paths = MANIFEST.files.map((file) => file.path);
+    expect(paths).toEqual(
+      expect.arrayContaining([
+        "src/registry/knob-contracts/phone-input-knobs.ts",
+        "src/registry/lib/phone-input-format.ts",
+        "src/registry/lib/phone-number.ts",
+        "src/registry/sources/control-ui/recipes/phone-input.css",
+        "src/registry/sources/control-ui/ui/phone-input.tsx",
+      ]),
+    );
+    expect(paths.filter((path) => path.startsWith("src/registry/sources/control-ui/ui/"))).toEqual([
       "src/registry/sources/control-ui/ui/phone-input.tsx",
     ]);
     expect(MANIFEST.dependencies.some((dependency) => dependency.startsWith("libphonenumber-js@"))).toBe(true);

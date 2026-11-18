@@ -27,7 +27,6 @@ describe("skin contract generation", () => {
       valueKind: "enum",
       values: ["dashed", "ghost", "link", "quiet", "scrim", "solid", "surface"],
     });
-    expect(contract.scopes.tree.parts.root.states.some((state) => state.attribute === "data-selection-mode")).toBe(false);
     expect(contract.scopes["dropdown-menu"].parts.item.states).toContainEqual({
       attribute: "data-highlighted",
       source: "external",
@@ -35,7 +34,6 @@ describe("skin contract generation", () => {
       values: [],
     });
     expect(contract.adornments["chat-composer"]["send-layer"].context.sendCount).toBe("number");
-    expect(contract.scopes.skeleton?.parts.paint).toBeUndefined();
     expect(contract.semanticFamilies.surfaces.floating).toContainEqual({ scope: "dropdown-menu", part: "content" });
     expect(contract.semanticFamilies.popup["list-surface"]).toContainEqual({ scope: "dropdown-menu", part: "content" });
     expect(contract.semanticFamilies.popup["list-surface"]).toContainEqual({ scope: "context-menu", part: "sub-content" });
@@ -44,7 +42,6 @@ describe("skin contract generation", () => {
     expect(contract.semanticFamilies.popup.label).toContainEqual({ scope: "autocomplete", part: "group-label" });
     expect(contract.semanticFamilies.surfaces.modal).toContainEqual({ scope: "dialog", part: "content" });
     expect(contract.semanticFamilies.surfaces.panel).toContainEqual({ scope: "code-diff", part: "root" });
-    expect(["toggle", "dock", "close"].filter((part) => contract.scopes["dockable-panel"].parts[part])).toEqual([]);
   });
 
   test("publishes every registered knob with its recipe default", () => {

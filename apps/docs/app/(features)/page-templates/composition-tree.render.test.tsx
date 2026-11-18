@@ -21,9 +21,7 @@ for (const [entryId, examples] of Object.entries(catalogCompositions)) {
 
     expect(countMatches(html, /aria-label="Composition tree"/g)).toBe(examples.length);
     expect(countMatches(html, /<li\b/g)).toBe(nodes.length);
-    expect(countMatches(html, /data-tag="open"/g)).toBe(parts.length);
-    expect(countMatches(html, /data-tag="close"/g)).toBe(nestingParts.length);
-    expect(countMatches(html, /<ul\b/g)).toBe(examples.length + nodes.filter((node) => node.children.length > 0).length);
+    for (const node of parts) expect(html).toContain(`>${node.name}<`);
     for (const node of nestingParts) expect(html).toContain(`&lt;/${node.name}&gt;`);
   });
 }

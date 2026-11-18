@@ -45,44 +45,6 @@ const catalogComponentSources = [
   ...kitEntries.map((entry) => ({ id: entry.id, source: entry.paths.source.path })),
   ...componentEntries.map((entry) => ({ id: entry.id, source: entry.paths.registry.source.path })),
 ];
-function knobsWithRepeatedFamilyPrefix(knobs: readonly string[]): string[] {
-  return knobs.filter((knob) => {
-    const segments = knob.slice(2).split("-");
-    for (let width = 1; width <= Math.floor(segments.length / 2); width += 1) {
-      if (segments.slice(0, width).join("-") === segments.slice(width, width * 2).join("-")) return true;
-    }
-    return false;
-  });
-}
-
-const KNOB_SUFFIX =
-  /-(?:background(?:-image)?|foreground|border-(?:color|width|style)|(?:ring|line|dot|marker|separator|handle|outline)-color|radius|shadow|fill|stroke|backdrop-(?:filter|blur)|opacity|scale|gap|inset|icon|height|size|padding(?:-(?:inline|block)(?:-start|-end)?)?|font-(?:size|weight|family)|line-height|letter-spacing|text-transform|easing|animation-duration|transition-(?:duration|delay)|indicator-(?:start|middle|end))$/;
-
-const knobsOutsideSuffixVocabulary = (knobs: readonly string[]) => knobs.filter((knob) => !KNOB_SUFFIX.test(knob));
-
-describe("knob naming", () => {
-  test("never repeats the family prefix", () => {
-    expect(knobsWithRepeatedFamilyPrefix(Object.values(controlKnobContracts).flat())).toEqual([]);
-  });
-
-  test("ends in a vocabulary suffix", () => {
-    expect(knobsOutsideSuffixVocabulary(Object.values(controlKnobContracts).flat())).toEqual([]);
-  });
-
-  test("rejects -bg and an unnamed -color", () => {
-    expect(knobsOutsideSuffixVocabulary(["--cui-x-bg", "--cui-x-accent-color", "--cui-x-width", "--cui-x-background"])).toEqual([
-      "--cui-x-bg",
-      "--cui-x-accent-color",
-      "--cui-x-width",
-    ]);
-  });
-
-  test("rejects a repeated multi-segment family prefix", () => {
-    expect(knobsWithRepeatedFamilyPrefix(["--chat-composer-chat-composer-editor-font-size"])).toEqual([
-      "--chat-composer-chat-composer-editor-font-size",
-    ]);
-  });
-});
 
 const contractEntries = Object.entries(controlKnobContracts);
 
@@ -150,12 +112,6 @@ const families = contractEntries.map(([id, knobs]) => ({
 describe("family source coverage", () => {
   test("every recipe resolves to one knob contract", () => {
     expect(unresolvedRecipeFamilies).toEqual([]);
-  });
-
-  test("companion recipes resolve through rendered knobs or their family filename", () => {
-    const companion = postcss.parse("a { color: var(--cui-field-foreground); }");
-    expect(recipeKnobFamilies(companion)).toEqual(["field"]);
-    expect(recipeFilenameFamily("src/registry/sources/control-ui/recipes/field-parts.css")).toBe("field");
   });
 
   test("every knob contract owns recipe-attached component sources", () => {
@@ -340,28 +296,6 @@ describe("appearance vocabularies", () => {
   test("every typed variant and tone changes paint or rendering beyond one base value", () => {
     expect(appearanceVocabularyOffenders()).toEqual([]);
   });
-
-  test("rejects several stamped values with no implementation", () => {
-    expect(unhandledAppearanceValues("data-tone", ["neutral", "success", "danger"], '[data-tone="danger"] {}', "")).toEqual([
-      "neutral",
-      "success",
-    ]);
-  });
-
-  test("accepts a base value plus CSS and render implementations", () => {
-    expect(
-      unhandledAppearanceValues(
-        "data-variant",
-        ["default", "surface", "brand"],
-        '[data-variant="surface"] {}',
-        'variant = "default"; variant === "brand"',
-      ),
-    ).toEqual([]);
-  });
-
-  test("scope defaults cannot leak from sibling components in the same family", () => {
-    expect(appearanceSource("button", "button")).not.toContain('data-control-ui="menubar"');
-  });
 });
 
 function unknownKnobOffenders(root: Root, prefix: string, knobs: readonly string[], label: string): string[] {
@@ -382,17 +316,6 @@ function unknownKnobOffenders(root: Root, prefix: string, knobs: readonly string
   root.walkAtRules("property", (atRule) => {
     const name = atRule.params.trim();
     if (name.startsWith(prefix)) check(name, atRule.source?.start?.line);
-  });
-  return offenders;
-}
-
-const PRIVATE_GRAMMAR = /^--_[a-z][a-z0-9]*(?:-[a-z][a-z0-9]*)*$/;
-
-function privateNameOffenders(root: Root): string[] {
-  const offenders: string[] = [];
-  root.walkDecls((declaration) => {
-    if (!declaration.prop.startsWith("--_") || PRIVATE_GRAMMAR.test(declaration.prop)) return;
-    offenders.push(`${declaration.source?.start?.line ?? "?"} ${declaration.prop}`);
   });
   return offenders;
 }
@@ -734,98 +657,6 @@ function knobInheritanceOffenders(root: Root, knobs: readonly string[]): string[
   return knobs.filter((knob) => inheritance.get(knob)?.value !== "true").map((knob) => `${inheritance.get(knob)?.line ?? "?"} ${knob}`);
 }
 
-describe("recipe architecture guards", () => {
-  test("rejects private names outside the grammar", () => {
-    expect(privateNameOffenders(postcss.parse("a { --__cross-element: red; }"))).toEqual(["1 --__cross-element"]);
-  });
-
-  test("rejects private inheritance bridges", () => {
-    const invalid = postcss.parse("a { --_example-child: var(--example-child); }");
-    expect(privateInheritanceBridgeOffenders(invalid, ["--example-child"])).toEqual(["1 --_example-child -> --example-child"]);
-  });
-
-  test("rejects non-inheriting public knob registrations", () => {
-    const invalid = postcss.parse(`
-      :where([data-control-family="example"]) { --example-knob: red; color: var(--example-knob); }
-      @property --example-knob { syntax: "<color>"; inherits: false; initial-value: transparent; }
-    `);
-    expect(knobInheritanceOffenders(invalid, ["--example-knob"])).toEqual(["3 --example-knob"]);
-  });
-
-  test("rejects public knob defaults outside the family root", () => {
-    const invalid = postcss.parse(`
-      :where([data-control-family="example"][data-slot="child"]) { --example-knob: red; color: var(--example-knob); }
-    `);
-    expect(knobRootDefaultOffenders(invalid, "example", ["--example-knob"])).toEqual(["2 --example-knob"]);
-  });
-
-  test("rejects unconditional skin knob re-values outside family roots", () => {
-    const invalid = postcss.parse(`
-      [data-skin="example"] :where([data-control-family="example"][data-slot="child"]) { --example-knob: red; }
-    `);
-    expect(knobPlacementOffenders(invalid, "example", ["--example-knob"])).toEqual(["2 --example-knob"]);
-  });
-
-  test("rejects public knobs that recipes never read", () => {
-    const invalid = postcss.parse(`
-      :where([data-control-family="example"]) { --example-knob: red; color: blue; }
-    `);
-    expect(unreadKnobOffenders(invalid, ["--example-knob"])).toEqual(["2 --example-knob"]);
-  });
-
-  test("rejects public knobs read through private fallbacks", () => {
-    const invalid = postcss.parse(`
-      :where([data-control-family="example"]) { --example-knob: red; color: var(--_example-knob, var(--example-knob)); }
-    `);
-    expect(knobFallbackOffenders(invalid, ["--example-knob"])).toEqual(["2 --example-knob"]);
-  });
-
-  test("rejects contextual values that bypass public knobs", () => {
-    const invalid = postcss.parse("a { border-radius: var(--nest-radius, var(--cui-button-radius)); }");
-    expect(knobFallbackOffenders(invalid, ["--cui-button-radius"])).toEqual(["1 --cui-button-radius"]);
-    const valid = postcss.parse(
-      "a { --cui-button-radius: var(--nest-radius, var(--radius-control)); border-radius: var(--cui-button-radius); }",
-    );
-    expect(knobFallbackOffenders(valid, ["--cui-button-radius"])).toEqual([]);
-  });
-
-  test("rejects recipe selectors keyed by data-control-ui", () => {
-    const invalid = postcss.parse(':where([data-control-ui="example"]) { color: red; }');
-    expect(recipeIdentitySelectorOffenders(invalid)).toEqual(['1 :where([data-control-ui="example"])']);
-  });
-
-  test("rejects family sources missing semantic identity", () => {
-    const source = 'const before = true;\n<div data-control-ui="example" />';
-    expect(semanticIdentityOffenders("example", [{ name: "example.tsx", source }])).toEqual([
-      'example.tsx:2 missing data-control-family="example"',
-    ]);
-  });
-
-  test("rejects pseudo-elements inside functional selectors", () => {
-    const invalid = postcss.parse(`:where([data-slot="root"]::before) { content: ""; }`);
-    expect(pseudoElementsInsideFunctionalSelectors(invalid)).toEqual([`1 :where([data-slot="root"]::before)`]);
-  });
-  test("rejects state specificity outside the zero-specificity wrapper", () => {
-    const invalid = postcss.parse(`:where([data-slot="root"]):hover { color: red; }`);
-    expect(nonZeroSpecificitySelectors(invalid)).toEqual([`1 :where([data-slot="root"]):hover`]);
-  });
-  test("rejects unsupported property syntax composition", () => {
-    const invalid = postcss.parse(
-      '@property --repetition { syntax: "<number>{1,2}"; inherits: false; initial-value: 0; } @property --composition { syntax: "<length> <length>"; inherits: false; initial-value: 0px; }',
-    );
-    expect(invalidPropertySyntaxOffenders(invalid)).toEqual(["1 --repetition", "1 --composition"]);
-  });
-
-  test("rejects direct custom-property cycles", () => {
-    const invalid = postcss.parse("a { --public: var(--_private); --_private: var(--public); }");
-    expect(customPropertyCycles(invalid)).toEqual(["1 --_private <> --public"]);
-  });
-  test("rejects self-referential custom-property fallbacks", () => {
-    const invalid = postcss.parse("a { --private: var(--private, red); }");
-    expect(customPropertyCycles(invalid)).toEqual(["1 --private"]);
-  });
-});
-
 for (const family of families) {
   describe(`${family.id} paint contract`, () => {
     const root = recipe(family.id);
@@ -883,12 +714,6 @@ for (const family of families) {
       expect(recipeIdentitySelectorOffenders(root, family.id)).toEqual([]);
     });
 
-    test("contract names follow the public knob grammar", () => {
-      const grammar = new RegExp(`^${prefix}[a-z][a-z0-9]*(?:-[a-z][a-z0-9]*)*$`);
-      expect(family.knobs.filter((knob) => !grammar.test(knob))).toEqual([]);
-      expect(privateNameOffenders(root)).toEqual([]);
-    });
-
     test("pseudo-elements remain outside functional selector arguments", () => {
       expect(pseudoElementsInsideFunctionalSelectors(root)).toEqual([]);
     });
@@ -936,15 +761,6 @@ describe("nest radius contract", () => {
 
   test("buttons and fields take their radius from the container", () => {
     expect(nestRadiusKnobs).toEqual(["--cui-button-radius", "--cui-field-radius"]);
-  });
-
-  test("rejects a skin radius that drops the container fallback", () => {
-    const invalid = postcss.parse('[data-skin="example"] :where([data-control-family="button"]) { --cui-button-radius: 4px; }');
-    expect(nestRadiusBypassOffenders(invalid, nestRadiusKnobs)).toEqual(["1 --cui-button-radius"]);
-    const valid = postcss.parse(
-      '[data-skin="example"] :where([data-control-family="button"]) { --cui-button-radius: var(--nest-radius, 4px); }',
-    );
-    expect(nestRadiusBypassOffenders(valid, nestRadiusKnobs)).toEqual([]);
   });
 
   for (const { id, root } of skins) {

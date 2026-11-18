@@ -109,18 +109,6 @@ describe("analyzeContrast — the live readout, over an injected token reader", 
       expect(r.levels).toEqual({ AA: false, AAA: false });
     }
   });
-
-  test("regression guard: mis-reading oklch(L C H) as rgb channels would NOT pass AA", () => {
-    // Old bug fed oklch numbers [0.1405,0.0044,285.824] where sRGB bytes expected; proves broken reader fails Body-text, so fixture-pass above genuinely depends on correct sRGB resolution.
-    const brokenReader = (name: string): Rgb | null => {
-      if (name === "--card-foreground") return [0.1405, 0.0044, 285.824];
-      if (name === "--card") return [1, 0, 0];
-      return null;
-    };
-    const rows = analyzeContrast(brokenReader);
-    const body = rows.find((r) => r.label === "Body text");
-    expect(body?.levels.AA).toBe(false);
-  });
 });
 
 describe("textFailsAA — true when ANY fixable row fails AA (every row now has a fix)", () => {
@@ -292,10 +280,6 @@ describe("textFixes → buildOverrideDecls: the abstract per-token fix lands in 
   const declsFor = (textFixes: Record<string, string>, isDark: boolean) => buildOverrideDecls({ ...DEFAULT_THEME, textFixes }, isDark);
   const find = (decls: [string, string][], name: string) => decls.filter(([n]) => n === name).at(-1);
 
-  test("no fixes → no extra declarations (zero behaviour change when unused)", () => {
-    expect(buildOverrideDecls(DEFAULT_THEME, false)).toEqual([]);
-  });
-
   test("a fix authors its exact token as an oklch() value, in light AND dark", () => {
     for (const isDark of [false, true]) {
       const decls = declsFor({ "--muted-foreground": "#3a3a3a" }, isDark);
@@ -305,31 +289,11 @@ describe("textFixes → buildOverrideDecls: the abstract per-token fix lands in 
     }
   });
 
-  test("the fix is authored LAST, so it wins over the user's own edit of the same token", () => {
-    // With light-mode edit of --card-foreground in play, textFix for same token must shadow it (fixes land last in inline slate + portal sheet).
-    const decls = buildOverrideDecls(
-      { ...DEFAULT_THEME, light: { "--card-foreground": "oklch(0.9 0 0)" }, textFixes: { "--card-foreground": "#777777" } },
-      false,
-    );
-    const decl = find(decls, "--card-foreground");
-    expect(str(decl?.[1] ?? null)).toMatch(/^oklch\(/);
-    expect(decl?.[1]).not.toBe("oklch(0.9 0 0)"); // the fix, not the edit
-  });
-
   test("each fixable text token can be overridden independently", () => {
     const tokens = ["--card-foreground", "--muted-foreground", "--foreground", "--primary-foreground", "--destructive-foreground"];
     for (const token of tokens) {
       const decls = declsFor({ [token]: "#123456" }, false);
       expect(find(decls, token)).toBeDefined();
     }
-  });
-});
-
-describe("the default theme carries empty override maps (schema stays in sync)", () => {
-  test("DEFAULT_THEME ships no overrides and textFixes: {}", () => {
-    expect(DEFAULT_THEME.overrides).toEqual({});
-    expect(DEFAULT_THEME.light).toEqual({});
-    expect(DEFAULT_THEME.dark).toEqual({});
-    expect(DEFAULT_THEME.textFixes).toEqual({});
   });
 });

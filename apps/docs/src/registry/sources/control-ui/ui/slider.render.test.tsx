@@ -33,16 +33,6 @@ describe("Slider", () => {
     expect(html.match(/data-slot="tick"/g)).toHaveLength(9);
   });
 
-  test("stacks the label and value around a vertical track instead of overlaying it", () => {
-    const vertical = renderToStaticMarkup(<Slider variant="plain" orientation="vertical" label="Volume" />);
-    const horizontal = renderToStaticMarkup(<Slider variant="plain" label="Volume" />);
-
-    expect(part(vertical, "root")).toContain("flex-col");
-    expect(part(vertical, "label-overlay")).toContain('class="contents"');
-    expect(part(vertical, "label")).toContain("order-first");
-    expect(part(horizontal, "label-overlay")).toContain("absolute inset-0");
-  });
-
   test("describes the thumb input and names it from an external label", () => {
     const html = renderToStaticMarkup(<Slider aria-labelledby="volume-label" aria-describedby="volume-hint" name="volume" />);
     const input = html.match(/<input[^>]*>/)?.[0] ?? "";

@@ -92,7 +92,7 @@ export function closure() {
   return { files: collectFiles(items), dependencies: collectDependencies(items), styles: collectStyles(items) };
 }
 
-export function stylesIndex(styles: string[]) {
+function stylesIndex(styles: string[]) {
   return `${styles.map((sheet) => `@import "./${sheet}";`).join("\n")}\n`;
 }
 

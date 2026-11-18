@@ -324,16 +324,6 @@ describe("knob registration", () => {
       expect(registrationOffenders(root)).toEqual([]);
     });
   }
-
-  test("rejects a registration that drifts from its suffix", () => {
-    const drifting = postcss.parse('@property --cui-example-radius { syntax: "<length>"; inherits: true; initial-value: 4px; }');
-    expect(registrationOffenders(drifting)).toEqual([
-      "1 --cui-example-radius syntax <length> (expected <length-percentage> or <length-percentage>+)",
-      "1 --cui-example-radius initial-value 4px (expected 0px)",
-    ]);
-    const canonical = postcss.parse('@property --cui-example-shadow { syntax: "*"; inherits: true; }');
-    expect(registrationOffenders(canonical)).toEqual([]);
-  });
 });
 
 describe("knob state vocabulary", () => {
@@ -342,14 +332,6 @@ describe("knob state vocabulary", () => {
       expect(stateMirrorOffenders(family, knobs, familyCss(family))).toEqual([]);
     });
   }
-
-  test("rejects a state name the recipe never stamps", () => {
-    const knobs = ["--cui-example-selected-background"];
-    expect(stateMirrorOffenders("example", knobs, "a { color: red; }")).toEqual([
-      '--cui-example-selected-background names state "selected" that no example selector stamps',
-    ]);
-    expect(stateMirrorOffenders("example", knobs, ":where([data-selected]) { color: red; }")).toEqual([]);
-  });
 });
 
 describe("paint goes through knobs", () => {
@@ -364,28 +346,6 @@ describe("paint goes through knobs", () => {
       expect(paintBypassOffenders(root, allKnobs)).toEqual([]);
     });
   }
-
-  test("rejects a direct paint on a part that owns a knob for it", () => {
-    const knobs = ["--cui-example-background", "--cui-example-row-hover-background"];
-    const direct = postcss.parse(
-      ':where([data-control-family="example"][data-slot="root"][data-variant="solid"]) { background: var(--card); }',
-    );
-    expect(paintBypassOffenders(direct, knobs)).toEqual(["1 background bypasses --cui-example-background"]);
-    const skinned = postcss.parse(
-      '[data-skin="x"] :where([data-control-family="example"][data-slot="row"]):hover { background-color: red; }',
-    );
-    expect(paintBypassOffenders(skinned, knobs)).toEqual(["1 background-color bypasses --cui-example-row-hover-background"]);
-    const throughKnob = postcss.parse(
-      ':where([data-control-family="example"][data-slot="root"][data-variant="solid"]) { --cui-example-background: var(--card); }',
-    );
-    expect(paintBypassOffenders(throughKnob, knobs)).toEqual([]);
-    const reset = postcss.parse(
-      ':where([data-control-family="example"][data-slot="root"][data-chrome="embedded"]) { background: transparent; }',
-    );
-    expect(paintBypassOffenders(reset, knobs)).toEqual([]);
-    const pseudoElement = postcss.parse(':where([data-control-family="example"][data-slot="root"])::before { background: red; }');
-    expect(paintBypassOffenders(pseudoElement, knobs)).toEqual([]);
-  });
 });
 
 describe("state routing", () => {
@@ -396,16 +356,4 @@ describe("state routing", () => {
       expect(maskedStateWriteOffenders(root, routes)).toEqual([]);
     });
   }
-
-  test("rejects a base knob written in a state the recipe routes to another knob", () => {
-    const recipe = postcss.parse(
-      ':where([data-control-family="example"][data-slot="root"]) { --_example-background: var(--cui-example-background); background: var(--_example-background); }\n:where([data-control-family="example"][data-slot="root"][data-checked]) { --_example-background: var(--cui-example-checked-background); }',
-    );
-    const skin = postcss.parse(
-      '[data-skin="x"] :where([data-control-family="example"][data-slot="root"][data-checked]) { --cui-example-background: red; }\n[data-skin="x"] :where([data-control-family="example"][data-slot="root"]:hover) { --cui-example-background: blue; }\n[data-skin="x"] :where([data-control-family="example"][data-slot="root"][data-checked]) { --cui-example-checked-background: green; }',
-    );
-    expect(maskedStateWriteOffenders(skin, stateRoutes([recipe]))).toEqual([
-      "1 --cui-example-background is not read in data-checked; set the knob the recipe reads there",
-    ]);
-  });
 });

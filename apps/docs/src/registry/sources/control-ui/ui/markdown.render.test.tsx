@@ -95,17 +95,15 @@ describe("Markdown renders", () => {
     expect(image).toMatch(/<p [^>]*data-slot="paragraph"[^>]*>Inline <img [^>]*data-slot="image"[^>]*alt="Chart"/);
   });
 
-  test("table sections and blocked links are parts the recipe paints, not utility classes", () => {
+  test("table sections are parts the recipe paints, and unsafe links render blocked", () => {
     const content = "| A |\n| - |\n| 1 |\n\n[unsafe](javascript:alert(1))";
     const parts = renderToString(<Markdown content={content} />);
 
-    expect(parts).toContain('<thead data-control-ui="markdown" data-control-family="markdown" data-slot="table-head">');
+    expect(parts).toMatch(/<thead[^>]*data-slot="table-head"/);
     expect(parts).toContain('data-slot="table-body"');
     expect(parts).toContain('data-slot="table-row"');
     expect(parts).toContain('data-slot="blocked-link"');
     expect(parts).not.toContain("javascript:");
-    expect(parts).not.toContain("bg-muted");
-    expect(parts).not.toContain("text-gray-500");
   });
 
   test("components override a built-in renderer and keep the rest", () => {

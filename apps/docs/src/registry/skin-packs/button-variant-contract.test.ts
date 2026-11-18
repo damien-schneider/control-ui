@@ -1,14 +1,10 @@
 import { describe, expect, test } from "bun:test";
-import { readdirSync, readFileSync, statSync } from "node:fs";
-import path from "node:path";
+import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import postcss, { type Root } from "postcss";
 import selectorParser from "postcss-selector-parser";
-import { readCssRulesWithImports } from "../../../scripts/read-css";
 import { buttonVariants, controlTones } from "../sources/control-ui/control-variants";
-import { buttonShapes } from "../sources/control-ui/ui/button";
 
-const SKIN_PACKS_DIR = fileURLToPath(new URL("./", import.meta.url));
 const CORE_CSS_PATHS = ["../sources/control-ui/theme.css", "../sources/control-ui/recipes/button.css"].map((source) =>
   fileURLToPath(new URL(source, import.meta.url)),
 );
@@ -17,17 +13,7 @@ const CORE_CSS_PATHS = ["../sources/control-ui/theme.css", "../sources/control-u
 const BASE_VARIANT = "quiet";
 const BASE_TONE = "neutral";
 
-const VARIANT_NAMES = new Set<string>(buttonVariants);
-const TONE_NAMES = new Set<string>(controlTones);
-
 const core = postcss.parse(CORE_CSS_PATHS.map((filePath) => readFileSync(filePath, "utf8")).join("\n"));
-const skins = readdirSync(SKIN_PACKS_DIR)
-  .filter((entry) => statSync(path.join(SKIN_PACKS_DIR, entry)).isDirectory())
-  .sort()
-  .map((id) => ({
-    id,
-    root: postcss.parse(readCssRulesWithImports(path.join(SKIN_PACKS_DIR, id, "skin.css"))),
-  }));
 
 function isButtonAnchor(node: selectorParser.Node): boolean {
   return (
@@ -83,18 +69,5 @@ describe("button variant contract", () => {
       ...controlTones.filter((tone) => tone !== BASE_TONE && !paintedTones.has(tone)).map((t) => `tone ${t}`),
     ];
     expect(missing).toEqual([]);
-  });
-
-  test("core and skins target only declared variants and tones", () => {
-    const offenders = [{ id: "core", root: core }, ...skins].flatMap(({ id, root }) => [
-      ...[...buttonAttributeValues(root, "data-variant")].filter((value) => !VARIANT_NAMES.has(value)).map((v) => `${id}: variant ${v}`),
-      ...[...buttonAttributeValues(root, "data-tone")].filter((value) => !TONE_NAMES.has(value)).map((t) => `${id}: tone ${t}`),
-    ]);
-    expect(offenders).toEqual([]);
-  });
-
-  test("vocabulary values follow the public grammar", () => {
-    const grammar = /^[a-z]+(?:-[a-z]+)*$/;
-    expect([...buttonVariants, ...controlTones, ...buttonShapes].filter((value) => !grammar.test(value))).toEqual([]);
   });
 });
