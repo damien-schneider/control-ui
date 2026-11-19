@@ -6,16 +6,29 @@
   "description": "Model selection composition used by chat surfaces.",
   "dependencies": [],
   "registryDependencies": [
+    "button",
+    "command",
     "core",
-    "select"
+    "model-name",
+    "popover",
+    "provider-logo",
+    "thinking-level"
   ],
   "files": [
     {
       "path": "src/registry/sources/control-ui/model-switcher.tsx",
       "target": "@components/control-ui/model-switcher.tsx",
       "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/model-switcher.css",
+      "target": "@components/control-ui/styles/recipes/model-switcher.css",
+      "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/model-switcher.css\"": {}
+  },
   "meta": {
     "internal": true,
     "sourceManifestPath": "registry/control-ui/model-switcher.json"

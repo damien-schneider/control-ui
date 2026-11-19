@@ -117,6 +117,42 @@
       },
       {
         "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-layout": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "nested"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "item",
+          "data-control-ui": "item",
+          "data-slot": "root",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "item",
+          "data-control-ui": "item",
+          "data-slot": "description"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
           "aria-selected": "false",
           "data-control-family": "item",
           "data-control-ui": "item",
@@ -148,6 +184,26 @@
           "data-variant": "default",
           "role": "option",
           "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "item",
+          "data-control-ui": "item",
+          "data-slot": "root",
+          "data-variant": "default",
+          "role": "listitem"
         }
       }
     ],
@@ -207,6 +263,35 @@
           "data-control-ui": "item",
           "data-slot": "root",
           "data-variant": "outline"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-layout": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "nested"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "item",
+          "data-control-ui": "item",
+          "data-slot": "root",
+          "data-variant": "default"
         }
       }
     ],
@@ -325,6 +410,42 @@
           "data-slot": "media"
         }
       }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-layout": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "nested"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "item",
+          "data-control-ui": "item",
+          "data-slot": "root",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "item",
+          "data-control-ui": "item",
+          "data-slot": "media"
+        }
+      }
     ]
   ],
   "probes": [
@@ -363,7 +484,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-item-foreground"
+        "text": "--cui-item-description-foreground"
       },
       "anatomy": 4,
       "rendersText": true,
@@ -381,7 +502,7 @@
       "knobs": {
         "text": "--cui-item-foreground"
       },
-      "anatomy": 0,
+      "anatomy": 6,
       "rendersText": true,
       "state": false
     },
@@ -389,7 +510,7 @@
       "knobs": {
         "text": "--cui-item-foreground"
       },
-      "anatomy": 6,
+      "anatomy": 0,
       "rendersText": true,
       "state": false
     },
@@ -411,26 +532,26 @@
     },
     {
       "knobs": {
-        "text": "--cui-item-media-foreground"
+        "text": "--cui-item-foreground"
       },
       "anatomy": 9,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
       "knobs": {
-        "text": "--cui-item-media-foreground"
+        "text": "--cui-item-foreground"
       },
       "anatomy": 10,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
       "knobs": {
-        "text": "--cui-item-media-foreground"
+        "text": "--cui-item-foreground"
       },
       "anatomy": 11,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -438,6 +559,38 @@
         "text": "--cui-item-media-foreground"
       },
       "anatomy": 12,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-item-media-foreground"
+      },
+      "anatomy": 13,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-item-media-foreground"
+      },
+      "anatomy": 14,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-item-media-foreground"
+      },
+      "anatomy": 15,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-item-media-foreground"
+      },
+      "anatomy": 16,
       "rendersText": false,
       "state": false
     }

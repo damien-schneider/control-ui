@@ -17,6 +17,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",

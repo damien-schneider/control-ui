@@ -1177,6 +1177,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="chat-composer"][data-slot="root"])',
       },
       {
+        name: "--cui-chat-composer-shell-focus-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--focus-rim)",
+        selector: ':where([data-control-family="chat-composer"][data-slot="root"])',
+      },
+      {
         name: "--cui-chat-composer-shell-radius",
         syntax: "<length-percentage>",
         defaultValue: "var(--radius-composer)",
@@ -2403,6 +2409,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="field"][data-field-kind="field"])',
       },
       {
+        name: "--cui-field-focus-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--focus-rim)",
+        selector: ':where([data-control-family="field"][data-control="true"])',
+      },
+      {
         name: "--cui-field-font-family",
         syntax: "*",
         defaultValue: "var(--font-body)",
@@ -3555,6 +3567,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
       },
       {
+        name: "--cui-markdown-editor-focus-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--focus-rim)",
+        selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
+      },
+      {
         name: "--cui-markdown-editor-foreground",
         syntax: "<color>",
         defaultValue: "var(--foreground)",
@@ -3602,8 +3620,27 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         defaultValue: "var(--radius-panel)",
         selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
       },
+      {
+        name: "--cui-markdown-editor-table-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--border)",
+        selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
+      },
+      {
+        name: "--cui-markdown-editor-table-border-width",
+        syntax: "<length>",
+        defaultValue: "var(--control-rim-width)",
+        selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
+      },
+      {
+        name: "--cui-markdown-editor-table-selection-background",
+        syntax: "<color>",
+        defaultValue: "var(--active-fill)",
+        selector: ':where([data-control-family="markdown-editor"][data-slot="root"])',
+      },
     ],
   },
+  { id: "model-switcher", knobs: [] },
   {
     id: "morphing-panel",
     knobs: [
@@ -4042,7 +4079,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-popup-item-highlight-shadow",
         syntax: "*",
-        defaultValue: "inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.35)",
+        defaultValue: "none",
         selector:
           ':where([data-control-family="popup"][data-popup-part="surface"]),\n  :where([data-control-family="popup"][data-popup-part="list-surface"]),\n  :where([data-control-family="popup"][data-popup-part="bar"])',
       },
@@ -4147,7 +4184,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-popup-separator-color",
         syntax: "<color>",
-        defaultValue: "var(--border)",
+        defaultValue: "var(--cui-popup-border-color)",
         selector:
           ':where([data-control-family="popup"][data-popup-part="surface"]),\n  :where([data-control-family="popup"][data-popup-part="list-surface"]),\n  :where([data-control-family="popup"][data-popup-part="bar"])',
       },
@@ -6029,6 +6066,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
     ],
   },
+  { id: "thinking-level", knobs: [] },
   {
     id: "thread-rail",
     knobs: [

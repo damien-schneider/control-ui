@@ -106,6 +106,27 @@
           "role": "status"
         }
       }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "alert",
+          "data-control-ui": "alert",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-tone": "success",
+          "role": "status"
+        }
+      }
     ]
   ],
   "probes": [
@@ -146,6 +167,14 @@
         "fill": "--cui-alert-background"
       },
       "anatomy": 4,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-alert-background"
+      },
+      "anatomy": 5,
       "rendersText": true,
       "state": false
     }

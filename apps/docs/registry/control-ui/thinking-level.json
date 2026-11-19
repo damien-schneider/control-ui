@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "thinking-level",
+  "type": "registry:component",
+  "title": "Thinking level",
+  "description": "A ramp for how deeply a model thinks, one brain per level, keyboard and drag.",
+  "dependencies": [],
+  "registryDependencies": [
+    "button",
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/recipes/thinking-level.css",
+      "target": "@components/control-ui/styles/recipes/thinking-level.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/thinking-level.tsx",
+      "target": "@components/control-ui/thinking-level.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/thinking-level.css\"": {}
+  },
+  "meta": {
+    "internal": true,
+    "sourceManifestPath": "registry/control-ui/thinking-level.json"
+  }
+}

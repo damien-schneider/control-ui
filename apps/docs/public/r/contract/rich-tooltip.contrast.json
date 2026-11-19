@@ -14,31 +14,6 @@
       },
       {
         "attributes": {
-          "data-align": "end",
-          "data-control-family": "popup",
-          "data-control-ui": "rich-tooltip",
-          "data-open": "",
-          "data-popup-kind": "rich-tooltip",
-          "data-side": "right",
-          "data-slot": "content",
-          "data-tone": "accent",
-          "role": "dialog",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
           "data-align": "start",
           "data-control-family": "popup",
           "data-control-ui": "rich-tooltip",
@@ -90,7 +65,7 @@
       },
       {
         "attributes": {
-          "data-align": "end",
+          "data-align": "start",
           "data-control-family": "popup",
           "data-control-ui": "rich-tooltip",
           "data-open": "",
@@ -100,16 +75,6 @@
           "data-tone": "accent",
           "role": "dialog",
           "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "popup",
-          "data-control-ui": "rich-tooltip",
-          "data-icon-only": "true",
-          "data-popup-kind": "rich-tooltip",
-          "data-slot": "close",
-          "tabindex": "0"
         }
       }
     ],
@@ -320,6 +285,41 @@
           "data-icon-only": "true",
           "data-popup-kind": "rich-tooltip",
           "data-slot": "previous"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "rich-tooltip",
+          "data-open": "",
+          "data-popup-kind": "rich-tooltip",
+          "data-side": "right",
+          "data-slot": "content",
+          "data-tone": "accent",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "rich-tooltip",
+          "data-icon-only": "true",
+          "data-popup-kind": "rich-tooltip",
+          "data-slot": "close",
+          "tabindex": "0"
         }
       }
     ]

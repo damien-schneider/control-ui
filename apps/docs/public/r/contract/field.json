@@ -143,6 +143,12 @@
       "defaultValue": "var(--control-rim)"
     },
     {
+      "name": "--cui-field-focus-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--focus-rim)"
+    },
+    {
       "name": "--cui-field-border-width",
       "syntax": "<length>",
       "initialValue": "0px",
@@ -1533,6 +1539,14 @@
         ],
         "states": [
           {
+            "attribute": "data-field-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "input-group"
+            ]
+          },
+          {
             "attribute": "data-size",
             "source": "control-ui",
             "valueKind": "enum",
@@ -2618,6 +2632,7 @@
   "adornments": {},
   "uncovered": [
     "--cui-field-affordance-hover-background",
+    "--cui-field-focus-border-color",
     "--cui-field-hover-background"
   ],
   "contrast": "/r/contract/field.contrast.json"

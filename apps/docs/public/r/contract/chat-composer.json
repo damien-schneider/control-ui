@@ -43,6 +43,12 @@
       "defaultValue": "var(--border)"
     },
     {
+      "name": "--cui-chat-composer-shell-focus-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--focus-rim)"
+    },
+    {
       "name": "--cui-chat-composer-shell-border-width",
       "syntax": "<length>",
       "initialValue": "0px",

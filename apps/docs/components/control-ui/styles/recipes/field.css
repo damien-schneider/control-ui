@@ -1,4 +1,12 @@
 @layer components {
+  :where(
+    [data-control-family="field"][data-field-kind="input-group"][data-slot="root"]:has(
+      :is(input:enabled, textarea:enabled, [contenteditable="true"])
+    )
+  ) {
+    cursor: text;
+  }
+
   :where([data-control-family="field"][data-control="true"]) {
     gap: calc(var(--spacing) * 1.5);
     --cui-field-radius: var(--nest-radius, var(--radius-control));
@@ -10,6 +18,7 @@
     --cui-field-affordance-hover-background: var(--hover-fill);
     --cui-field-foreground: var(--foreground);
     --cui-field-border-color: var(--control-rim);
+    --cui-field-focus-border-color: var(--focus-rim);
     --cui-field-border-width: var(--control-rim-width);
     --cui-field-shadow: var(--shadow-inset);
     --cui-field-backdrop-filter: blur(0px);
@@ -28,6 +37,10 @@
     font-family: var(--cui-field-font-family);
     font-weight: var(--cui-field-font-weight);
     backdrop-filter: var(--cui-field-backdrop-filter);
+  }
+
+  :where([data-control-family="field"][data-control="true"]:focus-within) {
+    border-color: var(--cui-field-focus-border-color);
   }
 
   @media (forced-colors: active) {
@@ -245,6 +258,12 @@
 }
 
 @property --cui-field-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-field-focus-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

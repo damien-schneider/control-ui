@@ -80,10 +80,10 @@
   :where([data-control-family="sidebar"][data-slot="rail"][data-resizable])::after {
     content: "";
     position: absolute;
-    inset-block: 12.5%;
+    inset-block: 0;
     inset-inline-start: 50%;
     inline-size: 1px;
-    background-image: linear-gradient(transparent, var(--_sidebar-rail-divider-background), transparent);
+    background-color: var(--_sidebar-rail-divider-background);
   }
 
   :where([data-control-family="sidebar"][data-slot="rail"]:is(:focus-visible, [data-resizing="true"])) {

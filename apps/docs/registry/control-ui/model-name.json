@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "model-name",
+  "type": "registry:item",
+  "title": "Model name",
+  "description": "Reads a model id as its display name and the lab that made it.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/model-name.ts",
+      "target": "@components/control-ui/lib/model-name.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "meta": {
+    "internal": true,
+    "sourceManifestPath": "registry/control-ui/model-name.json"
+  }
+}

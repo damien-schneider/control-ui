@@ -67,3 +67,46 @@ test("floating panel cursor survives pointer capture and clears on cancellation 
   await expect(page).toHaveURL(/\/components\/button$/);
   await expect(page.getByRole("heading", { name: "Button", level: 1, exact: true })).toHaveCSS("cursor", originalCursor);
 });
+
+test("dragging a panel handle with a pointer focuses it without a keyboard focus ring", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/components/resizable");
+  const handle = page.getByRole("separator", { name: "Resize panel", exact: true }).last();
+  await waitForReactHydration(handle);
+  await handle.scrollIntoViewIfNeeded();
+  const box = await handle.boundingBox();
+  if (!box) throw new Error("Floating resize handle must be visible");
+  await page.mouse.move(box.x, box.y + box.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(box.x - 30, box.y + box.height / 2, { steps: 3 });
+  await page.mouse.up();
+
+  await expect(handle).toBeFocused();
+  expect(await handle.evaluate((node) => node.matches(":focus-visible"))).toBe(false);
+  await expect(handle).toHaveCSS("outline-style", "none");
+});
+
+test("a split handle keeps pointer focus but drops its focus paint once the pointer leaves", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/components/resizable");
+  const handle = page.getByRole("separator", { name: "Resize panel", exact: true }).first();
+  await waitForReactHydration(handle);
+  await handle.scrollIntoViewIfNeeded();
+  const box = await handle.boundingBox();
+  if (!box) throw new Error("Split handle must be visible");
+  const resting = await handle.evaluate((node) => getComputedStyle(node).backgroundColor);
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(box.x + box.width / 2 - 30, box.y + box.height / 2, { steps: 3 });
+  await page.mouse.up();
+  await page.mouse.move(box.x + 300, box.y + box.height / 2);
+
+  await expect(handle).toBeFocused();
+  await expect(handle).toHaveCSS("outline-style", "none");
+  await expect(handle).toHaveCSS("background-color", resting);
+
+  await page.keyboard.press("Shift+Tab");
+  await page.keyboard.press("Tab");
+  await expect(handle).toBeFocused();
+  await expect(handle).not.toHaveCSS("background-color", resting);
+});

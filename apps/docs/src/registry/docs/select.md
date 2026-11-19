@@ -231,6 +231,7 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 - `--cui-field-affordance-hover-background`: `var(--hover-fill)`
 - `--cui-field-foreground`: `var(--foreground)`
 - `--cui-field-border-color`: `var(--control-rim)`
+- `--cui-field-focus-border-color`: `var(--focus-rim)`
 - `--cui-field-border-width`: `var(--control-rim-width)`
 - `--cui-field-shadow`: `var(--shadow-inset)`
 - `--cui-field-backdrop-filter`: `blur(0px)`
@@ -306,13 +307,13 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 - `--cui-popup-item-padding-block`: `calc(var(--spacing) * 1)`
 - `--cui-popup-item-padding-inline`: `calc(var(--padding-x) * 0.5)`
 - `--cui-popup-item-min-height`: `max(var(--target-min), var(--control-h-xs))`
-- `--cui-popup-item-highlight-shadow`: `inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.35)`
+- `--cui-popup-item-highlight-shadow`: `none`
 - `--cui-popup-item-foreground`: `var(--foreground)`
 - `--cui-popup-item-highlight-background`: `var(--hover-fill)`
 - `--cui-popup-item-highlight-foreground`: `var(--cui-popup-item-foreground)`
 - `--cui-popup-item-highlight-muted-foreground`: `var(--muted-foreground)`
 - `--cui-popup-item-disabled-opacity`: `var(--disabled-opacity)`
-- `--cui-popup-separator-color`: `var(--border)`
+- `--cui-popup-separator-color`: `var(--cui-popup-border-color)`
 
 ## Links
 

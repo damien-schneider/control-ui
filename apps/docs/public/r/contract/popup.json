@@ -15,7 +15,6 @@
     "dropdown-menu",
     "hover-card",
     "menubar",
-    "model-switcher",
     "navigation-menu",
     "popover",
     "resizable",
@@ -344,7 +343,7 @@
       "name": "--cui-popup-item-highlight-shadow",
       "syntax": "*",
       "initialValue": "",
-      "defaultValue": "inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.35)"
+      "defaultValue": "none"
     },
     {
       "name": "--cui-popup-item-foreground",
@@ -380,7 +379,7 @@
       "name": "--cui-popup-separator-color",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "var(--border)"
+      "defaultValue": "var(--cui-popup-border-color)"
     }
   ],
   "parts": {
@@ -3463,30 +3462,6 @@
             ]
           }
         ]
-      }
-    },
-    "model-switcher": {
-      "hint": {
-        "family": "popup",
-        "registryItems": [
-          "model-switcher"
-        ],
-        "states": [
-          {
-            "attribute": "data-popup-kind",
-            "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "model-switcher"
-            ]
-          }
-        ]
-      },
-      "value": {
-        "registryItems": [
-          "model-switcher"
-        ],
-        "states": []
       }
     },
     "navigation-menu": {

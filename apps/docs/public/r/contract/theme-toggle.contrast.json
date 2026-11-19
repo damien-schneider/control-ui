@@ -33,6 +33,16 @@
       },
       {
         "attributes": {
+          "data-control-family": "alert",
+          "data-control-ui": "alert",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-tone": "success",
+          "role": "status"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "theme-toggle",
           "data-control-ui": "theme-toggle",
           "data-slot": "root",

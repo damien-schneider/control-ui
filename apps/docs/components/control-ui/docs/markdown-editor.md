@@ -54,13 +54,18 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 - `@/components/control-ui/markdown-editor/bubble-menu`: `MarkdownEditorBubbleMenu`
 - `@/components/control-ui/markdown-editor/context`: `defaultMarkdownEditorLabels`, `MarkdownEditorContext`, `useMarkdownEditor`, types `MarkdownEditorLabels`, `MarkdownEditorContextValue`
 - `@/components/control-ui/markdown-editor/drag-handle`: `MarkdownEditorDragHandle`
-- `@/components/control-ui/markdown-editor/drag-preview`: `createDragPreview`
+- `@/components/control-ui/markdown-editor/drag-preview`: `createDragPreview`, types `DragPreview`
 - `@/components/control-ui/markdown-editor/extensions`: `isEditorUrl`, `persistentUrlPolicy`, `ImageUpload`, `markdownExtensions`, `createMarkdownCodec`, `requiresMarkdownSource`, `hasMarkdownContent`, types `MarkdownUrlKind`, `MarkdownUrlPolicy`, `MarkdownExtensionOptions`
 - `@/components/control-ui/markdown-editor/suggestions`: `MarkdownEditorSuggestions`, types `MarkdownEditorMention`, `MarkdownEditorSuggestionsProps`
+- `@/components/control-ui/markdown-editor/table-commands`: `firstMovable`, `lineCount`, `canMoveLine`, `selectLine`, `moveLine`, `runInCell`, `alignColumn`, types `ColumnAlign`
+- `@/components/control-ui/markdown-editor/table-controls`: `MarkdownEditorTableControls`
+- `@/components/control-ui/markdown-editor/table-geometry`: `tableTargetFrom`, `tableTargetAt`, `tableAt`, `cellStart`, `tableElement`, `measureTable`, `nearestGap`, `indexForGap`, `isNear`, `toSurface`, types `TableAxis`, `TableTarget`, `SurfaceBox`, `TableLayout`
+- `@/components/control-ui/markdown-editor/table-grip`: `TableGrip`
 - `@/components/control-ui/markdown-editor/task-item`: `MarkdownTaskItem`
 - `@/components/control-ui/markdown-editor/toolbar`: `useMarkdownEditorFormatActions`, `MarkdownEditorFormatButton`, `MarkdownEditorToolbar`, `MarkdownEditorHeading`, `MarkdownEditorLink`, `MarkdownEditorImage`, `MarkdownEditorUploads`
 - `@/components/control-ui/markdown-editor/uploads`: `findImageUpload`, `completeImageUpload`, `markdownImageTypes`, types `MarkdownImage`, `MarkdownImageUploader`, `MarkdownImageUpload`
 - `@/components/control-ui/markdown-editor/use-image-uploads`: `useImageUploads`
+- `@/components/control-ui/markdown-editor/use-table-target`: `useTableTarget`
 
 ## Composition
 
@@ -186,6 +191,8 @@ Scopes, their parts, and the state attributes each part carries. Selector patter
   - `root`: `data-disabled`, `data-readonly`
   - `source`
   - `suggestion-description`
+  - `table-controls`
+  - `table-drop-line`: `data-axis` (`column` | `row`)
   - `task-checkbox`
   - `task-content`
   - `task-item`
@@ -201,6 +208,7 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 - `--cui-markdown-editor-background`: `var(--background)`
 - `--cui-markdown-editor-foreground`: `var(--foreground)`
 - `--cui-markdown-editor-border-color`: `var(--border)`
+- `--cui-markdown-editor-focus-border-color`: `var(--focus-rim)`
 - `--cui-markdown-editor-radius`: `var(--radius-panel)`
 - `--cui-markdown-editor-padding`: `calc(var(--spacing) * 4)`
 - `--cui-markdown-editor-gutter-size`: `var(--control-h-xs)`
@@ -210,6 +218,9 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 - `--cui-markdown-editor-muted-foreground`: `var(--muted-foreground)`
 - `--cui-markdown-editor-code-background`: `var(--muted)`
 - `--cui-markdown-editor-border-width`: `var(--control-rim-width)`
+- `--cui-markdown-editor-table-border-width`: `var(--control-rim-width)`
+- `--cui-markdown-editor-table-border-color`: `var(--border)`
+- `--cui-markdown-editor-table-selection-background`: `var(--active-fill)`
 
 ### label
 

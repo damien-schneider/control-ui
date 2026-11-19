@@ -28,6 +28,7 @@
   --ring: oklch(0.5 0 0);
   --focus-ring: oklch(from var(--ring) l c h / calc(alpha * 0.7));
   --control-rim: var(--border);
+  --focus-rim: color-mix(in oklab, var(--control-rim), var(--ring) 15%);
   --control-boundary: oklch(from var(--foreground) l c h / 0.6);
   --image-outline: oklch(0 0 0 / 0.1);
   --control-fill: oklch(from var(--card) l c h / 0.72);
@@ -725,6 +726,49 @@
 
   :where([data-control-family][data-focus-ring="none"]):focus-visible {
     outline-style: none;
+  }
+
+  @media not (forced-colors: active) {
+    :where(
+        [data-control-family]:is(
+          input:not(
+            [readonly],
+            [type="checkbox"],
+            [type="radio"],
+            [type="range"],
+            [type="color"],
+            [type="file"],
+            [type="button"],
+            [type="submit"],
+            [type="reset"],
+            [type="image"]
+          ),
+          textarea:not([readonly]),
+          [contenteditable]:not([contenteditable="false"])
+        )
+      ):focus-visible,
+    :where(
+        [data-control-family]:has(
+          :is(
+              input:not(
+                [readonly],
+                [type="checkbox"],
+                [type="radio"],
+                [type="range"],
+                [type="color"],
+                [type="file"],
+                [type="button"],
+                [type="submit"],
+                [type="reset"],
+                [type="image"]
+              ),
+              textarea:not([readonly]),
+              [contenteditable]:not([contenteditable="false"])
+            ):focus-visible
+        )
+      ):focus-within {
+      outline-style: none;
+    }
   }
 
   :where([data-control-family][data-highlighted]):focus-visible {

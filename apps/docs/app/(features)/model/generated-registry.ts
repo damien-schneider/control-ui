@@ -2166,6 +2166,7 @@ export const registryMetadata = {
       "inline-citation",
       "markdown-block",
       "model-switcher",
+      "provider-logo",
       "source-badge",
       "thread-rail",
       "transcript-divider",
@@ -2200,7 +2201,7 @@ export const registryMetadata = {
       "prosemirror-state@^1.4.4",
       "prosemirror-view@^1.42.3",
     ],
-    registryDependencies: ["button", "chat-message", "core", "live-status", "motion", "spinner", "trigger-menu"],
+    registryDependencies: ["button", "chat-message", "core", "live-status", "motion", "press-focus", "spinner", "trigger-menu"],
     sourceManifestPath: "registry/control-ui/chat-composer.json",
     files: [
       {
@@ -3799,7 +3800,7 @@ export const registryMetadata = {
   },
   "input-group": {
     dependencies: ["@base-ui/react@^1.9.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "press-focus"],
     sourceManifestPath: "registry/control-ui/input-group.json",
     files: [
       {
@@ -4167,6 +4168,26 @@ export const registryMetadata = {
         type: "registry:component",
       },
       {
+        path: "src/registry/sources/control-ui/markdown-editor/table-commands.ts",
+        target: "@components/control-ui/markdown-editor/table-commands.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/markdown-editor/table-controls.tsx",
+        target: "@components/control-ui/markdown-editor/table-controls.tsx",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/markdown-editor/table-geometry.ts",
+        target: "@components/control-ui/markdown-editor/table-geometry.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/markdown-editor/table-grip.tsx",
+        target: "@components/control-ui/markdown-editor/table-grip.tsx",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/markdown-editor/task-item.tsx",
         target: "@components/control-ui/markdown-editor/task-item.tsx",
         type: "registry:component",
@@ -4185,6 +4206,16 @@ export const registryMetadata = {
         path: "src/registry/sources/control-ui/markdown-editor/use-image-uploads.ts",
         target: "@components/control-ui/markdown-editor/use-image-uploads.ts",
         type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/markdown-editor/use-table-target.ts",
+        target: "@components/control-ui/markdown-editor/use-table-target.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/markdown-editor-table.css",
+        target: "@components/control-ui/styles/recipes/markdown-editor-table.css",
+        type: "registry:file",
       },
       {
         path: "src/registry/sources/control-ui/recipes/markdown-editor.css",
@@ -4277,15 +4308,32 @@ export const registryMetadata = {
       },
     ],
   },
+  "model-name": {
+    dependencies: [],
+    registryDependencies: ["core"],
+    sourceManifestPath: "registry/control-ui/model-name.json",
+    files: [
+      {
+        path: "src/registry/lib/model-name.ts",
+        target: "@components/control-ui/lib/model-name.ts",
+        type: "registry:lib",
+      },
+    ],
+  },
   "model-switcher": {
     dependencies: [],
-    registryDependencies: ["core", "select"],
+    registryDependencies: ["button", "command", "core", "model-name", "popover", "provider-logo", "thinking-level"],
     sourceManifestPath: "registry/control-ui/model-switcher.json",
     files: [
       {
         path: "src/registry/sources/control-ui/model-switcher.tsx",
         target: "@components/control-ui/model-switcher.tsx",
         type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/model-switcher.css",
+        target: "@components/control-ui/styles/recipes/model-switcher.css",
+        type: "registry:file",
       },
     ],
   },
@@ -4621,6 +4669,18 @@ export const registryMetadata = {
       },
     ],
   },
+  "press-focus": {
+    dependencies: [],
+    registryDependencies: ["core"],
+    sourceManifestPath: "registry/control-ui/press-focus.json",
+    files: [
+      {
+        path: "src/registry/lib/press-focus.ts",
+        target: "@components/control-ui/lib/press-focus.ts",
+        type: "registry:lib",
+      },
+    ],
+  },
   progress: {
     dependencies: ["@base-ui/react@^1.9.0"],
     registryDependencies: ["core"],
@@ -4672,6 +4732,23 @@ export const registryMetadata = {
         path: "src/registry/sources/control-ui/ui/progressive-blur.tsx",
         target: "@components/control-ui/ui/progressive-blur.tsx",
         type: "registry:ui",
+      },
+    ],
+  },
+  "provider-logo": {
+    dependencies: [],
+    registryDependencies: ["core", "model-name"],
+    sourceManifestPath: "registry/control-ui/provider-logo.json",
+    files: [
+      {
+        path: "src/registry/lib/provider-marks.ts",
+        target: "@components/control-ui/lib/provider-marks.ts",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/sources/control-ui/provider-logo.tsx",
+        target: "@components/control-ui/provider-logo.tsx",
+        type: "registry:component",
       },
     ],
   },
@@ -5849,6 +5926,23 @@ export const registryMetadata = {
         path: "src/registry/sources/control-ui/recipes/theme-toggle.css",
         target: "@components/control-ui/styles/recipes/theme-toggle.css",
         type: "registry:file",
+      },
+    ],
+  },
+  "thinking-level": {
+    dependencies: [],
+    registryDependencies: ["button", "core"],
+    sourceManifestPath: "registry/control-ui/thinking-level.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/thinking-level.css",
+        target: "@components/control-ui/styles/recipes/thinking-level.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/thinking-level.tsx",
+        target: "@components/control-ui/thinking-level.tsx",
+        type: "registry:component",
       },
     ],
   },

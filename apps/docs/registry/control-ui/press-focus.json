@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "press-focus",
+  "type": "registry:item",
+  "title": "Press focus",
+  "description": "Pressing a text field's padding, addons, or toolbar focuses its text control.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/press-focus.ts",
+      "target": "@components/control-ui/lib/press-focus.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "meta": {
+    "internal": true,
+    "sourceManifestPath": "registry/control-ui/press-focus.json"
+  }
+}

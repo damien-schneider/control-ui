@@ -1,0 +1,98 @@
+@layer components {
+  :where([data-control-family="thinking-level"][data-slot="root"]) {
+    --_thinking-level-pad: calc(var(--spacing) * 0.75);
+    gap: calc(var(--spacing) * 2);
+  }
+
+  :where([data-control-family="thinking-level"][data-slot="header"]) {
+    gap: calc(var(--spacing) * 2);
+    min-block-size: calc(var(--spacing) * 5);
+  }
+
+  :where([data-control-family="thinking-level"][data-slot="label"]) {
+    color: var(--muted-foreground);
+    font-size: var(--text-caption);
+    font-weight: var(--font-weight-medium);
+  }
+
+  :where([data-control-family="thinking-level"][data-slot="track"]) {
+    block-size: var(--control-h-sm);
+    padding: var(--_thinking-level-pad);
+    border-radius: 9999px;
+    background-color: var(--muted);
+    cursor: pointer;
+  }
+
+  :where([data-control-family="thinking-level"][data-slot="root"][aria-disabled="true"] [data-slot="track"]) {
+    cursor: not-allowed;
+    opacity: var(--disabled-opacity);
+  }
+
+  :where([data-control-family="thinking-level"][data-slot="track"]:has(> [data-slot="input"]:focus-visible)) {
+    outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  :where([data-control-family="thinking-level"][data-slot="pill"]) {
+    inset-block: var(--_thinking-level-pad);
+    border-radius: 9999px;
+    background-color: var(--card);
+    box-shadow:
+      inset 0 0 0 var(--control-rim-width) var(--control-rim),
+      var(--shadow-sm);
+    pointer-events: none;
+    transition-property: left, right;
+    transition-timing-function: var(--ease-emphasized);
+  }
+
+  :where([data-control-family="thinking-level"][data-slot="stop"]) {
+    gap: calc(var(--spacing) * 1.5);
+    color: var(--muted-foreground);
+    transition-property: flex-grow, color;
+    transition-duration: var(--duration-slow);
+    transition-timing-function: var(--ease-emphasized);
+  }
+
+  :where([data-control-family="thinking-level"][data-slot="stop"][data-passed]) {
+    color: oklch(from var(--foreground) l c h / 0.6);
+  }
+
+  :where([data-control-family="thinking-level"][data-slot="stop"][data-picked]) {
+    color: var(--foreground);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="thinking-level"][data-slot="root"]:not([aria-disabled="true"]) [data-slot="stop"]:hover) {
+      color: var(--foreground);
+    }
+  }
+
+  :where([data-control-family="thinking-level"][data-slot="brain"]) {
+    flex-shrink: 0;
+    inline-size: calc(var(--spacing) * 3.5);
+    block-size: calc(var(--spacing) * 3.5);
+  }
+
+  :where([data-control-family="thinking-level"][data-slot="stop-label"]) {
+    overflow: hidden;
+    max-inline-size: 0;
+    margin-inline-start: calc(var(--spacing) * -1.5);
+    opacity: 0;
+    white-space: nowrap;
+    font-size: var(--text-caption);
+    font-weight: var(--font-weight-medium);
+    transition-property: max-inline-size, margin, opacity;
+    transition-duration: var(--duration-slow);
+    transition-timing-function: var(--ease-emphasized);
+  }
+
+  :where([data-control-family="thinking-level"][data-slot="stop"][data-picked] > [data-slot="stop-label"]) {
+    max-inline-size: calc(var(--spacing) * 24);
+    margin-inline-start: 0;
+    opacity: 1;
+  }
+
+  :where([data-control-family="thinking-level"][data-slot="input"]) {
+    opacity: 0;
+  }
+}

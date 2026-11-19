@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "family": "provider-logo",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "provider-logo"
+  ],
+  "knobs": [],
+  "parts": {
+    "provider-logo": {
+      "root": {
+        "registryItems": [
+          "provider-logo"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/provider-logo.contrast.json"
+}

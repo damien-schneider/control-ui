@@ -59,6 +59,8 @@
 @import "../src/registry/sources/control-ui/recipes/table-of-contents.css";
 @import "../src/registry/sources/control-ui/recipes/popup-drawer.css";
 @import "../src/registry/sources/control-ui/recipes/phone-input.css";
+@import "../src/registry/sources/control-ui/recipes/model-switcher.css";
+@import "../src/registry/sources/control-ui/recipes/thinking-level.css";
 @import "../src/registry/sources/control-ui/recipes/dropzone.css";
 @import "../src/registry/sources/control-ui/recipes/toolbar.css";
 @import "../src/registry/sources/control-ui/recipes/dockable-panel.css";
@@ -78,6 +80,7 @@
 @import "../src/registry/sources/control-ui/recipes/markdown.css";
 @import "../src/registry/sources/control-ui/recipes/markdown-block.css";
 @import "../src/registry/sources/control-ui/recipes/markdown-editor.css";
+@import "../src/registry/sources/control-ui/recipes/markdown-editor-table.css";
 @import "../src/registry/sources/control-ui/recipes/chat-layout.css";
 @import "../src/registry/sources/control-ui/recipes/audio-recorder.css";
 @import "../src/registry/sources/control-ui/recipes/audio-device-select.css";

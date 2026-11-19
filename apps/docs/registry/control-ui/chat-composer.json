@@ -19,6 +19,7 @@
     "core",
     "live-status",
     "motion",
+    "press-focus",
     "spinner",
     "trigger-menu"
   ],

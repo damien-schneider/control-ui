@@ -119,10 +119,7 @@ const suggestions: readonly CodingAgentSuggestion[] = [
   },
 ];
 
-const models = [
-  { value: "sonnet", label: "Claude Sonnet" },
-  { value: "gpt", label: "GPT" },
-];
+const models = [{ value: "claude-sonnet-4-5" }, { value: "gpt-5" }];
 
 const initialPrompt = "Thanks to our components, create a block that feels like a focused coding workspace.";
 
@@ -138,7 +135,7 @@ export function CodingAgentExample() {
   const [draft, setDraft] = useState("");
   const [submittedPrompt, setSubmittedPrompt] = useState(initialPrompt);
   const [isRunning, setIsRunning] = useState(true);
-  const [model, setModel] = useState("sonnet");
+  const [model, setModel] = useState("claude-sonnet-4-5");
   const [activeNavigationId, setActiveNavigationId] = useState<string>();
   const activeNavigation = navigation.find((item) => item.id === activeNavigationId);
   const activeTask = findTask(activeTaskId);

@@ -7,7 +7,7 @@ import { EditorState, Plugin } from "prosemirror-state";
 import { EditorView } from "prosemirror-view";
 import { type CSSProperties, useEffect, useMemo, useRef, useState } from "react";
 
-import { useChatComposerContext } from "@/components/control-ui/chat-composer";
+import { useChatComposerContext, useChatComposerMessageRef } from "@/components/control-ui/chat-composer";
 import type { ChatComposerSubmitPayload } from "@/components/control-ui/hooks/use-chat-composer";
 import type { ChatComposerKnobStyle } from "@/components/control-ui/knob-contracts/chat-composer-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -41,6 +41,7 @@ export function ChatComposerEditor({
   "aria-describedby": ariaDescribedby,
 }: ChatComposerEditorProps & { style?: CSSProperties & ChatComposerKnobStyle }) {
   const input = useChatComposerContext();
+  const messageRef = useChatComposerMessageRef();
 
   const mountRef = useRef<HTMLDivElement>(null);
   const viewRef = useRef<EditorView | null>(null);
@@ -165,12 +166,14 @@ export function ChatComposerEditor({
       },
     });
     viewRef.current = view;
+    if (messageRef) messageRef.current = view.dom;
     setMounted(true);
     return () => {
       view.destroy();
       viewRef.current = null;
+      if (messageRef) messageRef.current = null;
     };
-  }, [api, initialExtensions]);
+  }, [api, initialExtensions, messageRef]);
 
   const { registerInsertionTarget } = input;
   useEffect(

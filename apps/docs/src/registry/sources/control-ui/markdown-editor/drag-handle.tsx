@@ -2,7 +2,8 @@
 
 import type { Editor } from "@tiptap/core";
 import { closeHistory } from "@tiptap/pm/history";
-import { NodeSelection } from "@tiptap/pm/state";
+import type { ResolvedPos } from "@tiptap/pm/model";
+import { NodeSelection, type Transaction } from "@tiptap/pm/state";
 import { GripVerticalIcon } from "lucide-react";
 import { type RefObject, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/control-ui/ui/button";
@@ -10,7 +11,20 @@ import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { useMarkdownEditor } from "./context";
 import { createDragPreview } from "./drag-preview";
 
-type BlockHandle = { position: number; top: number };
+type BlockHandle = { position: number; top: number; visible: boolean; glide: boolean };
+
+/** Hiding keeps the last place, so the handle fades out where it was instead of jumping first. */
+function conceal(current: BlockHandle | null): BlockHandle | null {
+  return current?.visible ? { ...current, visible: false, glide: false } : current;
+}
+
+/** A list is not one block to its reader: the deepest list item is the unit you grab, anything else is its top-level block. */
+function draggableBlockStart($pos: ResolvedPos): number {
+  for (let depth = $pos.depth; depth > 1; depth--) {
+    if ($pos.node(depth - 1).type.isInGroup("list")) return $pos.before(depth);
+  }
+  return $pos.depth > 0 ? $pos.before(1) : $pos.pos;
+}
 
 /** The gutter sits outside every block, so the pointer's x is clamped into the text column before the hit test. */
 function blockPositionAt(view: Editor["view"], event: MouseEvent): number | null {
@@ -20,17 +34,18 @@ function blockPositionAt(view: Editor["view"], event: MouseEvent): number | null
   const left = style.direction === "rtl" ? Math.min(event.clientX, rect.right - gutter) : Math.max(event.clientX, rect.left + gutter);
   const hit = view.posAtCoords({ left, top: event.clientY });
   if (!hit) return null;
-  const resolved = view.state.doc.resolve(hit.pos);
-  return resolved.depth > 0 ? resolved.before(1) : hit.pos;
+  return draggableBlockStart(view.state.doc.resolve(hit.pos));
 }
 
 export function MarkdownEditorDragHandle({ container }: { container: RefObject<HTMLDivElement | null> }) {
   const { editor, editable, labels } = useMarkdownEditor();
   const [block, setBlock] = useState<BlockHandle | null>(null);
   const [announcement, setAnnouncement] = useState("");
+  const [pointerSelection, setPointerSelection] = useState(false);
+  const [lifted, setLifted] = useState(false);
   const button = useRef<HTMLButtonElement>(null);
   const dragging = useRef(false);
-  const preview = useRef<HTMLDivElement | null>(null);
+  const preview = useRef<HTMLElement | null>(null);
   const preparedDrag = useRef<ReturnType<typeof prepareDrag> | null>(null);
 
   useEffect(() => {
@@ -44,7 +59,11 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
       const node = editor.view.nodeDOM(blockPosition);
       if (!(node instanceof HTMLElement)) return;
       const top = node.getBoundingClientRect().top - surface.getBoundingClientRect().top + surface.scrollTop;
-      setBlock((current) => (current?.position === blockPosition && current.top === top ? current : { position: blockPosition, top }));
+      setBlock((current) =>
+        current?.visible && current.position === blockPosition && current.top === top
+          ? current
+          : { position: blockPosition, top, visible: true, glide: current?.visible === true },
+      );
     }
     function updateHandle(event: MouseEvent) {
       if (!editor || dragging.current || button.current?.contains(event.target instanceof Node ? event.target : null)) return;
@@ -61,23 +80,30 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
     }
     function selectionChanged() {
       if (!editor || dragging.current) return;
-      const { $from } = editor.state.selection;
-      show($from.depth > 0 ? $from.before(1) : $from.pos);
+      show(draggableBlockStart(editor.state.selection.$from));
+    }
+    function contentChanged({ transaction }: { transaction: Transaction }) {
+      if (transaction.docChanged || transaction.selectionSet) selectionChanged();
+    }
+    function keyboardUsed() {
+      setPointerSelection(false);
     }
     function hide() {
       cancelAnimationFrame(frame);
       frame = 0;
       latestEvent = null;
-      if (!dragging.current && document.activeElement !== button.current) setBlock(null);
+      if (!dragging.current && document.activeElement !== button.current) setBlock(conceal);
     }
     surface.addEventListener("mousemove", track);
     surface.addEventListener("mouseleave", hide);
-    editor.on("transaction", selectionChanged).on("focus", selectionChanged);
+    surface.addEventListener("keydown", keyboardUsed);
+    editor.on("transaction", contentChanged).on("focus", selectionChanged);
     return () => {
       cancelAnimationFrame(frame);
       surface.removeEventListener("mousemove", track);
       surface.removeEventListener("mouseleave", hide);
-      editor.off("transaction", selectionChanged).off("focus", selectionChanged);
+      surface.removeEventListener("keydown", keyboardUsed);
+      editor.off("transaction", contentChanged).off("focus", selectionChanged);
       view.dragging = null;
       preview.current?.remove();
       preview.current = null;
@@ -87,8 +113,7 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
   }, [editor, container, editable]);
 
   if (!editor || !editable) return null;
-  const selected = editor.state.selection.$from;
-  const position = block?.position ?? (selected.depth > 0 ? selected.before(1) : selected.pos);
+  const position = block ? block.position : draggableBlockStart(editor.state.selection.$from);
 
   function prepareDrag() {
     if (!editor || editor.isDestroyed) return null;
@@ -102,6 +127,7 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
       html: dom.innerHTML,
       text,
       slice,
+      source: node instanceof HTMLElement ? node : null,
       preview: node instanceof HTMLElement ? createDragPreview(node) : null,
     };
   }
@@ -129,13 +155,16 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
         size="xs"
         iconOnly
         data-markdown-drag-handle=""
-        data-visible={block ? "" : undefined}
+        data-visible={block?.visible ? "" : undefined}
+        data-glide={block?.glide ? "" : undefined}
+        data-pointer-selection={pointerSelection ? "" : undefined}
+        data-lifted={lifted ? "" : undefined}
         aria-label={labels.dragHandle}
         aria-description={labels.dragHandleDescription}
         title={labels.dragHandleHint}
         draggable
         style={{
-          insetBlockStart: block?.top,
+          translate: block ? `0 ${block.top}px` : undefined,
           "--cui-button-background": "transparent",
           "--cui-button-hover-background": "transparent",
           "--cui-button-press-background": "transparent",
@@ -144,6 +173,7 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
         }}
         onClick={() => editor.commands.setNodeSelection(position)}
         onPointerDown={() => {
+          setPointerSelection(true);
           preparedDrag.current = prepareDrag();
         }}
         onPointerUp={() => {
@@ -163,28 +193,38 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
             return;
           }
           const { view } = editor;
-          const { html, text, slice, selection, preview: ghost } = payload;
+          const { html, text, slice, selection, source, preview: ghost } = payload;
           dragging.current = true;
+          setLifted(true);
           view.dispatch(view.state.tr.setSelection(selection));
           event.dataTransfer.clearData();
           event.dataTransfer.setData("text/html", html);
           event.dataTransfer.setData("text/plain", text);
           event.dataTransfer.effectAllowed = "copyMove";
-          if (ghost) {
+          if (ghost && source) {
             preview.current?.remove();
-            container.current?.append(ghost);
-            preview.current = ghost;
-            event.dataTransfer.setDragImage(ghost, 0, 0);
+            container.current?.append(ghost.element);
+            preview.current = ghost.element;
+            const frame = ghost.element.getBoundingClientRect();
+            const anchor = ghost.anchor.getBoundingClientRect();
+            const origin = source.getBoundingClientRect();
+            ghost.element.toggleAttribute("data-clipped", ghost.element.scrollHeight > ghost.element.clientHeight);
+            event.dataTransfer.setDragImage(
+              ghost.element,
+              Math.max(0, anchor.left - frame.left + event.clientX - origin.left),
+              Math.max(0, anchor.top - frame.top + event.clientY - origin.top),
+            );
           }
           view.dragging = { slice, move: true };
         }}
         onDragEnd={() => {
           editor.view.dragging = null;
           dragging.current = false;
+          setLifted(false);
           preview.current?.remove();
           preview.current = null;
           preparedDrag.current = null;
-          setBlock(null);
+          setBlock(conceal);
         }}
       >
         <GripVerticalIcon aria-hidden="true" />

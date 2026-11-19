@@ -50,6 +50,27 @@ export type MarkdownEditorLabels = {
   dragHandleHint: string;
   blockMoved: (direction: "up" | "down") => string;
   taskItem: string;
+  table: string;
+  rowActions: string;
+  columnActions: string;
+  tableGripDescription: string;
+  insertRowAbove: string;
+  insertRowBelow: string;
+  insertColumnLeft: string;
+  insertColumnRight: string;
+  moveRowUp: string;
+  moveRowDown: string;
+  moveColumnLeft: string;
+  moveColumnRight: string;
+  deleteRow: string;
+  deleteColumn: string;
+  alignLeft: string;
+  alignCenter: string;
+  alignRight: string;
+  addRow: string;
+  addColumn: string;
+  rowMoved: (row: number) => string;
+  columnMoved: (column: number) => string;
 };
 
 export const defaultMarkdownEditorLabels: MarkdownEditorLabels = {
@@ -99,6 +120,27 @@ export const defaultMarkdownEditorLabels: MarkdownEditorLabels = {
   dragHandleHint: "Drag to reorder · Alt+↑/↓ to move",
   blockMoved: (direction) => `Block moved ${direction}.`,
   taskItem: "Task item",
+  table: "Table",
+  rowActions: "Row actions",
+  columnActions: "Column actions",
+  tableGripDescription: "Drag to reorder, or use Alt and the arrow keys to move.",
+  insertRowAbove: "Insert row above",
+  insertRowBelow: "Insert row below",
+  insertColumnLeft: "Insert column left",
+  insertColumnRight: "Insert column right",
+  moveRowUp: "Move row up",
+  moveRowDown: "Move row down",
+  moveColumnLeft: "Move column left",
+  moveColumnRight: "Move column right",
+  deleteRow: "Delete row",
+  deleteColumn: "Delete column",
+  alignLeft: "Align left",
+  alignCenter: "Align center",
+  alignRight: "Align right",
+  addRow: "Add row",
+  addColumn: "Add column",
+  rowMoved: (row) => `Row moved to position ${row}.`,
+  columnMoved: (column) => `Column moved to position ${column}.`,
 };
 
 export type MarkdownEditorContextValue = {

@@ -1022,6 +1022,11 @@
       "syntax": "<length>"
     },
     {
+      "name": "--cui-chat-composer-shell-focus-border-color",
+      "description": "Control UI chat-composer knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
       "name": "--cui-chat-composer-shell-radius",
       "description": "Control UI chat-composer knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
@@ -1870,6 +1875,11 @@
       "syntax": "<length-percentage>"
     },
     {
+      "name": "--cui-field-focus-border-color",
+      "description": "Control UI field knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
       "name": "--cui-field-font-family",
       "description": "Control UI field knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
@@ -2677,6 +2687,11 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-markdown-editor-focus-border-color",
+      "description": "Control UI markdown-editor knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
       "name": "--cui-markdown-editor-foreground",
       "description": "Control UI markdown-editor knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
@@ -2715,6 +2730,21 @@
       "name": "--cui-markdown-editor-radius",
       "description": "Control UI markdown-editor knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-markdown-editor-table-border-color",
+      "description": "Control UI markdown-editor knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-markdown-editor-table-border-width",
+      "description": "Control UI markdown-editor knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
+      "name": "--cui-markdown-editor-table-selection-background",
+      "description": "Control UI markdown-editor knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
     },
     {
       "name": "--cui-markdown-flow-gap",

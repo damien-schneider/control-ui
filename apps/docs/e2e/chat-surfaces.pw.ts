@@ -157,3 +157,51 @@ test("composer gallery previews fit their grid cells", async ({ page }) => {
     expect(overflow).toBeLessThanOrEqual(0);
   }
 });
+
+test("the composer header belongs to the message field and sits concentric with its corner", async ({ page }) => {
+  await seedSkin(page, "refined");
+  await page.goto("/templates/coding-agent");
+  await waitForSkinLayout(page, "refined");
+  const shell = page.locator('#preview [data-control-ui="chat-composer"][data-slot="shell"]');
+  const header = shell.locator('[data-slot="header"]');
+  await expect(header).toHaveCSS("border-bottom-width", "0px");
+  const insets = await shell.evaluate((element) => {
+    const box = element.getBoundingClientRect();
+    const first = element.querySelector('[data-slot="header"] > *')?.getBoundingClientRect();
+    const submit = element.querySelector('[data-slot="submit"]')?.getBoundingClientRect();
+    if (!(first && submit)) {
+      throw new Error("Composer header content or submit is missing");
+    }
+    return { start: first.left - box.left, top: first.top - box.top, end: box.right - submit.right, bottom: box.bottom - submit.bottom };
+  });
+  expect(Math.abs(insets.start - insets.end)).toBeLessThanOrEqual(1);
+  expect(Math.abs(insets.top - insets.bottom)).toBeLessThanOrEqual(1);
+});
+
+test("components inside the composer header keep their own icon size", async ({ page }) => {
+  await seedSkin(page, "refined");
+  await page.goto("/templates/coding-agent");
+  await waitForSkinLayout(page, "refined");
+  const header = page.locator('#preview [data-control-ui="chat-composer"][data-slot="header"]');
+  const sizes = await header.evaluate((element) => {
+    const svg = '<svg viewBox="0 0 24 24"><path d="M4 12h16"/></svg>';
+    const nested = document.createElement("span");
+    nested.dataset.controlFamily = "badge";
+    nested.dataset.slot = "root";
+    nested.dataset.size = "sm";
+    nested.innerHTML = svg;
+    const loose = document.createElement("span");
+    loose.innerHTML = svg;
+    element.append(nested, loose);
+    const width = (host: Element) => host.querySelector("svg")?.getBoundingClientRect().width;
+    const reference = document.createElement("span");
+    reference.dataset.controlFamily = "badge";
+    reference.dataset.slot = "root";
+    reference.dataset.size = "sm";
+    reference.innerHTML = svg;
+    document.body.append(reference);
+    return { nested: width(nested), loose: width(loose), standalone: width(reference) };
+  });
+  expect(sizes.nested).toBe(sizes.standalone);
+  expect(sizes.loose).toBe(14);
+});

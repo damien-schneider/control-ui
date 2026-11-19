@@ -13,6 +13,7 @@ import type { HoverIndicator } from "../../src/registry/sources/control-ui/contr
 import type { ControlSize } from "../../src/registry/sources/control-ui/control-variants";
 import type { DynamicNotificationState } from "../../src/registry/sources/control-ui/dynamic-notification";
 import type { InlineAttachmentState } from "../../src/registry/sources/control-ui/inline-attachment";
+import type { TableAxis } from "../../src/registry/sources/control-ui/markdown-editor/table-geometry";
 import type { PopupItemTone } from "../../src/registry/sources/control-ui/surface-variants";
 import type { TaskStatus } from "../../src/registry/sources/control-ui/task-list";
 import type { ToolApprovalRiskLevel, ToolApprovalState } from "../../src/registry/sources/control-ui/tool-approval";
@@ -234,6 +235,7 @@ export type EmittedStateContract = {
   "context-menu:item:data-tone": PopupItemTone;
   "context-menu:label:data-inset": true;
   "context-menu:sub-trigger:data-inset": true;
+  "markdown-editor:table-drop-line:data-axis": TableAxis;
   "menubar:item:data-tone": PopupItemTone;
   "menubar:label:data-inset": true;
   "menubar:sub-trigger:data-inset": true;

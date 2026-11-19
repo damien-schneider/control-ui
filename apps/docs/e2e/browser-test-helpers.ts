@@ -8,6 +8,40 @@ export async function waitForReactHydration(locator: Locator) {
   await expect.poll(() => locator.evaluate((element) => Object.keys(element).some((key) => key.startsWith("__reactProps$")))).toBe(true);
 }
 
+export function paintedEdge(field: Locator) {
+  return field.evaluate((element) => {
+    const style = getComputedStyle(element);
+    return `${style.borderColor} ${style.boxShadow}`;
+  });
+}
+
+/** Text entry draws no focus outline: the caret marks focus and the field's edge tints away from its resting paint. */
+export async function expectTextFocusEdge(field: Locator, restingEdge: string) {
+  await expect(field).toHaveCSS("outline-style", "none");
+  await expect.poll(() => paintedEdge(field)).not.toBe(restingEdge);
+}
+
+/** A point on `part` whose topmost element is `part` itself, never one of its child controls. */
+export async function blankPoint(part: Locator) {
+  const point = await part.evaluate((element) => {
+    const box = element.getBoundingClientRect();
+    const y = box.top + box.height / 2;
+    for (let x = box.left + 2; x < box.right - 2; x += 4) {
+      if (document.elementFromPoint(x, y) === element) return { x, y };
+    }
+    return null;
+  });
+  if (!point) throw new Error("No blank point to press");
+  return point;
+}
+
+export function cursorAt(page: Page, point: { x: number; y: number }) {
+  return page.evaluate(({ x, y }) => {
+    const element = document.elementFromPoint(x, y);
+    return element ? getComputedStyle(element).cursor : null;
+  }, point);
+}
+
 export async function waitForSkinLayout(page: Page, skin: string) {
   await expect(page.locator("html")).toHaveAttribute("data-skin", skin);
   await expect(page.locator('[data-control-ui="page-layout"][data-slot="root"]').first()).toHaveAttribute(

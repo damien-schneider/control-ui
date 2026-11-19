@@ -1,6 +1,8 @@
 [data-skin="refined"],
 [data-skin="refined"] :where([data-control-family]) {
-  --refined-edge: 0 0 0 var(--control-rim-width) oklch(from var(--shadow-color) l c h / calc(0.12 * var(--ring-opacity)));
+  --refined-edge-rim: oklch(from var(--shadow-color) l c h / calc(0.12 * var(--ring-opacity)));
+  --refined-floating-rim: oklch(from var(--shadow-color) l c h / calc(0.07 * var(--ring-opacity)));
+  --refined-edge: 0 0 0 var(--control-rim-width) var(--refined-edge-rim);
   --refined-surface-shadow:
     var(--refined-edge),
     0 calc(1px * var(--shadow-size)) calc(2px * var(--shadow-size)) calc(-1px * var(--shadow-size))
@@ -9,7 +11,7 @@
     oklch(from var(--shadow-color) l c h / calc(0.04 * var(--shadow-opacity)));
   --refined-control-shadow: var(--refined-surface-shadow);
   --refined-floating-shadow:
-    0 0 0 var(--control-rim-width) oklch(from var(--shadow-color) l c h / calc(0.07 * var(--ring-opacity))),
+    0 0 0 var(--control-rim-width) var(--refined-floating-rim),
     0 calc(1px * var(--shadow-size)) calc(2px * var(--shadow-size))
     oklch(from var(--shadow-color) l c h / calc(0.02 * var(--shadow-opacity))),
     0 calc(4px * var(--shadow-size)) calc(16px * var(--shadow-size))
@@ -20,9 +22,11 @@
 
 :is(.dark [data-skin="refined"], [data-skin="refined"].dark),
 :is(.dark [data-skin="refined"], [data-skin="refined"].dark) :where([data-control-family]) {
+  --refined-edge-rim: oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--ring-opacity)));
+  --refined-floating-rim: oklch(from var(--shadow-highlight) l c h / calc(alpha * 2 * var(--ring-opacity)));
   --refined-edge:
     inset 0 calc(1px * min(var(--shadow-size), 1)) oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity))),
-    inset 0 0 0 var(--control-rim-width) oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--ring-opacity))),
+    inset 0 0 0 var(--control-rim-width) var(--refined-edge-rim),
     0 0 0 var(--control-rim-width) oklch(from var(--shadow-color) l c h / calc(0.1 * var(--ring-opacity)));
   --refined-surface-shadow:
     var(--refined-edge),
@@ -41,13 +45,23 @@
   --refined-floating-shadow:
     inset 0 calc(1px * min(var(--shadow-size), 1))
     oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity))),
-    inset 0 0 0 var(--control-rim-width)
-    oklch(from var(--shadow-highlight) l c h / calc(alpha * 2 * var(--ring-opacity))),
+    inset 0 0 0 var(--control-rim-width) var(--refined-floating-rim),
     0 0 0 var(--control-rim-width) oklch(from var(--shadow-color) l c h / calc(0.4 * var(--ring-opacity))),
     0 calc(6px * var(--shadow-size)) calc(16px * var(--shadow-size)) calc(-4px * var(--shadow-size))
     oklch(from var(--shadow-color) l c h / calc(0.3 * var(--shadow-opacity))),
     0 calc(16px * var(--shadow-size)) calc(48px * var(--shadow-size)) calc(-8px * var(--shadow-size))
     oklch(from var(--shadow-color) l c h / calc(0.5 * var(--shadow-opacity)));
+}
+
+[data-skin="refined"] :where([data-control-family="field"][data-control="true"]:focus-within) {
+  --refined-edge: 0 0 0 var(--control-rim-width) var(--focus-rim);
+}
+
+:is(.dark [data-skin="refined"], [data-skin="refined"].dark) :where([data-control-family="field"][data-control="true"]:focus-within) {
+  --refined-edge:
+    inset 0 calc(1px * min(var(--shadow-size), 1)) oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity))),
+    inset 0 0 0 var(--control-rim-width) var(--focus-rim),
+    0 0 0 var(--control-rim-width) oklch(from var(--shadow-color) l c h / calc(0.1 * var(--ring-opacity)));
 }
 
 @layer base {
@@ -133,6 +147,7 @@
       [data-control-family="popup"][data-popup-part="bar"]
     ) {
     --cui-popup-border-width: 0px;
+    --cui-popup-border-color: var(--refined-edge-rim);
     --cui-popup-shadow: var(--refined-surface-shadow);
   }
 
@@ -141,6 +156,7 @@
       [data-control-family="popup"][data-popup-part="surface"]:not([data-popup-kind="tooltip"]),
       [data-control-family="popup"][data-popup-part="list-surface"]
     ) {
+    --cui-popup-border-color: var(--refined-floating-rim);
     --cui-popup-shadow: var(--refined-floating-shadow);
   }
 

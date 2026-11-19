@@ -431,7 +431,6 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-divider": "",
           "data-slot": "header"
         }
       }
@@ -454,6 +453,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",
@@ -479,7 +479,7 @@
         "attributes": {
           "data-control-family": "card",
           "data-control-ui": "card",
-          "data-size": "default",
+          "data-size": "sm",
           "data-slot": "root",
           "data-surface": "panel",
           "data-variant": "default"
@@ -490,6 +490,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",
@@ -515,7 +516,7 @@
         "attributes": {
           "data-control-family": "card",
           "data-control-ui": "card",
-          "data-size": "default",
+          "data-size": "sm",
           "data-slot": "root",
           "data-surface": "panel",
           "data-variant": "default"
@@ -525,6 +526,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",
@@ -550,6 +552,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",
@@ -575,6 +578,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",
@@ -609,64 +613,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-indicator": "hover",
-          "data-size": "default",
-          "data-slot": "menu-button",
-          "data-variant": "default"
-        }
-      },
-      {
-        "attributes": {
-          "aria-expanded": "true",
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-popup-open": "",
-          "data-pressed": "",
-          "data-show-on-hover": "true",
-          "data-slot": "menu-action",
-          "tabindex": "0"
-        }
-      },
-      {
-        "attributes": {
-          "aria-expanded": "true",
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-popup-open": "",
-          "data-pressed": "",
-          "data-show-on-hover": "true",
-          "data-slot": "menu-action",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-collapsible": "",
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-side": "left",
-          "data-slot": "root",
-          "data-state": "expanded",
-          "data-surface": "panel",
-          "data-variant": "page"
-        }
-      },
-      {
-        "attributes": {
-          "data-active": "true",
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -701,6 +648,42 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
+          "data-indicator": "hover",
+          "data-size": "sm",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "page"
+        }
+      },
+      {
+        "attributes": {
+          "data-active": "true",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "warning",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",
@@ -742,6 +725,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",
@@ -775,96 +759,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-indicator": "hover",
-          "data-size": "default",
-          "data-slot": "menu-button",
-          "data-variant": "default"
-        }
-      },
-      {
-        "attributes": {
-          "aria-expanded": "true",
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-popup-open": "",
-          "data-pressed": "",
-          "data-show-on-hover": "true",
-          "data-slot": "menu-action",
-          "tabindex": "0"
-        }
-      },
-      {
-        "attributes": {
-          "aria-expanded": "true",
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-popup-open": "",
-          "data-pressed": "",
-          "data-show-on-hover": "true",
-          "data-slot": "menu-action",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-collapsible": "",
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-side": "left",
-          "data-slot": "root",
-          "data-state": "expanded",
-          "data-surface": "panel",
-          "data-variant": "page"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-indicator": "hover",
-          "data-size": "default",
-          "data-slot": "menu-button",
-          "data-variant": "default"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-collapsible": "",
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-side": "left",
-          "data-slot": "root",
-          "data-state": "expanded",
-          "data-surface": "panel",
-          "data-variant": "page"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
+          "data-icon-tone": "danger",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",
@@ -875,6 +770,226 @@
     [
       {
         "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "page"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
+          "data-indicator": "hover",
+          "data-size": "default",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "page"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
+          "data-indicator": "hover",
+          "data-size": "sm",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "page"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "muted",
+          "data-indicator": "hover",
+          "data-size": "sm",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "page"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "success",
+          "data-indicator": "hover",
+          "data-size": "sm",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "page"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "footer"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
+          "data-indicator": "hover",
+          "data-size": "sm",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "page"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "header"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "false",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
+          "data-indicator": "hover",
+          "data-size": "default",
+          "data-slot": "menu-button",
+          "data-variant": "default",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
           "data-collapsible": "",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
@@ -1273,6 +1388,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -1317,6 +1433,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -1361,6 +1478,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -1405,6 +1523,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -1449,6 +1568,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -1507,6 +1627,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -1551,6 +1672,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -1595,6 +1717,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -1644,6 +1767,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",
@@ -1682,6 +1806,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -1719,6 +1844,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -1756,6 +1882,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -1793,6 +1920,45 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
+          "data-indicator": "hover",
+          "data-size": "sm",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {}
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "page"
+        }
+      },
+      {
+        "attributes": {
+          "data-active": "true",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "warning",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",
@@ -1830,6 +1996,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -1867,6 +2034,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -1904,6 +2072,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -1939,6 +2108,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -1976,6 +2146,7 @@
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -2012,6 +2183,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -2056,6 +2228,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",
@@ -2099,6 +2272,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -2143,6 +2317,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",
@@ -2186,6 +2361,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -2222,6 +2398,56 @@
           "data-slot": "root",
           "data-state": "expanded",
           "data-surface": "panel",
+          "data-variant": "page"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "header"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "false",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
+          "data-indicator": "hover",
+          "data-size": "default",
+          "data-slot": "menu-button",
+          "data-variant": "default",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "menu-action"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
           "data-variant": "sidebar"
         }
       },
@@ -2229,6 +2455,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -2273,6 +2500,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -2316,6 +2544,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",
@@ -2359,6 +2588,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -2403,6 +2633,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",
@@ -2446,6 +2677,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -2466,6 +2698,15 @@
     [
       {
         "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
           "data-collapsible": "",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
@@ -2480,6 +2721,100 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-slot": "header"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "false",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
+          "data-indicator": "hover",
+          "data-size": "default",
+          "data-slot": "menu-button",
+          "data-variant": "default",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "menu-action"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "page"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "header"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "true",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
+          "data-indicator": "hover",
+          "data-popup-open": "",
+          "data-pressed": "",
+          "data-size": "default",
+          "data-slot": "menu-button",
+          "data-variant": "default",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "menu-action"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "page"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",
@@ -2508,6 +2843,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",
@@ -2588,6 +2924,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",
@@ -2624,6 +2961,44 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "danger",
+          "data-indicator": "hover",
+          "data-size": "sm",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {}
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "page"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -2660,10 +3035,175 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",
           "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {}
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "page"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "muted",
+          "data-indicator": "hover",
+          "data-size": "sm",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {}
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "page"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "success",
+          "data-indicator": "hover",
+          "data-size": "sm",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {}
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "page"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "footer"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
+          "data-indicator": "hover",
+          "data-size": "sm",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {}
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "page"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "header"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "false",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
+          "data-indicator": "hover",
+          "data-size": "default",
+          "data-slot": "menu-button",
+          "data-variant": "default",
+          "tabindex": "0"
         }
       },
       {
@@ -2696,6 +3236,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -2733,6 +3274,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -2769,6 +3311,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "lg",
           "data-slot": "menu-button",
@@ -2805,6 +3348,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "sm",
           "data-slot": "menu-button",
@@ -2870,6 +3414,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -2904,6 +3449,7 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
@@ -2940,10 +3486,105 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
           "data-indicator": "hover",
           "data-size": "default",
           "data-slot": "menu-button",
           "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {}
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "page"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "header"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "false",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
+          "data-indicator": "hover",
+          "data-size": "default",
+          "data-slot": "menu-button",
+          "data-variant": "default",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {}
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "page"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "header"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "true",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
+          "data-indicator": "hover",
+          "data-popup-open": "",
+          "data-pressed": "",
+          "data-size": "default",
+          "data-slot": "menu-button",
+          "data-variant": "default",
+          "tabindex": "0"
         }
       },
       {
@@ -3123,7 +3764,7 @@
         "text": "--cui-sidebar-menu-button-active-foreground"
       },
       "anatomy": 20,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -3159,7 +3800,7 @@
         "text": "--cui-sidebar-menu-button-active-foreground"
       },
       "anatomy": 24,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -3177,6 +3818,42 @@
         "text": "--cui-sidebar-menu-button-active-foreground"
       },
       "anatomy": 26,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-active-background",
+        "text": "--cui-sidebar-menu-button-active-foreground"
+      },
+      "anatomy": 27,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-active-background",
+        "text": "--cui-sidebar-menu-button-active-foreground"
+      },
+      "anatomy": 28,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-active-background",
+        "text": "--cui-sidebar-menu-button-active-foreground"
+      },
+      "anatomy": 29,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-active-background",
+        "text": "--cui-sidebar-menu-button-active-foreground"
+      },
+      "anatomy": 30,
       "rendersText": true,
       "state": true
     },
@@ -3221,6 +3898,15 @@
         "fill": "--cui-sidebar-menu-button-background",
         "text": "--cui-sidebar-menu-button-foreground"
       },
+      "anatomy": 24,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-background",
+        "text": "--cui-sidebar-menu-button-foreground"
+      },
       "anatomy": 25,
       "rendersText": true,
       "state": false
@@ -3236,7 +3922,8 @@
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-group-label-foreground"
+        "fill": "--cui-sidebar-menu-button-background",
+        "text": "--cui-sidebar-menu-button-foreground"
       },
       "anatomy": 27,
       "rendersText": true,
@@ -3244,7 +3931,8 @@
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-group-label-foreground"
+        "fill": "--cui-sidebar-menu-button-background",
+        "text": "--cui-sidebar-menu-button-foreground"
       },
       "anatomy": 28,
       "rendersText": true,
@@ -3252,7 +3940,8 @@
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-group-label-foreground"
+        "fill": "--cui-sidebar-menu-button-background",
+        "text": "--cui-sidebar-menu-button-foreground"
       },
       "anatomy": 29,
       "rendersText": true,
@@ -3260,7 +3949,8 @@
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-group-label-foreground"
+        "fill": "--cui-sidebar-menu-button-background",
+        "text": "--cui-sidebar-menu-button-foreground"
       },
       "anatomy": 30,
       "rendersText": true,
@@ -3332,42 +4022,34 @@
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-active-foreground"
+        "text": "--cui-sidebar-group-label-foreground"
       },
       "anatomy": 39,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-active-foreground"
+        "text": "--cui-sidebar-group-label-foreground"
       },
       "anatomy": 40,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-active-foreground"
+        "text": "--cui-sidebar-group-label-foreground"
       },
       "anatomy": 41,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-active-foreground"
-      },
-      "anatomy": 20,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-menu-button-active-foreground"
+        "text": "--cui-sidebar-group-label-foreground"
       },
       "anatomy": 42,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3404,35 +4086,35 @@
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-active-icon-foreground"
+        "text": "--cui-sidebar-menu-button-active-foreground"
       },
       "anatomy": 47,
       "rendersText": false,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-active-icon-foreground"
+        "text": "--cui-sidebar-menu-button-active-foreground"
       },
       "anatomy": 48,
       "rendersText": false,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-active-icon-foreground"
+        "text": "--cui-sidebar-menu-button-active-foreground"
       },
       "anatomy": 49,
       "rendersText": false,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-active-icon-foreground"
+        "text": "--cui-sidebar-menu-button-active-foreground"
       },
       "anatomy": 50,
       "rendersText": false,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
@@ -3484,43 +4166,43 @@
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-foreground"
+        "text": "--cui-sidebar-menu-button-active-icon-foreground"
       },
       "anatomy": 57,
       "rendersText": false,
-      "state": false
+      "state": true
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-foreground"
+        "text": "--cui-sidebar-menu-button-active-icon-foreground"
       },
       "anatomy": 58,
       "rendersText": false,
-      "state": false
+      "state": true
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-foreground"
+        "text": "--cui-sidebar-menu-button-active-icon-foreground"
       },
       "anatomy": 59,
       "rendersText": false,
-      "state": false
+      "state": true
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-foreground"
+        "text": "--cui-sidebar-menu-button-active-icon-foreground"
       },
       "anatomy": 60,
       "rendersText": false,
-      "state": false
+      "state": true
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-foreground"
+        "text": "--cui-sidebar-menu-button-active-icon-foreground"
       },
       "anatomy": 61,
       "rendersText": false,
-      "state": false
+      "state": true
     },
     {
       "knobs": {
@@ -3572,97 +4254,73 @@
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-icon-foreground"
-      },
-      "anatomy": 47,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-menu-button-icon-foreground"
+        "text": "--cui-sidebar-menu-button-foreground"
       },
       "anatomy": 68,
       "rendersText": false,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-icon-foreground"
+        "text": "--cui-sidebar-menu-button-foreground"
       },
       "anatomy": 69,
       "rendersText": false,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-icon-foreground"
+        "text": "--cui-sidebar-menu-button-foreground"
       },
       "anatomy": 70,
       "rendersText": false,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-icon-foreground"
+        "text": "--cui-sidebar-menu-button-foreground"
       },
       "anatomy": 71,
       "rendersText": false,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
-        "text": "--cui-sidebar-menu-button-icon-foreground"
+        "text": "--cui-sidebar-menu-button-foreground"
       },
-      "anatomy": 50,
+      "anatomy": 72,
       "rendersText": false,
-      "state": true
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-foreground"
+      },
+      "anatomy": 73,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-foreground"
+      },
+      "anatomy": 74,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-foreground"
+      },
+      "anatomy": 75,
+      "rendersText": false,
+      "state": false
     },
     {
       "knobs": {
         "text": "--cui-sidebar-menu-button-icon-foreground"
       },
       "anatomy": 51,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-menu-button-icon-foreground"
-      },
-      "anatomy": 72,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-menu-button-icon-foreground"
-      },
-      "anatomy": 73,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-menu-button-icon-foreground"
-      },
-      "anatomy": 74,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-menu-button-icon-foreground"
-      },
-      "anatomy": 52,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-menu-button-icon-foreground"
-      },
-      "anatomy": 75,
       "rendersText": false,
       "state": true
     },
@@ -3702,23 +4360,7 @@
       "knobs": {
         "text": "--cui-sidebar-menu-button-icon-foreground"
       },
-      "anatomy": 53,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-menu-button-icon-foreground"
-      },
       "anatomy": 54,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-menu-button-icon-foreground"
-      },
-      "anatomy": 80,
       "rendersText": false,
       "state": true
     },
@@ -3734,14 +4376,6 @@
       "knobs": {
         "text": "--cui-sidebar-menu-button-icon-foreground"
       },
-      "anatomy": 81,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-menu-button-icon-foreground"
-      },
       "anatomy": 56,
       "rendersText": false,
       "state": true
@@ -3750,7 +4384,183 @@
       "knobs": {
         "text": "--cui-sidebar-menu-button-icon-foreground"
       },
+      "anatomy": 80,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 81,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
       "anatomy": 82,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 83,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 84,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 85,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 86,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 87,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 57,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 88,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 89,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 90,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 91,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 92,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 58,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 59,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 93,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 60,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 94,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 61,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 95,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 96,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-icon-foreground"
+      },
+      "anatomy": 97,
       "rendersText": false,
       "state": true
     }

@@ -701,6 +701,7 @@ export const kitEntries = [
         sourceFile("Slash commands and mentions", "src/registry/sources/control-ui/markdown-editor/suggestions.tsx", "component"),
         sourceFile("Block drag handle", "src/registry/sources/control-ui/markdown-editor/drag-handle.tsx", "component"),
         sourceFile("Editor recipe", "src/registry/sources/control-ui/recipes/markdown-editor.css", "recipe-css"),
+        sourceFile("Table recipe", "src/registry/sources/control-ui/recipes/markdown-editor-table.css", "recipe-css"),
       ],
     },
     preview: preview(() => import("@/src/registry/examples/markdown-editor").then((mod) => ({ default: mod.MarkdownEditorExample }))),

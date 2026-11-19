@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
-import { waitForReactHydration } from "./browser-test-helpers";
+import { expectTextFocusEdge, paintedEdge, waitForReactHydration } from "./browser-test-helpers";
 
 for (const skin of ["refined", "rig"]) {
   test(`input groups keep one focus indicator and coherent corners with ${skin}`, async ({ page }) => {
@@ -30,12 +30,13 @@ for (const skin of ["refined", "rig"]) {
     expect(await searchButton.evaluate((element) => Number.parseFloat(getComputedStyle(element).outlineWidth))).toBeGreaterThan(0);
     await expect(searchButton).toHaveCSS("outline-style", "solid");
 
+    const restingEdge = await paintedEdge(group);
     await url.click();
     await expect(url).toBeFocused();
     await expect(url).toHaveAccessibleDescription("Lowercase letters, numbers, and hyphens");
     await expect(url).toHaveCSS("outline-width", "0px");
     await expect(url).toHaveCSS("border-radius", "0px");
-    await expect(group).toHaveCSS("outline-style", "solid");
+    await expectTextFocusEdge(group, restingEdge);
     await expect(group).toHaveCSS("overflow", "hidden");
     const outlinedElements = await group.evaluate(
       (element) =>
@@ -44,15 +45,24 @@ for (const skin of ["refined", "rig"]) {
           return style.outlineStyle !== "none" && Number.parseFloat(style.outlineWidth) > 0;
         }).length,
     );
-    expect(outlinedElements).toBe(1);
+    expect(outlinedElements).toBe(0);
 
     await page.keyboard.press("Tab");
     await expect(search).toBeFocused();
-    await expect(group).toHaveCSS("outline-style", "none");
+    await expect.poll(() => paintedEdge(group)).toBe(restingEdge);
     await page.keyboard.press("Shift+Tab");
     await expect(url).toBeFocused();
-    await expect(group).toHaveCSS("outline-style", "solid");
+    await expectTextFocusEdge(group, restingEdge);
     await expect(url).toHaveCSS("outline-width", "0px");
+
+    await url.blur();
+    const prefix = group.locator('[data-slot="addon"]').first();
+    const prefixSpace = await prefix.boundingBox();
+    if (!prefixSpace) throw new Error("URL prefix is not laid out");
+    await expect(prefix).toHaveCSS("cursor", "text");
+    await expect(searchButton).toHaveCSS("cursor", "pointer");
+    await page.mouse.click(prefixSpace.x + prefixSpace.width / 2, prefixSpace.y + prefixSpace.height / 2);
+    await expect(url).toBeFocused();
 
     for (const radius of ["0px", "16px"]) {
       await group.evaluate((element, value) => element.style.setProperty("--cui-field-radius", value), radius);

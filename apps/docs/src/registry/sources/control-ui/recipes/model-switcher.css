@@ -1,0 +1,61 @@
+@layer components {
+  :where([data-control-family="model-switcher"]:is([data-slot="logo"], [data-slot="level"], [data-slot="chevron"])) {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  :where([data-control-family="model-switcher"]:is([data-slot="level"], [data-slot="chevron"])),
+  :where([data-control-family="button"] > [data-control-family="thinking-level"][data-slot="brain"]) {
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="model-switcher"][data-slot="logo"] > svg) {
+    inline-size: calc(var(--spacing) * 3.5);
+    block-size: calc(var(--spacing) * 3.5);
+  }
+
+  :where([data-control-family="model-switcher"][data-slot="chevron"] > svg) {
+    inline-size: calc(var(--spacing) * 3);
+    block-size: calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="model-switcher"][data-slot="chevron"]) {
+    transition-property: rotate;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-emphasized);
+  }
+
+  :where([data-popup-open] > [data-control-family="model-switcher"][data-slot="chevron"]) {
+    rotate: 180deg;
+  }
+
+  :where([data-control-family="model-switcher"][data-slot="panel"]) {
+    border-radius: inherit;
+    corner-shape: inherit;
+  }
+
+  :where([data-control-family="model-switcher"][data-slot="hint"]) {
+    flex-shrink: 0;
+    font-size: var(--text-micro);
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="model-switcher"][data-slot="check"]) {
+    display: flex;
+    flex-shrink: 0;
+    color: var(--foreground);
+  }
+
+  :where([data-control-family="model-switcher"][data-slot="check"] > svg) {
+    inline-size: calc(var(--spacing) * 3);
+    block-size: calc(var(--spacing) * 3);
+  }
+
+  :where([data-slot="item"]:not([data-current]) > [data-control-family="model-switcher"][data-slot="check"]) {
+    visibility: hidden;
+  }
+
+  :where([data-control-family="model-switcher"][data-slot="settings"]) {
+    padding: calc(var(--spacing) * 3);
+  }
+}

@@ -40,6 +40,42 @@
       },
       {
         "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-orientation": "vertical",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-slot": "icon"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "accordion",
           "data-control-ui": "accordion",
           "data-orientation": "vertical",
@@ -207,6 +243,498 @@
           "data-control-family": "accordion",
           "data-control-ui": "accordion",
           "data-index": "2",
+          "data-orientation": "vertical",
+          "data-panel-open": "",
+          "data-slot": "trigger",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-orientation": "vertical",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "false",
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-hidden": "",
+          "data-index": "0",
+          "data-orientation": "vertical",
+          "data-slot": "trigger",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-orientation": "vertical",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "false",
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-hidden": "",
+          "data-index": "1",
+          "data-orientation": "vertical",
+          "data-slot": "trigger",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-orientation": "vertical",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "false",
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-hidden": "",
+          "data-index": "2",
+          "data-orientation": "vertical",
+          "data-slot": "trigger",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-orientation": "vertical",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "false",
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-hidden": "",
+          "data-index": "3",
+          "data-orientation": "vertical",
+          "data-slot": "trigger",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-orientation": "vertical",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "false",
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-hidden": "",
+          "data-index": "4",
+          "data-orientation": "vertical",
+          "data-slot": "trigger",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-orientation": "vertical",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "false",
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-hidden": "",
+          "data-index": "5",
+          "data-orientation": "vertical",
+          "data-slot": "trigger",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-orientation": "vertical",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "false",
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-hidden": "",
+          "data-index": "6",
+          "data-orientation": "vertical",
+          "data-slot": "trigger",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-orientation": "vertical",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "true",
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-index": "0",
+          "data-orientation": "vertical",
+          "data-panel-open": "",
+          "data-slot": "trigger",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-orientation": "vertical",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "true",
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-index": "1",
+          "data-orientation": "vertical",
+          "data-panel-open": "",
+          "data-slot": "trigger",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-orientation": "vertical",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "true",
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-index": "2",
+          "data-orientation": "vertical",
+          "data-panel-open": "",
+          "data-slot": "trigger",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-orientation": "vertical",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "true",
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-index": "3",
+          "data-orientation": "vertical",
+          "data-panel-open": "",
+          "data-slot": "trigger",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-orientation": "vertical",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "true",
+          "data-control-family": "accordion",
+          "data-control-ui": "accordion",
+          "data-index": "4",
           "data-orientation": "vertical",
           "data-panel-open": "",
           "data-slot": "trigger",
@@ -226,10 +754,10 @@
     },
     {
       "knobs": {
-        "text": "--cui-accordion-trigger-foreground"
+        "text": "--cui-accordion-icon-foreground"
       },
       "anatomy": 1,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -274,11 +802,99 @@
     },
     {
       "knobs": {
-        "text": "--cui-accordion-trigger-hover-foreground"
+        "text": "--cui-accordion-trigger-foreground"
       },
-      "anatomy": 1,
+      "anatomy": 7,
       "rendersText": true,
-      "state": true
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-foreground"
+      },
+      "anatomy": 8,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-foreground"
+      },
+      "anatomy": 9,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-foreground"
+      },
+      "anatomy": 10,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-foreground"
+      },
+      "anatomy": 11,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-foreground"
+      },
+      "anatomy": 12,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-foreground"
+      },
+      "anatomy": 13,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-foreground"
+      },
+      "anatomy": 14,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-foreground"
+      },
+      "anatomy": 15,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-foreground"
+      },
+      "anatomy": 16,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-foreground"
+      },
+      "anatomy": 17,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-foreground"
+      },
+      "anatomy": 18,
+      "rendersText": true,
+      "state": false
     },
     {
       "knobs": {
@@ -317,6 +933,110 @@
         "text": "--cui-accordion-trigger-hover-foreground"
       },
       "anatomy": 6,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-hover-foreground"
+      },
+      "anatomy": 7,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-hover-foreground"
+      },
+      "anatomy": 8,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-hover-foreground"
+      },
+      "anatomy": 9,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-hover-foreground"
+      },
+      "anatomy": 10,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-hover-foreground"
+      },
+      "anatomy": 11,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-hover-foreground"
+      },
+      "anatomy": 12,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-hover-foreground"
+      },
+      "anatomy": 13,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-hover-foreground"
+      },
+      "anatomy": 14,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-hover-foreground"
+      },
+      "anatomy": 15,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-hover-foreground"
+      },
+      "anatomy": 16,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-hover-foreground"
+      },
+      "anatomy": 17,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-hover-foreground"
+      },
+      "anatomy": 18,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-accordion-trigger-hover-foreground"
+      },
+      "anatomy": 19,
       "rendersText": true,
       "state": true
     }

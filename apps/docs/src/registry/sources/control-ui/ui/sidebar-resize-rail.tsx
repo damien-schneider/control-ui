@@ -54,7 +54,7 @@ export function SidebarResizeRail({ className, ref, onPointerDown, onClick, onKe
     cancelGestureRef.current?.();
     draggedRef.current = false;
     const handle = event.currentTarget;
-    handle.focus({ preventScroll: true });
+    handle.focus({ preventScroll: true, focusVisible: false });
     handle.setPointerCapture(event.pointerId);
     const pointerId = event.pointerId;
     const startX = event.clientX;
