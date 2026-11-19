@@ -29,7 +29,7 @@ describe("thinking level ramp", () => {
     expect(stops.map((stop) => stop.includes('data-picked=""'))).toEqual([false, false, true]);
   });
 
-  test("the label row names the control and the level picked", () => {
+  test("a custom label names the slider and heads the ramp", () => {
     const html = renderToStaticMarkup(<ThinkingLevelRamp label="Effort" levels={levels} value="low" onValueChange={() => {}} />);
 
     expect(html).toContain('aria-label="Effort"');

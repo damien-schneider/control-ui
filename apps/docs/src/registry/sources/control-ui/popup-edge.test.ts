@@ -12,7 +12,14 @@ describe("dividers inside a popup", () => {
   });
 
   test("are as thin as the popup edge", () => {
-    expect(POPUP_PARTS_CSS).not.toMatch(/1px solid var\(--cui-popup-separator-color\)|block-size: 1px;/);
+    const dividerWidths = [...POPUP_PARTS_CSS.matchAll(/border-block-(?:start|end): (\S+) solid var\(--cui-popup-separator-color\);/g)].map(
+      ([, width]) => width,
+    );
+
+    expect(POPUP_CSS).toContain("--cui-popup-border-width: var(--control-rim-width);");
+    expect(POPUP_PARTS_CSS).toMatch(/\[data-popup-part="separator"\]\) \{[^}]*block-size: var\(--control-rim-width\);/);
+    expect(dividerWidths.length).toBeGreaterThan(0);
+    expect(new Set(dividerWidths)).toEqual(new Set(["var(--control-rim-width)"]));
   });
 
   test("in refined, name the same rim the floating shadow draws", () => {

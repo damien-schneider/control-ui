@@ -31,7 +31,7 @@ describe("model switcher", () => {
     const ids = [
       { value: "claude-opus-4-5-20251101" },
       { value: "house-model", label: "House", provider: "acme" },
-      { value: "plain", label: "Plain", icon: null },
+      { value: "gpt-5", label: "Plain", icon: null },
     ];
 
     test("an id without a label reads as its model name, next to its maker's logo", () => {
@@ -46,7 +46,7 @@ describe("model switcher", () => {
       expect(renderToStaticMarkup(<ModelSwitcher models={ids} defaultValue="house-model" />)).toMatch(
         /data-control-ui="provider-logo".*>A<\/text>/,
       );
-      expect(renderToStaticMarkup(<ModelSwitcher models={ids} defaultValue="plain" />)).not.toContain("provider-logo");
+      expect(renderToStaticMarkup(<ModelSwitcher models={ids} defaultValue="gpt-5" />)).not.toContain("provider-logo");
     });
   });
 
