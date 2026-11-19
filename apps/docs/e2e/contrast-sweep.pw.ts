@@ -151,6 +151,8 @@ async function sweepGallery(page: Page, route: string): Promise<string[]> {
 
 for (const route of galleries) {
   test(`text clears WCAG AA on ${route} across skins and modes`, async ({ page }) => {
+    // Sweeping every component preview across all skins and modes takes ~18 min on a 4-vCPU machine.
+    test.setTimeout(1_800_000);
     await page.goto(route);
     await page.waitForLoadState("networkidle");
     expect(await sweepGallery(page, route)).toEqual([]);

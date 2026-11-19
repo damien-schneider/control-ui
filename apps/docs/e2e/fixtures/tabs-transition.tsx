@@ -2,10 +2,7 @@ import { Fragment, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "../../src/registry/sources/control-ui/ui/tabs";
 
-const releaseVersions = Array.from(
-  { length: new URLSearchParams(location.search).has("dense") ? 200 : 6 },
-  (_, index) => `v1.0.${index + 1}`,
-);
+const releaseVersions = Array.from({ length: 6 }, (_, index) => `v1.0.${index + 1}`);
 
 function TabsTransitionFixture() {
   const [value, setValue] = useState("releases");

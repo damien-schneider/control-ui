@@ -1,5 +1,6 @@
 import { expect, type Page, test } from "@playwright/test";
 import { contrastRatio } from "../src/registry/sources/control-ui/scripts/contrast-eval.mjs";
+import { waitForReactHydration } from "./browser-test-helpers";
 
 async function renderedContrast(page: Page, foregroundSelector: string, backgroundSelector: string) {
   const colors = await page.evaluate(
@@ -51,12 +52,19 @@ for (const [skin, mode] of [
     await page.goto("/components/tree");
     const selectedRow = '[data-control-family="tree"][data-slot="item-trigger"][data-selected]';
     const selectionIndicator = '[data-control-family="tree"] > [data-control-family="track-highlight"][data-slot="root"]';
+    const tree = page
+      .locator('[data-control-family="tree"][data-slot="root"]')
+      .filter({ has: page.locator(selectedRow) })
+      .first();
     await expect(page.locator(selectedRow).first()).toBeVisible();
+    await waitForReactHydration(page.locator(selectedRow).first());
     await expect.poll(() => renderedContrast(page, selectedRow, selectionIndicator)).toBeGreaterThanOrEqual(4.5);
     await page.locator(selectedRow).first().hover();
+    await expect(tree).not.toHaveAttribute("data-track-hover");
     await expect.poll(() => renderedContrast(page, selectedRow, selectionIndicator)).toBeGreaterThanOrEqual(4.5);
-    await page.locator(selectedRow).first().press("ArrowDown");
-    await page.keyboard.press("Enter");
+    // Hovering another row slides the highlight away, leaving the selected label on the bare tree.
+    await tree.locator('[data-control-family="tree"][data-slot="item-trigger"]').filter({ hasText: /^lib$/ }).hover();
+    await expect(tree).toHaveAttribute("data-track-hover", "");
     await expect.poll(() => renderedContrast(page, selectedRow, selectionIndicator)).toBeGreaterThanOrEqual(4.5);
   });
 }
