@@ -58,6 +58,7 @@
     --cui-field-background: var(--card);
     --cui-field-hover-background: var(--card);
     --cui-field-border-color: var(--input);
+    --cui-field-focus-border-color: var(--linear-input-focus-border);
     --cui-field-shadow: 0 0 transparent;
     --cui-field-affordance-hover-background: var(--linear-control-hover);
     --cui-field-font-weight: 400;
@@ -65,10 +66,6 @@
 
   [data-skin="linear"] :where([data-control-family="field"][data-control="true"][data-size="sm"]) {
     --cui-field-font-size: var(--text-body);
-  }
-
-  [data-skin="linear"] :where([data-control-family="field"][data-control="true"]:focus-within) {
-    --cui-field-border-color: var(--linear-input-focus-border);
   }
 
   [data-skin="linear"] :where([data-control-family="field"][data-control="true"])::placeholder,

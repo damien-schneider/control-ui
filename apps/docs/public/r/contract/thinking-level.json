@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "family": "thinking-level",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "thinking-level"
+  ],
+  "knobs": [],
+  "parts": {
+    "thinking-level": {
+      "root": {
+        "family": "thinking-level",
+        "registryItems": [
+          "thinking-level"
+        ],
+        "states": []
+      },
+      "brain": {
+        "family": "thinking-level",
+        "registryItems": [
+          "thinking-level"
+        ],
+        "states": []
+      },
+      "header": {
+        "family": "thinking-level",
+        "registryItems": [
+          "thinking-level"
+        ],
+        "states": []
+      },
+      "input": {
+        "family": "thinking-level",
+        "registryItems": [
+          "thinking-level"
+        ],
+        "states": []
+      },
+      "label": {
+        "family": "thinking-level",
+        "registryItems": [
+          "thinking-level"
+        ],
+        "states": []
+      },
+      "pill": {
+        "family": "thinking-level",
+        "registryItems": [
+          "thinking-level"
+        ],
+        "states": []
+      },
+      "stop": {
+        "family": "thinking-level",
+        "registryItems": [
+          "thinking-level"
+        ],
+        "states": [
+          {
+            "attribute": "data-passed",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-picked",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "stop-label": {
+        "family": "thinking-level",
+        "registryItems": [
+          "thinking-level"
+        ],
+        "states": []
+      },
+      "track": {
+        "family": "thinking-level",
+        "registryItems": [
+          "thinking-level"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/thinking-level.contrast.json"
+}

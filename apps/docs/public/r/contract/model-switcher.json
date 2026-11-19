@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "family": "model-switcher",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "model-switcher"
+  ],
+  "knobs": [],
+  "parts": {
+    "model-switcher": {
+      "check": {
+        "family": "model-switcher",
+        "registryItems": [
+          "model-switcher"
+        ],
+        "states": []
+      },
+      "chevron": {
+        "family": "model-switcher",
+        "registryItems": [
+          "model-switcher"
+        ],
+        "states": []
+      },
+      "hint": {
+        "family": "model-switcher",
+        "registryItems": [
+          "model-switcher"
+        ],
+        "states": []
+      },
+      "level": {
+        "family": "model-switcher",
+        "registryItems": [
+          "model-switcher"
+        ],
+        "states": []
+      },
+      "logo": {
+        "family": "model-switcher",
+        "registryItems": [
+          "model-switcher"
+        ],
+        "states": []
+      },
+      "panel": {
+        "family": "model-switcher",
+        "registryItems": [
+          "model-switcher"
+        ],
+        "states": []
+      },
+      "settings": {
+        "family": "model-switcher",
+        "registryItems": [
+          "model-switcher"
+        ],
+        "states": []
+      },
+      "value": {
+        "family": "model-switcher",
+        "registryItems": [
+          "model-switcher"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/model-switcher.contrast.json"
+}

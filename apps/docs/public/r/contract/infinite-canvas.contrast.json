@@ -43,6 +43,37 @@
           "tabindex": "0"
         }
       }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "default",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "embedded",
+          "data-control-family": "infinite-canvas",
+          "data-control-ui": "infinite-canvas",
+          "data-slot": "root",
+          "role": "application",
+          "tabindex": "0"
+        }
+      }
     ]
   ],
   "probes": [
@@ -59,6 +90,14 @@
         "fill": "--cui-infinite-canvas-background"
       },
       "anatomy": 1,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-infinite-canvas-background"
+      },
+      "anatomy": 2,
       "rendersText": true,
       "state": false
     }

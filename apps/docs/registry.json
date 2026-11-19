@@ -2644,6 +2644,7 @@
         "https://control-ui.dev/r/inline-citation.json",
         "https://control-ui.dev/r/markdown-block.json",
         "https://control-ui.dev/r/model-switcher.json",
+        "https://control-ui.dev/r/provider-logo.json",
         "https://control-ui.dev/r/source-badge.json",
         "https://control-ui.dev/r/thread-rail.json",
         "https://control-ui.dev/r/transcript-divider.json"
@@ -2701,6 +2702,7 @@
         "https://control-ui.dev/r/core.json",
         "https://control-ui.dev/r/live-status.json",
         "https://control-ui.dev/r/motion.json",
+        "https://control-ui.dev/r/press-focus.json",
         "https://control-ui.dev/r/spinner.json",
         "https://control-ui.dev/r/trigger-menu.json"
       ],
@@ -4871,7 +4873,8 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "https://control-ui.dev/r/core.json"
+        "https://control-ui.dev/r/core.json",
+        "https://control-ui.dev/r/press-focus.json"
       ],
       "files": [
         {
@@ -5307,6 +5310,26 @@
           "type": "registry:component"
         },
         {
+          "path": "src/registry/sources/control-ui/markdown-editor/table-commands.ts",
+          "target": "@components/control-ui/markdown-editor/table-commands.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/table-controls.tsx",
+          "target": "@components/control-ui/markdown-editor/table-controls.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/table-geometry.ts",
+          "target": "@components/control-ui/markdown-editor/table-geometry.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/table-grip.tsx",
+          "target": "@components/control-ui/markdown-editor/table-grip.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/markdown-editor/task-item.tsx",
           "target": "@components/control-ui/markdown-editor/task-item.tsx",
           "type": "registry:component"
@@ -5327,13 +5350,24 @@
           "type": "registry:component"
         },
         {
+          "path": "src/registry/sources/control-ui/markdown-editor/use-table-target.ts",
+          "target": "@components/control-ui/markdown-editor/use-table-target.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/markdown-editor-table.css",
+          "target": "@components/control-ui/styles/recipes/markdown-editor-table.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/markdown-editor.css",
           "target": "@components/control-ui/styles/recipes/markdown-editor.css",
           "type": "registry:file"
         }
       ],
       "css": {
-        "@import \"../components/control-ui/styles/recipes/markdown-editor.css\"": {}
+        "@import \"../components/control-ui/styles/recipes/markdown-editor.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/markdown-editor-table.css\"": {}
       },
       "meta": {
         "sourceManifestPath": "registry/control-ui/markdown-editor.json"

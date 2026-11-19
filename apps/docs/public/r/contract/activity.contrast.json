@@ -79,38 +79,6 @@
       {
         "attributes": {
           "data-activity-kind": "tool",
-          "data-activity-name": "notebook.run",
-          "data-activity-state": "success",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-open": "",
-          "data-slot": "root",
-          "data-state": "open"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-format": "code",
-          "data-slot": "detail-content",
-          "data-tone": "neutral"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-activity-kind": "tool",
           "data-activity-name": "read_registry",
           "data-activity-state": "success",
           "data-control-family": "activity",
@@ -957,67 +925,6 @@
       {
         "attributes": {
           "data-activity-kind": "tool",
-          "data-activity-name": "notebook.run",
-          "data-activity-state": "success",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-open": "",
-          "data-slot": "root",
-          "data-state": "open"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-slot": "detail-label"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-activity-kind": "tool",
-          "data-activity-name": "notebook.run",
-          "data-activity-state": "success",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-open": "",
-          "data-slot": "root",
-          "data-state": "open"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-slot": "icon",
-          "data-status-icon": ""
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-activity-kind": "tool",
           "data-activity-name": "read_registry",
           "data-activity-state": "success",
           "data-closed": "",
@@ -1402,7 +1309,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-activity-code-background"
+        "text": "--cui-activity-row-foreground"
       },
       "anatomy": 4,
       "rendersText": true,
@@ -1421,7 +1328,7 @@
         "text": "--cui-activity-row-foreground"
       },
       "anatomy": 6,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -1429,7 +1336,7 @@
         "text": "--cui-activity-row-foreground"
       },
       "anatomy": 7,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -1445,7 +1352,7 @@
         "text": "--cui-activity-row-foreground"
       },
       "anatomy": 9,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -1453,7 +1360,7 @@
         "text": "--cui-activity-row-foreground"
       },
       "anatomy": 10,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -1477,7 +1384,7 @@
         "text": "--cui-activity-row-foreground"
       },
       "anatomy": 13,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -1485,7 +1392,7 @@
         "text": "--cui-activity-row-foreground"
       },
       "anatomy": 14,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -1501,7 +1408,7 @@
         "text": "--cui-activity-row-foreground"
       },
       "anatomy": 16,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -1509,7 +1416,7 @@
         "text": "--cui-activity-row-foreground"
       },
       "anatomy": 17,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -1525,7 +1432,7 @@
         "text": "--cui-activity-row-foreground"
       },
       "anatomy": 19,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -1533,14 +1440,6 @@
         "text": "--cui-activity-row-foreground"
       },
       "anatomy": 20,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-activity-row-foreground"
-      },
-      "anatomy": 21,
       "rendersText": true,
       "state": false
     },
@@ -1548,8 +1447,16 @@
       "knobs": {
         "text": "--cui-activity-row-foreground"
       },
-      "anatomy": 22,
+      "anatomy": 21,
       "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-activity-row-foreground"
+      },
+      "anatomy": 22,
+      "rendersText": true,
       "state": false
     },
     {
@@ -1565,7 +1472,7 @@
         "text": "--cui-activity-row-foreground"
       },
       "anatomy": 24,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -1581,7 +1488,7 @@
         "text": "--cui-activity-row-foreground"
       },
       "anatomy": 26,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -1597,7 +1504,7 @@
         "text": "--cui-activity-row-foreground"
       },
       "anatomy": 28,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -1621,7 +1528,7 @@
         "text": "--cui-activity-row-foreground"
       },
       "anatomy": 31,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -1669,7 +1576,7 @@
         "text": "--cui-activity-row-foreground"
       },
       "anatomy": 37,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -1685,30 +1592,6 @@
         "text": "--cui-activity-row-foreground"
       },
       "anatomy": 39,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-activity-row-foreground"
-      },
-      "anatomy": 40,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-activity-row-foreground"
-      },
-      "anatomy": 41,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-activity-row-foreground"
-      },
-      "anatomy": 42,
       "rendersText": false,
       "state": false
     }

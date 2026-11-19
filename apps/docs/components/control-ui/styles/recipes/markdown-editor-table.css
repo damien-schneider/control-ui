@@ -1,0 +1,72 @@
+@layer components {
+  :where([data-control-family="markdown-editor"] .tiptap .tableWrapper) {
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+  }
+  :where([data-control-family="markdown-editor"] .tiptap table) {
+    border-collapse: collapse;
+    inline-size: auto;
+  }
+  :where([data-control-family="markdown-editor"] .tiptap :is(td, th)) {
+    border: var(--cui-markdown-editor-table-border-width) solid var(--cui-markdown-editor-table-border-color);
+    padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2.5);
+    text-align: start;
+    vertical-align: top;
+  }
+  :where([data-control-family="markdown-editor"] .tiptap :is(td, th) > p) {
+    min-inline-size: 4rem;
+    max-inline-size: 24rem;
+  }
+  :where([data-control-family="markdown-editor"] .tiptap th) {
+    font-weight: var(--font-weight-semibold);
+  }
+  :where([data-control-family="markdown-editor"] .tiptap .selectedCell) {
+    background: var(--cui-markdown-editor-table-selection-background);
+  }
+  :where([data-control-family="markdown-editor"][data-slot="table-controls"]) {
+    display: contents;
+  }
+  :where([data-control-family="markdown-editor"] [data-markdown-table-grip]) {
+    z-index: 1;
+    translate: -50% -50%;
+    cursor: grab;
+  }
+  :where([data-control-family="markdown-editor"] [data-markdown-table-grip][data-dragging]) {
+    cursor: grabbing;
+  }
+  :where([data-control-family="markdown-editor"] [data-markdown-table-add]) {
+    min-block-size: 0;
+    padding: 0;
+    color: var(--cui-markdown-editor-muted-foreground);
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+  :where([data-control-family="markdown-editor"] [data-markdown-table-add="row"]) {
+    block-size: calc(var(--spacing) * 4);
+    margin-block-start: calc(var(--spacing) * 0.5);
+  }
+  :where([data-control-family="markdown-editor"] [data-markdown-table-add="column"]) {
+    inline-size: calc(var(--spacing) * 4);
+    margin-inline-start: calc(var(--spacing) * 0.5);
+  }
+  :where([data-control-family="markdown-editor"] [data-markdown-table-add]:is(:hover, :focus-visible)) {
+    opacity: 1;
+  }
+  :where([data-control-family="markdown-editor"][data-slot="table-drop-line"]) {
+    position: absolute;
+    z-index: 1;
+    border-radius: 9999px;
+    background: var(--cui-markdown-editor-muted-foreground);
+    pointer-events: none;
+  }
+  :where([data-control-family="markdown-editor"][data-slot="table-drop-line"][data-axis="row"]) {
+    block-size: 2px;
+    translate: 0 -50%;
+  }
+  :where([data-control-family="markdown-editor"][data-slot="table-drop-line"][data-axis="column"]) {
+    inline-size: 2px;
+    translate: -50% 0;
+  }
+}

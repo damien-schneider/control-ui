@@ -4,7 +4,7 @@ import type { Extensions } from "@tiptap/core";
 import { Slice } from "@tiptap/pm/model";
 import { EditorState } from "@tiptap/pm/state";
 import { EditorContent, useEditor } from "@tiptap/react";
-import { type ComponentProps, type CSSProperties, useEffect, useMemo, useRef, useState } from "react";
+import { type ComponentProps, type CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { MarkdownEditorKnobStyle } from "@/components/control-ui/knob-contracts/markdown-editor-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Textarea } from "@/components/control-ui/ui/textarea";
@@ -23,6 +23,7 @@ import {
   persistentUrlPolicy,
   requiresMarkdownSource,
 } from "./markdown-editor/extensions";
+import { MarkdownEditorTableControls } from "./markdown-editor/table-controls";
 import type { MarkdownImageUploader } from "./markdown-editor/uploads";
 import { useImageUploads } from "./markdown-editor/use-image-uploads";
 
@@ -194,6 +195,14 @@ export type MarkdownEditorContentProps = Omit<ComponentProps<"div">, "children">
 
 export function MarkdownEditorContent({ label, placeholder, autoFocus = false, ref, ...props }: MarkdownEditorContentProps) {
   const container = useRef<HTMLDivElement>(null);
+  const attach = useCallback(
+    (node: HTMLDivElement | null) => {
+      container.current = node;
+      if (typeof ref === "function") return ref(node);
+      if (ref) ref.current = node;
+    },
+    [ref],
+  );
   const { editor, disabled, readOnly, labels, source, sourceRequired, markdown, setMarkdown, setContentAttributes } = useMarkdownEditor();
   useEffect(() => {
     setContentAttributes({
@@ -233,19 +242,10 @@ export function MarkdownEditorContent({ label, placeholder, autoFocus = false, r
       </div>
     );
   return (
-    <div
-      ref={(node) => {
-        container.current = node;
-        if (typeof ref === "function") return ref(node);
-        if (ref) ref.current = node;
-      }}
-      data-control-ui="markdown-editor"
-      data-control-family="markdown-editor"
-      data-slot="content"
-      {...props}
-    >
+    <div ref={attach} data-control-ui="markdown-editor" data-control-family="markdown-editor" data-slot="content" {...props}>
       <EditorContent editor={editor} />
       <MarkdownEditorDragHandle container={container} />
+      <MarkdownEditorTableControls container={container} />
     </div>
   );
 }

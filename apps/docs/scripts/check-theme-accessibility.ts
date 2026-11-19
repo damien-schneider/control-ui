@@ -86,6 +86,34 @@ async function labelFocusProbe(page: Page): Promise<RenderedFocusProbe> {
   });
 }
 
+type TextFieldFocusProbe = { focused: boolean; outlineStyle: string; restEdge: string; focusEdge: string };
+
+async function textFieldFocusProbe(page: Page): Promise<TextFieldFocusProbe> {
+  return page.evaluate(() => {
+    const input = document.createElement("input");
+    input.dataset.controlUi = "input";
+    input.dataset.controlFamily = "field";
+    input.dataset.slot = "root";
+    input.dataset.control = "true";
+    input.style.transition = "none";
+    document.body.append(input);
+    const edge = () => {
+      const styles = getComputedStyle(input);
+      return `${styles.borderTopColor} | ${styles.boxShadow}`;
+    };
+    const restEdge = edge();
+    input.focus();
+    const result = {
+      focused: input.matches(":focus-visible"),
+      outlineStyle: getComputedStyle(input).outlineStyle,
+      restEdge,
+      focusEdge: edge(),
+    };
+    input.remove();
+    return result;
+  });
+}
+
 function focusProbeRendered(probe: RenderedFocusProbe): boolean {
   return probe.focused && probe.style !== "none" && probe.width > 0 && probe.alpha > 0 && probe.forcedColorAdjust !== "none";
 }
@@ -110,6 +138,7 @@ const browser = await chromium.launch({ headless: true });
 const reports: Array<{ file: string; skin: string; mode: "light" | "dark"; results: ThemeAuditResult[] }> = [];
 let forcedColorsChecked = 0;
 let labelFocusChecked = 0;
+let textFieldFocusChecked = 0;
 
 try {
   for (const file of themeFiles) {
@@ -144,6 +173,11 @@ try {
         throw new Error(`${skin} ${mode}: label-wrapped focus outline did not render (${JSON.stringify(labelFocus)})`);
       }
       labelFocusChecked += 1;
+      const textFocus = await textFieldFocusProbe(page);
+      if (!textFocus.focused || textFocus.outlineStyle !== "none" || textFocus.restEdge === textFocus.focusEdge) {
+        throw new Error(`${skin} ${mode}: a focused text field must drop the outline and tint its edge (${JSON.stringify(textFocus)})`);
+      }
+      textFieldFocusChecked += 1;
     }
     await page.emulateMedia({ forcedColors: "active" });
     const forcedColorsFocus = await page.evaluate(() => {
@@ -187,6 +221,22 @@ try {
     if (!focusProbeRendered(forcedColorsLabelFocus)) {
       throw new Error(`${skin}: forced-colors label focus outline did not render (${JSON.stringify(forcedColorsLabelFocus)})`);
     }
+    const forcedColorsTextFocus = await page.evaluate(() => {
+      const input = document.createElement("input");
+      input.dataset.controlUi = "input";
+      input.dataset.controlFamily = "field";
+      input.dataset.slot = "root";
+      input.dataset.control = "true";
+      document.body.append(input);
+      input.focus();
+      const styles = getComputedStyle(input);
+      const result = { style: styles.outlineStyle, width: Number.parseFloat(styles.outlineWidth) };
+      input.remove();
+      return result;
+    });
+    if (forcedColorsTextFocus.style === "none" || forcedColorsTextFocus.width === 0) {
+      throw new Error(`${skin}: forced-colors text field focus outline did not render (${JSON.stringify(forcedColorsTextFocus)})`);
+    }
     forcedColorsChecked += 1;
     await page.emulateMedia({ forcedColors: "none" });
     await page.close();
@@ -228,6 +278,7 @@ if (jsonOutput) {
   }
   console.log(`\nForced colors focus indicators: PASS ${forcedColorsChecked}/${themeFiles.length} skins.`);
   console.log(`Label-wrapped focus indicators: PASS ${labelFocusChecked}/${reports.length} skin modes.`);
+  console.log(`Text field focus edges: PASS ${textFieldFocusChecked}/${reports.length} skin modes.`);
 }
 
 const hasErrors = reports.some((report) => report.results.some((result) => result.severity === "error" && result.status !== "pass"));

@@ -41,12 +41,12 @@
   /* biome-ignore-end lint/complexity/noImportantStyles: react-resizable-panels sets inline display on the group and panels. */
 
   :where([data-control-family="resizable"][data-slot="handle"]) {
-    --_resizable-gradient-color: var(--cui-resizable-handle-hover-background);
+    --_resizable-line-color: var(--cui-resizable-handle-hover-background);
     background-color: var(--cui-resizable-handle-background);
   }
 
   :where([data-control-family="resizable"][data-slot="handle"][data-separator="active"]) {
-    --_resizable-gradient-color: var(--cui-resizable-handle-active-background);
+    --_resizable-line-color: var(--cui-resizable-handle-active-background);
   }
 
   :where([data-control-family="resizable"][data-slot="handle"][data-axis="vertical"]:not([data-cursor="none"])) {
@@ -62,7 +62,7 @@
   }
 
   :where([data-control-family="resizable"][data-slot="handle"][data-variant="solid"][data-separator="hover"]),
-  :where([data-control-family="resizable"][data-slot="handle"][data-variant="solid"][data-separator="focus"]) {
+  :where([data-control-family="resizable"][data-slot="handle"][data-variant="solid"][data-separator="focus"]:focus-visible) {
     background-color: var(--cui-resizable-handle-hover-background);
   }
 
@@ -79,21 +79,14 @@
     position: absolute;
     inset: 0;
     content: "";
+    background-color: var(--_resizable-line-color);
     opacity: 0;
-  }
-
-  :where([data-control-family="resizable"][data-slot="handle"][data-variant="hover"][data-axis="vertical"])::before {
-    background-image: linear-gradient(to bottom, var(--_resizable-gradient-color), oklch(from var(--_resizable-gradient-color) l c h / 0));
-  }
-
-  :where([data-control-family="resizable"][data-slot="handle"][data-variant="hover"][data-axis="horizontal"])::before {
-    background-image: linear-gradient(to right, var(--_resizable-gradient-color), oklch(from var(--_resizable-gradient-color) l c h / 0));
   }
 
   :where(
     [data-control-family="resizable"][data-slot="handle"][data-variant="hover"]:is(
       [data-separator="hover"],
-      [data-separator="focus"],
+      [data-separator="focus"]:focus-visible,
       [data-separator="active"]
     )
   )::before {
@@ -124,7 +117,11 @@
   }
 
   :where(
-    [data-control-family="resizable"][data-slot="handle"]:is([data-separator="hover"], [data-separator="focus"], [data-separator="active"])
+    [data-control-family="resizable"][data-slot="handle"]:is(
+        [data-separator="hover"],
+        [data-separator="focus"]:focus-visible,
+        [data-separator="active"]
+      )
       > [data-slot="handle-grip"][data-variant="hover"]
   ) {
     opacity: 1;

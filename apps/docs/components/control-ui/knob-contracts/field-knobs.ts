@@ -21,6 +21,7 @@ export const fieldKnobs = [
   "--cui-field-affordance-hover-background",
   "--cui-field-foreground",
   "--cui-field-border-color",
+  "--cui-field-focus-border-color",
   "--cui-field-border-width",
   "--cui-field-shadow",
   "--cui-field-backdrop-filter",

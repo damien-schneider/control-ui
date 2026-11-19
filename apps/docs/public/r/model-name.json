@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "model-name",
+  "type": "registry:item",
+  "title": "Model name",
+  "description": "Reads a model id as its display name and the lab that made it.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://control-ui.dev/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/model-name.ts",
+      "target": "@components/control-ui/lib/model-name.ts",
+      "type": "registry:lib",
+      "content": "export type ModelIdentity = {\n  /** Who made the model, as a canonical key (`anthropic`, `meta`); the host when the maker can't be read. */\n  lab: string | undefined;\n  /** The model as people write it: `claude-opus-4-5-20251101` → `Claude Opus 4.5`. */\n  name: string;\n};\n\nexport function modelIdentity(id: string, provider?: string): ModelIdentity {\n  const segments = id.split(\"/\");\n  const words = modelWords(segments.at(-1) ?? id);\n  return { lab: labOfFamily(words[0]) ?? labOfRoute([provider, ...segments.slice(0, -1)]), name: modelName(words) };\n}\n\nexport function labOfProvider(provider: string | undefined) {\n  if (!provider) return undefined;\n  const key = provider.split(\".\")[0].replace(/^~/, \"\").toLowerCase();\n  return PROVIDER_LABS[key] ?? key;\n}\n\nfunction labOfRoute(route: (string | undefined)[]) {\n  const labs = route.map(labOfProvider).filter((lab) => lab !== undefined);\n  return labs.findLast((lab) => !HOSTS.has(lab)) ?? labs[0];\n}\n\nfunction labOfFamily(word: string | undefined) {\n  if (!word) return undefined;\n  const family = word.replace(/\\d.*$/, \"\");\n  if (/^o\\d/.test(word)) return \"openai\";\n  return FAMILY_LABS[family];\n}\n\nconst DATE_SUFFIX = /-(?:\\d{8}|\\d{4}-\\d{2}-\\d{2}|latest)$/;\n\nfunction modelWords(model: string) {\n  return model\n    .toLowerCase()\n    .replace(/:.*$/, \"\")\n    .replace(DATE_SUFFIX, \"\")\n    .split(/[-_\\s]+/)\n    .filter(Boolean);\n}\n\nfunction modelName(words: string[]) {\n  if (/^o\\d/.test(words[0] ?? \"\")) return words.join(\"-\");\n  const joined = joinVersions(words);\n  if (joined[0] === \"gpt\" && joined[1]) {\n    const [, version, ...rest] = joined;\n    return [`GPT-${version}`, ...rest.map((word) => (OPENAI_LOWERCASE.has(word) ? word : casing(word)))].join(\" \");\n  }\n  return joined.map(casing).join(\" \");\n}\n\nfunction joinVersions(words: string[]) {\n  const joined: string[] = [];\n  for (const word of words) {\n    const previous = joined.at(-1);\n    if (previous && /^\\d{1,2}$/.test(previous) && /^\\d{1,2}$/.test(word)) joined[joined.length - 1] = `${previous}.${word}`;\n    else joined.push(word);\n  }\n  return joined;\n}\n\nfunction casing(word: string) {\n  if (CASING[word]) return CASING[word];\n  if (/^\\d+(?:\\.\\d+)?[bkm]$/.test(word) || /^[a-z]\\d+[a-z]?$/.test(word)) return word.toUpperCase();\n  return word.charAt(0).toUpperCase() + word.slice(1);\n}\n\nconst CASING: Record<string, string> = { deepseek: \"DeepSeek\", glm: \"GLM\", gpt: \"GPT\", oss: \"OSS\", qwq: \"QwQ\", vl: \"VL\" };\n\nconst OPENAI_LOWERCASE = new Set([\"mini\", \"nano\"]);\n\nconst FAMILY_LABS: Record<string, string> = {\n  chatgpt: \"openai\",\n  claude: \"anthropic\",\n  codestral: \"mistral\",\n  command: \"cohere\",\n  deepseek: \"deepseek\",\n  devstral: \"mistral\",\n  doubao: \"bytedance\",\n  gemini: \"google\",\n  gemma: \"google\",\n  glm: \"zai\",\n  gpt: \"openai\",\n  grok: \"xai\",\n  kimi: \"moonshot\",\n  llama: \"meta\",\n  magistral: \"mistral\",\n  minimax: \"minimax\",\n  ministral: \"mistral\",\n  mistral: \"mistral\",\n  mixtral: \"mistral\",\n  nemotron: \"nvidia\",\n  nova: \"amazon\",\n  phi: \"microsoft\",\n  pixtral: \"mistral\",\n  qwen: \"qwen\",\n  qwq: \"qwen\",\n  sonar: \"perplexity\",\n};\n\nconst PROVIDER_LABS: Record<string, string> = {\n  alibaba: \"qwen\",\n  \"amazon-bedrock\": \"amazon\",\n  aws: \"amazon\",\n  bedrock: \"amazon\",\n  \"bytedance-seed\": \"bytedance\",\n  \"deepseek-ai\": \"deepseek\",\n  \"fireworks-ai\": \"fireworks\",\n  \"google-vertex\": \"google\",\n  \"meta-llama\": \"meta\",\n  mistralai: \"mistral\",\n  moonshotai: \"moonshot\",\n  togetherai: \"together\",\n  \"together-ai\": \"together\",\n  vertex: \"google\",\n  \"x-ai\": \"xai\",\n  \"z-ai\": \"zai\",\n  zhipu: \"zai\",\n  zhipuai: \"zai\",\n};\n\nconst HOSTS = new Set([\"cerebras\", \"fireworks\", \"groq\", \"ollama\", \"openrouter\", \"together\"]);\n"
+    }
+  ],
+  "meta": {
+    "internal": true
+  }
+}

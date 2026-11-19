@@ -241,7 +241,7 @@ export function ResizableFloatingPanel({
     const panel = event.currentTarget.parentElement;
     if (!panel || !event.isPrimary || event.button !== 0) return;
     event.preventDefault();
-    event.currentTarget.focus({ preventScroll: true });
+    event.currentTarget.focus({ preventScroll: true, focusVisible: false });
     event.currentTarget.setPointerCapture(event.pointerId);
     resizeRef.current = { pointerId: event.pointerId, startX: event.clientX, startSize: panel.getBoundingClientRect().width };
     setResizing(true);

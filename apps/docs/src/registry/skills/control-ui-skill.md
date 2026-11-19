@@ -106,6 +106,7 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --ring [light+dark] Ring palette color; --focus-ring derives from it at 70% alpha, so a skin whose ring loses 3:1 there (a saturated accent or a softened halo) must set --focus-ring.
 - --focus-ring [light+dark] Color of the keyboard focus indicator; defaults to --ring at 70% alpha. Must clear 3:1 against every surface it lands on (WCAG 1.4.11).
 - --control-rim [light+dark] Boundary color of a control's own edge; defaults to --border.
+- --focus-rim [light+dark] Edge color of a text field, composer, or editor while it holds focus; defaults to --control-rim mixed 15% toward --ring. The caret is the focus indicator there (WCAG 2.4.7), so this stays subtle and skips the --focus-ring outline.
 - --control-boundary [light+dark] Edge of a control that has no other outline (unchecked checkbox, radio, switch track); defaults to --foreground at 60% and must clear 3:1 on --background and --card (WCAG 1.4.11).
 - --image-outline [light+dark] Hairline inside images and media that separates them from any surface; 10% black in light, 10% white in dark.
 - --control-fill [light+dark] Resting fill shared by fields and surface controls; defaults to --card at 72% alpha.

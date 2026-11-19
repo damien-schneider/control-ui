@@ -265,3 +265,21 @@ test("sidebar buttons align stretched labels with the start of their content", a
   });
   expect(Math.abs(offset)).toBeLessThanOrEqual(1);
 });
+
+test("dragging the rail with a pointer focuses it without a keyboard focus ring", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto("/components/code-diff");
+  const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
+  await waitForSidebarHydration(resizeHandle);
+  const box = await resizeHandle.boundingBox();
+  if (!box) throw new Error("Resize handle must be visible");
+  await page.mouse.move(box.x + box.width / 2, 450);
+  await page.mouse.down();
+  await page.mouse.move(box.x + 40, 450, { steps: 5 });
+  await expect(resizeHandle).toHaveAttribute("data-resizing", "true");
+  await page.mouse.up();
+
+  await expect(resizeHandle).toBeFocused();
+  expect(await resizeHandle.evaluate((rail) => rail.matches(":focus-visible"))).toBe(false);
+  await expect(resizeHandle).toHaveCSS("outline-style", "none");
+});

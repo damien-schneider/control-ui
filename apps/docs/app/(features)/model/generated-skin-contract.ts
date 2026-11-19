@@ -88,6 +88,7 @@ export const generatedSkinContract: SkinContract = {
     popover: ["popover"],
     progress: ["progress"],
     "progressive-blur": ["progressive-blur"],
+    "provider-logo": ["provider-logo"],
     "radio-group": ["radio-group"],
     resizable: ["resizable"],
     "resize-handle": ["resize-handle"],
@@ -112,6 +113,7 @@ export const generatedSkinContract: SkinContract = {
     "task-list": ["task-list"],
     textarea: ["textarea"],
     "theme-toggle": ["theme-toggle-block"],
+    "thinking-level": ["thinking-level"],
     "thread-rail": ["thread-rail"],
     timeline: ["timeline"],
     toast: ["toast"],
@@ -7668,6 +7670,12 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["input-group"],
           states: [
             {
+              attribute: "data-field-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["input-group"],
+            },
+            {
               attribute: "data-size",
               source: "control-ui",
               valueKind: "enum",
@@ -8383,6 +8391,23 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["markdown-editor"],
           states: [],
         },
+        "table-controls": {
+          family: "markdown-editor",
+          registryItems: ["markdown-editor"],
+          states: [],
+        },
+        "table-drop-line": {
+          family: "markdown-editor",
+          registryItems: ["markdown-editor"],
+          states: [
+            {
+              attribute: "data-axis",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["column", "row"],
+            },
+          ],
+        },
         "task-checkbox": {
           family: "markdown-editor",
           registryItems: ["markdown-editor"],
@@ -8909,19 +8934,43 @@ export const generatedSkinContract: SkinContract = {
     },
     "model-switcher": {
       parts: {
-        hint: {
-          family: "popup",
+        check: {
+          family: "model-switcher",
           registryItems: ["model-switcher"],
-          states: [
-            {
-              attribute: "data-popup-kind",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["model-switcher"],
-            },
-          ],
+          states: [],
+        },
+        chevron: {
+          family: "model-switcher",
+          registryItems: ["model-switcher"],
+          states: [],
+        },
+        hint: {
+          family: "model-switcher",
+          registryItems: ["model-switcher"],
+          states: [],
+        },
+        level: {
+          family: "model-switcher",
+          registryItems: ["model-switcher"],
+          states: [],
+        },
+        logo: {
+          family: "model-switcher",
+          registryItems: ["model-switcher"],
+          states: [],
+        },
+        panel: {
+          family: "model-switcher",
+          registryItems: ["model-switcher"],
+          states: [],
+        },
+        settings: {
+          family: "model-switcher",
+          registryItems: ["model-switcher"],
+          states: [],
         },
         value: {
+          family: "model-switcher",
           registryItems: ["model-switcher"],
           states: [],
         },
@@ -10427,6 +10476,15 @@ export const generatedSkinContract: SkinContract = {
         },
       },
       registryItems: ["progressive-blur"],
+    },
+    "provider-logo": {
+      parts: {
+        root: {
+          registryItems: ["provider-logo"],
+          states: [],
+        },
+      },
+      registryItems: ["provider-logo"],
     },
     "radio-group": {
       parts: {
@@ -13646,6 +13704,69 @@ export const generatedSkinContract: SkinContract = {
       },
       registryItems: ["theme-toggle-block"],
     },
+    "thinking-level": {
+      parts: {
+        root: {
+          family: "thinking-level",
+          registryItems: ["thinking-level"],
+          states: [],
+        },
+        brain: {
+          family: "thinking-level",
+          registryItems: ["thinking-level"],
+          states: [],
+        },
+        header: {
+          family: "thinking-level",
+          registryItems: ["thinking-level"],
+          states: [],
+        },
+        input: {
+          family: "thinking-level",
+          registryItems: ["thinking-level"],
+          states: [],
+        },
+        label: {
+          family: "thinking-level",
+          registryItems: ["thinking-level"],
+          states: [],
+        },
+        pill: {
+          family: "thinking-level",
+          registryItems: ["thinking-level"],
+          states: [],
+        },
+        stop: {
+          family: "thinking-level",
+          registryItems: ["thinking-level"],
+          states: [
+            {
+              attribute: "data-passed",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-picked",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        "stop-label": {
+          family: "thinking-level",
+          registryItems: ["thinking-level"],
+          states: [],
+        },
+        track: {
+          family: "thinking-level",
+          registryItems: ["thinking-level"],
+          states: [],
+        },
+      },
+      registryItems: ["thinking-level"],
+    },
     "thread-rail": {
       parts: {
         root: {
@@ -16031,6 +16152,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--border)",
       },
       {
+        name: "--cui-chat-composer-shell-focus-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--focus-rim)",
+      },
+      {
         name: "--cui-chat-composer-shell-border-width",
         syntax: "<length>",
         initialValue: "0px",
@@ -17289,6 +17416,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--control-rim)",
       },
       {
+        name: "--cui-field-focus-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--focus-rim)",
+      },
+      {
         name: "--cui-field-border-width",
         syntax: "<length>",
         initialValue: "0px",
@@ -18298,6 +18431,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--border)",
       },
       {
+        name: "--cui-markdown-editor-focus-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--focus-rim)",
+      },
+      {
         name: "--cui-markdown-editor-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
@@ -18351,7 +18490,26 @@ export const generatedSkinContract: SkinContract = {
         initialValue: "0px",
         defaultValue: "var(--control-rim-width)",
       },
+      {
+        name: "--cui-markdown-editor-table-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "var(--control-rim-width)",
+      },
+      {
+        name: "--cui-markdown-editor-table-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--border)",
+      },
+      {
+        name: "--cui-markdown-editor-table-selection-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--active-fill)",
+      },
     ],
+    "model-switcher": [],
     "morphing-panel": [
       {
         name: "--cui-morphing-panel-radius",
@@ -18923,7 +19081,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-popup-item-highlight-shadow",
         syntax: "*",
         initialValue: "",
-        defaultValue: "inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.35)",
+        defaultValue: "none",
       },
       {
         name: "--cui-popup-item-foreground",
@@ -18959,7 +19117,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-popup-separator-color",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--border)",
+        defaultValue: "var(--cui-popup-border-color)",
       },
     ],
     "progressive-blur": [
@@ -20649,6 +20807,7 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--shadow-sm)",
       },
     ],
+    "thinking-level": [],
     "thread-rail": [
       {
         name: "--cui-thread-rail-item-radius",

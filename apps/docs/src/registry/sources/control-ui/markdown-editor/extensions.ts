@@ -108,6 +108,7 @@ export function markdownExtensions({ extensions = [], isUrlAllowed = persistentU
     StarterKit.configure({
       underline: false,
       paragraph: false,
+      dropcursor: { color: false, width: 2 },
       link: { openOnClick: false, isAllowedUri: (url) => isUrlAllowed(url, "link") },
     }),
     MarkdownParagraph,

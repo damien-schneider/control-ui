@@ -21,6 +21,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 ## Registry dependencies
 
 - `core`
+- `press-focus`
 
 ## Exports
 
@@ -100,7 +101,7 @@ Scopes, their parts, and the state attributes each part carries. Selector patter
 
 - `input-group`
   - `addon`: `data-field-kind` (`input-group`)
-  - `root`: `data-size` (`lg` | `md` | `sm` | `xs`)
+  - `root`: `data-field-kind` (`input-group`), `data-size` (`lg` | `md` | `sm` | `xs`)
 
 ## Knobs
 
@@ -129,6 +130,7 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 - `--cui-field-affordance-hover-background`: `var(--hover-fill)`
 - `--cui-field-foreground`: `var(--foreground)`
 - `--cui-field-border-color`: `var(--control-rim)`
+- `--cui-field-focus-border-color`: `var(--focus-rim)`
 - `--cui-field-border-width`: `var(--control-rim-width)`
 - `--cui-field-shadow`: `var(--shadow-inset)`
 - `--cui-field-backdrop-filter`: `blur(0px)`

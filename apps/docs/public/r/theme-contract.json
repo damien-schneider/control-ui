@@ -176,6 +176,12 @@
       "description": "Boundary color of a control's own edge; defaults to --border."
     },
     {
+      "name": "--focus-rim",
+      "group": "color",
+      "tier": "derived",
+      "description": "Edge color of a text field, composer, or editor while it holds focus; defaults to --control-rim mixed 15% toward --ring. The caret is the focus indicator there (WCAG 2.4.7), so this stays subtle and skips the --focus-ring outline."
+    },
+    {
       "name": "--control-boundary",
       "group": "color",
       "tier": "derived",

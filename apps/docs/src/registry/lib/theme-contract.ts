@@ -87,6 +87,12 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   ),
   token("--control-rim", "color", "derived", "Boundary color of a control's own edge; defaults to --border."),
   token(
+    "--focus-rim",
+    "color",
+    "derived",
+    "Edge color of a text field, composer, or editor while it holds focus; defaults to --control-rim mixed 15% toward --ring. The caret is the focus indicator there (WCAG 2.4.7), so this stays subtle and skips the --focus-ring outline.",
+  ),
+  token(
     "--control-boundary",
     "color",
     "derived",

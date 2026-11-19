@@ -17,7 +17,8 @@
           "data-chrome": "standalone",
           "data-control-family": "code",
           "data-control-ui": "code",
-          "data-density": "compact",
+          "data-density": "default",
+          "data-header": "true",
           "data-slot": "root",
           "data-surface": "panel"
         }
@@ -39,7 +40,6 @@
           "data-control-family": "code",
           "data-control-ui": "code",
           "data-density": "default",
-          "data-header": "true",
           "data-slot": "root",
           "data-surface": "panel"
         }
@@ -53,6 +53,16 @@
           "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "default",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
         }
       },
       {
@@ -176,27 +186,6 @@
           "data-chrome": "standalone",
           "data-control-family": "code",
           "data-control-ui": "code",
-          "data-density": "compact",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "wide"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "standalone",
-          "data-control-family": "code",
-          "data-control-ui": "code",
           "data-density": "default",
           "data-header": "true",
           "data-slot": "root",
@@ -376,35 +365,6 @@
           "data-chrome": "standalone",
           "data-control-family": "code",
           "data-control-ui": "code",
-          "data-density": "compact",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "code",
-          "data-control-ui": "code",
-          "data-density": "compact",
-          "data-slot": "grid"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "standalone",
-          "data-control-family": "code",
-          "data-control-ui": "code",
           "data-density": "default",
           "data-header": "true",
           "data-slot": "root",
@@ -428,6 +388,45 @@
           "data-scroll": "page",
           "data-slot": "root",
           "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-slot": "grid"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "default",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
         }
       },
       {
@@ -564,35 +563,6 @@
           "data-control-family": "code",
           "data-control-ui": "code",
           "data-density": "default",
-          "data-slot": "grid"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "wide"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "standalone",
-          "data-control-family": "code",
-          "data-control-ui": "code",
-          "data-density": "compact",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "code",
-          "data-control-ui": "code",
-          "data-density": "compact",
           "data-slot": "grid"
         }
       }
@@ -888,7 +858,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-code-background"
+        "fill": "--cui-code-header-background"
       },
       "anatomy": 8,
       "rendersText": true,
@@ -920,7 +890,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-code-header-background"
+        "text": "--cui-code-text-foreground"
       },
       "anatomy": 12,
       "rendersText": true,
@@ -984,7 +954,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-code-text-foreground"
+        "text": "--cui-code-title-foreground"
       },
       "anatomy": 20,
       "rendersText": true,
@@ -992,7 +962,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-code-text-foreground"
+        "text": "--cui-code-title-foreground"
       },
       "anatomy": 21,
       "rendersText": true,
@@ -1011,22 +981,6 @@
         "text": "--cui-code-title-foreground"
       },
       "anatomy": 23,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-code-title-foreground"
-      },
-      "anatomy": 24,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-code-title-foreground"
-      },
-      "anatomy": 25,
       "rendersText": true,
       "state": false
     }

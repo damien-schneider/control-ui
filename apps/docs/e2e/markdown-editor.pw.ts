@@ -290,6 +290,57 @@ test("dragging a handle moves a block instead of copying it", async ({ page }) =
   await expect(page.getByLabel("Markdown value")).toHaveText("## First\n\nSecond paragraph\n\n- [ ] Third task");
 });
 
+test("each list item gets its own handle and reorders within its list", async ({ page }) => {
+  const editor = page.getByRole("textbox", { name: "Comment", exact: true });
+  await editor.click();
+  await editor.pressSequentially("- One");
+  await editor.press("Enter");
+  await editor.pressSequentially("Two");
+  await editor.press("Enter");
+  await editor.pressSequentially("Three");
+  await expect(page.getByLabel("Markdown value")).toHaveText("- One\n- Two\n- Three");
+  const handle = page.getByRole("button", { name: "Drag to reorder block" });
+  const item = editor.getByRole("listitem").filter({ hasText: "Two" });
+  await item.hover();
+  await expect(handle).toHaveAttribute("data-visible", "");
+  const top = (element: HTMLElement | SVGElement) => element.getBoundingClientRect().top;
+  await expect.poll(async () => Math.abs((await handle.evaluate(top)) - (await item.evaluate(top)))).toBeLessThan(12);
+  await handle.focus();
+  await handle.press("Alt+ArrowUp");
+  await expect(page.getByLabel("Markdown value")).toHaveText("- Two\n- One\n- Three");
+});
+
+test("the block handle glides between blocks but appears in place", async ({ page }) => {
+  const editor = page.getByRole("textbox", { name: "Comment", exact: true });
+  await page.getByRole("button", { name: "Load blocks" }).click();
+  const handle = page.getByRole("button", { name: "Drag to reorder block" });
+  await editor.locator("h2").hover();
+  await page.mouse.move(0, 0);
+  await expect(handle).not.toHaveAttribute("data-visible", "");
+  await expect(handle).not.toHaveCSS("transition-property", /translate/);
+  await editor.locator("p").first().hover();
+  await expect(handle).toHaveAttribute("data-visible", "");
+  await expect(handle).not.toHaveCSS("transition-property", /translate/);
+  await editor.locator("h2").hover();
+  await expect(handle).toHaveCSS("transition-property", /translate/);
+  await expect(handle).toHaveCSS("transition-property", /opacity/);
+});
+
+test("pressing a block handle selects the block without a focus ring, keyboard moves keep it", async ({ page }) => {
+  const editor = page.getByRole("textbox", { name: "Comment", exact: true });
+  await page.getByRole("button", { name: "Load blocks" }).click();
+  await editor.locator("h2").hover();
+  const handle = page.getByRole("button", { name: "Drag to reorder block" });
+  await handle.click();
+  const selected = editor.locator(".ProseMirror-selectednode");
+  await expect(selected).toHaveText("First");
+  await expect(selected).toHaveCSS("outline-style", "none");
+  await handle.focus();
+  await handle.press("Alt+ArrowDown");
+  await expect(selected).toHaveText("First");
+  await expect(selected).not.toHaveCSS("outline-style", "none");
+});
+
 test("editor has one frame and an embedded shared toolbar at narrow widths", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   const editor = page.getByRole("textbox", { name: "Comment", exact: true });
@@ -406,9 +457,15 @@ test("shared task checkboxes support keyboard, undo, nested content, save and di
   await expect(child).not.toBeChecked();
 });
 
-test("drag previews are compact, transparent and cleaned up after dragging", async ({ page }) => {
+test("dragging lifts a copy of the block onto a card surface at its own size", async ({ page }) => {
+  const editor = page.getByRole("textbox", { name: "Comment", exact: true });
   await page.getByRole("button", { name: "Load blocks" }).click();
-  await page.locator('.tiptap ul[data-type="taskList"]').hover();
+  await page.locator('[data-control-family="markdown-editor"][data-slot="root"]').evaluate((root: HTMLElement) => {
+    root.style.setProperty("--cui-markdown-editor-background", "transparent");
+    root.style.setProperty("--cui-markdown-editor-border-width", "0px");
+  });
+  const item = editor.locator('li[data-type="taskItem"]').first();
+  await item.click();
   const handle = page.getByRole("button", { name: "Drag to reorder block" });
   await handle.hover();
   await expect(handle).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
@@ -416,14 +473,54 @@ test("drag previews are compact, transparent and cleaned up after dragging", asy
   await handle.dispatchEvent("dragstart", { dataTransfer: await page.evaluateHandle(() => new DataTransfer()) });
   const preview = page.locator("[data-markdown-drag-preview]");
   await expect(preview).toHaveCount(1);
-  await expect(preview).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
-  expect(await preview.evaluate((element) => element.getBoundingClientRect().width)).toBeLessThanOrEqual(320);
-  await expect(page.locator(".ProseMirror-selectednode")).toHaveCSS("outline-style", "none");
+  await expect(preview).not.toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+  await expect(preview).not.toHaveCSS("border-top-width", "0px");
+  await expect(preview.locator('ul[data-type="taskList"] > li[data-type="taskItem"]')).toHaveCount(1);
+  const size = (element: HTMLElement | SVGElement) => {
+    const { width, height } = element.getBoundingClientRect();
+    return { width: Math.round(width), height: Math.round(height) };
+  };
+  expect(await preview.locator("li").evaluate(size)).toEqual(await item.evaluate(size));
+  const source = editor.locator(".ProseMirror-selectednode");
+  await expect(source).toHaveCSS("outline-style", "none");
+  await expect(source).toHaveCSS("opacity", "0.4");
   await handle.dispatchEvent("dragend");
   await expect(preview).toHaveCount(0);
+  await expect(source).toHaveCSS("opacity", "1");
 });
 
-test("first drag of a long task list stays responsive and transfers every task", async ({ page }) => {
+test("a pointer drop shows a quiet drop line and leaves no focus ring, even when the selection moved mid-drag", async ({ page }) => {
+  const editor = page.getByRole("textbox", { name: "Comment", exact: true });
+  await page.getByRole("button", { name: "Load blocks" }).click();
+  const first = editor.locator("p").first();
+  await first.click();
+  await first.hover();
+  const handle = page.getByRole("button", { name: "Drag to reorder block" });
+  const grip = await handle.boundingBox();
+  const target = await editor.locator("h2").first().boundingBox();
+  if (!(grip && target)) throw new Error("Handle and drop target must be visible");
+  await page.mouse.move(grip.x + grip.width / 2, grip.y + grip.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(target.x + 40, target.y + 2, { steps: 8 });
+  const line = page.locator(".prosemirror-dropcursor-block");
+  await expect(line).toHaveCount(1);
+  const muted = await page.locator('[data-control-family="markdown-editor"][data-slot="root"]').evaluate((root) => {
+    const probe = document.createElement("span");
+    probe.style.color = "var(--cui-markdown-editor-muted-foreground)";
+    root.append(probe);
+    const color = getComputedStyle(probe).color;
+    probe.remove();
+    return color;
+  });
+  await expect(line).toHaveCSS("background-color", muted);
+  await editor.evaluate((element) => Reflect.get(element, "editor").commands.setTextSelection(1));
+  await page.mouse.up();
+  const dropped = editor.locator(".ProseMirror-selectednode");
+  await expect(dropped).toHaveCount(1);
+  await expect(dropped).toHaveCSS("outline-style", "none");
+});
+
+test("first drag in a long task list stays responsive and transfers only the grabbed task", async ({ page }) => {
   await page.getByRole("button", { name: "Load long task list" }).click();
   const editor = page.getByRole("textbox", { name: "Comment", exact: true });
   await expect(editor.getByRole("checkbox")).toHaveCount(200);
@@ -447,7 +544,8 @@ test("first drag of a long task list stays responsive and transfers every task",
     body: JSON.stringify({ prepareMs: sample.prepareMs, dragMs: sample.dragMs, previewElements: sample.previewElements }),
     contentType: "application/json",
   });
-  expect(sample.html).toContain("Task 200");
+  expect(sample.html).toContain("Task 1<");
+  expect(sample.html).not.toContain("Task 2<");
   expect(sample.previewElements).toBeLessThanOrEqual(80);
   expect(sample.dragMs).toBeLessThan(100);
   expect(sample.prepareMs + sample.dragMs).toBeLessThan(150);

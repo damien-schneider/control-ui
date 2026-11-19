@@ -92,6 +92,27 @@ export function closure() {
   return { files: collectFiles(items), dependencies: collectDependencies(items), styles: collectStyles(items) };
 }
 
+const SHIPPED_SKINS = ["refined"];
+
+function skinTarget(id: string, target: string) {
+  if (target === "skin.config.tsx") return `skins/${id}.tsx`;
+  if (target.startsWith("styles/")) return `styles/skins/${id}/${target.slice("styles/".length)}`;
+  throw new Error(`skin-${id} ships ${target}, which has no package entry`);
+}
+
+export function skinFiles() {
+  const manifests = readManifests();
+  const files = new Map<string, string>();
+  for (const id of SHIPPED_SKINS) {
+    const manifest = manifests.get(`skin-${id}`);
+    if (!manifest) throw new Error(`Skin ${id} has no manifest`);
+    for (const file of manifest.files ?? []) {
+      files.set(skinTarget(id, file.target.slice(componentRoot.length)), path.join(docsRoot, file.path));
+    }
+  }
+  return files;
+}
+
 function stylesIndex(styles: string[]) {
   return `${styles.map((sheet) => `@import "./${sheet}";`).join("\n")}\n`;
 }
@@ -109,7 +130,7 @@ export function writeSrc() {
   assertEveryStylesheetImported(files, styles);
   const src = path.join(packageRoot, "src");
   rmSync(src, { recursive: true, force: true });
-  for (const [name, source] of files) {
+  for (const [name, source] of [...files, ...skinFiles()]) {
     const target = path.join(src, name);
     mkdirSync(path.dirname(target), { recursive: true });
     cpSync(source, target);

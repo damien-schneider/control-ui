@@ -11,6 +11,7 @@ import {
   MinusIcon,
   QuoteIcon,
   SquareCodeIcon,
+  TableIcon,
   TextIcon,
   UserIcon,
 } from "lucide-react";
@@ -83,6 +84,13 @@ function blockCommands(labels: MarkdownEditorLabels): readonly EditorSuggestion[
       keywords: ["rule", "separator"],
       icon: <MinusIcon />,
       command: (chain) => chain.setHorizontalRule(),
+    },
+    {
+      id: "table",
+      label: labels.table,
+      keywords: ["grid", "columns"],
+      icon: <TableIcon />,
+      command: (chain) => chain.insertTable({ rows: 3, cols: 3, withHeaderRow: true }),
     },
   ];
 }

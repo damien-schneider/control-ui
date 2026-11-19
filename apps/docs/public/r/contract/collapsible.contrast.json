@@ -44,6 +44,46 @@
       },
       {
         "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-closed": "",
+          "data-control-family": "collapsible",
+          "data-control-ui": "collapsible",
+          "data-slot": "root",
+          "data-state": "closed"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "false",
+          "data-control-family": "collapsible",
+          "data-control-ui": "collapsible",
+          "data-slot": "trigger",
+          "data-state": "closed",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "collapsible",
           "data-control-ui": "collapsible",
           "data-open": "",
@@ -63,6 +103,46 @@
           "tabindex": "0"
         }
       }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-closed": "",
+          "data-control-family": "collapsible",
+          "data-control-ui": "collapsible",
+          "data-slot": "root",
+          "data-state": "closed"
+        }
+      },
+      {
+        "attributes": {
+          "aria-expanded": "false",
+          "data-control-family": "collapsible",
+          "data-control-ui": "collapsible",
+          "data-slot": "trigger",
+          "data-state": "closed",
+          "tabindex": "0"
+        }
+      }
     ]
   ],
   "probes": [
@@ -79,6 +159,22 @@
         "text": "--cui-collapsible-trigger-foreground"
       },
       "anatomy": 1,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-collapsible-trigger-foreground"
+      },
+      "anatomy": 2,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-collapsible-trigger-foreground"
+      },
+      "anatomy": 3,
       "rendersText": true,
       "state": false
     }

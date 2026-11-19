@@ -4,6 +4,7 @@
     --cui-markdown-editor-foreground: var(--foreground);
     --cui-markdown-editor-border-width: var(--control-rim-width);
     --cui-markdown-editor-border-color: var(--border);
+    --cui-markdown-editor-focus-border-color: var(--focus-rim);
     --cui-markdown-editor-radius: var(--radius-panel);
     --cui-markdown-editor-padding: calc(var(--spacing) * 4);
     --cui-markdown-editor-gutter-size: var(--control-h-xs);
@@ -12,10 +13,14 @@
     --cui-markdown-editor-gap: calc(var(--spacing) * 3);
     --cui-markdown-editor-muted-foreground: var(--muted-foreground);
     --cui-markdown-editor-code-background: var(--muted);
+    --cui-markdown-editor-table-border-width: var(--control-rim-width);
+    --cui-markdown-editor-table-border-color: var(--border);
+    --cui-markdown-editor-table-selection-background: var(--active-fill);
     color: var(--cui-markdown-editor-foreground);
     background: var(--cui-markdown-editor-background);
     border: var(--cui-markdown-editor-border-width) solid var(--cui-markdown-editor-border-color);
     border-radius: var(--cui-markdown-editor-radius);
+    transition: border-color var(--duration-fast) var(--ease-standard);
     overflow: clip;
     font-size: var(--text-body);
     line-height: var(--leading-relaxed);
@@ -42,8 +47,7 @@
       :is([data-slot="content"] .tiptap, [data-slot="source"] textarea):focus-visible
     ):not([data-control-family="chat-composer"][data-slot="shell"] *)
   ) {
-    outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring);
-    outline-offset: calc(var(--focus-ring-width) * -1);
+    border-color: var(--cui-markdown-editor-focus-border-color);
   }
   @media (forced-colors: active) {
     :where(
@@ -51,7 +55,8 @@
           :is([data-slot="content"] .tiptap, [data-slot="source"] textarea):focus-visible
         ):not([data-control-family="chat-composer"][data-slot="shell"] *)
       ) {
-      outline-color: Highlight;
+      outline: var(--focus-ring-width) solid Highlight;
+      outline-offset: calc(var(--focus-ring-width) * -1);
     }
   }
   :where([data-control-family="markdown-editor"][data-slot="toolbar"]) {
@@ -71,10 +76,15 @@
   :where([data-control-family="markdown-editor"] [data-markdown-drag-handle]) {
     position: absolute;
     inset-inline-start: calc(var(--cui-markdown-editor-padding) / 2);
-    inset-block-start: var(--cui-markdown-editor-padding);
+    inset-block-start: 0;
+    translate: 0 var(--cui-markdown-editor-padding);
     cursor: grab;
     opacity: 0;
     pointer-events: none;
+    transition-property: scale, opacity;
+  }
+  :where([data-control-family="markdown-editor"] [data-markdown-drag-handle][data-glide]) {
+    transition-property: scale, translate, opacity;
   }
   :where([data-control-family="markdown-editor"] [data-markdown-drag-handle]:is([data-visible], :focus-visible)) {
     opacity: 1;
@@ -177,30 +187,53 @@
     outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring);
     outline-offset: 2px;
   }
+  :where(
+    [data-control-family="markdown-editor"][data-slot="content"]:has(
+        > [data-markdown-drag-handle]:is([data-pointer-selection], [data-lifted])
+      )
+      .tiptap
+      .ProseMirror-selectednode
+  ) {
+    outline: none;
+  }
   :where([data-control-family="markdown-editor"] [data-markdown-drag-preview]) {
     position: fixed;
     inset-block-start: -10000px;
     inset-inline-start: -10000px;
+    inline-size: max-content;
+    max-inline-size: none;
     min-block-size: 0;
-    max-block-size: calc(var(--spacing) * 24);
-    padding: 0;
+    max-block-size: calc(var(--spacing) * 96);
+    padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 3);
     overflow: hidden;
     contain: layout paint;
-    background: transparent;
+    border: var(--control-rim-width) solid var(--border);
+    border-radius: var(--radius-panel);
+    background: var(--card);
+    color: var(--card-foreground);
     pointer-events: none;
+  }
+  :where([data-control-family="markdown-editor"] [data-markdown-drag-preview] > *) {
+    margin: 0;
+  }
+  :where([data-control-family="markdown-editor"] [data-markdown-drag-preview][data-clipped]) {
+    mask-image: linear-gradient(to bottom, oklch(0 0 0) calc(100% - var(--spacing) * 12), transparent);
+  }
+  :where(
+    [data-control-family="markdown-editor"][data-slot="content"]:has(> [data-markdown-drag-handle][data-lifted])
+      .tiptap
+      .ProseMirror-selectednode
+  ) {
+    opacity: 0.4;
+  }
+  :where([data-control-family="markdown-editor"] .prosemirror-dropcursor-block) {
+    border-radius: 9999px;
+    background: var(--cui-markdown-editor-muted-foreground);
   }
   :where([data-control-family="markdown-editor"] .tiptap [data-image-upload]) {
     padding: var(--cui-markdown-editor-padding);
     border: var(--cui-markdown-editor-border-width) dashed var(--cui-markdown-editor-border-color);
     color: var(--cui-markdown-editor-muted-foreground);
-  }
-  :where([data-control-family="markdown-editor"] .tiptap table) {
-    border-collapse: collapse;
-    inline-size: 100%;
-  }
-  :where([data-control-family="markdown-editor"] .tiptap :is(td, th)) {
-    border: var(--cui-markdown-editor-border-width) solid var(--cui-markdown-editor-border-color);
-    padding: var(--cui-markdown-editor-padding);
   }
   :where([data-control-family="markdown-editor"][data-slot="suggestion-description"]) {
     color: var(--muted-foreground);
@@ -226,6 +259,12 @@
 }
 
 @property --cui-markdown-editor-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-markdown-editor-focus-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
@@ -283,4 +322,22 @@
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;
+}
+
+@property --cui-markdown-editor-table-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-markdown-editor-table-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-markdown-editor-table-selection-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
 }

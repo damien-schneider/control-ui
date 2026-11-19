@@ -6,7 +6,7 @@ import { render } from "react-email";
 import { InvitationEmail } from "./dist/email/templates.js";
 import { emailThemeFromCss } from "./dist/email/theme.js";
 import pkg from "./package.json";
-import { closure } from "./registry-closure";
+import { closure, skinFiles } from "./registry-closure";
 
 const { files, dependencies } = closure();
 const dist = path.join(import.meta.dir, "dist");
@@ -57,6 +57,21 @@ test("light entries install without any optional peer", () => {
   expect(optionalPeerImports("ui/markdown.js")).toContain("streamdown");
   expect(optionalPeerImports("ui/markdown-components.js")).toContain("@tanstack/react-virtual");
   for (const entry of peerFreeEntries) expect({ entry, peers: optionalPeerImports(entry) }).toEqual({ entry, peers: [] });
+});
+
+test("the package works without a skin config or preset stylesheet", () => {
+  expect(existsSync(path.join(dist, "skin.config.js"))).toBe(false);
+  expect(existsSync(path.join(dist, "styles/skin-theme.css"))).toBe(false);
+  expect(existsSync(path.join(dist, "skin-provider.js"))).toBe(true);
+});
+
+test("the refined skin ships as an opt-in entry, byte-identical to its pack", async () => {
+  const { skin } = await import("./dist/skins/refined.js");
+  expect(skin.id).toBe("refined");
+  for (const [name, source] of skinFiles()) {
+    if (name.endsWith(".css")) expect(read(name)).toBe(readFileSync(source, "utf8"));
+  }
+  expect(read("styles/index.css")).not.toInclude("skins/");
 });
 
 test("the stylesheet entry imports every shipped stylesheet, theme first, without a skin", () => {

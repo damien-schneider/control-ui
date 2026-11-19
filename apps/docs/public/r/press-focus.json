@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "press-focus",
+  "type": "registry:item",
+  "title": "Press focus",
+  "description": "Pressing a text field's padding, addons, or toolbar focuses its text control.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://control-ui.dev/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/press-focus.ts",
+      "target": "@components/control-ui/lib/press-focus.ts",
+      "type": "registry:lib",
+      "content": "import type { MouseEvent } from \"react\";\n\nconst ownPressTargets =\n  \"input, textarea, select, button, a, label, summary, [role='button'], [role='combobox'], [role='slider'], [tabindex], [contenteditable], [data-slot='scrub-area']\";\n\n// A text field's padding, addons, and toolbars belong to it: pressing them focuses its text control, as pressing an input's own padding does.\nexport function focusTextControlOnPress(event: MouseEvent<HTMLElement>, control: HTMLElement | null) {\n  if (event.defaultPrevented || event.button !== 0 || !control || control.matches(\":disabled\")) return;\n  // React bubbles presses from portalled popups through here; only presses inside the field's own box count.\n  if (!(event.target instanceof Element) || !event.currentTarget.contains(event.target)) return;\n  const pressed = event.target.closest(ownPressTargets);\n  if (pressed && event.currentTarget.contains(pressed)) return;\n  event.preventDefault();\n  control.focus();\n}\n"
+    }
+  ],
+  "meta": {
+    "internal": true
+  }
+}

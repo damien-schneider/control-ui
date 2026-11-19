@@ -1,12 +1,13 @@
 "use client";
 
 import { Square } from "lucide-react";
-import type { ChangeEvent, ComponentProps, CSSProperties, KeyboardEvent, MouseEvent, ReactNode, Ref } from "react";
+import type { ChangeEvent, ComponentProps, CSSProperties, KeyboardEvent, MouseEvent, ReactNode, Ref, RefObject } from "react";
 import { createContext, useContext, useEffect, useRef } from "react";
 import type { ChatComposerController, ChatComposerProps } from "@/components/control-ui/hooks/use-chat-composer";
 import { useChatComposer } from "@/components/control-ui/hooks/use-chat-composer";
 import type { ChatComposerKnobStyle } from "@/components/control-ui/knob-contracts/chat-composer-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { focusTextControlOnPress } from "@/components/control-ui/lib/press-focus";
 import { hasSkinAdornment, skinAdornment } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
@@ -77,19 +78,36 @@ export function ChatComposer({
 
 export type ChatComposerShellProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ChatComposerKnobStyle };
 
-export function ChatComposerShell({ className, ...props }: ChatComposerShellProps) {
+const ChatComposerMessageContext = createContext<RefObject<HTMLElement | null> | null>(null);
+
+// The textarea or rich editor registers itself here, so the shell can focus it from its padding and toolbar.
+export function useChatComposerMessageRef() {
+  return useContext(ChatComposerMessageContext);
+}
+
+export function ChatComposerShell({ className, onMouseDown, ...props }: ChatComposerShellProps) {
   const input = useChatComposerContext();
+  const messageRef = useRef<HTMLElement | null>(null);
+
+  function handleMouseDown(event: MouseEvent<HTMLDivElement>) {
+    onMouseDown?.(event);
+    focusTextControlOnPress(event, messageRef.current);
+  }
 
   return (
-    <div
-      data-control-ui="chat-composer"
-      data-control-family="chat-composer"
-      data-slot="shell"
-      data-state={input.state}
-      data-surface="panel"
-      className={cn("relative overflow-hidden", className)}
-      {...props}
-    />
+    <ChatComposerMessageContext.Provider value={messageRef}>
+      {/* biome-ignore lint/a11y/noStaticElementInteractions: a pointer shortcut to the message, which keyboard users reach with Tab. */}
+      <div
+        data-control-ui="chat-composer"
+        data-control-family="chat-composer"
+        data-slot="shell"
+        data-state={input.state}
+        data-surface="panel"
+        className={cn("relative overflow-hidden", className)}
+        onMouseDown={handleMouseDown}
+        {...props}
+      />
+    </ChatComposerMessageContext.Provider>
   );
 }
 
@@ -137,6 +155,7 @@ export function ChatComposerTextarea({
   ...props
 }: ChatComposerTextareaProps) {
   const input = useChatComposerContext();
+  const messageRef = useChatComposerMessageRef();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { registerInsertionTarget } = input;
 
@@ -165,6 +184,7 @@ export function ChatComposerTextarea({
 
   function attachTextarea(node: HTMLTextAreaElement | null) {
     textareaRef.current = node;
+    if (messageRef) messageRef.current = node;
     assignRef(ref, node);
   }
 

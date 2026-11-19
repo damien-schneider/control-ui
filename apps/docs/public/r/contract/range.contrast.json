@@ -14,6 +14,45 @@
       },
       {
         "attributes": {
+          "data-complete": "",
+          "data-control-family": "range",
+          "data-control-ui": "progress",
+          "data-range-kind": "progress",
+          "data-slot": "root",
+          "role": "progressbar"
+        }
+      },
+      {
+        "attributes": {
+          "data-complete": "",
+          "data-control-family": "range",
+          "data-control-ui": "progress",
+          "data-range-kind": "progress",
+          "data-slot": "track"
+        }
+      },
+      {
+        "attributes": {
+          "data-complete": "",
+          "data-control-family": "range",
+          "data-control-ui": "progress",
+          "data-range-kind": "progress",
+          "data-slot": "indicator"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "range",
           "data-control-ui": "meter",
           "data-range-kind": "meter",
@@ -74,6 +113,36 @@
           "data-progressing": "",
           "data-range-kind": "progress",
           "data-slot": "indicator"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-complete": "",
+          "data-control-family": "range",
+          "data-control-ui": "progress",
+          "data-range-kind": "progress",
+          "data-slot": "root",
+          "role": "progressbar"
+        }
+      },
+      {
+        "attributes": {
+          "data-complete": "",
+          "data-control-family": "range",
+          "data-control-ui": "progress",
+          "data-range-kind": "progress",
+          "data-slot": "track"
         }
       }
     ],
@@ -271,7 +340,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-range-track-background"
+        "fill": "--cui-range-indicator-background"
       },
       "anatomy": 2,
       "rendersText": false,
@@ -303,9 +372,25 @@
     },
     {
       "knobs": {
-        "text": "--cui-range-level-scale-foreground"
+        "fill": "--cui-range-track-background"
       },
       "anatomy": 6,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-range-track-background"
+      },
+      "anatomy": 7,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-range-level-scale-foreground"
+      },
+      "anatomy": 8,
       "rendersText": true,
       "state": false
     },
@@ -313,7 +398,7 @@
       "knobs": {
         "text": "--cui-range-level-scale-foreground"
       },
-      "anatomy": 7,
+      "anatomy": 9,
       "rendersText": true,
       "state": false
     }

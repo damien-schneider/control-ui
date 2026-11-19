@@ -7,6 +7,7 @@ import type { RenderProp } from "@/components/control-ui/control-props";
 import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { focusTextControlOnPress } from "@/components/control-ui/lib/press-focus";
 
 export type InputGroupProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & FieldKnobStyle } & {
   render?: RenderProp<ComponentProps<"div">>;
@@ -33,9 +34,6 @@ export function useInputGroupControlRef<Control extends HTMLElement>(ref?: Ref<C
   };
 }
 
-const ownPressTargets =
-  "input, textarea, select, button, a, label, summary, [role='button'], [role='combobox'], [role='slider'], [tabindex], [contenteditable], [data-slot='scrub-area']";
-
 export function InputGroup({ size = "md", className, render, children, onMouseDown, ...props }: InputGroupProps) {
   const controlRef = useRef<HTMLElement | null>(null);
   const classes = cn("flex min-w-0 w-full items-center overflow-hidden", className);
@@ -48,20 +46,13 @@ export function InputGroup({ size = "md", className, render, children, onMouseDo
       "data-control-ui": "input-group",
       "data-slot": "root",
       "data-control-family": "field",
+      "data-field-kind": "input-group",
       "data-control": "true",
       "data-size": size,
       className: classes,
-      // Addons and padding belong to the field: pressing them focuses its text control, as pressing an input's own padding does.
       onMouseDown(event: MouseEvent<HTMLDivElement>) {
         onMouseDown?.(event);
-        const control = controlRef.current;
-        if (event.defaultPrevented || event.button !== 0 || !control || control.matches(":disabled")) return;
-        // React bubbles presses from portalled popups through here; only presses inside the group's own box count.
-        if (!(event.target instanceof Element) || !event.currentTarget.contains(event.target)) return;
-        const pressed = event.target.closest(ownPressTargets);
-        if (pressed && event.currentTarget.contains(pressed)) return;
-        event.preventDefault();
-        control.focus();
+        focusTextControlOnPress(event, controlRef.current);
       },
       children,
     },

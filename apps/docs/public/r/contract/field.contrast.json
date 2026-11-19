@@ -113,7 +113,7 @@
           "data-field-kind": "combobox",
           "data-placeholder": "",
           "data-popup-open": "",
-          "data-popup-side": "bottom",
+          "data-popup-side": "top",
           "data-pressed": "",
           "data-slot": "input-group",
           "role": "group"
@@ -127,7 +127,7 @@
           "data-control-ui": "combobox",
           "data-field-kind": "combobox",
           "data-popup-open": "",
-          "data-popup-side": "bottom",
+          "data-popup-side": "top",
           "data-pressed": "",
           "data-size": "sm",
           "data-slot": "input",
@@ -142,7 +142,7 @@
           "data-field-kind": "combobox",
           "data-placeholder": "",
           "data-popup-open": "",
-          "data-popup-side": "bottom",
+          "data-popup-side": "top",
           "data-pressed": "",
           "data-slot": "trigger",
           "tabindex": "-1"
@@ -1010,7 +1010,7 @@
           "data-control-ui": "combobox",
           "data-field-kind": "combobox",
           "data-popup-open": "",
-          "data-popup-side": "bottom",
+          "data-popup-side": "top",
           "data-pressed": "",
           "data-size": "sm",
           "data-slot": "input",
@@ -1319,6 +1319,16 @@
           "data-slot": "root",
           "role": "application",
           "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
         }
       },
       {
@@ -2043,6 +2053,7 @@
           "data-control": "true",
           "data-control-family": "field",
           "data-control-ui": "input",
+          "data-filled": "",
           "data-size": "md",
           "data-slot": "root"
         }
@@ -2204,6 +2215,16 @@
           "data-scroll": "page",
           "data-slot": "root",
           "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "card",
+          "data-control-ui": "card",
+          "data-size": "default",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default"
         }
       },
       {

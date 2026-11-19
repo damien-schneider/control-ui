@@ -5,6 +5,7 @@
     --cui-chat-composer-shell-background-image: none;
     --cui-chat-composer-shell-backdrop-filter: none;
     --cui-chat-composer-shell-border-color: var(--border);
+    --cui-chat-composer-shell-focus-border-color: var(--focus-rim);
     --cui-chat-composer-shell-border-width: var(--control-rim-width);
     --cui-chat-composer-shell-radius: var(--radius-composer);
     --cui-chat-composer-shell-shadow: var(--shadow-md);
@@ -27,14 +28,24 @@
     background-image: var(--cui-chat-composer-shell-background-image);
     box-shadow: var(--cui-chat-composer-shell-shadow);
     backdrop-filter: var(--cui-chat-composer-shell-backdrop-filter);
-    transition-property: box-shadow, filter, translate;
+    transition-property: border-color, box-shadow, filter, translate;
     transition-duration: var(--duration-base);
     transition-timing-function: var(--ease-emphasized);
   }
 
-  :where([data-control-family="chat-composer"][data-slot="shell"]:has(:is(textarea, [contenteditable="true"]):focus-visible)) {
-    outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring);
-    outline-offset: calc(var(--focus-ring-width) * -1);
+  :where([data-control-family="chat-composer"][data-slot="shell"]:has(:is(textarea:enabled, [contenteditable="true"]))) {
+    cursor: text;
+  }
+
+  :where([data-control-family="chat-composer"][data-slot="shell"]:has(:is(textarea, [contenteditable="true"]):focus)) {
+    border-color: var(--cui-chat-composer-shell-focus-border-color);
+  }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="chat-composer"][data-slot="shell"]:has(:is(textarea, [contenteditable="true"]):focus-visible)) {
+      outline: var(--focus-ring-width) solid Highlight;
+      outline-offset: calc(var(--focus-ring-width) * -1);
+    }
   }
 
   :where([data-control-family="chat-composer"][data-slot="shell"] [data-control-family="dropzone"][data-slot="overlay"]) {
@@ -105,13 +116,13 @@
 
   :where([data-control-family="chat-composer"][data-slot="header"]) {
     gap: calc(var(--spacing) * 3);
-    padding-inline: calc(var(--spacing) * 3);
-    padding-block: calc(var(--spacing) * 2);
-    border-block-end: var(--cui-chat-composer-shell-border-width) solid var(--cui-chat-composer-shell-border-color);
+    padding-inline: var(--composer-padding);
+    padding-block-start: var(--composer-padding);
     font-size: var(--text-caption);
   }
 
-  :where([data-control-family="chat-composer"][data-slot="header"] svg:not([data-control-family="button"] > svg)) {
+  :where([data-control-family="chat-composer"][data-slot="header"] > svg),
+  :where([data-control-family="chat-composer"][data-slot="header"] > :not([data-control-family]) svg) {
     inline-size: calc(var(--spacing) * 3.5);
     block-size: calc(var(--spacing) * 3.5);
     flex-shrink: 0;
@@ -175,6 +186,12 @@
 }
 
 @property --cui-chat-composer-shell-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-chat-composer-shell-focus-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

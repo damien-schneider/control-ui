@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "provider-logo",
+  "type": "registry:component",
+  "title": "Provider logo",
+  "description": "A model lab's or host's mark in the text colour, with an initial for unknown providers.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core",
+    "model-name"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/provider-marks.ts",
+      "target": "@components/control-ui/lib/provider-marks.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/sources/control-ui/provider-logo.tsx",
+      "target": "@components/control-ui/provider-logo.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "internal": true,
+    "sourceManifestPath": "registry/control-ui/provider-logo.json"
+  }
+}
