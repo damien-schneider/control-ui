@@ -82,6 +82,19 @@
     background-color: transparent;
   }
 
+  :where([data-control-family="tree"][data-slot="root"]) {
+    --_tree-track-selected-foreground: var(--cui-tree-item-trigger-selected-foreground);
+  }
+
+  /* The sliding highlight follows a focused or hovered row, leaving the selected label on the bare tree. */
+  :where([data-control-family="tree"][data-slot="root"][data-track-hover]) {
+    --_tree-track-selected-foreground: var(--cui-tree-item-trigger-foreground);
+  }
+
+  :where([data-control-family="tree"][data-indicator="slide"] [data-control-family="tree"][data-slot="item-trigger"][data-selected]) {
+    color: var(--_tree-track-selected-foreground);
+  }
+
   :where([data-control-family="tree"][data-slot="item-indicator"]) {
     inline-size: calc(var(--spacing) * 4);
     block-size: calc(var(--spacing) * 4);
