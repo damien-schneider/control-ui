@@ -272,12 +272,13 @@ export async function makePaintMeasurable(page: Page) {
       node.style.backgroundImage = "none";
     }
 
-    const EXPONENT_NOTATION = /\de[+-]?\d/;
+    // Chrome also serialises a powerless hue as `none` (an achromatic `oklch(from …)`), which axe cannot parse either.
+    const UNPARSEABLE_COLOR = /\de[+-]?\d|\bnone\b/;
     const respellExponentColors = (element: HTMLElement) => {
       const style = getComputedStyle(element);
       for (const property of ["color", "background-color"]) {
         const value = style.getPropertyValue(property);
-        if (!EXPONENT_NOTATION.test(value)) continue;
+        if (!UNPARSEABLE_COLOR.test(value)) continue;
         element.setAttribute("data-respelled-color", "");
         element.style.setProperty(property, css(pixel(value)));
       }

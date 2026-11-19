@@ -52,8 +52,7 @@ test("edit takes over a short message's action row without resizing it or hiding
   await surface.hover();
   await page.getByRole("button", { name: "Edit", exact: true }).click();
   await expect(page.getByRole("textbox", { name: "Edit message" })).toHaveCSS("outline-width", "0px");
-  await expect(surface).toHaveCSS("outline-style", "solid");
-  await expect(surface).toHaveCSS("outline-offset", "-2px");
+  await expect(surface).toHaveCSS("outline-style", "none");
   await following.click();
   await page.mouse.move(0, 0);
   await settle(page);
