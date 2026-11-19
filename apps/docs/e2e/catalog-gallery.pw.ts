@@ -87,6 +87,21 @@ test("gallery previews mount near the viewport, stay mounted, and navigate witho
   await lastPreview.scrollIntoViewIfNeeded();
   await expect(lastPreview).toHaveAttribute("data-gallery-preview-state", "mounted");
   await firstCard.scrollIntoViewIfNeeded();
+  // Read the state only once the browser has reported the last preview out of its mount margin and React has rendered.
+  await lastPreview.evaluate(
+    (preview) =>
+      new Promise<void>((resolve) => {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry?.isIntersecting) return;
+            observer.disconnect();
+            requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+          },
+          { rootMargin: "720px 0px" },
+        );
+        observer.observe(preview);
+      }),
+  );
   await expect(lastPreview).toHaveAttribute("data-gallery-preview-state", "mounted");
 
   const firstHref = await firstCard.getByRole("link").getAttribute("href");
