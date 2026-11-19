@@ -167,10 +167,10 @@ test("failed responses preserve the draft and allow retry", async ({ page }) => 
   await expect(input).toHaveText("");
 });
 
-test("message actions stay visible on touch screens", async ({ browser }) => {
-  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+test("message actions stay visible on touch screens", async ({ browser, baseURL }) => {
+  const context = await browser.newContext({ baseURL, viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
   const page = await context.newPage();
-  await page.goto("http://127.0.0.1:3000/kits/action-bar");
+  await page.goto("/kits/action-bar");
   const preview = page.locator("#preview");
   const actions = preview.getByRole("toolbar", { name: "Message actions" });
   await waitForReactHydration(actions);

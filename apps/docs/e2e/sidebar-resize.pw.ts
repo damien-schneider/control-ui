@@ -212,7 +212,9 @@ test("committed width and collapsed state survive a skin remount", async ({ page
   await expect(page.locator("html")).toHaveAttribute("data-skin", "cuicui");
   await expect(sidebarRoot).toHaveAttribute("data-state", "collapsed");
 
-  await page.locator("[data-docs-sidebar-trigger]").getByRole("button", { name: "Toggle Sidebar" }).click();
+  const docsTrigger = page.locator("[data-docs-sidebar-trigger]").getByRole("button", { name: "Toggle Sidebar" });
+  await waitForReactHydration(docsTrigger);
+  await docsTrigger.click();
   await expect(sidebarRoot).toHaveAttribute("data-state", "expanded");
   await expect(wrapper).toHaveCSS("--sidebar-width", "420px");
   await expect(resizeHandle).toHaveAttribute("aria-valuenow", "420");
@@ -247,7 +249,12 @@ test("sidebar inset confines wide content to the remaining panel", async ({ page
     const bounds = await panel.evaluate((element) => {
       const container = element.parentElement;
       if (!container) throw new Error("Sidebar preview container missing");
-      return { panel: element.getBoundingClientRect().right, container: container.getBoundingClientRect().right };
+      const wide = document.createElement("pre");
+      wide.textContent = "unbroken-".repeat(200);
+      element.append(wide);
+      const measured = { panel: element.getBoundingClientRect().right, container: container.getBoundingClientRect().right };
+      wide.remove();
+      return measured;
     });
     expect(bounds.panel).toBeLessThanOrEqual(bounds.container);
   }

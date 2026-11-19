@@ -12,6 +12,7 @@ const APP_PRIMARY = "rgb(123, 45, 67)";
 const APP_ROOT_BLOCK = `:root { --primary: ${APP_PRIMARY}; }`;
 const OVERRIDE = "rgb(7, 7, 7)";
 const KNOB_RADIUS = "13px";
+const CORE_THEME = readFileSync(path.join(DOCS_ROOT, "src/registry/sources/control-ui/theme.css"), "utf8");
 const BUTTON_RECIPE = readFileSync(path.join(DOCS_ROOT, "src/registry/sources/control-ui/recipes/button.css"), "utf8");
 
 const compact = (value: string) => value.replace(/\s/g, "");
@@ -57,6 +58,8 @@ test("a generated knob override reaches the component the recipe declares it on"
   await page.setContent(
     `<!doctype html><html data-skin="${SKIN}"><body><button id="target" data-control-family="button" data-control="true"></button></body></html>`,
   );
+  // With the core theme loaded the recipe's own radius resolves, so a value set only on the root cannot leak in.
+  await page.addStyleTag({ content: CORE_THEME });
   await page.addStyleTag({ content: BUTTON_RECIPE });
   await page.addStyleTag({ content: sheet });
 

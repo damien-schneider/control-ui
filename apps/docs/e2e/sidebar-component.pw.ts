@@ -84,6 +84,9 @@ test("collapsed navigation stays outside keyboard navigation and respects reduce
   await expect(rail).toHaveAttribute("data-resize-ready", "");
   await rail.press("Enter");
   await expect(container).toHaveCSS("transition-duration", "0s");
+  await rail.press("Shift+Tab");
+  expect(await preview.locator('[data-slot="inner"]').evaluate((inner) => inner.contains(document.activeElement))).toBe(false);
+  await rail.focus();
   await rail.press("Tab");
   const trigger = preview.getByRole("button", { name: "Toggle sidebar", exact: true });
   await expect(trigger).toBeFocused();
