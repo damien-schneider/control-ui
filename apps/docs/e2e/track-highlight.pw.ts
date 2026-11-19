@@ -204,7 +204,7 @@ test("CSS hover highlight snaps to unequal rows with either motion preference", 
   await expectSidebarHoverOn(last);
 });
 
-test("highlight works in static markup without JavaScript", async ({ page, browser }) => {
+test("highlight works in static markup without JavaScript", async ({ page, browser, baseURL }) => {
   await page.setViewportSize({ width: 1440, height: 1100 });
   await page.goto("/components/sidebar");
   await waitForReactHydration(page.getByRole("combobox", { name: "Menu highlight" }));
@@ -214,7 +214,7 @@ test("highlight works in static markup without JavaScript", async ({ page, brows
   const staticPage = await browser.newPage({ javaScriptEnabled: false, viewport: { width: 1440, height: 1100 } });
   try {
     await staticPage.route("**/components/sidebar", (route) => route.fulfill({ contentType: "text/html", body: markup }));
-    await staticPage.goto("http://127.0.0.1:3000/components/sidebar");
+    await staticPage.goto(new URL("/components/sidebar", baseURL).href);
     const group = staticPage.getByRole("group", { name: "Sidebar", exact: true });
     const workflows = group.getByRole("button", { name: "Workflows", exact: true });
     await workflows.hover();

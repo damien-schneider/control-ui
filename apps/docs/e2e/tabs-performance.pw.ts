@@ -26,6 +26,8 @@ test("Preview and Code retain example state and source scroll position after a v
   await expect.poll(() => source.evaluate((element) => element.scrollTop)).toBe(200);
   await tabs.getByRole("tab", { name: "Preview", exact: true }).click();
   await expect(tabs.getByRole("heading", { name: "Workflows", exact: true })).toBeVisible();
+  await expect(source).toBeHidden();
+  await expect(tabs.locator('[data-slot="panel"][data-ending-style]')).toHaveCount(0);
   await tabs.getByRole("tab", { name: "Code", exact: true }).click();
   await expect(source).toBeVisible();
   await expect.poll(() => source.evaluate((element) => element.scrollTop)).toBe(200);

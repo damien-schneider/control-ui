@@ -216,7 +216,9 @@ test("skin source tab recovers from a failed request", async ({ page }) => {
     localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" }));
   }, THEME_EDITOR_STORAGE_KEY);
   await page.goto("/theme-editor");
-  await page.getByRole("tablist", { name: "Skin views" }).getByRole("tab", { name: "Source", exact: true }).click();
+  const sourceTab = page.getByRole("tablist", { name: "Skin views" }).getByRole("tab", { name: "Source", exact: true });
+  await waitForReactHydration(sourceTab);
+  await sourceTab.click();
 
   await expect(page.getByText("The Refined source could not be loaded.")).toBeVisible();
   shouldFail = false;
@@ -327,6 +329,8 @@ test("preview form values survive switching to source", async ({ page }) => {
   await displayName.fill("Theme preview");
   await views.getByRole("tab", { name: "Source", exact: true }).click();
   await expect(page).toHaveURL(/view=source$/);
+  await expect(displayName).toBeHidden();
+  await expect(workspace.locator('[data-slot="panel"][data-ending-style]')).toHaveCount(0);
   await views.getByRole("tab", { name: "Preview", exact: true }).click();
   await expect(displayName).toHaveValue("Theme preview");
 });

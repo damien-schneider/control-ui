@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 
 import { expect, type Page, test } from "@playwright/test";
+import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { waitForReactHydration } from "./browser-test-helpers";
 
 const CANVAS = "oklch(0.16 0.012 60)";
@@ -292,13 +293,17 @@ test("a generated theme selects the skin that carries its depth", async ({ page 
 // A skin that scrolls the page instead of an inset viewport rebuilds the tree under PageLayout, which
 // remounts the drawer and everything in it. The generation log has to come back with it.
 test("a skin that relayouts the page keeps the generation on screen", async ({ page }) => {
+  // Refined is the default and already scrolls the page, so start from an inset-viewport skin to make the switch relayout.
+  await page.addInitScript((storageKey) => localStorage.setItem(storageKey, JSON.stringify({ skin: "linear" })), THEME_EDITOR_STORAGE_KEY);
   await mockGeneration(page, [{ type: "complete", skin: "refined", name: "Paper Desk", tokens: { "--canvas": CANVAS }, adjustments: [] }]);
 
   const composer = await openGenerator(page);
+  await expect(page.locator("html")).toHaveAttribute("data-docs-layout", "contained");
   await composer.getByRole("textbox", { name: "Message" }).fill("quiet paper");
   await composer.getByRole("button", { name: "Generate" }).click();
 
   await expect(page.locator("[data-skin]").first()).toHaveAttribute("data-skin", "refined");
+  await expect(page.locator("html")).toHaveAttribute("data-docs-layout", "page");
   await expect(page.locator('[data-control-ui="activity"][data-slot="root"]').last()).toContainText("Paper Desk");
   await expect(composer).toBeVisible();
 });
