@@ -6,7 +6,10 @@ import skinContract from "../../../../public/r/skin-contract.json";
 const CSS = readFileSync(fileURLToPath(new URL("./theme.css", import.meta.url)), "utf8");
 
 function anatomySelectors(css: string) {
-  return [...css.matchAll(/\[data-control-ui="([^"]+)"\]\[data-slot="([^"]+)"\]/g)].map((match) => ({ scope: match[1], part: match[2] }));
+  return [...css.matchAll(/\[data-control-(?:ui|family)="([^"]+)"\]\[data-slot="([^"]+)"\]/g)].map((match) => ({
+    scope: match[1],
+    part: match[2],
+  }));
 }
 
 // JSON import types each scope as its own literal key; reading map through record shape keeps runtime

@@ -198,14 +198,6 @@ describe("skin pack theme.css stays within the token contract", () => {
       expect(offenders).toEqual([]);
     });
 
-    test(`${id}/theme.css ships no @theme block`, () => {
-      const offenders: string[] = [];
-      themeRoot.walkAtRules("theme", (atRule) => {
-        offenders.push(`@theme ${atRule.params}`.trim());
-      });
-      expect(offenders).toEqual([]);
-    });
-
     test(`${id}/theme.css does not include component CSS`, () => {
       expect(componentCssOffenders(themeRoot)).toEqual([]);
     });

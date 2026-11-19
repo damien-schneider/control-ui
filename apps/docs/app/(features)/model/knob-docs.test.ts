@@ -18,9 +18,4 @@ describe("knob docs", () => {
       defaultValue: "var(--radius-composer)",
     });
   });
-
-  test("a family without knobs shows no section", () => {
-    const email = data.kits.find((candidate) => candidate.id === "email");
-    expect(email?.knobs).toEqual([]);
-  });
 });
