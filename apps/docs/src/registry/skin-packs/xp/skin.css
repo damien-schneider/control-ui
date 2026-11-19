@@ -224,6 +224,8 @@
   }
   [data-skin="xp"] :where([data-control-family="tree"][data-slot="root"]) {
     --cui-tree-item-trigger-radius: 0px;
+    /* the field is solid --background, so the hover wash is mixed onto it as a solid fill */
+    --cui-tree-item-trigger-hover-background: color-mix(in srgb, var(--foreground) 6%, var(--background));
     --cui-tree-item-trigger-selected-background: var(--primary);
     --cui-tree-item-trigger-selected-foreground: var(--primary-foreground);
     background: var(--background);

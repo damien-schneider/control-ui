@@ -19,7 +19,16 @@ const SURFACE_ROLES = [
 ];
 const STATUS_ROLES = ["--success", "--warning", "--info"];
 const TEXT_ROLES = ["--foreground", "--muted-foreground", "--primary-text", "--destructive-text"];
-const LINE_ROLES = ["--border", "--input", "--control-rim", "--control-boundary", "--image-outline", "--ring", "--focus-ring"];
+const LINE_ROLES = [
+  "--border",
+  "--input",
+  "--control-rim",
+  "--focus-rim",
+  "--control-boundary",
+  "--image-outline",
+  "--ring",
+  "--focus-ring",
+];
 const CONTROL_FILL_ROLES = ["--control-fill", "--hover-fill", "--active-fill"];
 const SIDEBAR_SURFACE_ROLES = ["--sidebar", "--sidebar-accent"];
 const SIDEBAR_LINE_ROLES = ["--sidebar-primary", "--sidebar-border"];
