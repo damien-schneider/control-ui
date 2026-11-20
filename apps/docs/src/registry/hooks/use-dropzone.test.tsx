@@ -27,14 +27,17 @@ function clipboardEvent({
   types,
   files = [],
   items = [],
+  text = "",
 }: {
   types: string[];
   files?: File[];
   items?: DataTransferItem[];
+  text?: string;
 }): FakeClipboardEvent {
   let prevented = false;
+  const getData = (type: string) => (type === "text/plain" ? text : "");
   return {
-    clipboardData: { types, files, items } as unknown as DataTransfer,
+    clipboardData: { types, files, items, getData } as unknown as DataTransfer,
     defaultPrevented: false,
     preventDefault: () => {
       prevented = true;
@@ -57,8 +60,13 @@ describe("dropzone paste intake", () => {
     expect(pasteInto({}, clipboardEvent({ types: ["Files"], files: [screenshot] }))).toBe(true);
   });
 
+  test("claims a screenshot whose text is only its own path, as CleanShot copies it", () => {
+    const path = "/Users/me/Library/Application Support/CleanShot/media/CleanShot 2026-11-20 at 10.20.47 AM@2x.png";
+    expect(pasteInto({}, clipboardEvent({ types: ["Files", "text/plain"], files: [screenshot], text: path }))).toBe(true);
+  });
+
   test("leaves a paste that also carries text to the focused editor", () => {
-    expect(pasteInto({}, clipboardEvent({ types: ["text/plain", "text/html", "Files"], files: [screenshot] }))).toBe(false);
+    expect(pasteInto({}, clipboardEvent({ types: ["text/plain", "text/html", "Files"], files: [screenshot], text: "a\tb" }))).toBe(false);
   });
 
   test("ignores a plain text paste", () => {

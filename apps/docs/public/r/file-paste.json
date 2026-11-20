@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "file-paste",
+  "type": "registry:item",
+  "title": "File paste",
+  "description": "Tells a pasted attachment from pasted text, including images that carry their own path or name.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://control-ui.dev/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/file-paste.ts",
+      "target": "@components/control-ui/lib/file-paste.ts",
+      "type": "registry:lib",
+      "content": "const FILE_PATH = /^(?:file:\\/\\/|~?\\/|[A-Za-z]:\\\\).*\\.[A-Za-z0-9]+$/;\n\n/**\n * A paste is an attachment when it carries files and its text only names them.\n * CleanShot puts the image's path beside it and Finder the file's name; a spreadsheet's rendered image comes with real text.\n */\nexport function isFilePaste(clipboardData: DataTransfer | null): boolean {\n  if (!clipboardData) return false;\n  const types = Array.from(clipboardData.types);\n  if (!types.includes(\"Files\")) return false;\n  if (!types.includes(\"text/plain\")) return true;\n  const names = new Set(Array.from(clipboardData.files, (file) => file.name));\n  return clipboardData\n    .getData(\"text/plain\")\n    .split(/\\r?\\n/)\n    .map((line) => line.trim())\n    .filter(Boolean)\n    .every((line) => names.has(line) || FILE_PATH.test(line));\n}\n"
+    }
+  ],
+  "meta": {
+    "internal": true
+  }
+}

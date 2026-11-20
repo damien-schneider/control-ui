@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "file-paste",
+  "type": "registry:item",
+  "title": "File paste",
+  "description": "Tells a pasted attachment from pasted text, including images that carry their own path or name.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/file-paste.ts",
+      "target": "@components/control-ui/lib/file-paste.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "meta": {
+    "internal": true,
+    "sourceManifestPath": "registry/control-ui/file-paste.json"
+  }
+}

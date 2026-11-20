@@ -185,6 +185,15 @@ const internalDefinitions: Definition[] = [
     internal: true,
   },
   {
+    id: "file-paste",
+    type: "registry:item",
+    title: "File paste",
+    description: "Tells a pasted attachment from pasted text, including images that carry their own path or name.",
+    seeds: ["src/registry/lib/file-paste.ts"],
+    primary: ["src/registry/lib/file-paste.ts"],
+    internal: true,
+  },
+  {
     id: "use-copy-to-clipboard",
     type: "registry:item",
     title: "useCopyToClipboard",

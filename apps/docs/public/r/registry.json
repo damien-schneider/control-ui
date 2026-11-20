@@ -2468,6 +2468,7 @@
         "https://control-ui.dev/r/button.json",
         "https://control-ui.dev/r/chat-message.json",
         "https://control-ui.dev/r/core.json",
+        "https://control-ui.dev/r/file-paste.json",
         "https://control-ui.dev/r/live-status.json",
         "https://control-ui.dev/r/motion.json",
         "https://control-ui.dev/r/spinner.json",
@@ -3628,6 +3629,7 @@
         "https://control-ui.dev/r/button.json",
         "https://control-ui.dev/r/core.json",
         "https://control-ui.dev/r/effects.json",
+        "https://control-ui.dev/r/file-paste.json",
         "https://control-ui.dev/r/item.json"
       ],
       "files": [

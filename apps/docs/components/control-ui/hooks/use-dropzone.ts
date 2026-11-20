@@ -23,6 +23,7 @@ import {
   processDropzoneFiles,
   toDropzoneError,
 } from "../lib/dropzone-validation";
+import { isFilePaste } from "../lib/file-paste";
 
 export type DropzoneVisualState = "idle" | "accept" | "reject" | "unknown" | "processing";
 
@@ -525,13 +526,6 @@ function getClipboardFiles(clipboardData: DataTransfer): readonly File[] {
 
 function isFileDrag(dataTransfer: DataTransfer | null) {
   return dataTransfer ? Array.from(dataTransfer.types).includes("Files") : false;
-}
-
-/** Clipboards that also carry text belong to the focused editor: only a text-free paste is an attachment. */
-function isFilePaste(clipboardData: DataTransfer | null) {
-  if (!clipboardData) return false;
-  const types = Array.from(clipboardData.types);
-  return types.includes("Files") && !types.includes("text/plain");
 }
 
 function getRegisteredDropzoneRoot(event: DragEvent) {
