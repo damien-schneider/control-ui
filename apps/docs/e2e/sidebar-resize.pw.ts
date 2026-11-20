@@ -155,20 +155,20 @@ test("switching to the mobile sidebar aborts an active resize gesture", async ({
   await page.goto("/components/code-diff");
 
   const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
-  const wrapper = page.locator('[data-control-ui="sidebar"][data-slot="wrapper"]');
+  const sidebarRoot = page.locator('[data-control-ui="sidebar"][data-slot="root"].peer');
+  const resizeShield = page.locator('[data-control-ui="sidebar"][data-slot="resize-shield"]');
   await waitForSidebarHydration(resizeHandle);
 
   await resizeHandle.hover();
   await page.mouse.down();
   await page.mouse.move(300, 450);
-  await expect(wrapper).toHaveAttribute("data-resizing", "true");
+  await expect(resizeHandle).toHaveAttribute("data-resizing", "true");
+  await expect(resizeShield).toHaveCSS("cursor", "col-resize");
+  await expect(sidebarRoot).toHaveCSS("--_sidebar-transition-duration", "0s");
 
   await page.setViewportSize({ width: 800, height: 900 });
   await expect(resizeHandle).toHaveCount(0);
-  await expect(wrapper).not.toHaveAttribute("data-resizing");
-  await expect
-    .poll(() => page.evaluate(() => ({ cursor: document.body.style.cursor, userSelect: document.body.style.userSelect })))
-    .toEqual({ cursor: "", userSelect: "" });
+  await expect(resizeShield).toHaveCount(0);
   await page.mouse.up();
 });
 

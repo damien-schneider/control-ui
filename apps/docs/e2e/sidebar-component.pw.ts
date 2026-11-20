@@ -69,9 +69,9 @@ test("Escape cancels a drag collapse and restores document interaction", async (
   await page.mouse.up();
   await expect(root).toHaveAttribute("data-state", "expanded");
   await expect(wrapper).toHaveCSS("--sidebar-width", "420px");
-  await expect(wrapper).not.toHaveAttribute("data-resizing");
+  await expect(rail).not.toHaveAttribute("data-resizing");
   await expect(rail).toBeFocused();
-  await expect.poll(() => page.evaluate(() => [document.body.style.cursor, document.body.style.userSelect])).toEqual(["", ""]);
+  await expect(page.locator('[data-control-ui="sidebar"][data-slot="resize-shield"]')).toHaveCount(0);
 });
 
 test("collapsed navigation stays outside keyboard navigation and respects reduced motion", async ({ page }) => {

@@ -575,6 +575,7 @@ Scopes, their parts, and the state attributes each part carries. Selector patter
   - `mobile-trigger`: `data-mobile-nav-item`, `data-sidebar-trigger`
   - `panel`: `data-layer` (`content` | `raised` | `sidebar`)
   - `rail`: `data-resizable`, `data-resize-ready`
+  - `resize-shield`
   - `root`: `data-collapsible` (`icon` | `none` | `offcanvas`), `data-mobile`, `data-side` (`left` | `right`), `data-state` (`collapsed` | `expanded`), `data-variant` (`floating` | `inset` | `page` | `sidebar`)
   - `skip-link`
   - `trigger`: `data-sidebar-trigger`

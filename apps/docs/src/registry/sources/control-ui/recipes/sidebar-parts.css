@@ -7,6 +7,10 @@
     --_sidebar-transition-duration: 0s;
   }
 
+  :where([data-control-family="sidebar"]:is([data-slot="gap"], [data-slot="container"], [data-slot="inner"])) {
+    --_sidebar-transition-duration: inherit;
+  }
+
   :where([data-control-family="sidebar"][data-slot="container"]) {
     translate: 0;
     transition:
@@ -15,6 +19,7 @@
   }
 
   :where([data-control-family="sidebar"][data-slot="inner"]) {
+    --sidebar-width: initial;
     transition: padding var(--_sidebar-transition-duration) var(--ease-standard);
   }
 
@@ -28,13 +33,6 @@
     translate: 100% 0;
   }
 
-  :where(
-    [data-control-family="sidebar"][data-slot="wrapper"][data-resizing="true"]
-      [data-control-family="sidebar"]:is([data-slot="container"], [data-slot="gap"], [data-slot="inner"])
-  ) {
-    transition: none;
-  }
-
   @media (prefers-reduced-motion: reduce) {
     :where([data-control-family="sidebar"]:is([data-slot="container"], [data-slot="gap"], [data-slot="inner"])) {
       transition: none;
@@ -43,6 +41,14 @@
 
   :where([data-motion="reduced"] [data-control-family="sidebar"]:is([data-slot="container"], [data-slot="gap"], [data-slot="inner"])) {
     transition: none;
+  }
+
+  :where([data-control-family="sidebar"][data-slot="resize-shield"]) {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-tooltip);
+    cursor: col-resize;
+    user-select: none;
   }
 
   :where([data-control-family="sidebar"][data-slot="rail"]) {
@@ -341,4 +347,10 @@
 @property --cui-sidebar-menu-button-shadow {
   syntax: "*";
   inherits: true;
+}
+
+@property --_sidebar-transition-duration {
+  syntax: "<time>";
+  inherits: false;
+  initial-value: 0s;
 }

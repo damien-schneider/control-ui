@@ -62,6 +62,11 @@
       "syntax": "<length-percentage>"
     },
     {
+      "name": "--_sidebar-transition-duration",
+      "description": "Control UI sidebar-parts knob — registered syntax <time>, fallback 0s. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<time>"
+    },
+    {
       "name": "--_tabs-panel-height",
       "description": "Control UI tabs-motion knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"

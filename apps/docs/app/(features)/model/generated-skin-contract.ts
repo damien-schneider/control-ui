@@ -12253,6 +12253,11 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        "resize-shield": {
+          family: "sidebar",
+          registryItems: ["sidebar"],
+          states: [],
+        },
         "skip-link": {
           family: "sidebar",
           registryItems: ["sidebar"],
