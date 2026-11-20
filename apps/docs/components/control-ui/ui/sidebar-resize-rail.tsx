@@ -8,6 +8,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { useSidebar, useSidebarElements, useSidebarSurface } from "@/components/control-ui/ui/sidebar-provider";
 
 const DRAG_THRESHOLD_PX = 5;
+const RESIZE_SHIELD_STAMP = { "data-control-ui": "sidebar", "data-control-family": "sidebar", "data-slot": "resize-shield" };
 const KEYBOARD_STEP_PX = 10;
 
 export type SidebarResizeRailProps = ComponentProps<"div"> & {
@@ -59,26 +60,30 @@ export function SidebarResizeRail({ className, ref, onPointerDown, onClick, onKe
     const pointerId = event.pointerId;
     const startX = event.clientX;
     const anchoredLeft = anchoredToLeftEdge(handle);
-    const sidebarRoot = handle.closest('[data-control-family="sidebar"][data-slot="root"]') ?? wrapper;
+    const sidebarRoot = handle.closest<HTMLElement>('[data-control-family="sidebar"][data-slot="root"]') ?? wrapper;
     const sidebarBounds = sidebarRoot.getBoundingClientRect();
     const initialWidth = measure.getBoundingClientRect().width;
-    const previousWidth = wrapper.style.getPropertyValue("--sidebar-width");
-    const previousCursor = document.body.style.cursor;
-    const previousUserSelect = document.body.style.userSelect;
+    const previousWidth = sidebarRoot.style.getPropertyValue("--sidebar-width");
+    const shield = document.createElement("div");
+    for (const [name, value] of Object.entries(RESIZE_SHIELD_STAMP)) shield.setAttribute(name, value);
     const controller = new AbortController();
     let draftWidth = initialWidth;
     const initiallyCollapsed = !open && collapsible !== "none";
     let collapsedDuringDrag = initiallyCollapsed;
 
     function restoreWidth() {
-      wrapper.style.setProperty("--sidebar-width", previousWidth);
+      sidebarRoot.style.setProperty("--sidebar-width", previousWidth);
+    }
+
+    function holdTransitions(held: boolean) {
+      if (held) sidebarRoot.style.setProperty("--_sidebar-transition-duration", "0s");
+      else sidebarRoot.style.removeProperty("--_sidebar-transition-duration");
     }
 
     function endGesture() {
       controller.abort();
-      document.body.style.cursor = previousCursor;
-      document.body.style.userSelect = previousUserSelect;
-      wrapper.removeAttribute("data-resizing");
+      shield.remove();
+      holdTransitions(false);
       handle.removeAttribute("data-resizing");
       if (handle.hasPointerCapture(pointerId)) handle.releasePointerCapture(pointerId);
       cancelGestureRef.current = null;
@@ -101,19 +106,22 @@ export function SidebarResizeRail({ className, ref, onPointerDown, onClick, onKe
       return shouldCollapse;
     }
 
-    function movePointer(pointer: PointerEvent) {
-      if (pointer.pointerId !== pointerId) return;
-      const withinClickDistance = Math.abs(pointer.clientX - startX) <= DRAG_THRESHOLD_PX;
-      if (!draggedRef.current && withinClickDistance) return;
+    function dragging(pointer: PointerEvent) {
+      if (draggedRef.current) return true;
+      if (Math.abs(pointer.clientX - startX) <= DRAG_THRESHOLD_PX) return false;
       draggedRef.current = true;
-      document.body.style.cursor = "col-resize";
-      document.body.style.userSelect = "none";
-      wrapper.setAttribute("data-resizing", "true");
+      document.body.append(shield);
+      holdTransitions(true);
       handle.setAttribute("data-resizing", "true");
+      return true;
+    }
+
+    function movePointer(pointer: PointerEvent) {
+      if (pointer.pointerId !== pointerId || !dragging(pointer)) return;
       const cursorWidth = anchoredLeft ? pointer.clientX - sidebarBounds.left : sidebarBounds.right - pointer.clientX;
       if (updateCollapse(cursorWidth)) return;
       draftWidth = clampWidth(cursorWidth);
-      wrapper.style.setProperty("--sidebar-width", `${draftWidth}px`);
+      sidebarRoot.style.setProperty("--sidebar-width", `${draftWidth}px`);
     }
 
     function finishPointer(pointer: PointerEvent) {
