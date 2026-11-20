@@ -81,13 +81,8 @@
   }
 
   :where(
-    [data-control-family="scroll-area"][data-slot="root"][data-mask]:is(
-        [data-overflow-x-start],
-        [data-overflow-x-end],
-        [data-overflow-y-start],
-        [data-overflow-y-end]
-      )
-      > [data-scroll-area-viewport]
+    [data-control-family="scroll-area"][data-slot="root"][data-mask]
+      > [data-scroll-area-viewport]:is([data-overflow-x-start], [data-overflow-x-end], [data-overflow-y-start], [data-overflow-y-end])
   ) {
     mask-image:
       linear-gradient(
@@ -131,19 +126,24 @@
   }
 
   :where(
-    [data-control-family="scroll-area"][data-slot="root"][data-overflow-y-start] > [data-control-family="progressive-blur"][data-side="top"]
+    [data-control-family="scroll-area"][data-slot="root"]
+      > [data-scroll-area-viewport][data-overflow-y-start]
+      ~ [data-control-family="progressive-blur"][data-side="top"]
   ),
   :where(
-    [data-control-family="scroll-area"][data-slot="root"][data-overflow-y-end]
-      > [data-control-family="progressive-blur"][data-side="bottom"]
+    [data-control-family="scroll-area"][data-slot="root"]
+      > [data-scroll-area-viewport][data-overflow-y-end]
+      ~ [data-control-family="progressive-blur"][data-side="bottom"]
   ),
   :where(
-    [data-control-family="scroll-area"][data-slot="root"][data-overflow-x-start]
-      > [data-control-family="progressive-blur"][data-side="inline-start"]
+    [data-control-family="scroll-area"][data-slot="root"]
+      > [data-scroll-area-viewport][data-overflow-x-start]
+      ~ [data-control-family="progressive-blur"][data-side="inline-start"]
   ),
   :where(
-    [data-control-family="scroll-area"][data-slot="root"][data-overflow-x-end]
-      > [data-control-family="progressive-blur"][data-side="inline-end"]
+    [data-control-family="scroll-area"][data-slot="root"]
+      > [data-scroll-area-viewport][data-overflow-x-end]
+      ~ [data-control-family="progressive-blur"][data-side="inline-end"]
   ) {
     --_progressive-blur-visibility: visible;
     --_progressive-blur-enter: 1;
