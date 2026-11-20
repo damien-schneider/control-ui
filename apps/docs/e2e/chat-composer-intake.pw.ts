@@ -1,21 +1,24 @@
 import { expect, type Locator, test } from "@playwright/test";
 import { waitForReactHydration } from "./browser-test-helpers";
 
-type ClipboardPayload = "file" | "text" | "file-with-text";
+type ClipboardPayload = "file" | "text" | "file-with-text" | "file-with-path";
 
 const pastedImage = { name: "pasted-screenshot.png", type: "image/png" };
+/** CleanShot and Finder put the copied file's own path beside it. */
+const pastedPath = "/Users/me/Library/Application Support/CleanShot/media/CleanShot 2026-11-20 at 10.20.47 AM@2x.png";
 const droppedNote = { name: "dropped-note.txt", type: "text/plain" };
 
 /** Returns whether the composer claimed the paste, which is what stops the caret from receiving it. */
 function pasteInto(target: Locator, payload: ClipboardPayload) {
   return target.evaluate(
-    (element, { kind, image }) => {
+    (element, { kind, image, path }) => {
       const data = new DataTransfer();
       if (kind !== "text") data.items.add(new File([new Uint8Array([137, 80, 78, 71])], image.name, { type: image.type }));
-      if (kind !== "file") data.setData("text/plain", "pasted words");
+      if (kind === "text" || kind === "file-with-text") data.setData("text/plain", "pasted words");
+      if (kind === "file-with-path") data.setData("text/plain", path);
       return !element.dispatchEvent(new ClipboardEvent("paste", { clipboardData: data, bubbles: true, cancelable: true }));
     },
-    { kind: payload, image: pastedImage },
+    { kind: payload, image: pastedImage, path: pastedPath },
   );
 }
 
@@ -47,6 +50,10 @@ test("the composer takes attachments from paste and drop, not only the file butt
   expect(await pasteInto(textarea, "file-with-text")).toBe(false);
   await expect(shell.getByRole("listitem")).toHaveCount(attachmentCount);
 
+  expect(await pasteInto(textarea, "file-with-path")).toBe(true);
+  await expect(shell.getByRole("listitem")).toHaveCount(attachmentCount + 1);
+  await expect(textarea).toHaveValue("");
+
   const overlay = preview.locator('[data-control-family="dropzone"][data-slot="overlay"]');
   await dragFileOver(textarea, "dragenter");
   await dragFileOver(textarea, "dragover");
@@ -70,6 +77,8 @@ test("the rich editor releases file transfers instead of swallowing them", async
   expect(await dragFileOver(editor, "dragover")).toBe(false);
   expect(await dragFileOver(editor, "drop")).toBe(false);
   expect(await pasteInto(editor, "file")).toBe(false);
+  expect(await pasteInto(editor, "file-with-path")).toBe(false);
+  expect(await pasteInto(editor, "file-with-text")).toBe(true);
 
   expect(await pasteInto(editor, "text")).toBe(true);
 });

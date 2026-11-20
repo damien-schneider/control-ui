@@ -2201,7 +2201,17 @@ export const registryMetadata = {
       "prosemirror-state@^1.4.4",
       "prosemirror-view@^1.42.3",
     ],
-    registryDependencies: ["button", "chat-message", "core", "live-status", "motion", "press-focus", "spinner", "trigger-menu"],
+    registryDependencies: [
+      "button",
+      "chat-message",
+      "core",
+      "file-paste",
+      "live-status",
+      "motion",
+      "press-focus",
+      "spinner",
+      "trigger-menu",
+    ],
     sourceManifestPath: "registry/control-ui/chat-composer.json",
     files: [
       {
@@ -3206,7 +3216,7 @@ export const registryMetadata = {
   },
   dropzone: {
     dependencies: ["lucide-react@^1.47.0"],
-    registryDependencies: ["button", "core", "effects", "item"],
+    registryDependencies: ["button", "core", "effects", "file-paste", "item"],
     sourceManifestPath: "registry/control-ui/dropzone.json",
     files: [
       {
@@ -3492,6 +3502,18 @@ export const registryMetadata = {
         path: "src/registry/docs/file-explorer-block.md",
         target: "@components/control-ui/docs/file-explorer-block.md",
         type: "registry:file",
+      },
+    ],
+  },
+  "file-paste": {
+    dependencies: [],
+    registryDependencies: ["core"],
+    sourceManifestPath: "registry/control-ui/file-paste.json",
+    files: [
+      {
+        path: "src/registry/lib/file-paste.ts",
+        target: "@components/control-ui/lib/file-paste.ts",
+        type: "registry:lib",
       },
     ],
   },

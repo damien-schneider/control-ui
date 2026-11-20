@@ -25,6 +25,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 - `button`
 - `core`
 - `effects`
+- `file-paste`
 - `item`
 
 ## Exports

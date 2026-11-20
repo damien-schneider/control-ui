@@ -11,6 +11,7 @@ import { useChatComposerContext, useChatComposerMessageRef } from "@/components/
 import type { ChatComposerSubmitPayload } from "@/components/control-ui/hooks/use-chat-composer";
 import type { ChatComposerKnobStyle } from "@/components/control-ui/knob-contracts/chat-composer-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { isFilePaste } from "@/components/control-ui/lib/file-paste";
 import { MESSAGE_GHOST_INHERIT, spawnExitGhost } from "./chat-composer-editor/ghost";
 import { createEditorSchema } from "./chat-composer-editor/schema";
 import { docFromText, serializeDoc, serializeSlice, sliceFromText } from "./chat-composer-editor/serialize";
@@ -25,10 +26,7 @@ const fileTransferPassthrough = {
   dragenter: releaseFileDrag,
   dragover: releaseFileDrag,
   drop: releaseFileDrag,
-  paste: (_view: EditorView, event: ClipboardEvent) => {
-    const types = event.clipboardData ? Array.from(event.clipboardData.types) : [];
-    return types.includes("Files") && !types.includes("text/plain");
-  },
+  paste: (_view: EditorView, event: ClipboardEvent) => isFilePaste(event.clipboardData),
 };
 
 export function ChatComposerEditor({

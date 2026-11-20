@@ -29,6 +29,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 - `button`
 - `chat-message`
 - `core`
+- `file-paste`
 - `live-status`
 - `motion`
 - `press-focus`
