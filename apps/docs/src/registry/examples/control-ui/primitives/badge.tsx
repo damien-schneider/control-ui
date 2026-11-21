@@ -21,6 +21,9 @@ export function PrimitiveBadgeExample() {
         Primary
       </Badge>
       <Badge variant="outline">Outline</Badge>
+      <Badge render={<button type="button" />} variant="ghost">
+        Ghost
+      </Badge>
       <Badge color="green">
         <Check />
         Allowed

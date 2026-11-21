@@ -47,6 +47,15 @@
     --_badge-hover-background: var(--_badge-color-background);
   }
 
+  :where([data-control-family="badge"][data-slot="root"][data-variant="ghost"]) {
+    --cui-badge-background: transparent;
+    --_badge-hover-background: var(--_badge-color-background);
+  }
+
+  :where([data-control-family="badge"][data-slot="root"][data-variant="ghost"][data-color="neutral"]) {
+    --_badge-color-foreground: var(--muted-foreground);
+  }
+
   :where(:is(a, button)[data-control-family="badge"][data-slot="root"]) {
     position: relative;
     overflow: visible;

@@ -1399,7 +1399,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-variant",
               source: "control-ui",
               valueKind: "enum",
-              values: ["default", "outline"],
+              values: ["default", "ghost", "outline"],
             },
           ],
         },

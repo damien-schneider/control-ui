@@ -1981,6 +1981,7 @@
               "valueKind": "enum",
               "values": [
                 "default",
+                "ghost",
                 "outline"
               ]
             }

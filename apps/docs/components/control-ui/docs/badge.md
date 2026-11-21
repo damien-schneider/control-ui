@@ -61,6 +61,9 @@ export function PrimitiveBadgeExample() {
         Primary
       </Badge>
       <Badge variant="outline">Outline</Badge>
+      <Badge render={<button type="button" />} variant="ghost">
+        Ghost
+      </Badge>
       <Badge color="green">
         <Check />
         Allowed
@@ -81,7 +84,7 @@ export function PrimitiveBadgeExample() {
 Scopes, their parts, and the state attributes each part carries. Selector pattern: `[data-skin="{skin}"] :where([data-slot="{part}"][data-control-family="{family}"])`.
 
 - `badge`
-  - `root`: `data-color` (any value), `data-size` (`md` | `sm`), `data-variant` (`default` | `outline`)
+  - `root`: `data-color` (any value), `data-size` (`md` | `sm`), `data-variant` (`default` | `ghost` | `outline`)
 
 ## Knobs
 

@@ -6,7 +6,7 @@ import type { RenderProp } from "@/components/control-ui/control-props";
 import type { BadgeKnobStyle } from "@/components/control-ui/knob-contracts/badge-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
-export const badgeVariants = ["default", "outline"] as const;
+export const badgeVariants = ["default", "outline", "ghost"] as const;
 
 export type BadgeVariant = (typeof badgeVariants)[number];
 
