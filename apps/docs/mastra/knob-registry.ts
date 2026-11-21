@@ -497,7 +497,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-badge-icon",
         syntax: "<length>",
-        defaultValue: "calc(var(--spacing) * 3)",
+        defaultValue: "1em",
         selector: ':where([data-control-family="badge"][data-slot="root"])',
       },
       {

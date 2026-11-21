@@ -15338,7 +15338,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-badge-icon",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "calc(var(--spacing) * 3)",
+        defaultValue: "1em",
       },
       {
         name: "--cui-badge-radius",
