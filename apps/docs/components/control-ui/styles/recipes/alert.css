@@ -18,6 +18,7 @@
     --_alert-foreground: var(--cui-alert-foreground);
     --_alert-border-color: var(--cui-alert-border-color);
     --_alert-description-foreground: var(--cui-alert-description-foreground);
+    --_alert-action-offset: var(--cui-alert-icon-gap);
     grid-template-columns: 0 minmax(0, 1fr);
     row-gap: var(--cui-alert-gap);
     padding: var(--cui-alert-padding) var(--cui-alert-padding-inline);
@@ -60,6 +61,7 @@
   :where([data-control-family="alert"][data-slot="root"]:has(> svg)) {
     grid-template-columns: var(--cui-alert-icon-size) minmax(0, 1fr);
     column-gap: var(--cui-alert-icon-gap);
+    --_alert-action-offset: 0px;
   }
 
   :where([data-control-family="alert"][data-slot="root"]:has(> [data-slot="action"])) {
@@ -70,8 +72,8 @@
     grid-template-columns: var(--cui-alert-icon-size) minmax(0, 1fr) auto;
   }
 
-  :where([data-control-family="alert"][data-slot="root"]:not(:has(> svg)) > [data-slot="action"]) {
-    margin-inline-start: var(--cui-alert-icon-gap);
+  :where([data-control-family="alert"][data-slot="root"] > [data-slot="action"]) {
+    margin-inline-start: var(--_alert-action-offset);
   }
 
   :where([data-control-family="alert"][data-slot="description"]) {

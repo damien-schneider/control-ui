@@ -75,14 +75,21 @@
     outline-offset: calc(var(--focus-ring-width) * -1);
   }
 
-  :where(
-    [data-control-family="table"][data-slot="row"]:has([data-control-family="table"][data-slot="row-link"])
-      :is(a[href], button, summary, input, select, textarea, [role="button"], [role="checkbox"], [role="radio"], [role="switch"]):not(
-        [data-slot="row-link"]
-      )
-  ) {
-    position: relative;
-    z-index: 1;
+  :where([data-control-family="table"][data-slot="row"]:has([data-control-family="table"][data-slot="row-link"])) {
+    --_table-row-link-lift-position: relative;
+    --_table-row-link-lift-layer: 1;
+  }
+
+  @layer stretched-link {
+    :where(
+        [data-control-family="table"][data-slot="row"]
+          :is(a[href], button, summary, input, select, textarea, [role="button"], [role="checkbox"], [role="radio"], [role="switch"]):not(
+            [data-slot="row-link"]
+          )
+      ) {
+      position: var(--_table-row-link-lift-position, static);
+      z-index: var(--_table-row-link-lift-layer, auto);
+    }
   }
 
   :where([data-control-family="table"][data-slot="row"]:is([data-state="selected"], [aria-selected="true"])) {

@@ -139,56 +139,75 @@
       margin-inline-end: 0;
     }
 
-    :where(
-        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="left"]:has(
-            [data-slot="panel"][data-layer="content"]
-          )
-          ~ [data-control-family="sidebar"][data-slot="inset"]
-      ) {
-      border-inline-start-width: 0;
-      border-start-start-radius: 0;
-      border-end-start-radius: 0;
+    :where([data-control-family="sidebar"][data-slot="wrapper"]) {
+      --_sidebar-inset-start-seam: 0;
+      --_sidebar-inset-end-seam: 0;
+      --_sidebar-inset-seam-clip: none;
     }
 
     :where(
-        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="right"]:has(
+        [data-control-family="sidebar"][data-slot="wrapper"]:has(
+          > [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="left"]
             [data-slot="panel"][data-layer="content"]
-          )
-          ~ [data-control-family="sidebar"][data-slot="inset"]
+        )
       ) {
-      border-inline-end-width: 0;
-      border-start-end-radius: 0;
-      border-end-end-radius: 0;
+      --_sidebar-inset-start-seam: 1;
     }
 
     :where(
-        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="left"]:dir(ltr):has(
+        [data-control-family="sidebar"][data-slot="wrapper"]:has(
+          > [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="right"]
             [data-slot="panel"][data-layer="content"]
-          )
-          ~ [data-control-family="sidebar"][data-slot="inset"]
-      ),
-    :where(
-        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="right"]:dir(rtl):has(
-            [data-slot="panel"][data-layer="content"]
-          )
-          ~ [data-control-family="sidebar"][data-slot="inset"]
+        )
       ) {
-      clip-path: inset(-100vmax -100vmax -100vmax 0);
+      --_sidebar-inset-end-seam: 1;
     }
 
     :where(
-        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="left"]:dir(rtl):has(
+        [data-control-family="sidebar"][data-slot="wrapper"]:has(
+          > [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="left"]:dir(ltr)
+            [data-slot="panel"][data-layer="content"],
+          > [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="right"]:dir(rtl)
             [data-slot="panel"][data-layer="content"]
-          )
-          ~ [data-control-family="sidebar"][data-slot="inset"]
-      ),
+        )
+      ) {
+      --_sidebar-inset-seam-clip: inset(-100vmax -100vmax -100vmax 0);
+    }
+
     :where(
-        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="right"]:dir(ltr):has(
+        [data-control-family="sidebar"][data-slot="wrapper"]:has(
+          > [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="left"]:dir(rtl)
+            [data-slot="panel"][data-layer="content"],
+          > [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="right"]:dir(ltr)
             [data-slot="panel"][data-layer="content"]
-          )
+        )
+      ) {
+      --_sidebar-inset-seam-clip: inset(-100vmax 0 -100vmax -100vmax);
+    }
+
+    :where(
+        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="left"]
           ~ [data-control-family="sidebar"][data-slot="inset"]
       ) {
-      clip-path: inset(-100vmax 0 -100vmax -100vmax);
+      border-inline-start-width: calc(var(--cui-sidebar-inset-border-width) * (1 - var(--_sidebar-inset-start-seam, 0)));
+      border-start-start-radius: calc(var(--cui-sidebar-inset-radius) * (1 - var(--_sidebar-inset-start-seam, 0)));
+      border-end-start-radius: calc(var(--cui-sidebar-inset-radius) * (1 - var(--_sidebar-inset-start-seam, 0)));
+    }
+
+    :where(
+        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"][data-side="right"]
+          ~ [data-control-family="sidebar"][data-slot="inset"]
+      ) {
+      border-inline-end-width: calc(var(--cui-sidebar-inset-border-width) * (1 - var(--_sidebar-inset-end-seam, 0)));
+      border-start-end-radius: calc(var(--cui-sidebar-inset-radius) * (1 - var(--_sidebar-inset-end-seam, 0)));
+      border-end-end-radius: calc(var(--cui-sidebar-inset-radius) * (1 - var(--_sidebar-inset-end-seam, 0)));
+    }
+
+    :where(
+        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="expanded"]
+          ~ [data-control-family="sidebar"][data-slot="inset"]
+      ) {
+      clip-path: var(--_sidebar-inset-seam-clip, none);
     }
   }
 

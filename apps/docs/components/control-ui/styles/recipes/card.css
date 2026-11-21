@@ -74,14 +74,21 @@
     border-radius: var(--cui-card-radius);
   }
 
-  :where(
-    [data-control-family="card"][data-slot="root"]:has([data-control-family="card"][data-slot="link"])
-      :is(a[href], button, summary, input, select, textarea, [role="button"], [role="checkbox"], [role="radio"], [role="switch"]):not(
-        [data-control-family="card"][data-slot="link"]
-      )
-  ) {
-    position: relative;
-    z-index: 1;
+  :where([data-control-family="card"][data-slot="root"]:has([data-control-family="card"][data-slot="link"])) {
+    --_card-link-lift-position: relative;
+    --_card-link-lift-layer: 1;
+  }
+
+  @layer stretched-link {
+    :where(
+        [data-control-family="card"][data-slot="root"]
+          :is(a[href], button, summary, input, select, textarea, [role="button"], [role="checkbox"], [role="radio"], [role="switch"]):not(
+            [data-control-family="card"][data-slot="link"]
+          )
+      ) {
+      position: var(--_card-link-lift-position, static);
+      z-index: var(--_card-link-lift-layer, auto);
+    }
   }
 
   :where([data-control-family="card"][data-slot="root"][data-size="sm"]) {

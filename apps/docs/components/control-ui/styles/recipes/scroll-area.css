@@ -145,8 +145,8 @@
       > [data-scroll-area-viewport][data-overflow-x-end]
       ~ [data-control-family="progressive-blur"][data-side="inline-end"]
   ) {
-    --_progressive-blur-visibility: visible;
-    --_progressive-blur-enter: 1;
+    --_progressive-blur-visibility: var(--_scroll-area-edge-visibility);
+    --_progressive-blur-enter: var(--_scroll-area-edge-enter);
   }
 
   @media (prefers-reduced-transparency: reduce), (forced-colors: active) {
@@ -161,13 +161,19 @@
     mask-image: none;
   }
 
+  :where([data-control-family="scroll-area"][data-slot="root"]) {
+    --_scroll-area-edge-visibility: visible;
+    --_scroll-area-edge-enter: 1;
+  }
+
   :where(
-    [data-control-family="scroll-area"][data-slot="root"]
-      > [data-scroll-area-viewport]:is(:focus-visible, :has(:focus-visible))
-      ~ [data-control-family="progressive-blur"]
+    [data-control-family="scroll-area"][data-slot="root"]:has(
+      > [data-scroll-area-viewport]:focus-visible,
+      > [data-scroll-area-viewport] :focus-visible
+    )
   ) {
-    --_progressive-blur-visibility: hidden;
-    --_progressive-blur-enter: 0;
+    --_scroll-area-edge-visibility: hidden;
+    --_scroll-area-edge-enter: 0;
   }
 
   :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="vertical"]) {

@@ -19,7 +19,11 @@
   [data-skin="xp"]
     :where(
       [data-control-family="button"][data-control="true"],
-      [data-track]:has(> [data-control-family="button"][data-track-item]) > [data-control-family="track-highlight"],
+      [data-track]
+        > [data-control-family="track-highlight"]:is(
+          [data-control-family="button"][data-track-item] ~ *,
+          :has(~ [data-control-family="button"][data-track-item])
+        ),
       [data-track]:is(
           [data-control-family="button-group"],
           [data-control-family="button"][data-slot="group"],

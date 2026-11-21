@@ -192,6 +192,11 @@
     font-size: var(--text-body);
   }
 
+  :where([data-control-family="chat-message"][data-slot="row"]:focus-within:not(:has([data-slot="row"]:focus-within))) {
+    --_chat-message-actions-opacity: 1;
+    --_chat-message-actions-pointer-events: auto;
+  }
+
   :where([data-control-family="chat-message"][data-slot="actions"]) {
     margin-block-start: calc(var(--spacing) * 1);
     gap: calc(var(--spacing) * 1);
@@ -222,25 +227,25 @@
       inset-inline-end: calc(var(--spacing) * 2);
     }
 
-    :where([data-control-family="chat-message"][data-slot="row"]:hover:not(:has([data-slot="row"]:hover)) > [data-slot="actions"]),
-    :where(
-        [data-control-family="chat-message"][data-slot="row"]:hover:not(:has([data-slot="row"]:hover))
-          > [data-slot="body"]
-          > [data-slot="actions"]
-      ) {
-      opacity: 1;
-      pointer-events: auto;
+    :where([data-control-family="chat-message"][data-slot="row"]:hover:not(:has([data-slot="row"]:hover))) {
+      --_chat-message-actions-opacity: 1;
+      --_chat-message-actions-pointer-events: auto;
+    }
+
+    :where([data-control-family="chat-message"][data-slot="row"] > [data-slot="body"]) {
+      --_chat-message-actions-opacity: inherit;
+      --_chat-message-actions-pointer-events: inherit;
+    }
+
+    :where([data-control-family="chat-message"][data-slot="row"] > [data-slot="actions"]),
+    :where([data-control-family="chat-message"][data-slot="row"] > [data-slot="body"] > [data-slot="actions"]) {
+      --_chat-message-actions-opacity: inherit;
+      --_chat-message-actions-pointer-events: inherit;
+      opacity: var(--_chat-message-actions-opacity);
+      pointer-events: var(--_chat-message-actions-pointer-events);
     }
   }
 
-  :where(
-    [data-control-family="chat-message"][data-slot="row"]:focus-within:not(:has([data-slot="row"]:focus-within)) > [data-slot="actions"]
-  ),
-  :where(
-    [data-control-family="chat-message"][data-slot="row"]:focus-within:not(:has([data-slot="row"]:focus-within))
-      > [data-slot="body"]
-      > [data-slot="actions"]
-  ),
   :where([data-control-family="chat-message"][data-slot="actions"]:has([data-popup-open])) {
     opacity: 1;
     pointer-events: auto;
@@ -375,4 +380,16 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --_chat-message-actions-opacity {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --_chat-message-actions-pointer-events {
+  syntax: "none | auto";
+  inherits: false;
+  initial-value: none;
 }
