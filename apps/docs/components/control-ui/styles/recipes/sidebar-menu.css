@@ -202,13 +202,24 @@
   @media (hover: hover) {
     :where(
         [data-control-family="sidebar"][data-slot="menu"][data-indicator="hover"]:has(
-            > [data-slot="menu-item"] > [data-slot="menu-button"]:focus-visible
-          )
-          > [data-slot="menu-item"]
-          > [data-slot="menu-button"][data-indicator="hover"]:hover:not([data-active], :focus-visible)
+          > [data-slot="menu-item"] > [data-slot="menu-button"]:focus-visible
+        )
       ) {
-      background-color: transparent;
-      box-shadow: none;
+      --_sidebar-menu-focus-visible: 1;
+    }
+
+    :where([data-control-family="sidebar"][data-slot="menu"] > [data-slot="menu-item"]) {
+      --_sidebar-menu-focus-visible: inherit;
+    }
+
+    @container style(--_sidebar-menu-focus-visible: 1) {
+      :where(
+          [data-control-family="sidebar"][data-slot="menu-item"]
+            > [data-slot="menu-button"][data-indicator="hover"]:hover:not([data-active], :focus-visible)
+        ) {
+        background-color: transparent;
+        box-shadow: none;
+      }
     }
   }
 
@@ -279,8 +290,10 @@
   }
 
   :where(
-    [data-control-family="sidebar"][data-slot="menu-item"]:has(> [data-slot="menu-action"]:not([data-show-on-hover]))
-      > [data-slot="menu-badge"]
+    [data-control-family="sidebar"][data-slot="menu-badge"]:is(
+      [data-slot="menu-action"]:not([data-show-on-hover]) ~ *,
+      :has(~ [data-slot="menu-action"]:not([data-show-on-hover]))
+    )
   ) {
     inset-inline-end: calc(var(--spacing) * 7);
   }
@@ -296,12 +309,17 @@
     }
 
     :where(
-        [data-control-family="sidebar"][data-slot="menu-item"]:is(
-            :hover,
-            :focus-within,
-            :has(> [data-slot="menu-action"][data-popup-open])
-          ):has(> [data-slot="menu-action"][data-show-on-hover])
-          > [data-slot="menu-badge"]
+        [data-control-family="sidebar"][data-slot="menu-item"]:is(:hover, :focus-within)
+          > [data-slot="menu-badge"]:is(
+            [data-slot="menu-action"][data-show-on-hover] ~ *,
+            :has(~ [data-slot="menu-action"][data-show-on-hover])
+          )
+      ),
+    :where(
+        [data-control-family="sidebar"][data-slot="menu-badge"]:is(
+          [data-slot="menu-action"][data-popup-open] ~ *,
+          :has(~ [data-slot="menu-action"][data-popup-open])
+        ):is([data-slot="menu-action"][data-show-on-hover] ~ *, :has(~ [data-slot="menu-action"][data-show-on-hover]))
       ) {
       opacity: 0;
     }
@@ -327,7 +345,7 @@
       padding-inline-end: calc(var(--spacing) * 12);
     }
 
-    :where([data-control-family="sidebar"][data-slot="menu-item"]:has(> [data-slot="menu-action"]) > [data-slot="menu-badge"]) {
+    :where([data-control-family="sidebar"][data-slot="menu-badge"]:is([data-slot="menu-action"] ~ *, :has(~ [data-slot="menu-action"]))) {
       inset-inline-end: var(--touch-target);
       inset-block-start: max(calc(var(--touch-target) / 2), calc(var(--cui-sidebar-menu-button-height) / 2));
     }
@@ -346,4 +364,10 @@
     gap: 0;
     overflow: visible;
   }
+}
+
+@property --_sidebar-menu-focus-visible {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
 }

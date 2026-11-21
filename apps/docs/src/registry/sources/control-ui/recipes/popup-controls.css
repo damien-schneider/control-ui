@@ -94,6 +94,7 @@
   :where([data-control-family="popup"][data-popup-kind="alert-dialog"][data-slot="header"]) {
     gap: calc(var(--spacing) * 1.5);
     padding: calc(var(--spacing) * 4) calc(var(--spacing) * 4) 0;
+    padding-inline-end: var(--_popup-header-close-clearance, calc(var(--spacing) * 4));
   }
 
   :where([data-control-family="popup"][data-popup-kind="dialog"][data-slot="body"]),
@@ -116,6 +117,7 @@
   :where([data-control-family="popup"][data-popup-kind="sheet"][data-slot="header"]) {
     gap: calc(var(--spacing) * 1.5);
     padding: calc(var(--spacing) * 4);
+    padding-inline-end: var(--_popup-header-close-clearance, calc(var(--spacing) * 4));
   }
 
   :where([data-control-family="popup"][data-popup-kind="sheet"][data-slot="content"]:has(> [data-slot="body"])) {
@@ -236,11 +238,8 @@
     inset-inline-end: var(--cui-popup-close-inset);
   }
 
-  :where(
-    [data-control-family="popup"][data-surface="modal"]:has(> [data-control-family="button"][data-popup-part="close"])
-      [data-control-family="popup"][data-slot="header"]
-  ) {
-    padding-inline-end: calc(var(--cui-popup-close-inset) + var(--control-h-xs) + var(--spacing) * 2);
+  :where([data-control-family="popup"][data-surface="modal"]:has(> [data-control-family="button"][data-popup-part="close"])) {
+    --_popup-header-close-clearance: calc(var(--cui-popup-close-inset) + var(--control-h-xs) + var(--spacing) * 2);
   }
 
   @media (hover: hover) {

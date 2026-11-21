@@ -680,10 +680,6 @@
     background-color: var(--background);
   }
 
-  :root:has([data-control-family="sidebar"][data-slot="wrapper"] [data-control-family="sidebar"][data-variant="inset"][data-state]) {
-    background-color: var(--sidebar);
-  }
-
   :where(
     [data-control-family]:is(
       a[href],
@@ -831,7 +827,7 @@
       overflow: clip;
     }
 
-    :where(:has(> [data-slide="panel"][data-ending-style])) {
+    :where([data-slide-viewport]:has(> [data-slide="panel"][data-ending-style])) {
       position: relative;
       overflow: clip;
     }

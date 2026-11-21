@@ -22,10 +22,12 @@ const edgeDisplacementMap = `<svg xmlns="http://www.w3.org/2000/svg" width="256"
 </svg>`;
 
 const sharedRefractionFilterId = "cui-modern-apple-refraction";
+const refractionSwitch = `@supports (backdrop-filter: url("")) { [data-skin="modern-apple"] { --apple-glass-refraction: url("#${sharedRefractionFilterId}"); } }`;
 
 export function ModernAppleGlassFilter() {
   return (
     <svg aria-hidden="true" focusable="false" width="0" height="0" style={{ position: "absolute", pointerEvents: "none" }}>
+      <style>{refractionSwitch}</style>
       <defs>
         <filter
           id={sharedRefractionFilterId}

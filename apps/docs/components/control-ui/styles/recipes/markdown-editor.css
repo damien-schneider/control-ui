@@ -182,19 +182,21 @@
   }
   :where([data-control-family="markdown-editor"] .tiptap .ProseMirror-selectednode) {
     outline: none;
+    opacity: var(--_markdown-editor-node-opacity, 1);
   }
   :where([data-control-family="markdown-editor"][data-slot="content"]:focus-within .tiptap .ProseMirror-selectednode) {
-    outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring);
+    outline: var(--_markdown-editor-node-outline, var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring));
     outline-offset: 2px;
   }
   :where(
     [data-control-family="markdown-editor"][data-slot="content"]:has(
-        > [data-markdown-drag-handle]:is([data-pointer-selection], [data-lifted])
-      )
-      .tiptap
-      .ProseMirror-selectednode
+      > [data-markdown-drag-handle]:is([data-pointer-selection], [data-lifted])
+    )
   ) {
-    outline: none;
+    --_markdown-editor-node-outline: none;
+  }
+  :where([data-control-family="markdown-editor"][data-slot="content"]:has(> [data-markdown-drag-handle][data-lifted])) {
+    --_markdown-editor-node-opacity: 0.4;
   }
   :where([data-control-family="markdown-editor"] [data-markdown-drag-preview]) {
     position: fixed;
@@ -218,13 +220,6 @@
   }
   :where([data-control-family="markdown-editor"] [data-markdown-drag-preview][data-clipped]) {
     mask-image: linear-gradient(to bottom, oklch(0 0 0) calc(100% - var(--spacing) * 12), transparent);
-  }
-  :where(
-    [data-control-family="markdown-editor"][data-slot="content"]:has(> [data-markdown-drag-handle][data-lifted])
-      .tiptap
-      .ProseMirror-selectednode
-  ) {
-    opacity: 0.4;
   }
   :where([data-control-family="markdown-editor"] .prosemirror-dropcursor-block) {
     border-radius: 9999px;

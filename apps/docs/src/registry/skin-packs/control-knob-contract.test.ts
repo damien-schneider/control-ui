@@ -535,6 +535,11 @@ const FAMILY_COMPONENTS: Record<string, readonly string[]> = {
   popup: ["hover-card"],
 };
 
+// Elements another family hosts and stamps with a protocol attribute: the family keys them by that attribute.
+const HOSTED_PROTOCOL_IDENTITY: Record<string, string> = {
+  "track-highlight": "[data-track-item]",
+};
+
 function selectorSlots(selector: string): string[] {
   return [...selector.matchAll(/\[data-slot="([\w-]+)"\]/g)].flatMap((match) => (match[1] ? [match[1]] : []));
 }
@@ -564,9 +569,11 @@ function recipeIdentitySelectorOffenders(root: Root, family?: string): string[] 
     const compounds = selectorCompoundsOf(rule.selector);
     const uiCompounds = compounds.filter((compound) => compound.includes("[data-control-ui="));
     const composedOk = uiCompounds.every((compound) => isComposedHostCompound(compound, family));
+    const hostedIdentity = family ? HOSTED_PROTOCOL_IDENTITY[family] : undefined;
     const hasIdentity =
       compounds.some((compound) => compound.includes("[data-control-family=")) ||
-      uiCompounds.some((compound) => isComposedHostCompound(compound, family));
+      uiCompounds.some((compound) => isComposedHostCompound(compound, family)) ||
+      (hostedIdentity !== undefined && compounds.some((compound) => compound.includes(hostedIdentity)));
     if (!composedOk || !hasIdentity) offenders.push(`${rule.source?.start?.line ?? "?"} ${rule.selector}`);
   });
   return offenders;

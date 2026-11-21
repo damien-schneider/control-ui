@@ -259,6 +259,7 @@ export function TabsPanel({ className, value, ref, ...props }: TabsPanelProps) {
     const unregister = registerPanel(value, node);
     const cleanup = setRef(ref, node);
     if (!node) return;
+    node.parentElement?.toggleAttribute("data-slide-viewport", true);
     return () => {
       unregister?.();
       if (typeof cleanup === "function") cleanup();

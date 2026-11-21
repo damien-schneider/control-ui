@@ -11,6 +11,7 @@
     --cui-emoji-picker-height: 22rem;
     --_emoji-picker-recent-block-size: 0px;
     --_emoji-picker-touch-min: 0px;
+    --_emoji-picker-browse-display: initial;
   }
   :where([data-control-family="emoji-picker"][data-slot="root"]:not([data-variant="reactions"])) {
     inline-size: calc(
@@ -26,7 +27,7 @@
   }
 
   :where([data-control-family="emoji-picker"][data-slot="categories"]) {
-    display: flex;
+    display: var(--_emoji-picker-browse-display, flex);
     justify-content: space-between;
     flex-shrink: 0;
     overflow-x: auto;
@@ -68,12 +69,10 @@
   }
   :where([data-control-family="emoji-picker"][data-slot="root"]:has(input:not(:placeholder-shown))) {
     --_emoji-picker-recent-block-size: 0px;
+    --_emoji-picker-browse-display: none;
   }
-  :where(
-    [data-control-family="emoji-picker"][data-slot="root"]:has(input:not(:placeholder-shown))
-      :is([data-slot="categories"], [data-slot="recent"])
-  ) {
-    display: none;
+  :where([data-control-family="emoji-picker"][data-slot="recent"]) {
+    display: var(--_emoji-picker-browse-display, block);
   }
   :where([data-control-family="emoji-picker"][data-slot="error"]) {
     display: flex;

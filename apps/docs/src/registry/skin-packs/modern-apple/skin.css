@@ -32,13 +32,6 @@
   --apple-platter-shadow: var(--apple-glass-rim), 0 1px 4px oklch(0 0 0 / 0.08), 0 4px 14px oklch(0 0 0 / 0.08);
 }
 
-@supports (backdrop-filter: url("")) {
-  [data-skin="modern-apple"]:has(#cui-modern-apple-refraction),
-  :root:has(#cui-modern-apple-refraction) [data-skin="modern-apple"] {
-    --apple-glass-refraction: url("#cui-modern-apple-refraction");
-  }
-}
-
 :where(.dark) [data-skin="modern-apple"],
 .dark[data-skin="modern-apple"] {
   --apple-fill: oklch(1 0 0 / 0.075);

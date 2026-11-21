@@ -23,9 +23,9 @@
 
   :where([data-control-family="thread-rail"][data-slot="line"]) {
     block-size: 1px;
-    inline-size: calc(var(--spacing) * 2);
+    inline-size: var(--_thread-rail-line-size, calc(var(--spacing) * 2));
     border-radius: var(--cui-thread-rail-line-radius);
-    background: oklch(from var(--foreground) l c h / 0.2);
+    background: var(--_thread-rail-line-fill, oklch(from var(--foreground) l c h / 0.2));
   }
 
   :where([data-control-family="thread-rail"][data-slot="line"])::before {
@@ -36,47 +36,33 @@
     inline-size: max(calc(var(--spacing) * 4), var(--target-min));
   }
 
-  :where([data-control-family="thread-rail"][data-slot="item"][data-in-view] [data-control-family="thread-rail"][data-slot="line"]) {
-    background: oklch(from var(--foreground) l c h / 0.6);
+  :where([data-control-family="thread-rail"][data-slot="item"][data-in-view]) {
+    --_thread-rail-line-fill: oklch(from var(--foreground) l c h / 0.6);
   }
 
-  :where(
-    [data-control-family="thread-rail"][data-slot="item"]:has(+ [data-control-family="thread-rail"][data-slot="item"]:focus-within)
-      [data-control-family="thread-rail"][data-slot="line"]
-  ),
-  :where(
-    [data-control-family="thread-rail"][data-slot="item"]:focus-within
-      + [data-control-family="thread-rail"][data-slot="item"]
-      [data-control-family="thread-rail"][data-slot="line"]
-  ) {
-    inline-size: calc(var(--spacing) * 3);
-    background: oklch(from var(--foreground) l c h / 0.45);
+  :where([data-control-family="thread-rail"][data-slot="item"]:has(+ [data-control-family="thread-rail"][data-slot="item"]:focus-within)),
+  :where([data-control-family="thread-rail"][data-slot="item"]:focus-within + [data-control-family="thread-rail"][data-slot="item"]) {
+    --_thread-rail-line-size: calc(var(--spacing) * 3);
+    --_thread-rail-line-fill: oklch(from var(--foreground) l c h / 0.45);
   }
 
   @media (hover: hover) {
-    :where(
-        [data-control-family="thread-rail"][data-slot="item"]:has(+ [data-control-family="thread-rail"][data-slot="item"]:hover)
-          [data-control-family="thread-rail"][data-slot="line"]
-      ),
-    :where(
-        [data-control-family="thread-rail"][data-slot="item"]:hover
-          + [data-control-family="thread-rail"][data-slot="item"]
-          [data-control-family="thread-rail"][data-slot="line"]
-      ) {
-      inline-size: calc(var(--spacing) * 3);
-      background: oklch(from var(--foreground) l c h / 0.45);
+    :where([data-control-family="thread-rail"][data-slot="item"]:has(+ [data-control-family="thread-rail"][data-slot="item"]:hover)),
+    :where([data-control-family="thread-rail"][data-slot="item"]:hover + [data-control-family="thread-rail"][data-slot="item"]) {
+      --_thread-rail-line-size: calc(var(--spacing) * 3);
+      --_thread-rail-line-fill: oklch(from var(--foreground) l c h / 0.45);
     }
   }
 
-  :where([data-control-family="thread-rail"][data-slot="item"]:focus-within [data-control-family="thread-rail"][data-slot="line"]) {
-    inline-size: calc(var(--spacing) * 4);
-    background: var(--foreground);
+  :where([data-control-family="thread-rail"][data-slot="item"]:focus-within) {
+    --_thread-rail-line-size: calc(var(--spacing) * 4);
+    --_thread-rail-line-fill: var(--foreground);
   }
 
   @media (hover: hover) {
-    :where([data-control-family="thread-rail"][data-slot="item"]:hover [data-control-family="thread-rail"][data-slot="line"]) {
-      inline-size: calc(var(--spacing) * 4);
-      background: var(--foreground);
+    :where([data-control-family="thread-rail"][data-slot="item"]:hover) {
+      --_thread-rail-line-size: calc(var(--spacing) * 4);
+      --_thread-rail-line-fill: var(--foreground);
     }
   }
 
@@ -123,19 +109,13 @@
   }
 
   @media (hover: hover) and (pointer: fine) {
-    :where(
-        [data-control-family="thread-rail"][data-slot="root"]:has([data-control-family="thread-rail"][data-slot="item"]:hover)
-          [data-control-family="thread-rail"][data-slot="popover"]
-      ) {
+    :where([data-control-family="thread-rail"][data-slot="item"]:hover ~ [data-control-family="thread-rail"][data-slot="popover"]) {
       scale: 1;
       opacity: 1;
     }
 
     @starting-style {
-      :where(
-          [data-control-family="thread-rail"][data-slot="root"]:has([data-control-family="thread-rail"][data-slot="item"]:hover)
-            [data-control-family="thread-rail"][data-slot="popover"]
-        ) {
+      :where([data-control-family="thread-rail"][data-slot="item"]:hover ~ [data-control-family="thread-rail"][data-slot="popover"]) {
         scale: 0.98;
         opacity: 0;
       }
@@ -187,7 +167,8 @@
 
   @media (hover: hover) and (pointer: fine) {
     :where(
-        [data-control-family="thread-rail"][data-slot="root"]:has([data-control-family="thread-rail"][data-slot="item"]:hover)
+        [data-control-family="thread-rail"][data-slot="item"]:hover
+          ~ [data-control-family="thread-rail"][data-slot="popover"]
           [data-control-family="thread-rail"][data-slot="popover-layer"][data-active]
       ) {
       scale: 1;

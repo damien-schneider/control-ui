@@ -466,6 +466,7 @@ export function InlineCitationSource({ source: sourceProp, className, children, 
         {...props}
         ref={(node) => {
           sourceRef.current = node;
+          node?.parentElement?.toggleAttribute("data-slide-viewport", true);
           if (typeof ref === "function") ref(node);
           else if (ref) ref.current = node;
         }}

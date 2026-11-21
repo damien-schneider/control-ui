@@ -1,6 +1,11 @@
 @layer components {
   :where([data-control-family="reveal"][data-slot="scope"]) {
     --cui-reveal-hidden-opacity: 0;
+    --_reveal-pinned: 0;
+  }
+
+  :where([data-control-family="reveal"][data-slot="scope"]:has([data-popup-open])) {
+    --_reveal-pinned: 1;
   }
 
   :where([data-control-family="reveal"][data-slot="content"]) {
@@ -11,10 +16,9 @@
 
   @media (hover: hover) and (pointer: fine) {
     :where(
-        [data-control-family="reveal"][data-slot="scope"]:not(:hover, :focus-within, :has([data-popup-open]))
-          [data-control-family="reveal"][data-slot="content"]
+        [data-control-family="reveal"][data-slot="scope"]:not(:hover, :focus-within) [data-control-family="reveal"][data-slot="content"]
       ) {
-      opacity: var(--cui-reveal-hidden-opacity);
+      opacity: max(var(--cui-reveal-hidden-opacity), var(--_reveal-pinned, 0));
     }
   }
 }

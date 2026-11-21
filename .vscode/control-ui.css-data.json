@@ -2,6 +2,16 @@
   "version": 1.1,
   "properties": [
     {
+      "name": "--_chat-message-actions-opacity",
+      "description": "Control UI chat-message knob — registered syntax <number>, fallback 0. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<number>"
+    },
+    {
+      "name": "--_chat-message-actions-pointer-events",
+      "description": "Control UI chat-message knob — registered syntax none | auto, fallback none. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "none | auto"
+    },
+    {
       "name": "--_dynamic-notification-ink-low",
       "description": "Control UI dynamic-notification-motion knob — registered syntax <color>, fallback oklch(0 0 0 / 0.97). Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
@@ -62,6 +72,11 @@
       "syntax": "<length-percentage>"
     },
     {
+      "name": "--_sidebar-menu-focus-visible",
+      "description": "Control UI sidebar-menu knob — registered syntax <number>, fallback 0. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<number>"
+    },
+    {
       "name": "--_sidebar-transition-duration",
       "description": "Control UI sidebar-parts knob — registered syntax <time>, fallback 0s. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<time>"
@@ -90,6 +105,11 @@
       "name": "--_tabs-prev-height",
       "description": "Control UI tabs-motion knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
+    },
+    {
+      "name": "--_track-preview",
+      "description": "Control UI track-highlight knob — registered syntax <number>, fallback 0. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<number>"
     },
     {
       "name": "--cui-accordion-icon-foreground",

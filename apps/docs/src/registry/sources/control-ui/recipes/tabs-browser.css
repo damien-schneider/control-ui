@@ -16,12 +16,29 @@
     border-radius: var(--cui-tabs-list-radius) var(--cui-tabs-list-radius) 0 0;
   }
 
-  :where([data-control-family="tabs"][data-slot="root"]:has(> [data-slot="surface"]) [data-slot="list"][data-variant="browser"]) {
-    --cui-tabs-list-shadow: none;
+  :where([data-control-family="tabs"][data-slot="root"]) {
+    --_tabs-has-surface: initial;
+    --_tabs-has-browser-list: initial;
   }
 
-  :where([data-control-family="tabs"][data-slot="root"]:has([data-slot="list"][data-variant="browser"]) > [data-slot="surface"]) {
-    margin-block-start: calc(-1 * var(--cui-tabs-border-width));
+  :where([data-control-family="tabs"][data-slot="root"]:has(> [data-slot="surface"])) {
+    --_tabs-has-surface: 1;
+  }
+
+  :where([data-control-family="tabs"][data-slot="root"]:has([data-slot="list"][data-variant="browser"])) {
+    --_tabs-has-browser-list: 1;
+  }
+
+  @container style(--_tabs-has-surface: 1) {
+    :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"]) {
+      --cui-tabs-list-shadow: none;
+    }
+  }
+
+  @container style(--_tabs-has-browser-list: 1) {
+    :where([data-control-family="tabs"][data-slot="root"] > [data-slot="surface"]) {
+      margin-block-start: calc(-1 * var(--cui-tabs-border-width));
+    }
   }
 
   :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"] [data-slot="indicator"]) {

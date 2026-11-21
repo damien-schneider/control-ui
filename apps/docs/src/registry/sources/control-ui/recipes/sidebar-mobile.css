@@ -10,6 +10,7 @@
     --cui-sidebar-nav-item-active-background: var(--active-fill);
     --cui-sidebar-nav-item-active-foreground: var(--foreground);
     --cui-sidebar-nav-gap: calc(var(--spacing) * 3);
+    --_sidebar-inset-scroll-end: auto;
   }
 
   :where([data-control-family="sidebar"][data-slot="mobile-nav-container"]) {
@@ -107,10 +108,11 @@
   @variant max-sidebar {
     :where([data-control-family="sidebar"][data-slot="wrapper"]:has(> [data-slot="mobile-nav-container"])) {
       flex-direction: column;
+      --_sidebar-inset-scroll-end: calc(var(--cui-sidebar-nav-height) + env(safe-area-inset-bottom, 0px));
     }
 
-    :where([data-control-family="sidebar"][data-slot="wrapper"]:has(> [data-slot="mobile-nav-container"]) > [data-slot="inset"]) {
-      scroll-padding-block-end: calc(var(--cui-sidebar-nav-height) + env(safe-area-inset-bottom, 0px));
+    :where([data-control-family="sidebar"][data-slot="wrapper"] > [data-slot="inset"]) {
+      scroll-padding-block-end: var(--_sidebar-inset-scroll-end);
     }
   }
 
