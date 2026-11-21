@@ -63,6 +63,13 @@
   "peerDependencies": {
     "@base-ui/react": "^1.9.0",
     "@biomejs/biome": ">=2.5.0",
+    "@codemirror/commands": "6.11.1",
+    "@codemirror/lang-markdown": "6.5.2",
+    "@codemirror/language": "6.13.1",
+    "@codemirror/state": "6.7.6",
+    "@codemirror/view": "6.43.15",
+    "@lezer/common": "1.5.6",
+    "@lezer/markdown": "1.8.1",
     "@tanstack/charts": "^1.1.0",
     "@tanstack/react-virtual": "^3.14.13",
     "@tiptap/core": "3.31.4",
@@ -101,6 +108,27 @@
   },
   "peerDependenciesMeta": {
     "@biomejs/biome": {
+      "optional": true
+    },
+    "@codemirror/commands": {
+      "optional": true
+    },
+    "@codemirror/lang-markdown": {
+      "optional": true
+    },
+    "@codemirror/language": {
+      "optional": true
+    },
+    "@codemirror/state": {
+      "optional": true
+    },
+    "@codemirror/view": {
+      "optional": true
+    },
+    "@lezer/common": {
+      "optional": true
+    },
+    "@lezer/markdown": {
       "optional": true
     },
     "@tanstack/charts": {

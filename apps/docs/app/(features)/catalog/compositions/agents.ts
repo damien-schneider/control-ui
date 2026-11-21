@@ -316,7 +316,7 @@ export const agentsCompositions = {
         part("MarkdownEditorSuggestions"),
         part("MarkdownEditorUploads"),
       ),
-      "Markdown strings stay application-owned. Content includes block drag handles (Alt+ArrowUp/ArrowDown also moves blocks). Suggestions adds slash commands and accepts people with persistent profile URLs; mentions save as Markdown links. Supply onUploadImage to enable image paste and drop. Pass extensions to add TipTap extensions after the built-in Markdown set, and isUrlAllowed to change which link and image URLs stay editable (a file-based editor can accept relative links); both are read once, when the editor mounts.",
+      "Markdown strings stay application-owned. Both alternatives share these parts. Content includes block drag handles (Alt+ArrowUp/ArrowDown also moves blocks) and table grips for moving, aligning, inserting, and deleting rows and columns. Suggestions adds slash commands and accepts people with persistent profile URLs; mentions save as Markdown links. Supply onUploadImage to enable image paste and drop. isUrlAllowed changes which link and image URLs stay editable (a file-based editor can accept relative links). Rich text renders a TipTap document and normalizes the Markdown it saves; pass extensions to add TipTap extensions after the built-in set. Live preview edits the Markdown text itself, so what you type is what you save. Both props are read once, when the editor mounts.",
     ),
     example(
       "Selection bubble menu",

@@ -212,6 +212,7 @@ import {
   MarkdownEditorExample,
   MarkdownEditorReadOnlyExample,
 } from "@/src/registry/examples/markdown-editor";
+import { MarkdownEditorLiveExample } from "@/src/registry/examples/markdown-editor-live";
 import type { LoadedPreviews } from "./preview-targets";
 
 export const previewReferences: LoadedPreviews = {
@@ -400,6 +401,8 @@ export const previewReferences: LoadedPreviews = {
   "kit/action-bar": ActionBarExample,
   "kit/inline-attachment": InlineAttachmentExample,
   "kit/markdown-editor": MarkdownEditorExample,
+  "kit/markdown-editor/alternative/rich": MarkdownEditorExample,
+  "kit/markdown-editor/alternative/live": MarkdownEditorLiveExample,
   "kit/markdown-editor/bubble-menu": MarkdownEditorBubbleMenuExample,
   "kit/markdown-editor/read-only": MarkdownEditorReadOnlyExample,
   "kit/markdown-block": MarkdownBlockExample,

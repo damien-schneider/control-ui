@@ -1,26 +1,26 @@
 @layer components {
-  :where([data-control-family="markdown-editor"] .tiptap .tableWrapper) {
+  :where([data-control-family="markdown-editor"] :is(.tiptap .tableWrapper, .cm-md-table)) {
     overflow-x: auto;
     overscroll-behavior-inline: contain;
   }
-  :where([data-control-family="markdown-editor"] .tiptap table) {
+  :where([data-control-family="markdown-editor"] :is(.tiptap, .cm-md-table) table) {
     border-collapse: collapse;
     inline-size: auto;
   }
-  :where([data-control-family="markdown-editor"] .tiptap :is(td, th)) {
+  :where([data-control-family="markdown-editor"] :is(.tiptap, .cm-md-table) :is(td, th)) {
     border: var(--cui-markdown-editor-table-border-width) solid var(--cui-markdown-editor-table-border-color);
     padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2.5);
     text-align: start;
     vertical-align: top;
   }
-  :where([data-control-family="markdown-editor"] .tiptap :is(td, th) > p) {
+  :where([data-control-family="markdown-editor"] :is(.tiptap :is(td, th) > p, .cm-md-table :is(td, th) > .cm-editor)) {
     min-inline-size: 4rem;
     max-inline-size: 24rem;
   }
-  :where([data-control-family="markdown-editor"] .tiptap th) {
+  :where([data-control-family="markdown-editor"] :is(.tiptap, .cm-md-table) th) {
     font-weight: var(--font-weight-semibold);
   }
-  :where([data-control-family="markdown-editor"] .tiptap .selectedCell) {
+  :where([data-control-family="markdown-editor"] :is(.tiptap, .cm-md-table) .selectedCell) {
     background: var(--cui-markdown-editor-table-selection-background);
   }
   :where([data-control-family="markdown-editor"][data-slot="table-controls"]) {

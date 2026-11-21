@@ -74,7 +74,7 @@ export const generatedSkinContract: SkinContract = {
     "live-status": ["live-status"],
     markdown: ["markdown"],
     "markdown-block": ["markdown-block"],
-    "markdown-editor": ["markdown-editor"],
+    "markdown-editor": ["markdown-editor", "markdown-editor-live", "markdown-editor-parts"],
     menubar: ["menubar"],
     meter: ["meter"],
     "model-switcher": ["model-switcher"],
@@ -8355,7 +8355,7 @@ export const generatedSkinContract: SkinContract = {
       parts: {
         root: {
           family: "markdown-editor",
-          registryItems: ["markdown-editor"],
+          registryItems: ["markdown-editor-parts"],
           states: [
             {
               attribute: "data-disabled",
@@ -8373,32 +8373,32 @@ export const generatedSkinContract: SkinContract = {
         },
         "bubble-menu": {
           family: "markdown-editor",
-          registryItems: ["markdown-editor"],
+          registryItems: ["markdown-editor-parts"],
           states: [],
         },
         content: {
           family: "markdown-editor",
-          registryItems: ["markdown-editor"],
+          registryItems: ["markdown-editor", "markdown-editor-live"],
           states: [],
         },
         source: {
           family: "markdown-editor",
-          registryItems: ["markdown-editor"],
+          registryItems: ["markdown-editor-parts"],
           states: [],
         },
         "suggestion-description": {
           family: "markdown-editor",
-          registryItems: ["markdown-editor"],
+          registryItems: ["markdown-editor-parts"],
           states: [],
         },
         "table-controls": {
           family: "markdown-editor",
-          registryItems: ["markdown-editor"],
+          registryItems: ["markdown-editor-parts"],
           states: [],
         },
         "table-drop-line": {
           family: "markdown-editor",
-          registryItems: ["markdown-editor"],
+          registryItems: ["markdown-editor-parts"],
           states: [
             {
               attribute: "data-axis",
@@ -8425,16 +8425,16 @@ export const generatedSkinContract: SkinContract = {
         },
         toolbar: {
           family: "markdown-editor",
-          registryItems: ["markdown-editor"],
+          registryItems: ["markdown-editor-parts"],
           states: [],
         },
         uploads: {
           family: "markdown-editor",
-          registryItems: ["markdown-editor"],
+          registryItems: ["markdown-editor-parts"],
           states: [],
         },
       },
-      registryItems: ["markdown-editor"],
+      registryItems: ["markdown-editor", "markdown-editor-live", "markdown-editor-parts"],
     },
     menubar: {
       parts: {

@@ -1,0 +1,112 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "markdown-editor-parts",
+  "type": "registry:component",
+  "title": "Markdown editor parts",
+  "description": "The engine contract, document state, toolbar, bubble menu, suggestions, drag handle and table controls every Markdown editor alternative shares.",
+  "dependencies": [
+    "lucide-react@^1.47.0"
+  ],
+  "registryDependencies": [
+    "button",
+    "chat-composer-attachment",
+    "core",
+    "dropdown-menu",
+    "input",
+    "label",
+    "live-status",
+    "popover",
+    "scroll-area",
+    "textarea",
+    "toolbar",
+    "tooltip",
+    "trigger-menu",
+    "typography"
+  ],
+  "files": [
+    {
+      "path": "src/registry/knob-contracts/markdown-editor-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/markdown-editor-knobs.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/bubble-menu.tsx",
+      "target": "@components/control-ui/markdown-editor/bubble-menu.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/context.ts",
+      "target": "@components/control-ui/markdown-editor/context.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/drag/drag-handle.tsx",
+      "target": "@components/control-ui/markdown-editor/drag/drag-handle.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/drag/drag-preview.ts",
+      "target": "@components/control-ui/markdown-editor/drag/drag-preview.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/engine.ts",
+      "target": "@components/control-ui/markdown-editor/engine.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/root.tsx",
+      "target": "@components/control-ui/markdown-editor/root.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/source-view.tsx",
+      "target": "@components/control-ui/markdown-editor/source-view.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/suggestions.tsx",
+      "target": "@components/control-ui/markdown-editor/suggestions.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/table/table-controls.tsx",
+      "target": "@components/control-ui/markdown-editor/table/table-controls.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/table/table-geometry.ts",
+      "target": "@components/control-ui/markdown-editor/table/table-geometry.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/table/table-grip.tsx",
+      "target": "@components/control-ui/markdown-editor/table/table-grip.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/table/use-table-target.ts",
+      "target": "@components/control-ui/markdown-editor/table/use-table-target.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/toolbar.tsx",
+      "target": "@components/control-ui/markdown-editor/toolbar.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/uploads.ts",
+      "target": "@components/control-ui/markdown-editor/uploads.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/markdown-editor/url-policy.ts",
+      "target": "@components/control-ui/markdown-editor/url-policy.ts",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "internal": true,
+    "sourceManifestPath": "registry/control-ui/markdown-editor-parts.json"
+  }
+}

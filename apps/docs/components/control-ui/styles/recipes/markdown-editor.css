@@ -30,7 +30,7 @@
     max-block-size: var(--cui-markdown-editor-max-height);
     overflow: auto;
   }
-  :where([data-control-family="markdown-editor"][data-slot="content"] .tiptap) {
+  :where([data-control-family="markdown-editor"][data-slot="content"] :is(.tiptap, .cm-content:not(.cm-md-table *))) {
     min-block-size: var(--cui-markdown-editor-min-height);
     padding: var(--cui-markdown-editor-padding);
     padding-inline-start: calc(var(--cui-markdown-editor-padding) + var(--cui-markdown-editor-gutter-size));
@@ -38,13 +38,17 @@
     white-space: pre-wrap;
     outline: none;
   }
-  :where([data-control-family="markdown-editor"][data-slot="root"][data-disabled] [data-slot="content"] .tiptap) {
+  :where(
+    [data-control-family="markdown-editor"][data-slot="root"][data-disabled]
+      [data-slot="content"]
+      :is(.tiptap, .cm-content:not(.cm-md-table *))
+  ) {
     opacity: var(--disabled-opacity);
     cursor: not-allowed;
   }
   :where(
     [data-control-family="markdown-editor"][data-slot="root"]:has(
-      :is([data-slot="content"] .tiptap, [data-slot="source"] textarea):focus-visible
+      :is([data-slot="content"] :is(.tiptap, .cm-content), [data-slot="source"] textarea):focus-visible
     ):not([data-control-family="chat-composer"][data-slot="shell"] *)
   ) {
     border-color: var(--cui-markdown-editor-focus-border-color);
@@ -52,7 +56,7 @@
   @media (forced-colors: active) {
     :where(
         [data-control-family="markdown-editor"][data-slot="root"]:has(
-          :is([data-slot="content"] .tiptap, [data-slot="source"] textarea):focus-visible
+          :is([data-slot="content"] :is(.tiptap, .cm-content), [data-slot="source"] textarea):focus-visible
         ):not([data-control-family="chat-composer"][data-slot="shell"] *)
       ) {
       outline: var(--focus-ring-width) solid Highlight;
@@ -68,10 +72,7 @@
     white-space: nowrap;
   }
   :where([data-control-family="markdown-editor"][data-slot="bubble-menu"]) {
-    z-index: 1;
     white-space: nowrap;
-    transform-origin: bottom center;
-    animation: cui-markdown-editor-bubble-enter var(--duration-fast) var(--ease-emphasized);
   }
   :where([data-control-family="markdown-editor"] [data-markdown-drag-handle]) {
     position: absolute;
@@ -114,22 +115,25 @@
     float: inline-start;
     block-size: 0;
   }
+  :where([data-control-family="markdown-editor"] .cm-placeholder) {
+    color: var(--cui-markdown-editor-muted-foreground);
+  }
   :where([data-control-family="markdown-editor"] .tiptap :is(h1, h2, h3, h4, h5, h6)) {
     margin-block: var(--cui-markdown-editor-gap) 0;
   }
   :where([data-control-family="markdown-editor"] .tiptap > :first-child) {
     margin-block-start: 0;
   }
-  :where([data-control-family="markdown-editor"] .tiptap strong) {
+  :where([data-control-family="markdown-editor"] :is(.tiptap, .cm-content) strong) {
     font-weight: var(--font-weight-semibold);
   }
-  :where([data-control-family="markdown-editor"] .tiptap em) {
+  :where([data-control-family="markdown-editor"] :is(.tiptap, .cm-content) em) {
     font-style: italic;
   }
-  :where([data-control-family="markdown-editor"] .tiptap s) {
+  :where([data-control-family="markdown-editor"] :is(.tiptap, .cm-content) s) {
     text-decoration: line-through;
   }
-  :where([data-control-family="markdown-editor"] .tiptap a) {
+  :where([data-control-family="markdown-editor"] :is(.tiptap, .cm-content) a) {
     text-decoration: underline;
     color: var(--primary-text);
   }
@@ -150,22 +154,26 @@
     align-items: flex-start;
     gap: var(--cui-markdown-editor-gap);
   }
-  :where([data-control-family="markdown-editor"] .tiptap [data-slot="task-checkbox"]) {
+  :where([data-control-family="markdown-editor"] :is(.tiptap, .cm-content) [data-slot="task-checkbox"]) {
     display: inline-flex;
     align-items: center;
     block-size: 1lh;
     flex-shrink: 0;
   }
+  :where([data-control-family="markdown-editor"] .cm-content [data-slot="task-checkbox"]) {
+    vertical-align: top;
+    margin-inline-end: calc(var(--spacing) * 2);
+  }
   :where([data-control-family="markdown-editor"] .tiptap [data-slot="task-content"]) {
     flex: 1;
     min-inline-size: 0;
   }
-  :where([data-control-family="markdown-editor"] .tiptap blockquote) {
+  :where([data-control-family="markdown-editor"] :is(.tiptap blockquote, .cm-md-quote-line)) {
     border-inline-start: var(--cui-markdown-editor-border-width) solid var(--cui-markdown-editor-border-color);
     padding-inline-start: var(--cui-markdown-editor-padding);
     color: var(--cui-markdown-editor-muted-foreground);
   }
-  :where([data-control-family="markdown-editor"] .tiptap :is(code, pre)) {
+  :where([data-control-family="markdown-editor"] :is(.tiptap :is(code, pre), .cm-content code)) {
     font-family: var(--font-mono);
     background: var(--cui-markdown-editor-code-background);
     border-radius: var(--radius-sm);
@@ -174,7 +182,40 @@
     padding: var(--cui-markdown-editor-padding);
     overflow: auto;
   }
-  :where([data-control-family="markdown-editor"] .tiptap img[src]) {
+  :where([data-control-family="markdown-editor"] .cm-md-code-line) {
+    padding-inline: var(--cui-markdown-editor-padding);
+    font-family: var(--font-mono);
+    background: var(--cui-markdown-editor-code-background);
+  }
+  :where([data-control-family="markdown-editor"] .cm-md-code-start) {
+    border-start-start-radius: var(--radius-sm);
+    border-start-end-radius: var(--radius-sm);
+  }
+  :where([data-control-family="markdown-editor"] .cm-md-code-end) {
+    border-end-start-radius: var(--radius-sm);
+    border-end-end-radius: var(--radius-sm);
+  }
+  :where([data-control-family="markdown-editor"] :is(.cm-md-fence, .cm-md-blank)) {
+    overflow: clip;
+  }
+  :where([data-control-family="markdown-editor"] .cm-md-fence) {
+    block-size: var(--cui-markdown-editor-padding);
+  }
+  :where([data-control-family="markdown-editor"] .cm-md-blank) {
+    block-size: var(--cui-markdown-editor-gap);
+  }
+  :where([data-control-family="markdown-editor"] .cm-md-rule-line) {
+    background:
+      linear-gradient(var(--cui-markdown-editor-border-color) 0 0) center / 100% var(--cui-markdown-editor-border-width) no-repeat;
+  }
+  :where([data-control-family="markdown-editor"] .cm-md-bullet) {
+    display: inline-block;
+    min-inline-size: calc(var(--spacing) * 4);
+  }
+  :where([data-control-family="markdown-editor"] .cm-md-lifted) {
+    opacity: var(--_markdown-editor-node-opacity, 1);
+  }
+  :where([data-control-family="markdown-editor"] :is(.tiptap, .cm-content) img[src]) {
     display: block;
     max-inline-size: 100%;
     block-size: auto;
@@ -221,23 +262,17 @@
   :where([data-control-family="markdown-editor"] [data-markdown-drag-preview][data-clipped]) {
     mask-image: linear-gradient(to bottom, oklch(0 0 0) calc(100% - var(--spacing) * 12), transparent);
   }
-  :where([data-control-family="markdown-editor"] .prosemirror-dropcursor-block) {
+  :where([data-control-family="markdown-editor"] :is(.prosemirror-dropcursor-block, .cm-md-drop-line)) {
     border-radius: 9999px;
     background: var(--cui-markdown-editor-muted-foreground);
   }
-  :where([data-control-family="markdown-editor"] .tiptap [data-image-upload]) {
+  :where([data-control-family="markdown-editor"] :is(.tiptap, .cm-content) [data-image-upload]) {
     padding: var(--cui-markdown-editor-padding);
     border: var(--cui-markdown-editor-border-width) dashed var(--cui-markdown-editor-border-color);
     color: var(--cui-markdown-editor-muted-foreground);
   }
   :where([data-control-family="markdown-editor"][data-slot="suggestion-description"]) {
     color: var(--muted-foreground);
-  }
-  @keyframes cui-markdown-editor-bubble-enter {
-    from {
-      opacity: 0;
-      scale: 0.96;
-    }
   }
 }
 

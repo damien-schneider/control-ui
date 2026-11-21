@@ -1,6 +1,5 @@
 "use client";
 
-import { useEditorState } from "@tiptap/react";
 import {
   BoldIcon,
   ChevronDownIcon,
@@ -34,45 +33,34 @@ import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Toolbar, ToolbarButton, ToolbarSeparator } from "@/components/control-ui/ui/toolbar";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
 import { Text } from "@/components/control-ui/ui/typography";
-import { useMarkdownEditor } from "./context";
+import { useMarkdownEditor, useMarkdownEditorSnapshot } from "./context";
+import { markdownHeadingLevels } from "./engine";
 import { markdownImageTypes } from "./uploads";
 
-type MarkdownEditorFormatAction = { label: string; Icon: typeof BoldIcon; active: boolean; run: () => void };
+type MarkdownEditorFormatAction = { label: string; Icon: typeof BoldIcon; active: boolean; disabled?: boolean; run: () => void };
 
 export function useMarkdownEditorFormatActions() {
-  const { editor, labels } = useMarkdownEditor();
-  const state = useEditorState({
-    editor,
-    selector: ({ editor: current }) => ({
-      bold: Boolean(current?.isActive("bold")),
-      italic: Boolean(current?.isActive("italic")),
-      strike: Boolean(current?.isActive("strike")),
-      code: Boolean(current?.isActive("code")),
-      bulletList: Boolean(current?.isActive("bulletList")),
-      orderedList: Boolean(current?.isActive("orderedList")),
-      taskList: Boolean(current?.isActive("taskList")),
-      blockquote: Boolean(current?.isActive("blockquote")),
-      codeBlock: Boolean(current?.isActive("codeBlock")),
-    }),
-  });
-  const focused = () => editor?.chain().focus();
+  const { engine, labels } = useMarkdownEditor();
+  const { marks: mark, blocks: block, inlineOnly } = useMarkdownEditorSnapshot();
   const marks: MarkdownEditorFormatAction[] = [
-    { label: labels.bold, Icon: BoldIcon, active: Boolean(state?.bold), run: () => focused()?.toggleBold().run() },
-    { label: labels.italic, Icon: ItalicIcon, active: Boolean(state?.italic), run: () => focused()?.toggleItalic().run() },
-    { label: labels.strikethrough, Icon: StrikethroughIcon, active: Boolean(state?.strike), run: () => focused()?.toggleStrike().run() },
-    { label: labels.inlineCode, Icon: CodeIcon, active: Boolean(state?.code), run: () => focused()?.toggleCode().run() },
+    { label: labels.bold, Icon: BoldIcon, active: mark.bold, run: () => engine?.toggleMark("bold") },
+    { label: labels.italic, Icon: ItalicIcon, active: mark.italic, run: () => engine?.toggleMark("italic") },
+    { label: labels.strikethrough, Icon: StrikethroughIcon, active: mark.strike, run: () => engine?.toggleMark("strike") },
+    { label: labels.inlineCode, Icon: CodeIcon, active: mark.code, run: () => engine?.toggleMark("code") },
   ];
-  const blocks: MarkdownEditorFormatAction[] = [
-    { label: labels.bulletList, Icon: ListIcon, active: Boolean(state?.bulletList), run: () => focused()?.toggleBulletList().run() },
-    {
-      label: labels.orderedList,
-      Icon: ListOrderedIcon,
-      active: Boolean(state?.orderedList),
-      run: () => focused()?.toggleOrderedList().run(),
-    },
-    { label: labels.taskList, Icon: ListChecksIcon, active: Boolean(state?.taskList), run: () => focused()?.toggleTaskList().run() },
-    { label: labels.quote, Icon: QuoteIcon, active: Boolean(state?.blockquote), run: () => focused()?.toggleBlockquote().run() },
-    { label: labels.codeBlock, Icon: SquareCodeIcon, active: Boolean(state?.codeBlock), run: () => focused()?.toggleCodeBlock().run() },
+  const blockAction = (label: string, Icon: typeof BoldIcon, type: keyof typeof block): MarkdownEditorFormatAction => ({
+    label,
+    Icon,
+    active: block[type],
+    disabled: inlineOnly,
+    run: () => engine?.toggleBlock(type),
+  });
+  const blocks = [
+    blockAction(labels.bulletList, ListIcon, "bulletList"),
+    blockAction(labels.orderedList, ListOrderedIcon, "orderedList"),
+    blockAction(labels.taskList, ListChecksIcon, "taskList"),
+    blockAction(labels.quote, QuoteIcon, "blockquote"),
+    blockAction(labels.codeBlock, SquareCodeIcon, "codeBlock"),
   ];
   return { marks, blocks };
 }
@@ -85,7 +73,7 @@ export function MarkdownEditorFormatButton({
   onMouseDown?: MouseEventHandler<HTMLButtonElement>;
 }) {
   const { editable } = useMarkdownEditor();
-  const { label, Icon, active, run } = action;
+  const { label, Icon, active, disabled, run } = action;
   return (
     <Tooltip>
       <TooltipTrigger
@@ -95,7 +83,7 @@ export function MarkdownEditorFormatButton({
             iconOnly
             aria-label={label}
             aria-pressed={active}
-            disabled={!editable}
+            disabled={!editable || disabled}
             onMouseDown={onMouseDown}
             onClick={run}
           />
@@ -130,12 +118,9 @@ function MarkdownEditorHistoryButton({
 }
 
 export function MarkdownEditorToolbar({ children }: { children?: ReactNode }) {
-  const { editor, disabled, editable, labels, source, sourceRequired, setSource, uploads } = useMarkdownEditor();
+  const { engine, disabled, editable, labels, source, sourceRequired, setSource, uploads } = useMarkdownEditor();
   const { marks, blocks } = useMarkdownEditorFormatActions();
-  const history = useEditorState({
-    editor,
-    selector: ({ editor: current }) => ({ undo: current?.can().undo(), redo: current?.can().redo() }),
-  });
+  const { canUndo, canRedo } = useMarkdownEditorSnapshot();
   return (
     <TooltipProvider>
       <div data-control-ui="markdown-editor" data-control-family="markdown-editor" data-slot="toolbar">
@@ -152,19 +137,19 @@ export function MarkdownEditorToolbar({ children }: { children?: ReactNode }) {
             <MarkdownEditorHistoryButton
               label={labels.undo}
               Icon={UndoIcon}
-              disabled={!editable || !history?.undo}
-              onClick={() => editor?.chain().focus().undo().run()}
+              disabled={!editable || !canUndo}
+              onClick={() => engine?.undo()}
             />
             <MarkdownEditorHistoryButton
               label={labels.redo}
               Icon={RedoIcon}
-              disabled={!editable || !history?.redo}
-              onClick={() => editor?.chain().focus().redo().run()}
+              disabled={!editable || !canRedo}
+              onClick={() => engine?.redo()}
             />
             <ToolbarButton
               type="button"
               aria-pressed={source}
-              disabled={disabled || !editor || sourceRequired || uploads.length > 0}
+              disabled={disabled || !engine || sourceRequired || uploads.length > 0}
               onClick={() => setSource(!source)}
             >
               {labels.source}
@@ -178,33 +163,31 @@ export function MarkdownEditorToolbar({ children }: { children?: ReactNode }) {
 }
 
 export function MarkdownEditorHeading() {
-  const { editor, editable, labels } = useMarkdownEditor();
-  const level = useEditorState({
-    editor,
-    selector: ({ editor: activeEditor }) =>
-      activeEditor?.isActive("heading") ? String(activeEditor.getAttributes("heading").level) : "paragraph",
-  });
-  const current = level && level !== "paragraph" ? labels.headingShort(Number(level)) : labels.text;
+  const { engine, editable, labels } = useMarkdownEditor();
+  const { heading, inlineOnly } = useMarkdownEditorSnapshot();
+  const current = heading ? labels.headingShort(heading) : labels.text;
   return (
     <DropdownMenu>
-      <ToolbarButton type="button" aria-label={labels.textStyle(current)} disabled={!editable} render={<DropdownMenuTrigger />}>
+      <ToolbarButton
+        type="button"
+        aria-label={labels.textStyle(current)}
+        disabled={!editable || inlineOnly}
+        render={<DropdownMenuTrigger />}
+      >
         <span>{current}</span>
         <ChevronDownIcon aria-hidden="true" />
       </ToolbarButton>
-      <DropdownMenuContent finalFocus={() => editor?.view.dom ?? true}>
+      <DropdownMenuContent finalFocus={() => engine?.element ?? true}>
         <DropdownMenuRadioGroup
-          value={level ?? "paragraph"}
+          value={heading ? String(heading) : "paragraph"}
           onValueChange={(value) => {
-            if (!editor || !editable) return;
-            const heading = ([1, 2, 3, 4, 5, 6] as const).find((item) => String(item) === value);
-            if (heading) editor.chain().focus().setHeading({ level: heading }).run();
-            else editor.chain().focus().setParagraph().run();
+            if (editable) engine?.setHeading(markdownHeadingLevels.find((level) => String(level) === value) ?? null);
           }}
         >
           <DropdownMenuRadioItem value="paragraph" closeOnClick>
             {labels.paragraph}
           </DropdownMenuRadioItem>
-          {[1, 2, 3, 4, 5, 6].map((item) => (
+          {markdownHeadingLevels.map((item) => (
             <DropdownMenuRadioItem key={item} value={String(item)} closeOnClick>
               {labels.heading(item)}
             </DropdownMenuRadioItem>
@@ -237,8 +220,8 @@ function MarkdownEditorUrlField({
 }
 
 export function MarkdownEditorLink() {
-  const { editor, editable, labels, isUrlAllowed } = useMarkdownEditor();
-  const linked = useEditorState({ editor, selector: ({ editor: current }) => Boolean(current?.isActive("link")) });
+  const { engine, editable, labels, isUrlAllowed } = useMarkdownEditor();
+  const { link } = useMarkdownEditorSnapshot();
   const [open, setOpen] = useState(false);
   const [url, setUrl] = useState("");
   const [checked, setChecked] = useState(false);
@@ -246,7 +229,7 @@ export function MarkdownEditorLink() {
   const valid = isUrlAllowed(href, "link");
   function apply() {
     if (!valid || !editable) return;
-    editor?.chain().focus().extendMarkRange("link").setLink({ href }).run();
+    engine?.setLink(href);
     setOpen(false);
   }
   return (
@@ -255,7 +238,7 @@ export function MarkdownEditorLink() {
       onOpenChange={(next) => {
         setOpen(next);
         if (!next) return;
-        setUrl(editor?.getAttributes("link").href ?? "");
+        setUrl(engine?.getSnapshot().link ?? "");
         setChecked(false);
       }}
     >
@@ -268,7 +251,7 @@ export function MarkdownEditorLink() {
         <TooltipContent>{labels.link}</TooltipContent>
       </Tooltip>
       <PopoverContent
-        finalFocus={() => editor?.view.dom ?? true}
+        finalFocus={() => engine?.element ?? true}
         className="grid gap-3"
         onKeyDown={(event) => {
           if (event.key === "Enter" && event.target instanceof HTMLInputElement && !event.nativeEvent.isComposing) {
@@ -296,9 +279,9 @@ export function MarkdownEditorLink() {
           <Button
             type="button"
             variant="ghost"
-            disabled={!editable || !linked}
+            disabled={!editable || !link}
             onClick={() => {
-              editor?.chain().focus().extendMarkRange("link").unsetLink().run();
+              engine?.setLink(null);
               setOpen(false);
             }}
           >
@@ -311,7 +294,7 @@ export function MarkdownEditorLink() {
 }
 
 export function MarkdownEditorImage() {
-  const { editor, editable, labels, canUpload, upload, isUrlAllowed } = useMarkdownEditor();
+  const { engine, editable, labels, canUpload, upload, isUrlAllowed } = useMarkdownEditor();
   const [open, setOpen] = useState(false);
   const [url, setUrl] = useState("");
   const [alt, setAlt] = useState("");
@@ -322,7 +305,7 @@ export function MarkdownEditorImage() {
   const valid = isUrlAllowed(src, "image");
   function insert() {
     if (!valid || !editable) return;
-    editor?.chain().focus().setImage({ src, alt }).run();
+    engine?.insertImage({ src, alt });
     setOpen(false);
     setUrl("");
     setAlt("");
@@ -339,7 +322,7 @@ export function MarkdownEditorImage() {
         <TooltipContent>{labels.image}</TooltipContent>
       </Tooltip>
       <PopoverContent
-        finalFocus={() => editor?.view.dom ?? true}
+        finalFocus={() => engine?.element ?? true}
         className="grid gap-3"
         onKeyDown={(event) => {
           if (event.key === "Enter" && event.target instanceof HTMLInputElement && !event.nativeEvent.isComposing) {

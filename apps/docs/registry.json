@@ -3803,6 +3803,7 @@
         "https://control-ui.dev/r/kbd.json",
         "https://control-ui.dev/r/markdown.json",
         "https://control-ui.dev/r/markdown-editor.json",
+        "https://control-ui.dev/r/markdown-editor-parts.json",
         "https://control-ui.dev/r/typography.json"
       ],
       "files": [
@@ -5235,8 +5236,9 @@
       "name": "markdown-editor",
       "type": "registry:component",
       "title": "MarkdownEditor",
-      "description": "Compose Markdown with draggable blocks, slash commands, people mentions, formatting, and application-owned image uploads.",
+      "description": "Compose Markdown with draggable blocks, tables, slash commands, people mentions, formatting, and application-owned image uploads. Choose a rich-text or live-preview engine.",
       "dependencies": [
+        "@base-ui/react@^1.9.0",
         "@tiptap/core@3.31.4",
         "@tiptap/extension-image@3.31.4",
         "@tiptap/extension-list@3.31.4",
@@ -5245,24 +5247,12 @@
         "@tiptap/markdown@3.31.4",
         "@tiptap/pm@3.31.4",
         "@tiptap/react@3.31.4",
-        "@tiptap/starter-kit@3.31.4",
-        "lucide-react@^1.47.0"
+        "@tiptap/starter-kit@3.31.4"
       ],
       "registryDependencies": [
-        "https://control-ui.dev/r/button.json",
-        "https://control-ui.dev/r/chat-composer-attachment.json",
         "https://control-ui.dev/r/checkbox.json",
         "https://control-ui.dev/r/core.json",
-        "https://control-ui.dev/r/dropdown-menu.json",
-        "https://control-ui.dev/r/input.json",
-        "https://control-ui.dev/r/label.json",
-        "https://control-ui.dev/r/live-status.json",
-        "https://control-ui.dev/r/popover.json",
-        "https://control-ui.dev/r/scroll-area.json",
-        "https://control-ui.dev/r/textarea.json",
-        "https://control-ui.dev/r/toolbar.json",
-        "https://control-ui.dev/r/tooltip.json",
-        "https://control-ui.dev/r/trigger-menu.json",
+        "https://control-ui.dev/r/markdown-editor-parts.json",
         "https://control-ui.dev/r/typography.json"
       ],
       "files": [
@@ -5272,88 +5262,38 @@
           "type": "registry:file"
         },
         {
-          "path": "src/registry/knob-contracts/markdown-editor-knobs.ts",
-          "target": "@components/control-ui/knob-contracts/markdown-editor-knobs.ts",
-          "type": "registry:component"
-        },
-        {
           "path": "src/registry/sources/control-ui/markdown-editor.tsx",
           "target": "@components/control-ui/markdown-editor.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/registry/sources/control-ui/markdown-editor/bubble-menu.tsx",
-          "target": "@components/control-ui/markdown-editor/bubble-menu.tsx",
+          "path": "src/registry/sources/control-ui/markdown-editor/rich/blocks.ts",
+          "target": "@components/control-ui/markdown-editor/rich/blocks.ts",
           "type": "registry:component"
         },
         {
-          "path": "src/registry/sources/control-ui/markdown-editor/context.ts",
-          "target": "@components/control-ui/markdown-editor/context.ts",
+          "path": "src/registry/sources/control-ui/markdown-editor/rich/engine.ts",
+          "target": "@components/control-ui/markdown-editor/rich/engine.ts",
           "type": "registry:component"
         },
         {
-          "path": "src/registry/sources/control-ui/markdown-editor/drag-handle.tsx",
-          "target": "@components/control-ui/markdown-editor/drag-handle.tsx",
+          "path": "src/registry/sources/control-ui/markdown-editor/rich/extensions.ts",
+          "target": "@components/control-ui/markdown-editor/rich/extensions.ts",
           "type": "registry:component"
         },
         {
-          "path": "src/registry/sources/control-ui/markdown-editor/drag-preview.ts",
-          "target": "@components/control-ui/markdown-editor/drag-preview.ts",
+          "path": "src/registry/sources/control-ui/markdown-editor/rich/tables.ts",
+          "target": "@components/control-ui/markdown-editor/rich/tables.ts",
           "type": "registry:component"
         },
         {
-          "path": "src/registry/sources/control-ui/markdown-editor/extensions.ts",
-          "target": "@components/control-ui/markdown-editor/extensions.ts",
+          "path": "src/registry/sources/control-ui/markdown-editor/rich/task-item.tsx",
+          "target": "@components/control-ui/markdown-editor/rich/task-item.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/registry/sources/control-ui/markdown-editor/suggestions.tsx",
-          "target": "@components/control-ui/markdown-editor/suggestions.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/registry/sources/control-ui/markdown-editor/table-commands.ts",
-          "target": "@components/control-ui/markdown-editor/table-commands.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/registry/sources/control-ui/markdown-editor/table-controls.tsx",
-          "target": "@components/control-ui/markdown-editor/table-controls.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/registry/sources/control-ui/markdown-editor/table-geometry.ts",
-          "target": "@components/control-ui/markdown-editor/table-geometry.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/registry/sources/control-ui/markdown-editor/table-grip.tsx",
-          "target": "@components/control-ui/markdown-editor/table-grip.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/registry/sources/control-ui/markdown-editor/task-item.tsx",
-          "target": "@components/control-ui/markdown-editor/task-item.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/registry/sources/control-ui/markdown-editor/toolbar.tsx",
-          "target": "@components/control-ui/markdown-editor/toolbar.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/registry/sources/control-ui/markdown-editor/uploads.ts",
-          "target": "@components/control-ui/markdown-editor/uploads.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/registry/sources/control-ui/markdown-editor/use-image-uploads.ts",
-          "target": "@components/control-ui/markdown-editor/use-image-uploads.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/registry/sources/control-ui/markdown-editor/use-table-target.ts",
-          "target": "@components/control-ui/markdown-editor/use-table-target.ts",
+          "path": "src/registry/sources/control-ui/markdown-editor/rich/uploads.ts",
+          "target": "@components/control-ui/markdown-editor/rich/uploads.ts",
           "type": "registry:component"
         },
         {
@@ -5373,6 +5313,148 @@
       },
       "meta": {
         "sourceManifestPath": "registry/control-ui/markdown-editor.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "markdown-editor-live",
+      "type": "registry:component",
+      "title": "MarkdownEditor — Live preview",
+      "description": "A CodeMirror editor where the Markdown text is the document: markup shows only where the caret touches it.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "@codemirror/commands@6.11.1",
+        "@codemirror/lang-markdown@6.5.2",
+        "@codemirror/language@6.13.1",
+        "@codemirror/state@6.7.6",
+        "@codemirror/view@6.43.15",
+        "@lezer/common@1.5.6",
+        "@lezer/markdown@1.8.1"
+      ],
+      "registryDependencies": [
+        "https://control-ui.dev/r/checkbox.json",
+        "https://control-ui.dev/r/core.json",
+        "https://control-ui.dev/r/markdown-editor-parts.json",
+        "https://control-ui.dev/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/docs/markdown-editor-live.md",
+          "target": "@components/control-ui/docs/markdown-editor-live.md",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor-live.tsx",
+          "target": "@components/control-ui/markdown-editor-live.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/live/drag/block-drag.ts",
+          "target": "@components/control-ui/markdown-editor/live/drag/block-drag.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/live/drag/block-model.ts",
+          "target": "@components/control-ui/markdown-editor/live/drag/block-model.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/live/format/blocks.ts",
+          "target": "@components/control-ui/markdown-editor/live/format/blocks.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/live/format/inline.ts",
+          "target": "@components/control-ui/markdown-editor/live/format/inline.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/live/format/keymap.ts",
+          "target": "@components/control-ui/markdown-editor/live/format/keymap.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/live/format/links.ts",
+          "target": "@components/control-ui/markdown-editor/live/format/links.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/live/format/list-indent.ts",
+          "target": "@components/control-ui/markdown-editor/live/format/list-indent.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/live/live-engine.ts",
+          "target": "@components/control-ui/markdown-editor/live/live-engine.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/live/live-setup.ts",
+          "target": "@components/control-ui/markdown-editor/live/live-setup.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/live/preview/live-preview.ts",
+          "target": "@components/control-ui/markdown-editor/live/preview/live-preview.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/live/preview/recipe-theme.ts",
+          "target": "@components/control-ui/markdown-editor/live/preview/recipe-theme.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/live/preview/task-checkboxes.tsx",
+          "target": "@components/control-ui/markdown-editor/live/preview/task-checkboxes.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/live/preview/widgets.ts",
+          "target": "@components/control-ui/markdown-editor/live/preview/widgets.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/live/table/cell-editor.ts",
+          "target": "@components/control-ui/markdown-editor/live/table/cell-editor.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/live/table/live-tables.ts",
+          "target": "@components/control-ui/markdown-editor/live/table/live-tables.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/live/table/table-model.ts",
+          "target": "@components/control-ui/markdown-editor/live/table/table-model.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/live/table/table-widget.ts",
+          "target": "@components/control-ui/markdown-editor/live/table/table-widget.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/markdown-editor/live/upload-placeholders.ts",
+          "target": "@components/control-ui/markdown-editor/live/upload-placeholders.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/markdown-editor-table.css",
+          "target": "@components/control-ui/styles/recipes/markdown-editor-table.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/markdown-editor.css",
+          "target": "@components/control-ui/styles/recipes/markdown-editor.css",
+          "type": "registry:file"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/markdown-editor.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/markdown-editor-table.css\"": {}
+      },
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/markdown-editor-live.json"
       }
     },
     {

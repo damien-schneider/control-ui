@@ -360,7 +360,9 @@
     },
     "markdown-editor": {
       "registryItems": [
-        "markdown-editor"
+        "markdown-editor",
+        "markdown-editor-live",
+        "markdown-editor-parts"
       ],
       "knobs": 16,
       "probes": 5

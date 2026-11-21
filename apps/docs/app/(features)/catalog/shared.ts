@@ -15,6 +15,7 @@ export const registryKindIds = [
   "inline-attachment",
   "markdown-block",
   "markdown-editor",
+  "markdown-editor-live",
   "chat-layout",
   "thread-rail",
   "transcript-divider",

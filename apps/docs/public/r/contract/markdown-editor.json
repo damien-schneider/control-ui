@@ -3,7 +3,9 @@
   "family": "markdown-editor",
   "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
   "registryItems": [
-    "markdown-editor"
+    "markdown-editor",
+    "markdown-editor-live",
+    "markdown-editor-parts"
   ],
   "knobs": [
     {
@@ -108,7 +110,7 @@
       "root": {
         "family": "markdown-editor",
         "registryItems": [
-          "markdown-editor"
+          "markdown-editor-parts"
         ],
         "states": [
           {
@@ -128,42 +130,43 @@
       "bubble-menu": {
         "family": "markdown-editor",
         "registryItems": [
-          "markdown-editor"
+          "markdown-editor-parts"
         ],
         "states": []
       },
       "content": {
         "family": "markdown-editor",
         "registryItems": [
-          "markdown-editor"
+          "markdown-editor",
+          "markdown-editor-live"
         ],
         "states": []
       },
       "source": {
         "family": "markdown-editor",
         "registryItems": [
-          "markdown-editor"
+          "markdown-editor-parts"
         ],
         "states": []
       },
       "suggestion-description": {
         "family": "markdown-editor",
         "registryItems": [
-          "markdown-editor"
+          "markdown-editor-parts"
         ],
         "states": []
       },
       "table-controls": {
         "family": "markdown-editor",
         "registryItems": [
-          "markdown-editor"
+          "markdown-editor-parts"
         ],
         "states": []
       },
       "table-drop-line": {
         "family": "markdown-editor",
         "registryItems": [
-          "markdown-editor"
+          "markdown-editor-parts"
         ],
         "states": [
           {
@@ -201,14 +204,14 @@
       "toolbar": {
         "family": "markdown-editor",
         "registryItems": [
-          "markdown-editor"
+          "markdown-editor-parts"
         ],
         "states": []
       },
       "uploads": {
         "family": "markdown-editor",
         "registryItems": [
-          "markdown-editor"
+          "markdown-editor-parts"
         ],
         "states": []
       }

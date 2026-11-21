@@ -29,6 +29,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 - `kbd`
 - `markdown`
 - `markdown-editor`
+- `markdown-editor-parts`
 - `typography`
 
 ## Exports

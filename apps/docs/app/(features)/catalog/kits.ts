@@ -55,6 +55,14 @@ const audioVisualizerRecipeFile = sourceFile(
   "src/registry/sources/control-ui/recipes/audio-visualizer.css",
   "recipe-css",
 );
+const markdownEditorSupportFiles = [
+  sourceFile("Formatting and images", "src/registry/sources/control-ui/markdown-editor/toolbar.tsx", "component"),
+  sourceFile("Selection bubble menu", "src/registry/sources/control-ui/markdown-editor/bubble-menu.tsx", "component"),
+  sourceFile("Slash commands and mentions", "src/registry/sources/control-ui/markdown-editor/suggestions.tsx", "component"),
+  sourceFile("Block drag handle", "src/registry/sources/control-ui/markdown-editor/drag/drag-handle.tsx", "component"),
+  sourceFile("Editor recipe", "src/registry/sources/control-ui/recipes/markdown-editor.css", "recipe-css"),
+  sourceFile("Table recipe", "src/registry/sources/control-ui/recipes/markdown-editor-table.css", "recipe-css"),
+];
 const inlineCitationRecipeFile = sourceFile(
   "Inline citation recipe — paint + @property knobs",
   "src/registry/sources/control-ui/recipes/inline-citation.css",
@@ -685,7 +693,8 @@ export const kitEntries = [
     category: "chat",
     kind: "Kit",
     name: "MarkdownEditor",
-    summary: "Compose Markdown with draggable blocks, slash commands, people mentions, formatting, and application-owned image uploads.",
+    summary:
+      "Compose Markdown with draggable blocks, tables, slash commands, people mentions, formatting, and application-owned image uploads. Choose a rich-text or live-preview engine.",
     status: "beta",
     registryKind: "markdown-editor",
     paths: {
@@ -695,16 +704,45 @@ export const kitEntries = [
         "ai-sdk": sourceFile("Usage", "src/registry/usage/components/markdown-editor.tsx", "usage"),
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/markdown-editor.tsx", "component"),
-      supportFiles: [
-        sourceFile("Formatting and images", "src/registry/sources/control-ui/markdown-editor/toolbar.tsx", "component"),
-        sourceFile("Selection bubble menu", "src/registry/sources/control-ui/markdown-editor/bubble-menu.tsx", "component"),
-        sourceFile("Slash commands and mentions", "src/registry/sources/control-ui/markdown-editor/suggestions.tsx", "component"),
-        sourceFile("Block drag handle", "src/registry/sources/control-ui/markdown-editor/drag-handle.tsx", "component"),
-        sourceFile("Editor recipe", "src/registry/sources/control-ui/recipes/markdown-editor.css", "recipe-css"),
-        sourceFile("Table recipe", "src/registry/sources/control-ui/recipes/markdown-editor-table.css", "recipe-css"),
-      ],
+      supportFiles: markdownEditorSupportFiles,
     },
     preview: preview(() => import("@/src/registry/examples/markdown-editor").then((mod) => ({ default: mod.MarkdownEditorExample }))),
+    alternatives: [
+      {
+        id: "rich",
+        label: "Rich text",
+        description: "A Tiptap document that reads and writes Markdown; the Markdown is normalized on save.",
+        registryKind: "markdown-editor",
+        paths: {
+          example: sourceFile("Example", "src/registry/examples/markdown-editor.tsx", "example"),
+          usage: {
+            mastra: sourceFile("Usage", "src/registry/usage/components/markdown-editor.tsx", "usage"),
+            "ai-sdk": sourceFile("Usage", "src/registry/usage/components/markdown-editor.tsx", "usage"),
+          },
+          source: sourceFile("Component", "src/registry/sources/control-ui/markdown-editor.tsx", "component"),
+          supportFiles: markdownEditorSupportFiles,
+        },
+        preview: preview(() => import("@/src/registry/examples/markdown-editor").then((mod) => ({ default: mod.MarkdownEditorExample }))),
+      },
+      {
+        id: "live",
+        label: "Live preview",
+        description: "A CodeMirror editor where the Markdown text is the document: markup shows only where the caret touches it.",
+        registryKind: "markdown-editor-live",
+        paths: {
+          example: sourceFile("Example", "src/registry/examples/markdown-editor-live.tsx", "example"),
+          usage: {
+            mastra: sourceFile("Usage", "src/registry/usage/components/markdown-editor-live.tsx", "usage"),
+            "ai-sdk": sourceFile("Usage", "src/registry/usage/components/markdown-editor-live.tsx", "usage"),
+          },
+          source: sourceFile("Component", "src/registry/sources/control-ui/markdown-editor-live.tsx", "component"),
+          supportFiles: markdownEditorSupportFiles,
+        },
+        preview: preview(() =>
+          import("@/src/registry/examples/markdown-editor-live").then((mod) => ({ default: mod.MarkdownEditorLiveExample })),
+        ),
+      },
+    ] satisfies readonly CatalogKitAlternative[],
     additionalPreviews: [
       {
         id: "bubble-menu",

@@ -44,6 +44,7 @@ const fixtureStylesheets = {
   "dropdown-hover": "docs",
   "infinite-canvas": "docs",
   "markdown-editor": "docs",
+  "markdown-editor-live": "docs",
   "sidebar-tree": "docs",
   "tabs-transition": "tabs-motion",
 } as const satisfies Record<string, keyof typeof stylesheetBuilds>;

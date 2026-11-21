@@ -2,7 +2,7 @@
 
 # MarkdownEditor
 
-> Compose Markdown with draggable blocks, slash commands, people mentions, formatting, and application-owned image uploads.
+> Compose Markdown with draggable blocks, tables, slash commands, people mentions, formatting, and application-owned image uploads. Choose a rich-text or live-preview engine.
 
 Status: beta.
 
@@ -18,6 +18,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ## npm dependencies
 
+- `@base-ui/react@^1.9.0`
 - `@tiptap/core@3.31.4`
 - `@tiptap/extension-image@3.31.4`
 - `@tiptap/extension-list@3.31.4`
@@ -27,51 +28,29 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 - `@tiptap/pm@3.31.4`
 - `@tiptap/react@3.31.4`
 - `@tiptap/starter-kit@3.31.4`
-- `lucide-react@^1.47.0`
 
 ## Registry dependencies
 
-- `button`
-- `chat-composer-attachment`
 - `checkbox`
 - `core`
-- `dropdown-menu`
-- `input`
-- `label`
-- `live-status`
-- `popover`
-- `scroll-area`
-- `textarea`
-- `toolbar`
-- `tooltip`
-- `trigger-menu`
+- `markdown-editor-parts`
 - `typography`
 
 ## Exports
 
-- `@/components/control-ui/knob-contracts/markdown-editor-knobs`: `markdownEditorKnobs`, types `MarkdownEditorKnobStyle`
-- `@/components/control-ui/markdown-editor`: `MarkdownEditor`, `MarkdownEditorContent`, types `MarkdownEditorStatus`, `MarkdownEditorProps`, `MarkdownEditorContentProps`
-- `@/components/control-ui/markdown-editor/bubble-menu`: `MarkdownEditorBubbleMenu`
-- `@/components/control-ui/markdown-editor/context`: `defaultMarkdownEditorLabels`, `MarkdownEditorContext`, `useMarkdownEditor`, types `MarkdownEditorLabels`, `MarkdownEditorContextValue`
-- `@/components/control-ui/markdown-editor/drag-handle`: `MarkdownEditorDragHandle`
-- `@/components/control-ui/markdown-editor/drag-preview`: `createDragPreview`, types `DragPreview`
-- `@/components/control-ui/markdown-editor/extensions`: `isEditorUrl`, `persistentUrlPolicy`, `ImageUpload`, `markdownExtensions`, `createMarkdownCodec`, `requiresMarkdownSource`, `hasMarkdownContent`, types `MarkdownUrlKind`, `MarkdownUrlPolicy`, `MarkdownExtensionOptions`
-- `@/components/control-ui/markdown-editor/suggestions`: `MarkdownEditorSuggestions`, types `MarkdownEditorMention`, `MarkdownEditorSuggestionsProps`
-- `@/components/control-ui/markdown-editor/table-commands`: `firstMovable`, `lineCount`, `canMoveLine`, `selectLine`, `moveLine`, `runInCell`, `alignColumn`, types `ColumnAlign`
-- `@/components/control-ui/markdown-editor/table-controls`: `MarkdownEditorTableControls`
-- `@/components/control-ui/markdown-editor/table-geometry`: `tableTargetFrom`, `tableTargetAt`, `tableAt`, `cellStart`, `tableElement`, `measureTable`, `nearestGap`, `indexForGap`, `isNear`, `toSurface`, types `TableAxis`, `TableTarget`, `SurfaceBox`, `TableLayout`
-- `@/components/control-ui/markdown-editor/table-grip`: `TableGrip`
-- `@/components/control-ui/markdown-editor/task-item`: `MarkdownTaskItem`
-- `@/components/control-ui/markdown-editor/toolbar`: `useMarkdownEditorFormatActions`, `MarkdownEditorFormatButton`, `MarkdownEditorToolbar`, `MarkdownEditorHeading`, `MarkdownEditorLink`, `MarkdownEditorImage`, `MarkdownEditorUploads`
-- `@/components/control-ui/markdown-editor/uploads`: `findImageUpload`, `completeImageUpload`, `markdownImageTypes`, types `MarkdownImage`, `MarkdownImageUploader`, `MarkdownImageUpload`
-- `@/components/control-ui/markdown-editor/use-image-uploads`: `useImageUploads`
-- `@/components/control-ui/markdown-editor/use-table-target`: `useTableTarget`
+- `@/components/control-ui/markdown-editor`: `MarkdownEditor`, `MarkdownEditorContent`, types `MarkdownEditorContentProps`, `MarkdownEditorStatus`, `MarkdownEditorProps`
+- `@/components/control-ui/markdown-editor/rich/blocks`: `createRichBlocks`
+- `@/components/control-ui/markdown-editor/rich/engine`: `pasteMarkdown`, `createRichEngine`
+- `@/components/control-ui/markdown-editor/rich/extensions`: `ImageUpload`, `markdownExtensions`, `createMarkdownCodec`, `requiresMarkdownSource`, `hasMarkdownContent`, types `MarkdownExtensionOptions`
+- `@/components/control-ui/markdown-editor/rich/tables`: `createRichTables`
+- `@/components/control-ui/markdown-editor/rich/task-item`: `MarkdownTaskItem`
+- `@/components/control-ui/markdown-editor/rich/uploads`: `createRichUploads`
 
 ## Composition
 
 ### Markdown composition
 
-Markdown strings stay application-owned. Content includes block drag handles (Alt+ArrowUp/ArrowDown also moves blocks). Suggestions adds slash commands and accepts people with persistent profile URLs; mentions save as Markdown links. Supply onUploadImage to enable image paste and drop. Pass extensions to add TipTap extensions after the built-in Markdown set, and isUrlAllowed to change which link and image URLs stay editable (a file-based editor can accept relative links); both are read once, when the editor mounts.
+Markdown strings stay application-owned. Both alternatives share these parts. Content includes block drag handles (Alt+ArrowUp/ArrowDown also moves blocks) and table grips for moving, aligning, inserting, and deleting rows and columns. Suggestions adds slash commands and accepts people with persistent profile URLs; mentions save as Markdown links. Supply onUploadImage to enable image paste and drop. isUrlAllowed changes which link and image URLs stay editable (a file-based editor can accept relative links). Rich text renders a TipTap document and normalizes the Markdown it saves; pass extensions to add TipTap extensions after the built-in set. Live preview edits the Markdown text itself, so what you type is what you save. Both props are read once, when the editor mounts.
 
 ```tsx
 <MarkdownEditor>
@@ -186,18 +165,10 @@ export function MarkdownEditorReadOnlyExample() {
 Scopes, their parts, and the state attributes each part carries. Selector pattern: `[data-skin="{skin}"] :where([data-slot="{part}"][data-control-family="{family}"])`.
 
 - `markdown-editor`
-  - `bubble-menu`
   - `content`
-  - `root`: `data-disabled`, `data-readonly`
-  - `source`
-  - `suggestion-description`
-  - `table-controls`
-  - `table-drop-line`: `data-axis` (`column` | `row`)
   - `task-checkbox`
   - `task-content`
   - `task-item`
-  - `toolbar`
-  - `uploads`
 
 ## Knobs
 

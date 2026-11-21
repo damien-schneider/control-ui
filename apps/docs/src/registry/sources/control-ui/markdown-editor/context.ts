@@ -1,7 +1,7 @@
-import type { Editor } from "@tiptap/core";
-import { createContext, useContext } from "react";
-import type { MarkdownUrlPolicy } from "./extensions";
+import { createContext, useContext, useSyncExternalStore } from "react";
+import type { MarkdownEditorEngine, MarkdownEditorSnapshot } from "./engine";
 import type { MarkdownImageUpload } from "./uploads";
+import type { MarkdownUrlPolicy } from "./url-policy";
 
 export type MarkdownEditorLabels = {
   toolbar: string;
@@ -144,10 +144,10 @@ export const defaultMarkdownEditorLabels: MarkdownEditorLabels = {
 };
 
 export type MarkdownEditorContextValue = {
-  editor: Editor | null;
+  engine: MarkdownEditorEngine | null;
   disabled: boolean;
   readOnly: boolean;
-  /** Rich editing is possible: the editor is mounted, enabled, writable and not showing its Markdown source. */
+  /** Formatting is possible: the engine is mounted, enabled, writable and is the visible editor. */
   editable: boolean;
   labels: MarkdownEditorLabels;
   source: boolean;
@@ -156,7 +156,6 @@ export type MarkdownEditorContextValue = {
   isUrlAllowed: MarkdownUrlPolicy;
   setSource: (source: boolean) => void;
   setMarkdown: (value: string) => void;
-  setContentAttributes: (attributes: Record<string, string>) => void;
   canUpload: boolean;
   uploads: MarkdownImageUpload[];
   upload: (files: File[], position?: number) => void;
@@ -171,4 +170,28 @@ export function useMarkdownEditor() {
   const context = useContext(MarkdownEditorContext);
   if (!context) throw new Error("Markdown editor parts require a MarkdownEditor parent.");
   return context;
+}
+
+const unmountedSnapshot: MarkdownEditorSnapshot = {
+  marks: { bold: false, italic: false, strike: false, code: false },
+  blocks: { bulletList: false, orderedList: false, taskList: false, blockquote: false, codeBlock: false },
+  heading: null,
+  link: null,
+  canUndo: false,
+  canRedo: false,
+  focused: false,
+  formattable: false,
+  inlineOnly: false,
+  isEmpty: true,
+  sourceRequired: false,
+};
+const subscribeNothing = () => () => {};
+const readUnmounted = () => unmountedSnapshot;
+
+export function useEngineSnapshot(engine: MarkdownEditorEngine | null): MarkdownEditorSnapshot {
+  return useSyncExternalStore(engine?.subscribe ?? subscribeNothing, engine?.getSnapshot ?? readUnmounted, readUnmounted);
+}
+
+export function useMarkdownEditorSnapshot(): MarkdownEditorSnapshot {
+  return useEngineSnapshot(useMarkdownEditor().engine);
 }

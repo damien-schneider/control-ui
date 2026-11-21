@@ -138,6 +138,12 @@ function usesStyleUtilities(sources: Iterable<string>) {
   return [...sources].some((source) => referencedNames(styleUtilityIdentifiers, source).length > 0);
 }
 
+const markdownEditorAlternativeFolders = /\/markdown-editor\/(rich|live)\//;
+const markdownEditorParts = walk(path.join(root, "src/registry/sources/control-ui/markdown-editor"))
+  .map((filePath) => path.relative(root, filePath))
+  .filter((filePath) => /\.tsx?$/.test(filePath) && !filePath.includes(".test.") && !markdownEditorAlternativeFolders.test(filePath))
+  .sort();
+
 const internalDefinitions: Definition[] = [
   {
     id: "retro-system-font",
@@ -309,6 +315,16 @@ const internalDefinitions: Definition[] = [
     description: "Application shell composed from the Control UI Sidebar.",
     seeds: ["src/registry/blocks/control-ui/sidebar-layout.tsx"],
     primary: ["src/registry/blocks/control-ui/sidebar-layout.tsx"],
+    internal: true,
+  },
+  {
+    id: "markdown-editor-parts",
+    type: "registry:component",
+    title: "Markdown editor parts",
+    description:
+      "The engine contract, document state, toolbar, bubble menu, suggestions, drag handle and table controls every Markdown editor alternative shares.",
+    seeds: markdownEditorParts,
+    primary: markdownEditorParts,
     internal: true,
   },
 ];
