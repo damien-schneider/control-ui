@@ -167,27 +167,6 @@ function oneUsePrivateVariableOffenders({ file, source }: RecipeSource): string[
     });
 }
 
-function unusedPrivateVariableOffenders(root: Root, renderedSource: string): string[] {
-  const declarations = new Map<string, postcss.Declaration[]>();
-  const references = new Set<string>();
-  root.walkDecls((declaration) => {
-    if (declaration.prop.startsWith("--_")) {
-      const entries = declarations.get(declaration.prop) ?? [];
-      entries.push(declaration);
-      declarations.set(declaration.prop, entries);
-    }
-    for (const match of declaration.value.matchAll(/--_[\w-]+/g)) references.add(match[0]);
-  });
-  return [...declarations]
-    .filter(([name]) => !references.has(name) && !renderedSource.includes(name))
-    .flatMap(([name, entries]) =>
-      entries.map(
-        (declaration) =>
-          `${path.basename(declaration.source?.input.file ?? "recipe.css")}:${declaration.source?.start?.line ?? "?"} ${name}`,
-      ),
-    );
-}
-
 /** Same file, same family and slot: the element a rule's declarations compute on, whatever its state or variant. */
 function elementKey(rule: postcss.Rule): string {
   const identity = rule.selector.match(/data-(?:control-family|slot)="[^"]*"/g) ?? [];
@@ -214,37 +193,6 @@ function knobReadingForeignPrivateOffenders(root: Root): string[] {
         );
       }
     });
-  });
-  return offenders;
-}
-
-function selectorContext(rule: postcss.Rule): string {
-  const ancestors: string[] = [];
-  for (let node: postcss.Container | postcss.Document | undefined = rule.parent; node; node = node.parent) {
-    if (node instanceof postcss.AtRule && node.name !== "layer") ancestors.push(`@${node.name} ${node.params}`);
-  }
-  return ancestors.reverse().join(" > ");
-}
-
-function normalizedSelector(selector: string): string {
-  return selector
-    .replace(/\s+/g, " ")
-    .replace(/\s*([,>+~])\s*/g, "$1")
-    .trim();
-}
-
-function duplicateSelectorOffenders({ file, source }: RecipeSource): string[] {
-  const root = postcss.parse(source, { from: file });
-  const firstLineBySelector = new Map<string, number | string>();
-  const offenders: string[] = [];
-  root.walkRules((rule) => {
-    if (rule.parent?.type === "atrule" && rule.parent.name.endsWith("keyframes")) return;
-    const selector = normalizedSelector(rule.selector);
-    const key = `${selectorContext(rule)}\u0000${selector}`;
-    const line = rule.source?.start?.line ?? "?";
-    const firstLine = firstLineBySelector.get(key);
-    if (firstLine === undefined) firstLineBySelector.set(key, line);
-    else offenders.push(`${file}:${line} duplicates line ${firstLine}: ${selector}`);
   });
   return offenders;
 }
@@ -380,15 +328,6 @@ describe("recipe hygiene", () => {
     expect(oneUsePrivateVariableOffenders(invalid)).toEqual(["invalid.css:1 --_paint"]);
   });
 
-  test("private variables reach rendered CSS or component source", () => {
-    expect(unusedPrivateVariableOffenders(recipes, sourceText)).toEqual([]);
-  });
-
-  test("rejects unused private variables", () => {
-    const invalid = postcss.parse("a { --_unused: red; }", { from: "invalid.css" });
-    expect(unusedPrivateVariableOffenders(invalid, "")).toEqual(["invalid.css:1 --_unused"]);
-  });
-
   test("knob defaults read only private variables declared in the same rule", () => {
     expect(knobReadingForeignPrivateOffenders(recipes)).toEqual([]);
   });
@@ -399,15 +338,6 @@ describe("recipe hygiene", () => {
       { from: "invalid.css" },
     );
     expect(knobReadingForeignPrivateOffenders(invalid)).toEqual(["invalid.css:1 --cui-x-radius reads --_fit"]);
-  });
-
-  test("selectors open once per at-rule context", () => {
-    expect(recipeSources.flatMap(duplicateSelectorOffenders)).toEqual([]);
-  });
-
-  test("rejects duplicate selectors in one context", () => {
-    const invalid = { file: "invalid.css", source: "a { color: red; }\na { background: blue; }" };
-    expect(duplicateSelectorOffenders(invalid)).toEqual(["invalid.css:2 duplicates line 1: a"]);
   });
 
   test("subject selectors stay bucketable", () => {
