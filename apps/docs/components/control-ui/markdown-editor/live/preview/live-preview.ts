@@ -249,8 +249,8 @@ const decorators: Record<string, Decorate> = {
 const isBlankLine = (doc: Text, number: number) => doc.line(number).text.trim() === "";
 
 /**
- * A blank line touching a block is the gap between blocks, not a line: it keeps the gap height and the caret steps over it.
- * Other blank lines, and the one holding the caret, are empty paragraphs.
+ * The first blank line after a block is the gap between blocks, not a line: it keeps the gap height and the caret steps over it.
+ * Further blank lines, and the one holding the caret, are empty paragraphs.
  */
 function decorateBlockGaps(preview: Preview) {
   const { doc, selection } = preview.state;
@@ -259,7 +259,7 @@ function decorateBlockGaps(preview: Preview) {
     const line = doc.lineAt(pos);
     pos = line.to + 1;
     if (line.number === 1 || line.number === doc.lines || line.number === caretLine || !isBlankLine(doc, line.number)) continue;
-    if (isBlankLine(doc, line.number - 1) && isBlankLine(doc, line.number + 1)) continue;
+    if (isBlankLine(doc, line.number - 1)) continue;
     if (preview.codeSpans.some((span) => span.from <= line.from && line.to <= span.to)) continue;
     preview.decorations.push(lineClass("cm-md-blank").range(line.from));
     preview.gaps.push(blockGap.range(line.from - 1, line.to + 1));

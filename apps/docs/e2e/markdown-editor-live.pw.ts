@@ -107,6 +107,19 @@ test("Enter after a heading opens a paragraph that stays its own block", async (
   await expect.poll(() => markdownOf(page).textContent()).toBe("## First\n\nIntro\n\nSecond paragraph\n\n- [ ] Third task");
 });
 
+test("an empty line a writer adds between blocks keeps its place once text follows it", async ({ page }) => {
+  const editor = editorOf(page);
+  await editor.click();
+  await editor.pressSequentially("A");
+  await editor.press("Enter");
+  await editor.press("Enter");
+  const caretLine = editor.locator(".cm-line").last();
+  const before = await center(caretLine);
+  await editor.pressSequentially("B");
+  await expect.poll(() => markdownOf(page).textContent()).toBe("A\n\n\nB");
+  expect((await center(editor.getByText("B", { exact: true }))).box.y).toBe(before.box.y);
+});
+
 test("toolbar formatting writes Markdown and undo restores the text", async ({ page }) => {
   const editor = editorOf(page);
   await editor.fill("Feedback");
