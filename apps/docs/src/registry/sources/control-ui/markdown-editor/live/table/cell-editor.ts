@@ -29,7 +29,6 @@ export type CellHost = {
   columnHeaderId: (column: number) => string;
 };
 
-/** The consumer's extensions, which every cell editor gets after its own. */
 export const cellExtensions = Facet.define<Extension>();
 
 const cellData = defineLanguageFacet();
