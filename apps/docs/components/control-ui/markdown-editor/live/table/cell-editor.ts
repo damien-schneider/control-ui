@@ -7,6 +7,7 @@ import {
   EditorSelection,
   EditorState,
   type Extension,
+  Facet,
   Prec,
   type SelectionRange,
   Transaction,
@@ -27,6 +28,9 @@ export type CellHost = {
   navigate: (cell: CellEditor, move: CellMove) => boolean;
   columnHeaderId: (column: number) => string;
 };
+
+/** The consumer's extensions, which every cell editor gets after its own. */
+export const cellExtensions = Facet.define<Extension>();
 
 const cellData = defineLanguageFacet();
 /** A table cell holds one line of inline Markdown, so every block syntax is left out of its parser. */
@@ -166,6 +170,7 @@ export class CellEditor {
       cellKeymap(this),
       markdownMarkKeymap,
       editingKeymap,
+      this.host.outer.state.facet(cellExtensions),
     ];
   }
 

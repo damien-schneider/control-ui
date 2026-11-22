@@ -164,6 +164,12 @@ test("a pipe typed in a cell stays inside the cell and undo restores it", async 
   await expect(markdownOf(page)).toContainText("| Demo | Vectors | Return to UI |");
 });
 
+test("consumer extensions also run inside table cells", async ({ page }) => {
+  await load(page, "Load table");
+  await expect(cell(page, "Connect proof").locator(".proof-mark")).toHaveText("proof");
+  await expect(cell(page, "Several proofs").locator(".proof-mark")).toHaveCount(0);
+});
+
 test("arrow keys leave a table for the text around it and come back", async ({ page }) => {
   await load(page, "Load table");
   await header(page, "Need").click();

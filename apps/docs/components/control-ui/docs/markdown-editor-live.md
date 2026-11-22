@@ -50,7 +50,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 - `@/components/control-ui/markdown-editor/live/preview/recipe-theme`: `recipeTheme`
 - `@/components/control-ui/markdown-editor/live/preview/task-checkboxes`: `LiveTaskCheckboxes`
 - `@/components/control-ui/markdown-editor/live/preview/widgets`: `TaskCheckboxes`, `taskCheckboxes`, `TaskWidget`, `BulletWidget`, `ImageWidget`, types `TaskCheckbox`, `TaskCheckboxEntry`
-- `@/components/control-ui/markdown-editor/live/table/cell-editor`: `CellEditor`, types `CellMove`, `CellEdit`, `CellHost`
+- `@/components/control-ui/markdown-editor/live/table/cell-editor`: `cellExtensions`, `CellEditor`, types `CellMove`, `CellEdit`, `CellHost`
 - `@/components/control-ui/markdown-editor/live/table/live-tables`: `activeTableCell`, `liveTables`, `createLiveTables`
 - `@/components/control-ui/markdown-editor/live/table/table-model`: `parseTable`, `cellAt`, `moveRow`, `moveColumn`, `insertRow`, `insertColumn`, `deleteRow`, `deleteColumn`, `alignColumn`, `appendRow`, `appendColumn`, `createTableMarkdown`, `escapeCellText`, types `TableAlign`, `TableCell`, `TableRow`, `MarkdownTableModel`, `TableEdit`
 - `@/components/control-ui/markdown-editor/live/table/table-widget`: `fromCell`, `renderedTables`, `tableViewOf`, `TableView`, `TableWidget`, types `TableLine`, `TableCellAddress`

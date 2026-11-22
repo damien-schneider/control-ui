@@ -1,3 +1,4 @@
+import { Decoration, type DecorationSet, type EditorView, MatchDecorator, ViewPlugin, type ViewUpdate } from "@codemirror/view";
 import { useState } from "react";
 import { createRoot } from "react-dom/client";
 import { MarkdownEditorSuggestions } from "@/components/control-ui/markdown-editor/suggestions";
@@ -15,6 +16,20 @@ const drafts = {
   "Clear draft": "",
 };
 
+const proofMarks = new MatchDecorator({ regexp: /\bproof\b/g, decoration: Decoration.mark({ class: "proof-mark" }) });
+const highlightProof = ViewPlugin.fromClass(
+  class {
+    marks: DecorationSet;
+    constructor(view: EditorView) {
+      this.marks = proofMarks.createDeco(view);
+    }
+    update(update: ViewUpdate) {
+      this.marks = proofMarks.updateDeco(update, this.marks);
+    }
+  },
+  { decorations: (plugin) => plugin.marks },
+);
+
 const uploadImage: MarkdownImageUploader = async (file, { signal, onProgress }) => {
   onProgress(25);
   const response = await fetch(`/upload?name=${encodeURIComponent(file.name)}`, { method: "POST", body: file, signal });
@@ -29,7 +44,7 @@ function Fixture() {
   const [disabled, setDisabled] = useState(false);
   return (
     <main style={{ maxWidth: 700, margin: "40px auto" }}>
-      <MarkdownEditor value={draft} onValueChange={setDraft} onUploadImage={uploadImage} disabled={disabled}>
+      <MarkdownEditor value={draft} onValueChange={setDraft} onUploadImage={uploadImage} disabled={disabled} extensions={highlightProof}>
         <MarkdownEditorToolbar />
         <MarkdownEditorContent label="Comment" />
         <MarkdownEditorSuggestions

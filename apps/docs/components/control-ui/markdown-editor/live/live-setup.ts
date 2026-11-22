@@ -10,6 +10,7 @@ import { indentListItem } from "./format/list-indent";
 import { livePreview, markdownUrlPolicy } from "./preview/live-preview";
 import { recipeTheme } from "./preview/recipe-theme";
 import { type TaskCheckboxes, taskCheckboxes } from "./preview/widgets";
+import { cellExtensions } from "./table/cell-editor";
 import { liveTables } from "./table/live-tables";
 import { uploadPlaceholders } from "./upload-placeholders";
 
@@ -76,6 +77,7 @@ export function liveSetup(settings: LiveSettings, services: LiveServices): Exten
     previewSetting.of(previewing(settings.preview)),
     contentSetting.of(describing(settings)),
     services.extensions,
+    cellExtensions.of(services.extensions),
   ];
 }
 

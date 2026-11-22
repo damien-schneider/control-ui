@@ -17,7 +17,7 @@ export type { MarkdownEditorContentProps, MarkdownEditorStatus } from "./markdow
 export type { LiveMarkdownEditorProps as MarkdownEditorProps };
 
 type LiveMarkdownEditorProps = MarkdownEditorRootProps & {
-  /** Extra CodeMirror extensions, applied after the built-in set. Read once, when the editor mounts. */
+  /** Extra CodeMirror extensions for the editor and each table cell, applied after the built-in set. Read once, when the editor mounts. */
   extensions?: Extension;
 };
 
